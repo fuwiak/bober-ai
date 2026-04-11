@@ -105,12 +105,12 @@ const Hero = () => (
           Мы предоставляем доступ к передовой AI-инфраструктуре и облачным вычислениям. Автоматизируйте бизнес с официальной поддержкой Yandex Cloud, Selectel и SberCloud. Предлагаем LM Studio и приватные LLM на сертифицированных GPU — поможем с подбором конфигурации и внедрением под ваши задачи и бюджет.
         </p>
         <div className="flex flex-wrap gap-4">
-          <button className="btn-primary">
+          <a className="btn-primary" href="#contact">
             Начать внедрение
-          </button>
-          <button className="btn-secondary">
+          </a>
+          <a className="btn-secondary" href="mailto:hello@kinetic-ai.ru?subject=%D0%9A%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8F%20Kinetic%20AI">
             Консультация
-          </button>
+          </a>
         </div>
       </motion.div>
       <motion.div 
