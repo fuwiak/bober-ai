@@ -132,7 +132,7 @@ const Hero = () => (
             src="/hero-ollama.png"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-contain object-center p-4 transition-all duration-700"
+            className="object-cover object-center transition-all duration-700"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
