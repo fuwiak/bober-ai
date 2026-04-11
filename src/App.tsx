@@ -2,9 +2,11 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
+import { useState } from "react";
 import {
   Cloud,
   Menu,
+  X,
   Brain,
   Server,
   Shield,
@@ -22,33 +24,66 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 const navLinkClass =
   "text-on-surface font-medium font-headline tracking-tight hover:text-primary transition-colors duration-300 border-b-2 border-transparent hover:border-primary/40 pb-1";
 
-const Navbar = () => (
-  <header className="fixed top-0 w-full z-50 glass-nav kinetic-shadow">
-    <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-      <a href="#top" className="flex items-center gap-3">
-        <Cloud className="text-primary w-6 h-6" />
-        <span className="text-xl font-extrabold tracking-tighter text-on-surface font-headline">KINETIC AI</span>
-      </a>
-      <nav className="hidden md:flex items-center gap-8">
-        <a className={navLinkClass} href="#services">
-          Services
+const menuItems = [
+  { href: "#partners", label: "Пишут о нас" },
+  { href: "#contact", label: "Контакт" },
+  { href: "#services", label: "Наши услуги" },
+];
+
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  return (
+    <header className="fixed top-0 z-50 w-full glass-nav kinetic-shadow">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <a href="#top" className="flex items-center gap-3">
+          <Cloud className="h-6 w-6 text-primary" />
+          <span className="font-headline text-xl font-extrabold tracking-tighter text-on-surface">KINETIC AI</span>
         </a>
-        <a className={navLinkClass} href="#partners">
-          Partners
-        </a>
-        <a className={navLinkClass} href="#info">
-          Info
-        </a>
-      </nav>
-      <div className="flex items-center gap-2">
-        <ThemeToggle />
-        <button type="button" className="text-on-surface active:scale-95 transition-transform" aria-label="Меню">
-          <Menu className="h-6 w-6" />
-        </button>
+        <nav className="hidden items-center gap-8 md:flex">
+          <a className={navLinkClass} href="#services">
+            Services
+          </a>
+          <a className={navLinkClass} href="#partners">
+            Partners
+          </a>
+          <a className={navLinkClass} href="#info">
+            Info
+          </a>
+        </nav>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <button
+            type="button"
+            className="text-on-surface transition-transform active:scale-95 md:hidden"
+            aria-label="Меню"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-header-menu"
+            onClick={() => setIsMenuOpen((prev) => !prev)}
+          >
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
-    </div>
-  </header>
-);
+      {isMenuOpen && (
+        <div id="mobile-header-menu" className="border-t border-outline-variant/20 bg-surface-container-lowest/95 px-6 py-4 md:hidden">
+          <nav className="flex flex-col gap-3">
+            {menuItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="rounded-xl border border-outline-variant/20 px-4 py-3 text-sm font-semibold text-on-surface transition-colors hover:bg-surface-container-low"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+};
 
 const Hero = () => (
   <section
@@ -210,7 +245,7 @@ const Partners = () => (
 );
 
 const Contact = () => (
-  <section className="max-w-7xl mx-auto px-6 pb-32">
+  <section id="contact" className="max-w-7xl mx-auto scroll-mt-28 px-6 pb-32">
     <div className="flex flex-col overflow-hidden rounded-3xl bg-on-surface text-surface-container-lowest md:flex-row">
       <div className="md:w-1/2 p-12 md:p-20 relative bg-[#1b1c1c]">
         <h2 className="text-4xl font-bold mb-6 leading-tight text-white">Готовы обсудить <br/>ваш проект?</h2>
