@@ -1,0 +1,60 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+@theme {
+  --color-background: #fcf9f8;
+  --color-on-surface: #1b1c1c;
+  --color-primary: #bc0100;
+  --color-primary-container: #eb0000;
+  --color-on-primary: #ffffff;
+  --color-secondary-container: #fecb00;
+  --color-on-secondary-container: #6e5700;
+  --color-surface-container-low: #f6f3f2;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-highest: #e5e2e1;
+  --color-surface-bright: #fcf9f8;
+  --color-surface-dim: #dcd9d9;
+  --color-outline-variant: #ebbbb4;
+  --color-tertiary-container: #747474;
+  --color-on-surface-variant: #603e39;
+
+  --font-headline: "Manrope", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-on-surface font-body antialiased overflow-x-hidden;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline;
+  }
+}
+
+@layer components {
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-container) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .glass-nav {
+    @apply bg-white/80 backdrop-blur-md;
+  }
+
+  .kinetic-shadow {
+    box-shadow: 0 32px 64px -15px rgba(188, 1, 0, 0.04);
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 font-bold rounded shadow-lg shadow-primary/10 active:scale-95 transition-all;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary-container text-on-secondary-container px-8 py-4 font-bold rounded active:scale-95 transition-all;
+  }
+
+  .card-premium {
+    @apply bg-surface-container-lowest p-10 hover:bg-surface-bright transition-colors;
+  }
+}
