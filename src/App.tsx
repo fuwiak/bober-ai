@@ -158,7 +158,7 @@ const Services = () => (
         >
           <div>
             <Brain className="text-primary w-10 h-10 mb-6" />
-            <h3 className="text-2xl font-bold mb-4">Корпоративный ИИ и Chatbots</h3>
+            <h3 className="mb-4 text-2xl font-bold text-primary">Корпоративный ИИ и Chatbots</h3>
             <p className="text-on-surface-variant leading-relaxed max-w-md">
               Внедрение LLM-моделей в ваши бизнес-процессы. От автоматизации клиентской поддержки до глубокой аналитики данных с использованием YandexGPT.
             </p>
@@ -271,7 +271,7 @@ const Contact = () => (
           <div>
             <label className="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Ваше имя</label>
             <input 
-              className="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all px-0 py-3 text-on-surface placeholder:text-surface-dim" 
+              className="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all px-3 py-3 text-on-surface placeholder:text-surface-dim" 
               placeholder="Александр" 
               type="text"
             />
@@ -279,7 +279,7 @@ const Contact = () => (
           <div>
             <label className="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Email или Телефон</label>
             <input 
-              className="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all px-0 py-3 text-on-surface placeholder:text-surface-dim" 
+              className="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all px-3 py-3 text-on-surface placeholder:text-surface-dim" 
               placeholder="contact@company.ru" 
               type="text"
             />
@@ -287,7 +287,7 @@ const Contact = () => (
           <div>
             <label className="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Сообщение</label>
             <textarea 
-              className="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all px-0 py-3 text-on-surface placeholder:text-surface-dim" 
+              className="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all px-3 py-3 text-on-surface placeholder:text-surface-dim" 
               placeholder="Расскажите кратко о задаче..." 
               rows={3}
             ></textarea>
