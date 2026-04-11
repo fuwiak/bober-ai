@@ -121,11 +121,11 @@ const Hero = () => (
       >
         <div className="relative aspect-square w-full overflow-hidden rounded-3xl shadow-2xl">
           <Image
-            alt="ИИ-инфраструктура и потоки данных"
-            src="/hero-ai.jpg"
+            alt="Ollama"
+            src="/hero-ollama.png"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover object-center transition-all duration-700"
+            className="object-contain object-center p-4 transition-all duration-700"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
@@ -261,7 +261,7 @@ const Contact = () => (
         <div className="space-y-6">
           <div className="flex items-center gap-4">
             <PhoneCall className="text-secondary-container w-5 h-5" />
-            <span className="text-white">+7 (495) 000-00-00</span>
+            <span className="text-white">+7 926 990 1666</span>
           </div>
           <div className="flex items-center gap-4">
             <Mail className="text-secondary-container w-5 h-5" />
