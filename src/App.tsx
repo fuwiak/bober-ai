@@ -84,13 +84,13 @@ const Hero = () => (
         transition={{ duration: 0.8, delay: 0.2 }}
         className="relative"
       >
-        <div className="aspect-square w-full overflow-hidden rounded-3xl shadow-2xl relative">
+        <div className="relative aspect-square w-full overflow-hidden rounded-3xl shadow-2xl">
           <Image
             alt="ИИ-инфраструктура и потоки данных"
-            src="/hero-ai.png"
+            src="/hero-ai.jpg"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover transition-all duration-700"
+            className="object-cover object-center transition-all duration-700"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
