@@ -288,8 +288,6 @@ const Footer = () => (
           <span className="text-on-surface font-medium">ИП Стасиньски Павел Кшиштоф</span>
           {" · "}
           ИНН&nbsp;772356334324, ОГРНИП&nbsp;325774600389226
-          <br />
-          Регистрация: 19&nbsp;июня&nbsp;2025&nbsp;г. · регион: г.&nbsp;Москва
         </p>
         <p className="text-[11px] uppercase tracking-widest text-on-surface-variant/90">
           © {new Date().getFullYear()} Kinetic AI. Официальный партнёр Yandex Cloud.
