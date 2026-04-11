@@ -86,12 +86,11 @@ const Hero = () => (
       >
         <div className="aspect-square w-full overflow-hidden rounded-3xl shadow-2xl relative">
           <Image
-            alt="AI Visualization"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZSLXdYGA2QQ3g0NP7uGZI_E3iOpDIfoWrdOSmdR03F1wZ73KNGjdnVh5NzD7WLJndZdVz-cMjrkK1JIWFFQKkjnk7a2ni94LAnG3Sph8e5MY8_J0XnSnnFOUrdLgwGfvEJXcq-22Lb8YfcIINWxf0GXNGGCcR8RW3dEWyhJjYoT0nI16srLFDdezmdELlYPAucq89h8M1UKBD2JT3lfxEF4wmY55jGm3YSiCIMzNYdQWTqWRFOPCxgumnNoxlHGuicVLK8yXDl-0"
+            alt="ИИ-инфраструктура и потоки данных"
+            src="/hero-ai.png"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover grayscale-[0.5] hover:grayscale-0 transition-all duration-700"
-            referrerPolicy="no-referrer"
+            className="object-cover transition-all duration-700"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
