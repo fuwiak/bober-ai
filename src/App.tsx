@@ -30,6 +30,13 @@ const menuItems = [
   { href: "#services", label: "Наши услуги" },
 ];
 
+const partnerItems = [
+  { name: "Yandex Cloud", icon: "/partners/yandex-cloud.svg" },
+  { name: "Selectel", icon: "/partners/selectel.svg" },
+  { name: "SberCloud", icon: "/partners/sbercloud.svg" },
+  { name: "Ollama", icon: "/partners/ollama.svg" },
+];
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -221,30 +228,20 @@ const Partners = () => (
         <h2 className="text-3xl font-bold tracking-tight">Наши ключевые партнеры</h2>
       </div>
       <div className="flex flex-wrap justify-center items-center gap-16 opacity-70">
-        <div className="flex items-center gap-4 group">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#FF0000] text-lg font-black italic text-white">
-            Y
+        {partnerItems.map((partner) => (
+          <div key={partner.name} className="group flex items-center gap-4">
+            <Image
+              alt={`${partner.name} favicon`}
+              src={partner.icon}
+              width={48}
+              height={48}
+              className="h-12 w-12 rounded-2xl ring-1 ring-black/5 dark:ring-white/10"
+            />
+            <span className="font-bold text-2xl tracking-tighter group-hover:text-primary transition-colors">
+              {partner.name}
+            </span>
           </div>
-          <span className="font-bold text-2xl tracking-tighter group-hover:text-primary transition-colors">Yandex Cloud</span>
-        </div>
-        <div className="flex items-center gap-4 group">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-zinc-900 text-xl font-bold uppercase text-white dark:bg-zinc-200 dark:text-zinc-900">
-            S
-          </div>
-          <span className="font-bold text-2xl tracking-tighter group-hover:text-primary transition-colors">Selectel</span>
-        </div>
-        <div className="flex items-center gap-4 group">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-green-600 text-sm font-bold text-white">
-            Сбер
-          </div>
-          <span className="font-bold text-2xl tracking-tighter group-hover:text-primary transition-colors">SberCloud</span>
-        </div>
-        <div className="flex items-center gap-4 group">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-neutral-800 text-lg font-bold text-white dark:bg-neutral-200 dark:text-neutral-900">
-            O
-          </div>
-          <span className="font-bold text-2xl tracking-tighter group-hover:text-primary transition-colors">Ollama</span>
-        </div>
+        ))}
       </div>
     </div>
   </section>
