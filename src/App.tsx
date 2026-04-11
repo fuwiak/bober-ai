@@ -59,7 +59,7 @@ const Navbar = () => {
             aria-label="Меню"
             aria-expanded={isMenuOpen}
             aria-controls="mobile-header-menu"
-            onClick={() => setIsMenuOpen((prev) => !prev)}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -267,7 +267,7 @@ const Contact = () => (
         </div>
       </div>
       <div className="border-t border-outline-variant/10 bg-contact-panel p-12 md:w-1/2 md:border-l md:border-t-0 md:p-20">
-        <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
+        <form className="space-y-8">
           <div>
             <label className="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Ваше имя</label>
             <input 
