@@ -171,7 +171,7 @@ const Services = () => (
         >
           <div>
             <Brain className="text-primary w-10 h-10 mb-6" />
-            <h3 className="mb-4 text-2xl font-bold text-primary">Корпоративный ИИ и Chatbots</h3>
+            <h3 className="mb-4 text-2xl font-bold text-primary">Корпоративный ИИ и чат-боты</h3>
             <p className="text-on-surface-variant leading-relaxed max-w-md">
               Внедрение LLM-моделей в ваши бизнес-процессы. От автоматизации клиентской поддержки до глубокой аналитики данных с использованием YandexGPT.
             </p>
