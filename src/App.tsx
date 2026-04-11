@@ -67,7 +67,7 @@ const Hero = () => (
           Масштабируйте <br/><span className="text-gradient">Интеллект.</span>
         </h1>
         <p className="text-lg text-tertiary-container max-w-lg mb-10 leading-relaxed font-body">
-          Мы предоставляем доступ к передовой AI-инфраструктуре и облачным вычислениям. Автоматизируйте бизнес с официальной поддержкой Yandex Cloud, Selectel и SberCloud.
+          Мы предоставляем доступ к передовой AI-инфраструктуре и облачным вычислениям. Автоматизируйте бизнес с официальной поддержкой Yandex Cloud, Selectel и SberCloud. Предлагаем LM Studio и приватные LLM на сертифицированных GPU — поможем с подбором конфигурации и внедрением под ваши задачи и бюджет.
         </p>
         <div className="flex flex-wrap gap-4">
           <button className="btn-primary">
