@@ -2,21 +2,22 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
-import { 
-  Cloud, 
-  Menu, 
-  Brain, 
-  Server, 
-  Shield, 
-  BarChart, 
-  GitBranch, 
-  ArrowRight, 
-  PhoneCall, 
+import {
+  Cloud,
+  Menu,
+  Brain,
+  Server,
+  Shield,
+  BarChart,
+  GitBranch,
+  ArrowRight,
+  PhoneCall,
   Mail,
   LayoutGrid,
   Handshake,
-  Info
+  Info,
 } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const navLinkClass =
   "text-on-surface font-medium font-headline tracking-tight hover:text-primary transition-colors duration-300 border-b-2 border-transparent hover:border-primary/40 pb-1";
@@ -39,9 +40,12 @@ const Navbar = () => (
           Info
         </a>
       </nav>
-      <button className="text-on-surface active:scale-95 transition-transform">
-        <Menu className="w-6 h-6" />
-      </button>
+      <div className="flex items-center gap-2">
+        <ThemeToggle />
+        <button type="button" className="text-on-surface active:scale-95 transition-transform" aria-label="Меню">
+          <Menu className="h-6 w-6" />
+        </button>
+      </div>
     </div>
   </header>
 );
@@ -80,7 +84,7 @@ const Hero = () => (
         transition={{ duration: 0.8, delay: 0.2 }}
         className="relative"
       >
-        <div className="aspect-square w-full rounded-xl overflow-hidden shadow-2xl relative">
+        <div className="aspect-square w-full overflow-hidden rounded-3xl shadow-2xl relative">
           <Image
             alt="AI Visualization"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZSLXdYGA2QQ3g0NP7uGZI_E3iOpDIfoWrdOSmdR03F1wZ73KNGjdnVh5NzD7WLJndZdVz-cMjrkK1JIWFFQKkjnk7a2ni94LAnG3Sph8e5MY8_J0XnSnnFOUrdLgwGfvEJXcq-22Lb8YfcIINWxf0GXNGGCcR8RW3dEWyhJjYoT0nI16srLFDdezmdELlYPAucq89h8M1UKBD2JT3lfxEF4wmY55jGm3YSiCIMzNYdQWTqWRFOPCxgumnNoxlHGuicVLK8yXDl-0"
@@ -96,7 +100,7 @@ const Hero = () => (
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 1, duration: 0.5 }}
-          className="absolute -bottom-6 -left-6 bg-surface-container-lowest p-6 rounded shadow-xl border border-outline-variant/15 max-w-[200px]"
+          className="absolute -bottom-6 -left-6 max-w-[200px] rounded-2xl border border-outline-variant/15 bg-surface-container-lowest p-6 shadow-xl"
         >
           <span className="text-3xl font-bold text-primary block">99.9%</span>
           <span className="text-xs text-on-surface-variant font-medium">Гарантированный аптайм облачных систем</span>
@@ -114,9 +118,9 @@ const Services = () => (
         <h2 className="text-4xl font-bold tracking-tight mt-2">Экосистема решений</h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <motion.div 
+        <motion.div
           whileHover={{ backgroundColor: "var(--color-surface-bright)" }}
-          className="md:col-span-2 bg-surface-container-lowest p-10 flex flex-col justify-between group transition-colors"
+          className="group flex flex-col justify-between rounded-3xl bg-surface-container-lowest p-10 transition-colors md:col-span-2"
         >
           <div>
             <Brain className="text-primary w-10 h-10 mb-6" />
@@ -130,7 +134,7 @@ const Services = () => (
           </div>
         </motion.div>
 
-        <div className="bg-primary text-on-primary p-10 flex flex-col justify-between">
+        <div className="flex flex-col justify-between rounded-3xl bg-primary p-10 text-on-primary">
           <div>
             <Server className="text-secondary-container w-10 h-10 mb-6" />
             <h3 className="text-2xl font-bold mb-4">Cloud Infrastructure</h3>
@@ -139,7 +143,12 @@ const Services = () => (
             </p>
           </div>
           <div className="mt-12">
-            <button className="text-on-primary border-b border-on-primary font-bold text-sm tracking-widest uppercase">Подробнее</button>
+            <button
+              type="button"
+              className="rounded-xl border border-on-primary/40 bg-on-primary/10 px-4 py-2 text-sm font-bold uppercase tracking-widest text-on-primary transition hover:bg-on-primary/20"
+            >
+              Подробнее
+            </button>
           </div>
         </div>
 
@@ -179,15 +188,21 @@ const Partners = () => (
       </div>
       <div className="flex flex-wrap justify-center items-center gap-16 opacity-70">
         <div className="flex items-center gap-4 group">
-          <div className="w-12 h-12 bg-[#FF0000] rounded-full flex items-center justify-center text-white font-black italic">Y</div>
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#FF0000] text-lg font-black italic text-white">
+            Y
+          </div>
           <span className="font-bold text-2xl tracking-tighter group-hover:text-primary transition-colors">Yandex Cloud</span>
         </div>
         <div className="flex items-center gap-4 group">
-          <div className="w-12 h-12 bg-on-surface text-white flex items-center justify-center font-bold text-xl uppercase">S</div>
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-zinc-900 text-xl font-bold uppercase text-white dark:bg-zinc-200 dark:text-zinc-900">
+            S
+          </div>
           <span className="font-bold text-2xl tracking-tighter group-hover:text-primary transition-colors">Selectel</span>
         </div>
         <div className="flex items-center gap-4 group">
-          <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center text-white font-bold">Сбер</div>
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-green-600 text-sm font-bold text-white">
+            Сбер
+          </div>
           <span className="font-bold text-2xl tracking-tighter group-hover:text-primary transition-colors">SberCloud</span>
         </div>
       </div>
@@ -197,7 +212,7 @@ const Partners = () => (
 
 const Contact = () => (
   <section className="max-w-7xl mx-auto px-6 pb-32">
-    <div className="bg-on-surface text-surface-container-lowest rounded overflow-hidden flex flex-col md:flex-row">
+    <div className="flex flex-col overflow-hidden rounded-3xl bg-on-surface text-surface-container-lowest md:flex-row">
       <div className="md:w-1/2 p-12 md:p-20 relative bg-[#1b1c1c]">
         <h2 className="text-4xl font-bold mb-6 leading-tight text-white">Готовы обсудить <br/>ваш проект?</h2>
         <p className="text-surface-dim mb-12 max-w-xs font-body">
@@ -217,7 +232,7 @@ const Contact = () => (
           <Cloud className="w-[200px] h-[200px] text-white" />
         </div>
       </div>
-      <div className="md:w-1/2 bg-white p-12 md:p-20 border-t md:border-t-0 md:border-l border-outline-variant/10">
+      <div className="border-t border-outline-variant/10 bg-contact-panel p-12 md:w-1/2 md:border-l md:border-t-0 md:p-20">
         <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
           <div>
             <label className="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Ваше имя</label>
@@ -243,7 +258,10 @@ const Contact = () => (
               rows={3}
             ></textarea>
           </div>
-          <button className="w-full bg-primary text-white py-5 font-bold uppercase tracking-widest active:scale-[0.98] transition-all">
+          <button
+            type="button"
+            className="w-full rounded-2xl bg-primary py-5 font-bold uppercase tracking-widest text-on-primary transition-all active:scale-[0.98]"
+          >
             Отправить запрос
           </button>
         </form>
@@ -253,10 +271,10 @@ const Contact = () => (
 );
 
 const mobileNavItemClass =
-  "flex flex-col items-center justify-center gap-0.5 min-w-[4.5rem] py-2 text-stone-500 active:scale-95 transition-transform";
+  "flex min-w-[4.5rem] flex-col items-center justify-center gap-0.5 py-2 text-on-surface-variant transition-transform active:scale-95";
 
 const MobileNav = () => (
-  <footer className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 pb-safe bg-white/90 backdrop-blur-xl border-t border-stone-200/15 shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
+  <footer className="fixed bottom-0 left-0 z-50 flex h-16 w-full items-center justify-around border-t border-outline-variant/20 bg-surface-container-lowest/95 pb-safe shadow-[0_-10px_40px_rgba(0,0,0,0.06)] backdrop-blur-xl md:hidden dark:shadow-[0_-10px_40px_rgba(0,0,0,0.35)]">
     <a href="#services" className={`${mobileNavItemClass} text-primary`}>
       <LayoutGrid className="w-5 h-5" />
       <span className="font-body text-[10px] uppercase tracking-widest font-bold">Services</span>

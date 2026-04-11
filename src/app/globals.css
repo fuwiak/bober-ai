@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
+@variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-background: #fcf9f8;
   --color-on-surface: #1b1c1c;
@@ -17,9 +19,30 @@
   --color-outline-variant: #ebbbb4;
   --color-tertiary-container: #747474;
   --color-on-surface-variant: #603e39;
+  --color-contact-panel: #ffffff;
 
   --font-headline: "Manrope", sans-serif;
   --font-body: "Inter", sans-serif;
+}
+
+html.dark {
+  color-scheme: dark;
+  --color-background: #0b0c0d;
+  --color-on-surface: #f4f1ef;
+  --color-primary: #e02423;
+  --color-primary-container: #ff2b2a;
+  --color-on-primary: #ffffff;
+  --color-secondary-container: #e6bc00;
+  --color-on-secondary-container: #3d3200;
+  --color-surface-container-low: #131517;
+  --color-surface-container-lowest: #1a1c1f;
+  --color-surface-container-highest: #2c3036;
+  --color-surface-bright: #22262b;
+  --color-surface-dim: #8b9099;
+  --color-outline-variant: #3a3f46;
+  --color-tertiary-container: #9aa3ad;
+  --color-on-surface-variant: #c8beb8;
+  --color-contact-panel: #1a1c1f;
 }
 
 @layer base {
@@ -39,22 +62,30 @@
   }
 
   .glass-nav {
-    @apply bg-white/80 backdrop-blur-md;
+    @apply border-b border-outline-variant/15 bg-white/80 backdrop-blur-md;
+  }
+
+  html.dark .glass-nav {
+    @apply border-outline-variant/20 bg-zinc-950/80;
   }
 
   .kinetic-shadow {
     box-shadow: 0 32px 64px -15px rgba(188, 1, 0, 0.04);
   }
 
+  html.dark .kinetic-shadow {
+    box-shadow: 0 28px 56px -18px rgba(0, 0, 0, 0.55);
+  }
+
   .btn-primary {
-    @apply bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 font-bold rounded shadow-lg shadow-primary/10 active:scale-95 transition-all;
+    @apply rounded-2xl bg-gradient-to-br from-primary to-primary-container px-8 py-4 font-bold text-on-primary shadow-lg shadow-primary/20 transition-all active:scale-95;
   }
 
   .btn-secondary {
-    @apply bg-secondary-container text-on-secondary-container px-8 py-4 font-bold rounded active:scale-95 transition-all;
+    @apply rounded-2xl bg-secondary-container px-8 py-4 font-bold text-on-secondary-container transition-all active:scale-95;
   }
 
   .card-premium {
-    @apply bg-surface-container-lowest p-10 hover:bg-surface-bright transition-colors;
+    @apply rounded-3xl bg-surface-container-lowest p-10 transition-colors hover:bg-surface-bright;
   }
 }
