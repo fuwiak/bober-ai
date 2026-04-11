@@ -31,10 +31,11 @@ const menuItems = [
 ];
 
 const partnerItems = [
-  { name: "Yandex Cloud", icon: "/partners/yandex-cloud.svg" },
-  { name: "Selectel", icon: "/partners/selectel.svg" },
-  { name: "SberCloud", icon: "/partners/sbercloud.svg" },
-  { name: "Ollama", icon: "/partners/ollama.svg" },
+  { name: "Yandex Cloud", icon: "/partners/yandex-cloud.png" },
+  { name: "Selectel", icon: "/partners/selectel.png" },
+  { name: "SberCloud", icon: "/partners/sbercloud.png" },
+  { name: "VK Cloud", icon: "/partners/vk-cloud.png" },
+  { name: "Ollama", icon: "/partners/ollama.png" },
 ];
 
 const Navbar = () => {
@@ -104,12 +105,12 @@ const Hero = () => (
         transition={{ duration: 0.6 }}
         className="z-10"
       >
-        <span className="text-primary font-bold uppercase tracking-widest text-xs mb-4 block font-body">Official Yandex Partner</span>
+        <span className="text-primary font-bold uppercase tracking-widest text-xs mb-4 block font-body">Official Yandex & VK Cloud Partner</span>
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-on-surface mb-6 leading-[1.1]">
           Масштабируйте <br/><span className="text-gradient">Интеллект.</span>
         </h1>
         <p className="text-lg text-tertiary-container max-w-lg mb-10 leading-relaxed font-body">
-          Мы предоставляем доступ к передовой AI-инфраструктуре и облачным вычислениям. Автоматизируйте бизнес с официальной поддержкой Yandex Cloud, Selectel и SberCloud. Предлагаем Ollama и приватные LLM на сертифицированных GPU — поможем с подбором конфигурации и внедрением под ваши задачи и бюджет.
+          Мы предоставляем доступ к передовой AI-инфраструктуре и облачным вычислениям. Автоматизируйте бизнес с официальной поддержкой Yandex Cloud, Selectel, SberCloud и VK Cloud. Предлагаем Ollama и приватные LLM на сертифицированных GPU — поможем с подбором конфигурации и внедрением под ваши задачи и бюджет.
         </p>
         <div className="flex flex-wrap gap-4">
           <a className="btn-primary" href="#contact">
@@ -180,7 +181,7 @@ const Services = () => (
             <Server className="text-secondary-container w-10 h-10 mb-6" />
             <h3 className="text-2xl font-bold mb-4">Cloud Infrastructure</h3>
             <p className="text-white/80 leading-relaxed">
-              Миграция и поддержка критически важных систем в облаках Selectel и Sber.
+              Миграция и поддержка критически важных систем в облаках Selectel, SberCloud и VK Cloud.
             </p>
           </div>
           <div className="mt-12">
@@ -235,7 +236,7 @@ const Partners = () => (
               src={partner.icon}
               width={48}
               height={48}
-              className="h-12 w-12 rounded-2xl ring-1 ring-black/5 dark:ring-white/10"
+              className="h-12 w-12 rounded-2xl bg-white object-contain p-1 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10"
             />
             <span className="font-bold text-2xl tracking-tighter group-hover:text-primary transition-colors">
               {partner.name}
@@ -345,7 +346,7 @@ const Footer = () => (
           ИНН&nbsp;772356334324, ОГРНИП&nbsp;325774600389226
         </p>
         <p className="text-[11px] uppercase tracking-widest text-on-surface-variant/90">
-          © {new Date().getFullYear()} Kinetic AI. Официальный партнёр Yandex Cloud.
+          © {new Date().getFullYear()} Kinetic AI. Официальный партнёр Yandex Cloud и VK Cloud.
         </p>
       </div>
     </div>
