@@ -18,17 +18,26 @@ import {
   Info
 } from "lucide-react";
 
+const navLinkClass =
+  "text-on-surface font-medium font-headline tracking-tight hover:text-primary transition-colors duration-300 border-b-2 border-transparent hover:border-primary/40 pb-1";
+
 const Navbar = () => (
   <header className="fixed top-0 w-full z-50 glass-nav kinetic-shadow">
     <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-      <div className="flex items-center gap-3">
+      <a href="#top" className="flex items-center gap-3">
         <Cloud className="text-primary w-6 h-6" />
         <span className="text-xl font-extrabold tracking-tighter text-on-surface font-headline">KINETIC AI</span>
-      </div>
+      </a>
       <nav className="hidden md:flex items-center gap-8">
-        <a className="text-primary border-b-2 border-primary pb-1 font-headline tracking-tight transition-colors duration-300" href="#">Services</a>
-        <a className="text-on-surface font-medium font-headline tracking-tight hover:text-primary transition-colors duration-300" href="#">Partners</a>
-        <a className="text-on-surface font-medium font-headline tracking-tight hover:text-primary transition-colors duration-300" href="#">Info</a>
+        <a className={navLinkClass} href="#services">
+          Services
+        </a>
+        <a className={navLinkClass} href="#partners">
+          Partners
+        </a>
+        <a className={navLinkClass} href="#info">
+          Info
+        </a>
       </nav>
       <button className="text-on-surface active:scale-95 transition-transform">
         <Menu className="w-6 h-6" />
@@ -38,7 +47,10 @@ const Navbar = () => (
 );
 
 const Hero = () => (
-  <section className="relative px-6 py-20 md:py-32 max-w-7xl mx-auto overflow-hidden">
+  <section
+    id="top"
+    className="relative px-6 py-20 md:py-32 max-w-7xl mx-auto overflow-hidden scroll-mt-28"
+  >
     <div className="grid lg:grid-cols-2 gap-12 items-center">
       <motion.div 
         initial={{ opacity: 0, x: -20 }}
@@ -95,7 +107,7 @@ const Hero = () => (
 );
 
 const Services = () => (
-  <section className="bg-surface-container-low py-24">
+  <section id="services" className="scroll-mt-28 bg-surface-container-low py-24">
     <div className="max-w-7xl mx-auto px-6">
       <div className="mb-16">
         <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">Что мы делаем</span>
@@ -160,7 +172,7 @@ const Services = () => (
 );
 
 const Partners = () => (
-  <section className="py-24 px-6 overflow-hidden">
+  <section id="partners" className="scroll-mt-28 py-24 px-6 overflow-hidden">
     <div className="max-w-7xl mx-auto">
       <div className="text-center mb-16">
         <h2 className="text-3xl font-bold tracking-tight">Наши ключевые партнеры</h2>
@@ -240,32 +252,48 @@ const Contact = () => (
   </section>
 );
 
+const mobileNavItemClass =
+  "flex flex-col items-center justify-center gap-0.5 min-w-[4.5rem] py-2 text-stone-500 active:scale-95 transition-transform";
+
 const MobileNav = () => (
   <footer className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 pb-safe bg-white/90 backdrop-blur-xl border-t border-stone-200/15 shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
-    <div className="flex flex-col items-center justify-center text-primary relative after:content-[''] after:absolute after:-bottom-1 after:w-1 after:h-1 after:bg-secondary-container after:rounded-full">
+    <a href="#services" className={`${mobileNavItemClass} text-primary`}>
       <LayoutGrid className="w-5 h-5" />
       <span className="font-body text-[10px] uppercase tracking-widest font-bold">Services</span>
-    </div>
-    <div className="flex flex-col items-center justify-center text-stone-500">
+    </a>
+    <a href="#partners" className={mobileNavItemClass}>
       <Handshake className="w-5 h-5" />
       <span className="font-body text-[10px] uppercase tracking-widest font-bold">Partners</span>
-    </div>
-    <div className="flex flex-col items-center justify-center text-stone-500">
+    </a>
+    <a href="#info" className={mobileNavItemClass}>
       <Info className="w-5 h-5" />
       <span className="font-body text-[10px] uppercase tracking-widest font-bold">Info</span>
-    </div>
+    </a>
   </footer>
 );
 
 const Footer = () => (
-  <footer className="hidden md:block bg-background py-12 border-t border-outline-variant/10">
-    <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-      <div className="flex items-center gap-3">
+  <footer
+    id="info"
+    className="scroll-mt-28 bg-background py-10 md:py-12 border-t border-outline-variant/10 pb-24 md:pb-12"
+  >
+    <div className="max-w-7xl mx-auto px-6 flex flex-col gap-8 md:flex-row md:justify-between md:items-start">
+      <div className="flex items-center gap-3 shrink-0">
         <Cloud className="text-primary w-6 h-6" />
         <span className="text-xl font-extrabold tracking-tighter text-on-surface font-headline">KINETIC AI</span>
       </div>
-      <div className="text-xs text-on-surface-variant font-medium font-body uppercase tracking-widest">
-        © 2024 Kinetic Authority. Официальный партнер Yandex Cloud.
+      <div className="text-xs text-on-surface-variant font-body leading-relaxed max-w-xl space-y-2">
+        <p className="font-semibold text-on-surface">Сведения об индивидуальном предпринимателе</p>
+        <p>
+          <span className="text-on-surface font-medium">ИП Стасиньски Павел Кшиштоф</span>
+          {" · "}
+          ИНН&nbsp;772356334324, ОГРНИП&nbsp;325774600389226
+          <br />
+          Регистрация: 19&nbsp;июня&nbsp;2025&nbsp;г. · регион: г.&nbsp;Москва
+        </p>
+        <p className="text-[11px] uppercase tracking-widest text-on-surface-variant/90">
+          © {new Date().getFullYear()} Kinetic AI. Официальный партнёр Yandex Cloud.
+        </p>
       </div>
     </div>
   </footer>
