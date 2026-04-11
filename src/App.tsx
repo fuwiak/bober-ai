@@ -102,7 +102,7 @@ const Hero = () => (
           Масштабируйте <br/><span className="text-gradient">Интеллект.</span>
         </h1>
         <p className="text-lg text-tertiary-container max-w-lg mb-10 leading-relaxed font-body">
-          Мы предоставляем доступ к передовой AI-инфраструктуре и облачным вычислениям. Автоматизируйте бизнес с официальной поддержкой Yandex Cloud, Selectel и SberCloud. Предлагаем LM Studio и приватные LLM на сертифицированных GPU — поможем с подбором конфигурации и внедрением под ваши задачи и бюджет.
+          Мы предоставляем доступ к передовой AI-инфраструктуре и облачным вычислениям. Автоматизируйте бизнес с официальной поддержкой Yandex Cloud, Selectel и SberCloud. Предлагаем Ollama и приватные LLM на сертифицированных GPU — поможем с подбором конфигурации и внедрением под ваши задачи и бюджет.
         </p>
         <div className="flex flex-wrap gap-4">
           <a className="btn-primary" href="#contact">
@@ -238,6 +238,12 @@ const Partners = () => (
             Сбер
           </div>
           <span className="font-bold text-2xl tracking-tighter group-hover:text-primary transition-colors">SberCloud</span>
+        </div>
+        <div className="flex items-center gap-4 group">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-neutral-800 text-lg font-bold text-white dark:bg-neutral-200 dark:text-neutral-900">
+            O
+          </div>
+          <span className="font-bold text-2xl tracking-tighter group-hover:text-primary transition-colors">Ollama</span>
         </div>
       </div>
     </div>
