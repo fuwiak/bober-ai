@@ -116,7 +116,12 @@ const Hero = () => (
           <a className="btn-primary" href="#contact">
             Начать внедрение
           </a>
-          <a className="btn-secondary" href="mailto:hello@kinetic-ai.ru?subject=%D0%9A%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8F%20Kinetic%20AI">
+          <a
+            className="btn-secondary"
+            href="https://t.me/sizovmaksim"
+            target="_blank"
+            rel="noreferrer"
+          >
             Консультация
           </a>
         </div>
