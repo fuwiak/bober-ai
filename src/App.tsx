@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import {
   Cloud,
   Menu,
@@ -103,7 +103,7 @@ const Hero = () => (
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
-        className="z-10"
+        className="relative z-20 min-w-0"
       >
         <span className="text-primary font-bold uppercase tracking-widest text-xs mb-4 block font-body">Official Yandex & VK Cloud Partner</span>
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-on-surface mb-6 leading-[1.1]">
@@ -130,7 +130,7 @@ const Hero = () => (
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="relative"
+        className="relative z-0 min-w-0"
       >
         <div className="relative aspect-square w-full overflow-hidden rounded-3xl shadow-2xl">
           <Image
@@ -263,12 +263,22 @@ const Contact = () => (
         </p>
         <div className="space-y-6">
           <div className="flex items-center gap-4">
-            <PhoneCall className="text-secondary-container w-5 h-5" />
-            <span className="text-white">+7 926 990 1666</span>
+            <PhoneCall className="text-secondary-container w-5 h-5 shrink-0" />
+            <a
+              href="tel:+79269901666"
+              className="text-white underline-offset-4 transition-colors hover:text-secondary-container hover:underline"
+            >
+              +7 926 990 1666
+            </a>
           </div>
           <div className="flex items-center gap-4">
-            <Mail className="text-secondary-container w-5 h-5" />
-            <span className="text-white">hello@kinetic-ai.ru</span>
+            <Mail className="text-secondary-container w-5 h-5 shrink-0" />
+            <a
+              href="mailto:hello@kinetic-ai.ru"
+              className="text-white underline-offset-4 transition-colors hover:text-secondary-container hover:underline"
+            >
+              hello@kinetic-ai.ru
+            </a>
           </div>
         </div>
         <div className="absolute right-0 bottom-0 opacity-10 pointer-events-none">
@@ -359,10 +369,15 @@ const Footer = () => (
 );
 
 export default function App() {
+  useLayoutEffect(() => {
+    if (typeof window === "undefined" || window.location.hash) return;
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main className="pt-24">
+      <main className="pt-24 pb-[max(5.5rem,calc(4rem+env(safe-area-inset-bottom,0px)+1rem))] md:pb-0">
         <Hero />
         <Services />
         <Partners />
