@@ -20,6 +20,7 @@ import {
   Info,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { SHOW_VK_CLOUD_MENTIONS } from "@/config/featureFlags";
 
 const navLinkClass =
   "text-on-surface font-medium font-headline tracking-tight hover:text-primary transition-colors duration-300 border-b-2 border-transparent hover:border-primary/40 pb-1";
@@ -30,13 +31,31 @@ const menuItems = [
   { href: "#services", label: "Наши услуги" },
 ];
 
-const partnerItems = [
+type PartnerItem = { name: string; icon: string; vk?: true };
+
+const partnerItemsAll: PartnerItem[] = [
   { name: "Yandex Cloud", icon: "/partners/yandex-cloud.png" },
   { name: "Selectel", icon: "/partners/selectel.png" },
   { name: "SberCloud", icon: "/partners/sbercloud.png" },
-  { name: "VK Cloud", icon: "/partners/vk-cloud.png" },
+  { name: "VK Cloud", icon: "/partners/vk-cloud.png", vk: true },
   { name: "Ollama", icon: "/partners/ollama.png" },
 ];
+
+const partnerItems = partnerItemsAll.filter(
+  (p) => SHOW_VK_CLOUD_MENTIONS || !p.vk,
+);
+
+const heroPartnerBadge = SHOW_VK_CLOUD_MENTIONS
+  ? "Official Yandex & VK Cloud Partner"
+  : "Official Yandex Cloud Partner";
+
+const heroLeadCopy = SHOW_VK_CLOUD_MENTIONS
+  ? "Мы предоставляем доступ к передовой AI-инфраструктуре и облачным вычислениям. Автоматизируйте бизнес с официальной поддержкой Yandex Cloud, Selectel, SberCloud и VK Cloud. Предлагаем Ollama и приватные LLM на сертифицированных GPU — поможем с подбором конфигурации и внедрением под ваши задачи и бюджет."
+  : "Мы предоставляем доступ к передовой AI-инфраструктуре и облачным вычислениям. Автоматизируйте бизнес с официальной поддержкой Yandex Cloud, Selectel и SberCloud. Предлагаем Ollama и приватные LLM на сертифицированных GPU — поможем с подбором конфигурации и внедрением под ваши задачи и бюджет.";
+
+const cloudInfraCopy = SHOW_VK_CLOUD_MENTIONS
+  ? "Миграция и поддержка критически важных систем в облаках Selectel, SberCloud и VK Cloud."
+  : "Миграция и поддержка критически важных систем в облаках Selectel и SberCloud.";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -105,13 +124,11 @@ const Hero = () => (
         transition={{ duration: 0.6 }}
         className="relative z-20 min-w-0"
       >
-        <span className="text-primary font-bold uppercase tracking-widest text-xs mb-4 block font-body">Official Yandex & VK Cloud Partner</span>
+        <span className="text-primary font-bold uppercase tracking-widest text-xs mb-4 block font-body">{heroPartnerBadge}</span>
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-on-surface mb-6 leading-[1.1]">
           Масштабируйте <br/><span className="text-gradient">Интеллект.</span>
         </h1>
-        <p className="text-lg text-tertiary-container max-w-lg mb-10 leading-relaxed font-body">
-          Мы предоставляем доступ к передовой AI-инфраструктуре и облачным вычислениям. Автоматизируйте бизнес с официальной поддержкой Yandex Cloud, Selectel, SberCloud и VK Cloud. Предлагаем Ollama и приватные LLM на сертифицированных GPU — поможем с подбором конфигурации и внедрением под ваши задачи и бюджет.
-        </p>
+        <p className="text-lg text-tertiary-container max-w-lg mb-10 leading-relaxed font-body">{heroLeadCopy}</p>
         <div className="flex flex-wrap gap-4">
           <a className="btn-primary" href="#contact">
             Начать внедрение
@@ -185,9 +202,7 @@ const Services = () => (
           <div>
             <Server className="text-secondary-container w-10 h-10 mb-6" />
             <h3 className="text-2xl font-bold mb-4">Cloud Infrastructure</h3>
-            <p className="text-white/80 leading-relaxed">
-              Миграция и поддержка критически важных систем в облаках Selectel, SberCloud и VK Cloud.
-            </p>
+            <p className="text-white/80 leading-relaxed">{cloudInfraCopy}</p>
           </div>
           <div className="mt-12">
             <button
@@ -361,7 +376,10 @@ const Footer = () => (
           ИНН&nbsp;772356334324, ОГРНИП&nbsp;325774600389226
         </p>
         <p className="text-[11px] uppercase tracking-widest text-on-surface-variant/90">
-          © {new Date().getFullYear()} Kinetic AI. Официальный партнёр Yandex Cloud и VK Cloud.
+          © {new Date().getFullYear()} Kinetic AI.{" "}
+          {SHOW_VK_CLOUD_MENTIONS
+            ? "Официальный партнёр Yandex Cloud и VK Cloud."
+            : "Официальный партнёр Yandex Cloud."}
         </p>
       </div>
     </div>
