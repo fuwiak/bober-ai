@@ -47,6 +47,8 @@ html.dark {
 
 @layer base {
   html {
+    /* Без hash: не даём браузеру «якориться» при сдвиге вёрстки после загрузки */
+    overflow-anchor: none;
     /* Фиксированный хедер + нижняя мобильная навигация не перекрывают якоря */
     scroll-padding-top: 6.5rem;
     scroll-padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));

@@ -14,10 +14,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className="scroll-smooth" suppressHydrationWarning>
+    <html lang="ru" suppressHydrationWarning>
       <body>
         <Script id="theme-init" strategy="beforeInteractive">
           {`(function(){try{var k='theme';var t=localStorage.getItem(k);var d=t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',d);}catch(e){}})();`}
+        </Script>
+        <Script id="scroll-top-init" strategy="beforeInteractive">
+          {`(function(){try{if('scrollRestoration'in history)history.scrollRestoration='manual';var h=location.hash;if(h&&h!=='#')return;scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0;}catch(e){}})();`}
         </Script>
         {children}
       </body>

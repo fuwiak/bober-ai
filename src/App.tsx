@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import {
   Cloud,
   Menu,
@@ -368,10 +368,32 @@ const Footer = () => (
   </footer>
 );
 
+function scrollToTopHard() {
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+}
+
 export default function App() {
   useLayoutEffect(() => {
     if (typeof window === "undefined" || window.location.hash) return;
-    window.scrollTo(0, 0);
+    scrollToTopHard();
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || window.location.hash) return;
+    scrollToTopHard();
+    const t = window.setTimeout(scrollToTopHard, 0);
+    let raf2 = 0;
+    const raf1 = window.requestAnimationFrame(() => {
+      scrollToTopHard();
+      raf2 = window.requestAnimationFrame(scrollToTopHard);
+    });
+    return () => {
+      window.clearTimeout(t);
+      window.cancelAnimationFrame(raf1);
+      if (raf2) window.cancelAnimationFrame(raf2);
+    };
   }, []);
 
   return (
