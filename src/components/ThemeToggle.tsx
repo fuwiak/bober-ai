@@ -8,16 +8,16 @@ const STORAGE_KEY = "theme";
 function readPreferredDark(): boolean {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored === "dark") return true;
     if (stored === "light") return false;
+    if (stored === "dark") return true;
   } catch {
     /* ignore */
   }
-  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  return true;
 }
 
 export function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   useLayoutEffect(() => {
     const dark = readPreferredDark();
