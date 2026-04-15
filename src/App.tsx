@@ -271,6 +271,46 @@ const Services = () => {
               процессами для команды и бизнеса.
             </p>
           </div>
+
+          <div className="card-premium">
+            <Mail className="text-primary w-8 h-8 mb-6" />
+            <h3 className="text-xl font-bold mb-2">Приватный мессенджер</h3>
+            <p className="text-on-surface-variant text-sm leading-relaxed">
+              Внедряем корпоративный приватный мессенджер для безопасной внутренней коммуникации, обмена файлами и
+              быстрых согласований. Команда работает в едином защищенном контуре, а данные и переписка остаются под
+              вашим контролем.
+            </p>
+          </div>
+
+          <div className="card-premium">
+            <Brain className="text-primary w-8 h-8 mb-6" />
+            <h3 className="text-xl font-bold mb-2">CRM со встроенным AI</h3>
+            <p className="text-on-surface-variant text-sm leading-relaxed">
+              Разрабатываем CRM-систему с ИИ-помощником для продаж и сервиса: автоматизируем рутину, помогаем
+              менеджерам готовить ответы и фиксировать важные действия по клиенту. Вы повышаете скорость работы отдела
+              и улучшаете качество клиентского опыта.
+            </p>
+          </div>
+
+          <div className="card-premium">
+            <Server className="text-primary w-8 h-8 mb-6" />
+            <h3 className="text-xl font-bold mb-2">Cloud для ИИ</h3>
+            <p className="text-on-surface-variant text-sm leading-relaxed">
+              Настраиваем облачную инфраструктуру специально под ИИ-нагрузки: обучение, инференс, хранение данных и
+              интеграции с вашими сервисами. Получаете стабильную производительность, масштабируемость и прогнозируемые
+              затраты.
+            </p>
+          </div>
+
+          <div className="card-premium">
+            <Shield className="text-primary w-8 h-8 mb-6" />
+            <h3 className="text-xl font-bold mb-2">Локальный ИИ на сертифицированных GPU</h3>
+            <p className="text-on-surface-variant text-sm leading-relaxed">
+              Разворачиваем локальные ИИ-модели и базы данных в изолированном контуре на сертифицированных GPU с учетом
+              требований 152-ФЗ. Это подходит для компаний, которым критично обеспечить полный контроль над данными и
+              исключить их передачу за пределы РФ.
+            </p>
+          </div>
         </div>
       </div>
       {isCloudModalOpen && (
