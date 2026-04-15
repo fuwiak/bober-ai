@@ -228,7 +228,7 @@ const Services = () => {
           <div className="flex flex-col justify-between rounded-3xl bg-primary p-10 text-on-primary">
             <div>
               <Server className="text-secondary-container w-10 h-10 mb-6" />
-              <h3 className="text-2xl font-bold mb-4">Cloud Infrastructure</h3>
+              <h3 className="text-2xl font-bold mb-4">Облачная инфраструктура</h3>
               <p className="text-white/80 leading-relaxed">{cloudInfraCopy}</p>
             </div>
             <div className="mt-12">
@@ -334,7 +334,7 @@ const Services = () => {
         >
           <div className="w-full max-w-2xl rounded-3xl bg-surface-container-lowest p-8 shadow-2xl">
             <h4 id="cloud-infra-modal-title" className="text-2xl font-bold text-on-surface">
-              Cloud Infrastructure
+              Облачная инфраструктура
             </h4>
             <p className="mt-4 text-on-surface-variant leading-relaxed">
               Проектируем и сопровождаем отказоустойчивую облачную инфраструктуру для критичных сервисов в Selectel и
