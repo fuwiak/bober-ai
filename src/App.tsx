@@ -373,6 +373,34 @@ const MobileNav = () => (
   </footer>
 );
 
+const QuickContactCTA = () => (
+  <div className="fixed bottom-20 right-4 z-50 md:bottom-6 md:right-6">
+    <div className="rounded-2xl border border-primary/20 bg-surface-container-lowest/95 p-3 shadow-2xl backdrop-blur">
+      <p className="mb-2 text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">
+        Быстрый контакт
+      </p>
+      <div className="flex items-center gap-2">
+        <a
+          href="tel:+79269901666"
+          className="inline-flex items-center gap-2 rounded-xl bg-primary px-3 py-2 text-xs font-bold uppercase tracking-wider text-on-primary transition hover:opacity-90"
+        >
+          <PhoneCall className="h-4 w-4" />
+          Позвонить
+        </a>
+        <a
+          href="https://t.me/sizovmaksim"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 rounded-xl border border-outline-variant/30 bg-surface-container-low px-3 py-2 text-xs font-bold uppercase tracking-wider text-on-surface transition hover:bg-surface-container"
+        >
+          <Mail className="h-4 w-4" />
+          Telegram
+        </a>
+      </div>
+    </div>
+  </div>
+);
+
 const Footer = () => (
   <footer
     id="info"
@@ -439,6 +467,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      <QuickContactCTA />
       <MobileNav />
     </div>
   );
