@@ -511,10 +511,13 @@ const PromoPopup = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isCardOpen, setIsCardOpen] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const dragRef = useRef({ active: false, moved: false, offsetX: 0, offsetY: 0 });
+  const [viewport, setViewport] = useState({ w: 0, h: 0 });
+  const velocityRef = useRef({ vx: 1.8, vy: 1.4 });
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    setViewport({ w: window.innerWidth, h: window.innerHeight });
     const initialX = Math.max(16, window.innerWidth - bubbleSize - 20);
     const initialY = Math.max(120, window.innerHeight - bubbleSize - 130);
     setPosition({ x: initialX, y: initialY });
@@ -526,6 +529,7 @@ const PromoPopup = () => {
   useEffect(() => {
     if (typeof window === "undefined") return;
     const onResize = () => {
+      setViewport({ w: window.innerWidth, h: window.innerHeight });
       setPosition((prev: { x: number; y: number }) => ({
         x: Math.min(Math.max(16, prev.x), Math.max(16, window.innerWidth - bubbleSize - 16)),
         y: Math.min(Math.max(90, prev.y), Math.max(90, window.innerHeight - bubbleSize - 16)),
@@ -535,35 +539,49 @@ const PromoPopup = () => {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  const onPointerDown = (event: any) => {
-    dragRef.current = {
-      active: true,
-      moved: false,
-      offsetX: event.clientX - position.x,
-      offsetY: event.clientY - position.y,
+  useEffect(() => {
+    if (!isVisible || viewport.w === 0) return;
+
+    const tick = () => {
+      setPosition((prev: { x: number; y: number }) => {
+        const minX = 10;
+        const minY = 90;
+        const maxX = Math.max(minX, viewport.w - bubbleSize - 10);
+        const maxY = Math.max(minY, viewport.h - bubbleSize - 14);
+
+        let { vx, vy } = velocityRef.current;
+        vx += (Math.random() - 0.5) * 0.15;
+        vy += (Math.random() - 0.5) * 0.15;
+        vx = Math.max(-2.8, Math.min(2.8, vx));
+        vy = Math.max(-2.8, Math.min(2.8, vy));
+        if (Math.abs(vx) < 0.6) vx = vx >= 0 ? 0.6 : -0.6;
+        if (Math.abs(vy) < 0.6) vy = vy >= 0 ? 0.6 : -0.6;
+
+        let nextX = prev.x + vx;
+        let nextY = prev.y + vy;
+
+        if (nextX <= minX || nextX >= maxX) {
+          vx = -vx;
+          nextX = Math.min(Math.max(minX, nextX), maxX);
+        }
+        if (nextY <= minY || nextY >= maxY) {
+          vy = -vy;
+          nextY = Math.min(Math.max(minY, nextY), maxY);
+        }
+
+        velocityRef.current = { vx, vy };
+        return { x: nextX, y: nextY };
+      });
+
+      rafRef.current = window.requestAnimationFrame(tick);
     };
-    event.currentTarget.setPointerCapture(event.pointerId);
-  };
 
-  const onPointerMove = (event: any) => {
-    if (!dragRef.current.active) return;
-    const maxX = Math.max(16, window.innerWidth - bubbleSize - 16);
-    const maxY = Math.max(90, window.innerHeight - bubbleSize - 16);
-    const nextX = Math.min(Math.max(16, event.clientX - dragRef.current.offsetX), maxX);
-    const nextY = Math.min(Math.max(90, event.clientY - dragRef.current.offsetY), maxY);
-    if (Math.abs(nextX - position.x) > 2 || Math.abs(nextY - position.y) > 2) {
-      dragRef.current.moved = true;
-    }
-    setPosition({ x: nextX, y: nextY });
-  };
-
-  const onPointerUp = (event: any) => {
-    event.currentTarget.releasePointerCapture(event.pointerId);
-    const wasMoved = dragRef.current.moved;
-    dragRef.current.active = false;
-    dragRef.current.moved = false;
-    if (!wasMoved) setIsCardOpen((prev: boolean) => !prev);
-  };
+    rafRef.current = window.requestAnimationFrame(tick);
+    return () => {
+      if (rafRef.current) window.cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    };
+  }, [isVisible, viewport.h, viewport.w]);
 
   if (!isVisible) return null;
 
@@ -573,7 +591,7 @@ const PromoPopup = () => {
         <div
           className="fixed z-[79] w-[min(22rem,calc(100vw-1.5rem))] rounded-2xl border border-primary/25 bg-surface-container-lowest p-4 shadow-2xl"
           style={{
-            left: Math.max(8, Math.min(position.x - 260, window.innerWidth - 360)),
+            left: Math.max(8, Math.min(position.x - 260, viewport.w - 360)),
             top: Math.max(84, position.y - 110),
           }}
         >
@@ -598,13 +616,19 @@ const PromoPopup = () => {
         aria-label="Openclaw бесплатно"
         className="fixed z-[80] flex h-16 w-16 items-center justify-center rounded-full bg-primary text-on-primary shadow-[0_18px_40px_rgba(0,0,0,0.25)] transition hover:opacity-95"
         style={{ left: position.x, top: position.y }}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
+        onClick={() => setIsCardOpen((prev: boolean) => !prev)}
       >
-        <div className="text-center leading-tight">
-          <span className="block text-[9px] font-black uppercase tracking-widest">Free</span>
-          <span className="block text-[10px] font-black">Openclaw</span>
+        <div className="relative">
+          <Image
+            src="/openclaw-icon.png"
+            alt="Openclaw"
+            width={36}
+            height={36}
+            className="h-9 w-9 object-contain"
+          />
+          <span className="absolute -right-5 -top-5 rounded-full bg-black/70 px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider text-white">
+            free
+          </span>
         </div>
       </button>
     </>
