@@ -50,12 +50,12 @@ const heroPartnerBadge = SHOW_VK_CLOUD_MENTIONS
   : "Official Yandex Cloud Partner";
 
 const heroLeadCopy = SHOW_VK_CLOUD_MENTIONS
-  ? "Мы предоставляем доступ к передовой AI-инфраструктуре и облачным вычислениям. Автоматизируйте бизнес с официальной поддержкой Yandex Cloud, Selectel, SberCloud и VK Cloud. Предлагаем Ollama и приватные LLM на сертифицированных GPU — поможем с подбором конфигурации и внедрением под ваши задачи и бюджет."
-  : "Мы предоставляем доступ к передовой AI-инфраструктуре и облачным вычислениям. Автоматизируйте бизнес с официальной поддержкой Yandex Cloud, Selectel и SberCloud. Предлагаем Ollama и приватные LLM на сертифицированных GPU — поможем с подбором конфигурации и внедрением под ваши задачи и бюджет.";
+  ? "Помогаем бизнесу быстро запускать ИИ-решения, которые реально влияют на прибыль: автоматизируют поддержку и продажи, ускоряют работу команд и снижают операционные издержки. Проектируем и внедряем надежную AI-инфраструктуру с официальной поддержкой Yandex Cloud, Selectel, SberCloud и VK Cloud, включая приватные LLM в защищенном контуре на сертифицированных GPU — под ваши KPI, сроки и бюджет."
+  : "Помогаем бизнесу быстро запускать ИИ-решения, которые реально влияют на прибыль: автоматизируют поддержку и продажи, ускоряют работу команд и снижают операционные издержки. Проектируем и внедряем надежную AI-инфраструктуру с официальной поддержкой Yandex Cloud, Selectel и SberCloud, включая приватные LLM в защищенном контуре на сертифицированных GPU — под ваши KPI, сроки и бюджет.";
 
 const cloudInfraCopy = SHOW_VK_CLOUD_MENTIONS
-  ? "Migration and support of mission-critical systems in Selectel, SberCloud, and VK Cloud."
-  : "Migration and support of mission-critical systems in Selectel and SberCloud.";
+  ? "Миграция, настройка и поддержка критически важных систем в облаках Selectel, SberCloud и VK Cloud с фокусом на отказоустойчивость, безопасность и предсказуемые затраты."
+  : "Миграция, настройка и поддержка критически важных систем в облаках Selectel и SberCloud с фокусом на отказоустойчивость, безопасность и предсказуемые затраты.";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -69,13 +69,13 @@ const Navbar = () => {
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           <a className={navLinkClass} href="#services">
-            Services
+            Услуги
           </a>
           <a className={navLinkClass} href="#partners">
-            Partners
+            Партнеры
           </a>
           <a className={navLinkClass} href="#info">
-            Info
+            Инфо
           </a>
         </nav>
         <div className="flex items-center gap-2">
@@ -325,12 +325,14 @@ const Services = () => {
               Cloud Infrastructure
             </h4>
             <p className="mt-4 text-on-surface-variant leading-relaxed">
-              We design and support resilient cloud infrastructure for critical services in Selectel and SberCloud,
-              from architecture audit to phased migration with minimal downtime.
+              Проектируем и сопровождаем отказоустойчивую облачную инфраструктуру для критичных сервисов в Selectel и
+              SberCloud: от аудита текущей архитектуры и плана миграции до запуска production-контуров с минимальными
+              простоями.
             </p>
             <p className="mt-4 text-on-surface-variant leading-relaxed">
-              We set up backup and failover, observability, centralized logging, and incident recovery processes. Your
-              team gets transparent operations with clear SLA control, risk visibility, and predictable cloud costs.
+              Настраиваем резервирование, отказоустойчивость, мониторинг, централизованное логирование и регламенты
+              восстановления после инцидентов. В результате ваша команда получает прозрачную эксплуатацию, контроль SLA,
+              снижение рисков и управляемый бюджет на облако без скрытых расходов.
             </p>
             <div className="mt-8 flex justify-end">
               <button
@@ -451,15 +453,15 @@ const MobileNav = () => (
   <footer className="fixed bottom-0 left-0 z-50 flex h-16 w-full items-center justify-around border-t border-outline-variant/20 bg-surface-container-lowest/95 pb-safe shadow-[0_-10px_40px_rgba(0,0,0,0.06)] backdrop-blur-xl md:hidden dark:shadow-[0_-10px_40px_rgba(0,0,0,0.35)]">
     <a href="#services" className={`${mobileNavItemClass} text-primary`}>
       <LayoutGrid className="w-5 h-5" />
-      <span className="font-body text-[10px] uppercase tracking-widest font-bold">Services</span>
+      <span className="font-body text-[10px] uppercase tracking-widest font-bold">Услуги</span>
     </a>
     <a href="#partners" className={mobileNavItemClass}>
       <Handshake className="w-5 h-5" />
-      <span className="font-body text-[10px] uppercase tracking-widest font-bold">Partners</span>
+      <span className="font-body text-[10px] uppercase tracking-widest font-bold">Партнеры</span>
     </a>
     <a href="#info" className={mobileNavItemClass}>
       <Info className="w-5 h-5" />
-      <span className="font-body text-[10px] uppercase tracking-widest font-bold">Info</span>
+      <span className="font-body text-[10px] uppercase tracking-widest font-bold">Инфо</span>
     </a>
   </footer>
 );
