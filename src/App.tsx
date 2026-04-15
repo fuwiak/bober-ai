@@ -492,6 +492,69 @@ const QuickContactCTA = () => (
   </div>
 );
 
+const PromoPopup = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const alreadyClosed = window.sessionStorage.getItem("promo-openclaw-closed");
+    if (alreadyClosed) return;
+
+    const timer = window.setTimeout(() => {
+      setIsOpen(true);
+    }, 2500);
+
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  const closePopup = () => {
+    setIsOpen(false);
+    if (typeof window !== "undefined") {
+      window.sessionStorage.setItem("promo-openclaw-closed", "1");
+    }
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-[80] flex items-end justify-center bg-black/50 p-4 md:items-center">
+      <div className="w-full max-w-md rounded-3xl border border-primary/20 bg-surface-container-lowest p-6 shadow-2xl">
+        <div className="mb-3 flex items-center justify-between">
+          <p className="text-xs font-bold uppercase tracking-widest text-primary">Спецпредложение</p>
+          <button
+            type="button"
+            aria-label="Закрыть"
+            className="rounded-lg border border-outline-variant/30 px-2 py-1 text-xs font-semibold text-on-surface-variant transition hover:bg-surface-container-low"
+            onClick={closePopup}
+          >
+            Закрыть
+          </button>
+        </div>
+        <h4 className="text-xl font-extrabold leading-tight text-on-surface">
+          Закажите услугу сейчас
+        </h4>
+        <p className="mt-3 text-sm leading-relaxed text-on-surface-variant">
+          При заказе любой услуги — настройка Openclaw бесплатно. Подключим, настроим и передадим рабочий контур вашей
+          команде.
+        </p>
+        <div className="mt-5 flex gap-3">
+          <a className="btn-primary" href="#contact" onClick={closePopup}>
+            Получить предложение
+          </a>
+          <button
+            type="button"
+            className="btn-secondary"
+            onClick={closePopup}
+          >
+            Позже
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Footer = () => (
   <footer
     id="info"
@@ -559,6 +622,7 @@ export default function App() {
       </main>
       <Footer />
       <QuickContactCTA />
+      <PromoPopup />
       <MobileNav />
     </div>
   );
