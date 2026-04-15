@@ -125,6 +125,21 @@ const Hero = () => (
         className="relative z-20 min-w-0"
       >
         <span className="text-primary font-bold uppercase tracking-widest text-xs mb-4 block font-body">{heroPartnerBadge}</span>
+        <div className="mb-6 inline-flex items-center gap-4 rounded-2xl border border-primary/25 bg-surface-container-low px-4 py-3 shadow-md">
+          <div className="relative h-10 w-[190px] shrink-0 overflow-hidden rounded-lg bg-white p-2 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10">
+            <Image
+              alt="Yandex Cloud — бизнес-партнер"
+              src="/yandex/Yandex-Cloud-сервисный-партнер-ru-light.svg"
+              fill
+              sizes="190px"
+              className="object-contain"
+              priority
+            />
+          </div>
+          <span className="text-xs font-bold uppercase tracking-wider text-on-surface">
+            Бизнес-партнер Yandex Cloud
+          </span>
+        </div>
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-on-surface mb-6 leading-[1.1]">
           Масштабируйте <br/><span className="text-gradient">Интеллект.</span>
         </h1>
