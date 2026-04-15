@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   Cloud,
   Menu,
@@ -507,65 +507,107 @@ const QuickContactCTA = () => (
 );
 
 const PromoPopup = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const bubbleSize = 64;
+  const [isVisible, setIsVisible] = useState(false);
+  const [isCardOpen, setIsCardOpen] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const dragRef = useRef({ active: false, moved: false, offsetX: 0, offsetY: 0 });
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    const initialX = Math.max(16, window.innerWidth - bubbleSize - 20);
+    const initialY = Math.max(120, window.innerHeight - bubbleSize - 130);
+    setPosition({ x: initialX, y: initialY });
 
-    const alreadyClosed = window.sessionStorage.getItem("promo-openclaw-closed");
-    if (alreadyClosed) return;
-
-    const timer = window.setTimeout(() => {
-      setIsOpen(true);
-    }, 2500);
-
+    const timer = window.setTimeout(() => setIsVisible(true), 1800);
     return () => window.clearTimeout(timer);
   }, []);
 
-  const closePopup = () => {
-    setIsOpen(false);
-    if (typeof window !== "undefined") {
-      window.sessionStorage.setItem("promo-openclaw-closed", "1");
-    }
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const onResize = () => {
+      setPosition((prev: { x: number; y: number }) => ({
+        x: Math.min(Math.max(16, prev.x), Math.max(16, window.innerWidth - bubbleSize - 16)),
+        y: Math.min(Math.max(90, prev.y), Math.max(90, window.innerHeight - bubbleSize - 16)),
+      }));
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  const onPointerDown = (event: any) => {
+    dragRef.current = {
+      active: true,
+      moved: false,
+      offsetX: event.clientX - position.x,
+      offsetY: event.clientY - position.y,
+    };
+    event.currentTarget.setPointerCapture(event.pointerId);
   };
 
-  if (!isOpen) return null;
+  const onPointerMove = (event: any) => {
+    if (!dragRef.current.active) return;
+    const maxX = Math.max(16, window.innerWidth - bubbleSize - 16);
+    const maxY = Math.max(90, window.innerHeight - bubbleSize - 16);
+    const nextX = Math.min(Math.max(16, event.clientX - dragRef.current.offsetX), maxX);
+    const nextY = Math.min(Math.max(90, event.clientY - dragRef.current.offsetY), maxY);
+    if (Math.abs(nextX - position.x) > 2 || Math.abs(nextY - position.y) > 2) {
+      dragRef.current.moved = true;
+    }
+    setPosition({ x: nextX, y: nextY });
+  };
+
+  const onPointerUp = (event: any) => {
+    event.currentTarget.releasePointerCapture(event.pointerId);
+    const wasMoved = dragRef.current.moved;
+    dragRef.current.active = false;
+    dragRef.current.moved = false;
+    if (!wasMoved) setIsCardOpen((prev: boolean) => !prev);
+  };
+
+  if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 z-[80] flex items-end justify-center bg-black/50 p-4 md:items-center">
-      <div className="w-full max-w-md rounded-3xl border border-primary/20 bg-surface-container-lowest p-6 shadow-2xl">
-        <div className="mb-3 flex items-center justify-between">
-          <p className="text-xs font-bold uppercase tracking-widest text-primary">Спецпредложение</p>
-          <button
-            type="button"
-            aria-label="Закрыть"
-            className="rounded-lg border border-outline-variant/30 px-2 py-1 text-xs font-semibold text-on-surface-variant transition hover:bg-surface-container-low"
-            onClick={closePopup}
-          >
-            Закрыть
-          </button>
+    <>
+      {isCardOpen && (
+        <div
+          className="fixed z-[79] w-[min(22rem,calc(100vw-1.5rem))] rounded-2xl border border-primary/25 bg-surface-container-lowest p-4 shadow-2xl"
+          style={{
+            left: Math.max(8, Math.min(position.x - 260, window.innerWidth - 360)),
+            top: Math.max(84, position.y - 110),
+          }}
+        >
+          <p className="text-[11px] font-bold uppercase tracking-widest text-primary">Openclaw бесплатно</p>
+          <p className="mt-2 text-sm leading-relaxed text-on-surface-variant">
+            При заказе любой услуги настройка Openclaw в подарок. Подключим, протестируем и передадим готовый рабочий
+            контур вашей команде.
+          </p>
+          <div className="mt-3 flex gap-2">
+            <a className="btn-primary" href="#contact" onClick={() => setIsCardOpen(false)}>
+              Получить оффер
+            </a>
+            <button type="button" className="btn-secondary" onClick={() => setIsCardOpen(false)}>
+              Скрыть
+            </button>
+          </div>
         </div>
-        <h4 className="text-xl font-extrabold leading-tight text-on-surface">
-          Закажите услугу сейчас
-        </h4>
-        <p className="mt-3 text-sm leading-relaxed text-on-surface-variant">
-          При заказе любой услуги — настройка Openclaw бесплатно. Подключим, настроим и передадим рабочий контур вашей
-          команде.
-        </p>
-        <div className="mt-5 flex gap-3">
-          <a className="btn-primary" href="#contact" onClick={closePopup}>
-            Получить предложение
-          </a>
-          <button
-            type="button"
-            className="btn-secondary"
-            onClick={closePopup}
-          >
-            Позже
-          </button>
+      )}
+
+      <button
+        type="button"
+        aria-label="Openclaw бесплатно"
+        className="fixed z-[80] flex h-16 w-16 items-center justify-center rounded-full bg-primary text-on-primary shadow-[0_18px_40px_rgba(0,0,0,0.25)] transition hover:opacity-95"
+        style={{ left: position.x, top: position.y }}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+      >
+        <div className="text-center leading-tight">
+          <span className="block text-[9px] font-black uppercase tracking-widest">Free</span>
+          <span className="block text-[10px] font-black">Openclaw</span>
         </div>
-      </div>
-    </div>
+      </button>
+    </>
   );
 };
 
