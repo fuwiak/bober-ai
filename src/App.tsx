@@ -189,14 +189,17 @@ const Hero = () => (
   </section>
 );
 
-const Services = () => (
-  <section id="services" className="scroll-mt-28 bg-surface-container-low py-24">
-    <div className="max-w-7xl mx-auto px-6">
-      <div className="mb-16">
-        <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">Что мы делаем</span>
-        <h2 className="text-4xl font-bold tracking-tight mt-2">Экосистема решений</h2>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+const Services = () => {
+  const [isCloudModalOpen, setCloudModalOpen] = useState(false);
+
+  return (
+    <section id="services" className="scroll-mt-28 bg-surface-container-low py-24">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="mb-16">
+          <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">Что мы делаем</span>
+          <h2 className="text-4xl font-bold tracking-tight mt-2">Экосистема решений</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <motion.div
           whileHover={{ backgroundColor: "var(--color-surface-bright)" }}
           className="group flex flex-col justify-between rounded-3xl bg-surface-container-lowest p-10 transition-colors md:col-span-2"
@@ -222,49 +225,83 @@ const Services = () => (
           </div>
         </motion.div>
 
-        <div className="flex flex-col justify-between rounded-3xl bg-primary p-10 text-on-primary">
-          <div>
-            <Server className="text-secondary-container w-10 h-10 mb-6" />
-            <h3 className="text-2xl font-bold mb-4">Cloud Infrastructure</h3>
-            <p className="text-white/80 leading-relaxed">{cloudInfraCopy}</p>
+          <div className="flex flex-col justify-between rounded-3xl bg-primary p-10 text-on-primary">
+            <div>
+              <Server className="text-secondary-container w-10 h-10 mb-6" />
+              <h3 className="text-2xl font-bold mb-4">Cloud Infrastructure</h3>
+              <p className="text-white/80 leading-relaxed">{cloudInfraCopy}</p>
+            </div>
+            <div className="mt-12">
+              <button
+                type="button"
+                className="rounded-xl border border-on-primary/40 bg-on-primary/10 px-4 py-2 text-sm font-bold uppercase tracking-widest text-on-primary transition hover:bg-on-primary/20"
+                onClick={() => setCloudModalOpen(true)}
+              >
+                Подробнее
+              </button>
+            </div>
           </div>
-          <div className="mt-12">
-            <button
-              type="button"
-              className="rounded-xl border border-on-primary/40 bg-on-primary/10 px-4 py-2 text-sm font-bold uppercase tracking-widest text-on-primary transition hover:bg-on-primary/20"
-            >
-              Подробнее
-            </button>
+
+          <div className="card-premium">
+            <Shield className="text-primary w-8 h-8 mb-6" />
+            <h3 className="text-xl font-bold mb-2">Безопасность</h3>
+            <p className="text-on-surface-variant text-sm leading-relaxed">
+              Аттестация ИСПДн и соответствие требованиям регуляторов в облаке.
+            </p>
           </div>
-        </div>
 
-        <div className="card-premium">
-          <Shield className="text-primary w-8 h-8 mb-6" />
-          <h3 className="text-xl font-bold mb-2">Безопасность</h3>
-          <p className="text-on-surface-variant text-sm leading-relaxed">
-            Аттестация ИСПДн и соответствие требованиям регуляторов в облаке.
-          </p>
-        </div>
+          <div className="card-premium">
+            <BarChart className="text-primary w-8 h-8 mb-6" />
+            <h3 className="text-xl font-bold mb-2">Автоматизация</h3>
+            <p className="text-on-surface-variant text-sm leading-relaxed">
+              Оптимизация IT-расходов через интеллектуальный мониторинг ресурсов.
+            </p>
+          </div>
 
-        <div className="card-premium">
-          <BarChart className="text-primary w-8 h-8 mb-6" />
-          <h3 className="text-xl font-bold mb-2">Автоматизация</h3>
-          <p className="text-on-surface-variant text-sm leading-relaxed">
-            Оптимизация IT-расходов через интеллектуальный мониторинг ресурсов.
-          </p>
-        </div>
-
-        <div className="card-premium">
-          <GitBranch className="text-primary w-8 h-8 mb-6" />
-          <h3 className="text-xl font-bold mb-2">DevOps</h3>
-          <p className="text-on-surface-variant text-sm leading-relaxed">
-            Развертывание Kubernetes кластеров и CI/CD пайплайнов любой сложности.
-          </p>
+          <div className="card-premium">
+            <GitBranch className="text-primary w-8 h-8 mb-6" />
+            <h3 className="text-xl font-bold mb-2">DevOps</h3>
+            <p className="text-on-surface-variant text-sm leading-relaxed">
+              Развертывание Kubernetes кластеров и CI/CD пайплайнов любой сложности.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+      {isCloudModalOpen && (
+        <div
+          className="fixed inset-0 z-[70] flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="cloud-infra-modal-title"
+        >
+          <div className="w-full max-w-2xl rounded-3xl bg-surface-container-lowest p-8 shadow-2xl">
+            <h4 id="cloud-infra-modal-title" className="text-2xl font-bold text-on-surface">
+              Cloud Infrastructure
+            </h4>
+            <p className="mt-4 text-on-surface-variant leading-relaxed">
+              Проектируем и сопровождаем отказоустойчивую инфраструктуру для критичных сервисов в облаках Selectel и
+              SberCloud: от аудита текущего ландшафта до поэтапной миграции без простоев.
+            </p>
+            <p className="mt-4 text-on-surface-variant leading-relaxed">
+              Настраиваем резервирование, мониторинг, централизованное логирование и регламенты восстановления после
+              инцидентов. Формируем прозрачную модель эксплуатации, чтобы ИТ-команда контролировала SLA, риски и
+              бюджет.
+            </p>
+            <div className="mt-8 flex justify-end">
+              <button
+                type="button"
+                className="rounded-xl bg-primary px-5 py-3 text-sm font-bold uppercase tracking-widest text-on-primary transition hover:opacity-90"
+                onClick={() => setCloudModalOpen(false)}
+              >
+                Закрыть
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+};
 
 const Partners = () => (
   <section id="partners" className="scroll-mt-28 py-24 px-6 overflow-hidden">
