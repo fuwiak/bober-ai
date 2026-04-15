@@ -54,8 +54,8 @@ const heroLeadCopy = SHOW_VK_CLOUD_MENTIONS
   : "Мы предоставляем доступ к передовой AI-инфраструктуре и облачным вычислениям. Автоматизируйте бизнес с официальной поддержкой Yandex Cloud, Selectel и SberCloud. Предлагаем Ollama и приватные LLM на сертифицированных GPU — поможем с подбором конфигурации и внедрением под ваши задачи и бюджет.";
 
 const cloudInfraCopy = SHOW_VK_CLOUD_MENTIONS
-  ? "Миграция и поддержка критически важных систем в облаках Selectel, SberCloud и VK Cloud."
-  : "Миграция и поддержка критически важных систем в облаках Selectel и SberCloud.";
+  ? "Migration and support of mission-critical systems in Selectel, SberCloud, and VK Cloud."
+  : "Migration and support of mission-critical systems in Selectel and SberCloud.";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -246,7 +246,9 @@ const Services = () => {
             <Shield className="text-primary w-8 h-8 mb-6" />
             <h3 className="text-xl font-bold mb-2">Безопасность</h3>
             <p className="text-on-surface-variant text-sm leading-relaxed">
-              Аттестация ИСПДн и соответствие требованиям регуляторов в облаке.
+              Подготавливаем инфраструктуру к аттестации ИСПДн и проверкам регуляторов: закрываем уязвимости,
+              настраиваем политики доступа, журналирование и контроль изменений. В результате вы снижаете юридические
+              и операционные риски и проходите аудиты без авралов.
             </p>
           </div>
 
@@ -254,7 +256,9 @@ const Services = () => {
             <BarChart className="text-primary w-8 h-8 mb-6" />
             <h3 className="text-xl font-bold mb-2">Автоматизация</h3>
             <p className="text-on-surface-variant text-sm leading-relaxed">
-              Оптимизация IT-расходов через интеллектуальный мониторинг ресурсов.
+              Внедряем интеллектуальный мониторинг и автоматические правила управления ресурсами, чтобы платить только
+              за реально используемые мощности. Это помогает сократить лишние ИТ-расходы, заранее видеть перегрузки и
+              поддерживать стабильную работу сервисов в пиковые периоды.
             </p>
           </div>
 
@@ -262,7 +266,9 @@ const Services = () => {
             <GitBranch className="text-primary w-8 h-8 mb-6" />
             <h3 className="text-xl font-bold mb-2">DevOps</h3>
             <p className="text-on-surface-variant text-sm leading-relaxed">
-              Развертывание Kubernetes кластеров и CI/CD пайплайнов любой сложности.
+              Строим Kubernetes-платформу и CI/CD-процессы под ваш продукт: от окружений разработки до production с
+              контролируемыми релизами. Вы выпускаете изменения быстрее, с меньшим количеством ошибок и понятными
+              процессами для команды и бизнеса.
             </p>
           </div>
         </div>
@@ -279,13 +285,12 @@ const Services = () => {
               Cloud Infrastructure
             </h4>
             <p className="mt-4 text-on-surface-variant leading-relaxed">
-              Проектируем и сопровождаем отказоустойчивую инфраструктуру для критичных сервисов в облаках Selectel и
-              SberCloud: от аудита текущего ландшафта до поэтапной миграции без простоев.
+              We design and support resilient cloud infrastructure for critical services in Selectel and SberCloud,
+              from architecture audit to phased migration with minimal downtime.
             </p>
             <p className="mt-4 text-on-surface-variant leading-relaxed">
-              Настраиваем резервирование, мониторинг, централизованное логирование и регламенты восстановления после
-              инцидентов. Формируем прозрачную модель эксплуатации, чтобы ИТ-команда контролировала SLA, риски и
-              бюджет.
+              We set up backup and failover, observability, centralized logging, and incident recovery processes. Your
+              team gets transparent operations with clear SLA control, risk visibility, and predictable cloud costs.
             </p>
             <div className="mt-8 flex justify-end">
               <button
