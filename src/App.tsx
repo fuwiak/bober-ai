@@ -125,18 +125,18 @@ const Hero = () => (
         className="relative z-20 min-w-0"
       >
         <span className="text-primary font-bold uppercase tracking-widest text-xs mb-4 block font-body">{heroPartnerBadge}</span>
-        <div className="mb-6 inline-flex items-center gap-4 rounded-2xl border border-primary/25 bg-surface-container-low px-4 py-3 shadow-md">
-          <div className="relative h-10 w-[190px] shrink-0 overflow-hidden rounded-lg bg-white p-2 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10">
+        <div className="mb-8 flex w-full max-w-2xl items-center gap-5 rounded-2xl border border-primary/25 bg-surface-container-low px-5 py-4 shadow-md">
+          <div className="relative h-20 w-[340px] shrink-0 overflow-hidden rounded-lg bg-white p-0.5 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10">
             <Image
               alt="Yandex Cloud — бизнес-партнер"
               src="/yandex/yandex-cloud-business-partner-ru-light.svg"
               fill
-              sizes="190px"
-              className="object-contain"
+              sizes="340px"
+              className="object-cover object-center"
               priority
             />
           </div>
-          <span className="text-xs font-bold uppercase tracking-wider text-on-surface">
+          <span className="text-sm font-bold uppercase tracking-wider text-on-surface">
             Бизнес-партнер Yandex Cloud
           </span>
         </div>
