@@ -540,7 +540,13 @@ const PromoPopup = () => {
   }, []);
 
   useEffect(() => {
-    if (!isVisible || viewport.w === 0) return;
+    if (!isVisible || viewport.w === 0 || isCardOpen) {
+      if (rafRef.current) {
+        window.cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
+      return;
+    }
 
     const tick = () => {
       setPosition((prev: { x: number; y: number }) => {
@@ -581,7 +587,7 @@ const PromoPopup = () => {
       if (rafRef.current) window.cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
     };
-  }, [isVisible, viewport.h, viewport.w]);
+  }, [isCardOpen, isVisible, viewport.h, viewport.w]);
 
   if (!isVisible) return null;
 
