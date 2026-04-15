@@ -129,7 +129,7 @@ const Hero = () => (
           <div className="relative h-10 w-[190px] shrink-0 overflow-hidden rounded-lg bg-white p-2 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10">
             <Image
               alt="Yandex Cloud — бизнес-партнер"
-              src="/yandex/Yandex-Cloud-сервисный-партнер-ru-light.svg"
+              src="/yandex/yandex-cloud-business-partner-ru-light.svg"
               fill
               sizes="190px"
               className="object-contain"
