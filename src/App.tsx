@@ -204,8 +204,17 @@ const Services = () => (
           <div>
             <Brain className="text-primary w-10 h-10 mb-6" />
             <h3 className="mb-4 text-2xl font-bold text-primary">Корпоративный ИИ и чат-боты</h3>
-            <p className="text-on-surface-variant leading-relaxed max-w-md">
-              Внедрение LLM-моделей в ваши бизнес-процессы. От автоматизации клиентской поддержки до глубокой аналитики данных с использованием YandexGPT.
+            <p className="text-on-surface-variant leading-relaxed max-w-2xl">
+              Внедрение LLM-моделей в ваши бизнес-процессы с приоритетом на российский технологический стек и требования 152-ФЗ.
+            </p>
+            <ul className="mt-4 list-disc space-y-2 pl-5 text-on-surface-variant leading-relaxed max-w-2xl">
+              <li>Работа с российскими нейросетями (AliceAI LLM, GigaChat и др.).</li>
+              <li>Создание ИИ-ботов только на российских серверах.</li>
+              <li>Полностью локальное развёртывание моделей и баз данных.</li>
+              <li>Все решения совместимы с требованиями 152-ФЗ: данные не выходят за границу.</li>
+            </ul>
+            <p className="mt-4 text-on-surface-variant leading-relaxed max-w-2xl">
+              От автоматизации клиентской поддержки до глубокой аналитики данных с использованием YandexGPT и других корпоративных LLM.
             </p>
           </div>
           <div className="mt-12 flex justify-end">
