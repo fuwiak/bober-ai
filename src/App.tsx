@@ -591,31 +591,66 @@ const PromoPopup = () => {
 
   if (!isVisible) return null;
 
+  const cardLeft =
+    viewport.w > 0 ? Math.max(8, Math.min(position.x - 260, viewport.w - 360)) : 8;
+  const cardTop = Math.max(84, position.y - 110);
+
   return (
     <>
-      {isCardOpen && (
-        <div
-          className="fixed z-[79] w-[min(22rem,calc(100vw-1.5rem))] rounded-2xl border border-primary/25 bg-surface-container-lowest p-4 shadow-2xl"
-          style={{
-            left: Math.max(8, Math.min(position.x - 260, viewport.w - 360)),
-            top: Math.max(84, position.y - 110),
-          }}
-        >
-          <p className="text-[11px] font-bold uppercase tracking-widest text-primary">Openclaw бесплатно</p>
-          <p className="mt-2 text-sm leading-relaxed text-on-surface-variant">
-            При заказе любой услуги настройка Openclaw в подарок. Подключим, протестируем и передадим готовый рабочий
-            контур вашей команде.
-          </p>
-          <div className="mt-3 flex gap-2">
-            <a className="btn-primary" href="#contact" onClick={() => setIsCardOpen(false)}>
-              Получить оффер
-            </a>
-            <button type="button" className="btn-secondary" onClick={() => setIsCardOpen(false)}>
-              Скрыть
-            </button>
-          </div>
+      <motion.div
+        aria-hidden={!isCardOpen}
+        className={`fixed inset-0 z-[78] ${isCardOpen ? "pointer-events-auto" : "pointer-events-none"}`}
+        initial={false}
+        animate={{
+          opacity: isCardOpen ? 1 : 0,
+        }}
+        transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <button
+          type="button"
+          aria-label="Закрыть предложение"
+          className="absolute inset-0 bg-black/45 backdrop-blur-md"
+          onClick={() => setIsCardOpen(false)}
+        />
+      </motion.div>
+
+      <motion.div
+        role="dialog"
+        aria-modal="true"
+        aria-hidden={!isCardOpen}
+        className={`fixed z-[79] w-[min(22rem,calc(100vw-1.5rem))] rounded-2xl border border-primary/25 bg-surface-container-lowest p-4 shadow-2xl ring-1 ring-primary/10 ${isCardOpen ? "pointer-events-auto" : "pointer-events-none"}`}
+        style={{ left: cardLeft, top: cardTop }}
+        initial={false}
+        animate={{
+          opacity: isCardOpen ? 1 : 0,
+          scale: isCardOpen ? 1 : 0.82,
+          y: isCardOpen ? 0 : 18,
+          rotate: isCardOpen ? 0 : -4,
+          filter: isCardOpen ? "blur(0px)" : "blur(6px)",
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 420,
+          damping: 28,
+          mass: 0.85,
+          opacity: { duration: 0.22, ease: [0.22, 1, 0.36, 1] },
+          filter: { duration: 0.22 },
+        }}
+      >
+        <p className="text-[11px] font-bold uppercase tracking-widest text-primary">Openclaw бесплатно</p>
+        <p className="mt-2 text-sm leading-relaxed text-on-surface-variant">
+          При заказе любой услуги настройка Openclaw в подарок. Подключим, протестируем и передадим готовый рабочий
+          контур вашей команде.
+        </p>
+        <div className="mt-3 flex gap-2">
+          <a className="btn-primary" href="#contact" onClick={() => setIsCardOpen(false)}>
+            Получить оффер
+          </a>
+          <button type="button" className="btn-secondary" onClick={() => setIsCardOpen(false)}>
+            Скрыть
+          </button>
         </div>
-      )}
+      </motion.div>
 
       <button
         type="button"
