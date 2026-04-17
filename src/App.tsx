@@ -26,7 +26,7 @@ const navLinkClass =
   "text-on-surface font-medium font-headline tracking-tight hover:text-primary transition-colors duration-300 border-b-2 border-transparent hover:border-primary/40 pb-1";
 
 const menuItems = [
-  { href: "#academy", label: "Академия Yandex" },
+  { href: "/academy", label: "Академия Yandex" },
   { href: "#partners", label: "Пишут о нас" },
   { href: "#contact", label: "Контакт" },
   { href: "#services", label: "Наши услуги" },
@@ -72,7 +72,7 @@ const Navbar = () => {
           <a className={navLinkClass} href="#services">
             Услуги
           </a>
-          <a className={navLinkClass} href="#academy">
+          <a className={navLinkClass} href="/academy">
             Академия Yandex
           </a>
           <a className={navLinkClass} href="#partners">
@@ -402,33 +402,6 @@ const Partners = () => (
   </section>
 );
 
-const AcademyYandex = () => (
-  <section id="academy" className="scroll-mt-28 bg-surface-container-low py-24 px-6">
-    <div className="max-w-7xl mx-auto">
-      <div className="mb-12">
-        <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">Обучение и практика</span>
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight mt-2">Академия Yandex</h2>
-        <p className="mt-3 max-w-2xl text-on-surface-variant">
-          Здесь будут практические видео с разбором внедрения ИИ, автоматизации процессов и реальных бизнес-кейсов.
-        </p>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {[1, 2, 3, 4].map((slot) => (
-          <div
-            key={slot}
-            className="rounded-3xl border border-outline-variant/20 bg-surface-container-lowest p-8 shadow-sm"
-          >
-            <div className="aspect-video rounded-2xl border border-dashed border-outline-variant/40 bg-surface-container-low grid place-items-center">
-              <p className="text-sm font-bold uppercase tracking-widest text-on-surface-variant">Видео уже скоро</p>
-            </div>
-            <p className="mt-4 text-sm text-on-surface-variant">Слот {slot}: обучающий видео-разбор для вашей команды.</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
 const Contact = () => (
   <section id="contact" className="max-w-7xl mx-auto scroll-mt-28 px-6 pb-32">
     <div className="flex flex-col overflow-hidden rounded-3xl bg-on-surface text-surface-container-lowest md:flex-row">
@@ -508,7 +481,7 @@ const MobileNav = () => (
       <LayoutGrid className="w-5 h-5" />
       <span className="font-body text-[10px] uppercase tracking-widest font-bold">Услуги</span>
     </a>
-    <a href="#academy" className={mobileNavItemClass}>
+    <a href="/academy" className={mobileNavItemClass}>
       <Info className="w-5 h-5" />
       <span className="font-body text-[10px] uppercase tracking-widest font-bold">Академия</span>
     </a>
@@ -783,7 +756,6 @@ export default function App() {
       <main className="pt-24 pb-[max(5.5rem,calc(4rem+env(safe-area-inset-bottom,0px)+1rem))] md:pb-0">
         <Hero />
         <Services />
-        <AcademyYandex />
         <Partners />
         <Contact />
       </main>
