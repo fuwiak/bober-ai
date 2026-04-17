@@ -181,8 +181,18 @@ const Hero = () => (
           transition={{ delay: 1, duration: 0.5 }}
           className="absolute -bottom-6 -left-6 max-w-[200px] rounded-2xl border border-outline-variant/15 bg-surface-container-lowest p-6 shadow-xl"
         >
-          <span className="text-3xl font-bold text-primary block">99.9%</span>
-          <span className="text-xs text-on-surface-variant font-medium">Гарантированный аптайм облачных систем</span>
+          <div className="relative mb-3 h-10 w-10 overflow-hidden rounded-lg bg-white p-1 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10">
+            <Image
+              src="/partners/claude.png"
+              alt="Claude"
+              fill
+              sizes="40px"
+              className="object-contain"
+            />
+          </div>
+          <span className="text-xs text-on-surface-variant font-medium">
+            Делаем интеграцию и автоматизацию Claude для вашей компании
+          </span>
         </motion.div>
       </motion.div>
     </div>
