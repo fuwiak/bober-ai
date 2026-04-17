@@ -183,15 +183,15 @@ const Hero = () => (
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 1, duration: 0.5 }}
-          className="absolute -bottom-6 -left-6 max-w-[200px] rounded-2xl border border-outline-variant/15 bg-surface-container-lowest p-6 shadow-xl"
+          className="absolute -bottom-6 -left-6 w-[240px] rounded-2xl border border-outline-variant/15 bg-surface-container-lowest p-4 shadow-xl"
         >
-          <div className="relative mb-3 h-10 w-10 overflow-hidden rounded-lg bg-white p-1 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10">
+          <div className="relative mb-3 h-28 w-full overflow-hidden rounded-xl bg-white ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10">
             <Image
               src="/partners/claude.png"
               alt="Claude"
               fill
-              sizes="40px"
-              className="object-contain"
+              sizes="240px"
+              className="object-cover object-center"
             />
           </div>
           <span className="text-xs text-on-surface-variant font-medium">
