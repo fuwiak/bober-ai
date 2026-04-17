@@ -26,10 +26,10 @@ const navLinkClass =
   "text-on-surface font-medium font-headline tracking-tight hover:text-primary transition-colors duration-300 border-b-2 border-transparent hover:border-primary/40 pb-1";
 
 const menuItems = [
-  { href: "/academy", label: "Академия Yandex" },
   { href: "#partners", label: "Пишут о нас" },
   { href: "#contact", label: "Контакт" },
   { href: "#services", label: "Наши услуги" },
+  { href: "/academy", label: "Академия Yandex" },
 ];
 
 type PartnerItem = { name: string; icon: string; vk?: true };
@@ -72,14 +72,14 @@ const Navbar = () => {
           <a className={navLinkClass} href="#services">
             Услуги
           </a>
-          <a className={navLinkClass} href="/academy">
-            Академия Yandex
-          </a>
           <a className={navLinkClass} href="#partners">
             Партнеры
           </a>
           <a className={navLinkClass} href="#info">
             Инфо
+          </a>
+          <a className={navLinkClass} href="/academy">
+            Академия Yandex
           </a>
         </nav>
         <div className="flex items-center gap-2">
@@ -481,10 +481,6 @@ const MobileNav = () => (
       <LayoutGrid className="w-5 h-5" />
       <span className="font-body text-[10px] uppercase tracking-widest font-bold">Услуги</span>
     </a>
-    <a href="/academy" className={mobileNavItemClass}>
-      <Info className="w-5 h-5" />
-      <span className="font-body text-[10px] uppercase tracking-widest font-bold">Академия</span>
-    </a>
     <a href="#partners" className={mobileNavItemClass}>
       <Handshake className="w-5 h-5" />
       <span className="font-body text-[10px] uppercase tracking-widest font-bold">Партнеры</span>
@@ -492,6 +488,10 @@ const MobileNav = () => (
     <a href="#info" className={mobileNavItemClass}>
       <Info className="w-5 h-5" />
       <span className="font-body text-[10px] uppercase tracking-widest font-bold">Инфо</span>
+    </a>
+    <a href="/academy" className={mobileNavItemClass}>
+      <LayoutGrid className="w-5 h-5" />
+      <span className="font-body text-[10px] uppercase tracking-widest font-bold">Академия</span>
     </a>
   </footer>
 );
