@@ -174,15 +174,15 @@ const Hero = () => (
       >
         <div className="relative aspect-square w-full overflow-hidden rounded-3xl shadow-2xl">
           <div className="absolute inset-0 bg-gradient-to-br from-surface-container-high via-surface-container-low to-primary/15" />
-          <div className="relative flex h-full min-h-0 flex-col items-center justify-center gap-8 p-8 text-center sm:p-10">
-            <div className="flex w-full max-w-md shrink-0 items-center justify-center rounded-2xl bg-white px-4 py-6 ring-1 ring-black/5 sm:px-6 sm:py-8 dark:bg-zinc-900 dark:ring-white/10">
+          <div className="relative flex h-full min-h-0 flex-col items-center justify-center gap-6 p-6 text-center sm:gap-8 sm:p-8 md:p-10">
+            <div className="flex min-h-[12.5rem] w-full max-w-xl shrink-0 items-center justify-center rounded-2xl bg-white px-3 py-4 ring-1 ring-black/5 sm:min-h-[15rem] sm:px-5 sm:py-6 md:min-h-[17rem] dark:bg-zinc-900 dark:ring-white/10">
               <Image
                 alt="Claude"
                 src="/partners/claude.png"
-                width={560}
-                height={180}
-                sizes="(max-width: 768px) 90vw, 448px"
-                className="mx-auto block h-auto max-h-36 w-auto max-w-full object-contain object-center sm:max-h-44"
+                width={720}
+                height={220}
+                sizes="(max-width: 768px) 92vw, 576px"
+                className="mx-auto block h-auto max-h-48 w-auto max-w-full object-contain object-center sm:max-h-56 md:max-h-64"
                 priority
               />
             </div>
