@@ -32,10 +32,14 @@ const menuItems = [
   { href: "/academy", label: "Академия Yandex" },
 ];
 
-type PartnerItem = { name: string; icon: string; vk?: true };
+type PartnerItem = { name: string; icon: string; vk?: true; wordmark?: true };
 
 const partnerItemsAll: PartnerItem[] = [
-  { name: "Yandex Cloud", icon: "/partners/yandex-cloud.png" },
+  {
+    name: "Yandex Cloud",
+    icon: "/partners/yandex-cloud.png",
+    wordmark: true,
+  },
   { name: "Selectel", icon: "/partners/selectel.png" },
   { name: "SberCloud", icon: "/partners/sbercloud.png" },
   { name: "VK Cloud", icon: "/partners/vk-cloud.png", vk: true },
@@ -374,16 +378,28 @@ const Partners = () => (
       <div className="flex flex-wrap justify-center items-center gap-16 opacity-70">
         {partnerItems.map((partner) => (
           <div key={partner.name} className="group flex items-center gap-4">
-            <Image
-              alt={`${partner.name} favicon`}
-              src={partner.icon}
-              width={48}
-              height={48}
-              className="h-12 w-12 rounded-2xl bg-white object-contain p-1 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10"
-            />
-            <span className="font-bold text-2xl tracking-tighter group-hover:text-primary transition-colors">
-              {partner.name}
-            </span>
+            {partner.wordmark ? (
+              <Image
+                alt={partner.name}
+                src={partner.icon}
+                width={321}
+                height={157}
+                className="h-10 w-auto max-w-[min(240px,85vw)] rounded-2xl bg-white object-contain object-left px-2 py-1.5 ring-1 ring-black/5 sm:h-12 sm:max-w-[280px] dark:bg-zinc-900 dark:ring-white/10"
+              />
+            ) : (
+              <>
+                <Image
+                  alt={`${partner.name} favicon`}
+                  src={partner.icon}
+                  width={48}
+                  height={48}
+                  className="h-12 w-12 rounded-2xl bg-white object-contain p-1 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10"
+                />
+                <span className="font-bold text-2xl tracking-tighter transition-colors group-hover:text-primary">
+                  {partner.name}
+                </span>
+              </>
+            )}
           </div>
         ))}
       </div>
