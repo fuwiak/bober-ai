@@ -31,31 +31,23 @@ const menuItems = [
   { href: "/academy", label: "Академия Yandex" },
 ];
 
-type PartnerItem = { name: string; icon: string; vk?: true };
+type PartnerItem = { name: string; icon: string };
 
-const partnerItemsAll: PartnerItem[] = [
+const partnerItems: PartnerItem[] = [
   { name: "Yandex Cloud", icon: "/partners/yandex-cloud.png" },
   { name: "Selectel", icon: "/partners/selectel.png" },
   { name: "SberCloud", icon: "/partners/sbercloud.png" },
-  { name: "VK Cloud", icon: "/partners/vk-cloud.png", vk: true },
+  { name: "VK Cloud", icon: "/partners/vk-cloud.png" },
   { name: "Claude", icon: "/partners/claude.png" },
 ];
 
-const partnerItems = partnerItemsAll.filter(
-  (p) => SHOW_VK_CLOUD_MENTIONS || !p.vk,
-);
+const heroPartnerBadge = "Official Yandex & VK Cloud Partner";
 
-const heroPartnerBadge = SHOW_VK_CLOUD_MENTIONS
-  ? "Official Yandex & VK Cloud Partner"
-  : "Official Yandex Cloud Partner";
+const heroLeadCopy =
+  "Помогаем бизнесу быстро запускать ИИ-решения, которые реально влияют на прибыль: автоматизируют поддержку и продажи, ускоряют работу команд и снижают операционные издержки. Проектируем и внедряем надежную AI-инфраструктуру с официальной поддержкой Yandex Cloud, Selectel, SberCloud и VK Cloud, включая приватные LLM в защищенном контуре на сертифицированных GPU — под ваши KPI, сроки и бюджет.";
 
-const heroLeadCopy = SHOW_VK_CLOUD_MENTIONS
-  ? "Помогаем бизнесу быстро запускать ИИ-решения, которые реально влияют на прибыль: автоматизируют поддержку и продажи, ускоряют работу команд и снижают операционные издержки. Проектируем и внедряем надежную AI-инфраструктуру с официальной поддержкой Yandex Cloud, Selectel, SberCloud и VK Cloud, включая приватные LLM в защищенном контуре на сертифицированных GPU — под ваши KPI, сроки и бюджет."
-  : "Помогаем бизнесу быстро запускать ИИ-решения, которые реально влияют на прибыль: автоматизируют поддержку и продажи, ускоряют работу команд и снижают операционные издержки. Проектируем и внедряем надежную AI-инфраструктуру с официальной поддержкой Yandex Cloud, Selectel и SberCloud, включая приватные LLM в защищенном контуре на сертифицированных GPU — под ваши KPI, сроки и бюджет.";
-
-const cloudInfraCopy = SHOW_VK_CLOUD_MENTIONS
-  ? "Миграция, настройка и поддержка критически важных систем в облаках Selectel, SberCloud и VK Cloud с фокусом на отказоустойчивость, безопасность и предсказуемые затраты."
-  : "Миграция, настройка и поддержка критически важных систем в облаках Selectel и SberCloud с фокусом на отказоустойчивость, безопасность и предсказуемые затраты.";
+const cloudInfraCopy =
+  "Миграция, настройка и поддержка критически важных систем в облаках Selectel, SberCloud и VK Cloud с фокусом на отказоустойчивость, безопасность и предсказуемые затраты.";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -133,8 +125,8 @@ const Hero = () => (
         <div className="mb-8 flex w-full max-w-2xl flex-col gap-3 rounded-2xl border border-primary/25 bg-surface-container-low px-4 py-3 shadow-md md:flex-row md:items-center md:gap-5 md:px-5 md:py-4">
           <div className="relative aspect-[17/4] w-full max-w-[340px] shrink-0 overflow-hidden rounded-lg bg-white p-0.5 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10 md:aspect-auto md:h-20 md:w-[340px]">
             <Image
-              alt="Yandex Cloud — бизнес-партнер"
-              src="/yandex/yandex-cloud-business-partner-ru-light.svg"
+              alt="Yandex Cloud — сервисный партнёр"
+              src="/yandex/Yandex-Cloud-сервисный-партнер-ru-light.svg"
               fill
               sizes="(max-width: 768px) 100vw, 340px"
               className="object-cover object-center"
@@ -142,7 +134,7 @@ const Hero = () => (
             />
           </div>
           <span className="min-w-0 text-sm font-bold uppercase leading-snug tracking-wider text-on-surface md:shrink">
-            Бизнес-партнер Yandex Cloud
+            Сервисный партнёр Yandex Cloud
           </span>
         </div>
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-on-surface mb-6 leading-[1.1]">
@@ -229,16 +221,16 @@ const Services = () => {
           </div>
         </motion.div>
 
-          <div className="flex flex-col justify-between rounded-3xl bg-primary p-10 text-on-primary">
+          <div className="flex flex-col justify-between rounded-3xl bg-[#6B1E32] p-10 text-white shadow-lg ring-1 ring-black/10">
             <div>
-              <Server className="text-secondary-container w-10 h-10 mb-6" />
+              <Server className="text-amber-100/90 w-10 h-10 mb-6" />
               <h3 className="text-2xl font-bold mb-4">Облачная инфраструктура</h3>
-              <p className="text-white/80 leading-relaxed">{cloudInfraCopy}</p>
+              <p className="text-white/85 leading-relaxed">{cloudInfraCopy}</p>
             </div>
             <div className="mt-12">
               <button
                 type="button"
-                className="rounded-xl border border-on-primary/40 bg-on-primary/10 px-4 py-2 text-sm font-bold uppercase tracking-widest text-on-primary transition hover:bg-on-primary/20"
+                className="rounded-xl border border-white/35 bg-white/10 px-4 py-2 text-sm font-bold uppercase tracking-widest text-white transition hover:bg-white/20"
                 onClick={() => setCloudModalOpen(true)}
               >
                 Подробнее
@@ -517,6 +509,7 @@ const QuickContactCTA = () => (
 const PromoPopup = () => {
   const bubbleSize = 64;
   const [isVisible, setIsVisible] = useState(false);
+  const [isCrabExiting, setIsCrabExiting] = useState(false);
   const [isCardOpen, setIsCardOpen] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [viewport, setViewport] = useState({ w: 0, h: 0 });
@@ -548,7 +541,7 @@ const PromoPopup = () => {
   }, []);
 
   useEffect(() => {
-    if (!isVisible || viewport.w === 0 || isCardOpen) {
+    if (!isVisible || viewport.w === 0 || isCardOpen || isCrabExiting) {
       if (rafRef.current) {
         window.cancelAnimationFrame(rafRef.current);
         rafRef.current = null;
@@ -595,9 +588,24 @@ const PromoPopup = () => {
       if (rafRef.current) window.cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
     };
-  }, [isCardOpen, isVisible, viewport.h, viewport.w]);
+  }, [isCardOpen, isCrabExiting, isVisible, viewport.h, viewport.w]);
 
-  if (!isVisible) return null;
+  const dismissCrab = () => {
+    setIsCardOpen(false);
+    setIsCrabExiting(true);
+  };
+
+  const finishCrabExit = () => {
+    setIsVisible(false);
+    setIsCrabExiting(false);
+  };
+
+  if (!isVisible && !isCrabExiting) return null;
+
+  const exitX =
+    viewport.w > 0 ? Math.max(viewport.w - position.x + bubbleSize + 48, 280) : 320;
+  const exitY =
+    viewport.h > 0 ? Math.max(viewport.h - position.y + bubbleSize + 32, 200) : 240;
 
   const cardLeft =
     viewport.w > 0 ? Math.max(8, Math.min(position.x - 260, viewport.w - 360)) : 8;
@@ -654,18 +662,31 @@ const PromoPopup = () => {
           <a className="btn-primary" href="#contact" onClick={() => setIsCardOpen(false)}>
             Получить оффер
           </a>
-          <button type="button" className="btn-secondary" onClick={() => setIsCardOpen(false)}>
+          <button type="button" className="btn-secondary" onClick={dismissCrab}>
             Скрыть
           </button>
         </div>
       </motion.div>
 
-      <button
+      <motion.button
         type="button"
         aria-label="Openclaw бесплатно"
-        className="fixed z-[80] flex h-16 w-16 items-center justify-center rounded-full bg-primary text-on-primary shadow-[0_18px_40px_rgba(0,0,0,0.25)] transition hover:opacity-95"
+        className={`fixed z-[80] flex h-16 w-16 items-center justify-center rounded-full bg-[#6B1E32] text-white shadow-[0_18px_40px_rgba(107,30,50,0.45)] ring-2 ring-white/25 transition hover:opacity-95 ${isCrabExiting ? "pointer-events-none" : ""}`}
         style={{ left: position.x, top: position.y }}
-        onClick={() => setIsCardOpen((prev: boolean) => !prev)}
+        initial={false}
+        animate={
+          isCrabExiting
+            ? { x: exitX, y: exitY, opacity: 0, scale: 0.45, rotate: 12 }
+            : { x: 0, y: 0, opacity: 1, scale: 1, rotate: 0 }
+        }
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        onAnimationComplete={() => {
+          if (isCrabExiting) finishCrabExit();
+        }}
+        onClick={() => {
+          if (isCrabExiting) return;
+          setIsCardOpen((prev: boolean) => !prev);
+        }}
       >
         <div className="relative">
           <Image
@@ -679,7 +700,7 @@ const PromoPopup = () => {
             free
           </span>
         </div>
-      </button>
+      </motion.button>
     </>
   );
 };
@@ -703,9 +724,7 @@ const Footer = () => (
         </p>
         <p className="text-[11px] uppercase tracking-widest text-on-surface-variant/90">
           © {new Date().getFullYear()} Kinetic AI.{" "}
-          {SHOW_VK_CLOUD_MENTIONS
-            ? "Официальный партнёр Yandex Cloud и VK Cloud."
-            : "Официальный партнёр Yandex Cloud."}
+          Официальный партнёр Yandex Cloud и VK Cloud.
         </p>
       </div>
     </div>
