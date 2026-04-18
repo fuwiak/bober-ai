@@ -388,7 +388,7 @@ const Partners = () => (
                 src={partner.icon}
                 width={321}
                 height={157}
-                className="h-10 w-auto max-w-[min(240px,85vw)] rounded-2xl bg-white object-contain object-left px-2 py-1.5 ring-1 ring-black/5 sm:h-12 sm:max-w-[280px] dark:bg-zinc-900 dark:ring-white/10"
+                className="h-14 w-auto max-w-[min(320px,90vw)] rounded-2xl bg-white object-contain object-center px-3 py-2 ring-1 ring-black/5 sm:h-16 sm:max-w-[min(380px,92vw)] md:h-[4.5rem] dark:bg-zinc-900 dark:ring-white/10"
               />
             ) : (
               <>
