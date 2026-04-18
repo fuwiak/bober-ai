@@ -20,7 +20,6 @@ import {
   Info,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { SHOW_VK_CLOUD_MENTIONS } from "@/config/featureFlags";
 
 const navLinkClass =
   "text-on-surface font-medium font-headline tracking-tight hover:text-primary transition-colors duration-300 border-b-2 border-transparent hover:border-primary/40 pb-1";
@@ -128,19 +127,21 @@ const Hero = () => (
         transition={{ duration: 0.6 }}
         className="relative z-20 min-w-0"
       >
-        <span className="text-primary font-bold uppercase tracking-widest text-xs mb-4 block font-body">{heroPartnerBadge}</span>
-        <div className="mb-8 flex w-full max-w-2xl items-center gap-5 rounded-2xl border border-primary/25 bg-surface-container-low px-5 py-4 shadow-md">
-          <div className="relative h-20 w-[340px] shrink-0 overflow-hidden rounded-lg bg-white p-0.5 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10">
+        <span className="mb-4 block font-body text-xs font-bold uppercase tracking-widest text-primary">
+          {heroPartnerBadge}
+        </span>
+        <div className="mb-8 flex w-full max-w-2xl flex-col gap-3 rounded-2xl border border-primary/25 bg-surface-container-low px-4 py-3 shadow-md md:flex-row md:items-center md:gap-5 md:px-5 md:py-4">
+          <div className="relative aspect-[17/4] w-full max-w-[340px] shrink-0 overflow-hidden rounded-lg bg-white p-0.5 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10 md:aspect-auto md:h-20 md:w-[340px]">
             <Image
               alt="Yandex Cloud — бизнес-партнер"
               src="/yandex/yandex-cloud-business-partner-ru-light.svg"
               fill
-              sizes="340px"
+              sizes="(max-width: 768px) 100vw, 340px"
               className="object-cover object-center"
               priority
             />
           </div>
-          <span className="text-sm font-bold uppercase tracking-wider text-on-surface">
+          <span className="min-w-0 text-sm font-bold uppercase leading-snug tracking-wider text-on-surface md:shrink">
             Бизнес-партнер Yandex Cloud
           </span>
         </div>
