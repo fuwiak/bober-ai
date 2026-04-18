@@ -228,16 +228,16 @@ const Services = () => {
           </div>
         </motion.div>
 
-          <div className="flex flex-col justify-between rounded-3xl bg-primary p-10 text-on-primary">
+          <div className="flex flex-col justify-between rounded-3xl border border-white/10 bg-[#722F37] p-10 text-white shadow-xl">
             <div>
-              <Server className="text-secondary-container w-10 h-10 mb-6" />
-              <h3 className="text-2xl font-bold mb-4">Облачная инфраструктура</h3>
-              <p className="text-white/80 leading-relaxed">{cloudInfraCopy}</p>
+              <Server className="mb-6 h-10 w-10 text-amber-100/90" />
+              <h3 className="mb-4 text-2xl font-bold">Облачная инфраструктура</h3>
+              <p className="leading-relaxed text-white/85">{cloudInfraCopy}</p>
             </div>
             <div className="mt-12">
               <button
                 type="button"
-                className="rounded-xl border border-on-primary/40 bg-on-primary/10 px-4 py-2 text-sm font-bold uppercase tracking-widest text-on-primary transition hover:bg-on-primary/20"
+                className="rounded-xl border border-white/35 bg-white/10 px-4 py-2 text-sm font-bold uppercase tracking-widest text-white transition hover:bg-white/20"
                 onClick={() => setCloudModalOpen(true)}
               >
                 Подробнее
