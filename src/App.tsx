@@ -39,7 +39,7 @@ const partnerItemsAll: PartnerItem[] = [
   { name: "Selectel", icon: "/partners/selectel.png" },
   { name: "SberCloud", icon: "/partners/sbercloud.png" },
   { name: "VK Cloud", icon: "/partners/vk-cloud.png", vk: true },
-  { name: "Ollama", icon: "/partners/ollama.png" },
+  { name: "Claude", icon: "/partners/claude.png" },
 ];
 
 const partnerItems = partnerItemsAll.filter(
@@ -119,7 +119,7 @@ const Navbar = () => {
 const Hero = () => (
   <section
     id="top"
-    className="relative px-6 py-20 md:py-32 max-w-7xl mx-auto overflow-hidden scroll-mt-28"
+    className="relative mx-auto max-w-7xl scroll-mt-28 px-6 pb-20 pt-28 md:overflow-hidden md:py-32 md:pt-32"
   >
     <div className="grid lg:grid-cols-2 gap-12 items-center">
       <motion.div 
@@ -169,35 +169,24 @@ const Hero = () => (
         className="relative z-0 min-w-0"
       >
         <div className="relative aspect-square w-full overflow-hidden rounded-3xl shadow-2xl">
-          <Image
-            alt="Ollama"
-            src="/hero-ollama.png"
-            fill
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover object-center transition-all duration-700"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
-        </div>
-        <motion.div 
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 1, duration: 0.5 }}
-          className="absolute -bottom-6 -left-6 w-[240px] rounded-2xl border border-outline-variant/15 bg-surface-container-lowest p-4 shadow-xl"
-        >
-          <div className="relative mb-3 h-28 w-full overflow-hidden rounded-xl bg-white p-2 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10">
-            <Image
-              src="/partners/claude.png"
-              alt="Claude"
-              fill
-              sizes="240px"
-              className="object-contain object-center"
-            />
+          <div className="absolute inset-0 bg-gradient-to-br from-surface-container-high via-surface-container-low to-primary/15" />
+          <div className="relative flex h-full min-h-0 flex-col items-center justify-center gap-8 p-8 text-center sm:p-10">
+            <div className="relative h-36 w-52 shrink-0 sm:h-44 sm:w-64">
+              <Image
+                alt="Claude"
+                src="/partners/claude.png"
+                fill
+                sizes="(max-width: 1024px) 208px, 256px"
+                className="object-contain object-center"
+                priority
+              />
+            </div>
+            <p className="max-w-md text-base font-medium leading-relaxed text-on-surface md:text-lg">
+              Делаем интеграцию и автоматизацию Claude для вашей компании
+            </p>
           </div>
-          <span className="text-xs text-on-surface-variant font-medium">
-            Делаем интеграцию и автоматизацию Claude для вашей компании
-          </span>
-        </motion.div>
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
+        </div>
       </motion.div>
     </div>
   </section>
