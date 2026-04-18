@@ -171,13 +171,13 @@ const Hero = () => (
         <div className="relative aspect-square w-full overflow-hidden rounded-3xl shadow-2xl">
           <div className="absolute inset-0 bg-gradient-to-br from-surface-container-high via-surface-container-low to-primary/15" />
           <div className="relative flex h-full min-h-0 flex-col items-center justify-center gap-8 p-8 text-center sm:p-10">
-            <div className="relative h-36 w-52 shrink-0 sm:h-44 sm:w-64">
+            <div className="relative h-36 w-52 shrink-0 overflow-hidden rounded-2xl bg-white ring-1 ring-black/5 sm:h-44 sm:w-64 dark:bg-zinc-900 dark:ring-white/10">
               <Image
                 alt="Claude"
                 src="/partners/claude.png"
                 fill
                 sizes="(max-width: 1024px) 208px, 256px"
-                className="object-contain object-center"
+                className="object-cover object-center"
                 priority
               />
             </div>
