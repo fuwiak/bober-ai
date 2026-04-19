@@ -513,9 +513,9 @@ const Pricing = () => (
   <section id="pricing" className="scroll-mt-28 bg-surface-container-low py-24 px-6">
     <div className="mx-auto max-w-7xl">
       <div className="text-center">
-        <h2 className="text-4xl font-bold tracking-tight text-on-surface">Выберите подходящий тариф</h2>
+        <h2 className="text-4xl font-bold tracking-tight text-on-surface">Форматы внедрения AI-решений</h2>
         <p className="mx-auto mt-4 max-w-2xl text-on-surface-variant leading-relaxed">
-          Гибкие пакеты для бизнеса любого масштаба
+          Гибкие пакеты для облачных и локальных LLM, чат-ботов и автоматизации процессов под задачи вашего бизнеса
         </p>
       </div>
 
