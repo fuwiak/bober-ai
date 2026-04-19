@@ -63,7 +63,14 @@ const partnerItemsAll: PartnerItem[] = [
     width: 1024,
     height: 190,
   },
-  { name: "VK Cloud", icon: "/partners/vk-cloud.png", vk: true },
+  {
+    name: "VK Cloud",
+    icon: "/partners/vk-cloud.png",
+    vk: true,
+    wordmark: true,
+    width: 321,
+    height: 157,
+  },
   {
     name: "Claude",
     icon: "/partners/claude.png",
