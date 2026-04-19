@@ -105,7 +105,7 @@ const cloudInfraCopy = SHOW_VK_CLOUD_MENTIONS
 const serviceResourceLinks = {
   corporateAi: "https://yandex.cloud/ru/services/yandexgpt",
   cloudInfra: "https://selectel.ru/services/cloud/",
-  security: "https://selectel.ru/services/security/",
+  security: "https://selectel.ru/",
   automation: "https://yandex.cloud/ru/services/monitoring",
   devops: "https://yandex.cloud/ru/services/managed-kubernetes",
   messenger: "https://mcs.mail.ru/",
