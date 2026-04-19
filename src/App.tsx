@@ -674,18 +674,6 @@ type CaseItem = {
 
 const casePlaceholders: CaseItem[] = [
   {
-    title: "Виртуоз и его скрипка",
-    tag: "Индустрия и AI-инструменты",
-    description: "Короткое интро о том, почему ИИ не заменяет программиста, а усиливает его как новый инструмент.",
-    url: "https://gazeta.severgazbank.ru/virtuoz-i-ego-skripka-pochemu-ii-ne-zamena-programmistu-a-novyj-instrument/",
-  },
-  {
-    title: "Староверы и новаторы",
-    tag: "Образование и нейросети",
-    description: "Короткий обзор о том, как педагоги разделились во взглядах на внедрение нейросетей в практике.",
-    url: "https://www.mk-mosobl.ru/social/2026/03/16/starovery-i-novatory-pedagogi-razdelilis-na-dva-lagerya-izza-vnedreniya-neyrosetey.html",
-  },
-  {
     title: "Личный юрист на локальном GPU",
     tag: "Legal AI в защищенном контуре",
     description: "AI-юрист в приватном контуре: анализ документов, быстрые правовые саммари и помощь команде без вывода данных за пределы локальной инфраструктуры.",
@@ -909,19 +897,7 @@ const pressItems: PressItem[] = [
     tag: "МК Подмосковье",
     description: "Материал о том, как нейросети меняют образовательные практики и подходы специалистов.",
     url: "https://www.mk-mosobl.ru/social/2026/03/16/starovery-i-novatory-pedagogi-razdelilis-na-dva-lagerya-izza-vnedreniya-neyrosetey.html",
-  },
-  {
-    title: "Обзор трендов AI в B2B",
-    tag: "Экспертный материал",
-    description: "Публикация о внедрении корпоративного ИИ: экономика автоматизации, риски и практические сценарии.",
-    url: "#",
-  },
-  {
-    title: "AI-инфраструктура в РФ",
-    tag: "Аналитика",
-    description: "Материал о построении надежного AI-контура на российских мощностях с учетом требований безопасности.",
-    url: "#",
-  },
+  }
 ];
 
 const Partners = () => {
