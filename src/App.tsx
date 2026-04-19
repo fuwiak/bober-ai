@@ -49,7 +49,13 @@ const partnerItemsAll: PartnerItem[] = [
     width: 321,
     height: 157,
   },
-  { name: "Selectel", icon: "/partners/selectel.png" },
+  {
+    name: "Selectel",
+    icon: "/partners/selectel.png",
+    wordmark: true,
+    width: 321,
+    height: 157,
+  },
   {
     name: "cloud.ru",
     icon: "/partners/cloudru.png",
