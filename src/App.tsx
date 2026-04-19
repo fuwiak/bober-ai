@@ -889,7 +889,15 @@ const Cases = () => {
   );
 };
 
-const pressItems = [
+type PressItem = {
+  title: string;
+  tag: string;
+  description: string;
+  url: string;
+  image?: string;
+};
+
+const pressItems: PressItem[] = [
   {
     title: "Виртуоз и его скрипка",
     tag: "Газета Севергазбанк",
@@ -903,17 +911,15 @@ const pressItems = [
     url: "https://www.mk-mosobl.ru/social/2026/03/16/starovery-i-novatory-pedagogi-razdelilis-na-dva-lagerya-izza-vnedreniya-neyrosetey.html",
   },
   {
-    title: "AI-консультант Kaspersky",
-    tag: "RAG-кейс",
-    description: "Как RAG-приложение соединяет локальные источники и API для точного подбора решений клиентам.",
-    image: "/yandex/kaspersky 2.png",
+    title: "Обзор трендов AI в B2B",
+    tag: "Экспертный материал",
+    description: "Публикация о внедрении корпоративного ИИ: экономика автоматизации, риски и практические сценарии.",
     url: "#",
   },
   {
-    title: "Личный юрист на локальном GPU",
-    tag: "Legal AI",
-    description: "Приватный AI-контур для правовых задач без вывода данных за пределы защищенной инфраструктуры.",
-    image: "/yandex/ai-lawyer.png",
+    title: "AI-инфраструктура в РФ",
+    tag: "Аналитика",
+    description: "Материал о построении надежного AI-контура на российских мощностях с учетом требований безопасности.",
     url: "#",
   },
 ];
