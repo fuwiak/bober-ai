@@ -656,9 +656,10 @@ const casePlaceholders = [
     url: "https://www.mk-mosobl.ru/social/2026/03/16/starovery-i-novatory-pedagogi-razdelilis-na-dva-lagerya-izza-vnedreniya-neyrosetey.html",
   },
   {
-    title: "Кейс #3",
-    tag: "Приватный LLM-контур",
-    description: "Скоро опишем запуск защищенного AI-контура на сертифицированных GPU в инфраструктуре РФ.",
+    title: "Личный юрист на локальном GPU",
+    tag: "Legal AI в защищенном контуре",
+    description: "AI-юрист в приватном контуре: анализ документов, быстрые правовые саммари и помощь команде без вывода данных за пределы локальной инфраструктуры.",
+    image: "/yandex/ИИ-юрист.png",
     url: "#",
   },
   {
@@ -699,7 +700,19 @@ const Cases = () => (
             rel={item.url.startsWith("http") ? "noreferrer" : undefined}
             className="group rounded-3xl border border-outline-variant/20 bg-surface-container-low p-6 transition hover:border-primary/40 hover:bg-surface-container"
           >
-            <div className="mb-5 h-40 rounded-2xl bg-gradient-to-br from-surface-container-high to-primary/10" />
+            {item.image ? (
+              <div className="relative mb-5 h-40 overflow-hidden rounded-2xl bg-surface-container-high">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 320px"
+                  className="object-cover object-center"
+                />
+              </div>
+            ) : (
+              <div className="mb-5 h-40 rounded-2xl bg-gradient-to-br from-surface-container-high to-primary/10" />
+            )}
             <p className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">{item.tag}</p>
             <h3 className="mt-4 text-xl font-bold text-on-surface">{item.title}</h3>
             <p className="mt-3 text-sm leading-relaxed text-on-surface-variant">{item.description}</p>
