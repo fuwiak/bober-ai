@@ -682,6 +682,7 @@ const casePlaceholders: CaseItem[] = [
 
 const Cases = () => {
   const [activeCase, setActiveCase] = useState<CaseItem | null>(null);
+  const [isImageZoomOpen, setImageZoomOpen] = useState(false);
 
   return (
     <section id="cases" className="scroll-mt-28 py-24 px-6">
@@ -755,15 +756,22 @@ const Cases = () => {
               transition={{ type: "spring", stiffness: 360, damping: 28 }}
             >
               {activeCase.image ? (
-                <div className="relative mb-5 h-48 overflow-hidden rounded-2xl bg-surface-container-high">
+                <button
+                  type="button"
+                  onClick={() => setImageZoomOpen(true)}
+                  className="group relative mb-5 block h-48 w-full overflow-hidden rounded-2xl bg-surface-container-high"
+                >
                   <Image
                     src={activeCase.image}
                     alt={activeCase.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 640px"
-                    className="object-contain object-center"
+                    className="object-contain object-center transition duration-300 group-hover:scale-[1.03]"
                   />
-                </div>
+                  <span className="absolute bottom-2 right-2 rounded-lg bg-black/60 px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-white">
+                    Увеличить
+                  </span>
+                </button>
               ) : null}
               <p className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">{activeCase.tag}</p>
               <h3 className="mt-4 text-2xl font-bold text-on-surface">{activeCase.title}</h3>
@@ -781,13 +789,54 @@ const Cases = () => {
                 ) : null}
                 <button
                   type="button"
-                  onClick={() => setActiveCase(null)}
+                  onClick={() => {
+                    setImageZoomOpen(false);
+                    setActiveCase(null);
+                  }}
                   className="btn-secondary inline-flex"
                 >
                   Закрыть
                 </button>
               </div>
             </motion.div>
+
+            <AnimatePresence>
+              {isImageZoomOpen && activeCase.image ? (
+                <>
+                  <motion.button
+                    type="button"
+                    aria-label="Закрыть увеличенное изображение"
+                    className="fixed inset-0 z-[87] bg-black/80 backdrop-blur-sm"
+                    onClick={() => setImageZoomOpen(false)}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  />
+                  <motion.div
+                    className="fixed left-1/2 top-1/2 z-[88] h-[min(80vh,56rem)] w-[min(94vw,72rem)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl border border-white/15 bg-black/85 shadow-2xl"
+                    initial={{ opacity: 0, scale: 0.86 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.92 }}
+                    transition={{ type: "spring", stiffness: 320, damping: 30 }}
+                  >
+                    <Image
+                      src={activeCase.image}
+                      alt={activeCase.title}
+                      fill
+                      sizes="94vw"
+                      className="object-contain object-center"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setImageZoomOpen(false)}
+                      className="absolute right-3 top-3 rounded-lg bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white transition hover:bg-white/25"
+                    >
+                      Закрыть
+                    </button>
+                  </motion.div>
+                </>
+              ) : null}
+            </AnimatePresence>
           </>
         ) : null}
       </AnimatePresence>
