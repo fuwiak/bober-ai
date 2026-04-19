@@ -658,24 +658,28 @@ const Pricing = () => (
 
 const casePlaceholders = [
   {
-    title: "Кейс #1",
-    tag: "AI-автоматизация продаж",
-    description: "Скоро добавим подробный разбор внедрения AI-воронки с измеримым ростом конверсии.",
+    title: "Виртуоз и его скрипка",
+    tag: "Индустрия и AI-инструменты",
+    description: "Короткое интро о том, почему ИИ не заменяет программиста, а усиливает его как новый инструмент.",
+    url: "https://gazeta.severgazbank.ru/virtuoz-i-ego-skripka-pochemu-ii-ne-zamena-programmistu-a-novyj-instrument/",
   },
   {
-    title: "Кейс #2",
-    tag: "AI-поддержка клиентов",
-    description: "Скоро покажем, как снизить нагрузку на первую линию и ускорить время ответа с AI-ассистентом.",
+    title: "Староверы и новаторы",
+    tag: "Образование и нейросети",
+    description: "Короткий обзор о том, как педагоги разделились во взглядах на внедрение нейросетей в практике.",
+    url: "https://www.mk-mosobl.ru/social/2026/03/16/starovery-i-novatory-pedagogi-razdelilis-na-dva-lagerya-izza-vnedreniya-neyrosetey.html",
   },
   {
     title: "Кейс #3",
     tag: "Приватный LLM-контур",
     description: "Скоро опишем запуск защищенного AI-контура на сертифицированных GPU в инфраструктуре РФ.",
+    url: "#",
   },
   {
     title: "Кейс #4",
     tag: "Интеграция AI в CRM",
     description: "Скоро опубликуем сценарий персонализации коммуникаций и прогнозирования качества лидов.",
+    url: "#",
   },
 ];
 
@@ -702,15 +706,18 @@ const Cases = () => (
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
         {casePlaceholders.map((item) => (
-          <article
+          <a
             key={item.title}
+            href={item.url}
+            target={item.url.startsWith("http") ? "_blank" : undefined}
+            rel={item.url.startsWith("http") ? "noreferrer" : undefined}
             className="group rounded-3xl border border-outline-variant/20 bg-surface-container-low p-6 transition hover:border-primary/40 hover:bg-surface-container"
           >
             <div className="mb-5 h-40 rounded-2xl bg-gradient-to-br from-surface-container-high to-primary/10" />
             <p className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">{item.tag}</p>
             <h3 className="mt-4 text-xl font-bold text-on-surface">{item.title}</h3>
             <p className="mt-3 text-sm leading-relaxed text-on-surface-variant">{item.description}</p>
-          </article>
+          </a>
         ))}
       </div>
     </div>
