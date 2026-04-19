@@ -388,6 +388,55 @@ const Services = () => {
   );
 };
 
+const processSteps = [
+  {
+    title: "Шаг 1. Заявка и бриф",
+    description:
+      "Получаем заявку, уточняем цели, текущие процессы и ограничения по срокам, бюджету и безопасности данных.",
+  },
+  {
+    title: "Шаг 2. Сценарий и интеграции",
+    description:
+      "Формируем рабочий сценарий звонка, согласуем логику маршрутизации и подключение к CRM, телефонии и аналитике.",
+  },
+  {
+    title: "Шаг 3. Настройка и тест",
+    description:
+      "Разворачиваем решение, настраиваем голосового ИИ-оператора и прогоняем тестовые диалоги на ваших реальных кейсах.",
+  },
+  {
+    title: "Шаг 4. Запуск за 1 день",
+    description:
+      "Выводим в прод, контролируем первые звонки, корректируем скрипт и передаем команде прозрачные метрики качества.",
+  },
+];
+
+const Process = () => (
+  <section id="process" className="scroll-mt-28 py-24 px-6">
+    <div className="mx-auto max-w-7xl">
+      <div className="text-center">
+        <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">Процесс</span>
+        <h2 className="mt-3 text-4xl font-bold tracking-tight">Запуск за 4 простых шага</h2>
+        <p className="mx-auto mt-4 max-w-2xl text-on-surface-variant leading-relaxed">
+          От заявки до первого звонка - всего 1 день
+        </p>
+      </div>
+
+      <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+        {processSteps.map((step) => (
+          <div
+            key={step.title}
+            className="rounded-3xl border border-outline-variant/20 bg-surface-container-low p-8"
+          >
+            <h3 className="text-xl font-bold text-on-surface">{step.title}</h3>
+            <p className="mt-3 text-on-surface-variant leading-relaxed">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
 const Partners = () => (
   <section id="partners" className="scroll-mt-28 py-24 px-6 overflow-hidden">
     <div className="max-w-7xl mx-auto">
@@ -780,6 +829,7 @@ export default function App() {
       <main className="pt-24 pb-[max(5.5rem,calc(4rem+env(safe-area-inset-bottom,0px)+1rem))] md:pb-0">
         <Hero />
         <Services />
+        <Process />
         <Partners />
         <Contact />
       </main>
