@@ -754,6 +754,17 @@ const Cases = () => {
               exit={{ opacity: 0, scale: 0.82, y: 16 }}
               transition={{ type: "spring", stiffness: 360, damping: 28 }}
             >
+              {activeCase.image ? (
+                <div className="relative mb-5 h-48 overflow-hidden rounded-2xl bg-surface-container-high">
+                  <Image
+                    src={activeCase.image}
+                    alt={activeCase.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 640px"
+                    className="object-contain object-center"
+                  />
+                </div>
+              ) : null}
               <p className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">{activeCase.tag}</p>
               <h3 className="mt-4 text-2xl font-bold text-on-surface">{activeCase.title}</h3>
               <p className="mt-4 text-sm leading-relaxed text-on-surface-variant md:text-base">{activeCase.description}</p>
