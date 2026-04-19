@@ -32,16 +32,31 @@ const menuItems = [
   { href: "/academy", label: "Академия Yandex" },
 ];
 
-type PartnerItem = { name: string; icon: string; vk?: true; wordmark?: true };
+type PartnerItem = {
+  name: string;
+  icon: string;
+  vk?: true;
+  wordmark?: true;
+  width?: number;
+  height?: number;
+};
 
 const partnerItemsAll: PartnerItem[] = [
   {
     name: "Yandex Cloud",
     icon: "/partners/yandex-cloud.png",
     wordmark: true,
+    width: 321,
+    height: 157,
   },
   { name: "Selectel", icon: "/partners/selectel.png" },
-  { name: "SberCloud", icon: "/partners/sbercloud.png" },
+  {
+    name: "cloud.ru",
+    icon: "/partners/cloudru.png",
+    wordmark: true,
+    width: 1024,
+    height: 190,
+  },
   { name: "VK Cloud", icon: "/partners/vk-cloud.png", vk: true },
   { name: "Claude", icon: "/partners/claude.png" },
 ];
@@ -55,12 +70,12 @@ const heroPartnerBadge = SHOW_VK_CLOUD_MENTIONS
   : "Official Yandex Cloud Partner";
 
 const heroLeadCopy = SHOW_VK_CLOUD_MENTIONS
-  ? "Помогаем бизнесу быстро запускать ИИ-решения, которые реально влияют на прибыль: автоматизируют поддержку и продажи, ускоряют работу команд и снижают операционные издержки. Проектируем и внедряем надежную AI-инфраструктуру с официальной поддержкой Yandex Cloud, Selectel, SberCloud и VK Cloud, включая приватные LLM в защищенном контуре на сертифицированных GPU — под ваши KPI, сроки и бюджет."
-  : "Помогаем бизнесу быстро запускать ИИ-решения, которые реально влияют на прибыль: автоматизируют поддержку и продажи, ускоряют работу команд и снижают операционные издержки. Проектируем и внедряем надежную AI-инфраструктуру с официальной поддержкой Yandex Cloud, Selectel и SberCloud, включая приватные LLM в защищенном контуре на сертифицированных GPU — под ваши KPI, сроки и бюджет.";
+  ? "Помогаем бизнесу быстро запускать ИИ-решения, которые реально влияют на прибыль: автоматизируют поддержку и продажи, ускоряют работу команд и снижают операционные издержки. Проектируем и внедряем надежную AI-инфраструктуру с официальной поддержкой Yandex Cloud, Selectel, cloud.ru и VK Cloud, включая приватные LLM в защищенном контуре на сертифицированных GPU — под ваши KPI, сроки и бюджет."
+  : "Помогаем бизнесу быстро запускать ИИ-решения, которые реально влияют на прибыль: автоматизируют поддержку и продажи, ускоряют работу команд и снижают операционные издержки. Проектируем и внедряем надежную AI-инфраструктуру с официальной поддержкой Yandex Cloud, Selectel и cloud.ru, включая приватные LLM в защищенном контуре на сертифицированных GPU — под ваши KPI, сроки и бюджет.";
 
 const cloudInfraCopy = SHOW_VK_CLOUD_MENTIONS
-  ? "Миграция, настройка и поддержка критически важных систем в облаках Selectel, SberCloud и VK Cloud с фокусом на отказоустойчивость, безопасность и предсказуемые затраты."
-  : "Миграция, настройка и поддержка критически важных систем в облаках Selectel и SberCloud с фокусом на отказоустойчивость, безопасность и предсказуемые затраты.";
+  ? "Миграция, настройка и поддержка критически важных систем в облаках Selectel, cloud.ru и VK Cloud с фокусом на отказоустойчивость, безопасность и предсказуемые затраты."
+  : "Миграция, настройка и поддержка критически важных систем в облаках Selectel и cloud.ru с фокусом на отказоустойчивость, безопасность и предсказуемые затраты.";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -349,7 +364,7 @@ const Services = () => {
             </h4>
             <p className="mt-4 text-on-surface-variant leading-relaxed">
               Проектируем и сопровождаем отказоустойчивую облачную инфраструктуру для критичных сервисов в Selectel и
-              SberCloud: от аудита текущей архитектуры и плана миграции до запуска production-контуров с минимальными
+              cloud.ru: от аудита текущей архитектуры и плана миграции до запуска production-контуров с минимальными
               простоями.
             </p>
             <p className="mt-4 text-on-surface-variant leading-relaxed">
@@ -386,8 +401,8 @@ const Partners = () => (
               <Image
                 alt={partner.name}
                 src={partner.icon}
-                width={321}
-                height={157}
+                width={partner.width ?? 321}
+                height={partner.height ?? 157}
                 className="h-20 w-auto max-w-[min(400px,94vw)] rounded-2xl bg-white object-contain object-center px-3 py-2 ring-1 ring-black/5 sm:h-24 sm:max-w-[min(480px,95vw)] md:h-28 md:max-w-[min(560px,96vw)] dark:bg-zinc-900 dark:ring-white/10"
               />
             ) : (
