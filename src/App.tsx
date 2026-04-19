@@ -705,6 +705,21 @@ const casePlaceholders: CaseItem[] = [
 const Cases = () => {
   const [activeCase, setActiveCase] = useState<CaseItem | null>(null);
   const [isImageZoomOpen, setImageZoomOpen] = useState(false);
+  const casesViewportRef = useRef<HTMLDivElement | null>(null);
+  const casesTrackRef = useRef<HTMLDivElement | null>(null);
+  const [casesDragLimit, setCasesDragLimit] = useState(0);
+
+  useLayoutEffect(() => {
+    const updateCasesDragLimit = () => {
+      const viewportWidth = casesViewportRef.current?.clientWidth ?? 0;
+      const trackWidth = casesTrackRef.current?.scrollWidth ?? 0;
+      setCasesDragLimit(Math.max(0, trackWidth - viewportWidth));
+    };
+
+    updateCasesDragLimit();
+    window.addEventListener("resize", updateCasesDragLimit);
+    return () => window.removeEventListener("resize", updateCasesDragLimit);
+  }, []);
 
   return (
     <section id="cases" className="scroll-mt-28 py-24 px-6">
@@ -727,32 +742,40 @@ const Cases = () => {
           </a>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {casePlaceholders.map((item) => (
-            <button
-              key={item.title}
-              type="button"
-              onClick={() => setActiveCase(item)}
-              className="group rounded-3xl border border-outline-variant/20 bg-surface-container-low p-6 text-left transition hover:border-primary/40 hover:bg-surface-container"
-            >
-              {item.image ? (
-                <div className="relative mb-5 h-40 overflow-hidden rounded-2xl bg-surface-container-high">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 320px"
-                    className="object-contain object-center"
-                  />
-                </div>
-              ) : (
-                <div className="mb-5 h-40 rounded-2xl bg-gradient-to-br from-surface-container-high to-primary/10" />
-              )}
-              <p className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">{item.tag}</p>
-              <h3 className="mt-4 text-xl font-bold text-on-surface">{item.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-on-surface-variant">{item.description}</p>
-            </button>
-          ))}
+        <div ref={casesViewportRef} className="overflow-hidden">
+          <motion.div
+            ref={casesTrackRef}
+            drag="x"
+            dragConstraints={{ left: -casesDragLimit, right: 0 }}
+            dragElastic={0.04}
+            className="flex cursor-grab gap-6 active:cursor-grabbing"
+          >
+            {casePlaceholders.map((item) => (
+              <button
+                key={item.title}
+                type="button"
+                onClick={() => setActiveCase(item)}
+                className="group w-[320px] shrink-0 rounded-3xl border border-outline-variant/20 bg-surface-container-low p-6 text-left transition hover:border-primary/40 hover:bg-surface-container"
+              >
+                {item.image ? (
+                  <div className="relative mb-5 h-40 overflow-hidden rounded-2xl bg-surface-container-high">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 320px"
+                      className="object-contain object-center"
+                    />
+                  </div>
+                ) : (
+                  <div className="mb-5 h-40 rounded-2xl bg-gradient-to-br from-surface-container-high to-primary/10" />
+                )}
+                <p className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">{item.tag}</p>
+                <h3 className="mt-4 text-xl font-bold text-on-surface">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-on-surface-variant">{item.description}</p>
+              </button>
+            ))}
+          </motion.div>
         </div>
       </div>
 
@@ -895,46 +918,72 @@ const pressItems = [
   },
 ];
 
-const Partners = () => (
-  <section id="partners" className="scroll-mt-28 py-24 px-6">
-    <div className="mx-auto max-w-7xl">
-      <div className="mb-10">
-        <h2 className="text-4xl font-bold tracking-tight text-on-surface">Пишут о нас</h2>
-        <p className="mt-4 max-w-2xl text-on-surface-variant leading-relaxed">
-          Публикации, кейсы и обзоры по внедрению AI-решений в продажах, поддержке и корпоративных процессах.
-        </p>
-      </div>
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
-        {pressItems.map((item) => (
-          <a
-            key={item.title}
-            href={item.url}
-            target={item.url.startsWith("http") ? "_blank" : undefined}
-            rel={item.url.startsWith("http") ? "noreferrer" : undefined}
-            className="group rounded-3xl border border-outline-variant/20 bg-surface-container-low p-6 transition hover:border-primary/40 hover:bg-surface-container"
+const Partners = () => {
+  const pressViewportRef = useRef<HTMLDivElement | null>(null);
+  const pressTrackRef = useRef<HTMLDivElement | null>(null);
+  const [pressDragLimit, setPressDragLimit] = useState(0);
+
+  useLayoutEffect(() => {
+    const updatePressDragLimit = () => {
+      const viewportWidth = pressViewportRef.current?.clientWidth ?? 0;
+      const trackWidth = pressTrackRef.current?.scrollWidth ?? 0;
+      setPressDragLimit(Math.max(0, trackWidth - viewportWidth));
+    };
+
+    updatePressDragLimit();
+    window.addEventListener("resize", updatePressDragLimit);
+    return () => window.removeEventListener("resize", updatePressDragLimit);
+  }, []);
+
+  return (
+    <section id="partners" className="scroll-mt-28 py-24 px-6">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-10">
+          <h2 className="text-4xl font-bold tracking-tight text-on-surface">Пишут о нас</h2>
+          <p className="mt-4 max-w-2xl text-on-surface-variant leading-relaxed">
+            Публикации, кейсы и обзоры по внедрению AI-решений в продажах, поддержке и корпоративных процессах.
+          </p>
+        </div>
+        <div ref={pressViewportRef} className="overflow-hidden">
+          <motion.div
+            ref={pressTrackRef}
+            drag="x"
+            dragConstraints={{ left: -pressDragLimit, right: 0 }}
+            dragElastic={0.04}
+            className="flex cursor-grab gap-6 active:cursor-grabbing"
           >
-            {item.image ? (
-              <div className="relative mb-5 h-40 overflow-hidden rounded-2xl bg-surface-container-high">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 320px"
-                  className="object-contain object-center"
-                />
-              </div>
-            ) : (
-              <div className="mb-5 h-40 rounded-2xl bg-gradient-to-br from-surface-container-high to-primary/10" />
-            )}
-            <p className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">{item.tag}</p>
-            <h3 className="mt-4 text-xl font-bold text-on-surface">{item.title}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-on-surface-variant">{item.description}</p>
-          </a>
-        ))}
+            {pressItems.map((item) => (
+              <a
+                key={item.title}
+                href={item.url}
+                target={item.url.startsWith("http") ? "_blank" : undefined}
+                rel={item.url.startsWith("http") ? "noreferrer" : undefined}
+                className="group w-[320px] shrink-0 rounded-3xl border border-outline-variant/20 bg-surface-container-low p-6 transition hover:border-primary/40 hover:bg-surface-container"
+              >
+                {item.image ? (
+                  <div className="relative mb-5 h-40 overflow-hidden rounded-2xl bg-surface-container-high">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 320px"
+                      className="object-contain object-center"
+                    />
+                  </div>
+                ) : (
+                  <div className="mb-5 h-40 rounded-2xl bg-gradient-to-br from-surface-container-high to-primary/10" />
+                )}
+                <p className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">{item.tag}</p>
+                <h3 className="mt-4 text-xl font-bold text-on-surface">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-on-surface-variant">{item.description}</p>
+              </a>
+            ))}
+          </motion.div>
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const Contact = () => (
   <section id="contact" className="max-w-7xl mx-auto scroll-mt-28 px-6 pb-32">
