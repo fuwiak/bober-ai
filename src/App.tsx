@@ -282,21 +282,45 @@ const Hero = () => (
         className="relative z-0 min-w-0"
       >
         <div className="relative aspect-square w-full overflow-hidden rounded-3xl shadow-2xl">
-          <div className="absolute inset-0 bg-gradient-to-br from-surface-container-high via-surface-container-low to-primary/15" />
-          <div className="relative flex h-full min-h-0 flex-col items-center justify-center gap-6 p-6 text-center sm:gap-8 sm:p-8 md:p-10">
-            <div className="relative h-44 w-full max-w-lg shrink-0 sm:h-48 sm:max-w-xl md:h-52">
+          <div className="absolute inset-0 bg-gradient-to-br from-surface-container-high via-surface-container-low to-primary/20" />
+          <div className="relative flex h-full min-h-0 items-center justify-center p-6 sm:p-8 md:p-10">
+            <div className="relative h-full w-full">
               <Image
-                alt="Claude"
-                src="/partners/claude.png"
+                alt="Mac mini для AI решений"
+                src="/yandex/mac-mini.png"
                 fill
-                sizes="(max-width: 768px) 90vw, 512px"
+                sizes="(max-width: 768px) 92vw, 620px"
                 className="object-contain object-center"
                 priority
               />
             </div>
-            <p className="mx-auto max-w-md text-center text-base font-medium leading-relaxed text-on-surface md:text-lg">
-              Делаем интеграцию и автоматизацию Claude для вашей компании
-            </p>
+
+            <motion.div
+              className="absolute left-4 top-7 rounded-2xl border border-outline-variant/30 bg-surface-container-lowest/90 px-4 py-3 shadow-lg backdrop-blur"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <span className="block text-xs font-semibold uppercase tracking-widest text-primary">Cloud 01</span>
+              <span className="block text-sm font-bold text-on-surface">AI asystent na mac mini</span>
+            </motion.div>
+
+            <motion.div
+              className="absolute right-4 top-1/2 rounded-2xl border border-outline-variant/30 bg-surface-container-lowest/90 px-4 py-3 shadow-lg backdrop-blur"
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            >
+              <span className="block text-xs font-semibold uppercase tracking-widest text-primary">Cloud 02</span>
+              <span className="block text-sm font-bold text-on-surface">OpenClaw na mac mini</span>
+            </motion.div>
+
+            <motion.div
+              className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-2xl border border-outline-variant/30 bg-surface-container-lowest/90 px-4 py-3 shadow-lg backdrop-blur"
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            >
+              <span className="block text-xs font-semibold uppercase tracking-widest text-primary">Cloud 03</span>
+              <span className="block text-sm font-bold text-on-surface">integracja i automatyzacja Claude na mac</span>
+            </motion.div>
           </div>
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
         </div>
