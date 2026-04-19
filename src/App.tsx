@@ -294,19 +294,15 @@ const Hero = () => (
         <div className="relative aspect-square w-full overflow-hidden rounded-3xl shadow-2xl">
           <div className="absolute inset-0 bg-gradient-to-br from-surface-container-high via-surface-container-low to-primary/15" />
           <div className="relative flex h-full min-h-0 flex-col items-center justify-center gap-6 p-6 text-center sm:gap-8 sm:p-8 md:p-10">
-            <div className="relative h-44 w-full max-w-lg shrink-0 overflow-hidden rounded-2xl bg-white ring-1 ring-black/5 sm:h-48 sm:max-w-xl md:h-52 dark:bg-zinc-900 dark:ring-white/10">
-              <div className="absolute inset-3 sm:inset-4">
-                <div className="relative h-full w-full">
-                  <Image
-                    alt="Claude"
-                    src="/partners/claude.png"
-                    fill
-                    sizes="(max-width: 768px) 90vw, 512px"
-                    className="object-contain object-center"
-                    priority
-                  />
-                </div>
-              </div>
+            <div className="relative h-44 w-full max-w-lg shrink-0 sm:h-48 sm:max-w-xl md:h-52">
+              <Image
+                alt="Claude"
+                src="/partners/claude.png"
+                fill
+                sizes="(max-width: 768px) 90vw, 512px"
+                className="object-contain object-center"
+                priority
+              />
             </div>
             <p className="mx-auto max-w-md text-center text-base font-medium leading-relaxed text-on-surface md:text-lg">
               Делаем интеграцию и автоматизацию Claude для вашей компании
