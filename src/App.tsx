@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useLayoutEffect, useRef, useState, type ComponentType } from "react";
 import {
@@ -642,7 +642,15 @@ const Pricing = () => (
   </section>
 );
 
-const casePlaceholders = [
+type CaseItem = {
+  title: string;
+  tag: string;
+  description: string;
+  image?: string;
+  url: string;
+};
+
+const casePlaceholders: CaseItem[] = [
   {
     title: "Виртуоз и его скрипка",
     tag: "Индустрия и AI-инструменты",
@@ -663,7 +671,7 @@ const casePlaceholders = [
     url: "#",
   },
   {
-    title: "Кейс #4",
+    title: "AI-консультант Kaspersky",
     tag: "RAG-приложение для Kaspersky",
     description:
       "RAG-приложение помогает консультантам Kaspersky подбирать актуальные продукты для клиентов: объединяет локальные источники знаний и внешние API в едином рабочем контуре.",
@@ -672,58 +680,109 @@ const casePlaceholders = [
   },
 ];
 
-const Cases = () => (
-  <section id="cases" className="scroll-mt-28 py-24 px-6">
-    <div className="mx-auto max-w-7xl">
-      <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-        <div>
-          <h2 className="text-4xl font-bold tracking-tight text-on-surface">Кейсы</h2>
-          <p className="mt-4 max-w-2xl text-on-surface-variant leading-relaxed">
-            Примеры внедрения AI-решений под разные отрасли и бюджеты. Ниже - временные placeholders, скоро добавим
-            реальные проекты.
-          </p>
+const Cases = () => {
+  const [activeCase, setActiveCase] = useState<CaseItem | null>(null);
+
+  return (
+    <section id="cases" className="scroll-mt-28 py-24 px-6">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h2 className="text-4xl font-bold tracking-tight text-on-surface">Кейсы</h2>
+            <p className="mt-4 max-w-2xl text-on-surface-variant leading-relaxed">
+              Примеры внедрения AI-решений под разные отрасли и бюджеты. Нажмите на любой кейс - откроется карточка с
+              кратким описанием.
+            </p>
+          </div>
+          <a
+            href="https://selectel.ru/blog/category/case/"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex rounded-2xl border border-outline-variant/30 px-5 py-3 text-sm font-semibold text-on-surface transition hover:border-primary/40 hover:text-primary"
+          >
+            Все кейсы
+          </a>
         </div>
-        <a
-          href="https://selectel.ru/blog/category/case/"
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex rounded-2xl border border-outline-variant/30 px-5 py-3 text-sm font-semibold text-on-surface transition hover:border-primary/40 hover:text-primary"
-        >
-          Все кейсы
-        </a>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {casePlaceholders.map((item) => (
+            <button
+              key={item.title}
+              type="button"
+              onClick={() => setActiveCase(item)}
+              className="group rounded-3xl border border-outline-variant/20 bg-surface-container-low p-6 text-left transition hover:border-primary/40 hover:bg-surface-container"
+            >
+              {item.image ? (
+                <div className="relative mb-5 h-40 overflow-hidden rounded-2xl bg-surface-container-high">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 320px"
+                    className="object-contain object-center"
+                  />
+                </div>
+              ) : (
+                <div className="mb-5 h-40 rounded-2xl bg-gradient-to-br from-surface-container-high to-primary/10" />
+              )}
+              <p className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">{item.tag}</p>
+              <h3 className="mt-4 text-xl font-bold text-on-surface">{item.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-on-surface-variant">{item.description}</p>
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
-        {casePlaceholders.map((item) => (
-          <a
-            key={item.title}
-            href={item.url}
-            target={item.url.startsWith("http") ? "_blank" : undefined}
-            rel={item.url.startsWith("http") ? "noreferrer" : undefined}
-            className="group rounded-3xl border border-outline-variant/20 bg-surface-container-low p-6 transition hover:border-primary/40 hover:bg-surface-container"
-          >
-            {item.image ? (
-              <div className="relative mb-5 h-40 overflow-hidden rounded-2xl bg-surface-container-high">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 320px"
-                  className="object-cover object-center"
-                />
+      <AnimatePresence>
+        {activeCase ? (
+          <>
+            <motion.button
+              type="button"
+              aria-label="Закрыть кейс"
+              className="fixed inset-0 z-[85] bg-black/50 backdrop-blur-sm"
+              onClick={() => setActiveCase(null)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            />
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              className="fixed left-1/2 top-1/2 z-[86] w-[min(42rem,calc(100vw-1.5rem))] -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-outline-variant/25 bg-surface-container-lowest p-6 shadow-2xl md:p-8"
+              initial={{ opacity: 0, scale: 0.78, y: 22 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.82, y: 16 }}
+              transition={{ type: "spring", stiffness: 360, damping: 28 }}
+            >
+              <p className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">{activeCase.tag}</p>
+              <h3 className="mt-4 text-2xl font-bold text-on-surface">{activeCase.title}</h3>
+              <p className="mt-4 text-sm leading-relaxed text-on-surface-variant md:text-base">{activeCase.description}</p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                {activeCase.url.startsWith("http") ? (
+                  <a
+                    href={activeCase.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn-primary inline-flex"
+                  >
+                    Открыть источник
+                  </a>
+                ) : null}
+                <button
+                  type="button"
+                  onClick={() => setActiveCase(null)}
+                  className="btn-secondary inline-flex"
+                >
+                  Закрыть
+                </button>
               </div>
-            ) : (
-              <div className="mb-5 h-40 rounded-2xl bg-gradient-to-br from-surface-container-high to-primary/10" />
-            )}
-            <p className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">{item.tag}</p>
-            <h3 className="mt-4 text-xl font-bold text-on-surface">{item.title}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-on-surface-variant">{item.description}</p>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-);
+            </motion.div>
+          </>
+        ) : null}
+      </AnimatePresence>
+    </section>
+  );
+};
 
 const Partners = () => (
   <section id="partners" className="scroll-mt-28 py-24 px-6 overflow-hidden">
