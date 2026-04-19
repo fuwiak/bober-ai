@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type ComponentType } from "react";
 import {
   Cloud,
   Menu,
@@ -114,6 +114,72 @@ const serviceResourceLinks = {
   localAiGpu: "https://selectel.ru/services/dedicated/gpu/",
   callCenter: "https://yandex.cloud/ru/services/speechkit",
 };
+
+type ServiceMiniCard = {
+  title: string;
+  description: string;
+  resourceKey: keyof typeof serviceResourceLinks;
+  Icon: ComponentType<{ className?: string }>;
+};
+
+const serviceMiniCards: ServiceMiniCard[] = [
+  {
+    title: "Безопасность",
+    description:
+      "Подготавливаем инфраструктуру к аттестации ИСПДн и проверкам регуляторов: закрываем уязвимости, настраиваем политики доступа, журналирование и контроль изменений.",
+    resourceKey: "security",
+    Icon: Shield,
+  },
+  {
+    title: "Автоматизация",
+    description:
+      "Внедряем интеллектуальный мониторинг и автоматические правила управления ресурсами, чтобы платить только за реально используемые мощности.",
+    resourceKey: "automation",
+    Icon: BarChart,
+  },
+  {
+    title: "DevOps",
+    description:
+      "Строим Kubernetes-платформу и CI/CD-процессы под ваш продукт: от окружений разработки до production с контролируемыми релизами.",
+    resourceKey: "devops",
+    Icon: GitBranch,
+  },
+  {
+    title: "Приватный мессенджер",
+    description:
+      "Внедряем корпоративный приватный мессенджер для безопасной внутренней коммуникации, обмена файлами и быстрых согласований.",
+    resourceKey: "messenger",
+    Icon: Mail,
+  },
+  {
+    title: "CRM со встроенным AI",
+    description:
+      "Разрабатываем CRM-систему с ИИ-помощником для продаж и сервиса: автоматизируем рутину и помогаем менеджерам работать быстрее.",
+    resourceKey: "crmAi",
+    Icon: Brain,
+  },
+  {
+    title: "Cloud для ИИ",
+    description:
+      "Настраиваем облачную инфраструктуру под ИИ-нагрузки: обучение, инференс, хранение данных и интеграции с вашими сервисами.",
+    resourceKey: "aiCloud",
+    Icon: Server,
+  },
+  {
+    title: "Локальный ИИ на сертифицированных GPU",
+    description:
+      "Разворачиваем локальные ИИ-модели и базы данных в изолированном контуре на сертифицированных GPU с учетом требований 152-ФЗ.",
+    resourceKey: "localAiGpu",
+    Icon: Shield,
+  },
+  {
+    title: "Автоматизация колл-центров в облаке",
+    description:
+      "Внедряем облачную платформу с голосовым ИИ-оператором, интеграцией с CRM и аналитикой качества диалогов в реальном времени.",
+    resourceKey: "callCenter",
+    Icon: PhoneCall,
+  },
+];
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -255,6 +321,7 @@ const Hero = () => (
 
 const Services = () => {
   const [isCloudModalOpen, setCloudModalOpen] = useState(false);
+  const serviceMiniCardsTrack = [...serviceMiniCards, ...serviceMiniCards];
 
   return (
     <section id="services" className="scroll-mt-28 bg-surface-container-low py-24">
@@ -324,150 +391,34 @@ const Services = () => {
             </div>
           </div>
 
-          <div className="card-premium">
-            <Shield className="text-primary w-8 h-8 mb-6" />
-            <h3 className="text-xl font-bold mb-2">Безопасность</h3>
-            <p className="text-on-surface-variant text-sm leading-relaxed">
-              Подготавливаем инфраструктуру к аттестации ИСПДн и проверкам регуляторов: закрываем уязвимости,
-              настраиваем политики доступа, журналирование и контроль изменений. В результате вы снижаете юридические
-              и операционные риски и проходите аудиты без авралов.
-            </p>
-            <a
-              href={serviceResourceLinks.security}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-4 inline-flex text-sm font-semibold text-primary hover:underline"
+          <div className="md:col-span-3 overflow-hidden">
+            <motion.div
+              className="flex w-max gap-6"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ duration: 42, ease: "linear", repeat: Infinity }}
             >
-              Ресурс
-            </a>
-          </div>
-
-          <div className="card-premium">
-            <BarChart className="text-primary w-8 h-8 mb-6" />
-            <h3 className="text-xl font-bold mb-2">Автоматизация</h3>
-            <p className="text-on-surface-variant text-sm leading-relaxed">
-              Внедряем интеллектуальный мониторинг и автоматические правила управления ресурсами, чтобы платить только
-              за реально используемые мощности. Это помогает сократить лишние ИТ-расходы, заранее видеть перегрузки и
-              поддерживать стабильную работу сервисов в пиковые периоды.
-            </p>
-            <a
-              href={serviceResourceLinks.automation}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-4 inline-flex text-sm font-semibold text-primary hover:underline"
-            >
-              Ресурс
-            </a>
-          </div>
-
-          <div className="card-premium">
-            <GitBranch className="text-primary w-8 h-8 mb-6" />
-            <h3 className="text-xl font-bold mb-2">DevOps</h3>
-            <p className="text-on-surface-variant text-sm leading-relaxed">
-              Строим Kubernetes-платформу и CI/CD-процессы под ваш продукт: от окружений разработки до production с
-              контролируемыми релизами. Вы выпускаете изменения быстрее, с меньшим количеством ошибок и понятными
-              процессами для команды и бизнеса.
-            </p>
-            <a
-              href={serviceResourceLinks.devops}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-4 inline-flex text-sm font-semibold text-primary hover:underline"
-            >
-              Ресурс
-            </a>
-          </div>
-
-          <div className="card-premium">
-            <Mail className="text-primary w-8 h-8 mb-6" />
-            <h3 className="text-xl font-bold mb-2">Приватный мессенджер</h3>
-            <p className="text-on-surface-variant text-sm leading-relaxed">
-              Внедряем корпоративный приватный мессенджер для безопасной внутренней коммуникации, обмена файлами и
-              быстрых согласований. Команда работает в едином защищенном контуре, а данные и переписка остаются под
-              вашим контролем.
-            </p>
-            <a
-              href={serviceResourceLinks.messenger}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-4 inline-flex text-sm font-semibold text-primary hover:underline"
-            >
-              Ресурс
-            </a>
-          </div>
-
-          <div className="card-premium">
-            <Brain className="text-primary w-8 h-8 mb-6" />
-            <h3 className="text-xl font-bold mb-2">CRM со встроенным AI</h3>
-            <p className="text-on-surface-variant text-sm leading-relaxed">
-              Разрабатываем CRM-систему с ИИ-помощником для продаж и сервиса: автоматизируем рутину, помогаем
-              менеджерам готовить ответы и фиксировать важные действия по клиенту. Вы повышаете скорость работы отдела
-              и улучшаете качество клиентского опыта.
-            </p>
-            <a
-              href={serviceResourceLinks.crmAi}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-4 inline-flex text-sm font-semibold text-primary hover:underline"
-            >
-              Ресурс
-            </a>
-          </div>
-
-          <div className="card-premium">
-            <Server className="text-primary w-8 h-8 mb-6" />
-            <h3 className="text-xl font-bold mb-2">Cloud для ИИ</h3>
-            <p className="text-on-surface-variant text-sm leading-relaxed">
-              Настраиваем облачную инфраструктуру специально под ИИ-нагрузки: обучение, инференс, хранение данных и
-              интеграции с вашими сервисами. Получаете стабильную производительность, масштабируемость и прогнозируемые
-              затраты.
-            </p>
-            <a
-              href={serviceResourceLinks.aiCloud}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-4 inline-flex text-sm font-semibold text-primary hover:underline"
-            >
-              Ресурс
-            </a>
-          </div>
-
-          <div className="card-premium">
-            <Shield className="text-primary w-8 h-8 mb-6" />
-            <h3 className="text-xl font-bold mb-2">Локальный ИИ на сертифицированных GPU</h3>
-            <p className="text-on-surface-variant text-sm leading-relaxed">
-              Разворачиваем локальные ИИ-модели и базы данных в изолированном контуре на сертифицированных GPU с учетом
-              требований 152-ФЗ. Это подходит для компаний, которым критично обеспечить полный контроль над данными и
-              исключить их передачу за пределы РФ.
-            </p>
-            <a
-              href={serviceResourceLinks.localAiGpu}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-4 inline-flex text-sm font-semibold text-primary hover:underline"
-            >
-              Ресурс
-            </a>
-          </div>
-
-          <div className="card-premium">
-            <PhoneCall className="text-primary w-8 h-8 mb-6" />
-            <h3 className="text-xl font-bold mb-2">Автоматизация колл-центров в облаке</h3>
-            <p className="text-on-surface-variant text-sm leading-relaxed">
-              Внедряем облачную платформу с голосовым ИИ-оператором для входящих и исходящих линий: обработка обращений
-              24/7, автоответы на типовые вопросы, маршрутизация на нужные сценарии и передача сложных кейсов живым
-              специалистам. Интегрируем решение с CRM и аналитикой, чтобы вы видели конверсию, качество диалогов и
-              нагрузку в реальном времени. В результате сокращается стоимость звонка, повышается скорость ответа и
-              улучшается клиентский сервис без расширения штата.
-            </p>
-            <a
-              href={serviceResourceLinks.callCenter}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-4 inline-flex text-sm font-semibold text-primary hover:underline"
-            >
-              Ресурс
-            </a>
+              {serviceMiniCardsTrack.map((card, index) => {
+                const Icon = card.Icon;
+                return (
+                  <div
+                    key={`${card.title}-${index}`}
+                    className="card-premium flex w-[320px] shrink-0 flex-col"
+                  >
+                    <Icon className="text-primary mb-6 h-8 w-8" />
+                    <h3 className="mb-2 text-xl font-bold">{card.title}</h3>
+                    <p className="text-on-surface-variant text-sm leading-relaxed">{card.description}</p>
+                    <a
+                      href={serviceResourceLinks[card.resourceKey]}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-4 inline-flex text-sm font-semibold text-primary hover:underline"
+                    >
+                      Ресурс
+                    </a>
+                  </div>
+                );
+              })}
+            </motion.div>
           </div>
         </div>
       </div>
