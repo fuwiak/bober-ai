@@ -102,6 +102,19 @@ const cloudInfraCopy = SHOW_VK_CLOUD_MENTIONS
   ? "Миграция, настройка и поддержка критически важных систем в облаках Selectel, cloud.ru и VK Cloud с фокусом на отказоустойчивость, безопасность и предсказуемые затраты."
   : "Миграция, настройка и поддержка критически важных систем в облаках Selectel и cloud.ru с фокусом на отказоустойчивость, безопасность и предсказуемые затраты.";
 
+const serviceResourceLinks = {
+  corporateAi: "https://yandex.cloud/ru/services/yandexgpt",
+  cloudInfra: "https://selectel.ru/services/cloud/",
+  security: "https://selectel.ru/services/security/",
+  automation: "https://yandex.cloud/ru/services/monitoring",
+  devops: "https://yandex.cloud/ru/services/managed-kubernetes",
+  messenger: "https://mcs.mail.ru/",
+  crmAi: "https://cloud.ru/ru/services",
+  aiCloud: "https://cloud.ru/ru/services",
+  localAiGpu: "https://selectel.ru/services/dedicated/gpu/",
+  callCenter: "https://yandex.cloud/ru/services/speechkit",
+};
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -272,6 +285,14 @@ const Services = () => {
             </p>
           </div>
           <div className="mt-12 flex justify-end">
+            <a
+              href={serviceResourceLinks.corporateAi}
+              target="_blank"
+              rel="noreferrer"
+              className="mr-4 inline-flex rounded-xl border border-outline-variant/30 px-4 py-2 text-sm font-semibold text-on-surface transition hover:border-primary/40 hover:text-primary"
+            >
+              Ресурс
+            </a>
             <ArrowRight className="text-primary group-hover:translate-x-2 transition-transform" />
           </div>
         </motion.div>
@@ -283,13 +304,23 @@ const Services = () => {
               <p className="leading-relaxed text-white/85">{cloudInfraCopy}</p>
             </div>
             <div className="mt-12">
-              <button
-                type="button"
-                className="rounded-xl border border-white/35 bg-white/10 px-4 py-2 text-sm font-bold uppercase tracking-widest text-white transition hover:bg-white/20"
-                onClick={() => setCloudModalOpen(true)}
-              >
-                Подробнее
-              </button>
+              <div className="flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  className="rounded-xl border border-white/35 bg-white/10 px-4 py-2 text-sm font-bold uppercase tracking-widest text-white transition hover:bg-white/20"
+                  onClick={() => setCloudModalOpen(true)}
+                >
+                  Подробнее
+                </button>
+                <a
+                  href={serviceResourceLinks.cloudInfra}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-xl border border-white/35 bg-white/10 px-4 py-2 text-sm font-bold uppercase tracking-widest text-white transition hover:bg-white/20"
+                >
+                  Ресурс
+                </a>
+              </div>
             </div>
           </div>
 
@@ -301,6 +332,14 @@ const Services = () => {
               настраиваем политики доступа, журналирование и контроль изменений. В результате вы снижаете юридические
               и операционные риски и проходите аудиты без авралов.
             </p>
+            <a
+              href={serviceResourceLinks.security}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-flex text-sm font-semibold text-primary hover:underline"
+            >
+              Ресурс
+            </a>
           </div>
 
           <div className="card-premium">
@@ -311,6 +350,14 @@ const Services = () => {
               за реально используемые мощности. Это помогает сократить лишние ИТ-расходы, заранее видеть перегрузки и
               поддерживать стабильную работу сервисов в пиковые периоды.
             </p>
+            <a
+              href={serviceResourceLinks.automation}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-flex text-sm font-semibold text-primary hover:underline"
+            >
+              Ресурс
+            </a>
           </div>
 
           <div className="card-premium">
@@ -321,6 +368,14 @@ const Services = () => {
               контролируемыми релизами. Вы выпускаете изменения быстрее, с меньшим количеством ошибок и понятными
               процессами для команды и бизнеса.
             </p>
+            <a
+              href={serviceResourceLinks.devops}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-flex text-sm font-semibold text-primary hover:underline"
+            >
+              Ресурс
+            </a>
           </div>
 
           <div className="card-premium">
@@ -331,6 +386,14 @@ const Services = () => {
               быстрых согласований. Команда работает в едином защищенном контуре, а данные и переписка остаются под
               вашим контролем.
             </p>
+            <a
+              href={serviceResourceLinks.messenger}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-flex text-sm font-semibold text-primary hover:underline"
+            >
+              Ресурс
+            </a>
           </div>
 
           <div className="card-premium">
@@ -341,6 +404,14 @@ const Services = () => {
               менеджерам готовить ответы и фиксировать важные действия по клиенту. Вы повышаете скорость работы отдела
               и улучшаете качество клиентского опыта.
             </p>
+            <a
+              href={serviceResourceLinks.crmAi}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-flex text-sm font-semibold text-primary hover:underline"
+            >
+              Ресурс
+            </a>
           </div>
 
           <div className="card-premium">
@@ -351,6 +422,14 @@ const Services = () => {
               интеграции с вашими сервисами. Получаете стабильную производительность, масштабируемость и прогнозируемые
               затраты.
             </p>
+            <a
+              href={serviceResourceLinks.aiCloud}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-flex text-sm font-semibold text-primary hover:underline"
+            >
+              Ресурс
+            </a>
           </div>
 
           <div className="card-premium">
@@ -361,6 +440,14 @@ const Services = () => {
               требований 152-ФЗ. Это подходит для компаний, которым критично обеспечить полный контроль над данными и
               исключить их передачу за пределы РФ.
             </p>
+            <a
+              href={serviceResourceLinks.localAiGpu}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-flex text-sm font-semibold text-primary hover:underline"
+            >
+              Ресурс
+            </a>
           </div>
 
           <div className="card-premium">
@@ -373,6 +460,14 @@ const Services = () => {
               нагрузку в реальном времени. В результате сокращается стоимость звонка, повышается скорость ответа и
               улучшается клиентский сервис без расширения штата.
             </p>
+            <a
+              href={serviceResourceLinks.callCenter}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-flex text-sm font-semibold text-primary hover:underline"
+            >
+              Ресурс
+            </a>
           </div>
         </div>
       </div>
