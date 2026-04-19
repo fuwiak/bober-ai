@@ -437,6 +437,152 @@ const Process = () => (
   </section>
 );
 
+type PricingPlan = {
+  name: string;
+  minutes: string;
+  messages?: string;
+  price: string;
+  features?: string[];
+  bonusTitle?: string;
+  bonusItems?: string[];
+  featured?: boolean;
+  badge?: string;
+};
+
+const pricingPlans: PricingPlan[] = [
+  {
+    name: "Запуск",
+    minutes: "2 500 минут",
+    messages: "10 000 сообщений",
+    price: "20 000 ₽/мес",
+    features: [
+      "Техническая поддержка 24/7",
+      "Интеграции с CRM, телефонией и популярными сервисами",
+      "Виджет на сайт и в мессенджеры",
+      "Панель оператора и базовая аналитика",
+      "Без доплат в рамках лимитов тарифа",
+    ],
+  },
+  {
+    name: "Расширенный",
+    minutes: "6 000 минут",
+    messages: "30 000 сообщений",
+    price: "45 000 ₽/мес",
+    featured: true,
+    badge: "Популярный",
+    bonusTitle: "Тариф Запуск +",
+    bonusItems: [
+      "Скидка 30% на разработку цифрового сотрудника",
+      "Базовая помощь маркетолога по воронке звонков",
+      "Скидка 30% на контроль качества диалогов",
+    ],
+  },
+  {
+    name: "Профессиональный",
+    minutes: "15 000 минут",
+    messages: "95 000 сообщений",
+    price: "95 000 ₽/мес",
+    bonusTitle: "Тариф Расширенный +",
+    bonusItems: [
+      "Скидка 50% на разработку цифрового сотрудника",
+      "Сопровождение маркетологом и growth-аналитика",
+    ],
+  },
+];
+
+const Pricing = () => (
+  <section id="pricing" className="scroll-mt-28 bg-surface-container-low py-24 px-6">
+    <div className="mx-auto max-w-7xl">
+      <div className="text-center">
+        <h2 className="text-4xl font-bold tracking-tight text-on-surface">Выберите подходящий тариф</h2>
+        <p className="mx-auto mt-4 max-w-2xl text-on-surface-variant leading-relaxed">
+          Гибкие пакеты для бизнеса любого масштаба
+        </p>
+      </div>
+
+      <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
+        {pricingPlans.map((plan) => (
+          <div
+            key={plan.name}
+            className={`relative rounded-3xl border p-8 ${
+              plan.featured
+                ? "border-primary/45 bg-surface-container-lowest shadow-[0_16px_40px_rgba(0,0,0,0.16)]"
+                : "border-outline-variant/20 bg-surface-container-lowest"
+            }`}
+          >
+            {plan.badge ? (
+              <span className="absolute -top-3 left-6 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-on-primary">
+                {plan.badge}
+              </span>
+            ) : null}
+            <h3 className="text-2xl font-bold text-on-surface">{plan.name}</h3>
+            <div className="mt-5 flex flex-wrap items-center gap-2 text-sm font-semibold">
+              <span className="rounded-full bg-primary/12 px-3 py-1 text-primary">{plan.minutes}</span>
+              {plan.messages ? (
+                <>
+                  <span className="text-on-surface-variant">или</span>
+                  <span className="rounded-full bg-primary/12 px-3 py-1 text-primary">{plan.messages}</span>
+                </>
+              ) : null}
+            </div>
+
+            {plan.features ? (
+              <ul className="mt-6 space-y-2 text-sm text-on-surface-variant">
+                {plan.features.map((feature) => (
+                  <li key={feature}>- {feature}</li>
+                ))}
+              </ul>
+            ) : null}
+
+            {plan.bonusTitle ? (
+              <div className="mt-6 rounded-2xl border border-outline-variant/20 bg-surface-container-low p-4">
+                <p className="text-sm font-bold text-on-surface">{plan.bonusTitle}</p>
+                <ul className="mt-2 space-y-2 text-sm text-on-surface-variant">
+                  {plan.bonusItems?.map((item) => <li key={item}>- {item}</li>)}
+                </ul>
+              </div>
+            ) : null}
+
+            <div className="mt-8 text-3xl font-extrabold tracking-tight text-on-surface">{plan.price}</div>
+            <a href="#contact" className="btn-primary mt-6 inline-flex">
+              Оставить заявку
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-6 rounded-3xl border border-outline-variant/20 bg-surface-container-lowest p-8 lg:p-10">
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+          <div>
+            <h3 className="text-2xl font-bold text-on-surface">Enterprise</h3>
+            <p className="mt-2 inline-flex rounded-full bg-primary/12 px-3 py-1 text-sm font-semibold text-primary">
+              от 50 000 минут
+            </p>
+            <p className="mt-4 text-on-surface-variant leading-relaxed">
+              Тариф Профессиональный + скидка 70% на разработку цифрового сотрудника, продвинутая аналитика и A/B-тесты.
+            </p>
+          </div>
+          <div className="shrink-0">
+            <div className="text-3xl font-extrabold tracking-tight text-on-surface">250 000 ₽/мес</div>
+            <a href="#contact" className="btn-primary mt-4 inline-flex">
+              Оставить заявку
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-6 space-y-2 text-sm text-on-surface-variant">
+        <p>
+          * Разовая оплата разработки цифрового сотрудника и базовая интеграция CRM/АТС - от 50 000 ₽. Если не устроит
+          во время тестов, вернем деньги.
+        </p>
+        <p>* Если лимит минут исчерпан, можно докупить дополнительный пакет без остановки сервиса.</p>
+        <p>* Вся инфраструктура размещается в РФ и соответствует требованиям 152-ФЗ.</p>
+      </div>
+    </div>
+  </section>
+);
+
 const Partners = () => (
   <section id="partners" className="scroll-mt-28 py-24 px-6 overflow-hidden">
     <div className="max-w-7xl mx-auto">
@@ -830,6 +976,7 @@ export default function App() {
         <Hero />
         <Services />
         <Process />
+        <Pricing />
         <Partners />
         <Contact />
       </main>
