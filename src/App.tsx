@@ -868,44 +868,69 @@ const Cases = () => {
   );
 };
 
+const pressItems = [
+  {
+    title: "Виртуоз и его скрипка",
+    tag: "Газета Севергазбанк",
+    description: "Почему ИИ не замена программисту, а новый инструмент для усиления команд и процессов.",
+    url: "https://gazeta.severgazbank.ru/virtuoz-i-ego-skripka-pochemu-ii-ne-zamena-programmistu-a-novyj-instrument/",
+  },
+  {
+    title: "Староверы и новаторы",
+    tag: "МК Подмосковье",
+    description: "Материал о том, как нейросети меняют образовательные практики и подходы специалистов.",
+    url: "https://www.mk-mosobl.ru/social/2026/03/16/starovery-i-novatory-pedagogi-razdelilis-na-dva-lagerya-izza-vnedreniya-neyrosetey.html",
+  },
+  {
+    title: "AI-консультант Kaspersky",
+    tag: "RAG-кейс",
+    description: "Как RAG-приложение соединяет локальные источники и API для точного подбора решений клиентам.",
+    image: "/yandex/kaspersky 2.png",
+    url: "#",
+  },
+  {
+    title: "Личный юрист на локальном GPU",
+    tag: "Legal AI",
+    description: "Приватный AI-контур для правовых задач без вывода данных за пределы защищенной инфраструктуры.",
+    image: "/yandex/ai-lawyer.png",
+    url: "#",
+  },
+];
+
 const Partners = () => (
-  <section id="partners" className="scroll-mt-28 py-24 px-6 overflow-hidden">
-    <div className="max-w-7xl mx-auto">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl font-bold tracking-tight">Наши ключевые партнеры</h2>
+  <section id="partners" className="scroll-mt-28 py-24 px-6">
+    <div className="mx-auto max-w-7xl">
+      <div className="mb-10">
+        <h2 className="text-4xl font-bold tracking-tight text-on-surface">Пишут о нас</h2>
+        <p className="mt-4 max-w-2xl text-on-surface-variant leading-relaxed">
+          Публикации, кейсы и обзоры по внедрению AI-решений в продажах, поддержке и корпоративных процессах.
+        </p>
       </div>
-      <div className="flex flex-wrap justify-center items-center gap-16 opacity-70">
-        {partnerItems.map((partner) => (
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {pressItems.map((item) => (
           <a
-            key={partner.name}
-            href={partner.url}
-            target="_blank"
-            rel="noreferrer"
-            className="group flex items-center gap-4"
-            aria-label={`${partner.name} website`}
+            key={item.title}
+            href={item.url}
+            target={item.url.startsWith("http") ? "_blank" : undefined}
+            rel={item.url.startsWith("http") ? "noreferrer" : undefined}
+            className="group rounded-3xl border border-outline-variant/20 bg-surface-container-low p-6 transition hover:border-primary/40 hover:bg-surface-container"
           >
-            {partner.wordmark ? (
-              <Image
-                alt={partner.name}
-                src={partner.icon}
-                width={partner.width ?? 321}
-                height={partner.height ?? 157}
-                className="h-20 w-auto max-w-[min(400px,94vw)] rounded-2xl bg-white object-contain object-center px-3 py-2 ring-1 ring-black/5 sm:h-24 sm:max-w-[min(480px,95vw)] md:h-28 md:max-w-[min(560px,96vw)] dark:bg-zinc-900 dark:ring-white/10"
-              />
-            ) : (
-              <>
+            {item.image ? (
+              <div className="relative mb-5 h-40 overflow-hidden rounded-2xl bg-surface-container-high">
                 <Image
-                  alt={`${partner.name} favicon`}
-                  src={partner.icon}
-                  width={48}
-                  height={48}
-                  className="h-12 w-12 rounded-2xl bg-white object-contain p-1 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10"
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 320px"
+                  className="object-contain object-center"
                 />
-                <span className="font-bold text-2xl tracking-tighter transition-colors group-hover:text-primary">
-                  {partner.name}
-                </span>
-              </>
+              </div>
+            ) : (
+              <div className="mb-5 h-40 rounded-2xl bg-gradient-to-br from-surface-container-high to-primary/10" />
             )}
+            <p className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">{item.tag}</p>
+            <h3 className="mt-4 text-xl font-bold text-on-surface">{item.title}</h3>
+            <p className="mt-3 text-sm leading-relaxed text-on-surface-variant">{item.description}</p>
           </a>
         ))}
       </div>
