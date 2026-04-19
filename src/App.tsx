@@ -281,8 +281,7 @@ const Hero = () => (
         transition={{ duration: 0.8, delay: 0.2 }}
         className="relative z-0 min-w-0"
       >
-        <div className="relative aspect-square w-full overflow-hidden rounded-3xl shadow-2xl">
-          <div className="absolute inset-0 bg-gradient-to-br from-surface-container-high via-surface-container-low to-primary/20" />
+        <div className="relative aspect-square w-full overflow-hidden rounded-3xl bg-surface-container-low shadow-2xl">
           <div className="relative flex h-full min-h-0 items-center justify-center p-6 sm:p-8 md:p-10">
             <div className="relative h-full w-full">
               <Image
@@ -300,8 +299,8 @@ const Hero = () => (
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
             >
-              <span className="block text-xs font-semibold uppercase tracking-widest text-primary">Cloud 01</span>
-              <span className="block text-sm font-bold text-on-surface">AI asystent na mac mini</span>
+              <span className="block text-xs font-semibold uppercase tracking-widest text-primary">Локальный AI</span>
+              <span className="block text-sm font-bold text-on-surface">AI-ассистент на Mac mini</span>
             </motion.div>
 
             <motion.div
@@ -309,8 +308,8 @@ const Hero = () => (
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
             >
-              <span className="block text-xs font-semibold uppercase tracking-widest text-primary">Cloud 02</span>
-              <span className="block text-sm font-bold text-on-surface">OpenClaw na mac mini</span>
+              <span className="block text-xs font-semibold uppercase tracking-widest text-primary">OpenClaw</span>
+              <span className="block text-sm font-bold text-on-surface">OpenClaw на Mac mini</span>
             </motion.div>
 
             <motion.div
@@ -318,11 +317,10 @@ const Hero = () => (
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             >
-              <span className="block text-xs font-semibold uppercase tracking-widest text-primary">Cloud 03</span>
-              <span className="block text-sm font-bold text-on-surface">integracja i automatyzacja Claude na mac</span>
+              <span className="block text-xs font-semibold uppercase tracking-widest text-primary">Claude</span>
+              <span className="block text-sm font-bold text-on-surface">Интеграция и автоматизация Claude на Mac</span>
             </motion.div>
           </div>
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
         </div>
       </motion.div>
     </div>

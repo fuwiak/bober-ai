@@ -6,6 +6,11 @@ export const metadata: Metadata = {
   title: "Kinetic AI — облако и корпоративный ИИ",
   description:
     "Официальный партнёр Yandex Cloud: AI-инфраструктура, миграция в облако, безопасность и DevOps.",
+  icons: {
+    icon: "/yandex/mac-mini.png",
+    shortcut: "/yandex/mac-mini.png",
+    apple: "/yandex/mac-mini.png",
+  },
 };
 
 export default function RootLayout({
