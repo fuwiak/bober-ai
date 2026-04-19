@@ -35,6 +35,7 @@ const menuItems = [
 type PartnerItem = {
   name: string;
   icon: string;
+  url: string;
   vk?: true;
   wordmark?: true;
   width?: number;
@@ -45,6 +46,7 @@ const partnerItemsAll: PartnerItem[] = [
   {
     name: "Yandex Cloud",
     icon: "/partners/yandex-cloud.png",
+    url: "https://yandex.cloud/",
     wordmark: true,
     width: 321,
     height: 157,
@@ -52,6 +54,7 @@ const partnerItemsAll: PartnerItem[] = [
   {
     name: "Selectel",
     icon: "/partners/selectel.png",
+    url: "https://selectel.ru/",
     wordmark: true,
     width: 321,
     height: 157,
@@ -59,6 +62,7 @@ const partnerItemsAll: PartnerItem[] = [
   {
     name: "cloud.ru",
     icon: "/partners/cloudru.png",
+    url: "https://cloud.ru/",
     wordmark: true,
     width: 1024,
     height: 190,
@@ -66,6 +70,7 @@ const partnerItemsAll: PartnerItem[] = [
   {
     name: "VK Cloud",
     icon: "/partners/vk-cloud.png",
+    url: "https://mcs.mail.ru/",
     vk: true,
     wordmark: true,
     width: 321,
@@ -74,6 +79,7 @@ const partnerItemsAll: PartnerItem[] = [
   {
     name: "Claude",
     icon: "/partners/claude.png",
+    url: "https://claude.ai/",
     wordmark: true,
     width: 321,
     height: 157,
@@ -610,7 +616,14 @@ const Partners = () => (
       </div>
       <div className="flex flex-wrap justify-center items-center gap-16 opacity-70">
         {partnerItems.map((partner) => (
-          <div key={partner.name} className="group flex items-center gap-4">
+          <a
+            key={partner.name}
+            href={partner.url}
+            target="_blank"
+            rel="noreferrer"
+            className="group flex items-center gap-4"
+            aria-label={`${partner.name} website`}
+          >
             {partner.wordmark ? (
               <Image
                 alt={partner.name}
@@ -633,7 +646,7 @@ const Partners = () => (
                 </span>
               </>
             )}
-          </div>
+          </a>
         ))}
       </div>
     </div>
