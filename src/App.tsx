@@ -26,6 +26,7 @@ const navLinkClass =
   "text-on-surface font-medium font-headline tracking-tight hover:text-primary transition-colors duration-300 border-b-2 border-transparent hover:border-primary/40 pb-1";
 
 const menuItems = [
+  { href: "#cases", label: "Кейсы" },
   { href: "#partners", label: "Пишут о нас" },
   { href: "#contact", label: "Контакт" },
   { href: "#services", label: "Наши услуги" },
@@ -194,6 +195,9 @@ const Navbar = () => {
         <nav className="hidden items-center gap-8 md:flex">
           <a className={navLinkClass} href="#services">
             Услуги
+          </a>
+          <a className={navLinkClass} href="#cases">
+            Кейсы
           </a>
           <a className={navLinkClass} href="#partners">
             Партнеры
@@ -652,6 +656,67 @@ const Pricing = () => (
   </section>
 );
 
+const casePlaceholders = [
+  {
+    title: "Кейс #1",
+    tag: "AI-автоматизация продаж",
+    description: "Скоро добавим подробный разбор внедрения AI-воронки с измеримым ростом конверсии.",
+  },
+  {
+    title: "Кейс #2",
+    tag: "AI-поддержка клиентов",
+    description: "Скоро покажем, как снизить нагрузку на первую линию и ускорить время ответа с AI-ассистентом.",
+  },
+  {
+    title: "Кейс #3",
+    tag: "Приватный LLM-контур",
+    description: "Скоро опишем запуск защищенного AI-контура на сертифицированных GPU в инфраструктуре РФ.",
+  },
+  {
+    title: "Кейс #4",
+    tag: "Интеграция AI в CRM",
+    description: "Скоро опубликуем сценарий персонализации коммуникаций и прогнозирования качества лидов.",
+  },
+];
+
+const Cases = () => (
+  <section id="cases" className="scroll-mt-28 py-24 px-6">
+    <div className="mx-auto max-w-7xl">
+      <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div>
+          <h2 className="text-4xl font-bold tracking-tight text-on-surface">Кейсы</h2>
+          <p className="mt-4 max-w-2xl text-on-surface-variant leading-relaxed">
+            Примеры внедрения AI-решений под разные отрасли и бюджеты. Ниже - временные placeholders, скоро добавим
+            реальные проекты.
+          </p>
+        </div>
+        <a
+          href="https://selectel.ru/blog/category/case/"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex rounded-2xl border border-outline-variant/30 px-5 py-3 text-sm font-semibold text-on-surface transition hover:border-primary/40 hover:text-primary"
+        >
+          Все кейсы
+        </a>
+      </div>
+
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {casePlaceholders.map((item) => (
+          <article
+            key={item.title}
+            className="group rounded-3xl border border-outline-variant/20 bg-surface-container-low p-6 transition hover:border-primary/40 hover:bg-surface-container"
+          >
+            <div className="mb-5 h-40 rounded-2xl bg-gradient-to-br from-surface-container-high to-primary/10" />
+            <p className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">{item.tag}</p>
+            <h3 className="mt-4 text-xl font-bold text-on-surface">{item.title}</h3>
+            <p className="mt-3 text-sm leading-relaxed text-on-surface-variant">{item.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
 const Partners = () => (
   <section id="partners" className="scroll-mt-28 py-24 px-6 overflow-hidden">
     <div className="max-w-7xl mx-auto">
@@ -775,6 +840,10 @@ const MobileNav = () => (
     <a href="#services" className={`${mobileNavItemClass} text-primary`}>
       <LayoutGrid className="w-5 h-5" />
       <span className="font-body text-[10px] uppercase tracking-widest font-bold">Услуги</span>
+    </a>
+    <a href="#cases" className={mobileNavItemClass}>
+      <LayoutGrid className="w-5 h-5" />
+      <span className="font-body text-[10px] uppercase tracking-widest font-bold">Кейсы</span>
     </a>
     <a href="#partners" className={mobileNavItemClass}>
       <Handshake className="w-5 h-5" />
@@ -1053,6 +1122,7 @@ export default function App() {
         <Services />
         <Process />
         <Pricing />
+        <Cases />
         <Partners />
         <Contact />
       </main>
