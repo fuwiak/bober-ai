@@ -464,8 +464,8 @@ const Process = () => (
 
 type PricingPlan = {
   name: string;
-  minutes: string;
-  messages?: string;
+  scope: string;
+  scopeAlt?: string;
   price: string;
   features?: string[];
   bonusTitle?: string;
@@ -477,40 +477,41 @@ type PricingPlan = {
 const pricingPlans: PricingPlan[] = [
   {
     name: "Запуск",
-    minutes: "2 500 минут",
-    messages: "10 000 сообщений",
+    scope: "1 AI-сценарий",
+    scopeAlt: "до 2 интеграций",
     price: "20 000 ₽/мес",
     features: [
       "Техническая поддержка 24/7",
-      "Интеграции с CRM, телефонией и популярными сервисами",
-      "Виджет на сайт и в мессенджеры",
-      "Панель оператора и базовая аналитика",
-      "Без доплат в рамках лимитов тарифа",
+      "Запуск чат-бота или голосового ассистента под одну бизнес-задачу",
+      "Интеграции с CRM/саппортом/телефонией",
+      "Базовая аналитика эффективности",
+      "Соответствие требованиям 152-ФЗ",
+      "Без скрытых платежей в рамках пакета",
     ],
   },
   {
     name: "Расширенный",
-    minutes: "6 000 минут",
-    messages: "30 000 сообщений",
+    scope: "до 3 AI-сценариев",
+    scopeAlt: "до 6 интеграций",
     price: "45 000 ₽/мес",
     featured: true,
     badge: "Популярный",
     bonusTitle: "Тариф Запуск +",
     bonusItems: [
       "Скидка 30% на разработку цифрового сотрудника",
-      "Базовая помощь маркетолога по воронке звонков",
-      "Скидка 30% на контроль качества диалогов",
+      "Приоритизация roadmap и архитектурная поддержка",
+      "Скидка 30% на аудит качества AI-сценариев",
     ],
   },
   {
     name: "Профессиональный",
-    minutes: "15 000 минут",
-    messages: "95 000 сообщений",
+    scope: "до 6 AI-сценариев",
+    scopeAlt: "приватный LLM-контур",
     price: "95 000 ₽/мес",
     bonusTitle: "Тариф Расширенный +",
     bonusItems: [
       "Скидка 50% на разработку цифрового сотрудника",
-      "Сопровождение маркетологом и growth-аналитика",
+      "Выделенный technical lead и регулярный performance review",
     ],
   },
 ];
@@ -542,11 +543,11 @@ const Pricing = () => (
             ) : null}
             <h3 className="text-2xl font-bold text-on-surface">{plan.name}</h3>
             <div className="mt-5 flex flex-wrap items-center gap-2 text-sm font-semibold">
-              <span className="rounded-full bg-primary/12 px-3 py-1 text-primary">{plan.minutes}</span>
-              {plan.messages ? (
+              <span className="rounded-full bg-primary/12 px-3 py-1 text-primary">{plan.scope}</span>
+              {plan.scopeAlt ? (
                 <>
                   <span className="text-on-surface-variant">или</span>
-                  <span className="rounded-full bg-primary/12 px-3 py-1 text-primary">{plan.messages}</span>
+                  <span className="rounded-full bg-primary/12 px-3 py-1 text-primary">{plan.scopeAlt}</span>
                 </>
               ) : null}
             </div>
@@ -581,10 +582,11 @@ const Pricing = () => (
           <div>
             <h3 className="text-2xl font-bold text-on-surface">Enterprise</h3>
             <p className="mt-2 inline-flex rounded-full bg-primary/12 px-3 py-1 text-sm font-semibold text-primary">
-              от 50 000 минут
+              выделенная AI-платформа под ваш контур
             </p>
             <p className="mt-4 text-on-surface-variant leading-relaxed">
-              Тариф Профессиональный + скидка 70% на разработку цифрового сотрудника, продвинутая аналитика и A/B-тесты.
+              Тариф Профессиональный + выделенная команда внедрения, приватные LLM в защищенном контуре, продвинутая
+              аналитика и SLA под критичные процессы.
             </p>
           </div>
           <div className="shrink-0">
@@ -598,10 +600,9 @@ const Pricing = () => (
 
       <div className="mt-6 space-y-2 text-sm text-on-surface-variant">
         <p>
-          * Разовая оплата разработки цифрового сотрудника и базовая интеграция CRM/АТС - от 50 000 ₽. Если не устроит
-          во время тестов, вернем деньги.
+          * Разовая разработка AI-сценариев и базовая интеграция с вашими системами - от 50 000 ₽.
         </p>
-        <p>* Если лимит минут исчерпан, можно докупить дополнительный пакет без остановки сервиса.</p>
+        <p>* Если нужно больше сценариев или интеграций, масштабируем пакет без остановки production.</p>
         <p>* Вся инфраструктура размещается в РФ и соответствует требованиям 152-ФЗ.</p>
       </div>
     </div>
