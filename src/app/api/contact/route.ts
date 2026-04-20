@@ -1,0 +1,80 @@
+import { NextRequest, NextResponse } from "next/server";
+
+export const runtime = "nodejs";
+
+type Payload = {
+  name?: string;
+  contact?: string;
+  message?: string;
+};
+
+function requireString(value: unknown): string {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+export async function POST(request: NextRequest) {
+  const body = (await request.json().catch(() => ({}))) as Payload;
+  const name = requireString(body.name);
+  const contact = requireString(body.contact);
+  const message = requireString(body.message) || "—";
+
+  if (!name || !contact) {
+    return NextResponse.json({ error: "invalid_payload", message: "Заполните обязательные поля" }, { status: 400 });
+  }
+
+  const resendApiKey = process.env.RESEND_API_KEY;
+  const to = process.env.CONTACT_TO_EMAIL || "hello@kinetic-ai.ru";
+  const from = process.env.CONTACT_FROM_EMAIL || "onboarding@resend.dev";
+
+  if (!resendApiKey) {
+    return NextResponse.json(
+      { error: "email_not_configured", message: "RESEND_API_KEY не настроен на сервере" },
+      { status: 500 },
+    );
+  }
+
+  const subject = `Заявка с сайта Kinetic AI от ${name}`;
+  const text = [`Имя: ${name}`, `Контакт: ${contact}`, "", "Сообщение:", message].join("\n");
+  const html = `
+    <h2>Новая заявка с сайта Kinetic AI</h2>
+    <p><strong>Имя:</strong> ${escapeHtml(name)}</p>
+    <p><strong>Контакт:</strong> ${escapeHtml(contact)}</p>
+    <p><strong>Сообщение:</strong></p>
+    <p>${escapeHtml(message).replace(/\n/g, "<br/>")}</p>
+  `;
+
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${resendApiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from,
+      to: [to],
+      subject,
+      text,
+      html,
+      reply_to: contact.includes("@") ? contact : undefined,
+    }),
+  });
+
+  if (!response.ok) {
+    const details = await response.text().catch(() => "");
+    return NextResponse.json(
+      { error: "email_failed", message: `Не удалось отправить письмо: ${details.slice(0, 200)}` },
+      { status: 502 },
+    );
+  }
+
+  return NextResponse.json({ ok: true });
+}

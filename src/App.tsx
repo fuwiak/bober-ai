@@ -58,7 +58,9 @@ const menuItems = [
   { href: "#partners", label: "Пишут о нас" },
   { href: "#contact", label: "Контакт" },
   { href: "#services", label: "Наши услуги" },
-  { href: "/news", label: "ИИ подборка новостей" },
+  { href: "/events", label: "Мероприятия" },
+  { href: "/outages", label: "Аварии" },
+  { href: "/news", label: "Новости" },
   { href: "/blog", label: "Блог Kinetic AI" },
   { href: "/career", label: "Карьера" },
   { href: "/academy", label: "Академия Yandex" },
@@ -219,8 +221,14 @@ const Navbar = () => {
           <a className={navLinkClass} href="#partners">
             Партнеры
           </a>
+          <a className={navLinkClass} href="/events">
+            Мероприятия
+          </a>
+          <a className={navLinkClass} href="/outages">
+            Аварии
+          </a>
           <a className={navLinkClass} href="/news">
-            ИИ подборка новостей
+            Новости
           </a>
           <a className={navLinkClass} href="/blog">
             Блог
@@ -1657,27 +1665,46 @@ const Contact = () => {
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState<string | null>(null);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const trimmedName = name.trim();
     const trimmedContact = contact.trim();
     const trimmedMessage = message.trim();
 
     if (!trimmedName || !trimmedContact) return;
+    setIsSubmitting(true);
+    setSubmitMessage(null);
+    setSubmitError(null);
 
-    const subject = `Заявка с сайта Kinetic AI от ${trimmedName}`;
-    const body = [
-      `Имя: ${trimmedName}`,
-      `Контакт: ${trimmedContact}`,
-      "",
-      "Сообщение:",
-      trimmedMessage || "—",
-    ].join("\n");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: trimmedName,
+          contact: trimmedContact,
+          message: trimmedMessage || "—",
+        }),
+      });
 
-    const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    if (typeof window !== "undefined") {
-      window.location.href = mailto;
+      if (!response.ok) {
+        const data = (await response.json().catch(() => ({}))) as { message?: string };
+        throw new Error(data.message || "Не удалось отправить заявку");
+      }
+
+      setSubmitMessage(`Заявка отправлена на ${CONTACT_EMAIL}. Мы скоро свяжемся с вами.`);
+      setName("");
+      setContact("");
+      setMessage("");
+    } catch (error) {
+      const text = error instanceof Error ? error.message : "Ошибка отправки";
+      setSubmitError(text);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -1749,10 +1776,17 @@ const Contact = () => {
           </div>
           <button
             type="submit"
+            disabled={isSubmitting}
             className="w-full rounded-2xl bg-primary py-5 font-bold uppercase tracking-widest text-on-primary transition-all active:scale-[0.98]"
           >
-            Отправить запрос
+            {isSubmitting ? "Отправляем..." : "Отправить запрос"}
           </button>
+          {submitMessage ? (
+            <p className="text-sm text-emerald-600">{submitMessage}</p>
+          ) : null}
+          {submitError ? (
+            <p className="text-sm text-red-600">{submitError}</p>
+          ) : null}
           </form>
         </div>
       </div>
