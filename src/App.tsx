@@ -692,6 +692,322 @@ const Pricing = () => (
   </section>
 );
 
+type Currency = "rub" | "kzt" | "usd";
+
+type ModelPrice = {
+  name: string;
+  badge?: string;
+  input: Record<Currency, number>;
+  output: Record<Currency, number>;
+};
+
+const modelPrices: ModelPrice[] = [
+  {
+    name: "Alice AI LLM",
+    badge: "Alice",
+    input: { rub: 0.5, kzt: 2.546838525, usd: 0.00409836 },
+    output: { rub: 1.2, kzt: 6.11241246, usd: 0.009836064 },
+  },
+  {
+    name: "YandexGPT Pro 5.1",
+    badge: "Yandex",
+    input: { rub: 0.8, kzt: 4.07494164, usd: 0.006557376 },
+    output: { rub: 0.8, kzt: 4.07494164, usd: 0.006557376 },
+  },
+  {
+    name: "YandexGPT Pro 5",
+    badge: "Yandex",
+    input: { rub: 1.2, kzt: 6.11241246, usd: 0.009836064 },
+    output: { rub: 1.2, kzt: 6.11241246, usd: 0.009836064 },
+  },
+  {
+    name: "YandexGPT Lite",
+    badge: "Yandex",
+    input: { rub: 0.2, kzt: 1.01873541, usd: 0.001639344 },
+    output: { rub: 0.2, kzt: 1.01873541, usd: 0.001639344 },
+  },
+  {
+    name: "DeepSeek V3.2",
+    badge: "DeepSeek",
+    input: { rub: 0.5, kzt: 2.546838525, usd: 0.00409836 },
+    output: { rub: 0.8, kzt: 4.07494164, usd: 0.006557376 },
+  },
+  {
+    name: "Qwen3 235B",
+    badge: "Qwen",
+    input: { rub: 0.5, kzt: 2.546838525, usd: 0.00409836 },
+    output: { rub: 0.5, kzt: 2.546838525, usd: 0.00409836 },
+  },
+  {
+    name: "gpt-oss-120b",
+    badge: "OSS",
+    input: { rub: 0.3, kzt: 1.528103115, usd: 0.002459016 },
+    output: { rub: 0.3, kzt: 1.528103115, usd: 0.002459016 },
+  },
+  {
+    name: "gpt-oss-20b",
+    badge: "OSS",
+    input: { rub: 0.1, kzt: 0.509367705, usd: 0.000819672 },
+    output: { rub: 0.1, kzt: 0.509367705, usd: 0.000819672 },
+  },
+  {
+    name: "Qwen3.5 35B",
+    badge: "Qwen",
+    input: { rub: 0.2, kzt: 1.0188, usd: 0.0016393443 },
+    output: { rub: 0.3, kzt: 1.5282, usd: 0.0024590164 },
+  },
+  {
+    name: "Gemma3 27B",
+    badge: "Google",
+    input: { rub: 0.4, kzt: 2.03747082, usd: 0.003278688 },
+    output: { rub: 0.4, kzt: 2.03747082, usd: 0.003278688 },
+  },
+  {
+    name: "speech-realtime-250923",
+    badge: "Speech",
+    input: { rub: 0.8, kzt: 4.07494164, usd: 0.006557376 },
+    output: { rub: 0.8, kzt: 4.07494164, usd: 0.006557376 },
+  },
+];
+
+const currencyMeta: Record<Currency, { label: string; symbol: string; note: string; locale: string; fraction: number }> = {
+  rub: { label: "Рубли", symbol: "₽", note: "с НДС", locale: "ru-RU", fraction: 2 },
+  kzt: { label: "Тенге", symbol: "₸", note: "с НДС", locale: "ru-RU", fraction: 2 },
+  usd: { label: "Доллары", symbol: "$", note: "без НДС", locale: "en-US", fraction: 2 },
+};
+
+const formatPricePer1M = (value: number, currency: Currency) => {
+  const { locale, fraction } = currencyMeta[currency];
+  const scaled = value * 1000;
+  const digits = scaled >= 100 ? 0 : scaled >= 10 ? 1 : fraction;
+  return new Intl.NumberFormat(locale, {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: digits,
+  }).format(scaled);
+};
+
+type CbrValute = { Nominal: number; Value: number; Previous: number };
+
+type CbrResponse = { Valute: Record<string, CbrValute> };
+
+const CurrencyTicker = () => {
+  const [rates, setRates] = useState<CbrResponse["Valute"] | null>(null);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("https://www.cbr-xml-daily.ru/daily_json.js", { cache: "no-store" })
+      .then((r) => {
+        if (!r.ok) throw new Error("rates");
+        return r.json() as Promise<CbrResponse>;
+      })
+      .then((data) => {
+        if (!cancelled) setRates(data.Valute);
+      })
+      .catch(() => {
+        if (!cancelled) setError(true);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const items: { code: keyof CbrResponse["Valute"]; symbol: string; label: string }[] = [
+    { code: "USD", symbol: "$", label: "USD/RUB" },
+    { code: "EUR", symbol: "€", label: "EUR/RUB" },
+    { code: "KZT", symbol: "₸", label: "KZT/RUB" },
+    { code: "CNY", symbol: "¥", label: "CNY/RUB" },
+  ];
+
+  return (
+    <div className="flex flex-wrap items-center gap-3">
+      <span className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
+        Курс ЦБ РФ
+      </span>
+      <div className="flex flex-wrap items-center gap-1.5">
+        {items.map((it) => {
+          const rate = rates?.[it.code];
+          const perUnit = rate ? rate.Value / rate.Nominal : null;
+          const diff = rate ? rate.Value - rate.Previous : 0;
+          const isUp = diff > 0;
+          const isDown = diff < 0;
+          return (
+            <a
+              key={it.code}
+              href="https://www.cbr.ru/currency_base/daily/"
+              target="_blank"
+              rel="noreferrer"
+              title={`${it.label} — по ЦБ РФ`}
+              aria-label={`Курс ${it.label}`}
+              className="inline-flex items-center gap-1.5 rounded-full border border-outline-variant/25 bg-surface-container-lowest px-3 py-1.5 text-xs font-semibold text-on-surface transition hover:border-primary/40 hover:text-primary"
+            >
+              <span className="text-on-surface-variant">{it.symbol}</span>
+              {perUnit ? (
+                <>
+                  <span className="tabular-nums">
+                    {new Intl.NumberFormat("ru-RU", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: it.code === "KZT" ? 4 : 2,
+                    }).format(perUnit)}
+                  </span>
+                  <span className="text-[10px] text-on-surface-variant">₽</span>
+                  {isUp || isDown ? (
+                    <span
+                      className={`text-[10px] font-bold ${isUp ? "text-emerald-500" : "text-red-500"}`}
+                      aria-hidden="true"
+                    >
+                      {isUp ? "▲" : "▼"}
+                    </span>
+                  ) : null}
+                </>
+              ) : error ? (
+                <span className="text-on-surface-variant">—</span>
+              ) : (
+                <span className="animate-pulse text-on-surface-variant">…</span>
+              )}
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+const ModelPricing = () => {
+  const [currency, setCurrency] = useState<Currency>("rub");
+  const viewportRef = useRef<HTMLDivElement | null>(null);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const [dragLimit, setDragLimit] = useState(0);
+
+  useLayoutEffect(() => {
+    const update = () => {
+      const vw = viewportRef.current?.clientWidth ?? 0;
+      const tw = trackRef.current?.scrollWidth ?? 0;
+      setDragLimit(Math.max(0, tw - vw));
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, [currency]);
+
+  const tabs: { id: Currency; label: string }[] = [
+    { id: "rub", label: "Цены в рублях" },
+    { id: "kzt", label: "Цены в тенге" },
+    { id: "usd", label: "Цены в долларах" },
+  ];
+
+  const meta = currencyMeta[currency];
+
+  return (
+    <section id="model-pricing" className="scroll-mt-28 py-24 px-6">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-8 flex flex-col gap-6">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">
+                Тарифы AI-моделей
+              </span>
+              <h2 className="mt-2 text-4xl font-bold tracking-tight text-on-surface">
+                Стоимость за 1M токенов
+              </h2>
+              <p className="mt-4 max-w-2xl text-on-surface-variant leading-relaxed">
+                Актуальные цены моделей Yandex Foundation Models и OSS-стека в калейдоскопе.
+                Переключайте валюту, листайте карточки — суммы рассчитаны на миллион токенов (input / output).
+              </p>
+            </div>
+            <CurrencyTicker />
+          </div>
+
+          <div
+            role="tablist"
+            aria-label="Валюта"
+            className="inline-flex self-start rounded-2xl border border-outline-variant/25 bg-surface-container-low p-1"
+          >
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                role="tab"
+                type="button"
+                aria-selected={currency === tab.id}
+                onClick={() => setCurrency(tab.id)}
+                className={`rounded-xl px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all md:text-sm ${
+                  currency === tab.id
+                    ? "bg-primary text-on-primary shadow-sm"
+                    : "text-on-surface-variant hover:text-on-surface"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div ref={viewportRef} className="overflow-hidden">
+          <motion.div
+            ref={trackRef}
+            drag="x"
+            dragConstraints={{ left: -dragLimit, right: 0 }}
+            dragElastic={0.04}
+            className="flex cursor-grab gap-5 active:cursor-grabbing"
+          >
+            {modelPrices.map((model) => {
+              const inputVal = model.input[currency];
+              const outputVal = model.output[currency];
+              return (
+                <div
+                  key={model.name}
+                  className="relative w-[280px] shrink-0 overflow-hidden rounded-3xl border border-outline-variant/20 bg-surface-container-low p-6 transition hover:border-primary/40 hover:bg-surface-container"
+                >
+                  {model.badge ? (
+                    <span className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary">
+                      {model.badge}
+                    </span>
+                  ) : null}
+                  <h3 className="mt-3 break-words text-lg font-bold text-on-surface">
+                    {model.name}
+                  </h3>
+                  <p className="mt-1 text-[11px] uppercase tracking-widest text-on-surface-variant">
+                    за 1M токенов · {meta.note}
+                  </p>
+
+                  <div className="mt-5 grid grid-cols-2 gap-3">
+                    <div className="rounded-2xl bg-surface-container-lowest p-3">
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
+                        Input
+                      </p>
+                      <p className="mt-1 text-xl font-bold tabular-nums text-on-surface">
+                        {formatPricePer1M(inputVal, currency)}
+                        <span className="ml-1 text-sm font-semibold text-on-surface-variant">
+                          {meta.symbol}
+                        </span>
+                      </p>
+                    </div>
+                    <div className="rounded-2xl bg-primary/8 p-3">
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-primary">
+                        Output
+                      </p>
+                      <p className="mt-1 text-xl font-bold tabular-nums text-on-surface">
+                        {formatPricePer1M(outputVal, currency)}
+                        <span className="ml-1 text-sm font-semibold text-on-surface-variant">
+                          {meta.symbol}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </motion.div>
+        </div>
+
+        <p className="mt-6 text-xs text-on-surface-variant">
+          * Курсы валют — справочные, по данным ЦБ РФ. Итоговая сумма в счёте рассчитывается по курсу провайдера платформы на дату использования.
+        </p>
+      </div>
+    </section>
+  );
+};
+
 type CaseItem = {
   title: string;
   tag: string;
@@ -1578,6 +1894,7 @@ export default function App() {
         <Services />
         <Process />
         <Pricing />
+        <ModelPricing />
         <Cases />
         <MediaHub />
         <Contact />
