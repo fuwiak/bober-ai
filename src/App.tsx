@@ -786,9 +786,16 @@ const formatPricePer1M = (value: number, currency: Currency) => {
   }).format(scaled);
 };
 
+const vatRateByCurrency: Record<Currency, number> = {
+  rub: 0.2,
+  kzt: 0.12,
+  usd: 0,
+};
+
 const applyVatMode = (value: number, currency: Currency, includeVat: boolean) => {
-  if (currency === "usd") return value;
-  return includeVat ? value : value / 1.2;
+  const rate = vatRateByCurrency[currency];
+  if (rate <= 0) return value;
+  return includeVat ? value : value / (1 + rate);
 };
 
 type CbrValute = { Nominal: number; Value: number; Previous: number };
@@ -889,20 +896,6 @@ const CurrencyTicker = () => {
 const ModelPricing = () => {
   const [currency, setCurrency] = useState<Currency>("rub");
   const [includeVat, setIncludeVat] = useState(true);
-  const viewportRef = useRef<HTMLDivElement | null>(null);
-  const trackRef = useRef<HTMLDivElement | null>(null);
-  const [dragLimit, setDragLimit] = useState(0);
-
-  useLayoutEffect(() => {
-    const update = () => {
-      const vw = viewportRef.current?.clientWidth ?? 0;
-      const tw = trackRef.current?.scrollWidth ?? 0;
-      setDragLimit(Math.max(0, tw - vw));
-    };
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, [currency]);
 
   const tabs: { id: Currency; label: string }[] = [
     { id: "rub", label: "Цены в рублях" },
@@ -912,6 +905,13 @@ const ModelPricing = () => {
 
   const meta = currencyMeta[currency];
   const vatNote = currency === "usd" ? "без НДС" : includeVat ? "с НДС" : "без НДС";
+  const vatHint =
+    currency === "rub"
+      ? "ставка 20% (РФ)"
+      : currency === "kzt"
+        ? "ставка 12% (Казахстан)"
+        : "НДС не применяется";
+  const marqueeModels = [...modelPrices, ...modelPrices];
 
   return (
     <section id="model-pricing" className="scroll-mt-28 py-24 px-6">
@@ -965,27 +965,23 @@ const ModelPricing = () => {
                 className="h-4 w-4 accent-primary"
               />
               НДС
-              {currency === "usd" ? (
-                <span className="text-[10px] font-semibold text-on-surface-variant">не применяется</span>
-              ) : null}
+              <span className="text-[10px] font-semibold text-on-surface-variant">{vatHint}</span>
             </label>
           </div>
         </div>
 
-        <div ref={viewportRef} className="overflow-hidden">
+        <div className="relative overflow-hidden">
           <motion.div
-            ref={trackRef}
-            drag="x"
-            dragConstraints={{ left: -dragLimit, right: 0 }}
-            dragElastic={0.04}
-            className="flex cursor-grab gap-5 active:cursor-grabbing"
+            className="flex w-max items-stretch gap-5"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ duration: 80, ease: "linear", repeat: Infinity }}
           >
-            {modelPrices.map((model) => {
+            {marqueeModels.map((model, idx) => {
               const inputVal = applyVatMode(model.input[currency], currency, includeVat);
               const outputVal = applyVatMode(model.output[currency], currency, includeVat);
               return (
                 <div
-                  key={model.name}
+                  key={`${model.name}-${idx}`}
                   className="relative w-[280px] shrink-0 overflow-hidden rounded-3xl border border-outline-variant/20 bg-surface-container-low p-6 transition hover:border-primary/40 hover:bg-surface-container"
                 >
                   {model.badge ? (
