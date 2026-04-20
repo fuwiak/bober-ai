@@ -1,12 +1,13 @@
 import Link from "next/link";
 import {
-  buildNewsDigest,
   NEWS_CATEGORY_LABEL,
   type NewsItem,
 } from "@/lib/news-agent";
+import { getCachedDigest } from "@/lib/news-scheduler";
+import NewsCarousel from "./NewsCarousel";
 
-export const revalidate = 43200;
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 const FALLBACK_PLACEHOLDERS = [
   { tag: "LLM", title: "Новости по LLM и корпоративному ИИ" },
@@ -52,7 +53,7 @@ export default async function NewsPage() {
   let items: NewsItem[] = [];
   let generatedAt = "";
   try {
-    const digest = await buildNewsDigest();
+    const digest = await getCachedDigest();
     items = digest.items;
     generatedAt = digest.generatedAt;
   } catch {
@@ -73,7 +74,7 @@ export default async function NewsPage() {
             <h1 className="mt-2 text-3xl md:text-4xl font-bold tracking-tight">Новости</h1>
             <p className="mt-3 max-w-2xl text-on-surface-variant">
               Подборка актуальных материалов по ИИ, облачной инфраструктуре и корпоративным LLM. Новости подбирает наш
-              собственный ИИ-агент и обновляет ленту автоматически.
+              собственный ИИ-агент и обновляет ленту автоматически каждые 12 часов.
             </p>
           </div>
           <Link
@@ -84,7 +85,7 @@ export default async function NewsPage() {
           </Link>
         </div>
 
-        <div className="mb-8 rounded-3xl border border-outline-variant/20 bg-surface-container-lowest p-6 shadow-sm">
+        <div className="mb-10 rounded-3xl border border-outline-variant/20 bg-surface-container-lowest p-6 shadow-sm">
           <div className="flex flex-wrap items-center gap-3 text-sm text-on-surface-variant">
             <span className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-xs font-bold uppercase tracking-widest text-primary">
               Авто-обновление
@@ -100,39 +101,16 @@ export default async function NewsPage() {
         </div>
 
         {hasData ? (
-          <div className="space-y-12">
+          <div>
             {BUCKET_ORDER.map((category) => {
               const bucketItems = grouped[category];
               if (!bucketItems || bucketItems.length === 0) return null;
               return (
-                <section key={category}>
-                  <div className="mb-5 flex items-end justify-between gap-4">
-                    <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
-                      {NEWS_CATEGORY_LABEL[category]}
-                    </h2>
-                  </div>
-                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {bucketItems.map((item) => (
-                      <a
-                        key={item.url}
-                        href={item.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="group rounded-3xl border border-outline-variant/20 bg-surface-container-lowest p-6 shadow-sm transition hover:border-primary/40"
-                      >
-                        <span className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-primary">
-                          {item.source || NEWS_CATEGORY_LABEL[category]}
-                        </span>
-                        <h3 className="mt-4 text-lg font-bold text-on-surface group-hover:text-primary">
-                          {item.title}
-                        </h3>
-                        <p className="mt-3 text-sm text-on-surface-variant leading-relaxed">
-                          {item.summary}
-                        </p>
-                      </a>
-                    ))}
-                  </div>
-                </section>
+                <NewsCarousel
+                  key={category}
+                  title={NEWS_CATEGORY_LABEL[category]}
+                  items={bucketItems}
+                />
               );
             })}
           </div>

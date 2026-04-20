@@ -1,39 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { buildNewsDigest, type NewsDigest } from "@/lib/news-agent";
+import { getCachedDigest } from "@/lib/news-scheduler";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-const TWELVE_HOURS_MS = 12 * 60 * 60 * 1000;
-
-type CacheEntry = {
-  digest: NewsDigest;
-  expiresAt: number;
-};
-
-type GlobalCache = { kineticNewsCache?: CacheEntry };
-
-const globalRef = globalThis as unknown as GlobalCache;
-
-async function loadDigest(force: boolean): Promise<NewsDigest> {
-  const now = Date.now();
-  const cached = globalRef.kineticNewsCache;
-  if (!force && cached && cached.expiresAt > now) {
-    return cached.digest;
-  }
-
-  try {
-    const digest = await buildNewsDigest();
-    globalRef.kineticNewsCache = {
-      digest,
-      expiresAt: now + TWELVE_HOURS_MS,
-    };
-    return digest;
-  } catch (error) {
-    if (cached) return cached.digest;
-    throw error;
-  }
-}
 
 export async function GET(request: NextRequest) {
   const force = request.nextUrl.searchParams.get("force") === "1";
@@ -45,7 +14,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const digest = await loadDigest(force && (!adminToken || token === adminToken));
+    const digest = await getCachedDigest(force);
     return NextResponse.json(digest, {
       headers: {
         "Cache-Control": "public, max-age=0, s-maxage=43200, stale-while-revalidate=86400",

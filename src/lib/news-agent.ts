@@ -4,6 +4,7 @@ export type NewsItem = {
   source: string;
   summary: string;
   category: "yandex-selectel" | "russia" | "world";
+  image?: string;
   publishedAt?: string;
 };
 
@@ -12,6 +13,7 @@ type SearchHit = {
   url: string;
   snippet: string;
   source: string;
+  image?: string;
 };
 
 type Bucket = {
@@ -149,6 +151,32 @@ async function searchYandex(query: string, limit = 5): Promise<SearchHit[]> {
   }
 }
 
+type GoogleItem = {
+  title: string;
+  link: string;
+  snippet?: string;
+  displayLink?: string;
+  pagemap?: {
+    cse_thumbnail?: Array<{ src?: string }>;
+    cse_image?: Array<{ src?: string }>;
+    metatags?: Array<Record<string, string>>;
+  };
+};
+
+function extractGoogleImage(item: GoogleItem): string | undefined {
+  const thumb = item.pagemap?.cse_thumbnail?.[0]?.src;
+  if (thumb) return thumb;
+  const image = item.pagemap?.cse_image?.[0]?.src;
+  if (image) return image;
+  const meta = item.pagemap?.metatags?.[0] || {};
+  return (
+    meta["og:image"] ||
+    meta["og:image:url"] ||
+    meta["twitter:image"] ||
+    meta["twitter:image:src"]
+  );
+}
+
 async function searchGoogle(query: string, limit = 5): Promise<SearchHit[]> {
   const apiKey = process.env.GOOGLE_CUSTOM_SEARCH_API_KEY;
   const cx = process.env.GOOGLE_CUSTOM_SEARCH_ENGINE_ID;
@@ -168,12 +196,13 @@ async function searchGoogle(query: string, limit = 5): Promise<SearchHit[]> {
       cache: "no-store",
     });
     if (!res.ok) return [];
-    const data = (await res.json()) as { items?: Array<{ title: string; link: string; snippet?: string; displayLink?: string }> };
+    const data = (await res.json()) as { items?: GoogleItem[] };
     return (data.items || []).slice(0, limit).map((item) => ({
       title: item.title,
       url: item.link,
       snippet: item.snippet || "",
       source: item.displayLink || hostFromUrl(item.link),
+      image: extractGoogleImage(item),
     }));
   } catch {
     return [];
@@ -284,6 +313,11 @@ async function callOpenRouter(prompt: string, model: string): Promise<string> {
   return data.choices?.[0]?.message?.content ?? "";
 }
 
+function faviconFallback(url: string): string {
+  const host = hostFromUrl(url);
+  return `https://www.google.com/s2/favicons?domain=${host}&sz=256`;
+}
+
 async function curateBucket(bucket: Bucket): Promise<NewsItem[]> {
   const candidates = await collectBucketCandidates(bucket);
   if (candidates.length === 0) return [];
@@ -302,7 +336,7 @@ async function curateBucket(bucket: Bucket): Promise<NewsItem[]> {
   }
 
   const parsed = safeParseJsonArray(content);
-  const allowedUrls = new Set(candidates.map((hit) => hit.url));
+  const byUrl = new Map(candidates.map((hit) => [hit.url, hit]));
 
   const items = parsed
     .map((row) => {
@@ -312,9 +346,16 @@ async function curateBucket(bucket: Bucket): Promise<NewsItem[]> {
       const summary = typeof row.summary === "string" ? row.summary.trim() : "";
       return { title, url, source, summary };
     })
-    .filter((row) => row.title && row.url && allowedUrls.has(row.url))
+    .filter((row) => row.title && row.url && byUrl.has(row.url))
     .slice(0, bucket.take)
-    .map((row) => ({ ...row, category: bucket.id }));
+    .map((row): NewsItem => {
+      const hit = byUrl.get(row.url);
+      return {
+        ...row,
+        category: bucket.id,
+        image: hit?.image || faviconFallback(row.url),
+      };
+    });
 
   if (items.length > 0) return items;
 
@@ -324,6 +365,7 @@ async function curateBucket(bucket: Bucket): Promise<NewsItem[]> {
     source: hit.source || hostFromUrl(hit.url),
     summary: hit.snippet.slice(0, 240),
     category: bucket.id,
+    image: hit.image || faviconFallback(hit.url),
   }));
 }
 
