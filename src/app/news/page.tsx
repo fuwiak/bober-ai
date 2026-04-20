@@ -148,7 +148,7 @@ export default async function NewsPage() {
             <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">
               AI-дайджест
             </span>
-            <h1 className="mt-2 text-3xl md:text-4xl font-bold tracking-tight">Новости</h1>
+            <h1 className="mt-2 text-3xl md:text-4xl font-bold tracking-tight">ИИ подборка новостей</h1>
             <p className="mt-3 max-w-2xl text-on-surface-variant">
               Подборку готовит <span className="font-semibold text-on-surface">Kinetic AI agent</span>. Он сам ищет
               актуальные материалы по ИИ, LLM и облачной AI-инфраструктуре и обновляет ленту автоматически.

@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
-import { useEffect, useLayoutEffect, useRef, useState, type ComponentType } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type ComponentType, type FormEvent } from "react";
 import {
   Cloud,
   Menu,
@@ -58,7 +58,7 @@ const menuItems = [
   { href: "#partners", label: "Пишут о нас" },
   { href: "#contact", label: "Контакт" },
   { href: "#services", label: "Наши услуги" },
-  { href: "/news", label: "Новости" },
+  { href: "/news", label: "ИИ подборка новостей" },
   { href: "/blog", label: "Блог Kinetic AI" },
   { href: "/career", label: "Карьера" },
   { href: "/academy", label: "Академия Yandex" },
@@ -220,7 +220,7 @@ const Navbar = () => {
             Партнеры
           </a>
           <a className={navLinkClass} href="/news">
-            Новости
+            ИИ подборка новостей
           </a>
           <a className={navLinkClass} href="/blog">
             Блог
@@ -1651,75 +1651,114 @@ const MediaHub = () => {
   );
 };
 
-const Contact = () => (
-  <section id="contact" className="max-w-7xl mx-auto scroll-mt-28 px-6 pb-32">
-    <div className="flex flex-col overflow-hidden rounded-3xl bg-on-surface text-surface-container-lowest md:flex-row">
-      <div className="md:w-1/2 p-12 md:p-20 relative bg-[#1b1c1c]">
-        <h2 className="text-4xl font-bold mb-6 leading-tight text-white">Готовы обсудить <br/>ваш проект?</h2>
-        <p className="text-surface-dim mb-12 max-w-xs font-body">
-          Оставьте заявку, и наш эксперт свяжется с вами в течение 30 минут для первичного аудита.
-        </p>
-        <div className="space-y-6">
-          <div className="flex items-center gap-4">
-            <PhoneCall className="text-secondary-container w-5 h-5 shrink-0" />
-            <a
-              href="tel:+79269901666"
-              className="text-white underline-offset-4 transition-colors hover:text-secondary-container hover:underline"
-            >
-              +7 926 990 1666
-            </a>
+const CONTACT_EMAIL = "hello@kinetic-ai.ru";
+
+const Contact = () => {
+  const [name, setName] = useState("");
+  const [contact, setContact] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const trimmedName = name.trim();
+    const trimmedContact = contact.trim();
+    const trimmedMessage = message.trim();
+
+    if (!trimmedName || !trimmedContact) return;
+
+    const subject = `Заявка с сайта Kinetic AI от ${trimmedName}`;
+    const body = [
+      `Имя: ${trimmedName}`,
+      `Контакт: ${trimmedContact}`,
+      "",
+      "Сообщение:",
+      trimmedMessage || "—",
+    ].join("\n");
+
+    const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    if (typeof window !== "undefined") {
+      window.location.href = mailto;
+    }
+  };
+
+  return (
+    <section id="contact" className="max-w-7xl mx-auto scroll-mt-28 px-6 pb-32">
+      <div className="flex flex-col overflow-hidden rounded-3xl bg-on-surface text-surface-container-lowest md:flex-row">
+        <div className="md:w-1/2 p-12 md:p-20 relative bg-[#1b1c1c]">
+          <h2 className="text-4xl font-bold mb-6 leading-tight text-white">Готовы обсудить <br />ваш проект?</h2>
+          <p className="text-surface-dim mb-12 max-w-xs font-body">
+            Оставьте заявку, и наш эксперт свяжется с вами в течение 30 минут для первичного аудита.
+          </p>
+          <div className="space-y-6">
+            <div className="flex items-center gap-4">
+              <PhoneCall className="text-secondary-container w-5 h-5 shrink-0" />
+              <a
+                href="tel:+79269901666"
+                className="text-white underline-offset-4 transition-colors hover:text-secondary-container hover:underline"
+              >
+                +7 926 990 1666
+              </a>
+            </div>
+            <div className="flex items-center gap-4">
+              <Mail className="text-secondary-container w-5 h-5 shrink-0" />
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="text-white underline-offset-4 transition-colors hover:text-secondary-container hover:underline"
+              >
+                {CONTACT_EMAIL}
+              </a>
+            </div>
           </div>
-          <div className="flex items-center gap-4">
-            <Mail className="text-secondary-container w-5 h-5 shrink-0" />
-            <a
-              href="mailto:hello@kinetic-ai.ru"
-              className="text-white underline-offset-4 transition-colors hover:text-secondary-container hover:underline"
-            >
-              hello@kinetic-ai.ru
-            </a>
+          <div className="absolute right-0 bottom-0 opacity-10 pointer-events-none">
+            <Cloud className="w-[200px] h-[200px] text-white" />
           </div>
         </div>
-        <div className="absolute right-0 bottom-0 opacity-10 pointer-events-none">
-          <Cloud className="w-[200px] h-[200px] text-white" />
-        </div>
-      </div>
-      <div className="border-t border-outline-variant/10 bg-contact-panel p-12 md:w-1/2 md:border-l md:border-t-0 md:p-20">
-        <form className="space-y-8">
+        <div className="border-t border-outline-variant/10 bg-contact-panel p-12 md:w-1/2 md:border-l md:border-t-0 md:p-20">
+          <form className="space-y-8" onSubmit={handleSubmit}>
           <div>
             <label className="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Ваше имя</label>
-            <input 
-              className="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all px-3 py-3 text-on-surface placeholder:text-surface-dim" 
-              placeholder="Александр" 
+            <input
+              className="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all px-3 py-3 text-on-surface placeholder:text-surface-dim"
+              placeholder="Александр"
               type="text"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              required
             />
           </div>
           <div>
             <label className="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Email или Телефон</label>
-            <input 
-              className="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all px-3 py-3 text-on-surface placeholder:text-surface-dim" 
-              placeholder="contact@company.ru" 
+            <input
+              className="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all px-3 py-3 text-on-surface placeholder:text-surface-dim"
+              placeholder="contact@company.ru"
               type="text"
+              value={contact}
+              onChange={(event) => setContact(event.target.value)}
+              required
             />
           </div>
           <div>
             <label className="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Сообщение</label>
-            <textarea 
-              className="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all px-3 py-3 text-on-surface placeholder:text-surface-dim" 
-              placeholder="Расскажите кратко о задаче..." 
+            <textarea
+              className="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all px-3 py-3 text-on-surface placeholder:text-surface-dim"
+              placeholder="Расскажите кратко о задаче..."
               rows={3}
+              value={message}
+              onChange={(event) => setMessage(event.target.value)}
             ></textarea>
           </div>
           <button
-            type="button"
+            type="submit"
             className="w-full rounded-2xl bg-primary py-5 font-bold uppercase tracking-widest text-on-primary transition-all active:scale-[0.98]"
           >
             Отправить запрос
           </button>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const mobileNavItemClass =
   "flex min-w-[4.5rem] flex-col items-center justify-center gap-0.5 py-2 text-on-surface-variant transition-transform active:scale-95";
