@@ -819,13 +819,20 @@ const CurrencyTicker = () => {
     { code: "CNY", symbol: "¥", label: "CNY/RUB" },
   ];
 
+  const marqueeItems = [...items, ...items];
+
   return (
-    <div className="flex flex-wrap items-center gap-3">
+    <div className="flex w-full min-w-0 flex-col gap-2 md:max-w-[34rem]">
       <span className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
         Курс ЦБ РФ
       </span>
-      <div className="flex flex-wrap items-center gap-1.5">
-        {items.map((it) => {
+      <div className="relative overflow-hidden rounded-2xl border border-outline-variant/15 bg-surface-container-low/60 px-2 py-1.5">
+        <motion.div
+          className="flex w-max items-center gap-1.5"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ duration: 30, ease: "linear", repeat: Infinity }}
+        >
+          {marqueeItems.map((it, idx) => {
           const rate = rates?.[it.code];
           const perUnit = rate ? rate.Value / rate.Nominal : null;
           const diff = rate ? rate.Value - rate.Previous : 0;
@@ -833,7 +840,7 @@ const CurrencyTicker = () => {
           const isDown = diff < 0;
           return (
             <a
-              key={it.code}
+              key={`${it.code}-${idx}`}
               href="https://www.cbr.ru/currency_base/daily/"
               target="_blank"
               rel="noreferrer"
@@ -867,7 +874,8 @@ const CurrencyTicker = () => {
               )}
             </a>
           );
-        })}
+          })}
+        </motion.div>
       </div>
     </div>
   );
