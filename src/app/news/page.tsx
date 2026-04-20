@@ -4,7 +4,12 @@ import {
   NEWS_CATEGORY_LABEL,
   type NewsItem,
 } from "@/lib/news-agent";
-import { getCachedDigest } from "@/lib/news-scheduler";
+import {
+  isRefreshInFlight,
+  kickoffRefresh,
+  peekCachedDigest,
+} from "@/lib/news-scheduler";
+import NewsAutoRefresh from "./NewsAutoRefresh";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -125,15 +130,12 @@ function NewsStreamItem({ item }: { item: NewsItem }) {
 }
 
 export default async function NewsPage() {
-  let items: NewsItem[] = [];
-  let generatedAt = "";
-  try {
-    const digest = await getCachedDigest();
-    items = digest.items;
-    generatedAt = digest.generatedAt;
-  } catch {
-    items = [];
-  }
+  const cached = peekCachedDigest();
+  const items: NewsItem[] = cached?.items ?? [];
+  const generatedAt = cached?.generatedAt ?? "";
+
+  kickoffRefresh();
+  const refreshing = isRefreshInFlight();
 
   const grouped = groupItems(items);
   const hasData = items.length > 0;
@@ -172,8 +174,19 @@ export default async function NewsPage() {
                 <span>Обновлено: {formatDate(generatedAt)}</span>
               </>
             ) : null}
+            {refreshing ? (
+              <>
+                <span className="text-outline-variant">·</span>
+                <span className="inline-flex items-center gap-2">
+                  <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-primary" />
+                  обновляем ленту…
+                </span>
+              </>
+            ) : null}
           </div>
         </div>
+
+        <NewsAutoRefresh hasData={hasData} generatedAt={generatedAt || null} />
 
         {hasData ? (
           <div className="space-y-14">
@@ -198,6 +211,32 @@ export default async function NewsPage() {
                 </section>
               );
             })}
+          </div>
+        ) : refreshing ? (
+          <div className="space-y-6">
+            <div className="rounded-3xl border border-outline-variant/20 bg-surface-container-lowest p-8 text-center shadow-sm">
+              <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-2 border-outline-variant border-t-primary" />
+              <h3 className="text-lg font-bold text-on-surface">Kinetic AI agent собирает ленту…</h3>
+              <p className="mt-2 text-sm text-on-surface-variant">
+                Первый сбор занимает до минуты. Страница обновится автоматически.
+              </p>
+            </div>
+            <div className="space-y-4">
+              {[0, 1, 2, 3].map((idx) => (
+                <div
+                  key={idx}
+                  className="flex flex-col gap-4 rounded-2xl border border-outline-variant/20 bg-surface-container-lowest p-4 sm:flex-row"
+                >
+                  <div className="aspect-[3/2] w-full animate-pulse rounded-xl bg-surface-container sm:w-[260px]" />
+                  <div className="flex-1 space-y-3">
+                    <div className="h-3 w-24 animate-pulse rounded bg-surface-container" />
+                    <div className="h-5 w-3/4 animate-pulse rounded bg-surface-container" />
+                    <div className="h-4 w-full animate-pulse rounded bg-surface-container" />
+                    <div className="h-4 w-2/3 animate-pulse rounded bg-surface-container" />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">

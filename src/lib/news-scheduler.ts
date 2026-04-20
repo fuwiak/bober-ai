@@ -53,6 +53,20 @@ export function peekCachedDigest(): NewsDigest | null {
   return globalRef.kineticNewsCache?.digest ?? null;
 }
 
+export function isRefreshInFlight(): boolean {
+  return Boolean(globalRef.kineticNewsInFlight);
+}
+
+export function kickoffRefresh(force = false): void {
+  const cached = globalRef.kineticNewsCache;
+  const fresh = cached && cached.expiresAt > Date.now();
+  if (!force && fresh) return;
+  if (globalRef.kineticNewsInFlight) return;
+  refreshDigest().catch((error) => {
+    console.error("[news-agent] background refresh failed", error);
+  });
+}
+
 export function startNewsScheduler(): void {
   if (globalRef.kineticNewsSchedulerStarted) return;
   globalRef.kineticNewsSchedulerStarted = true;

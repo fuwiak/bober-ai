@@ -232,9 +232,12 @@ async function searchGoogle(query: string, limit = 5): Promise<SearchHit[]> {
     sort: "date",
   });
 
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 6000);
   try {
     const res = await fetch(`${GOOGLE_CSE_ENDPOINT}?${params.toString()}`, {
       cache: "no-store",
+      signal: ctrl.signal,
     });
     if (!res.ok) return [];
     const data = (await res.json()) as { items?: GoogleItem[] };
@@ -248,6 +251,8 @@ async function searchGoogle(query: string, limit = 5): Promise<SearchHit[]> {
     }));
   } catch {
     return [];
+  } finally {
+    clearTimeout(timer);
   }
 }
 
@@ -348,24 +353,32 @@ async function callOpenRouter(
     body.response_format = { type: "json_object" };
   }
 
-  const res = await fetch(OPENROUTER_ENDPOINT, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-      "HTTP-Referer": process.env.NEXT_PUBLIC_SITE_URL || "https://kinetic-ai.ru",
-      "X-Title": "Kinetic AI News Agent",
-    },
-    body: JSON.stringify(body),
-  });
+  const timeoutMs = Number(process.env.NEWS_AGENT_LLM_TIMEOUT_MS || 25000);
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+  try {
+    const res = await fetch(OPENROUTER_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+        "HTTP-Referer": process.env.NEXT_PUBLIC_SITE_URL || "https://kinetic-ai.ru",
+        "X-Title": "Kinetic AI News Agent",
+      },
+      body: JSON.stringify(body),
+      signal: ctrl.signal,
+    });
 
-  if (!res.ok) {
-    const text = await res.text().catch(() => "");
-    throw new Error(`OpenRouter ${res.status}: ${text.slice(0, 200)}`);
+    if (!res.ok) {
+      const text = await res.text().catch(() => "");
+      throw new Error(`OpenRouter ${res.status}: ${text.slice(0, 200)}`);
+    }
+
+    const data = (await res.json()) as { choices?: Array<{ message?: { content?: string } }> };
+    return data.choices?.[0]?.message?.content ?? "";
+  } finally {
+    clearTimeout(timer);
   }
-
-  const data = (await res.json()) as { choices?: Array<{ message?: { content?: string } }> };
-  return data.choices?.[0]?.message?.content ?? "";
 }
 
 function safeParseJson<T>(text: string): T | null {
@@ -572,10 +585,11 @@ export type NewsDigest = {
 };
 
 export async function buildNewsDigest(): Promise<NewsDigest> {
+  const settled = await Promise.allSettled(BUCKETS.map((bucket) => curateBucket(bucket)));
   const items: NewsItem[] = [];
-  for (const bucket of BUCKETS) {
-    const picked = await curateBucket(bucket);
-    items.push(...picked);
+  for (const result of settled) {
+    if (result.status === "fulfilled") items.push(...result.value);
+    else console.error("[news-agent] bucket failed", result.reason);
   }
   return { generatedAt: new Date().toISOString(), items };
 }
