@@ -1560,6 +1560,52 @@ const MediaHub = () => {
   );
 };
 
+const Partners = () => (
+  <section id="key-partners" className="scroll-mt-28 py-24 px-6 overflow-hidden">
+    <div className="max-w-7xl mx-auto">
+      <div className="text-center mb-16">
+        <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">Экосистема</span>
+        <h2 className="mt-2 text-3xl font-bold tracking-tight">Наши ключевые партнеры</h2>
+      </div>
+      <div className="flex flex-wrap justify-center items-center gap-16 opacity-70">
+        {partnerItems.map((partner) => (
+          <a
+            key={partner.name}
+            href={partner.url}
+            target="_blank"
+            rel="noreferrer"
+            className="group flex items-center gap-4"
+            aria-label={`${partner.name} website`}
+          >
+            {partner.wordmark ? (
+              <Image
+                alt={partner.name}
+                src={partner.icon}
+                width={partner.width ?? 321}
+                height={partner.height ?? 157}
+                className="h-20 w-auto max-w-[min(400px,94vw)] rounded-2xl bg-white object-contain object-center px-3 py-2 ring-1 ring-black/5 sm:h-24 sm:max-w-[min(480px,95vw)] md:h-28 md:max-w-[min(560px,96vw)] dark:bg-zinc-900 dark:ring-white/10"
+              />
+            ) : (
+              <>
+                <Image
+                  alt={`${partner.name} favicon`}
+                  src={partner.icon}
+                  width={48}
+                  height={48}
+                  className="h-12 w-12 rounded-2xl bg-white object-contain p-1 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10"
+                />
+                <span className="font-bold text-2xl tracking-tighter transition-colors group-hover:text-primary">
+                  {partner.name}
+                </span>
+              </>
+            )}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
 const Contact = () => (
   <section id="contact" className="max-w-7xl mx-auto scroll-mt-28 px-6 pb-32">
     <div className="flex flex-col overflow-hidden rounded-3xl bg-on-surface text-surface-container-lowest md:flex-row">
@@ -1923,6 +1969,7 @@ export default function App() {
         <ModelPricing />
         <Cases />
         <MediaHub />
+        <Partners />
         <Contact />
       </main>
       <Footer />
