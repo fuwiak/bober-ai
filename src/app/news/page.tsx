@@ -73,8 +73,8 @@ export default async function NewsPage() {
             </span>
             <h1 className="mt-2 text-3xl md:text-4xl font-bold tracking-tight">Новости</h1>
             <p className="mt-3 max-w-2xl text-on-surface-variant">
-              Подборка актуальных материалов по ИИ, облачной инфраструктуре и корпоративным LLM. Новости подбирает наш
-              собственный ИИ-агент и обновляет ленту автоматически каждые 12 часов.
+              Подборку готовит <span className="font-semibold text-on-surface">Kinetic AI agent</span>. Он сам ищет
+              актуальные материалы по ИИ, LLM и облачной AI-инфраструктуре и обновляет ленту автоматически.
             </p>
           </div>
           <Link
@@ -90,7 +90,7 @@ export default async function NewsPage() {
             <span className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-xs font-bold uppercase tracking-widest text-primary">
               Авто-обновление
             </span>
-            <span>Новости подбирает наш собственный ИИ-агент</span>
+            <span>Подборку готовит Kinetic AI agent</span>
             {generatedAt ? (
               <>
                 <span className="text-outline-variant">·</span>
@@ -131,7 +131,7 @@ export default async function NewsPage() {
                   </p>
                 </div>
                 <p className="mt-4 text-sm text-on-surface-variant">
-                  Слот {idx + 1}: здесь появится новость, подобранная нашим ИИ-агентом.
+                  Слот {idx + 1}: здесь появится новость, подобранная Kinetic AI agent.
                 </p>
               </div>
             ))}

@@ -19,7 +19,8 @@ type SearchHit = {
 type Bucket = {
   id: NewsItem["category"];
   label: string;
-  queries: string[];
+  fallbackQueries: string[];
+  keywordHint: string;
   take: number;
 };
 
@@ -29,44 +30,65 @@ const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
 
 const DEFAULT_MODEL = "deepseek/deepseek-v3.2-speciale";
 const FALLBACK_MODEL = "qwen/qwen-plus";
+const KEYWORDS_MODEL = process.env.NEWS_AGENT_KEYWORDS_MODEL || FALLBACK_MODEL;
 
 const BUCKETS: Bucket[] = [
   {
     id: "yandex-selectel",
     label: "Yandex Cloud и Selectel",
-    queries: [
+    fallbackQueries: [
       "Yandex Cloud новости ИИ",
       "YandexGPT новости",
       "Алиса AI LLM",
       "Selectel GPU ИИ новости",
       "Selectel облако новости",
     ],
+    keywordHint:
+      "Фокус на продуктах Yandex (YandexGPT, Yandex Cloud, Алиса, SpeechKit, DataSphere) и Selectel (GPU, дата-центры, облако, Kubernetes, ML-инфраструктура).",
     take: 3,
   },
   {
     id: "russia",
     label: "ИИ в России",
-    queries: [
+    fallbackQueries: [
       "новости искусственный интеллект Россия",
-      "LLM Россия новости",
-      "GenAI Россия компании",
-      "Сбер GigaChat новости",
-      "VK Cloud ИИ новости",
+      "LLM Россия",
+      "GigaChat новости",
+      "Cotype T-Bank",
+      "Kandinsky нейросеть",
+      "VK Cloud ИИ",
     ],
+    keywordHint:
+      "Фокус на российских компаниях и моделях (Сбер/GigaChat, Яндекс, T-Банк/Cotype, Kandinsky, MTS AI, VK Cloud, Naumen, SberDevices), корпоративные LLM, AI-регулирование, 152-ФЗ, российские дата-центры.",
     take: 3,
   },
   {
     id: "world",
     label: "Мировые новости AI",
-    queries: [
+    fallbackQueries: [
       "AI news today",
-      "LLM breakthrough news",
-      "GenAI enterprise news",
-      "OpenAI Anthropic Google DeepMind news",
-      "foundation model release",
+      "LLM release",
+      "OpenAI Anthropic DeepMind",
+      "foundation model announcement",
+      "generative AI enterprise",
     ],
+    keywordHint:
+      "Мировые AI-новости на английском: OpenAI, Anthropic, Google DeepMind, Meta AI, Mistral, xAI, Hugging Face, NVIDIA, регулирование AI, enterprise AI adoption, foundation models, multimodal, agentic AI.",
     take: 3,
   },
+];
+
+const RSS_FEEDS: { url: string; buckets: NewsItem["category"][] }[] = [
+  { url: "https://habr.com/ru/rss/hub/artificial_intelligence/all/?fl=ru", buckets: ["russia", "yandex-selectel"] },
+  { url: "https://habr.com/ru/rss/hub/machine_learning/all/?fl=ru", buckets: ["russia", "yandex-selectel"] },
+  { url: "https://habr.com/ru/rss/hub/natural_language_processing/all/?fl=ru", buckets: ["russia", "world"] },
+  { url: "https://selectel.ru/blog/feed/", buckets: ["yandex-selectel"] },
+  { url: "https://cloud.yandex.ru/blog/rss", buckets: ["yandex-selectel"] },
+  { url: "https://openai.com/blog/rss.xml", buckets: ["world"] },
+  { url: "https://huggingface.co/blog/feed.xml", buckets: ["world"] },
+  { url: "https://blog.google/technology/ai/rss/", buckets: ["world"] },
+  { url: "https://www.technologyreview.com/feed/", buckets: ["world"] },
+  { url: "https://venturebeat.com/category/ai/feed/", buckets: ["world"] },
 ];
 
 function stripHtml(value: string): string {
@@ -102,6 +124,11 @@ function hostFromUrl(url: string): string {
   } catch {
     return "";
   }
+}
+
+function faviconFallback(url: string): string {
+  const host = hostFromUrl(url);
+  return `https://www.google.com/s2/favicons?domain=${host}&sz=256`;
 }
 
 async function searchYandex(query: string, limit = 5): Promise<SearchHit[]> {
@@ -141,7 +168,7 @@ async function searchYandex(query: string, limit = 5): Promise<SearchHit[]> {
         const passages = extractAllTags(doc, "passage").map(stripHtml).join(" ");
         const headline = stripHtml(extractFirstTag(doc, "headline") || "");
         const snippet = passages || headline;
-        return { url, title, snippet, source: hostFromUrl(url) };
+        return { url, title, snippet, source: hostFromUrl(url) } as SearchHit;
       })
       .filter((hit) => hit.url && hit.title);
   } catch {
@@ -209,6 +236,181 @@ async function searchGoogle(query: string, limit = 5): Promise<SearchHit[]> {
   }
 }
 
+function extractRssLink(block: string): string {
+  const atom = /<link[^>]*?\shref=["']([^"']+)["']/i.exec(block);
+  if (atom) return atom[1];
+  const rss = /<link[^>]*>([^<]+)<\/link>/i.exec(block);
+  return rss ? rss[1].trim() : "";
+}
+
+function extractRssImage(block: string, descHtml: string): string | undefined {
+  const enclosure = /<enclosure[^>]*\surl=["']([^"']+)["'][^>]*type=["']image/i.exec(block)?.[1];
+  if (enclosure) return enclosure[1];
+  const media = /<media:(?:content|thumbnail)[^>]*\surl=["']([^"']+)["']/i.exec(block)?.[1];
+  if (media) return media[1];
+  const img = /<img[^>]*\ssrc=["']([^"']+)["']/i.exec(descHtml)?.[1];
+  return img;
+}
+
+function parseRss(xml: string): SearchHit[] {
+  const isAtom = /<feed[\s>]/i.test(xml);
+  const blocks = isAtom ? extractAllTags(xml, "entry") : extractAllTags(xml, "item");
+  return blocks
+    .map((block): SearchHit => {
+      const title = stripHtml(extractFirstTag(block, "title") || "");
+      const url = extractRssLink(block).trim();
+      const descHtml =
+        extractFirstTag(block, "description") ||
+        extractFirstTag(block, "content:encoded") ||
+        extractFirstTag(block, "content") ||
+        extractFirstTag(block, "summary") ||
+        "";
+      const snippet = stripHtml(descHtml).slice(0, 400);
+      const image = extractRssImage(block, descHtml);
+      return { title, url, snippet, source: hostFromUrl(url), image };
+    })
+    .filter((hit) => hit.title && hit.url);
+}
+
+async function fetchRssFeed(url: string, limit = 10): Promise<SearchHit[]> {
+  try {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 8000);
+    const res = await fetch(url, {
+      signal: ctrl.signal,
+      cache: "no-store",
+      headers: {
+        accept:
+          "application/rss+xml, application/atom+xml, application/xml;q=0.9, text/xml;q=0.8, */*;q=0.5",
+        "user-agent": "Kinetic-AI-News-Agent/1.0 (+https://kinetic-ai.ru)",
+      },
+    });
+    clearTimeout(timer);
+    if (!res.ok) return [];
+    const xml = await res.text();
+    return parseRss(xml).slice(0, limit);
+  } catch {
+    return [];
+  }
+}
+
+async function callOpenRouter(
+  prompt: string,
+  model: string,
+  options?: { temperature?: number; jsonMode?: boolean; system?: string },
+): Promise<string> {
+  const apiKey = process.env.OPENROUTER_API_KEY;
+  if (!apiKey) throw new Error("OPENROUTER_API_KEY is not configured");
+
+  const body: Record<string, unknown> = {
+    model,
+    temperature: options?.temperature ?? 0.2,
+    messages: [
+      {
+        role: "system",
+        content:
+          options?.system ||
+          "Ты русскоязычный редактор AI-дайджеста. Отвечаешь строго валидным JSON по запрошенной схеме, без markdown и комментариев.",
+      },
+      { role: "user", content: prompt },
+    ],
+  };
+  if (options?.jsonMode !== false) {
+    body.response_format = { type: "json_object" };
+  }
+
+  const res = await fetch(OPENROUTER_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+      "HTTP-Referer": process.env.NEXT_PUBLIC_SITE_URL || "https://kinetic-ai.ru",
+      "X-Title": "Kinetic AI News Agent",
+    },
+    body: JSON.stringify(body),
+  });
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`OpenRouter ${res.status}: ${text.slice(0, 200)}`);
+  }
+
+  const data = (await res.json()) as { choices?: Array<{ message?: { content?: string } }> };
+  return data.choices?.[0]?.message?.content ?? "";
+}
+
+function safeParseJson<T>(text: string): T | null {
+  try {
+    return JSON.parse(text) as T;
+  } catch {
+    const match = text.match(/\[[\s\S]*\]|\{[\s\S]*\}/);
+    if (!match) return null;
+    try {
+      return JSON.parse(match[0]) as T;
+    } catch {
+      return null;
+    }
+  }
+}
+
+function safeParseJsonArray(text: string): Array<Record<string, unknown>> {
+  const parsed = safeParseJson<unknown>(text);
+  if (Array.isArray(parsed)) return parsed as Array<Record<string, unknown>>;
+  if (parsed && typeof parsed === "object") {
+    const container = parsed as Record<string, unknown>;
+    for (const value of Object.values(container)) {
+      if (Array.isArray(value)) return value as Array<Record<string, unknown>>;
+    }
+  }
+  return [];
+}
+
+async function generateKeywords(bucket: Bucket): Promise<string[]> {
+  const sys =
+    "Ты помогаешь редактору AI-дайджеста подбирать разнообразные поисковые запросы. Отвечаешь ТОЛЬКО валидным JSON-массивом из строк, без markdown и пояснений.";
+
+  const language =
+    bucket.id === "world"
+      ? "Пиши запросы на английском языке (1-6 слов каждый)."
+      : "Пиши запросы на русском языке (1-6 слов каждый).";
+
+  const prompt = [
+    `Сформируй 10 разнообразных поисковых запросов для сбора СВЕЖИХ новостей из категории: "${bucket.label}".`,
+    `Тематика строго: искусственный интеллект, LLM, GenAI, foundation models, agentic AI, AI-инфраструктура, GPU, MLOps, корпоративные внедрения ИИ.`,
+    language,
+    `Не повторяйся, избегай слишком общих фраз.`,
+    `${bucket.keywordHint}`,
+    `Ответ: JSON-массив из 10 строк. Пример: ["запрос один","запрос два"].`,
+  ].join("\n");
+
+  try {
+    const raw = await callOpenRouter(prompt, KEYWORDS_MODEL, {
+      temperature: 0.6,
+      jsonMode: false,
+      system: sys,
+    });
+    const parsed = safeParseJson<unknown>(raw);
+    let list: unknown[] = [];
+    if (Array.isArray(parsed)) list = parsed;
+    else if (parsed && typeof parsed === "object") {
+      for (const value of Object.values(parsed as Record<string, unknown>)) {
+        if (Array.isArray(value)) {
+          list = value;
+          break;
+        }
+      }
+    }
+    const strings = list
+      .filter((v): v is string => typeof v === "string")
+      .map((s) => s.trim())
+      .filter((s) => s.length > 1 && s.length <= 120);
+    if (strings.length >= 3) return strings.slice(0, 10);
+  } catch {
+    // fall through to fallback
+  }
+  return bucket.fallbackQueries;
+}
+
 async function searchQuery(query: string): Promise<SearchHit[]> {
   const yandex = await searchYandex(query, 5);
   if (yandex.length >= 3) return yandex;
@@ -224,23 +426,39 @@ async function searchQuery(query: string): Promise<SearchHit[]> {
 }
 
 async function collectBucketCandidates(bucket: Bucket): Promise<SearchHit[]> {
+  const queries = await generateKeywords(bucket);
+
   const results: SearchHit[] = [];
   const seen = new Set<string>();
-  for (const query of bucket.queries) {
-    const hits = await searchQuery(query);
+  const targetSize = bucket.take * 6;
+
+  const push = (hits: SearchHit[]) => {
     for (const hit of hits) {
       if (!hit.url || seen.has(hit.url)) continue;
       seen.add(hit.url);
       results.push(hit);
     }
-    if (results.length >= bucket.take * 4) break;
+  };
+
+  for (const query of queries) {
+    push(await searchQuery(query));
+    if (results.length >= targetSize) break;
   }
+
+  if (results.length < bucket.take * 3) {
+    const feeds = RSS_FEEDS.filter((f) => f.buckets.includes(bucket.id));
+    for (const feed of feeds) {
+      push(await fetchRssFeed(feed.url, 10));
+      if (results.length >= targetSize) break;
+    }
+  }
+
   return results;
 }
 
 function buildPrompt(bucket: Bucket, candidates: SearchHit[]): string {
   const catalog = candidates
-    .slice(0, 20)
+    .slice(0, 22)
     .map(
       (hit, idx) =>
         `${idx + 1}. title: ${hit.title}\n   source: ${hit.source}\n   url: ${hit.url}\n   snippet: ${hit.snippet}`,
@@ -264,58 +482,6 @@ function buildPrompt(bucket: Bucket, candidates: SearchHit[]): string {
     `- source: домен источника (например, "habr.com").`,
     `- summary: 1-2 предложения сути новости на русском, по-деловому, без воды.`,
   ].join("\n");
-}
-
-function safeParseJsonArray(text: string): Array<Record<string, unknown>> {
-  const match = text.match(/\[[\s\S]*\]/);
-  if (!match) return [];
-  try {
-    const parsed = JSON.parse(match[0]);
-    return Array.isArray(parsed) ? (parsed as Array<Record<string, unknown>>) : [];
-  } catch {
-    return [];
-  }
-}
-
-async function callOpenRouter(prompt: string, model: string): Promise<string> {
-  const apiKey = process.env.OPENROUTER_API_KEY;
-  if (!apiKey) throw new Error("OPENROUTER_API_KEY is not configured");
-
-  const res = await fetch(OPENROUTER_ENDPOINT, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-      "HTTP-Referer": process.env.NEXT_PUBLIC_SITE_URL || "https://kinetic-ai.ru",
-      "X-Title": "Kinetic AI News Agent",
-    },
-    body: JSON.stringify({
-      model,
-      temperature: 0.2,
-      response_format: { type: "json_object" },
-      messages: [
-        {
-          role: "system",
-          content:
-            "Ты русскоязычный редактор AI-дайджеста. Отвечаешь строго валидным JSON по запрошенной схеме, без markdown и комментариев.",
-        },
-        { role: "user", content: prompt },
-      ],
-    }),
-  });
-
-  if (!res.ok) {
-    const body = await res.text().catch(() => "");
-    throw new Error(`OpenRouter ${res.status}: ${body.slice(0, 200)}`);
-  }
-
-  const data = (await res.json()) as { choices?: Array<{ message?: { content?: string } }> };
-  return data.choices?.[0]?.message?.content ?? "";
-}
-
-function faviconFallback(url: string): string {
-  const host = hostFromUrl(url);
-  return `https://www.google.com/s2/favicons?domain=${host}&sz=256`;
 }
 
 async function curateBucket(bucket: Bucket): Promise<NewsItem[]> {
