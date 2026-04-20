@@ -270,20 +270,28 @@ const Hero = () => (
         className="relative z-20 min-w-0"
       >
         <span className="text-primary font-bold uppercase tracking-widest text-xs mb-4 block font-body">{heroPartnerBadge}</span>
-        <div className="mb-8 flex w-full max-w-2xl items-center gap-5 rounded-2xl border border-primary/25 bg-surface-container-low px-5 py-4 shadow-md">
-          <div className="relative h-20 w-[340px] shrink-0 overflow-hidden rounded-lg bg-white p-0.5 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10">
+        <div className="mb-8 flex w-full max-w-2xl flex-wrap items-center gap-4 rounded-2xl border border-primary/25 bg-surface-container-low px-5 py-4 shadow-md">
+          <div className="relative h-20 w-[260px] shrink-0 overflow-hidden rounded-lg bg-white p-0.5 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10">
             <Image
               alt="Yandex Cloud — бизнес-партнер"
               src="/yandex/yandex-cloud-business-partner-ru-light.svg"
               fill
-              sizes="340px"
+              sizes="260px"
               className="object-cover object-center"
               priority
             />
           </div>
-          <span className="text-sm font-bold uppercase tracking-wider text-on-surface">
-            Бизнес-партнер Yandex Cloud
-          </span>
+          <div className="h-10 w-px shrink-0 bg-outline-variant/30" />
+          <div className="relative h-14 w-[140px] shrink-0 overflow-hidden rounded-lg bg-white px-3 py-2 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10">
+            <Image
+              alt="Selectel"
+              src="/partners/selectel.png"
+              fill
+              sizes="140px"
+              className="object-contain object-center"
+              priority
+            />
+          </div>
         </div>
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-on-surface mb-6 leading-[1.1]">
           Масштабируйте <br/><span className="text-gradient">Интеллект.</span>
@@ -1361,8 +1369,6 @@ const MediaHub = () => {
     { id: "press", label: "Пишут о нас" },
   ];
 
-  const partnerMarquee = [...partnerItems, ...partnerItems];
-
   return (
     <section id="partners" className="scroll-mt-28 py-24 px-6">
       <div className="mx-auto max-w-7xl">
@@ -1372,20 +1378,16 @@ const MediaHub = () => {
           <p className="mb-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
             Наши ключевые партнёры
           </p>
-          <div className="relative overflow-hidden rounded-2xl border border-outline-variant/15 bg-surface-container-low/60 py-3">
-            <motion.div
-              className="flex w-max items-center gap-10 px-4"
-              animate={{ x: ["0%", "-50%"] }}
-              transition={{ duration: 28, ease: "linear", repeat: Infinity }}
-            >
-              {partnerMarquee.map((partner, idx) => (
+          <div className="rounded-2xl border border-outline-variant/15 bg-surface-container-low/60 p-4">
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              {partnerItems.map((partner) => (
                 <a
-                  key={`${partner.name}-${idx}`}
+                  key={partner.name}
                   href={partner.url}
                   target="_blank"
                   rel="noreferrer"
                   aria-label={partner.name}
-                  className="shrink-0 opacity-60 transition-opacity hover:opacity-100"
+                  className="opacity-70 transition-opacity hover:opacity-100"
                 >
                   <Image
                     alt={partner.name}
@@ -1396,7 +1398,7 @@ const MediaHub = () => {
                   />
                 </a>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
 
