@@ -786,6 +786,11 @@ const formatPricePer1M = (value: number, currency: Currency) => {
   }).format(scaled);
 };
 
+const applyVatMode = (value: number, currency: Currency, includeVat: boolean) => {
+  if (currency === "usd") return value;
+  return includeVat ? value : value / 1.2;
+};
+
 type CbrValute = { Nominal: number; Value: number; Previous: number };
 
 type CbrResponse = { Valute: Record<string, CbrValute> };
@@ -883,6 +888,7 @@ const CurrencyTicker = () => {
 
 const ModelPricing = () => {
   const [currency, setCurrency] = useState<Currency>("rub");
+  const [includeVat, setIncludeVat] = useState(true);
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [dragLimit, setDragLimit] = useState(0);
@@ -905,6 +911,7 @@ const ModelPricing = () => {
   ];
 
   const meta = currencyMeta[currency];
+  const vatNote = currency === "usd" ? "без НДС" : includeVat ? "с НДС" : "без НДС";
 
   return (
     <section id="model-pricing" className="scroll-mt-28 py-24 px-6">
@@ -926,27 +933,42 @@ const ModelPricing = () => {
             <CurrencyTicker />
           </div>
 
-          <div
-            role="tablist"
-            aria-label="Валюта"
-            className="inline-flex self-start rounded-2xl border border-outline-variant/25 bg-surface-container-low p-1"
-          >
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                role="tab"
-                type="button"
-                aria-selected={currency === tab.id}
-                onClick={() => setCurrency(tab.id)}
-                className={`rounded-xl px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all md:text-sm ${
-                  currency === tab.id
-                    ? "bg-primary text-on-primary shadow-sm"
-                    : "text-on-surface-variant hover:text-on-surface"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+          <div className="flex flex-wrap items-center gap-4">
+            <div
+              role="tablist"
+              aria-label="Валюта"
+              className="inline-flex self-start rounded-2xl border border-outline-variant/25 bg-surface-container-low p-1"
+            >
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  role="tab"
+                  type="button"
+                  aria-selected={currency === tab.id}
+                  onClick={() => setCurrency(tab.id)}
+                  className={`rounded-xl px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all md:text-sm ${
+                    currency === tab.id
+                      ? "bg-primary text-on-primary shadow-sm"
+                      : "text-on-surface-variant hover:text-on-surface"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+            <label className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-outline-variant/25 bg-surface-container-low px-3 py-2 text-xs font-bold uppercase tracking-widest text-on-surface">
+              <input
+                type="checkbox"
+                checked={includeVat}
+                onChange={(e) => setIncludeVat(e.currentTarget.checked)}
+                disabled={currency === "usd"}
+                className="h-4 w-4 accent-primary"
+              />
+              НДС
+              {currency === "usd" ? (
+                <span className="text-[10px] font-semibold text-on-surface-variant">не применяется</span>
+              ) : null}
+            </label>
           </div>
         </div>
 
@@ -959,8 +981,8 @@ const ModelPricing = () => {
             className="flex cursor-grab gap-5 active:cursor-grabbing"
           >
             {modelPrices.map((model) => {
-              const inputVal = model.input[currency];
-              const outputVal = model.output[currency];
+              const inputVal = applyVatMode(model.input[currency], currency, includeVat);
+              const outputVal = applyVatMode(model.output[currency], currency, includeVat);
               return (
                 <div
                   key={model.name}
@@ -975,7 +997,7 @@ const ModelPricing = () => {
                     {model.name}
                   </h3>
                   <p className="mt-1 text-[11px] uppercase tracking-widest text-on-surface-variant">
-                    за 1M токенов · {meta.note}
+                    за 1M токенов · {vatNote}
                   </p>
 
                   <div className="mt-5 grid grid-cols-2 gap-3">
