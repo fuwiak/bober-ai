@@ -20,9 +20,8 @@ export default function NewsPage() {
             </span>
             <h1 className="mt-2 text-3xl md:text-4xl font-bold tracking-tight">Новости</h1>
             <p className="mt-3 max-w-2xl text-on-surface-variant">
-              Подборка актуальных материалов по ИИ, облачной инфраструктуре и корпоративным LLM. Контент подбирается
-              нашим AI-агентом на базе <span className="font-semibold text-on-surface">DeepSeek 3.2</span> через
-              OpenRouter на основе данных Yandex API и Google API. Лента обновляется автоматически раз в 12 часов.
+              Подборка актуальных материалов по ИИ, облачной инфраструктуре и корпоративным LLM. Новости подбирает наш
+              собственный ИИ-агент и обновляет ленту автоматически.
             </p>
           </div>
           <Link
@@ -38,11 +37,7 @@ export default function NewsPage() {
             <span className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-xs font-bold uppercase tracking-widest text-primary">
               Авто-обновление
             </span>
-            <span>Источники: Yandex API + Google API</span>
-            <span className="text-outline-variant">·</span>
-            <span>Модель: DeepSeek 3.2 (OpenRouter)</span>
-            <span className="text-outline-variant">·</span>
-            <span>Частота: каждые 12 часов</span>
+            <span>Новости подбирает наш собственный ИИ-агент</span>
           </div>
         </div>
 
@@ -62,7 +57,7 @@ export default function NewsPage() {
                 </p>
               </div>
               <p className="mt-4 text-sm text-on-surface-variant">
-                Слот {idx + 1}: здесь появится новость, подобранная AI-агентом.
+                Слот {idx + 1}: здесь появится новость, подобранная нашим ИИ-агентом.
               </p>
             </div>
           ))}
