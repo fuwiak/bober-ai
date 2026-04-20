@@ -120,8 +120,8 @@ const partnerItems = partnerItemsAll.filter(
 );
 
 const heroPartnerBadge = SHOW_VK_CLOUD_MENTIONS
-  ? "Official Yandex & VK Cloud Partner"
-  : "Official Yandex Cloud Partner";
+  ? "Official Yandex Cloud & Selectel Partner"
+  : "Official Yandex Cloud & Selectel Partner";
 
 const heroLeadCopy = SHOW_VK_CLOUD_MENTIONS
   ? "Помогаем бизнесу быстро запускать ИИ-решения, которые реально влияют на прибыль: автоматизируют поддержку и продажи, ускоряют работу команд и снижают операционные издержки. Не навязываем один шаблон - проектируем и внедряем AI-инфраструктуру индивидуально под ваши KPI, процессы, сроки и бюджет, используя стек Yandex Cloud, Selectel, cloud.ru и VK Cloud, включая приватные LLM в защищенном контуре на сертифицированных GPU."
@@ -1361,9 +1361,45 @@ const MediaHub = () => {
     { id: "press", label: "Пишут о нас" },
   ];
 
+  const partnerMarquee = [...partnerItems, ...partnerItems];
+
   return (
     <section id="partners" className="scroll-mt-28 py-24 px-6">
       <div className="mx-auto max-w-7xl">
+
+        {/* ── Партнёры ── */}
+        <div className="mb-10">
+          <p className="mb-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
+            Наши ключевые партнёры
+          </p>
+          <div className="relative overflow-hidden rounded-2xl border border-outline-variant/15 bg-surface-container-low/60 py-3">
+            <motion.div
+              className="flex w-max items-center gap-10 px-4"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ duration: 28, ease: "linear", repeat: Infinity }}
+            >
+              {partnerMarquee.map((partner, idx) => (
+                <a
+                  key={`${partner.name}-${idx}`}
+                  href={partner.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={partner.name}
+                  className="shrink-0 opacity-60 transition-opacity hover:opacity-100"
+                >
+                  <Image
+                    alt={partner.name}
+                    src={partner.icon}
+                    width={partner.width ?? 321}
+                    height={partner.height ?? 157}
+                    className="h-10 w-auto rounded-xl bg-white object-contain px-3 py-1.5 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10"
+                  />
+                </a>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+
         <div className="mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">
@@ -1559,52 +1595,6 @@ const MediaHub = () => {
     </section>
   );
 };
-
-const Partners = () => (
-  <section id="key-partners" className="scroll-mt-28 py-24 px-6 overflow-hidden">
-    <div className="max-w-7xl mx-auto">
-      <div className="text-center mb-16">
-        <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">Экосистема</span>
-        <h2 className="mt-2 text-3xl font-bold tracking-tight">Наши ключевые партнеры</h2>
-      </div>
-      <div className="flex flex-wrap justify-center items-center gap-16 opacity-70">
-        {partnerItems.map((partner) => (
-          <a
-            key={partner.name}
-            href={partner.url}
-            target="_blank"
-            rel="noreferrer"
-            className="group flex items-center gap-4"
-            aria-label={`${partner.name} website`}
-          >
-            {partner.wordmark ? (
-              <Image
-                alt={partner.name}
-                src={partner.icon}
-                width={partner.width ?? 321}
-                height={partner.height ?? 157}
-                className="h-20 w-auto max-w-[min(400px,94vw)] rounded-2xl bg-white object-contain object-center px-3 py-2 ring-1 ring-black/5 sm:h-24 sm:max-w-[min(480px,95vw)] md:h-28 md:max-w-[min(560px,96vw)] dark:bg-zinc-900 dark:ring-white/10"
-              />
-            ) : (
-              <>
-                <Image
-                  alt={`${partner.name} favicon`}
-                  src={partner.icon}
-                  width={48}
-                  height={48}
-                  className="h-12 w-12 rounded-2xl bg-white object-contain p-1 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10"
-                />
-                <span className="font-bold text-2xl tracking-tighter transition-colors group-hover:text-primary">
-                  {partner.name}
-                </span>
-              </>
-            )}
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-);
 
 const Contact = () => (
   <section id="contact" className="max-w-7xl mx-auto scroll-mt-28 px-6 pb-32">
@@ -1969,7 +1959,6 @@ export default function App() {
         <ModelPricing />
         <Cases />
         <MediaHub />
-        <Partners />
         <Contact />
       </main>
       <Footer />
