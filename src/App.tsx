@@ -19,6 +19,34 @@ import {
   Handshake,
   Info,
 } from "lucide-react";
+
+const PlayGlyph = ({ className }: { className?: string }) => (
+  <svg
+    aria-hidden="true"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+  >
+    <path d="M8 5v14l11-7z" />
+  </svg>
+);
+
+const ExternalLinkGlyph = ({ className }: { className?: string }) => (
+  <svg
+    aria-hidden="true"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+    <polyline points="15 3 21 3 21 9" />
+    <line x1="10" y1="14" x2="21" y2="3" />
+  </svg>
+);
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { SHOW_VK_CLOUD_MENTIONS } from "@/config/featureFlags";
 
@@ -900,69 +928,292 @@ const pressItems: PressItem[] = [
   }
 ];
 
-const Partners = () => {
+type ShortItem = {
+  videoId: string;
+  title: string;
+  category: string;
+  duration: string;
+};
+
+const academyShorts: ShortItem[] = [
+  {
+    videoId: "5DQzO5aPS5A",
+    title: "Как работают LLM за 60 секунд",
+    category: "AI BASICS",
+    duration: "1:02",
+  },
+  {
+    videoId: "kCc8FmEb1nY",
+    title: "Промпт-инжиниринг: главные приёмы",
+    category: "PROMPTING",
+    duration: "1:15",
+  },
+  {
+    videoId: "zjkBMFhNj_g",
+    title: "RAG: подача контекста в модель",
+    category: "RAG",
+    duration: "1:08",
+  },
+  {
+    videoId: "bZQun8Y4L2A",
+    title: "Fine-tuning vs RAG: что выбрать",
+    category: "ML OPS",
+    duration: "1:22",
+  },
+  {
+    videoId: "wjZofJX0v4M",
+    title: "AI-ассистенты для продаж",
+    category: "BUSINESS",
+    duration: "0:58",
+  },
+  {
+    videoId: "g4kYqFEhDqA",
+    title: "YandexGPT в корпоративных задачах",
+    category: "YANDEX",
+    duration: "1:11",
+  },
+  {
+    videoId: "1aA1WGON49E",
+    title: "Автоматизация поддержки за 5 минут",
+    category: "AUTOMATION",
+    duration: "1:19",
+  },
+  {
+    videoId: "uocYQH0cWTs",
+    title: "Безопасность LLM: защищённый контур",
+    category: "SECURITY",
+    duration: "1:26",
+  },
+];
+
+const MediaHub = () => {
+  const [activeTab, setActiveTab] = useState<"shorts" | "press">("shorts");
+  const [activeShort, setActiveShort] = useState<ShortItem | null>(null);
+
+  const shortsViewportRef = useRef<HTMLDivElement | null>(null);
+  const shortsTrackRef = useRef<HTMLDivElement | null>(null);
+  const [shortsDragLimit, setShortsDragLimit] = useState(0);
+
   const pressViewportRef = useRef<HTMLDivElement | null>(null);
   const pressTrackRef = useRef<HTMLDivElement | null>(null);
   const [pressDragLimit, setPressDragLimit] = useState(0);
 
   useLayoutEffect(() => {
-    const updatePressDragLimit = () => {
-      const viewportWidth = pressViewportRef.current?.clientWidth ?? 0;
-      const trackWidth = pressTrackRef.current?.scrollWidth ?? 0;
-      setPressDragLimit(Math.max(0, trackWidth - viewportWidth));
+    const updateLimits = () => {
+      const shortsVW = shortsViewportRef.current?.clientWidth ?? 0;
+      const shortsTW = shortsTrackRef.current?.scrollWidth ?? 0;
+      setShortsDragLimit(Math.max(0, shortsTW - shortsVW));
+
+      const pressVW = pressViewportRef.current?.clientWidth ?? 0;
+      const pressTW = pressTrackRef.current?.scrollWidth ?? 0;
+      setPressDragLimit(Math.max(0, pressTW - pressVW));
     };
 
-    updatePressDragLimit();
-    window.addEventListener("resize", updatePressDragLimit);
-    return () => window.removeEventListener("resize", updatePressDragLimit);
-  }, []);
+    updateLimits();
+    window.addEventListener("resize", updateLimits);
+    return () => window.removeEventListener("resize", updateLimits);
+  }, [activeTab]);
+
+  const tabs: { id: "shorts" | "press"; label: string }[] = [
+    { id: "shorts", label: "Yandex Academy Shorts" },
+    { id: "press", label: "Пишут о нас" },
+  ];
 
   return (
     <section id="partners" className="scroll-mt-28 py-24 px-6">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-10">
-          <h2 className="text-4xl font-bold tracking-tight text-on-surface">Пишут о нас</h2>
-          <p className="mt-4 max-w-2xl text-on-surface-variant leading-relaxed">
-            Публикации, кейсы и обзоры по внедрению AI-решений в продажах, поддержке и корпоративных процессах.
-          </p>
-        </div>
-        <div ref={pressViewportRef} className="overflow-hidden">
-          <motion.div
-            ref={pressTrackRef}
-            drag="x"
-            dragConstraints={{ left: -pressDragLimit, right: 0 }}
-            dragElastic={0.04}
-            className="flex cursor-grab gap-6 active:cursor-grabbing"
+        <div className="mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">
+              Медиа и публикации
+            </span>
+            <h2 className="mt-2 text-4xl font-bold tracking-tight text-on-surface">
+              {activeTab === "shorts" ? "Yandex Academy Shorts" : "Пишут о нас"}
+            </h2>
+            <p className="mt-4 max-w-2xl text-on-surface-variant leading-relaxed">
+              {activeTab === "shorts"
+                ? "Короткие видео-разборы про ИИ, внедрение и практику от Академии Yandex. Листайте калейдоскоп, нажмите карточку — откроется Shorts."
+                : "Публикации, кейсы и обзоры по внедрению AI-решений в продажах, поддержке и корпоративных процессах."}
+            </p>
+          </div>
+          <div
+            role="tablist"
+            aria-label="Раздел медиа"
+            className="inline-flex self-start rounded-2xl border border-outline-variant/25 bg-surface-container-low p-1 md:self-end"
           >
-            {pressItems.map((item) => (
-              <a
-                key={item.title}
-                href={item.url}
-                target={item.url.startsWith("http") ? "_blank" : undefined}
-                rel={item.url.startsWith("http") ? "noreferrer" : undefined}
-                className="group w-[320px] shrink-0 rounded-3xl border border-outline-variant/20 bg-surface-container-low p-6 transition hover:border-primary/40 hover:bg-surface-container"
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                role="tab"
+                type="button"
+                aria-selected={activeTab === tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`rounded-xl px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all md:text-sm ${
+                  activeTab === tab.id
+                    ? "bg-primary text-on-primary shadow-sm"
+                    : "text-on-surface-variant hover:text-on-surface"
+                }`}
               >
-                {item.image ? (
-                  <div className="relative mb-5 h-40 overflow-hidden rounded-2xl bg-surface-container-high">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 320px"
-                      className="object-contain object-center"
-                    />
-                  </div>
-                ) : (
-                  <div className="mb-5 h-40 rounded-2xl bg-gradient-to-br from-surface-container-high to-primary/10" />
-                )}
-                <p className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">{item.tag}</p>
-                <h3 className="mt-4 text-xl font-bold text-on-surface">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-on-surface-variant">{item.description}</p>
-              </a>
+                {tab.label}
+              </button>
             ))}
-          </motion.div>
+          </div>
         </div>
+
+        {activeTab === "shorts" ? (
+          <div ref={shortsViewportRef} className="overflow-hidden">
+            <motion.div
+              ref={shortsTrackRef}
+              drag="x"
+              dragConstraints={{ left: -shortsDragLimit, right: 0 }}
+              dragElastic={0.04}
+              className="flex cursor-grab gap-5 active:cursor-grabbing"
+            >
+              {academyShorts.map((item) => (
+                <button
+                  key={item.videoId}
+                  type="button"
+                  onClick={() => setActiveShort(item)}
+                  className="group relative w-[220px] shrink-0 overflow-hidden rounded-3xl border border-outline-variant/20 bg-surface-container-low text-left transition hover:border-primary/40"
+                >
+                  <div className="relative aspect-[9/16] w-full overflow-hidden bg-surface-container-high">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={`https://i.ytimg.com/vi/${item.videoId}/hq720.jpg`}
+                      alt={item.title}
+                      draggable={false}
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.05]"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).src = `https://i.ytimg.com/vi/${item.videoId}/hqdefault.jpg`;
+                      }}
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+                    <a
+                      href={`https://www.youtube.com/shorts/${item.videoId}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="absolute right-2 top-2 inline-flex h-8 w-8 items-center justify-center rounded-full bg-black/55 text-white backdrop-blur transition hover:bg-black/75"
+                      aria-label="Открыть на YouTube"
+                    >
+                      <ExternalLinkGlyph className="h-4 w-4" />
+                    </a>
+                    <span className="absolute right-2 bottom-2 rounded-md bg-black/65 px-2 py-0.5 text-[10px] font-semibold text-white">
+                      {item.duration}
+                    </span>
+                    <span className="pointer-events-none absolute left-1/2 top-1/2 inline-flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary/90 text-on-primary shadow-lg transition group-hover:scale-110">
+                      <PlayGlyph className="h-6 w-6 translate-x-[2px]" />
+                    </span>
+                    <div className="absolute inset-x-0 bottom-0 p-3">
+                      <span className="inline-flex rounded-full bg-primary/25 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur">
+                        {item.category}
+                      </span>
+                      <h3 className="mt-2 line-clamp-2 text-sm font-bold leading-snug text-white">
+                        {item.title}
+                      </h3>
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </motion.div>
+          </div>
+        ) : (
+          <div ref={pressViewportRef} className="overflow-hidden">
+            <motion.div
+              ref={pressTrackRef}
+              drag="x"
+              dragConstraints={{ left: -pressDragLimit, right: 0 }}
+              dragElastic={0.04}
+              className="flex cursor-grab gap-6 active:cursor-grabbing"
+            >
+              {pressItems.map((item) => (
+                <a
+                  key={item.title}
+                  href={item.url}
+                  target={item.url.startsWith("http") ? "_blank" : undefined}
+                  rel={item.url.startsWith("http") ? "noreferrer" : undefined}
+                  className="group w-[320px] shrink-0 rounded-3xl border border-outline-variant/20 bg-surface-container-low p-6 transition hover:border-primary/40 hover:bg-surface-container"
+                >
+                  {item.image ? (
+                    <div className="relative mb-5 h-40 overflow-hidden rounded-2xl bg-surface-container-high">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 320px"
+                        className="object-contain object-center"
+                      />
+                    </div>
+                  ) : (
+                    <div className="mb-5 h-40 rounded-2xl bg-gradient-to-br from-surface-container-high to-primary/10" />
+                  )}
+                  <p className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">{item.tag}</p>
+                  <h3 className="mt-4 text-xl font-bold text-on-surface">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-on-surface-variant">{item.description}</p>
+                </a>
+              ))}
+            </motion.div>
+          </div>
+        )}
       </div>
+
+      <AnimatePresence>
+        {activeShort ? (
+          <>
+            <motion.button
+              type="button"
+              aria-label="Закрыть видео"
+              className="fixed inset-0 z-[85] bg-black/70 backdrop-blur-sm"
+              onClick={() => setActiveShort(null)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            />
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              className="fixed left-1/2 top-1/2 z-[86] w-[min(24rem,calc(100vw-1.5rem))] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl border border-outline-variant/25 bg-surface-container-lowest shadow-2xl"
+              initial={{ opacity: 0, scale: 0.86, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 12 }}
+              transition={{ type: "spring", stiffness: 340, damping: 28 }}
+            >
+              <div className="relative aspect-[9/16] w-full bg-black">
+                <iframe
+                  src={`https://www.youtube.com/embed/${activeShort.videoId}?autoplay=1&rel=0&modestbranding=1`}
+                  title={activeShort.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute inset-0 h-full w-full"
+                />
+              </div>
+              <div className="p-5">
+                <span className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-primary">
+                  {activeShort.category}
+                </span>
+                <h3 className="mt-3 text-lg font-bold text-on-surface">{activeShort.title}</h3>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <a
+                    href={`https://www.youtube.com/shorts/${activeShort.videoId}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn-primary inline-flex"
+                  >
+                    Открыть в YouTube
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setActiveShort(null)}
+                    className="btn-secondary inline-flex"
+                  >
+                    Закрыть
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        ) : null}
+      </AnimatePresence>
     </section>
   );
 };
@@ -1328,7 +1579,7 @@ export default function App() {
         <Process />
         <Pricing />
         <Cases />
-        <Partners />
+        <MediaHub />
         <Contact />
       </main>
       <Footer />
