@@ -282,12 +282,12 @@ const Hero = () => (
             />
           </div>
           <div className="h-10 w-px shrink-0 bg-outline-variant/30" />
-          <div className="relative h-14 w-[140px] shrink-0 overflow-hidden rounded-lg bg-white px-3 py-2 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10">
+          <div className="relative h-16 w-[180px] shrink-0 overflow-hidden rounded-lg bg-white px-3 py-2 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10">
             <Image
               alt="Selectel"
               src="/partners/selectel.png"
               fill
-              sizes="140px"
+              sizes="180px"
               className="object-contain object-center"
               priority
             />
@@ -1374,31 +1374,27 @@ const MediaHub = () => {
       <div className="mx-auto max-w-7xl">
 
         {/* ── Партнёры ── */}
-        <div className="mb-10">
-          <p className="mb-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
-            Наши ключевые партнёры
-          </p>
-          <div className="rounded-2xl border border-outline-variant/15 bg-surface-container-low/60 p-4">
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              {partnerItems.map((partner) => (
-                <a
-                  key={partner.name}
-                  href={partner.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={partner.name}
-                  className="opacity-70 transition-opacity hover:opacity-100"
-                >
-                  <Image
-                    alt={partner.name}
-                    src={partner.icon}
-                    width={partner.width ?? 321}
-                    height={partner.height ?? 157}
-                    className="h-10 w-auto rounded-xl bg-white object-contain px-3 py-1.5 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10"
-                  />
-                </a>
-              ))}
-            </div>
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold tracking-tight text-center">Наши ключевые партнёры</h2>
+          <div className="mt-10 flex flex-wrap justify-center items-center gap-16 opacity-70">
+            {partnerItems.map((partner) => (
+              <a
+                key={partner.name}
+                href={partner.url}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={partner.name}
+                className="group flex items-center gap-4"
+              >
+                <Image
+                  alt={partner.name}
+                  src={partner.icon}
+                  width={partner.width ?? 321}
+                  height={partner.height ?? 157}
+                  className="h-20 w-auto max-w-[min(400px,94vw)] rounded-2xl bg-white object-contain object-center px-3 py-2 ring-1 ring-black/5 sm:h-24 sm:max-w-[min(480px,95vw)] md:h-28 md:max-w-[min(560px,96vw)] dark:bg-zinc-900 dark:ring-white/10"
+                />
+              </a>
+            ))}
           </div>
         </div>
 
