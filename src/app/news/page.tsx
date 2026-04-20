@@ -1,10 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   NEWS_CATEGORY_LABEL,
   type NewsItem,
 } from "@/lib/news-agent";
 import { getCachedDigest } from "@/lib/news-scheduler";
-import NewsCarousel from "./NewsCarousel";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -49,6 +49,81 @@ function formatDate(iso: string): string {
   }
 }
 
+function formatStreamTime(iso?: string): string | null {
+  if (!iso) return null;
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return null;
+  const now = new Date();
+  const sameDay =
+    d.getFullYear() === now.getFullYear() &&
+    d.getMonth() === now.getMonth() &&
+    d.getDate() === now.getDate();
+  const time = new Intl.DateTimeFormat("ru-RU", {
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(d);
+  if (sameDay) return `сегодня ${time}`;
+  const date = new Intl.DateTimeFormat("ru-RU", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }).format(d);
+  return `${date} ${time}`;
+}
+
+function NewsStreamItem({ item }: { item: NewsItem }) {
+  const time = formatStreamTime(item.publishedAt);
+  const categoryLabel = NEWS_CATEGORY_LABEL[item.category];
+  return (
+    <a
+      href={item.url}
+      target="_blank"
+      rel="noreferrer"
+      className="group flex flex-col gap-4 border-b border-outline-variant/20 py-6 transition first:pt-0 last:border-b-0 sm:flex-row"
+    >
+      <div className="relative aspect-[3/2] w-full shrink-0 overflow-hidden rounded-2xl bg-surface-container-low sm:w-[260px]">
+        {item.image ? (
+          <Image
+            src={item.image}
+            alt={item.title}
+            fill
+            sizes="(max-width: 640px) 100vw, 260px"
+            className="object-cover object-center transition duration-500 group-hover:scale-[1.03]"
+            unoptimized
+          />
+        ) : (
+          <div className="grid h-full w-full place-items-center text-xs font-bold uppercase tracking-widest text-on-surface-variant">
+            Kinetic AI
+          </div>
+        )}
+      </div>
+      <div className="flex min-w-0 flex-col">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-primary">
+            {categoryLabel}
+          </span>
+          {item.source ? (
+            <span className="text-xs font-medium text-on-surface-variant">{item.source}</span>
+          ) : null}
+        </div>
+        <h3 className="mt-3 text-xl font-bold leading-snug text-on-surface transition group-hover:text-primary md:text-2xl">
+          {item.title}
+        </h3>
+        {item.summary ? (
+          <p className="mt-2 line-clamp-3 text-sm text-on-surface-variant md:text-base">
+            {item.summary}
+          </p>
+        ) : null}
+        {time ? (
+          <div className="mt-3 text-xs font-medium uppercase tracking-wider text-on-surface-variant">
+            {time}
+          </div>
+        ) : null}
+      </div>
+    </a>
+  );
+}
+
 export default async function NewsPage() {
   let items: NewsItem[] = [];
   let generatedAt = "";
@@ -65,7 +140,7 @@ export default async function NewsPage() {
 
   return (
     <main className="min-h-screen bg-background px-6 py-16 md:py-24">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-5xl">
         <div className="mb-12 flex flex-wrap items-center justify-between gap-4">
           <div>
             <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">
@@ -101,16 +176,26 @@ export default async function NewsPage() {
         </div>
 
         {hasData ? (
-          <div>
+          <div className="space-y-14">
             {BUCKET_ORDER.map((category) => {
               const bucketItems = grouped[category];
               if (!bucketItems || bucketItems.length === 0) return null;
               return (
-                <NewsCarousel
-                  key={category}
-                  title={NEWS_CATEGORY_LABEL[category]}
-                  items={bucketItems}
-                />
+                <section key={category}>
+                  <div className="mb-6 flex items-end justify-between gap-4 border-b border-outline-variant/30 pb-3">
+                    <h2 className="text-2xl font-bold tracking-tight text-on-surface md:text-3xl">
+                      {NEWS_CATEGORY_LABEL[category]}
+                    </h2>
+                    <span className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">
+                      {bucketItems.length} материал{bucketItems.length === 1 ? "" : "ов"}
+                    </span>
+                  </div>
+                  <div className="flex flex-col">
+                    {bucketItems.map((item) => (
+                      <NewsStreamItem key={item.url} item={item} />
+                    ))}
+                  </div>
+                </section>
               );
             })}
           </div>

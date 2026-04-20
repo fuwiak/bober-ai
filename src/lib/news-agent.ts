@@ -14,6 +14,7 @@ type SearchHit = {
   snippet: string;
   source: string;
   image?: string;
+  publishedAt?: string;
 };
 
 type Bucket = {
@@ -204,6 +205,19 @@ function extractGoogleImage(item: GoogleItem): string | undefined {
   );
 }
 
+function extractGooglePublishedAt(item: GoogleItem): string | undefined {
+  const meta = item.pagemap?.metatags?.[0] || {};
+  const raw =
+    meta["article:published_time"] ||
+    meta["og:updated_time"] ||
+    meta["article:modified_time"] ||
+    meta["pubdate"] ||
+    meta["date"];
+  if (!raw) return undefined;
+  const d = new Date(raw);
+  return Number.isNaN(d.getTime()) ? undefined : d.toISOString();
+}
+
 async function searchGoogle(query: string, limit = 5): Promise<SearchHit[]> {
   const apiKey = process.env.GOOGLE_CUSTOM_SEARCH_API_KEY;
   const cx = process.env.GOOGLE_CUSTOM_SEARCH_ENGINE_ID;
@@ -230,6 +244,7 @@ async function searchGoogle(query: string, limit = 5): Promise<SearchHit[]> {
       snippet: item.snippet || "",
       source: item.displayLink || hostFromUrl(item.link),
       image: extractGoogleImage(item),
+      publishedAt: extractGooglePublishedAt(item),
     }));
   } catch {
     return [];
@@ -252,6 +267,14 @@ function extractRssImage(block: string, descHtml: string): string | undefined {
   return img;
 }
 
+function parseRssDate(raw: string | null): string | undefined {
+  if (!raw) return undefined;
+  const trimmed = stripHtml(raw);
+  const d = new Date(trimmed);
+  if (Number.isNaN(d.getTime())) return undefined;
+  return d.toISOString();
+}
+
 function parseRss(xml: string): SearchHit[] {
   const isAtom = /<feed[\s>]/i.test(xml);
   const blocks = isAtom ? extractAllTags(xml, "entry") : extractAllTags(xml, "item");
@@ -267,7 +290,13 @@ function parseRss(xml: string): SearchHit[] {
         "";
       const snippet = stripHtml(descHtml).slice(0, 400);
       const image = extractRssImage(block, descHtml);
-      return { title, url, snippet, source: hostFromUrl(url), image };
+      const publishedAt = parseRssDate(
+        extractFirstTag(block, "pubDate") ||
+          extractFirstTag(block, "published") ||
+          extractFirstTag(block, "updated") ||
+          extractFirstTag(block, "dc:date"),
+      );
+      return { title, url, snippet, source: hostFromUrl(url), image, publishedAt };
     })
     .filter((hit) => hit.title && hit.url);
 }
@@ -520,6 +549,7 @@ async function curateBucket(bucket: Bucket): Promise<NewsItem[]> {
         ...row,
         category: bucket.id,
         image: hit?.image || faviconFallback(row.url),
+        publishedAt: hit?.publishedAt,
       };
     });
 
@@ -532,6 +562,7 @@ async function curateBucket(bucket: Bucket): Promise<NewsItem[]> {
     summary: hit.snippet.slice(0, 240),
     category: bucket.id,
     image: hit.image || faviconFallback(hit.url),
+    publishedAt: hit.publishedAt,
   }));
 }
 
