@@ -162,6 +162,25 @@ export default async function NewsPage() {
           </Link>
         </div>
 
+        <div className="mb-10 flex justify-center rounded-3xl border border-outline-variant/20 bg-surface-container-lowest p-4 shadow-sm">
+          <a
+            href="https://selectel.ru/services/cloud/vpc/?ref_code=a9a9119ad2"
+            target="_blank"
+            rel="noreferrer nofollow sponsored"
+            aria-label="Реферальная ссылка на облачную платформу Selectel"
+            className="group inline-block overflow-hidden rounded-2xl transition hover:shadow-lg"
+          >
+            <img
+              src="https://static.selectel.ru/referral_2/vpc/yandex/240x400_0+.png"
+              alt="Облачная платформа"
+              width={240}
+              height={400}
+              loading="lazy"
+              className="h-auto w-full max-w-[240px] transition duration-300 group-hover:scale-[1.02]"
+            />
+          </a>
+        </div>
+
         <div className="mb-10 rounded-3xl border border-outline-variant/20 bg-surface-container-lowest p-6 shadow-sm">
           <div className="flex flex-wrap items-center gap-3 text-sm text-on-surface-variant">
             <span className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-xs font-bold uppercase tracking-widest text-primary">
