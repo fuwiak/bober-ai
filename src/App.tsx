@@ -1108,6 +1108,7 @@ type CaseItem = {
   tag: string;
   description: string;
   image?: string;
+  images?: string[];
   url: string;
 };
 
@@ -1117,6 +1118,7 @@ const casePlaceholders: CaseItem[] = [
     tag: "Legal AI в защищенном контуре",
     description: "AI-юрист в приватном контуре: анализ документов, быстрые правовые саммари и помощь команде без вывода данных за пределы локальной инфраструктуры.",
     image: "/yandex/ai-lawyer.png",
+    images: ["/yandex/ai-lawyer.png", "/media/legal-gpu-02.jpg"],
     url: "#",
   },
   {
@@ -1132,6 +1134,7 @@ const casePlaceholders: CaseItem[] = [
 const Cases = () => {
   const [activeCase, setActiveCase] = useState<CaseItem | null>(null);
   const [isImageZoomOpen, setImageZoomOpen] = useState(false);
+  const [activeCaseImage, setActiveCaseImage] = useState<string | null>(null);
   const casesViewportRef = useRef<HTMLDivElement | null>(null);
   const casesTrackRef = useRef<HTMLDivElement | null>(null);
   const [casesDragLimit, setCasesDragLimit] = useState(0);
@@ -1181,7 +1184,10 @@ const Cases = () => {
               <button
                 key={item.title}
                 type="button"
-                onClick={() => setActiveCase(item)}
+                onClick={() => {
+                  setActiveCase(item);
+                  setActiveCaseImage(item.image ?? item.images?.[0] ?? null);
+                }}
                 className="group w-[320px] shrink-0 rounded-3xl border border-outline-variant/20 bg-surface-container-low p-6 text-left transition hover:border-primary/40 hover:bg-surface-container"
               >
                 {item.image ? (
@@ -1213,7 +1219,10 @@ const Cases = () => {
               type="button"
               aria-label="Закрыть кейс"
               className="fixed inset-0 z-[85] bg-black/50 backdrop-blur-sm"
-              onClick={() => setActiveCase(null)}
+              onClick={() => {
+                setActiveCaseImage(null);
+                setActiveCase(null);
+              }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -1234,7 +1243,7 @@ const Cases = () => {
                   className="group relative mb-5 block h-48 w-full overflow-hidden rounded-2xl bg-surface-container-high"
                 >
                   <Image
-                    src={activeCase.image}
+                    src={activeCaseImage || activeCase.image}
                     alt={activeCase.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 640px"
@@ -1244,6 +1253,28 @@ const Cases = () => {
                     Увеличить
                   </span>
                 </button>
+              ) : null}
+              {activeCase.images && activeCase.images.length > 1 ? (
+                <div className="mb-5 flex gap-2">
+                  {activeCase.images.map((img) => (
+                    <button
+                      key={img}
+                      type="button"
+                      onClick={() => setActiveCaseImage(img)}
+                      className={`relative h-16 w-24 overflow-hidden rounded-xl border transition ${
+                        activeCaseImage === img ? "border-primary" : "border-outline-variant/20"
+                      }`}
+                    >
+                      <Image
+                        src={img}
+                        alt={`${activeCase.title} превью`}
+                        fill
+                        sizes="96px"
+                        className="object-cover object-center"
+                      />
+                    </button>
+                  ))}
+                </div>
               ) : null}
               <p className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">{activeCase.tag}</p>
               <h3 className="mt-4 text-2xl font-bold text-on-surface">{activeCase.title}</h3>
@@ -1263,6 +1294,7 @@ const Cases = () => {
                   type="button"
                   onClick={() => {
                     setImageZoomOpen(false);
+                    setActiveCaseImage(null);
                     setActiveCase(null);
                   }}
                   className="btn-secondary inline-flex"
@@ -1292,7 +1324,7 @@ const Cases = () => {
                     transition={{ type: "spring", stiffness: 320, damping: 30 }}
                   >
                     <Image
-                      src={activeCase.image}
+                      src={activeCaseImage || activeCase.image}
                       alt={activeCase.title}
                       fill
                       sizes="94vw"
@@ -1340,66 +1372,95 @@ const pressItems: PressItem[] = [
 ];
 
 type ShortItem = {
-  videoId: string;
+  id: string;
   title: string;
   category: string;
   duration: string;
+  url: string;
+  platform: "YouTube" | "VK Video" | "Rutube" | "Yandex Video";
+  thumbnail?: string;
+  videoId?: string;
 };
 
-const academyShorts: ShortItem[] = [
+const fallbackAcademyShorts: ShortItem[] = [
   {
+    id: "https://www.youtube.com/shorts/5DQzO5aPS5A",
     videoId: "5DQzO5aPS5A",
     title: "Как работают LLM за 60 секунд",
     category: "AI BASICS",
     duration: "1:02",
+    url: "https://www.youtube.com/shorts/5DQzO5aPS5A",
+    platform: "YouTube",
   },
   {
+    id: "https://www.youtube.com/shorts/kCc8FmEb1nY",
     videoId: "kCc8FmEb1nY",
     title: "Промпт-инжиниринг: главные приёмы",
     category: "PROMPTING",
     duration: "1:15",
+    url: "https://www.youtube.com/shorts/kCc8FmEb1nY",
+    platform: "YouTube",
   },
   {
+    id: "https://www.youtube.com/shorts/zjkBMFhNj_g",
     videoId: "zjkBMFhNj_g",
     title: "RAG: подача контекста в модель",
     category: "RAG",
     duration: "1:08",
+    url: "https://www.youtube.com/shorts/zjkBMFhNj_g",
+    platform: "YouTube",
   },
   {
+    id: "https://www.youtube.com/shorts/bZQun8Y4L2A",
     videoId: "bZQun8Y4L2A",
     title: "Fine-tuning vs RAG: что выбрать",
     category: "ML OPS",
     duration: "1:22",
+    url: "https://www.youtube.com/shorts/bZQun8Y4L2A",
+    platform: "YouTube",
   },
   {
+    id: "https://www.youtube.com/shorts/wjZofJX0v4M",
     videoId: "wjZofJX0v4M",
     title: "AI-ассистенты для продаж",
     category: "BUSINESS",
     duration: "0:58",
+    url: "https://www.youtube.com/shorts/wjZofJX0v4M",
+    platform: "YouTube",
   },
   {
+    id: "https://www.youtube.com/shorts/g4kYqFEhDqA",
     videoId: "g4kYqFEhDqA",
     title: "YandexGPT в корпоративных задачах",
     category: "YANDEX",
     duration: "1:11",
+    url: "https://www.youtube.com/shorts/g4kYqFEhDqA",
+    platform: "YouTube",
   },
   {
+    id: "https://www.youtube.com/shorts/1aA1WGON49E",
     videoId: "1aA1WGON49E",
     title: "Автоматизация поддержки за 5 минут",
     category: "AUTOMATION",
     duration: "1:19",
+    url: "https://www.youtube.com/shorts/1aA1WGON49E",
+    platform: "YouTube",
   },
   {
+    id: "https://www.youtube.com/shorts/uocYQH0cWTs",
     videoId: "uocYQH0cWTs",
     title: "Безопасность LLM: защищённый контур",
     category: "SECURITY",
     duration: "1:26",
+    url: "https://www.youtube.com/shorts/uocYQH0cWTs",
+    platform: "YouTube",
   },
 ];
 
 const MediaHub = () => {
   const [activeTab, setActiveTab] = useState<"shorts" | "press">("shorts");
   const [activeShort, setActiveShort] = useState<ShortItem | null>(null);
+  const [shortsItems, setShortsItems] = useState<ShortItem[]>(fallbackAcademyShorts);
 
   const shortsViewportRef = useRef<HTMLDivElement | null>(null);
   const shortsTrackRef = useRef<HTMLDivElement | null>(null);
@@ -1408,6 +1469,23 @@ const MediaHub = () => {
   const pressViewportRef = useRef<HTMLDivElement | null>(null);
   const pressTrackRef = useRef<HTMLDivElement | null>(null);
   const [pressDragLimit, setPressDragLimit] = useState(0);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/shorts")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: { items?: ShortItem[] } | null) => {
+        if (!cancelled && data?.items?.length) {
+          setShortsItems(data.items);
+        }
+      })
+      .catch(() => {
+        // Static fallback remains visible while the AI agent prepares a fresh selection.
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useLayoutEffect(() => {
     const updateLimits = () => {
@@ -1423,7 +1501,7 @@ const MediaHub = () => {
     updateLimits();
     window.addEventListener("resize", updateLimits);
     return () => window.removeEventListener("resize", updateLimits);
-  }, [activeTab]);
+  }, [activeTab, shortsItems.length]);
 
   const tabs: { id: "shorts" | "press"; label: string }[] = [
     { id: "shorts", label: "ИИ подборка Shorts" },
@@ -1469,7 +1547,7 @@ const MediaHub = () => {
             </h2>
             <p className="mt-4 max-w-2xl text-on-surface-variant leading-relaxed">
               {activeTab === "shorts"
-                ? "ИИ-агент собирает короткие видео-разборы про ИИ, внедрение и практику от Академии Yandex — аналогично нашей ИИ-подборке новостей. Листайте калейдоскоп, нажмите карточку — откроется Shorts."
+                ? "Shorts подбирает ИИ-агент. Листайте калейдоскоп, нажмите карточку — откроется видео."
                 : "Публикации, кейсы и обзоры по внедрению AI-решений в продажах, поддержке и корпоративных процессах."}
             </p>
           </div>
@@ -1506,32 +1584,43 @@ const MediaHub = () => {
               dragElastic={0.04}
               className="flex cursor-grab gap-5 active:cursor-grabbing"
             >
-              {academyShorts.map((item) => (
+              {shortsItems.map((item) => {
+                const thumbnail =
+                  item.thumbnail ||
+                  (item.videoId ? `https://i.ytimg.com/vi/${item.videoId}/hq720.jpg` : undefined);
+                return (
                 <button
-                  key={item.videoId}
+                  key={item.id}
                   type="button"
                   onClick={() => setActiveShort(item)}
                   className="group relative w-[220px] shrink-0 overflow-hidden rounded-3xl border border-outline-variant/20 bg-surface-container-low text-left transition hover:border-primary/40"
                 >
                   <div className="relative aspect-[9/16] w-full overflow-hidden bg-surface-container-high">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={`https://i.ytimg.com/vi/${item.videoId}/hq720.jpg`}
-                      alt={item.title}
-                      draggable={false}
-                      className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.05]"
-                      onError={(e) => {
-                        (e.currentTarget as HTMLImageElement).src = `https://i.ytimg.com/vi/${item.videoId}/hqdefault.jpg`;
-                      }}
-                    />
+                    {thumbnail ? (
+                      <img
+                        src={thumbnail}
+                        alt={item.title}
+                        draggable={false}
+                        className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.05]"
+                        onError={(e) => {
+                          if (item.videoId) {
+                            (e.currentTarget as HTMLImageElement).src = `https://i.ytimg.com/vi/${item.videoId}/hqdefault.jpg`;
+                          }
+                        }}
+                      />
+                    ) : (
+                      <div className="grid h-full w-full place-items-center p-4 text-center text-xs font-bold uppercase tracking-widest text-on-surface-variant">
+                        {item.platform}
+                      </div>
+                    )}
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
                     <a
-                      href={`https://www.youtube.com/shorts/${item.videoId}`}
+                      href={item.url}
                       target="_blank"
                       rel="noreferrer"
                       onClick={(e) => e.stopPropagation()}
                       className="absolute right-2 top-2 inline-flex h-8 w-8 items-center justify-center rounded-full bg-black/55 text-white backdrop-blur transition hover:bg-black/75"
-                      aria-label="Открыть на YouTube"
+                      aria-label={`Открыть в ${item.platform}`}
                     >
                       <ExternalLinkGlyph className="h-4 w-4" />
                     </a>
@@ -1545,13 +1634,17 @@ const MediaHub = () => {
                       <span className="inline-flex rounded-full bg-primary/25 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur">
                         {item.category}
                       </span>
+                      <span className="ml-2 inline-flex rounded-full bg-black/35 px-2 py-0.5 text-[10px] font-semibold text-white backdrop-blur">
+                        {item.platform}
+                      </span>
                       <h3 className="mt-2 line-clamp-2 text-sm font-bold leading-snug text-white">
                         {item.title}
                       </h3>
                     </div>
                   </div>
                 </button>
-              ))}
+                );
+              })}
             </motion.div>
           </div>
         ) : (
@@ -1616,13 +1709,25 @@ const MediaHub = () => {
               transition={{ type: "spring", stiffness: 340, damping: 28 }}
             >
               <div className="relative aspect-[9/16] w-full bg-black">
-                <iframe
-                  src={`https://www.youtube.com/embed/${activeShort.videoId}?autoplay=1&rel=0&modestbranding=1`}
-                  title={activeShort.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="absolute inset-0 h-full w-full"
-                />
+                {activeShort.videoId ? (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${activeShort.videoId}?autoplay=1&rel=0&modestbranding=1`}
+                    title={activeShort.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 h-full w-full"
+                  />
+                ) : activeShort.thumbnail ? (
+                  <img
+                    src={activeShort.thumbnail}
+                    alt={activeShort.title}
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <div className="grid h-full w-full place-items-center p-6 text-center text-sm font-bold uppercase tracking-widest text-white/80">
+                    {activeShort.platform}
+                  </div>
+                )}
               </div>
               <div className="p-5">
                 <span className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-primary">
@@ -1631,12 +1736,12 @@ const MediaHub = () => {
                 <h3 className="mt-3 text-lg font-bold text-on-surface">{activeShort.title}</h3>
                 <div className="mt-4 flex flex-wrap gap-3">
                   <a
-                    href={`https://www.youtube.com/shorts/${activeShort.videoId}`}
+                    href={activeShort.url}
                     target="_blank"
                     rel="noreferrer"
                     className="btn-primary inline-flex"
                   >
-                    Открыть в YouTube
+                    Открыть в {activeShort.platform}
                   </a>
                   <button
                     type="button"
