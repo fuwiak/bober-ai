@@ -1426,7 +1426,7 @@ const MediaHub = () => {
   }, [activeTab]);
 
   const tabs: { id: "shorts" | "press"; label: string }[] = [
-    { id: "shorts", label: "Yandex Academy Shorts" },
+    { id: "shorts", label: "ИИ подборка Shorts" },
     { id: "press", label: "Пишут о нас" },
   ];
 
@@ -1465,11 +1465,11 @@ const MediaHub = () => {
               Медиа и публикации
             </span>
             <h2 className="mt-2 text-4xl font-bold tracking-tight text-on-surface">
-              {activeTab === "shorts" ? "Yandex Academy Shorts" : "Пишут о нас"}
+              {activeTab === "shorts" ? "ИИ подборка Yandex Academy Shorts" : "Пишут о нас"}
             </h2>
             <p className="mt-4 max-w-2xl text-on-surface-variant leading-relaxed">
               {activeTab === "shorts"
-                ? "Короткие видео-разборы про ИИ, внедрение и практику от Академии Yandex. Листайте калейдоскоп, нажмите карточку — откроется Shorts."
+                ? "ИИ-агент собирает короткие видео-разборы про ИИ, внедрение и практику от Академии Yandex — аналогично нашей ИИ-подборке новостей. Листайте калейдоскоп, нажмите карточку — откроется Shorts."
                 : "Публикации, кейсы и обзоры по внедрению AI-решений в продажах, поддержке и корпоративных процессах."}
             </p>
           </div>
