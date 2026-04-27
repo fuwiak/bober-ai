@@ -1129,6 +1129,14 @@ const casePlaceholders: CaseItem[] = [
     image: "/yandex/kaspersky 2.png",
     url: "#",
   },
+  {
+    title: "AI agent design в Telegram",
+    tag: "Интерьер и ремонт 24/7",
+    description:
+      "Telegram-бот консультирует по дизайну и ремонту: анализирует планировку и фото, подсказывает по приемке квартиры, технадзору, материалам и этапам работ, показывает кейсы, цены и быстро переключает на живого дизайнера.",
+    image: "/media/heshi1.png",
+    url: "#",
+  },
 ];
 
 const Cases = () => {
