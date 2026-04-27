@@ -59,8 +59,7 @@ const menuItems = [
   { href: "#contact", label: "Контакт" },
   { href: "#services", label: "Наши услуги" },
   { href: "/events", label: "Мероприятия" },
-  { href: "/outages", label: "Аварии" },
-  { href: "/news", label: "Новости" },
+  { href: "/news", label: "ИИ подборка новостей" },
   { href: "/blog", label: "Блог Kinetic AI" },
   { href: "/career", label: "Карьера" },
   { href: "/academy", label: "Академия Yandex" },
@@ -224,11 +223,8 @@ const Navbar = () => {
           <a className={navLinkClass} href="/events">
             Мероприятия
           </a>
-          <a className={navLinkClass} href="/outages">
-            Аварии
-          </a>
           <a className={navLinkClass} href="/news">
-            Новости
+            ИИ подборка новостей
           </a>
           <a className={navLinkClass} href="/blog">
             Блог
