@@ -30,13 +30,14 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      { url: "/favicon.ico", type: "image/x-icon", sizes: "16x16 32x32 48x48" },
       { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
       { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
       { url: "/favicon-120x120.png", type: "image/png", sizes: "120x120" },
       { url: "/favicon.png", type: "image/png", sizes: "512x512" },
       { url: "/icon.png", type: "image/png", sizes: "512x512" },
     ],
-    shortcut: ["/favicon-16x16.png", "/favicon-32x32.png"],
+    shortcut: ["/favicon.ico", "/favicon-16x16.png", "/favicon-32x32.png"],
     apple: "/apple-icon.png",
   },
   manifest: "/manifest.webmanifest",

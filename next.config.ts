@@ -22,15 +22,6 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      {
-        source: "/favicon.ico",
-        headers: [
-          {
-            key: "X-Robots-Tag",
-            value: "noindex",
-          },
-        ],
-      },
     ];
   },
 };
