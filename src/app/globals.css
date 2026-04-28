@@ -67,6 +67,44 @@ html.dark {
 }
 
 @layer components {
+  @keyframes news-kaleidoscope-scroll {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+
+  .news-kaleidoscope::before,
+  .news-kaleidoscope::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3.5rem;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .news-kaleidoscope::before {
+    top: 0;
+    background: linear-gradient(to bottom, var(--color-surface-container-low), transparent);
+  }
+
+  .news-kaleidoscope::after {
+    bottom: 0;
+    background: linear-gradient(to top, var(--color-surface-container-low), transparent);
+  }
+
+  .news-kaleidoscope-track {
+    animation: news-kaleidoscope-scroll 26s linear infinite;
+  }
+
+  .news-kaleidoscope:hover .news-kaleidoscope-track {
+    animation-play-state: paused;
+  }
+
   .text-gradient {
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-container) 100%);
     -webkit-background-clip: text;
