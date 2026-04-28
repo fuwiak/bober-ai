@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
 import App from "@/App";
-import { CONTACT_EMAIL, ORGANIZATION_NAME, SITE_DESCRIPTION, SITE_NAME, SITE_URL, TELEGRAM_URL, YOUTUBE_SHORTS_URL, absoluteUrl } from "@/lib/site";
+import { CONTACT_EMAIL, DEFAULT_KEYWORDS, ORGANIZATION_NAME, SITE_DESCRIPTION, SITE_NAME, SITE_REGION, SITE_URL, TELEGRAM_URL, YOUTUBE_SHORTS_URL, absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Kinetic AI — внедрение корпоративного ИИ и облачной инфраструктуры",
-  description: SITE_DESCRIPTION,
+  title: "Внедрение корпоративного ИИ и облачной инфраструктуры",
+  description:
+    "Внедрение корпоративного ИИ, облачных LLM, AI-автоматизации и DevOps-решений на базе Yandex Cloud и Selectel для бизнеса в России.",
+  keywords: [...DEFAULT_KEYWORDS, "внедрение ИИ", "AI для бизнеса", "Yandex Cloud партнер", "Selectel партнер"],
   alternates: {
     canonical: absoluteUrl("/"),
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -19,6 +25,7 @@ export default function Home() {
     url: SITE_URL,
     logo: absoluteUrl("/favicon.png"),
     email: CONTACT_EMAIL,
+    areaServed: SITE_REGION,
     sameAs: [TELEGRAM_URL, YOUTUBE_SHORTS_URL],
     contactPoint: [
       {
@@ -54,6 +61,23 @@ export default function Home() {
     ],
   };
 
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: SITE_NAME,
+    url: SITE_URL,
+    description:
+      "Внедрение корпоративного ИИ, AI-инфраструктуры, облачных LLM, чат-ботов и автоматизации процессов для B2B.",
+    areaServed: SITE_REGION,
+    serviceType: [
+      "Корпоративный ИИ",
+      "AI-инфраструктура",
+      "Автоматизация процессов",
+      "Облачные LLM",
+      "DevOps и облачная инфраструктура",
+    ],
+  };
+
   return (
     <>
       <script
@@ -67,6 +91,10 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(navigationJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
       />
       <App />
     </>

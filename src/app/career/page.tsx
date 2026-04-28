@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { absoluteUrl } from "@/lib/site";
+import { CONTACT_EMAIL, DEFAULT_KEYWORDS, SITE_NAME, TELEGRAM_URL, absoluteUrl } from "@/lib/site";
 
 const careerPerks = [
   {
@@ -29,14 +29,59 @@ export const metadata: Metadata = {
   title: "Карьера",
   description:
     "Kinetic AI ищет селлеров AI-решений: облачные LLM, корпоративные чат-боты, AI-инфраструктура и автоматизация для B2B.",
+  keywords: [...DEFAULT_KEYWORDS, "вакансии ИИ", "sales AI", "работа B2B sales", "карьера в AI"],
   alternates: {
     canonical: absoluteUrl("/career"),
   },
 };
 
 export default function CareerPage() {
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: SITE_NAME, item: absoluteUrl("/") },
+      { "@type": "ListItem", position: 2, name: "Карьера", item: absoluteUrl("/career") },
+    ],
+  };
+
+  const jobPostingJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    title: "Селлер AI-решений",
+    description:
+      "Продажа B2B-решений в области AI-инфраструктуры, облачных LLM, корпоративных чат-ботов и автоматизации.",
+    hiringOrganization: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      sameAs: absoluteUrl("/"),
+    },
+    applicantLocationRequirements: {
+      "@type": "Country",
+      name: "RU",
+    },
+    employmentType: "CONTRACTOR",
+    industry: "Artificial Intelligence",
+    directApply: true,
+    url: absoluteUrl("/career"),
+    jobLocationType: "TELECOMMUTE",
+    applicationContact: {
+      "@type": "ContactPoint",
+      email: CONTACT_EMAIL,
+      url: TELEGRAM_URL,
+    },
+  };
+
   return (
     <main className="min-h-screen bg-background px-6 py-16 md:py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jobPostingJsonLd) }}
+      />
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 flex flex-wrap items-center justify-between gap-4">
           <div>

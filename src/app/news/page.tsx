@@ -11,7 +11,7 @@ import {
   peekCachedDigest,
 } from "@/lib/news-scheduler";
 import NewsAutoRefresh from "./NewsAutoRefresh";
-import { SITE_NAME, absoluteUrl } from "@/lib/site";
+import { DEFAULT_KEYWORDS, SITE_NAME, absoluteUrl } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   title: "ИИ подборка новостей",
   description:
     "Автоматически обновляемая подборка новостей по темам Yandex Cloud, Selectel, Россия и Мир от Kinetic AI.",
+  keywords: [...DEFAULT_KEYWORDS, "новости ИИ", "Yandex Cloud новости", "Selectel новости", "AI digest"],
   alternates: {
     canonical: absoluteUrl("/news"),
   },

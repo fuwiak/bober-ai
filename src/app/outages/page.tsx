@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { fetchOutageFeed } from "@/lib/outages-feed";
-import { absoluteUrl } from "@/lib/site";
+import { DEFAULT_KEYWORDS, SITE_NAME, absoluteUrl } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 300;
 export const metadata: Metadata = {
   title: "Аварии Yandex Cloud",
   description: "Лента оповещений о проблемах с доступностью и восстановлении сервисов Yandex Cloud.",
+  keywords: [...DEFAULT_KEYWORDS, "Yandex Cloud аварии", "Yandex Cloud alerts", "статус сервисов"],
   alternates: {
     canonical: absoluteUrl("/outages"),
   },
@@ -28,9 +29,21 @@ function formatDate(iso?: string): string {
 
 export default async function OutagesPage() {
   const items = await fetchOutageFeed();
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: SITE_NAME, item: absoluteUrl("/") },
+      { "@type": "ListItem", position: 2, name: "Аварии Yandex Cloud", item: absoluteUrl("/outages") },
+    ],
+  };
 
   return (
     <main className="min-h-screen bg-background px-6 py-16 md:py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <div className="mx-auto max-w-5xl">
         <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
           <div>

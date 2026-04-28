@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ORGANIZATION_NAME, SITE_NAME, absoluteUrl } from "@/lib/site";
+import { DEFAULT_KEYWORDS, ORGANIZATION_NAME, SITE_NAME, absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Академия Yandex",
   description:
     "Обучающий раздел Kinetic AI с практическими материалами по внедрению ИИ, автоматизации процессов и облачной инфраструктуре.",
+  keywords: [...DEFAULT_KEYWORDS, "обучение ИИ", "курсы по ИИ", "AI обучение", "Yandex Academy"],
   alternates: {
     canonical: absoluteUrl("/academy"),
   },

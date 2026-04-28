@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import { SITE_DESCRIPTION, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
+import { DEFAULT_KEYWORDS, SITE_DESCRIPTION, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
 
 const manrope = Manrope({
   subsets: ["latin", "cyrillic"],
@@ -24,15 +24,19 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
+  keywords: DEFAULT_KEYWORDS,
   alternates: {
     canonical: absoluteUrl("/"),
   },
   icons: {
     icon: [
+      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-120x120.png", type: "image/png", sizes: "120x120" },
       { url: "/favicon.png", type: "image/png", sizes: "512x512" },
       { url: "/icon.png", type: "image/png", sizes: "512x512" },
     ],
-    shortcut: "/favicon.png",
+    shortcut: ["/favicon-16x16.png", "/favicon-32x32.png"],
     apple: "/apple-icon.png",
   },
   manifest: "/manifest.webmanifest",
@@ -68,6 +72,9 @@ export const metadata: Metadata = {
     title: "Kinetic AI — облако и корпоративный ИИ",
     description: SITE_DESCRIPTION,
     images: [absoluteUrl("/favicon.png")],
+  },
+  other: {
+    keywords: DEFAULT_KEYWORDS.join(", "),
   },
 };
 

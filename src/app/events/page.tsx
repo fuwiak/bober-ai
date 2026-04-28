@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { absoluteUrl } from "@/lib/site";
+import { DEFAULT_KEYWORDS, SITE_NAME, absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Мероприятия",
   description: "Подборка актуальных AI-мероприятий и событий от технологических партнеров Kinetic AI.",
+  keywords: [...DEFAULT_KEYWORDS, "AI мероприятия", "Yandex Cloud events", "Selectel events", "конференции ИИ"],
   alternates: {
     canonical: absoluteUrl("/events"),
   },
@@ -24,8 +25,44 @@ const events = [
 ];
 
 export default function EventsPage() {
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: SITE_NAME, item: absoluteUrl("/") },
+      { "@type": "ListItem", position: 2, name: "Мероприятия", item: absoluteUrl("/events") },
+    ],
+  };
+
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Мероприятия Kinetic AI",
+    url: absoluteUrl("/events"),
+    hasPart: events.map((event) => ({
+      "@type": "Event",
+      name: event.title,
+      description: event.description,
+      eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
+      eventStatus: "https://schema.org/EventScheduled",
+      url: event.url,
+      organizer: {
+        "@type": "Organization",
+        name: SITE_NAME,
+      },
+    })),
+  };
+
   return (
     <main className="min-h-screen bg-background px-6 py-16 md:py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
       <div className="mx-auto max-w-5xl">
         <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
           <div>

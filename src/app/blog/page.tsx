@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { absoluteUrl } from "@/lib/site";
+import { DEFAULT_KEYWORDS, SITE_NAME, absoluteUrl } from "@/lib/site";
 
 const mediumPlaceholders = [
   "Последний пост из Medium появится здесь",
@@ -21,14 +21,42 @@ export const metadata: Metadata = {
   title: "Блог Kinetic AI",
   description:
     "Публикации Kinetic AI о внедрении AI, облачных LLM, приватных моделях, DevOps и автоматизации.",
+  keywords: [...DEFAULT_KEYWORDS, "блог ИИ", "статьи про ИИ", "LLM blog", "AI automation blog"],
   alternates: {
     canonical: absoluteUrl("/blog"),
   },
 };
 
 export default function BlogPage() {
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: SITE_NAME, item: absoluteUrl("/") },
+      { "@type": "ListItem", position: 2, name: "Блог Kinetic AI", item: absoluteUrl("/blog") },
+    ],
+  };
+
+  const blogJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: "Блог Kinetic AI",
+    url: absoluteUrl("/blog"),
+    description:
+      "Публикации Kinetic AI о внедрении AI, облачных LLM, приватных моделях, DevOps и автоматизации.",
+    inLanguage: "ru-RU",
+  };
+
   return (
     <main className="min-h-screen bg-background px-6 py-16 md:py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
+      />
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 flex flex-wrap items-center justify-between gap-4">
           <div>
