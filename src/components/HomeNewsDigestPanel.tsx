@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeftToLine, ArrowRight, ArrowRightToLine } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NEWS_CATEGORY_LABEL, type NewsItem } from "@/lib/news-agent";
 
@@ -54,7 +54,7 @@ export function HomeNewsDigestPanel({ compact = false, className = "" }: HomeNew
           onClick={() => setIsExpanded((value) => !value)}
           className="absolute -right-4 top-5 z-30 hidden h-9 w-9 items-center justify-center rounded-full border border-outline-variant/25 bg-surface-container-lowest text-on-surface shadow-sm transition hover:border-primary/35 hover:text-primary xl:flex"
         >
-          {isExpanded ? <ArrowLeftToLine className="h-4 w-4" aria-hidden /> : <ArrowRightToLine className="h-4 w-4" aria-hidden />}
+          {isExpanded ? <ChevronLeft className="h-4 w-4" aria-hidden /> : <ChevronRight className="h-4 w-4" aria-hidden />}
         </button>
 
         <aside
