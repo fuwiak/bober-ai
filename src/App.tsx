@@ -276,7 +276,15 @@ const Hero = () => (
     id="top"
     className="relative mx-auto max-w-7xl scroll-mt-28 px-6 pb-20 pt-28 md:overflow-hidden md:py-32 md:pt-32"
   >
-    <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <div className="grid items-start gap-8 xl:grid-cols-[320px_minmax(0,1.1fr)_minmax(0,0.95fr)]">
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="relative z-20 min-w-0 self-start lg:sticky lg:top-28"
+      >
+        <HomeNewsDigestPanel compact />
+      </motion.div>
       <motion.div 
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
@@ -2191,7 +2199,6 @@ export default function App() {
       <Navbar />
       <main className="pt-24 pb-[max(5.5rem,calc(4rem+env(safe-area-inset-bottom,0px)+1rem))] md:pb-0">
         <Hero />
-        <HomeNewsDigestPanel />
         <Services />
         <Process />
         <Pricing />

@@ -12,7 +12,12 @@ type DigestResponse = {
   refreshing?: boolean;
 };
 
-export function HomeNewsDigestPanel() {
+type HomeNewsDigestPanelProps = {
+  compact?: boolean;
+  className?: string;
+};
+
+export function HomeNewsDigestPanel({ compact = false, className = "" }: HomeNewsDigestPanelProps) {
   const [data, setData] = useState<DigestResponse | null>(null);
 
   useEffect(() => {
@@ -34,6 +39,83 @@ export function HomeNewsDigestPanel() {
   const showSkeleton = data === null;
   const hasItems = items.length > 0;
   const loopItems = hasItems ? [...items, ...items] : [];
+
+  if (compact) {
+    return (
+      <aside
+        id="news-digest"
+        className={`rounded-3xl border border-outline-variant/20 bg-surface-container-low p-4 shadow-sm ${className}`}
+      >
+        <div className="mb-4 border-b border-outline-variant/20 pb-4">
+          <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">AI-дайджест</span>
+          <h2 className="mt-2 text-xl font-bold tracking-tight text-on-surface">Лента новостей</h2>
+        </div>
+        <div className="news-kaleidoscope relative h-[28rem] overflow-hidden rounded-2xl lg:h-[calc(100vh-12rem)]">
+          <div className="news-kaleidoscope-track flex flex-col gap-3">
+            {showSkeleton
+              ? [0, 1, 2, 3].map((i) => (
+                  <div
+                    key={i}
+                    className="flex flex-col overflow-hidden rounded-2xl border border-outline-variant/20 bg-surface-container-lowest"
+                  >
+                    <div className="aspect-[3/2] animate-pulse bg-surface-container-high" />
+                    <div className="space-y-3 p-4">
+                      <div className="h-3 w-20 animate-pulse rounded bg-surface-container-high" />
+                      <div className="h-4 w-full animate-pulse rounded bg-surface-container-high" />
+                    </div>
+                  </div>
+                ))
+              : null}
+            {!showSkeleton && hasItems
+              ? loopItems.map((item, idx) => (
+                  <a
+                    key={`${item.url}-${idx}`}
+                    href={item.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group flex flex-col overflow-hidden rounded-2xl border border-outline-variant/20 bg-surface-container-lowest transition hover:border-primary/35"
+                  >
+                    <div className="relative aspect-[3/2] w-full overflow-hidden bg-surface-container-high">
+                      {item.image ? (
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          sizes="320px"
+                          className="object-cover object-center transition duration-500 group-hover:scale-[1.04]"
+                          unoptimized
+                        />
+                      ) : (
+                        <div className="grid h-full w-full place-items-center text-xs font-bold uppercase tracking-widest text-on-surface-variant">
+                          Kinetic AI
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex min-h-0 flex-1 flex-col p-3">
+                      <span className="inline-flex w-fit rounded-full bg-primary/12 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-primary">
+                        {NEWS_CATEGORY_LABEL[item.category]}
+                      </span>
+                      <h3 className="mt-2 line-clamp-2 text-sm font-bold leading-snug text-on-surface">{item.title}</h3>
+                    </div>
+                  </a>
+                ))
+              : null}
+            {!showSkeleton && !hasItems ? (
+              <div className="rounded-2xl border border-dashed border-outline-variant/35 bg-surface-container-low px-5 py-8 text-center">
+                <p className="text-sm text-on-surface-variant">
+                  Лента готовится. Откройте{" "}
+                  <Link href="/news" className="font-semibold text-primary underline-offset-4 hover:underline">
+                    полную страницу
+                  </Link>
+                  .
+                </p>
+              </div>
+            ) : null}
+          </div>
+        </div>
+      </aside>
+    );
+  }
 
   return (
     <section id="news-digest" className="scroll-mt-28 border-y border-outline-variant/15 bg-surface-container-lowest/80 py-16 px-6">
