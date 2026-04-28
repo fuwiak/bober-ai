@@ -274,113 +274,123 @@ const Navbar = () => {
 const Hero = () => (
   <section
     id="top"
-    className="relative mx-auto max-w-7xl scroll-mt-28 px-6 pb-20 pt-28 md:overflow-hidden md:py-32 md:pt-32"
+    className="relative scroll-mt-28 pb-20 pt-28 md:overflow-hidden md:py-32 md:pt-32"
   >
-    <div className="grid items-start gap-8 xl:grid-cols-[320px_minmax(0,1.1fr)_minmax(0,0.95fr)]">
+    <div className="mx-auto flex max-w-[1680px] items-start gap-8 px-4 sm:px-6 xl:gap-10">
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="relative z-20 min-w-0 self-start lg:sticky lg:top-28"
+        className="relative z-20 hidden w-[320px] shrink-0 self-start xl:sticky xl:top-28 xl:block"
       >
         <HomeNewsDigestPanel compact />
       </motion.div>
-      <motion.div 
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
-        className="relative z-20 min-w-0"
-      >
-        <span className="text-primary font-bold uppercase tracking-widest text-xs mb-4 block font-body">{heroPartnerBadge}</span>
-        <div className="mb-8 flex w-full max-w-2xl flex-wrap items-center gap-4 rounded-2xl border border-primary/25 bg-surface-container-low px-5 py-4 shadow-md">
-          <div className="relative h-20 w-[260px] shrink-0 overflow-hidden rounded-lg bg-white p-0.5 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10">
-            <Image
-              alt="Yandex Cloud — бизнес-партнер"
-              src="/yandex/yandex-cloud-business-partner-ru-light.svg"
-              fill
-              sizes="260px"
-              className="object-cover object-center"
-              priority
-            />
-          </div>
-          <div className="h-10 w-px shrink-0 bg-outline-variant/30" />
-          <div className="relative h-16 w-[180px] shrink-0 overflow-hidden rounded-lg bg-white px-3 py-2 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10">
-            <Image
-              alt="Selectel"
-              src="/partners/selectel.png"
-              fill
-              sizes="180px"
-              className="object-contain object-center"
-              priority
-            />
-          </div>
-        </div>
-        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-on-surface mb-6 leading-[1.1]">
-          Масштабируйте <br/><span className="text-gradient">Интеллект.</span>
-        </h1>
-        <p className="text-lg text-tertiary-container max-w-lg mb-10 leading-relaxed font-body">{heroLeadCopy}</p>
-        <div className="flex flex-wrap gap-4">
-          <a className="btn-primary" href="#contact">
-            Начать внедрение
-          </a>
-          <a
-            className="btn-secondary"
-            href="https://t.me/sizovmaksim"
-            target="_blank"
-            rel="noreferrer"
+
+      <div className="min-w-0 flex-1">
+        <div className="grid items-center gap-12 xl:grid-cols-[minmax(0,1.1fr)_minmax(0,0.95fr)]">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="relative z-20 min-w-0"
           >
-            Консультация
-          </a>
-        </div>
-      </motion.div>
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="relative z-0 min-w-0"
-      >
-        <div className="relative aspect-square w-full overflow-hidden rounded-3xl bg-surface-container-low shadow-2xl">
-          <div className="relative flex h-full min-h-0 items-center justify-center p-0">
-            <div className="relative h-full w-full">
-              <Image
-                alt="Mac mini для AI решений"
-                src="/yandex/mac-mini.png"
-                fill
-                sizes="(max-width: 768px) 92vw, 620px"
-                className="object-cover object-center"
-                priority
-              />
+            <span className="mb-4 block font-body text-xs font-bold uppercase tracking-widest text-primary">{heroPartnerBadge}</span>
+            <div className="mb-8 flex w-full max-w-2xl flex-wrap items-center gap-4 rounded-2xl border border-primary/25 bg-surface-container-low px-5 py-4 shadow-md">
+              <div className="relative h-20 w-[260px] shrink-0 overflow-hidden rounded-lg bg-white p-0.5 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10">
+                <Image
+                  alt="Yandex Cloud — бизнес-партнер"
+                  src="/yandex/yandex-cloud-business-partner-ru-light.svg"
+                  fill
+                  sizes="260px"
+                  className="object-cover object-center"
+                  priority
+                />
+              </div>
+              <div className="h-10 w-px shrink-0 bg-outline-variant/30" />
+              <div className="relative h-16 w-[180px] shrink-0 overflow-hidden rounded-lg bg-white px-3 py-2 ring-1 ring-black/5 dark:bg-zinc-900 dark:ring-white/10">
+                <Image
+                  alt="Selectel"
+                  src="/partners/selectel.png"
+                  fill
+                  sizes="180px"
+                  className="object-contain object-center"
+                  priority
+                />
+              </div>
             </div>
+            <h1 className="mb-6 text-5xl font-extrabold leading-[1.1] tracking-tight text-on-surface md:text-7xl">
+              Масштабируйте <br/><span className="text-gradient">Интеллект.</span>
+            </h1>
+            <p className="mb-10 max-w-lg font-body text-lg leading-relaxed text-tertiary-container">{heroLeadCopy}</p>
+            <div className="flex flex-wrap gap-4">
+              <a className="btn-primary" href="#contact">
+                Начать внедрение
+              </a>
+              <a
+                className="btn-secondary"
+                href="https://t.me/sizovmaksim"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Консультация
+              </a>
+            </div>
+          </motion.div>
 
-            <motion.div
-              className="absolute left-4 top-7 rounded-2xl border border-outline-variant/30 bg-surface-container-lowest/90 px-4 py-3 shadow-lg backdrop-blur"
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <span className="block text-xs font-semibold uppercase tracking-widest text-primary">Локальный AI</span>
-              <span className="block text-sm font-bold text-on-surface">AI-ассистент на Mac mini</span>
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative z-0 min-w-0"
+          >
+            <div className="relative aspect-square w-full overflow-hidden rounded-3xl bg-surface-container-low shadow-2xl">
+              <div className="relative flex h-full min-h-0 items-center justify-center p-0">
+                <div className="relative h-full w-full">
+                  <Image
+                    alt="Mac mini для AI решений"
+                    src="/yandex/mac-mini.png"
+                    fill
+                    sizes="(max-width: 768px) 92vw, 620px"
+                    className="object-cover object-center"
+                    priority
+                  />
+                </div>
 
-            <motion.div
-              className="absolute right-4 top-1/2 rounded-2xl border border-outline-variant/30 bg-surface-container-lowest/90 px-4 py-3 shadow-lg backdrop-blur"
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-            >
-              <span className="block text-xs font-semibold uppercase tracking-widest text-primary">OpenClaw</span>
-              <span className="block text-sm font-bold text-on-surface">OpenClaw на Mac mini</span>
-            </motion.div>
+                <motion.div
+                  className="absolute left-4 top-7 rounded-2xl border border-outline-variant/30 bg-surface-container-lowest/90 px-4 py-3 shadow-lg backdrop-blur"
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <span className="block text-xs font-semibold uppercase tracking-widest text-primary">Локальный AI</span>
+                  <span className="block text-sm font-bold text-on-surface">AI-ассистент на Mac mini</span>
+                </motion.div>
 
-            <motion.div
-              className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-2xl border border-outline-variant/30 bg-surface-container-lowest/90 px-4 py-3 shadow-lg backdrop-blur"
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            >
-              <span className="block text-xs font-semibold uppercase tracking-widest text-primary">Claude</span>
-              <span className="block text-sm font-bold text-on-surface">Интеграция и автоматизация Claude на Mac</span>
-            </motion.div>
-          </div>
+                <motion.div
+                  className="absolute right-4 top-1/2 rounded-2xl border border-outline-variant/30 bg-surface-container-lowest/90 px-4 py-3 shadow-lg backdrop-blur"
+                  animate={{ y: [0, 10, 0] }}
+                  transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                >
+                  <span className="block text-xs font-semibold uppercase tracking-widest text-primary">OpenClaw</span>
+                  <span className="block text-sm font-bold text-on-surface">OpenClaw на Mac mini</span>
+                </motion.div>
+
+                <motion.div
+                  className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-2xl border border-outline-variant/30 bg-surface-container-lowest/90 px-4 py-3 shadow-lg backdrop-blur"
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                >
+                  <span className="block text-xs font-semibold uppercase tracking-widest text-primary">Claude</span>
+                  <span className="block text-sm font-bold text-on-surface">Интеграция и автоматизация Claude на Mac</span>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
         </div>
-      </motion.div>
+
+        <div className="mt-8 xl:hidden">
+          <HomeNewsDigestPanel compact />
+        </div>
+      </div>
     </div>
   </section>
 );
