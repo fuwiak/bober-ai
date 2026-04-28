@@ -1788,6 +1788,9 @@ const MediaHub = () => {
 };
 
 const CONTACT_EMAIL = "hello@kinetic-ai.ru";
+const CONTACT_PHONE = "+79269901666";
+const TELEGRAM_URL = "https://t.me/sizovmaksim";
+const YOUTUBE_SHORTS_URL = "https://www.youtube.com/shorts/5DQzO5aPS5A";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -1848,7 +1851,7 @@ const Contact = () => {
             <div className="flex items-center gap-4">
               <PhoneCall className="text-secondary-container w-5 h-5 shrink-0" />
               <a
-                href="tel:+79269901666"
+                href={`tel:${CONTACT_PHONE}`}
                 className="text-white underline-offset-4 transition-colors hover:text-secondary-container hover:underline"
               >
                 +7 926 990 1666
@@ -2165,6 +2168,22 @@ const Footer = () => (
           {" · "}
           ИНН&nbsp;772356334324, ОГРНИП&nbsp;325774600389226
         </p>
+        <p>
+          Базовые тарифы: от <span className="font-semibold text-on-surface">20 000 ₽/мес</span>. Разовые AI-сценарии -
+          от <span className="font-semibold text-on-surface">50 000 ₽</span>.
+        </p>
+        <p className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span>Связь и соцсети:</span>
+          <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="underline-offset-4 hover:text-primary hover:underline">
+            Telegram
+          </a>
+          <a href={YOUTUBE_SHORTS_URL} target="_blank" rel="noreferrer" className="underline-offset-4 hover:text-primary hover:underline">
+            YouTube Shorts
+          </a>
+          <a href={`mailto:${CONTACT_EMAIL}`} className="underline-offset-4 hover:text-primary hover:underline">
+            Email
+          </a>
+        </p>
         <p className="text-[11px] uppercase tracking-widest text-on-surface-variant/90">
           © {new Date().getFullYear()} Kinetic AI.{" "}
           {SHOW_VK_CLOUD_MENTIONS
@@ -2174,6 +2193,39 @@ const Footer = () => (
       </div>
     </div>
   </footer>
+);
+
+const TrustSignals = () => (
+  <section className="mx-auto max-w-7xl px-6 pb-12">
+    <div className="grid gap-4 md:grid-cols-3">
+      <article className="rounded-2xl border border-outline-variant/20 bg-surface-container-low p-5">
+        <p className="text-[11px] font-bold uppercase tracking-widest text-primary">Реквизиты</p>
+        <p className="mt-2 text-sm text-on-surface">
+          ИП Стасиньски Павел Кшиштоф
+        </p>
+        <p className="mt-1 text-xs text-on-surface-variant">ИНН 772356334324 · ОГРНИП 325774600389226</p>
+      </article>
+      <article className="rounded-2xl border border-outline-variant/20 bg-surface-container-low p-5">
+        <p className="text-[11px] font-bold uppercase tracking-widest text-primary">Прозрачная цена</p>
+        <p className="mt-2 text-sm text-on-surface">Тарифы поддержки: от 20 000 ₽/мес</p>
+        <p className="mt-1 text-xs text-on-surface-variant">Разработка AI-сценариев и интеграций: от 50 000 ₽</p>
+      </article>
+      <article className="rounded-2xl border border-outline-variant/20 bg-surface-container-low p-5">
+        <p className="text-[11px] font-bold uppercase tracking-widest text-primary">Связь и соцсети</p>
+        <div className="mt-2 flex flex-wrap gap-3 text-sm">
+          <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="underline-offset-4 hover:text-primary hover:underline">
+            Telegram
+          </a>
+          <a href={YOUTUBE_SHORTS_URL} target="_blank" rel="noreferrer" className="underline-offset-4 hover:text-primary hover:underline">
+            YouTube Shorts
+          </a>
+          <a href={`tel:${CONTACT_PHONE}`} className="underline-offset-4 hover:text-primary hover:underline">
+            Телефон
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
 );
 
 function scrollToTopHard() {
@@ -2216,6 +2268,7 @@ export default function App() {
         <Cases />
         <MediaHub />
         <Contact />
+        <TrustSignals />
       </main>
       <Footer />
       <QuickContactCTA />
