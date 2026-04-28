@@ -48,6 +48,7 @@ const ExternalLinkGlyph = ({ className }: { className?: string }) => (
   </svg>
 );
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { HomeNewsDigestPanel } from "@/components/HomeNewsDigestPanel";
 import { SHOW_VK_CLOUD_MENTIONS } from "@/config/featureFlags";
 
 const navLinkClass =
@@ -2190,6 +2191,7 @@ export default function App() {
       <Navbar />
       <main className="pt-24 pb-[max(5.5rem,calc(4rem+env(safe-area-inset-bottom,0px)+1rem))] md:pb-0">
         <Hero />
+        <HomeNewsDigestPanel />
         <Services />
         <Process />
         <Pricing />
