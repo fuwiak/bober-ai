@@ -1,4 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { absoluteUrl } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Мероприятия",
+  description: "Подборка актуальных AI-мероприятий и событий от технологических партнеров Kinetic AI.",
+  alternates: {
+    canonical: absoluteUrl("/events"),
+  },
+};
 
 const events = [
   {

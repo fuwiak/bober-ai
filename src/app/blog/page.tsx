@@ -1,4 +1,6 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { absoluteUrl } from "@/lib/site";
 
 const mediumPlaceholders = [
   "Последний пост из Medium появится здесь",
@@ -14,6 +16,15 @@ const habrPlaceholders = [
 
 const MEDIUM_URL = "https://medium.com/@stasinskipawel";
 const HABR_URL = "https://habr.com/ru/users/fuwiak/articles/";
+
+export const metadata: Metadata = {
+  title: "Блог Kinetic AI",
+  description:
+    "Публикации Kinetic AI о внедрении AI, облачных LLM, приватных моделях, DevOps и автоматизации.",
+  alternates: {
+    canonical: absoluteUrl("/blog"),
+  },
+};
 
 export default function BlogPage() {
   return (

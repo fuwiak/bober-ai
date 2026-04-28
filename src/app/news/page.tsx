@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -10,9 +11,18 @@ import {
   peekCachedDigest,
 } from "@/lib/news-scheduler";
 import NewsAutoRefresh from "./NewsAutoRefresh";
+import { SITE_NAME, absoluteUrl } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+export const metadata: Metadata = {
+  title: "ИИ подборка новостей",
+  description:
+    "Автоматически обновляемая подборка новостей по темам Yandex Cloud, Selectel, Россия и Мир от Kinetic AI.",
+  alternates: {
+    canonical: absoluteUrl("/news"),
+  },
+};
 
 const FALLBACK_PLACEHOLDERS = [
   { tag: "LLM", title: "Новости по LLM и корпоративному ИИ" },
@@ -139,9 +149,37 @@ export default async function NewsPage() {
 
   const grouped = groupItems(items);
   const hasData = items.length > 0;
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: SITE_NAME, item: absoluteUrl("/") },
+      { "@type": "ListItem", position: 2, name: "ИИ подборка новостей", item: absoluteUrl("/news") },
+    ],
+  };
+  const pageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "ИИ подборка новостей",
+    url: absoluteUrl("/news"),
+    isPartOf: {
+      "@type": "WebSite",
+      name: SITE_NAME,
+      url: absoluteUrl("/"),
+    },
+    about: ["Yandex Cloud", "Selectel", "Искусственный интеллект", "Россия", "Мир"],
+  };
 
   return (
     <main className="min-h-screen bg-background px-6 py-16 md:py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageJsonLd) }}
+      />
       <div className="mx-auto max-w-5xl">
         <div className="mb-12 flex flex-wrap items-center justify-between gap-4">
           <div>

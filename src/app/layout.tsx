@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
 
 const manrope = Manrope({
   subsets: ["latin", "cyrillic"],
@@ -16,13 +17,57 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Kinetic AI — облако и корпоративный ИИ",
-  description:
-    "Официальный партнёр Yandex Cloud: AI-инфраструктура, миграция в облако, безопасность и DevOps.",
+  metadataBase: new URL(SITE_URL),
+  applicationName: SITE_NAME,
+  title: {
+    default: "Kinetic AI — облако и корпоративный ИИ",
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: absoluteUrl("/"),
+  },
   icons: {
-    icon: "/yandex/mac-mini.png",
-    shortcut: "/yandex/mac-mini.png",
-    apple: "/yandex/mac-mini.png",
+    icon: [
+      { url: "/favicon.png", type: "image/png", sizes: "512x512" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    shortcut: "/favicon.png",
+    apple: "/apple-icon.png",
+  },
+  manifest: "/manifest.webmanifest",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "ru_RU",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: "Kinetic AI — облако и корпоративный ИИ",
+    description: SITE_DESCRIPTION,
+    images: [
+      {
+        url: absoluteUrl("/favicon.png"),
+        width: 512,
+        height: 512,
+        alt: `${SITE_NAME} favicon`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "Kinetic AI — облако и корпоративный ИИ",
+    description: SITE_DESCRIPTION,
+    images: [absoluteUrl("/favicon.png")],
   },
 };
 

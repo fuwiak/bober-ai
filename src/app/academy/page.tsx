@@ -1,8 +1,61 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { ORGANIZATION_NAME, SITE_NAME, absoluteUrl } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Академия Yandex",
+  description:
+    "Обучающий раздел Kinetic AI с практическими материалами по внедрению ИИ, автоматизации процессов и облачной инфраструктуре.",
+  alternates: {
+    canonical: absoluteUrl("/academy"),
+  },
+};
 
 export default function AcademyPage() {
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: SITE_NAME, item: absoluteUrl("/") },
+      { "@type": "ListItem", position: 2, name: "Академия Yandex", item: absoluteUrl("/academy") },
+    ],
+  };
+
+  const educationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    name: `${SITE_NAME} Academy`,
+    parentOrganization: {
+      "@type": "Organization",
+      name: ORGANIZATION_NAME,
+    },
+    url: absoluteUrl("/academy"),
+    description:
+      "Практические видео и обучающие материалы по внедрению ИИ, автоматизации процессов и облачной инфраструктуре.",
+    hasCourse: [
+      {
+        "@type": "Course",
+        name: "Практика внедрения ИИ",
+        description: "Видео-разборы внедрения ИИ, автоматизации и реальных бизнес-кейсов.",
+        provider: {
+          "@type": "Organization",
+          name: SITE_NAME,
+          sameAs: absoluteUrl("/"),
+        },
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-background px-6 py-16 md:py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(educationJsonLd) }}
+      />
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 flex flex-wrap items-center justify-between gap-4">
           <div>

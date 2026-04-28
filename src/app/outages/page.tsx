@@ -1,8 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { fetchOutageFeed } from "@/lib/outages-feed";
+import { absoluteUrl } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 300;
+export const metadata: Metadata = {
+  title: "Аварии Yandex Cloud",
+  description: "Лента оповещений о проблемах с доступностью и восстановлении сервисов Yandex Cloud.",
+  alternates: {
+    canonical: absoluteUrl("/outages"),
+  },
+};
 
 function formatDate(iso?: string): string {
   if (!iso) return "";

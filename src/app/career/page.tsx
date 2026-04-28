@@ -1,4 +1,6 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { absoluteUrl } from "@/lib/site";
 
 const careerPerks = [
   {
@@ -22,6 +24,15 @@ const careerPerks = [
       "Презентации, кейсы, прайс-листы и шаблоны КП под разные отрасли. Можно стартовать сразу без долгой упаковки.",
   },
 ];
+
+export const metadata: Metadata = {
+  title: "Карьера",
+  description:
+    "Kinetic AI ищет селлеров AI-решений: облачные LLM, корпоративные чат-боты, AI-инфраструктура и автоматизация для B2B.",
+  alternates: {
+    canonical: absoluteUrl("/career"),
+  },
+};
 
 export default function CareerPage() {
   return (
