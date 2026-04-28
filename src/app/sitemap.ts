@@ -3,6 +3,10 @@ import { SITE_URL } from "@/lib/site";
 
 const routes = [
   "",
+  "/services",
+  "/services/ai-architect",
+  "/services/cloud-engineer",
+  "/services/voice-ai-engineer",
   "/news",
   "/events",
   "/blog",
