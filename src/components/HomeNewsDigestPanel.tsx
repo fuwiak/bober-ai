@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowLeftToLine, ArrowRight, ArrowRightToLine } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NEWS_CATEGORY_LABEL, type NewsItem } from "@/lib/news-agent";
 
@@ -19,6 +19,7 @@ type HomeNewsDigestPanelProps = {
 
 export function HomeNewsDigestPanel({ compact = false, className = "" }: HomeNewsDigestPanelProps) {
   const [data, setData] = useState<DigestResponse | null>(null);
+  const [isExpanded, setIsExpanded] = useState(true);
 
   useEffect(() => {
     let cancelled = false;
@@ -42,92 +43,124 @@ export function HomeNewsDigestPanel({ compact = false, className = "" }: HomeNew
 
   if (compact) {
     return (
-      <aside
+      <div
         id="news-digest"
-        className={`rounded-3xl border border-outline-variant/20 bg-surface-container-low p-4 shadow-sm ${className}`}
+        className={`relative xl:w-[248px] xl:transition-[width] xl:duration-300 ${isExpanded ? "xl:w-[248px]" : "xl:w-[44px]"} ${className}`}
       >
-        <div className="mb-4 border-b border-outline-variant/20 pb-4">
-          <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">AI-дайджест</span>
-          <h2 className="mt-2 text-xl font-bold tracking-tight text-on-surface">Лента новостей</h2>
-          <p className="mt-2 text-sm leading-relaxed text-on-surface-variant">
-            ИИ агент Kinetic AI делает подбор новостей по темам Yandex Cloud, Selectel, Россия и Мир.
-          </p>
-          <div className="mt-3 flex flex-wrap gap-2">
-            <span className="inline-flex rounded-full bg-primary/12 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-primary">
-              Yandex Cloud · Selectel
-            </span>
-            <span className="inline-flex rounded-full bg-primary/12 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-primary">
-              Россия
-            </span>
-            <span className="inline-flex rounded-full bg-primary/12 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-primary">
-              Мир
-            </span>
+        <button
+          type="button"
+          aria-label={isExpanded ? "Скрыть AI-дайджест" : "Показать AI-дайджест"}
+          aria-expanded={isExpanded}
+          onClick={() => setIsExpanded((value) => !value)}
+          className="absolute -right-4 top-5 z-30 hidden h-9 w-9 items-center justify-center rounded-full border border-outline-variant/25 bg-surface-container-lowest text-on-surface shadow-sm transition hover:border-primary/35 hover:text-primary xl:flex"
+        >
+          {isExpanded ? <ArrowLeftToLine className="h-4 w-4" aria-hidden /> : <ArrowRightToLine className="h-4 w-4" aria-hidden />}
+        </button>
+
+        <aside
+          className={`overflow-hidden rounded-3xl border border-outline-variant/20 bg-surface-container-low p-3 shadow-sm transition-transform duration-300 xl:w-[248px] ${isExpanded ? "xl:translate-x-0" : "xl:-translate-x-[204px]"}`}
+        >
+          <div className="mb-4 border-b border-outline-variant/20 pb-4">
+            <span className="text-primary font-bold uppercase tracking-widest text-[11px] font-body">AI-дайджест</span>
+            <h2 className="mt-1 text-lg font-bold tracking-tight text-on-surface">Лента новостей</h2>
+            <p className="mt-2 text-xs leading-relaxed text-on-surface-variant">
+              ИИ агент Kinetic AI делает подбор новостей по темам Yandex Cloud, Selectel, Россия и Мир.
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <span className="inline-flex rounded-full bg-primary/12 px-2 py-1 text-[9px] font-bold uppercase tracking-widest text-primary">
+                Yandex Cloud · Selectel
+              </span>
+              <span className="inline-flex rounded-full bg-primary/12 px-2 py-1 text-[9px] font-bold uppercase tracking-widest text-primary">
+                Россия
+              </span>
+              <span className="inline-flex rounded-full bg-primary/12 px-2 py-1 text-[9px] font-bold uppercase tracking-widest text-primary">
+                Мир
+              </span>
+            </div>
           </div>
-        </div>
-        <div className="news-kaleidoscope relative h-[28rem] overflow-hidden rounded-2xl lg:h-[calc(100vh-12rem)]">
-          <div className="news-kaleidoscope-track flex flex-col gap-3">
-            {showSkeleton
-              ? [0, 1, 2, 3].map((i) => (
-                  <div
-                    key={i}
-                    className="flex flex-col overflow-hidden rounded-2xl border border-outline-variant/20 bg-surface-container-lowest"
-                  >
-                    <div className="aspect-[3/2] animate-pulse bg-surface-container-high" />
-                    <div className="space-y-3 p-4">
-                      <div className="h-3 w-20 animate-pulse rounded bg-surface-container-high" />
-                      <div className="h-4 w-full animate-pulse rounded bg-surface-container-high" />
+
+          <a
+            href="https://selectel.ru/services/cloud/vpc/?ref_code=a9a9119ad2"
+            target="_blank"
+            rel="noreferrer nofollow sponsored"
+            aria-label="Реферальная ссылка на облачную платформу Selectel"
+            className="group mb-4 block overflow-hidden rounded-2xl border border-outline-variant/20 bg-surface-container-lowest transition hover:border-primary/35 hover:shadow-lg"
+          >
+            <img
+              src="https://static.selectel.ru/referral_2/vpc/yandex/240x400_0+.png"
+              alt="Облачная платформа"
+              width="240"
+              height="400"
+              loading="lazy"
+              className="h-auto w-full transition duration-300 group-hover:scale-[1.02]"
+            />
+          </a>
+
+          <div className="news-kaleidoscope relative h-[24rem] overflow-hidden rounded-2xl lg:h-[calc(100vh-27rem)]">
+            <div className="news-kaleidoscope-track flex flex-col gap-3">
+              {showSkeleton
+                ? [0, 1, 2, 3].map((i) => (
+                    <div
+                      key={i}
+                      className="flex flex-col overflow-hidden rounded-2xl border border-outline-variant/20 bg-surface-container-lowest"
+                    >
+                      <div className="aspect-[3/2] animate-pulse bg-surface-container-high" />
+                      <div className="space-y-3 p-3">
+                        <div className="h-3 w-20 animate-pulse rounded bg-surface-container-high" />
+                        <div className="h-4 w-full animate-pulse rounded bg-surface-container-high" />
+                      </div>
                     </div>
-                  </div>
-                ))
-              : null}
-            {!showSkeleton && hasItems
-              ? loopItems.map((item, idx) => (
-                  <a
-                    key={`${item.url}-${idx}`}
-                    href={item.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="group flex flex-col overflow-hidden rounded-2xl border border-outline-variant/20 bg-surface-container-lowest transition hover:border-primary/35"
-                  >
-                    <div className="relative aspect-[3/2] w-full overflow-hidden bg-surface-container-high">
-                      {item.image ? (
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          fill
-                          sizes="320px"
-                          className="object-cover object-center transition duration-500 group-hover:scale-[1.04]"
-                          unoptimized
-                        />
-                      ) : (
-                        <div className="grid h-full w-full place-items-center text-xs font-bold uppercase tracking-widest text-on-surface-variant">
-                          Kinetic AI
-                        </div>
-                      )}
-                    </div>
-                    <div className="flex min-h-0 flex-1 flex-col p-3">
-                      <span className="inline-flex w-fit rounded-full bg-primary/12 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-primary">
-                        {NEWS_CATEGORY_LABEL[item.category]}
-                      </span>
-                      <h3 className="mt-2 line-clamp-2 text-sm font-bold leading-snug text-on-surface">{item.title}</h3>
-                    </div>
-                  </a>
-                ))
-              : null}
-            {!showSkeleton && !hasItems ? (
-              <div className="rounded-2xl border border-dashed border-outline-variant/35 bg-surface-container-low px-5 py-8 text-center">
-                <p className="text-sm text-on-surface-variant">
-                  Лента готовится. Откройте{" "}
-                  <Link href="/news" className="font-semibold text-primary underline-offset-4 hover:underline">
-                    полную страницу
-                  </Link>
-                  .
-                </p>
-              </div>
-            ) : null}
+                  ))
+                : null}
+              {!showSkeleton && hasItems
+                ? loopItems.map((item, idx) => (
+                    <a
+                      key={`${item.url}-${idx}`}
+                      href={item.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group flex flex-col overflow-hidden rounded-2xl border border-outline-variant/20 bg-surface-container-lowest transition hover:border-primary/35"
+                    >
+                      <div className="relative aspect-[3/2] w-full overflow-hidden bg-surface-container-high">
+                        {item.image ? (
+                          <Image
+                            src={item.image}
+                            alt={item.title}
+                            fill
+                            sizes="248px"
+                            className="object-cover object-center transition duration-500 group-hover:scale-[1.04]"
+                            unoptimized
+                          />
+                        ) : (
+                          <div className="grid h-full w-full place-items-center text-xs font-bold uppercase tracking-widest text-on-surface-variant">
+                            Kinetic AI
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex min-h-0 flex-1 flex-col p-3">
+                        <span className="inline-flex w-fit rounded-full bg-primary/12 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-primary">
+                          {NEWS_CATEGORY_LABEL[item.category]}
+                        </span>
+                        <h3 className="mt-2 line-clamp-2 text-xs font-bold leading-snug text-on-surface">{item.title}</h3>
+                      </div>
+                    </a>
+                  ))
+                : null}
+              {!showSkeleton && !hasItems ? (
+                <div className="rounded-2xl border border-dashed border-outline-variant/35 bg-surface-container-low px-4 py-6 text-center">
+                  <p className="text-xs text-on-surface-variant">
+                    Лента готовится. Откройте{" "}
+                    <Link href="/news" className="font-semibold text-primary underline-offset-4 hover:underline">
+                      полную страницу
+                    </Link>
+                    .
+                  </p>
+                </div>
+              ) : null}
+            </div>
           </div>
-        </div>
-      </aside>
+        </aside>
+      </div>
     );
   }
 

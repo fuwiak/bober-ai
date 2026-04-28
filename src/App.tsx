@@ -281,7 +281,7 @@ const Hero = () => (
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="relative z-20 hidden w-[320px] shrink-0 self-start xl:sticky xl:top-28 xl:block"
+        className="relative z-20 hidden w-[248px] shrink-0 self-start xl:-ml-12 xl:block xl:sticky xl:top-28"
       >
         <HomeNewsDigestPanel compact />
       </motion.div>
@@ -333,24 +333,6 @@ const Hero = () => (
                 rel="noreferrer"
               >
                 Консультация
-              </a>
-            </div>
-            <div className="mt-8 max-w-[240px]">
-              <a
-                href="https://selectel.ru/services/cloud/vpc/?ref_code=a9a9119ad2"
-                target="_blank"
-                rel="noreferrer nofollow sponsored"
-                aria-label="Реферальная ссылка на облачную платформу Selectel"
-                className="group block overflow-hidden rounded-2xl border border-outline-variant/20 bg-surface-container-low shadow-sm transition hover:shadow-lg"
-              >
-                <img
-                  src="https://static.selectel.ru/referral_2/vpc/yandex/240x400_0+.png"
-                  alt="Облачная платформа"
-                  width="240"
-                  height="400"
-                  loading="lazy"
-                  className="h-auto w-full max-w-[240px] transition duration-300 group-hover:scale-[1.02]"
-                />
               </a>
             </div>
           </motion.div>
