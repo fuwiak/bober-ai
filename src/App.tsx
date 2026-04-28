@@ -335,6 +335,24 @@ const Hero = () => (
                 Консультация
               </a>
             </div>
+            <div className="mt-8 max-w-[240px]">
+              <a
+                href="https://selectel.ru/services/cloud/vpc/?ref_code=a9a9119ad2"
+                target="_blank"
+                rel="noreferrer nofollow sponsored"
+                aria-label="Реферальная ссылка на облачную платформу Selectel"
+                className="group block overflow-hidden rounded-2xl border border-outline-variant/20 bg-surface-container-low shadow-sm transition hover:shadow-lg"
+              >
+                <img
+                  src="https://static.selectel.ru/referral_2/vpc/yandex/240x400_0+.png"
+                  alt="Облачная платформа"
+                  width="240"
+                  height="400"
+                  loading="lazy"
+                  className="h-auto w-full max-w-[240px] transition duration-300 group-hover:scale-[1.02]"
+                />
+              </a>
+            </div>
           </motion.div>
 
           <motion.div

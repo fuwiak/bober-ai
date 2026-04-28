@@ -49,6 +49,20 @@ export function HomeNewsDigestPanel({ compact = false, className = "" }: HomeNew
         <div className="mb-4 border-b border-outline-variant/20 pb-4">
           <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">AI-дайджест</span>
           <h2 className="mt-2 text-xl font-bold tracking-tight text-on-surface">Лента новостей</h2>
+          <p className="mt-2 text-sm leading-relaxed text-on-surface-variant">
+            ИИ агент Kinetic AI делает подбор новостей по темам Yandex Cloud, Selectel, Россия и Мир.
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <span className="inline-flex rounded-full bg-primary/12 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-primary">
+              Yandex Cloud · Selectel
+            </span>
+            <span className="inline-flex rounded-full bg-primary/12 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-primary">
+              Россия
+            </span>
+            <span className="inline-flex rounded-full bg-primary/12 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-primary">
+              Мир
+            </span>
+          </div>
         </div>
         <div className="news-kaleidoscope relative h-[28rem] overflow-hidden rounded-2xl lg:h-[calc(100vh-12rem)]">
           <div className="news-kaleidoscope-track flex flex-col gap-3">
