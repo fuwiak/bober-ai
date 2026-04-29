@@ -21,7 +21,7 @@ export type ServiceFeedOffer = {
 };
 
 export const SERVICE_SET_ID = "kinetic-services";
-export const SERVICE_CATEGORY_ID = 18;
+const FEED_SITE_URL = "https://www.kinetic-ai.ru";
 
 export const serviceFeedOffers: ServiceFeedOffer[] = [
   {
@@ -90,11 +90,11 @@ export const serviceFeedOffers: ServiceFeedOffer[] = [
 ];
 
 export function getServiceSetUrl() {
-  return absoluteUrl("/services");
+  return `${FEED_SITE_URL}/services`;
 }
 
 export function getServiceOfferUrl(slug: string) {
-  return absoluteUrl(`/services/${slug}`);
+  return `${FEED_SITE_URL}/services/${slug}`;
 }
 
 export function getServiceFeedXml(now = new Date()) {
@@ -115,17 +115,18 @@ export function getServiceFeedXml(now = new Date()) {
       <url>${escapeXml(url)}</url>
       <price from="true">${offer.price}</price>
       <currencyId>RUR</currencyId>
-      <categoryId>${SERVICE_CATEGORY_ID}</categoryId>
       <set-ids>${SERVICE_SET_ID}</set-ids>
       <picture>${escapeXml(offer.picture)}</picture>
       <description>${escapeXml(offer.title)}</description>
+      <param name="план">базовый</param>
+      <param name="продолжительность">30 дней</param>
       <param name="Рейтинг">${offer.rating}</param>
       <param name="Число отзывов">${offer.reviews}</param>
       <param name="Годы опыта">${offer.yearsExperience}</param>
       <param name="Регион">Россия</param>
       <param name="Конверсия">${offer.conversion}</param>
       <param name="Ссылка на чат">${escapeXml(TELEGRAM_URL)}</param>
-      <param name="Ссылка на создание заказа">${escapeXml(absoluteUrl("/#contact"))}</param>
+      <param name="Ссылка на создание заказа">${escapeXml(`${FEED_SITE_URL}/#contact`)}</param>
       <param name="Ссылка на профиль исполнителя">${escapeXml(url)}</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -134,7 +135,7 @@ export function getServiceFeedXml(now = new Date()) {
       <param name="Выполняется по адресу заказчика">${offer.atCustomerAddress ? "true" : "false"}</param>
       <param name="Об исполнителе">${escapeXml(offer.about)}</param>
       <param name="Другая услуга исполнителя - 1">${escapeXml(offer.description)}</param>
-      <param name="Сайт работодателя">${escapeXml(SITE_URL)}</param>
+      <param name="Сайт работодателя">${escapeXml(FEED_SITE_URL)}</param>
       <sales_notes>${escapeXml(offer.salesNotes)}</sales_notes>
     </offer>`;
     })
@@ -145,17 +146,13 @@ export function getServiceFeedXml(now = new Date()) {
   <shop>
     <name>${escapeXml(SITE_NAME)}</name>
     <company>${escapeXml(SITE_NAME)}</company>
-    <url>${escapeXml(SITE_URL)}</url>
+    <url>${escapeXml(FEED_SITE_URL)}</url>
     <email>${escapeXml(CONTACT_EMAIL)}</email>
-    <picture>${escapeXml(absoluteUrl("/favicon.png"))}</picture>
+    <picture>${escapeXml(`${FEED_SITE_URL}/favicon.png`)}</picture>
     <description>${escapeXml("AI-инфраструктура, корпоративный ИИ, voice AI и облачные решения для бизнеса.")}</description>
     <currencies>
       <currency id="RUR" rate="1"/>
     </currencies>
-    <categories>
-      <category id="1">Исполнитель</category>
-      <category id="${SERVICE_CATEGORY_ID}" parentId="1">Компьютеры и IT</category>
-    </categories>
     <sets>
       <set id="${SERVICE_SET_ID}">
         <name>AI-услуги Kinetic AI</name>
