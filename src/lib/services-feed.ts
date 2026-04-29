@@ -20,7 +20,6 @@ export type ServiceFeedOffer = {
   atCustomerAddress: boolean;
 };
 
-export const SERVICE_SET_ID = "kinetic-services";
 const FEED_SITE_URL = "https://www.kinetic-ai.ru";
 
 export const serviceFeedOffers: ServiceFeedOffer[] = [
@@ -89,10 +88,6 @@ export const serviceFeedOffers: ServiceFeedOffer[] = [
   },
 ];
 
-export function getServiceSetUrl() {
-  return `${FEED_SITE_URL}/services`;
-}
-
 export function getServiceOfferUrl(slug: string) {
   return `${FEED_SITE_URL}/services/${slug}`;
 }
@@ -115,11 +110,11 @@ export function getServiceFeedXml(now = new Date()) {
       <url>${escapeXml(url)}</url>
       <price from="true">${offer.price}</price>
       <currencyId>RUR</currencyId>
-      <set-ids>${SERVICE_SET_ID}</set-ids>
       <picture>${escapeXml(offer.picture)}</picture>
       <description>${escapeXml(offer.title)}</description>
       <param name="план">базовый</param>
       <param name="продолжительность">30 дней</param>
+      <param name="Обучение">Обучеени настроек автоматизаиции Claude</param>
       <param name="Рейтинг">${offer.rating}</param>
       <param name="Число отзывов">${offer.reviews}</param>
       <param name="Годы опыта">${offer.yearsExperience}</param>
@@ -153,12 +148,6 @@ export function getServiceFeedXml(now = new Date()) {
     <currencies>
       <currency id="RUR" rate="1"/>
     </currencies>
-    <sets>
-      <set id="${SERVICE_SET_ID}">
-        <name>AI-услуги Kinetic AI</name>
-        <url>${escapeXml(getServiceSetUrl())}</url>
-      </set>
-    </sets>
     <offers>
 ${offers}
     </offers>
