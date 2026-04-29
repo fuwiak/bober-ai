@@ -99,6 +99,20 @@ export default function RootLayout({
             ym(108970326, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
           `}
         </Script>
+        {process.env.NODE_ENV === "development" ? (
+          <Script id="yandex-metrika-debug" strategy="afterInteractive">
+            {`
+              (function() {
+                var hasYm = typeof window.ym === "function";
+                if (hasYm) {
+                  console.info("[YM debug] initialized: 108970326");
+                } else {
+                  console.warn("[YM debug] ym is not available (possible ad blocker or script load issue)");
+                }
+              })();
+            `}
+          </Script>
+        ) : null}
         <noscript>
           <div>
             <img
