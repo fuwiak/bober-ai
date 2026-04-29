@@ -6,8 +6,8 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/:path*",
-        has: [{ type: "host", value: "www.kinetic-ai.ru" }],
-        destination: "https://kinetic-ai.ru/:path*",
+        has: [{ type: "host", value: "kinetic-ai.ru" }],
+        destination: "https://www.kinetic-ai.ru/:path*",
         permanent: true,
       },
     ];
