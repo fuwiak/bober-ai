@@ -1,4 +1,4 @@
-import { CONTACT_EMAIL, SITE_NAME, SITE_URL, TELEGRAM_URL, absoluteUrl } from "@/lib/site";
+import { CONTACT_EMAIL, SITE_NAME, TELEGRAM_URL } from "@/lib/site";
 
 export type ServiceFeedOffer = {
   id: string;
@@ -38,8 +38,8 @@ export const serviceFeedOffers: ServiceFeedOffer[] = [
     rating: 4.9,
     reviews: 12,
     conversion: 95,
-    picture: absoluteUrl("/yandex/ai-lawyer.png"),
-    serviceImage: absoluteUrl("/yandex/ai-lawyer.png"),
+    picture: `${FEED_SITE_URL}/yandex/ai-lawyer.png`,
+    serviceImage: `${FEED_SITE_URL}/yandex/ai-lawyer.png`,
     remote: true,
     atExecutorAddress: false,
     atCustomerAddress: true,
@@ -59,8 +59,8 @@ export const serviceFeedOffers: ServiceFeedOffer[] = [
     rating: 4.8,
     reviews: 9,
     conversion: 90,
-    picture: absoluteUrl("/yandex/mac-mini.png"),
-    serviceImage: absoluteUrl("/yandex/mac-mini.png"),
+    picture: `${FEED_SITE_URL}/yandex/mac-mini.png`,
+    serviceImage: `${FEED_SITE_URL}/yandex/mac-mini.png`,
     remote: true,
     atExecutorAddress: false,
     atCustomerAddress: true,
@@ -80,8 +80,8 @@ export const serviceFeedOffers: ServiceFeedOffer[] = [
     rating: 4.9,
     reviews: 7,
     conversion: 88,
-    picture: absoluteUrl("/yandex/yandex_ai_studio.png"),
-    serviceImage: absoluteUrl("/yandex/yandex_ai_studio.png"),
+    picture: `${FEED_SITE_URL}/yandex/yandex_ai_studio.png`,
+    serviceImage: `${FEED_SITE_URL}/yandex/yandex_ai_studio.png`,
     remote: true,
     atExecutorAddress: false,
     atCustomerAddress: true,
