@@ -97,9 +97,9 @@ export default function RootLayout({
                 m[i].l=1*new Date();
                 for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
                 k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-            })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108970326', 'ym');
+            })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108972710', 'ym');
 
-            ym(108970326, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+            ym(108972710, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
           `}
         </Script>
         {process.env.NODE_ENV === "development" ? (
@@ -108,7 +108,7 @@ export default function RootLayout({
               (function() {
                 var hasYm = typeof window.ym === "function";
                 if (hasYm) {
-                  console.info("[YM debug] initialized: 108970326");
+                  console.info("[YM debug] initialized: 108972710");
                 } else {
                   console.warn("[YM debug] ym is not available (possible ad blocker or script load issue)");
                 }
@@ -119,7 +119,7 @@ export default function RootLayout({
         <noscript>
           <div>
             <img
-              src="https://mc.yandex.ru/watch/108970326"
+              src="https://mc.yandex.ru/watch/108972710"
               style={{ position: "absolute", left: "-9999px" }}
               alt=""
             />
