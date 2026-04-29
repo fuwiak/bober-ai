@@ -41,6 +41,9 @@ export const metadata: Metadata = {
     apple: "/apple-icon.png",
   },
   manifest: "/manifest.webmanifest",
+  verification: {
+    yandex: "53fda44dc6d2443f",
+  },
   robots: {
     index: true,
     follow: true,
