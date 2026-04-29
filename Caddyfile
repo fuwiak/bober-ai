@@ -1,0 +1,12 @@
+{
+	email hello@kinetic-ai.ru
+}
+
+www.kinetic-ai.ru {
+	redir https://kinetic-ai.ru{uri} permanent
+}
+
+kinetic-ai.ru {
+	encode zstd gzip
+	reverse_proxy 127.0.0.1:3000
+}

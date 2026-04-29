@@ -25,10 +25,15 @@ RUN addgroup -S nextjs && adduser -S nextjs -G nextjs
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
+COPY Caddyfile /etc/caddy/Caddyfile
+COPY start.sh /app/start.sh
 
-RUN mkdir -p /app/.next/cache && chown -R nextjs:nextjs /app
+RUN apk add --no-cache caddy \
+    && chmod +x /app/start.sh \
+    && mkdir -p /app/.next/cache \
+    && chown -R nextjs:nextjs /app
 
 USER nextjs
-EXPOSE 3000
+EXPOSE 80 443
 
-CMD ["node", "server.js"]
+CMD ["/app/start.sh"]
