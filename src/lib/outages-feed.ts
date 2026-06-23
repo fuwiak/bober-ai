@@ -78,7 +78,7 @@ async function fetchViaBotApi(): Promise<OutageItem[]> {
 async function fetchViaPublicPage(): Promise<OutageItem[]> {
   const response = await fetch(`https://t.me/s/${CHANNEL_USERNAME}`, {
     cache: "no-store",
-    headers: { "user-agent": "Mozilla/5.0 (compatible; KineticAI/1.0)" },
+    headers: { "user-agent": "Mozilla/5.0 (compatible; BoberAIDev/1.0)" },
   });
   if (!response.ok) return [];
   const html = await response.text();

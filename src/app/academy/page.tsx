@@ -5,7 +5,7 @@ import { DEFAULT_KEYWORDS, ORGANIZATION_NAME, SITE_NAME, absoluteUrl } from "@/l
 export const metadata: Metadata = {
   title: "Академия Yandex",
   description:
-    "Обучающий раздел Kinetic AI с практическими материалами по внедрению ИИ, автоматизации процессов и облачной инфраструктуре.",
+    "Обучающий раздел Bober AI Dev с практическими материалами по внедрению ИИ, автоматизации процессов и облачной инфраструктуре.",
   keywords: [...DEFAULT_KEYWORDS, "обучение ИИ", "курсы по ИИ", "AI обучение", "Yandex Academy"],
   alternates: {
     canonical: absoluteUrl("/academy"),

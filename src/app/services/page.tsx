@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
-import { absoluteUrl, KWORK_URL } from "@/lib/site";
+import { absoluteUrl, FIVERR_URL, KWORK_URL } from "@/lib/site";
 import { formatOfferPrice, getOrderTelegramUrl, serviceFeedOffers } from "@/lib/services-feed";
 
 export const metadata: Metadata = {
@@ -24,12 +24,16 @@ export default function ServicesPage() {
             ← На главную
           </Link>
           <h1 className="display-md mt-4">Готовые услуги</h1>
-          <p className="mt-3 text-sm text-body">
-            Услуги с{" "}
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-body">
+            Фокус — <strong className="font-medium text-ink">Claude и автоматизация</strong>. Готовые пакеты на{" "}
             <a href={KWORK_URL} target="_blank" rel="noreferrer" className="text-link">
               Kwork
+            </a>{" "}
+            и{" "}
+            <a href={FIVERR_URL} target="_blank" rel="noreferrer" className="text-link">
+              Fiverr
             </a>
-            . Нажмите «Купить» для заказа в Telegram.
+            . Не нашли подходящий тариф — сделаем проект под ваш запрос. «Купить» открывает заказ в Telegram.
           </p>
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

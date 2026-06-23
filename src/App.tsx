@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ContactForm } from "@/components/ContactForm";
+import { PartnerProgramBanner } from "@/components/PartnerProgramBanner";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { LEGAL_ROUTES } from "@/lib/legal";
 import { PORTFOLIO, PARTNER_PROGRAM, PROFILE, AVITO_REVIEWS, FL_REVIEWS, REVIEWS, SKILLS } from "@/lib/profile";
@@ -62,6 +63,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-canvas">
       <SiteHeader />
+      <PartnerProgramBanner />
       <main>
         {/* Hero / профиль */}
         <section className="section-band border-b border-hairline-soft">
@@ -131,6 +133,54 @@ export default function App() {
                   priority
                 />
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Партнёрская программа */}
+        <section id="partners" className="section-band scroll-mt-16 border-b border-hairline-soft bg-surface-soft">
+          <div className="container-editorial">
+            <div className="md:grid md:grid-cols-[minmax(0,1fr)_280px] md:items-start md:gap-12">
+              <div>
+                <span className="badge-coral text-[10px]">Для агентств и знакомых</span>
+                <h2 className="display-sm mt-4">{PARTNER_PROGRAM.title}</h2>
+                <p className="mt-4 max-w-2xl text-base leading-relaxed text-body">
+                  Приводите клиентов на AI-проекты и получайте фиксированное вознаграждение без долгих
+                  ожиданий — выплата сразу после аванса клиента.
+                </p>
+                <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                  {PARTNER_PROGRAM.steps.map((step, index) => (
+                    <article key={step.title} className="feature-card">
+                      <span className="font-display text-3xl tracking-tight text-primary/40">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <h3 className="mt-3 font-medium text-ink">{step.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-body">{step.text}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+              <aside className="feature-card-bordered mt-8 md:mt-0 md:sticky md:top-24">
+                <p className="text-xs font-medium uppercase tracking-widest text-muted">Вознаграждение</p>
+                <p className="mt-3 font-display text-5xl tracking-tight text-primary">
+                  {PARTNER_PROGRAM.commissionPercent}%
+                </p>
+                <p className="mt-2 text-sm font-medium text-ink">{PARTNER_PROGRAM.subtitle}</p>
+                <p className="mt-4 text-sm leading-relaxed text-body">{PARTNER_PROGRAM.payoutNote}</p>
+                <ul className="mt-5 space-y-2 border-t border-hairline pt-5 text-sm text-muted">
+                  <li>· Без скрытых условий</li>
+                  <li>· Прозрачный расчёт от суммы аванса</li>
+                  <li>· Подходит фрилансерам, агентствам, интеграторам</li>
+                </ul>
+                <a
+                  href={getOrderTelegramUrl("партнёрскую программу")}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-primary mt-6 w-full text-center"
+                >
+                  Стать партнёром
+                </a>
+              </aside>
             </div>
           </div>
         </section>
@@ -368,54 +418,6 @@ export default function App() {
                   </div>
                 </Link>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Партнёрская программа */}
-        <section id="partners" className="section-band scroll-mt-16 border-t border-hairline-soft">
-          <div className="container-editorial">
-            <div className="md:grid md:grid-cols-[minmax(0,1fr)_280px] md:items-start md:gap-12">
-              <div>
-                <span className="badge-coral text-[10px]">Для агентств и знакомых</span>
-                <h2 className="display-sm mt-4">{PARTNER_PROGRAM.title}</h2>
-                <p className="mt-4 max-w-2xl text-base leading-relaxed text-body">
-                  Приводите клиентов на AI-проекты и получайте фиксированное вознаграждение без долгих
-                  ожиданий — выплата сразу после аванса клиента.
-                </p>
-                <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                  {PARTNER_PROGRAM.steps.map((step, index) => (
-                    <article key={step.title} className="feature-card">
-                      <span className="font-display text-3xl tracking-tight text-primary/40">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <h3 className="mt-3 font-medium text-ink">{step.title}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-body">{step.text}</p>
-                    </article>
-                  ))}
-                </div>
-              </div>
-              <aside className="feature-card-bordered mt-8 md:mt-0 md:sticky md:top-24">
-                <p className="text-xs font-medium uppercase tracking-widest text-muted">Вознаграждение</p>
-                <p className="mt-3 font-display text-5xl tracking-tight text-primary">
-                  {PARTNER_PROGRAM.commissionPercent}%
-                </p>
-                <p className="mt-2 text-sm font-medium text-ink">{PARTNER_PROGRAM.subtitle}</p>
-                <p className="mt-4 text-sm leading-relaxed text-body">{PARTNER_PROGRAM.payoutNote}</p>
-                <ul className="mt-5 space-y-2 border-t border-hairline pt-5 text-sm text-muted">
-                  <li>· Без скрытых условий</li>
-                  <li>· Прозрачный расчёт от суммы аванса</li>
-                  <li>· Подходит фрилансерам, агентствам, интеграторам</li>
-                </ul>
-                <a
-                  href={getOrderTelegramUrl("партнёрскую программу")}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn-primary mt-6 w-full text-center"
-                >
-                  Стать партнёром
-                </a>
-              </aside>
             </div>
           </div>
         </section>

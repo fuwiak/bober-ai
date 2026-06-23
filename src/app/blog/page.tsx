@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { DEFAULT_KEYWORDS, SITE_NAME, absoluteUrl } from "@/lib/site";
+import { PROFILE } from "@/lib/profile";
+import { DEFAULT_KEYWORDS, FIVERR_URL, KWORK_URL, SITE_NAME, absoluteUrl } from "@/lib/site";
 
 const mediumPlaceholders = [
   "Последний пост из Medium появится здесь",
@@ -15,12 +16,12 @@ const habrPlaceholders = [
 ];
 
 const MEDIUM_URL = "https://medium.com/@stasinskipawel";
-const HABR_URL = "https://habr.com/ru/users/fuwiak/articles/";
+const HABR_URL = `https://habr.com/ru/users/${PROFILE.handle}/articles/`;
 
 export const metadata: Metadata = {
-  title: "Блог Kinetic AI",
+  title: "Блог Bober AI Dev",
   description:
-    "Публикации Kinetic AI о внедрении AI, облачных LLM, приватных моделях, DevOps и автоматизации.",
+    "Публикации Bober AI Dev о внедрении AI, облачных LLM, приватных моделях, DevOps и автоматизации.",
   keywords: [...DEFAULT_KEYWORDS, "блог ИИ", "статьи про ИИ", "LLM blog", "AI automation blog"],
   alternates: {
     canonical: absoluteUrl("/blog"),
@@ -33,17 +34,17 @@ export default function BlogPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: SITE_NAME, item: absoluteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Блог Kinetic AI", item: absoluteUrl("/blog") },
+      { "@type": "ListItem", position: 2, name: "Блог Bober AI Dev", item: absoluteUrl("/blog") },
     ],
   };
 
   const blogJsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    name: "Блог Kinetic AI",
+    name: "Блог Bober AI Dev",
     url: absoluteUrl("/blog"),
     description:
-      "Публикации Kinetic AI о внедрении AI, облачных LLM, приватных моделях, DevOps и автоматизации.",
+      "Публикации Bober AI Dev о внедрении AI, облачных LLM, приватных моделях, DevOps и автоматизации.",
     inLanguage: "ru-RU",
   };
 
@@ -61,7 +62,7 @@ export default function BlogPage() {
         <div className="mb-12 flex flex-wrap items-center justify-between gap-4">
           <div>
             <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">
-              Блог Kinetic AI
+              Блог Bober AI Dev
             </span>
             <h1 className="mt-2 text-3xl md:text-4xl font-bold tracking-tight">Публикации и статьи</h1>
             <p className="mt-3 max-w-2xl text-on-surface-variant">
@@ -128,7 +129,7 @@ export default function BlogPage() {
               </span>
               <h2 className="mt-1 text-2xl md:text-3xl font-bold tracking-tight">Статьи на Habr</h2>
               <p className="mt-2 text-on-surface-variant text-sm">
-                Профиль: <span className="font-semibold text-on-surface">@fuwiak</span>
+                Профиль: <span className="font-semibold text-on-surface">@{PROFILE.handle}</span>
               </p>
             </div>
             <a

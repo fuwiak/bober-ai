@@ -1,9 +1,9 @@
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://kinetic-ai.ru";
-export const SITE_NAME = "Kinetic AI";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev";
+export const SITE_NAME = "Bober AI Dev";
 export const SITE_DESCRIPTION =
   "Павел Стасиньский — Claude, автоматизация бизнеса и AI-агенты под ключ. Готовые пакеты и индивидуальные проекты под ваш запрос.";
 export const SITE_REGION = "Россия";
-export const CONTACT_EMAIL = "hello@kinetic-ai.ru";
+export const CONTACT_EMAIL = "hello@bober-ai.dev";
 export const CONTACT_PHONE = "+79950998170";
 export const TELEGRAM_URL = "https://t.me/pstasinski";
 export const FREELANCE_URL = "https://freelance.ru/fuwiak";
@@ -26,7 +26,7 @@ export const MARKETPLACES = [
 export const YOUTUBE_SHORTS_URL = "https://www.youtube.com/shorts/5DQzO5aPS5A";
 export const ORGANIZATION_NAME = "ИП Стасиньски Павел Кшиштоф";
 export const DEFAULT_KEYWORDS = [
-  "Kinetic AI",
+  "Bober AI Dev",
   "корпоративный ИИ",
   "AI-инфраструктура",
   "облачные LLM",

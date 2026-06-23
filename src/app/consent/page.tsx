@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { LegalPageLayout } from "@/components/LegalPageLayout";
 import { LEGAL_ENTITY, LEGAL_ROUTES, POLICY_UPDATED_AT } from "@/lib/legal";
-import { DEFAULT_KEYWORDS, absoluteUrl } from "@/lib/site";
+import { DEFAULT_KEYWORDS, SITE_NAME, absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Согласие на обработку персональных данных",
   description:
-    "Текст согласия на обработку персональных данных при заполнении формы обратной связи на сайте Kinetic AI.",
+    `Текст согласия на обработку персональных данных при заполнении формы обратной связи на сайте ${SITE_NAME}.`,
   keywords: [...DEFAULT_KEYWORDS, "152-ФЗ", "согласие", "персональные данные"],
   alternates: {
     canonical: absoluteUrl(LEGAL_ROUTES.consent),

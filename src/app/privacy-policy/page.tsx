@@ -6,7 +6,7 @@ import { DEFAULT_KEYWORDS, SITE_NAME, absoluteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Политика обработки персональных данных",
   description:
-    "Политика обработки персональных данных оператора сайта Kinetic AI в соответствии с Федеральным законом № 152-ФЗ.",
+    `Политика обработки персональных данных оператора сайта ${SITE_NAME} в соответствии с Федеральным законом № 152-ФЗ.`,
   keywords: [...DEFAULT_KEYWORDS, "152-ФЗ", "персональные данные", "политика конфиденциальности"],
   alternates: {
     canonical: absoluteUrl(LEGAL_ROUTES.privacyPolicy),

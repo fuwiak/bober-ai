@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export const runtime = "nodejs";
 
@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
   }
 
   const resendApiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL || "hello@kinetic-ai.ru";
+  const to = process.env.CONTACT_TO_EMAIL || CONTACT_EMAIL;
   const from = process.env.CONTACT_FROM_EMAIL || "onboarding@resend.dev";
 
   if (!resendApiKey) {
@@ -60,10 +60,10 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const subject = `Заявка с сайта Kinetic AI от ${name}`;
+  const subject = `Заявка с сайта Bober AI Dev от ${name}`;
   const text = [`Имя: ${name}`, `Контакт: ${contact}`, "", "Сообщение:", message].join("\n");
   const html = `
-    <h2>Новая заявка с сайта Kinetic AI</h2>
+    <h2>Новая заявка с сайта Bober AI Dev</h2>
     <p><strong>Имя:</strong> ${escapeHtml(name)}</p>
     <p><strong>Контакт:</strong> ${escapeHtml(contact)}</p>
     <p><strong>Сообщение:</strong></p>

@@ -207,7 +207,7 @@ async function searchDuckDuckGo(query: string, limit = 8): Promise<SearchHit[]> 
       cache: "no-store",
       signal: ctrl.signal,
       headers: {
-        "user-agent": "Kinetic-AI-Shorts-Agent/1.0 (+https://kinetic-ai.ru)",
+        "user-agent": "Bober-AI-Dev-Shorts-Agent/1.0 (+https://www.bober-ai.dev)",
       },
     });
     if (!res.ok) return [];
@@ -244,8 +244,8 @@ async function callOpenRouter(prompt: string, options?: { temperature?: number; 
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
-        "HTTP-Referer": process.env.NEXT_PUBLIC_SITE_URL || "https://kinetic-ai.ru",
-        "X-Title": "Kinetic AI Shorts Agent",
+        "HTTP-Referer": process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev",
+        "X-Title": "Bober AI Dev Shorts Agent",
       },
       body: JSON.stringify({
         model: process.env.SHORTS_AGENT_MODEL || process.env.NEWS_AGENT_MODEL || DEFAULT_MODEL,

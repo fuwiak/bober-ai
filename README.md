@@ -1,4 +1,4 @@
-# Kinetic AI (Next.js)
+# Bober AI Dev (Next.js)
 
 Проект переведён на чистый `Next.js` (App Router) без `Vite`.
 
@@ -32,6 +32,6 @@
 Локальная проверка Docker:
 
 ```bash
-docker build -t kinetic-ai .
-docker run --rm -p 3000:3000 kinetic-ai
+docker build -t bober-ai-dev .
+docker run --rm -p 3000:3000 bober-ai-dev
 ```

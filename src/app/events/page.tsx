@@ -4,7 +4,7 @@ import { DEFAULT_KEYWORDS, SITE_NAME, absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Мероприятия",
-  description: "Подборка актуальных AI-мероприятий и событий от технологических партнеров Kinetic AI.",
+  description: "Подборка актуальных AI-мероприятий и событий от технологических партнеров Bober AI Dev.",
   keywords: [...DEFAULT_KEYWORDS, "AI мероприятия", "Yandex Cloud events", "Selectel events", "конференции ИИ"],
   alternates: {
     canonical: absoluteUrl("/events"),
@@ -37,7 +37,7 @@ export default function EventsPage() {
   const itemListJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Мероприятия Kinetic AI",
+    name: "Мероприятия Bober AI Dev",
     url: absoluteUrl("/events"),
     hasPart: events.map((event) => ({
       "@type": "Event",
@@ -67,7 +67,7 @@ export default function EventsPage() {
         <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
           <div>
             <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">
-              Kinetic AI
+              Bober AI Dev
             </span>
             <h1 className="mt-2 text-3xl md:text-4xl font-bold tracking-tight">Мероприятия</h1>
             <p className="mt-3 max-w-2xl text-on-surface-variant">

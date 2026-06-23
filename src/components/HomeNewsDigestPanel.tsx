@@ -68,7 +68,7 @@ export function HomeNewsDigestPanel({ compact = false, className = "" }: HomeNew
             <span className="text-primary font-bold uppercase tracking-widest text-[11px] font-body">AI-дайджест</span>
             <h2 className="mt-1 text-lg font-bold tracking-tight text-on-surface">Лента новостей</h2>
             <p className="mt-2 text-xs leading-relaxed text-on-surface-variant">
-              ИИ агент Kinetic AI делает подбор новостей по темам Yandex Cloud, Selectel, Россия и Мир.
+              ИИ агент Bober AI Dev делает подбор новостей по темам Yandex Cloud, Selectel, Россия и Мир.
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
               <span className="inline-flex rounded-full bg-primary/12 px-2 py-1 text-[9px] font-bold uppercase tracking-widest text-primary">
@@ -137,7 +137,7 @@ export function HomeNewsDigestPanel({ compact = false, className = "" }: HomeNew
                           />
                         ) : (
                           <div className="grid h-full w-full place-items-center text-xs font-bold uppercase tracking-widest text-on-surface-variant">
-                            Kinetic AI
+                            Bober AI Dev
                           </div>
                         )}
                       </div>
@@ -213,7 +213,7 @@ export function HomeNewsDigestPanel({ compact = false, className = "" }: HomeNew
                           />
                         ) : (
                           <div className="grid h-full w-full place-items-center text-xs font-bold uppercase tracking-widest text-on-surface-variant">
-                            Kinetic AI
+                            Bober AI Dev
                           </div>
                         )}
                       </div>

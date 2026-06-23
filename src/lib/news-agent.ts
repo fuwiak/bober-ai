@@ -316,7 +316,7 @@ async function fetchRssFeed(url: string, limit = 10): Promise<SearchHit[]> {
       headers: {
         accept:
           "application/rss+xml, application/atom+xml, application/xml;q=0.9, text/xml;q=0.8, */*;q=0.5",
-        "user-agent": "Kinetic-AI-News-Agent/1.0 (+https://kinetic-ai.ru)",
+        "user-agent": "Bober-AI-Dev-News-Agent/1.0 (+https://www.bober-ai.dev)",
       },
     });
     clearTimeout(timer);
@@ -362,8 +362,8 @@ async function callOpenRouter(
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
-        "HTTP-Referer": process.env.NEXT_PUBLIC_SITE_URL || "https://kinetic-ai.ru",
-        "X-Title": "Kinetic AI News Agent",
+        "HTTP-Referer": process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev",
+        "X-Title": "Bober AI Dev News Agent",
       },
       body: JSON.stringify(body),
       signal: ctrl.signal,
@@ -508,7 +508,7 @@ function buildPrompt(bucket: Bucket, candidates: SearchHit[]): string {
     .join("\n");
 
   return [
-    `Ты - редактор корпоративного AI-дайджеста для компании Kinetic AI.`,
+    `Ты - редактор корпоративного AI-дайджеста для компании Bober AI Dev.`,
     `Твоя задача - выбрать ${bucket.take} самых актуальных и значимых новостей из категории: "${bucket.label}".`,
     `Тематика: искусственный интеллект, LLM, GenAI, облачная AI-инфраструктура, GPU, корпоративные сценарии.`,
     `Не выдумывай факты и ссылки. Используй ТОЛЬКО материалы из списка ниже.`,

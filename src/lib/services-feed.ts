@@ -1,4 +1,5 @@
 import { CONTACT_EMAIL, KWORK_URL, SITE_NAME, TELEGRAM_URL } from "@/lib/site";
+import { PROFILE } from "@/lib/profile";
 
 export type ServiceFeedOffer = {
   id: string;
@@ -20,7 +21,9 @@ export type ServiceFeedOffer = {
   kworkUrl?: string;
 };
 
-const FEED_SITE_URL = "https://www.kinetic-ai.ru";
+const FEED_SITE_URL = "https://www.bober-ai.dev";
+const CONSULTATION_HOURLY_RATE = PROFILE.hourlyRate;
+const CONSULTATION_SALES_NOTES = `от ${CONSULTATION_HOURLY_RATE.toLocaleString("ru-RU")} ₽/час`;
 
 export const serviceFeedOffers: ServiceFeedOffer[] = [
   {
@@ -53,8 +56,8 @@ export const serviceFeedOffers: ServiceFeedOffer[] = [
       "Разбор вашей задачи: выбор модели, архитектура, интеграции, оценка сроков и бюджета внедрения ИИ.",
     about:
       "Онлайн-сессия с экспертом: аудит идеи, рекомендации по стеку (OpenAI, Claude, GigaChat, YandexGPT) и план следующих шагов.",
-    price: 1000,
-    salesNotes: "от 1 000 ₽/час",
+    price: CONSULTATION_HOURLY_RATE,
+    salesNotes: CONSULTATION_SALES_NOTES,
     deliveryDays: 1,
     yearsExperience: 10,
     conversion: 95,
@@ -95,8 +98,8 @@ export const serviceFeedOffers: ServiceFeedOffer[] = [
       "Экспресс-разбор задачи ML/AI: данные, модели, метрики, пайплайн. От 10 минут, почасовая оплата.",
     about:
       "Помогаем сформулировать задачу, выбрать подход и оценить реализуемость: от быстрой консультации до полноценного аудита.",
-    price: 500,
-    salesNotes: "от 500 ₽ · 3 000 ₽/час",
+    price: CONSULTATION_HOURLY_RATE,
+    salesNotes: CONSULTATION_SALES_NOTES,
     deliveryDays: 1,
     yearsExperience: 10,
     conversion: 88,

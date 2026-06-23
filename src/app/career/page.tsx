@@ -28,7 +28,7 @@ const careerPerks = [
 export const metadata: Metadata = {
   title: "Карьера",
   description:
-    "Kinetic AI ищет селлеров AI-решений: облачные LLM, корпоративные чат-боты, AI-инфраструктура и автоматизация для B2B.",
+    "Bober AI Dev ищет селлеров AI-решений: облачные LLM, корпоративные чат-боты, AI-инфраструктура и автоматизация для B2B.",
   keywords: [...DEFAULT_KEYWORDS, "вакансии ИИ", "sales AI", "работа B2B sales", "карьера в AI"],
   alternates: {
     canonical: absoluteUrl("/career"),
@@ -89,7 +89,7 @@ export default function CareerPage() {
             <h1 className="mt-2 text-3xl md:text-4xl font-bold tracking-tight">Ищем селлеров наших AI-решений</h1>
             <p className="mt-3 max-w-2xl text-on-surface-variant">
               Если вы умеете продавать сложные B2B-продукты и хотите работать с AI-инфраструктурой, облачными LLM и
-              корпоративными чат-ботами — присоединяйтесь к команде Kinetic AI.
+              корпоративными чат-ботами — присоединяйтесь к команде Bober AI Dev.
             </p>
           </div>
           <Link
@@ -137,7 +137,7 @@ export default function CareerPage() {
                 Написать в Telegram
               </a>
               <a
-                href="mailto:hello@kinetic-ai.ru?subject=Career%20-%20Sales"
+                href={`mailto:${CONTACT_EMAIL}?subject=Career%20-%20Sales`}
                 className="btn-secondary inline-flex items-center gap-2"
               >
                 Отправить резюме
