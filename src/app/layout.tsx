@@ -1,26 +1,34 @@
 import type { Metadata } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import { CookieConsent } from "@/components/CookieConsent";
+import { YandexMetrika } from "@/components/YandexMetrika";
 import { DEFAULT_KEYWORDS, SITE_DESCRIPTION, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
 
-const manrope = Manrope({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin", "cyrillic"],
-  weight: ["400", "600", "700", "800"],
-  variable: "--font-manrope",
+  weight: ["400", "500", "600"],
+  variable: "--font-cormorant",
 });
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
   variable: "--font-inter",
+});
+
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin", "cyrillic"],
+  weight: ["400", "500"],
+  variable: "--font-jetbrains",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   applicationName: SITE_NAME,
   title: {
-    default: "Kinetic AI — облако и корпоративный ИИ",
+    default: "Разработка AI-агентов и автоматизаций",
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
@@ -60,7 +68,7 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: "Kinetic AI — облако и корпоративный ИИ",
+    title: "Разработка AI-агентов и автоматизаций",
     description: SITE_DESCRIPTION,
     images: [
       {
@@ -73,7 +81,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Kinetic AI — облако и корпоративный ИИ",
+    title: "Разработка AI-агентов и автоматизаций",
     description: SITE_DESCRIPTION,
     images: [absoluteUrl("/favicon.png")],
   },
@@ -88,50 +96,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className={`dark ${manrope.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="ru" className={`${cormorant.variable} ${inter.variable} ${jetbrains.variable}`} suppressHydrationWarning>
       <body>
-        <Script id="yandex-metrika" strategy="beforeInteractive">
-          {`
-            (function(m,e,t,r,i,k,a){
-                m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-                m[i].l=1*new Date();
-                for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-                k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-            })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108972710', 'ym');
-
-            ym(108972710, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-          `}
-        </Script>
-        {process.env.NODE_ENV === "development" ? (
-          <Script id="yandex-metrika-debug" strategy="afterInteractive">
-            {`
-              (function() {
-                var hasYm = typeof window.ym === "function";
-                if (hasYm) {
-                  console.info("[YM debug] initialized: 108972710");
-                } else {
-                  console.warn("[YM debug] ym is not available (possible ad blocker or script load issue)");
-                }
-              })();
-            `}
-          </Script>
-        ) : null}
-        <noscript>
-          <div>
-            <img
-              src="https://mc.yandex.ru/watch/108972710"
-              style={{ position: "absolute", left: "-9999px" }}
-              alt=""
-            />
-          </div>
-        </noscript>
         <Script id="theme-init" strategy="beforeInteractive">
-          {`(function(){try{var k='theme';var t=localStorage.getItem(k);var d=t!=='light';document.documentElement.classList.toggle('dark',d);}catch(e){}})();`}
+          {`(function(){try{var k='theme';var t=localStorage.getItem(k);var d=t==='dark';document.documentElement.classList.toggle('dark',d);}catch(e){}})();`}
         </Script>
         <Script id="scroll-top-init" strategy="beforeInteractive">
           {`(function(){try{if('scrollRestoration'in history)history.scrollRestoration='manual';var h=location.hash;if(h&&h!=='#')return;scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0;}catch(e){}})();`}
         </Script>
         {children}
+        <CookieConsent />
+        <YandexMetrika />
       </body>
     </html>
   );

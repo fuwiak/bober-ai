@@ -1,12 +1,15 @@
 import type { MetadataRoute } from "next";
+import { PORTFOLIO } from "@/lib/profile";
+import { serviceFeedOffers } from "@/lib/services-feed";
 import { SITE_URL } from "@/lib/site";
 
 const routes = [
   "",
   "/services",
-  "/services/ai-architect",
-  "/services/cloud-engineer",
-  "/services/voice-ai-engineer",
+  ...serviceFeedOffers.map((offer) => `/services/${offer.slug}`),
+  ...PORTFOLIO.map((item) => `/portfolio/${item.slug}`),
+  "/privacy-policy",
+  "/consent",
   "/news",
   "/events",
   "/blog",

@@ -129,7 +129,7 @@ export default function CareerPage() {
             </div>
             <div className="flex flex-wrap gap-3 lg:shrink-0">
               <a
-                href="https://t.me/sizovmaksim"
+                href={TELEGRAM_URL}
                 target="_blank"
                 rel="noreferrer"
                 className="btn-primary inline-flex items-center gap-2"

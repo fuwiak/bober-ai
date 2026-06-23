@@ -13,16 +13,18 @@ function readPreferredDark(): boolean {
   } catch {
     /* ignore */
   }
-  return true;
+  return false;
 }
 
 export function ThemeToggle() {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useLayoutEffect(() => {
     const dark = readPreferredDark();
     document.documentElement.classList.toggle("dark", dark);
     setIsDark(dark);
+    setMounted(true);
   }, []);
 
   const toggle = useCallback(() => {
@@ -36,11 +38,15 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
-      className="flex h-10 w-10 items-center justify-center rounded-2xl border border-outline-variant/25 bg-surface-container-lowest text-on-surface shadow-sm transition hover:border-primary/40 hover:text-primary active:scale-95"
+      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-hairline bg-canvas text-ink active:bg-surface-soft"
       aria-label={isDark ? "Светлая тема" : "Тёмная тема"}
       title={isDark ? "Светлая тема" : "Тёмная тема"}
     >
-      {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+      {mounted ? (
+        isDark ? <Sun className="h-4 w-4" aria-hidden /> : <Moon className="h-4 w-4" aria-hidden />
+      ) : (
+        <Moon className="h-4 w-4 opacity-0" aria-hidden />
+      )}
     </button>
   );
 }

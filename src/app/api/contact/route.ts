@@ -6,6 +6,8 @@ type Payload = {
   name?: string;
   contact?: string;
   message?: string;
+  policyAccepted?: boolean;
+  consent?: boolean;
 };
 
 function requireString(value: unknown): string {
@@ -26,9 +28,25 @@ export async function POST(request: NextRequest) {
   const name = requireString(body.name);
   const contact = requireString(body.contact);
   const message = requireString(body.message) || "—";
+  const consent = body.consent === true;
+  const policyAccepted = body.policyAccepted === true;
 
   if (!name || !contact) {
     return NextResponse.json({ error: "invalid_payload", message: "Заполните обязательные поля" }, { status: 400 });
+  }
+
+  if (!policyAccepted) {
+    return NextResponse.json(
+      { error: "policy_required", message: "Необходимо ознакомление с политикой обработки персональных данных" },
+      { status: 400 },
+    );
+  }
+
+  if (!consent) {
+    return NextResponse.json(
+      { error: "consent_required", message: "Необходимо согласие на обработку персональных данных" },
+      { status: 400 },
+    );
   }
 
   const resendApiKey = process.env.RESEND_API_KEY;
