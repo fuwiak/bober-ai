@@ -82,52 +82,52 @@ export const REVIEWS: Review[] = [
   },
 ];
 
-export type FlReview = {
+export type KworkReview = {
   id: string;
   project: string;
   author: string;
   text: string;
 };
 
-export const FL_REVIEWS: FlReview[] = [
+export const KWORK_REVIEWS: KworkReview[] = [
   {
-    id: "fl-martavi",
+    id: "kwork-martavi",
     project: "NLP Python",
     author: "martavi",
     text: "Очень довольна работой Павла. Сдал работу даже раньше, чем договаривались. При этом всё выполнено точно и аккуратно. Павел без проблем объяснил те части программы, которые я не могла понять.",
   },
   {
-    id: "fl-rodionova",
+    id: "kwork-rodionova",
     project: "Сбор и анализ данных из социальных сетей",
     author: "rodionova765",
     text: "Спасибо за выполненную работу, 10/10! В ходе работы пришлось кое-что дополнять, но Павел и с этим справился. Оперативные ответы, всегда на связи.",
   },
   {
-    id: "fl-bashop",
+    id: "kwork-bashop",
     project: "Консультации по машинному обучению и программированию",
     author: "bashop",
     text: "Работа выполнена очень качественно и оперативно, всегда на связи, на все вопросы легко получены ответы. Однозначно продолжим сотрудничество. Очень грамотный специалист, рекомендую!",
   },
   {
-    id: "fl-vasilevna",
+    id: "kwork-vasilevna",
     project: "Консультации по программированию",
     author: "Vasilevna92",
     text: "Нужна была срочная консультация. Всё прошло на высшем уровне. Приятно работать с компетентным человеком! Рекомендую!",
   },
   {
-    id: "fl-lenochka-1",
+    id: "kwork-lenochka-1",
     project: "Data Structures, Indexing, Cleaning Data, Math",
     author: "lenochka832",
     text: "Всё сделано отлично и в оговорённый срок, спасибо — будем обращаться обязательно ещё! Советую.",
   },
   {
-    id: "fl-lenochka-2",
+    id: "kwork-lenochka-2",
     project: "Data Structures, Indexing, Cleaning Data, Math",
     author: "lenochka832",
     text: "Отлично, Павел спас меня. Благодарю.",
   },
   {
-    id: "fl-solyanikov",
+    id: "kwork-solyanikov",
     project: "Уроки по программированию и анализу данных",
     author: "solyanikov-d",
     text: "Человек знает своё дело. Быстро ответил и всё доступно объяснил.",

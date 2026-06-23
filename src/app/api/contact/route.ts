@@ -1,3 +1,4 @@
+import { NextRequest, NextResponse } from "next/server";
 import { CONTACT_EMAIL } from "@/lib/site";
 
 export const runtime = "nodejs";
