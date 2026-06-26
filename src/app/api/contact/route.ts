@@ -50,6 +50,10 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  if (process.env.CONTACT_DRY_RUN === "1") {
+    return NextResponse.json({ ok: true, dryRun: true });
+  }
+
   const resendApiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL || CONTACT_EMAIL;
   const from = process.env.CONTACT_FROM_EMAIL || "onboarding@resend.dev";
