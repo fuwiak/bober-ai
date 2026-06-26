@@ -4,7 +4,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { PartnerProgramBanner } from "@/components/PartnerProgramBanner";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { LEGAL_ROUTES } from "@/lib/legal";
-import { PORTFOLIO, PARTNER_PROGRAM, PROFILE, AVITO_REVIEWS, KWORK_REVIEWS, REVIEWS, SKILLS } from "@/lib/profile";
+import { PORTFOLIO, PARTNER_PROGRAM, PROFILE, AVITO_REVIEWS, REVIEWS, SKILLS } from "@/lib/profile";
 import {
   formatOfferPrice,
   getOrderTelegramUrl,
@@ -285,35 +285,6 @@ export default function App() {
                     <p className="text-xs text-muted">{review.date}</p>
                   </div>
                   <p className="mt-1 text-primary text-sm">★★★★★</p>
-                  <p className="mt-3 text-sm leading-relaxed text-body">{review.text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Отзывы Kwork */}
-        <section id="reviews-kwork" className="section-band scroll-mt-16 border-b border-hairline-soft">
-          <div className="container-editorial">
-            <div className="flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <h2 className="display-sm">Отзывы Kwork</h2>
-                <p className="mt-2 text-sm text-muted">
-                  Отзывы клиентов на{" "}
-                  <a href={KWORK_URL} target="_blank" rel="noreferrer" className="text-link">
-                    Kwork — pasha_stasinski
-                  </a>
-                </p>
-              </div>
-            </div>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {KWORK_REVIEWS.map((review) => (
-                <article key={review.id} className="feature-card-bordered p-6">
-                  <p className="text-xs font-medium text-link">{review.project}</p>
-                  <div className="mt-3 flex items-center justify-between gap-2">
-                    <p className="font-medium text-ink">{review.author}</p>
-                    <p className="text-primary text-sm">★★★★★</p>
-                  </div>
                   <p className="mt-3 text-sm leading-relaxed text-body">{review.text}</p>
                 </article>
               ))}
