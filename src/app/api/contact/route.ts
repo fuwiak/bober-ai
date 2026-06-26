@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { CONTACT_EMAIL } from "@/lib/site";
+import { CONTACT_NOTIFICATION_EMAILS } from "@/lib/site";
 
 export const runtime = "nodejs";
 
@@ -55,7 +55,10 @@ export async function POST(request: NextRequest) {
   }
 
   const resendApiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL || CONTACT_EMAIL;
+  const envRecipients = process.env.CONTACT_TO_EMAIL
+    ? process.env.CONTACT_TO_EMAIL.split(",").map((email) => email.trim()).filter(Boolean)
+    : [];
+  const to = envRecipients.length > 0 ? envRecipients : [...CONTACT_NOTIFICATION_EMAILS];
   const from = process.env.CONTACT_FROM_EMAIL || "onboarding@resend.dev";
 
   if (!resendApiKey) {
@@ -83,7 +86,7 @@ export async function POST(request: NextRequest) {
     },
     body: JSON.stringify({
       from,
-      to: [to],
+      to,
       subject,
       text,
       html,

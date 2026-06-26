@@ -4,6 +4,7 @@ export const SITE_DESCRIPTION =
   "Павел Стасиньский — Claude-консультант и проектировщик ИИ-решений. Автоматизация бизнеса и AI-агенты под ключ. Готовые пакеты и индивидуальные проекты под ваш запрос.";
 export const SITE_REGION = "Россия";
 export const CONTACT_EMAIL = "hello@bober-ai.dev";
+export const CONTACT_NOTIFICATION_EMAILS = [CONTACT_EMAIL, "stasinskipawel@yandex.ru"] as const;
 export const CONTACT_PHONE = "+79950998170";
 export const TELEGRAM_URL = "https://t.me/pstasinski";
 export const FREELANCE_URL = "https://freelance.ru/fuwiak";
