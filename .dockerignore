@@ -14,3 +14,7 @@ dist
 build
 .cursor
 .DS_Store
+e2e
+playwright.config.ts
+playwright-report
+test-results

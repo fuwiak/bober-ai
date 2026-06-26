@@ -4,6 +4,9 @@ tsconfig.tsbuildinfo
 build/
 dist/
 coverage/
+coverage/
+playwright-report/
+test-results/
 .DS_Store
 *.log
 .env*
