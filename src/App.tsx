@@ -73,7 +73,14 @@ export default function App() {
                 {PROFILE.city} · <span className="text-success">Онлайн</span>
               </p>
               <h1 className="display-lg mt-2">{PROFILE.title}</h1>
-              <p className="mt-2 text-sm text-muted">
+              <div className="mt-3 flex flex-wrap gap-2">
+                {PROFILE.roles.map((role) => (
+                  <span key={role} className="badge-pill text-xs">
+                    {role}
+                  </span>
+                ))}
+              </div>
+              <p className="mt-3 text-sm text-muted">
                 {PROFILE.name} · @{PROFILE.handle}
               </p>
               <p className="mt-3 text-sm leading-relaxed text-muted">{PROFILE.focus}</p>

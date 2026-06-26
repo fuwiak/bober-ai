@@ -34,7 +34,7 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: PROFILE.name,
-    jobTitle: PROFILE.title,
+    jobTitle: PROFILE.roles.join(", "),
     url: SITE_URL,
     image: absoluteUrl(PROFILE.avatar),
     email: CONTACT_EMAIL,
