@@ -393,6 +393,9 @@ export default function App() {
                   <div className="p-6">
                     <span className="badge-coral text-[10px]">{item.category}</span>
                     <h3 className="mt-3 font-medium leading-snug text-ink">{item.title}</h3>
+                    {item.description ? (
+                      <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-body">{item.description}</p>
+                    ) : null}
                   </div>
                 </Link>
               ))}
