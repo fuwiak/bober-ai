@@ -123,7 +123,7 @@ export default async function HomePage() {
               </p>
             </div>
             <div className="flex justify-center md:justify-end">
-              <div className="relative h-48 w-48 overflow-hidden rounded-full border border-hairline md:h-64 md:w-64">
+              <div className="relative h-48 w-48 overflow-hidden rounded-lg border border-hairline md:h-64 md:w-64">
                 <Image src={PROFILE.avatar} alt={PROFILE.name} fill sizes="256px" className="object-cover" priority />
               </div>
             </div>
@@ -182,7 +182,7 @@ export default async function HomePage() {
                   key={pkg.name}
                   className={`feature-card-bordered flex flex-col p-6 ${pkg.featured ? "ring-2 ring-primary/30" : ""}`}
                 >
-                  {pkg.featured ? <span className="badge-coral mb-3 w-fit text-[10px]">{t("packages.featuredLabel")}</span> : null}
+                  {pkg.featured ? <span className="badge-accent mb-3 w-fit text-[10px]">{t("packages.featuredLabel")}</span> : null}
                   <h3 className="font-display text-xl tracking-tight text-ink">{pkg.name}</h3>
                   <p className="mt-2 font-display text-2xl text-primary">{pkg.price}</p>
                   <p className="mt-1 text-xs text-muted">{pkg.duration}</p>
@@ -252,7 +252,7 @@ export default async function HomePage() {
             <ul className="mt-6 max-w-3xl space-y-3 text-sm leading-relaxed text-body">
               {(t.raw("security.items") as string[]).map((item) => (
                 <li key={item} className="flex gap-2">
-                  <span className="text-primary">✓</span>
+                  <span className="text-accent">✓</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -262,7 +262,7 @@ export default async function HomePage() {
 
         <section id="partners" className="section-band scroll-mt-16 border-b border-hairline-soft bg-surface-soft">
           <div className="container-editorial">
-            <span className="badge-coral text-[10px]">{t("partners.badge")}</span>
+            <span className="badge-accent text-[10px]">{t("partners.badge")}</span>
             <h2 className="display-sm mt-4">{t("partners.title")}</h2>
             <p className="mt-2 text-base font-medium text-ink">{t("partners.subtitle")}</p>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-body">{t("partners.description")}</p>
@@ -304,7 +304,7 @@ export default async function HomePage() {
                   <Image src={item.image} alt={item.title} fill sizes="(max-width: 768px) 100vw, 576px" className="object-cover object-top" />
                 </div>
                 <div className="flex flex-col p-6 md:p-8">
-                  <span className="badge-coral w-fit text-[10px]">{item.category}</span>
+                  <span className="badge-accent w-fit text-[10px]">{item.category}</span>
                   <h3 className="mt-3 font-display text-xl tracking-tight text-ink">{item.title}</h3>
                   {item.priceLabel ? (
                     <p className="mt-2 font-display text-lg tracking-tight text-primary">{item.priceLabel}</p>
@@ -365,7 +365,7 @@ export default async function HomePage() {
               {REVIEWS.slice(0, 4).map((review) => (
                 <article key={review.id} className="feature-card-bordered p-6">
                   <p className="font-medium text-ink">{review.author}</p>
-                  <p className="mt-1 text-primary text-sm">★★★★★</p>
+                  <p className="mt-1 text-accent text-sm">★★★★★</p>
                   <p className="mt-3 text-sm leading-relaxed text-body">{review.text}</p>
                 </article>
               ))}
@@ -386,7 +386,7 @@ export default async function HomePage() {
               {AVITO_REVIEWS.slice(0, 4).map((review) => (
                 <article key={review.id} className="feature-card-bordered p-6">
                   <p className="font-medium text-ink">{review.author}</p>
-                  <p className="mt-1 text-primary text-sm">★★★★★</p>
+                  <p className="mt-1 text-accent text-sm">★★★★★</p>
                   <p className="mt-3 text-sm leading-relaxed text-body">{review.text}</p>
                 </article>
               ))}
@@ -411,7 +411,7 @@ export default async function HomePage() {
 
         <section className="section-band">
           <div className="container-editorial">
-            <div className="callout-coral">
+            <div className="callout-accent">
               <h2 className="font-display text-2xl tracking-tight md:text-3xl">{t("cta.title")}</h2>
               <p className="mt-3 max-w-xl text-sm leading-relaxed text-on-primary/90">{t("cta.subtitle")}</p>
               <div className="mt-6 flex flex-wrap gap-3">

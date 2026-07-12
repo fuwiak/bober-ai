@@ -52,7 +52,7 @@ export default async function PortfolioProjectPage({ params }: PageProps) {
           </Link>
 
           <div className="mt-6 max-w-3xl">
-            <span className="badge-coral text-[10px]">{item.category}</span>
+            <span className="badge-accent text-[10px]">{item.category}</span>
             <h1 className="display-md mt-4">{item.title}</h1>
             {item.priceLabel ? (
               <p className="mt-3 font-display text-2xl tracking-tight text-ink">{item.priceLabel}</p>
@@ -98,7 +98,7 @@ export default async function PortfolioProjectPage({ params }: PageProps) {
             <p className="mt-10 text-sm text-muted">{isEn ? "Detailed case study coming soon." : "Подробное описание проекта готовится."}</p>
           )}
 
-          <div className="callout-coral mt-12">
+          <div className="callout-accent mt-12">
             <h2 className="font-display text-2xl tracking-tight">{isEn ? "Want a similar solution?" : "Хотите похожее решение?"}</h2>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-on-primary/90">
               {isEn

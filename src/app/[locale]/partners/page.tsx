@@ -34,7 +34,7 @@ export default async function PartnersPage({ params }: Props) {
           <Link href="/" className="text-link text-sm">
             ← {locale === "en" ? "Home" : "На главную"}
           </Link>
-          <span className="badge-coral mt-6 inline-block text-[10px]">{t("badge")}</span>
+          <span className="badge-accent mt-6 inline-block text-[10px]">{t("badge")}</span>
           <h1 className="display-md mt-4">{t("title")}</h1>
           <p className="mt-3 text-lg font-medium text-ink">{t("subtitle")}</p>
           <p className="mt-4 text-sm leading-relaxed text-body">{t("description")}</p>

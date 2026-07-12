@@ -104,7 +104,7 @@ export default function CareerPage() {
           {careerPerks.map((perk) => (
             <div
               key={perk.title}
-              className="rounded-3xl border border-outline-variant/20 bg-surface-container-lowest p-8 shadow-sm"
+              className="rounded-lg border border-hairline bg-surface-card p-8"
             >
               <h3 className="text-xl font-bold text-on-surface">{perk.title}</h3>
               <p className="mt-3 text-on-surface-variant leading-relaxed">{perk.description}</p>
@@ -112,17 +112,13 @@ export default function CareerPage() {
           ))}
         </div>
 
-        <div className="relative mt-10 overflow-hidden rounded-3xl border border-primary/25 bg-gradient-to-br from-primary/10 via-surface-container-lowest to-surface-container-low p-8 shadow-xl lg:p-10">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-primary/15 blur-3xl"
-          />
-          <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mt-10 callout-accent">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <h2 className="text-2xl font-bold tracking-tight text-on-surface lg:text-3xl">
+              <h2 className="font-display text-2xl tracking-tight text-on-primary lg:text-3xl">
                 Откройте для себя продажи в AI
               </h2>
-              <p className="mt-3 max-w-xl text-on-surface-variant leading-relaxed">
+              <p className="mt-3 max-w-xl text-sm leading-relaxed text-on-primary/85">
                 Отправьте короткое сообщение о своём опыте — мы вернёмся с деталями по условиям, территориям и воронке
                 готовых лидов.
               </p>

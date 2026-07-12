@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
+import { IBM_Plex_Sans, JetBrains_Mono, Source_Serif_4 } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { CookieConsent } from "@/components/CookieConsent";
 import { YandexMetrika } from "@/components/YandexMetrika";
 import { DEFAULT_KEYWORDS, SITE_DESCRIPTION, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
 
-const cormorant = Cormorant_Garamond({
+const sourceSerif = Source_Serif_4({
   subsets: ["latin", "cyrillic"],
   weight: ["400", "500", "600"],
-  variable: "--font-cormorant",
+  variable: "--font-source-serif",
 });
 
-const inter = Inter({
+const ibmPlex = IBM_Plex_Sans({
   subsets: ["latin", "cyrillic"],
   weight: ["400", "500", "600"],
-  variable: "--font-inter",
+  variable: "--font-ibm-plex",
 });
 
 const jetbrains = JetBrains_Mono({
@@ -102,7 +102,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" suppressHydrationWarning>
-      <body className={`${cormorant.variable} ${inter.variable} ${jetbrains.variable}`}>
+      <body className={`${sourceSerif.variable} ${ibmPlex.variable} ${jetbrains.variable}`}>
         <Script id="locale-lang" strategy="beforeInteractive">
           {`(function(){try{var p=location.pathname;var l=(p==='/en'||p.indexOf('/en/')===0)?'en':'ru';document.documentElement.lang=l;}catch(e){}})();`}
         </Script>
