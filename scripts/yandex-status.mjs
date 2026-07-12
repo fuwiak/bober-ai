@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { fetch } from "undici";
+import fetch from "./lib/fetch.mjs";
 
 const WEBMASTER_API = "https://api.webmaster.yandex.net/v4";
 const METRIKA_API = "https://api-metrika.yandex.net/management/v1";

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { fetch } from "undici";
+import fetch from "./lib/fetch.mjs";
 
 /**
  * Регистрация YML-фида в Яндекс Вебмастере для «Дополненного представления в поиске β».
