@@ -76,6 +76,7 @@ export default async function ServiceOfferPage({ params }: PageProps) {
                   fill
                   sizes="(max-width: 1024px) 100vw, 700px"
                   className="object-cover"
+                  unoptimized={offer.serviceImage.endsWith(".svg")}
                 />
               </div>
 

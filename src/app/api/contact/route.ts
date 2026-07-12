@@ -50,15 +50,18 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  if (process.env.CONTACT_DRY_RUN === "1") {
-    return NextResponse.json({ ok: true, dryRun: true });
-  }
-
-  const resendApiKey = process.env.RESEND_API_KEY;
   const envRecipients = process.env.CONTACT_TO_EMAIL
     ? process.env.CONTACT_TO_EMAIL.split(",").map((email) => email.trim()).filter(Boolean)
     : [];
   const to = envRecipients.length > 0 ? envRecipients : [...CONTACT_NOTIFICATION_EMAILS];
+  const subject = `Заявка с сайта Bober AI Dev от ${name}`;
+  const text = [`Имя: ${name}`, `Контакт: ${contact}`, "", "Сообщение:", message].join("\n");
+
+  if (process.env.CONTACT_DRY_RUN === "1") {
+    return NextResponse.json({ ok: true, dryRun: true, preview: { to, subject, text } });
+  }
+
+  const resendApiKey = process.env.RESEND_API_KEY;
   const from = process.env.CONTACT_FROM_EMAIL || "onboarding@resend.dev";
 
   if (!resendApiKey) {
@@ -68,8 +71,6 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const subject = `Заявка с сайта Bober AI Dev от ${name}`;
-  const text = [`Имя: ${name}`, `Контакт: ${contact}`, "", "Сообщение:", message].join("\n");
   const html = `
     <h2>Новая заявка с сайта Bober AI Dev</h2>
     <p><strong>Имя:</strong> ${escapeHtml(name)}</p>

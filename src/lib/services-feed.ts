@@ -1,5 +1,8 @@
-import { CONTACT_EMAIL, KWORK_URL, SITE_NAME, TELEGRAM_URL } from "@/lib/site";
+import { CONTACT_EMAIL, CONTACT_PHONE, KWORK_URL, SITE_NAME, TELEGRAM_URL } from "@/lib/site";
 import { PROFILE } from "@/lib/profile";
+
+const FEED_CATEGORY_ID = "18";
+const FEED_CATEGORY_PARENT_ID = "1";
 
 export type ServiceFeedOffer = {
   id: string;
@@ -61,8 +64,8 @@ export const serviceFeedOffers: ServiceFeedOffer[] = [
     deliveryDays: 1,
     yearsExperience: 10,
     conversion: 95,
-    picture: `${FEED_SITE_URL}/yandex/yandex_ai_studio.png`,
-    serviceImage: "/yandex/yandex_ai_studio.png",
+    picture: `${FEED_SITE_URL}/yandex/yandex_ai_studio.svg`,
+    serviceImage: "/yandex/yandex_ai_studio.svg",
     remote: true,
     atExecutorAddress: false,
     atCustomerAddress: true,
@@ -202,6 +205,16 @@ export function getServiceFeedXml(now = new Date()) {
       .replaceAll('"', "&quot;")
       .replaceAll("'", "&apos;");
 
+  const sets = serviceFeedOffers
+    .map((offer) => {
+      const url = getServiceOfferUrl(offer.slug);
+      return `      <set id="${escapeXml(offer.slug)}">
+        <name>${escapeXml(offer.title)}</name>
+        <url>${escapeXml(url)}</url>
+      </set>`;
+    })
+    .join("\n");
+
   const offers = serviceFeedOffers
     .map((offer) => {
       const url = getServiceOfferUrl(offer.slug);
@@ -210,13 +223,16 @@ export function getServiceFeedXml(now = new Date()) {
       <url>${escapeXml(url)}</url>
       <price from="true">${offer.price}</price>
       <currencyId>RUR</currencyId>
+      <categoryId>${FEED_CATEGORY_ID}</categoryId>
+      <set-ids>${escapeXml(offer.slug)}</set-ids>
       <picture>${escapeXml(offer.picture)}</picture>
       <description>${escapeXml(offer.title)}</description>
-      <param name="план">базовый</param>
-      <param name="продолжительность">${offer.deliveryDays} дней</param>
-      <param name="Годы опыта">${offer.yearsExperience}</param>
+      <param name="Рейтинг">${PROFILE.rating}</param>
+      <param name="Число отзывов">${PROFILE.reviewsCount}</param>
+      <param name="Годы опыта">${PROFILE.experienceYears}</param>
       <param name="Регион">Россия</param>
       <param name="Конверсия">${offer.conversion}</param>
+      <param name="Ссылка на телефон">${escapeXml(CONTACT_PHONE)}</param>
       <param name="Ссылка на чат">${escapeXml(TELEGRAM_URL)}</param>
       <param name="Ссылка на создание заказа">${escapeXml(`${FEED_SITE_URL}/#contact`)}</param>
       <param name="Ссылка на профиль исполнителя">${escapeXml(KWORK_URL)}</param>
@@ -245,6 +261,13 @@ export function getServiceFeedXml(now = new Date()) {
     <currencies>
       <currency id="RUR" rate="1"/>
     </currencies>
+    <categories>
+      <category id="${FEED_CATEGORY_PARENT_ID}">Исполнитель</category>
+      <category id="${FEED_CATEGORY_ID}" parentId="${FEED_CATEGORY_PARENT_ID}">Компьютеры и IT</category>
+    </categories>
+    <sets>
+${sets}
+    </sets>
     <offers>
 ${offers}
     </offers>
