@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const languages: Record<string, string> = {
     ru: absoluteUrl("/"),
     en: absoluteUrl("/en"),
+    "x-default": absoluteUrl("/"),
   };
 
   return {
@@ -51,6 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "meta" });
 
   const services = getEnterpriseServices(locale);
 
@@ -83,17 +85,38 @@ export default async function Page({ params }: Props) {
     })),
   };
 
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: SITE_NAME,
+    url: SITE_URL,
+    image: absoluteUrl("/favicon.png"),
+    telephone: CONTACT_PHONE,
+    email: CONTACT_EMAIL,
+    areaServed: { "@type": "Country", name: "Russia" },
+    priceRange: "₽₽₽",
+    description: t("description"),
+    sameAs: [TELEGRAM_URL, FREELANCE_URL],
+    founder: { "@type": "Person", name: PROFILE.name },
+  };
+
   const websiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: SITE_NAME,
     url: SITE_URL,
     inLanguage: locale === "en" ? "en-US" : "ru-RU",
+    potentialAction: {
+      "@type": "ContactAction",
+      target: `${SITE_URL}/#contact`,
+      name: locale === "en" ? "Request a quote" : "Оставить заявку",
+    },
   };
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(offersJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
       <HomePage />

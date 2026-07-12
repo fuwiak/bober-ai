@@ -5,14 +5,18 @@ const ru = {
       "Внешний AI-отдел для software house, интеграторов CRM/ERP и компаний с бюджетом от 500 000 ₽. RAG, агенты, MLOps, on-prem и облако.",
     keywords: [
       "внедрение AI",
+      "разработка AI под ключ",
       "корпоративный ИИ",
-      "RAG",
-      "AI-агенты",
+      "RAG системы",
+      "AI-агенты для бизнеса",
+      "интеграция LLM",
       "MLOps",
+      "автоматизация бизнеса",
+      "GigaChat внедрение",
       "Yandex Cloud",
       "Selectel",
-      "автоматизация бизнеса",
-      "AI для enterprise",
+      "AI консалтинг Москва",
+      "внедрение искусственного интеллекта",
     ],
   },
   nav: {
@@ -34,7 +38,7 @@ const ru = {
     location: "Москва · Онлайн · Россия и СНГ",
     title: "Внедрение AI в бизнес и продукты — под ключ",
     roles: ["AI-архитектор", "Внедрение в production"],
-    nameLine: "Павел Стасиньский · @pstasinski",
+    nameLine: "Павел Стасиньский · '@'pstasinski",
     focus:
       "Внешний AI-отдел для software house, интеграторов CRM/ERP и компаний с бюджетом от 500 000 ₽. RAG, агенты, интеграции, MLOps. Фиксированная смета, этапы, передача команде.",
     trustLine: "★ {rating} · {reviewCount} отзывов · {years} лет · 12+ production внедрений",
@@ -184,7 +188,7 @@ const ru = {
       "White-label: без упоминания Bober AI в документах клиента",
     ],
     cta: "Стать технологическим партнёром",
-    commission: "10%",
+    commission: "'10%'",
     commissionNote: "от аванса клиента при referral",
   },
   about: {
@@ -275,7 +279,6 @@ const ru = {
     cta: "Стать партнёром",
     more: "Подробнее",
     close: "Закрыть",
-    delay: 30000,
   },
   common: {
     siteName: "Bober AI Dev",

@@ -33,7 +33,7 @@ const en = {
     location: "Moscow · Remote · Russia & CIS",
     title: "Enterprise AI implementation — end to end",
     roles: ["AI architect", "Production delivery"],
-    nameLine: "Pavel Stasinsky · @pstasinski",
+    nameLine: "Pavel Stasinsky · '@'pstasinski",
     focus:
       "External AI department for software houses, CRM/ERP integrators, and companies with budgets from €10,000. RAG, agents, integrations, MLOps. Fixed scope, milestones, team handover.",
     trustLine: "★ {rating} · {reviewCount} reviews · {years} years · 12+ production deployments",
@@ -42,7 +42,7 @@ const en = {
     ctaSecondary: "View case studies",
     ctaTelegram: "Telegram",
     responseNote: "Response within 4 business hours · NDA available",
-    legalNote: "Personal data published with the subject's consent.",
+    legalNote: "Personal data published with the subject''s consent.",
     legalLink: "Privacy policy",
   },
   audiences: {
@@ -183,7 +183,7 @@ const en = {
       "White-label: no Bober AI mention in client-facing docs",
     ],
     cta: "Become a technology partner",
-    commission: "10%",
+    commission: "'10%'",
     commissionNote: "of client advance on referral",
   },
   about: {
@@ -274,7 +274,6 @@ const en = {
     cta: "Become a partner",
     more: "Learn more",
     close: "Close",
-    delay: 30000,
   },
   common: {
     siteName: "Bober AI Dev",
@@ -283,7 +282,7 @@ const en = {
   },
   servicePage: {
     back: "← All solutions",
-    includes: "What's included",
+    includes: "What''s included",
     deliverables: [
       "Task audit and scope agreement",
       "Development and configuration",

@@ -3,7 +3,7 @@ export const SITE_NAME = "Bober AI Dev";
 export const SITE_DESCRIPTION =
   "Внедрение AI в бизнес и продукты под ключ. Внешний AI-отдел для software house и компаний с бюджетом от 500 000 ₽. RAG, агенты, MLOps.";
 export const SITE_REGION = "Россия";
-export const CONTACT_EMAIL = "hello@bober-ai.dev";
+export const CONTACT_EMAIL = "hello@bober-ai.ru";
 export const CONTACT_NOTIFICATION_EMAILS = [CONTACT_EMAIL, "stasinskipawel@yandex.ru"] as const;
 export const CONTACT_PHONE = "+79950998170";
 export const TELEGRAM_URL = "https://t.me/pstasinski";
@@ -27,18 +27,20 @@ export const MARKETPLACES = [
 export const YOUTUBE_SHORTS_URL = "https://www.youtube.com/shorts/5DQzO5aPS5A";
 export const ORGANIZATION_NAME = "ИП Стасиньски Павел Кшиштоф";
 export const DEFAULT_KEYWORDS = [
-  "Bober AI Dev",
-  "Claude-консультант",
-  "проектировщик ИИ-решений",
+  "внедрение AI",
+  "разработка AI под ключ",
   "корпоративный ИИ",
-  "AI-инфраструктура",
-  "облачные LLM",
+  "AI-агенты для бизнеса",
+  "RAG системы",
+  "интеграция LLM",
+  "MLOps",
+  "автоматизация бизнеса",
+  "GigaChat внедрение",
   "Yandex Cloud",
   "Selectel",
-  "автоматизация бизнеса",
-  "чат-боты",
-  "DevOps",
-  "приватные модели",
+  "AI для enterprise",
+  "разработка чат-ботов",
+  "AI консалтинг Москва",
 ];
 
 export function absoluteUrl(path = "/"): string {

@@ -35,6 +35,11 @@ export const metadata: Metadata = {
   keywords: DEFAULT_KEYWORDS,
   alternates: {
     canonical: absoluteUrl("/"),
+    languages: {
+      ru: absoluteUrl("/"),
+      en: absoluteUrl("/en"),
+      "x-default": absoluteUrl("/"),
+    },
   },
   icons: {
     icon: [
@@ -96,8 +101,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html suppressHydrationWarning>
+    <html lang="ru" suppressHydrationWarning>
       <body className={`${cormorant.variable} ${inter.variable} ${jetbrains.variable}`}>
+        <Script id="locale-lang" strategy="beforeInteractive">
+          {`(function(){try{var p=location.pathname;var l=(p==='/en'||p.indexOf('/en/')===0)?'en':'ru';document.documentElement.lang=l;}catch(e){}})();`}
+        </Script>
         <Script id="theme-init" strategy="beforeInteractive">
           {`(function(){try{var k='theme';var t=localStorage.getItem(k);var d=t==='dark';document.documentElement.classList.toggle('dark',d);}catch(e){}})();`}
         </Script>

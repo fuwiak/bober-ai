@@ -5,12 +5,12 @@ import { Link } from "@/i18n/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 const PARTNER_BANNER_DISMISS_KEY = "partner-banner-dismissed";
+const PARTNER_BANNER_DELAY_MS = 30000;
 
 export function PartnerProgramBanner() {
   const t = useTranslations("banner");
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const delay = Number(t("delay")) || 30000;
 
   useEffect(() => {
     const dismissed = localStorage.getItem(PARTNER_BANNER_DISMISS_KEY) === "1";
@@ -18,11 +18,11 @@ export function PartnerProgramBanner() {
       const timer = window.setTimeout(() => {
         setMounted(true);
         requestAnimationFrame(() => setOpen(true));
-      }, delay);
+      }, PARTNER_BANNER_DELAY_MS);
       return () => window.clearTimeout(timer);
     }
     return undefined;
-  }, [delay]);
+  }, []);
 
   const dismiss = useCallback(() => {
     localStorage.setItem(PARTNER_BANNER_DISMISS_KEY, "1");
