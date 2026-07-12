@@ -100,20 +100,24 @@ function buildCounterPayload(host) {
   };
 }
 
-function printTokenHelp() {
+function printOAuthSetupHelp(scope) {
   console.log(`
-Нужен OAuth-токен с правом metrika:write.
+Нужно право metrika:${scope} у OAuth-приложения.
 
-1. В oauth.yandex.ru добавьте к приложению:
-   Яндекс.Метрика → создание и редактирование счётчиков
-
-2. Получите токен:
+1. Откройте https://oauth.yandex.ru → ваше приложение (ClientID ${config.clientId})
+2. «Доступ к данным» → добавьте «Яндекс.Метрика»:
+   - для проверки: «Получение статистики, чтение параметров счётчиков…» (read)
+   - для создания: «Создание счётчиков, изменение параметров…» (write)
+3. Сохраните приложение.
+4. Получите НОВЫЙ токен (старый не подхватит новые права):
    https://oauth.yandex.ru/authorize?response_type=token&client_id=${config.clientId}
-
-3. Запустите:
-   export YANDEX_OAUTH_TOKEN="y0_..."
+5. export YANDEX_OAUTH_TOKEN="y0_..."
    npm run metrika:counter
 `);
+}
+
+function printTokenHelp() {
+  printOAuthSetupHelp("read и write");
 }
 
 async function main() {
@@ -129,7 +133,18 @@ async function main() {
     fail("Не задан YANDEX_OAUTH_TOKEN");
   }
 
-  let counters = await listCounters(host);
+  let counters;
+  try {
+    counters = await listCounters(host);
+  } catch (error) {
+    if (error.status === 403) {
+      console.error("\nТокен не имеет доступа к API Метрики (metrika:read).");
+      printOAuthSetupHelp("read");
+      fail("Добавьте право Метрики в oauth.yandex.ru и получите новый токен");
+    }
+    throw error;
+  }
+
   let existing = findCounter(counters, host);
 
   if (!existing && config.counterId) {
@@ -154,10 +169,20 @@ async function main() {
   }
 
   console.log("Создаю счётчик...");
-  const created = await apiRequest("/counters", {
-    method: "POST",
-    body: JSON.stringify(buildCounterPayload(host)),
-  });
+  let created;
+  try {
+    created = await apiRequest("/counters", {
+      method: "POST",
+      body: JSON.stringify(buildCounterPayload(host)),
+    });
+  } catch (error) {
+    if (error.status === 403) {
+      console.error("\nТокен может читать счётчики, но не создавать (metrika:write).");
+      printOAuthSetupHelp("write");
+      fail("Добавьте право на создание счётчиков и получите новый токен");
+    }
+    throw error;
+  }
 
   const counter = created?.counter;
   if (!counter?.id) {
@@ -174,10 +199,7 @@ async function main() {
 
 main().catch((error) => {
   if (error.status === 401) {
-    console.error("\nТокен недействителен или истёк.");
-  }
-  if (error.status === 403) {
-    console.error("\nНет права metrika:write. Добавьте его в oauth.yandex.ru и получите новый токен.");
+    console.error("\nТокен недействителен или истёк. Получите новый по ссылке из инструкции выше.");
   }
   fail(error.message);
 });

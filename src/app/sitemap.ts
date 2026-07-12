@@ -1,29 +1,51 @@
 import type { MetadataRoute } from "next";
 import { PORTFOLIO } from "@/lib/profile";
-import { serviceFeedOffers } from "@/lib/services-feed";
+import { getEnterpriseServices } from "@/lib/enterprise-services";
 import { SITE_URL } from "@/lib/site";
 
-const routes = [
-  "",
-  "/services",
-  ...serviceFeedOffers.map((offer) => `/services/${offer.slug}`),
-  ...PORTFOLIO.map((item) => `/portfolio/${item.slug}`),
-  "/privacy-policy",
-  "/consent",
-  "/news",
-  "/events",
-  "/blog",
-  "/career",
-  "/academy",
-  "/outages",
-];
+const staticRoutes = ["", "/services", "/partners", "/privacy-policy", "/consent", "/news", "/events", "/blog", "/career", "/academy", "/outages"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  return routes.map((route) => ({
-    url: `${SITE_URL}${route}`,
-    lastModified: now,
-    changeFrequency: route === "" ? "weekly" : "daily",
-    priority: route === "" ? 1 : 0.7,
-  }));
+  const entries: MetadataRoute.Sitemap = [];
+
+  for (const locale of ["ru", "en"] as const) {
+    const prefix = locale === "en" ? "/en" : "";
+    const services = getEnterpriseServices(locale);
+
+    for (const route of staticRoutes) {
+      entries.push({
+        url: `${SITE_URL}${prefix}${route}`,
+        lastModified: now,
+        changeFrequency: route === "" ? "weekly" : "daily",
+        priority: route === "" ? 1 : 0.7,
+        alternates: {
+          languages: {
+            ru: `${SITE_URL}${route}`,
+            en: `${SITE_URL}/en${route}`,
+          },
+        },
+      });
+    }
+
+    for (const offer of services) {
+      entries.push({
+        url: `${SITE_URL}${prefix}/services/${offer.slug}`,
+        lastModified: now,
+        changeFrequency: "weekly",
+        priority: 0.8,
+      });
+    }
+
+    for (const item of PORTFOLIO) {
+      entries.push({
+        url: `${SITE_URL}${prefix}/portfolio/${item.slug}`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.7,
+      });
+    }
+  }
+
+  return entries;
 }

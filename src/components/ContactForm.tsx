@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { LEGAL_ROUTES } from "@/lib/legal";
 
 type ContactFormProps = {
@@ -37,8 +38,12 @@ function ConsentCheckbox({
 }
 
 export function ContactForm({ defaultService = "" }: ContactFormProps) {
+  const t = useTranslations("form");
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
+  const [company, setCompany] = useState("");
+  const [budget, setBudget] = useState("");
+  const [companyType, setCompanyType] = useState("");
   const [service, setService] = useState(defaultService);
   const [message, setMessage] = useState("");
   const [policyAccepted, setPolicyAccepted] = useState(false);
@@ -46,6 +51,8 @@ export function ContactForm({ defaultService = "" }: ContactFormProps) {
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
   const [errorText, setErrorText] = useState("");
 
+  const budgetOptions = t.raw("budgetOptions") as string[];
+  const companyTypeOptions = t.raw("companyTypeOptions") as string[];
   const canSubmit = policyAccepted && consentAccepted;
 
   async function onSubmit(event: FormEvent) {
@@ -53,17 +60,25 @@ export function ContactForm({ defaultService = "" }: ContactFormProps) {
     setStatus("sending");
     setErrorText("");
 
-    const fullMessage = [service ? `Услуга: ${service}` : "", message].filter(Boolean).join("\n\n");
+    const parts = [
+      company ? `Компания: ${company}` : "",
+      companyType ? `Тип: ${companyType}` : "",
+      budget ? `Бюджет: ${budget}` : "",
+      service ? `Услуга: ${service}` : "",
+      message,
+    ].filter(Boolean);
+
+    const fullMessage = parts.join("\n\n");
 
     if (!policyAccepted) {
       setStatus("error");
-      setErrorText("Необходимо подтвердить ознакомление с политикой обработки персональных данных");
+      setErrorText(t("errorPolicy"));
       return;
     }
 
     if (!consentAccepted) {
       setStatus("error");
-      setErrorText("Необходимо дать согласие на обработку персональных данных");
+      setErrorText(t("errorConsent"));
       return;
     }
 
@@ -81,17 +96,20 @@ export function ContactForm({ defaultService = "" }: ContactFormProps) {
       });
       const data = (await response.json().catch(() => ({}))) as { message?: string };
       if (!response.ok) {
-        throw new Error(data.message || "Не удалось отправить заявку");
+        throw new Error(data.message || t("errorSend"));
       }
       setStatus("ok");
       setName("");
       setContact("");
+      setCompany("");
+      setBudget("");
+      setCompanyType("");
       setMessage("");
       setPolicyAccepted(false);
       setConsentAccepted(false);
     } catch (error) {
       setStatus("error");
-      setErrorText(error instanceof Error ? error.message : "Ошибка отправки");
+      setErrorText(error instanceof Error ? error.message : t("errorGeneric"));
     }
   }
 
@@ -99,74 +117,99 @@ export function ContactForm({ defaultService = "" }: ContactFormProps) {
     <form onSubmit={onSubmit} className="space-y-4">
       <div>
         <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-ink">
-          Имя
+          {t("name")}
         </label>
-        <input
-          id="name"
-          required
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="text-input"
-        />
+        <input id="name" required value={name} onChange={(e) => setName(e.target.value)} className="text-input" />
       </div>
       <div>
         <label htmlFor="contact" className="mb-1.5 block text-sm font-medium text-ink">
-          Телефон или email
+          {t("contact")}
+        </label>
+        <input id="contact" required value={contact} onChange={(e) => setContact(e.target.value)} className="text-input" />
+      </div>
+      <div>
+        <label htmlFor="company" className="mb-1.5 block text-sm font-medium text-ink">
+          {t("company")}
         </label>
         <input
-          id="contact"
-          required
-          value={contact}
-          onChange={(e) => setContact(e.target.value)}
+          id="company"
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
+          placeholder={t("companyPlaceholder")}
           className="text-input"
         />
       </div>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label htmlFor="companyType" className="mb-1.5 block text-sm font-medium text-ink">
+            {t("companyType")}
+          </label>
+          <select
+            id="companyType"
+            value={companyType}
+            onChange={(e) => setCompanyType(e.target.value)}
+            className="text-input"
+          >
+            <option value="">{t("companyTypePlaceholder")}</option>
+            {companyTypeOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="budget" className="mb-1.5 block text-sm font-medium text-ink">
+            {t("budget")}
+          </label>
+          <select id="budget" value={budget} onChange={(e) => setBudget(e.target.value)} className="text-input">
+            <option value="">{t("budgetPlaceholder")}</option>
+            {budgetOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
       <div>
         <label htmlFor="service" className="mb-1.5 block text-sm font-medium text-ink">
-          Услуга
+          {t("service")}
         </label>
         <input
           id="service"
           value={service}
           onChange={(e) => setService(e.target.value)}
-          placeholder="Например: ИИ-бот под ключ"
+          placeholder={t("servicePlaceholder")}
           className="text-input"
         />
       </div>
       <div>
         <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-ink">
-          Сообщение
+          {t("message")}
         </label>
-        <textarea
-          id="message"
-          rows={4}
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          className="textarea-input"
-        />
+        <textarea id="message" rows={4} value={message} onChange={(e) => setMessage(e.target.value)} className="textarea-input" />
       </div>
       <div className="space-y-3 rounded-lg border border-hairline bg-surface-soft p-4">
         <ConsentCheckbox id="pd-policy" checked={policyAccepted} onChange={setPolicyAccepted}>
-          Я ознакомлен(а) с{" "}
+          {t("policy")}{" "}
           <Link href={LEGAL_ROUTES.privacyPolicy} className="text-link" target="_blank">
-            политикой обработки персональных данных
+            {t("policyLink")}
           </Link>
           .
         </ConsentCheckbox>
         <ConsentCheckbox id="pd-consent" checked={consentAccepted} onChange={setConsentAccepted}>
-          Я даю{" "}
+          {t("consent")}{" "}
           <Link href={LEGAL_ROUTES.consent} className="text-link" target="_blank">
-            согласие на обработку персональных данных
+            {t("consentLink")}
           </Link>
           .
         </ConsentCheckbox>
       </div>
       <button type="submit" disabled={status === "sending" || !canSubmit} className="btn-primary w-full">
-        {status === "sending" ? "Отправляем…" : "Отправить заявку"}
+        {status === "sending" ? t("submitting") : t("submit")}
       </button>
-      {status === "ok" ? (
-        <p className="text-sm text-success">Заявка отправлена. Свяжемся в ближайшее время.</p>
-      ) : null}
+      {status === "ok" ? <p className="text-sm text-success">{t("success")}</p> : null}
       {status === "error" ? <p className="text-sm text-error">{errorText}</p> : null}
     </form>
   );

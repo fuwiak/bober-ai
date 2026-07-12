@@ -17,6 +17,6 @@ export const LEGAL_ROUTES = {
 
 export const COOKIE_CONSENT_KEY = "cookie-consent";
 
-export const YANDEX_METRIKA_ID = process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID || "108972710";
+export const YANDEX_METRIKA_ID = process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID || "110635302";
 
 export const POLICY_UPDATED_AT = "21.06.2026";

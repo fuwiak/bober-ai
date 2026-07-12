@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   applicationName: SITE_NAME,
   title: {
-    default: "Разработка AI-агентов и автоматизаций",
+    default: "Внедрение AI в бизнес и продукты — под ключ",
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: "Разработка AI-агентов и автоматизаций",
+    title: "Внедрение AI в бизнес и продукты — под ключ",
     description: SITE_DESCRIPTION,
     images: [
       {
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Разработка AI-агентов и автоматизаций",
+    title: "Внедрение AI в бизнес и продукты — под ключ",
     description: SITE_DESCRIPTION,
     images: [absoluteUrl("/favicon.png")],
   },
@@ -96,8 +96,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className={`${cormorant.variable} ${inter.variable} ${jetbrains.variable}`} suppressHydrationWarning>
-      <body>
+    <html suppressHydrationWarning>
+      <body className={`${cormorant.variable} ${inter.variable} ${jetbrains.variable}`}>
         <Script id="theme-init" strategy="beforeInteractive">
           {`(function(){try{var k='theme';var t=localStorage.getItem(k);var d=t==='dark';document.documentElement.classList.toggle('dark',d);}catch(e){}})();`}
         </Script>

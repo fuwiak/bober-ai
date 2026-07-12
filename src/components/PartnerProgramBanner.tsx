@@ -1,15 +1,16 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { useCallback, useEffect, useState } from "react";
-import { PARTNER_PROGRAM } from "@/lib/profile";
-import { getOrderTelegramUrl } from "@/lib/services-feed";
 
 const PARTNER_BANNER_DISMISS_KEY = "partner-banner-dismissed";
 
 export function PartnerProgramBanner() {
+  const t = useTranslations("banner");
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const delay = Number(t("delay")) || 30000;
 
   useEffect(() => {
     const dismissed = localStorage.getItem(PARTNER_BANNER_DISMISS_KEY) === "1";
@@ -17,11 +18,11 @@ export function PartnerProgramBanner() {
       const timer = window.setTimeout(() => {
         setMounted(true);
         requestAnimationFrame(() => setOpen(true));
-      }, 1200);
+      }, delay);
       return () => window.clearTimeout(timer);
     }
     return undefined;
-  }, []);
+  }, [delay]);
 
   const dismiss = useCallback(() => {
     localStorage.setItem(PARTNER_BANNER_DISMISS_KEY, "1");
@@ -43,18 +44,16 @@ export function PartnerProgramBanner() {
         <div className="bg-primary px-5 py-3 text-on-primary">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <p className="text-[10px] font-medium uppercase tracking-widest text-on-primary/80">
-                Для агентств и знакомых
-              </p>
+              <p className="text-[10px] font-medium uppercase tracking-widest text-on-primary/80">{t("badge")}</p>
               <h2 id="partner-banner-title" className="mt-1 font-display text-xl tracking-tight">
-                {PARTNER_PROGRAM.title}
+                {t("title")}
               </h2>
             </div>
             <button
               type="button"
               onClick={dismiss}
               className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-on-primary/80 active:bg-on-primary/10"
-              aria-label="Закрыть"
+              aria-label={t("close")}
             >
               <span aria-hidden="true" className="text-lg leading-none">
                 ×
@@ -65,42 +64,16 @@ export function PartnerProgramBanner() {
 
         <div className="p-5">
           <p className="text-sm leading-relaxed text-body">
-            Приводите клиентов на AI-проекты —{" "}
-            <strong className="font-medium text-ink">{PARTNER_PROGRAM.commissionPercent}%</strong> сразу после аванса
-            клиента.
+            {t("text", { percent: "10%" })}
           </p>
 
-          <ol className="mt-4 space-y-2 border-t border-hairline pt-4">
-            {PARTNER_PROGRAM.steps.map((step, index) => (
-              <li key={step.title} className="flex gap-3 text-sm">
-                <span className="font-display text-lg leading-none text-primary/50">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <span className="text-body">
-                  <span className="font-medium text-ink">{step.title}.</span> {step.text}
-                </span>
-              </li>
-            ))}
-          </ol>
-
-          <ul className="mt-4 space-y-1 text-xs text-muted">
-            <li>· Без скрытых условий</li>
-            <li>· Прозрачный расчёт от суммы аванса</li>
-            <li>· Подходит фрилансерам, агентствам, интеграторам</li>
-          </ul>
-
           <div className="mt-5 flex flex-col gap-2">
-            <a
-              href={getOrderTelegramUrl("партнёрскую программу")}
-              target="_blank"
-              rel="noreferrer"
-              className="btn-primary w-full text-center text-sm"
-            >
-              Стать партнёром
-            </a>
-            <Link href="/#partners" onClick={dismiss} className="btn-secondary w-full text-center text-sm">
-              Подробнее на странице
+            <Link href="/partners" onClick={dismiss} className="btn-primary w-full text-center text-sm">
+              {t("cta")}
             </Link>
+            <button type="button" onClick={dismiss} className="btn-secondary w-full text-center text-sm">
+              {t("more")}
+            </button>
           </div>
         </div>
       </div>
