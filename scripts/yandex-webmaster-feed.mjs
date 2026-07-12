@@ -17,7 +17,9 @@ import { fetch } from "undici";
 const API_BASE = "https://api.webmaster.yandex.net/v4";
 
 const config = {
-  token: process.env.YANDEX_WEBMASTER_OAUTH_TOKEN?.trim(),
+  token:
+    process.env.YANDEX_WEBMASTER_OAUTH_TOKEN?.trim() ||
+    process.env.YANDEX_OAUTH_TOKEN?.trim(),
   hostUrl: (process.env.YANDEX_WEBMASTER_HOST_URL || process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev").replace(/\/$/, ""),
   feedUrl: (process.env.YANDEX_WEBMASTER_FEED_URL || `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev"}/performers-feed.yml`).replace(/\/$/, ""),
   feedType: process.env.YANDEX_WEBMASTER_FEED_TYPE || "SERVICES",

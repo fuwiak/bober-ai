@@ -14,7 +14,8 @@
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:live": "playwright test -c playwright.live.config.ts",
     "webmaster:feed:upload": "node scripts/yandex-webmaster-feed.mjs",
-    "webmaster:feed:status": "node scripts/yandex-webmaster-feed.mjs"
+    "webmaster:feed:status": "node scripts/yandex-status.mjs",
+    "yandex:status": "node scripts/yandex-status.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.546.0",
