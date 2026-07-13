@@ -140,12 +140,14 @@ html.dark {
   }
 
   .section--deep { @apply bg-canvas; }
-  .section--elevated {
+  .section--elevated,
+  .media-section {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.005));
     border-top: 1px solid rgba(255, 255, 255, 0.06);
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   }
-  html:not(.dark) .section--elevated {
+  html:not(.dark) .section--elevated,
+  html:not(.dark) .media-section {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.4));
     border-color: rgba(10, 13, 18, 0.06);
   }
@@ -199,21 +201,20 @@ html.dark {
     border-color: rgba(144, 186, 255, 0.4);
   }
 
-  .btn-secondary {
+  .btn-secondary,
+  .btn-secondary-on-dark,
+  .btn-inverted {
     @apply inline-flex h-11 items-center justify-center gap-2 rounded-full px-6 text-sm font-medium text-ink;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.16);
     transition: transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.32s ease, background-color 0.32s ease;
   }
 
-  html:not(.dark) .btn-secondary {
+  html:not(.dark) .btn-secondary,
+  html:not(.dark) .btn-secondary-on-dark,
+  html:not(.dark) .btn-inverted {
     background: rgba(10, 13, 18, 0.03);
     border-color: rgba(10, 13, 18, 0.12);
-  }
-
-  .btn-secondary-on-dark,
-  .btn-inverted {
-    @apply btn-secondary;
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -227,7 +228,8 @@ html.dark {
     }
   }
 
-  .button-arrow {
+  .button-arrow,
+  .btn-kts-arrow {
     @apply inline-block transition-transform duration-200 ease-out;
   }
   @media (hover: hover) and (pointer: fine) {
@@ -268,7 +270,17 @@ html.dark {
   }
 
   /* Luxury card system */
-  .luxury-card {
+  .luxury-card,
+  .feature-card,
+  .feature-card-bordered,
+  .package-card,
+  .solution-card,
+  .portfolio-card,
+  .review-card,
+  .media-card,
+  .callout-accent,
+  .cookie-consent-card,
+  .card-kts {
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -279,20 +291,45 @@ html.dark {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 24px 80px rgba(0, 0, 0, 0.28);
     transition: transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.32s ease, box-shadow 0.32s ease;
   }
-  html:not(.dark) .luxury-card {
+  html:not(.dark) .luxury-card,
+  html:not(.dark) .feature-card,
+  html:not(.dark) .feature-card-bordered,
+  html:not(.dark) .package-card,
+  html:not(.dark) .solution-card,
+  html:not(.dark) .portfolio-card,
+  html:not(.dark) .review-card,
+  html:not(.dark) .media-card,
+  html:not(.dark) .callout-accent,
+  html:not(.dark) .cookie-consent-card,
+  html:not(.dark) .card-kts {
     background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7)), var(--color-surface-card);
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 20px 60px rgba(10,13,18,0.08);
   }
   @media (hover: hover) and (pointer: fine) {
-    .luxury-card:hover {
+    .luxury-card:hover,
+    .feature-card:hover,
+    .feature-card-bordered:hover,
+    .package-card:hover,
+    .solution-card:hover,
+    .portfolio-card:hover,
+    .review-card:hover,
+    .media-card:hover,
+    .callout-accent:hover,
+    .cookie-consent-card:hover,
+    .card-kts:hover {
       transform: translateY(-5px);
       border-color: rgba(144, 186, 255, 0.32);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 30px 90px rgba(0, 0, 0, 0.42), 0 0 45px rgba(76, 125, 255, 0.08);
     }
   }
 
-  .light-sweep { position: relative; overflow: hidden; }
-  .light-sweep::after {
+  .light-sweep,
+  .callout-accent {
+    position: relative;
+    overflow: hidden;
+  }
+  .light-sweep::after,
+  .callout-accent::after {
     content: "";
     position: absolute;
     inset: -40%;
@@ -302,15 +339,17 @@ html.dark {
     transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   @media (hover: hover) and (pointer: fine) {
-    .light-sweep:hover::after { transform: translateX(70%) rotate(8deg); }
+    .light-sweep:hover::after,
+    .callout-accent:hover::after { transform: translateX(70%) rotate(8deg); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .light-sweep::after { display: none; }
+    .light-sweep::after,
+    .callout-accent::after { display: none; }
   }
 
   .feature-card,
   .feature-card-bordered {
-    @apply luxury-card p-6 md:p-8;
+    @apply p-6 md:p-8;
   }
 
   .badge-pill {
@@ -381,7 +420,7 @@ html.dark {
     @apply grid grid-cols-1 gap-5 lg:grid-cols-3;
   }
   .package-card {
-    @apply luxury-card flex min-h-0 flex-col p-8 md:min-h-[520px];
+    @apply flex min-h-0 flex-col p-8 md:min-h-[520px];
   }
   .package-card--discovery { /* strict dark - base luxury-card */ }
   .package-card--featured {
@@ -411,7 +450,7 @@ html.dark {
     grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: 18px;
   }
-  .solution-card { @apply luxury-card flex min-h-[280px] flex-col p-7 md:p-8; grid-column: span 4; }
+  .solution-card { @apply flex min-h-[280px] flex-col p-7 md:p-8; grid-column: span 4; }
   .solution-card--wide { grid-column: span 8; min-height: 320px; }
   .solution-card--large { grid-column: span 7; min-height: 440px; }
   .solution-card--compact { grid-column: span 5; min-height: 260px; }
@@ -434,7 +473,7 @@ html.dark {
 
   /* Portfolio */
   .portfolio-card {
-    @apply luxury-card block overflow-hidden;
+    @apply block overflow-hidden;
   }
   .portfolio-card__image {
     @apply object-cover object-top transition-transform duration-[500ms] ease-out;
@@ -451,7 +490,7 @@ html.dark {
 
   /* Reviews */
   .review-card {
-    @apply luxury-card flex h-full flex-col p-6 md:p-7;
+    @apply flex h-full flex-col p-6 md:p-7;
   }
   .review-card__quote {
     @apply flex-1 font-display text-lg leading-snug tracking-tight text-ink md:text-xl;
@@ -464,11 +503,16 @@ html.dark {
   }
 
   /* Skills */
-  .skill-chip {
+  .skill-chip,
+  .filter-chip {
     @apply inline-flex rounded-full border border-hairline px-3.5 py-2 text-sm text-muted transition-all duration-200;
   }
+  .filter-chip {
+    @apply h-9 px-4 font-medium text-ink;
+  }
   @media (hover: hover) and (pointer: fine) {
-    .skill-chip:hover {
+    .skill-chip:hover,
+    .filter-chip:hover {
       @apply text-ink;
       border-color: rgba(144, 186, 255, 0.35);
       background: rgba(76, 125, 255, 0.06);
@@ -476,7 +520,6 @@ html.dark {
   }
 
   /* Media */
-  .media-section { @apply section--elevated; }
   .media-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
@@ -488,7 +531,7 @@ html.dark {
   .media-card__slot:not(.media-card__slot--featured):nth-child(3) { grid-column: 2; grid-row: 2; }
 
   .media-card {
-    @apply luxury-card flex h-full min-h-[220px] flex-col text-ink;
+    @apply flex h-full min-h-[220px] flex-col text-ink;
   }
   .media-card--video { @apply md:min-h-[460px]; }
   .media-card__visual { @apply relative overflow-hidden bg-surface-soft; }
@@ -529,7 +572,7 @@ html.dark {
 
   /* CTA */
   .callout-accent {
-    @apply luxury-card light-sweep p-8 md:p-12;
+    @apply p-8 md:p-12;
     background:
       radial-gradient(circle at 80% 0%, rgba(76, 125, 255, 0.18), transparent 42%),
       linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01)),
@@ -563,20 +606,17 @@ html.dark {
     @apply border-t border-hairline bg-canvas py-16 text-on-dark-soft md:py-20;
   }
 
-  .cookie-consent-card { @apply luxury-card p-6 text-on-dark-soft; }
+  .cookie-consent-card { @apply p-6 text-on-dark-soft; }
 
   .prose-legal h2 { @apply mt-8 font-display text-xl tracking-tight text-ink; }
   .prose-legal p, .prose-legal li { @apply text-sm leading-relaxed text-muted; }
 
-  /* Legacy KTS aliases mapped to luxury */
-  .card-kts { @apply luxury-card; }
+  /* Legacy KTS aliases */
   .card-kts-body { @apply flex flex-col; }
   .btn-kts-pill {
     @apply inline-flex h-9 items-center gap-2 rounded-full border border-hairline bg-white/5 px-4 text-xs font-medium uppercase tracking-widest text-ink;
   }
-  .btn-kts-arrow { @apply button-arrow; }
 
-  .filter-chip { @apply skill-chip h-9 px-4 text-sm font-medium text-ink; }
   .filter-chip-active {
     @apply border-accent-primary-light/40 bg-accent-primary/15 text-ink;
   }
