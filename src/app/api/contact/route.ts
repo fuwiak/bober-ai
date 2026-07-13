@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 import { CONTACT_NOTIFICATION_EMAILS, SITE_NAME } from "@/lib/site";
 
 export const runtime = "nodejs";
@@ -61,12 +62,19 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: true, dryRun: true, preview: { to, subject, text } });
   }
 
-  const resendApiKey = process.env.RESEND_API_KEY;
-  const from = process.env.CONTACT_FROM_EMAIL || "onboarding@resend.dev";
+  const smtpHost = process.env.SMTP_HOST?.trim();
+  const smtpPort = Number(process.env.SMTP_PORT || "465");
+  const smtpSecure = (process.env.SMTP_SECURE || "1") === "1";
+  const smtpUser = process.env.SMTP_USER?.trim();
+  const smtpPass = process.env.SMTP_PASS?.trim();
+  const from = process.env.CONTACT_FROM_EMAIL?.trim();
 
-  if (!resendApiKey) {
+  if (!smtpHost || !smtpUser || !smtpPass || !from) {
     return NextResponse.json(
-      { error: "email_not_configured", message: "RESEND_API_KEY не настроен на сервере" },
+      {
+        error: "email_not_configured",
+        message: "Не настроена отправка почты: задайте SMTP_HOST/SMTP_PORT/SMTP_SECURE/SMTP_USER/SMTP_PASS/CONTACT_FROM_EMAIL",
+      },
       { status: 500 },
     );
   }
@@ -79,28 +87,30 @@ export async function POST(request: NextRequest) {
     <p>${escapeHtml(message).replace(/\n/g, "<br/>")}</p>
   `;
 
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${resendApiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
+  try {
+    const transporter = nodemailer.createTransport({
+      host: smtpHost,
+      port: smtpPort,
+      secure: smtpSecure,
+      auth: {
+        user: smtpUser,
+        pass: smtpPass,
+      },
+    });
+
+    const replyTo = contact.includes("@") ? contact : undefined;
+
+    await transporter.sendMail({
       from,
       to,
       subject,
       text,
       html,
-      reply_to: contact.includes("@") ? contact : undefined,
-    }),
-  });
-
-  if (!response.ok) {
-    const details = await response.text().catch(() => "");
-    return NextResponse.json(
-      { error: "email_failed", message: `Не удалось отправить письмо: ${details.slice(0, 200)}` },
-      { status: 502 },
-    );
+      replyTo,
+    });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "SMTP error";
+    return NextResponse.json({ error: "email_failed", message: `Не удалось отправить письмо: ${message}` }, { status: 502 });
   }
 
   return NextResponse.json({ ok: true });
