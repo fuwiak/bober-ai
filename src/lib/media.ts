@@ -17,20 +17,6 @@ export type MediaItem = {
 
 const ruMediaItems: MediaItem[] = [
   {
-    id: "fakro-fm-neural-networks",
-    type: "video",
-    category: "ИНТЕРВЬЮ · ВИДЕО",
-    publisher: "FAKRO FM",
-    title: "Нейросети в жизни и в работе",
-    description:
-      "Какие задачи можно делегировать нейросетям, когда автоматизация действительно выгодна и почему AI остаётся инструментом в руках специалиста.",
-    url: "https://www.youtube.com/watch?v=8mF9eP-0fws",
-    featured: true,
-    accent: "youtube",
-    youtubeId: "8mF9eP-0fws",
-    publishedAt: "2026-05-29",
-  },
-  {
     id: "mk-ai-teachers",
     type: "article",
     category: "ЭКСПЕРТНЫЙ КОММЕНТАРИЙ",
@@ -59,20 +45,6 @@ const ruMediaItems: MediaItem[] = [
 ];
 
 const enMediaItems: MediaItem[] = [
-  {
-    id: "fakro-fm-neural-networks",
-    type: "video",
-    category: "INTERVIEW · VIDEO",
-    publisher: "FAKRO FM",
-    title: "Neural networks in life and at work",
-    description:
-      "Which tasks can be delegated to neural networks, when automation pays off, and why AI remains a tool in the hands of a specialist.",
-    url: "https://www.youtube.com/watch?v=8mF9eP-0fws",
-    featured: true,
-    accent: "youtube",
-    youtubeId: "8mF9eP-0fws",
-    publishedAt: "2026-05-29",
-  },
   {
     id: "mk-ai-teachers",
     type: "article",
