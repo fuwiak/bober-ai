@@ -3,13 +3,18 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import HomePage from "@/components/HomePage";
 import { routing } from "@/i18n/routing";
 import {
+  CLOUD_RU_PARTNERS_URL,
   CONTACT_EMAIL,
   CONTACT_PHONE,
-  FREELANCE_URL,
+  GITHUB_URL,
+  LINKEDIN_URL,
   ORGANIZATION_NAME,
+  SELECTEL_PARTNER_PROGRAM_URL,
   SITE_NAME,
   SITE_URL,
   TELEGRAM_URL,
+  YANDEX_CLOUD_PARTNERS_URL,
+  YANDEX_USLUGI_URL,
   absoluteUrl,
 } from "@/lib/site";
 import { PROFILE } from "@/lib/profile";
@@ -65,7 +70,15 @@ export default async function Page({ params }: Props) {
     image: absoluteUrl(PROFILE.avatar),
     email: CONTACT_EMAIL,
     telephone: CONTACT_PHONE,
-    sameAs: [TELEGRAM_URL, FREELANCE_URL],
+    sameAs: [
+      LINKEDIN_URL,
+      GITHUB_URL,
+      YANDEX_USLUGI_URL,
+      YANDEX_CLOUD_PARTNERS_URL,
+      SELECTEL_PARTNER_PROGRAM_URL,
+      CLOUD_RU_PARTNERS_URL,
+      TELEGRAM_URL,
+    ],
     worksFor: { "@type": "Organization", name: ORGANIZATION_NAME },
   };
 
@@ -96,7 +109,15 @@ export default async function Page({ params }: Props) {
     areaServed: { "@type": "Country", name: "Russia" },
     priceRange: "₽₽₽",
     description: t("description"),
-    sameAs: [TELEGRAM_URL, FREELANCE_URL],
+    sameAs: [
+      LINKEDIN_URL,
+      GITHUB_URL,
+      YANDEX_USLUGI_URL,
+      YANDEX_CLOUD_PARTNERS_URL,
+      SELECTEL_PARTNER_PROGRAM_URL,
+      CLOUD_RU_PARTNERS_URL,
+      TELEGRAM_URL,
+    ],
     founder: { "@type": "Person", name: PROFILE.name },
   };
 

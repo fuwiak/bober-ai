@@ -2,7 +2,7 @@ import NextLink from "next/link";
 import { getTranslations } from "next-intl/server";
 import { SiteHeaderClient } from "@/components/SiteHeaderClient";
 import { Link } from "@/i18n/navigation";
-import { CONTACT_PHONE, MARKETPLACES, SITE_NAME, TELEGRAM_URL } from "@/lib/site";
+import { CONTACT_PHONE, HOMEPAGE_PRESENCE_LINKS, SITE_NAME, TELEGRAM_URL } from "@/lib/site";
 import { LEGAL_ROUTES } from "@/lib/legal";
 
 export async function SiteHeader() {
@@ -60,11 +60,11 @@ export async function SiteFooter() {
             {CONTACT_PHONE}
           </a>
         </div>
-        <p className="mt-6 text-xs text-on-dark-soft">{t("marketplaces")}</p>
+        <p className="mt-6 text-xs text-on-dark-soft">{t("profiles")}</p>
         <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs">
-          {MARKETPLACES.map((item) => (
-            <a key={item.name} href={item.url} target="_blank" rel="noreferrer" className="text-on-dark-soft active:text-on-dark">
-              {item.name}
+          {HOMEPAGE_PRESENCE_LINKS.map((item) => (
+            <a key={item.id} href={item.url} target="_blank" rel="noreferrer" className="text-on-dark-soft active:text-on-dark">
+              {t(`presence.${item.id}`)}
             </a>
           ))}
         </div>

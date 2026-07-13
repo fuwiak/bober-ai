@@ -57,7 +57,7 @@ const en = {
     focus:
       "External AI department for software houses, CRM/ERP integrators, and companies with budgets from €10,000. RAG, agents, integrations, MLOps. Fixed scope, milestones, team handover.",
     trustLine: "★ {rating} · {reviewCount} reviews · {years} years · 12+ production deployments",
-    partnersLine: "Yandex Cloud · Selectel · Cloud.ru partner",
+    partnersLine: "Yandex Cloud Partner · Selectel Partner Program · Cloud.ru Technology Partner",
     ctaPrimary: "Discuss your project",
     ctaSecondary: "View case studies",
     ctaTelegram: "Telegram",
@@ -97,6 +97,12 @@ const en = {
       { value: "NDA", label: "and on-prem on request" },
     ],
     logos: ["Kaspersky", "Yandex Cloud", "Selectel", "Cloud.ru"],
+    partnersAriaLabel: "Technology and cloud partners",
+    partnerPrograms: {
+      "yandex-cloud": "Yandex Cloud Partner",
+      selectel: "Selectel Partner Program",
+      cloudru: "Cloud.ru Technology Partner",
+    },
   },
   packages: {
     title: "Packages for companies",
@@ -240,10 +246,13 @@ const en = {
   security: {
     title: "Security & compliance",
     items: [
-      "On-prem and isolated cloud — data stays out of public APIs",
-      "152-FZ: privacy policy, consent, processing agreement",
-      "NDA before work starts — standard for enterprise",
-      "Kubernetes, monitoring, logging — production-grade infrastructure",
+      "GDPR-oriented data processing — DPA, lawful basis, retention policies",
+      "EU and regional hosting options with isolated deployment",
+      "Access controls, audit logs, and encryption at rest and in transit",
+      "Secrets management and client-controlled model providers",
+      "NDA before work starts — standard for enterprise engagements",
+      "152-FZ support for Russian deployments",
+      "GDPR-oriented architecture for EU deployments",
     ],
   },
   partners: {
@@ -283,7 +292,7 @@ const en = {
       "MLOps & Kubernetes",
       "LLM integrations",
       "CRM: amoCRM, Bitrix24, 1C",
-      "On-prem & compliance",
+      "Security & data governance",
       "YandexGPT & GigaChat",
       "Yandex Cloud · Selectel",
     ],
@@ -357,7 +366,15 @@ const en = {
     legalName: "IE Pavel Stasinsky",
     privacy: "Privacy policy",
     consent: "Data processing consent",
-    marketplaces: "Also on marketplaces",
+    profiles: "Profiles & verification",
+    presence: {
+      linkedin: "LinkedIn",
+      github: "GitHub",
+      yandexReviews: "Yandex reviews",
+      yandexCloud: "Yandex Cloud partner catalog",
+      selectel: "Selectel Partner Program",
+      cloudru: "Cloud.ru partner directory",
+    },
   },
   banner: {
     badge: "For integrators",

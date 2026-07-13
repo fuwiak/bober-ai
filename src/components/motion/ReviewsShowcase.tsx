@@ -31,7 +31,6 @@ export function ReviewsShowcase({ title, subtitle, reviews, sectionLabel }: Revi
               text={review.text}
               date={review.date}
               source={review.source}
-              project={review.project}
             />
           ))}
         </Stagger>

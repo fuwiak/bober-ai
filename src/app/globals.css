@@ -562,6 +562,13 @@ html.dark {
     gap: 14px;
     padding: 28px 16px;
     border-right: 1px solid var(--color-hairline);
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s ease;
+  }
+  .trust-logo--linked:hover,
+  .trust-logo--linked:focus-visible {
+    background: var(--color-surface-soft);
   }
   .trust-logo:nth-child(4n),
   .trust-logo:last-child {
@@ -602,6 +609,17 @@ html.dark {
     text-transform: uppercase;
     color: var(--color-ink);
     text-align: center;
+  }
+  .trust-logo__program {
+    max-width: 12rem;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    text-align: center;
+    line-height: 1.4;
   }
 
   /* Editorial rows */

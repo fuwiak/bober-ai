@@ -62,7 +62,7 @@ const ru = {
     focus:
       "Внешний AI-отдел для software house, интеграторов CRM/ERP и компаний с бюджетом от 500 000 ₽. RAG, агенты, интеграции, MLOps. Фиксированная смета, этапы, передача команде.",
     trustLine: "★ {rating} · {reviewCount} отзывов · {years} лет · 12+ внедрений в production",
-    partnersLine: "Партнёр Yandex Cloud · Selectel · Cloud.ru",
+    partnersLine: "Партнёр Yandex Cloud · Партнёрская программа Selectel · Технологический партнёр Cloud.ru",
     ctaPrimary: "Обсудить проект",
     ctaSecondary: "Посмотреть кейсы",
     ctaTelegram: "Telegram",
@@ -102,6 +102,12 @@ const ru = {
       { value: "NDA", label: "и on-prem по запросу" },
     ],
     logos: ["Kaspersky", "Yandex Cloud", "Selectel", "Cloud.ru"],
+    partnersAriaLabel: "Технологические и облачные партнёры",
+    partnerPrograms: {
+      "yandex-cloud": "Партнёр Yandex Cloud",
+      selectel: "Партнёрская программа Selectel",
+      cloudru: "Технологический партнёр Cloud.ru",
+    },
   },
   packages: {
     title: "Пакеты для компаний",
@@ -299,8 +305,6 @@ const ru = {
     subtitle: "28 оценок на Яндексе · проверенные отзывы по ИИ, ML и промышленным внедрениям",
     yandexTitle: "Yandex",
     yandexMeta: "Рейтинг {rating} · {count} оценок",
-    avitoTitle: "Отзывы Авито",
-    avitoMeta: "{count} опубликованных отзывов",
   },
   media: {
     label: "СМИ / ЭКСПЕРТИЗА",
@@ -362,7 +366,15 @@ const ru = {
     legalName: "ИП Стасиньски Павел Кшиштоф",
     privacy: "Политика обработки ПДн",
     consent: "Согласие на обработку ПДн",
-    marketplaces: "Также на маркетплейсах",
+    profiles: "Профили и верификация",
+    presence: {
+      linkedin: "LinkedIn",
+      github: "GitHub",
+      yandexReviews: "Отзывы на Яндексе",
+      yandexCloud: "Каталог партнёров Yandex Cloud",
+      selectel: "Партнёрская программа Selectel",
+      cloudru: "Каталог партнёров Cloud.ru",
+    },
   },
   banner: {
     badge: "Для интеграторов",
