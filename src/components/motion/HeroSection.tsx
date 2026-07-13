@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ContactCta } from "@/components/ContactCta";
 import { EditorialImageFrame } from "@/components/EditorialImageFrame";
+import { ProfessionalProfileLinks } from "@/components/ProfessionalProfileLinks";
 import { motion, useReducedMotion } from "motion/react";
 import { revealTransition } from "@/lib/motion";
 
@@ -20,6 +21,10 @@ type HeroSectionProps = {
   onlineLabel: string;
   heroImage: string;
   heroImageAlt: string;
+  founderName: string;
+  founderRole: string;
+  linkedinLabel: string;
+  githubLabel: string;
 };
 
 export function HeroSection({
@@ -36,6 +41,10 @@ export function HeroSection({
   onlineLabel,
   heroImage,
   heroImageAlt,
+  founderName,
+  founderRole,
+  linkedinLabel,
+  githubLabel,
 }: HeroSectionProps) {
   const prefersReducedMotion = useReducedMotion();
   const transition = prefersReducedMotion ? { duration: 0 } : revealTransition;
@@ -94,6 +103,19 @@ export function HeroSection({
             <a href="#portfolio" className="btn-secondary">
               {ctaSecondary}
             </a>
+          </motion.div>
+
+          <motion.div
+            variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
+            transition={transition}
+          >
+            <ProfessionalProfileLinks
+              founderName={founderName}
+              founderRole={founderRole}
+              linkedinLabel={linkedinLabel}
+              githubLabel={githubLabel}
+              className="mt-10"
+            />
           </motion.div>
         </motion.div>
 

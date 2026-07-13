@@ -370,6 +370,60 @@ html.dark {
   .hero-spec {
     @apply mt-6 font-mono text-[11px] uppercase tracking-[0.16em] text-muted;
   }
+
+  .professional-profile__name {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 3vw, 32px);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+  }
+  .professional-profile__role {
+    margin-top: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .professional-profile__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .professional-profile__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 12px 20px;
+    border: 1px solid var(--color-hairline);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+    text-decoration: none;
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+  }
+  .professional-profile__link--primary {
+    border-color: var(--color-ink);
+    background: var(--color-surface-soft);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .professional-profile__link:hover {
+      border-color: var(--color-ink);
+      background: var(--color-surface-soft);
+    }
+    .professional-profile__link--primary:hover {
+      background: var(--color-ink);
+      color: var(--color-canvas);
+    }
+  }
+
   .hero-media {
     @apply mt-16 w-full border-t border-hairline;
   }

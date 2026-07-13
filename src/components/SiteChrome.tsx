@@ -63,7 +63,7 @@ export async function SiteFooter() {
         <p className="mt-6 text-xs text-on-dark-soft">{t("profiles")}</p>
         <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs">
           {HOMEPAGE_PRESENCE_LINKS.map((item) => (
-            <a key={item.id} href={item.url} target="_blank" rel="noreferrer" className="text-on-dark-soft active:text-on-dark">
+            <a key={item.id} href={item.url} target="_blank" rel="me noreferrer" className={`text-on-dark-soft active:text-on-dark${item.id === "linkedin" ? " font-medium text-on-dark" : ""}`}>
               {t(`presence.${item.id}`)}
             </a>
           ))}

@@ -19,9 +19,12 @@ import { Link } from "@/i18n/navigation";
 import { getEnterpriseReviews } from "@/lib/enterprise-reviews";
 import { getMediaItems } from "@/lib/media";
 import { PORTFOLIO, PROFILE } from "@/lib/profile";
+import { ProfessionalProfileLinks } from "@/components/ProfessionalProfileLinks";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
+  GITHUB_URL,
+  LINKEDIN_URL,
   TELEGRAM_URL,
   YANDEX_USLUGI_URL,
 } from "@/lib/site";
@@ -65,6 +68,10 @@ export default async function HomePage() {
           onlineLabel={t("common.online")}
           heroImage={PROFILE.heroImage}
           heroImageAlt={PROFILE.name}
+          founderName={t("about.founderName")}
+          founderRole={t("about.founderRole")}
+          linkedinLabel={t("about.linkedinLabel")}
+          githubLabel={t("about.githubLabel")}
         />
 
         <section className="section-band section--deep border-b border-hairline">
@@ -240,6 +247,13 @@ export default async function HomePage() {
               <Reveal>
               <span className="section-label">{t("sections.about")}</span>
                 <h2 className="section-title mt-4">{t("about.title")}</h2>
+                <ProfessionalProfileLinks
+                  founderName={t("about.founderName")}
+                  founderRole={t("about.founderRole")}
+                  linkedinLabel={t("about.linkedinLabel")}
+                  githubLabel={t("about.githubLabel")}
+                  className="mt-6"
+                />
                 <p className="body-copy mt-6 max-w-3xl whitespace-pre-line text-base">{t("about.text")}</p>
                 <ContactCta className="mt-10">{t("about.cta")}</ContactCta>
               </Reveal>
@@ -351,6 +365,20 @@ export default async function HomePage() {
                   <br />
                   <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="text-link">
                     @pstasinski
+                  </a>
+                </p>
+                <p>
+                  <span className="meta-label">{t("contact.linkedin")}</span>
+                  <br />
+                  <a href={LINKEDIN_URL} target="_blank" rel="me noreferrer" className="text-link">
+                    linkedin.com/in/fuwiak
+                  </a>
+                </p>
+                <p>
+                  <span className="meta-label">{t("contact.github")}</span>
+                  <br />
+                  <a href={GITHUB_URL} target="_blank" rel="me noreferrer" className="text-link">
+                    github.com/fuwiak
                   </a>
                 </p>
                 <p>
