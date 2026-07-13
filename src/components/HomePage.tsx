@@ -3,61 +3,23 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { ContactForm } from "@/components/ContactForm";
 import { PartnerProgramBanner } from "@/components/PartnerProgramBanner";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
+import { AnimatedServiceCard } from "@/components/motion/AnimatedServiceCard";
+import { PortfolioShowcase } from "@/components/motion/PortfolioShowcase";
+import { Reveal } from "@/components/motion/Reveal";
+import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { Link } from "@/i18n/navigation";
 import { LEGAL_ROUTES } from "@/lib/legal";
 import { AVITO_REVIEWS, KWORK_REVIEWS, PORTFOLIO, PROFILE, REVIEWS } from "@/lib/profile";
-import { getEnterpriseServices } from "@/lib/enterprise-services";
 import {
   AVITO_REVIEWS_COUNT,
   AVITO_URL,
   CONTACT_EMAIL,
   CONTACT_PHONE,
+  SITE_NAME,
   TELEGRAM_URL,
   YANDEX_USLUGI_URL,
 } from "@/lib/site";
-
-function ServiceCard({
-  title,
-  description,
-  salesNotes,
-  deliveryDays,
-  slug,
-  detailsLabel,
-  quoteLabel,
-  daysLabel,
-}: {
-  title: string;
-  description: string;
-  salesNotes: string;
-  deliveryDays: number;
-  slug: string;
-  detailsLabel: string;
-  quoteLabel: string;
-  daysLabel: string;
-}) {
-  return (
-    <article className="feature-card flex flex-col">
-      <h3 className="font-display text-lg tracking-tight text-ink">{title}</h3>
-      <p className="mt-3 flex-1 text-sm leading-relaxed text-body">{description}</p>
-      <div className="mt-6 flex items-end justify-between gap-3 border-t border-hairline pt-5">
-        <div>
-          <p className="font-display text-xl tracking-tight text-ink">{salesNotes}</p>
-          <p className="mt-0.5 text-xs text-muted">
-            {deliveryDays} {daysLabel}
-          </p>
-        </div>
-        <div className="flex flex-col gap-2 sm:flex-row">
-          <Link href={`/services/${slug}`} className="btn-secondary text-xs">
-            {detailsLabel}
-          </Link>
-          <a href="#contact" className="btn-primary text-xs">
-            {quoteLabel}
-          </a>
-        </div>
-      </div>
-    </article>
-  );
-}
+import { getEnterpriseServices } from "@/lib/enterprise-services";
 
 export default async function HomePage() {
   const t = await getTranslations();
@@ -72,11 +34,13 @@ export default async function HomePage() {
       <main>
         <section className="section-band border-b border-hairline-soft">
           <div className="container-editorial grid gap-10 md:grid-cols-2 md:items-center">
-            <div>
+            <Reveal>
+              <div>
               <p className="text-sm text-muted">
                 {t("hero.location")} · <span className="text-success">{t("common.online")}</span>
               </p>
-              <h1 className="display-lg mt-2">{t("hero.title")}</h1>
+              <p className="mt-2 font-display text-xl tracking-tight text-ink md:text-2xl">{SITE_NAME}</p>
+              <h1 className="display-lg mt-1">{t("hero.title")}</h1>
               <div className="mt-3 flex flex-wrap gap-2">
                 {(t.raw("hero.roles") as string[]).map((role) => (
                   <span key={role} className="badge-pill text-xs">
@@ -117,59 +81,70 @@ export default async function HomePage() {
               </p>
               <p className="mt-5 text-xs leading-relaxed text-muted-soft">
                 {t("hero.legalNote")}{" "}
-                <Link href={LEGAL_ROUTES.privacyPolicy} className="text-link">
+                <Link href={LEGAL_ROUTES.privacyPolicy} locale={false} className="text-link">
                   {t("hero.legalLink")}
                 </Link>
               </p>
-            </div>
-            <div className="flex justify-center md:justify-end">
+              </div>
+            </Reveal>
+            <Reveal delay={0.1} className="flex justify-center md:justify-end">
               <div className="relative h-48 w-48 overflow-hidden rounded-lg border border-hairline md:h-64 md:w-64">
                 <Image src={PROFILE.avatar} alt={PROFILE.name} fill sizes="256px" className="object-cover" priority />
               </div>
-            </div>
+            </Reveal>
           </div>
         </section>
 
         <section className="section-band border-b border-hairline-soft bg-surface-soft">
           <div className="container-editorial">
-            <h2 className="display-sm">{t("audiences.title")}</h2>
-            <div className="mt-8 grid gap-4 md:grid-cols-3">
+            <Reveal>
+              <h2 className="display-sm">{t("audiences.title")}</h2>
+            </Reveal>
+            <Stagger className="mt-8 grid gap-4 md:grid-cols-3">
               {(t.raw("audiences.items") as { title: string; text: string }[]).map((item) => (
-                <article key={item.title} className="feature-card">
-                  <h3 className="font-medium text-ink">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-body">{item.text}</p>
-                </article>
+                <StaggerItem key={item.title}>
+                  <article className="feature-card h-full">
+                    <h3 className="font-medium text-ink">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-body">{item.text}</p>
+                  </article>
+                </StaggerItem>
               ))}
-            </div>
+            </Stagger>
           </div>
         </section>
 
         <section className="section-band border-b border-hairline-soft">
           <div className="container-editorial">
-            <h2 className="display-sm">{t("trust.title")}</h2>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <Reveal>
+              <h2 className="display-sm">{t("trust.title")}</h2>
+            </Reveal>
+            <Stagger className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {(t.raw("trust.stats") as { value: string; label: string }[]).map((stat) => (
-                <div key={stat.label} className="feature-card text-center">
-                  <p className="font-display text-3xl tracking-tight text-primary">{stat.value}</p>
-                  <p className="mt-2 text-sm text-body">{stat.label}</p>
-                </div>
+                <StaggerItem key={stat.label}>
+                  <div className="feature-card text-center">
+                    <p className="font-display text-3xl tracking-tight text-primary">{stat.value}</p>
+                    <p className="mt-2 text-sm text-body">{stat.label}</p>
+                  </div>
+                </StaggerItem>
               ))}
-            </div>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm font-medium text-muted">
+            </Stagger>
+            <Reveal delay={0.12} className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm font-medium text-muted">
               {(t.raw("trust.logos") as string[]).map((logo) => (
                 <span key={logo} className="badge-pill">
                   {logo}
                 </span>
               ))}
-            </div>
+            </Reveal>
           </div>
         </section>
 
         <section id="packages" className="section-band scroll-mt-16 border-b border-hairline-soft bg-surface-soft">
           <div className="container-editorial">
-            <h2 className="display-sm">{t("packages.title")}</h2>
-            <p className="mt-3 max-w-2xl text-sm text-body">{t("packages.subtitle")}</p>
-            <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            <Reveal>
+              <h2 className="display-sm">{t("packages.title")}</h2>
+              <p className="mt-3 max-w-2xl text-sm text-body">{t("packages.subtitle")}</p>
+            </Reveal>
+            <Stagger className="mt-10 grid gap-5 lg:grid-cols-3">
               {(t.raw("packages.items") as {
                 name: string;
                 price: string;
@@ -178,10 +153,10 @@ export default async function HomePage() {
                 includes: string[];
                 featured?: boolean;
               }[]).map((pkg) => (
-                <article
-                  key={pkg.name}
-                  className={`feature-card-bordered flex flex-col p-6 ${pkg.featured ? "ring-2 ring-primary/30" : ""}`}
-                >
+                <StaggerItem key={pkg.name}>
+                  <article
+                    className={`feature-card-bordered flex h-full flex-col p-6 ${pkg.featured ? "ring-2 ring-primary/30" : ""}`}
+                  >
                   {pkg.featured ? <span className="badge-accent mb-3 w-fit text-[10px]">{t("packages.featuredLabel")}</span> : null}
                   <h3 className="font-display text-xl tracking-tight text-ink">{pkg.name}</h3>
                   <p className="mt-2 font-display text-2xl text-primary">{pkg.price}</p>
@@ -195,31 +170,35 @@ export default async function HomePage() {
                   <a href="#contact" className="btn-primary mt-6 w-full text-center text-sm">
                     {t("packages.cta")}
                   </a>
-                </article>
+                  </article>
+                </StaggerItem>
               ))}
-            </div>
+            </Stagger>
           </div>
         </section>
 
         <section id="services" className="section-band scroll-mt-16 border-b border-hairline-soft">
           <div className="container-editorial">
-            <h2 className="display-sm">{t("services.title")}</h2>
-            <p className="mt-3 max-w-2xl text-sm text-body">{t("services.subtitle")}</p>
-            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <Reveal>
+              <h2 className="display-sm">{t("services.title")}</h2>
+              <p className="mt-3 max-w-2xl text-sm text-body">{t("services.subtitle")}</p>
+            </Reveal>
+            <Stagger className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {services.map((offer) => (
-                <ServiceCard
+                <AnimatedServiceCard
                   key={offer.id}
                   title={offer.title}
                   description={offer.description}
                   salesNotes={offer.salesNotes}
                   deliveryDays={offer.deliveryDays}
                   slug={offer.slug}
+                  image={offer.serviceImage}
                   detailsLabel={t("services.details")}
                   quoteLabel={t("services.quote")}
                   daysLabel={t("services.days")}
                 />
               ))}
-            </div>
+            </Stagger>
             <div className="mt-6">
               <Link href="/services" className="text-link text-sm">
                 {t("nav.servicesPage")} →
@@ -296,26 +275,13 @@ export default async function HomePage() {
 
         <section id="portfolio" className="section-band scroll-mt-16 border-b border-hairline-soft">
           <div className="container-editorial">
-            <h2 className="display-sm">{t("portfolio.title")}</h2>
-            <p className="mt-3 text-sm text-body">{t("portfolio.subtitle")}</p>
-            {PORTFOLIO.filter((item) => item.featured).map((item) => (
-              <article key={item.id} className="feature-card-bordered mt-10 overflow-hidden p-0 md:grid md:grid-cols-2">
-                <div className="relative aspect-[16/10] bg-surface-card md:aspect-auto md:min-h-[320px]">
-                  <Image src={item.image} alt={item.title} fill sizes="(max-width: 768px) 100vw, 576px" className="object-cover object-top" />
-                </div>
-                <div className="flex flex-col p-6 md:p-8">
-                  <span className="badge-accent w-fit text-[10px]">{item.category}</span>
-                  <h3 className="mt-3 font-display text-xl tracking-tight text-ink">{item.title}</h3>
-                  {item.priceLabel ? (
-                    <p className="mt-2 font-display text-lg tracking-tight text-primary">{item.priceLabel}</p>
-                  ) : null}
-                  {item.description ? <p className="mt-3 flex-1 text-sm leading-relaxed text-body">{item.description}</p> : null}
-                  <Link href={`/portfolio/${item.slug}`} className="btn-primary mt-6 w-fit">
-                    {t("portfolio.details")}
-                  </Link>
-                </div>
-              </article>
-            ))}
+            <PortfolioShowcase
+              items={PORTFOLIO}
+              title={t("portfolio.title")}
+              subtitle={t("portfolio.subtitle")}
+              detailsLabel={t("portfolio.details")}
+              allLabel={locale === "en" ? "All" : "Все"}
+            />
           </div>
         </section>
 

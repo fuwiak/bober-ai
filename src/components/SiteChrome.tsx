@@ -27,7 +27,7 @@ export async function SiteHeader() {
         </Link>
         <nav className="hidden items-center gap-5 lg:flex">
           {navItems.map((item) => (
-            <Link key={item.href} href={item.href} className="text-sm font-medium text-muted active:text-ink">
+            <Link key={item.href} href={item.href} className="nav-link">
               {item.label}
             </Link>
           ))}
@@ -45,7 +45,7 @@ export async function SiteHeader() {
       </div>
       <nav className="flex gap-4 overflow-x-auto border-t border-hairline-soft px-4 py-2 text-sm md:hidden">
         {navItems.map((item) => (
-          <Link key={item.href} href={item.href} className="whitespace-nowrap text-muted">
+          <Link key={item.href} href={item.href} className="nav-link whitespace-nowrap">
             {item.label}
           </Link>
         ))}
@@ -69,10 +69,10 @@ export async function SiteFooter() {
           {" · "}ИНН 772356334324 · ОГРНИП 325774600389226
         </p>
         <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-          <Link href={LEGAL_ROUTES.privacyPolicy} className="text-on-dark-soft active:text-on-dark">
+          <Link href={LEGAL_ROUTES.privacyPolicy} locale={false} className="text-on-dark-soft active:text-on-dark">
             {t("privacy")}
           </Link>
-          <Link href={LEGAL_ROUTES.consent} className="text-on-dark-soft active:text-on-dark">
+          <Link href={LEGAL_ROUTES.consent} locale={false} className="text-on-dark-soft active:text-on-dark">
             {t("consent")}
           </Link>
           <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="text-on-dark-soft active:text-on-dark">
