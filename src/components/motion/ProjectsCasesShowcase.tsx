@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useMemo, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/motion/Reveal";
@@ -98,18 +97,10 @@ export function ProjectsCasesShowcase({ items, title, subtitle, detailsLabel, al
                   className="card-kts group block overflow-hidden rounded-2xl border border-hairline"
                   style={{ backgroundColor: color }}
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover object-top opacity-80 transition-transform duration-500 ease-[cubic-bezier(0.215,0.61,0.355,1)] group-hover:scale-[1.03]"
-                    />
-                    <div className={`absolute inset-0 ${light ? "bg-ink/10" : "bg-ink/40"} transition-colors`} />
-                  </div>
-
-                  <div className={`card-kts-body flex flex-col gap-3 p-6 ${light ? "text-ink" : "text-on-dark"}`}>
+                  <div
+                    className={`card-kts-body flex flex-col gap-3 p-6 ${light ? "text-ink" : "text-on-dark"}`}
+                    style={{ minHeight: 260 }}
+                  >
                     <div className="flex flex-wrap gap-2">
                       <span className={`badge-pill text-[11px] uppercase tracking-wider ${light ? "" : "bg-white/10 text-on-dark-soft"}`}>
                         {item.category}
