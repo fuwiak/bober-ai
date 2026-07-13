@@ -13,7 +13,7 @@ function readPreferredDark(): boolean {
   } catch {
     /* ignore */
   }
-  return false;
+  return true;
 }
 
 export function ThemeToggle() {

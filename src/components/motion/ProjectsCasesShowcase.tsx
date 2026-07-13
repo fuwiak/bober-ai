@@ -81,9 +81,12 @@ export function ProjectsCasesShowcase({
       <Stagger className="mt-10 grid gap-6 md:grid-cols-2" stagger={0.07}>
         {[columns.left, columns.right].map((col, colIdx) => (
           <div key={colIdx} className="space-y-6">
-            {col.map((item) => (
+            {col.map((item, itemIdx) => (
               <StaggerItem key={item.id}>
-                <Link href={`/portfolio/${item.slug}`} className="portfolio-card group block">
+                <Link
+                  href={`/portfolio/${item.slug}`}
+                  className={`portfolio-card group block ${colIdx === 0 && itemIdx === 0 ? "portfolio-card--featured light-sweep" : ""}`}
+                >
                   <div className="relative aspect-[16/10] overflow-hidden bg-surface-card">
                     <Image
                       src={item.image}
@@ -122,7 +125,7 @@ export function ProjectsCasesShowcase({
 
                     {item.result ? (
                       <p className="text-sm leading-relaxed text-body">
-                        <span className="font-medium text-accent-green">{resultLabel}: </span>
+                        <span className="font-medium text-accent-primary-light">{resultLabel}: </span>
                         {item.result}
                       </p>
                     ) : null}

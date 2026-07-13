@@ -5,17 +5,18 @@ import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { HeroSection } from "@/components/motion/HeroSection";
 import { ImplementationCard, type ImplementationArea } from "@/components/motion/ImplementationCard";
 import { PackageCard, type PackageItem } from "@/components/motion/PackageCard";
+import { MediaSection } from "@/components/motion/MediaSection";
 import { PartnerSectionHeader, PartnerSteps } from "@/components/motion/PartnerSteps";
 import { ProjectsCasesShowcase } from "@/components/motion/ProjectsCasesShowcase";
-import { ReviewCard } from "@/components/motion/ReviewCard";
+import { ReviewsShowcase } from "@/components/motion/ReviewsShowcase";
+import { TrustStrip } from "@/components/motion/TrustStrip";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { Link } from "@/i18n/navigation";
-import { LEGAL_ROUTES } from "@/lib/legal";
-import { AVITO_REVIEWS, KWORK_REVIEWS, PORTFOLIO, PROFILE, REVIEWS } from "@/lib/profile";
+import { getEnterpriseReviews } from "@/lib/enterprise-reviews";
+import { getMediaItems } from "@/lib/media";
+import { PORTFOLIO, PROFILE } from "@/lib/profile";
 import {
-  AVITO_REVIEWS_COUNT,
-  AVITO_URL,
   CONTACT_EMAIL,
   CONTACT_PHONE,
   SITE_NAME,
@@ -29,6 +30,8 @@ export default async function HomePage() {
   const skills = t.raw("about.skills") as string[];
   const implementationAreas = t.raw("services.implementationAreas") as ImplementationArea[];
   const packages = t.raw("packages.items") as PackageItem[];
+  const mediaItems = getMediaItems(locale);
+  const enterpriseReviews = getEnterpriseReviews();
   const homepageCaseSlugs = [
     "kaspersky-ai-assistant",
     "elia-suite",
@@ -41,50 +44,38 @@ export default async function HomePage() {
     .filter((item): item is (typeof PORTFOLIO)[number] => Boolean(item));
 
   return (
-    <div className="min-h-screen bg-canvas">
+    <div className="page-shell min-h-screen">
       <SiteHeader />
       <PartnerProgramBanner />
       <main>
         <HeroSection
-          location={t("hero.location")}
-          onlineLabel={t("common.online")}
-          siteName={SITE_NAME}
-          title={t("hero.title")}
-          roles={t.raw("hero.roles") as string[]}
-          nameLine={t("hero.nameLine")}
-          focus={t("hero.focus")}
-          trustLine={t("hero.trustLine", {
-            rating: PROFILE.rating.toFixed(1),
-            reviewCount: String(PROFILE.reviewsCount),
-            years: String(PROFILE.experienceYears),
-          })}
-          partnersLine={t("hero.partnersLine")}
-          responseNote={t("hero.responseNote")}
+          eyebrow={t("hero.eyebrow")}
+          titleLine1={t("hero.titleLine1")}
+          titleLine2={t("hero.titleLine2")}
+          valueProposition={t("hero.valueProposition")}
+          specialization={t("hero.specialization")}
           ctaPrimary={t("hero.ctaPrimary")}
           ctaSecondary={t("hero.ctaSecondary")}
-          ctaTelegram={t("hero.ctaTelegram")}
-          legalNote={t("hero.legalNote")}
-          legalLink={t("hero.legalLink")}
-          legalHref={LEGAL_ROUTES.privacyPolicy}
-          email={CONTACT_EMAIL}
-          phone={CONTACT_PHONE}
-          telegramUrl={TELEGRAM_URL}
+          trustItems={t.raw("hero.trustItems") as string[]}
+          portraitName={PROFILE.name}
+          portraitRole={t("hero.portraitRole")}
+          onlineLabel={t("common.online")}
           avatar={PROFILE.avatar}
           avatarAlt={PROFILE.name}
         />
 
-        <section className="section-band border-b border-hairline-soft bg-surface-soft">
+        <section className="section-band section--elevated border-b border-hairline-soft">
           <div className="container-editorial">
             <Reveal>
-              <span className="section-label">01</span>
+              <span className="section-label">01 · Audience</span>
               <h2 className="display-sm mt-3">{t("audiences.title")}</h2>
             </Reveal>
-            <Stagger className="mt-8 grid gap-4 md:grid-cols-3">
+            <Stagger className="mt-10 grid gap-5 md:grid-cols-3">
               {(t.raw("audiences.items") as { title: string; text: string }[]).map((item) => (
                 <StaggerItem key={item.title}>
-                  <article className="feature-card h-full">
+                  <article className="luxury-card h-full p-7">
                     <h3 className="font-medium text-ink">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-body">{item.text}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-body">{item.text}</p>
                   </article>
                 </StaggerItem>
               ))}
@@ -92,40 +83,29 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="section-band border-b border-hairline-soft">
+        <section className="section-band section--deep border-b border-hairline-soft">
           <div className="container-editorial">
             <Reveal>
-              <span className="section-label">02</span>
+              <span className="section-label">02 · Trust</span>
               <h2 className="display-sm mt-3">{t("trust.title")}</h2>
             </Reveal>
-            <Stagger className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {(t.raw("trust.stats") as { value: string; label: string }[]).map((stat) => (
-                <StaggerItem key={stat.label}>
-                  <div className="feature-card text-center">
-                    <p className="font-display text-3xl tracking-tight text-accent-green">{stat.value}</p>
-                    <p className="mt-2 text-sm text-body">{stat.label}</p>
-                  </div>
-                </StaggerItem>
-              ))}
-            </Stagger>
-            <Reveal delay={0.12} className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm font-medium text-muted">
-              {(t.raw("trust.logos") as string[]).map((logo) => (
-                <span key={logo} className="badge-pill">
-                  {logo}
-                </span>
-              ))}
-            </Reveal>
+            <div className="mt-10">
+              <TrustStrip
+                items={t.raw("trust.strip") as string[]}
+                logos={t.raw("trust.logos") as string[]}
+              />
+            </div>
           </div>
         </section>
 
-        <section id="packages" className="section-band scroll-mt-16 border-b border-hairline-soft bg-surface-soft">
+        <section id="packages" className="section-band section--panel scroll-mt-16 border-b border-hairline-soft">
           <div className="container-editorial">
             <Reveal>
-              <span className="section-label">03</span>
+              <span className="section-label">03 · Engagement</span>
               <h2 className="display-sm mt-3">{t("packages.title")}</h2>
-              <p className="mt-3 max-w-2xl text-sm text-body">{t("packages.subtitle")}</p>
+              <p className="mt-4 max-w-2xl text-sm text-body">{t("packages.subtitle")}</p>
             </Reveal>
-            <Stagger className="package-grid mt-10" stagger={0.07}>
+            <Stagger className="package-grid mt-12">
               {packages.map((pkg) => (
                 <PackageCard
                   key={pkg.name}
@@ -139,19 +119,19 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section id="services" className="section-band scroll-mt-16 border-b border-hairline-soft">
+        <section id="services" className="section-band section--deep scroll-mt-16 border-b border-hairline-soft">
           <div className="container-editorial">
             <Reveal>
-              <span className="section-label">04</span>
+              <span className="section-label">04 · Solutions</span>
               <h2 className="display-sm mt-3">{t("services.title")}</h2>
-              <p className="mt-3 max-w-2xl text-sm text-body">{t("services.subtitle")}</p>
+              <p className="mt-4 max-w-2xl text-sm text-body">{t("services.subtitle")}</p>
             </Reveal>
-            <Stagger className="implementation-grid mt-10" stagger={0.07}>
+            <Stagger className="solutions-grid mt-12">
               {implementationAreas.map((area, index) => (
                 <ImplementationCard key={area.title} index={index} {...area} ctaLabel={t("services.discussCta")} />
               ))}
             </Stagger>
-            <Reveal delay={0.1} className="mt-8">
+            <Reveal delay={0.1} className="mt-10">
               <Link href="/services" className="inline-flex items-center gap-2 text-sm font-medium text-link">
                 {t("nav.servicesPage")}
                 <span className="button-arrow" aria-hidden>
@@ -162,18 +142,18 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section id="process" className="section-band scroll-mt-16 border-b border-hairline-soft bg-surface-soft">
+        <section id="process" className="section-band section--elevated scroll-mt-16 border-b border-hairline-soft">
           <div className="container-editorial">
             <Reveal>
-              <span className="section-label">05</span>
+              <span className="section-label">05 · Process</span>
               <h2 className="display-sm mt-3">{t("process.title")}</h2>
-              <p className="mt-3 max-w-2xl text-sm text-body">{t("process.subtitle")}</p>
+              <p className="mt-4 max-w-2xl text-sm text-body">{t("process.subtitle")}</p>
             </Reveal>
-            <Stagger className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            <Stagger className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
               {(t.raw("process.steps") as { title: string; text: string }[]).map((step, index) => (
                 <StaggerItem key={step.title}>
-                  <article className="feature-card h-full">
-                    <span className="font-mono text-xs tracking-widest text-accent-green">
+                  <article className="luxury-card h-full p-6">
+                    <span className="font-mono text-xs tracking-widest text-accent-primary-light">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <h3 className="mt-3 font-medium text-ink">{step.title}</h3>
@@ -185,16 +165,16 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="section-band border-b border-hairline-soft">
+        <section className="section-band section--deep border-b border-hairline-soft">
           <div className="container-editorial">
             <Reveal>
               <h2 className="display-sm">{t("security.title")}</h2>
             </Reveal>
-            <ul className="mt-6 max-w-3xl space-y-3 text-sm leading-relaxed text-body">
+            <ul className="mt-8 max-w-3xl space-y-3 text-sm leading-relaxed text-body">
               {(t.raw("security.items") as string[]).map((item) => (
                 <Reveal key={item} delay={0.05}>
-                  <li className="flex gap-2">
-                    <span className="text-accent-green">✓</span>
+                  <li className="flex gap-3">
+                    <span className="text-accent-primary-light">✓</span>
                     <span>{item}</span>
                   </li>
                 </Reveal>
@@ -203,7 +183,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section id="partners" className="section-band scroll-mt-16 border-b border-hairline-soft bg-surface-soft">
+        <section id="partners" className="section-band section--panel scroll-mt-16 border-b border-hairline-soft">
           <div className="container-editorial">
             <PartnerSectionHeader
               badge={t("partners.badge")}
@@ -212,16 +192,16 @@ export default async function HomePage() {
               description={t("partners.description")}
             />
             <PartnerSteps steps={t.raw("partners.steps") as { title: string; text: string }[]} />
-            <Reveal delay={0.1} className="mt-6">
+            <Reveal delay={0.1} className="mt-8">
               <ul className="space-y-2 text-sm text-body">
                 {(t.raw("partners.models") as string[]).map((item) => (
                   <li key={item}>· {item}</li>
                 ))}
               </ul>
             </Reveal>
-            <Reveal delay={0.15} className="mt-8 flex flex-wrap items-center gap-6">
+            <Reveal delay={0.15} className="mt-10 flex flex-wrap items-center gap-6">
               <div>
-                <p className="font-display text-4xl text-accent-green">{t("partners.commission")}</p>
+                <p className="font-display text-4xl text-accent-warm">{t("partners.commission")}</p>
                 <p className="text-sm text-muted">{t("partners.commissionNote")}</p>
               </div>
               <Link href="/partners" className="btn-primary">
@@ -231,7 +211,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section id="portfolio" className="section-band scroll-mt-16 border-b border-hairline-soft">
+        <section id="portfolio" className="section-band section--deep scroll-mt-16 border-b border-hairline-soft">
           <div className="container-editorial">
             <ProjectsCasesShowcase
               items={homepageCases}
@@ -247,38 +227,38 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section id="about" className="section-band scroll-mt-16 border-b border-hairline-soft bg-surface-soft">
+        <section id="about" className="section-band section--elevated scroll-mt-16 border-b border-hairline-soft">
           <div className="container-editorial">
             <Reveal>
-              <span className="section-label">06</span>
+              <span className="section-label">06 · About</span>
               <h2 className="display-sm mt-3">{t("about.title")}</h2>
-              <p className="mt-5 max-w-3xl whitespace-pre-line text-base leading-relaxed text-body">{t("about.text")}</p>
-              <a href="#contact" className="btn-primary mt-6">
+              <p className="mt-6 max-w-3xl whitespace-pre-line text-base leading-relaxed text-body">{t("about.text")}</p>
+              <a href="#contact" className="btn-primary mt-8">
                 {t("about.cta")}
               </a>
             </Reveal>
-            <Stagger className="mt-8 grid gap-4 sm:grid-cols-3">
+            <Stagger className="mt-10 grid gap-5 sm:grid-cols-3">
               <StaggerItem>
-                <div className="feature-card h-full">
+                <div className="luxury-card h-full p-6">
                   <p className="text-xs font-medium uppercase tracking-widest text-muted">{t("about.education")}</p>
                   <p className="mt-2 text-sm text-body">{t("about.educationValue")}</p>
                 </div>
               </StaggerItem>
               <StaggerItem>
-                <div className="feature-card h-full">
+                <div className="luxury-card h-full p-6">
                   <p className="text-xs font-medium uppercase tracking-widest text-muted">{t("about.schedule")}</p>
                   <p className="mt-2 text-sm text-body">{t("about.scheduleValue")}</p>
                 </div>
               </StaggerItem>
               <StaggerItem>
-                <div className="feature-card h-full">
+                <div className="luxury-card h-full p-6">
                   <p className="text-xs font-medium uppercase tracking-widest text-muted">{t("about.collaboration")}</p>
                   <p className="mt-2 text-sm text-body">{t("about.collaborationSummary")}</p>
                   <p className="mt-2 text-xs text-muted">{t("about.collaborationDetail")}</p>
                 </div>
               </StaggerItem>
             </Stagger>
-            <Reveal delay={0.1} className="mt-10">
+            <Reveal delay={0.1} className="mt-12">
               <h3 className="text-xs font-medium uppercase tracking-widest text-muted">{t("about.skillsTitle")}</h3>
               <div className="mt-4 flex flex-wrap gap-2">
                 {skills.map((skill) => (
@@ -291,83 +271,43 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section id="reviews" className="section-band scroll-mt-16 border-b border-hairline-soft">
-          <div className="container-editorial">
-            <Reveal>
-              <h2 className="display-sm">{t("reviews.yandexTitle")}</h2>
-              <p className="mt-2 text-sm text-muted">
-                {t("reviews.yandexMeta", { rating: PROFILE.rating, count: PROFILE.reviewsCount })}{" "}
-                <a href={YANDEX_USLUGI_URL} target="_blank" rel="noreferrer" className="text-link">
-                  Yandex
-                </a>
-              </p>
-            </Reveal>
-            <Stagger className="mt-8 grid gap-4 sm:grid-cols-2">
-              {REVIEWS.slice(0, 4).map((review) => (
-                <ReviewCard
-                  key={review.id}
-                  author={review.author}
-                  text={review.text}
-                  date={review.date}
-                  source="Yandex"
-                />
-              ))}
-            </Stagger>
-          </div>
-        </section>
+        <ReviewsShowcase
+          title={t("reviews.title")}
+          subtitle={t("reviews.subtitle")}
+          reviews={enterpriseReviews}
+        />
 
-        <section id="reviews-avito" className="section-band scroll-mt-16 border-b border-hairline-soft bg-surface-soft">
-          <div className="container-editorial">
-            <Reveal>
-              <h2 className="display-sm">{t("reviews.avitoTitle")}</h2>
-              <p className="mt-2 text-sm text-muted">
-                {t("reviews.avitoMeta", { count: AVITO_REVIEWS_COUNT })}{" "}
-                <a href={AVITO_URL} target="_blank" rel="noreferrer" className="text-link">
-                  Avito
-                </a>
-              </p>
-            </Reveal>
-            <Stagger className="mt-8 grid gap-4 sm:grid-cols-2">
-              {AVITO_REVIEWS.slice(0, 4).map((review) => (
-                <ReviewCard
-                  key={review.id}
-                  author={review.author}
-                  text={review.text}
-                  date={review.date}
-                  source="Avito"
-                />
-              ))}
-            </Stagger>
+        <div className="section-band section--deep border-b border-hairline-soft py-8">
+          <div className="container-editorial text-center">
+            <a href={YANDEX_USLUGI_URL} target="_blank" rel="noreferrer" className="text-sm text-link">
+              {t("reviews.yandexMeta", { rating: PROFILE.rating, count: PROFILE.reviewsCount })} · Yandex
+            </a>
           </div>
-        </section>
+        </div>
 
-        <section className="section-band border-b border-hairline-soft">
+        <MediaSection
+          items={mediaItems}
+          locale={locale}
+          label={t("media.label")}
+          title={t("media.title")}
+          subtitle={t("media.subtitle")}
+          videoCta={t("media.videoCta")}
+          articleCta={t("media.articleCta")}
+          videoAriaLabel={t("media.videoAriaLabel")}
+          articleAriaLabel={t("media.articleAriaLabel")}
+          footerNote={t("media.footerNote")}
+          footerLinkLabel={t("media.footerLinkLabel")}
+          footerLinkHref="#contact"
+        />
+
+        <section className="section-band section--deep">
           <div className="container-editorial">
             <Reveal>
-              <h2 className="display-sm">{t("reviews.kworkTitle")}</h2>
-            </Reveal>
-            <Stagger className="mt-8 grid gap-4 sm:grid-cols-2">
-              {KWORK_REVIEWS.slice(0, 4).map((review) => (
-                <ReviewCard
-                  key={review.id}
-                  author={review.author}
-                  text={review.text}
-                  project={review.project}
-                  source="Kwork"
-                />
-              ))}
-            </Stagger>
-          </div>
-        </section>
-
-        <section className="section-band">
-          <div className="container-editorial">
-            <Reveal>
-              <div className="callout-accent">
-                <span className="section-label">CTA</span>
-                <h2 className="font-display text-2xl tracking-tight md:text-3xl">{t("cta.title")}</h2>
-                <p className="mt-3 max-w-xl text-sm leading-relaxed text-body">{t("cta.subtitle")}</p>
-                <div className="mt-6 flex flex-wrap gap-3">
+              <div className="callout-accent light-sweep">
+                <span className="section-label">Engagement</span>
+                <h2 className="font-display text-2xl tracking-tight md:text-4xl">{t("cta.title")}</h2>
+                <p className="mt-4 max-w-xl text-sm leading-relaxed text-body">{t("cta.subtitle")}</p>
+                <div className="mt-8 flex flex-wrap gap-3">
                   <a href="#contact" className="btn-primary">
                     {t("cta.primary")}
                   </a>
@@ -380,13 +320,13 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section id="contact" className="section-band scroll-mt-16 border-t border-hairline-soft">
-          <div className="container-editorial grid gap-10 md:grid-cols-2">
+        <section id="contact" className="section-band section--elevated scroll-mt-16 border-t border-hairline-soft">
+          <div className="container-editorial grid gap-12 md:grid-cols-2">
             <Reveal>
               <span className="section-label">Contact</span>
               <h2 className="display-sm mt-3">{t("contact.title")}</h2>
-              <p className="mt-4 text-sm leading-relaxed text-body">{t("contact.subtitle")}</p>
-              <div className="mt-6 space-y-2 text-sm">
+              <p className="mt-5 text-sm leading-relaxed text-body">{t("contact.subtitle")}</p>
+              <div className="mt-8 space-y-2 text-sm">
                 <p>
                   <span className="text-muted">{t("contact.email")}: </span>
                   <a href={`mailto:${CONTACT_EMAIL}`} className="text-link font-medium">
@@ -408,7 +348,7 @@ export default async function HomePage() {
               </div>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="feature-card-bordered">
+              <div className="luxury-card p-6 md:p-8">
                 <ContactForm />
               </div>
             </Reveal>

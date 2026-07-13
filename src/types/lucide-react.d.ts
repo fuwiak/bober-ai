@@ -8,6 +8,8 @@ declare module "lucide-react" {
   export const BarChart: any;
   export const GitBranch: any;
   export const ArrowRight: any;
+  export const ExternalLink: any;
+  export const Play: any;
   export const PhoneCall: any;
   export const Mail: any;
   export const LayoutGrid: any;

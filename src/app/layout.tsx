@@ -101,13 +101,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" suppressHydrationWarning>
+    <html lang="ru" className="dark" suppressHydrationWarning>
       <body className={`${sourceSerif.variable} ${ibmPlex.variable} ${jetbrains.variable}`}>
         <Script id="locale-lang" strategy="beforeInteractive">
           {`(function(){try{var p=location.pathname;var l=(p==='/en'||p.indexOf('/en/')===0)?'en':'ru';document.documentElement.lang=l;}catch(e){}})();`}
         </Script>
         <Script id="theme-init" strategy="beforeInteractive">
-          {`(function(){try{var k='theme';var t=localStorage.getItem(k);var d=t==='dark';document.documentElement.classList.toggle('dark',d);}catch(e){}})();`}
+          {`(function(){try{var k='theme';var t=localStorage.getItem(k);var d=t!=='light';document.documentElement.classList.toggle('dark',d);}catch(e){document.documentElement.classList.add('dark');}})();`}
         </Script>
         <Script id="scroll-top-init" strategy="beforeInteractive">
           {`(function(){try{if('scrollRestoration'in history)history.scrollRestoration='manual';var h=location.hash;if(h&&h!=='#')return;scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0;}catch(e){}})();`}

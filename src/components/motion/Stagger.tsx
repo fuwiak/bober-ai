@@ -9,7 +9,7 @@ type StaggerProps = {
   stagger?: number;
 };
 
-export function Stagger({ children, className, stagger = 0.08 }: StaggerProps) {
+export function Stagger({ children, className, stagger = 0.09 }: StaggerProps) {
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -46,7 +46,7 @@ export function StaggerItem({ children, className }: StaggerItemProps) {
         prefersReducedMotion
           ? undefined
           : {
-              hidden: { opacity: 0, y: 24 },
+              hidden: { opacity: 0, y: 28 },
               visible: { opacity: 1, y: 0, transition: revealTransition },
             }
       }

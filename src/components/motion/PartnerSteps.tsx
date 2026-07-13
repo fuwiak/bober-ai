@@ -42,7 +42,7 @@ export function PartnerSteps({ steps }: PartnerStepsProps) {
         {steps.map((step, index) => (
           <StaggerItem key={step.title}>
             <article className="feature-card relative z-[1] h-full">
-              <span className="font-mono text-xs tracking-widest text-accent-green">
+              <span className="font-mono text-xs tracking-widest text-accent-primary-light">
                 {String(index + 1).padStart(2, "0")}
               </span>
               <h3 className="mt-3 font-medium text-ink">{step.title}</h3>
