@@ -16,6 +16,9 @@
     "webmaster:feed:upload": "node scripts/yandex-webmaster-feed.mjs",
     "webmaster:feed:status": "node scripts/yandex-status.mjs",
     "yandex:status": "node scripts/yandex-status.mjs",
+    "yandex:feed:repair": "node scripts/yandex-feed-repair.mjs",
+    "yandex360:mailbox": "node scripts/yandex360-mailbox.mjs",
+    "selectel:mail": "node scripts/selectel-email.mjs",
     "metrika:counter": "node scripts/yandex-metrika-counter.mjs"
   },
   "dependencies": {

@@ -5,7 +5,7 @@ import { getEnterpriseServices } from "@/lib/enterprise-services";
 const FEED_CATEGORY_ID = "18";
 const FEED_CATEGORY_PARENT_ID = "1";
 const FEED_SITE_URL = "https://www.bober-ai.dev";
-const CONTACT_PHONE_URL = `tel:${CONTACT_PHONE}`;
+const CONTACT_PHONE_URL = `${FEED_SITE_URL}/tel`;
 
 const FEED_CONVERSION: Record<string, number> = {
   "enterprise-ai-assistant": 92,
