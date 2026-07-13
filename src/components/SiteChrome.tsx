@@ -1,3 +1,4 @@
+import NextLink from "next/link";
 import { getTranslations } from "next-intl/server";
 import { BrandMark } from "@/components/BrandMark";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
@@ -69,12 +70,12 @@ export async function SiteFooter() {
           {" · "}ИНН 772356334324 · ОГРНИП 325774600389226
         </p>
         <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-          <Link href={LEGAL_ROUTES.privacyPolicy} locale={false} className="text-on-dark-soft active:text-on-dark">
+          <NextLink href={LEGAL_ROUTES.privacyPolicy} className="text-on-dark-soft active:text-on-dark">
             {t("privacy")}
-          </Link>
-          <Link href={LEGAL_ROUTES.consent} locale={false} className="text-on-dark-soft active:text-on-dark">
+          </NextLink>
+          <NextLink href={LEGAL_ROUTES.consent} className="text-on-dark-soft active:text-on-dark">
             {t("consent")}
-          </Link>
+          </NextLink>
           <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="text-on-dark-soft active:text-on-dark">
             Telegram
           </a>

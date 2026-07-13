@@ -1,8 +1,8 @@
 "use client";
 
+import NextLink from "next/link";
 import { useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
 import { LEGAL_ROUTES } from "@/lib/legal";
 
 type ContactFormProps = {
@@ -193,16 +193,16 @@ export function ContactForm({ defaultService = "" }: ContactFormProps) {
       <div className="space-y-3 rounded-lg border border-hairline bg-surface-soft p-4">
         <ConsentCheckbox id="pd-policy" checked={policyAccepted} onChange={setPolicyAccepted}>
           {t("policy")}{" "}
-          <Link href={LEGAL_ROUTES.privacyPolicy} locale={false} className="text-link" target="_blank">
+          <NextLink href={LEGAL_ROUTES.privacyPolicy} className="text-link" target="_blank">
             {t("policyLink")}
-          </Link>
+          </NextLink>
           .
         </ConsentCheckbox>
         <ConsentCheckbox id="pd-consent" checked={consentAccepted} onChange={setConsentAccepted}>
           {t("consent")}{" "}
-          <Link href={LEGAL_ROUTES.consent} locale={false} className="text-link" target="_blank">
+          <NextLink href={LEGAL_ROUTES.consent} className="text-link" target="_blank">
             {t("consentLink")}
-          </Link>
+          </NextLink>
           .
         </ConsentCheckbox>
       </div>

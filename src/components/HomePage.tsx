@@ -1,4 +1,5 @@
 import Image from "next/image";
+import NextLink from "next/link";
 import { getTranslations, getLocale } from "next-intl/server";
 import { ContactForm } from "@/components/ContactForm";
 import { PartnerProgramBanner } from "@/components/PartnerProgramBanner";
@@ -81,9 +82,9 @@ export default async function HomePage() {
               </p>
               <p className="mt-5 text-xs leading-relaxed text-muted-soft">
                 {t("hero.legalNote")}{" "}
-                <Link href={LEGAL_ROUTES.privacyPolicy} locale={false} className="text-link">
+                <NextLink href={LEGAL_ROUTES.privacyPolicy} className="text-link">
                   {t("hero.legalLink")}
-                </Link>
+                </NextLink>
               </p>
               </div>
             </Reveal>
