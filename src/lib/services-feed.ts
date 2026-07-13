@@ -1,10 +1,11 @@
-import { CONTACT_EMAIL, CONTACT_PHONE, SITE_NAME, TELEGRAM_URL } from "@/lib/site";
+import { CONTACT_EMAIL, CONTACT_PHONE, SITE_DESCRIPTION, SITE_NAME, TELEGRAM_URL } from "@/lib/site";
 import { PROFILE } from "@/lib/profile";
 import { getEnterpriseServices } from "@/lib/enterprise-services";
 
 const FEED_CATEGORY_ID = "18";
 const FEED_CATEGORY_PARENT_ID = "1";
 const FEED_SITE_URL = "https://www.bober-ai.dev";
+const CONTACT_PHONE_URL = `tel:${CONTACT_PHONE}`;
 
 const FEED_CONVERSION: Record<string, number> = {
   "enterprise-ai-assistant": 92,
@@ -12,6 +13,23 @@ const FEED_CONVERSION: Record<string, number> = {
   "private-llm-gigachat": 90,
   "business-process-automation": 93,
   "sales-ai-agent": 94,
+  "ai-bot-llm-rasa-n8n": 92,
+  "llm-ai-consultation": 95,
+  "ai-bot-gigachat-n8n-local": 90,
+  "ml-data-consultation": 88,
+  "telegram-discord-miniapp-bot": 91,
+  "claude-business-automation": 93,
+  "ai-kp-agent": 94,
+};
+
+const LEGACY_FEED_SLUGS: Record<string, string> = {
+  "ai-bot-llm-rasa-n8n": "enterprise-ai-assistant",
+  "llm-ai-consultation": "ai-discovery-roadmap",
+  "ai-bot-gigachat-n8n-local": "private-llm-gigachat",
+  "ml-data-consultation": "ai-discovery-roadmap",
+  "telegram-discord-miniapp-bot": "enterprise-ai-assistant",
+  "claude-business-automation": "business-process-automation",
+  "ai-kp-agent": "sales-ai-agent",
 };
 
 export function getServiceOfferUrl(slug: string) {
@@ -24,7 +42,18 @@ export function getOrderTelegramUrl(serviceTitle: string) {
 }
 
 export function getServiceFeedXml(now = new Date()) {
-  const offers = getEnterpriseServices("ru");
+  const enterpriseOffers = getEnterpriseServices("ru");
+  const offersBySlug = Object.fromEntries(enterpriseOffers.map((offer) => [offer.slug, offer]));
+
+  const legacyOffers = Object.entries(LEGACY_FEED_SLUGS)
+    .map(([legacySlug, sourceSlug]) => {
+      const source = offersBySlug[sourceSlug];
+      if (!source) return null;
+      return { ...source, id: legacySlug, slug: legacySlug };
+    })
+    .filter((offer): offer is (typeof enterpriseOffers)[number] => offer !== null);
+
+  const offers = [...enterpriseOffers, ...legacyOffers];
   const date = now.toISOString().slice(0, 16).replace("T", " ");
 
   const escapeXml = (value: string) =>
@@ -34,6 +63,9 @@ export function getServiceFeedXml(now = new Date()) {
       .replaceAll(">", "&gt;")
       .replaceAll('"', "&quot;")
       .replaceAll("'", "&apos;");
+
+  const urlParam = (name: string, value: string) =>
+    `<param name="${escapeXml(name)}" unit="URL">${escapeXml(value)}</param>`;
 
   const sets = offers
     .map((offer) => {
@@ -65,10 +97,10 @@ export function getServiceFeedXml(now = new Date()) {
       <param name="Годы опыта">${PROFILE.experienceYears}</param>
       <param name="Регион">Россия</param>
       <param name="Конверсия">${conversion}</param>
-      <param name="Ссылка на телефон">${escapeXml(`tel:${CONTACT_PHONE}`)}</param>
-      <param name="Ссылка на чат">${escapeXml(TELEGRAM_URL)}</param>
-      <param name="Ссылка на создание заказа">${escapeXml(`${FEED_SITE_URL}/#contact`)}</param>
-      <param name="Ссылка на профиль исполнителя">${escapeXml(FEED_SITE_URL)}</param>
+      ${urlParam("Ссылка на телефон", CONTACT_PHONE_URL)}
+      ${urlParam("Ссылка на чат", TELEGRAM_URL)}
+      ${urlParam("Ссылка на создание заказа", `${FEED_SITE_URL}/#contact`)}
+      ${urlParam("Ссылка на профиль исполнителя", FEED_SITE_URL)}
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
@@ -76,7 +108,7 @@ export function getServiceFeedXml(now = new Date()) {
       <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">${escapeXml(offer.about)}</param>
       <param name="Другая услуга исполнителя - 1">${escapeXml(offer.description)}</param>
-      <param name="Сайт работодателя">${escapeXml(FEED_SITE_URL)}</param>
+      ${urlParam("Сайт работодателя", FEED_SITE_URL)}
       <sales_notes>${escapeXml(offer.salesNotes)}</sales_notes>
     </offer>`;
     })
@@ -90,7 +122,7 @@ export function getServiceFeedXml(now = new Date()) {
     <url>${escapeXml(FEED_SITE_URL)}</url>
     <email>${escapeXml(CONTACT_EMAIL)}</email>
     <picture>${escapeXml(`${FEED_SITE_URL}/favicon.png`)}</picture>
-    <description>${escapeXml("Внедрение AI в бизнес под ключ: RAG, AI-агенты, интеграции CRM/ERP, MLOps. Москва и онлайн.")}</description>
+    <description>${escapeXml(SITE_DESCRIPTION)}</description>
     <currencies>
       <currency id="RUR" rate="1"/>
     </currencies>
