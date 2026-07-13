@@ -296,7 +296,6 @@ const en = {
     yandexMeta: "Rating {rating} · {count} reviews",
     avitoTitle: "Avito reviews",
     avitoMeta: "{count} published reviews",
-    kworkTitle: "Kwork reviews",
   },
   media: {
     label: "MEDIA / EXPERTISE",

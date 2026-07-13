@@ -301,7 +301,6 @@ const ru = {
     yandexMeta: "Рейтинг {rating} · {count} оценок",
     avitoTitle: "Отзывы Авито",
     avitoMeta: "{count} опубликованных отзывов",
-    kworkTitle: "Отзывы Kwork",
   },
   media: {
     label: "СМИ / ЭКСПЕРТИЗА",

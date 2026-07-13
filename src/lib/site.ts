@@ -14,13 +14,11 @@ export const FL_RU_URL = "https://www.fl.ru/user/stasinskipawel/";
 export const AVITO_URL =
   "https://www.avito.ru/moskva/predlozheniya_uslug?q=%D0%B8%D0%B8-%D0%B0%D0%B3%D0%B5%D0%BD%D1%82%D1%8B+%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F+n8n";
 export const AVITO_REVIEWS_COUNT = 39;
-export const KWORK_URL = "https://kwork.ru/user/pasha_stasinski";
 export const FIVERR_URL = "https://www.fiverr.com/pawelstasinski";
 export const YANDEX_USLUGI_URL = "https://uslugi.yandex.ru/profile/PawelStasinski-254144";
 
 export const MARKETPLACES = [
   { name: "Fiverr", url: FIVERR_URL },
-  { name: "Kwork", url: KWORK_URL },
   { name: "FL.ru", url: FL_RU_URL },
   { name: "Авито", url: AVITO_URL },
   { name: "Freelance.ru", url: FREELANCE_URL },

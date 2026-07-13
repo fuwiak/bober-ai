@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PROFILE } from "@/lib/profile";
-import { DEFAULT_KEYWORDS, FIVERR_URL, KWORK_URL, SITE_NAME, absoluteUrl } from "@/lib/site";
+import { DEFAULT_KEYWORDS, SITE_NAME, absoluteUrl } from "@/lib/site";
 
 const mediumPlaceholders = [
   "Последний пост из Medium появится здесь",
