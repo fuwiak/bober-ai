@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
@@ -45,25 +44,18 @@ export function ProjectsCasesShowcase({
     [activeCategory, items],
   );
 
-  const columns = useMemo(() => {
-    const left: PortfolioItem[] = [];
-    const right: PortfolioItem[] = [];
-    filtered.forEach((item, idx) => (idx % 2 === 0 ? left : right).push(item));
-    return { left, right };
-  }, [filtered]);
-
   return (
     <div>
       <Reveal>
         <span className="section-label">Portfolio</span>
-        <h2 className="display-sm mt-3">{title}</h2>
-        {subtitle ? <p className="mt-3 max-w-2xl text-sm text-body">{subtitle}</p> : null}
+        <h2 className="section-title mt-4">{title}</h2>
+        {subtitle ? <p className="body-copy mt-4 max-w-2xl text-base">{subtitle}</p> : null}
       </Reveal>
 
-      <Reveal delay={0.08} className="mt-8">
+      <Reveal delay={0.08} className="mt-10">
         <div className="space-y-3">
-          <div className="text-xs font-medium uppercase tracking-widest text-muted">{categoriesLabel}</div>
-          <div className="flex flex-wrap gap-2">
+          <div className="meta-label">{categoriesLabel}</div>
+          <div className="mt-3 flex flex-wrap gap-2">
             <FilterChip label={allLabel} count={items.length} active={!activeCategory} onClick={() => setActiveCategory(null)} />
             {categories.map(([category, count]) => (
               <FilterChip
@@ -78,74 +70,58 @@ export function ProjectsCasesShowcase({
         </div>
       </Reveal>
 
-      <Stagger className="mt-10 grid gap-6 md:grid-cols-2" stagger={0.07}>
-        {[columns.left, columns.right].map((col, colIdx) => (
-          <div key={colIdx} className="space-y-6">
-            {col.map((item, itemIdx) => (
-              <StaggerItem key={item.id}>
-                <Link
-                  href={`/portfolio/${item.slug}`}
-                  className={`portfolio-card group block ${colIdx === 0 && itemIdx === 0 ? "portfolio-card--featured light-sweep" : ""}`}
-                >
-                  <div className="relative aspect-[16/10] overflow-hidden bg-surface-card">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="portfolio-card__image"
-                    />
-                  </div>
+      <Stagger className="mt-12" stagger={0.05}>
+        {filtered.map((item) => (
+          <StaggerItem key={item.id}>
+            <article className="case-study">
+              <Link href={`/portfolio/${item.slug}`} className="group block">
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-soft">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="100vw"
+                    className="case-study__image"
+                  />
+                </div>
 
-                  <div className="flex flex-col gap-3 p-6">
-                    <div className="flex flex-wrap gap-2">
-                      <span className="badge-pill text-[11px] uppercase tracking-wider">{item.category}</span>
-                      {item.skills?.slice(0, 2).map((skill) => (
-                        <span key={skill} className="badge-pill text-[11px] text-muted">
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
+                <div className="case-study__meta">
+                  <span>
+                    {item.category}
+                    {item.skills?.length ? ` · ${item.skills.slice(0, 2).join(" · ")}` : ""}
+                  </span>
+                  {item.priceLabel ? <span>{item.priceLabel}</span> : null}
+                </div>
 
-                    <h3 className="font-display text-xl leading-snug tracking-tight text-ink">{item.title}</h3>
+                <h3 className="case-study__title">{item.title}</h3>
 
-                    {item.description ? (
-                      <p className="text-sm leading-relaxed text-body">
-                        <span className="font-medium text-ink">{problemLabel}: </span>
-                        {item.description}
-                      </p>
-                    ) : null}
+                {item.description ? (
+                  <p className="case-study__desc">
+                    <span className="text-body-strong">{problemLabel}: </span>
+                    {item.description}
+                  </p>
+                ) : null}
 
-                    {item.solution ? (
-                      <p className="text-sm leading-relaxed text-muted">
-                        <span className="font-medium text-body">{solutionLabel}: </span>
-                        {item.solution}
-                      </p>
-                    ) : null}
+                {item.solution ? (
+                  <p className="case-study__desc">
+                    <span className="text-body-strong">{solutionLabel}: </span>
+                    {item.solution}
+                  </p>
+                ) : null}
 
-                    {item.result ? (
-                      <p className="text-sm leading-relaxed text-body">
-                        <span className="font-medium text-accent-primary-light">{resultLabel}: </span>
-                        {item.result}
-                      </p>
-                    ) : null}
+                {item.result ? (
+                  <p className="case-study__desc">
+                    <span className="text-body-strong">{resultLabel}: </span>
+                    {item.result}
+                  </p>
+                ) : null}
 
-                    <div className="mt-2 flex items-center justify-between gap-3">
-                      {item.priceLabel ? (
-                        <p className="font-display text-lg tracking-tight text-primary">{item.priceLabel}</p>
-                      ) : (
-                        <span />
-                      )}
-                      <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-ink">
-                        {detailsLabel}
-                        <ArrowRight className="button-arrow h-4 w-4" aria-hidden />
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              </StaggerItem>
-            ))}
-          </div>
+                <span className="mt-6 inline-block text-link text-[11px] uppercase tracking-[0.16em]">
+                  {detailsLabel} →
+                </span>
+              </Link>
+            </article>
+          </StaggerItem>
         ))}
       </Stagger>
     </div>

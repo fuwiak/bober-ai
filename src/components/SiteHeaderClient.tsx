@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BrandMark } from "@/components/BrandMark";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Link } from "@/i18n/navigation";
-import { CONTACT_PHONE, SITE_NAME } from "@/lib/site";
+import { CONTACT_PHONE } from "@/lib/site";
 
 type NavItem = {
   href: string;
@@ -15,9 +14,10 @@ type NavItem = {
 type SiteHeaderClientProps = {
   navItems: NavItem[];
   writeLabel: string;
+  wordmark: string;
 };
 
-export function SiteHeaderClient({ navItems, writeLabel }: SiteHeaderClientProps) {
+export function SiteHeaderClient({ navItems, writeLabel, wordmark }: SiteHeaderClientProps) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -29,30 +29,38 @@ export function SiteHeaderClient({ navItems, writeLabel }: SiteHeaderClientProps
 
   return (
     <header className={`site-header ${scrolled ? "site-header--scrolled" : ""}`}>
-      <div className="container-editorial flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2 font-medium text-ink">
-          <BrandMark className="h-4 w-4 text-ink" />
-          <span className="text-sm font-medium tracking-tight">{SITE_NAME}</span>
-        </Link>
-        <nav className="hidden items-center gap-5 lg:flex">
-          {navItems.map((item) => (
+      <div className="container-editorial grid h-16 grid-cols-[1fr_auto_1fr] items-center gap-4">
+        <nav className="hidden items-center gap-6 lg:flex">
+          {navItems.slice(0, 4).map((item) => (
             <Link key={item.href} href={item.href as "/"} className="nav-link">
               {item.label}
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-2 sm:gap-3">
+
+        <Link href="/" className="site-wordmark justify-self-center text-ink">
+          {wordmark}
+        </Link>
+
+        <div className="flex items-center justify-end gap-3 sm:gap-4">
+          <nav className="hidden items-center gap-6 lg:flex">
+            {navItems.slice(4).map((item) => (
+              <Link key={item.href} href={item.href as "/"} className="nav-link">
+                {item.label}
+              </Link>
+            ))}
+          </nav>
           <LocaleSwitcher />
-          <a href={`tel:${CONTACT_PHONE}`} className="hidden text-sm text-muted md:inline">
+          <a href={`tel:${CONTACT_PHONE}`} className="nav-link hidden md:inline">
             {CONTACT_PHONE.replace("+7", "+7 ")}
           </a>
           <ThemeToggle />
-          <a href="#contact" className="btn-primary">
+          <a href="#contact" className="btn-primary hidden sm:inline-flex">
             {writeLabel}
           </a>
         </div>
       </div>
-      <nav className="flex gap-4 overflow-x-auto border-t border-hairline-soft px-4 py-2 text-sm md:hidden">
+      <nav className="flex gap-5 overflow-x-auto border-t border-hairline px-4 py-3 lg:hidden">
         {navItems.map((item) => (
           <Link key={item.href} href={item.href as "/"} className="nav-link whitespace-nowrap">
             {item.label}

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { revealTransition } from "@/lib/motion";
+import { REVEAL_OFFSET, STAGGER_DELAY, revealTransition } from "@/lib/motion";
 
 type StaggerProps = {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ type StaggerProps = {
   stagger?: number;
 };
 
-export function Stagger({ children, className, stagger = 0.09 }: StaggerProps) {
+export function Stagger({ children, className, stagger = STAGGER_DELAY }: StaggerProps) {
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -39,6 +39,7 @@ type StaggerItemProps = {
 
 export function StaggerItem({ children, className }: StaggerItemProps) {
   const prefersReducedMotion = useReducedMotion();
+  const offset = REVEAL_OFFSET.desktop;
 
   return (
     <motion.div
@@ -46,7 +47,7 @@ export function StaggerItem({ children, className }: StaggerItemProps) {
         prefersReducedMotion
           ? undefined
           : {
-              hidden: { opacity: 0, y: 28 },
+              hidden: { opacity: 0, y: offset },
               visible: { opacity: 1, y: 0, transition: revealTransition },
             }
       }

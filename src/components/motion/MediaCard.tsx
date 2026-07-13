@@ -1,6 +1,6 @@
 "use client";
 
-import { ExternalLink, Play } from "lucide-react";
+import { Play } from "lucide-react";
 import { StaggerItem } from "@/components/motion/Stagger";
 import { formatMediaDate, getYoutubeThumbnail, type MediaItem } from "@/lib/media";
 
@@ -20,7 +20,7 @@ export function MediaCard({ item, locale, videoCta, articleCta, videoAriaLabel, 
     ? videoAriaLabel.replace("{publisher}", item.publisher)
     : articleAriaLabel.replace("{publisher}", item.publisher).replace("{title}", item.title);
 
-  const cardClass = ["media-card", isVideo ? "media-card--video light-sweep" : "media-card--article"].join(" ");
+  const cardClass = ["media-card", isVideo ? "media-card--video" : "media-card--article"].join(" ");
 
   return (
     <StaggerItem className={item.featured ? "media-card__slot--featured" : "media-card__slot"}>
@@ -34,21 +34,16 @@ export function MediaCard({ item, locale, videoCta, articleCta, videoAriaLabel, 
               decoding="async"
               className="media-card__thumbnail"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#05070a]/70 via-transparent to-transparent" />
             <span className="media-card__play" aria-hidden="true">
-              <Play className="h-5 w-5 fill-current" />
+              <Play className="h-5 w-5" />
             </span>
           </div>
-        ) : (
-          <div className="media-card__visual media-card__visual--editorial" aria-hidden="true">
-            <span className="font-display text-lg tracking-tight text-ink md:text-xl">{item.publisher}</span>
-          </div>
-        )}
+        ) : null}
 
         <div className="media-card__content">
           <div className="media-card__meta">
-            <span className="media-card__publisher">{item.publisher}</span>
-            <span className="media-card__category">{item.category}</span>
+            <span>{item.publisher}</span>
+            <span>{item.category}</span>
           </div>
           <h3 className="media-card__title">{item.title}</h3>
           <p className="media-card__description">{item.description}</p>
@@ -57,10 +52,7 @@ export function MediaCard({ item, locale, videoCta, articleCta, videoAriaLabel, 
               {formatMediaDate(item.publishedAt, locale)}
             </time>
           ) : null}
-          <span className="media-card__link">
-            {cta}
-            <ExternalLink className="h-4 w-4" aria-hidden />
-          </span>
+          <span className="media-card__link">{cta}</span>
         </div>
       </a>
     </StaggerItem>

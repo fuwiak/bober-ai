@@ -41,7 +41,7 @@ const ru = {
     titleLine1: "ENTERPRISE AI",
     titleLine2: "IMPLEMENTATION PARTNER",
     valueProposition:
-      "Production AI systems for companies that cannot afford demo-grade software.",
+      "Проектируем и внедряем AI-системы для компаний, которым недостаточно демонстрационного прототипа.",
     specialization: "RAG · AI agents · Private LLM · MLOps · Integrations",
     portraitRole: "AI-архитектор · Production delivery",
     trustItems: [

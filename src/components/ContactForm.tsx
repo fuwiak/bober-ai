@@ -21,16 +21,16 @@ function ConsentCheckbox({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex items-start gap-2">
+    <div className="flex items-start gap-3">
       <input
         id={id}
         type="checkbox"
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
         required
-        className="mt-0.5 h-4 w-4 shrink-0 rounded border-hairline accent-primary"
+        className="mt-1 h-4 w-4 shrink-0 border-hairline-strong accent-ink"
       />
-      <label htmlFor={id} className="text-xs leading-relaxed text-muted">
+      <label htmlFor={id} className="text-sm leading-relaxed text-muted">
         {children}
       </label>
     </div>
@@ -114,21 +114,21 @@ export function ContactForm({ defaultService = "" }: ContactFormProps) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4">
+    <form onSubmit={onSubmit} className="space-y-8">
       <div>
-        <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-ink">
+        <label htmlFor="name" className="form-label">
           {t("name")}
         </label>
         <input id="name" required value={name} onChange={(e) => setName(e.target.value)} className="text-input" />
       </div>
       <div>
-        <label htmlFor="contact" className="mb-1.5 block text-sm font-medium text-ink">
+        <label htmlFor="contact" className="form-label">
           {t("contact")}
         </label>
         <input id="contact" required value={contact} onChange={(e) => setContact(e.target.value)} className="text-input" />
       </div>
       <div>
-        <label htmlFor="company" className="mb-1.5 block text-sm font-medium text-ink">
+        <label htmlFor="company" className="form-label">
           {t("company")}
         </label>
         <input
@@ -139,9 +139,9 @@ export function ContactForm({ defaultService = "" }: ContactFormProps) {
           className="text-input"
         />
       </div>
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-8 sm:grid-cols-2">
         <div>
-          <label htmlFor="companyType" className="mb-1.5 block text-sm font-medium text-ink">
+          <label htmlFor="companyType" className="form-label">
             {t("companyType")}
           </label>
           <select
@@ -159,7 +159,7 @@ export function ContactForm({ defaultService = "" }: ContactFormProps) {
           </select>
         </div>
         <div>
-          <label htmlFor="budget" className="mb-1.5 block text-sm font-medium text-ink">
+          <label htmlFor="budget" className="form-label">
             {t("budget")}
           </label>
           <select id="budget" value={budget} onChange={(e) => setBudget(e.target.value)} className="text-input">
@@ -173,7 +173,7 @@ export function ContactForm({ defaultService = "" }: ContactFormProps) {
         </div>
       </div>
       <div>
-        <label htmlFor="service" className="mb-1.5 block text-sm font-medium text-ink">
+        <label htmlFor="service" className="form-label">
           {t("service")}
         </label>
         <input
@@ -185,12 +185,12 @@ export function ContactForm({ defaultService = "" }: ContactFormProps) {
         />
       </div>
       <div>
-        <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-ink">
+        <label htmlFor="message" className="form-label">
           {t("message")}
         </label>
         <textarea id="message" rows={4} value={message} onChange={(e) => setMessage(e.target.value)} className="textarea-input" />
       </div>
-      <div className="space-y-3 rounded-lg border border-hairline bg-surface-soft p-4">
+      <div className="space-y-4 border-t border-hairline pt-8">
         <ConsentCheckbox id="pd-policy" checked={policyAccepted} onChange={setPolicyAccepted}>
           {t("policy")}{" "}
           <NextLink href={LEGAL_ROUTES.privacyPolicy} className="text-link" target="_blank">

@@ -1,4 +1,5 @@
 import { getTranslations, getLocale } from "next-intl/server";
+import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
 import { PartnerProgramBanner } from "@/components/PartnerProgramBanner";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
@@ -19,7 +20,6 @@ import { PORTFOLIO, PROFILE } from "@/lib/profile";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
-  SITE_NAME,
   TELEGRAM_URL,
   YANDEX_USLUGI_URL,
 } from "@/lib/site";
@@ -32,6 +32,7 @@ export default async function HomePage() {
   const packages = t.raw("packages.items") as PackageItem[];
   const mediaItems = getMediaItems(locale);
   const enterpriseReviews = getEnterpriseReviews();
+  const trustStats = t.raw("trust.stats") as { value: string; label: string }[];
   const homepageCaseSlugs = [
     "kaspersky-ai-assistant",
     "elia-suite",
@@ -64,18 +65,27 @@ export default async function HomePage() {
           avatarAlt={PROFILE.name}
         />
 
-        <section className="section-band section--elevated border-b border-hairline-soft">
+        <section className="section-band section--deep border-b border-hairline">
+          <div className="container-editorial">
+            <TrustStrip stats={trustStats} logos={t.raw("trust.logos") as string[]} />
+          </div>
+        </section>
+
+        <section className="section-band section--panel border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
               <span className="section-label">01 · Audience</span>
-              <h2 className="display-sm mt-3">{t("audiences.title")}</h2>
+              <h2 className="section-title mt-4">{t("audiences.title")}</h2>
             </Reveal>
-            <Stagger className="mt-10 grid gap-5 md:grid-cols-3">
-              {(t.raw("audiences.items") as { title: string; text: string }[]).map((item) => (
+            <Stagger className="mt-12">
+              {(t.raw("audiences.items") as { title: string; text: string }[]).map((item, index) => (
                 <StaggerItem key={item.title}>
-                  <article className="luxury-card h-full p-7">
-                    <h3 className="font-medium text-ink">{item.title}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-body">{item.text}</p>
+                  <article className="audience-row">
+                    <span className="editorial-row__index">{String(index + 1).padStart(2, "0")}</span>
+                    <div>
+                      <h3 className="card-title">{item.title}</h3>
+                      <p className="body-copy mt-4 max-w-2xl text-base">{item.text}</p>
+                    </div>
                   </article>
                 </StaggerItem>
               ))}
@@ -83,32 +93,18 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="section-band section--deep border-b border-hairline-soft">
+        <section id="packages" className="section-band section--deep scroll-mt-16 border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
-              <span className="section-label">02 · Trust</span>
-              <h2 className="display-sm mt-3">{t("trust.title")}</h2>
+              <span className="section-label">02 · Engagement</span>
+              <h2 className="section-title mt-4">{t("packages.title")}</h2>
+              <p className="body-copy mt-4 max-w-2xl text-base">{t("packages.subtitle")}</p>
             </Reveal>
-            <div className="mt-10">
-              <TrustStrip
-                items={t.raw("trust.strip") as string[]}
-                logos={t.raw("trust.logos") as string[]}
-              />
-            </div>
-          </div>
-        </section>
-
-        <section id="packages" className="section-band section--panel scroll-mt-16 border-b border-hairline-soft">
-          <div className="container-editorial">
-            <Reveal>
-              <span className="section-label">03 · Engagement</span>
-              <h2 className="display-sm mt-3">{t("packages.title")}</h2>
-              <p className="mt-4 max-w-2xl text-sm text-body">{t("packages.subtitle")}</p>
-            </Reveal>
-            <Stagger className="package-grid mt-12">
-              {packages.map((pkg) => (
+            <Stagger className="mt-12">
+              {packages.map((pkg, index) => (
                 <PackageCard
                   key={pkg.name}
+                  index={index}
                   {...pkg}
                   ctaLabel={t("packages.cta")}
                   featuredLabel={t("packages.featuredLabel")}
@@ -119,99 +115,27 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section id="services" className="section-band section--deep scroll-mt-16 border-b border-hairline-soft">
+        <section id="services" className="section-band section--panel scroll-mt-16 border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
-              <span className="section-label">04 · Solutions</span>
-              <h2 className="display-sm mt-3">{t("services.title")}</h2>
-              <p className="mt-4 max-w-2xl text-sm text-body">{t("services.subtitle")}</p>
+              <span className="section-label">03 · Solutions</span>
+              <h2 className="section-title mt-4">{t("services.title")}</h2>
+              <p className="body-copy mt-4 max-w-2xl text-base">{t("services.subtitle")}</p>
             </Reveal>
-            <Stagger className="solutions-grid mt-12">
+            <Stagger className="mt-12">
               {implementationAreas.map((area, index) => (
                 <ImplementationCard key={area.title} index={index} {...area} ctaLabel={t("services.discussCta")} />
               ))}
             </Stagger>
             <Reveal delay={0.1} className="mt-10">
-              <Link href="/services" className="inline-flex items-center gap-2 text-sm font-medium text-link">
-                {t("nav.servicesPage")}
-                <span className="button-arrow" aria-hidden>
-                  →
-                </span>
+              <Link href="/services" className="text-link text-[11px] uppercase tracking-[0.16em]">
+                {t("nav.servicesPage")} →
               </Link>
             </Reveal>
           </div>
         </section>
 
-        <section id="process" className="section-band section--elevated scroll-mt-16 border-b border-hairline-soft">
-          <div className="container-editorial">
-            <Reveal>
-              <span className="section-label">05 · Process</span>
-              <h2 className="display-sm mt-3">{t("process.title")}</h2>
-              <p className="mt-4 max-w-2xl text-sm text-body">{t("process.subtitle")}</p>
-            </Reveal>
-            <Stagger className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-              {(t.raw("process.steps") as { title: string; text: string }[]).map((step, index) => (
-                <StaggerItem key={step.title}>
-                  <article className="luxury-card h-full p-6">
-                    <span className="font-mono text-xs tracking-widest text-accent-primary-light">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <h3 className="mt-3 font-medium text-ink">{step.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-body">{step.text}</p>
-                  </article>
-                </StaggerItem>
-              ))}
-            </Stagger>
-          </div>
-        </section>
-
-        <section className="section-band section--deep border-b border-hairline-soft">
-          <div className="container-editorial">
-            <Reveal>
-              <h2 className="display-sm">{t("security.title")}</h2>
-            </Reveal>
-            <ul className="mt-8 max-w-3xl space-y-3 text-sm leading-relaxed text-body">
-              {(t.raw("security.items") as string[]).map((item) => (
-                <Reveal key={item} delay={0.05}>
-                  <li className="flex gap-3">
-                    <span className="text-accent-primary-light">✓</span>
-                    <span>{item}</span>
-                  </li>
-                </Reveal>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        <section id="partners" className="section-band section--panel scroll-mt-16 border-b border-hairline-soft">
-          <div className="container-editorial">
-            <PartnerSectionHeader
-              badge={t("partners.badge")}
-              title={t("partners.title")}
-              subtitle={t("partners.subtitle")}
-              description={t("partners.description")}
-            />
-            <PartnerSteps steps={t.raw("partners.steps") as { title: string; text: string }[]} />
-            <Reveal delay={0.1} className="mt-8">
-              <ul className="space-y-2 text-sm text-body">
-                {(t.raw("partners.models") as string[]).map((item) => (
-                  <li key={item}>· {item}</li>
-                ))}
-              </ul>
-            </Reveal>
-            <Reveal delay={0.15} className="mt-10 flex flex-wrap items-center gap-6">
-              <div>
-                <p className="font-display text-4xl text-accent-warm">{t("partners.commission")}</p>
-                <p className="text-sm text-muted">{t("partners.commissionNote")}</p>
-              </div>
-              <Link href="/partners" className="btn-primary">
-                {t("partners.cta")}
-              </Link>
-            </Reveal>
-          </div>
-        </section>
-
-        <section id="portfolio" className="section-band section--deep scroll-mt-16 border-b border-hairline-soft">
+        <section id="portfolio" className="section-band section--deep scroll-mt-16 border-b border-hairline">
           <div className="container-editorial">
             <ProjectsCasesShowcase
               items={homepageCases}
@@ -227,47 +151,138 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section id="about" className="section-band section--elevated scroll-mt-16 border-b border-hairline-soft">
+        <section id="process" className="section-band section--panel scroll-mt-16 border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
-              <span className="section-label">06 · About</span>
-              <h2 className="display-sm mt-3">{t("about.title")}</h2>
-              <p className="mt-6 max-w-3xl whitespace-pre-line text-base leading-relaxed text-body">{t("about.text")}</p>
-              <a href="#contact" className="btn-primary mt-8">
-                {t("about.cta")}
-              </a>
+              <span className="section-label">04 · Process</span>
+              <h2 className="section-title mt-4">{t("process.title")}</h2>
+              <p className="body-copy mt-4 max-w-2xl text-base">{t("process.subtitle")}</p>
             </Reveal>
-            <Stagger className="mt-10 grid gap-5 sm:grid-cols-3">
-              <StaggerItem>
-                <div className="luxury-card h-full p-6">
-                  <p className="text-xs font-medium uppercase tracking-widest text-muted">{t("about.education")}</p>
-                  <p className="mt-2 text-sm text-body">{t("about.educationValue")}</p>
-                </div>
-              </StaggerItem>
-              <StaggerItem>
-                <div className="luxury-card h-full p-6">
-                  <p className="text-xs font-medium uppercase tracking-widest text-muted">{t("about.schedule")}</p>
-                  <p className="mt-2 text-sm text-body">{t("about.scheduleValue")}</p>
-                </div>
-              </StaggerItem>
-              <StaggerItem>
-                <div className="luxury-card h-full p-6">
-                  <p className="text-xs font-medium uppercase tracking-widest text-muted">{t("about.collaboration")}</p>
-                  <p className="mt-2 text-sm text-body">{t("about.collaborationSummary")}</p>
-                  <p className="mt-2 text-xs text-muted">{t("about.collaborationDetail")}</p>
-                </div>
-              </StaggerItem>
+            <Stagger className="mt-12">
+              {(t.raw("process.steps") as { title: string; text: string }[]).map((step, index) => (
+                <StaggerItem key={step.title}>
+                  <article className="process-row">
+                    <span className="editorial-row__index">{String(index + 1).padStart(2, "0")}</span>
+                    <div>
+                      <h3 className="card-title">{step.title}</h3>
+                      <p className="body-copy mt-4 max-w-2xl text-base">{step.text}</p>
+                    </div>
+                  </article>
+                </StaggerItem>
+              ))}
             </Stagger>
-            <Reveal delay={0.1} className="mt-12">
-              <h3 className="text-xs font-medium uppercase tracking-widest text-muted">{t("about.skillsTitle")}</h3>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {skills.map((skill) => (
-                  <span key={skill} className="skill-chip">
-                    {skill}
-                  </span>
+          </div>
+        </section>
+
+        <section className="section-band section--deep border-b border-hairline">
+          <div className="container-editorial">
+            <Reveal>
+              <h2 className="section-title">{t("security.title")}</h2>
+            </Reveal>
+            <ul className="mt-10 max-w-3xl space-y-4">
+              {(t.raw("security.items") as string[]).map((item) => (
+                <Reveal key={item} delay={0.05}>
+                  <li className="body-copy flex gap-4 text-base">
+                    <span className="meta-label shrink-0">—</span>
+                    <span>{item}</span>
+                  </li>
+                </Reveal>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section id="partners" className="section-band section--panel scroll-mt-16 border-b border-hairline">
+          <div className="container-editorial">
+            <PartnerSectionHeader
+              badge={t("partners.badge")}
+              title={t("partners.title")}
+              subtitle={t("partners.subtitle")}
+              description={t("partners.description")}
+            />
+            <PartnerSteps steps={t.raw("partners.steps") as { title: string; text: string }[]} />
+            <Reveal delay={0.1} className="mt-10">
+              <ul className="space-y-2 text-base text-body">
+                {(t.raw("partners.models") as string[]).map((item) => (
+                  <li key={item}>— {item}</li>
                 ))}
+              </ul>
+            </Reveal>
+            <Reveal delay={0.15} className="mt-12 flex flex-wrap items-center gap-8">
+              <div>
+                <p className="spec-value">{t("partners.commission")}</p>
+                <p className="spec-label mt-2 normal-case">{t("partners.commissionNote")}</p>
+              </div>
+              <Link href="/partners" className="btn-primary">
+                {t("partners.cta")}
+              </Link>
+            </Reveal>
+          </div>
+        </section>
+
+        <section id="about" className="section-band section--deep scroll-mt-16 border-b border-hairline">
+          <div className="container-editorial grid gap-16 lg:grid-cols-[0.4fr_0.6fr] lg:items-start">
+            <Reveal>
+              <div className="relative aspect-[3/4] w-full max-w-md bg-surface-soft">
+                <Image
+                  src={PROFILE.avatar}
+                  alt={PROFILE.name}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 400px"
+                  className="about-portrait"
+                />
               </div>
             </Reveal>
+            <div>
+              <Reveal>
+                <span className="section-label">05 · About</span>
+                <h2 className="section-title mt-4">{t("about.title")}</h2>
+                <p className="body-copy mt-6 max-w-3xl whitespace-pre-line text-base">{t("about.text")}</p>
+                <a href="#contact" className="btn-primary mt-10">
+                  {t("about.cta")}
+                </a>
+              </Reveal>
+              <Stagger className="mt-12 border-t border-hairline">
+                <StaggerItem>
+                  <div className="audience-row">
+                    <span className="editorial-row__index">01</span>
+                    <div>
+                      <p className="meta-label">{t("about.education")}</p>
+                      <p className="body-copy mt-2 text-base">{t("about.educationValue")}</p>
+                    </div>
+                  </div>
+                </StaggerItem>
+                <StaggerItem>
+                  <div className="audience-row">
+                    <span className="editorial-row__index">02</span>
+                    <div>
+                      <p className="meta-label">{t("about.schedule")}</p>
+                      <p className="body-copy mt-2 text-base">{t("about.scheduleValue")}</p>
+                    </div>
+                  </div>
+                </StaggerItem>
+                <StaggerItem>
+                  <div className="audience-row">
+                    <span className="editorial-row__index">03</span>
+                    <div>
+                      <p className="meta-label">{t("about.collaboration")}</p>
+                      <p className="body-copy mt-2 text-base">{t("about.collaborationSummary")}</p>
+                      <p className="mt-2 text-base text-muted">{t("about.collaborationDetail")}</p>
+                    </div>
+                  </div>
+                </StaggerItem>
+              </Stagger>
+              <Reveal delay={0.1} className="mt-12">
+                <h3 className="meta-label">{t("about.skillsTitle")}</h3>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {skills.map((skill) => (
+                    <span key={skill} className="skill-chip">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </Reveal>
+            </div>
           </div>
         </section>
 
@@ -277,9 +292,9 @@ export default async function HomePage() {
           reviews={enterpriseReviews}
         />
 
-        <div className="section-band section--deep border-b border-hairline-soft py-8">
+        <div className="border-b border-hairline py-12">
           <div className="container-editorial text-center">
-            <a href={YANDEX_USLUGI_URL} target="_blank" rel="noreferrer" className="text-sm text-link">
+            <a href={YANDEX_USLUGI_URL} target="_blank" rel="noreferrer" className="text-link text-[11px] uppercase tracking-[0.16em]">
               {t("reviews.yandexMeta", { rating: PROFILE.rating, count: PROFILE.reviewsCount })} · Yandex
             </a>
           </div>
@@ -300,47 +315,48 @@ export default async function HomePage() {
           footerLinkHref="#contact"
         />
 
-        <section className="section-band section--deep">
+        <section className="cta-band">
           <div className="container-editorial">
             <Reveal>
-              <div className="callout-accent light-sweep">
-                <span className="section-label">Engagement</span>
-                <h2 className="font-display text-2xl tracking-tight md:text-4xl">{t("cta.title")}</h2>
-                <p className="mt-4 max-w-xl text-sm leading-relaxed text-body">{t("cta.subtitle")}</p>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <a href="#contact" className="btn-primary">
-                    {t("cta.primary")}
-                  </a>
-                  <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary">
-                    {t("cta.secondary")}
-                  </a>
-                </div>
+              <span className="section-label">Engagement</span>
+              <h2 className="section-title mt-4">{t("cta.title")}</h2>
+              <p className="body-copy mt-4 max-w-xl text-base">{t("cta.subtitle")}</p>
+              <div className="mt-10 flex flex-wrap gap-4">
+                <a href="#contact" className="btn-primary">
+                  {t("cta.primary")}
+                </a>
+                <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary">
+                  {t("cta.secondary")}
+                </a>
               </div>
             </Reveal>
           </div>
         </section>
 
-        <section id="contact" className="section-band section--elevated scroll-mt-16 border-t border-hairline-soft">
-          <div className="container-editorial grid gap-12 md:grid-cols-2">
+        <section id="contact" className="section-band section--panel scroll-mt-16 border-t border-hairline">
+          <div className="container-editorial grid gap-16 lg:grid-cols-2">
             <Reveal>
               <span className="section-label">Contact</span>
-              <h2 className="display-sm mt-3">{t("contact.title")}</h2>
-              <p className="mt-5 text-sm leading-relaxed text-body">{t("contact.subtitle")}</p>
-              <div className="mt-8 space-y-2 text-sm">
+              <h2 className="section-title mt-4">{t("contact.title")}</h2>
+              <p className="body-copy mt-5 text-base">{t("contact.subtitle")}</p>
+              <div className="mt-10 space-y-3 text-base">
                 <p>
-                  <span className="text-muted">{t("contact.email")}: </span>
-                  <a href={`mailto:${CONTACT_EMAIL}`} className="text-link font-medium">
+                  <span className="meta-label">{t("contact.email")}</span>
+                  <br />
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="text-link">
                     {CONTACT_EMAIL}
                   </a>
                 </p>
                 <p>
-                  <span className="text-muted">{t("contact.telegram")}: </span>
-                  <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="text-link font-medium">
+                  <span className="meta-label">{t("contact.telegram")}</span>
+                  <br />
+                  <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="text-link">
                     @pstasinski
                   </a>
                 </p>
                 <p>
-                  <span className="text-muted">{t("contact.phone")}: </span>
+                  <span className="meta-label">{t("contact.phone")}</span>
+                  <br />
                   <a href={`tel:${CONTACT_PHONE}`} className="text-link">
                     {CONTACT_PHONE}
                   </a>
@@ -348,9 +364,7 @@ export default async function HomePage() {
               </div>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="luxury-card p-6 md:p-8">
-                <ContactForm />
-              </div>
+              <ContactForm />
             </Reveal>
           </div>
         </section>

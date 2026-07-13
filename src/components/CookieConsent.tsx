@@ -45,13 +45,13 @@ export function CookieConsent() {
       className="fixed inset-x-4 bottom-4 z-[100] md:inset-x-auto md:right-6 md:max-w-md"
     >
       <div className="cookie-consent-card">
-        <p id="cookie-consent-title" className="text-sm font-medium text-on-dark">
+        <p id="cookie-consent-title" className="meta-label text-ink">
           Мы используем cookies и Яндекс.Метрику
         </p>
-        <p id="cookie-consent-desc" className="mt-2 text-sm leading-relaxed text-on-dark-soft">
+        <p id="cookie-consent-desc" className="body-copy mt-3 text-base text-body">
           Сайт использует cookies и «Яндекс.Метрику» (№ {YANDEX_METRIKA_ID}) для аналитики. Скрипт загружается
           только после согласия. Подробнее — в{" "}
-          <Link href={LEGAL_ROUTES.privacyPolicy} className="text-on-dark active:underline">
+          <Link href={LEGAL_ROUTES.privacyPolicy} className="text-link">
             политике обработки ПДн
           </Link>
           .

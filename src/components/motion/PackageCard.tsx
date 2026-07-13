@@ -1,6 +1,5 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { StaggerItem } from "@/components/motion/Stagger";
 
@@ -20,6 +19,7 @@ type PackageCardProps = PackageItem & {
   ctaLabel: string;
   featuredLabel: string;
   detailsLabel: string;
+  index: number;
 };
 
 export function PackageCard({
@@ -30,51 +30,44 @@ export function PackageCard({
   result,
   includes,
   featured = false,
-  tier = "discovery",
   detailsHref,
   ctaLabel,
-  featuredLabel,
   detailsLabel,
+  index,
 }: PackageCardProps) {
-  const tierClass =
-    tier === "implementation" || featured
-      ? "package-card--featured light-sweep"
-      : tier === "retainer"
-        ? "package-card--retainer"
-        : "package-card--discovery";
+  const number = String(index + 1).padStart(2, "0");
 
   return (
     <StaggerItem>
-      <article className={`package-card ${tierClass}`}>
-        {featured ? <span className="badge-accent mb-4">{featuredLabel}</span> : null}
+      <article className={`engagement-row ${featured ? "engagement-row--featured" : ""}`}>
+        <span className="engagement-row__index">{number}</span>
 
-        <h3 className="font-display text-xl tracking-tight text-ink md:text-2xl">{name}</h3>
-        <p className="mt-3 text-sm leading-relaxed text-body">{forWhom}</p>
-        {result ? <p className="mt-2 text-sm text-body-strong">{result}</p> : null}
+        <div className="engagement-row__main">
+          <h3 className="card-title">{name}</h3>
+          <p className="body-copy mt-4 max-w-2xl text-base">{forWhom}</p>
+          {result ? <p className="mt-3 text-base text-body-strong">{result}</p> : null}
+          <ul className="mt-6 space-y-2 text-base text-body">
+            {includes.map((item) => (
+              <li key={item}>— {item}</li>
+            ))}
+          </ul>
+        </div>
 
-        <ul className="mt-5 flex-1 space-y-2 text-sm text-body">
-          {includes.map((item) => (
-            <li key={item} className="flex gap-2">
-              <span className="text-accent-primary-light">✓</span>
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
+        <div className="engagement-row__meta">
+          <span className="engagement-row__price">{price}</span>
+          <span>{duration}</span>
+        </div>
 
-        <p className={`package-card__price mt-8 ${featured ? "package-card__price--warm" : ""}`}>{price}</p>
-        <p className="package-card__duration mt-1">{duration}</p>
-
-        <a href="#contact" className="btn-primary mt-6 w-full text-center text-sm">
-          {ctaLabel}
-          <ArrowRight className="button-arrow h-4 w-4" aria-hidden />
-        </a>
-
-        {detailsHref ? (
-          <Link href={detailsHref as "/"} className="card-link mt-3 justify-center">
-            {detailsLabel}
-            <ArrowRight className="button-arrow h-3.5 w-3.5" aria-hidden />
-          </Link>
-        ) : null}
+        <div className="engagement-row__cta flex flex-col gap-3">
+          <a href="#contact" className="btn-primary whitespace-nowrap">
+            {ctaLabel}
+          </a>
+          {detailsHref ? (
+            <Link href={detailsHref as "/"} className="text-link text-center text-[11px] uppercase tracking-[0.16em]">
+              {detailsLabel}
+            </Link>
+          ) : null}
+        </div>
       </article>
     </StaggerItem>
   );

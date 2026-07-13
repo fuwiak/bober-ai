@@ -1,7 +1,6 @@
 import NextLink from "next/link";
 import { getTranslations } from "next-intl/server";
 import { SiteHeaderClient } from "@/components/SiteHeaderClient";
-import { BrandMark } from "@/components/BrandMark";
 import { Link } from "@/i18n/navigation";
 import { CONTACT_PHONE, MARKETPLACES, SITE_NAME, TELEGRAM_URL } from "@/lib/site";
 import { LEGAL_ROUTES } from "@/lib/legal";
@@ -19,7 +18,7 @@ export async function SiteHeader() {
     { href: "/#contact" as const, label: t("contact") },
   ];
 
-  return <SiteHeaderClient navItems={navItems} writeLabel={t("write")} />;
+  return <SiteHeaderClient navItems={navItems} writeLabel={t("write")} wordmark="BOBER AI" />;
 }
 
 export async function SiteFooter() {
@@ -28,9 +27,8 @@ export async function SiteFooter() {
   return (
     <footer className="footer-dark">
       <div className="container-editorial">
-        <div className="mb-8 flex items-center gap-2 text-on-dark">
-          <BrandMark className="h-4 w-4" />
-          <span className="font-display text-lg tracking-tight">{SITE_NAME}</span>
+        <div className="mb-8">
+          <span className="site-wordmark text-ink">{SITE_NAME}</span>
         </div>
         <p className="text-sm">
           <span className="text-on-dark">{t("legalName")}</span>

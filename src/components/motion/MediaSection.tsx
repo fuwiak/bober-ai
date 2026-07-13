@@ -1,8 +1,7 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
-import { MediaCard } from "@/components/motion/MediaCard";
 import { Reveal } from "@/components/motion/Reveal";
+import { MediaCard } from "@/components/motion/MediaCard";
 import { Stagger } from "@/components/motion/Stagger";
 import type { MediaItem } from "@/lib/media";
 
@@ -38,15 +37,15 @@ export function MediaSection({
   const ordered = [...items].sort((a, b) => Number(b.featured) - Number(a.featured));
 
   return (
-    <section id="media" className="media-section section-band scroll-mt-16 border-b border-hairline-soft bg-surface-soft">
+    <section id="media" className="media-section section-band scroll-mt-16">
       <div className="container-editorial">
         <Reveal>
           <span className="section-label">{label}</span>
-          <h2 className="display-sm mt-3">{title}</h2>
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-body">{subtitle}</p>
+          <h2 className="section-title mt-4">{title}</h2>
+          <p className="body-copy mt-4 max-w-3xl text-base">{subtitle}</p>
         </Reveal>
 
-        <Stagger className="media-grid mt-10" stagger={0.07}>
+        <Stagger className="media-grid mt-12" stagger={0.05}>
           {ordered.map((item) => (
             <MediaCard
               key={item.id}
@@ -60,11 +59,10 @@ export function MediaSection({
           ))}
         </Stagger>
 
-        <Reveal delay={0.2} className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="max-w-2xl text-sm text-muted">{footerNote}</p>
-          <a href={footerLinkHref} className="inline-flex items-center gap-2 text-sm font-medium text-link">
+        <Reveal delay={0.15} className="mt-12 flex flex-col gap-4 border-t border-hairline pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-2xl text-base text-muted">{footerNote}</p>
+          <a href={footerLinkHref} className="text-link text-[11px] uppercase tracking-[0.16em]">
             {footerLinkLabel}
-            <ArrowRight className="button-arrow h-4 w-4" aria-hidden />
           </a>
         </Reveal>
       </div>

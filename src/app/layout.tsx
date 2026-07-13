@@ -1,27 +1,27 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, JetBrains_Mono, Source_Serif_4 } from "next/font/google";
+import { Cormorant_Garamond, IBM_Plex_Mono, Saira_Condensed } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { CookieConsent } from "@/components/CookieConsent";
 import { YandexMetrika } from "@/components/YandexMetrika";
 import { DEFAULT_KEYWORDS, SITE_DESCRIPTION, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
 
-const sourceSerif = Source_Serif_4({
-  subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600"],
-  variable: "--font-source-serif",
+const sairaCondensed = Saira_Condensed({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400"],
+  variable: "--font-saira",
 });
 
-const ibmPlex = IBM_Plex_Sans({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600"],
-  variable: "--font-ibm-plex",
+  weight: ["400"],
+  variable: "--font-cormorant",
 });
 
-const jetbrains = JetBrains_Mono({
+const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin", "cyrillic"],
-  weight: ["400", "500"],
-  variable: "--font-jetbrains",
+  weight: ["400"],
+  variable: "--font-ibm-plex-mono",
 });
 
 export const metadata: Metadata = {
@@ -102,7 +102,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" className="dark" suppressHydrationWarning>
-      <body className={`${sourceSerif.variable} ${ibmPlex.variable} ${jetbrains.variable}`}>
+      <body className={`${sairaCondensed.variable} ${cormorant.variable} ${ibmPlexMono.variable}`}>
         <Script id="locale-lang" strategy="beforeInteractive">
           {`(function(){try{var p=location.pathname;var l=(p==='/en'||p.indexOf('/en/')===0)?'en':'ru';document.documentElement.lang=l;}catch(e){}})();`}
         </Script>

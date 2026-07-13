@@ -38,7 +38,7 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
-      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-hairline bg-canvas text-ink active:bg-surface-soft"
+      className="flex h-10 w-10 shrink-0 items-center justify-center border border-hairline bg-transparent text-ink"
       aria-label={isDark ? "Светлая тема" : "Тёмная тема"}
       title={isDark ? "Светлая тема" : "Тёмная тема"}
     >

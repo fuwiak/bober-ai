@@ -36,45 +36,41 @@ export function PartnerProgramBanner() {
       role="dialog"
       aria-labelledby="partner-banner-title"
       aria-live="polite"
-      className={`fixed inset-x-3 bottom-20 z-[90] transition-transform duration-500 ease-out sm:inset-x-auto sm:bottom-auto sm:right-0 sm:top-1/2 sm:w-[min(100vw-1.5rem,22rem)] sm:-translate-y-1/2 ${
+      className={`fixed inset-x-4 bottom-20 z-[90] border border-hairline bg-canvas transition-transform duration-500 ease-out sm:inset-x-auto sm:bottom-auto sm:right-0 sm:top-1/2 sm:w-[min(100vw-2rem,22rem)] sm:-translate-y-1/2 ${
         open ? "translate-y-0 sm:translate-x-0" : "translate-y-full sm:translate-x-full sm:translate-y-[-50%]"
       }`}
     >
-      <div className="overflow-hidden rounded-xl border border-hairline bg-canvas shadow-[0_12px_40px_rgba(0,0,0,0.12)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.45)] sm:rounded-r-none sm:border-r-0">
-        <div className="bg-primary px-5 py-3 text-on-primary">
-          <div className="flex items-start justify-between gap-3">
-            <div>
-              <p className="text-[10px] font-medium uppercase tracking-widest text-on-primary/80">{t("badge")}</p>
-              <h2 id="partner-banner-title" className="mt-1 font-display text-xl tracking-tight">
-                {t("title")}
-              </h2>
-            </div>
-            <button
-              type="button"
-              onClick={dismiss}
-              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-on-primary/80 active:bg-on-primary/10"
-              aria-label={t("close")}
-            >
-              <span aria-hidden="true" className="text-lg leading-none">
-                ×
-              </span>
-            </button>
+      <div className="border-b border-hairline px-5 py-4">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="meta-label">{t("badge")}</p>
+            <h2 id="partner-banner-title" className="card-title mt-2 text-xl">
+              {t("title")}
+            </h2>
           </div>
+          <button
+            type="button"
+            onClick={dismiss}
+            className="flex h-8 w-8 shrink-0 items-center justify-center border border-hairline text-muted"
+            aria-label={t("close")}
+          >
+            <span aria-hidden="true" className="text-lg leading-none">
+              ×
+            </span>
+          </button>
         </div>
+      </div>
 
-        <div className="p-5">
-          <p className="text-sm leading-relaxed text-body">
-            {t("text", { percent: "10%" })}
-          </p>
+      <div className="p-5">
+        <p className="body-copy text-base">{t("text", { percent: "10%" })}</p>
 
-          <div className="mt-5 flex flex-col gap-2">
-            <Link href="/partners" onClick={dismiss} className="btn-primary w-full text-center text-sm">
-              {t("cta")}
-            </Link>
-            <button type="button" onClick={dismiss} className="btn-secondary w-full text-center text-sm">
-              {t("more")}
-            </button>
-          </div>
+        <div className="mt-6 flex flex-col gap-3">
+          <Link href="/partners" onClick={dismiss} className="btn-primary w-full text-center">
+            {t("cta")}
+          </Link>
+          <button type="button" onClick={dismiss} className="btn-secondary w-full text-center">
+            {t("more")}
+          </button>
         </div>
       </div>
     </aside>

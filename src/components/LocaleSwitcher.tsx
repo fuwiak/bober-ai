@@ -13,7 +13,7 @@ export function LocaleSwitcher() {
     <Link
       href={pathname}
       locale={nextLocale}
-      className="text-sm font-medium text-muted hover:text-ink"
+      className="nav-link"
     >
       {t("switchTo")}
     </Link>

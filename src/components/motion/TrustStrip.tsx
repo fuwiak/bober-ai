@@ -2,30 +2,33 @@
 
 import { Reveal } from "@/components/motion/Reveal";
 
+type TrustStat = {
+  value: string;
+  label: string;
+};
+
 type TrustStripProps = {
-  items: string[];
+  stats: TrustStat[];
   logos: string[];
 };
 
-export function TrustStrip({ items, logos }: TrustStripProps) {
+export function TrustStrip({ stats, logos }: TrustStripProps) {
   return (
     <div className="trust-strip">
       <Reveal>
-        <div className="trust-strip__metrics">
-          {items.map((item) => (
-            <span key={item} className="trust-strip__metric">
-              {item}
-            </span>
+        <div className="trust-specs">
+          {stats.map((stat) => (
+            <div key={stat.label} className="spec-cell">
+              <span className="spec-value">{stat.value}</span>
+              <span className="spec-label">{stat.label}</span>
+            </div>
           ))}
         </div>
       </Reveal>
       <Reveal delay={0.1}>
-        <div className="trust-strip__divider" aria-hidden />
-        <div className="trust-strip__logos">
+        <div className="trust-logos">
           {logos.map((logo) => (
-            <span key={logo} className="trust-strip__logo">
-              {logo}
-            </span>
+            <span key={logo}>{logo}</span>
           ))}
         </div>
       </Reveal>

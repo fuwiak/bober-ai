@@ -12,16 +12,18 @@ type ReviewsShowcaseProps = {
 };
 
 export function ReviewsShowcase({ title, subtitle, reviews }: ReviewsShowcaseProps) {
+  const featured = reviews.slice(0, 2);
+
   return (
-    <section id="reviews" className="section-band section--deep scroll-mt-16 border-b border-hairline-soft">
+    <section id="reviews" className="section-band section--deep scroll-mt-16 border-b border-hairline">
       <div className="container-editorial">
         <Reveal>
           <span className="section-label">Verified</span>
-          <h2 className="display-sm mt-3">{title}</h2>
-          <p className="mt-3 max-w-2xl text-sm text-body">{subtitle}</p>
+          <h2 className="section-title mt-4">{title}</h2>
+          <p className="body-copy mt-4 max-w-2xl text-base">{subtitle}</p>
         </Reveal>
-        <Stagger className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3" stagger={0.09}>
-          {reviews.map((review) => (
+        <Stagger className="mt-12 divide-y divide-hairline" stagger={0.05}>
+          {featured.map((review) => (
             <ReviewCard
               key={review.id}
               author={review.author}

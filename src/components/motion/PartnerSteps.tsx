@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 
@@ -14,44 +13,20 @@ type PartnerStepsProps = {
 };
 
 export function PartnerSteps({ steps }: PartnerStepsProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.25, rootMargin: "-48px 0px" },
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <div ref={ref} className={`partner-steps mt-8 ${visible ? "is-visible" : ""}`}>
-      <div className="partner-line" aria-hidden />
-      <Stagger className="contents">
-        {steps.map((step, index) => (
-          <StaggerItem key={step.title}>
-            <article className="feature-card relative z-[1] h-full">
-              <span className="font-mono text-xs tracking-widest text-accent-primary-light">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <h3 className="mt-3 font-medium text-ink">{step.title}</h3>
-              <p className="mt-2 text-sm text-body">{step.text}</p>
-            </article>
-          </StaggerItem>
-        ))}
-      </Stagger>
-    </div>
+    <Stagger className="mt-10">
+      {steps.map((step, index) => (
+        <StaggerItem key={step.title}>
+          <article className="process-row">
+            <span className="editorial-row__index">{String(index + 1).padStart(2, "0")}</span>
+            <div>
+              <h3 className="card-title">{step.title}</h3>
+              <p className="body-copy mt-4 max-w-2xl text-base">{step.text}</p>
+            </div>
+          </article>
+        </StaggerItem>
+      ))}
+    </Stagger>
   );
 }
 
@@ -69,9 +44,9 @@ export function PartnerSectionHeader({
   return (
     <Reveal>
       <span className="section-label">{badge}</span>
-      <h2 className="display-sm mt-3">{title}</h2>
-      <p className="mt-2 text-base font-medium text-ink">{subtitle}</p>
-      <p className="mt-4 max-w-2xl text-sm leading-relaxed text-body">{description}</p>
+      <h2 className="section-title mt-4">{title}</h2>
+      <p className="body-copy mt-3 text-lg text-body-strong">{subtitle}</p>
+      <p className="body-copy mt-4 max-w-2xl text-base">{description}</p>
     </Reveal>
   );
 }
