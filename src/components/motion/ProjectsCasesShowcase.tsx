@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
+import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { FilterChip } from "@/components/motion/FilterChip";
@@ -77,7 +78,7 @@ export function ProjectsCasesShowcase({
           <StaggerItem key={item.id}>
             <article className="case-study">
               <Link href={`/portfolio/${item.slug}`} className="group block">
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-soft">
+                <EditorialImageFrame variant="card" className="aspect-[16/10] w-full bg-surface-soft">
                   <Image
                     src={item.image}
                     alt={item.title}
@@ -85,7 +86,7 @@ export function ProjectsCasesShowcase({
                     sizes="100vw"
                     className="case-study__image"
                   />
-                </div>
+                </EditorialImageFrame>
 
                 <div className="case-study__meta">
                   <span>

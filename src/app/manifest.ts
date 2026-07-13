@@ -4,23 +4,27 @@ import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: SITE_NAME,
-    short_name: SITE_NAME,
+    short_name: "Bober AI",
     description: SITE_DESCRIPTION,
     start_url: "/",
+    scope: "/",
     display: "standalone",
-    background_color: "#faf9f7",
-    theme_color: "#1a365d",
+    orientation: "portrait-primary",
+    background_color: "#000000",
+    theme_color: "#000000",
     lang: "ru",
     icons: [
       {
         src: "/icon.png",
         sizes: "512x512",
         type: "image/png",
+        purpose: "any",
       },
       {
         src: "/apple-icon.png",
         sizes: "512x512",
         type: "image/png",
+        purpose: "maskable",
       },
     ],
   };

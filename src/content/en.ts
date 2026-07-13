@@ -25,6 +25,12 @@ const en = {
     reviews: "Reviews",
     contact: "Contact",
     write: "Request a quote",
+    writeShort: "Quote",
+    menuOpen: "Open menu",
+    menuClose: "Close menu",
+    quickContact: "Get in touch",
+    call: "Call",
+    telegram: "Telegram",
     servicesPage: "All solutions",
   },
   locale: {

@@ -44,7 +44,7 @@ export function ImplementationCard({
           </ul>
         </div>
 
-        <ContactCta variant="link" className="solution-row__cta self-start whitespace-nowrap" defaultService={title}>
+        <ContactCta variant="link" className="solution-row__cta self-start whitespace-normal sm:whitespace-nowrap" defaultService={title}>
           {ctaLabel} →
         </ContactCta>
       </article>

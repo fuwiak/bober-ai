@@ -1,6 +1,7 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
+import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { ContactCta } from "@/components/ContactCta";
 import { PartnerProgramBanner } from "@/components/PartnerProgramBanner";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
@@ -62,8 +63,8 @@ export default async function HomePage() {
           portraitName={PROFILE.name}
           portraitRole={t("hero.portraitRole")}
           onlineLabel={t("common.online")}
-          avatar={PROFILE.avatar}
-          avatarAlt={PROFILE.name}
+          heroImage={PROFILE.heroImage}
+          heroImageAlt={PROFILE.name}
         />
 
         <section className="section-band section--deep border-b border-hairline">
@@ -225,7 +226,7 @@ export default async function HomePage() {
         <section id="about" className="section-band section--deep scroll-mt-16 border-b border-hairline">
           <div className="container-editorial grid gap-16 lg:grid-cols-[0.4fr_0.6fr] lg:items-start">
             <Reveal>
-              <div className="relative aspect-[3/4] w-full max-w-md bg-surface-soft">
+              <EditorialImageFrame variant="portrait" className="aspect-[3/4] w-full max-w-md bg-surface-soft">
                 <Image
                   src={PROFILE.avatar}
                   alt={PROFILE.name}
@@ -233,7 +234,7 @@ export default async function HomePage() {
                   sizes="(max-width: 1024px) 100vw, 400px"
                   className="about-portrait"
                 />
-              </div>
+              </EditorialImageFrame>
             </Reveal>
             <div>
               <Reveal>

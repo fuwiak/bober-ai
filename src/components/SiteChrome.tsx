@@ -18,7 +18,19 @@ export async function SiteHeader() {
     { href: "/#contact" as const, label: t("contact") },
   ];
 
-  return <SiteHeaderClient navItems={navItems} writeLabel={t("write")} wordmark="BOBER AI" />;
+  return (
+    <SiteHeaderClient
+      navItems={navItems}
+      writeLabel={t("write")}
+      writeShortLabel={t("writeShort")}
+      wordmark="BOBER AI"
+      menuOpenLabel={t("menuOpen")}
+      menuCloseLabel={t("menuClose")}
+      quickContactLabel={t("quickContact")}
+      callLabel={t("call")}
+      telegramLabel={t("telegram")}
+    />
+  );
 }
 
 export async function SiteFooter() {

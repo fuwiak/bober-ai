@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
+import { ContactCta } from "@/components/ContactCta";
+import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { StaggerItem } from "@/components/motion/Stagger";
 
 type AnimatedServiceCardProps = {
@@ -31,16 +33,16 @@ export function AnimatedServiceCard({
     <StaggerItem>
       <article className="card-kts group overflow-hidden rounded-2xl border border-hairline bg-canvas">
         {image ? (
-          <div className="relative aspect-[4/3] overflow-hidden bg-surface-card">
+          <EditorialImageFrame variant="card" className="aspect-[4/3] bg-surface-card">
             <Image
               src={image}
               alt={title}
               fill
               sizes="(max-width: 768px) 100vw, 360px"
-              className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.215,0.61,0.355,1)] group-hover:scale-[1.04]"
+              className="object-cover"
               unoptimized={image.endsWith(".svg")}
             />
-          </div>
+          </EditorialImageFrame>
         ) : null}
         <div className="card-kts-body flex flex-col p-6">
           <h3 className="font-display text-lg tracking-tight text-ink transition-colors duration-500 group-hover:text-primary">
@@ -58,9 +60,9 @@ export function AnimatedServiceCard({
               <Link href={`/services/${slug}`} className="btn-secondary text-xs">
                 {detailsLabel}
               </Link>
-              <a href="#contact" className="btn-primary text-xs">
+              <ContactCta className="btn-primary text-xs" defaultService={title}>
                 {quoteLabel}
-              </a>
+              </ContactCta>
             </div>
           </div>
         </div>

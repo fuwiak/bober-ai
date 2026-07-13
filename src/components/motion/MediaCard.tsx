@@ -1,6 +1,7 @@
 "use client";
 
 import { Play } from "lucide-react";
+import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { StaggerItem } from "@/components/motion/Stagger";
 import { formatMediaDate, getYoutubeThumbnail, type MediaItem } from "@/lib/media";
 
@@ -26,7 +27,7 @@ export function MediaCard({ item, locale, videoCta, articleCta, videoAriaLabel, 
     <StaggerItem className={item.featured ? "media-card__slot--featured" : "media-card__slot"}>
       <a href={item.url} target="_blank" rel="noopener noreferrer" className={cardClass} aria-label={ariaLabel}>
         {isVideo && item.youtubeId ? (
-          <div className="media-card__visual">
+          <EditorialImageFrame variant="media" className="media-card__visual">
             <img
               src={getYoutubeThumbnail(item.youtubeId)}
               alt=""
@@ -37,7 +38,7 @@ export function MediaCard({ item, locale, videoCta, articleCta, videoAriaLabel, 
             <span className="media-card__play" aria-hidden="true">
               <Play className="h-5 w-5" />
             </span>
-          </div>
+          </EditorialImageFrame>
         ) : null}
 
         <div className="media-card__content">

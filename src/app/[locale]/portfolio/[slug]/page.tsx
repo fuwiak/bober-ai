@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
+import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { Link } from "@/i18n/navigation";
 import { getPortfolioItem, PORTFOLIO } from "@/lib/profile";
@@ -68,16 +69,16 @@ export default async function PortfolioProjectPage({ params }: PageProps) {
             ) : null}
           </div>
 
-          <div className="relative mt-10 aspect-[16/10] overflow-hidden rounded-xl border border-hairline bg-surface-card">
+          <EditorialImageFrame variant="card" className="mt-10 aspect-[16/10] rounded-xl border border-hairline bg-surface-card">
             <Image
               src={item.image}
               alt={item.title}
               fill
               sizes="(max-width: 1200px) 100vw, 1152px"
-              className="object-cover object-top"
+              className="case-study__image object-top"
               priority
             />
-          </div>
+          </EditorialImageFrame>
 
           {hasCaseStudy ? (
             <div className="mt-12 grid gap-6 md:grid-cols-3">

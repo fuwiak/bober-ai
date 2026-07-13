@@ -36,7 +36,7 @@ export function PartnerProgramBanner() {
       role="dialog"
       aria-labelledby="partner-banner-title"
       aria-live="polite"
-      className={`fixed inset-x-4 bottom-20 z-[90] border border-hairline bg-canvas transition-transform duration-500 ease-out sm:inset-x-auto sm:bottom-auto sm:right-0 sm:top-1/2 sm:w-[min(100vw-2rem,22rem)] sm:-translate-y-1/2 ${
+      className={`partner-banner fixed inset-x-4 z-[90] border border-hairline bg-canvas transition-transform duration-500 ease-out sm:inset-x-auto sm:bottom-auto sm:right-0 sm:top-1/2 sm:w-[min(100vw-2rem,22rem)] sm:-translate-y-1/2 ${
         open ? "translate-y-0 sm:translate-x-0" : "translate-y-full sm:translate-x-full sm:translate-y-[-50%]"
       }`}
     >

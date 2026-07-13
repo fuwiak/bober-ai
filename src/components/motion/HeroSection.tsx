@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { ContactCta } from "@/components/ContactCta";
+import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { motion, useReducedMotion } from "motion/react";
 import { revealTransition } from "@/lib/motion";
 
@@ -17,8 +18,8 @@ type HeroSectionProps = {
   portraitName: string;
   portraitRole: string;
   onlineLabel: string;
-  avatar: string;
-  avatarAlt: string;
+  heroImage: string;
+  heroImageAlt: string;
 };
 
 export function HeroSection({
@@ -33,8 +34,8 @@ export function HeroSection({
   portraitName,
   portraitRole,
   onlineLabel,
-  avatar,
-  avatarAlt,
+  heroImage,
+  heroImageAlt,
 }: HeroSectionProps) {
   const prefersReducedMotion = useReducedMotion();
   const transition = prefersReducedMotion ? { duration: 0 } : revealTransition;
@@ -102,17 +103,17 @@ export function HeroSection({
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...transition, delay: prefersReducedMotion ? 0 : 0.2 }}
         >
-          <div className="hero-media__frame">
+          <EditorialImageFrame variant="hero" className="hero-media__frame">
             <Image
-              src={avatar}
-              alt={avatarAlt}
+              src={heroImage}
+              alt={heroImageAlt}
               fill
               sizes="100vw"
               className="hero-media__image"
               priority
             />
-          </div>
-          <figcaption>
+          </EditorialImageFrame>
+          <figcaption className="sr-only">
             {portraitName} · {portraitRole} · {onlineLabel} · {trustItems.join(" · ")}
           </figcaption>
         </motion.figure>

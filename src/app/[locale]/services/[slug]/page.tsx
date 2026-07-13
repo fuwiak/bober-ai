@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { ContactForm } from "@/components/ContactForm";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { Link } from "@/i18n/navigation";
@@ -57,7 +58,7 @@ export default async function ServiceOfferPage({ params }: PageProps) {
               <h1 className="display-md">{offer.title}</h1>
               <p className="mt-4 text-base leading-relaxed text-body">{offer.description}</p>
 
-              <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-xl bg-surface-card">
+              <EditorialImageFrame variant="card" className="mt-8 aspect-[16/9] rounded-xl bg-surface-card">
                 <Image
                   src={offer.serviceImage}
                   alt={offer.title}
@@ -66,7 +67,7 @@ export default async function ServiceOfferPage({ params }: PageProps) {
                   className="object-cover"
                   unoptimized={offer.serviceImage.endsWith(".svg")}
                 />
-              </div>
+              </EditorialImageFrame>
 
               <div className="feature-card mt-8">
                 <h2 className="font-display text-xl tracking-tight">{t("includes")}</h2>

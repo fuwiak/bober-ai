@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
+import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import type { PortfolioItem } from "@/lib/profile";
 
 type PortfolioCardProps = {
@@ -13,7 +14,7 @@ export function PortfolioCard({ item, detailsLabel }: PortfolioCardProps) {
   return (
     <article className="case-study">
       <Link href={`/portfolio/${item.slug}`} className="group block">
-        <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-soft">
+        <EditorialImageFrame variant="card" className="aspect-[16/10] w-full bg-surface-soft">
           <Image
             src={item.image}
             alt={item.title}
@@ -21,7 +22,7 @@ export function PortfolioCard({ item, detailsLabel }: PortfolioCardProps) {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="case-study__image"
           />
-        </div>
+        </EditorialImageFrame>
 
         <div className="case-study__meta">
           <span>

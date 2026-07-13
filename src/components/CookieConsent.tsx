@@ -56,7 +56,7 @@ export function CookieConsent() {
       role="dialog"
       aria-labelledby="cookie-consent-title"
       aria-describedby="cookie-consent-desc"
-      className={`cookie-consent fixed inset-x-4 bottom-4 z-[100] md:inset-x-auto md:right-6 md:max-w-md${visible ? " cookie-consent--open" : ""}`}
+      className={`cookie-consent fixed inset-x-4 z-[100] md:inset-x-auto md:right-6 md:max-w-md${visible ? " cookie-consent--open" : ""}`}
     >
       <div className="cookie-consent-card">
         <p id="cookie-consent-title" className="meta-label text-ink">

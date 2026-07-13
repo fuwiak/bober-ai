@@ -24,6 +24,7 @@ export const PROFILE = {
 
 7 лет в AI, партнёр Yandex Cloud, Cloud.ru и Selectel. Фиксированная смета, поэтапная сдача, проекты от 30 000 ₽. Напишите в Telegram — отвечу в течение нескольких часов и предложу план с ценой.`,
   avatar: "/yandex/Pasha_Yandex1.png",
+  heroImage: "/hero/pavel-main.png",
 } as const;
 
 export type Review = {

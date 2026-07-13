@@ -30,6 +30,12 @@ const ru = {
     reviews: "Отзывы",
     contact: "Контакт",
     write: "Оставить заявку",
+    writeShort: "Заявка",
+    menuOpen: "Открыть меню",
+    menuClose: "Закрыть меню",
+    quickContact: "Связаться с нами",
+    call: "Позвонить",
+    telegram: "Telegram",
     servicesPage: "Все решения",
   },
   locale: {
