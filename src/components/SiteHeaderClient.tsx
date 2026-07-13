@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { ContactCta } from "@/components/ContactCta";
 import { Link } from "@/i18n/navigation";
 import { CONTACT_PHONE } from "@/lib/site";
 
@@ -55,9 +56,7 @@ export function SiteHeaderClient({ navItems, writeLabel, wordmark }: SiteHeaderC
             {CONTACT_PHONE.replace("+7", "+7 ")}
           </a>
           <ThemeToggle />
-          <a href="#contact" className="btn-primary hidden sm:inline-flex">
-            {writeLabel}
-          </a>
+          <ContactCta className="hidden sm:inline-flex">{writeLabel}</ContactCta>
         </div>
       </div>
       <nav className="flex gap-5 overflow-x-auto border-t border-hairline px-4 py-3 lg:hidden">

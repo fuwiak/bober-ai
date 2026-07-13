@@ -7,6 +7,7 @@ import { LEGAL_ROUTES } from "@/lib/legal";
 
 type ContactFormProps = {
   defaultService?: string;
+  onSuccess?: () => void;
 };
 
 function ConsentCheckbox({
@@ -37,7 +38,7 @@ function ConsentCheckbox({
   );
 }
 
-export function ContactForm({ defaultService = "" }: ContactFormProps) {
+export function ContactForm({ defaultService = "", onSuccess }: ContactFormProps) {
   const t = useTranslations("form");
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
@@ -107,6 +108,7 @@ export function ContactForm({ defaultService = "" }: ContactFormProps) {
       setMessage("");
       setPolicyAccepted(false);
       setConsentAccepted(false);
+      onSuccess?.();
     } catch (error) {
       setStatus("error");
       setErrorText(error instanceof Error ? error.message : t("errorGeneric"));

@@ -326,6 +326,8 @@ const en = {
     email: "Email",
     telegram: "Telegram",
     phone: "Phone",
+    modalClose: "Close",
+    fabLabel: "Request a quote",
   },
   form: {
     name: "Name",
@@ -391,6 +393,17 @@ const en = {
   partnersPage: {
     title: "Partners",
     subtitle: "White-label AI for integrators and software houses",
+  },
+  sections: {
+    audience: "01 · Audience",
+    engagement: "02 · Engagement",
+    solutions: "03 · Solutions",
+    process: "04 · Process",
+    about: "05 · About",
+    verified: "Verified",
+    portfolio: "Portfolio",
+    cta: "Engagement",
+    contact: "Contact",
   },
 } as const;
 

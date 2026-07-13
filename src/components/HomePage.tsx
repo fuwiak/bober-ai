@@ -1,6 +1,7 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
+import { ContactCta } from "@/components/ContactCta";
 import { PartnerProgramBanner } from "@/components/PartnerProgramBanner";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { HeroSection } from "@/components/motion/HeroSection";
@@ -74,7 +75,7 @@ export default async function HomePage() {
         <section className="section-band section--panel border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
-              <span className="section-label">01 · Audience</span>
+              <span className="section-label">{t("sections.audience")}</span>
               <h2 className="section-title mt-4">{t("audiences.title")}</h2>
             </Reveal>
             <Stagger className="mt-12">
@@ -96,7 +97,7 @@ export default async function HomePage() {
         <section id="packages" className="section-band section--deep scroll-mt-16 border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
-              <span className="section-label">02 · Engagement</span>
+              <span className="section-label">{t("sections.engagement")}</span>
               <h2 className="section-title mt-4">{t("packages.title")}</h2>
               <p className="body-copy mt-4 max-w-2xl text-base">{t("packages.subtitle")}</p>
             </Reveal>
@@ -118,7 +119,7 @@ export default async function HomePage() {
         <section id="services" className="section-band section--panel scroll-mt-16 border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
-              <span className="section-label">03 · Solutions</span>
+              <span className="section-label">{t("sections.solutions")}</span>
               <h2 className="section-title mt-4">{t("services.title")}</h2>
               <p className="body-copy mt-4 max-w-2xl text-base">{t("services.subtitle")}</p>
             </Reveal>
@@ -147,6 +148,7 @@ export default async function HomePage() {
               solutionLabel={t("portfolio.solutionLabel")}
               resultLabel={t("portfolio.resultLabel")}
               categoriesLabel={t("portfolio.categoriesLabel")}
+              sectionLabel={t("sections.portfolio")}
             />
           </div>
         </section>
@@ -154,7 +156,7 @@ export default async function HomePage() {
         <section id="process" className="section-band section--panel scroll-mt-16 border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
-              <span className="section-label">04 · Process</span>
+              <span className="section-label">{t("sections.process")}</span>
               <h2 className="section-title mt-4">{t("process.title")}</h2>
               <p className="body-copy mt-4 max-w-2xl text-base">{t("process.subtitle")}</p>
             </Reveal>
@@ -235,12 +237,10 @@ export default async function HomePage() {
             </Reveal>
             <div>
               <Reveal>
-                <span className="section-label">05 · About</span>
+              <span className="section-label">{t("sections.about")}</span>
                 <h2 className="section-title mt-4">{t("about.title")}</h2>
                 <p className="body-copy mt-6 max-w-3xl whitespace-pre-line text-base">{t("about.text")}</p>
-                <a href="#contact" className="btn-primary mt-10">
-                  {t("about.cta")}
-                </a>
+                <ContactCta className="mt-10">{t("about.cta")}</ContactCta>
               </Reveal>
               <Stagger className="mt-12 border-t border-hairline">
                 <StaggerItem>
@@ -290,6 +290,7 @@ export default async function HomePage() {
           title={t("reviews.title")}
           subtitle={t("reviews.subtitle")}
           reviews={enterpriseReviews}
+          sectionLabel={t("sections.verified")}
         />
 
         <div className="border-b border-hairline py-12">
@@ -312,19 +313,16 @@ export default async function HomePage() {
           articleAriaLabel={t("media.articleAriaLabel")}
           footerNote={t("media.footerNote")}
           footerLinkLabel={t("media.footerLinkLabel")}
-          footerLinkHref="#contact"
         />
 
         <section className="cta-band">
           <div className="container-editorial">
             <Reveal>
-              <span className="section-label">Engagement</span>
+              <span className="section-label">{t("sections.cta")}</span>
               <h2 className="section-title mt-4">{t("cta.title")}</h2>
               <p className="body-copy mt-4 max-w-xl text-base">{t("cta.subtitle")}</p>
               <div className="mt-10 flex flex-wrap gap-4">
-                <a href="#contact" className="btn-primary">
-                  {t("cta.primary")}
-                </a>
+                <ContactCta>{t("cta.primary")}</ContactCta>
                 <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary">
                   {t("cta.secondary")}
                 </a>
@@ -336,7 +334,7 @@ export default async function HomePage() {
         <section id="contact" className="section-band section--panel scroll-mt-16 border-t border-hairline">
           <div className="container-editorial grid gap-16 lg:grid-cols-2">
             <Reveal>
-              <span className="section-label">Contact</span>
+              <span className="section-label">{t("sections.contact")}</span>
               <h2 className="section-title mt-4">{t("contact.title")}</h2>
               <p className="body-copy mt-5 text-base">{t("contact.subtitle")}</p>
               <div className="mt-10 space-y-3 text-base">

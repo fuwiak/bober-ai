@@ -1,5 +1,6 @@
 "use client";
 
+import { ContactCta } from "@/components/ContactCta";
 import { Reveal } from "@/components/motion/Reveal";
 import { MediaCard } from "@/components/motion/MediaCard";
 import { Stagger } from "@/components/motion/Stagger";
@@ -17,7 +18,6 @@ type MediaSectionProps = {
   articleAriaLabel: string;
   footerNote: string;
   footerLinkLabel: string;
-  footerLinkHref: string;
 };
 
 export function MediaSection({
@@ -32,7 +32,6 @@ export function MediaSection({
   articleAriaLabel,
   footerNote,
   footerLinkLabel,
-  footerLinkHref,
 }: MediaSectionProps) {
   const ordered = [...items].sort((a, b) => Number(b.featured) - Number(a.featured));
 
@@ -61,9 +60,7 @@ export function MediaSection({
 
         <Reveal delay={0.15} className="mt-12 flex flex-col gap-4 border-t border-hairline pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="max-w-2xl text-base text-muted">{footerNote}</p>
-          <a href={footerLinkHref} className="text-link text-[11px] uppercase tracking-[0.16em]">
-            {footerLinkLabel}
-          </a>
+          <ContactCta variant="link">{footerLinkLabel}</ContactCta>
         </Reveal>
       </div>
     </section>

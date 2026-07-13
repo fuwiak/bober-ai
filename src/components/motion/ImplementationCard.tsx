@@ -1,5 +1,6 @@
 "use client";
 
+import { ContactCta } from "@/components/ContactCta";
 import { StaggerItem } from "@/components/motion/Stagger";
 
 export type ImplementationArea = {
@@ -43,9 +44,9 @@ export function ImplementationCard({
           </ul>
         </div>
 
-        <a href="#contact" className="solution-row__cta text-link self-start whitespace-nowrap text-[11px] uppercase tracking-[0.16em]">
+        <ContactCta variant="link" className="solution-row__cta self-start whitespace-nowrap" defaultService={title}>
           {ctaLabel} →
-        </a>
+        </ContactCta>
       </article>
     </StaggerItem>
   );

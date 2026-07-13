@@ -1,7 +1,8 @@
 "use client";
 
-import { Link } from "@/i18n/navigation";
+import { ContactCta } from "@/components/ContactCta";
 import { StaggerItem } from "@/components/motion/Stagger";
+import { Link } from "@/i18n/navigation";
 
 export type PackageItem = {
   name: string;
@@ -59,9 +60,7 @@ export function PackageCard({
         </div>
 
         <div className="engagement-row__cta flex flex-col gap-3">
-          <a href="#contact" className="btn-primary whitespace-nowrap">
-            {ctaLabel}
-          </a>
+          <ContactCta className="whitespace-nowrap">{ctaLabel}</ContactCta>
           {detailsHref ? (
             <Link href={detailsHref as "/"} className="text-link text-center text-[11px] uppercase tracking-[0.16em]">
               {detailsLabel}

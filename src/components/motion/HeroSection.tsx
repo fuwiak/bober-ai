@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { ContactCta } from "@/components/ContactCta";
 import { motion, useReducedMotion } from "motion/react";
 import { revealTransition } from "@/lib/motion";
 
@@ -88,9 +89,7 @@ export function HeroSection({
             variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
             transition={transition}
           >
-            <a href="#contact" className="btn-primary">
-              {ctaPrimary}
-            </a>
+            <ContactCta>{ctaPrimary}</ContactCta>
             <a href="#portfolio" className="btn-secondary">
               {ctaSecondary}
             </a>
@@ -103,13 +102,13 @@ export function HeroSection({
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...transition, delay: prefersReducedMotion ? 0 : 0.2 }}
         >
-          <div className="relative aspect-[16/9] w-full">
+          <div className="hero-media__frame">
             <Image
               src={avatar}
               alt={avatarAlt}
               fill
               sizes="100vw"
-              className="object-cover object-top"
+              className="hero-media__image"
               priority
             />
           </div>

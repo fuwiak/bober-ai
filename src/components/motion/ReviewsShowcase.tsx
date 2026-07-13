@@ -9,16 +9,17 @@ type ReviewsShowcaseProps = {
   title: string;
   subtitle: string;
   reviews: CuratedReview[];
+  sectionLabel: string;
 };
 
-export function ReviewsShowcase({ title, subtitle, reviews }: ReviewsShowcaseProps) {
+export function ReviewsShowcase({ title, subtitle, reviews, sectionLabel }: ReviewsShowcaseProps) {
   const featured = reviews.slice(0, 2);
 
   return (
     <section id="reviews" className="section-band section--deep scroll-mt-16 border-b border-hairline">
       <div className="container-editorial">
         <Reveal>
-          <span className="section-label">Verified</span>
+          <span className="section-label">{sectionLabel}</span>
           <h2 className="section-title mt-4">{title}</h2>
           <p className="body-copy mt-4 max-w-2xl text-base">{subtitle}</p>
         </Reveal>

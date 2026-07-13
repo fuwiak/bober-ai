@@ -18,6 +18,7 @@ type ProjectsCasesShowcaseProps = {
   solutionLabel?: string;
   resultLabel?: string;
   categoriesLabel?: string;
+  sectionLabel?: string;
 };
 
 export function ProjectsCasesShowcase({
@@ -30,6 +31,7 @@ export function ProjectsCasesShowcase({
   solutionLabel = "Решение",
   resultLabel = "Результат",
   categoriesLabel = "Направления",
+  sectionLabel = "Portfolio",
 }: ProjectsCasesShowcaseProps) {
   const categories = useMemo(() => {
     const counts = new Map<string, number>();
@@ -47,7 +49,7 @@ export function ProjectsCasesShowcase({
   return (
     <div>
       <Reveal>
-        <span className="section-label">Portfolio</span>
+        <span className="section-label">{sectionLabel}</span>
         <h2 className="section-title mt-4">{title}</h2>
         {subtitle ? <p className="body-copy mt-4 max-w-2xl text-base">{subtitle}</p> : null}
       </Reveal>
