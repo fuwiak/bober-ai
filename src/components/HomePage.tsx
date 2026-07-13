@@ -26,6 +26,10 @@ export default async function HomePage() {
   const locale = await getLocale();
   const services = getEnterpriseServices(locale);
   const skills = t.raw("about.skills") as string[];
+  const homepageCaseSlugs = ["kaspersky-ai-assistant", "elia-suite", "lead-generation", "kp-llm-automation"] as const;
+  const homepageCases = homepageCaseSlugs
+    .map((slug) => PORTFOLIO.find((item) => item.slug === slug))
+    .filter((item): item is (typeof PORTFOLIO)[number] => Boolean(item));
 
   return (
     <div className="min-h-screen bg-canvas">
@@ -279,7 +283,7 @@ export default async function HomePage() {
               <h2 className="display-sm">{t("portfolio.title")}</h2>
               <p className="mt-3 max-w-2xl text-sm text-body">{t("portfolio.subtitle")}</p>
             </Reveal>
-            {PORTFOLIO.filter((item) => item.featured).map((item) => (
+            {homepageCases.map((item) => (
               <article key={item.id} className="feature-card-bordered mt-10 overflow-hidden p-0 md:grid md:grid-cols-2">
                 <div className="relative aspect-[16/10] bg-surface-card md:aspect-auto md:min-h-[320px]">
                   <Image

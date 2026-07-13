@@ -11,11 +11,12 @@ export type EnterpriseService = {
 };
 
 const IMAGES: Record<string, string> = {
-  "enterprise-ai-assistant": "/yandex/mess_icons.png",
-  "ai-discovery-roadmap": "/yandex/yandex_ai_studio.svg",
-  "private-llm-gigachat": "/yandex/ai-lawyer.png",
-  "business-process-automation": "/openclaw-icon.png",
-  "sales-ai-agent": "/yandex/ai-lawyer.png",
+  // Stock-ish visuals (local assets) for homepage cards
+  "enterprise-ai-assistant": "/portfolio/elia-suite.png",
+  "ai-discovery-roadmap": "/yandex/pasha-ai3.png",
+  "private-llm-gigachat": "/media/legal-gpu-02.jpg",
+  "business-process-automation": "/yandex/mac-mini.png",
+  "sales-ai-agent": "/portfolio/offer-kp-llm.png",
 };
 
 const ruServices: EnterpriseService[] = [
