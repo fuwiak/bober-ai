@@ -215,7 +215,7 @@ const ru = {
     cta: "Оставить заявку",
   },
   reviews: {
-    yandexTitle: "Отзывы Яндекс Услуги",
+    yandexTitle: "Yandex",
     yandexMeta: "Рейтинг {rating} · {count} оценок",
     avitoTitle: "Отзывы Авито",
     avitoMeta: "{count} опубликованных отзывов",

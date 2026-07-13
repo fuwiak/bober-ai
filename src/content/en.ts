@@ -210,7 +210,7 @@ const en = {
     cta: "Request a quote",
   },
   reviews: {
-    yandexTitle: "Yandex Services reviews",
+    yandexTitle: "Yandex",
     yandexMeta: "Rating {rating} · {count} reviews",
     avitoTitle: "Avito reviews",
     avitoMeta: "{count} published reviews",
