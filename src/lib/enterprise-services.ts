@@ -11,12 +11,13 @@ export type EnterpriseService = {
 };
 
 const IMAGES: Record<string, string> = {
-  // Stock-ish visuals (local assets) for homepage cards
-  "enterprise-ai-assistant": "/portfolio/elia-suite.png",
-  "ai-discovery-roadmap": "/yandex/pasha-ai3.png",
-  "private-llm-gigachat": "/media/legal-gpu-02.jpg",
-  "business-process-automation": "/yandex/mac-mini.png",
-  "sales-ai-agent": "/portfolio/offer-kp-llm.png",
+  // Stock visuals (local assets) for homepage cards
+  // Sources: Unsplash (see photo ids in filenames / commit history)
+  "enterprise-ai-assistant": "/stock/team-collab.jpg",
+  "ai-discovery-roadmap": "/stock/roadmap-sticky-notes.jpg",
+  "private-llm-gigachat": "/stock/cyber-padlock.jpg",
+  "business-process-automation": "/stock/automation-code.jpg",
+  "sales-ai-agent": "/stock/sales-proposal.jpg",
 };
 
 const ruServices: EnterpriseService[] = [

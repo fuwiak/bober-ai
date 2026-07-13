@@ -26,7 +26,13 @@ export default async function HomePage() {
   const locale = await getLocale();
   const services = getEnterpriseServices(locale);
   const skills = t.raw("about.skills") as string[];
-  const homepageCaseSlugs = ["kaspersky-ai-assistant", "elia-suite", "lead-generation", "kp-llm-automation"] as const;
+  const homepageCaseSlugs = [
+    "kaspersky-ai-assistant",
+    "elia-suite",
+    "lead-generation",
+    "kp-llm-automation",
+    "yandex-telemost-agent",
+  ] as const;
   const homepageCases = homepageCaseSlugs
     .map((slug) => PORTFOLIO.find((item) => item.slug === slug))
     .filter((item): item is (typeof PORTFOLIO)[number] => Boolean(item));
