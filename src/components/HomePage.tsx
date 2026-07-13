@@ -5,6 +5,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { PartnerProgramBanner } from "@/components/PartnerProgramBanner";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { AnimatedServiceCard } from "@/components/motion/AnimatedServiceCard";
+import { ProjectsCasesShowcase } from "@/components/motion/ProjectsCasesShowcase";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { Link } from "@/i18n/navigation";
@@ -285,36 +286,13 @@ export default async function HomePage() {
 
         <section id="portfolio" className="section-band scroll-mt-16 border-b border-hairline-soft">
           <div className="container-editorial">
-            <Reveal>
-              <h2 className="display-sm">{t("portfolio.title")}</h2>
-              <p className="mt-3 max-w-2xl text-sm text-body">{t("portfolio.subtitle")}</p>
-            </Reveal>
-            {homepageCases.map((item) => (
-              <article key={item.id} className="feature-card-bordered mt-10 overflow-hidden p-0 md:grid md:grid-cols-2">
-                <div className="relative aspect-[16/10] bg-surface-card md:aspect-auto md:min-h-[320px]">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 576px"
-                    className="object-cover object-top"
-                  />
-                </div>
-                <div className="flex flex-col p-6 md:p-8">
-                  <span className="badge-accent w-fit text-[10px]">{item.category}</span>
-                  <h3 className="mt-3 font-display text-xl tracking-tight text-ink">{item.title}</h3>
-                  {item.priceLabel ? (
-                    <p className="mt-2 font-display text-lg tracking-tight text-primary">{item.priceLabel}</p>
-                  ) : null}
-                  {item.description ? (
-                    <p className="mt-3 flex-1 text-sm leading-relaxed text-body">{item.description}</p>
-                  ) : null}
-                  <Link href={`/portfolio/${item.slug}`} className="btn-primary mt-6 w-fit">
-                    {t("portfolio.details")}
-                  </Link>
-                </div>
-              </article>
-            ))}
+            <ProjectsCasesShowcase
+              items={homepageCases}
+              title={t("portfolio.title")}
+              subtitle={t("portfolio.subtitle")}
+              detailsLabel={t("portfolio.details")}
+              allLabel={locale === "en" ? "All" : "Все"}
+            />
           </div>
         </section>
 
