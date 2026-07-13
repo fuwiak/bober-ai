@@ -19,7 +19,11 @@
     "yandex:feed:repair": "node scripts/yandex-feed-repair.mjs",
     "yandex360:mailbox": "node scripts/yandex360-mailbox.mjs",
     "selectel:mail": "node scripts/selectel-email.mjs",
-    "metrika:counter": "node scripts/yandex-metrika-counter.mjs"
+    "metrika:counter": "node scripts/yandex-metrika-counter.mjs",
+    "yandex:wordstat": "node scripts/yandex-wordstat.mjs",
+    "yandex:direct:oauth": "node scripts/yandex-direct-oauth.mjs",
+    "yandex:direct:oauth:refresh": "node scripts/yandex-direct-oauth.mjs refresh --update-railway",
+    "yandex:direct:oauth:ensure": "node scripts/yandex-direct-oauth.mjs ensure --update-railway"
   },
   "dependencies": {
     "lucide-react": "^0.546.0",

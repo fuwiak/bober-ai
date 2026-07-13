@@ -1,0 +1,30 @@
+name: Refresh Yandex Direct OAuth
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Refresh OAuth token and sync Railway
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
+          RAILWAY_ENVIRONMENT_ID: ${{ secrets.RAILWAY_ENVIRONMENT_ID }}
+          YANDEX_DIRECT_CLIENT_ID: ${{ secrets.YANDEX_DIRECT_CLIENT_ID }}
+          YANDEX_DIRECT_CLIENT_SECRET: ${{ secrets.YANDEX_DIRECT_CLIENT_SECRET }}
+          YANDEX_DIRECT_REFRESH_TOKEN: ${{ secrets.YANDEX_DIRECT_REFRESH_TOKEN }}
+          YANDEX_DIRECT_REDIRECT_URI: https://oauth.yandex.ru/verification_code
+        run: node scripts/yandex-direct-oauth.mjs refresh --update-railway
