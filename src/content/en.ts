@@ -18,6 +18,7 @@ const en = {
     services: "Solutions",
     packages: "Packages",
     portfolio: "Case studies",
+    blog: "Blog",
     partners: "Partners",
     process: "Process",
     about: "About",

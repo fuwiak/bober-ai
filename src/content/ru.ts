@@ -23,6 +23,7 @@ const ru = {
     services: "Решения",
     packages: "Пакеты",
     portfolio: "Кейсы",
+    blog: "Блог",
     partners: "Партнёрам",
     process: "Процесс",
     about: "О нас",
