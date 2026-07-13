@@ -4,7 +4,6 @@ import { spawnSync } from "node:child_process";
 import fetch from "./lib/fetch.mjs";
 import {
   getConfig,
-  getFeedUploadInfo,
   getHosts,
   getUserId,
   listFeeds,
@@ -163,19 +162,6 @@ async function reloadFeedInWebmaster() {
   if (!requestId) fail("API не вернул requestId");
 
   log("webmaster", `requestId=${requestId}`);
-
-  const startedAt = Date.now();
-  while (Date.now() - startedAt < config.pollTimeoutMs) {
-    const info = await getFeedUploadInfo(config.token, userId, hostId, requestId);
-    const status = info?.status || info?.feed?.status || "UNKNOWN";
-    log("webmaster", `Статус загрузки: ${status}`);
-    if (status === "OK") break;
-    if (["BAD_HTTP_CODE", "BAD_MIME_TYPE", "TIMED_OUT", "INCORRECT_URL", "WRONG_REGION"].includes(status)) {
-      fail(`Загрузка фида отклонена: ${status}`);
-    }
-    await sleep(config.pollIntervalMs);
-  }
-
   await waitForFeedReload(config.token, userId, hostId, config.feedUrl, config);
   log("webmaster", "Фид снова зарегистрирован в Вебмастере");
 }

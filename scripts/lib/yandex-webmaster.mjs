@@ -144,12 +144,10 @@ export async function startFeedUpload(token, userId, hostId, feed) {
 }
 
 export async function getFeedUploadInfo(token, userId, hostId, requestId) {
-  const { response, body } = await apiRequest(
-    token,
-    `/user/${userId}/hosts/${encodeURIComponent(hostId)}/feeds/add/info?request_id=${encodeURIComponent(requestId)}`,
-  );
+  const path = `/user/${userId}/hosts/${encodeURIComponent(hostId)}/feeds/add/info?requestId=${encodeURIComponent(requestId)}`;
+  const { response, body } = await apiRequest(token, path);
   if (!response.ok) {
-    throw new Error(`GET /feeds/add/info → HTTP ${response.status}: ${JSON.stringify(body)}`);
+    throw new Error(`feeds/add/info → HTTP ${response.status}: ${JSON.stringify(body)}`);
   }
   return body;
 }
@@ -161,6 +159,7 @@ export async function waitForFeedReload(token, userId, hostId, feedUrl, config) 
     if (feeds.some((feed) => feed.url === feedUrl)) {
       return feeds.find((feed) => feed.url === feedUrl);
     }
+    process.stdout.write(".");
     await new Promise((resolve) => setTimeout(resolve, config.pollIntervalMs));
   }
   throw new Error("Истекло время ожидания перезагрузки фида");
