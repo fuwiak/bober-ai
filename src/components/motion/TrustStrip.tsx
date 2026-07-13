@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { Reveal } from "@/components/motion/Reveal";
+import { TRUST_PARTNERS } from "@/lib/trust-partners";
 
 type TrustStat = {
   value: string;
@@ -9,10 +11,9 @@ type TrustStat = {
 
 type TrustStripProps = {
   stats: TrustStat[];
-  logos: string[];
 };
 
-export function TrustStrip({ stats, logos }: TrustStripProps) {
+export function TrustStrip({ stats }: TrustStripProps) {
   return (
     <div className="trust-strip">
       <Reveal>
@@ -26,9 +27,21 @@ export function TrustStrip({ stats, logos }: TrustStripProps) {
         </div>
       </Reveal>
       <Reveal delay={0.1}>
-        <div className="trust-logos">
-          {logos.map((logo) => (
-            <span key={logo}>{logo}</span>
+        <div className="trust-logos" aria-label="Technology partners">
+          {TRUST_PARTNERS.map((partner) => (
+            <div key={partner.id} className="trust-logo">
+              <div className="trust-logo__mark">
+                <Image
+                  src={partner.logoSrc}
+                  alt=""
+                  width={28}
+                  height={28}
+                  className="trust-logo__icon"
+                  aria-hidden
+                />
+              </div>
+              <span className="trust-logo__name">{partner.name}</span>
+            </div>
           ))}
         </div>
       </Reveal>

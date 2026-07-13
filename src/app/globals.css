@@ -543,15 +543,65 @@ html.dark {
     color: var(--color-muted);
   }
   .trust-logos {
-    @apply mt-12 flex flex-wrap items-center gap-x-10 gap-y-4;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 48px;
+    border-top: 1px solid var(--color-hairline);
+    border-bottom: 1px solid var(--color-hairline);
   }
-  .trust-logos span {
+  @media (max-width: 768px) {
+    .trust-logos {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .trust-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 28px 16px;
+    border-right: 1px solid var(--color-hairline);
+  }
+  .trust-logo:nth-child(4n),
+  .trust-logo:last-child {
+    border-right: 0;
+  }
+  @media (max-width: 768px) {
+    .trust-logo:nth-child(4n) {
+      border-right: 1px solid var(--color-hairline);
+    }
+    .trust-logo:nth-child(2n) {
+      border-right: 0;
+    }
+    .trust-logo:nth-child(n + 3) {
+      border-top: 1px solid var(--color-hairline);
+    }
+  }
+  .trust-logo__mark {
+    display: flex;
+    height: 52px;
+    width: 52px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-hairline-strong);
+    background: var(--color-surface-soft);
+    padding: 10px;
+  }
+  .trust-logo__icon {
+    height: 28px;
+    width: 28px;
+    object-fit: contain;
+    opacity: 1;
+  }
+  .trust-logo__name {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 400;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--color-muted-soft);
+    color: var(--color-ink);
+    text-align: center;
   }
 
   /* Editorial rows */

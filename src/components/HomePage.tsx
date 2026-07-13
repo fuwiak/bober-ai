@@ -69,7 +69,7 @@ export default async function HomePage() {
 
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial">
-            <TrustStrip stats={trustStats} logos={t.raw("trust.logos") as string[]} />
+            <TrustStrip stats={trustStats} />
           </div>
         </section>
 
