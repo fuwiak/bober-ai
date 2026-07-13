@@ -5,10 +5,12 @@ import { useContactModal } from "@/components/ContactModalProvider";
 
 export function ContactFab() {
   const t = useTranslations("contact");
-  const { open } = useContactModal();
+  const modal = useContactModal();
+
+  if (!modal) return null;
 
   return (
-    <button type="button" className="contact-fab" onClick={() => open()} aria-label={t("fabLabel")}>
+    <button type="button" className="contact-fab" onClick={() => modal.open()} aria-label={t("fabLabel")}>
       {t("fabLabel")}
     </button>
   );

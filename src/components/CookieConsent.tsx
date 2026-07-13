@@ -18,12 +18,26 @@ export function setCookieConsent(value: CookieConsentValue): void {
   window.dispatchEvent(new CustomEvent("cookie-consent-change", { detail: value }));
 }
 
+const COOKIE_EXIT_MS = 240;
+
 export function CookieConsent() {
+  const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    setVisible(getCookieConsent() === null);
+    if (getCookieConsent() === null) {
+      setMounted(true);
+      requestAnimationFrame(() => setVisible(true));
+    }
   }, []);
+
+  useEffect(() => {
+    if (!visible && mounted) {
+      const timer = window.setTimeout(() => setMounted(false), COOKIE_EXIT_MS);
+      return () => window.clearTimeout(timer);
+    }
+    return undefined;
+  }, [mounted, visible]);
 
   const accept = useCallback(() => {
     setCookieConsent("accepted");
@@ -35,14 +49,14 @@ export function CookieConsent() {
     setVisible(false);
   }, []);
 
-  if (!visible) return null;
+  if (!mounted) return null;
 
   return (
     <div
       role="dialog"
       aria-labelledby="cookie-consent-title"
       aria-describedby="cookie-consent-desc"
-      className="fixed inset-x-4 bottom-4 z-[100] md:inset-x-auto md:right-6 md:max-w-md"
+      className={`cookie-consent fixed inset-x-4 bottom-4 z-[100] md:inset-x-auto md:right-6 md:max-w-md${visible ? " cookie-consent--open" : ""}`}
     >
       <div className="cookie-consent-card">
         <p id="cookie-consent-title" className="meta-label text-ink">

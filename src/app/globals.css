@@ -724,6 +724,8 @@ html.dark {
     border: 0;
     background: rgba(0, 0, 0, 0.82);
     cursor: pointer;
+    opacity: 0;
+    transition: opacity 240ms ease;
   }
   .contact-modal__panel {
     position: relative;
@@ -734,6 +736,16 @@ html.dark {
     border: 1px solid var(--color-hairline);
     background: var(--color-canvas);
     padding: 32px 24px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 240ms ease, transform 240ms ease;
+  }
+  .contact-modal--open .contact-modal__backdrop {
+    opacity: 1;
+  }
+  .contact-modal--open .contact-modal__panel {
+    opacity: 1;
+    transform: translateY(0);
   }
   @media (min-width: 768px) {
     .contact-modal__panel {
@@ -801,6 +813,15 @@ html.dark {
     color: var(--color-muted);
   }
 
+  .cookie-consent {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 240ms ease, transform 240ms ease;
+  }
+  .cookie-consent--open {
+    opacity: 1;
+    transform: translateY(0);
+  }
   .cookie-consent-card {
     @apply border border-hairline bg-surface-soft p-6;
     border-radius: 0;

@@ -15,16 +15,24 @@ export function ContactCta({
   defaultService = "",
   variant = "primary",
 }: ContactCtaProps) {
-  const { open } = useContactModal();
+  const modal = useContactModal();
 
   const variantClass =
     variant === "secondary" ? "btn-secondary" : variant === "link" ? "text-link text-[11px] uppercase tracking-[0.16em]" : "btn-primary";
+
+  if (!modal) {
+    return (
+      <a href="/#contact" className={`${variantClass} ${className}`.trim()}>
+        {children}
+      </a>
+    );
+  }
 
   return (
     <button
       type="button"
       className={`${variantClass} ${className}`.trim()}
-      onClick={() => open(defaultService)}
+      onClick={() => modal.open(defaultService)}
     >
       {children}
     </button>

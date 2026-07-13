@@ -18,11 +18,11 @@ export default function PrivacyPolicyPage() {
   return (
     <LegalPageLayout title="Политика обработки персональных данных" updatedAt={POLICY_UPDATED_AT}>
       <section>
-        <h2 className="text-lg font-bold text-on-surface">1. Общие положения</h2>
+        <h2 className="card-title text-lg">1. Общие положения</h2>
         <p className="mt-3">
           Настоящая Политика обработки персональных данных (далее — Политика) определяет порядок обработки и защиты
           персональных данных пользователей сайта{" "}
-          <a href={LEGAL_ENTITY.site} className="text-primary hover:underline">
+          <a href={LEGAL_ENTITY.site} className="text-link hover:opacity-75">
             {LEGAL_ENTITY.site}
           </a>{" "}
           (далее — Сайт), принадлежащего {LEGAL_ENTITY.name} (далее — Оператор).
@@ -38,7 +38,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2 className="text-lg font-bold text-on-surface">2. Сведения об операторе</h2>
+        <h2 className="card-title text-lg">2. Сведения об операторе</h2>
         <ul className="mt-3 list-inside list-disc space-y-1">
           <li>Наименование: {LEGAL_ENTITY.name}</li>
           <li>ИНН: {LEGAL_ENTITY.inn}</li>
@@ -50,7 +50,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2 className="text-lg font-bold text-on-surface">3. Цели обработки персональных данных</h2>
+        <h2 className="card-title text-lg">3. Цели обработки персональных данных</h2>
         <p className="mt-3">Оператор обрабатывает персональные данные в следующих целях:</p>
         <ul className="mt-3 list-inside list-disc space-y-1">
           <li>обработка обращений и заявок пользователей через форму обратной связи;</li>
@@ -62,7 +62,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2 className="text-lg font-bold text-on-surface">4. Правовые основания обработки</h2>
+        <h2 className="card-title text-lg">4. Правовые основания обработки</h2>
         <ul className="mt-3 list-inside list-disc space-y-1">
           <li>согласие субъекта персональных данных (ст. 6, 9 152-ФЗ);</li>
           <li>исполнение договора, стороной которого является субъект персональных данных (п. 5 ч. 1 ст. 6 152-ФЗ);</li>
@@ -75,23 +75,23 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2 className="text-lg font-bold text-on-surface">5. Категории субъектов и объём обрабатываемых данных</h2>
+        <h2 className="card-title text-lg">5. Категории субъектов и объём обрабатываемых данных</h2>
         <p className="mt-3">
-          <strong className="text-on-surface">Посетители Сайта</strong> — имя, номер телефона, адрес электронной
+          <strong className="text-ink">Посетители Сайта</strong> — имя, номер телефона, адрес электронной
           почты, текст сообщения, сведения об интересующей услуге (при заполнении формы обратной связи).
         </p>
         <p className="mt-3">
-          <strong className="text-on-surface">Клиенты и контрагенты</strong> — данные, необходимые для заключения и
+          <strong className="text-ink">Клиенты и контрагенты</strong> — данные, необходимые для заключения и
           исполнения договора: ФИО, контактные данные, реквизиты (при необходимости).
         </p>
         <p className="mt-3">
-          <strong className="text-on-surface">Посетители при использовании аналитики</strong> — IP-адрес, тип и версия
+          <strong className="text-ink">Посетители при использовании аналитики</strong> — IP-адрес, тип и версия
           браузера, операционная система, разрешение экрана, язык браузера, страницы посещения, время на странице,
           источник перехода, идентификаторы cookies (_ym_uid, _ym_d и др.), данные о кликах и прокрутке (при наличии
           согласия на использование cookies и активации «Яндекс.Метрики»).
         </p>
         <p className="mt-3">
-          <strong className="text-on-surface">Работники и лица, чьи данные размещены на Сайте</strong> — ФИО,
+          <strong className="text-ink">Работники и лица, чьи данные размещены на Сайте</strong> — ФИО,
           фотография, должность, город проживания (в разделе «Обо мне»). Персональные данные Оператора как
           индивидуального предпринимателя размещены на Сайте с его согласия как субъекта персональных данных;
           письменное согласие на обработку и распространение хранится у Оператора. Копирование и использование
@@ -104,7 +104,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2 className="text-lg font-bold text-on-surface">6. Порядок и условия обработки</h2>
+        <h2 className="card-title text-lg">6. Порядок и условия обработки</h2>
         <ul className="mt-3 list-inside list-disc space-y-1">
           <li>
             обработка осуществляется с использованием средств автоматизации и без них, в пределах целей, указанных в
@@ -130,14 +130,14 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2 className="text-lg font-bold text-on-surface">7. Cookies и Яндекс.Метрика</h2>
+        <h2 className="card-title text-lg">7. Cookies и Яндекс.Метрика</h2>
         <p className="mt-3">
           Сайт использует файлы cookies и сервис «Яндекс.Метрика» для сбора статистики посещений, анализа поведения
           пользователей и улучшения работы Сайта. Cookies — небольшие текстовые файлы, сохраняемые в браузере
           пользователя.
         </p>
 
-        <h3 className="mt-4 font-semibold text-on-surface">7.1. Сведения о сервисе «Яндекс.Метрика»</h3>
+        <h3 className="mt-4 font-normal text-ink">7.1. Сведения о сервисе «Яндекс.Метрика»</h3>
         <ul className="mt-3 list-inside list-disc space-y-1">
           <li>оператор сервиса: ООО «Яндекс», Российская Федерация;</li>
           <li>идентификатор счётчика на Сайте: {YANDEX_METRIKA_ID};</li>
@@ -163,7 +163,7 @@ export default function PrivacyPolicyPage() {
             воспользоваться{" "}
             <a
               href="https://yandex.ru/support/metrica/general/opt-out.html"
-              className="text-primary hover:underline"
+              className="text-link hover:opacity-75"
               target="_blank"
               rel="noreferrer"
             >
@@ -173,7 +173,7 @@ export default function PrivacyPolicyPage() {
           </li>
         </ul>
 
-        <h3 className="mt-4 font-semibold text-on-surface">7.2. Порядок получения согласия на cookies</h3>
+        <h3 className="mt-4 font-normal text-ink">7.2. Порядок получения согласия на cookies</h3>
         <p className="mt-3">
           Аналитические cookies и скрипт «Яндекс.Метрики» загружаются только после того, как пользователь нажмёт кнопку
           «Принять» во всплывающем уведомлении. Пользователь вправе отказаться от аналитических cookies, нажав «Только
@@ -190,7 +190,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2 className="text-lg font-bold text-on-surface">8. Права субъекта персональных данных</h2>
+        <h2 className="card-title text-lg">8. Права субъекта персональных данных</h2>
         <p className="mt-3">Субъект персональных данных имеет право:</p>
         <ul className="mt-3 list-inside list-disc space-y-1">
           <li>получать информацию об обработке своих персональных данных;</li>
@@ -200,7 +200,7 @@ export default function PrivacyPolicyPage() {
         </ul>
         <p className="mt-3">
           Для реализации прав направьте запрос на email{" "}
-          <a href={`mailto:${LEGAL_ENTITY.email}`} className="text-primary hover:underline">
+          <a href={`mailto:${LEGAL_ENTITY.email}`} className="text-link hover:opacity-75">
             {LEGAL_ENTITY.email}
           </a>{" "}
           с темой «Запрос по персональным данным». Оператор рассмотрит запрос в срок, не превышающий 30 дней.
@@ -208,7 +208,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2 className="text-lg font-bold text-on-surface">9. Актуализация, исправление, удаление и уничтожение данных</h2>
+        <h2 className="card-title text-lg">9. Актуализация, исправление, удаление и уничтожение данных</h2>
         <p className="mt-3">
           Оператор принимает необходимые организационные и технические меры для защиты персональных данных от
           неправомерного доступа, уничтожения, изменения, блокирования, копирования и распространения.
@@ -221,7 +221,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2 className="text-lg font-bold text-on-surface">10. Уведомление Роскомнадзора</h2>
+        <h2 className="card-title text-lg">10. Уведомление Роскомнадзора</h2>
         <p className="mt-3">
           Оператор осуществляет обработку персональных данных с соблюдением требований о направлении уведомления в
           Роскомнадзор (Федеральная служба по надзору в сфере связи, информационных технологий и массовых коммуникаций)
@@ -230,10 +230,10 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2 className="text-lg font-bold text-on-surface">11. Изменение Политики</h2>
+        <h2 className="card-title text-lg">11. Изменение Политики</h2>
         <p className="mt-3">
           Оператор вправе вносить изменения в настоящую Политику. Актуальная версия размещена на Сайте по адресу{" "}
-          <a href={absoluteUrl(LEGAL_ROUTES.privacyPolicy)} className="text-primary hover:underline">
+          <a href={absoluteUrl(LEGAL_ROUTES.privacyPolicy)} className="text-link hover:opacity-75">
             {absoluteUrl(LEGAL_ROUTES.privacyPolicy)}
           </a>
           . Продолжение использования Сайта после публикации изменений означает согласие с обновлённой Политикой.
@@ -241,11 +241,11 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <section>
-        <h2 className="text-lg font-bold text-on-surface">12. Контакты</h2>
+        <h2 className="card-title text-lg">12. Контакты</h2>
         <p className="mt-3">
           По вопросам обработки персональных данных обращайтесь: {LEGAL_ENTITY.email}, тел. {LEGAL_ENTITY.phone}.
         </p>
-        <p className="mt-3 text-xs text-on-surface-variant">
+        <p className="mt-3 text-xs text-ink-variant">
           © {new Date().getFullYear()} {SITE_NAME}. {LEGAL_ENTITY.name}.
         </p>
       </section>

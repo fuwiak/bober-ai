@@ -9,34 +9,44 @@ type ContactModalContextValue = {
   close: () => void;
 };
 
-const ContactModalContext = createContext<ContactModalContextValue | null>(null);
+export const ContactModalContext = createContext<ContactModalContextValue | null>(null);
 
 export function useContactModal() {
-  const context = useContext(ContactModalContext);
-  if (!context) {
-    throw new Error("useContactModal must be used within ContactModalProvider");
-  }
-  return context;
+  return useContext(ContactModalContext);
 }
 
+const MODAL_EXIT_MS = 240;
+
 export function ContactModalProvider({ children }: { children: React.ReactNode }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [visible, setVisible] = useState(false);
   const [defaultService, setDefaultService] = useState("");
   const titleId = useId();
   const t = useTranslations("contact");
 
   const open = useCallback((service = "") => {
     setDefaultService(service);
-    setIsOpen(true);
+    setMounted(true);
+    requestAnimationFrame(() => setVisible(true));
   }, []);
 
   const close = useCallback(() => {
-    setIsOpen(false);
-    setDefaultService("");
+    setVisible(false);
   }, []);
 
   useEffect(() => {
-    if (!isOpen) return;
+    if (!visible && mounted) {
+      const timer = window.setTimeout(() => {
+        setMounted(false);
+        setDefaultService("");
+      }, MODAL_EXIT_MS);
+      return () => window.clearTimeout(timer);
+    }
+    return undefined;
+  }, [mounted, visible]);
+
+  useEffect(() => {
+    if (!mounted) return;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
@@ -49,13 +59,18 @@ export function ContactModalProvider({ children }: { children: React.ReactNode }
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [close, isOpen]);
+  }, [close, mounted]);
 
   return (
     <ContactModalContext.Provider value={{ open, close }}>
       {children}
-      {isOpen ? (
-        <div className="contact-modal" role="dialog" aria-modal="true" aria-labelledby={titleId}>
+      {mounted ? (
+        <div
+          className={`contact-modal${visible ? " contact-modal--open" : ""}`}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={titleId}
+        >
           <button type="button" className="contact-modal__backdrop" aria-label={t("modalClose")} onClick={close} />
           <div className="contact-modal__panel">
             <div className="contact-modal__header">
