@@ -203,7 +203,6 @@ export default async function HomePage() {
                   salesNotes={offer.salesNotes}
                   deliveryDays={offer.deliveryDays}
                   slug={offer.slug}
-                  image={offer.serviceImage}
                   detailsLabel={t("services.details")}
                   quoteLabel={t("services.quote")}
                   daysLabel={t("services.days")}

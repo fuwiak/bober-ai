@@ -10,7 +10,7 @@ type AnimatedServiceCardProps = {
   salesNotes: string;
   deliveryDays: number;
   slug: string;
-  image: string;
+  image?: string;
   detailsLabel: string;
   quoteLabel: string;
   daysLabel: string;
@@ -30,16 +30,18 @@ export function AnimatedServiceCard({
   return (
     <StaggerItem>
       <article className="card-kts group overflow-hidden rounded-2xl border border-hairline bg-canvas">
-        <div className="relative aspect-[4/3] overflow-hidden bg-surface-card">
-          <Image
-            src={image}
-            alt={title}
-            fill
-            sizes="(max-width: 768px) 100vw, 360px"
-            className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.215,0.61,0.355,1)] group-hover:scale-[1.04]"
-            unoptimized={image.endsWith(".svg")}
-          />
-        </div>
+        {image ? (
+          <div className="relative aspect-[4/3] overflow-hidden bg-surface-card">
+            <Image
+              src={image}
+              alt={title}
+              fill
+              sizes="(max-width: 768px) 100vw, 360px"
+              className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.215,0.61,0.355,1)] group-hover:scale-[1.04]"
+              unoptimized={image.endsWith(".svg")}
+            />
+          </div>
+        ) : null}
         <div className="card-kts-body flex flex-col p-6">
           <h3 className="font-display text-lg tracking-tight text-ink transition-colors duration-500 group-hover:text-primary">
             {title}

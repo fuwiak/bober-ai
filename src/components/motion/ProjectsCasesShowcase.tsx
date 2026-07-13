@@ -14,30 +14,6 @@ type ProjectsCasesShowcaseProps = {
   allLabel: string;
 };
 
-const FALLBACK_COLORS = ["#E20F0F", "#370B27", "#00ABEE", "#FFFFFF", "#121820"] as const;
-
-function pickCardColor(slug: string, index: number): string {
-  const bySlug: Record<string, string> = {
-    "kaspersky-ai-assistant": "#E20F0F",
-    "elia-suite": "#121820",
-    "lead-generation": "#00ABEE",
-    "kp-llm-automation": "#370B27",
-    "yandex-telemost-agent": "#ffffff",
-  };
-
-  return bySlug[slug] ?? FALLBACK_COLORS[index % FALLBACK_COLORS.length];
-}
-
-function isLight(hex: string): boolean {
-  const value = hex.replace("#", "");
-  if (value.length !== 6) return false;
-  const r = parseInt(value.slice(0, 2), 16);
-  const g = parseInt(value.slice(2, 4), 16);
-  const b = parseInt(value.slice(4, 6), 16);
-  // perceived luminance
-  return (0.2126 * r + 0.7152 * g + 0.0722 * b) > 180;
-}
-
 export function ProjectsCasesShowcase({ items, title, subtitle, detailsLabel, allLabel }: ProjectsCasesShowcaseProps) {
   const categories = useMemo(() => {
     const counts = new Map<string, number>();
@@ -87,52 +63,43 @@ export function ProjectsCasesShowcase({ items, title, subtitle, detailsLabel, al
       <div className="mt-10 grid gap-6 md:grid-cols-2">
         {[columns.left, columns.right].map((col, colIdx) => (
           <div key={colIdx} className="space-y-6">
-            {col.map((item, idx) => {
-              const color = pickCardColor(item.slug, idx + colIdx);
-              const light = isLight(color);
+            {col.map((item) => {
               return (
                 <Link
                   key={item.id}
                   href={`/portfolio/${item.slug}`}
-                  className="card-kts group block overflow-hidden rounded-2xl border border-hairline"
-                  style={{ backgroundColor: color }}
+                  className="card-kts group block overflow-hidden rounded-2xl border border-hairline bg-canvas"
                 >
                   <div
-                    className={`card-kts-body flex flex-col gap-3 p-6 ${light ? "text-ink" : "text-on-dark"}`}
+                    className="card-kts-body flex flex-col gap-3 p-6 text-ink"
                     style={{ minHeight: 260 }}
                   >
                     <div className="flex flex-wrap gap-2">
-                      <span className={`badge-pill text-[11px] uppercase tracking-wider ${light ? "" : "bg-white/10 text-on-dark-soft"}`}>
+                      <span className="badge-pill text-[11px] uppercase tracking-wider">
                         {item.category}
                       </span>
                       {item.skills?.slice(0, 2).map((skill) => (
                         <span
                           key={skill}
-                          className={`badge-pill text-[11px] ${light ? "text-muted" : "bg-white/10 text-on-dark-soft"}`}
+                          className="badge-pill text-[11px] text-muted"
                         >
                           {skill}
                         </span>
                       ))}
                     </div>
 
-                    <h3 className={`font-display text-xl leading-snug tracking-tight ${light ? "text-ink" : "text-on-dark"}`}>
-                      {item.title}
-                    </h3>
+                    <h3 className="font-display text-xl leading-snug tracking-tight text-ink">{item.title}</h3>
                     {item.description ? (
-                      <p className={`text-sm leading-relaxed ${light ? "text-body" : "text-on-dark-soft"}`}>
-                        {item.description}
-                      </p>
+                      <p className="text-sm leading-relaxed text-body">{item.description}</p>
                     ) : null}
 
                     <div className="mt-2 flex items-center justify-between gap-3">
                       {item.priceLabel ? (
-                        <p className={`font-display text-lg tracking-tight ${light ? "text-primary" : "text-on-dark"}`}>
-                          {item.priceLabel}
-                        </p>
+                        <p className="font-display text-lg tracking-tight text-primary">{item.priceLabel}</p>
                       ) : (
                         <span />
                       )}
-                      <span className={`btn-kts-pill ${light ? "" : "border-white/20 text-on-dark"}`}>
+                      <span className="btn-kts-pill">
                         {detailsLabel}
                         <span className="btn-kts-arrow" aria-hidden>
                           →
