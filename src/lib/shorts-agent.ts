@@ -1,3 +1,5 @@
+import { SITE_NAME, SITE_URL } from "@/lib/site";
+
 export type ShortVideoItem = {
   id: string;
   title: string;
@@ -207,7 +209,7 @@ async function searchDuckDuckGo(query: string, limit = 8): Promise<SearchHit[]> 
       cache: "no-store",
       signal: ctrl.signal,
       headers: {
-        "user-agent": "Bober-AI-Dev-Shorts-Agent/1.0 (+https://www.bober-ai.dev)",
+        "user-agent": `Bober-AI-Systems-Shorts-Agent/1.0 (+${SITE_URL})`,
       },
     });
     if (!res.ok) return [];
@@ -244,8 +246,8 @@ async function callOpenRouter(prompt: string, options?: { temperature?: number; 
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
-        "HTTP-Referer": process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev",
-        "X-Title": "Bober AI Dev Shorts Agent",
+        "HTTP-Referer": process.env.NEXT_PUBLIC_SITE_URL || SITE_URL,
+        "X-Title": `${SITE_NAME} Shorts Agent`,
       },
       body: JSON.stringify({
         model: process.env.SHORTS_AGENT_MODEL || process.env.NEWS_AGENT_MODEL || DEFAULT_MODEL,

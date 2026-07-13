@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   applicationName: SITE_NAME,
   title: {
-    default: "Внедрение AI в бизнес и продукты — под ключ",
+    default: "Внедрение AI и автоматизация для бизнеса",
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: "Внедрение AI в бизнес и продукты — под ключ",
+    title: "Внедрение AI и автоматизация для бизнеса",
     description: SITE_DESCRIPTION,
     images: [
       {
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Внедрение AI в бизнес и продукты — под ключ",
+    title: "Внедрение AI и автоматизация для бизнеса",
     description: SITE_DESCRIPTION,
     images: [absoluteUrl("/favicon.png")],
   },

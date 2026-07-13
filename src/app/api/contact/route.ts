@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { CONTACT_NOTIFICATION_EMAILS } from "@/lib/site";
+import { CONTACT_NOTIFICATION_EMAILS, SITE_NAME } from "@/lib/site";
 
 export const runtime = "nodejs";
 
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
     ? process.env.CONTACT_TO_EMAIL.split(",").map((email) => email.trim()).filter(Boolean)
     : [];
   const to = envRecipients.length > 0 ? envRecipients : [...CONTACT_NOTIFICATION_EMAILS];
-  const subject = `Заявка с сайта Bober AI Dev от ${name}`;
+  const subject = `Заявка с сайта ${SITE_NAME} от ${name}`;
   const text = [`Имя: ${name}`, `Контакт: ${contact}`, "", "Сообщение:", message].join("\n");
 
   if (process.env.CONTACT_DRY_RUN === "1") {
@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
   }
 
   const html = `
-    <h2>Новая заявка с сайта Bober AI Dev</h2>
+    <h2>Новая заявка с сайта ${SITE_NAME}</h2>
     <p><strong>Имя:</strong> ${escapeHtml(name)}</p>
     <p><strong>Контакт:</strong> ${escapeHtml(contact)}</p>
     <p><strong>Сообщение:</strong></p>

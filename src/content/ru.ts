@@ -1,8 +1,8 @@
 const ru = {
   meta: {
-    title: "Внедрение AI в бизнес и продукты — под ключ",
+    title: "Внедрение AI и автоматизация для бизнеса",
     description:
-      "Внешний AI-отдел для software house, интеграторов CRM/ERP и компаний с бюджетом от 500 000 ₽. RAG, агенты, MLOps, on-prem и облако.",
+      "Bober AI Systems — внедрение AI и автоматизация для бизнеса. Внешний AI-отдел для software house, интеграторов CRM/ERP и компаний с бюджетом от 500 000 ₽.",
     keywords: [
       "внедрение AI",
       "разработка AI под ключ",
@@ -36,7 +36,7 @@ const ru = {
   },
   hero: {
     location: "Москва · Онлайн · Россия и СНГ",
-    title: "Внедрение AI в бизнес и продукты — под ключ",
+    title: "Внедрение AI и автоматизация для бизнеса",
     roles: ["AI-архитектор", "Внедрение в production"],
     nameLine: "Павел Стасиньский · '@'pstasinski",
     focus:
@@ -193,7 +193,7 @@ const ru = {
   },
   about: {
     title: "О нас",
-    text: "Bober AI Dev — внедрение AI в production для компаний с бюджетом. Не фриланс-маркетплейс: фиксированные сметы, этапы, договор, передача решения вашей команде.\n\nСпециализация: RAG, AI-агенты, интеграции CRM/ERP, MLOps на Kubernetes. Партнёр Yandex Cloud, Selectel, Cloud.ru. Кейсы: Kaspersky, enterprise-автоматизация продаж и документов.\n\nОтвет на заявку — в течение 4 рабочих часов. NDA — до старта.",
+    text: "Bober AI Systems — внедрение AI в production для компаний с бюджетом. Не фриланс-маркетплейс: фиксированные сметы, этапы, договор, передача решения вашей команде.\n\nСпециализация: RAG, AI-агенты, интеграции CRM/ERP, MLOps на Kubernetes. Партнёр Yandex Cloud, Selectel, Cloud.ru. Кейсы: Kaspersky, enterprise-автоматизация продаж и документов.\n\nОтвет на заявку — в течение 4 рабочих часов. NDA — до старта.",
     education: "Образование",
     educationValue: "University of Warsaw — Physics and Neuroscience",
     schedule: "График",
@@ -281,7 +281,7 @@ const ru = {
     close: "Закрыть",
   },
   common: {
-    siteName: "Bober AI Dev",
+    siteName: "Bober AI Systems",
     online: "Онлайн",
     readMore: "Подробнее",
   },

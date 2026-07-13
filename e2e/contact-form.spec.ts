@@ -8,7 +8,14 @@ async function preparePage(page: Page) {
 }
 
 test.describe("Форма заявки", () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page, context }) => {
+    await context.addCookies([
+      {
+        name: "NEXT_LOCALE",
+        value: "ru",
+        url: process.env.PLAYWRIGHT_BASE_URL || "http://127.0.0.1:3100",
+      },
+    ]);
     await preparePage(page);
     await page.goto("/#contact");
     await expect(page.getByRole("heading", { name: "Связаться" })).toBeVisible();
@@ -43,7 +50,7 @@ test.describe("Форма заявки", () => {
       preview?: { to: string[]; subject: string; text: string };
     };
     expect(body).toMatchObject({ ok: true, dryRun: true });
-    expect(body.preview?.to).toEqual(["hello@bober-ai.dev", "stasinskipawel@yandex.ru"]);
+    expect(body.preview?.to).toEqual(["hello@bober-ai.ru", "stasinskipawel@yandex.ru"]);
     expect(body.preview?.subject).toContain("Тестовый Клиент");
     expect(body.preview?.text).toContain("ИИ-бот под ключ");
     expect(body.preview?.text).toContain("Нужен бот для поддержки клиентов.");

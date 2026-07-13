@@ -1,8 +1,8 @@
 const en = {
   meta: {
-    title: "Enterprise AI implementation — end to end",
+    title: "Enterprise AI implementation partner",
     description:
-      "Your external AI department for software houses, CRM/ERP integrators, and companies with budgets from €10,000. RAG, agents, MLOps, on-prem and cloud.",
+      "Bober AI Systems — enterprise AI implementation partner. External AI department for software houses, CRM/ERP integrators, and companies with budgets from €10,000.",
     keywords: [
       "enterprise AI",
       "AI implementation",
@@ -31,7 +31,7 @@ const en = {
   },
   hero: {
     location: "Moscow · Remote · Russia & CIS",
-    title: "Enterprise AI implementation — end to end",
+    title: "Enterprise AI implementation partner",
     roles: ["AI architect", "Production delivery"],
     nameLine: "Pavel Stasinsky · '@'pstasinski",
     focus:
@@ -188,7 +188,7 @@ const en = {
   },
   about: {
     title: "About",
-    text: "Bober AI Dev delivers production AI for companies with real budgets. Not a freelance marketplace: fixed estimates, milestones, contracts, and handover to your team.\n\nFocus: RAG, AI agents, CRM/ERP integrations, MLOps on Kubernetes. Yandex Cloud, Selectel, Cloud.ru partner. Case studies include Kaspersky and enterprise sales/document automation.\n\nWe respond within 4 business hours. NDA before kickoff.",
+    text: "Bober AI Systems delivers production AI for companies with real budgets. Not a freelance marketplace: fixed estimates, milestones, contracts, and handover to your team.\n\nFocus: RAG, AI agents, CRM/ERP integrations, MLOps on Kubernetes. Yandex Cloud, Selectel, Cloud.ru partner. Case studies include Kaspersky and enterprise sales/document automation.\n\nWe respond within 4 business hours. NDA before kickoff.",
     education: "Education",
     educationValue: "University of Warsaw — Physics and Neuroscience",
     schedule: "Schedule",
@@ -276,7 +276,7 @@ const en = {
     close: "Close",
   },
   common: {
-    siteName: "Bober AI Dev",
+    siteName: "Bober AI Systems",
     online: "Online",
     readMore: "Learn more",
   },

@@ -18,7 +18,7 @@ export const revalidate = 0;
 export const metadata: Metadata = {
   title: "ИИ подборка новостей",
   description:
-    "Автоматически обновляемая подборка новостей по темам Yandex Cloud, Selectel, Россия и Мир от Bober AI Dev.",
+    `Автоматически обновляемая подборка новостей по темам Yandex Cloud, Selectel, Россия и Мир от ${SITE_NAME}.`,
   keywords: [...DEFAULT_KEYWORDS, "новости ИИ", "Yandex Cloud новости", "Selectel новости", "AI digest"],
   alternates: {
     canonical: absoluteUrl("/news"),
@@ -109,7 +109,7 @@ function NewsStreamItem({ item }: { item: NewsItem }) {
           />
         ) : (
           <div className="grid h-full w-full place-items-center text-xs font-bold uppercase tracking-widest text-on-surface-variant">
-            Bober AI Dev
+            {SITE_NAME}
           </div>
         )}
       </div>
@@ -189,7 +189,7 @@ export default async function NewsPage() {
             </span>
             <h1 className="mt-2 text-3xl md:text-4xl font-bold tracking-tight">ИИ подборка новостей</h1>
             <p className="mt-3 max-w-2xl text-on-surface-variant">
-              Подборку готовит <span className="font-semibold text-on-surface">Bober AI Dev agent</span>. Он сам ищет
+              Подборку готовит <span className="font-semibold text-on-surface">{SITE_NAME} agent</span>. Он сам ищет
               актуальные материалы по ИИ, LLM и облачной AI-инфраструктуре и обновляет ленту автоматически.
             </p>
           </div>
@@ -225,7 +225,7 @@ export default async function NewsPage() {
             <span className="inline-flex rounded-full bg-primary/12 px-3 py-1 text-xs font-bold uppercase tracking-widest text-primary">
               Авто-обновление
             </span>
-            <span>Подборку готовит Bober AI Dev agent</span>
+            <span>Подборку готовит {SITE_NAME} agent</span>
             {generatedAt ? (
               <>
                 <span className="text-outline-variant">·</span>
@@ -274,7 +274,7 @@ export default async function NewsPage() {
           <div className="space-y-6">
             <div className="rounded-3xl border border-outline-variant/20 bg-surface-container-lowest p-8 text-center shadow-sm">
               <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-2 border-outline-variant border-t-primary" />
-              <h3 className="text-lg font-bold text-on-surface">Bober AI Dev agent собирает ленту…</h3>
+              <h3 className="text-lg font-bold text-on-surface">{SITE_NAME} agent собирает ленту…</h3>
               <p className="mt-2 text-sm text-on-surface-variant">
                 Первый сбор занимает до минуты. Страница обновится автоматически.
               </p>
@@ -313,7 +313,7 @@ export default async function NewsPage() {
                   </p>
                 </div>
                 <p className="mt-4 text-sm text-on-surface-variant">
-                  Слот {idx + 1}: здесь появится новость, подобранная Bober AI Dev agent.
+                  Слот {idx + 1}: здесь появится новость, подобранная {SITE_NAME} agent.
                 </p>
               </div>
             ))}

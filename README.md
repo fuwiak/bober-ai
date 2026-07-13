@@ -1,4 +1,4 @@
-# Bober AI Dev (Next.js)
+# Bober AI Systems (Next.js)
 
 Проект переведён на чистый `Next.js` (App Router) без `Vite`.
 

@@ -1,7 +1,9 @@
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev";
-export const SITE_NAME = "Bober AI Dev";
+export const SITE_NAME = "Bober AI Systems";
+export const SITE_TAGLINE_RU = "Внедрение AI и автоматизация для бизнеса";
+export const SITE_TAGLINE_EN = "Enterprise AI implementation partner";
 export const SITE_DESCRIPTION =
-  "Внедрение AI в бизнес и продукты под ключ. Внешний AI-отдел для software house и компаний с бюджетом от 500 000 ₽. RAG, агенты, MLOps.";
+  "Внедрение AI и автоматизация для бизнеса. Внешний AI-отдел для software house и компаний с бюджетом от 500 000 ₽. RAG, агенты, MLOps.";
 export const SITE_REGION = "Россия";
 export const CONTACT_EMAIL = "hello@bober-ai.ru";
 export const CONTACT_NOTIFICATION_EMAILS = [CONTACT_EMAIL, "stasinskipawel@yandex.ru"] as const;

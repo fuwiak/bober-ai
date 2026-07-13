@@ -193,14 +193,14 @@ export function ContactForm({ defaultService = "" }: ContactFormProps) {
       <div className="space-y-3 rounded-lg border border-hairline bg-surface-soft p-4">
         <ConsentCheckbox id="pd-policy" checked={policyAccepted} onChange={setPolicyAccepted}>
           {t("policy")}{" "}
-          <Link href={LEGAL_ROUTES.privacyPolicy} className="text-link" target="_blank">
+          <Link href={LEGAL_ROUTES.privacyPolicy} locale={false} className="text-link" target="_blank">
             {t("policyLink")}
           </Link>
           .
         </ConsentCheckbox>
         <ConsentCheckbox id="pd-consent" checked={consentAccepted} onChange={setConsentAccepted}>
           {t("consent")}{" "}
-          <Link href={LEGAL_ROUTES.consent} className="text-link" target="_blank">
+          <Link href={LEGAL_ROUTES.consent} locale={false} className="text-link" target="_blank">
             {t("consentLink")}
           </Link>
           .
