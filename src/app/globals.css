@@ -96,7 +96,7 @@ html.dark {
     @apply bg-canvas text-body font-body antialiased overflow-x-hidden;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display font-normal text-ink tracking-tight;
+    @apply font-display font-normal tracking-tight;
   }
 }
 
