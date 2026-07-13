@@ -114,7 +114,8 @@ html.dark {
   .section--panel { @apply bg-surface-soft; }
   .section--elevated { @apply bg-surface-card; }
 
-  .hero-title {
+  .hero-title,
+  .display-xl {
     font-family: var(--font-display);
     font-size: clamp(48px, 7vw, 96px);
     line-height: 1.05;
@@ -123,7 +124,9 @@ html.dark {
     font-weight: 400;
   }
 
-  .section-title {
+  .section-title,
+  .display-md,
+  .display-lg {
     font-family: var(--font-display);
     font-size: clamp(36px, 4.5vw, 64px);
     line-height: 1.12;
@@ -132,7 +135,10 @@ html.dark {
     font-weight: 400;
   }
 
-  .card-title {
+  .card-title,
+  .display-sm,
+  .case-study__title,
+  .media-card__title {
     font-family: var(--font-display);
     font-size: clamp(24px, 2.5vw, 34px);
     line-height: 1.2;
@@ -141,7 +147,8 @@ html.dark {
     font-weight: 400;
   }
 
-  .body-copy {
+  .body-copy,
+  .hero-lead {
     font-family: var(--font-body);
     font-size: 18px;
     line-height: 1.6;
@@ -150,7 +157,8 @@ html.dark {
   }
 
   .meta-label,
-  .section-label {
+  .section-label,
+  .hero-label {
     font-family: var(--font-mono);
     font-size: 11px;
     line-height: 1.4;
@@ -159,11 +167,6 @@ html.dark {
     font-weight: 400;
     color: var(--color-muted);
   }
-
-  .display-sm { @apply card-title; }
-  .display-md { @apply section-title; }
-  .display-lg { @apply section-title; }
-  .display-xl { @apply hero-title; }
 
   /* Buttons */
   .btn-primary,
@@ -269,9 +272,9 @@ html.dark {
   .hero-section {
     @apply border-b border-hairline;
   }
-  .hero-label { @apply meta-label; }
   .hero-lead {
-    @apply body-copy mt-6 max-w-xl;
+    margin-top: 1.5rem;
+    max-width: 36rem;
   }
   .hero-spec {
     @apply mt-6 font-mono text-[11px] uppercase tracking-[0.16em] text-muted;
@@ -475,11 +478,16 @@ html.dark {
     color: var(--color-muted);
   }
   .case-study__title {
-    @apply card-title mt-4;
+    margin-top: 1rem;
   }
   .case-study__desc {
-    @apply body-copy mt-4 max-w-3xl;
+    margin-top: 1rem;
+    max-width: 48rem;
+    font-family: var(--font-body);
     font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-body);
+    font-weight: 400;
   }
 
   /* Reviews */
@@ -564,7 +572,7 @@ html.dark {
     color: var(--color-muted);
   }
   .media-card__title {
-    @apply card-title mt-4;
+    margin-top: 1rem;
     font-size: clamp(20px, 2vw, 28px);
   }
   .media-card__description {
