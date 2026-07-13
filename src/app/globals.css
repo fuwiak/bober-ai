@@ -30,6 +30,14 @@
   --color-warning: #b8860b;
   --color-error: #b33a3a;
 
+  /* Expressive accents — controlled use on cards & CTAs */
+  --color-accent-green: #32ff00;
+  --color-accent-blue: #4978ff;
+  --color-accent-violet: #825cff;
+  --color-accent-cyan: #26d9c7;
+  --color-accent-orange: #ff8056;
+  --color-on-accent: #080a0c;
+
   /* Legacy aliases used across components */
   --color-background: var(--color-canvas);
   --color-on-surface: var(--color-ink);
@@ -53,22 +61,22 @@
 
 html.dark {
   color-scheme: dark;
-  --color-canvas: #121820;
-  --color-ink: #f5f4f1;
-  --color-body: #c4c8ce;
+  --color-canvas: #0b0d10;
+  --color-ink: #f4f6f8;
+  --color-body: #a7b0ba;
   --color-body-strong: #e2e4e8;
-  --color-muted: #9aa3ad;
+  --color-muted: #a7b0ba;
   --color-muted-soft: #6e7884;
-  --color-surface-soft: #161e28;
-  --color-surface-card: #1a2430;
-  --color-surface-cream-strong: #222c38;
-  --color-hairline: #2a3544;
-  --color-hairline-soft: #1f2835;
-  --color-primary: #3d6a9e;
-  --color-primary-active: #2d5685;
-  --color-primary-disabled: #1e2a38;
-  --color-accent: #c4a574;
-  --color-accent-active: #d4b88a;
+  --color-surface-soft: #11151a;
+  --color-surface-card: #171c22;
+  --color-surface-cream-strong: #1a2028;
+  --color-hairline: rgba(255, 255, 255, 0.1);
+  --color-hairline-soft: rgba(255, 255, 255, 0.06);
+  --color-primary: #32ff00;
+  --color-primary-active: #28d900;
+  --color-primary-disabled: #1a2e14;
+  --color-accent: #32ff00;
+  --color-accent-active: #28d900;
   --color-background: var(--color-canvas);
   --color-on-surface: var(--color-ink);
   --color-on-surface-variant: var(--color-muted);
@@ -90,6 +98,15 @@ html.dark {
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
     }
   }
   body {
@@ -126,11 +143,21 @@ html.dark {
   }
 
   .btn-primary {
-    @apply inline-flex h-10 items-center justify-center rounded-md bg-primary px-5 text-sm font-medium text-on-primary active:bg-primary-active disabled:bg-primary-disabled disabled:text-muted;
+    @apply inline-flex h-10 items-center justify-center gap-2 rounded-full bg-primary px-5 text-sm font-medium text-on-primary active:bg-primary-active disabled:bg-primary-disabled disabled:text-muted;
+  }
+
+  html.dark .btn-primary {
+    color: var(--color-on-accent);
   }
 
   .btn-secondary {
-    @apply inline-flex h-10 items-center justify-center rounded-md border border-hairline bg-canvas px-5 text-sm font-medium text-ink active:bg-surface-soft;
+    @apply inline-flex h-10 items-center justify-center gap-2 rounded-full border border-hairline bg-canvas px-5 text-sm font-medium text-ink active:bg-surface-soft;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .btn-secondary:hover {
+      border-color: var(--color-accent-green);
+    }
   }
 
   .btn-secondary-on-dark {
@@ -151,10 +178,6 @@ html.dark {
 
   .feature-card-bordered {
     @apply rounded-lg border border-hairline bg-canvas p-6 md:p-8;
-  }
-
-  .callout-accent {
-    @apply rounded-lg bg-primary p-8 text-on-primary md:p-12;
   }
 
   .footer-dark {
@@ -291,6 +314,230 @@ html.dark {
     .feature-card:hover,
     .feature-card-bordered:hover {
       @apply border-hairline shadow-md;
+    }
+  }
+
+  .section-label {
+    @apply font-mono text-xs uppercase tracking-[0.08em] text-accent-green;
+  }
+
+  .button-arrow {
+    @apply inline-block transition-transform duration-200 ease-out;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover .button-arrow,
+    .btn-secondary:hover .button-arrow,
+    .card-link:hover .button-arrow,
+    .group:hover .button-arrow {
+      @apply translate-x-[5px];
+    }
+  }
+
+  .implementation-grid {
+    @apply grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-12;
+  }
+
+  .implementation-card {
+    --card-accent: var(--color-accent-green);
+    @apply relative flex min-h-0 flex-col overflow-hidden rounded-[18px] border border-hairline bg-surface-card p-7 xl:min-h-[320px];
+    transition:
+      transform 0.28s ease,
+      border-color 0.28s ease,
+      background-color 0.28s ease,
+      box-shadow 0.28s ease;
+  }
+
+  .implementation-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 3px;
+    background: var(--card-accent);
+  }
+
+  .implementation-card--green { --card-accent: var(--color-accent-green); }
+  .implementation-card--blue { --card-accent: var(--color-accent-blue); }
+  .implementation-card--violet { --card-accent: var(--color-accent-violet); }
+  .implementation-card--cyan { --card-accent: var(--color-accent-cyan); }
+  .implementation-card--orange { --card-accent: var(--color-accent-orange); }
+
+  .implementation-card__number,
+  .implementation-card__badge {
+    color: var(--card-accent);
+  }
+
+  .implementation-card--featured {
+    background: var(--card-accent);
+    color: var(--color-on-accent);
+  }
+
+  .implementation-card--featured .implementation-card__number,
+  .implementation-card--featured .implementation-card__badge {
+    color: rgba(7, 9, 9, 0.65);
+  }
+
+  .implementation-card--featured p,
+  .implementation-card--featured li {
+    color: rgba(7, 9, 9, 0.75);
+  }
+
+  .implementation-card--featured .card-link {
+    color: var(--color-on-accent);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .implementation-card:hover {
+      transform: translateY(-6px);
+      border-color: color-mix(in srgb, var(--card-accent) 45%, transparent);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  .card-link {
+    @apply mt-auto inline-flex items-center gap-2 pt-6 text-sm font-medium text-ink transition-colors duration-200;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .card-link:hover {
+      color: var(--card-accent);
+    }
+  }
+
+  .package-grid {
+    @apply grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4;
+  }
+
+  .package-card {
+    @apply flex min-h-0 flex-col rounded-[18px] border border-hairline bg-surface-card p-[30px] md:min-h-[520px];
+    transition:
+      transform 0.28s ease,
+      border-color 0.28s ease,
+      box-shadow 0.28s ease;
+  }
+
+  .package-card--featured {
+    border-color: var(--color-accent-green);
+    background:
+      linear-gradient(180deg, rgba(50, 255, 0, 0.08), rgba(50, 255, 0, 0)),
+      var(--color-surface-card);
+  }
+
+  .package-card__price {
+    @apply mt-auto font-display leading-none tracking-tight text-ink;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+  }
+
+  .package-card__duration {
+    @apply text-sm text-muted;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .package-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.2);
+    }
+
+    .package-card--featured:hover {
+      border-color: color-mix(in srgb, var(--color-accent-green) 60%, transparent);
+    }
+  }
+
+  .skill-chip {
+    @apply inline-flex rounded-full border border-hairline px-3.5 py-2 text-sm text-muted;
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .skill-chip:hover {
+      @apply text-ink;
+      border-color: var(--color-accent-green);
+      background: rgba(50, 255, 0, 0.06);
+    }
+  }
+
+  .review-card {
+    @apply rounded-[18px] border border-hairline bg-canvas p-6;
+    transition:
+      border-color 0.28s ease,
+      box-shadow 0.28s ease,
+      transform 0.28s ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .review-card:hover {
+      transform: translateY(-3px);
+      border-color: color-mix(in srgb, var(--color-accent-green) 35%, transparent);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .review-card__rating {
+    @apply text-sm tracking-wide text-accent-green;
+  }
+
+  .portfolio-card {
+    @apply block overflow-hidden rounded-[18px] border border-hairline bg-canvas;
+    transition:
+      transform 0.28s ease,
+      border-color 0.28s ease,
+      box-shadow 0.28s ease;
+  }
+
+  .portfolio-card__image {
+    @apply object-cover object-top transition-transform duration-[450ms] ease-out;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .portfolio-card:hover {
+      transform: translateY(-5px);
+      border-color: color-mix(in srgb, var(--color-accent-green) 40%, transparent);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.2);
+    }
+
+    .portfolio-card:hover .portfolio-card__image {
+      transform: scale(1.025);
+    }
+  }
+
+  .partner-steps {
+    @apply relative grid gap-4 sm:grid-cols-3;
+  }
+
+  .partner-line {
+    @apply pointer-events-none absolute top-8 right-[16.67%] left-[16.67%] hidden h-px origin-left bg-hairline sm:block;
+    transform: scaleX(0);
+    transition: transform 0.8s ease;
+  }
+
+  .partner-steps.is-visible .partner-line {
+    transform: scaleX(1);
+  }
+
+  .callout-accent {
+    @apply rounded-[18px] border border-hairline p-8 md:p-12;
+    background:
+      linear-gradient(135deg, rgba(50, 255, 0, 0.12), rgba(50, 255, 0, 0)),
+      var(--color-surface-card);
+  }
+
+  html:not(.dark) .callout-accent {
+    @apply bg-primary text-on-primary;
+    background: var(--color-primary);
+  }
+
+  html.dark .callout-accent {
+    @apply text-ink;
+  }
+
+  @media (max-width: 768px) {
+    .implementation-card,
+    .package-card {
+      min-height: auto;
     }
   }
 }
