@@ -3,6 +3,8 @@ import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
 import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { ContactCta } from "@/components/ContactCta";
+import { FaqSection } from "@/components/FaqSection";
+import { SectionCtaBand } from "@/components/SectionCtaBand";
 import { TrackedAnchor } from "@/components/TrackedAnchor";
 import { PartnerProgramBanner } from "@/components/PartnerProgramBanner";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
@@ -24,6 +26,7 @@ import {
   ABOUT_STOCK_IMAGE,
   CONTACT_EMAIL,
   CONTACT_PHONE,
+  FOUNDER_IMAGE,
   GITHUB_URL,
   HERO_STOCK_IMAGE,
   LINKEDIN_URL,
@@ -61,11 +64,12 @@ export default async function HomePage() {
           titleLine1={t("hero.titleLine1")}
           titleLine2={t("hero.titleLine2")}
           valueProposition={t("hero.valueProposition")}
-          specialization={t("hero.specialization")}
+          differentiator={t("hero.differentiator")}
+          benefits={t.raw("hero.benefits") as string[]}
           ctaPrimary={t("hero.ctaPrimary")}
           ctaSecondary={t("hero.ctaSecondary")}
           trustItems={t.raw("hero.trustItems") as string[]}
-          heroImage={HERO_STOCK_IMAGE}
+          heroImage={FOUNDER_IMAGE}
           heroImageAlt={t("hero.heroImageAlt")}
         />
 
@@ -137,6 +141,14 @@ export default async function HomePage() {
           </div>
         </section>
 
+        <SectionCtaBand
+          title={t("sectionCta.title")}
+          duration={t("sectionCta.duration")}
+          commitment={t("sectionCta.commitment")}
+          format={t("sectionCta.format")}
+          cta={t("sectionCta.cta")}
+        />
+
         <section id="packages" className="section-band section--deep scroll-mt-16 border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
@@ -179,6 +191,15 @@ export default async function HomePage() {
           </div>
         </section>
 
+        <SectionCtaBand
+          title={t("sectionCta.title")}
+          duration={t("sectionCta.duration")}
+          commitment={t("sectionCta.commitment")}
+          format={t("sectionCta.format")}
+          cta={t("sectionCta.cta")}
+          className="section--deep"
+        />
+
         <section id="portfolio" className="section-band section--deep scroll-mt-16 border-b border-hairline">
           <div className="container-editorial">
             <ProjectsCasesShowcase
@@ -190,11 +211,21 @@ export default async function HomePage() {
               problemLabel={t("portfolio.problemLabel")}
               solutionLabel={t("portfolio.solutionLabel")}
               resultLabel={t("portfolio.resultLabel")}
+              metricLabel={t("portfolio.metricLabel")}
+              stackLabel={t("portfolio.stackLabel")}
               categoriesLabel={t("portfolio.categoriesLabel")}
               sectionLabel={t("sections.portfolio")}
             />
           </div>
         </section>
+
+        <SectionCtaBand
+          title={t("sectionCta.title")}
+          duration={t("sectionCta.duration")}
+          commitment={t("sectionCta.commitment")}
+          format={t("sectionCta.format")}
+          cta={t("sectionCta.cta")}
+        />
 
         <section id="process" className="section-band section--panel scroll-mt-16 border-b border-hairline">
           <div className="container-editorial">
@@ -321,6 +352,8 @@ export default async function HomePage() {
                     </span>
                   ))}
                 </div>
+                <p className="meta-label mt-8">{t("about.techStackTitle")}</p>
+                <p className="body-copy mt-3 text-base text-muted">{t("about.techStack")}</p>
               </Reveal>
             </div>
           </div>
@@ -349,10 +382,19 @@ export default async function HomePage() {
           subtitle={t("media.subtitle")}
           videoCta={t("media.videoCta")}
           articleCta={t("media.articleCta")}
+          asSeenIn={t("media.asSeenIn")}
           videoAriaLabel={t("media.videoAriaLabel")}
           articleAriaLabel={t("media.articleAriaLabel")}
           footerNote={t("media.footerNote")}
           footerLinkLabel={t("media.footerLinkLabel")}
+        />
+
+        <FaqSection
+          id="faq"
+          label={t("faq.label")}
+          title={t("faq.title")}
+          subtitle={t("faq.subtitle")}
+          items={t.raw("faq.items") as { q: string; a: string }[]}
         />
 
         <section className="cta-band">

@@ -11,7 +11,8 @@ type HeroSectionProps = {
   titleLine1: string;
   titleLine2: string;
   valueProposition: string;
-  specialization: string;
+  differentiator: string;
+  benefits: string[];
   ctaPrimary: string;
   ctaSecondary: string;
   trustItems: string[];
@@ -24,7 +25,8 @@ export function HeroSection({
   titleLine1,
   titleLine2,
   valueProposition,
-  specialization,
+  differentiator,
+  benefits,
   ctaPrimary,
   ctaSecondary,
   trustItems,
@@ -72,12 +74,25 @@ export function HeroSection({
           </motion.p>
 
           <motion.p
-            className="hero-spec"
+            className="hero-differentiator"
             variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
             transition={transition}
           >
-            {specialization}
+            {differentiator}
           </motion.p>
+
+          <motion.ul
+            className="hero-benefits mt-6 space-y-2"
+            variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
+            transition={transition}
+          >
+            {benefits.map((item) => (
+              <li key={item} className="body-copy flex gap-3 text-base">
+                <span className="meta-label shrink-0">—</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </motion.ul>
 
           <motion.div
             className="mt-10 flex flex-wrap gap-4"
