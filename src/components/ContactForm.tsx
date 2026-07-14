@@ -1,8 +1,9 @@
 "use client";
 
 import NextLink from "next/link";
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
+import { getAttribution, reachGoal } from "@/lib/analytics";
 import { LEGAL_ROUTES } from "@/lib/legal";
 
 type ContactFormProps = {
@@ -20,6 +21,7 @@ export function ContactForm({ defaultService = "", onSuccess }: ContactFormProps
   const [consentAccepted, setConsentAccepted] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
   const [errorText, setErrorText] = useState("");
+  const formStartedRef = useRef(false);
 
   const canSubmit = consentAccepted && status !== "sending";
 
@@ -28,6 +30,12 @@ export function ContactForm({ defaultService = "", onSuccess }: ContactFormProps
     const timer = window.setTimeout(() => onSuccess(), SUCCESS_CLOSE_MS);
     return () => window.clearTimeout(timer);
   }, [onSuccess, status]);
+
+  function trackFormStart() {
+    if (formStartedRef.current) return;
+    formStartedRef.current = true;
+    reachGoal("form_start");
+  }
 
   async function onSubmit(event: FormEvent) {
     event.preventDefault();
@@ -42,6 +50,7 @@ export function ContactForm({ defaultService = "", onSuccess }: ContactFormProps
 
     const parts = [defaultService ? `Услуга: ${defaultService}` : "", message.trim()].filter(Boolean);
     const fullMessage = parts.length > 0 ? parts.join("\n\n") : "—";
+    const attribution = getAttribution();
 
     try {
       const response = await fetch("/api/contact", {
@@ -53,12 +62,14 @@ export function ContactForm({ defaultService = "", onSuccess }: ContactFormProps
           message: fullMessage,
           policyAccepted: true,
           consent: true,
+          attribution,
         }),
       });
       const data = (await response.json().catch(() => ({}))) as { message?: string };
       if (!response.ok) {
         throw new Error(data.message || t("errorSend"));
       }
+      reachGoal("form_submit", { service: defaultService || undefined });
       setStatus("ok");
       setName("");
       setContact("");
@@ -96,6 +107,7 @@ export function ContactForm({ defaultService = "", onSuccess }: ContactFormProps
           autoComplete="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          onFocus={trackFormStart}
           className="text-input"
         />
       </div>

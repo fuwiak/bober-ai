@@ -1,5 +1,19 @@
 import type { Metadata } from "next";
-import { SITE_NAME, absoluteUrl } from "@/lib/site";
+import {
+  CLOUD_RU_PARTNERS_URL,
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+  GITHUB_URL,
+  HERO_STOCK_IMAGE,
+  LINKEDIN_URL,
+  SELECTEL_PARTNER_PROGRAM_URL,
+  SITE_NAME,
+  SITE_URL,
+  TELEGRAM_URL,
+  YANDEX_CLOUD_PARTNERS_URL,
+  YANDEX_USLUGI_URL,
+  absoluteUrl,
+} from "@/lib/site";
 
 type PageSeoInput = {
   title: string;
@@ -111,10 +125,67 @@ export function serviceJsonLd(input: {
     name: input.name,
     description: input.description,
     url: input.url,
-    provider: {
-      "@type": "ProfessionalService",
-      name: SITE_NAME,
-    },
+    provider: organizationJsonLd(input.locale),
     areaServed: input.locale === "en" ? "Worldwide" : "Russia",
+  };
+}
+
+export function organizationJsonLd(locale: string) {
+  return {
+    "@type": "ProfessionalService",
+    name: SITE_NAME,
+    url: SITE_URL,
+    image: absoluteUrl(HERO_STOCK_IMAGE),
+    telephone: CONTACT_PHONE,
+    email: CONTACT_EMAIL,
+    areaServed: { "@type": "Country", name: locale === "en" ? "Worldwide" : "Russia" },
+    priceRange: "₽₽₽",
+    sameAs: [
+      LINKEDIN_URL,
+      GITHUB_URL,
+      YANDEX_USLUGI_URL,
+      YANDEX_CLOUD_PARTNERS_URL,
+      SELECTEL_PARTNER_PROGRAM_URL,
+      CLOUD_RU_PARTNERS_URL,
+      TELEGRAM_URL,
+    ],
+  };
+}
+
+export function personJsonLd(input: {
+  name: string;
+  jobTitle: string;
+  description: string;
+  image: string;
+  url: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: input.name,
+    jobTitle: input.jobTitle,
+    description: input.description,
+    image: absoluteUrl(input.image),
+    url: input.url,
+    worksFor: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+  };
+}
+
+export function faqJsonLd(items: { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
   };
 }

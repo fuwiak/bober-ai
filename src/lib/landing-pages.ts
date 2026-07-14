@@ -1,4 +1,4 @@
-import { PORTFOLIO_IMAGES, STOCK_IMAGES } from "@/lib/site";
+import { DIAGRAM_IMAGES, PORTFOLIO_IMAGES, STOCK_IMAGES } from "@/lib/site";
 
 export type LandingCategory = "automation" | "integrations" | "solutions" | "ai";
 
@@ -8,6 +8,7 @@ export type LandingPageDef = {
   contentKey: string;
   serviceSlug: string;
   coverImage: string;
+  caseStudySlugs?: string[];
 };
 
 export const LANDING_PAGES: LandingPageDef[] = [
@@ -16,35 +17,40 @@ export const LANDING_PAGES: LandingPageDef[] = [
     slug: "processes",
     contentKey: "processes",
     serviceSlug: "business-process-automation",
-    coverImage: STOCK_IMAGES.automation,
+    coverImage: DIAGRAM_IMAGES.workflow,
+    caseStudySlugs: ["elia-suite", "yandex-telemost-agent"],
   },
   {
     category: "integrations",
     slug: "crm",
     contentKey: "crm",
     serviceSlug: "business-process-automation",
-    coverImage: STOCK_IMAGES.team,
+    coverImage: DIAGRAM_IMAGES.crm,
+    caseStudySlugs: ["crm-telegram-sheets", "lead-generation"],
   },
   {
     category: "ai",
     slug: "corporate",
     contentKey: "corporate",
     serviceSlug: "enterprise-ai-assistant",
-    coverImage: STOCK_IMAGES.security,
+    coverImage: DIAGRAM_IMAGES.architecture,
+    caseStudySlugs: ["kaspersky-ai-assistant", "yandex-telemost-agent"],
   },
   {
     category: "automation",
     slug: "documents",
     contentKey: "documents",
     serviceSlug: "business-process-automation",
-    coverImage: PORTFOLIO_IMAGES.kpLlm,
+    coverImage: DIAGRAM_IMAGES.documents,
+    caseStudySlugs: ["kp-llm-automation"],
   },
   {
     category: "automation",
     slug: "sales",
     contentKey: "sales",
     serviceSlug: "sales-ai-agent",
-    coverImage: STOCK_IMAGES.sales,
+    coverImage: DIAGRAM_IMAGES.sales,
+    caseStudySlugs: ["kp-llm-automation", "lead-generation"],
   },
   {
     category: "integrations",
@@ -52,6 +58,7 @@ export const LANDING_PAGES: LandingPageDef[] = [
     contentKey: "amocrm",
     serviceSlug: "business-process-automation",
     coverImage: PORTFOLIO_IMAGES.leads,
+    caseStudySlugs: ["lead-generation", "crm-telegram-sheets"],
   },
   {
     category: "integrations",
@@ -59,13 +66,23 @@ export const LANDING_PAGES: LandingPageDef[] = [
     contentKey: "bitrix24",
     serviceSlug: "business-process-automation",
     coverImage: PORTFOLIO_IMAGES.elia,
+    caseStudySlugs: ["elia-suite", "yandex-telemost-agent"],
+  },
+  {
+    category: "integrations",
+    slug: "1c",
+    contentKey: "onec",
+    serviceSlug: "business-process-automation",
+    coverImage: DIAGRAM_IMAGES.erp,
+    caseStudySlugs: ["crm-1c-sync", "bitrix24-erp-sync"],
   },
   {
     category: "solutions",
     slug: "knowledge-base",
     contentKey: "knowledgeBase",
     serviceSlug: "enterprise-ai-assistant",
-    coverImage: STOCK_IMAGES.roadmap,
+    coverImage: DIAGRAM_IMAGES.architecture,
+    caseStudySlugs: ["kaspersky-ai-assistant"],
   },
   {
     category: "solutions",
@@ -73,6 +90,7 @@ export const LANDING_PAGES: LandingPageDef[] = [
     contentKey: "assistant",
     serviceSlug: "enterprise-ai-assistant",
     coverImage: PORTFOLIO_IMAGES.telemost,
+    caseStudySlugs: ["kaspersky-ai-assistant", "yandex-telemost-agent"],
   },
 ];
 

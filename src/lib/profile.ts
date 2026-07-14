@@ -1,4 +1,4 @@
-import { PORTFOLIO_IMAGES, STOCK_IMAGES } from "@/lib/site";
+import { DIAGRAM_IMAGES, PORTFOLIO_IMAGES } from "@/lib/site";
 
 export const PROFILE = {
   name: "Павел Стасиньский",
@@ -156,22 +156,21 @@ export const AVITO_REVIEWS: AvitoReview[] = [
 ];
 
 export const PARTNER_PROGRAM = {
-  commissionPercent: 10,
   title: "Партнёрская программа",
-  subtitle: "10% от каждого приведённого клиента",
-  payoutNote: "Выплата сразу после внесения клиентом аванса",
+  subtitle: "White-label delivery · Technology partnerships · Referral partnerships",
+  payoutNote: "Условия обсуждаем индивидуально — без публичных процентов",
   steps: [
     {
-      title: "Рекомендуете",
-      text: "Передаёте контакт или знакомите с задачей — AI-бот, автоматизация, внедрение под ключ.",
+      title: "White-label delivery",
+      text: "Вы — лицо для клиента. Мы делаем архитектуру, код и внедрение под NDA. Ваш бренд в документах.",
     },
     {
-      title: "Клиент вносит аванс",
-      text: "Заключаем договор, клиент оплачивает аванс — проект стартует официально.",
+      title: "Technology partnerships",
+      text: "Совместные проекты с интеграторами CRM/ERP: Bitrix24, amoCRM, 1С. Фиксированная смета для вашего PM.",
     },
     {
-      title: "Вы получаете 10%",
-      text: "Переводим вознаграждение сразу после поступления аванса на наш счёт.",
+      title: "Referral partnerships",
+      text: "Приводите клиента с задачей — обсуждаем модель сотрудничества после брифа. Прозрачные условия.",
     },
   ],
 } as const;
@@ -290,7 +289,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "crm-bot",
     slug: "crm-telegram-sheets",
     title: "CRM + Telegram-бот + Google Sheets для B2B",
-    image: STOCK_IMAGES.sales,
+    image: DIAGRAM_IMAGES.sales,
     category: "ИТ и разработка",
     skills: ["Telegram", "Google Sheets", "n8n", "OpenAI", "JavaScript"],
     description:
@@ -304,7 +303,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "interior-bot",
     slug: "interior-design-bot",
     title: "AI-бот для дизайнеров интерьера в Telegram и MAX",
-    image: STOCK_IMAGES.team,
+    image: DIAGRAM_IMAGES.crm,
     category: "Искусственный интеллект",
     skills: ["Telegram", "MAX", "LLM", "OpenAI", "JavaScript"],
     description:
@@ -318,7 +317,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "social",
     slug: "social-media-analytics",
     title: "Анализ социальных медиа в реальном времени",
-    image: STOCK_IMAGES.security,
+    image: DIAGRAM_IMAGES.architecture,
     category: "Искусственный интеллект",
     skills: ["Python", "NLP", "API соцсетей", "Дашборды", "Анализ данных"],
     description:
@@ -332,7 +331,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "ocr",
     slug: "ocr-text-extraction",
     title: "OCR — извлечение текста из документов",
-    image: STOCK_IMAGES.roadmap,
+    image: DIAGRAM_IMAGES.documents,
     category: "ИТ и разработка",
     skills: ["Python", "OCR", "Tesseract", "PDF", "Автоматизация"],
     description:
@@ -341,6 +340,105 @@ export const PORTFOLIO: PortfolioItem[] = [
       "Сервис OCR с распознаванием печатного и рукописного текста, извлечением структурированных полей из PDF и изображений и выгрузкой в таблицу или API учётной системы.",
     result:
       "Документы обрабатываются пакетно за минуты вместо часов ручного ввода, снижается доля ошибок при переносе данных и ускоряется закрытие периода.",
+  },
+  {
+    id: "amocrm-web",
+    slug: "amocrm-website-integration",
+    title: "Сайт → amoCRM: лиды без ручной обработки",
+    image: DIAGRAM_IMAGES.crm,
+    category: "ИТ и разработка",
+    skills: ["amoCRM", "Webhook", "Telegram", "JavaScript"],
+    description:
+      "Заявки с корпоративного сайта обрабатывались вручную: менеджер получал письмо, переносил данные в amoCRM с задержкой до суток. Часть лидов терялась.",
+    solution:
+      "Webhook с сайта → сделка и контакт в amoCRM за секунды → автоназначение ответственного → Telegram-уведомление.",
+    result:
+      "Лид в CRM мгновенно, первый контакт в течение часа. 0 заявок без ответственного.",
+  },
+  {
+    id: "bitrix-erp",
+    slug: "bitrix24-erp-sync",
+    title: "Bitrix24 + 1С: синхронизация сделок и заказов",
+    image: DIAGRAM_IMAGES.erp,
+    category: "ИТ и разработка",
+    skills: ["Bitrix24", "1С", "REST API", "JavaScript"],
+    description:
+      "Менеджеры создавали сделку в Bitrix24, бухгалтер — заказ в 1С. Данные расходились, статусы оплат не отражались в CRM.",
+    solution:
+      "API-шлюз с очередью: сделка «выиграна» → заказ в 1С; оплата в 1С → этап в Bitrix24. Журнал операций и retry.",
+    result:
+      "Единая картина по сделке, −80% ручного дублирования, алерты при расхождениях.",
+  },
+  {
+    id: "crm-1c",
+    slug: "crm-1c-sync",
+    title: "CRM ↔ 1С: единый источник правды",
+    image: DIAGRAM_IMAGES.erp,
+    category: "ИТ и разработка",
+    featured: true,
+    skills: ["amoCRM", "1С", "OData", "Python"],
+    description:
+      "Заказы создавались дважды — в CRM и 1С разными сотрудниками. Остатки в CRM устаревали, оплаты не закрывали воронку.",
+    solution:
+      "Двусторонний обмен через промежуточный сервис: контрагенты, заказы, оплаты, остатки. Идемпотентность и сверка данных.",
+    result:
+      "−80% ручного ввода, 0 потерянных заказов при сбоях благодаря retry и алертам.",
+  },
+  {
+    id: "contract-flow",
+    slug: "contract-approval-workflow",
+    title: "Согласование договоров: дни → часы",
+    image: DIAGRAM_IMAGES.documents,
+    category: "Автоматизация продаж",
+    skills: ["Workflow", "CRM", "Email", "PDF"],
+    description:
+      "Договоры терялись между почтой, CRM и файловым хранилищем. Согласование юристом и финансами занимало 3–5 дней.",
+    solution:
+      "Цепочка согласования с уведомлениями, дедлайнами и аудитом. Документ привязан к сделке в CRM.",
+    result:
+      "−70% времени на согласование, полная история версий и решений.",
+  },
+  {
+    id: "support-kb",
+    slug: "support-knowledge-base",
+    title: "База знаний для поддержки: −50% повторных вопросов",
+    image: DIAGRAM_IMAGES.architecture,
+    category: "Искусственный интеллект",
+    skills: ["RAG", "LLM", "Confluence", "Telegram"],
+    description:
+      "L1-поддержка отвечала на одни и те же вопросы о тарифах, настройках и интеграциях. Документация разбросана по Confluence и PDF.",
+    solution:
+      "Индексация документов, векторный поиск, AI-ассистент со ссылками на источники. Эскалация к эксперту при низкой уверенности.",
+    result:
+      "−50% повторяющихся обращений, быстрее онбординг новых операторов.",
+  },
+  {
+    id: "invoice-pipe",
+    slug: "invoice-processing-pipeline",
+    title: "Пайплайн обработки счетов: пакетно за минуты",
+    image: DIAGRAM_IMAGES.documents,
+    category: "ИТ и разработка",
+    skills: ["OCR", "Python", "1С", "Workflow"],
+    description:
+      "Бухгалтерия получала 50+ счетов в день по email. Операторы вручную переносили реквизиты в 1С.",
+    solution:
+      "Автоприём из почты → OCR → извлечение полей → валидация → создание документа в 1С.",
+    result:
+      "Пакет 50 счетов за 10 минут вместо 4 часов, −90% ошибок ввода.",
+  },
+  {
+    id: "onboarding",
+    slug: "employee-onboarding-portal",
+    title: "Онбординг сотрудников: 2 недели вместо 2 месяцев",
+    image: DIAGRAM_IMAGES.workflow,
+    category: "Искусственный интеллект",
+    skills: ["Knowledge base", "LLM", "HR", "Telegram"],
+    description:
+      "Новые сотрудники месяцами задавали одни и те же вопросы HR и коллегам. Регламенты в Confluence, PDF и почте.",
+    solution:
+      "Портал онбординга с чеклистами, базой знаний и AI-ассистентом по регламентам. Интеграция с HR-системой.",
+    result:
+      "Выход на самообслуживание за 2 недели, −40% нагрузки на HR.",
   },
 ];
 

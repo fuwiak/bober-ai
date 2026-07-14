@@ -3,6 +3,7 @@ import { Cormorant_Garamond, IBM_Plex_Mono, Saira_Condensed } from "next/font/go
 import Script from "next/script";
 import "./globals.css";
 import { CookieConsent } from "@/components/CookieConsent";
+import { AttributionCapture } from "@/components/AttributionCapture";
 import { YandexMetrika } from "@/components/YandexMetrika";
 import { DEFAULT_KEYWORDS, SITE_DESCRIPTION, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
 
@@ -124,6 +125,7 @@ export default function RootLayout({
           {`(function(){try{if('scrollRestoration'in history)history.scrollRestoration='manual';var h=location.hash;if(h&&h!=='#')return;scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0;}catch(e){}})();`}
         </Script>
         {children}
+        <AttributionCapture />
         <CookieConsent />
         <YandexMetrika />
       </body>

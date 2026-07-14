@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import type { Attribution } from "@/lib/analytics";
 import { CONTACT_NOTIFICATION_EMAILS, SITE_NAME } from "@/lib/site";
 
 export const runtime = "nodejs";
@@ -10,10 +11,24 @@ type Payload = {
   message?: string;
   policyAccepted?: boolean;
   consent?: boolean;
+  attribution?: Attribution;
 };
 
 function requireString(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
+}
+
+function formatAttribution(attribution?: Attribution): string[] {
+  if (!attribution) return [];
+  const lines: string[] = [];
+  if (attribution.landing_page) lines.push(`Landing: ${attribution.landing_page}`);
+  if (attribution.utm_source) lines.push(`utm_source: ${attribution.utm_source}`);
+  if (attribution.utm_medium) lines.push(`utm_medium: ${attribution.utm_medium}`);
+  if (attribution.utm_campaign) lines.push(`utm_campaign: ${attribution.utm_campaign}`);
+  if (attribution.utm_content) lines.push(`utm_content: ${attribution.utm_content}`);
+  if (attribution.utm_term) lines.push(`utm_term: ${attribution.utm_term}`);
+  if (attribution.yclid) lines.push(`yclid: ${attribution.yclid}`);
+  return lines;
 }
 
 function escapeHtml(value: string): string {
@@ -32,6 +47,7 @@ export async function POST(request: NextRequest) {
   const message = requireString(body.message) || "—";
   const consent = body.consent === true;
   const policyAccepted = body.policyAccepted === true;
+  const attribution = body.attribution;
 
   if (!name || !contact) {
     return NextResponse.json({ error: "invalid_payload", message: "Заполните обязательные поля" }, { status: 400 });
@@ -56,7 +72,15 @@ export async function POST(request: NextRequest) {
     : [];
   const to = envRecipients.length > 0 ? envRecipients : [...CONTACT_NOTIFICATION_EMAILS];
   const subject = `Заявка с сайта ${SITE_NAME} от ${name}`;
-  const text = [`Имя: ${name}`, `Контакт: ${contact}`, "", "Сообщение:", message].join("\n");
+  const attributionLines = formatAttribution(attribution);
+  const text = [
+    `Имя: ${name}`,
+    `Контакт: ${contact}`,
+    "",
+    "Сообщение:",
+    message,
+    ...(attributionLines.length > 0 ? ["", "Источник:", ...attributionLines] : []),
+  ].join("\n");
 
   if (process.env.CONTACT_DRY_RUN === "1") {
     return NextResponse.json({ ok: true, dryRun: true, preview: { to, subject, text } });
@@ -85,6 +109,11 @@ export async function POST(request: NextRequest) {
     <p><strong>Контакт:</strong> ${escapeHtml(contact)}</p>
     <p><strong>Сообщение:</strong></p>
     <p>${escapeHtml(message).replace(/\n/g, "<br/>")}</p>
+    ${
+      attributionLines.length > 0
+        ? `<p><strong>Источник:</strong></p><ul>${attributionLines.map((line) => `<li>${escapeHtml(line)}</li>`).join("")}</ul>`
+        : ""
+    }
   `;
 
   try {

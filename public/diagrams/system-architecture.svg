@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#f8f7f4"/>
+  <text x="40" y="48" font-family="system-ui,sans-serif" font-size="14" font-weight="600" fill="#1a1a1a" letter-spacing="0.08em">SYSTEM ARCHITECTURE</text>
+  <rect x="280" y="70" width="240" height="50" rx="4" fill="#8b7355" fill-opacity="0.15" stroke="#8b7355" stroke-width="2"/>
+  <text x="400" y="102" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">API Gateway</text>
+  <line x1="400" y1="120" x2="400" y2="150" stroke="#8b7355" stroke-width="1.5"/>
+  <rect x="200" y="150" width="400" height="70" rx="4" fill="#fff" stroke="#c8c4bc" stroke-width="1.5"/>
+  <text x="400" y="180" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#4a4a4a">Business Logic · Workflow Engine</text>
+  <text x="400" y="202" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#8a8a8a">Rules · Triggers · AI Layer (optional)</text>
+  <line x1="160" y1="185" x2="200" y2="185" stroke="#c8c4bc"/>
+  <line x1="600" y1="185" x2="640" y2="185" stroke="#c8c4bc"/>
+  <rect x="40" y="155" width="120" height="60" rx="3" fill="#f0eeea" stroke="#c8c4bc"/>
+  <text x="100" y="190" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#4a4a4a">Frontend</text>
+  <rect x="640" y="155" width="120" height="60" rx="3" fill="#f0eeea" stroke="#c8c4bc"/>
+  <text x="700" y="190" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#4a4a4a">Monitoring</text>
+  <line x1="250" y1="220" x2="250" y2="260" stroke="#c8c4bc"/>
+  <line x1="400" y1="220" x2="400" y2="260" stroke="#c8c4bc"/>
+  <line x1="550" y1="220" x2="550" y2="260" stroke="#c8c4bc"/>
+  <rect x="160" y="260" width="180" height="70" rx="4" fill="#fff" stroke="#c8c4bc"/>
+  <text x="250" y="295" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#4a4a4a">PostgreSQL</text>
+  <text x="250" y="315" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#8a8a8a">Data · Audit log</text>
+  <rect x="310" y="260" width="180" height="70" rx="4" fill="#fff" stroke="#c8c4bc"/>
+  <text x="400" y="295" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#4a4a4a">Vector DB</text>
+  <text x="400" y="315" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#8a8a8a">RAG · Knowledge</text>
+  <rect x="460" y="260" width="180" height="70" rx="4" fill="#fff" stroke="#c8c4bc"/>
+  <text x="550" y="295" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#4a4a4a">Object Storage</text>
+  <text x="550" y="315" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#8a8a8a">Documents · Files</text>
+  <rect x="60" y="380" width="680" height="80" rx="4" fill="#f0eeea" stroke="#c8c4bc"/>
+  <text x="400" y="415" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#4a4a4a">External: CRM · 1C · Telegram · Email · LLM API</text>
+  <text x="400" y="440" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#8a8a8a">On-prem · Yandex Cloud · Selectel</text>
+</svg>

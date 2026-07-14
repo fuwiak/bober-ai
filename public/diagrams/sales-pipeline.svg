@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#f8f7f4"/>
+  <text x="40" y="48" font-family="system-ui,sans-serif" font-size="14" font-weight="600" fill="#1a1a1a" letter-spacing="0.08em">SALES AUTOMATION PIPELINE</text>
+  <rect x="40" y="100" width="110" height="280" rx="4" fill="#f0eeea" stroke="#c8c4bc"/>
+  <text x="95" y="140" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#4a4a4a">Lead</text>
+  <rect x="40" y="160" width="110" height="50" rx="3" fill="#fff" stroke="#c8c4bc"/>
+  <text x="95" y="190" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6a6a6a">Website</text>
+  <rect x="40" y="220" width="110" height="50" rx="3" fill="#fff" stroke="#c8c4bc"/>
+  <text x="95" y="250" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6a6a6a">Telegram</text>
+  <rect x="40" y="280" width="110" height="50" rx="3" fill="#fff" stroke="#c8c4bc"/>
+  <text x="95" y="310" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6a6a6a">Ads</text>
+  <path d="M150 240h60" stroke="#8b7355" stroke-width="2" marker-end="url(#s)"/>
+  <rect x="210" y="200" width="140" height="80" rx="4" fill="#8b7355" fill-opacity="0.12" stroke="#8b7355" stroke-width="2"/>
+  <text x="280" y="235" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">CRM</text>
+  <text x="280" y="258" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6a6a6a">Qualify · Assign</text>
+  <path d="M350 240h60" stroke="#8b7355" stroke-width="2" marker-end="url(#s)"/>
+  <rect x="410" y="200" width="140" height="80" rx="4" fill="#fff" stroke="#c8c4bc" stroke-width="1.5"/>
+  <text x="480" y="235" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#1a1a1a">Proposal</text>
+  <text x="480" y="258" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6a6a6a">2 min · PDF</text>
+  <path d="M550 240h60" stroke="#8b7355" stroke-width="2" marker-end="url(#s)"/>
+  <rect x="610" y="200" width="150" height="80" rx="4" fill="#fff" stroke="#c8c4bc" stroke-width="1.5"/>
+  <text x="685" y="235" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#1a1a1a">Close</text>
+  <text x="685" y="258" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6a6a6a">Contract · Pay</text>
+  <rect x="210" y="340" width="550" height="100" rx="4" fill="#fff" stroke="#c8c4bc"/>
+  <text x="230" y="370" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#8b7355">BEFORE</text>
+  <text x="230" y="395" font-family="system-ui,sans-serif" font-size="12" fill="#6a6a6a">45 min manual proposal · copy-paste between CRM and Word</text>
+  <text x="230" y="420" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#8b7355">AFTER</text>
+  <text x="310" y="420" font-family="system-ui,sans-serif" font-size="12" fill="#1a1a1a">CRM ’ template ’ PDF in 2 minutes</text>
+  <defs><marker id="s" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="#8b7355"/></marker></defs>
+</svg>

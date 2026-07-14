@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
 import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { ContactCta } from "@/components/ContactCta";
+import { TrackedAnchor } from "@/components/TrackedAnchor";
 import { PartnerProgramBanner } from "@/components/PartnerProgramBanner";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { HeroSection } from "@/components/motion/HeroSection";
@@ -71,6 +72,26 @@ export default async function HomePage() {
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial">
             <TrustStrip stats={trustStats} />
+          </div>
+        </section>
+
+        <section className="section-band section--panel border-b border-hairline">
+          <div className="container-editorial max-w-3xl">
+            <Reveal>
+              <span className="section-label">{t("sections.problems")}</span>
+              <h2 className="section-title mt-4">{t("problemsWeSolve.title")}</h2>
+              <p className="body-copy mt-4 text-base">{t("problemsWeSolve.subtitle")}</p>
+            </Reveal>
+            <Stagger className="mt-10">
+              {(t.raw("problemsWeSolve.items") as string[]).map((item) => (
+                <StaggerItem key={item}>
+                  <p className="body-copy text-base">— {item}</p>
+                </StaggerItem>
+              ))}
+            </Stagger>
+            <Reveal delay={0.1} className="mt-10">
+              <p className="body-copy text-base font-medium">{t("problemsWeSolve.solutionsIntro")}</p>
+            </Reveal>
           </div>
         </section>
 
@@ -232,11 +253,7 @@ export default async function HomePage() {
                 ))}
               </ul>
             </Reveal>
-            <Reveal delay={0.15} className="mt-12 flex flex-wrap items-center gap-8">
-              <div>
-                <p className="spec-value">{t("partners.commission")}</p>
-                <p className="spec-label mt-2 normal-case">{t("partners.commissionNote")}</p>
-              </div>
+            <Reveal delay={0.15} className="mt-12">
               <Link href="/partners" className="btn-primary">
                 {t("partners.cta")}
               </Link>
@@ -346,9 +363,9 @@ export default async function HomePage() {
               <p className="body-copy mt-4 max-w-xl text-base">{t("cta.subtitle")}</p>
               <div className="mt-10 flex flex-wrap gap-4">
                 <ContactCta>{t("cta.primary")}</ContactCta>
-                <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary">
+                <TrackedAnchor href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary" goal="telegram_click">
                   {t("cta.secondary")}
-                </a>
+                </TrackedAnchor>
               </div>
             </Reveal>
           </div>
@@ -364,16 +381,16 @@ export default async function HomePage() {
                 <p>
                   <span className="meta-label">{t("contact.email")}</span>
                   <br />
-                  <a href={`mailto:${CONTACT_EMAIL}`} className="text-link">
+                  <TrackedAnchor href={`mailto:${CONTACT_EMAIL}`} className="text-link" goal="email_click">
                     {CONTACT_EMAIL}
-                  </a>
+                  </TrackedAnchor>
                 </p>
                 <p>
                   <span className="meta-label">{t("contact.telegram")}</span>
                   <br />
-                  <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="text-link">
+                  <TrackedAnchor href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="text-link" goal="telegram_click">
                     @pstasinski
-                  </a>
+                  </TrackedAnchor>
                 </p>
                 <p>
                   <span className="meta-label">{t("contact.linkedin")}</span>
@@ -392,9 +409,9 @@ export default async function HomePage() {
                 <p>
                   <span className="meta-label">{t("contact.phone")}</span>
                   <br />
-                  <a href={`tel:${CONTACT_PHONE}`} className="text-link">
+                  <TrackedAnchor href={`tel:${CONTACT_PHONE}`} className="text-link" goal="phone_click">
                     {CONTACT_PHONE}
-                  </a>
+                  </TrackedAnchor>
                 </p>
               </div>
             </Reveal>

@@ -105,6 +105,7 @@ export function HeroSection({
               sizes="100vw"
               className="hero-media__image"
               priority
+              unoptimized={heroImage.endsWith(".svg")}
             />
           </EditorialImageFrame>
           <figcaption className="sr-only">

@@ -12,6 +12,7 @@ export async function SiteHeader() {
     { href: "/#services" as const, label: t("services") },
     { href: "/#packages" as const, label: t("packages") },
     { href: "/#portfolio" as const, label: t("portfolio") },
+    { href: "/guides" as const, label: t("guides") },
     { href: "/blog" as const, label: t("blog") },
     { href: "/partners" as const, label: t("partners") },
     { href: "/#process" as const, label: t("process") },

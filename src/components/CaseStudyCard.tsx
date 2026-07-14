@@ -1,0 +1,36 @@
+"use client";
+
+import Image from "next/image";
+import { Link } from "@/i18n/navigation";
+import { reachGoal } from "@/lib/analytics";
+import type { PortfolioItem } from "@/lib/profile";
+
+type CaseStudyCardProps = {
+  item: PortfolioItem;
+  viewLabel: string;
+};
+
+export function CaseStudyCard({ item, viewLabel }: CaseStudyCardProps) {
+  return (
+    <Link
+      href={`/portfolio/${item.slug}`}
+      className="feature-card-bordered block transition-opacity hover:opacity-90"
+      onClick={() => reachGoal("case_study_view", { slug: item.slug })}
+    >
+      <div className="relative aspect-[16/10] overflow-hidden rounded-lg bg-surface-soft">
+        <Image
+          src={item.image}
+          alt={item.title}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 420px"
+          unoptimized={item.image.endsWith(".png")}
+        />
+      </div>
+      <h3 className="mt-5 font-display text-2xl tracking-tight">{item.title}</h3>
+      {item.result ? <p className="body-copy mt-3 text-base">{item.result}</p> : null}
+      {item.priceLabel ? <p className="meta-label mt-4">{item.priceLabel}</p> : null}
+      <span className="text-link mt-4 inline-block text-[11px] uppercase tracking-[0.16em]">{viewLabel} →</span>
+    </Link>
+  );
+}

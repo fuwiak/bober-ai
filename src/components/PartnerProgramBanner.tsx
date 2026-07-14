@@ -62,7 +62,7 @@ export function PartnerProgramBanner() {
       </div>
 
       <div className="p-5">
-        <p className="body-copy text-base">{t("text", { percent: "10%" })}</p>
+        <p className="body-copy text-base">{t("text")}</p>
 
         <div className="mt-6 flex flex-col gap-3">
           <Link href="/partners" onClick={dismiss} className="btn-primary w-full text-center">

@@ -19,6 +19,7 @@ const en = {
     services: "Solutions",
     packages: "Packages",
     portfolio: "Case studies",
+    guides: "Guides",
     blog: "Blog",
     partners: "Partners",
     process: "Process",
@@ -78,6 +79,18 @@ const en = {
     closing:
       "We recommend the solution that delivers the highest business value—not the most fashionable technology.",
   },
+  problemsWeSolve: {
+    title: "Typical problems we solve",
+    subtitle: "Sound familiar? Most of our clients start here.",
+    items: [
+      "Sales team spends hours preparing commercial offers",
+      "Information is scattered across CRM, email and Telegram",
+      "Employees manually copy data between systems",
+      "Documents require repetitive manual processing",
+      "Customer requests disappear before anyone follows up",
+    ],
+    solutionsIntro: "Here's how we solve these problems — see packages and solutions below.",
+  },
   audiences: {
     title: "Who we work with",
     items: [
@@ -118,12 +131,12 @@ const en = {
     },
   },
   packages: {
-    title: "AI & Automation Advisor",
+    title: "AI & Automation Audit",
     subtitle:
-      "We analyze the process → calculate ROI → choose technology → implement. Fixed scope, not hourly consulting.",
+      "Fixed-price entry offer: process map, ROI, roadmap, architecture, implementation estimate. Then — production delivery.",
     items: [
       {
-        name: "Business audit",
+        name: "AI & Automation Audit",
         price: "from €1,500",
         duration: "1–2 weeks",
         forWhom: "You need to find where processes are losing money",
@@ -169,7 +182,7 @@ const en = {
     detailsLabel: "Details",
   },
   services: {
-    title: "Solutions by business problem",
+    title: "Here's how we solve these problems",
     subtitle: "Automation, CRM, documents, sales and AI — scoped for production delivery, not pilots.",
     details: "Details",
     quote: "Request a quote",
@@ -301,23 +314,21 @@ const en = {
   },
   partners: {
     badge: "For integrators & software houses",
-    title: "White-label AI for partners",
+    title: "Partnership models",
     subtitle: "You face the client — we deliver architecture, code, and deployment",
     description:
-      "Subcontract and revenue share. NDA, fixed timelines, documentation for your team. Bitrix24, amoCRM, 1C, REST API.",
+      "Three ways to work together. NDA, fixed timelines, documentation for your team. Bitrix24, amoCRM, 1C, REST API.",
     steps: [
-      { title: "You bring the client", text: "Or we work as your AI subcontractor under NDA." },
-      { title: "Fixed scope", text: "Estimate, timeline, deliverables — no surprises for your PM." },
-      { title: "Handover", text: "Code, docs, training — your brand, our expertise." },
+      { title: "White-label delivery", text: "Your brand, our engineering. Architecture, code, deployment and handover under NDA." },
+      { title: "Technology partnerships", text: "Joint projects with CRM/ERP integrators. Fixed scope for your PM, no surprises." },
+      { title: "Referral partnerships", text: "You bring the client — we discuss terms after the brief. Transparent, no public rate cards." },
     ],
     models: [
-      "Subcontract: fixed price per scope",
-      "Revenue share: 10% of client advance payment",
-      "White-label: no Bober AI mention in client-facing docs",
+      "White-label delivery",
+      "Technology partnerships",
+      "Referral partnerships",
     ],
-    cta: "Become a technology partner",
-    commission: "'10%'",
-    commissionNote: "of client advance on referral",
+    cta: "Discuss partnership",
   },
   about: {
     title: "About the company",
@@ -426,9 +437,9 @@ const en = {
   },
   banner: {
     badge: "For integrators",
-    title: "White-label AI for partners",
-    text: "Refer clients — {percent} of advance. Subcontract under NDA.",
-    cta: "Become a partner",
+    title: "White-label delivery for partners",
+    text: "Your brand, our engineering. Subcontract under NDA — terms discussed per project.",
+    cta: "Discuss partnership",
     more: "Learn more",
     close: "Close",
   },
@@ -455,7 +466,12 @@ const en = {
   },
   partnersPage: {
     title: "Partners",
-    subtitle: "White-label AI for integrators and software houses",
+    subtitle: "White-label delivery · Technology partnerships · Referral partnerships",
+  },
+  guides: {
+    badge: "Guides",
+    cta: "Request audit",
+    telegram: "Telegram",
   },
   landing: {
     common: {
@@ -469,6 +485,13 @@ const en = {
       contact: "Contact",
       formTitle: "Discuss your project",
       formSubtitle: "Describe the process or integration — we reply within 4 business hours.",
+      faqTitle: "FAQ",
+      caseStudiesTitle: "Case studies",
+      viewCaseStudy: "View case study",
+      featuredCase: "Featured case",
+      problemLabel: "Problem",
+      solutionLabel: "Solution",
+      resultLabel: "Result",
     },
     pages: {
       processes: {
@@ -495,6 +518,24 @@ const en = {
           { href: "/integrations/crm", label: "CRM implementation" },
           { href: "/ai/corporate", label: "Enterprise AI" },
         ],
+        faq: [
+          {
+            q: "How long does process automation take?",
+            a: "A typical scope is 4–6 weeks. Complex CRM, ERP and document integrations may take up to 3 months. We fix the timeline in the estimate after audit.",
+          },
+          {
+            q: "Can you deploy on-prem?",
+            a: "Yes. We deploy in your infrastructure or on Russian cloud providers — Yandex Cloud, Selectel, Cloud.ru.",
+          },
+          {
+            q: "Which systems do you integrate with?",
+            a: "amoCRM, Bitrix24, 1C, Telegram, email, Google Sheets, Confluence and custom APIs.",
+          },
+          {
+            q: "How do you measure results?",
+            a: "We agree on metrics before launch: cycle time, manual work share, lead handling speed. After go-live — monitoring and reporting.",
+          },
+        ],
       },
       crm: {
         metaTitle: "CRM implementation and automation",
@@ -519,6 +560,24 @@ const en = {
           { href: "/integrations/amocrm", label: "amoCRM integration" },
           { href: "/integrations/bitrix24", label: "Bitrix24" },
           { href: "/automation/sales", label: "Sales automation" },
+        ],
+        faq: [
+          {
+            q: "How much does CRM implementation cost?",
+            a: "It depends on process scope and integrations. Typical projects start from €4,000. We provide a fixed estimate after the brief.",
+          },
+          {
+            q: "Do you work with amoCRM and Bitrix24?",
+            a: "Yes. We configure pipelines, automations and integrations with website, ERP, messengers and documents.",
+          },
+          {
+            q: "How long does CRM rollout take?",
+            a: "Basic setup and integrations — 3–6 weeks. Multi-system scopes — up to 2–3 months.",
+          },
+          {
+            q: "Do you hand over to our team?",
+            a: "Yes. We document architecture, run handover and leave monitoring after launch.",
+          },
         ],
       },
       corporate: {
@@ -545,6 +604,24 @@ const en = {
           { href: "/automation/processes", label: "Process automation" },
           { href: "/services/private-llm-gigachat", label: "Private LLM" },
         ],
+        faq: [
+          {
+            q: "How is enterprise AI different from ChatGPT?",
+            a: "It runs on your data and infrastructure, integrates with CRM and documents, with access control and monitoring.",
+          },
+          {
+            q: "Which models do you use?",
+            a: "YandexGPT, GigaChat, Claude and open-source LLM — depending on data, language and budget requirements.",
+          },
+          {
+            q: "How long does AI implementation take?",
+            a: "Pilot — 2–4 weeks. Production scope with integrations — 6–12 weeks.",
+          },
+          {
+            q: "Is the solution compliance-ready?",
+            a: "We design for data protection requirements: on-prem, regional clouds, access boundaries.",
+          },
+        ],
       },
       documents: {
         metaTitle: "Document workflow automation",
@@ -568,6 +645,20 @@ const en = {
           { href: "/automation/processes", label: "Process automation" },
           { href: "/solutions/knowledge-base", label: "Knowledge base" },
         ],
+        faq: [
+          {
+            q: "Which documents can be automated?",
+            a: "Contracts, invoices, acts, inbound mail, approvals and proposal generation from templates.",
+          },
+          {
+            q: "Is AI required for document automation?",
+            a: "Not always. We automate routes and integrations first; AI is added for extraction and classification.",
+          },
+          {
+            q: "Do you integrate with ERP and CRM?",
+            a: "Yes. We connect document flows with amoCRM, Bitrix24, 1C and internal systems.",
+          },
+        ],
       },
       sales: {
         metaTitle: "Sales and proposal automation",
@@ -590,6 +681,20 @@ const en = {
         related: [
           { href: "/integrations/crm", label: "CRM implementation" },
           { href: "/services/sales-ai-agent", label: "Sales AI agent" },
+        ],
+        faq: [
+          {
+            q: "How much time does proposal automation save?",
+            a: "In a typical case — from 45 minutes down to 2 minutes per commercial proposal.",
+          },
+          {
+            q: "Where do prices in proposals come from?",
+            a: "Only from your catalog or CRM — no invented line items or model hallucinations.",
+          },
+          {
+            q: "Which CRM systems do you support?",
+            a: "amoCRM, Bitrix24 and custom CRM via API.",
+          },
         ],
       },
       amocrm: {
@@ -636,6 +741,32 @@ const en = {
         related: [
           { href: "/integrations/crm", label: "CRM overview" },
           { href: "/integrations/amocrm", label: "amoCRM" },
+          { href: "/integrations/1c", label: "1C integration" },
+        ],
+      },
+      onec: {
+        metaTitle: "1C integration with CRM — amoCRM, Bitrix24",
+        metaDescription: "1C integration with CRM: orders, payments, stock, counterparties. Bidirectional sync without manual duplication.",
+        metaKeywords: [
+          "1C CRM integration",
+          "connect CRM with 1C",
+          "1C amoCRM integration",
+          "Bitrix24 1C integration",
+          "ERP CRM sync",
+        ],
+        eyebrow: "1C",
+        h1: "1C integration with CRM",
+        subtitle: "Bidirectional exchange: deals, orders, payments, stock — without copy-paste between systems.",
+        problemsTitle: "Typical pains",
+        problems: ["Orders created twice in CRM and 1C", "Stock in CRM is outdated", "Payments in 1C don't close deal stages"],
+        deliverablesTitle: "What we deliver",
+        deliverables: ["Entity map and exchange schema", "API gateway with queue and retry", "Monitoring, reconciliation and documentation"],
+        relatedTitle: "Related",
+        related: [
+          { href: "/integrations/crm", label: "CRM implementation" },
+          { href: "/integrations/amocrm", label: "amoCRM" },
+          { href: "/integrations/bitrix24", label: "Bitrix24" },
+          { href: "/guides/connect-crm-with-1c", label: "Guide: connect CRM with 1C" },
         ],
       },
       knowledgeBase: {
@@ -688,6 +819,7 @@ const en = {
   },
   sections: {
     philosophy: "Philosophy",
+    problems: "Problems",
     audience: "01 · Audience",
     engagement: "02 · Engagement",
     solutions: "03 · Solutions",

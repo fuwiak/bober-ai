@@ -1,12 +1,14 @@
 "use client";
 
 import { useContactModal } from "@/components/ContactModalProvider";
+import { reachGoal } from "@/lib/analytics";
 
 type ContactCtaProps = {
   children: React.ReactNode;
   className?: string;
   defaultService?: string;
   variant?: "primary" | "secondary" | "link";
+  goal?: string;
 };
 
 export function ContactCta({
@@ -14,6 +16,7 @@ export function ContactCta({
   className = "",
   defaultService = "",
   variant = "primary",
+  goal = "audit_cta_click",
 }: ContactCtaProps) {
   const modal = useContactModal();
 
@@ -22,7 +25,7 @@ export function ContactCta({
 
   if (!modal) {
     return (
-      <a href="/#contact" className={`${variantClass} ${className}`.trim()}>
+      <a href="/#contact" className={`${variantClass} ${className}`.trim()} onClick={() => reachGoal(goal)}>
         {children}
       </a>
     );
@@ -32,7 +35,10 @@ export function ContactCta({
     <button
       type="button"
       className={`${variantClass} ${className}`.trim()}
-      onClick={() => modal.open(defaultService)}
+      onClick={() => {
+        reachGoal(goal);
+        modal.open(defaultService);
+      }}
     >
       {children}
     </button>

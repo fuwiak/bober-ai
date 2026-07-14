@@ -82,16 +82,16 @@ export default async function PortfolioProjectPage({ params }: PageProps) {
 
           {hasCaseStudy ? (
             <div className="mt-12 grid gap-6 md:grid-cols-3">
-              <article className="feature-card md:col-span-3">
-                <h2 className="font-display text-xl tracking-tight text-ink">{isEn ? "Overview" : "Описание"}</h2>
+              <article className="feature-card">
+                <h2 className="font-display text-xl tracking-tight text-ink">{isEn ? "Problem" : "Проблема"}</h2>
                 <p className="mt-3 text-sm leading-relaxed text-body">{item.description}</p>
               </article>
               <article className="feature-card">
                 <h2 className="font-display text-xl tracking-tight text-ink">{isEn ? "Solution" : "Решение"}</h2>
                 <p className="mt-3 text-sm leading-relaxed text-body">{item.solution}</p>
               </article>
-              <article className="feature-card md:col-span-2">
-                <h2 className="font-display text-xl tracking-tight text-ink">{isEn ? "Outcome" : "Результат"}</h2>
+              <article className="feature-card">
+                <h2 className="font-display text-xl tracking-tight text-ink">{isEn ? "Result" : "Результат"}</h2>
                 <p className="mt-3 text-sm leading-relaxed text-body">{item.result}</p>
               </article>
             </div>

@@ -1,12 +1,14 @@
 import type { MetadataRoute } from "next";
 import { PORTFOLIO } from "@/lib/profile";
 import { getEnterpriseServices } from "@/lib/enterprise-services";
+import { GUIDES } from "@/lib/guides";
 import { LANDING_PAGES } from "@/lib/landing-pages";
 import { SITE_URL } from "@/lib/site";
 
 const staticRoutes = [
   { path: "", priority: 1, changeFrequency: "weekly" as const },
   { path: "/services", priority: 0.9, changeFrequency: "weekly" as const },
+  { path: "/guides", priority: 0.85, changeFrequency: "weekly" as const },
   { path: "/partners", priority: 0.8, changeFrequency: "monthly" as const },
   { path: "/privacy-policy", priority: 0.3, changeFrequency: "yearly" as const },
   { path: "/consent", priority: 0.3, changeFrequency: "yearly" as const },
@@ -112,6 +114,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
           "x-default": `${SITE_URL}${path}`,
         },
       },
+    });
+  }
+
+  for (const guide of GUIDES) {
+    const path = `/guides/${guide.slug}`;
+    entries.push({
+      url: `${SITE_URL}${path}`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          ru: `${SITE_URL}${path}`,
+          en: `${SITE_URL}/en${path}`,
+          "x-default": `${SITE_URL}${path}`,
+        },
+      },
+    });
+    entries.push({
+      url: `${SITE_URL}/en${path}`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.7,
     });
   }
 

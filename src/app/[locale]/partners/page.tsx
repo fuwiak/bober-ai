@@ -49,23 +49,19 @@ export default async function PartnersPage({ params }: Props) {
             ))}
           </div>
 
-          <ul className="mt-8 space-y-2 text-sm text-body">
+          <ul className="mt-8 space-y-3 text-sm text-body">
             {(t.raw("models") as string[]).map((item) => (
-              <li key={item}>· {item}</li>
+              <li key={item}>— {item}</li>
             ))}
           </ul>
 
-          <div className="feature-card-bordered mt-10 p-6">
-            <p className="font-display text-4xl text-primary">{t("commission")}</p>
-            <p className="text-sm text-muted">{t("commissionNote")}</p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="/#contact" className="btn-primary">
-                {t("cta")}
-              </Link>
-              <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary">
-                Telegram
-              </a>
-            </div>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <Link href="/#contact" className="btn-primary">
+              {t("cta")}
+            </Link>
+            <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary">
+              Telegram
+            </a>
           </div>
 
           <div className="feature-card-bordered mt-10">
