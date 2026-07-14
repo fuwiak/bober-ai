@@ -1,4 +1,4 @@
-import { DIAGRAM_IMAGES, PORTFOLIO_IMAGES } from "@/lib/site";
+import { PORTFOLIO_IMAGES, STOCK_IMAGES } from "@/lib/site";
 
 export const PROFILE = {
   name: "Павел Стасиньский",
@@ -289,7 +289,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "crm-bot",
     slug: "crm-telegram-sheets",
     title: "CRM + Telegram-бот + Google Sheets для B2B",
-    image: DIAGRAM_IMAGES.sales,
+    image: STOCK_IMAGES.sales,
     category: "ИТ и разработка",
     skills: ["Telegram", "Google Sheets", "n8n", "OpenAI", "JavaScript"],
     description:
@@ -303,7 +303,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "interior-bot",
     slug: "interior-design-bot",
     title: "AI-бот для дизайнеров интерьера в Telegram и MAX",
-    image: DIAGRAM_IMAGES.crm,
+    image: STOCK_IMAGES.team,
     category: "Искусственный интеллект",
     skills: ["Telegram", "MAX", "LLM", "OpenAI", "JavaScript"],
     description:
@@ -317,7 +317,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "social",
     slug: "social-media-analytics",
     title: "Анализ социальных медиа в реальном времени",
-    image: DIAGRAM_IMAGES.architecture,
+    image: STOCK_IMAGES.security,
     category: "Искусственный интеллект",
     skills: ["Python", "NLP", "API соцсетей", "Дашборды", "Анализ данных"],
     description:
@@ -331,7 +331,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "ocr",
     slug: "ocr-text-extraction",
     title: "OCR — извлечение текста из документов",
-    image: DIAGRAM_IMAGES.documents,
+    image: STOCK_IMAGES.roadmap,
     category: "ИТ и разработка",
     skills: ["Python", "OCR", "Tesseract", "PDF", "Автоматизация"],
     description:
@@ -345,7 +345,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "amocrm-web",
     slug: "amocrm-website-integration",
     title: "Сайт → amoCRM: лиды без ручной обработки",
-    image: DIAGRAM_IMAGES.crm,
+    image: STOCK_IMAGES.team,
     category: "ИТ и разработка",
     skills: ["amoCRM", "Webhook", "Telegram", "JavaScript"],
     description:
@@ -359,7 +359,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "bitrix-erp",
     slug: "bitrix24-erp-sync",
     title: "Bitrix24 + 1С: синхронизация сделок и заказов",
-    image: DIAGRAM_IMAGES.erp,
+    image: STOCK_IMAGES.automation,
     category: "ИТ и разработка",
     skills: ["Bitrix24", "1С", "REST API", "JavaScript"],
     description:
@@ -373,7 +373,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "crm-1c",
     slug: "crm-1c-sync",
     title: "CRM ↔ 1С: единый источник правды",
-    image: DIAGRAM_IMAGES.erp,
+    image: STOCK_IMAGES.automation,
     category: "ИТ и разработка",
     featured: true,
     skills: ["amoCRM", "1С", "OData", "Python"],
@@ -388,7 +388,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "contract-flow",
     slug: "contract-approval-workflow",
     title: "Согласование договоров: дни → часы",
-    image: DIAGRAM_IMAGES.documents,
+    image: STOCK_IMAGES.roadmap,
     category: "Автоматизация продаж",
     skills: ["Workflow", "CRM", "Email", "PDF"],
     description:
@@ -402,7 +402,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "support-kb",
     slug: "support-knowledge-base",
     title: "База знаний для поддержки: −50% повторных вопросов",
-    image: DIAGRAM_IMAGES.architecture,
+    image: STOCK_IMAGES.security,
     category: "Искусственный интеллект",
     skills: ["RAG", "LLM", "Confluence", "Telegram"],
     description:
@@ -416,7 +416,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "invoice-pipe",
     slug: "invoice-processing-pipeline",
     title: "Пайплайн обработки счетов: пакетно за минуты",
-    image: DIAGRAM_IMAGES.documents,
+    image: STOCK_IMAGES.roadmap,
     category: "ИТ и разработка",
     skills: ["OCR", "Python", "1С", "Workflow"],
     description:
@@ -430,7 +430,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "onboarding",
     slug: "employee-onboarding-portal",
     title: "Онбординг сотрудников: 2 недели вместо 2 месяцев",
-    image: DIAGRAM_IMAGES.workflow,
+    image: STOCK_IMAGES.team,
     category: "Искусственный интеллект",
     skills: ["Knowledge base", "LLM", "HR", "Telegram"],
     description:

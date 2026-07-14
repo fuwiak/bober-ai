@@ -1,5 +1,5 @@
 export const FOUNDER_IMAGE = "/hero/pavel-main.png";
-export const HERO_STOCK_IMAGE = "/diagrams/workflow-automation.svg";
+export const HERO_STOCK_IMAGE = "/stock/automation-code.jpg";
 export const ABOUT_STOCK_IMAGE = FOUNDER_IMAGE;
 export const DIAGRAM_IMAGES = {
   workflow: "/diagrams/workflow-automation.svg",
@@ -10,11 +10,11 @@ export const DIAGRAM_IMAGES = {
   erp: "/diagrams/erp-sync.svg",
 } as const;
 export const STOCK_IMAGES = {
-  automation: DIAGRAM_IMAGES.workflow,
-  team: DIAGRAM_IMAGES.crm,
-  sales: DIAGRAM_IMAGES.sales,
-  security: DIAGRAM_IMAGES.architecture,
-  roadmap: DIAGRAM_IMAGES.documents,
+  automation: "/stock/automation-code.jpg",
+  team: "/stock/team-collab.jpg",
+  sales: "/stock/sales-proposal.jpg",
+  security: "/stock/cyber-padlock.jpg",
+  roadmap: "/stock/roadmap-sticky-notes.jpg",
 } as const;
 
 export const PORTFOLIO_IMAGES = {
