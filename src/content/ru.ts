@@ -110,6 +110,50 @@ const ru = {
       "Компании с ручными процессами, интеграторы CRM/ERP и студии разработки",
     ],
   },
+  homeHub: {
+    label: "Разделы",
+    title: "Подробнее по направлениям",
+    items: [
+      {
+        href: "/services",
+        title: "Услуги",
+        description: "CRM, документы, продажи, поддержка — что внедряем и с каким результатом.",
+      },
+      {
+        href: "/portfolio",
+        title: "Кейсы",
+        description: "Kaspersky, ELIA Suite, автоматизация КП и документов — измеримый результат.",
+      },
+      {
+        href: "/pricing",
+        title: "Стоимость",
+        description: "Пакеты от 150 000 ₽, калькулятор ROI и фиксированная смета до старта.",
+      },
+      {
+        href: "/faq",
+        title: "FAQ",
+        description: "Сроки, бюджет, NDA, CRM, Claude — ответы для закупки и IT.",
+      },
+    ],
+  },
+  pages: {
+    services: {
+      metaTitle: "Услуги — внедрение AI и автоматизация для бизнеса",
+      metaDescription: "CRM, документы, продажи, поддержка, база знаний — внедряем AI в операции компании с фиксированной сметой.",
+    },
+    portfolio: {
+      metaTitle: "Кейсы внедрения AI и автоматизации",
+      metaDescription: "Портфолио Bober AI Systems: Kaspersky, ELIA Suite, автоматизация КП, CRM и документов.",
+    },
+    pricing: {
+      metaTitle: "Стоимость внедрения AI — пакеты и смета",
+      metaDescription: "Пакеты автоматизации от 150 000 ₽. Аудит, дорожная карта, внедрение и сопровождение.",
+    },
+    faq: {
+      metaTitle: "FAQ — внедрение AI для бизнеса",
+      metaDescription: "Ответы на частые вопросы: бюджет, сроки, NDA, CRM, Claude API, on-prem.",
+    },
+  },
   problemsWeSolve: {
     title: "Типичные проблемы, которые мы решаем",
     subtitle: "Большинство клиентов начинают именно с этого.",

@@ -1440,6 +1440,17 @@ html.dark {
   .status-online { color: var(--color-muted); }
 
   /* CRO blocks */
+  .home-hub-grid {
+    @apply grid gap-4 sm:grid-cols-2;
+  }
+  .home-hub-card {
+    @apply block rounded-lg border border-hairline bg-surface-card p-6 md:p-8;
+    transition: border-color 180ms ease, background-color 180ms ease;
+  }
+  .home-hub-card:hover {
+    border-color: color-mix(in srgb, var(--color-primary) 30%, var(--color-hairline));
+    background: color-mix(in srgb, var(--color-primary) 3%, var(--color-surface-card));
+  }
   .comparison-grid,
   .micro-conversions-grid {
     @apply grid gap-6 md:grid-cols-2 lg:grid-cols-3;

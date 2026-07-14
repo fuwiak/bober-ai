@@ -101,6 +101,50 @@ const en = {
       "Full handover to your team, no vendor lock-in",
     ],
   },
+  homeHub: {
+    label: "Sections",
+    title: "Explore in detail",
+    items: [
+      {
+        href: "/services",
+        title: "Services",
+        description: "CRM, documents, sales, support — what we implement and the business outcomes.",
+      },
+      {
+        href: "/portfolio",
+        title: "Case studies",
+        description: "Kaspersky, ELIA Suite, proposal automation and document workflows.",
+      },
+      {
+        href: "/pricing",
+        title: "Pricing",
+        description: "Packages from €1,500, ROI calculator and fixed scope before development.",
+      },
+      {
+        href: "/faq",
+        title: "FAQ",
+        description: "Timeline, budget, NDA, CRM, Claude — answers for procurement and IT.",
+      },
+    ],
+  },
+  pages: {
+    services: {
+      metaTitle: "Services — AI implementation and business automation",
+      metaDescription: "CRM, documents, sales, support, knowledge base — AI in company operations with fixed scope.",
+    },
+    portfolio: {
+      metaTitle: "AI implementation case studies",
+      metaDescription: "Bober AI Systems portfolio: Kaspersky, ELIA Suite, proposal automation, CRM and documents.",
+    },
+    pricing: {
+      metaTitle: "AI implementation pricing — packages and estimates",
+      metaDescription: "Automation packages from €1,500. Audit, roadmap, implementation and support.",
+    },
+    faq: {
+      metaTitle: "FAQ — AI implementation for business",
+      metaDescription: "Answers on budget, timeline, NDA, CRM, Claude API and on-prem deployment.",
+    },
+  },
   problemsWeSolve: {
     title: "Typical problems we solve",
     subtitle: "Sound familiar? Most of our clients start here.",

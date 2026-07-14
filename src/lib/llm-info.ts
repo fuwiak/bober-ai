@@ -149,7 +149,7 @@ Three partnership models — terms discussed per project after brief:
 - CRM + Telegram + Google Sheets — лёгкая CRM для B2B
 - OCR — извлечение текста из документов для бухгалтерии и юристов
 
-Портфолио: https://www.bober-ai.dev/#portfolio
+Портфолио: https://www.bober-ai.dev/portfolio
 
 ## Technology Stack (Summary)
 

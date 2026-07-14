@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ContactCta } from "@/components/ContactCta";
 import { EditorialImageFrame } from "@/components/EditorialImageFrame";
+import { Link } from "@/i18n/navigation";
 import { motion, useReducedMotion } from "motion/react";
 import { revealTransition } from "@/lib/motion";
 
@@ -16,6 +17,7 @@ type HeroSectionProps = {
   specialization?: string;
   ctaPrimary: string;
   ctaSecondary: string;
+  ctaSecondaryHref?: string;
   trustItems: string[];
   heroImage: string;
   heroImageAlt: string;
@@ -31,6 +33,7 @@ export function HeroSection({
   specialization,
   ctaPrimary,
   ctaSecondary,
+  ctaSecondaryHref = "/portfolio",
   trustItems,
   heroImage,
   heroImageAlt,
@@ -103,9 +106,9 @@ export function HeroSection({
             transition={transition}
           >
             <ContactCta>{ctaPrimary}</ContactCta>
-            <a href="#portfolio" className="btn-secondary">
+            <Link href={ctaSecondaryHref as "/"} className="btn-secondary">
               {ctaSecondary}
-            </a>
+            </Link>
           </motion.div>
         </motion.div>
 
