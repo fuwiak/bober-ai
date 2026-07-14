@@ -1,6 +1,7 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import { ContactForm } from "@/components/ContactForm";
 import { ContactCta } from "@/components/ContactCta";
+import { ClaudeSection } from "@/components/ClaudeSection";
 import { FaqSection } from "@/components/FaqSection";
 import { SectionCtaBand } from "@/components/SectionCtaBand";
 import { EditorialImageFrame } from "@/components/EditorialImageFrame";
@@ -259,6 +260,16 @@ export default async function HomePage() {
           articleAriaLabel={t("media.articleAriaLabel")}
           footerNote={t("media.footerNote")}
           footerLinkLabel={t("media.footerLinkLabel")}
+        />
+
+        <ClaudeSection
+          label={t("claude.label")}
+          title={t("claude.title")}
+          subtitle={t("claude.subtitle")}
+          popularLabel={t("claude.popularLabel")}
+          terms={t.raw("claude.terms") as string[]}
+          items={t.raw("claude.items") as { q: string; a: string }[]}
+          cta={t("claude.cta")}
         />
 
         <FaqSection

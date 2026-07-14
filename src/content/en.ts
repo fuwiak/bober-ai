@@ -2,8 +2,16 @@ const en = {
   meta: {
     title: "AI implementation for business processes",
     description:
-      "Bober AI Systems — I implement AI into company operations: customer service, CRM, documents, sales, HR. Fixed scope, production delivery, team handover.",
+      "Bober AI Systems — Claude AI, Claude API implementation and business process automation: CRM, documents, sales, support. Fixed scope, production delivery.",
     keywords: [
+      "claude ai",
+      "claude api",
+      "claude code",
+      "claude mcp",
+      "claude for business",
+      "claude agent",
+      "anthropic claude",
+      "claude implementation",
       "business process automation",
       "CRM implementation",
       "document workflow automation",
@@ -43,7 +51,7 @@ const en = {
   },
   hero: {
     location: "Moscow · Remote · Russia & CIS",
-    eyebrow: "Bober AI Systems / Enterprise AI integrator",
+    eyebrow: "Bober AI Systems · Claude · Business automation",
     titleLine1: "AI AUTOMATION",
     titleLine2: "FOR BUSINESS",
     valueProposition: "I design and deploy AI systems that automate company operations.",
@@ -417,6 +425,58 @@ const en = {
     commitment: "no obligation",
     format: "online",
     cta: "Book a consultation",
+  },
+  claude: {
+    label: "Claude · Anthropic",
+    title: "Claude AI for business — implementation and automation",
+    subtitle:
+      "Claude AI, Claude API, Claude Code, and Claude MCP are among the most searched AI terms. We don't resell subscriptions — we implement Claude into company operations: CRM, documents, sales, support, and knowledge bases.",
+    popularLabel: "Popular Claude searches",
+    terms: [
+      "Claude AI",
+      "Claude API",
+      "Claude Code",
+      "Claude MCP",
+      "Claude Agent",
+      "Claude Opus",
+      "Claude Sonnet",
+      "Claude Pro",
+      "Anthropic API",
+      "Claude Skills",
+      "Claude in Russia",
+      "Claude neural network",
+    ],
+    items: [
+      {
+        q: "What is Claude AI and why does business need it?",
+        a: "Claude AI is Anthropic's LLM for text, documents, code, and multi-step tasks. In business it's used as an automation engine — not just a chat: proposal generation, support replies, document extraction, CRM updates. We design and deploy these workflows end-to-end.",
+      },
+      {
+        q: "How do you connect Claude API to CRM, ERP, or Bitrix24?",
+        a: "Claude API (Anthropic API) is called from your systems: amoCRM, Bitrix24, 1C, n8n, Telegram, email. We set up keys, proxy if needed, rate limits, logging, and retries. API keys and infrastructure stay with the client.",
+      },
+      {
+        q: "What is Claude Code and when does a company need it?",
+        a: "Claude Code is Anthropic's agentic coding tool for terminal and IDE workflows. Companies use it to accelerate integrations, scripts, MCP servers, and internal tools. We embed Claude Code into engineering workflows — not just personal use.",
+      },
+      {
+        q: "What is Claude MCP and why implement it?",
+        a: "Claude MCP (Model Context Protocol) connects Claude to CRM, databases, files, and internal APIs. We build MCP servers so agents pull data from amoCRM, 1C, or Confluence — without copy-paste and manual exports.",
+      },
+      {
+        q: "Claude in Russia — how do companies use it compliantly?",
+        a: "Most searches are about site and API access. For companies we design a working perimeter: proxy, corporate keys, on-prem, or hybrid with YandexGPT/GigaChat where compliance requires it. Data stays in your environment; NDA before kickoff.",
+      },
+      {
+        q: "What does a Claude agent automate in sales and support?",
+        a: "A Claude agent can handle inbound leads, draft commercial proposals, update CRM, answer from a knowledge base, and escalate to humans. Typical cases: sales ops, support, document workflows — with measurable time savings.",
+      },
+      {
+        q: "Claude Opus, Sonnet, and Pro — which model to choose?",
+        a: "Opus for complex documents and multi-step agents. Sonnet for CRM and support balance of speed and quality. Pro is Anthropic's team subscription. In production we pick the model by task, language, budget, and data requirements — not the most expensive by default.",
+      },
+    ],
+    cta: "Discuss Claude implementation",
   },
   faq: {
     label: "FAQ",

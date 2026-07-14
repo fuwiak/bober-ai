@@ -49,7 +49,7 @@ export default async function LlmInfoPage() {
                 На главную
               </Link>
               <Link href="/#contact" className="text-link">
-                Оставить заявку
+                Обсудить проект
               </Link>
               <Link href="/partners" className="text-link">
                 Партнёрам
