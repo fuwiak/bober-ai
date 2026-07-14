@@ -10,7 +10,8 @@ type HeroSectionProps = {
   eyebrow: string;
   titleLine1: string;
   titleLine2?: string;
-  valueProposition: string;
+  titleStyle?: "headline" | "sentence";
+  valueProposition?: string;
   differentiator?: string;
   specialization?: string;
   ctaPrimary: string;
@@ -24,6 +25,7 @@ export function HeroSection({
   eyebrow,
   titleLine1,
   titleLine2,
+  titleStyle = "headline",
   valueProposition,
   differentiator,
   specialization,
@@ -57,7 +59,7 @@ export function HeroSection({
           </motion.p>
 
           <motion.h1
-            className="hero-title mt-8"
+            className={`hero-title mt-8${titleStyle === "sentence" ? " hero-title--sentence" : ""}`}
             variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
             transition={transition}
           >
@@ -65,13 +67,15 @@ export function HeroSection({
             {titleLine2 ? <span className="block">{titleLine2}</span> : null}
           </motion.h1>
 
-          <motion.p
-            className="hero-lead"
-            variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
-            transition={transition}
-          >
-            {valueProposition}
-          </motion.p>
+          {valueProposition ? (
+            <motion.p
+              className="hero-lead"
+              variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
+              transition={transition}
+            >
+              {valueProposition}
+            </motion.p>
+          ) : null}
 
           {differentiator ? (
             <motion.p

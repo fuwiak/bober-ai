@@ -95,7 +95,7 @@ export default async function Page({ params }: Props) {
     potentialAction: {
       "@type": "ContactAction",
       target: `${SITE_URL}/#contact`,
-      name: locale === "en" ? "Request a quote" : "Оставить заявку",
+      name: locale === "en" ? "Request a quote" : "Обсудить проект",
     },
   };
 

@@ -56,10 +56,8 @@ export default async function HomePage() {
         <HeroSection
           eyebrow={t("hero.eyebrow")}
           titleLine1={t("hero.titleLine1")}
-          titleLine2={t("hero.titleLine2")}
-          valueProposition={t("hero.valueProposition")}
-          differentiator={t("hero.differentiator")}
-          specialization={t("hero.specialization")}
+          titleLine2={t("hero.titleLine2") || undefined}
+          titleStyle={t("hero.titleLine2") ? "headline" : "sentence"}
           ctaPrimary={t("hero.ctaPrimary")}
           ctaSecondary={t("hero.ctaSecondary")}
           trustItems={t.raw("hero.trustItems") as string[]}
@@ -70,6 +68,26 @@ export default async function HomePage() {
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial">
             <TrustStrip stats={trustStats} />
+          </div>
+        </section>
+
+        <section className="section-band section--panel border-b border-hairline">
+          <div className="container-editorial">
+            <Reveal>
+              <span className="section-label">{t("sections.whyUs")}</span>
+              <h2 className="section-title mt-4">{t("whyUs.title")}</h2>
+              <p className="body-copy mt-6 max-w-3xl text-base">{t("whyUs.text")}</p>
+            </Reveal>
+            <ul className="mt-10 max-w-3xl space-y-4">
+              {(t.raw("whyUs.benefits") as string[]).map((item) => (
+                <Reveal key={item} delay={0.05}>
+                  <li className="body-copy flex gap-4 text-base">
+                    <span className="meta-label shrink-0">—</span>
+                    <span>{item}</span>
+                  </li>
+                </Reveal>
+              ))}
+            </ul>
           </div>
         </section>
 
@@ -146,15 +164,6 @@ export default async function HomePage() {
             </Reveal>
           </div>
         </section>
-
-        <SectionCtaBand
-          title={t("sectionCta.title")}
-          duration={t("sectionCta.duration")}
-          commitment={t("sectionCta.commitment")}
-          format={t("sectionCta.format")}
-          cta={t("sectionCta.cta")}
-          className="section--deep"
-        />
 
         <section id="process" className="section-band section--deep scroll-mt-16 border-b border-hairline">
           <div className="container-editorial">

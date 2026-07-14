@@ -18,7 +18,7 @@ test.describe("Форма заявки", () => {
     ]);
     await preparePage(page);
     await page.goto("/#contact");
-    await expect(page.getByRole("heading", { name: "Связаться" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Контакты" })).toBeVisible();
     await expect(page.locator("form input#contact")).toBeVisible();
   });
 
@@ -33,7 +33,7 @@ test.describe("Форма заявки", () => {
     await form.locator("#pd-policy").check();
     await form.locator("#pd-consent").check();
 
-    const submit = form.getByRole("button", { name: "Отправить заявку" });
+    const submit = form.getByRole("button", { name: "Обсудить проект" });
     await expect(submit).toBeEnabled();
 
     const responsePromise = page.waitForResponse(
@@ -75,7 +75,7 @@ test.describe("Форма заявки", () => {
     await form.locator("#name").fill("Тест");
     await form.locator("input#contact").fill("+7 900 000-00-00");
 
-    const submit = form.getByRole("button", { name: "Отправить заявку" });
+    const submit = form.getByRole("button", { name: "Обсудить проект" });
     await expect(submit).toBeDisabled();
   });
 

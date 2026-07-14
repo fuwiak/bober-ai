@@ -126,6 +126,13 @@ html.dark {
     font-weight: 400;
   }
 
+  .hero-title--sentence {
+    text-transform: none;
+    letter-spacing: -0.02em;
+    font-size: clamp(32px, 5vw, 56px);
+    line-height: 1.15;
+  }
+
   .section-title,
   .display-md,
   .display-lg {

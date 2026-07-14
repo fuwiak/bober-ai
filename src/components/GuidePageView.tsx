@@ -154,7 +154,7 @@ export function GuidePageView({ guide, content, locale, ctaLabel, telegramLabel 
           <div className="container-editorial grid gap-16 lg:grid-cols-2">
             <Reveal>
               <span className="section-label">{isEn ? "Contact" : "Контакт"}</span>
-              <h2 className="section-title mt-4">{isEn ? "Discuss your project" : "Обсудить задачу"}</h2>
+              <h2 className="section-title mt-4">{isEn ? "Discuss your project" : "Обсудить проект"}</h2>
             </Reveal>
             <Reveal delay={0.1}>
               <ContactForm defaultService={content.h1} />

@@ -100,7 +100,7 @@ export default async function PortfolioProjectPage({ params }: PageProps) {
           )}
 
           <div className="callout-accent mt-12">
-            <h2 className="font-display text-2xl tracking-tight">{isEn ? "Want a similar solution?" : "Хотите похожее решение?"}</h2>
+            <h2 className="font-display text-2xl tracking-tight">{isEn ? "Similar solution for your business" : "Похожее решение для вашего бизнеса"}</h2>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-on-primary/90">
               {isEn
                 ? "Describe your scope — we will propose architecture, timeline, and estimate."

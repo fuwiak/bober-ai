@@ -82,6 +82,16 @@ const en = {
     closing:
       "We recommend the solution that delivers the highest business value—not the most fashionable technology.",
   },
+  whyUs: {
+    label: "Difference",
+    title: "Demo is not deployment",
+    text: "Most AI integrators can build a polished demo. We deploy systems that run for months in real business—with measurable time and cost savings.",
+    benefits: [
+      "40–80% reduction in manual work on typical processes",
+      "Payback from 3 months—we calculate before starting",
+      "Full handover to your team, no vendor lock-in",
+    ],
+  },
   problemsWeSolve: {
     title: "Typical problems we solve",
     subtitle: "Sound familiar? Most of our clients start here.",
@@ -868,6 +878,7 @@ const en = {
   },
   sections: {
     philosophy: "Philosophy",
+    whyUs: "Difference",
     problems: "Problems",
     audience: "Who we work with",
     engagement: "Engagement",
