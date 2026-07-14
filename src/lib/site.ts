@@ -25,6 +25,8 @@ export const HOMEPAGE_PRESENCE_LINKS = [
 ] as const;
 export const YOUTUBE_SHORTS_URL = "https://www.youtube.com/shorts/5DQzO5aPS5A";
 export const ORGANIZATION_NAME = "ИП Стасиньски Павел Кшиштоф";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.bober-ai.dev";
+
 export const DEFAULT_KEYWORDS = [
   "автоматизация бизнес процессов",
   "автоматизация документооборота",
