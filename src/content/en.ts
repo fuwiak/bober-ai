@@ -45,7 +45,7 @@ const en = {
     valueProposition: "CRM · Documents · Sales · Support.",
     specialization:
       "We deploy AI only where it genuinely speeds up work and reduces costs.",
-    portraitRole: "Automation architect · Production delivery",
+    heroImageAlt: "Business process automation and CRM integrations",
     trustItems: [
       "12+ PRODUCTION DEPLOYMENTS",
       "€25K+ TYPICAL DEAL",

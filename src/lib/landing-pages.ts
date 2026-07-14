@@ -1,3 +1,5 @@
+import { PORTFOLIO_IMAGES, STOCK_IMAGES } from "@/lib/site";
+
 export type LandingCategory = "automation" | "integrations" | "solutions" | "ai";
 
 export type LandingPageDef = {
@@ -5,6 +7,7 @@ export type LandingPageDef = {
   slug: string;
   contentKey: string;
   serviceSlug: string;
+  coverImage: string;
 };
 
 export const LANDING_PAGES: LandingPageDef[] = [
@@ -13,54 +16,63 @@ export const LANDING_PAGES: LandingPageDef[] = [
     slug: "processes",
     contentKey: "processes",
     serviceSlug: "business-process-automation",
+    coverImage: STOCK_IMAGES.automation,
   },
   {
     category: "integrations",
     slug: "crm",
     contentKey: "crm",
     serviceSlug: "business-process-automation",
+    coverImage: STOCK_IMAGES.team,
   },
   {
     category: "ai",
     slug: "corporate",
     contentKey: "corporate",
     serviceSlug: "enterprise-ai-assistant",
+    coverImage: STOCK_IMAGES.security,
   },
   {
     category: "automation",
     slug: "documents",
     contentKey: "documents",
     serviceSlug: "business-process-automation",
+    coverImage: PORTFOLIO_IMAGES.kpLlm,
   },
   {
     category: "automation",
     slug: "sales",
     contentKey: "sales",
     serviceSlug: "sales-ai-agent",
+    coverImage: STOCK_IMAGES.sales,
   },
   {
     category: "integrations",
     slug: "amocrm",
     contentKey: "amocrm",
     serviceSlug: "business-process-automation",
+    coverImage: PORTFOLIO_IMAGES.leads,
   },
   {
     category: "integrations",
     slug: "bitrix24",
     contentKey: "bitrix24",
     serviceSlug: "business-process-automation",
+    coverImage: PORTFOLIO_IMAGES.elia,
   },
   {
     category: "solutions",
     slug: "knowledge-base",
     contentKey: "knowledgeBase",
     serviceSlug: "enterprise-ai-assistant",
+    coverImage: STOCK_IMAGES.roadmap,
   },
   {
     category: "solutions",
     slug: "assistant",
     contentKey: "assistant",
     serviceSlug: "enterprise-ai-assistant",
+    coverImage: PORTFOLIO_IMAGES.telemost,
   },
 ];
 

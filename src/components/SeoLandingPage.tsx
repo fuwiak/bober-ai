@@ -137,7 +137,14 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
                   {t("common.timeline")}: {service.deliveryDays} {t("common.days")}
                 </p>
                 <div className="relative mt-6 aspect-[16/10] overflow-hidden rounded-lg bg-surface-soft">
-                  <Image src={service.serviceImage} alt={service.title} fill className="object-cover" sizes="320px" />
+                  <Image
+                    src={page.coverImage}
+                    alt={content.h1}
+                    fill
+                    className="object-cover"
+                    sizes="320px"
+                    unoptimized={page.coverImage.endsWith(".png")}
+                  />
                 </div>
               </aside>
             </div>

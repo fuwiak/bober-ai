@@ -1,11 +1,19 @@
 export const HERO_STOCK_IMAGE = "/stock/automation-code.jpg";
-export const ABOUT_STOCK_IMAGE = "/stock/team-collab.jpg";
+export const ABOUT_STOCK_IMAGE = "/stock/roadmap-sticky-notes.jpg";
 export const STOCK_IMAGES = {
   automation: "/stock/automation-code.jpg",
   team: "/stock/team-collab.jpg",
   sales: "/stock/sales-proposal.jpg",
   security: "/stock/cyber-padlock.jpg",
   roadmap: "/stock/roadmap-sticky-notes.jpg",
+} as const;
+
+export const PORTFOLIO_IMAGES = {
+  telemost: "/portfolio/yandex-telemost-agent.png",
+  kaspersky: "/yandex/kaspersky 2.png",
+  leads: "/portfolio/gtm-flow-leads.png",
+  kpLlm: "/portfolio/offer-kp-llm.png",
+  elia: "/portfolio/elia-suite.png",
 } as const;
 export const SITE_NAME = "Bober AI Systems";
 export const SITE_TAGLINE_RU = "Автоматизация бизнес-процессов для компаний";
