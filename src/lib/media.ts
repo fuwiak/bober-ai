@@ -1,3 +1,16 @@
+import { YOUTUBE_SHORTS_URL } from "@/lib/site";
+
+export type MediaPublisher = {
+  id: string;
+  name: string;
+  logoLabel: string;
+};
+
+export const MEDIA_PUBLISHERS: MediaPublisher[] = [
+  { id: "mk", name: "Московский комсомолец", logoLabel: "МК" },
+  { id: "severgazbank", name: "Газета Севергазбанка", logoLabel: "Севергазбанк" },
+  { id: "youtube", name: "YouTube", logoLabel: "YouTube" },
+];
 export type MediaItemType = "article" | "video";
 export type MediaAccent = "youtube" | "mk" | "severgazbank";
 
@@ -16,6 +29,19 @@ export type MediaItem = {
 };
 
 const ruMediaItems: MediaItem[] = [
+  {
+    id: "youtube-ai-business",
+    type: "video",
+    category: "ИНТЕРВЬЮ",
+    publisher: "YouTube",
+    title: "Внедрение AI в бизнес — экспертное интервью",
+    description: "Как компании переходят от пилотов к production AI-системам и что важно на этапе закупки.",
+    url: YOUTUBE_SHORTS_URL,
+    featured: true,
+    accent: "youtube",
+    youtubeId: "5DQzO5aPS5A",
+    publishedAt: "2025-09-01",
+  },
   {
     id: "mk-ai-teachers",
     type: "article",
@@ -45,6 +71,19 @@ const ruMediaItems: MediaItem[] = [
 ];
 
 const enMediaItems: MediaItem[] = [
+  {
+    id: "youtube-ai-business",
+    type: "video",
+    category: "INTERVIEW",
+    publisher: "YouTube",
+    title: "Enterprise AI implementation — expert interview",
+    description: "How companies move from pilots to production AI systems and what matters during procurement.",
+    url: YOUTUBE_SHORTS_URL,
+    featured: true,
+    accent: "youtube",
+    youtubeId: "5DQzO5aPS5A",
+    publishedAt: "2025-09-01",
+  },
   {
     id: "mk-ai-teachers",
     type: "article",

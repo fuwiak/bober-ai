@@ -15,6 +15,8 @@ type ProjectsCasesShowcaseProps = {
   subtitle?: string;
   detailsLabel: string;
   allLabel: string;
+  metricLabel?: string;
+  stackLabel?: string;
   problemLabel?: string;
   solutionLabel?: string;
   resultLabel?: string;
@@ -28,6 +30,8 @@ export function ProjectsCasesShowcase({
   subtitle,
   detailsLabel,
   allLabel,
+  metricLabel = "Key result",
+  stackLabel = "Stack",
   problemLabel = "Задача",
   solutionLabel = "Решение",
   resultLabel = "Результат",
@@ -97,6 +101,17 @@ export function ProjectsCasesShowcase({
                 </div>
 
                 <h3 className="case-study__title">{item.title}</h3>
+
+                {item.metric ? (
+                  <p className="case-study__metric">{item.metric}</p>
+                ) : null}
+
+                {item.stack ? (
+                  <p className="case-study__stack">
+                    <span className="text-body-strong">{stackLabel}: </span>
+                    {item.stack}
+                  </p>
+                ) : null}
 
                 {item.description ? (
                   <p className="case-study__desc">

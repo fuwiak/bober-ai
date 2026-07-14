@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { PORTFOLIO } from "@/lib/profile";
-import { getEnterpriseServices } from "@/lib/enterprise-services";
+import { getAllServiceSlugs } from "@/lib/seo-services-content";
 import { GUIDES } from "@/lib/guides";
 import { LANDING_PAGES } from "@/lib/landing-pages";
 import { SITE_URL } from "@/lib/site";
@@ -18,7 +18,7 @@ const staticRoutes = [
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const entries: MetadataRoute.Sitemap = [];
-  const ruServices = getEnterpriseServices("ru");
+  const ruServiceSlugs = getAllServiceSlugs("ru");
 
   for (const route of staticRoutes) {
     entries.push({
@@ -49,22 +49,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  for (const offer of ruServices) {
+  for (const slug of ruServiceSlugs) {
     entries.push({
-      url: `${SITE_URL}/services/${offer.slug}`,
+      url: `${SITE_URL}/services/${slug}`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.85,
       alternates: {
         languages: {
-          ru: `${SITE_URL}/services/${offer.slug}`,
-          en: `${SITE_URL}/en/services/${offer.slug}`,
-          "x-default": `${SITE_URL}/services/${offer.slug}`,
+          ru: `${SITE_URL}/services/${slug}`,
+          en: `${SITE_URL}/en/services/${slug}`,
+          "x-default": `${SITE_URL}/services/${slug}`,
         },
       },
     });
     entries.push({
-      url: `${SITE_URL}/en/services/${offer.slug}`,
+      url: `${SITE_URL}/en/services/${slug}`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.75,

@@ -1,34 +1,26 @@
 import { getTranslations, getLocale } from "next-intl/server";
-import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
-import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { ContactCta } from "@/components/ContactCta";
-import { FaqSection } from "@/components/FaqSection";
-import { SectionCtaBand } from "@/components/SectionCtaBand";
-import { TrackedAnchor } from "@/components/TrackedAnchor";
 import { PartnerProgramBanner } from "@/components/PartnerProgramBanner";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { HeroSection } from "@/components/motion/HeroSection";
 import { ImplementationCard, type ImplementationArea } from "@/components/motion/ImplementationCard";
-import { PackageCard, type PackageItem } from "@/components/motion/PackageCard";
 import { MediaSection } from "@/components/motion/MediaSection";
-import { PartnerSectionHeader, PartnerSteps } from "@/components/motion/PartnerSteps";
 import { ProjectsCasesShowcase } from "@/components/motion/ProjectsCasesShowcase";
 import { ReviewsShowcase } from "@/components/motion/ReviewsShowcase";
 import { TrustStrip } from "@/components/motion/TrustStrip";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { Link } from "@/i18n/navigation";
+import { TrackedAnchor } from "@/components/TrackedAnchor";
 import { getEnterpriseReviews } from "@/lib/enterprise-reviews";
 import { getMediaItems } from "@/lib/media";
 import { PORTFOLIO, PROFILE } from "@/lib/profile";
 import {
-  ABOUT_STOCK_IMAGE,
   CONTACT_EMAIL,
   CONTACT_PHONE,
   FOUNDER_IMAGE,
   GITHUB_URL,
-  HERO_STOCK_IMAGE,
   LINKEDIN_URL,
   TELEGRAM_URL,
   YANDEX_USLUGI_URL,
@@ -37,19 +29,11 @@ import {
 export default async function HomePage() {
   const t = await getTranslations();
   const locale = await getLocale();
-  const skills = t.raw("about.skills") as string[];
   const implementationAreas = t.raw("services.implementationAreas") as ImplementationArea[];
-  const packages = t.raw("packages.items") as PackageItem[];
   const mediaItems = getMediaItems(locale);
   const enterpriseReviews = getEnterpriseReviews();
   const trustStats = t.raw("trust.stats") as { value: string; label: string }[];
-  const homepageCaseSlugs = [
-    "kaspersky-ai-assistant",
-    "elia-suite",
-    "lead-generation",
-    "kp-llm-automation",
-    "yandex-telemost-agent",
-  ] as const;
+  const homepageCaseSlugs = ["kaspersky-ai-assistant", "elia-suite", "lead-generation"] as const;
   const homepageCases = homepageCaseSlugs
     .map((slug) => PORTFOLIO.find((item) => item.slug === slug))
     .filter((item): item is (typeof PORTFOLIO)[number] => Boolean(item));
@@ -64,8 +48,6 @@ export default async function HomePage() {
           titleLine1={t("hero.titleLine1")}
           titleLine2={t("hero.titleLine2")}
           valueProposition={t("hero.valueProposition")}
-          differentiator={t("hero.differentiator")}
-          benefits={t.raw("hero.benefits") as string[]}
           ctaPrimary={t("hero.ctaPrimary")}
           ctaSecondary={t("hero.ctaSecondary")}
           trustItems={t.raw("hero.trustItems") as string[]}
@@ -76,46 +58,6 @@ export default async function HomePage() {
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial">
             <TrustStrip stats={trustStats} />
-          </div>
-        </section>
-
-        <section className="section-band section--panel border-b border-hairline">
-          <div className="container-editorial max-w-3xl">
-            <Reveal>
-              <span className="section-label">{t("sections.problems")}</span>
-              <h2 className="section-title mt-4">{t("problemsWeSolve.title")}</h2>
-              <p className="body-copy mt-4 text-base">{t("problemsWeSolve.subtitle")}</p>
-            </Reveal>
-            <Stagger className="mt-10">
-              {(t.raw("problemsWeSolve.items") as string[]).map((item) => (
-                <StaggerItem key={item}>
-                  <p className="body-copy text-base">— {item}</p>
-                </StaggerItem>
-              ))}
-            </Stagger>
-            <Reveal delay={0.1} className="mt-10">
-              <p className="body-copy text-base font-medium">{t("problemsWeSolve.solutionsIntro")}</p>
-            </Reveal>
-          </div>
-        </section>
-
-        <section className="section-band section--deep border-b border-hairline">
-          <div className="container-editorial max-w-3xl">
-            <Reveal>
-              <span className="section-label">{t("sections.philosophy")}</span>
-              <h2 className="section-title mt-4">{t("philosophy.title")}</h2>
-              <p className="body-copy mt-4 text-base">{t("philosophy.subtitle")}</p>
-            </Reveal>
-            <Stagger className="mt-10">
-              {(t.raw("philosophy.items") as string[]).map((item) => (
-                <StaggerItem key={item}>
-                  <p className="body-copy text-base">— {item}</p>
-                </StaggerItem>
-              ))}
-            </Stagger>
-            <Reveal delay={0.1} className="mt-8">
-              <p className="body-copy text-base font-medium">{t("philosophy.closing")}</p>
-            </Reveal>
           </div>
         </section>
 
@@ -141,37 +83,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <SectionCtaBand
-          title={t("sectionCta.title")}
-          duration={t("sectionCta.duration")}
-          commitment={t("sectionCta.commitment")}
-          format={t("sectionCta.format")}
-          cta={t("sectionCta.cta")}
-        />
-
-        <section id="packages" className="section-band section--deep scroll-mt-16 border-b border-hairline">
-          <div className="container-editorial">
-            <Reveal>
-              <span className="section-label">{t("sections.engagement")}</span>
-              <h2 className="section-title mt-4">{t("packages.title")}</h2>
-              <p className="body-copy mt-4 max-w-2xl text-base">{t("packages.subtitle")}</p>
-            </Reveal>
-            <Stagger className="mt-12">
-              {packages.map((pkg, index) => (
-                <PackageCard
-                  key={pkg.name}
-                  index={index}
-                  {...pkg}
-                  ctaLabel={t("packages.cta")}
-                  featuredLabel={t("packages.featuredLabel")}
-                  detailsLabel={t("packages.detailsLabel")}
-                />
-              ))}
-            </Stagger>
-          </div>
-        </section>
-
-        <section id="services" className="section-band section--panel scroll-mt-16 border-b border-hairline">
+        <section id="services" className="section-band section--deep scroll-mt-16 border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
               <span className="section-label">{t("sections.solutions")}</span>
@@ -191,16 +103,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <SectionCtaBand
-          title={t("sectionCta.title")}
-          duration={t("sectionCta.duration")}
-          commitment={t("sectionCta.commitment")}
-          format={t("sectionCta.format")}
-          cta={t("sectionCta.cta")}
-          className="section--deep"
-        />
-
-        <section id="portfolio" className="section-band section--deep scroll-mt-16 border-b border-hairline">
+        <section id="portfolio" className="section-band section--panel scroll-mt-16 border-b border-hairline">
           <div className="container-editorial">
             <ProjectsCasesShowcase
               items={homepageCases}
@@ -216,18 +119,15 @@ export default async function HomePage() {
               categoriesLabel={t("portfolio.categoriesLabel")}
               sectionLabel={t("sections.portfolio")}
             />
+            <Reveal delay={0.1} className="mt-10">
+              <Link href="/portfolio" className="text-link text-[11px] uppercase tracking-[0.16em]">
+                {t("portfolio.allCases")} →
+              </Link>
+            </Reveal>
           </div>
         </section>
 
-        <SectionCtaBand
-          title={t("sectionCta.title")}
-          duration={t("sectionCta.duration")}
-          commitment={t("sectionCta.commitment")}
-          format={t("sectionCta.format")}
-          cta={t("sectionCta.cta")}
-        />
-
-        <section id="process" className="section-band section--panel scroll-mt-16 border-b border-hairline">
+        <section id="process" className="section-band section--deep scroll-mt-16 border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
               <span className="section-label">{t("sections.process")}</span>
@@ -247,115 +147,6 @@ export default async function HomePage() {
                 </StaggerItem>
               ))}
             </Stagger>
-          </div>
-        </section>
-
-        <section className="section-band section--deep border-b border-hairline">
-          <div className="container-editorial">
-            <Reveal>
-              <h2 className="section-title">{t("security.title")}</h2>
-            </Reveal>
-            <ul className="mt-10 max-w-3xl space-y-4">
-              {(t.raw("security.items") as string[]).map((item) => (
-                <Reveal key={item} delay={0.05}>
-                  <li className="body-copy flex gap-4 text-base">
-                    <span className="meta-label shrink-0">—</span>
-                    <span>{item}</span>
-                  </li>
-                </Reveal>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        <section id="partners" className="section-band section--panel scroll-mt-16 border-b border-hairline">
-          <div className="container-editorial">
-            <PartnerSectionHeader
-              badge={t("partners.badge")}
-              title={t("partners.title")}
-              subtitle={t("partners.subtitle")}
-              description={t("partners.description")}
-            />
-            <PartnerSteps steps={t.raw("partners.steps") as { title: string; text: string }[]} />
-            <Reveal delay={0.1} className="mt-10">
-              <ul className="space-y-2 text-base text-body">
-                {(t.raw("partners.models") as string[]).map((item) => (
-                  <li key={item}>— {item}</li>
-                ))}
-              </ul>
-            </Reveal>
-            <Reveal delay={0.15} className="mt-12">
-              <Link href="/partners" className="btn-primary">
-                {t("partners.cta")}
-              </Link>
-            </Reveal>
-          </div>
-        </section>
-
-        <section id="about" className="section-band section--deep scroll-mt-16 border-b border-hairline">
-          <div className="container-editorial grid gap-16 lg:grid-cols-[0.4fr_0.6fr] lg:items-start">
-            <Reveal>
-              <EditorialImageFrame variant="card" className="aspect-[4/3] w-full max-w-md bg-surface-soft">
-                <Image
-                  src={ABOUT_STOCK_IMAGE}
-                  alt={t("about.imageAlt")}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 400px"
-                  className="object-cover"
-                />
-              </EditorialImageFrame>
-            </Reveal>
-            <div>
-              <Reveal>
-              <span className="section-label">{t("sections.about")}</span>
-                <h2 className="section-title mt-4">{t("about.title")}</h2>
-                <p className="meta-label mt-6">{t("about.tagline")}</p>
-                <p className="body-copy mt-6 max-w-3xl whitespace-pre-line text-base">{t("about.text")}</p>
-                <ContactCta className="mt-10">{t("about.cta")}</ContactCta>
-              </Reveal>
-              <Stagger className="mt-12 border-t border-hairline">
-                <StaggerItem>
-                  <div className="audience-row">
-                    <span className="editorial-row__index">01</span>
-                    <div>
-                      <p className="meta-label">{t("about.approach")}</p>
-                      <p className="body-copy mt-2 text-base">{t("about.approachValue")}</p>
-                    </div>
-                  </div>
-                </StaggerItem>
-                <StaggerItem>
-                  <div className="audience-row">
-                    <span className="editorial-row__index">02</span>
-                    <div>
-                      <p className="meta-label">{t("about.schedule")}</p>
-                      <p className="body-copy mt-2 text-base">{t("about.scheduleValue")}</p>
-                    </div>
-                  </div>
-                </StaggerItem>
-                <StaggerItem>
-                  <div className="audience-row">
-                    <span className="editorial-row__index">03</span>
-                    <div>
-                      <p className="meta-label">{t("about.collaboration")}</p>
-                      <p className="body-copy mt-2 text-base">{t("about.collaborationSummary")}</p>
-                      <p className="mt-2 text-base text-muted">{t("about.collaborationDetail")}</p>
-                    </div>
-                  </div>
-                </StaggerItem>
-              </Stagger>
-              <Reveal delay={0.1} className="mt-12">
-                <h3 className="meta-label">{t("about.skillsTitle")}</h3>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {skills.map((skill) => (
-                    <span key={skill} className="skill-chip">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-                <p className="meta-label mt-8">{t("about.techStackTitle")}</p>
-                <p className="body-copy mt-3 text-base text-muted">{t("about.techStack")}</p>
-              </Reveal>
-            </div>
           </div>
         </section>
 
@@ -387,14 +178,6 @@ export default async function HomePage() {
           articleAriaLabel={t("media.articleAriaLabel")}
           footerNote={t("media.footerNote")}
           footerLinkLabel={t("media.footerLinkLabel")}
-        />
-
-        <FaqSection
-          id="faq"
-          label={t("faq.label")}
-          title={t("faq.title")}
-          subtitle={t("faq.subtitle")}
-          items={t.raw("faq.items") as { q: string; a: string }[]}
         />
 
         <section className="cta-band">

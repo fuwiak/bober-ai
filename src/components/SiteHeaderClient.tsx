@@ -40,7 +40,7 @@ export function SiteHeaderClient({
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -70,8 +70,30 @@ export function SiteHeaderClient({
     <header
       className={`site-header ${scrolled ? "site-header--scrolled" : ""} ${menuOpen ? "site-header--menu-open" : ""}`}
     >
-      <div className="container-editorial flex h-16 items-center justify-between gap-3 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-4">
-        <div className="flex items-center gap-3 lg:contents">
+      <div className="container-editorial flex h-16 items-center justify-between gap-3">
+        <div className="flex min-w-0 items-center gap-4">
+          <Link href="/" className="site-wordmark shrink-0 text-ink">
+            {wordmark}
+          </Link>
+
+          <nav className="hidden items-center gap-6 lg:flex" aria-label="Main">
+            {navItems.map((item) => (
+              <Link key={item.href} href={item.href as "/"} className="nav-link whitespace-nowrap">
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        <div className="flex shrink-0 items-center justify-end gap-2 sm:gap-3">
+          <div className="hidden items-center gap-2 sm:flex">
+            <LocaleSwitcher />
+            <ThemeToggle />
+          </div>
+          <ContactCta className="contact-cta-header hidden sm:inline-flex" goal="header_consult_cta_click">
+            <span className="hidden xl:inline">{writeLabel}</span>
+            <span className="xl:hidden">{writeShortLabel}</span>
+          </ContactCta>
           <button
             type="button"
             className="mobile-menu-toggle lg:hidden"
@@ -82,37 +104,6 @@ export function SiteHeaderClient({
           >
             {menuOpen ? <X size={20} strokeWidth={1.5} aria-hidden="true" /> : <Menu size={20} strokeWidth={1.5} aria-hidden="true" />}
           </button>
-
-          <nav className="hidden items-center gap-6 lg:flex">
-            {navItems.slice(0, 4).map((item) => (
-              <Link key={item.href} href={item.href as "/"} className="nav-link">
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-
-        <Link href="/" className="site-wordmark text-ink lg:justify-self-center">
-          {wordmark}
-        </Link>
-
-        <div className="flex items-center justify-end gap-2 sm:gap-3 lg:gap-4">
-          <nav className="hidden items-center gap-6 lg:flex">
-            {navItems.slice(4).map((item) => (
-              <Link key={item.href} href={item.href as "/"} className="nav-link">
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-          <LocaleSwitcher />
-          <a href={`tel:${CONTACT_PHONE}`} className="nav-link hidden md:inline">
-            {CONTACT_PHONE.replace("+7", "+7 ")}
-          </a>
-          <ThemeToggle />
-          <ContactCta className="contact-cta-header">
-            <span className="hidden min-[380px]:inline">{writeLabel}</span>
-            <span className="min-[380px]:hidden">{writeShortLabel}</span>
-          </ContactCta>
         </div>
       </div>
 
@@ -121,7 +112,9 @@ export function SiteHeaderClient({
         <nav id="mobile-menu-panel" className="mobile-menu__panel">
           <p className="meta-label">{quickContactLabel}</p>
           <div className="mt-4" onClick={closeMenu}>
-            <ContactCta className="btn-primary w-full justify-center">{writeLabel}</ContactCta>
+            <ContactCta className="btn-primary w-full justify-center" goal="mobile_consult_cta_click">
+              {writeLabel}
+            </ContactCta>
           </div>
           <div className="mt-3 grid grid-cols-2 gap-3">
             <a href={`tel:${CONTACT_PHONE}`} className="btn-secondary w-full justify-center text-center text-[10px]" onClick={closeMenu}>
@@ -147,6 +140,11 @@ export function SiteHeaderClient({
               </li>
             ))}
           </ul>
+
+          <div className="mt-8 flex items-center gap-3 border-t border-hairline pt-6">
+            <LocaleSwitcher />
+            <ThemeToggle />
+          </div>
         </nav>
       </div>
     </header>

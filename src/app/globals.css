@@ -237,19 +237,24 @@ html.dark {
 
   /* Header */
   .site-header {
-    @apply sticky top-0 z-50 border-b border-transparent;
+    @apply sticky top-0 z-50 border-b;
     height: var(--header-height);
-    background: transparent;
-    transition: background-color 300ms ease, border-color 300ms ease;
-  }
-  .site-header--scrolled,
-  .site-header--menu-open {
-    background: rgba(0, 0, 0, 0.94);
+    background: rgba(0, 0, 0, 0.92);
     border-bottom-color: var(--color-hairline);
+    backdrop-filter: blur(12px);
+    transition: background-color 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
   }
-  html:not(.dark) .site-header--scrolled,
+  html:not(.dark) .site-header {
+    background: rgba(255, 255, 255, 0.92);
+  }
+  .site-header--scrolled {
+    box-shadow: 0 1px 0 var(--color-hairline);
+  }
+  .site-header--menu-open {
+    background: rgba(0, 0, 0, 0.98);
+  }
   html:not(.dark) .site-header--menu-open {
-    background: rgba(255, 255, 255, 0.94);
+    background: rgba(255, 255, 255, 0.98);
   }
 
   .site-wordmark {
@@ -366,6 +371,14 @@ html.dark {
   .hero-lead {
     margin-top: 1.5rem;
     max-width: 36rem;
+  }
+  .hero-differentiator {
+    margin-top: 1rem;
+    max-width: 40rem;
+    font-family: var(--font-display);
+    font-size: clamp(18px, 2.2vw, 24px);
+    letter-spacing: 0.02em;
+    color: var(--color-ink);
   }
   .hero-spec {
     @apply mt-6 font-mono text-[11px] uppercase tracking-[0.16em] text-muted;
@@ -729,6 +742,20 @@ html.dark {
   .solution-row:last-child {
     border-bottom: 1px solid var(--color-hairline);
   }
+  .solution-row--linked {
+    display: grid;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 200ms ease;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .solution-row--linked:hover {
+      background: color-mix(in srgb, var(--color-surface-soft) 60%, transparent);
+    }
+    .solution-row--linked:hover .card-title {
+      color: var(--color-primary);
+    }
+  }
   @media (max-width: 768px) {
     .solution-row {
       grid-template-columns: 48px minmax(0, 1fr);
@@ -825,6 +852,21 @@ html.dark {
   }
   .case-study__title {
     margin-top: 1rem;
+  }
+  .case-study__metric {
+    margin-top: 0.75rem;
+    font-family: var(--font-display);
+    font-size: clamp(20px, 2.5vw, 28px);
+    letter-spacing: 0.02em;
+    color: var(--color-primary);
+  }
+  .case-study__stack {
+    margin-top: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted);
   }
   .case-study__desc {
     margin-top: 1rem;
@@ -1001,6 +1043,37 @@ html.dark {
   /* CTA band */
   .cta-band {
     @apply border-t border-hairline py-20 md:py-28;
+  }
+  .section-cta-band {
+    @apply py-14 md:py-16;
+    background: color-mix(in srgb, var(--color-primary) 6%, transparent);
+  }
+  .section-cta-band__inner {
+    @apply flex flex-col gap-8 md:flex-row md:items-center md:justify-between;
+  }
+  .section-cta-band__title {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3vw, 32px);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+  }
+  .section-cta-band__meta {
+    @apply mt-4 flex flex-wrap gap-x-6 gap-y-2;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .media-publisher-logo {
+    @apply inline-flex items-center rounded border border-hairline px-4 py-2;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-body);
+    background: var(--color-surface-soft);
   }
 
   /* Forms */

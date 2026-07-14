@@ -10,20 +10,17 @@ export async function SiteHeader() {
 
   const navItems = [
     { href: "/#services" as const, label: t("services") },
-    { href: "/#packages" as const, label: t("packages") },
     { href: "/#portfolio" as const, label: t("portfolio") },
-    { href: "/guides" as const, label: t("guides") },
-    { href: "/blog" as const, label: t("blog") },
-    { href: "/partners" as const, label: t("partners") },
-    { href: "/#process" as const, label: t("process") },
+    { href: "/#about" as const, label: t("about") },
+    { href: "/#faq" as const, label: t("faq") },
     { href: "/#contact" as const, label: t("contact") },
   ];
 
   return (
     <SiteHeaderClient
       navItems={navItems}
-      writeLabel={t("write")}
-      writeShortLabel={t("writeShort")}
+      writeLabel={t("consultCta")}
+      writeShortLabel={t("consultCtaShort")}
       wordmark="BOBER AI"
       menuOpenLabel={t("menuOpen")}
       menuCloseLabel={t("menuClose")}

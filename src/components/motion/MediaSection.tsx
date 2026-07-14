@@ -4,7 +4,7 @@ import { ContactCta } from "@/components/ContactCta";
 import { Reveal } from "@/components/motion/Reveal";
 import { MediaCard } from "@/components/motion/MediaCard";
 import { Stagger } from "@/components/motion/Stagger";
-import type { MediaItem } from "@/lib/media";
+import { MEDIA_PUBLISHERS, type MediaItem } from "@/lib/media";
 
 type MediaSectionProps = {
   items: MediaItem[];
@@ -12,6 +12,7 @@ type MediaSectionProps = {
   label: string;
   title: string;
   subtitle: string;
+  asSeenIn: string;
   videoCta: string;
   articleCta: string;
   videoAriaLabel: string;
@@ -26,6 +27,7 @@ export function MediaSection({
   label,
   title,
   subtitle,
+  asSeenIn,
   videoCta,
   articleCta,
   videoAriaLabel,
@@ -42,6 +44,16 @@ export function MediaSection({
           <span className="section-label">{label}</span>
           <h2 className="section-title mt-4">{title}</h2>
           <p className="body-copy mt-4 max-w-3xl text-base">{subtitle}</p>
+          <div className="media-publishers mt-8">
+            <p className="meta-label">{asSeenIn}</p>
+            <div className="media-publishers__logos mt-4 flex flex-wrap gap-3">
+              {MEDIA_PUBLISHERS.map((publisher) => (
+                <span key={publisher.id} className="media-publisher-logo" title={publisher.name}>
+                  {publisher.logoLabel}
+                </span>
+              ))}
+            </div>
+          </div>
         </Reveal>
 
         <Stagger className="media-grid mt-12" stagger={0.05}>

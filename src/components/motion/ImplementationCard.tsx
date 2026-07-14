@@ -20,6 +20,26 @@ type ImplementationCardProps = ImplementationArea & {
   ctaLabel: string;
 };
 
+function CardBody({
+  badge,
+  title,
+  description,
+  items,
+}: Pick<ImplementationCardProps, "badge" | "title" | "description" | "items">) {
+  return (
+    <>
+      <span className="solution-row__badge">{badge}</span>
+      <h3 className="card-title mt-3">{title}</h3>
+      <p className="body-copy mt-4 max-w-2xl text-base">{description}</p>
+      <ul className="mt-4 space-y-1 text-base text-body">
+        {items.map((item) => (
+          <li key={item}>— {item}</li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
 export function ImplementationCard({
   index,
   badge,
@@ -31,31 +51,36 @@ export function ImplementationCard({
 }: ImplementationCardProps) {
   const number = String(index + 1).padStart(2, "0");
   const cta = href ? (
-    <Link href={href} className="solution-row__cta text-link self-start whitespace-normal sm:whitespace-nowrap">
+    <span className="solution-row__cta text-link self-start whitespace-normal sm:whitespace-nowrap">
       {ctaLabel} →
-    </Link>
+    </span>
   ) : (
     <ContactCta variant="link" className="solution-row__cta self-start whitespace-normal sm:whitespace-nowrap" defaultService={title}>
       {ctaLabel} →
     </ContactCta>
   );
 
+  if (href) {
+    return (
+      <StaggerItem>
+        <Link href={href} className="solution-row solution-row--linked group">
+          <span className="solution-row__index">{number}</span>
+          <div>
+            <CardBody badge={badge} title={title} description={description} items={items} />
+          </div>
+          {cta}
+        </Link>
+      </StaggerItem>
+    );
+  }
+
   return (
     <StaggerItem>
       <article className="solution-row">
         <span className="solution-row__index">{number}</span>
-
         <div>
-          <span className="solution-row__badge">{badge}</span>
-          <h3 className="card-title mt-3">{title}</h3>
-          <p className="body-copy mt-4 max-w-2xl text-base">{description}</p>
-          <ul className="mt-4 space-y-1 text-base text-body">
-            {items.map((item) => (
-              <li key={item}>— {item}</li>
-            ))}
-          </ul>
+          <CardBody badge={badge} title={title} description={description} items={items} />
         </div>
-
         {cta}
       </article>
     </StaggerItem>

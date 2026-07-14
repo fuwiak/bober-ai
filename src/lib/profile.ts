@@ -202,6 +202,8 @@ export type PortfolioItem = {
   description?: string;
   solution?: string;
   result?: string;
+  metric?: string;
+  stack?: string;
   skills?: string[];
   featured?: boolean;
   priceLabel?: string;
@@ -211,7 +213,9 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "telemost",
     slug: "yandex-telemost-agent",
-    title: "Yandex Telemost Agent — ИИ-помощник для встреч и продаж",
+    title: "Yandex Telemost Agent — ИИ для встреч и продаж",
+    metric: "Автоматические итоги встреч в CRM",
+    stack: "1С · Bitrix · YandexGPT · JavaScript",
     image: PORTFOLIO_IMAGES.telemost,
     category: "Искусственный интеллект",
     featured: true,
@@ -227,7 +231,9 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "kaspersky",
     slug: "kaspersky-ai-assistant",
-    title: "AI-помощник для консультантов Kaspersky",
+    title: "Email AI Assistant — Kaspersky",
+    metric: "−50% повторных обращений L1",
+    stack: "LLM · RAG · JavaScript",
     image: PORTFOLIO_IMAGES.kaspersky,
     category: "Искусственный интеллект",
     skills: ["LLM", "RAG", "JavaScript", "Интеграция модели ИИ"],
@@ -241,7 +247,9 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "leads",
     slug: "lead-generation",
-    title: "Собираем лиды из рекламы и мессенджеров, учимся на поведении клиентов",
+    title: "GTM Flow — лиды из рекламы и мессенджеров",
+    metric: "Единая воронка без потерянных лидов",
+    stack: "LLM-агенты · Telegram · VK · CRM · n8n",
     image: PORTFOLIO_IMAGES.leads,
     category: "Искусственный интеллект",
     featured: true,
@@ -259,6 +267,8 @@ export const PORTFOLIO: PortfolioItem[] = [
     slug: "kp-llm-automation",
     title: "Автоматизация коммерческих предложений",
     image: PORTFOLIO_IMAGES.kpLlm,
+    metric: "45 мин → 2 мин на КП",
+    stack: "MySQL · CRM · Python · LLM",
     category: "Автоматизация продаж",
     featured: true,
     priceLabel: "300 000 ₽",
@@ -273,7 +283,9 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "elia",
     slug: "elia-suite",
-    title: "ELIA Suite — изолированные воркспейсы для партнёров и поставщиков",
+    title: "ELIA Suite — изолированные воркспейсы",
+    metric: "+32% конверсия quote→заказ",
+    stack: "CRM · Claude · PDF · Workflow",
     image: PORTFOLIO_IMAGES.elia,
     category: "Автоматизация продаж",
     featured: true,

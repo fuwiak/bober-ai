@@ -187,6 +187,63 @@ const GUIDES_RU: Record<string, GuideContent> = {
     ctaTitle: "AI & Automation Audit",
     ctaText: "Проведём аудит, посчитаем ROI по сценариям и скажем честно — нужен ли AI или хватит workflow.",
   },
+  aiGlossary: {
+    metaTitle: "Глоссарий AI для бизнеса — RAG, агенты, MCP, LangGraph",
+    metaDescription:
+      "Словарь терминов enterprise AI: LLM, RAG, AI-агенты, MCP, LangGraph, on-prem, guardrails — для закупки и IT.",
+    h1: "Глоссарий AI для бизнеса",
+    subtitle: "Ключевые термины enterprise AI — без маркетингового шума.",
+    sections: [
+      {
+        title: "LLM (Large Language Model)",
+        paragraphs: [
+          "Большая языковая модель — основа генерации текста, классификации и диалога. В бизнесе LLM не заменяет CRM, а добавляет слой понимания неструктурированных данных: письма, документы, чаты.",
+          "Выбор модели зависит от языка, compliance и бюджета: Claude, OpenAI, YandexGPT, GigaChat, self-hosted.",
+        ],
+      },
+      {
+        title: "RAG (Retrieval-Augmented Generation)",
+        paragraphs: [
+          "Подход, при котором LLM отвечает на основе ваших документов: поиск релевантных фрагментов → подстановка в промпт → ответ со ссылкой на источник.",
+          "RAG снижает галлюцинации и обязателен для поддержки, баз знаний и внутренних ассистентов.",
+        ],
+      },
+      {
+        title: "AI-агент",
+        paragraphs: [
+          "Система, которая не только отвечает текстом, но и выполняет действия: создаёт сделку в CRM, генерирует PDF, запускает workflow, эскалирует к человеку.",
+          "Агент = LLM + инструменты (API, MCP) + политики безопасности + мониторинг.",
+        ],
+      },
+      {
+        title: "MCP (Model Context Protocol)",
+        paragraphs: [
+          "Стандарт подключения LLM к внешним системам: CRM, базы данных, файловые хранилища. MCP-сервер описывает инструменты, которые модель может вызывать.",
+          "Упрощает интеграцию агентов с корпоративным IT без хаотичных кастомных плагинов.",
+        ],
+      },
+      {
+        title: "LangGraph",
+        paragraphs: [
+          "Фреймворк для многошаговых агентов с состоянием (state), ветвлением, human-in-the-loop и observability. Используется, когда сценарий сложнее одной цепочки промптов.",
+        ],
+      },
+      {
+        title: "On-prem / Self-hosted AI",
+        paragraphs: [
+          "Развёртывание моделей и AI-сервисов в периметре компании. Данные не передаются в публичные API. Обязательно для банков, госсектора и компаний с жёстким compliance.",
+        ],
+      },
+      {
+        title: "Guardrails",
+        paragraphs: [
+          "Политики безопасности вокруг LLM: фильтрация PII, запрет опасных действий, лимиты токенов, эскалация при низкой уверенности, аудит запросов.",
+        ],
+      },
+    ],
+    ctaTitle: "Нужна помощь с выбором архитектуры?",
+    ctaText: "Проведём AI & Automation Audit и переведём термины в конкретный план внедрения.",
+  },
 };
 
 const GUIDES_EN: Record<string, GuideContent> = {
@@ -365,6 +422,63 @@ const GUIDES_EN: Record<string, GuideContent> = {
     ctaTitle: "AI & Automation Audit",
     ctaText: "We'll audit, calculate ROI by scenario and honestly say whether AI is needed or workflow suffices.",
   },
+  aiGlossary: {
+    metaTitle: "AI glossary for business — RAG, agents, MCP, LangGraph",
+    metaDescription:
+      "Enterprise AI terms: LLM, RAG, AI agents, MCP, LangGraph, on-prem, guardrails — for procurement and IT.",
+    h1: "AI glossary for business",
+    subtitle: "Key enterprise AI terms — without marketing noise.",
+    sections: [
+      {
+        title: "LLM (Large Language Model)",
+        paragraphs: [
+          "The foundation for text generation, classification and dialogue. In business, LLM doesn't replace CRM — it adds a layer for unstructured data: emails, documents, chats.",
+          "Model choice depends on language, compliance and budget: Claude, OpenAI, YandexGPT, GigaChat, self-hosted.",
+        ],
+      },
+      {
+        title: "RAG (Retrieval-Augmented Generation)",
+        paragraphs: [
+          "LLM answers based on your documents: retrieve relevant chunks → inject into prompt → answer with source citation.",
+          "RAG reduces hallucinations and is essential for support, knowledge bases and internal assistants.",
+        ],
+      },
+      {
+        title: "AI agent",
+        paragraphs: [
+          "A system that not only replies but acts: creates CRM deals, generates PDFs, triggers workflows, escalates to humans.",
+          "Agent = LLM + tools (API, MCP) + security policies + monitoring.",
+        ],
+      },
+      {
+        title: "MCP (Model Context Protocol)",
+        paragraphs: [
+          "Standard for connecting LLMs to external systems: CRM, databases, file storage. MCP server describes tools the model can invoke.",
+          "Simplifies agent integration with corporate IT without chaotic custom plugins.",
+        ],
+      },
+      {
+        title: "LangGraph",
+        paragraphs: [
+          "Framework for multi-step agents with state, branching, human-in-the-loop and observability — when scenarios exceed simple prompt chains.",
+        ],
+      },
+      {
+        title: "On-prem / Self-hosted AI",
+        paragraphs: [
+          "Deploying models and AI services inside company perimeter. Data never goes to public APIs. Required for banks, government and strict compliance.",
+        ],
+      },
+      {
+        title: "Guardrails",
+        paragraphs: [
+          "Security policies around LLM: PII filtering, blocking dangerous actions, token limits, escalation on low confidence, request audit.",
+        ],
+      },
+    ],
+    ctaTitle: "Need help choosing architecture?",
+    ctaText: "We'll run an AI & Automation Audit and turn terms into a concrete implementation plan.",
+  },
 };
 
 export function getGuideContent(contentKey: string, locale: GuideLocale): GuideContent | undefined {
@@ -380,6 +494,8 @@ export const GUIDE_LABELS = {
     oneCLanding: "Интеграция 1С",
     processesLanding: "Автоматизация процессов",
     aiLanding: "Enterprise AI",
+    ragLanding: "RAG и поиск",
+    agentLanding: "AI-агенты",
     backToGuides: "← Все гайды",
     checklistTitle: "Чеклист",
     relatedTitle: "Связанные страницы",
@@ -394,6 +510,8 @@ export const GUIDE_LABELS = {
     oneCLanding: "1C integration",
     processesLanding: "Process automation",
     aiLanding: "Enterprise AI",
+    ragLanding: "RAG & search",
+    agentLanding: "AI agents",
     backToGuides: "← All guides",
     checklistTitle: "Checklist",
     relatedTitle: "Related pages",

@@ -44,6 +44,15 @@ export const GUIDES: GuideDef[] = [
       { href: "/ai/corporate", labelKey: "aiLanding" },
     ],
   },
+  {
+    slug: "ai-glossary",
+    contentKey: "aiGlossary",
+    coverImage: DIAGRAM_IMAGES.architecture,
+    relatedLandings: [
+      { href: "/services/rag", labelKey: "ragLanding" },
+      { href: "/services/ai-agent", labelKey: "agentLanding" },
+    ],
+  },
 ];
 
 export function getGuide(slug: string) {
