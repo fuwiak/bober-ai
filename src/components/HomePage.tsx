@@ -19,11 +19,12 @@ import { Link } from "@/i18n/navigation";
 import { getEnterpriseReviews } from "@/lib/enterprise-reviews";
 import { getMediaItems } from "@/lib/media";
 import { PORTFOLIO, PROFILE } from "@/lib/profile";
-import { ProfessionalProfileLinks } from "@/components/ProfessionalProfileLinks";
 import {
+  ABOUT_STOCK_IMAGE,
   CONTACT_EMAIL,
   CONTACT_PHONE,
   GITHUB_URL,
+  HERO_STOCK_IMAGE,
   LINKEDIN_URL,
   TELEGRAM_URL,
   YANDEX_USLUGI_URL,
@@ -63,15 +64,8 @@ export default async function HomePage() {
           ctaPrimary={t("hero.ctaPrimary")}
           ctaSecondary={t("hero.ctaSecondary")}
           trustItems={t.raw("hero.trustItems") as string[]}
-          portraitName={PROFILE.name}
-          portraitRole={t("hero.portraitRole")}
-          onlineLabel={t("common.online")}
-          heroImage={PROFILE.heroImage}
-          heroImageAlt={PROFILE.name}
-          founderName={t("about.founderName")}
-          founderRole={t("about.founderRole")}
-          linkedinLabel={t("about.linkedinLabel")}
-          githubLabel={t("about.githubLabel")}
+          heroImage={HERO_STOCK_IMAGE}
+          heroImageAlt={t("hero.heroImageAlt")}
         />
 
         <section className="section-band section--deep border-b border-hairline">
@@ -279,13 +273,13 @@ export default async function HomePage() {
         <section id="about" className="section-band section--deep scroll-mt-16 border-b border-hairline">
           <div className="container-editorial grid gap-16 lg:grid-cols-[0.4fr_0.6fr] lg:items-start">
             <Reveal>
-              <EditorialImageFrame variant="portrait" className="aspect-[3/4] w-full max-w-md bg-surface-soft">
+              <EditorialImageFrame variant="card" className="aspect-[4/3] w-full max-w-md bg-surface-soft">
                 <Image
-                  src={PROFILE.avatar}
-                  alt={PROFILE.name}
+                  src={ABOUT_STOCK_IMAGE}
+                  alt={t("about.imageAlt")}
                   fill
                   sizes="(max-width: 1024px) 100vw, 400px"
-                  className="about-portrait"
+                  className="object-cover"
                 />
               </EditorialImageFrame>
             </Reveal>
@@ -293,13 +287,7 @@ export default async function HomePage() {
               <Reveal>
               <span className="section-label">{t("sections.about")}</span>
                 <h2 className="section-title mt-4">{t("about.title")}</h2>
-                <ProfessionalProfileLinks
-                  founderName={t("about.founderName")}
-                  founderRole={t("about.founderRole")}
-                  linkedinLabel={t("about.linkedinLabel")}
-                  githubLabel={t("about.githubLabel")}
-                  className="mt-6"
-                />
+                <p className="meta-label mt-6">{t("about.tagline")}</p>
                 <p className="body-copy mt-6 max-w-3xl whitespace-pre-line text-base">{t("about.text")}</p>
                 <ContactCta className="mt-10">{t("about.cta")}</ContactCta>
               </Reveal>
@@ -308,8 +296,8 @@ export default async function HomePage() {
                   <div className="audience-row">
                     <span className="editorial-row__index">01</span>
                     <div>
-                      <p className="meta-label">{t("about.education")}</p>
-                      <p className="body-copy mt-2 text-base">{t("about.educationValue")}</p>
+                      <p className="meta-label">{t("about.approach")}</p>
+                      <p className="body-copy mt-2 text-base">{t("about.approachValue")}</p>
                     </div>
                   </div>
                 </StaggerItem>

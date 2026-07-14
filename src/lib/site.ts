@@ -1,4 +1,5 @@
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev";
+export const HERO_STOCK_IMAGE = "/stock/automation-code.jpg";
+export const ABOUT_STOCK_IMAGE = "/stock/team-collab.jpg";
 export const SITE_NAME = "Bober AI Systems";
 export const SITE_TAGLINE_RU = "Автоматизация бизнес-процессов для компаний";
 export const SITE_TAGLINE_EN = "Business process automation for companies";

@@ -7,8 +7,8 @@ import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
   GITHUB_URL,
+  HERO_STOCK_IMAGE,
   LINKEDIN_URL,
-  ORGANIZATION_NAME,
   SELECTEL_PARTNER_PROGRAM_URL,
   SITE_NAME,
   SITE_URL,
@@ -17,7 +17,6 @@ import {
   YANDEX_USLUGI_URL,
   absoluteUrl,
 } from "@/lib/site";
-import { PROFILE } from "@/lib/profile";
 import { getEnterpriseServices } from "@/lib/enterprise-services";
 
 type Props = {
@@ -61,27 +60,6 @@ export default async function Page({ params }: Props) {
 
   const services = getEnterpriseServices(locale);
 
-  const personJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: PROFILE.name,
-    jobTitle: "AI architect",
-    url: SITE_URL,
-    image: absoluteUrl(PROFILE.avatar),
-    email: CONTACT_EMAIL,
-    telephone: CONTACT_PHONE,
-    sameAs: [
-      LINKEDIN_URL,
-      GITHUB_URL,
-      YANDEX_USLUGI_URL,
-      YANDEX_CLOUD_PARTNERS_URL,
-      SELECTEL_PARTNER_PROGRAM_URL,
-      CLOUD_RU_PARTNERS_URL,
-      TELEGRAM_URL,
-    ],
-    worksFor: { "@type": "Organization", name: ORGANIZATION_NAME },
-  };
-
   const offersJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -103,7 +81,7 @@ export default async function Page({ params }: Props) {
     "@type": "ProfessionalService",
     name: SITE_NAME,
     url: SITE_URL,
-    image: absoluteUrl("/favicon.png"),
+    image: absoluteUrl(HERO_STOCK_IMAGE),
     telephone: CONTACT_PHONE,
     email: CONTACT_EMAIL,
     areaServed: { "@type": "Country", name: "Russia" },
@@ -118,7 +96,6 @@ export default async function Page({ params }: Props) {
       CLOUD_RU_PARTNERS_URL,
       TELEGRAM_URL,
     ],
-    founder: { "@type": "Person", name: PROFILE.name },
   };
 
   const websiteJsonLd = {
@@ -136,7 +113,6 @@ export default async function Page({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(offersJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
