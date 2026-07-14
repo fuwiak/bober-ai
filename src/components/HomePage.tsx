@@ -144,6 +144,32 @@ export default async function HomePage() {
           </div>
         </section>
 
+        <section className="section-band section--deep scroll-mt-16 border-b border-hairline">
+          <div className="container-editorial">
+            <Reveal>
+              <span className="section-label">{t("sections.demand")}</span>
+              <h2 className="section-title mt-4">{t("demand.title")}</h2>
+              <p className="body-copy mt-4 max-w-2xl text-base">{t("demand.subtitle")}</p>
+            </Reveal>
+            <Stagger className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {(t.raw("demand.items") as { href: string; title: string; volume: string; intent: string; priority: string }[]).map(
+                (item) => (
+                  <StaggerItem key={item.href}>
+                    <Link href={item.href} className="feature-card block h-full transition hover:border-ink/20">
+                      <div className="flex items-start justify-between gap-3">
+                        <span className="solution-row__badge">{item.priority}</span>
+                        <span className="meta-label">{item.volume} {t("demand.volumeLabel")}</span>
+                      </div>
+                      <h3 className="card-title mt-4">{item.title}</h3>
+                      <p className="body-copy mt-3 text-sm">{t(`demand.intentLabels.${item.intent as "commercial_high" | "commercial_medium"}`)}</p>
+                    </Link>
+                  </StaggerItem>
+                ),
+              )}
+            </Stagger>
+          </div>
+        </section>
+
         <section id="portfolio" className="section-band section--deep scroll-mt-16 border-b border-hairline">
           <div className="container-editorial">
             <ProjectsCasesShowcase

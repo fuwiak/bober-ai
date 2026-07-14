@@ -1,6 +1,7 @@
 "use client";
 
 import { ContactCta } from "@/components/ContactCta";
+import { Link } from "@/i18n/navigation";
 import { StaggerItem } from "@/components/motion/Stagger";
 
 export type ImplementationArea = {
@@ -11,6 +12,7 @@ export type ImplementationArea = {
   layout?: string;
   featured?: boolean;
   slug?: string;
+  href?: string;
 };
 
 type ImplementationCardProps = ImplementationArea & {
@@ -25,8 +27,18 @@ export function ImplementationCard({
   description,
   items,
   ctaLabel,
+  href,
 }: ImplementationCardProps) {
   const number = String(index + 1).padStart(2, "0");
+  const cta = href ? (
+    <Link href={href} className="solution-row__cta text-link self-start whitespace-normal sm:whitespace-nowrap">
+      {ctaLabel} →
+    </Link>
+  ) : (
+    <ContactCta variant="link" className="solution-row__cta self-start whitespace-normal sm:whitespace-nowrap" defaultService={title}>
+      {ctaLabel} →
+    </ContactCta>
+  );
 
   return (
     <StaggerItem>
@@ -44,9 +56,7 @@ export function ImplementationCard({
           </ul>
         </div>
 
-        <ContactCta variant="link" className="solution-row__cta self-start whitespace-normal sm:whitespace-nowrap" defaultService={title}>
-          {ctaLabel} →
-        </ContactCta>
+        {cta}
       </article>
     </StaggerItem>
   );
