@@ -13,6 +13,7 @@ import { TELEGRAM_URL } from "@/lib/site";
 type LandingContent = {
   metaTitle: string;
   metaDescription: string;
+  metaKeywords?: string[];
   eyebrow: string;
   h1: string;
   subtitle: string;

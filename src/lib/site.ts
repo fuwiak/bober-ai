@@ -1,9 +1,9 @@
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev";
 export const SITE_NAME = "Bober AI Systems";
-export const SITE_TAGLINE_RU = "Внедрение AI и автоматизация для бизнеса";
-export const SITE_TAGLINE_EN = "Enterprise AI implementation partner";
+export const SITE_TAGLINE_RU = "Автоматизация бизнес-процессов для компаний";
+export const SITE_TAGLINE_EN = "Business process automation for companies";
 export const SITE_DESCRIPTION =
-  "Внедрение AI и автоматизация для бизнеса. Внешний AI-отдел для software house и компаний с бюджетом от 500 000 ₽. RAG, агенты, MLOps.";
+  "Проектируем и внедряем системы автоматизации бизнеса. CRM, документы, продажи, поддержка. AI только там, где приносит ROI.";
 export const SITE_REGION = "Россия";
 export const CONTACT_EMAIL = "hello@bober-ai.ru";
 export const CONTACT_NOTIFICATION_EMAILS = [CONTACT_EMAIL, "stasinskipawel@yandex.ru"] as const;
@@ -25,20 +25,19 @@ export const HOMEPAGE_PRESENCE_LINKS = [
 export const YOUTUBE_SHORTS_URL = "https://www.youtube.com/shorts/5DQzO5aPS5A";
 export const ORGANIZATION_NAME = "ИП Стасиньски Павел Кшиштоф";
 export const DEFAULT_KEYWORDS = [
-  "внедрение AI",
-  "разработка AI под ключ",
-  "корпоративный ИИ",
-  "AI-агенты для бизнеса",
-  "RAG системы",
-  "интеграция LLM",
-  "MLOps",
-  "автоматизация бизнеса",
-  "GigaChat внедрение",
+  "автоматизация бизнес процессов",
+  "автоматизация документооборота",
+  "внедрение crm",
+  "crm автоматизация",
+  "автоматизация продаж",
+  "создание базы знаний",
+  "внедрение ии в бизнес",
+  "amocrm интеграция",
+  "bitrix24 интеграция",
+  "автоматизация коммерческих предложений",
+  "чат бот для бизнеса",
   "Yandex Cloud",
   "Selectel",
-  "AI для enterprise",
-  "разработка чат-ботов",
-  "AI консалтинг Москва",
 ];
 
 export function absoluteUrl(path = "/"): string {

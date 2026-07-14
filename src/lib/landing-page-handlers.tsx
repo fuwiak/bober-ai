@@ -34,14 +34,14 @@ export function createLandingPageHandlers(category: LandingCategory) {
     const content = t.raw(`pages.${page.contentKey}`) as {
       metaTitle: string;
       metaDescription: string;
-      keywords?: string[];
+      metaKeywords?: string[];
     };
     const prefix = locale === "en" ? "/en" : "";
 
     return {
       title: content.metaTitle,
       description: content.metaDescription,
-      keywords: content.keywords,
+      keywords: content.metaKeywords,
       alternates: {
         canonical: absoluteUrl(`${prefix}/${category}/${slug}`),
       },

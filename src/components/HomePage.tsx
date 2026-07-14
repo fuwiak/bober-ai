@@ -80,6 +80,26 @@ export default async function HomePage() {
           </div>
         </section>
 
+        <section className="section-band section--deep border-b border-hairline">
+          <div className="container-editorial max-w-3xl">
+            <Reveal>
+              <span className="section-label">{t("sections.philosophy")}</span>
+              <h2 className="section-title mt-4">{t("philosophy.title")}</h2>
+              <p className="body-copy mt-4 text-base">{t("philosophy.subtitle")}</p>
+            </Reveal>
+            <Stagger className="mt-10">
+              {(t.raw("philosophy.items") as string[]).map((item) => (
+                <StaggerItem key={item}>
+                  <p className="body-copy text-base">— {item}</p>
+                </StaggerItem>
+              ))}
+            </Stagger>
+            <Reveal delay={0.1} className="mt-8">
+              <p className="body-copy text-base font-medium">{t("philosophy.closing")}</p>
+            </Reveal>
+          </div>
+        </section>
+
         <section className="section-band section--panel border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
