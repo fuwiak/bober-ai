@@ -7,6 +7,7 @@ type SectionCtaBandProps = {
   commitment: string;
   format: string;
   cta: string;
+  urgency?: string;
   className?: string;
 };
 
@@ -16,6 +17,7 @@ export function SectionCtaBand({
   commitment,
   format,
   cta,
+  urgency,
   className = "",
 }: SectionCtaBandProps) {
   return (
@@ -30,6 +32,7 @@ export function SectionCtaBand({
                 <li>{commitment}</li>
                 <li>{format}</li>
               </ul>
+              {urgency ? <p className="body-copy mt-4 max-w-xl text-sm">{urgency}</p> : null}
             </div>
             <ContactCta goal="audit_cta_click">{cta}</ContactCta>
           </div>

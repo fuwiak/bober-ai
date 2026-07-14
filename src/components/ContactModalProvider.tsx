@@ -3,6 +3,8 @@
 import { createContext, useCallback, useContext, useEffect, useId, useState } from "react";
 import { useTranslations } from "next-intl";
 import { ContactForm } from "@/components/ContactForm";
+import { TrackedAnchor } from "@/components/TrackedAnchor";
+import { CONTACT_EMAIL, TELEGRAM_URL, WHATSAPP_URL } from "@/lib/site";
 
 type ContactModalContextValue = {
   open: (defaultService?: string) => void;
@@ -83,6 +85,23 @@ export function ContactModalProvider({ children }: { children: React.ReactNode }
               <button type="button" className="contact-modal__close" onClick={close} aria-label={t("modalClose")}>
                 ×
               </button>
+            </div>
+            <div className="contact-modal__channels">
+              <p className="meta-label">{t("modalChannels")}</p>
+              <div className="contact-modal__channel-grid">
+                <TrackedAnchor href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="contact-modal__channel btn-secondary" goal="modal_telegram_click">
+                  {t("telegram")}
+                </TrackedAnchor>
+                <TrackedAnchor href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="contact-modal__channel btn-secondary" goal="modal_whatsapp_click">
+                  {t("whatsapp")}
+                </TrackedAnchor>
+                <TrackedAnchor href={`mailto:${CONTACT_EMAIL}`} className="contact-modal__channel btn-secondary" goal="modal_email_click">
+                  {t("email")}
+                </TrackedAnchor>
+              </div>
+            </div>
+            <div className="contact-modal__divider" aria-hidden="true">
+              <span>{t("modalFormDivider")}</span>
             </div>
             <ContactForm defaultService={defaultService} onSuccess={close} />
           </div>

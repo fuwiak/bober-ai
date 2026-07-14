@@ -188,11 +188,11 @@ const GUIDES_RU: Record<string, GuideContent> = {
     ctaText: "Проведём аудит, посчитаем ROI по сценариям и скажем честно — нужен ли AI или хватит workflow.",
   },
   aiGlossary: {
-    metaTitle: "Глоссарий AI для бизнеса — RAG, агенты, MCP, LangGraph",
+    metaTitle: "Глоссарий AI для бизнеса — RAG, агенты, MCP, Claude",
     metaDescription:
-      "Словарь терминов enterprise AI: LLM, RAG, AI-агенты, MCP, LangGraph, on-prem, guardrails — для закупки и IT.",
+      "Словарь терминов enterprise AI: LLM, RAG, AI-агенты, MCP, Claude API, Claude Code, on-prem — для закупки и IT.",
     h1: "Глоссарий AI для бизнеса",
-    subtitle: "Ключевые термины enterprise AI — без маркетингового шума.",
+    subtitle: "Ключевые термины enterprise AI — без маркетингового шума. Включая популярные запросы про Claude.",
     sections: [
       {
         title: "LLM (Large Language Model)",
@@ -238,6 +238,48 @@ const GUIDES_RU: Record<string, GuideContent> = {
         title: "Guardrails",
         paragraphs: [
           "Политики безопасности вокруг LLM: фильтрация PII, запрет опасных действий, лимиты токенов, эскалация при низкой уверенности, аудит запросов.",
+        ],
+      },
+      {
+        title: "Claude AI — что это и зачем бизнесу?",
+        paragraphs: [
+          "Claude AI — нейросеть от Anthropic для текста, документов, кода и многошаговых задач. В бизнесе её используют не как чат, а как движок автоматизации: генерация КП, ответы поддержки, извлечение данных из документов, обновление CRM.",
+        ],
+      },
+      {
+        title: "Claude API — подключение к CRM, 1С, Bitrix24",
+        paragraphs: [
+          "Через Claude API (Anthropic API) модель вызывается из ваших систем: amoCRM, Bitrix24, 1С, n8n, Telegram, почта. Настраиваются ключи, прокси при необходимости, лимиты, логирование и retry. API-ключи и инфраструктура остаются у клиента.",
+        ],
+      },
+      {
+        title: "Claude Code",
+        paragraphs: [
+          "Claude Code — инструмент Anthropic для разработки и автоматизации через агента в терминале и IDE. Компаниям он полезен, когда нужно ускорить интеграции, скрипты, MCP-серверы и внутренние инструменты.",
+        ],
+      },
+      {
+        title: "Claude MCP",
+        paragraphs: [
+          "Claude MCP (Model Context Protocol) — стандарт подключения Claude к CRM, базам данных, файлам и внутренним API. MCP-серверы позволяют агенту самому брать данные из amoCRM, 1С или Confluence — без копипаста и ручных выгрузок.",
+        ],
+      },
+      {
+        title: "Claude в России",
+        paragraphs: [
+          "Claude в России ищут чаще всего из‑за доступа к сайту и API. Для компаний проектируют рабочий контур: прокси, корпоративные ключи, on-prem или гибрид с YandexGPT/GigaChat там, где это требует compliance. Данные — в контуре клиента.",
+        ],
+      },
+      {
+        title: "Claude-агент для продаж и поддержки",
+        paragraphs: [
+          "Claude-агент может обрабатывать входящие заявки, собирать коммерческие предложения, обновлять CRM, отвечать из базы знаний и эскалировать к человеку. Типовые кейсы: отдел продаж, техподдержка, документооборот.",
+        ],
+      },
+      {
+        title: "Claude Opus, Sonnet и Pro",
+        paragraphs: [
+          "Opus — для сложных документов и многошаговых агентов. Sonnet — баланс скорости и качества для CRM и поддержки. Pro — подписка Anthropic для команд. В production модель подбирают по задаче, языку, бюджету и требованиям к данным.",
         ],
       },
     ],
@@ -423,11 +465,11 @@ const GUIDES_EN: Record<string, GuideContent> = {
     ctaText: "We'll audit, calculate ROI by scenario and honestly say whether AI is needed or workflow suffices.",
   },
   aiGlossary: {
-    metaTitle: "AI glossary for business — RAG, agents, MCP, LangGraph",
+    metaTitle: "AI glossary for business — RAG, agents, MCP, Claude",
     metaDescription:
-      "Enterprise AI terms: LLM, RAG, AI agents, MCP, LangGraph, on-prem, guardrails — for procurement and IT.",
+      "Enterprise AI terms: LLM, RAG, AI agents, MCP, Claude API, Claude Code, on-prem — for procurement and IT.",
     h1: "AI glossary for business",
-    subtitle: "Key enterprise AI terms — without marketing noise.",
+    subtitle: "Key enterprise AI terms — without marketing noise. Including popular Claude searches.",
     sections: [
       {
         title: "LLM (Large Language Model)",
@@ -473,6 +515,48 @@ const GUIDES_EN: Record<string, GuideContent> = {
         title: "Guardrails",
         paragraphs: [
           "Security policies around LLM: PII filtering, blocking dangerous actions, token limits, escalation on low confidence, request audit.",
+        ],
+      },
+      {
+        title: "Claude AI — what is it and why does business need it?",
+        paragraphs: [
+          "Claude AI is Anthropic's LLM for text, documents, code, and multi-step tasks. In business it's used as an automation engine — not just a chat: proposal generation, support replies, document extraction, CRM updates.",
+        ],
+      },
+      {
+        title: "Claude API — connecting to CRM, ERP, Bitrix24",
+        paragraphs: [
+          "Claude API (Anthropic API) is called from your systems: amoCRM, Bitrix24, 1C, n8n, Telegram, email. Keys, proxy if needed, rate limits, logging, and retries are configured. API keys and infrastructure stay with the client.",
+        ],
+      },
+      {
+        title: "Claude Code",
+        paragraphs: [
+          "Claude Code is Anthropic's agentic coding tool for terminal and IDE workflows. Companies use it to accelerate integrations, scripts, MCP servers, and internal tools.",
+        ],
+      },
+      {
+        title: "Claude MCP",
+        paragraphs: [
+          "Claude MCP (Model Context Protocol) connects Claude to CRM, databases, files, and internal APIs. MCP servers let agents pull data from amoCRM, 1C, or Confluence — without copy-paste and manual exports.",
+        ],
+      },
+      {
+        title: "Claude in Russia",
+        paragraphs: [
+          "Most searches are about site and API access. For companies a working perimeter is designed: proxy, corporate keys, on-prem, or hybrid with YandexGPT/GigaChat where compliance requires it. Data stays in the client's environment.",
+        ],
+      },
+      {
+        title: "Claude agent for sales and support",
+        paragraphs: [
+          "A Claude agent can handle inbound leads, draft commercial proposals, update CRM, answer from a knowledge base, and escalate to humans. Typical cases: sales ops, support, document workflows.",
+        ],
+      },
+      {
+        title: "Claude Opus, Sonnet, and Pro",
+        paragraphs: [
+          "Opus for complex documents and multi-step agents. Sonnet for CRM and support balance of speed and quality. Pro is Anthropic's team subscription. In production the model is picked by task, language, budget, and data requirements.",
         ],
       },
     ],

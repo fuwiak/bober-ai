@@ -90,9 +90,9 @@ export function SiteHeaderClient({
             <LocaleSwitcher />
             <ThemeToggle />
           </div>
-          <ContactCta className="contact-cta-header hidden sm:inline-flex" goal="header_consult_cta_click">
-            <span className="hidden xl:inline">{writeLabel}</span>
-            <span className="xl:hidden">{writeShortLabel}</span>
+          <ContactCta className="contact-cta-header inline-flex min-h-11" goal="header_consult_cta_click">
+            <span className="hidden md:inline">{writeLabel}</span>
+            <span className="md:hidden">{writeShortLabel}</span>
           </ContactCta>
           <button
             type="button"

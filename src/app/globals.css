@@ -34,7 +34,7 @@
   --font-body: var(--font-cormorant), "Cormorant Garamond", "EB Garamond", Georgia, serif;
   --font-mono: var(--font-ibm-plex-mono), "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
 
-  --spacing-section: 120px;
+  --spacing-section: 96px;
 }
 
 html:not(.dark) {
@@ -108,7 +108,7 @@ html.dark {
   }
   @media (max-width: 768px) {
     .section-band {
-      padding-block: 72px;
+      padding-block: 58px;
     }
   }
 
@@ -1049,10 +1049,10 @@ html.dark {
 
   /* CTA band */
   .cta-band {
-    @apply border-t border-hairline py-20 md:py-28;
+    @apply border-t border-hairline py-14 md:py-20;
   }
   .section-cta-band {
-    @apply py-14 md:py-16;
+    @apply py-10 md:py-12;
     background: color-mix(in srgb, var(--color-primary) 6%, transparent);
   }
   .section-cta-band__inner {
@@ -1289,24 +1289,75 @@ html.dark {
     line-height: 1;
     cursor: pointer;
   }
+  .contact-modal__channels {
+    margin-bottom: 28px;
+  }
+  .contact-modal__channel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .contact-modal__channel {
+    justify-content: center;
+    padding-inline: 8px;
+    font-size: 10px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .contact-modal__divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    color: var(--color-muted-soft);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .contact-modal__divider::before,
+  .contact-modal__divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--color-hairline);
+  }
   .contact-fab {
     position: fixed;
     right: max(16px, env(safe-area-inset-right, 0px));
     bottom: calc(16px + env(safe-area-inset-bottom, 0px));
     z-index: 90;
-    min-height: 44px;
-    padding: 12px 18px;
+    min-height: 48px;
+    padding: 14px 20px;
     border: 1px solid #ffffff;
     border-radius: 9999px;
     background: rgba(0, 0, 0, 0.92);
     color: #ffffff;
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 400;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: background-color 180ms ease, color 180ms ease;
+    transition: opacity 180ms ease, transform 180ms ease, background-color 180ms ease, color 180ms ease;
+  }
+  .contact-fab--hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+  }
+  @media (max-width: 639px) {
+    .contact-fab {
+      left: max(16px, env(safe-area-inset-left, 0px));
+      right: max(16px, env(safe-area-inset-right, 0px));
+      width: auto;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      min-height: 52px;
+    }
   }
   @media (min-width: 640px) {
     .contact-fab {
@@ -1387,6 +1438,66 @@ html.dark {
   }
 
   .status-online { color: var(--color-muted); }
+
+  /* CRO blocks */
+  .comparison-grid,
+  .micro-conversions-grid {
+    @apply grid gap-6 md:grid-cols-2 lg:grid-cols-3;
+  }
+  .comparison-card,
+  .micro-conversion-card,
+  .package-card {
+    @apply rounded-lg border border-hairline bg-surface-card p-6 md:p-8;
+  }
+  .packages-grid {
+    @apply grid gap-6 md:grid-cols-2;
+  }
+  .package-card--featured {
+    border-color: color-mix(in srgb, var(--color-primary) 40%, var(--color-hairline));
+  }
+  .package-card__badge {
+    @apply mb-4 inline-block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .package-card__price {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3vw, 28px);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .roi-calculator {
+    @apply rounded-lg border border-hairline bg-surface-card p-6 md:p-8;
+  }
+  .roi-calculator__grid {
+    @apply grid gap-4 sm:grid-cols-3;
+  }
+  .roi-calculator__result {
+    @apply rounded border border-hairline bg-surface-soft p-5;
+  }
+  .roi-calculator__value {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 40px);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .roi-calculator__period {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  @media (max-width: 768px) {
+    .btn-primary,
+    .btn-secondary {
+      min-height: 48px;
+      font-size: 12px;
+    }
+  }
 
   .reveal {
     opacity: 0;

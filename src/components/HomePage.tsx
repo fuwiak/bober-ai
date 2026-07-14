@@ -268,7 +268,7 @@ export default async function HomePage() {
           subtitle={t("claude.subtitle")}
           popularLabel={t("claude.popularLabel")}
           terms={t.raw("claude.terms") as string[]}
-          items={t.raw("claude.items") as { q: string; a: string }[]}
+          glossaryLink={t("claude.glossaryLink")}
           cta={t("claude.cta")}
         />
 

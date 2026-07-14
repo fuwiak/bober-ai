@@ -33,6 +33,7 @@ export const SITE_REGION = "Россия";
 export const CONTACT_EMAIL = "hello@bober-ai.ru";
 export const CONTACT_NOTIFICATION_EMAILS = [CONTACT_EMAIL, "stasinskipawel@yandex.ru"] as const;
 export const CONTACT_PHONE = "+79950998170";
+export const WHATSAPP_URL = "https://wa.me/79950998170";
 export const TELEGRAM_URL = "https://t.me/pstasinski";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/fuwiak";
 export const GITHUB_URL = "https://github.com/fuwiak";

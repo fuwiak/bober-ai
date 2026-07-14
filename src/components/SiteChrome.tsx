@@ -11,9 +11,8 @@ export async function SiteHeader() {
   const navItems = [
     { href: "/#services" as const, label: t("services") },
     { href: "/#portfolio" as const, label: t("portfolio") },
-    { href: "/#about" as const, label: t("about") },
+    { href: "/#packages" as const, label: t("pricing") },
     { href: "/#faq" as const, label: t("faq") },
-    { href: "/#contact" as const, label: t("contact") },
   ];
 
   return (

@@ -1,11 +1,6 @@
 import { ContactCta } from "@/components/ContactCta";
 import { Reveal } from "@/components/motion/Reveal";
-import { faqJsonLd } from "@/lib/seo";
-
-type ClaudeFaqItem = {
-  q: string;
-  a: string;
-};
+import { Link } from "@/i18n/navigation";
 
 type ClaudeSectionProps = {
   id?: string;
@@ -14,7 +9,7 @@ type ClaudeSectionProps = {
   subtitle: string;
   popularLabel: string;
   terms: string[];
-  items: ClaudeFaqItem[];
+  glossaryLink: string;
   cta: string;
 };
 
@@ -25,14 +20,11 @@ export function ClaudeSection({
   subtitle,
   popularLabel,
   terms,
-  items,
+  glossaryLink,
   cta,
 }: ClaudeSectionProps) {
-  const faqSchema = faqJsonLd(items);
-
   return (
     <section id={id} className="section-band section--deep scroll-mt-16 border-b border-hairline">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <div className="container-editorial max-w-3xl">
         <Reveal>
           <span className="section-label">{label}</span>
@@ -51,16 +43,11 @@ export function ClaudeSection({
           </ul>
         </Reveal>
 
-        <dl className="mt-12 space-y-8">
-          {items.map((item, index) => (
-            <Reveal key={item.q} delay={index * 0.02}>
-              <div>
-                <dt className="font-display text-xl tracking-tight">{item.q}</dt>
-                <dd className="body-copy mt-3 text-base">{item.a}</dd>
-              </div>
-            </Reveal>
-          ))}
-        </dl>
+        <Reveal delay={0.08} className="mt-10">
+          <Link href="/guides/ai-glossary" className="text-link text-[11px] uppercase tracking-[0.16em]">
+            {glossaryLink} →
+          </Link>
+        </Reveal>
 
         <Reveal delay={0.1} className="mt-10">
           <ContactCta>{cta}</ContactCta>
