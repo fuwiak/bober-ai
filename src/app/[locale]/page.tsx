@@ -18,6 +18,7 @@ import {
   absoluteUrl,
 } from "@/lib/site";
 import { getEnterpriseServices } from "@/lib/enterprise-services";
+import { buildPageMetadata } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -31,26 +32,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "meta" });
 
-  const languages: Record<string, string> = {
-    ru: absoluteUrl("/"),
-    en: absoluteUrl("/en"),
-    "x-default": absoluteUrl("/"),
-  };
-
-  return {
+  return buildPageMetadata({
     title: t("title"),
     description: t("description"),
     keywords: t.raw("keywords") as string[],
-    alternates: {
-      canonical: locale === "en" ? absoluteUrl("/en") : absoluteUrl("/"),
-      languages,
-    },
-    openGraph: {
-      locale: locale === "en" ? "en_US" : "ru_RU",
-      title: t("title"),
-      description: t("description"),
-    },
-  };
+    path: "/",
+    locale,
+  });
 }
 
 export default async function Page({ params }: Props) {

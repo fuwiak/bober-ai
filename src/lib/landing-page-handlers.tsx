@@ -8,7 +8,7 @@ import {
   getLandingPage,
   type LandingCategory,
 } from "@/lib/landing-pages";
-import { absoluteUrl } from "@/lib/site";
+import { buildPageMetadata } from "@/lib/seo";
 
 type PageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -36,16 +36,14 @@ export function createLandingPageHandlers(category: LandingCategory) {
       metaDescription: string;
       metaKeywords?: string[];
     };
-    const prefix = locale === "en" ? "/en" : "";
 
-    return {
+    return buildPageMetadata({
       title: content.metaTitle,
       description: content.metaDescription,
       keywords: content.metaKeywords,
-      alternates: {
-        canonical: absoluteUrl(`${prefix}/${category}/${slug}`),
-      },
-    };
+      path: `/${category}/${slug}`,
+      locale,
+    });
   }
 
   async function LandingRoutePage({ params }: PageProps) {

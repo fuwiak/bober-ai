@@ -5,7 +5,6 @@ export type LandingPageDef = {
   slug: string;
   contentKey: string;
   serviceSlug: string;
-  priority: "P1" | "P2";
 };
 
 export const LANDING_PAGES: LandingPageDef[] = [
@@ -14,63 +13,54 @@ export const LANDING_PAGES: LandingPageDef[] = [
     slug: "processes",
     contentKey: "processes",
     serviceSlug: "business-process-automation",
-    priority: "P1",
   },
   {
     category: "integrations",
     slug: "crm",
     contentKey: "crm",
     serviceSlug: "business-process-automation",
-    priority: "P1",
   },
   {
     category: "ai",
     slug: "corporate",
     contentKey: "corporate",
     serviceSlug: "enterprise-ai-assistant",
-    priority: "P1",
   },
   {
     category: "automation",
     slug: "documents",
     contentKey: "documents",
     serviceSlug: "business-process-automation",
-    priority: "P2",
   },
   {
     category: "automation",
     slug: "sales",
     contentKey: "sales",
     serviceSlug: "sales-ai-agent",
-    priority: "P2",
   },
   {
     category: "integrations",
     slug: "amocrm",
     contentKey: "amocrm",
     serviceSlug: "business-process-automation",
-    priority: "P2",
   },
   {
     category: "integrations",
     slug: "bitrix24",
     contentKey: "bitrix24",
     serviceSlug: "business-process-automation",
-    priority: "P2",
   },
   {
     category: "solutions",
     slug: "knowledge-base",
     contentKey: "knowledgeBase",
     serviceSlug: "enterprise-ai-assistant",
-    priority: "P2",
   },
   {
     category: "solutions",
     slug: "assistant",
     contentKey: "assistant",
     serviceSlug: "enterprise-ai-assistant",
-    priority: "P2",
   },
 ];
 

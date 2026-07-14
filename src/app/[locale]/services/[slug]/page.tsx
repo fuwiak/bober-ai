@@ -7,7 +7,8 @@ import { ContactForm } from "@/components/ContactForm";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { Link } from "@/i18n/navigation";
 import { getEnterpriseService, getEnterpriseServices } from "@/lib/enterprise-services";
-import { TELEGRAM_URL, absoluteUrl } from "@/lib/site";
+import { TELEGRAM_URL } from "@/lib/site";
+import { buildPageMetadata } from "@/lib/seo";
 
 type PageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -28,11 +29,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const offer = getEnterpriseService(slug, locale);
   if (!offer) return {};
   const prefix = locale === "en" ? "/en" : "";
-  return {
+  return buildPageMetadata({
     title: offer.title,
     description: offer.description,
-    alternates: { canonical: absoluteUrl(`${prefix}/services/${offer.slug}`) },
-  };
+    path: `${prefix}/services/${offer.slug}`,
+    locale,
+  });
 }
 
 export default async function ServiceOfferPage({ params }: PageProps) {

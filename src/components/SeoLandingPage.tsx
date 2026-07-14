@@ -8,27 +8,28 @@ import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { Link } from "@/i18n/navigation";
 import { getEnterpriseService } from "@/lib/enterprise-services";
 import type { LandingPageDef } from "@/lib/landing-pages";
-import { TELEGRAM_URL } from "@/lib/site";
+import { breadcrumbJsonLd, serviceJsonLd, webPageJsonLd } from "@/lib/seo";
+import { TELEGRAM_URL, absoluteUrl } from "@/lib/site";
 
 type LandingContent = {
   metaTitle: string;
   metaDescription: string;
-  metaKeywords?: string[];
   eyebrow: string;
   h1: string;
   subtitle: string;
-  volumeLabel: string;
-  volumeValue: string;
-  intentLabel: string;
-  intentValue: string;
   problemsTitle: string;
   problems: string[];
   deliverablesTitle: string;
   deliverables: string[];
-  keywordsTitle: string;
-  keywords: string[];
   relatedTitle: string;
   related: { href: string; label: string }[];
+};
+
+const CATEGORY_LABELS: Record<string, { ru: string; en: string }> = {
+  automation: { ru: "Автоматизация", en: "Automation" },
+  integrations: { ru: "Интеграции", en: "Integrations" },
+  solutions: { ru: "Решения", en: "Solutions" },
+  ai: { ru: "AI", en: "AI" },
 };
 
 type SeoLandingPageProps = {
@@ -40,9 +41,37 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
   const t = await getTranslations("landing");
   const content = t.raw(`pages.${page.contentKey}`) as LandingContent;
   const service = getEnterpriseService(page.serviceSlug, locale);
+  const prefix = locale === "en" ? "/en" : "";
+  const pagePath = `${prefix}/${page.category}/${page.slug}`;
+  const pageUrl = absoluteUrl(pagePath);
+  const homeLabel = locale === "en" ? "Home" : "Главная";
+  const categoryLabel = CATEGORY_LABELS[page.category][locale === "en" ? "en" : "ru"];
+
+  const breadcrumb = breadcrumbJsonLd([
+    { name: homeLabel, url: absoluteUrl(prefix || "/") },
+    { name: categoryLabel, url: absoluteUrl(`${prefix}/${page.category}`) },
+    { name: content.h1, url: pageUrl },
+  ]);
+
+  const webPage = webPageJsonLd({
+    name: content.h1,
+    description: content.metaDescription,
+    url: pageUrl,
+    locale,
+  });
+
+  const serviceSchema = serviceJsonLd({
+    name: content.h1,
+    description: content.metaDescription,
+    url: pageUrl,
+    locale,
+  });
 
   return (
     <div className="page-shell min-h-screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPage) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <SiteHeader />
       <main>
         <section className="section-band section--deep border-b border-hairline">
@@ -54,20 +83,6 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
               <span className="section-label">{content.eyebrow}</span>
               <h1 className="display-md mt-4">{content.h1}</h1>
               <p className="body-copy mt-5 max-w-3xl text-lg">{content.subtitle}</p>
-              <div className="mt-8 flex flex-wrap gap-6">
-                <div>
-                  <p className="meta-label">{content.volumeLabel}</p>
-                  <p className="spec-value mt-1">{content.volumeValue}</p>
-                </div>
-                <div>
-                  <p className="meta-label">{content.intentLabel}</p>
-                  <p className="spec-value mt-1">{content.intentValue}</p>
-                </div>
-                <div>
-                  <p className="meta-label">{t("common.priority")}</p>
-                  <p className="spec-value mt-1">{page.priority}</p>
-                </div>
-              </div>
               <div className="mt-10 flex flex-wrap gap-4">
                 <ContactCta defaultService={content.h1}>{t("common.cta")}</ContactCta>
                 <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary">
@@ -132,18 +147,8 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
         <section className="section-band section--panel border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
-              <h2 className="section-title">{content.keywordsTitle}</h2>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {content.keywords.map((keyword) => (
-                  <span key={keyword} className="skill-chip">
-                    {keyword}
-                  </span>
-                ))}
-              </div>
-            </Reveal>
-            <Reveal delay={0.08} className="mt-12">
-              <h3 className="meta-label">{content.relatedTitle}</h3>
-              <Stagger className="mt-4">
+              <h2 className="section-title">{content.relatedTitle}</h2>
+              <Stagger className="mt-6">
                 {content.related.map((item) => (
                   <StaggerItem key={item.href}>
                     <Link href={item.href} className="text-link block py-2 text-base">

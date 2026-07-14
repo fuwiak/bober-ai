@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { PORTFOLIO } from "@/lib/profile";
 import { getEnterpriseServices } from "@/lib/enterprise-services";
+import { LANDING_PAGES } from "@/lib/landing-pages";
 import { SITE_URL } from "@/lib/site";
 
 const staticRoutes = [
@@ -79,6 +80,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
           ru: `${SITE_URL}/portfolio/${item.slug}`,
           en: `${SITE_URL}/en/portfolio/${item.slug}`,
           "x-default": `${SITE_URL}/portfolio/${item.slug}`,
+        },
+      },
+    });
+  }
+
+  for (const page of LANDING_PAGES) {
+    const path = `/${page.category}/${page.slug}`;
+    entries.push({
+      url: `${SITE_URL}${path}`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.82,
+      alternates: {
+        languages: {
+          ru: `${SITE_URL}${path}`,
+          en: `${SITE_URL}/en${path}`,
+          "x-default": `${SITE_URL}${path}`,
+        },
+      },
+    });
+    entries.push({
+      url: `${SITE_URL}/en${path}`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.72,
+      alternates: {
+        languages: {
+          ru: `${SITE_URL}${path}`,
+          en: `${SITE_URL}/en${path}`,
+          "x-default": `${SITE_URL}${path}`,
         },
       },
     });
