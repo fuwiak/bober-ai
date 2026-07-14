@@ -75,7 +75,7 @@ export default async function PortfolioProjectPage({ params }: PageProps) {
               alt={item.title}
               fill
               sizes="(max-width: 1200px) 100vw, 1152px"
-              className="case-study__image object-top"
+              className="case-study__image"
               priority
             />
           </EditorialImageFrame>

@@ -1,5 +1,12 @@
 export const HERO_STOCK_IMAGE = "/stock/automation-code.jpg";
 export const ABOUT_STOCK_IMAGE = "/stock/team-collab.jpg";
+export const STOCK_IMAGES = {
+  automation: "/stock/automation-code.jpg",
+  team: "/stock/team-collab.jpg",
+  sales: "/stock/sales-proposal.jpg",
+  security: "/stock/cyber-padlock.jpg",
+  roadmap: "/stock/roadmap-sticky-notes.jpg",
+} as const;
 export const SITE_NAME = "Bober AI Systems";
 export const SITE_TAGLINE_RU = "Автоматизация бизнес-процессов для компаний";
 export const SITE_TAGLINE_EN = "Business process automation for companies";

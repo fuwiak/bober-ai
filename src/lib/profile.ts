@@ -1,3 +1,5 @@
+import { STOCK_IMAGES } from "@/lib/site";
+
 export const PROFILE = {
   name: "Павел Стасиньский",
   handle: "pstasinski",
@@ -211,7 +213,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "telemost",
     slug: "yandex-telemost-agent",
     title: "Yandex Telemost Agent — ИИ-помощник для встреч и продаж",
-    image: "/portfolio/yandex-telemost-agent.png",
+    image: STOCK_IMAGES.team,
     category: "Искусственный интеллект",
     featured: true,
     priceLabel: "300 000 ₽",
@@ -227,7 +229,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "kaspersky",
     slug: "kaspersky-ai-assistant",
     title: "AI-помощник для консультантов Kaspersky",
-    image: "/yandex/kaspersky 2.png",
+    image: STOCK_IMAGES.security,
     category: "Искусственный интеллект",
     skills: ["LLM", "RAG", "JavaScript", "Интеграция модели ИИ"],
     description:
@@ -241,7 +243,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "leads",
     slug: "lead-generation",
     title: "Собираем лиды из рекламы и мессенджеров, учимся на поведении клиентов",
-    image: "/portfolio/gtm-flow-leads.png",
+    image: STOCK_IMAGES.sales,
     category: "Искусственный интеллект",
     featured: true,
     priceLabel: "300 000 ₽",
@@ -257,7 +259,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "kp-llm",
     slug: "kp-llm-automation",
     title: "Автоматизация коммерческих предложений",
-    image: "/portfolio/offer-kp-llm.png",
+    image: STOCK_IMAGES.automation,
     category: "Автоматизация продаж",
     featured: true,
     priceLabel: "300 000 ₽",
@@ -273,7 +275,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "elia",
     slug: "elia-suite",
     title: "ELIA Suite — изолированные воркспейсы для партнёров и поставщиков",
-    image: "/portfolio/elia-suite.png",
+    image: STOCK_IMAGES.roadmap,
     category: "Автоматизация продаж",
     featured: true,
     skills: ["CRM", "Claude", "JavaScript", "PDF", "Интеграции"],
@@ -288,7 +290,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "crm-bot",
     slug: "crm-telegram-sheets",
     title: "CRM + Telegram-бот + Google Sheets для B2B",
-    image: "/yandex/max1.png",
+    image: STOCK_IMAGES.automation,
     category: "ИТ и разработка",
     skills: ["Telegram", "Google Sheets", "n8n", "OpenAI", "JavaScript"],
     description:
@@ -302,7 +304,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "interior-bot",
     slug: "interior-design-bot",
     title: "AI-бот для дизайнеров интерьера в Telegram и MAX",
-    image: "/yandex/chopin1.png",
+    image: STOCK_IMAGES.team,
     category: "Искусственный интеллект",
     skills: ["Telegram", "MAX", "LLM", "OpenAI", "JavaScript"],
     description:
@@ -316,7 +318,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "social",
     slug: "social-media-analytics",
     title: "Анализ социальных медиа в реальном времени",
-    image: "/yandex/shorts.png",
+    image: STOCK_IMAGES.roadmap,
     category: "Искусственный интеллект",
     skills: ["Python", "NLP", "API соцсетей", "Дашборды", "Анализ данных"],
     description:
@@ -330,7 +332,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "ocr",
     slug: "ocr-text-extraction",
     title: "OCR — извлечение текста из документов",
-    image: "/yandex/rod2.png",
+    image: STOCK_IMAGES.automation,
     category: "ИТ и разработка",
     skills: ["Python", "OCR", "Tesseract", "PDF", "Автоматизация"],
     description:
