@@ -1,6 +1,10 @@
 import { getTranslations, getLocale } from "next-intl/server";
 import { ContactForm } from "@/components/ContactForm";
 import { ContactCta } from "@/components/ContactCta";
+import { FaqSection } from "@/components/FaqSection";
+import { SectionCtaBand } from "@/components/SectionCtaBand";
+import { EditorialImageFrame } from "@/components/EditorialImageFrame";
+import Image from "next/image";
 import { PartnerProgramBanner } from "@/components/PartnerProgramBanner";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { HeroSection } from "@/components/motion/HeroSection";
@@ -33,7 +37,13 @@ export default async function HomePage() {
   const mediaItems = getMediaItems(locale);
   const enterpriseReviews = getEnterpriseReviews();
   const trustStats = t.raw("trust.stats") as { value: string; label: string }[];
-  const homepageCaseSlugs = ["kaspersky-ai-assistant", "elia-suite", "lead-generation"] as const;
+  const homepageCaseSlugs = [
+    "kaspersky-ai-assistant",
+    "elia-suite",
+    "lead-generation",
+    "kp-llm-automation",
+    "yandex-telemost-agent",
+  ] as const;
   const homepageCases = homepageCaseSlugs
     .map((slug) => PORTFOLIO.find((item) => item.slug === slug))
     .filter((item): item is (typeof PORTFOLIO)[number] => Boolean(item));
@@ -48,6 +58,8 @@ export default async function HomePage() {
           titleLine1={t("hero.titleLine1")}
           titleLine2={t("hero.titleLine2")}
           valueProposition={t("hero.valueProposition")}
+          differentiator={t("hero.differentiator")}
+          specialization={t("hero.specialization")}
           ctaPrimary={t("hero.ctaPrimary")}
           ctaSecondary={t("hero.ctaSecondary")}
           trustItems={t.raw("hero.trustItems") as string[]}
@@ -103,6 +115,14 @@ export default async function HomePage() {
           </div>
         </section>
 
+        <SectionCtaBand
+          title={t("sectionCta.title")}
+          duration={t("sectionCta.duration")}
+          commitment={t("sectionCta.commitment")}
+          format={t("sectionCta.format")}
+          cta={t("sectionCta.cta")}
+        />
+
         <section id="portfolio" className="section-band section--panel scroll-mt-16 border-b border-hairline">
           <div className="container-editorial">
             <ProjectsCasesShowcase
@@ -127,6 +147,15 @@ export default async function HomePage() {
           </div>
         </section>
 
+        <SectionCtaBand
+          title={t("sectionCta.title")}
+          duration={t("sectionCta.duration")}
+          commitment={t("sectionCta.commitment")}
+          format={t("sectionCta.format")}
+          cta={t("sectionCta.cta")}
+          className="section--deep"
+        />
+
         <section id="process" className="section-band section--deep scroll-mt-16 border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
@@ -147,6 +176,49 @@ export default async function HomePage() {
                 </StaggerItem>
               ))}
             </Stagger>
+          </div>
+        </section>
+
+        <section className="section-band section--panel border-b border-hairline">
+          <div className="container-editorial">
+            <Reveal>
+              <h2 className="section-title">{t("security.title")}</h2>
+            </Reveal>
+            <ul className="mt-10 max-w-3xl space-y-4">
+              {(t.raw("security.items") as string[]).map((item) => (
+                <Reveal key={item} delay={0.05}>
+                  <li className="body-copy flex gap-4 text-base">
+                    <span className="meta-label shrink-0">—</span>
+                    <span>{item}</span>
+                  </li>
+                </Reveal>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section id="about" className="section-band section--deep scroll-mt-16 border-b border-hairline">
+          <div className="container-editorial grid gap-16 lg:grid-cols-[0.4fr_0.6fr] lg:items-start">
+            <Reveal>
+              <EditorialImageFrame variant="card" className="aspect-[4/3] w-full max-w-md bg-surface-soft">
+                <Image
+                  src={FOUNDER_IMAGE}
+                  alt={t("about.imageAlt")}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 400px"
+                  className="object-cover"
+                />
+              </EditorialImageFrame>
+            </Reveal>
+            <div>
+              <Reveal>
+                <span className="section-label">{t("sections.about")}</span>
+                <h2 className="section-title mt-4">{t("about.title")}</h2>
+                <p className="meta-label mt-6">{t("about.tagline")}</p>
+                <p className="body-copy mt-6 max-w-3xl whitespace-pre-line text-base">{t("about.text")}</p>
+                <ContactCta className="mt-10">{t("about.cta")}</ContactCta>
+              </Reveal>
+            </div>
           </div>
         </section>
 
@@ -178,6 +250,14 @@ export default async function HomePage() {
           articleAriaLabel={t("media.articleAriaLabel")}
           footerNote={t("media.footerNote")}
           footerLinkLabel={t("media.footerLinkLabel")}
+        />
+
+        <FaqSection
+          id="faq"
+          label={t("faq.label")}
+          title={t("faq.title")}
+          subtitle={t("faq.subtitle")}
+          items={t.raw("faq.items") as { q: string; a: string }[]}
         />
 
         <section className="cta-band">

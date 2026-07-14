@@ -43,11 +43,12 @@ const en = {
   },
   hero: {
     location: "Moscow · Remote · Russia & CIS",
-    eyebrow: "Bober AI Systems · for companies",
-    titleLine1: "I IMPLEMENT AI",
-    titleLine2: "INTO BUSINESS PROCESSES",
-    valueProposition:
-      "Customer service, CRM, documents, sales, HR — fixed scope and production delivery. Not slide decks — hands-on implementation.",
+    eyebrow: "Bober AI Systems / Enterprise AI integrator",
+    titleLine1: "AI AUTOMATION",
+    titleLine2: "FOR BUSINESS",
+    valueProposition: "I design and deploy AI systems that automate company operations.",
+    differentiator: "From MVP to production. AI systems that run 24/7 in real business — no vendor lock-in.",
+    specialization: "LLM · AI Agents · RAG · Integrations · On-Prem",
     heroImageAlt: "AI implementation and business process automation",
     trustItems: [
       "12+ PRODUCTION DEPLOYMENTS",

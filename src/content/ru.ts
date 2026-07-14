@@ -47,11 +47,12 @@ const ru = {
   },
   hero: {
     location: "Москва · Онлайн · Россия и СНГ",
-    eyebrow: "Bober AI Systems · для компаний",
-    titleLine1: "ВНЕДРЯЮ AI",
-    titleLine2: "В БИЗНЕС-ПРОЦЕССЫ",
-    valueProposition:
-      "Поддержка, CRM, документы, продажи, HR — с фиксированной сметой и запуском в production. Не консультации на слайдах, а внедрение под ключ.",
+    eyebrow: "Bober AI Systems / Enterprise AI интегратор",
+    titleLine1: "AI-АВТОМАТИЗАЦИЯ",
+    titleLine2: "ДЛЯ БИЗНЕСА",
+    valueProposition: "Проектирую и внедряю AI-системы, которые автоматизируют работу компаний.",
+    differentiator: "От MVP до production. Системы AI, которые работают 24/7 в реальном бизнесе — без vendor lock-in.",
+    specialization: "LLM · AI Agents · RAG · Интеграции · On-Prem",
     heroImageAlt: "Внедрение AI и автоматизация бизнес-процессов",
     trustItems: [
       "12+ ВНЕДРЕНИЙ В PRODUCTION",
