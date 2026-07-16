@@ -910,6 +910,177 @@ html.dark {
   .media-section {
     @apply border-t border-hairline;
   }
+
+  /* Founder credibility / dossier */
+  .credibility-section {
+    background: transparent;
+  }
+  .credibility-proof {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--color-hairline);
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .credibility-proof li {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    padding: 1rem 1.25rem 1rem 0;
+    border-right: 1px solid var(--color-hairline);
+  }
+  .credibility-proof li:last-child {
+    border-right: 0;
+  }
+  .credibility-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .credibility-panel--inactive {
+    display: none;
+  }
+  .credibility-tab {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    padding: 0.85rem 1.25rem;
+    border-bottom: 1px solid transparent;
+    margin-bottom: -1px;
+    background: transparent;
+    cursor: pointer;
+  }
+  .credibility-tab:hover,
+  .credibility-tab:focus-visible {
+    color: var(--color-ink);
+    outline: none;
+  }
+  .credibility-tab--active {
+    color: var(--color-ink);
+    border-bottom-color: var(--color-ink);
+  }
+  .credibility-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+  }
+  .credibility-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem 1.5rem 1.75rem 0;
+    border-top: 1px solid var(--color-hairline);
+    border-right: 1px solid var(--color-hairline);
+    min-height: 100%;
+  }
+  .credibility-card:nth-child(2n) {
+    padding-left: 1.5rem;
+    padding-right: 0;
+    border-right: 0;
+  }
+  .credibility-card__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+  }
+  .credibility-card__source {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+    border: 1px solid var(--color-hairline);
+    padding: 0.25rem 0.5rem;
+  }
+  .credibility-card__type {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .credibility-card__title {
+    margin-top: 1rem;
+    font-family: var(--font-display);
+    font-size: clamp(20px, 2vw, 26px);
+    line-height: 1.25;
+    color: var(--color-ink);
+  }
+  .credibility-card__description {
+    margin-top: 0.75rem;
+    flex: 1;
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--color-body);
+  }
+  .credibility-card__meta {
+    margin-top: 1rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-muted);
+  }
+  .credibility-card__cta {
+    margin-top: 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+  }
+  .credibility-card__cta:hover,
+  .credibility-card__cta:focus-visible {
+    opacity: 0.7;
+    outline: none;
+  }
+  .credibility-card__secondary {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+  }
+  @media (max-width: 900px) {
+    .credibility-proof {
+      grid-template-columns: 1fr 1fr;
+    }
+    .credibility-proof li:nth-child(2n) {
+      border-right: 0;
+    }
+    .credibility-proof li:nth-child(-n + 2) {
+      border-bottom: 1px solid var(--color-hairline);
+    }
+  }
+  @media (max-width: 700px) {
+    .credibility-proof {
+      grid-template-columns: 1fr;
+    }
+    .credibility-proof li {
+      border-right: 0;
+      border-bottom: 1px solid var(--color-hairline);
+      padding-right: 0;
+    }
+    .credibility-proof li:last-child {
+      border-bottom: 0;
+    }
+    .credibility-grid {
+      grid-template-columns: 1fr;
+    }
+    .credibility-card,
+    .credibility-card:nth-child(2n) {
+      padding-left: 0;
+      padding-right: 0;
+      border-right: 0;
+    }
+  }
+
   .media-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);

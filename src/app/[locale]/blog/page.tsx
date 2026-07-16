@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PROFILE } from "@/lib/profile";
 import { DEFAULT_KEYWORDS, SITE_NAME, absoluteUrl } from "@/lib/site";
 import type { AppLocale } from "@/i18n/routing";
 
 const MEDIUM_URL = "https://medium.com/@stasinskipawel";
-const HABR_URL = `https://habr.com/ru/users/${PROFILE.handle}/articles/`;
+const HABR_URL = "https://habr.com/ru/users/fuwiak/articles/";
+
 
 function getCopy(locale: AppLocale) {
   if (locale === "en") {
@@ -28,7 +28,7 @@ function getCopy(locale: AppLocale) {
       mediumPlaceholderDesc: "Medium sync will appear here.",
       habrBadge: "Habr",
       habrTitle: "Habr articles",
-      habrProfile: `@${PROFILE.handle}`,
+      habrProfile: "@fuwiak",
       habrCta: "Open Habr",
       habrCardLabel: (idx: number) => `Habr · article ${idx}`,
       habrPlaceholderTitles: [
@@ -63,7 +63,7 @@ function getCopy(locale: AppLocale) {
     mediumPlaceholderDesc: "Автосинхронизация с профилем Medium появится здесь.",
     habrBadge: "Habr",
     habrTitle: "Статьи на Habr",
-    habrProfile: `@${PROFILE.handle}`,
+    habrProfile: "@fuwiak",
     habrCta: "Открыть Habr",
     habrCardLabel: (idx: number) => `Habr · статья ${idx}`,
     habrPlaceholderTitles: [

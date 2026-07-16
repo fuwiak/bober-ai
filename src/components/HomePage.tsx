@@ -1,6 +1,7 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { ContactCta } from "@/components/ContactCta";
 import { ContactForm } from "@/components/ContactForm";
+import { FounderCredibilitySection } from "@/components/FounderCredibilitySection";
 import { HomeHubSection } from "@/components/HomeHubSection";
 import { SectionCtaBand } from "@/components/SectionCtaBand";
 import { PartnerProgramBanner } from "@/components/PartnerProgramBanner";
@@ -9,6 +10,7 @@ import { HeroSection } from "@/components/motion/HeroSection";
 import { TrustStrip } from "@/components/motion/TrustStrip";
 import { Reveal } from "@/components/motion/Reveal";
 import { TrackedAnchor } from "@/components/TrackedAnchor";
+import { getCredibilityByMarket } from "@/lib/media";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
@@ -19,7 +21,10 @@ import {
 
 export default async function HomePage() {
   const t = await getTranslations();
+  const locale = await getLocale();
   const trustStats = t.raw("trust.stats") as { value: string; label: string }[];
+  const russianItems = getCredibilityByMarket(locale, "russian");
+  const internationalItems = getCredibilityByMarket(locale, "international");
 
   return (
     <div className="page-shell min-h-screen">
@@ -73,6 +78,21 @@ export default async function HomePage() {
           title={t("homeHub.title")}
           linkLabel={t("common.readMore")}
           items={t.raw("homeHub.items") as { href: string; title: string; description: string }[]}
+        />
+
+        <FounderCredibilitySection
+          locale={locale}
+          label={t("media.label")}
+          title={t("media.title")}
+          subtitle={t("media.subtitle")}
+          body={t("media.body")}
+          proofItems={t.raw("media.proofItems") as string[]}
+          tabRussian={t("media.tabRussian")}
+          tabInternational={t("media.tabInternational")}
+          russianItems={russianItems}
+          internationalItems={internationalItems}
+          dossierCta={t("media.dossierCta")}
+          closing={t("media.closing")}
         />
 
         <SectionCtaBand

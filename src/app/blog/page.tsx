@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PROFILE } from "@/lib/profile";
 import { DEFAULT_KEYWORDS, SITE_NAME, absoluteUrl } from "@/lib/site";
 
 const mediumPlaceholders = [
@@ -16,7 +15,8 @@ const habrPlaceholders = [
 ];
 
 const MEDIUM_URL = "https://medium.com/@stasinskipawel";
-const HABR_URL = `https://habr.com/ru/users/${PROFILE.handle}/articles/`;
+const HABR_URL = "https://habr.com/ru/users/fuwiak/articles/";
+
 
 export const metadata: Metadata = {
   title: `Блог ${SITE_NAME}`,
@@ -129,7 +129,7 @@ export default function BlogPage() {
               </span>
               <h2 className="mt-1 text-2xl md:text-3xl font-bold tracking-tight">Статьи на Habr</h2>
               <p className="mt-2 text-on-surface-variant text-sm">
-                Профиль: <span className="font-semibold text-on-surface">@{PROFILE.handle}</span>
+                Профиль: <span className="font-semibold text-on-surface">@fuwiak</span>
               </p>
             </div>
             <a

@@ -1,131 +1,453 @@
-import { YOUTUBE_SHORTS_URL } from "@/lib/site";
+import {
+  FOUNDER_IMAGE,
+  GITHUB_URL,
+  LINKEDIN_URL,
+  SITE_NAME,
+  SITE_URL,
+  YANDEX_USLUGI_URL,
+  absoluteUrl,
+} from "@/lib/site";
 
-export type MediaPublisher = {
+export const HABR_URL = "https://habr.com/ru/users/fuwiak/";
+export const MEDIUM_URL = "https://medium.com/@stasinskipawel";
+export const FIVERR_URL = "https://www.fiverr.com/pawelstasinski";
+export const STACKOVERFLOW_URL = "https://stackoverflow.com/users/2715948/fuwiak";
+export const DATASCIENCE_SE_URL = "https://datascience.stackexchange.com/users/56354/fuwiak";
+export const FAKRO_INTERVIEW_URL = "https://www.youtube.com/watch?v=8mF9eP-0fws";
+export const FAKRO_PAGE_URL = "https://academy-fakro.ru/webinar/49";
+export const MK_ARTICLE_URL =
+  "https://www.mk-mosobl.ru/social/2026/03/16/starovery-i-novatory-pedagogi-razdelilis-na-dva-lagerya-izza-vnedreniya-neyrosetey.html";
+export const SEVERGAZBANK_ARTICLE_URL =
+  "https://gazeta.severgazbank.ru/virtuoz-i-ego-skripka-pochemu-ii-ne-zamena-programmistu-a-novyj-instrument/";
+
+export type CredibilityMarket = "russian" | "international";
+
+export type CredibilityItem = {
   id: string;
-  name: string;
-  logoLabel: string;
-};
-
-export const MEDIA_PUBLISHERS: MediaPublisher[] = [
-  { id: "mk", name: "Московский комсомолец", logoLabel: "МК" },
-  { id: "severgazbank", name: "Газета Севергазбанка", logoLabel: "Севергазбанк" },
-  { id: "youtube", name: "YouTube", logoLabel: "YouTube" },
-];
-export type MediaItemType = "article" | "video";
-export type MediaAccent = "youtube" | "mk" | "severgazbank";
-
-export type MediaItem = {
-  id: string;
-  type: MediaItemType;
-  category: string;
-  publisher: string;
+  market: CredibilityMarket;
+  source: string;
+  sourceShort: string;
+  type: string;
   title: string;
   description: string;
+  meta: string;
+  cta: string;
   url: string;
-  featured: boolean;
-  accent: MediaAccent;
   publishedAt?: string;
-  youtubeId?: string;
+  secondaryLinks?: { label: string; url: string }[];
+  schemaType?: "Article" | "VideoObject" | "ProfilePage";
 };
 
-const ruMediaItems: MediaItem[] = [
+export type MediaDossierSection = {
+  id: string;
+  title: string;
+  itemIds: string[];
+};
+
+const ruItems: CredibilityItem[] = [
   {
-    id: "youtube-ai-business",
-    type: "video",
-    category: "ИНТЕРВЬЮ",
-    publisher: "YouTube",
-    title: "Внедрение AI в бизнес — экспертное интервью",
-    description: "Как компании переходят от пилотов к production AI-системам и что важно на этапе закупки.",
-    url: YOUTUBE_SHORTS_URL,
-    featured: true,
-    accent: "youtube",
-    youtubeId: "5DQzO5aPS5A",
-    publishedAt: "2025-09-01",
+    id: "fakro-fm",
+    market: "russian",
+    source: "FAKRO FM",
+    sourceShort: "FAKRO",
+    type: "Интервью / подкаст",
+    title: "Нейросети в жизни и в работе",
+    description:
+      "Полноформатное интервью с Павлом Стасиньски о применении искусственного интеллекта, автоматизации работы, ограничениях нейросетей и задачах, которые компании могут передавать ИИ.",
+    meta: "FAKRO FM, 2026",
+    cta: "Смотреть интервью",
+    url: FAKRO_INTERVIEW_URL,
+    publishedAt: "2026-05-26",
+    secondaryLinks: [{ label: "Страница выпуска FAKRO", url: FAKRO_PAGE_URL }],
+    schemaType: "VideoObject",
   },
   {
-    id: "mk-ai-teachers",
-    type: "article",
-    category: "ЭКСПЕРТНЫЙ КОММЕНТАРИЙ",
-    publisher: "Московский комсомолец",
-    title: "Как искусственный интеллект меняет работу преподавателей",
+    id: "mk-education",
+    market: "russian",
+    source: "МК Московская область",
+    sourceShort: "МК",
+    type: "Экспертный комментарий",
+    title: "Использование нейросетей в образовании",
     description:
-      "Комментарий о возможностях и ограничениях AI при автоматической проверке учебных работ.",
-    url: "https://www.mk-mosobl.ru/social/2026/03/16/starovery-i-novatory-pedagogi-razdelilis-na-dva-lagerya-izza-vnedreniya-neyrosetey.html",
-    featured: false,
-    accent: "mk",
+      "Комментарий Павла Стасиньски о возможностях и ограничениях автоматической проверки работ с помощью искусственного интеллекта.",
+    meta: "МК Московская область, 2026",
+    cta: "Читать публикацию",
+    url: MK_ARTICLE_URL,
     publishedAt: "2026-03-16",
+    schemaType: "Article",
   },
   {
-    id: "severgazbank-ai-developer",
-    type: "article",
-    category: "ЭКСПЕРТНОЕ МНЕНИЕ",
-    publisher: "Газета Севергазбанка",
-    title: "Почему AI — не замена программисту, а новый инструмент",
+    id: "severgazbank-ai",
+    market: "russian",
+    source: "Газета Севергазбанка",
+    sourceShort: "Севергазбанк",
+    type: "Экспертный материал",
+    title: "ИИ как инструмент разработчика",
     description:
-      "О роли разработчика в эпоху генеративного AI и о том, почему качество результата по-прежнему зависит от человека.",
-    url: "https://gazeta.severgazbank.ru/virtuoz-i-ego-skripka-pochemu-ii-ne-zamena-programmistu-a-novyj-instrument/",
-    featured: false,
-    accent: "severgazbank",
+      "Материал о том, почему искусственный интеллект становится соавтором программиста, но не заменяет инженерное мышление, архитектуру и ответственность за результат.",
+    meta: "Севергазбанк, 2025",
+    cta: "Читать материал",
+    url: SEVERGAZBANK_ARTICLE_URL,
     publishedAt: "2025-11-07",
+    schemaType: "Article",
+  },
+  {
+    id: "habr",
+    market: "russian",
+    source: "Habr",
+    sourceShort: "Habr",
+    type: "Технические публикации",
+    title: "Статьи о Python, нейросетях и анализе данных",
+    description:
+      "Авторские материалы о рекуррентных нейронных сетях, генерации музыки, обработке данных и практическом применении Python.",
+    meta: "3 авторские публикации",
+    cta: "Открыть профиль Habr",
+    url: HABR_URL,
+    schemaType: "ProfilePage",
+  },
+  {
+    id: "medium",
+    market: "international",
+    source: "Medium",
+    sourceShort: "Medium",
+    type: "Technical writing",
+    title: "AI, RAG, LangChain and data science",
+    description:
+      "Technical articles covering retrieval-augmented generation, LangChain, generative AI, Python, computer vision and data analysis.",
+    meta: "10 published articles",
+    cta: "Read on Medium",
+    url: MEDIUM_URL,
+    schemaType: "ProfilePage",
+  },
+  {
+    id: "fiverr-pro",
+    market: "international",
+    source: "Fiverr Pro",
+    sourceShort: "Fiverr Pro",
+    type: "Verified expertise",
+    title: "Vetted Fiverr Pro AI specialist",
+    description:
+      "Verified in AI development, data science, machine learning and software engineering, with commercial projects delivered for international clients.",
+    meta: "Verified commercial profile",
+    cta: "View Fiverr Pro profile",
+    url: FIVERR_URL,
+    schemaType: "ProfilePage",
+  },
+  {
+    id: "stack-exchange",
+    market: "international",
+    source: "Stack Exchange",
+    sourceShort: "SE",
+    type: "Developer community",
+    title: "Long-term technical contribution",
+    description:
+      "More than a decade of answering practical questions in software engineering, data science, machine learning and mathematics.",
+    meta: "Stack Overflow and Data Science Stack Exchange",
+    cta: "View technical profile",
+    url: STACKOVERFLOW_URL,
+    secondaryLinks: [
+      { label: "Stack Overflow", url: STACKOVERFLOW_URL },
+      { label: "Data Science Stack Exchange", url: DATASCIENCE_SE_URL },
+    ],
+    schemaType: "ProfilePage",
+  },
+  {
+    id: "github",
+    market: "international",
+    source: "GitHub",
+    sourceShort: "GitHub",
+    type: "Open-source and engineering",
+    title: "Public AI and software projects",
+    description:
+      "Repositories covering Python, machine learning, RAG, automation, AI applications and software experiments developed over several years.",
+    meta: "Long-term engineering footprint",
+    cta: "View GitHub",
+    url: GITHUB_URL,
+    schemaType: "ProfilePage",
+  },
+  {
+    id: "linkedin",
+    market: "international",
+    source: "LinkedIn",
+    sourceShort: "LinkedIn",
+    type: "Professional profile",
+    title: "AI automation and LLM engineering",
+    description:
+      "Professional activity focused on AI automation, LLM integrations, RAG, business-process automation and production deployment.",
+    meta: "Professional network",
+    cta: "View LinkedIn",
+    url: LINKEDIN_URL,
+    schemaType: "ProfilePage",
   },
 ];
 
-const enMediaItems: MediaItem[] = [
+const enItems: CredibilityItem[] = [
   {
-    id: "youtube-ai-business",
-    type: "video",
-    category: "INTERVIEW",
-    publisher: "YouTube",
-    title: "Enterprise AI implementation — expert interview",
-    description: "How companies move from pilots to production AI systems and what matters during procurement.",
-    url: YOUTUBE_SHORTS_URL,
-    featured: true,
-    accent: "youtube",
-    youtubeId: "5DQzO5aPS5A",
-    publishedAt: "2025-09-01",
+    id: "fakro-fm",
+    market: "russian",
+    source: "FAKRO FM",
+    sourceShort: "FAKRO",
+    type: "Interview / podcast",
+    title: "Neural networks in life and work",
+    description:
+      "Full-length interview with Pawel Stasinski on applying AI, work automation, model limitations, and tasks companies can delegate to neural networks.",
+    meta: "FAKRO FM, 2026",
+    cta: "Watch interview",
+    url: FAKRO_INTERVIEW_URL,
+    publishedAt: "2026-05-26",
+    secondaryLinks: [{ label: "FAKRO episode page", url: FAKRO_PAGE_URL }],
+    schemaType: "VideoObject",
   },
   {
-    id: "mk-ai-teachers",
-    type: "article",
-    category: "EXPERT COMMENTARY",
-    publisher: "Moskovsky Komsomolets",
-    title: "How artificial intelligence is changing teachers' work",
+    id: "mk-education",
+    market: "russian",
+    source: "MK Moscow Region",
+    sourceShort: "MK",
+    type: "Expert commentary",
+    title: "Using neural networks in education",
     description:
-      "Commentary on the opportunities and limitations of AI in automated grading of student work.",
-    url: "https://www.mk-mosobl.ru/social/2026/03/16/starovery-i-novatory-pedagogi-razdelilis-na-dva-lagerya-izza-vnedreniya-neyrosetey.html",
-    featured: false,
-    accent: "mk",
+      "Commentary by Pawel Stasinski on the opportunities and limits of automated grading with artificial intelligence.",
+    meta: "MK Moscow Region, 2026",
+    cta: "Read publication",
+    url: MK_ARTICLE_URL,
     publishedAt: "2026-03-16",
+    schemaType: "Article",
   },
   {
-    id: "severgazbank-ai-developer",
-    type: "article",
-    category: "EXPERT OPINION",
-    publisher: "Severgazbank Newspaper",
-    title: "Why AI is not a replacement for a developer, but a new tool",
+    id: "severgazbank-ai",
+    market: "russian",
+    source: "Severgazbank Newspaper",
+    sourceShort: "Severgazbank",
+    type: "Expert article",
+    title: "AI as a developer tool",
     description:
-      "On the role of developers in the generative AI era and why output quality still depends on humans.",
-    url: "https://gazeta.severgazbank.ru/virtuoz-i-ego-skripka-pochemu-ii-ne-zamena-programmistu-a-novyj-instrument/",
-    featured: false,
-    accent: "severgazbank",
+      "On why artificial intelligence becomes a programmer’s co-author but does not replace engineering judgment, architecture, or responsibility for outcomes.",
+    meta: "Severgazbank, 2025",
+    cta: "Read article",
+    url: SEVERGAZBANK_ARTICLE_URL,
     publishedAt: "2025-11-07",
+    schemaType: "Article",
+  },
+  {
+    id: "habr",
+    market: "russian",
+    source: "Habr",
+    sourceShort: "Habr",
+    type: "Technical publications",
+    title: "Articles on Python, neural networks and data analysis",
+    description:
+      "Author articles on recurrent neural networks, music generation, data processing and practical Python applications.",
+    meta: "3 authored publications",
+    cta: "Open Habr profile",
+    url: HABR_URL,
+    schemaType: "ProfilePage",
+  },
+  {
+    id: "medium",
+    market: "international",
+    source: "Medium",
+    sourceShort: "Medium",
+    type: "Technical writing",
+    title: "AI, RAG, LangChain and data science",
+    description:
+      "Technical articles covering retrieval-augmented generation, LangChain, generative AI, Python, computer vision and data analysis.",
+    meta: "10 published articles",
+    cta: "Read on Medium",
+    url: MEDIUM_URL,
+    schemaType: "ProfilePage",
+  },
+  {
+    id: "fiverr-pro",
+    market: "international",
+    source: "Fiverr Pro",
+    sourceShort: "Fiverr Pro",
+    type: "Verified expertise",
+    title: "Vetted Fiverr Pro AI specialist",
+    description:
+      "Verified in AI development, data science, machine learning and software engineering, with commercial projects delivered for international clients.",
+    meta: "Verified commercial profile",
+    cta: "View Fiverr Pro profile",
+    url: FIVERR_URL,
+    schemaType: "ProfilePage",
+  },
+  {
+    id: "stack-exchange",
+    market: "international",
+    source: "Stack Exchange",
+    sourceShort: "SE",
+    type: "Developer community",
+    title: "Long-term technical contribution",
+    description:
+      "More than a decade of answering practical questions in software engineering, data science, machine learning and mathematics.",
+    meta: "Stack Overflow and Data Science Stack Exchange",
+    cta: "View technical profile",
+    url: STACKOVERFLOW_URL,
+    secondaryLinks: [
+      { label: "Stack Overflow", url: STACKOVERFLOW_URL },
+      { label: "Data Science Stack Exchange", url: DATASCIENCE_SE_URL },
+    ],
+    schemaType: "ProfilePage",
+  },
+  {
+    id: "github",
+    market: "international",
+    source: "GitHub",
+    sourceShort: "GitHub",
+    type: "Open-source and engineering",
+    title: "Public AI and software projects",
+    description:
+      "Repositories covering Python, machine learning, RAG, automation, AI applications and software experiments developed over several years.",
+    meta: "Long-term engineering footprint",
+    cta: "View GitHub",
+    url: GITHUB_URL,
+    schemaType: "ProfilePage",
+  },
+  {
+    id: "linkedin",
+    market: "international",
+    source: "LinkedIn",
+    sourceShort: "LinkedIn",
+    type: "Professional profile",
+    title: "AI automation and LLM engineering",
+    description:
+      "Professional activity focused on AI automation, LLM integrations, RAG, business-process automation and production deployment.",
+    meta: "Professional network",
+    cta: "View LinkedIn",
+    url: LINKEDIN_URL,
+    schemaType: "ProfilePage",
   },
 ];
 
-export function getMediaItems(locale: string): MediaItem[] {
-  return locale === "en" ? enMediaItems : ruMediaItems;
+export function getCredibilityItems(locale: string): CredibilityItem[] {
+  return locale === "en" ? enItems : ruItems;
 }
 
-export function getYoutubeThumbnail(youtubeId: string, quality: "hq" | "max" = "hq"): string {
-  const file = quality === "max" ? "maxresdefault.jpg" : "hqdefault.jpg";
-  return `https://i.ytimg.com/vi/${youtubeId}/${file}`;
+export function getCredibilityByMarket(locale: string, market: CredibilityMarket): CredibilityItem[] {
+  return getCredibilityItems(locale).filter((item) => item.market === market);
 }
 
-export function formatMediaDate(isoDate: string, locale: string): string {
-  const date = new Date(isoDate);
-  return date.toLocaleDateString(locale === "en" ? "en-GB" : "ru-RU", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+export function getMediaDossierSections(locale: string): MediaDossierSection[] {
+  if (locale === "en") {
+    return [
+      { id: "interviews", title: "Interviews and media appearances", itemIds: ["fakro-fm"] },
+      { id: "commentary", title: "Expert commentary", itemIds: ["mk-education", "severgazbank-ai"] },
+      { id: "publications", title: "Technical publications", itemIds: ["habr", "medium"] },
+      { id: "communities", title: "Developer communities", itemIds: ["stack-exchange", "github"] },
+      { id: "verified", title: "Verified commercial profiles", itemIds: ["fiverr-pro", "linkedin"] },
+    ];
+  }
+  return [
+    { id: "interviews", title: "Интервью и подкасты", itemIds: ["fakro-fm"] },
+    { id: "commentary", title: "Комментарии в СМИ", itemIds: ["mk-education"] },
+    { id: "expert", title: "Экспертные материалы", itemIds: ["severgazbank-ai"] },
+    { id: "habr", title: "Авторские статьи на Habr", itemIds: ["habr"] },
+    { id: "international", title: "Международные публикации", itemIds: ["medium"] },
+    {
+      id: "profiles",
+      title: "Профессиональные профили",
+      itemIds: ["fiverr-pro", "stack-exchange", "github", "linkedin"],
+    },
+    { id: "proof", title: "Отзывы и подтверждение опыта", itemIds: [] },
+  ];
+}
+
+export const YANDEX_PROOF_URL = YANDEX_USLUGI_URL;
+
+export function founderPersonJsonLd(pageUrl: string) {
+  const items = getCredibilityItems("ru");
+  const subjectOf = items
+    .filter((item) => item.schemaType === "Article" || item.schemaType === "VideoObject")
+    .map((item) => ({
+      "@type": item.schemaType,
+      name: item.title,
+      url: item.url,
+      ...(item.publishedAt ? { datePublished: item.publishedAt } : {}),
+    }));
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${pageUrl}#person`,
+    name: "Pawel Stasinski",
+    alternateName: [
+      "Paweł Stasiński",
+      "Павел Стасиньски",
+      "Павел Стасиньский",
+      "Pavel Stasinsky",
+      "fuwiak",
+    ],
+    jobTitle: "AI Architect / AI Automation Engineer",
+    url: pageUrl,
+    image: absoluteUrl(FOUNDER_IMAGE),
+    worksFor: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    founder: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    sameAs: [
+      MEDIUM_URL,
+      HABR_URL,
+      GITHUB_URL,
+      LINKEDIN_URL,
+      FIVERR_URL,
+      STACKOVERFLOW_URL,
+      DATASCIENCE_SE_URL,
+      YANDEX_USLUGI_URL,
+    ],
+    subjectOf,
+  };
+}
+
+export function credibilityGraphJsonLd(pageUrl: string, locale: string) {
+  const items = getCredibilityItems(locale);
+  const person = founderPersonJsonLd(pageUrl);
+
+  const creativeWorks = items
+    .filter((item) => item.schemaType === "Article" || item.schemaType === "VideoObject")
+    .map((item) => ({
+      "@type": item.schemaType,
+      "@id": `${pageUrl}#${item.id}`,
+      name: item.title,
+      description: item.description,
+      url: item.url,
+      ...(item.publishedAt ? { datePublished: item.publishedAt } : {}),
+      author: { "@id": `${pageUrl}#person` },
+      ...(item.schemaType === "VideoObject"
+        ? {
+            thumbnailUrl: "https://i.ytimg.com/vi/8mF9eP-0fws/hqdefault.jpg",
+            uploadDate: item.publishedAt,
+          }
+        : {}),
+    }));
+
+  const profiles = items
+    .filter((item) => item.schemaType === "ProfilePage")
+    .map((item) => ({
+      "@type": "ProfilePage",
+      "@id": `${pageUrl}#${item.id}`,
+      name: item.title,
+      url: item.url,
+      mainEntity: { "@id": `${pageUrl}#person` },
+    }));
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      person,
+      {
+        "@type": "Organization",
+        "@id": `${pageUrl}#org`,
+        name: SITE_NAME,
+        url: SITE_URL,
+        founder: { "@id": `${pageUrl}#person` },
+      },
+      ...creativeWorks,
+      ...profiles,
+    ],
+  };
 }

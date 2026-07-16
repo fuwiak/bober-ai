@@ -144,6 +144,12 @@ const en = {
       metaTitle: "FAQ — AI implementation for business",
       metaDescription: "Answers on budget, timeline, NDA, CRM, Claude API and on-prem deployment.",
     },
+    media: {
+      metaTitle: "Pawel Stasinski — publications, interviews and professional profiles",
+      metaDescription:
+        "FAKRO FM interview, MK commentary, Severgazbank article, Habr and Medium publications, Fiverr Pro, GitHub and Stack Exchange.",
+      pageTitle: "Pawel Stasinski — publications, interviews and professional profiles",
+    },
   },
   problemsWeSolve: {
     title: "Typical problems we solve",
@@ -468,14 +474,25 @@ const en = {
     avitoMeta: "{count} published reviews",
   },
   media: {
-    label: "MEDIA / EXPERTISE",
-    title: "Media & speaking",
-    subtitle:
-      "I comment on AI adoption for business and industry media, take part in interviews, and expert discussions.",
-    asSeenIn: "As seen in",
+    label: "MEDIA & CREDIBILITY",
+    title: "Pawel Stasinski in Russian and international media",
+    subtitle: "Interviews, expert commentary, technical publications and a verified international track record.",
+    body: "Bober AI founder Pawel Stasinski has worked in software engineering, data science and artificial intelligence for more than a decade. His experience is supported by technical publications, media interviews, expert commentary, Fiverr Pro verification and long-term activity in international developer communities.",
+    proofItems: [
+      "Media interviews and expert commentary",
+      "Technical publications",
+      "Fiverr Pro verified",
+      "10+ years in technology",
+    ],
+    tabRussian: "Russian market",
+    tabInternational: "International expertise",
+    dossierCta: "View all publications and appearances",
+    closing:
+      "Pawel Stasinski is not an anonymous AI contractor, but an experienced engineer with technical publications, media appearances, verified commercial expertise and a long-standing international developer footprint.",
+    asSeenIn: "Sources",
     videoCta: "Watch interview",
     articleCta: "Read article",
-    videoAriaLabel: "Open {publisher} interview on YouTube",
+    videoAriaLabel: "Open {publisher} interview",
     articleAriaLabel: "Open {publisher} article: {title}",
     footerNote: "Available for expert commentary, interviews, and industry speaking engagements.",
     footerLinkLabel: "Suggest a topic",
