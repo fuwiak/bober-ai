@@ -97,12 +97,12 @@ async function fetchProductionFeed(feedUrl) {
 async function checkTelEndpoint(siteUrl) {
   const telUrl = `${siteUrl.replace(/\/$/, "")}/tel`;
   const response = await fetch(telUrl, { redirect: "manual" });
-  const location = response.headers.get("location") || "";
-  if (![301, 302, 303, 307, 308].includes(response.status)) {
-    return `GET ${telUrl} → HTTP ${response.status}, ожидался redirect`;
+  if (response.status !== 200) {
+    return `GET ${telUrl} → HTTP ${response.status}, ожидался 200 (HTML со ссылкой tel:)`;
   }
-  if (!location.startsWith("tel:")) {
-    return `GET ${telUrl} → Location=${location || "(пусто)"}, ожидался tel:+7...`;
+  const text = await response.text();
+  if (!/tel:\+?\d/i.test(text)) {
+    return `GET ${telUrl} → в HTML нет ссылки tel:+...`;
   }
   return null;
 }
