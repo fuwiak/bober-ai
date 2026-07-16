@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { SiteHeaderClient } from "@/components/SiteHeaderClient";
 import { Link } from "@/i18n/navigation";
 import { CONTACT_PHONE, HOMEPAGE_PRESENCE_LINKS, SITE_NAME, TELEGRAM_URL } from "@/lib/site";
-import { LEGAL_ROUTES } from "@/lib/legal";
+import { LEGAL_ENTITY, LEGAL_ROUTES, formatLegalRequisitesLine } from "@/lib/legal";
 
 export async function SiteHeader() {
   const t = await getTranslations("nav");
@@ -42,8 +42,10 @@ export async function SiteFooter() {
         </div>
         <p className="text-sm">
           <span className="text-on-dark">{t("legalName")}</span>
-          {" · "}ИНН 772356334324 · ОГРНИП 325774600389226
+          {" · "}
+          {formatLegalRequisitesLine()}
         </p>
+        <p className="mt-2 text-sm text-on-dark-soft">{LEGAL_ENTITY.address}</p>
         <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
           <NextLink href={LEGAL_ROUTES.terms} className="text-on-dark-soft active:text-on-dark">
             {t("terms")}
@@ -54,6 +56,9 @@ export async function SiteFooter() {
           <NextLink href={LEGAL_ROUTES.consent} className="text-on-dark-soft active:text-on-dark">
             {t("consent")}
           </NextLink>
+          <a href={`mailto:${LEGAL_ENTITY.email}`} className="text-on-dark-soft active:text-on-dark">
+            {LEGAL_ENTITY.email}
+          </a>
           <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="text-on-dark-soft active:text-on-dark">
             Telegram
           </a>

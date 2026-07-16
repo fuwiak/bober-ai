@@ -43,6 +43,10 @@ export default function TermsPage() {
               {LEGAL_ENTITY.site}
             </a>
           </li>
+          <li>Банк: {LEGAL_ENTITY.bank.name}</li>
+          <li>Р/с: {LEGAL_ENTITY.bank.account}</li>
+          <li>БИК: {LEGAL_ENTITY.bank.bik}</li>
+          <li>К/с: {LEGAL_ENTITY.bank.corrAccount}</li>
         </ul>
       </section>
 
@@ -78,6 +82,11 @@ export default function TermsPage() {
 
       <section>
         <h2 className="card-title text-lg">4. Договор, NDA и смета</h2>
+        <p className="mt-3">
+          Настоящая страница описывает общие условия оказания услуг и <strong className="text-ink">не является
+          публичной офертой</strong> в смысле ст. 437 ГК РФ. Договорные отношения возникают после согласования сметы и
+          заключения договора (или акцепта счёта-оферты), выставленного Исполнителем.
+        </p>
         <ul className="mt-3 list-inside list-disc space-y-1">
           <li>работы выполняются по договору (или счёту-оферте) с фиксированной сметой до старта;</li>
           <li>до обмена конфиденциальными данными может быть подписан NDA;</li>
@@ -89,7 +98,10 @@ export default function TermsPage() {
       <section>
         <h2 className="card-title text-lg">5. Оплата</h2>
         <ul className="mt-3 list-inside list-disc space-y-1">
-          <li>безналичный расчёт по счёту на реквизиты ИП;</li>
+          <li>
+            безналичный расчёт по счёту на реквизиты ИП: р/с {LEGAL_ENTITY.bank.account},{" "}
+            {LEGAL_ENTITY.bank.name}, БИК {LEGAL_ENTITY.bank.bik}, к/с {LEGAL_ENTITY.bank.corrAccount};
+          </li>
           <li>оплата по этапам или 100% предоплата — по согласованию в договоре;</li>
           <li>цены на сайте указаны «от» и уточняются в смете под задачу заказчика.</li>
         </ul>
