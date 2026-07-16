@@ -43,10 +43,6 @@ export default function TermsPage() {
               {LEGAL_ENTITY.site}
             </a>
           </li>
-          <li>Банк: {LEGAL_ENTITY.bank.name}</li>
-          <li>Р/с: {LEGAL_ENTITY.bank.account}</li>
-          <li>БИК: {LEGAL_ENTITY.bank.bik}</li>
-          <li>К/с: {LEGAL_ENTITY.bank.corrAccount}</li>
         </ul>
       </section>
 
@@ -98,10 +94,7 @@ export default function TermsPage() {
       <section>
         <h2 className="card-title text-lg">5. Оплата</h2>
         <ul className="mt-3 list-inside list-disc space-y-1">
-          <li>
-            безналичный расчёт по счёту на реквизиты ИП: р/с {LEGAL_ENTITY.bank.account},{" "}
-            {LEGAL_ENTITY.bank.name}, БИК {LEGAL_ENTITY.bank.bik}, к/с {LEGAL_ENTITY.bank.corrAccount};
-          </li>
+          <li>безналичный расчёт по счёту на реквизиты ИП;</li>
           <li>оплата по этапам или 100% предоплата — по согласованию в договоре;</li>
           <li>цены на сайте указаны «от» и уточняются в смете под задачу заказчика.</li>
         </ul>

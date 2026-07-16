@@ -9,12 +9,6 @@ export const LEGAL_ENTITY = {
   email: CONTACT_EMAIL,
   phone: CONTACT_PHONE,
   site: SITE_URL,
-  bank: {
-    name: 'ООО "Банк Точка"',
-    account: "40802810920000699458",
-    bik: "044525104",
-    corrAccount: "30101810745374525104",
-  },
 } as const;
 
 export const LEGAL_ROUTES = {

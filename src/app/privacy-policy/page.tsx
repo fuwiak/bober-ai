@@ -46,10 +46,6 @@ export default function PrivacyPolicyPage() {
           <li>Адрес: {LEGAL_ENTITY.address}</li>
           <li>Email: {LEGAL_ENTITY.email}</li>
           <li>Телефон: {LEGAL_ENTITY.phone}</li>
-          <li>Банк: {LEGAL_ENTITY.bank.name}</li>
-          <li>Р/с: {LEGAL_ENTITY.bank.account}</li>
-          <li>БИК: {LEGAL_ENTITY.bank.bik}</li>
-          <li>К/с: {LEGAL_ENTITY.bank.corrAccount}</li>
         </ul>
       </section>
 
