@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { GuidePageView } from "@/components/GuidePageView";
 import { GUIDES, getGuide } from "@/lib/guides";
 import { getGuideContent } from "@/lib/guides-content";
+import { PROFILE } from "@/lib/profile";
 import { buildPageMetadata } from "@/lib/seo";
 import { routing } from "@/i18n/routing";
 
@@ -34,6 +35,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: content.metaDescription,
     path: `/guides/${slug}`,
     locale,
+    ogType: "article",
+    article: {
+      authors: [PROFILE.name],
+      section: locale === "en" ? "Guides" : "Гайды",
+      tags: [content.h1],
+    },
   });
 }
 

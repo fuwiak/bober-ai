@@ -30,6 +30,7 @@ export default async function FaqPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations();
+  const pageUrl = absoluteUrl(locale === "en" ? "/en/faq" : "/faq");
 
   return (
     <div className="page-shell min-h-screen">
@@ -46,10 +47,12 @@ export default async function FaqPage({ params }: Props) {
         </section>
 
         <FaqSection
+          id="faq"
           label={t("faq.label")}
           title={t("faq.title")}
           subtitle={t("faq.subtitle")}
           items={t.raw("faq.items") as { q: string; a: string }[]}
+          pageUrl={pageUrl}
           className="section--deep"
         />
 

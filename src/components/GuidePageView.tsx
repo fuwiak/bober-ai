@@ -7,7 +7,8 @@ import { Reveal } from "@/components/motion/Reveal";
 import { Link } from "@/i18n/navigation";
 import type { GuideDef } from "@/lib/guides";
 import { GUIDE_LABELS, type GuideContent } from "@/lib/guides-content";
-import { breadcrumbJsonLd, faqJsonLd, webPageJsonLd } from "@/lib/seo";
+import { PROFILE } from "@/lib/profile";
+import { articleJsonLd, breadcrumbJsonLd, faqJsonLd, webPageJsonLd } from "@/lib/seo";
 import { TELEGRAM_URL, absoluteUrl } from "@/lib/site";
 
 type GuidePageViewProps = {
@@ -27,6 +28,16 @@ export function GuidePageView({ guide, content, locale, ctaLabel, telegramLabel 
   const homeLabel = isEn ? "Home" : "Главная";
   const guidesLabel = labels.guidesTitle;
 
+  const articleText = [
+    content.subtitle,
+    ...content.sections.flatMap((section) => [section.title, ...section.paragraphs]),
+    ...(content.checklist ?? []),
+    content.ctaText,
+  ]
+    .join(" ")
+    .replace(/\s+/g, " ")
+    .trim();
+
   const breadcrumb = breadcrumbJsonLd([
     { name: homeLabel, url: absoluteUrl(prefix || "/") },
     { name: guidesLabel, url: absoluteUrl(`${prefix}/guides`) },
@@ -44,111 +55,127 @@ export function GuidePageView({ guide, content, locale, ctaLabel, telegramLabel 
     q: section.title,
     a: section.paragraphs.join(" "),
   }));
-  const faqSchema = faqJsonLd(faqFromSections);
+  const faqSchema = faqJsonLd(faqFromSections, pageUrl);
+
+  const articleSchema = articleJsonLd({
+    type: "Article",
+    url: pageUrl,
+    fragmentId: "article",
+    headline: content.h1,
+    text: articleText,
+    description: content.metaDescription,
+    authorName: PROFILE.name,
+    about: [guidesLabel, content.h1],
+    image: guide.coverImage,
+    inLanguage: isEn ? "en-US" : "ru-RU",
+  });
 
   return (
     <div className="page-shell min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPage) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <SiteHeader />
       <main>
-        <section className="section-band section--deep border-b border-hairline">
-          <div className="container-editorial">
-            <Link href="/guides" className="text-link text-sm">
-              {labels.backToGuides}
-            </Link>
-            <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_320px] lg:items-start">
-              <Reveal className="max-w-3xl">
-                <span className="section-label">{labels.guidesTitle}</span>
-                <h1 className="display-md mt-4">{content.h1}</h1>
-                <p className="body-copy mt-5 text-lg">{content.subtitle}</p>
-                <div className="mt-10 flex flex-wrap gap-4">
-                  <ContactCta defaultService={content.h1} goal="guide_cta_click">
-                    {ctaLabel}
-                  </ContactCta>
-                  <TrackedAnchor href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary" goal="telegram_click">
-                    {telegramLabel}
-                  </TrackedAnchor>
-                </div>
-              </Reveal>
-              <Reveal delay={0.08}>
-                <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-hairline bg-surface-soft">
-                  <Image
-                    src={guide.coverImage}
-                    alt={content.h1}
-                    fill
-                    className="object-contain p-4"
-                    sizes="320px"
-                    unoptimized={guide.coverImage.endsWith(".svg")}
-                  />
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </section>
-
-        {content.sections.map((section) => (
-          <section key={section.title} className="section-band section--panel border-b border-hairline">
-            <div className="container-editorial max-w-3xl">
-              <Reveal>
-                <h2 className="section-title">{section.title}</h2>
-                {section.paragraphs.map((paragraph) => (
-                  <p key={paragraph.slice(0, 48)} className="body-copy mt-4 text-base">
-                    {paragraph}
-                  </p>
-                ))}
-              </Reveal>
+        <article id="article">
+          <section className="section-band section--deep border-b border-hairline">
+            <div className="container-editorial">
+              <Link href="/guides" className="text-link text-sm">
+                {labels.backToGuides}
+              </Link>
+              <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_320px] lg:items-start">
+                <Reveal className="max-w-3xl">
+                  <span className="section-label">{labels.guidesTitle}</span>
+                  <h1 className="display-md mt-4">{content.h1}</h1>
+                  <p className="body-copy mt-5 text-lg">{content.subtitle}</p>
+                  <div className="mt-10 flex flex-wrap gap-4">
+                    <ContactCta defaultService={content.h1} goal="guide_cta_click">
+                      {ctaLabel}
+                    </ContactCta>
+                    <TrackedAnchor href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary" goal="telegram_click">
+                      {telegramLabel}
+                    </TrackedAnchor>
+                  </div>
+                </Reveal>
+                <Reveal delay={0.08}>
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-hairline bg-surface-soft">
+                    <Image
+                      src={guide.coverImage}
+                      alt={content.h1}
+                      fill
+                      className="object-contain p-4"
+                      sizes="320px"
+                      unoptimized={guide.coverImage.endsWith(".svg")}
+                    />
+                  </div>
+                </Reveal>
+              </div>
             </div>
           </section>
-        ))}
 
-        {content.checklist?.length ? (
-          <section className="section-band section--deep border-b border-hairline">
+          {content.sections.map((section) => (
+            <section key={section.title} className="section-band section--panel border-b border-hairline">
+              <div className="container-editorial max-w-3xl">
+                <Reveal>
+                  <h2 className="section-title">{section.title}</h2>
+                  {section.paragraphs.map((paragraph) => (
+                    <p key={paragraph.slice(0, 48)} className="body-copy mt-4 text-base">
+                      {paragraph}
+                    </p>
+                  ))}
+                </Reveal>
+              </div>
+            </section>
+          ))}
+
+          {content.checklist?.length ? (
+            <section className="section-band section--deep border-b border-hairline">
+              <div className="container-editorial max-w-3xl">
+                <Reveal>
+                  <h2 className="section-title">{labels.checklistTitle}</h2>
+                  <ul className="mt-8 space-y-3">
+                    {content.checklist.map((item) => (
+                      <li key={item} className="body-copy flex gap-4 text-base">
+                        <span className="meta-label shrink-0">✓</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </Reveal>
+              </div>
+            </section>
+          ) : null}
+
+          <section className="section-band section--panel border-b border-hairline">
             <div className="container-editorial max-w-3xl">
               <Reveal>
-                <h2 className="section-title">{labels.checklistTitle}</h2>
-                <ul className="mt-8 space-y-3">
-                  {content.checklist.map((item) => (
-                    <li key={item} className="body-copy flex gap-4 text-base">
-                      <span className="meta-label shrink-0">✓</span>
-                      <span>{item}</span>
+                <h2 className="section-title">{labels.relatedTitle}</h2>
+                <ul className="mt-6 space-y-2">
+                  {guide.relatedLandings.map((item) => (
+                    <li key={item.href}>
+                      <Link href={item.href} className="text-link text-base">
+                        {labels[item.labelKey as keyof typeof labels]} →
+                      </Link>
                     </li>
                   ))}
                 </ul>
               </Reveal>
             </div>
           </section>
-        ) : null}
 
-        <section className="section-band section--panel border-b border-hairline">
-          <div className="container-editorial max-w-3xl">
-            <Reveal>
-              <h2 className="section-title">{labels.relatedTitle}</h2>
-              <ul className="mt-6 space-y-2">
-                {guide.relatedLandings.map((item) => (
-                  <li key={item.href}>
-                    <Link href={item.href} className="text-link text-base">
-                      {labels[item.labelKey as keyof typeof labels]} →
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
-        </section>
-
-        <section className="section-band section--deep border-b border-hairline">
-          <div className="container-editorial max-w-3xl">
-            <Reveal>
-              <h2 className="section-title">{content.ctaTitle}</h2>
-              <p className="body-copy mt-4 text-base">{content.ctaText}</p>
-              <ContactCta className="mt-8" defaultService={content.h1} goal="guide_bottom_cta">
-                {ctaLabel}
-              </ContactCta>
-            </Reveal>
-          </div>
-        </section>
+          <section className="section-band section--deep border-b border-hairline">
+            <div className="container-editorial max-w-3xl">
+              <Reveal>
+                <h2 className="section-title">{content.ctaTitle}</h2>
+                <p className="body-copy mt-4 text-base">{content.ctaText}</p>
+                <ContactCta className="mt-8" defaultService={content.h1} goal="guide_bottom_cta">
+                  {ctaLabel}
+                </ContactCta>
+              </Reveal>
+            </div>
+          </section>
+        </article>
 
         <section id="contact" className="section-band section--panel scroll-mt-16">
           <div className="container-editorial grid gap-16 lg:grid-cols-2">

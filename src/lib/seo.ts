@@ -21,6 +21,15 @@ type PageSeoInput = {
   keywords?: string[];
   path: string;
   locale: string;
+  /** Open Graph type for Metrika content analytics / social previews */
+  ogType?: "website" | "article";
+  article?: {
+    publishedTime?: string;
+    modifiedTime?: string;
+    authors?: string[];
+    section?: string;
+    tags?: string[];
+  };
 };
 
 function localePath(path: string, locale: string): string {
@@ -36,6 +45,8 @@ export function buildPageMetadata({
   keywords,
   path,
   locale,
+  ogType = "website",
+  article,
 }: PageSeoInput): Metadata {
   const canonicalPath = localePath(path, locale);
   const ruPath = path.replace(/^\/en(?=\/|$)/, "") || "/";
@@ -54,13 +65,22 @@ export function buildPageMetadata({
       },
     },
     openGraph: {
-      type: "website",
+      type: ogType,
       locale: locale === "en" ? "en_US" : "ru_RU",
       alternateLocale: locale === "en" ? ["ru_RU"] : ["en_US"],
       url: absoluteUrl(canonicalPath),
       siteName: SITE_NAME,
       title,
       description,
+      ...(ogType === "article" && article
+        ? {
+            publishedTime: article.publishedTime,
+            modifiedTime: article.modifiedTime,
+            authors: article.authors,
+            section: article.section,
+            tags: article.tags,
+          }
+        : {}),
     },
     twitter: {
       card: "summary_large_image",
@@ -175,17 +195,77 @@ export function personJsonLd(input: {
   };
 }
 
-export function faqJsonLd(items: { q: string; a: string }[]) {
+export function faqJsonLd(items: { q: string; a: string }[], pageUrl?: string) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: items.map((item) => ({
+    ...(pageUrl ? { "@id": `${pageUrl}#faq`, url: `${pageUrl}#faq` } : {}),
+    mainEntity: items.map((item, index) => ({
       "@type": "Question",
+      ...(pageUrl ? { "@id": `${pageUrl}#faq-${index + 1}` } : {}),
       name: item.q,
       acceptedAnswer: {
         "@type": "Answer",
         text: item.a,
       },
     })),
+  };
+}
+
+/**
+ * Article JSON-LD for Yandex Metrika content analytics.
+ * Required: @id, headline, text (>500 chars for full stats).
+ * Prefer url/@id with a #fragment that matches an element id on the page.
+ */
+export function articleJsonLd(input: {
+  type?: "Article" | "BlogPosting" | "NewsArticle";
+  url: string;
+  fragmentId?: string;
+  headline: string;
+  text: string;
+  description?: string;
+  authorName: string;
+  datePublished?: string;
+  dateModified?: string;
+  about?: string[];
+  image?: string;
+  inLanguage?: string;
+}) {
+  const fragment = input.fragmentId ?? "article";
+  const contentUrl = `${input.url}#${fragment}`;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": input.type ?? "Article",
+    "@id": contentUrl,
+    headline: input.headline,
+    text: input.text,
+    url: contentUrl,
+    ...(input.description ? { description: input.description } : {}),
+    ...(input.datePublished ? { datePublished: input.datePublished } : {}),
+    ...(input.dateModified ? { dateModified: input.dateModified } : {}),
+    ...(input.image ? { image: absoluteUrl(input.image) } : {}),
+    ...(input.inLanguage ? { inLanguage: input.inLanguage } : {}),
+    author: {
+      "@type": "Person",
+      name: input.authorName,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": input.url,
+    },
+    ...(input.about?.length
+      ? {
+          about: input.about.map((name) => ({
+            "@type": "Thing",
+            name,
+          })),
+        }
+      : {}),
   };
 }
