@@ -8,10 +8,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        // Explicit 301 (not Next default 308) — Яндекс учитывает 301/302 при выборе главного зеркала.
         source: "/:path*",
         has: [{ type: "host", value: "bober-ai.dev" }],
         destination: "https://www.bober-ai.dev/:path*",
-        permanent: true,
+        statusCode: 301,
       },
       { source: "/services/ai-bot-llm-rasa-n8n", destination: "/services/enterprise-ai-assistant", permanent: true },
       { source: "/services/llm-ai-consultation", destination: "/services/ai-discovery-roadmap", permanent: true },

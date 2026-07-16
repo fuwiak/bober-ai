@@ -103,24 +103,40 @@ export async function getHosts(token, userId) {
 }
 
 export function pickHost(hosts, targetUrl) {
-  const normalizedTarget = normalizeHostUrl(targetUrl);
-  const targetHost = new URL(normalizedTarget).hostname.replace(/^www\./, "");
+  const normalizedTarget = normalizeHostUrl(targetUrl).toLowerCase();
+  let targetHostname = "";
+  try {
+    targetHostname = new URL(normalizedTarget).hostname.toLowerCase();
+  } catch {
+    targetHostname = normalizedTarget.replace(/^https?:\/\//, "").split("/")[0];
+  }
   const preferHttps = normalizedTarget.startsWith("https://");
+  const preferWww = targetHostname.startsWith("www.");
 
   const matches = hosts.filter((host) => {
     const hostId = String(host.host_id || "");
     const asciiUrl = String(host.ascii_host_url || host.host_url || "");
     const unicodeUrl = String(host.unicode_host_url || host.host_url || "");
     const candidates = [hostId, asciiUrl, unicodeUrl].map((value) => value.toLowerCase());
-    return candidates.some((value) => value.includes(targetHost));
+    return candidates.some((value) => value.includes(targetHostname.replace(/^www\./, "")) || value.includes(targetHostname));
   });
 
   if (!matches.length) return undefined;
 
+  const exact = matches.find((host) => {
+    const ascii = String(host.ascii_host_url || host.host_url || "").toLowerCase().replace(/\/$/, "");
+    const id = String(host.host_id || "").toLowerCase();
+    return ascii === normalizedTarget || id.includes(targetHostname);
+  });
+  if (exact) return exact;
+
+  if (preferWww) {
+    const wwwMatch = matches.find((host) => String(host.host_id || "").includes("www."));
+    if (wwwMatch) return wwwMatch;
+  }
+
   const httpsMatch = matches.find((host) => String(host.host_id || "").startsWith("https:"));
-  const wwwMatch = matches.find((host) => String(host.host_id || "").includes("www."));
   if (preferHttps && httpsMatch) return httpsMatch;
-  if (wwwMatch) return wwwMatch;
   return matches[0];
 }
 
