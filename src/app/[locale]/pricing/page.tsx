@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import NextLink from "next/link";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { ComparisonSection } from "@/components/ComparisonSection";
@@ -9,6 +10,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import { LEGAL_ROUTES } from "@/lib/legal";
 import { absoluteUrl } from "@/lib/site";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -66,6 +68,61 @@ export default async function PricingPage({ params }: Props) {
           cta={t("packages.cta")}
           urgency={t("packages.urgency")}
         />
+
+        <section className="section-band section--deep border-b border-hairline">
+          <div className="container-editorial max-w-3xl">
+            <Reveal>
+              <span className="section-label">{locale === "en" ? "Price list" : "Прайс-лист"}</span>
+              <h2 className="section-title mt-4">
+                {locale === "en" ? "Service prices" : "Цены на услуги"}
+              </h2>
+              <p className="body-copy mt-4 max-w-2xl text-base">
+                {locale === "en"
+                  ? "Starting prices. Final quote is fixed in the estimate before work starts. Payment by bank transfer under contract."
+                  : "Цены «от». Итоговая стоимость фиксируется в смете до старта работ. Оплата — безналичный расчёт по договору / счёту."}
+              </p>
+            </Reveal>
+            <div className="mt-8 overflow-x-auto">
+              <table className="w-full min-w-[28rem] text-left text-sm">
+                <thead>
+                  <tr className="border-b border-hairline text-muted">
+                    <th className="py-3 pr-4 font-medium">{locale === "en" ? "Service" : "Услуга"}</th>
+                    <th className="py-3 pr-4 font-medium">{locale === "en" ? "Price" : "Цена"}</th>
+                    <th className="py-3 font-medium">{locale === "en" ? "Term" : "Срок"}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {packageItems.map((item) => (
+                    <tr key={item.name} className="border-b border-hairline">
+                      <td className="py-3 pr-4 text-ink">{item.name}</td>
+                      <td className="py-3 pr-4 text-ink">{item.price}</td>
+                      <td className="py-3 text-body">{item.duration}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="body-copy mt-6 text-sm text-muted">
+              {locale === "en" ? (
+                <>
+                  Full catalog: <Link href="/services" className="text-link">Services</Link>
+                  {" · "}
+                  <NextLink href={LEGAL_ROUTES.terms} className="text-link">
+                    Service terms
+                  </NextLink>
+                </>
+              ) : (
+                <>
+                  Полный каталог: <Link href="/services" className="text-link">Услуги</Link>
+                  {" · "}
+                  <NextLink href={LEGAL_ROUTES.terms} className="text-link">
+                    Условия оказания услуг
+                  </NextLink>
+                </>
+              )}
+            </p>
+          </div>
+        </section>
 
         <RoiCalculatorSection
           label={t("roiCalculator.label")}

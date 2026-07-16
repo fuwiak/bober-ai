@@ -6,6 +6,6 @@ export default createMiddleware(routing);
 export const config = {
   // Keep feed + /tel outside i18n middleware so Yandex crawlers get a clean 200.
   matcher: [
-    "/((?!api|_next|_vercel|tel|performers-feed\\.yml|privacy-policy|consent|info|blog|career|events|academy|news|outages|.*\\..*).*)",
+    "/((?!api|_next|_vercel|tel|performers-feed\\.yml|privacy-policy|consent|terms|info|blog|career|events|academy|news|outages|.*\\..*).*)",
   ],
 };

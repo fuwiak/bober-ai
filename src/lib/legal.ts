@@ -13,6 +13,7 @@ export const LEGAL_ENTITY = {
 export const LEGAL_ROUTES = {
   privacyPolicy: "/privacy-policy",
   consent: "/consent",
+  terms: "/terms",
 } as const;
 
 export const COOKIE_CONSENT_KEY = "cookie-consent";

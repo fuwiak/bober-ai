@@ -137,8 +137,8 @@ const en = {
       metaDescription: "Bober AI Systems portfolio: Kaspersky, ELIA Suite, proposal automation, CRM and documents.",
     },
     pricing: {
-      metaTitle: "AI implementation pricing — packages and estimates",
-      metaDescription: "Automation packages from €1,500. Audit, roadmap, implementation and support.",
+      metaTitle: "AI service price list — packages and estimates",
+      metaDescription: "Price list: audit, roadmap, implementation and support from €1,500. Fixed estimate before start.",
     },
     faq: {
       metaTitle: "FAQ — AI implementation for business",
@@ -597,6 +597,7 @@ const en = {
   },
   footer: {
     legalName: "IE Pavel Stasinsky",
+    terms: "Service terms",
     privacy: "Privacy policy",
     consent: "Data processing consent",
     profiles: "Profiles & verification",

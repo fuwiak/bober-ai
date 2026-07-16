@@ -44,6 +44,9 @@ export async function SiteFooter() {
           {" · "}ИНН 772356334324 · ОГРНИП 325774600389226
         </p>
         <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          <NextLink href={LEGAL_ROUTES.terms} className="text-on-dark-soft active:text-on-dark">
+            {t("terms")}
+          </NextLink>
           <NextLink href={LEGAL_ROUTES.privacyPolicy} className="text-on-dark-soft active:text-on-dark">
             {t("privacy")}
           </NextLink>

@@ -31,6 +31,9 @@ export async function LegalPageLayout({ title, updatedAt, children }: LegalPageL
             <p className="mt-2 text-sm text-muted">Дата публикации: {updatedAt}</p>
             <article className="prose-legal mt-8 space-y-6">{children}</article>
             <nav className="mt-10 flex flex-wrap gap-4 border-t border-hairline pt-6 text-sm">
+              <Link href={LEGAL_ROUTES.terms} className="text-link">
+                Условия оказания услуг
+              </Link>
               <Link href={LEGAL_ROUTES.privacyPolicy} className="text-link">
                 Политика обработки ПДн
               </Link>

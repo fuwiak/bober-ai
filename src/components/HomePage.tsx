@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { ContactCta } from "@/components/ContactCta";
+import { ContactForm } from "@/components/ContactForm";
 import { HomeHubSection } from "@/components/HomeHubSection";
 import { SectionCtaBand } from "@/components/SectionCtaBand";
 import { PartnerProgramBanner } from "@/components/PartnerProgramBanner";
@@ -84,25 +85,30 @@ export default async function HomePage() {
         />
 
         <section id="contact" className="section-band section--panel scroll-mt-16 border-t border-hairline pb-24 md:pb-16">
-          <div className="container-editorial max-w-2xl text-center">
+          <div className="container-editorial max-w-2xl">
             <Reveal>
-              <span className="section-label">{t("sections.contact")}</span>
-              <h2 className="section-title mt-4">{t("contact.title")}</h2>
-              <p className="body-copy mt-4 text-base">{t("contact.subtitle")}</p>
-              <div className="mt-8 flex flex-wrap justify-center gap-3">
-                <ContactCta>{t("nav.consultCta")}</ContactCta>
-                <TrackedAnchor href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary" goal="telegram_click">
-                  Telegram
-                </TrackedAnchor>
-                <TrackedAnchor href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="btn-secondary" goal="modal_whatsapp_click">
-                  WhatsApp
-                </TrackedAnchor>
-                <TrackedAnchor href={`mailto:${CONTACT_EMAIL}`} className="btn-secondary" goal="email_click">
-                  Email
-                </TrackedAnchor>
-                <TrackedAnchor href={`tel:${CONTACT_PHONE}`} className="btn-secondary" goal="phone_click">
-                  {CONTACT_PHONE}
-                </TrackedAnchor>
+              <div className="text-center">
+                <span className="section-label">{t("sections.contact")}</span>
+                <h2 className="section-title mt-4">{t("contact.title")}</h2>
+                <p className="body-copy mt-4 text-base">{t("contact.subtitle")}</p>
+                <div className="mt-8 flex flex-wrap justify-center gap-3">
+                  <ContactCta>{t("nav.consultCta")}</ContactCta>
+                  <TrackedAnchor href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary" goal="telegram_click">
+                    Telegram
+                  </TrackedAnchor>
+                  <TrackedAnchor href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="btn-secondary" goal="modal_whatsapp_click">
+                    WhatsApp
+                  </TrackedAnchor>
+                  <TrackedAnchor href={`mailto:${CONTACT_EMAIL}`} className="btn-secondary" goal="email_click">
+                    Email
+                  </TrackedAnchor>
+                  <TrackedAnchor href={`tel:${CONTACT_PHONE}`} className="btn-secondary" goal="phone_click">
+                    {CONTACT_PHONE}
+                  </TrackedAnchor>
+                </div>
+              </div>
+              <div className="mt-10 text-left">
+                <ContactForm />
               </div>
             </Reveal>
           </div>
