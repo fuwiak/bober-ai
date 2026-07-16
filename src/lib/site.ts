@@ -30,8 +30,11 @@ export const SITE_TAGLINE_EN = "Business process automation for companies";
 export const SITE_DESCRIPTION =
   "Проектируем и внедряем системы автоматизации бизнеса. CRM, документы, продажи, поддержка. AI только там, где приносит ROI.";
 export const SITE_REGION = "Россия";
-export const CONTACT_EMAIL = "hello@bober-ai.ru";
-export const CONTACT_NOTIFICATION_EMAILS = [CONTACT_EMAIL, "stasinskipawel@yandex.ru"] as const;
+/** Публичный email на сайте. Меняется через NEXT_PUBLIC_CONTACT_EMAIL в Railway. */
+export const CONTACT_EMAIL =
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "stasinskipawel@yandex.ru";
+/** Получатели заявок, если CONTACT_TO_EMAIL не задан. */
+export const CONTACT_NOTIFICATION_EMAILS = [CONTACT_EMAIL];
 export const CONTACT_PHONE = "+79950998170";
 export const WHATSAPP_URL = "https://wa.me/79950998170";
 export const TELEGRAM_URL = "https://t.me/pstasinski";

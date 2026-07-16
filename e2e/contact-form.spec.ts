@@ -50,7 +50,7 @@ test.describe("Форма заявки", () => {
       preview?: { to: string[]; subject: string; text: string };
     };
     expect(body).toMatchObject({ ok: true, dryRun: true });
-    expect(body.preview?.to).toEqual(["hello@bober-ai.ru", "stasinskipawel@yandex.ru"]);
+    expect(body.preview?.to).toEqual(["stasinskipawel@yandex.ru"]);
     expect(body.preview?.subject).toContain("Тестовый Клиент");
     expect(body.preview?.text).toContain("ИИ-бот под ключ");
     expect(body.preview?.text).toContain("Нужен бот для поддержки клиентов.");

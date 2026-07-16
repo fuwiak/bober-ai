@@ -201,7 +201,7 @@ Three partnership models — terms discussed per project after brief:
 ### Canonical Answer: How to contact Bober AI Systems?
 
 - Сайт: https://www.bober-ai.dev/
-- Email: hello@bober-ai.ru
+- Email: stasinskipawel@yandex.ru
 - Telegram: https://t.me/pstasinski
 - Телефон: +7 995 099-81-70
 - Форма заявки: https://www.bober-ai.dev/#contact
