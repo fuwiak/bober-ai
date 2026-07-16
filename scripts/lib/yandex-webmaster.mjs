@@ -29,13 +29,13 @@ export function getConfig(overrides = {}) {
   };
 }
 
-export function authHeaders(token, includeJsonContentType = true) {
+export function authHeaders(token, includeJsonContentType = false) {
   const headers = {
     Authorization: `OAuth ${token}`,
     Accept: "application/json",
   };
   if (includeJsonContentType) {
-    headers["Content-Type"] = "application/json; charset=utf-8";
+    headers["Content-Type"] = "application/json";
   }
   return headers;
 }
@@ -50,25 +50,38 @@ function normalizeHostUrl(value) {
 }
 
 export async function apiRequest(token, path, options = {}) {
+  const method = (options.method || "GET").toUpperCase();
+  const hasBody = options.body != null && options.body !== "";
+  const headers = {
+    ...authHeaders(token, hasBody || method === "POST" || method === "PUT" || method === "DELETE" || method === "PATCH"),
+    ...(options.headers || {}),
+  };
+
+  let body = options.body;
+  if (body != null && typeof body !== "string" && !Buffer.isBuffer(body)) {
+    body = JSON.stringify(body);
+  }
+  if (typeof body === "string") {
+    headers["Content-Length"] = String(Buffer.byteLength(body));
+  }
+
   const response = await fetch(`${WEBMASTER_API}${path}`, {
     ...options,
-    headers: {
-      ...authHeaders(token),
-      ...(options.headers || {}),
-    },
+    body,
+    headers,
   });
 
   const text = await response.text();
-  let body = null;
+  let parsed = null;
   if (text) {
     try {
-      body = JSON.parse(text);
+      parsed = JSON.parse(text);
     } catch {
-      body = text;
+      parsed = text;
     }
   }
 
-  return { response, body };
+  return { response, body: parsed };
 }
 
 export async function getUserId(token) {
@@ -92,14 +105,23 @@ export async function getHosts(token, userId) {
 export function pickHost(hosts, targetUrl) {
   const normalizedTarget = normalizeHostUrl(targetUrl);
   const targetHost = new URL(normalizedTarget).hostname.replace(/^www\./, "");
+  const preferHttps = normalizedTarget.startsWith("https://");
 
-  return hosts.find((host) => {
+  const matches = hosts.filter((host) => {
     const hostId = String(host.host_id || "");
     const asciiUrl = String(host.ascii_host_url || host.host_url || "");
     const unicodeUrl = String(host.unicode_host_url || host.host_url || "");
     const candidates = [hostId, asciiUrl, unicodeUrl].map((value) => value.toLowerCase());
     return candidates.some((value) => value.includes(targetHost));
   });
+
+  if (!matches.length) return undefined;
+
+  const httpsMatch = matches.find((host) => String(host.host_id || "").startsWith("https:"));
+  const wwwMatch = matches.find((host) => String(host.host_id || "").includes("www."));
+  if (preferHttps && httpsMatch) return httpsMatch;
+  if (wwwMatch) return wwwMatch;
+  return matches[0];
 }
 
 export async function listFeeds(token, userId, hostId) {
