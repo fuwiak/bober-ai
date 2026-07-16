@@ -21,6 +21,7 @@
     "selectel:mail": "node scripts/selectel-email.mjs",
     "metrika:counter": "node scripts/yandex-metrika-counter.mjs",
     "metrika:status": "node scripts/yandex-metrika-status.mjs",
+    "ytm:status": "node scripts/yandex-ytm-status.mjs",
     "yandex:wordstat": "node scripts/yandex-wordstat.mjs",
     "yandex:direct:oauth": "node scripts/yandex-direct-oauth.mjs",
     "yandex:direct:oauth:refresh": "node scripts/yandex-direct-oauth.mjs refresh --update-railway",

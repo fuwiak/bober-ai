@@ -156,6 +156,11 @@ async function main() {
   ok(`Track hash: ${flag(code.track_hash)}`);
   ok(`Фильтр роботов: ${flag(counter.filter_robots)}`);
   ok(`Автоцели: ${flag(counter.autogoals_enabled)}`);
+  if (counter.code_options?.ytm) {
+    ok("Яндекс Тег Менеджер (YTM): вкл");
+  } else {
+    warn("Яндекс Тег Менеджер (YTM): выкл — npm run ytm:status");
+  }
   if (counter.code_status && counter.code_status !== "CS_OK") {
     warn(`code_status: ${counter.code_status} (верификация кода нестабильна — часто из‑за cookie consent)`);
   } else {
@@ -184,12 +189,14 @@ async function main() {
   console.log("Контентная аналитика");
   const content = await checkContentAnalytics(id);
   if (content.enabled === true) {
-    ok("Включена (preset publishers_sources доступен)");
-    ok("Тип разметки в UI должен быть Schema.org → JSON-LD");
+    ok("Включена (API: presets publishers_* доступны)");
+    ok(`Presets: ${content.available.join(", ")}`);
+    ok("Ожидаемый тип разметки в UI: Schema.org → JSON-LD");
     ok(`Строк в отчёте за 30 дней: ${content.rows}`);
   } else if (content.enabled === false) {
-    warn("Выключена — preset publishers_sources недоступен");
-    warn("Включите в UI: Настройки → Счётчик → Контентная аналитика → Schema.org JSON-LD");
+    warn(`Выключена или ещё не применилась: ${content.reason}`);
+    warn("Проверьте UI: Настройки → Счётчик → Контентная аналитика = ВКЛ");
+    warn("Тип разметки: Schema.org → JSON-LD, затем Save");
     warn(`https://metrika.yandex.ru/settings?id=${id}&tab=common`);
   } else {
     warn(`Не удалось проверить: ${content.reason}`);
