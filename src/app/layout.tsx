@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import { CookieConsent } from "@/components/CookieConsent";
 import { AttributionCapture } from "@/components/AttributionCapture";
+import { Varioqub } from "@/components/Varioqub";
 import { YandexMetrika } from "@/components/YandexMetrika";
 import { DEFAULT_KEYWORDS, SITE_DESCRIPTION, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
 
@@ -128,6 +129,7 @@ export default function RootLayout({
         <AttributionCapture />
         <CookieConsent />
         <YandexMetrika />
+        <Varioqub />
       </body>
     </html>
   );
