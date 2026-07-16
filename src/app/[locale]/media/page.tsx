@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { FounderCredibilitySection } from "@/components/FounderCredibilitySection";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { Reveal } from "@/components/motion/Reveal";
 import { Link } from "@/i18n/navigation";
@@ -7,6 +8,7 @@ import { routing } from "@/i18n/routing";
 import {
   YANDEX_PROOF_URL,
   credibilityGraphJsonLd,
+  getCredibilityByMarket,
   getCredibilityItems,
   getMediaDossierSections,
 } from "@/lib/media";
@@ -47,6 +49,8 @@ export default async function MediaPage({ params }: Props) {
   const byId = new Map(items.map((item) => [item.id, item]));
   const sections = getMediaDossierSections(locale);
   const graph = credibilityGraphJsonLd(pageUrl, locale);
+  const russianItems = getCredibilityByMarket(locale, "russian");
+  const internationalItems = getCredibilityByMarket(locale, "international");
 
   return (
     <div className="page-shell min-h-screen">
@@ -59,12 +63,25 @@ export default async function MediaPage({ params }: Props) {
               <Link href="/" className="text-link text-sm">
                 ← {locale === "en" ? "Home" : "На главную"}
               </Link>
-              <span className="section-label mt-8 block">{t("media.label")}</span>
-              <h1 className="section-title mt-4">{t("pages.media.pageTitle")}</h1>
-              <p className="body-copy mt-4 text-base">{t("media.body")}</p>
             </Reveal>
           </div>
         </section>
+
+        <FounderCredibilitySection
+          locale={locale}
+          label={t("media.label")}
+          title={t("media.title")}
+          subtitle={t("media.subtitle")}
+          body={t("media.body")}
+          proofItems={t.raw("media.proofItems") as string[]}
+          tabRussian={t("media.tabRussian")}
+          tabInternational={t("media.tabInternational")}
+          russianItems={russianItems}
+          internationalItems={internationalItems}
+          dossierCta={t("media.dossierCta")}
+          closing={t("media.closing")}
+          showDossierLink={false}
+        />
 
         {sections.map((section) => (
           <section key={section.id} id={section.id} className="section-band border-b border-hairline">

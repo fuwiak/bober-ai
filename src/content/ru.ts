@@ -40,6 +40,7 @@ const ru = {
     process: "Процесс",
     about: "О мне",
     faq: "FAQ",
+    media: "СМИ",
     reviews: "Отзывы",
     contact: "Контакт",
     consultCta: "Обсудить проект",

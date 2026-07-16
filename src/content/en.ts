@@ -34,6 +34,7 @@ const en = {
     process: "Process",
     about: "About",
     faq: "FAQ",
+    media: "Media",
     reviews: "Reviews",
     contact: "Contact",
     consultCta: "Book a consultation",

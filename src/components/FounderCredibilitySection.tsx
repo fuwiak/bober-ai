@@ -19,6 +19,7 @@ type FounderCredibilitySectionProps = {
   internationalItems: CredibilityItem[];
   dossierCta: string;
   closing: string;
+  showDossierLink?: boolean;
 };
 
 function CredibilityCard({ item }: { item: CredibilityItem }) {
@@ -97,6 +98,7 @@ export function FounderCredibilitySection({
   internationalItems,
   dossierCta,
   closing,
+  showDossierLink = true,
 }: FounderCredibilitySectionProps) {
   const baseId = useId();
   const defaultTab: CredibilityMarket = locale === "en" ? "international" : "russian";
@@ -112,7 +114,11 @@ export function FounderCredibilitySection({
       <div className="container-editorial">
         <Reveal>
           <span className="section-label">{label}</span>
-          <h2 className="section-title mt-4 max-w-4xl">{title}</h2>
+          {showDossierLink ? (
+            <h2 className="section-title mt-4 max-w-4xl">{title}</h2>
+          ) : (
+            <h1 className="section-title mt-4 max-w-4xl">{title}</h1>
+          )}
           <p className="body-copy mt-4 max-w-3xl text-base text-muted">{subtitle}</p>
           <p className="body-copy mt-4 max-w-3xl text-base">{body}</p>
         </Reveal>
@@ -189,10 +195,12 @@ export function FounderCredibilitySection({
 
         <Reveal delay={0.1} className="mt-12 border-t border-hairline pt-8">
           <p className="body-copy max-w-3xl text-base text-muted">{closing}</p>
-          <Link href="/media" className="text-link mt-4 inline-flex items-center gap-2 text-sm">
-            {dossierCta}
-            <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-          </Link>
+          {showDossierLink ? (
+            <Link href="/media" className="text-link mt-4 inline-flex items-center gap-2 text-sm">
+              {dossierCta}
+              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+            </Link>
+          ) : null}
         </Reveal>
       </div>
     </section>
