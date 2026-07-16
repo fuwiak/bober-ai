@@ -25,7 +25,8 @@
     "yandex:wordstat": "node scripts/yandex-wordstat.mjs",
     "yandex:direct:oauth": "node scripts/yandex-direct-oauth.mjs",
     "yandex:direct:oauth:refresh": "node scripts/yandex-direct-oauth.mjs refresh --update-railway",
-    "yandex:direct:oauth:ensure": "node scripts/yandex-direct-oauth.mjs ensure --update-railway"
+    "yandex:direct:oauth:ensure": "node scripts/yandex-direct-oauth.mjs ensure --update-railway",
+    "yandex:direct:campaigns": "node scripts/yandex-direct-campaigns.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.546.0",

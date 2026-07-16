@@ -45,7 +45,13 @@ async function checkDirectApi(token) {
     body: JSON.stringify({ method: "get", params: { FieldNames: ["Login"] } }),
   });
 
-  const body = await response.json().catch(() => ({}));
+  const text = await response.text();
+  let body = {};
+  try {
+    body = JSON.parse(text);
+  } catch {
+    body = {};
+  }
   return { response, body };
 }
 

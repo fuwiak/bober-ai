@@ -54,7 +54,13 @@ async function requestToken(config, body) {
     body: new URLSearchParams(body).toString(),
   });
 
-  const payload = await response.json().catch(() => ({}));
+  const text = await response.text();
+  let payload = {};
+  try {
+    payload = JSON.parse(text);
+  } catch {
+    payload = { raw: text.slice(0, 300) };
+  }
   if (!response.ok) {
     const detail = payload.error_description || payload.error || JSON.stringify(payload);
     throw new Error(`OAuth token request failed (${response.status}): ${detail}`);
@@ -107,7 +113,13 @@ export async function getTokenInfo(accessToken) {
     },
   });
 
-  const payload = await response.json().catch(() => ({}));
+  const text = await response.text();
+  let payload = {};
+  try {
+    payload = JSON.parse(text);
+  } catch {
+    payload = { raw: text.slice(0, 300) };
+  }
   if (!response.ok) {
     const detail = payload.error_description || payload.error || JSON.stringify(payload);
     throw new Error(`Token info failed (${response.status}): ${detail}`);
