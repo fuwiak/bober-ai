@@ -110,7 +110,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: A
               <h1 className="mt-2 display-title">{copy.title}</h1>
               <p className="mt-4 max-w-2xl text-muted">{copy.intro}</p>
             </div>
-            <Link href="/" className="text-link text-[11px] uppercase tracking-[0.16em]">
+            <Link href="/" className="link-back">
               {copy.home}
             </Link>
           </div>

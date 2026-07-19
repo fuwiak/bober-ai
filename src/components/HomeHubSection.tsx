@@ -29,7 +29,7 @@ export function HomeHubSection({ label, title, linkLabel, items }: HomeHubSectio
               <Link href={item.href as "/"} className="home-hub-card group">
                 <h3 className="card-title text-xl">{item.title}</h3>
                 <p className="body-copy mt-3 text-base">{item.description}</p>
-                <span className="text-link mt-6 inline-block text-[11px] uppercase tracking-[0.16em]">{linkLabel} →</span>
+                <span className="link-more mt-6">{linkLabel}</span>
               </Link>
             </StaggerItem>
           ))}

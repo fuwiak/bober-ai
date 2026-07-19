@@ -134,8 +134,8 @@ export function ProjectsCasesShowcase({
                   </p>
                 ) : null}
 
-                <span className="mt-6 inline-block text-link text-[11px] uppercase tracking-[0.16em]">
-                  {detailsLabel} →
+                <span className="link-more mt-6">
+                  {detailsLabel}
                 </span>
               </Link>
             </article>

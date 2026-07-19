@@ -643,7 +643,7 @@ const en = {
     readMore: "Learn more",
   },
   servicePage: {
-    back: "← All solutions",
+    back: "All solutions",
     includes: "What''s included",
     deliverables: [
       "Task audit and scope agreement",
@@ -669,7 +669,7 @@ const en = {
   },
   landing: {
     common: {
-      backHome: "← Home",
+      backHome: "Home",
       cta: "Request a quote",
       telegram: "Telegram",
       service: "Package",

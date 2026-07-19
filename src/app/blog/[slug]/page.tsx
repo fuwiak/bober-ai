@@ -109,8 +109,8 @@ export default async function BlogArticlePage({ params }: PageProps) {
           <article>
             <header className="section-band section--deep border-b border-hairline">
               <div className="container-editorial max-w-4xl">
-                <Link href="/blog" className="text-link text-sm">
-                  ← Все статьи
+                <Link href="/blog" className="link-back">
+                  Все статьи
                 </Link>
                 <div className="meta-label mt-8 flex flex-wrap gap-x-3 gap-y-2 text-muted">
                   <time dateTime={post.publishedAt}>{dateFormatter.format(new Date(post.publishedAt))}</time>
@@ -139,8 +139,8 @@ export default async function BlogArticlePage({ params }: PageProps) {
                   <p className="body-copy mt-3 text-base">
                     Это русская версия авторской статьи Павла Стасиньски. Оригинал опубликован на Medium.
                   </p>
-                  <a href={post.originalUrl} target="_blank" rel="author noreferrer" className="text-link mt-5 inline-block">
-                    Читать оригинал на Medium →
+                  <a href={post.originalUrl} target="_blank" rel="author noreferrer" className="link-more mt-5">
+                    Читать оригинал на Medium
                   </a>
                 </footer>
               </div>

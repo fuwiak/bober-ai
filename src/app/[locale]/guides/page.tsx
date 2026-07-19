@@ -41,8 +41,8 @@ export default async function GuidesIndexPage({ params }: PageProps) {
       <main>
         <section className="section-band section--deep">
           <div className="container-editorial">
-            <Link href="/" className="text-link text-sm">
-              {isEn ? "← Home" : "← На главную"}
+            <Link href="/" className="link-back">
+              {isEn ? "Home" : "На главную"}
             </Link>
             <Reveal className="mt-8 max-w-3xl">
               <span className="section-label">{t("badge")}</span>
@@ -57,8 +57,8 @@ export default async function GuidesIndexPage({ params }: PageProps) {
                   <Link key={guide.slug} href={`/guides/${guide.slug}`} className="feature-card group block">
                     <h2 className="card-title group-hover:text-primary">{content.h1}</h2>
                     <p className="body-copy mt-3 text-base">{content.subtitle}</p>
-                    <span className="text-link mt-6 inline-block text-[11px] uppercase tracking-[0.16em]">
-                      {labels.readGuide} →
+                    <span className="link-more mt-6">
+                      {labels.readGuide}
                     </span>
                   </Link>
                 );

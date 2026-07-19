@@ -72,7 +72,7 @@ export default async function ServiceOfferPage({ params }: PageProps) {
       <SiteHeader />
       <main className="section-band">
         <div className="container-editorial">
-          <Link href="/services" className="text-link text-sm">
+          <Link href="/services" className="link-back">
             {t("back")}
           </Link>
 

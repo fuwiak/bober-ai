@@ -81,7 +81,7 @@ export function GuidePageView({ guide, content, locale, ctaLabel, telegramLabel 
         <article id="article">
           <section className="section-band section--deep border-b border-hairline">
             <div className="container-editorial">
-              <Link href="/guides" className="text-link text-sm">
+              <Link href="/guides" className="link-back">
                 {labels.backToGuides}
               </Link>
               <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_320px] lg:items-start">
@@ -154,8 +154,8 @@ export function GuidePageView({ guide, content, locale, ctaLabel, telegramLabel 
                 <ul className="mt-6 space-y-2">
                   {guide.relatedLandings.map((item) => (
                     <li key={item.href}>
-                      <Link href={item.href} className="text-link text-base">
-                        {labels[item.labelKey as keyof typeof labels]} →
+                      <Link href={item.href} className="link-more">
+                        {labels[item.labelKey as keyof typeof labels]}
                       </Link>
                     </li>
                   ))}

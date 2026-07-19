@@ -21,7 +21,7 @@ export function ContactCta({
   const modal = useContactModal();
 
   const variantClass =
-    variant === "secondary" ? "btn-secondary" : variant === "link" ? "text-link text-[11px] uppercase tracking-[0.16em]" : "btn-primary";
+    variant === "secondary" ? "btn-secondary" : variant === "link" ? "link-more" : "btn-primary";
 
   if (!modal) {
     return (

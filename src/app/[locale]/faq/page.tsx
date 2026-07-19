@@ -39,8 +39,8 @@ export default async function FaqPage({ params }: Props) {
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
-              <Link href="/" className="text-link text-sm">
-                ← {locale === "en" ? "Home" : "На главную"}
+              <Link href="/" className="link-back">
+                {locale === "en" ? "Home" : "На главную"}
               </Link>
             </Reveal>
           </div>

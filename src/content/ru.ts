@@ -687,7 +687,7 @@ const ru = {
     readMore: "Подробнее",
   },
   servicePage: {
-    back: "← Все решения",
+    back: "Все решения",
     includes: "Что входит",
     deliverables: [
       "Аудит задачи и согласование ТЗ",
@@ -713,7 +713,7 @@ const ru = {
   },
   landing: {
     common: {
-      backHome: "← На главную",
+      backHome: "На главную",
       cta: "Обсудить проект",
       telegram: "Telegram",
       service: "Пакет",

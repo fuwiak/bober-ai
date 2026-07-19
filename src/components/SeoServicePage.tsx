@@ -78,7 +78,7 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
       <main>
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial">
-            <Link href="/services" className="text-link text-sm">
+            <Link href="/services" className="link-back">
               {t("back")}
             </Link>
             <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_360px] lg:items-start">
@@ -260,8 +260,8 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
                 <Stagger className="mt-6">
                   {content.related.map((item) => (
                     <StaggerItem key={item.href}>
-                      <Link href={item.href} className="text-link block py-2 text-base">
-                        {item.label} →
+                      <Link href={item.href} className="link-more py-2">
+                        {item.label}
                       </Link>
                     </StaggerItem>
                   ))}

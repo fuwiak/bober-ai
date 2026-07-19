@@ -79,7 +79,7 @@ export default async function BlogPage() {
                     </div>
                     <h2 className="card-title mt-4 text-2xl">{post.title}</h2>
                     <p className="body-copy mt-4 text-base">{post.description}</p>
-                    <span className="text-link mt-6 inline-block text-xs uppercase tracking-[0.16em]">Читать статью →</span>
+                    <span className="link-more mt-6">Читать статью</span>
                   </div>
                 </Link>
               </article>

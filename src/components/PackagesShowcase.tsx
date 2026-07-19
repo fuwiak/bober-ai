@@ -54,8 +54,8 @@ export function PackagesShowcase({
                 <p className="body-copy mt-4 text-base">{item.forWhom}</p>
                 <p className="body-copy mt-3 text-base text-ink">{item.result}</p>
                 {item.detailsHref ? (
-                  <Link href={item.detailsHref as "/"} className="text-link mt-6 inline-block text-[11px] uppercase tracking-[0.16em]">
-                    {detailsLabel} →
+                  <Link href={item.detailsHref as "/"} className="link-more mt-6">
+                    {detailsLabel}
                   </Link>
                 ) : null}
               </article>

@@ -43,8 +43,8 @@ export default async function ServicesPage({ params }: Props) {
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
-              <Link href="/" className="text-link text-sm">
-                ← {locale === "en" ? "Home" : "На главную"}
+              <Link href="/" className="link-back">
+                {locale === "en" ? "Home" : "На главную"}
               </Link>
               <span className="section-label mt-8 block">{t("sections.solutions")}</span>
               <h1 className="section-title mt-4">{t("services.title")}</h1>

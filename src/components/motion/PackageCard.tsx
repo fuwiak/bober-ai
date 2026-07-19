@@ -62,7 +62,7 @@ export function PackageCard({
         <div className="engagement-row__cta flex flex-col gap-3">
           <ContactCta className="max-w-full whitespace-normal sm:whitespace-nowrap">{ctaLabel}</ContactCta>
           {detailsHref ? (
-            <Link href={detailsHref as "/"} className="text-link text-center text-[11px] uppercase tracking-[0.16em]">
+            <Link href={detailsHref as "/"} className="link-more justify-center">
               {detailsLabel}
             </Link>
           ) : null}

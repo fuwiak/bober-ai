@@ -44,8 +44,8 @@ export function ClaudeSection({
         </Reveal>
 
         <Reveal delay={0.08} className="mt-10">
-          <Link href="/guides/ai-glossary" className="text-link text-[11px] uppercase tracking-[0.16em]">
-            {glossaryLink} →
+          <Link href="/guides/ai-glossary" className="link-more">
+            {glossaryLink}
           </Link>
         </Reveal>
 

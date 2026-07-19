@@ -90,8 +90,8 @@ export default async function PortfolioProjectPage({ params }: PageProps) {
       <SiteHeader />
       <main className="section-band">
         <div className="container-editorial">
-          <Link href="/portfolio" className="text-link text-sm">
-            ← {portfolioLabel}
+          <Link href="/portfolio" className="link-back">
+            {portfolioLabel}
           </Link>
 
           <article id="article">

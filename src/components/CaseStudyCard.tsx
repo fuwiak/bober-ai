@@ -32,7 +32,7 @@ export function CaseStudyCard({ item, viewLabel }: CaseStudyCardProps) {
       {item.stack ? <p className="meta-label mt-3">{item.stack}</p> : null}
       {item.result ? <p className="body-copy mt-3 text-base">{item.result}</p> : null}
       {item.priceLabel ? <p className="meta-label mt-4">{item.priceLabel}</p> : null}
-      <span className="text-link mt-4 inline-block text-[11px] uppercase tracking-[0.16em]">{viewLabel} →</span>
+      <span className="link-more mt-4">{viewLabel}</span>
     </Link>
   );
 }

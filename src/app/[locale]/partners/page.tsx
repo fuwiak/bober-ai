@@ -31,8 +31,8 @@ export default async function PartnersPage({ params }: Props) {
       <SiteHeader />
       <main className="section-band">
         <div className="container-editorial max-w-3xl">
-          <Link href="/" className="text-link text-sm">
-            ← {locale === "en" ? "Home" : "На главную"}
+          <Link href="/" className="link-back">
+            {locale === "en" ? "Home" : "На главную"}
           </Link>
           <span className="badge-accent mt-6 inline-block text-[10px]">{t("badge")}</span>
           <h1 className="display-md mt-4">{t("title")}</h1>

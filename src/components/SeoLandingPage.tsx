@@ -137,7 +137,7 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
       <main>
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial">
-            <Link href="/" className="text-link text-sm">
+            <Link href="/" className="link-back">
               {t("common.backHome")}
             </Link>
             <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_360px] lg:items-start">
@@ -256,8 +256,8 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
                 <span className="section-label">{t("common.service")}</span>
                 <h2 className="section-title mt-4">{service.title}</h2>
                 <p className="body-copy mt-4 max-w-2xl text-base">{service.about}</p>
-                <Link href={`/services/${service.slug}`} className="text-link mt-6 inline-block text-[11px] uppercase tracking-[0.16em]">
-                  {t("common.serviceDetails")} →
+                <Link href={`/services/${service.slug}`} className="link-more mt-6">
+                  {t("common.serviceDetails")}
                 </Link>
               </Reveal>
               <aside className="feature-card-bordered">
@@ -291,8 +291,8 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
                   </article>
                 </div>
                 {extended.caseStudy.href ? (
-                  <Link href={extended.caseStudy.href} className="text-link mt-6 inline-block text-[11px] uppercase tracking-[0.16em]">
-                    {t("common.viewCaseStudy")} →
+                  <Link href={extended.caseStudy.href} className="link-more mt-6">
+                    {t("common.viewCaseStudy")}
                   </Link>
                 ) : null}
               </Reveal>
@@ -340,8 +340,8 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
               <Stagger className="mt-6">
                 {content.related.map((item) => (
                   <StaggerItem key={item.href}>
-                    <Link href={item.href} className="text-link block py-2 text-base">
-                      {item.label} →
+                    <Link href={item.href} className="link-more py-2">
+                      {item.label}
                     </Link>
                   </StaggerItem>
                 ))}

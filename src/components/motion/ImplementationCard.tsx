@@ -51,12 +51,12 @@ export function ImplementationCard({
 }: ImplementationCardProps) {
   const number = String(index + 1).padStart(2, "0");
   const cta = href ? (
-    <span className="solution-row__cta text-link self-start whitespace-normal sm:whitespace-nowrap">
-      {ctaLabel} →
+    <span className="solution-row__cta link-more self-start whitespace-normal sm:whitespace-nowrap">
+      {ctaLabel}
     </span>
   ) : (
-    <ContactCta variant="link" className="solution-row__cta self-start whitespace-normal sm:whitespace-nowrap" defaultService={title}>
-      {ctaLabel} →
+    <ContactCta variant="link" className="solution-row__cta link-more self-start whitespace-normal sm:whitespace-nowrap" defaultService={title}>
+      {ctaLabel}
     </ContactCta>
   );
 

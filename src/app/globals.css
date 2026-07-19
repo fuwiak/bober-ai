@@ -309,6 +309,64 @@ html.dark {
     .text-link:hover { opacity: 0.75; }
   }
 
+  /* Editorial nav / detail links — geometric chevron, no unicode arrows */
+  .link-back,
+  .link-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height: 1;
+    transition: color 180ms ease, gap 180ms ease;
+  }
+  .link-back {
+    color: var(--color-muted);
+  }
+  .link-more {
+    color: var(--color-ink);
+  }
+  .link-back::before,
+  .link-more::after {
+    content: "";
+    display: block;
+    width: 0.4em;
+    height: 0.4em;
+    border-color: currentColor;
+    border-style: solid;
+    border-width: 0;
+    flex-shrink: 0;
+    transition: transform 180ms ease;
+  }
+  .link-back::before {
+    border-left-width: 1.5px;
+    border-bottom-width: 1.5px;
+    transform: rotate(45deg);
+  }
+  .link-more::after {
+    border-right-width: 1.5px;
+    border-top-width: 1.5px;
+    transform: rotate(45deg);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .link-back:hover {
+      color: var(--color-ink);
+    }
+    .link-back:hover::before {
+      transform: rotate(45deg) translate(-1.5px, 1.5px);
+    }
+    .link-more:hover {
+      gap: 0.9rem;
+    }
+    .link-more:hover::after {
+      transform: rotate(45deg) translate(1.5px, -1.5px);
+    }
+  }
+
   /* Header */
   .site-header {
     @apply sticky top-0 z-50 border-b;

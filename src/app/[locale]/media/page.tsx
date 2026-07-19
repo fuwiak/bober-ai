@@ -60,8 +60,8 @@ export default async function MediaPage({ params }: Props) {
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial max-w-3xl">
             <Reveal>
-              <Link href="/" className="text-link text-sm">
-                ← {locale === "en" ? "Home" : "На главную"}
+              <Link href="/" className="link-back">
+                {locale === "en" ? "Home" : "На главную"}
               </Link>
             </Reveal>
           </div>
