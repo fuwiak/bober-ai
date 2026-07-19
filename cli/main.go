@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"os"
 	"strings"
@@ -13,32 +12,72 @@ func main() {
 	cfg := loadConfig()
 	args := os.Args[1:]
 	if len(args) == 0 {
-		runTUI(cfg)
+		runTUI(cfg, modeStatus)
 		return
 	}
 
-	switch args[0] {
+	plain := hasPlainFlag(args)
+	cmd := args[0]
+	rest := stripPlainFlag(args[1:])
+
+	switch cmd {
 	case "tui", "ui", "dashboard":
-		runTUI(cfg)
+		runTUI(cfg, modeStatus)
 	case "status", "st":
-		printStatus(cfg)
+		if plain {
+			printStatus(cfg)
+			return
+		}
+		runTUI(cfg, modeStatus)
 	case "health", "hc", "check":
-		printHealth(cfg)
+		if plain {
+			printHealth(cfg)
+			return
+		}
+		runTUI(cfg, modeHealth)
 	case "logs", "log":
-		runLogs(cfg, args[1:])
+		if plain {
+			runLogsPlain(cfg, rest)
+			return
+		}
+		runTUI(cfg, modeLogs)
 	case "build", "deploy-log":
-		printBuild(cfg, args[1:])
+		if plain {
+			printBuildPlain(cfg, rest)
+			return
+		}
+		runTUI(cfg, modeBuild)
 	case "help", "-h", "--help":
 		printUsage()
 	default:
-		fmt.Fprintf(os.Stderr, "unknown command: %s\n\n", args[0])
+		fmt.Fprintf(os.Stderr, "unknown command: %s\n\n", cmd)
 		printUsage()
 		os.Exit(2)
 	}
 }
 
-func runTUI(cfg Config) {
-	m := newModel(cfg)
+func hasPlainFlag(args []string) bool {
+	for _, a := range args {
+		if a == "--plain" || a == "-p" {
+			return true
+		}
+	}
+	return false
+}
+
+func stripPlainFlag(args []string) []string {
+	out := make([]string, 0, len(args))
+	for _, a := range args {
+		if a == "--plain" || a == "-p" {
+			continue
+		}
+		out = append(out, a)
+	}
+	return out
+}
+
+func runTUI(cfg Config, start mode) {
+	m := newModel(cfg, start)
 	p := tea.NewProgram(m, tea.WithAltScreen())
 	if _, err := p.Run(); err != nil {
 		fmt.Fprintf(os.Stderr, "bober-ops: %v\n", err)
@@ -74,22 +113,35 @@ func printHealth(cfg Config) {
 	}
 }
 
-func runLogs(cfg Config, args []string) {
-	fs := flag.NewFlagSet("logs", flag.ExitOnError)
-	follow := fs.Bool("f", false, "follow")
-	tail := fs.Int("tail", 100, "number of lines")
-	_ = fs.Parse(args)
-	if err := fetchLogs(cfg, *tail, *follow); err != nil {
+func runLogsPlain(cfg Config, args []string) {
+	follow := false
+	tail := 100
+	for i := 0; i < len(args); i++ {
+		switch args[i] {
+		case "-f", "--follow":
+			follow = true
+		case "--tail":
+			if i+1 < len(args) {
+				fmt.Sscanf(args[i+1], "%d", &tail)
+				i++
+			}
+		}
+	}
+	if err := fetchLogs(cfg, tail, follow); err != nil {
 		fmt.Fprintf(os.Stderr, "logs: %v\n", err)
 		os.Exit(1)
 	}
 }
 
-func printBuild(cfg Config, args []string) {
-	fs := flag.NewFlagSet("build", flag.ExitOnError)
-	tail := fs.Int("tail", 80, "number of lines")
-	_ = fs.Parse(args)
-	out, err := fetchDeployLog(cfg, *tail)
+func printBuildPlain(cfg Config, args []string) {
+	tail := 80
+	for i := 0; i < len(args); i++ {
+		if args[i] == "--tail" && i+1 < len(args) {
+			fmt.Sscanf(args[i+1], "%d", &tail)
+			i++
+		}
+	}
+	out, err := fetchDeployLog(cfg, tail)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "build: %v\n", err)
 		os.Exit(1)
@@ -98,22 +150,20 @@ func printBuild(cfg Config, args []string) {
 }
 
 func printUsage() {
-	fmt.Print(`bober-ops — Selectel VDS ops (Railway analog: status / logs / healthcheck)
+	fmt.Print(`bober — Selectel ops dashboard (one window)
 
 Usage:
-  bober-ops                 interactive TUI
-  bober-ops status          container + deploy + health snapshot
-  bober-ops health          Network › Healthcheck probes
-  bober-ops logs [-f] [--tail N]
-  bober-ops build           last deploy/build log from VPS
-  bober-ops help
+  bober                 TUI → Status
+  bober status          TUI → Status tab
+  bober health          TUI → Health tab
+  bober logs            TUI → Logs tab (live follow)
+  bober build           TUI → Build tab
 
-Env:
-  BOBER_HOST          default 45.80.131.136
-  BOBER_SSH_USER      default root
-  BOBER_SSH_KEY       default ~/.ssh/bober_selectel
-  BOBER_CONTAINER     default bober-ai
-  BOBER_PUBLIC_URL    default https://www.bober-ai.dev
-  BOBER_HEALTH_PATH   default /api/health
+  bober status --plain  text snapshot (scripts / git hook)
+  bober health --plain
+  bober logs --plain [-f] [--tail N]
+  bober build --plain
+
+In TUI: Tab / ←→ / 1-4 switch · f live follow · r refresh · q quit
 `)
 }

@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# After every local commit: Railway-like status + healthcheck on Selectel.
+# Skip: BOBER_OPS_SKIP=1 git commit ...
+set -euo pipefail
+
+if [[ "${BOBER_OPS_SKIP:-}" == "1" ]]; then
+  exit 0
+fi
+
+ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+if [[ -z "$ROOT" ]]; then
+  exit 0
+fi
+
+OPS=""
+if command -v bober >/dev/null 2>&1; then
+  OPS="bober"
+elif [[ -x "$ROOT/cli/run" ]]; then
+  OPS="$ROOT/cli/run"
+elif [[ -x "$ROOT/cli/bober-ops" ]]; then
+  OPS="$ROOT/cli/bober-ops"
+else
+  echo "bober-ops: not installed (run: npm run ops:install)" >&2
+  exit 0
+fi
+
+echo ""
+echo "── bober-ops (post-commit) ──"
+# Non-blocking for the commit workflow: always exit 0 from this hook.
+set +e
+"$OPS" status --plain
+code=$?
+set -e
+if [[ $code -ne 0 ]]; then
+  echo "bober-ops: status reported problems (exit $code) — commit already saved"
+fi
+echo "────────────────────────────"
+exit 0

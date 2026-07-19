@@ -1,7 +1,22 @@
 #!/usr/bin/env bash
+# Launch bober-ops from anywhere (works via ~/bin/bober symlink).
 set -euo pipefail
-cd "$(dirname "$0")"
+
+SOURCE="${BASH_SOURCE[0]}"
+while [[ -L "$SOURCE" ]]; do
+  DIR="$(cd "$(dirname "$SOURCE")" && pwd)"
+  LINK="$(readlink "$SOURCE")"
+  if [[ "$LINK" == /* ]]; then
+    SOURCE="$LINK"
+  else
+    SOURCE="$DIR/$LINK"
+  fi
+done
+HERE="$(cd "$(dirname "$SOURCE")" && pwd)"
+cd "$HERE"
+
 if [[ -x ./bober-ops ]]; then
   exec ./bober-ops "$@"
 fi
+
 exec go run . "$@"

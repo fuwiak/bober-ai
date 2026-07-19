@@ -26,17 +26,38 @@
 
 ### Ops CLI (аналог Railway status / logs / healthcheck)
 
-Bubble Tea CLI в `cli/` — статус контейнера, логи и Network › Healthcheck:
+Bubble Tea CLI в `cli/` — статус контейнера, логи и Network › Healthcheck.
+
+**Один раз установить** (глобальная команда `bober` + post-commit хук):
 
 ```bash
-npm run ops:status    # контейнер + deploy + health
-npm run ops:health    # GET /api/health (public + IP)
-npm run ops:logs      # docker logs (добавь -- -f для follow)
-npm run ops:build     # хвост /var/log/bober-deploy.log
-npm run ops           # интерактивный TUI
+npm run ops:install
 ```
 
-По умолчанию: хост `45.80.131.136`, ключ `~/.ssh/bober_selectel`. Переопределение через `BOBER_HOST`, `BOBER_SSH_KEY`, `BOBER_PUBLIC_URL`.
+Потом из **любой** директории — **одно окно**, вкладки:
+
+```bash
+bober              # TUI → Status
+bober status       # та же TUI, вкладка Status
+bober health       # вкладка Health
+bober logs         # вкладка Logs (live)
+bober build        # вкладка Build
+```
+
+Внутри: `Tab` / `←` `→` / `1`–`4` — переключение, `f` — live follow, `r` — refresh, `q` — выход.
+
+Для скриптов/хука (без TUI): `bober status --plain`.
+
+После каждого `git commit` хук запускает `bober status --plain`. Отключить: `BOBER_OPS_SKIP=1 git commit ...`.
+
+Без install:
+
+```bash
+npm run ops:status
+npm run ops
+```
+
+Env: `BOBER_HOST`, `BOBER_SSH_KEY`, `BOBER_PUBLIC_URL` (дефолт: Selectel `45.80.131.136`, ключ `~/.ssh/bober_selectel`).
 
 ### Docker локально
 
