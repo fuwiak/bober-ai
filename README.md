@@ -20,18 +20,28 @@
 2. Запустить в production:
    `npm run start`
 
-## Деплой в Railway через Docker
+## Деплой
 
-В репозитории есть production `Dockerfile` для Railway.
+Прод сейчас на **Selectel VDS** (`deploy/` + Caddy). `Dockerfile` / `railway.toml` оставлены как запасной вариант.
 
-1. В Railway выбери **Deploy from GitHub repo**.
-2. Railway автоматически найдёт `Dockerfile` и соберёт образ.
-3. Убедись, что переменная `PORT` задаётся Railway (обычно автоматически).
-4. Healthcheck настроен через `railway.toml` на `GET /api/health`.
+### Ops CLI (аналог Railway status / logs / healthcheck)
 
-Локальная проверка Docker:
+Bubble Tea CLI в `cli/` — статус контейнера, логи и Network › Healthcheck:
+
+```bash
+npm run ops:status    # контейнер + deploy + health
+npm run ops:health    # GET /api/health (public + IP)
+npm run ops:logs      # docker logs (добавь -- -f для follow)
+npm run ops:build     # хвост /var/log/bober-deploy.log
+npm run ops           # интерактивный TUI
+```
+
+По умолчанию: хост `45.80.131.136`, ключ `~/.ssh/bober_selectel`. Переопределение через `BOBER_HOST`, `BOBER_SSH_KEY`, `BOBER_PUBLIC_URL`.
+
+### Docker локально
 
 ```bash
 docker build -t bober-ai-dev .
-docker run --rm -p 3000:3000 bober-ai-dev
+docker run --rm -p 8080:80 bober-ai-dev
+curl -sS http://localhost:8080/api/health
 ```

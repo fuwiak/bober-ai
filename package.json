@@ -28,7 +28,13 @@
     "yandex:direct:oauth": "node scripts/yandex-direct-oauth.mjs",
     "yandex:direct:oauth:refresh": "node scripts/yandex-direct-oauth.mjs refresh --update-railway",
     "yandex:direct:oauth:ensure": "node scripts/yandex-direct-oauth.mjs ensure --update-railway",
-    "yandex:direct:campaigns": "node scripts/yandex-direct-campaigns.mjs"
+    "yandex:direct:campaigns": "node scripts/yandex-direct-campaigns.mjs",
+    "ops": "npm run ops:tui",
+    "ops:tui": "go run ./cli",
+    "ops:status": "go run ./cli status",
+    "ops:health": "go run ./cli health",
+    "ops:logs": "go run ./cli logs",
+    "ops:build": "go run ./cli build"
   },
   "dependencies": {
     "lucide-react": "^0.546.0",
