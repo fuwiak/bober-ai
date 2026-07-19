@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!article) return {};
   const copy = article[locale === "en" ? "en" : "ru"];
   return buildPageMetadata({
-    title: `${copy.title} | Bober AI`,
+    title: copy.title,
     description: copy.description,
     keywords: article.keywords,
     path: `/blog/${slug}`,

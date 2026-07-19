@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { BLOG_POSTS } from "@/lib/blog-posts";
 import { PORTFOLIO } from "@/lib/profile";
 import { getAllServiceSlugs } from "@/lib/seo-services-content";
 import { GUIDES } from "@/lib/guides";
@@ -116,6 +117,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const article of getAllIntentArticles()) {
     pushLocalized(entries, `/blog/${article.slug}`, UPDATED.blog, "weekly", 0.78);
+  }
+
+  // Переводы статей с Medium существуют только на русском — без en-альтернатив.
+  for (const post of BLOG_POSTS) {
+    entries.push({
+      url: `${SITE_URL}/blog/${post.slug}`,
+      lastModified: UPDATED.blog,
+      changeFrequency: "yearly",
+      priority: 0.6,
+    });
   }
 
   return entries;
