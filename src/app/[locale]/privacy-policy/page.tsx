@@ -204,16 +204,16 @@ export default async function PrivacyPolicyPageEn({ params }: Props) {
           <li>legal basis: the user&rsquo;s consent given through the cookie banner;</li>
           <li>purposes: running experiments and A/B tests of the Website interface;</li>
           <li>
-            the Varioqub script loads only after &ldquo;Accept&rdquo; and is not activated if the user chooses
-            &ldquo;Without experiments&rdquo;.
+            the Varioqub script loads only after &ldquo;Accept&rdquo; and is not activated on &ldquo;Decline&rdquo;.
           </li>
         </ul>
 
-        <h3 className="mt-4 font-normal text-ink">7.3. Cookie notice</h3>
+        <h3 className="mt-4 font-normal text-ink">7.3. How cookie consent is obtained</h3>
         <p className="mt-3">
-          The Yandex Metrica script loads on each Website visit. In the notification banner the user may additionally
-          consent to Varioqub experiments (&ldquo;Accept&rdquo;) or refuse them (&ldquo;Without experiments&rdquo;).
-          Refusing experiments does not disable traffic accounting via Yandex Metrica.
+          On the first visit the Website always asks for consent via a notification banner (&ldquo;Accept&rdquo; or
+          &ldquo;Decline&rdquo;). The Yandex Metrica script loads on each visit and continues to work regardless of the
+          chosen answer. &ldquo;Accept&rdquo; additionally enables Varioqub experiments; &ldquo;Decline&rdquo; leaves
+          Varioqub inactive.
         </p>
         <p className="mt-3">
           Technically necessary data (for example, the theme preference) is stored in the browser&rsquo;s localStorage
