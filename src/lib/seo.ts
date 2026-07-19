@@ -16,6 +16,9 @@ import {
 } from "@/lib/site";
 import { LEGAL_ENTITY } from "@/lib/legal";
 
+/** Default share / snippet image (not favicon — Yandex/social need a real preview). */
+export const DEFAULT_OG_IMAGE = HERO_STOCK_IMAGE;
+
 type PageSeoInput = {
   title: string;
   description: string;
@@ -24,6 +27,7 @@ type PageSeoInput = {
   locale: string;
   /** Open Graph type for Metrika content analytics / social previews */
   ogType?: "website" | "article";
+  image?: string;
   article?: {
     publishedTime?: string;
     modifiedTime?: string;
@@ -40,6 +44,16 @@ function localePath(path: string, locale: string): string {
   return path.replace(/^\/en(?=\/|$)/, "") || "/";
 }
 
+function localizedAbsolute(path: string, locale: string): string {
+  const [pathname, hash] = path.split("#");
+  const base = pathname?.startsWith("/") ? pathname : `/${pathname || ""}`;
+  const url =
+    locale === "en"
+      ? absoluteUrl(base === "/" ? "/en" : `/en${base}`)
+      : absoluteUrl(base || "/");
+  return hash ? `${url}#${hash}` : url;
+}
+
 export function buildPageMetadata({
   title,
   description,
@@ -47,11 +61,13 @@ export function buildPageMetadata({
   path,
   locale,
   ogType = "website",
+  image = DEFAULT_OG_IMAGE,
   article,
 }: PageSeoInput): Metadata {
   const canonicalPath = localePath(path, locale);
   const ruPath = path.replace(/^\/en(?=\/|$)/, "") || "/";
   const enPath = path.startsWith("/en") ? path : `/en${path === "/" ? "" : path}`;
+  const ogImageUrl = absoluteUrl(image);
 
   return {
     title,
@@ -73,6 +89,14 @@ export function buildPageMetadata({
       siteName: SITE_NAME,
       title,
       description,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
       ...(ogType === "article" && article
         ? {
             publishedTime: article.publishedTime,
@@ -87,6 +111,7 @@ export function buildPageMetadata({
       card: "summary_large_image",
       title,
       description,
+      images: [ogImageUrl],
     },
     robots: {
       index: true,
@@ -114,6 +139,56 @@ export function breadcrumbJsonLd(items: { name: string; url: string }[]) {
   };
 }
 
+/** Main sections for Yandex sitelinks / SiteNavigationElement signals. */
+export function siteNavigationItems(locale: string) {
+  const isEn = locale === "en";
+  return [
+    { name: isEn ? "Automation" : "Автоматизация", path: "/automation" },
+    { name: isEn ? "Services" : "Услуги", path: "/services" },
+    { name: isEn ? "Portfolio" : "Портфолио", path: "/portfolio" },
+    { name: isEn ? "Pricing" : "Цены", path: "/pricing" },
+    { name: isEn ? "Blog" : "Блог", path: "/blog" },
+    { name: isEn ? "FAQ" : "FAQ", path: "/faq" },
+    { name: isEn ? "Guides" : "Гайды", path: "/guides" },
+    { name: isEn ? "Contact" : "Контакты", path: "/#contact" },
+  ].map((item) => ({
+    name: item.name,
+    url: localizedAbsolute(item.path, locale),
+  }));
+}
+
+export function websiteJsonLd(locale: string) {
+  const nav = siteNavigationItems(locale);
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    name: SITE_NAME,
+    url: SITE_URL,
+    inLanguage: locale === "en" ? "en-US" : "ru-RU",
+    publisher: { "@id": `${SITE_URL}/#organization` },
+    potentialAction: {
+      "@type": "ContactAction",
+      target: `${SITE_URL}/#contact`,
+      name: locale === "en" ? "Request a quote" : "Обсудить проект",
+    },
+    hasPart: nav.map((item) => ({
+      "@type": "WebPage",
+      name: item.name,
+      url: item.url,
+    })),
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: nav.map((item, index) => ({
+        "@type": "SiteNavigationElement",
+        position: index + 1,
+        name: item.name,
+        url: item.url,
+      })),
+    },
+  };
+}
+
 export function webPageJsonLd(input: {
   name: string;
   description: string;
@@ -129,6 +204,7 @@ export function webPageJsonLd(input: {
     inLanguage: input.locale === "en" ? "en-US" : "ru-RU",
     isPartOf: {
       "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
       name: SITE_NAME,
     },
   };
@@ -152,14 +228,20 @@ export function serviceJsonLd(input: {
 }
 
 export function organizationJsonLd(locale: string) {
+  const isEn = locale === "en";
   return {
     "@type": "ProfessionalService",
     "@id": `${SITE_URL}/#organization`,
     name: SITE_NAME,
     legalName: LEGAL_ENTITY.name,
     url: SITE_URL,
-    image: absoluteUrl(HERO_STOCK_IMAGE),
-    logo: absoluteUrl("/icon.png"),
+    image: absoluteUrl(DEFAULT_OG_IMAGE),
+    logo: {
+      "@type": "ImageObject",
+      url: absoluteUrl("/favicon-120x120.png"),
+      width: 120,
+      height: 120,
+    },
     telephone: CONTACT_PHONE,
     email: CONTACT_EMAIL,
     taxID: LEGAL_ENTITY.inn,
@@ -174,8 +256,43 @@ export function organizationJsonLd(locale: string) {
       postalCode: "109451",
       addressCountry: "RU",
     },
-    areaServed: { "@type": "Country", name: locale === "en" ? "Worldwide" : "Russia" },
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        telephone: CONTACT_PHONE,
+        email: CONTACT_EMAIL,
+        availableLanguage: ["Russian", "English", "Polish"],
+        areaServed: isEn ? "Worldwide" : "RU",
+        url: `${SITE_URL}/#contact`,
+      },
+      {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        telephone: CONTACT_PHONE,
+        url: TELEGRAM_URL,
+        availableLanguage: ["Russian", "English"],
+      },
+    ],
+    areaServed: { "@type": "Country", name: isEn ? "Worldwide" : "Russia" },
     priceRange: "₽₽₽",
+    knowsAbout: isEn
+      ? [
+          "Business process automation",
+          "CRM integration",
+          "AI agents",
+          "Private LLM",
+          "Document processing",
+          "n8n automation",
+        ]
+      : [
+          "Автоматизация бизнес-процессов",
+          "Интеграция CRM",
+          "AI-агенты",
+          "Приватный LLM",
+          "Обработка документов",
+          "Автоматизация на n8n",
+        ],
     sameAs: [
       LINKEDIN_URL,
       GITHUB_URL,
@@ -205,6 +322,7 @@ export function personJsonLd(input: {
     url: input.url,
     worksFor: {
       "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
       name: SITE_NAME,
       url: SITE_URL,
     },
@@ -268,8 +386,13 @@ export function articleJsonLd(input: {
     },
     publisher: {
       "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
       name: SITE_NAME,
       url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl("/favicon-120x120.png"),
+      },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
