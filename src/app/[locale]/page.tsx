@@ -2,9 +2,13 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import HomePage from "@/components/HomePage";
 import { routing } from "@/i18n/routing";
-import { SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
+import { absoluteUrl } from "@/lib/site";
 import { getEnterpriseServices } from "@/lib/enterprise-services";
-import { buildPageMetadata, organizationJsonLd as orgSchema } from "@/lib/seo";
+import {
+  buildPageMetadata,
+  organizationJsonLd as orgSchema,
+  websiteJsonLd as siteSchema,
+} from "@/lib/seo";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -56,24 +60,11 @@ export default async function Page({ params }: Props) {
     description: t("description"),
   };
 
-  const websiteJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: SITE_NAME,
-    url: SITE_URL,
-    inLanguage: locale === "en" ? "en-US" : "ru-RU",
-    potentialAction: {
-      "@type": "ContactAction",
-      target: `${SITE_URL}/#contact`,
-      name: locale === "en" ? "Request a quote" : "Обсудить проект",
-    },
-  };
-
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(offersJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema(locale)) }} />
       <HomePage />
     </>
   );
