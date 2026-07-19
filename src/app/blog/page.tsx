@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { BLOG_POSTS } from "@/lib/blog-posts";
+import { getAllIntentArticles } from "@/lib/seo-catalog";
 import { SITE_NAME, absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -81,6 +82,28 @@ export default function BlogPage() {
                 </Link>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section className="section-band">
+          <div className="container-editorial">
+            <h2 className="section-title max-w-3xl">Ответы на вопросы владельцев бизнеса</h2>
+            <p className="body-copy mt-4 max-w-3xl">
+              Практические статьи по реальным поисковым запросам: автоматизация, CRM, документы, продажи и ROI от AI.
+            </p>
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              {getAllIntentArticles().map((article) => (
+                <Link
+                  key={article.slug}
+                  href={`/blog/${article.slug}`}
+                  className="block border border-hairline bg-panel p-5 transition hover:border-ink/30"
+                >
+                  <h3 className="font-medium text-ink">{article.ru.title}</h3>
+                  <p className="mt-2 text-sm text-muted">{article.ru.description}</p>
+                  <p className="mt-3 text-xs text-muted-soft">{article.publishedAt}</p>
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
       </main>
