@@ -11,6 +11,11 @@ export const metadata: Metadata = {
   keywords: [...DEFAULT_KEYWORDS, "условия оказания услуг", "договор", "смета", "прайс"],
   alternates: {
     canonical: absoluteUrl(LEGAL_ROUTES.terms),
+    languages: {
+      ru: absoluteUrl(LEGAL_ROUTES.terms),
+      en: absoluteUrl(`/en${LEGAL_ROUTES.terms}`),
+      "x-default": absoluteUrl(LEGAL_ROUTES.terms),
+    },
   },
   robots: { index: true, follow: true },
 };

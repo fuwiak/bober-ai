@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   keywords: [...DEFAULT_KEYWORDS, "152-ФЗ", "персональные данные", "политика конфиденциальности"],
   alternates: {
     canonical: absoluteUrl(LEGAL_ROUTES.privacyPolicy),
+    languages: {
+      ru: absoluteUrl(LEGAL_ROUTES.privacyPolicy),
+      en: absoluteUrl(`/en${LEGAL_ROUTES.privacyPolicy}`),
+      "x-default": absoluteUrl(LEGAL_ROUTES.privacyPolicy),
+    },
   },
   robots: { index: true, follow: true },
 };

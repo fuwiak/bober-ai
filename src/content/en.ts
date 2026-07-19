@@ -25,6 +25,7 @@ const en = {
   },
   nav: {
     services: "Services",
+    automation: "Automation",
     packages: "Packages",
     portfolio: "Case studies",
     pricing: "Pricing",

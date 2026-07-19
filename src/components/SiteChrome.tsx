@@ -9,11 +9,11 @@ export async function SiteHeader() {
   const t = await getTranslations("nav");
 
   const navItems = [
+    { href: "/automation" as const, label: t("automation") },
     { href: "/services" as const, label: t("services") },
     { href: "/portfolio" as const, label: t("portfolio") },
+    { href: "/blog" as const, label: t("blog") },
     { href: "/pricing" as const, label: t("pricing") },
-    { href: "/media" as const, label: t("media") },
-    { href: "/faq" as const, label: t("faq") },
   ];
 
   return (

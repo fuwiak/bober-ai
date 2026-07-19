@@ -4,6 +4,10 @@ import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 import { SeoLandingPage } from "@/components/SeoLandingPage";
 import {
+  getCatalogLandingContent,
+  isCatalogContentKey,
+} from "@/lib/seo-catalog";
+import {
   LANDING_PAGES,
   getLandingPage,
   type LandingCategory,
@@ -29,6 +33,19 @@ export function createLandingPageHandlers(category: LandingCategory) {
     const { locale, slug } = await params;
     const page = getLandingPage(category, slug);
     if (!page) return {};
+
+    const loc = locale === "en" ? "en" : "ru";
+    if (page.fromCatalog || isCatalogContentKey(page.contentKey)) {
+      const content = getCatalogLandingContent(page.contentKey, loc);
+      if (!content) return {};
+      return buildPageMetadata({
+        title: content.metaTitle,
+        description: content.metaDescription,
+        keywords: content.metaKeywords,
+        path: `/${category}/${slug}`,
+        locale,
+      });
+    }
 
     const t = await getTranslations({ locale, namespace: "landing" });
     const content = t.raw(`pages.${page.contentKey}`) as {

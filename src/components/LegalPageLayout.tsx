@@ -10,9 +10,32 @@ type LegalPageLayoutProps = {
   children: React.ReactNode;
 };
 
+const LABELS = {
+  ru: {
+    home: "Главная",
+    published: "Дата публикации",
+    terms: "Условия оказания услуг",
+    privacy: "Политика обработки ПДн",
+    consent: "Согласие на обработку ПДн",
+    backHome: "На главную",
+  },
+  en: {
+    home: "Home",
+    published: "Published",
+    terms: "Terms of Service",
+    privacy: "Privacy Policy",
+    consent: "Personal Data Consent",
+    backHome: "Back to home",
+  },
+} as const;
+
 export async function LegalPageLayout({ title, updatedAt, children }: LegalPageLayoutProps) {
   const locale = await getLocale();
   const messages = await getMessages();
+  const isEn = locale === "en";
+  const t = isEn ? LABELS.en : LABELS.ru;
+  const prefix = isEn ? "/en" : "";
+  const homeHref = isEn ? "/en" : "/";
 
   return (
     <LegalProviders locale={locale} messages={messages}>
@@ -21,27 +44,27 @@ export async function LegalPageLayout({ title, updatedAt, children }: LegalPageL
         <main className="section-band">
           <div className="container-editorial max-w-3xl">
             <nav className="mb-6 text-sm text-muted">
-              <Link href="/" className="text-link">
-                Главная
+              <Link href={homeHref} className="text-link">
+                {t.home}
               </Link>
               <span className="mx-2">/</span>
               <span className="text-ink">{title}</span>
             </nav>
             <h1 className="display-md">{title}</h1>
-            <p className="mt-2 text-sm text-muted">Дата публикации: {updatedAt}</p>
+            <p className="mt-2 text-sm text-muted">{t.published}: {updatedAt}</p>
             <article className="prose-legal mt-8 space-y-6">{children}</article>
             <nav className="mt-10 flex flex-wrap gap-4 border-t border-hairline pt-6 text-sm">
-              <Link href={LEGAL_ROUTES.terms} className="text-link">
-                Условия оказания услуг
+              <Link href={`${prefix}${LEGAL_ROUTES.terms}`} className="text-link">
+                {t.terms}
               </Link>
-              <Link href={LEGAL_ROUTES.privacyPolicy} className="text-link">
-                Политика обработки ПДн
+              <Link href={`${prefix}${LEGAL_ROUTES.privacyPolicy}`} className="text-link">
+                {t.privacy}
               </Link>
-              <Link href={LEGAL_ROUTES.consent} className="text-link">
-                Согласие на обработку ПДн
+              <Link href={`${prefix}${LEGAL_ROUTES.consent}`} className="text-link">
+                {t.consent}
               </Link>
-              <Link href="/" className="text-link">
-                На главную
+              <Link href={homeHref} className="text-link">
+                {t.backHome}
               </Link>
             </nav>
           </div>

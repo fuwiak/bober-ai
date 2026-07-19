@@ -11,6 +11,11 @@ export const metadata: Metadata = {
   keywords: [...DEFAULT_KEYWORDS, "152-ФЗ", "согласие", "персональные данные"],
   alternates: {
     canonical: absoluteUrl(LEGAL_ROUTES.consent),
+    languages: {
+      ru: absoluteUrl(LEGAL_ROUTES.consent),
+      en: absoluteUrl(`/en${LEGAL_ROUTES.consent}`),
+      "x-default": absoluteUrl(LEGAL_ROUTES.consent),
+    },
   },
   robots: { index: true, follow: true },
 };

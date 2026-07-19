@@ -25,7 +25,7 @@ export type SeoServiceContent = {
 
 const CONTENT_RU: Record<string, SeoServiceContent> = {
   "business-process-automation": {
-    metaTitle: "Автоматизация бизнес-процессов — Bober AI Systems",
+    metaTitle: "Автоматизация бизнес-процессов",
     metaDescription:
       "Аудит, интеграции CRM/1С, workflow и AI-слой. Production-внедрение автоматизации бизнес-процессов для enterprise в Москве и России.",
     eyebrow: "Enterprise automation",
@@ -94,7 +94,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "sales-ai-agent": {
-    metaTitle: "AI-агент для продаж и автоматизация отдела продаж — Bober AI",
+    metaTitle: "AI-агент для продаж и автоматизация отдела продаж",
     metaDescription:
       "Лиды, CRM, коммерческие предложения и follow-up. AI-агент для продаж: PDF за минуты, не за часы. Production-кейсы ELIA Suite и KP-LLM.",
     eyebrow: "Sales automation",
@@ -163,7 +163,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "ai-discovery-roadmap": {
-    metaTitle: "AI Discovery и дорожная карта внедрения — Bober AI Systems",
+    metaTitle: "AI Discovery и дорожная карта внедрения",
     metaDescription:
       "Аудит процессов, расчёт ROI, выбор технологии и дорожная карта AI-внедрения. Фиксированная смета до старта разработки.",
     eyebrow: "Strategy & ROI",
@@ -230,7 +230,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "enterprise-ai-assistant": {
-    metaTitle: "Внедрение enterprise AI-ассистента — Bober AI Systems",
+    metaTitle: "Внедрение enterprise AI-ассистента",
     metaDescription:
       "Корпоративный AI-ассистент: LLM, RAG, интеграции CRM и мессенджеров. Production, не пилот на ChatGPT. Кейс Kaspersky.",
     eyebrow: "Enterprise AI",
@@ -299,7 +299,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "private-llm-gigachat": {
-    metaTitle: "Приватный LLM и GigaChat on-prem — Bober AI Systems",
+    metaTitle: "Приватный LLM и GigaChat on-prem",
     metaDescription:
       "Развёртывание GigaChat и LLM в изолированном контуре: API, guardrails, мониторинг. Без утечки данных во внешние сервисы.",
     eyebrow: "Private AI",
@@ -368,7 +368,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "ai-automation": {
-    metaTitle: "AI-автоматизация бизнес-процессов — Bober AI Systems",
+    metaTitle: "AI-автоматизация бизнес-процессов",
     metaDescription:
       "AI + workflow: документы, продажи, поддержка. Автоматизация с LLM там, где ROI измерим. Production в Москве и России.",
     eyebrow: "AI + Workflow",
@@ -436,7 +436,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "rag": {
-    metaTitle: "RAG-системы для enterprise — Bober AI Systems",
+    metaTitle: "RAG-системы для enterprise",
     metaDescription:
       "Retrieval-Augmented Generation: индексация документов, векторный поиск, цитаты источников. Production RAG для баз знаний и ассистентов.",
     eyebrow: "RAG & Knowledge",
@@ -505,7 +505,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "llm-development": {
-    metaTitle: "Разработка LLM-приложений — Bober AI Systems",
+    metaTitle: "Разработка LLM-приложений",
     metaDescription:
       "Custom LLM apps: prompts, agents, API, eval. Production-разработка на GigaChat, LangGraph и private LLM для enterprise.",
     eyebrow: "LLM Engineering",
@@ -573,7 +573,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "n8n": {
-    metaTitle: "Автоматизация на n8n — интеграции и workflow — Bober AI",
+    metaTitle: "Автоматизация на n8n — интеграции и workflow",
     metaDescription:
       "n8n: CRM, 1С, Telegram, LLM-шаги. Self-hosted workflow automation для enterprise. Bober AI Systems, Москва.",
     eyebrow: "Workflow",
@@ -641,7 +641,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "ai-agent": {
-    metaTitle: "Разработка AI-агентов для бизнеса — Bober AI Systems",
+    metaTitle: "Разработка AI-агентов для бизнеса",
     metaDescription:
       "AI-агенты с tool calling: CRM, документы, поиск. LangGraph, MCP, production agents для enterprise.",
     eyebrow: "AI Agents",
@@ -710,7 +710,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "document-processing": {
-    metaTitle: "Автоматизация обработки документов — Bober AI",
+    metaTitle: "Автоматизация обработки документов",
     metaDescription:
       "Документооборот: OCR, извлечение полей, согласование, CRM/1С. AI + workflow для enterprise.",
     eyebrow: "Documents",
@@ -779,7 +779,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "voice-ai": {
-    metaTitle: "Voice AI и голосовые ассистенты — Bober AI Systems",
+    metaTitle: "Voice AI и голосовые ассистенты",
     metaDescription:
       "STT, TTS, голосовые AI-агенты для продаж и поддержки. Private контур, русский язык, интеграции CRM.",
     eyebrow: "Voice",
@@ -847,7 +847,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "ocr": {
-    metaTitle: "OCR и извлечение данных из документов — Bober AI",
+    metaTitle: "OCR и извлечение данных из документов",
     metaDescription:
       "OCR для счетов, актов, договоров. Пакетная обработка, validation, выгрузка в 1С и CRM.",
     eyebrow: "OCR",
@@ -915,7 +915,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "open-webui": {
-    metaTitle: "Open WebUI для корпоративного AI — Bober AI",
+    metaTitle: "Open WebUI для корпоративного AI",
     metaDescription:
       "Развёртывание Open WebUI: chat UI для private LLM, RAG, RBAC. Self-hosted альтернатива ChatGPT для сотрудников.",
     eyebrow: "Open WebUI",
@@ -982,7 +982,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "self-hosted-ai": {
-    metaTitle: "Self-hosted AI инфраструктура — Bober AI Systems",
+    metaTitle: "Self-hosted AI инфраструктура",
     metaDescription:
       "On-prem AI: LLM, embedding, vector DB, GPU. Полный контур без внешних API. Москва, NDA, 152-ФЗ.",
     eyebrow: "Self-hosted",
@@ -1049,7 +1049,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "mcp": {
-    metaTitle: "MCP интеграции для AI-агентов — Bober AI Systems",
+    metaTitle: "MCP интеграции для AI-агентов",
     metaDescription:
       "Model Context Protocol: безопасный доступ AI к CRM, файлам, API. MCP servers для enterprise agents.",
     eyebrow: "MCP",
@@ -1116,7 +1116,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "langgraph": {
-    metaTitle: "LangGraph агенты и orchestration — Bober AI",
+    metaTitle: "LangGraph агенты и orchestration",
     metaDescription:
       "LangGraph: stateful AI agents, human-in-the-loop, production orchestration для enterprise.",
     eyebrow: "LangGraph",
@@ -1183,7 +1183,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "knowledge-base": {
-    metaTitle: "Корпоративная база знаний с AI — Bober AI Systems",
+    metaTitle: "Корпоративная база знаний с AI",
     metaDescription:
       "База знаний для поддержки и сотрудников: RAG, search, AI-ассистент. Кейс Kaspersky.",
     eyebrow: "Knowledge",
@@ -1251,7 +1251,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "ai-consulting": {
-    metaTitle: "AI-консалтинг для enterprise — Bober AI Systems",
+    metaTitle: "AI-консалтинг для enterprise",
     metaDescription:
       "Стратегия AI, аудит, vendor selection, roadmap. Москва. Практический консалтинг без buzzword.",
     eyebrow: "Consulting",
@@ -1319,7 +1319,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "crm-integration": {
-    metaTitle: "Интеграция CRM с 1С, сайтом, Telegram — Bober AI",
+    metaTitle: "Интеграция CRM с 1С, сайтом, Telegram",
     metaDescription:
       "CRM integration: amoCRM, Bitrix24, 1C, webhooks, двусторонний обмен. Production integrators, Москва.",
     eyebrow: "Integrations",
@@ -1390,7 +1390,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
 
 const CONTENT_EN: Record<string, SeoServiceContent> = {
   "business-process-automation": {
-    metaTitle: "Business Process Automation — Bober AI Systems",
+    metaTitle: "Business Process Automation",
     metaDescription:
       "Audit, CRM/ERP integrations, workflow and AI layer. Production business process automation for enterprise in Moscow and Russia.",
     eyebrow: "Enterprise automation",
@@ -1459,7 +1459,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   },
 
   "sales-ai-agent": {
-    metaTitle: "Sales AI Agent & Sales Automation — Bober AI",
+    metaTitle: "Sales AI Agent & Sales Automation",
     metaDescription:
       "Leads, CRM, proposals and follow-up. Sales AI agent: PDF in minutes, not hours. ELIA Suite and KP-LLM production cases.",
     eyebrow: "Sales automation",
@@ -1528,7 +1528,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   },
 
   "ai-discovery-roadmap": {
-    metaTitle: "AI Discovery & Implementation Roadmap — Bober AI",
+    metaTitle: "AI Discovery & Implementation Roadmap",
     metaDescription: "Process audit, ROI calculation, technology choice and AI roadmap. Fixed estimate before development starts.",
     eyebrow: "Strategy & ROI",
     h1: "AI Discovery & roadmap",
@@ -1570,7 +1570,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   },
 
   "enterprise-ai-assistant": {
-    metaTitle: "Enterprise AI Assistant Implementation — Bober AI",
+    metaTitle: "Enterprise AI Assistant Implementation",
     metaDescription: "Corporate AI assistant: LLM, RAG, CRM and messenger integrations. Production, not ChatGPT pilot. Kaspersky case.",
     eyebrow: "Enterprise AI",
     h1: "Enterprise AI assistant",
@@ -1613,7 +1613,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   },
 
   "private-llm-gigachat": {
-    metaTitle: "Private LLM & GigaChat On-Prem — Bober AI Systems",
+    metaTitle: "Private LLM & GigaChat On-Prem",
     metaDescription: "GigaChat and LLM in isolated contour: API, guardrails, monitoring. No data leakage to external AI services.",
     eyebrow: "Private AI",
     h1: "Private LLM environment",
@@ -1656,7 +1656,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   },
 
   "ai-automation": {
-    metaTitle: "AI Automation for Business — Bober AI Systems",
+    metaTitle: "AI Automation for Business",
     metaDescription: "AI + workflow: documents, sales, support. LLM where ROI is measurable. Production deployments in Moscow and Russia.",
     eyebrow: "AI + Workflow",
     h1: "AI automation",
@@ -1698,7 +1698,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   },
 
   "rag": {
-    metaTitle: "Enterprise RAG Systems — Bober AI Systems",
+    metaTitle: "Enterprise RAG Systems",
     metaDescription: "Retrieval-Augmented Generation: document indexing, vector search, source citations. Production RAG for knowledge bases and assistants.",
     eyebrow: "RAG & Knowledge",
     h1: "RAG systems",
@@ -1741,7 +1741,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   },
 
   "llm-development": {
-    metaTitle: "LLM Application Development — Bober AI Systems",
+    metaTitle: "LLM Application Development",
     metaDescription: "Custom LLM apps: prompts, agents, API, eval. Production development on GigaChat, LangGraph and private LLM.",
     eyebrow: "LLM Engineering",
     h1: "LLM application development",
@@ -1783,7 +1783,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   },
 
   "n8n": {
-    metaTitle: "n8n Workflow Automation — Bober AI Systems",
+    metaTitle: "n8n Workflow Automation",
     metaDescription: "n8n: CRM, 1C, Telegram, LLM steps. Self-hosted workflow automation for enterprise. Moscow.",
     eyebrow: "Workflow",
     h1: "n8n automation",
@@ -1826,7 +1826,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   },
 
   "ai-agent": {
-    metaTitle: "AI Agent Development for Business — Bober AI",
+    metaTitle: "AI Agent Development for Business",
     metaDescription: "AI agents with tool calling: CRM, documents, search. LangGraph, MCP, production agents for enterprise.",
     eyebrow: "AI Agents",
     h1: "AI agent development",
@@ -1869,7 +1869,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   },
 
   "document-processing": {
-    metaTitle: "Document Processing Automation — Bober AI",
+    metaTitle: "Document Processing Automation",
     metaDescription: "Document workflow: OCR, field extraction, approval, CRM/ERP. AI + workflow for enterprise.",
     eyebrow: "Documents",
     h1: "Document processing",
@@ -1912,7 +1912,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   },
 
   "voice-ai": {
-    metaTitle: "Voice AI & Voice Assistants — Bober AI Systems",
+    metaTitle: "Voice AI & Voice Assistants",
     metaDescription: "STT, TTS, voice AI agents for sales and support. Private contour, Russian language, CRM integrations.",
     eyebrow: "Voice",
     h1: "Voice AI",
@@ -1955,7 +1955,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   },
 
   "ocr": {
-    metaTitle: "OCR & Document Data Extraction — Bober AI",
+    metaTitle: "OCR & Document Data Extraction",
     metaDescription: "OCR for invoices, acts and contracts. Batch processing, validation, export to 1C and CRM.",
     eyebrow: "OCR",
     h1: "OCR & text extraction",
@@ -1998,7 +1998,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   },
 
   "open-webui": {
-    metaTitle: "Open WebUI for Corporate AI — Bober AI",
+    metaTitle: "Open WebUI for Corporate AI",
     metaDescription: "Open WebUI deployment: chat UI for private LLM, RAG, RBAC. Self-hosted ChatGPT alternative for staff.",
     eyebrow: "Open WebUI",
     h1: "Open WebUI for enterprise",
@@ -2040,7 +2040,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   },
 
   "self-hosted-ai": {
-    metaTitle: "Self-Hosted AI Infrastructure — Bober AI Systems",
+    metaTitle: "Self-Hosted AI Infrastructure",
     metaDescription: "On-prem AI: LLM, embedding, vector DB, GPU. Full stack without external APIs. Moscow, NDA.",
     eyebrow: "Self-hosted",
     h1: "Self-hosted AI",
@@ -2082,7 +2082,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   },
 
   "mcp": {
-    metaTitle: "MCP Integrations for AI Agents — Bober AI Systems",
+    metaTitle: "MCP Integrations for AI Agents",
     metaDescription: "Model Context Protocol: secure AI access to CRM, files, APIs. MCP servers for enterprise agents.",
     eyebrow: "MCP",
     h1: "MCP integrations",
@@ -2124,7 +2124,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   },
 
   "langgraph": {
-    metaTitle: "LangGraph Agents & Orchestration — Bober AI",
+    metaTitle: "LangGraph Agents & Orchestration",
     metaDescription: "LangGraph: stateful AI agents, human-in-the-loop, production orchestration for enterprise.",
     eyebrow: "LangGraph",
     h1: "LangGraph orchestration",
@@ -2166,7 +2166,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   },
 
   "knowledge-base": {
-    metaTitle: "Corporate Knowledge Base with AI — Bober AI Systems",
+    metaTitle: "Corporate Knowledge Base with AI",
     metaDescription: "Knowledge base for support and staff: RAG, search, AI assistant. Kaspersky case reference.",
     eyebrow: "Knowledge",
     h1: "Corporate knowledge base",
@@ -2209,7 +2209,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   },
 
   "ai-consulting": {
-    metaTitle: "Enterprise AI Consulting — Bober AI Systems",
+    metaTitle: "Enterprise AI Consulting",
     metaDescription: "AI strategy, audit, vendor selection, roadmap. Moscow. Practical consulting without buzzwords.",
     eyebrow: "Consulting",
     h1: "AI consulting",
@@ -2252,7 +2252,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   },
 
   "crm-integration": {
-    metaTitle: "CRM Integration with 1C, Website, Telegram — Bober AI",
+    metaTitle: "CRM Integration with 1C, Website, Telegram",
     metaDescription: "CRM integration: amoCRM, Bitrix24, 1C, webhooks, two-way sync. Production integrators, Moscow.",
     eyebrow: "Integrations",
     h1: "CRM integration",

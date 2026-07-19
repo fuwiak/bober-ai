@@ -3,83 +3,97 @@ import { PORTFOLIO } from "@/lib/profile";
 import { getAllServiceSlugs } from "@/lib/seo-services-content";
 import { GUIDES } from "@/lib/guides";
 import { LANDING_PAGES } from "@/lib/landing-pages";
+import { SEO_HUBS } from "@/lib/seo-catalog/hubs";
+import { getAllIntentArticles } from "@/lib/seo-catalog";
 import { SITE_URL } from "@/lib/site";
 
+/**
+ * Реальные даты последнего содержательного обновления разделов.
+ * Обновлять вручную при изменении контента: lastmod, который меняется
+ * при каждом деплое, Яндекс и Google начинают игнорировать.
+ */
+const UPDATED = {
+  core: new Date("2026-07-19"),
+  services: new Date("2026-07-19"),
+  landings: new Date("2026-07-19"),
+  hubs: new Date("2026-07-19"),
+  guides: new Date("2026-07-14"),
+  blog: new Date("2026-07-19"),
+  portfolio: new Date("2026-07-14"),
+  legal: new Date("2026-07-16"),
+} as const;
+
 const staticRoutes = [
-  { path: "", priority: 1, changeFrequency: "weekly" as const },
-  { path: "/services", priority: 0.9, changeFrequency: "weekly" as const },
-  { path: "/portfolio", priority: 0.85, changeFrequency: "weekly" as const },
-  { path: "/pricing", priority: 0.85, changeFrequency: "weekly" as const },
-  { path: "/faq", priority: 0.8, changeFrequency: "monthly" as const },
-  { path: "/media", priority: 0.8, changeFrequency: "monthly" as const },
-  { path: "/guides", priority: 0.85, changeFrequency: "weekly" as const },
-  { path: "/partners", priority: 0.8, changeFrequency: "monthly" as const },
-  { path: "/privacy-policy", priority: 0.3, changeFrequency: "yearly" as const },
-  { path: "/consent", priority: 0.3, changeFrequency: "yearly" as const },
-  { path: "/terms", priority: 0.4, changeFrequency: "yearly" as const },
-  { path: "/info", priority: 0.5, changeFrequency: "monthly" as const },
+  { path: "", priority: 1, changeFrequency: "weekly" as const, lastModified: UPDATED.core },
+  { path: "/services", priority: 0.9, changeFrequency: "weekly" as const, lastModified: UPDATED.services },
+  { path: "/portfolio", priority: 0.85, changeFrequency: "weekly" as const, lastModified: UPDATED.portfolio },
+  { path: "/pricing", priority: 0.85, changeFrequency: "weekly" as const, lastModified: UPDATED.core },
+  { path: "/faq", priority: 0.8, changeFrequency: "monthly" as const, lastModified: UPDATED.core },
+  { path: "/media", priority: 0.8, changeFrequency: "monthly" as const, lastModified: UPDATED.core },
+  { path: "/guides", priority: 0.85, changeFrequency: "weekly" as const, lastModified: UPDATED.guides },
+  { path: "/blog", priority: 0.85, changeFrequency: "weekly" as const, lastModified: UPDATED.blog },
+  { path: "/partners", priority: 0.8, changeFrequency: "monthly" as const, lastModified: UPDATED.core },
+  { path: "/privacy-policy", priority: 0.3, changeFrequency: "yearly" as const, lastModified: UPDATED.legal },
+  { path: "/consent", priority: 0.3, changeFrequency: "yearly" as const, lastModified: UPDATED.legal },
+  { path: "/terms", priority: 0.4, changeFrequency: "yearly" as const, lastModified: UPDATED.legal },
+  { path: "/info", priority: 0.5, changeFrequency: "monthly" as const, lastModified: UPDATED.core },
 ];
 
+function pushLocalized(
+  entries: MetadataRoute.Sitemap,
+  path: string,
+  lastModified: Date,
+  changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"],
+  priority: number,
+) {
+  entries.push({
+    url: `${SITE_URL}${path}`,
+    lastModified,
+    changeFrequency,
+    priority,
+    alternates: {
+      languages: {
+        ru: `${SITE_URL}${path}`,
+        en: `${SITE_URL}/en${path}`,
+        "x-default": `${SITE_URL}${path}`,
+      },
+    },
+  });
+  entries.push({
+    url: `${SITE_URL}/en${path}`,
+    lastModified,
+    changeFrequency,
+    priority: priority * 0.9,
+    alternates: {
+      languages: {
+        ru: `${SITE_URL}${path}`,
+        en: `${SITE_URL}/en${path}`,
+        "x-default": `${SITE_URL}${path}`,
+      },
+    },
+  });
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
   const entries: MetadataRoute.Sitemap = [];
   const ruServiceSlugs = getAllServiceSlugs("ru");
 
   for (const route of staticRoutes) {
-    entries.push({
-      url: `${SITE_URL}${route.path}`,
-      lastModified: now,
-      changeFrequency: route.changeFrequency,
-      priority: route.priority,
-      alternates: {
-        languages: {
-          ru: `${SITE_URL}${route.path}`,
-          en: `${SITE_URL}/en${route.path}`,
-          "x-default": `${SITE_URL}${route.path}`,
-        },
-      },
-    });
-    entries.push({
-      url: `${SITE_URL}/en${route.path}`,
-      lastModified: now,
-      changeFrequency: route.changeFrequency,
-      priority: route.priority * 0.9,
-      alternates: {
-        languages: {
-          ru: `${SITE_URL}${route.path}`,
-          en: `${SITE_URL}/en${route.path}`,
-          "x-default": `${SITE_URL}${route.path}`,
-        },
-      },
-    });
+    pushLocalized(entries, route.path, route.lastModified, route.changeFrequency, route.priority);
+  }
+
+  for (const hub of SEO_HUBS) {
+    pushLocalized(entries, `/${hub.category}`, UPDATED.hubs, "weekly", 0.88);
   }
 
   for (const slug of ruServiceSlugs) {
-    entries.push({
-      url: `${SITE_URL}/services/${slug}`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.85,
-      alternates: {
-        languages: {
-          ru: `${SITE_URL}/services/${slug}`,
-          en: `${SITE_URL}/en/services/${slug}`,
-          "x-default": `${SITE_URL}/services/${slug}`,
-        },
-      },
-    });
-    entries.push({
-      url: `${SITE_URL}/en/services/${slug}`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.75,
-    });
+    pushLocalized(entries, `/services/${slug}`, UPDATED.services, "weekly", 0.85);
   }
 
   for (const item of PORTFOLIO) {
     entries.push({
       url: `${SITE_URL}/portfolio/${item.slug}`,
-      lastModified: now,
+      lastModified: UPDATED.portfolio,
       changeFrequency: "monthly",
       priority: item.featured ? 0.8 : 0.6,
       alternates: {
@@ -93,56 +107,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   for (const page of LANDING_PAGES) {
-    const path = `/${page.category}/${page.slug}`;
-    entries.push({
-      url: `${SITE_URL}${path}`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.82,
-      alternates: {
-        languages: {
-          ru: `${SITE_URL}${path}`,
-          en: `${SITE_URL}/en${path}`,
-          "x-default": `${SITE_URL}${path}`,
-        },
-      },
-    });
-    entries.push({
-      url: `${SITE_URL}/en${path}`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.72,
-      alternates: {
-        languages: {
-          ru: `${SITE_URL}${path}`,
-          en: `${SITE_URL}/en${path}`,
-          "x-default": `${SITE_URL}${path}`,
-        },
-      },
-    });
+    pushLocalized(entries, `/${page.category}/${page.slug}`, UPDATED.landings, "weekly", 0.82);
   }
 
   for (const guide of GUIDES) {
-    const path = `/guides/${guide.slug}`;
-    entries.push({
-      url: `${SITE_URL}${path}`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.8,
-      alternates: {
-        languages: {
-          ru: `${SITE_URL}${path}`,
-          en: `${SITE_URL}/en${path}`,
-          "x-default": `${SITE_URL}${path}`,
-        },
-      },
-    });
-    entries.push({
-      url: `${SITE_URL}/en${path}`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.7,
-    });
+    pushLocalized(entries, `/guides/${guide.slug}`, UPDATED.guides, "weekly", 0.8);
+  }
+
+  for (const article of getAllIntentArticles()) {
+    pushLocalized(entries, `/blog/${article.slug}`, UPDATED.blog, "weekly", 0.78);
   }
 
   return entries;

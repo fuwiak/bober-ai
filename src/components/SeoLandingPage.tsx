@@ -11,6 +11,11 @@ import { Link } from "@/i18n/navigation";
 import { getEnterpriseService } from "@/lib/enterprise-services";
 import { getLandingExtended } from "@/lib/landing-extended";
 import type { LandingPageDef } from "@/lib/landing-pages";
+import {
+  getCatalogLandingContent,
+  getCatalogLandingExtended,
+  isCatalogContentKey,
+} from "@/lib/seo-catalog";
 import { PROFILE, getPortfolioItem } from "@/lib/profile";
 import {
   breadcrumbJsonLd,
@@ -42,6 +47,7 @@ const CATEGORY_LABELS: Record<string, { ru: string; en: string }> = {
   integrations: { ru: "Интеграции", en: "Integrations" },
   solutions: { ru: "Решения", en: "Solutions" },
   ai: { ru: "AI", en: "AI" },
+  industries: { ru: "Отрасли", en: "Industries" },
 };
 
 type SeoLandingPageProps = {
@@ -54,15 +60,29 @@ function isDiagramImage(src: string) {
 }
 
 export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
+  const loc = locale === "en" ? "en" : "ru";
   const t = await getTranslations("landing");
-  const content = t.raw(`pages.${page.contentKey}`) as LandingContent;
-  const extended = getLandingExtended(page.contentKey, locale === "en" ? "en" : "ru");
+  const fromCatalog = page.fromCatalog || isCatalogContentKey(page.contentKey);
+  let content: LandingContent;
+  let extended = getLandingExtended(page.contentKey, loc);
+
+  if (fromCatalog) {
+    const catalogContent = getCatalogLandingContent(page.contentKey, loc);
+    if (!catalogContent) {
+      throw new Error(`Missing catalog content for ${page.contentKey}`);
+    }
+    content = catalogContent;
+    extended = getCatalogLandingExtended(page.contentKey, loc) ?? extended;
+  } else {
+    content = t.raw(`pages.${page.contentKey}`) as LandingContent;
+  }
+
   const service = getEnterpriseService(page.serviceSlug, locale);
   const prefix = locale === "en" ? "/en" : "";
   const pagePath = `${prefix}/${page.category}/${page.slug}`;
   const pageUrl = absoluteUrl(pagePath);
   const homeLabel = locale === "en" ? "Home" : "Главная";
-  const categoryLabel = CATEGORY_LABELS[page.category][locale === "en" ? "en" : "ru"];
+  const categoryLabel = CATEGORY_LABELS[page.category]?.[loc] ?? page.category;
   const faqItems = extended?.faq ?? content.faq ?? [];
 
   const breadcrumb = breadcrumbJsonLd([

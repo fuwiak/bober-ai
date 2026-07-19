@@ -1,169 +1,90 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { DEFAULT_KEYWORDS, SITE_NAME, absoluteUrl } from "@/lib/site";
-
-const mediumPlaceholders = [
-  "Последний пост из Medium появится здесь",
-  "Второй пост из Medium появится здесь",
-  "Третий пост из Medium появится здесь",
-];
-
-const habrPlaceholders = [
-  "Последняя статья с Habr появится здесь",
-  "Вторая статья с Habr появится здесь",
-  "Третья статья с Habr появится здесь",
-];
-
-const MEDIUM_URL = "https://medium.com/@stasinskipawel";
-const HABR_URL = "https://habr.com/ru/users/fuwiak/articles/";
-
+import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
+import { BLOG_POSTS } from "@/lib/blog-posts";
+import { SITE_NAME, absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `Блог ${SITE_NAME}`,
+  title: "Блог об AI, RAG, Python и автоматизации",
   description:
-    `Публикации ${SITE_NAME} о внедрении AI, облачных LLM, приватных моделях, DevOps и автоматизации.`,
-  keywords: [...DEFAULT_KEYWORDS, "блог ИИ", "статьи про ИИ", "LLM blog", "AI automation blog"],
-  alternates: {
-    canonical: absoluteUrl("/blog"),
+    "Статьи Павла Стасиньски о RAG, LangChain, генеративном AI, Python, Solara, Streamlit и практической разработке AI-систем.",
+  alternates: { canonical: absoluteUrl("/blog") },
+  openGraph: {
+    type: "website",
+    title: `Блог об AI и автоматизации | ${SITE_NAME}`,
+    description: "Практические статьи об AI, RAG, Python и разработке приложений.",
+    url: absoluteUrl("/blog"),
   },
 };
 
-export default function BlogPage() {
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: SITE_NAME, item: absoluteUrl("/") },
-      { "@type": "ListItem", position: 2, name: `Блог ${SITE_NAME}`, item: absoluteUrl("/blog") },
-    ],
-  };
+const dateFormatter = new Intl.DateTimeFormat("ru-RU", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
 
+export default function BlogPage() {
   const blogJsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
     name: `Блог ${SITE_NAME}`,
     url: absoluteUrl("/blog"),
-    description:
-      `Публикации ${SITE_NAME} о внедрении AI, облачных LLM, приватных моделях, DevOps и автоматизации.`,
     inLanguage: "ru-RU",
+    blogPost: BLOG_POSTS.map((post) => ({
+      "@type": "BlogPosting",
+      headline: post.title,
+      url: absoluteUrl(`/blog/${post.slug}`),
+      datePublished: post.publishedAt,
+      author: { "@type": "Person", name: "Павел Стасиньски" },
+    })),
   };
 
   return (
-    <main className="min-h-screen bg-background px-6 py-16 md:py-24">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
-      />
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-12 flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">
-              Блог {SITE_NAME}
-            </span>
-            <h1 className="mt-2 text-3xl md:text-4xl font-bold tracking-tight">Публикации и статьи</h1>
-            <p className="mt-3 max-w-2xl text-on-surface-variant">
-              Здесь собираются материалы о практике внедрения AI: облачные LLM, чат-боты, приватные модели, DevOps и
-              автоматизация. По умолчанию показываем последние посты с Medium и Habr.
+    <div className="page-shell min-h-screen">
+      <SiteHeader />
+      <main>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }} />
+        <section className="section-band section--deep border-b border-hairline">
+          <div className="container-editorial">
+            <span className="section-label">Блог {SITE_NAME}</span>
+            <h1 className="section-title mt-4 max-w-4xl">Практика AI, Python и автоматизации</h1>
+            <p className="body-copy mt-5 max-w-3xl text-lg">
+              Русские версии моих статей о разработке AI-систем, работе с данными и инструментах для production.
+              В каждом материале сохранена ссылка на оригинальную публикацию в Medium.
             </p>
           </div>
-          <Link
-            href="/"
-            className="rounded-xl border border-outline-variant/30 bg-surface-container-low px-4 py-2 text-sm font-bold uppercase tracking-widest text-on-surface transition hover:bg-surface-container"
-          >
-            На главную
-          </Link>
-        </div>
+        </section>
 
-        <section className="mb-16">
-          <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">
-                Medium
-              </span>
-              <h2 className="mt-1 text-2xl md:text-3xl font-bold tracking-tight">Последние посты с Medium</h2>
-              <p className="mt-2 text-on-surface-variant text-sm">
-                Профиль: <span className="font-semibold text-on-surface">@stasinskipawel</span>
-              </p>
-            </div>
-            <a
-              href={MEDIUM_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-xl bg-primary px-4 py-2 text-sm font-bold uppercase tracking-widest text-on-primary transition hover:opacity-90"
-            >
-              Открыть Medium
-            </a>
-          </div>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {mediumPlaceholders.map((title, idx) => (
-              <a
-                key={idx}
-                href={MEDIUM_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="group rounded-3xl border border-outline-variant/20 bg-surface-container-lowest p-6 shadow-sm transition hover:border-primary/40"
-              >
-                <div className="h-32 rounded-2xl border border-dashed border-outline-variant/40 bg-surface-container-low grid place-items-center">
-                  <p className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">
-                    Medium · пост {idx + 1}
-                  </p>
-                </div>
-                <h3 className="mt-4 text-lg font-bold text-on-surface group-hover:text-primary">{title}</h3>
-                <p className="mt-2 text-sm text-on-surface-variant">
-                  Автосинхронизация с профилем Medium появится здесь.
-                </p>
-              </a>
+        <section className="section-band section--panel">
+          <div className="container-editorial grid gap-8 lg:grid-cols-3">
+            {BLOG_POSTS.map((post) => (
+              <article key={post.slug} className="card-kts overflow-hidden rounded-2xl border border-hairline bg-canvas">
+                <Link href={`/blog/${post.slug}`} className="block">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={post.coverImage}
+                    alt={post.title}
+                    loading="lazy"
+                    className="aspect-[16/9] w-full object-cover"
+                  />
+                  <div className="p-6">
+                    <div className="meta-label flex flex-wrap gap-x-3 gap-y-1 text-muted">
+                      <time dateTime={post.publishedAt}>{dateFormatter.format(new Date(post.publishedAt))}</time>
+                      <span>·</span>
+                      <span>{post.readingTime}</span>
+                    </div>
+                    <h2 className="card-title mt-4 text-2xl">{post.title}</h2>
+                    <p className="body-copy mt-4 text-base">{post.description}</p>
+                    <span className="text-link mt-6 inline-block text-xs uppercase tracking-[0.16em]">Читать статью →</span>
+                  </div>
+                </Link>
+              </article>
             ))}
           </div>
         </section>
-
-        <section>
-          <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">
-                Habr
-              </span>
-              <h2 className="mt-1 text-2xl md:text-3xl font-bold tracking-tight">Статьи на Habr</h2>
-              <p className="mt-2 text-on-surface-variant text-sm">
-                Профиль: <span className="font-semibold text-on-surface">@fuwiak</span>
-              </p>
-            </div>
-            <a
-              href={HABR_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-xl bg-primary px-4 py-2 text-sm font-bold uppercase tracking-widest text-on-primary transition hover:opacity-90"
-            >
-              Открыть Habr
-            </a>
-          </div>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {habrPlaceholders.map((title, idx) => (
-              <a
-                key={idx}
-                href={HABR_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="group rounded-3xl border border-outline-variant/20 bg-surface-container-lowest p-6 shadow-sm transition hover:border-primary/40"
-              >
-                <div className="h-32 rounded-2xl border border-dashed border-outline-variant/40 bg-surface-container-low grid place-items-center">
-                  <p className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">
-                    Habr · статья {idx + 1}
-                  </p>
-                </div>
-                <h3 className="mt-4 text-lg font-bold text-on-surface group-hover:text-primary">{title}</h3>
-                <p className="mt-2 text-sm text-on-surface-variant">
-                  Автосинхронизация с профилем Habr появится здесь.
-                </p>
-              </a>
-            ))}
-          </div>
-        </section>
-      </div>
-    </main>
+      </main>
+      <SiteFooter />
+    </div>
   );
 }

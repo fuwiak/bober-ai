@@ -31,6 +31,7 @@ const ru = {
   },
   nav: {
     services: "Услуги",
+    automation: "Автоматизация",
     packages: "Пакеты",
     portfolio: "Кейсы",
     pricing: "Стоимость",

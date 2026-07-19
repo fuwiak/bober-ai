@@ -1,6 +1,12 @@
-import { DIAGRAM_IMAGES, PORTFOLIO_IMAGES, STOCK_IMAGES } from "@/lib/site";
+import { DIAGRAM_IMAGES, PORTFOLIO_IMAGES } from "@/lib/site";
+import { CATALOG_LANDING_DEFS } from "@/lib/seo-catalog";
 
-export type LandingCategory = "automation" | "integrations" | "solutions" | "ai";
+export type LandingCategory =
+  | "automation"
+  | "integrations"
+  | "solutions"
+  | "ai"
+  | "industries";
 
 export type LandingPageDef = {
   category: LandingCategory;
@@ -9,9 +15,11 @@ export type LandingPageDef = {
   serviceSlug: string;
   coverImage: string;
   caseStudySlugs?: string[];
+  /** Content lives in seo-catalog, not in content/*.ts */
+  fromCatalog?: boolean;
 };
 
-export const LANDING_PAGES: LandingPageDef[] = [
+const CORE_LANDING_PAGES: LandingPageDef[] = [
   {
     category: "automation",
     slug: "processes",
@@ -94,6 +102,18 @@ export const LANDING_PAGES: LandingPageDef[] = [
   },
 ];
 
+const CATALOG_PAGES: LandingPageDef[] = CATALOG_LANDING_DEFS.map((def) => ({
+  category: def.category as LandingCategory,
+  slug: def.slug,
+  contentKey: def.contentKey,
+  serviceSlug: def.serviceSlug,
+  coverImage: def.coverImage,
+  caseStudySlugs: def.caseStudySlugs,
+  fromCatalog: true,
+}));
+
+export const LANDING_PAGES: LandingPageDef[] = [...CORE_LANDING_PAGES, ...CATALOG_PAGES];
+
 export function getLandingPage(category: string, slug: string) {
   return LANDING_PAGES.find((page) => page.category === category && page.slug === slug);
 }
@@ -110,4 +130,12 @@ export function getAllLandingParams() {
     }
   }
   return params;
+}
+
+export function getLandingCount() {
+  return {
+    core: CORE_LANDING_PAGES.length,
+    catalog: CATALOG_PAGES.length,
+    total: LANDING_PAGES.length,
+  };
 }

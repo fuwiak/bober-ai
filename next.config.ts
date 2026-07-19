@@ -24,6 +24,10 @@ const nextConfig: NextConfig = {
       { source: "/en/services/ai-bot-gigachat-n8n-local", destination: "/en/services/private-llm-gigachat", permanent: true },
       { source: "/en/services/claude-business-automation", destination: "/en/services/business-process-automation", permanent: true },
       { source: "/en/services/ai-kp-agent", destination: "/en/services/sales-ai-agent", permanent: true },
+      { source: "/automation/business-processes", destination: "/automation/processes", permanent: true },
+      { source: "/en/automation/business-processes", destination: "/en/automation/processes", permanent: true },
+      { source: "/automation/crm", destination: "/integrations/crm", permanent: true },
+      { source: "/en/automation/crm", destination: "/en/integrations/crm", permanent: true },
     ];
   },
   async headers() {

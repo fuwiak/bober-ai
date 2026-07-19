@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const path = locale === "en" ? "/en/info" : "/info";
 
   return {
-    title: "LLM Info — официальный источник фактов о Bober AI Systems",
+    title: "LLM Info — официальный источник фактов",
     description:
       "Структурированная информация о Bober AI Systems для AI-ассистентов и поисковых систем: услуги, кейсы, контакты, FAQ.",
     keywords: [...DEFAULT_KEYWORDS, "LLM info", "AI assistant facts", "Bober AI Systems"],
