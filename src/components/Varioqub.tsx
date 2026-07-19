@@ -1,28 +1,10 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect, useState } from "react";
-import { getCookieConsent, type CookieConsentValue } from "@/components/CookieConsent";
 import { YANDEX_METRIKA_ID } from "@/lib/legal";
 
-/** Yandex Varioqub (A/B experiments + personalizations), tied to Metrika counter. */
+/** Loads on every visit (no cookie-consent gate), same as Metrika. */
 export function Varioqub() {
-  const [consent, setConsent] = useState<CookieConsentValue | null>(null);
-
-  useEffect(() => {
-    setConsent(getCookieConsent());
-
-    function onConsentChange(event: Event) {
-      const detail = (event as CustomEvent<CookieConsentValue>).detail;
-      setConsent(detail);
-    }
-
-    window.addEventListener("cookie-consent-change", onConsentChange);
-    return () => window.removeEventListener("cookie-consent-change", onConsentChange);
-  }, []);
-
-  if (consent !== "accepted") return null;
-
   const id = YANDEX_METRIKA_ID;
 
   return (

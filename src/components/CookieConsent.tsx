@@ -63,9 +63,8 @@ export function CookieConsent() {
           Согласие на cookies и аналитику
         </p>
         <p id="cookie-consent-desc" className="body-copy mt-3 text-base text-body">
-          Сайт использует cookies и «Яндекс.Метрику» (№ {YANDEX_METRIKA_ID}). Пожалуйста, подтвердите согласие или
-          откажитесь — учёт посещаемости через Метрику работает при любом выборе. «Принять» дополнительно включает
-          эксперименты Varioqub. Подробнее — в{" "}
+          Сайт использует cookies, «Яндекс.Метрику» (№ {YANDEX_METRIKA_ID}) и сервис экспериментов Varioqub. Пожалуйста,
+          подтвердите согласие или отклоните. Подробнее — в{" "}
           <Link href={LEGAL_ROUTES.privacyPolicy} className="text-link">
             политике обработки ПДн
           </Link>

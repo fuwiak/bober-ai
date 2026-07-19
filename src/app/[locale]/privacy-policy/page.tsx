@@ -137,8 +137,8 @@ export default async function PrivacyPolicyPageEn({ params }: Props) {
             solely to handle the enquiry; the transfer is based on the user&rsquo;s consent;
           </li>
           <li>
-            traffic analytics is performed with Yandex Metrica (Yandex LLC, Russian Federation); the counter loads on
-            each visit. A/B testing via Varioqub is enabled only after the user consents in the cookie notification;
+            traffic analytics and A/B testing are performed with Yandex Metrica and Varioqub (Yandex LLC, Russian
+            Federation); the scripts load on each visit;
           </li>
           <li>no cross-border transfer of personal data to unfriendly states is performed through the Website;</li>
           <li>Google Analytics and other foreign web analytics systems are not used on the Website;</li>
@@ -201,19 +201,19 @@ export default async function PrivacyPolicyPageEn({ params }: Props) {
         <h3 className="mt-4 font-normal text-ink">7.2. Varioqub service details</h3>
         <ul className="mt-3 list-inside list-disc space-y-1">
           <li>service operator: Yandex LLC, Russian Federation;</li>
-          <li>legal basis: the user&rsquo;s consent given through the cookie banner;</li>
-          <li>purposes: running experiments and A/B tests of the Website interface;</li>
           <li>
-            the Varioqub script loads only after &ldquo;Accept&rdquo; and is not activated on &ldquo;Decline&rdquo;.
+            legal basis: the Operator&rsquo;s legitimate interests (Art. 6(1)(7) of Law 152-FZ) — improving the
+            Website interface through experiments;
           </li>
+          <li>purposes: running experiments and A/B tests of the Website interface;</li>
+          <li>the Varioqub script loads on each Website visit.</li>
         </ul>
 
         <h3 className="mt-4 font-normal text-ink">7.3. How cookie consent is obtained</h3>
         <p className="mt-3">
-          On the first visit the Website always asks for consent via a notification banner (&ldquo;Accept&rdquo; or
-          &ldquo;Decline&rdquo;). The Yandex Metrica script loads on each visit and continues to work regardless of the
-          chosen answer. &ldquo;Accept&rdquo; additionally enables Varioqub experiments; &ldquo;Decline&rdquo; leaves
-          Varioqub inactive.
+          On the first visit the Website asks for consent via a notification banner (&ldquo;Accept&rdquo; or
+          &ldquo;Decline&rdquo;). The Yandex Metrica and Varioqub scripts load on each visit and continue to work
+          regardless of the chosen answer.
         </p>
         <p className="mt-3">
           Technically necessary data (for example, the theme preference) is stored in the browser&rsquo;s localStorage
