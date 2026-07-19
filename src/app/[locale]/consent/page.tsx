@@ -31,7 +31,7 @@ export default async function ConsentPageEn({ params }: Props) {
   setRequestLocale(locale);
 
   return (
-    <LegalPageLayout title="Consent to Personal Data Processing" updatedAt={POLICY_UPDATED_AT}>
+    <LegalPageLayout locale={locale} title="Consent to Personal Data Processing" updatedAt={POLICY_UPDATED_AT}>
       <section>
         <p className="text-sm text-ink-variant">
           This is a courtesy translation. In case of any discrepancy, the{" "}

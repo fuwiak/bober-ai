@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { SeoHubPage } from "@/components/SeoHubPage";
+import { routing } from "@/i18n/routing";
 import { getHub } from "@/lib/seo-catalog/hubs";
 import { buildPageMetadata } from "@/lib/seo";
 import type { CatalogCategory } from "@/lib/seo-catalog/types";
@@ -11,6 +12,10 @@ type PageProps = {
 };
 
 export function createHubPageHandlers(category: CatalogCategory) {
+  function generateStaticParams() {
+    return routing.locales.map((locale) => ({ locale }));
+  }
+
   async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { locale } = await params;
     const hub = getHub(category);
@@ -32,5 +37,5 @@ export function createHubPageHandlers(category: CatalogCategory) {
     return <SeoHubPage hub={hub} locale={locale} />;
   }
 
-  return { generateMetadata, default: HubRoutePage };
+  return { generateStaticParams, generateMetadata, default: HubRoutePage };
 }

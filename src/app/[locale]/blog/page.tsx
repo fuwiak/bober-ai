@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { Link } from "@/i18n/navigation";
-import type { AppLocale } from "@/i18n/routing";
+import { routing, type AppLocale } from "@/i18n/routing";
 import { getAllIntentArticles } from "@/lib/seo-catalog";
 import { DEFAULT_KEYWORDS, SITE_NAME, absoluteUrl } from "@/lib/site";
 
 const MEDIUM_URL = "https://medium.com/@stasinskipawel";
 const HABR_URL = "https://habr.com/ru/users/fuwiak/articles/";
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 function getCopy(locale: AppLocale) {
   if (locale === "en") {

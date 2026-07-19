@@ -30,7 +30,7 @@ export default async function PrivacyPolicyPageEn({ params }: Props) {
   setRequestLocale(locale);
 
   return (
-    <LegalPageLayout title="Personal Data Processing Policy" updatedAt={POLICY_UPDATED_AT}>
+    <LegalPageLayout locale={locale} title="Personal Data Processing Policy" updatedAt={POLICY_UPDATED_AT}>
       <section>
         <p className="text-sm text-ink-variant">
           This is a courtesy translation. In case of any discrepancy, the{" "}

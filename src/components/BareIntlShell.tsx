@@ -1,5 +1,5 @@
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { ContactModalProvider } from "@/components/ContactModalProvider";
 
 type BareIntlShellProps = {
@@ -13,7 +13,7 @@ type BareIntlShellProps = {
  */
 export async function BareIntlShell({ children, locale = "ru" }: BareIntlShellProps) {
   setRequestLocale(locale);
-  const messages = await getMessages({ locale });
+  const messages = (await import(`@/content/${locale}.ts`)).default;
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>

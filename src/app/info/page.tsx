@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getLocale, getMessages } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { LegalProviders } from "@/components/LegalProviders";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { LLM_INFO_MARKDOWN, LLM_INFO_UPDATED_AT } from "@/lib/llm-info";
@@ -18,8 +18,9 @@ export const metadata: Metadata = {
 };
 
 export default async function LlmInfoPage() {
-  const locale = await getLocale();
-  const messages = await getMessages();
+  const locale = "ru" as const;
+  setRequestLocale(locale);
+  const messages = (await import(`@/content/${locale}.ts`)).default;
 
   return (
     <LegalProviders locale={locale} messages={messages}>

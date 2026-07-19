@@ -5,6 +5,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
 import { getAttribution, reachGoal } from "@/lib/analytics";
 import { LEGAL_ROUTES } from "@/lib/legal";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 type ContactFormProps = {
   defaultService?: string;
@@ -37,7 +38,7 @@ export function ContactForm({ defaultService = "", onSuccess }: ContactFormProps
     reachGoal("form_start");
   }
 
-  async function onSubmit(event: FormEvent) {
+  function onSubmit(event: FormEvent) {
     event.preventDefault();
     if (!consentAccepted) {
       setStatus("error");
@@ -51,34 +52,33 @@ export function ContactForm({ defaultService = "", onSuccess }: ContactFormProps
     const parts = [defaultService ? `Услуга: ${defaultService}` : "", message.trim()].filter(Boolean);
     const fullMessage = parts.length > 0 ? parts.join("\n\n") : "—";
     const attribution = getAttribution();
+    const attrLines = [
+      attribution.landing_page && `Landing: ${attribution.landing_page}`,
+      attribution.utm_source && `utm_source: ${attribution.utm_source}`,
+      attribution.utm_campaign && `utm_campaign: ${attribution.utm_campaign}`,
+      attribution.yclid && `yclid: ${attribution.yclid}`,
+    ].filter(Boolean);
 
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          contact,
-          message: fullMessage,
-          policyAccepted: true,
-          consent: true,
-          attribution,
-        }),
-      });
-      const data = (await response.json().catch(() => ({}))) as { message?: string };
-      if (!response.ok) {
-        throw new Error(data.message || t("errorSend"));
-      }
-      reachGoal("form_submit", { service: defaultService || undefined });
-      setStatus("ok");
-      setName("");
-      setContact("");
-      setMessage("");
-      setConsentAccepted(false);
-    } catch (error) {
-      setStatus("error");
-      setErrorText(error instanceof Error ? error.message : t("errorGeneric"));
-    }
+    const subject = encodeURIComponent(
+      defaultService ? `Заявка: ${defaultService}` : `Заявка с сайта Bober AI`,
+    );
+    const body = encodeURIComponent(
+      [
+        `Имя: ${name.trim()}`,
+        `Контакт: ${contact.trim()}`,
+        "",
+        fullMessage,
+        ...(attrLines.length ? ["", ...attrLines] : []),
+      ].join("\n"),
+    );
+
+    reachGoal("form_submit", { service: defaultService || undefined });
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    setStatus("ok");
+    setName("");
+    setContact("");
+    setMessage("");
+    setConsentAccepted(false);
   }
 
   if (status === "ok") {

@@ -8,6 +8,8 @@ import { SEO_HUBS } from "@/lib/seo-catalog/hubs";
 import { getAllIntentArticles } from "@/lib/seo-catalog";
 import { SITE_URL } from "@/lib/site";
 
+export const dynamic = "force-static";
+
 /**
  * Реальные даты последнего содержательного обновления разделов.
  * Обновлять вручную при изменении контента: lastmod, который меняется

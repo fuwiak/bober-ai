@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getLocale, getMessages } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { LegalProviders } from "@/components/LegalProviders";
 import { LEGAL_ROUTES } from "@/lib/legal";
@@ -8,6 +8,7 @@ type LegalPageLayoutProps = {
   title: string;
   updatedAt: string;
   children: React.ReactNode;
+  locale?: "ru" | "en";
 };
 
 const LABELS = {
@@ -29,9 +30,14 @@ const LABELS = {
   },
 } as const;
 
-export async function LegalPageLayout({ title, updatedAt, children }: LegalPageLayoutProps) {
-  const locale = await getLocale();
-  const messages = await getMessages();
+export async function LegalPageLayout({
+  title,
+  updatedAt,
+  children,
+  locale = "ru",
+}: LegalPageLayoutProps) {
+  setRequestLocale(locale);
+  const messages = (await import(`@/content/${locale}.ts`)).default;
   const isEn = locale === "en";
   const t = isEn ? LABELS.en : LABELS.ru;
   const prefix = isEn ? "/en" : "";
@@ -51,7 +57,9 @@ export async function LegalPageLayout({ title, updatedAt, children }: LegalPageL
               <span className="text-ink">{title}</span>
             </nav>
             <h1 className="display-md">{title}</h1>
-            <p className="mt-2 text-sm text-muted">{t.published}: {updatedAt}</p>
+            <p className="mt-2 text-sm text-muted">
+              {t.published}: {updatedAt}
+            </p>
             <article className="prose-legal mt-8 space-y-6">{children}</article>
             <nav className="mt-10 flex flex-wrap gap-4 border-t border-hairline pt-6 text-sm">
               <Link href={`${prefix}${LEGAL_ROUTES.terms}`} className="text-link">

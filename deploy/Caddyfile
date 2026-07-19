@@ -1,0 +1,30 @@
+{
+	email stasinskipawel@yandex.ru
+}
+
+:80 {
+	encode gzip
+	root * /srv
+	try_files {path}.html {path}/index.html {path} /index.html
+	file_server
+	header /partners/ru.html X-Robots-Tag "noindex, nofollow, noarchive, nosnippet"
+	header /tel* X-Robots-Tag "noindex, nofollow"
+	header /performers-feed.yml X-Robots-Tag "noindex"
+}
+
+bober-ai.dev {
+	redir https://www.bober-ai.dev{uri} permanent
+}
+
+www.bober-ai.dev {
+	encode gzip
+	root * /srv
+	try_files {path}.html {path}/index.html {path} /index.html
+	file_server
+	header /partners/ru.html X-Robots-Tag "noindex, nofollow, noarchive, nosnippet"
+	header /tel* X-Robots-Tag "noindex, nofollow"
+	header /performers-feed.yml X-Robots-Tag "noindex"
+	redir /ru / permanent
+	redir /ru/ / permanent
+	redir /ru.html / permanent
+}
