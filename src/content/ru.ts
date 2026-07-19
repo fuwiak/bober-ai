@@ -664,6 +664,8 @@ const ru = {
     privacy: "Политика обработки ПДн",
     consent: "Согласие на обработку ПДн",
     profiles: "Профили и верификация",
+    sqiTitle: "Индекс качества сайта (ИКС) в Яндексе",
+    sqiAlt: "Индекс качества сайта Яндекса",
     presence: {
       linkedin: "LinkedIn",
       github: "GitHub",

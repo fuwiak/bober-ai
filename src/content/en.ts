@@ -620,6 +620,8 @@ const en = {
     privacy: "Privacy policy",
     consent: "Data processing consent",
     profiles: "Profiles & verification",
+    sqiTitle: "Yandex Site Quality Index (SQI)",
+    sqiAlt: "Yandex Site Quality Index",
     presence: {
       linkedin: "LinkedIn",
       github: "GitHub",
