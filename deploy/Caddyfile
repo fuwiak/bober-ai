@@ -21,8 +21,13 @@
 	handle {
 		encode gzip
 		root * /srv
-		try_files {path}.html {path}/index.html {path} /index.html
+		# =404 → real 404 (no soft-404 via homepage rewrite)
+		try_files {path} {path}.html {path}/index.html =404
 		file_server
+		handle_errors {
+			rewrite * /404.html
+			file_server
+		}
 	}
 }
 
@@ -33,8 +38,12 @@ https://bober-ai.dev {
 https://www.bober-ai.dev {
 	encode gzip
 	root * /srv
-	try_files {path}.html {path}/index.html {path} /index.html
+	try_files {path} {path}.html {path}/index.html =404
 	file_server
+	handle_errors {
+		rewrite * /404.html
+		file_server
+	}
 
 	# MIME for static export feeds
 	mime {

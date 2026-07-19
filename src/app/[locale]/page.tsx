@@ -2,23 +2,9 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import HomePage from "@/components/HomePage";
 import { routing } from "@/i18n/routing";
-import {
-  CLOUD_RU_PARTNERS_URL,
-  CONTACT_EMAIL,
-  CONTACT_PHONE,
-  GITHUB_URL,
-  HERO_STOCK_IMAGE,
-  LINKEDIN_URL,
-  SELECTEL_PARTNER_PROGRAM_URL,
-  SITE_NAME,
-  SITE_URL,
-  TELEGRAM_URL,
-  YANDEX_CLOUD_PARTNERS_URL,
-  YANDEX_USLUGI_URL,
-  absoluteUrl,
-} from "@/lib/site";
+import { SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
 import { getEnterpriseServices } from "@/lib/enterprise-services";
-import { buildPageMetadata } from "@/lib/seo";
+import { buildPageMetadata, organizationJsonLd as orgSchema } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -66,24 +52,8 @@ export default async function Page({ params }: Props) {
 
   const organizationJsonLd = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: SITE_NAME,
-    url: SITE_URL,
-    image: absoluteUrl(HERO_STOCK_IMAGE),
-    telephone: CONTACT_PHONE,
-    email: CONTACT_EMAIL,
-    areaServed: { "@type": "Country", name: "Russia" },
-    priceRange: "₽₽₽",
+    ...orgSchema(locale),
     description: t("description"),
-    sameAs: [
-      LINKEDIN_URL,
-      GITHUB_URL,
-      YANDEX_USLUGI_URL,
-      YANDEX_CLOUD_PARTNERS_URL,
-      SELECTEL_PARTNER_PROGRAM_URL,
-      CLOUD_RU_PARTNERS_URL,
-      TELEGRAM_URL,
-    ],
   };
 
   const websiteJsonLd = {

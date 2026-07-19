@@ -14,6 +14,7 @@ import {
   YANDEX_USLUGI_URL,
   absoluteUrl,
 } from "@/lib/site";
+import { LEGAL_ENTITY } from "@/lib/legal";
 
 type PageSeoInput = {
   title: string;
@@ -153,11 +154,26 @@ export function serviceJsonLd(input: {
 export function organizationJsonLd(locale: string) {
   return {
     "@type": "ProfessionalService",
+    "@id": `${SITE_URL}/#organization`,
     name: SITE_NAME,
+    legalName: LEGAL_ENTITY.name,
     url: SITE_URL,
     image: absoluteUrl(HERO_STOCK_IMAGE),
+    logo: absoluteUrl("/icon.png"),
     telephone: CONTACT_PHONE,
     email: CONTACT_EMAIL,
+    taxID: LEGAL_ENTITY.inn,
+    identifier: [
+      { "@type": "PropertyValue", name: "INN", value: LEGAL_ENTITY.inn },
+      { "@type": "PropertyValue", name: "OGRNIP", value: LEGAL_ENTITY.ogrnip },
+    ],
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Перервинский б-р, д. 3, кв. 57",
+      addressLocality: "Москва",
+      postalCode: "109451",
+      addressCountry: "RU",
+    },
     areaServed: { "@type": "Country", name: locale === "en" ? "Worldwide" : "Russia" },
     priceRange: "₽₽₽",
     sameAs: [
