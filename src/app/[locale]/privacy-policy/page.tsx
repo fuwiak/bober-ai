@@ -137,8 +137,8 @@ export default async function PrivacyPolicyPageEn({ params }: Props) {
             solely to handle the enquiry; the transfer is based on the user&rsquo;s consent;
           </li>
           <li>
-            traffic analytics and A/B testing are performed with Yandex Metrica and Varioqub (Yandex LLC, Russian
-            Federation); the scripts load on each visit;
+            traffic analytics and A/B testing are performed with the Yandex Metrica and Varioqub services (Yandex LLC,
+            Russian Federation) — only after the user consents to cookies;
           </li>
           <li>no cross-border transfer of personal data to unfriendly states is performed through the Website;</li>
           <li>Google Analytics and other foreign web analytics systems are not used on the Website;</li>
@@ -168,10 +168,7 @@ export default async function PrivacyPolicyPageEn({ params }: Props) {
         <ul className="mt-3 list-inside list-disc space-y-1">
           <li>service operator: Yandex LLC, Russian Federation;</li>
           <li>counter ID on the Website: {YANDEX_METRIKA_ID};</li>
-          <li>
-            legal basis: the Operator&rsquo;s legitimate interests (Art. 6(1)(7) of Law 152-FZ) — traffic accounting
-            and Website improvement;
-          </li>
+          <li>legal basis: the user&rsquo;s consent given through the cookie notification banner;</li>
           <li>
             purposes: traffic accounting, traffic source analysis, page performance evaluation, click maps, session
             replay (recording of user actions on pages), accurate bounce rate, and link click tracking;
@@ -185,7 +182,8 @@ export default async function PrivacyPolicyPageEn({ params }: Props) {
             user&rsquo;s last visit;
           </li>
           <li>
-            opting out: delete cookies in your browser or follow{" "}
+            opting out: click &ldquo;Only necessary&rdquo; in the cookie banner, delete cookies in your browser, or
+            follow{" "}
             <a
               href="https://yandex.ru/support/metrica/general/opt-out.html"
               className="text-link hover:opacity-75"
@@ -201,19 +199,16 @@ export default async function PrivacyPolicyPageEn({ params }: Props) {
         <h3 className="mt-4 font-normal text-ink">7.2. Varioqub service details</h3>
         <ul className="mt-3 list-inside list-disc space-y-1">
           <li>service operator: Yandex LLC, Russian Federation;</li>
-          <li>
-            legal basis: the Operator&rsquo;s legitimate interests (Art. 6(1)(7) of Law 152-FZ) — improving the
-            Website interface through experiments;
-          </li>
+          <li>legal basis: the user&rsquo;s consent given through the cookie banner (together with Metrica);</li>
           <li>purposes: running experiments and A/B tests of the Website interface;</li>
-          <li>the Varioqub script loads on each Website visit.</li>
+          <li>the Varioqub script loads only after consent to analytics cookies and is not activated upon refusal.</li>
         </ul>
 
         <h3 className="mt-4 font-normal text-ink">7.3. How cookie consent is obtained</h3>
         <p className="mt-3">
-          On the first visit the Website asks for consent via a notification banner (&ldquo;Accept&rdquo; or
-          &ldquo;Decline&rdquo;). The Yandex Metrica and Varioqub scripts load on each visit and continue to work
-          regardless of the chosen answer.
+          Analytics cookies and the Yandex Metrica and Varioqub scripts load only after the user clicks
+          &ldquo;Accept&rdquo; in the notification banner. The user may refuse analytics cookies by clicking
+          &ldquo;Only necessary&rdquo; — in that case Yandex Metrica and Varioqub are not activated.
         </p>
         <p className="mt-3">
           Technically necessary data (for example, the theme preference) is stored in the browser&rsquo;s localStorage

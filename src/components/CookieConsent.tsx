@@ -60,11 +60,11 @@ export function CookieConsent() {
     >
       <div className="cookie-consent-card">
         <p id="cookie-consent-title" className="meta-label text-ink">
-          Согласие на cookies и аналитику
+          Мы используем cookies и Яндекс.Метрику
         </p>
         <p id="cookie-consent-desc" className="body-copy mt-3 text-base text-body">
-          Сайт использует cookies, «Яндекс.Метрику» (№ {YANDEX_METRIKA_ID}) и сервис экспериментов Varioqub. Пожалуйста,
-          подтвердите согласие или отклоните. Подробнее — в{" "}
+          Сайт использует cookies, «Яндекс.Метрику» (№ {YANDEX_METRIKA_ID}) и Varioqub для аналитики и экспериментов.
+          Скрипты загружаются только после согласия. Подробнее — в{" "}
           <Link href={LEGAL_ROUTES.privacyPolicy} className="text-link">
             политике обработки ПДн
           </Link>
@@ -72,7 +72,7 @@ export function CookieConsent() {
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
           <button type="button" onClick={reject} className="btn-secondary-on-dark text-xs">
-            Отклонить
+            Только необходимые
           </button>
           <button type="button" onClick={accept} className="btn-inverted text-xs">
             Принять
