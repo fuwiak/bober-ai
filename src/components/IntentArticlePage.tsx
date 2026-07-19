@@ -1,7 +1,7 @@
+import NextLink from "next/link";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { ContactForm } from "@/components/ContactForm";
 import { Reveal } from "@/components/motion/Reveal";
-import { Link } from "@/i18n/navigation";
 import type { IntentArticleSpec } from "@/lib/seo-catalog/types";
 import { articleJsonLd, breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
@@ -81,9 +81,12 @@ export function IntentArticlePage({ article, locale }: IntentArticlePageProps) {
               <ul className="mt-4 space-y-2">
                 {article.related.map((item) => (
                   <li key={item.href}>
-                    <Link href={item.href} className="text-ink underline-offset-4 hover:underline">
+                    <NextLink
+                      href={prefix ? `${prefix}${item.href}` : item.href}
+                      className="text-ink underline-offset-4 hover:underline"
+                    >
                       {loc === "en" ? item.labelEn : item.labelRu}
-                    </Link>
+                    </NextLink>
                   </li>
                 ))}
               </ul>

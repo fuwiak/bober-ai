@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BareIntlShell } from "@/components/BareIntlShell";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { BLOG_POSTS } from "@/lib/blog-posts";
 import { getAllIntentArticles } from "@/lib/seo-catalog";
@@ -25,7 +26,7 @@ const dateFormatter = new Intl.DateTimeFormat("ru-RU", {
   timeZone: "UTC",
 });
 
-export default function BlogPage() {
+export default async function BlogPage() {
   const blogJsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
@@ -42,6 +43,7 @@ export default function BlogPage() {
   };
 
   return (
+    <BareIntlShell>
     <div className="page-shell min-h-screen">
       <SiteHeader />
       <main>
@@ -109,5 +111,6 @@ export default function BlogPage() {
       </main>
       <SiteFooter />
     </div>
+    </BareIntlShell>
   );
 }
