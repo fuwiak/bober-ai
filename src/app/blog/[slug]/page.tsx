@@ -1,21 +1,39 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { IntentArticlePage } from "@/components/IntentArticlePage";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { BLOG_POSTS, getBlogPost } from "@/lib/blog-posts";
+import { getAllIntentArticles, getIntentArticle } from "@/lib/seo-catalog";
 import { articleJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { buildPageMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
+// Русские URL /blog/* обрабатываются вне next-intl (см. middleware),
+// поэтому здесь отдаём и посты из Medium, и интентные статьи каталога.
 export function generateStaticParams() {
-  return BLOG_POSTS.map((post) => ({ slug: post.slug }));
+  return [
+    ...BLOG_POSTS.map((post) => ({ slug: post.slug })),
+    ...getAllIntentArticles().map((article) => ({ slug: article.slug })),
+  ];
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = getBlogPost(slug);
-  if (!post) return {};
+  if (!post) {
+    const article = getIntentArticle(slug);
+    if (!article) return {};
+    return buildPageMetadata({
+      title: article.ru.title,
+      description: article.ru.description,
+      keywords: article.keywords,
+      path: `/blog/${slug}`,
+      locale: "ru",
+    });
+  }
 
   return {
     title: post.title,
@@ -50,7 +68,11 @@ const dateFormatter = new Intl.DateTimeFormat("ru-RU", {
 export default async function BlogArticlePage({ params }: PageProps) {
   const { slug } = await params;
   const post = getBlogPost(slug);
-  if (!post) notFound();
+  if (!post) {
+    const article = getIntentArticle(slug);
+    if (!article) notFound();
+    return <IntentArticlePage article={article} locale="ru" />;
+  }
 
   const pageUrl = absoluteUrl(`/blog/${post.slug}`);
   const plainText = post.contentHtml.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
