@@ -21,7 +21,7 @@ export const COOKIE_CONSENT_KEY = "cookie-consent";
 
 export const YANDEX_METRIKA_ID = process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID || "110635302";
 
-export const POLICY_UPDATED_AT = "16.07.2026";
+export const POLICY_UPDATED_AT = "20.07.2026";
 
 /** Строка реквизитов для футера и кратких блоков */
 export function formatLegalRequisitesLine(): string {

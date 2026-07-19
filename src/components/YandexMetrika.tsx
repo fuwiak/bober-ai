@@ -1,27 +1,10 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect, useState } from "react";
-import { getCookieConsent, type CookieConsentValue } from "@/components/CookieConsent";
 import { YANDEX_METRIKA_ID } from "@/lib/legal";
 
+/** Loads on every visit (no cookie-consent gate) so traffic and Metrika code_status stay complete. */
 export function YandexMetrika() {
-  const [consent, setConsent] = useState<CookieConsentValue | null>(null);
-
-  useEffect(() => {
-    setConsent(getCookieConsent());
-
-    function onConsentChange(event: Event) {
-      const detail = (event as CustomEvent<CookieConsentValue>).detail;
-      setConsent(detail);
-    }
-
-    window.addEventListener("cookie-consent-change", onConsentChange);
-    return () => window.removeEventListener("cookie-consent-change", onConsentChange);
-  }, []);
-
-  if (consent !== "accepted") return null;
-
   const id = YANDEX_METRIKA_ID;
 
   return (

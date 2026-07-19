@@ -162,7 +162,7 @@ async function main() {
     warn("Яндекс Тег Менеджер (YTM): выкл — npm run ytm:status");
   }
   if (counter.code_status && counter.code_status !== "CS_OK") {
-    warn(`code_status: ${counter.code_status} (верификация кода нестабильна — часто из‑за cookie consent)`);
+    warn(`code_status: ${counter.code_status} (верификация кода нестабильна — часто из‑за adblock/кэша)`);
   } else {
     ok(`code_status: ${counter.code_status || "n/a"}`);
   }

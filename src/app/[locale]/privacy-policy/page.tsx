@@ -80,7 +80,7 @@ export default async function PrivacyPolicyPageEn({ params }: Props) {
           <li>handling enquiries and requests submitted through the contact form;</li>
           <li>contacting the user for consultations, preparing a commercial proposal, and concluding a contract;</li>
           <li>performing contractual obligations to clients;</li>
-          <li>analysing Website traffic and improving the Website (subject to cookie consent);</li>
+          <li>analysing Website traffic and improving the Website (including via Yandex Metrica);</li>
           <li>complying with the legislation of the Russian Federation.</li>
         </ul>
       </section>
@@ -111,8 +111,7 @@ export default async function PrivacyPolicyPageEn({ params }: Props) {
         <p className="mt-3">
           <strong className="text-ink">Visitors when analytics is enabled</strong> — IP address, browser type and
           version, operating system, screen resolution, browser language, pages visited, time on page, referral
-          source, cookie identifiers (_ym_uid, _ym_d, etc.), click and scroll data (subject to cookie consent and
-          activation of Yandex Metrica).
+          source, cookie identifiers (_ym_uid, _ym_d, etc.), and click/scroll data collected by Yandex Metrica.
         </p>
         <p className="mt-3">
           <strong className="text-ink">Employees and persons whose data is published on the Website</strong> — full
@@ -138,8 +137,8 @@ export default async function PrivacyPolicyPageEn({ params }: Props) {
             solely to handle the enquiry; the transfer is based on the user&rsquo;s consent;
           </li>
           <li>
-            traffic analytics and A/B testing are performed with the Yandex Metrica and Varioqub services (Yandex LLC,
-            Russian Federation) — only after the user consents to cookies;
+            traffic analytics is performed with Yandex Metrica (Yandex LLC, Russian Federation); the counter loads on
+            each visit. A/B testing via Varioqub is enabled only after the user consents in the cookie notification;
           </li>
           <li>no cross-border transfer of personal data to unfriendly states is performed through the Website;</li>
           <li>Google Analytics and other foreign web analytics systems are not used on the Website;</li>
@@ -169,7 +168,10 @@ export default async function PrivacyPolicyPageEn({ params }: Props) {
         <ul className="mt-3 list-inside list-disc space-y-1">
           <li>service operator: Yandex LLC, Russian Federation;</li>
           <li>counter ID on the Website: {YANDEX_METRIKA_ID};</li>
-          <li>legal basis: the user&rsquo;s consent given through the cookie notification banner;</li>
+          <li>
+            legal basis: the Operator&rsquo;s legitimate interests (Art. 6(1)(7) of Law 152-FZ) — traffic accounting
+            and Website improvement;
+          </li>
           <li>
             purposes: traffic accounting, traffic source analysis, page performance evaluation, click maps, session
             replay (recording of user actions on pages), accurate bounce rate, and link click tracking;
@@ -183,8 +185,7 @@ export default async function PrivacyPolicyPageEn({ params }: Props) {
             user&rsquo;s last visit;
           </li>
           <li>
-            opting out: click &ldquo;Only necessary&rdquo; in the cookie banner, delete cookies in your browser, or
-            follow{" "}
+            opting out: delete cookies in your browser or follow{" "}
             <a
               href="https://yandex.ru/support/metrica/general/opt-out.html"
               className="text-link hover:opacity-75"
@@ -200,16 +201,19 @@ export default async function PrivacyPolicyPageEn({ params }: Props) {
         <h3 className="mt-4 font-normal text-ink">7.2. Varioqub service details</h3>
         <ul className="mt-3 list-inside list-disc space-y-1">
           <li>service operator: Yandex LLC, Russian Federation;</li>
-          <li>legal basis: the user&rsquo;s consent given through the cookie banner (together with Metrica);</li>
+          <li>legal basis: the user&rsquo;s consent given through the cookie banner;</li>
           <li>purposes: running experiments and A/B tests of the Website interface;</li>
-          <li>the Varioqub script loads only after consent to analytics cookies and is not activated upon refusal.</li>
+          <li>
+            the Varioqub script loads only after &ldquo;Accept&rdquo; and is not activated if the user chooses
+            &ldquo;Without experiments&rdquo;.
+          </li>
         </ul>
 
-        <h3 className="mt-4 font-normal text-ink">7.3. How cookie consent is obtained</h3>
+        <h3 className="mt-4 font-normal text-ink">7.3. Cookie notice</h3>
         <p className="mt-3">
-          Analytics cookies and the Yandex Metrica and Varioqub scripts load only after the user clicks
-          &ldquo;Accept&rdquo; in the notification banner. The user may refuse analytics cookies by clicking
-          &ldquo;Only necessary&rdquo; — in that case Yandex Metrica and Varioqub are not activated.
+          The Yandex Metrica script loads on each Website visit. In the notification banner the user may additionally
+          consent to Varioqub experiments (&ldquo;Accept&rdquo;) or refuse them (&ldquo;Without experiments&rdquo;).
+          Refusing experiments does not disable traffic accounting via Yandex Metrica.
         </p>
         <p className="mt-3">
           Technically necessary data (for example, the theme preference) is stored in the browser&rsquo;s localStorage

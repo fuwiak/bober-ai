@@ -63,8 +63,8 @@ export function CookieConsent() {
           Мы используем cookies и Яндекс.Метрику
         </p>
         <p id="cookie-consent-desc" className="body-copy mt-3 text-base text-body">
-          Сайт использует cookies и «Яндекс.Метрику» (№ {YANDEX_METRIKA_ID}) для аналитики. Скрипт загружается
-          только после согласия. Подробнее — в{" "}
+          Сайт использует «Яндекс.Метрику» (№ {YANDEX_METRIKA_ID}) для учёта посещаемости — счётчик загружается
+          сразу. По кнопке «Принять» дополнительно включаются эксперименты Varioqub. Подробнее — в{" "}
           <Link href={LEGAL_ROUTES.privacyPolicy} className="text-link">
             политике обработки ПДн
           </Link>
@@ -72,7 +72,7 @@ export function CookieConsent() {
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
           <button type="button" onClick={reject} className="btn-secondary-on-dark text-xs">
-            Только необходимые
+            Без экспериментов
           </button>
           <button type="button" onClick={accept} className="btn-inverted text-xs">
             Принять
