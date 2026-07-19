@@ -20,4 +20,6 @@ RUN npm run build
 FROM caddy:2-alpine
 COPY deploy/Caddyfile /etc/caddy/Caddyfile
 COPY --from=builder /app/out /srv
+# Railway probes $PORT; Selectel/docker-compose maps 80:80.
+ENV PORT=80
 EXPOSE 80 443

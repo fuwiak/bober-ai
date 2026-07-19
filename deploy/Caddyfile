@@ -3,11 +3,34 @@
 	acme_ca https://acme-v02.api.letsencrypt.org/directory
 }
 
-bober-ai.dev {
+# HTTP — Railway healthchecks (any Host) + ACME HTTP-01 + apex/www redirect.
+# Named HTTPS sites use :443 only so they don't overlap this listener.
+# $PORT defaults to 80 (Dockerfile); Railway may override.
+:{$PORT:80} {
+	handle /api/health {
+		header Content-Type text/plain
+		respond "ok" 200
+	}
+
+	@siteHost host www.bober-ai.dev bober-ai.dev
+	handle @siteHost {
+		redir https://www.bober-ai.dev{uri} permanent
+	}
+
+	# Preview / private network (Railway): serve static over HTTP
+	handle {
+		encode gzip
+		root * /srv
+		try_files {path}.html {path}/index.html {path} /index.html
+		file_server
+	}
+}
+
+https://bober-ai.dev {
 	redir https://www.bober-ai.dev{uri} permanent
 }
 
-www.bober-ai.dev {
+https://www.bober-ai.dev {
 	encode gzip
 	root * /srv
 	try_files {path}.html {path}/index.html {path} /index.html
