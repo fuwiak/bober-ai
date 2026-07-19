@@ -1,15 +1,6 @@
 {
 	email stasinskipawel@yandex.ru
-}
-
-:80 {
-	encode gzip
-	root * /srv
-	try_files {path}.html {path}/index.html {path} /index.html
-	file_server
-	header /partners/ru.html X-Robots-Tag "noindex, nofollow, noarchive, nosnippet"
-	header /tel* X-Robots-Tag "noindex, nofollow"
-	header /performers-feed.yml X-Robots-Tag "noindex"
+	acme_ca https://acme-v02.api.letsencrypt.org/directory
 }
 
 bober-ai.dev {
