@@ -121,7 +121,7 @@ export function getServiceFeedXml(now = new Date()) {
     <company>${escapeXml(SITE_NAME)}</company>
     <url>${escapeXml(FEED_SITE_URL)}</url>
     <email>${escapeXml(CONTACT_EMAIL)}</email>
-    <picture>${escapeXml(`${FEED_SITE_URL}/favicon.png`)}</picture>
+    <picture>${escapeXml(`${FEED_SITE_URL}/favicon-120x120.png`)}</picture>
     <description>${escapeXml(SITE_DESCRIPTION)}</description>
     <currencies>
       <currency id="RUR" rate="1"/>

@@ -33,6 +33,18 @@ export async function SiteHeader() {
 
 export async function SiteFooter() {
   const t = await getTranslations("footer");
+  const tNav = await getTranslations("nav");
+
+  const sectionLinks = [
+    { href: "/automation" as const, label: tNav("automation") },
+    { href: "/services" as const, label: tNav("services") },
+    { href: "/portfolio" as const, label: tNav("portfolio") },
+    { href: "/pricing" as const, label: tNav("pricing") },
+    { href: "/blog" as const, label: tNav("blog") },
+    { href: "/guides" as const, label: tNav("guides") },
+    { href: "/faq" as const, label: tNav("faq") },
+    { href: "/#contact" as const, label: tNav("contact") },
+  ];
 
   return (
     <footer className="footer-dark">
@@ -40,7 +52,15 @@ export async function SiteFooter() {
         <div className="mb-8">
           <span className="site-wordmark text-ink">{SITE_NAME}</span>
         </div>
-        <p className="text-sm">
+        <p className="meta-label text-on-dark-soft">{t("sectionsTitle")}</p>
+        <nav className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm" aria-label={t("sectionsTitle")}>
+          {sectionLinks.map((item) => (
+            <Link key={item.href} href={item.href} className="text-on-dark active:opacity-75">
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+        <p className="mt-8 text-sm">
           <span className="text-on-dark">{t("legalName")}</span>
           {" · "}
           {formatLegalRequisitesLine()}

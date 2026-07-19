@@ -7,6 +7,7 @@ import { SectionCtaBand } from "@/components/SectionCtaBand";
 import { Reveal } from "@/components/motion/Reveal";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import { breadcrumbJsonLd, buildPageMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -18,12 +19,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "pages.faq" });
-  const path = locale === "en" ? "/en/faq" : "/faq";
-  return {
+  return buildPageMetadata({
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: absoluteUrl(path) },
-  };
+    path: "/faq",
+    locale,
+  });
 }
 
 export default async function FaqPage({ params }: Props) {
@@ -31,9 +32,14 @@ export default async function FaqPage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations();
   const pageUrl = absoluteUrl(locale === "en" ? "/en/faq" : "/faq");
+  const breadcrumb = breadcrumbJsonLd([
+    { name: locale === "en" ? "Home" : "Главная", url: absoluteUrl(locale === "en" ? "/en" : "/") },
+    { name: "FAQ", url: pageUrl },
+  ]);
 
   return (
     <div className="page-shell min-h-screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <SiteHeader />
       <main>
         <section className="section-band section--deep border-b border-hairline">

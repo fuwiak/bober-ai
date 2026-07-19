@@ -42,6 +42,14 @@ const staticRoutes = [
   { path: "/info", priority: 0.5, changeFrequency: "monthly" as const, lastModified: UPDATED.core },
 ];
 
+/** RU-only pages outside [locale] (no /en mirror). */
+const ruOnlyRoutes = [
+  { path: "/career", priority: 0.7, changeFrequency: "monthly" as const, lastModified: UPDATED.core },
+  { path: "/academy", priority: 0.65, changeFrequency: "monthly" as const, lastModified: UPDATED.core },
+  { path: "/news", priority: 0.6, changeFrequency: "daily" as const, lastModified: UPDATED.core },
+  { path: "/events", priority: 0.55, changeFrequency: "weekly" as const, lastModified: UPDATED.core },
+];
+
 function pushLocalized(
   entries: MetadataRoute.Sitemap,
   path: string,
@@ -83,6 +91,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const route of staticRoutes) {
     pushLocalized(entries, route.path, route.lastModified, route.changeFrequency, route.priority);
+  }
+
+  for (const route of ruOnlyRoutes) {
+    entries.push({
+      url: `${SITE_URL}${route.path}`,
+      lastModified: route.lastModified,
+      changeFrequency: route.changeFrequency,
+      priority: route.priority,
+    });
   }
 
   for (const hub of SEO_HUBS) {

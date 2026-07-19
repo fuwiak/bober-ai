@@ -6,7 +6,7 @@ import { CookieConsent } from "@/components/CookieConsent";
 import { AttributionCapture } from "@/components/AttributionCapture";
 import { Varioqub } from "@/components/Varioqub";
 import { YandexMetrika } from "@/components/YandexMetrika";
-import { DEFAULT_KEYWORDS, SITE_DESCRIPTION, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
+import { DEFAULT_KEYWORDS, HERO_STOCK_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
 
 const sairaCondensed = Saira_Condensed({
   subsets: ["latin", "latin-ext"],
@@ -44,16 +44,17 @@ export const metadata: Metadata = {
     },
   },
   icons: {
+    // Yandex recommends 120×120 (or SVG) for clear snippet favicons.
     icon: [
+      { url: "/favicon-120x120.png", type: "image/png", sizes: "120x120" },
       { url: "/favicon.ico", type: "image/x-icon", sizes: "16x16 32x32 48x48" },
       { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
       { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
-      { url: "/favicon-120x120.png", type: "image/png", sizes: "120x120" },
       { url: "/favicon.png", type: "image/png", sizes: "512x512" },
       { url: "/icon.png", type: "image/png", sizes: "512x512" },
     ],
     shortcut: ["/favicon.ico", "/favicon-16x16.png", "/favicon-32x32.png"],
-    apple: "/apple-icon.png",
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
   },
   manifest: "/manifest.webmanifest",
   verification: {
@@ -79,18 +80,18 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     images: [
       {
-        url: absoluteUrl("/favicon.png"),
-        width: 512,
-        height: 512,
-        alt: `${SITE_NAME} favicon`,
+        url: absoluteUrl(HERO_STOCK_IMAGE),
+        width: 1200,
+        height: 630,
+        alt: SITE_NAME,
       },
     ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Внедрение AI и автоматизация для бизнеса",
     description: SITE_DESCRIPTION,
-    images: [absoluteUrl("/favicon.png")],
+    images: [absoluteUrl(HERO_STOCK_IMAGE)],
   },
   other: {
     keywords: DEFAULT_KEYWORDS.join(", "),

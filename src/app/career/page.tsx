@@ -51,10 +51,13 @@ export default function CareerPage() {
     title: "Селлер AI-решений",
     description:
       "Продажа B2B-решений в области AI-инфраструктуры, облачных LLM, корпоративных чат-ботов и автоматизации.",
+    datePosted: "2026-07-01",
+    validThrough: "2026-12-31",
     hiringOrganization: {
       "@type": "Organization",
       name: SITE_NAME,
       sameAs: absoluteUrl("/"),
+      logo: absoluteUrl("/favicon-120x120.png"),
     },
     applicantLocationRequirements: {
       "@type": "Country",
@@ -69,6 +72,7 @@ export default function CareerPage() {
       "@type": "ContactPoint",
       email: CONTACT_EMAIL,
       url: TELEGRAM_URL,
+      telephone: "+79950998170",
     },
   };
 
