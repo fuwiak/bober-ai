@@ -83,21 +83,22 @@ func loadSnapshotCmd(cfg Config) tea.Cmd {
 
 func loadLogsCmd(cfg Config) tea.Cmd {
 	return func() tea.Msg {
-		out, err := sshRun(cfg, fmt.Sprintf("docker logs --tail 200 %q 2>&1", cfg.Container))
-		if err != nil {
-			return logsMsg{err: err.Error()}
+		b := fetchLogsBundle(cfg, 200)
+		if b.Err != "" {
+			return logsMsg{text: b.Text, err: b.Err}
 		}
-		return logsMsg{text: out}
+		return logsMsg{text: b.Text}
 	}
 }
 
 func loadBuildLogCmd(cfg Config) tea.Cmd {
 	return func() tea.Msg {
+		commits := fetchCommits(cfg, 8)
 		out, err := fetchDeployLog(cfg, 120)
 		if err != nil {
-			return buildLogMsg{err: err.Error()}
+			return buildLogMsg{err: err.Error(), text: formatLogsView(commits, "ERR "+err.Error())}
 		}
-		return buildLogMsg{text: out}
+		return buildLogMsg{text: formatLogsView(commits, out)}
 	}
 }
 
@@ -442,7 +443,17 @@ func renderStatus(s StatusSnapshot, cfg Config) string {
 	b.WriteString("\n")
 	b.WriteString(fmt.Sprintf("  ready file:  %s\n", emptyDash(d.Ready)))
 	b.WriteString(fmt.Sprintf("  out mtime:   %s\n", emptyDash(shortenTime(d.OutMtime))))
-	b.WriteString(fmt.Sprintf("  git:         %s\n", emptyDash(d.GitHead)))
+	if d.GitHead != "" || d.GitSubject != "" {
+		b.WriteString(fmt.Sprintf("  commit:      %s\n", emptyDash(d.GitHead)))
+		if d.GitDate != "" {
+			b.WriteString(fmt.Sprintf("  commit date: %s\n", d.GitDate))
+		}
+		if d.GitSubject != "" {
+			b.WriteString(fmt.Sprintf("  commit msg:  %s\n", d.GitSubject))
+		}
+	} else {
+		b.WriteString(fmt.Sprintf("  git:         %s\n", emptyDash(d.GitHead)))
+	}
 	if d.Err != "" {
 		b.WriteString(fmt.Sprintf("  deploy err:  %s\n", d.Err))
 	}

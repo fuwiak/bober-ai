@@ -65,11 +65,13 @@ type ContainerStatus struct {
 }
 
 type DeployStatus struct {
-	Ready     string
-	OutMtime  string
-	GitHead   string
-	DeployLog string
-	Err       string
+	Ready      string
+	OutMtime   string
+	GitHead    string
+	GitDate    string
+	GitSubject string
+	DeployLog  string
+	Err        string
 }
 
 type StatusSnapshot struct {
@@ -140,6 +142,9 @@ LOG=%q
 echo "READY=$(cat "$READY" 2>/dev/null || true)"
 echo "OUT_MTIME=$(stat -c '%%y' "$OUT" 2>/dev/null || true)"
 if [ -d "$SRC/.git" ]; then
+  echo "GIT_HASH=$(git -C "$SRC" rev-parse --short HEAD 2>/dev/null || true)"
+  echo "GIT_DATE=$(git -C "$SRC" log -1 --pretty=%%ci 2>/dev/null || true)"
+  echo "GIT_SUBJECT=$(git -C "$SRC" log -1 --pretty=%%s 2>/dev/null || true)"
   echo "GIT=$(git -C "$SRC" rev-parse --short HEAD 2>/dev/null || true) $(git -C "$SRC" log -1 --pretty=%%s 2>/dev/null || true)"
 else
   echo "GIT=(no git checkout)"
@@ -182,8 +187,16 @@ fi
 			ds.Ready = v
 		case "OUT_MTIME":
 			ds.OutMtime = v
-		case "GIT":
+		case "GIT_HASH":
 			ds.GitHead = v
+		case "GIT_DATE":
+			ds.GitDate = formatCommitDate(v)
+		case "GIT_SUBJECT":
+			ds.GitSubject = v
+		case "GIT":
+			if ds.GitHead == "" {
+				ds.GitHead = v
+			}
 		}
 	}
 	ds.DeployLog = strings.Join(logBuf, "\n")
@@ -201,13 +214,16 @@ func fetchStatus(cfg Config) StatusSnapshot {
 
 func fetchLogs(cfg Config, tail int, follow bool) error {
 	if follow {
-		return sshStream(cfg, fmt.Sprintf("docker logs -f --tail %d %q", tail, cfg.Container))
+		commits := fetchCommits(cfg, 8)
+		fmt.Print(formatLogsView(commits, "(following docker logs…)\n"))
+		return sshStream(cfg, fmt.Sprintf("docker logs -f --timestamps --tail %d %q", tail, cfg.Container))
 	}
-	out, err := sshRun(cfg, fmt.Sprintf("docker logs --tail %d %q 2>&1", tail, cfg.Container))
-	if err != nil {
-		return err
+	b := fetchLogsBundle(cfg, tail)
+	if b.Err != "" {
+		fmt.Print(b.Text)
+		return fmt.Errorf("%s", b.Err)
 	}
-	fmt.Println(out)
+	fmt.Print(b.Text)
 	return nil
 }
 
