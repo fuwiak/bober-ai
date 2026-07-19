@@ -309,12 +309,18 @@ html.dark {
     .text-link:hover { opacity: 0.75; }
   }
 
-  /* Editorial nav / detail links — geometric chevron, no unicode arrows */
+  /* Editorial nav / detail links — bordered pill + geometric chevron */
   .link-back,
   .link-more {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.65rem;
+    min-height: 2.5rem;
+    padding: 0 1.25rem;
+    border: 1px solid var(--color-hairline-strong);
+    border-radius: 9999px;
+    background: transparent;
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 400;
@@ -322,13 +328,11 @@ html.dark {
     text-transform: uppercase;
     text-decoration: none;
     line-height: 1;
-    transition: color 180ms ease, gap 180ms ease;
+    color: var(--color-ink);
+    transition: color 180ms ease, gap 180ms ease, border-color 180ms ease, background-color 180ms ease;
   }
   .link-back {
     color: var(--color-muted);
-  }
-  .link-more {
-    color: var(--color-ink);
   }
   .link-back::before,
   .link-more::after {
@@ -353,8 +357,10 @@ html.dark {
     transform: rotate(45deg);
   }
   @media (hover: hover) and (pointer: fine) {
-    .link-back:hover {
+    .link-back:hover,
+    .link-more:hover {
       color: var(--color-ink);
+      border-color: var(--color-ink);
     }
     .link-back:hover::before {
       transform: rotate(45deg) translate(-1.5px, 1.5px);
