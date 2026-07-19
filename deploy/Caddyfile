@@ -12,9 +12,20 @@ www.bober-ai.dev {
 	root * /srv
 	try_files {path}.html {path}/index.html {path} /index.html
 	file_server
+
+	# MIME for static export feeds
+	mime {
+		.yml application/xml
+		.md text/markdown
+		.txt text/plain
+	}
+
 	header /partners/ru.html X-Robots-Tag "noindex, nofollow, noarchive, nosnippet"
 	header /tel* X-Robots-Tag "noindex, nofollow"
 	header /performers-feed.yml X-Robots-Tag "noindex"
+	header /performers-feed.yml Access-Control-Allow-Origin "*"
+	header /performers-feed.yml Cache-Control "public, max-age=300"
+
 	redir /ru / permanent
 	redir /ru/ / permanent
 	redir /ru.html / permanent
