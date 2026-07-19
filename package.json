@@ -34,7 +34,8 @@
     "ops:status": "go run ./cli status",
     "ops:health": "go run ./cli health",
     "ops:logs": "go run ./cli logs",
-    "ops:build": "go run ./cli build"
+    "ops:build": "go run ./cli build",
+    "ops:install": "bash cli/install.sh"
   },
   "dependencies": {
     "lucide-react": "^0.546.0",
