@@ -22,6 +22,9 @@ yaga bricks
 yaga profile public          # только public bricks
 yaga bricks hide gpt
 yaga doctor
+yaga credentials             # список секретов + URL UI Яндекса
+yaga credentials set KEY val
+yaga credentials open YANDEX_WEBMASTER_OAUTH_TOKEN
 ```
 
 ### TUI
@@ -29,9 +32,14 @@ yaga doctor
 | Tab | |
 |-----|--|
 | 1 Bricks | список klocek, Enter = default |
-| 2 Doctor | токены / binaries |
-| 3 Output | результат |
-| 4 Help | |
+| 2 Creds | добавить credentials + ссылки на UI |
+| 3 Doctor | токены / binaries |
+| 4 Output | результат |
+| 5 Help | |
+
+На вкладке **Creds**: `Enter` = ввести значение, `o` = открыть UI в браузере, `d` = удалить.
+
+Секреты: `~/.config/yaga/credentials.env` (не коммитить).
 
 `Tab` / `←→` · `↑↓` · `Enter` · `q`
 

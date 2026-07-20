@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 	"slices"
@@ -8,6 +9,7 @@ import (
 )
 
 func main() {
+	applyCredentials()
 	cfg := loadConfig()
 	args := os.Args[1:]
 
@@ -27,6 +29,8 @@ func main() {
 		cmdBricks(cfg, args[1:])
 	case "profile":
 		cmdProfile(cfg, args[1:])
+	case "credentials", "creds", "cred":
+		cmdCredentials(args[1:])
 	case "doctor":
 		fmt.Print(renderDoctor(cfg))
 	default:
@@ -52,6 +56,7 @@ Usage:
   yaga                     TUI dashboard
   yaga <brick> [args…]     run brick
   yaga bricks              list / enable / hide
+  yaga credentials         list secrets + UI URLs
   yaga profile [name]      owner | public | custom
   yaga doctor
   yaga help
@@ -149,6 +154,67 @@ func cmdProfile(cfg Config, args []string) {
 		os.Exit(1)
 	}
 	fmt.Printf("profile=%s → %s\n", name, cfg.Path)
+}
+
+func cmdCredentials(args []string) {
+	sub := "list"
+	if len(args) > 0 {
+		sub = args[0]
+	}
+	switch sub {
+	case "list", "ls":
+		fmt.Print(renderCredentialsHelp())
+	case "set":
+		if len(args) < 2 {
+			fmt.Fprintf(os.Stderr, "usage: yaga credentials set KEY [value]\n")
+			os.Exit(2)
+		}
+		key := args[1]
+		var value string
+		if len(args) >= 3 {
+			value = strings.Join(args[2:], " ")
+		} else {
+			fmt.Fprintf(os.Stderr, "value for %s: ", key)
+			sc := bufio.NewScanner(os.Stdin)
+			if sc.Scan() {
+				value = sc.Text()
+			}
+		}
+		if err := setCredential(key, value); err != nil {
+			fmt.Fprintf(os.Stderr, "save: %v\n", err)
+			os.Exit(1)
+		}
+		fmt.Printf("saved %s → %s\n", key, credentialsPath())
+	case "unset", "rm", "delete":
+		if len(args) < 2 {
+			fmt.Fprintf(os.Stderr, "usage: yaga credentials unset KEY\n")
+			os.Exit(2)
+		}
+		if err := setCredential(args[1], ""); err != nil {
+			fmt.Fprintf(os.Stderr, "save: %v\n", err)
+			os.Exit(1)
+		}
+		fmt.Printf("cleared %s\n", args[1])
+	case "path":
+		fmt.Println(credentialsPath())
+	case "open":
+		key := ""
+		if len(args) >= 2 {
+			key = args[1]
+		}
+		for _, s := range allCredSpecs() {
+			if key == "" || s.Key == key {
+				fmt.Printf("%s\n  %s\n", s.Key, s.UIURL)
+				if key != "" {
+					_ = openURL(s.UIURL)
+					return
+				}
+			}
+		}
+	default:
+		fmt.Fprintf(os.Stderr, "usage: yaga credentials [list|set|unset|path|open]\n")
+		os.Exit(2)
+	}
 }
 
 func renderDoctor(cfg Config) string {

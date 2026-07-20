@@ -14,3 +14,5 @@ test-results/
 out/
 cli/bober-ops
 cli/yaga/yaga
+# local yaga secrets (also ~/.config/yaga/credentials.env)
+**/credentials.env
