@@ -16,6 +16,8 @@ npm run yaga:install
 ```bash
 yaga                         # TUI
 yaga webmaster status
+yaga webmaster seo           # ИКС, диагностика, индекс, важные URL, запросы
+yaga webmaster recrawl URL   # переобход страницы
 yaga metrika status
 yaga direct campaigns status
 yaga bricks

@@ -1,7 +1,7 @@
 export default {
   id: "webmaster",
   title: "Yandex Webmaster",
-  description: "Hosts, feed, mirrors, verification status",
+  description: "Hosts, SEO checklist, feed, mirrors, recrawl",
   visibility: "public",
   aliases: ["wm"],
   async run(ctx, args) {
@@ -10,14 +10,20 @@ export default {
       console.log(`yaga webmaster
 
   yaga webmaster status     overall webmaster + metrika snapshot
+  yaga webmaster seo        ranking checklist (SQI, diagnostics, index, queries)
   yaga webmaster feed       upload performers feed
   yaga webmaster mirrors    mirror settings
   yaga webmaster repair     feed repair helper
+  yaga webmaster recrawl    submit URL for recrawl (or --quota)
 `);
       return;
     }
     if (sub === "status") {
       await ctx.runScript("yandex-status.mjs", rest);
+      return;
+    }
+    if (sub === "seo" || sub === "positions" || sub === "rank") {
+      await ctx.runScript("yandex-webmaster-seo.mjs", rest);
       return;
     }
     if (sub === "feed") {
@@ -30,6 +36,10 @@ export default {
     }
     if (sub === "repair") {
       await ctx.runScript("yandex-feed-repair.mjs", rest);
+      return;
+    }
+    if (sub === "recrawl" || sub === "crawl") {
+      await ctx.runScript("yandex-webmaster-recrawl.mjs", rest);
       return;
     }
     await ctx.runScript("yandex-status.mjs", args);

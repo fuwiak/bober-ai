@@ -202,3 +202,145 @@ export async function waitForFeedReload(token, userId, hostId, feedUrl, config) 
   }
   throw new Error("Истекло время ожидания перезагрузки фида");
 }
+
+/** Resolve OAuth user + target host for Webmaster API calls. */
+export async function resolveHostContext(overrides = {}) {
+  const config = getConfig(overrides);
+  if (!config.token) {
+    throw new Error(
+      "Нет OAuth-токена. Задайте YANDEX_WEBMASTER_OAUTH_TOKEN или YANDEX_OAUTH_TOKEN (yaga credentials).",
+    );
+  }
+  const userId = await getUserId(config.token);
+  const hosts = await getHosts(config.token, userId);
+  const host = pickHost(hosts, config.hostUrl);
+  if (!host) {
+    throw new Error(`Сайт ${config.hostUrl} не найден среди хостов Вебмастера`);
+  }
+  return { config, userId, host, hostId: host.host_id };
+}
+
+async function getJson(token, path, { allowStatuses = [200] } = {}) {
+  const { response, body } = await apiRequest(token, path);
+  if (!allowStatuses.includes(response.status)) {
+    const code = body?.error_code || body?.errorCode;
+    const msg = body?.error_message || body?.errorMessage || JSON.stringify(body);
+    const err = new Error(`GET ${path} → HTTP ${response.status}${code ? ` (${code})` : ""}: ${msg}`);
+    err.status = response.status;
+    err.errorCode = code;
+    err.body = body;
+    throw err;
+  }
+  return { response, body };
+}
+
+export async function getHostSummary(token, userId, hostId) {
+  const { body } = await getJson(token, `/user/${userId}/hosts/${encodeURIComponent(hostId)}/summary`);
+  return body;
+}
+
+export async function getHostDiagnostics(token, userId, hostId) {
+  const { body } = await getJson(token, `/user/${userId}/hosts/${encodeURIComponent(hostId)}/diagnostics`);
+  return body;
+}
+
+export async function getImportantUrls(token, userId, hostId) {
+  const { body } = await getJson(token, `/user/${userId}/hosts/${encodeURIComponent(hostId)}/important-urls`);
+  return body?.urls || [];
+}
+
+export async function getSitemaps(token, userId, hostId) {
+  const { body } = await getJson(token, `/user/${userId}/hosts/${encodeURIComponent(hostId)}/sitemaps`);
+  return body?.sitemaps || [];
+}
+
+export async function getSearchUrlsInSearchHistory(token, userId, hostId, { dateFrom, dateTo } = {}) {
+  const qs = new URLSearchParams();
+  if (dateFrom) qs.set("date_from", dateFrom);
+  if (dateTo) qs.set("date_to", dateTo);
+  const q = qs.toString() ? `?${qs}` : "";
+  const { body } = await getJson(
+    token,
+    `/user/${userId}/hosts/${encodeURIComponent(hostId)}/search-urls/in-search/history${q}`,
+  );
+  return body;
+}
+
+export async function getIndexingHistory(token, userId, hostId, { dateFrom, dateTo } = {}) {
+  const qs = new URLSearchParams();
+  if (dateFrom) qs.set("date_from", dateFrom);
+  if (dateTo) qs.set("date_to", dateTo);
+  const q = qs.toString() ? `?${qs}` : "";
+  const { body } = await getJson(
+    token,
+    `/user/${userId}/hosts/${encodeURIComponent(hostId)}/indexing/history${q}`,
+  );
+  return body;
+}
+
+export async function getSqiHistory(token, userId, hostId, { dateFrom, dateTo } = {}) {
+  const qs = new URLSearchParams();
+  if (dateFrom) qs.set("date_from", dateFrom);
+  if (dateTo) qs.set("date_to", dateTo);
+  const q = qs.toString() ? `?${qs}` : "";
+  const { body } = await getJson(
+    token,
+    `/user/${userId}/hosts/${encodeURIComponent(hostId)}/sqi-history${q}`,
+  );
+  return body?.points || [];
+}
+
+export async function getPopularQueries(
+  token,
+  userId,
+  hostId,
+  {
+    orderBy = "TOTAL_SHOWS",
+    limit = 15,
+    queryIndicator = ["TOTAL_SHOWS", "TOTAL_CLICKS", "AVG_SHOW_POSITION"],
+  } = {},
+) {
+  const qs = new URLSearchParams();
+  qs.set("order_by", orderBy);
+  qs.set("limit", String(limit));
+  for (const indicator of queryIndicator) {
+    qs.append("query_indicator", indicator);
+  }
+  const { body } = await getJson(
+    token,
+    `/user/${userId}/hosts/${encodeURIComponent(hostId)}/search-queries/popular?${qs}`,
+  );
+  return body;
+}
+
+export async function getRecrawlQuota(token, userId, hostId) {
+  const { body } = await getJson(token, `/user/${userId}/hosts/${encodeURIComponent(hostId)}/recrawl/quota`);
+  return body;
+}
+
+export async function submitRecrawl(token, userId, hostId, url) {
+  const { response, body } = await apiRequest(
+    token,
+    `/user/${userId}/hosts/${encodeURIComponent(hostId)}/recrawl/queue`,
+    { method: "POST", body: { url } },
+  );
+  if (response.status !== 202 && response.status !== 200) {
+    throw new Error(
+      `POST /recrawl/queue → HTTP ${response.status}: ${JSON.stringify(body)}`,
+    );
+  }
+  return body;
+}
+
+/** ISO date N days ago (YYYY-MM-DD). */
+export function daysAgoIso(days) {
+  const d = new Date();
+  d.setUTCDate(d.getUTCDate() - days);
+  return d.toISOString().slice(0, 10);
+}
+
+export function latestSeriesValue(points) {
+  if (!Array.isArray(points) || !points.length) return null;
+  const last = points[points.length - 1];
+  return last?.value ?? null;
+}

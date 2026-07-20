@@ -191,7 +191,26 @@ async function checkWebmasterApi() {
     warn(`Фид ${config.feedUrl} ещё не зарегистрирован в Вебмастере`);
   }
 
-  console.log("");
+  const { response: summaryResponse, body: summaryBody } = await apiRequest(
+    `${WEBMASTER_API}/user/${userId}/hosts/${hostId}/summary`,
+  );
+  if (summaryResponse.ok && summaryBody) {
+    ok(
+      `ИКС=${summaryBody.sqi ?? "?"} · в поиске=${summaryBody.searchable_pages_count ?? "?"} · исключено=${summaryBody.excluded_pages_count ?? "?"}`,
+    );
+    const probs = summaryBody.site_problems || {};
+    const fatal = probs.FATAL || 0;
+    const critical = probs.CRITICAL || 0;
+    if (fatal || critical) {
+      fail(`Проблемы сайта: FATAL=${fatal} CRITICAL=${critical}`);
+    } else {
+      ok(`Проблемы: FATAL=0 CRITICAL=0 (POSSIBLE=${probs.POSSIBLE_PROBLEM || 0})`);
+    }
+  } else {
+    warn(`summary недоступен: HTTP ${summaryResponse.status}`);
+  }
+
+  console.log("  Полный чеклист позиций: yaga webmaster seo\n");
 }
 
 async function checkMetrikaApi() {

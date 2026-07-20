@@ -298,8 +298,14 @@ func captureBrick(cfg Config, b Brick, args []string) (string, error) {
 		switch sub {
 		case "status":
 			return runScriptCapture(cfg, "yandex-status.mjs", rest)
+		case "seo", "positions", "rank":
+			return runScriptCapture(cfg, "yandex-webmaster-seo.mjs", rest)
 		case "feed":
 			return runScriptCapture(cfg, "yandex-webmaster-feed.mjs", rest)
+		case "mirrors":
+			return runScriptCapture(cfg, "yandex-webmaster-mirrors.mjs", rest)
+		case "recrawl", "crawl":
+			return runScriptCapture(cfg, "yandex-webmaster-recrawl.mjs", rest)
 		}
 	case "metrika":
 		sub, rest := splitSub(args, "status")
@@ -519,6 +525,8 @@ func helpTUI(cfg Config) string {
     yaga credentials          list + UI links
     yaga credentials set KEY
     yaga webmaster status
+    yaga webmaster seo
+    yaga webmaster recrawl <url>
     yaga profile public
 
   Config: %s

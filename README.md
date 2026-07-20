@@ -67,6 +67,7 @@ yaga                 # TUI
 yaga bricks
 yaga profile public  # спрятать owner-bricks
 yaga webmaster status
+yaga webmaster seo   # чеклист позиций (ИКС / диагностика / индекс)
 ```
 
 Подробнее: [`cli/yaga/README.md`](cli/yaga/README.md).
