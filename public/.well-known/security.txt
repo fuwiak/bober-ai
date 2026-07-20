@@ -1,0 +1,5 @@
+Contact: mailto:stasinskipawel@yandex.ru
+Contact: https://www.bober-ai.dev/#contact
+Expires: 2027-07-20T00:00:00.000Z
+Preferred-Languages: ru, en
+Canonical: https://www.bober-ai.dev/.well-known/security.txt

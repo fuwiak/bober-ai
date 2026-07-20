@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { Link } from "@/i18n/navigation";
 import { getPortfolioItem, PORTFOLIO, PROFILE } from "@/lib/profile";
-import { articleJsonLd, breadcrumbJsonLd, buildPageMetadata } from "@/lib/seo";
+import { articleJsonLd, buildPageMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 
 type PageProps = {
@@ -60,12 +61,6 @@ export default async function PortfolioProjectPage({ params }: PageProps) {
     .replace(/\s+/g, " ")
     .trim();
 
-  const breadcrumb = breadcrumbJsonLd([
-    { name: isEn ? "Home" : "Главная", url: absoluteUrl(prefix || "/") },
-    { name: portfolioLabel, url: absoluteUrl(`${prefix}/portfolio`) },
-    { name: item.title, url: pageUrl },
-  ]);
-
   const articleSchema = hasCaseStudy
       ? articleJsonLd({
           type: "Article",
@@ -86,13 +81,16 @@ export default async function PortfolioProjectPage({ params }: PageProps) {
       {articleSchema ? (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       ) : null}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <SiteHeader />
       <main className="section-band">
         <div className="container-editorial">
-          <Link href="/portfolio" className="link-back">
-            {portfolioLabel}
-          </Link>
+          <Breadcrumbs
+            locale={locale}
+            items={[
+              { name: portfolioLabel, path: "/portfolio" },
+              { name: item.title, path: `/portfolio/${item.slug}` },
+            ]}
+          />
 
           <article id="article">
             <div className="mt-6 max-w-3xl">

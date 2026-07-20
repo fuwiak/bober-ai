@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { SectionCtaBand } from "@/components/SectionCtaBand";
 import { ProjectsCasesShowcase } from "@/components/motion/ProjectsCasesShowcase";
 import { Reveal } from "@/components/motion/Reveal";
-import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { PORTFOLIO } from "@/lib/profile";
-import { absoluteUrl } from "@/lib/site";
+import { buildPageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -18,12 +18,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "pages.portfolio" });
-  const path = locale === "en" ? "/en/portfolio" : "/portfolio";
-  return {
+  return buildPageMetadata({
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: absoluteUrl(path) },
-  };
+    path: "/portfolio",
+    locale,
+  });
 }
 
 export default async function PortfolioPage({ params }: Props) {
@@ -38,9 +38,10 @@ export default async function PortfolioPage({ params }: Props) {
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
-              <Link href="/" className="link-back">
-                {locale === "en" ? "Home" : "На главную"}
-              </Link>
+              <Breadcrumbs
+                locale={locale}
+                items={[{ name: locale === "en" ? "Portfolio" : "Портфолио", path: "/portfolio" }]}
+              />
             </Reveal>
             <ProjectsCasesShowcase
               items={PORTFOLIO}

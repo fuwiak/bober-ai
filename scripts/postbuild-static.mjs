@@ -1,5 +1,6 @@
 import { copyFileSync, cpSync, existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { spawnSync } from "node:child_process";
 
 /**
  * next-intl без middleware кладёт default locale в /ru/*.
@@ -50,6 +51,36 @@ function ensureYandexCleanParams() {
   console.log("postbuild-static: robots.txt Clean-param for Yandex");
 }
 
+function ensureSecurityTxt() {
+  const src = join("public", ".well-known", "security.txt");
+  const destDir = join(out, ".well-known");
+  const dest = join(destDir, "security.txt");
+  if (!existsSync(src)) return;
+  mkdirSync(destDir, { recursive: true });
+  if (!existsSync(dest)) {
+    copyFileSync(src, dest);
+    console.log("postbuild-static: copied .well-known/security.txt");
+  }
+}
+
+function regeneratePerformersFeed() {
+  const result = spawnSync(process.execPath, [join("scripts", "generate-performers-feed.mjs")], {
+    cwd: process.cwd(),
+    encoding: "utf8",
+    env: process.env,
+  });
+  if (result.status !== 0) {
+    console.warn("postbuild-static: performers-feed regenerate failed:", result.stderr || result.stdout);
+    return;
+  }
+  const feedSrc = join("public", "performers-feed.yml");
+  const feedDest = join(out, "performers-feed.yml");
+  if (existsSync(feedSrc)) {
+    copyFileSync(feedSrc, feedDest);
+    console.log("postbuild-static: performers-feed.yml → out/");
+  }
+}
+
 if (!existsSync(join(out, "ru.html"))) {
   console.error("postbuild-static: out/ru.html not found — skip");
   process.exit(0);
@@ -61,4 +92,6 @@ if (existsSync(join(out, "ru.txt"))) {
 }
 mergeMissing(join(out, "ru"), out);
 ensureYandexCleanParams();
+ensureSecurityTxt();
+regeneratePerformersFeed();
 console.log("postbuild-static: index.html + /ru → root (missing only)");

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
 import { ContactForm } from "@/components/ContactForm";
 import { ContactCta } from "@/components/ContactCta";
@@ -12,7 +13,6 @@ import { getEnterpriseService } from "@/lib/enterprise-services";
 import { getPortfolioItem } from "@/lib/profile";
 import type { SeoServiceContent } from "@/lib/seo-services-content";
 import {
-  breadcrumbJsonLd,
   faqJsonLd,
   organizationJsonLd,
   serviceJsonLd,
@@ -32,14 +32,7 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
   const prefix = locale === "en" ? "/en" : "";
   const pagePath = `${prefix}/services/${slug}`;
   const pageUrl = absoluteUrl(pagePath);
-  const homeLabel = locale === "en" ? "Home" : "Главная";
   const servicesLabel = locale === "en" ? "Services" : "Услуги";
-
-  const breadcrumb = breadcrumbJsonLd([
-    { name: homeLabel, url: absoluteUrl(prefix || "/") },
-    { name: servicesLabel, url: absoluteUrl(`${prefix}/services`) },
-    { name: content.h1, url: pageUrl },
-  ]);
 
   const webPage = webPageJsonLd({
     name: content.h1,
@@ -67,7 +60,6 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
 
   return (
     <div className="page-shell min-h-screen">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPage) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} />
@@ -78,9 +70,13 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
       <main>
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial">
-            <Link href="/services" className="link-back">
-              {t("back")}
-            </Link>
+            <Breadcrumbs
+              locale={locale}
+              items={[
+                { name: servicesLabel, path: "/services" },
+                { name: content.h1, path: `/services/${slug}` },
+              ]}
+            />
             <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_360px] lg:items-start">
               <Reveal className="max-w-4xl">
                 <span className="section-label">{content.eyebrow}</span>

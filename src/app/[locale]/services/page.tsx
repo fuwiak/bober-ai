@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { MicroConversionsSection } from "@/components/MicroConversionsSection";
 import { SectionCtaBand } from "@/components/SectionCtaBand";
@@ -7,10 +8,9 @@ import { AnimatedServiceCard } from "@/components/motion/AnimatedServiceCard";
 import { ImplementationCard, type ImplementationArea } from "@/components/motion/ImplementationCard";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger } from "@/components/motion/Stagger";
-import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { getEnterpriseServices } from "@/lib/enterprise-services";
-import { absoluteUrl } from "@/lib/site";
+import { buildPageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -21,12 +21,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "pages.services" });
-  const path = locale === "en" ? "/en/services" : "/services";
-  return {
+  return buildPageMetadata({
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: absoluteUrl(path) },
-  };
+    path: "/services",
+    locale,
+  });
 }
 
 export default async function ServicesPage({ params }: Props) {
@@ -43,10 +43,11 @@ export default async function ServicesPage({ params }: Props) {
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
-              <Link href="/" className="link-back">
-                {locale === "en" ? "Home" : "На главную"}
-              </Link>
-              <span className="section-label mt-8 block">{t("sections.solutions")}</span>
+              <Breadcrumbs
+                locale={locale}
+                items={[{ name: locale === "en" ? "Services" : "Услуги", path: "/services" }]}
+              />
+              <span className="section-label mt-2 block">{t("sections.solutions")}</span>
               <h1 className="section-title mt-4">{t("services.title")}</h1>
               <p className="body-copy mt-4 max-w-2xl text-base">{t("services.subtitle")}</p>
             </Reveal>

@@ -7,10 +7,15 @@ import {
   HERO_STOCK_IMAGE,
   LINKEDIN_URL,
   SELECTEL_PARTNER_PROGRAM_URL,
+  SITE_COUNTRY,
+  SITE_GEO,
   SITE_NAME,
+  SITE_REGION,
   SITE_URL,
   TELEGRAM_URL,
+  YANDEX_BUSINESS_URL,
   YANDEX_CLOUD_PARTNERS_URL,
+  YANDEX_MAPS_URL,
   YANDEX_USLUGI_URL,
   absoluteUrl,
 } from "@/lib/site";
@@ -44,7 +49,8 @@ function localePath(path: string, locale: string): string {
   return path.replace(/^\/en(?=\/|$)/, "") || "/";
 }
 
-function localizedAbsolute(path: string, locale: string): string {
+/** Absolute URL for a locale path (`/services` → …/services or …/en/services). */
+export function localizedAbsolute(path: string, locale: string): string {
   const [pathname, hash] = path.split("#");
   const base = pathname?.startsWith("/") ? pathname : `/${pathname || ""}`;
   const url =
@@ -139,6 +145,24 @@ export function breadcrumbJsonLd(items: { name: string; url: string }[]) {
   };
 }
 
+/** Home + section crumbs → BreadcrumbList JSON-LD (Yandex навигационная цепочка). */
+export function pageBreadcrumbJsonLd(
+  locale: string,
+  crumbs: { name: string; path: string }[],
+) {
+  const home = {
+    name: locale === "en" ? "Home" : "Главная",
+    url: localizedAbsolute("/", locale),
+  };
+  return breadcrumbJsonLd([
+    home,
+    ...crumbs.map((c) => ({
+      name: c.name,
+      url: localizedAbsolute(c.path, locale),
+    })),
+  ]);
+}
+
 /** Main sections for Yandex sitelinks / SiteNavigationElement signals. */
 export function siteNavigationItems(locale: string) {
   const isEn = locale === "en";
@@ -148,6 +172,7 @@ export function siteNavigationItems(locale: string) {
     { name: isEn ? "Portfolio" : "Портфолио", path: "/portfolio" },
     { name: isEn ? "Pricing" : "Цены", path: "/pricing" },
     { name: isEn ? "Blog" : "Блог", path: "/blog" },
+    { name: isEn ? "Partners" : "Партнёрам", path: "/partners" },
     { name: isEn ? "FAQ" : "FAQ", path: "/faq" },
     { name: isEn ? "Guides" : "Гайды", path: "/guides" },
     { name: isEn ? "Contact" : "Контакты", path: "/#contact" },
@@ -155,6 +180,23 @@ export function siteNavigationItems(locale: string) {
     name: item.name,
     url: localizedAbsolute(item.path, locale),
   }));
+}
+
+/** Standalone SiteNavigationElement list — сигнал для быстрых ссылок в выдаче. */
+export function siteNavigationJsonLd(locale: string) {
+  const nav = siteNavigationItems(locale);
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: locale === "en" ? "Site sections" : "Разделы сайта",
+    numberOfItems: nav.length,
+    itemListElement: nav.map((item, index) => ({
+      "@type": "SiteNavigationElement",
+      position: index + 1,
+      name: item.name,
+      url: item.url,
+    })),
+  };
 }
 
 export function websiteJsonLd(locale: string) {
@@ -229,8 +271,21 @@ export function serviceJsonLd(input: {
 
 export function organizationJsonLd(locale: string) {
   const isEn = locale === "en";
+  const sameAs = [
+    LINKEDIN_URL,
+    GITHUB_URL,
+    YANDEX_USLUGI_URL,
+    YANDEX_MAPS_URL,
+    YANDEX_CLOUD_PARTNERS_URL,
+    SELECTEL_PARTNER_PROGRAM_URL,
+    CLOUD_RU_PARTNERS_URL,
+    TELEGRAM_URL,
+    ...(YANDEX_BUSINESS_URL ? [YANDEX_BUSINESS_URL] : []),
+  ];
+
   return {
-    "@type": "ProfessionalService",
+    // LocalBusiness + ProfessionalService — региональность и сниппеты Яндекса.
+    "@type": ["ProfessionalService", "LocalBusiness"],
     "@id": `${SITE_URL}/#organization`,
     name: SITE_NAME,
     legalName: LEGAL_ENTITY.name,
@@ -252,10 +307,25 @@ export function organizationJsonLd(locale: string) {
     address: {
       "@type": "PostalAddress",
       streetAddress: "Перервинский б-р, д. 3, кв. 57",
-      addressLocality: "Москва",
+      addressLocality: SITE_REGION,
+      addressRegion: SITE_REGION,
       postalCode: "109451",
       addressCountry: "RU",
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: SITE_GEO.latitude,
+      longitude: SITE_GEO.longitude,
+    },
+    hasMap: YANDEX_MAPS_URL,
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "10:00",
+        closes: "19:00",
+      },
+    ],
     contactPoint: [
       {
         "@type": "ContactPoint",
@@ -274,7 +344,12 @@ export function organizationJsonLd(locale: string) {
         availableLanguage: ["Russian", "English"],
       },
     ],
-    areaServed: { "@type": "Country", name: isEn ? "Worldwide" : "Russia" },
+    areaServed: isEn
+      ? { "@type": "Country", name: "Worldwide" }
+      : [
+          { "@type": "City", name: SITE_REGION },
+          { "@type": "Country", name: SITE_COUNTRY },
+        ],
     priceRange: "₽₽₽",
     knowsAbout: isEn
       ? [
@@ -293,15 +368,7 @@ export function organizationJsonLd(locale: string) {
           "Обработка документов",
           "Автоматизация на n8n",
         ],
-    sameAs: [
-      LINKEDIN_URL,
-      GITHUB_URL,
-      YANDEX_USLUGI_URL,
-      YANDEX_CLOUD_PARTNERS_URL,
-      SELECTEL_PARTNER_PROGRAM_URL,
-      CLOUD_RU_PARTNERS_URL,
-      TELEGRAM_URL,
-    ],
+    sameAs,
   };
 }
 

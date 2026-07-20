@@ -95,6 +95,10 @@ export const metadata: Metadata = {
   },
   other: {
     keywords: DEFAULT_KEYWORDS.join(", "),
+    "geo.region": "RU-MOW",
+    "geo.placename": "Moscow",
+    "geo.position": "55.6665;37.7448",
+    ICBM: "55.6665, 37.7448",
   },
 };
 

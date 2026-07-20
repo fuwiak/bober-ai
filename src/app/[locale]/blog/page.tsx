@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { Link } from "@/i18n/navigation";
 import { routing, type AppLocale } from "@/i18n/routing";
 import { getAllIntentArticles } from "@/lib/seo-catalog";
+import { buildPageMetadata } from "@/lib/seo";
 import { DEFAULT_KEYWORDS, SITE_NAME, absoluteUrl } from "@/lib/site";
 
 const MEDIUM_URL = "https://medium.com/@stasinskipawel";
@@ -55,9 +57,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const copy = getCopy(locale);
-  const path = locale === "en" ? "/en/blog" : "/blog";
 
-  return {
+  return buildPageMetadata({
     title: copy.metaTitle,
     description: copy.metaDescription,
     keywords: [
@@ -66,10 +67,9 @@ export async function generateMetadata({
       "как внедрить crm",
       "как сократить расходы",
     ],
-    alternates: {
-      canonical: absoluteUrl(path),
-    },
-  };
+    path: "/blog",
+    locale,
+  });
 }
 
 export default async function BlogPage({ params }: { params: Promise<{ locale: AppLocale }> }) {
@@ -77,15 +77,6 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: A
   const copy = getCopy(locale);
   const loc = locale === "en" ? "en" : "ru";
   const articles = getAllIntentArticles();
-
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: SITE_NAME, item: absoluteUrl(locale === "en" ? "/en" : "/") },
-      { "@type": "ListItem", position: 2, name: copy.pageBadge, item: absoluteUrl(locale === "en" ? "/en/blog" : "/blog") },
-    ],
-  };
 
   const blogJsonLd = {
     "@context": "https://schema.org",
@@ -100,19 +91,17 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: A
     <>
       <SiteHeader />
       <main className="section-band">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }} />
 
         <div className="container-editorial">
-          <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="eyebrow">{copy.pageBadge}</p>
-              <h1 className="mt-2 display-title">{copy.title}</h1>
-              <p className="mt-4 max-w-2xl text-muted">{copy.intro}</p>
-            </div>
-            <Link href="/" className="link-back">
-              {copy.home}
-            </Link>
+          <Breadcrumbs
+            locale={locale}
+            items={[{ name: locale === "en" ? "Blog" : "Блог", path: "/blog" }]}
+          />
+          <div className="mb-12 mt-2">
+            <p className="eyebrow">{copy.pageBadge}</p>
+            <h1 className="mt-2 display-title">{copy.title}</h1>
+            <p className="mt-4 max-w-2xl text-muted">{copy.intro}</p>
           </div>
 
           <h2 className="font-display text-2xl">{copy.articlesTitle}</h2>

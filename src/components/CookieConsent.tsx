@@ -64,7 +64,8 @@ export function CookieConsent() {
         </p>
         <p id="cookie-consent-desc" className="body-copy mt-3 text-base text-body">
           Сайт использует cookies, «Яндекс.Метрику» (№ {YANDEX_METRIKA_ID}) и Varioqub для аналитики и экспериментов.
-          Скрипты загружаются только после согласия. Подробнее — в{" "}
+          Счётчик Метрики загружается для измерения аудитории; дополнительные cookies маркетинга — по вашему выбору.
+          Подробнее — в{" "}
           <Link href={LEGAL_ROUTES.privacyPolicy} className="text-link">
             политике обработки ПДн
           </Link>

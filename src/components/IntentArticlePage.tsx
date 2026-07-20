@@ -1,9 +1,10 @@
 import NextLink from "next/link";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { ContactForm } from "@/components/ContactForm";
 import { Reveal } from "@/components/motion/Reveal";
 import type { IntentArticleSpec } from "@/lib/seo-catalog/types";
-import { articleJsonLd, breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
+import { articleJsonLd, webPageJsonLd } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 
 type IntentArticlePageProps = {
@@ -17,14 +18,8 @@ export function IntentArticlePage({ article, locale }: IntentArticlePageProps) {
   const prefix = locale === "en" ? "/en" : "";
   const pagePath = `${prefix}/blog/${article.slug}`;
   const pageUrl = absoluteUrl(pagePath);
-  const homeLabel = loc === "en" ? "Home" : "Главная";
   const blogLabel = loc === "en" ? "Blog" : "Блог";
 
-  const breadcrumb = breadcrumbJsonLd([
-    { name: homeLabel, url: absoluteUrl(prefix || "/") },
-    { name: blogLabel, url: absoluteUrl(`${prefix}/blog`) },
-    { name: copy.h1, url: pageUrl },
-  ]);
   const webPage = webPageJsonLd({
     name: copy.h1,
     description: copy.description,
@@ -45,14 +40,20 @@ export function IntentArticlePage({ article, locale }: IntentArticlePageProps) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPage) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <SiteHeader />
       <main>
         <article className="section-band border-b border-hairline">
           <div className="container-editorial max-w-3xl">
-            <Reveal>
+            <Breadcrumbs
+              locale={locale}
+              items={[
+                { name: blogLabel, path: "/blog" },
+                { name: copy.h1, path: `/blog/${article.slug}` },
+              ]}
+            />
+            <Reveal className="mt-2">
               <p className="eyebrow">{blogLabel}</p>
               <h1 className="mt-3 display-title text-balance">{copy.h1}</h1>
               <p className="mt-4 text-lg text-muted">{copy.description}</p>

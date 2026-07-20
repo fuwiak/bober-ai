@@ -671,6 +671,8 @@ const ru = {
       linkedin: "LinkedIn",
       github: "GitHub",
       yandexReviews: "Отзывы на Яндексе",
+      yandexMaps: "Яндекс Карты",
+      yandexBusiness: "Яндекс Бизнес",
       yandexCloud: "Каталог партнёров Yandex Cloud",
       selectel: "Партнёрская программа Selectel",
       cloudru: "Каталог партнёров Cloud.ru",
@@ -708,6 +710,8 @@ const ru = {
   partnersPage: {
     title: "Партнёрам",
     subtitle: "White-label delivery · Technology partnerships · Referral partnerships",
+    metaDescription:
+      "Партнёрство с Bober AI Systems: white-label внедрение автоматизации, технологические и реферальные партнёрства. Фиксированная смета, NDA.",
   },
   guides: {
     badge: "Гайды",

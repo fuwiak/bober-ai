@@ -309,6 +309,54 @@ html.dark {
     .text-link:hover { opacity: 0.75; }
   }
 
+  /* Breadcrumb trail — Yandex «навигационная цепочка» */
+  .breadcrumbs {
+    @apply mb-6;
+  }
+  .breadcrumbs__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .breadcrumbs__item {
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+  }
+  .breadcrumbs__item:not(:last-child)::after {
+    content: "/";
+    margin: 0 0.55rem;
+    color: var(--color-hairline-strong);
+    letter-spacing: 0;
+  }
+  .breadcrumbs__link {
+    color: var(--color-muted);
+    text-decoration: none;
+    transition: color 160ms ease;
+  }
+  .breadcrumbs__current {
+    color: var(--color-ink);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: min(100%, 28rem);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .breadcrumbs__link:hover {
+      color: var(--color-ink);
+    }
+  }
+
   /* Editorial nav / detail links — bordered pill + geometric chevron */
   .link-back,
   .link-more {

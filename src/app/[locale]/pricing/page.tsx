@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import NextLink from "next/link";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { ComparisonSection } from "@/components/ComparisonSection";
 import { PackagesShowcase } from "@/components/PackagesShowcase";
@@ -11,7 +12,7 @@ import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { LEGAL_ROUTES } from "@/lib/legal";
-import { absoluteUrl } from "@/lib/site";
+import { buildPageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -22,12 +23,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "pages.pricing" });
-  const path = locale === "en" ? "/en/pricing" : "/pricing";
-  return {
+  return buildPageMetadata({
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: absoluteUrl(path) },
-  };
+    path: "/pricing",
+    locale,
+  });
 }
 
 export default async function PricingPage({ params }: Props) {
@@ -51,9 +52,10 @@ export default async function PricingPage({ params }: Props) {
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
-              <Link href="/" className="link-back">
-                {locale === "en" ? "Home" : "На главную"}
-              </Link>
+              <Breadcrumbs
+                locale={locale}
+                items={[{ name: locale === "en" ? "Pricing" : "Цены", path: "/pricing" }]}
+              />
             </Reveal>
           </div>
         </section>

@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { ContactForm } from "@/components/ContactForm";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import { absoluteUrl, TELEGRAM_URL } from "@/lib/site";
+import { buildPageMetadata } from "@/lib/seo";
+import { TELEGRAM_URL } from "@/lib/site";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -15,10 +17,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "partnersPage" });
-  return {
+  return buildPageMetadata({
     title: t("title"),
-    alternates: { canonical: locale === "en" ? absoluteUrl("/en/partners") : absoluteUrl("/partners") },
-  };
+    description: t("metaDescription"),
+    path: "/partners",
+    locale,
+  });
 }
 
 export default async function PartnersPage({ params }: Props) {
@@ -31,10 +35,11 @@ export default async function PartnersPage({ params }: Props) {
       <SiteHeader />
       <main className="section-band">
         <div className="container-editorial max-w-3xl">
-          <Link href="/" className="link-back">
-            {locale === "en" ? "Home" : "На главную"}
-          </Link>
-          <span className="badge-accent mt-6 inline-block text-[10px]">{t("badge")}</span>
+          <Breadcrumbs
+            locale={locale}
+            items={[{ name: locale === "en" ? "Partners" : "Партнёрам", path: "/partners" }]}
+          />
+          <span className="badge-accent mt-2 inline-block text-[10px]">{t("badge")}</span>
           <h1 className="display-md mt-4">{t("title")}</h1>
           <p className="mt-3 text-lg font-medium text-ink">{t("subtitle")}</p>
           <p className="mt-4 text-sm leading-relaxed text-body">{t("description")}</p>

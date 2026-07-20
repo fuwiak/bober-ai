@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { ClaudeSection } from "@/components/ClaudeSection";
 import { FaqSection } from "@/components/FaqSection";
 import { SectionCtaBand } from "@/components/SectionCtaBand";
 import { Reveal } from "@/components/motion/Reveal";
-import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import { breadcrumbJsonLd, buildPageMetadata } from "@/lib/seo";
+import { buildPageMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -32,22 +32,15 @@ export default async function FaqPage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations();
   const pageUrl = absoluteUrl(locale === "en" ? "/en/faq" : "/faq");
-  const breadcrumb = breadcrumbJsonLd([
-    { name: locale === "en" ? "Home" : "Главная", url: absoluteUrl(locale === "en" ? "/en" : "/") },
-    { name: "FAQ", url: pageUrl },
-  ]);
 
   return (
     <div className="page-shell min-h-screen">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <SiteHeader />
       <main>
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
-              <Link href="/" className="link-back">
-                {locale === "en" ? "Home" : "На главную"}
-              </Link>
+              <Breadcrumbs locale={locale} items={[{ name: "FAQ", path: "/faq" }]} />
             </Reveal>
           </div>
         </section>

@@ -7,6 +7,7 @@ import { getEnterpriseServices } from "@/lib/enterprise-services";
 import {
   buildPageMetadata,
   organizationJsonLd as orgSchema,
+  siteNavigationJsonLd,
   websiteJsonLd as siteSchema,
 } from "@/lib/seo";
 
@@ -65,6 +66,10 @@ export default async function Page({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(offersJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema(locale)) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationJsonLd(locale)) }}
+      />
       <HomePage />
     </>
   );

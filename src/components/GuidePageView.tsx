@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ContactForm } from "@/components/ContactForm";
 import { ContactCta } from "@/components/ContactCta";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
@@ -8,7 +9,7 @@ import { Link } from "@/i18n/navigation";
 import type { GuideDef } from "@/lib/guides";
 import { GUIDE_LABELS, type GuideContent } from "@/lib/guides-content";
 import { PROFILE } from "@/lib/profile";
-import { articleJsonLd, breadcrumbJsonLd, faqJsonLd, webPageJsonLd } from "@/lib/seo";
+import { articleJsonLd, faqJsonLd, webPageJsonLd } from "@/lib/seo";
 import { TELEGRAM_URL, absoluteUrl } from "@/lib/site";
 
 type GuidePageViewProps = {
@@ -25,7 +26,6 @@ export function GuidePageView({ guide, content, locale, ctaLabel, telegramLabel 
   const prefix = isEn ? "/en" : "";
   const pagePath = `${prefix}/guides/${guide.slug}`;
   const pageUrl = absoluteUrl(pagePath);
-  const homeLabel = isEn ? "Home" : "Главная";
   const guidesLabel = labels.guidesTitle;
 
   const articleText = [
@@ -37,12 +37,6 @@ export function GuidePageView({ guide, content, locale, ctaLabel, telegramLabel 
     .join(" ")
     .replace(/\s+/g, " ")
     .trim();
-
-  const breadcrumb = breadcrumbJsonLd([
-    { name: homeLabel, url: absoluteUrl(prefix || "/") },
-    { name: guidesLabel, url: absoluteUrl(`${prefix}/guides`) },
-    { name: content.h1, url: pageUrl },
-  ]);
 
   const webPage = webPageJsonLd({
     name: content.h1,
@@ -72,7 +66,6 @@ export function GuidePageView({ guide, content, locale, ctaLabel, telegramLabel 
 
   return (
     <div className="page-shell min-h-screen">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPage) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
@@ -81,9 +74,13 @@ export function GuidePageView({ guide, content, locale, ctaLabel, telegramLabel 
         <article id="article">
           <section className="section-band section--deep border-b border-hairline">
             <div className="container-editorial">
-              <Link href="/guides" className="link-back">
-                {labels.backToGuides}
-              </Link>
+              <Breadcrumbs
+                locale={locale}
+                items={[
+                  { name: guidesLabel, path: "/guides" },
+                  { name: content.h1, path: `/guides/${guide.slug}` },
+                ]}
+              />
               <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_320px] lg:items-start">
                 <Reveal className="max-w-3xl">
                   <span className="section-label">{labels.guidesTitle}</span>

@@ -48,6 +48,7 @@ const ruOnlyRoutes = [
   { path: "/academy", priority: 0.65, changeFrequency: "monthly" as const, lastModified: UPDATED.core },
   { path: "/news", priority: 0.6, changeFrequency: "daily" as const, lastModified: UPDATED.core },
   { path: "/events", priority: 0.55, changeFrequency: "weekly" as const, lastModified: UPDATED.core },
+  { path: "/outages", priority: 0.4, changeFrequency: "weekly" as const, lastModified: UPDATED.core },
 ];
 
 function pushLocalized(
@@ -111,19 +112,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   for (const item of PORTFOLIO) {
-    entries.push({
-      url: `${SITE_URL}/portfolio/${item.slug}`,
-      lastModified: UPDATED.portfolio,
-      changeFrequency: "monthly",
-      priority: item.featured ? 0.8 : 0.6,
-      alternates: {
-        languages: {
-          ru: `${SITE_URL}/portfolio/${item.slug}`,
-          en: `${SITE_URL}/en/portfolio/${item.slug}`,
-          "x-default": `${SITE_URL}/portfolio/${item.slug}`,
-        },
-      },
-    });
+    pushLocalized(entries, `/portfolio/${item.slug}`, UPDATED.portfolio, "monthly", item.featured ? 0.8 : 0.6);
   }
 
   for (const page of LANDING_PAGES) {

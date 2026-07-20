@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
 import { ContactForm } from "@/components/ContactForm";
 import { ContactCta } from "@/components/ContactCta";
@@ -18,7 +19,6 @@ import {
 } from "@/lib/seo-catalog";
 import { PROFILE, getPortfolioItem } from "@/lib/profile";
 import {
-  breadcrumbJsonLd,
   faqJsonLd,
   organizationJsonLd,
   personJsonLd,
@@ -81,15 +81,8 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
   const prefix = locale === "en" ? "/en" : "";
   const pagePath = `${prefix}/${page.category}/${page.slug}`;
   const pageUrl = absoluteUrl(pagePath);
-  const homeLabel = locale === "en" ? "Home" : "Главная";
   const categoryLabel = CATEGORY_LABELS[page.category]?.[loc] ?? page.category;
   const faqItems = extended?.faq ?? content.faq ?? [];
-
-  const breadcrumb = breadcrumbJsonLd([
-    { name: homeLabel, url: absoluteUrl(prefix || "/") },
-    { name: categoryLabel, url: absoluteUrl(`${prefix}/${page.category}`) },
-    { name: content.h1, url: pageUrl },
-  ]);
 
   const webPage = webPageJsonLd({
     name: content.h1,
@@ -125,7 +118,6 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
 
   return (
     <div className="page-shell min-h-screen">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPage) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} />
@@ -137,9 +129,13 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
       <main>
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial">
-            <Link href="/" className="link-back">
-              {t("common.backHome")}
-            </Link>
+            <Breadcrumbs
+              locale={locale}
+              items={[
+                { name: categoryLabel, path: `/${page.category}` },
+                { name: content.h1, path: `/${page.category}/${page.slug}` },
+              ]}
+            />
             <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_360px] lg:items-start">
               <Reveal className="max-w-4xl">
                 <span className="section-label">{content.eyebrow}</span>

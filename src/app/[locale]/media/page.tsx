@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { FounderCredibilitySection } from "@/components/FounderCredibilitySection";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { Reveal } from "@/components/motion/Reveal";
-import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import {
   YANDEX_PROOF_URL,
@@ -12,6 +12,7 @@ import {
   getCredibilityItems,
   getMediaDossierSections,
 } from "@/lib/media";
+import { buildPageMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 import { ArrowRight } from "lucide-react";
 
@@ -24,19 +25,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "pages.media" });
-  const path = locale === "en" ? "/en/media" : "/media";
-  return {
+  return buildPageMetadata({
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: {
-      canonical: absoluteUrl(path),
-      languages: {
-        ru: absoluteUrl("/media"),
-        en: absoluteUrl("/en/media"),
-        "x-default": absoluteUrl("/media"),
-      },
-    },
-  };
+    path: "/media",
+    locale,
+  });
 }
 
 export default async function MediaPage({ params }: Props) {
@@ -60,9 +54,10 @@ export default async function MediaPage({ params }: Props) {
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial max-w-3xl">
             <Reveal>
-              <Link href="/" className="link-back">
-                {locale === "en" ? "Home" : "На главную"}
-              </Link>
+              <Breadcrumbs
+                locale={locale}
+                items={[{ name: locale === "en" ? "Media" : "СМИ", path: "/media" }]}
+              />
             </Reveal>
           </div>
         </section>

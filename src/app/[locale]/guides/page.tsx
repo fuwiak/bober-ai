@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { Reveal } from "@/components/motion/Reveal";
 import { Link } from "@/i18n/navigation";
@@ -41,10 +42,11 @@ export default async function GuidesIndexPage({ params }: PageProps) {
       <main>
         <section className="section-band section--deep">
           <div className="container-editorial">
-            <Link href="/" className="link-back">
-              {isEn ? "Home" : "На главную"}
-            </Link>
-            <Reveal className="mt-8 max-w-3xl">
+            <Breadcrumbs
+              locale={locale}
+              items={[{ name: isEn ? "Guides" : "Гайды", path: "/guides" }]}
+            />
+            <Reveal className="mt-2 max-w-3xl">
               <span className="section-label">{t("badge")}</span>
               <h1 className="display-md mt-4">{labels.guidesTitle}</h1>
               <p className="body-copy mt-4 text-lg">{labels.guidesSubtitle}</p>

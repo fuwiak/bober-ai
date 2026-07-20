@@ -1,10 +1,11 @@
 import Image from "next/image";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { ContactForm } from "@/components/ContactForm";
 import { Reveal } from "@/components/motion/Reveal";
 import { Link } from "@/i18n/navigation";
 import type { HubDef } from "@/lib/seo-catalog/types";
-import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
+import { webPageJsonLd } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 
 type SeoHubPageProps = {
@@ -18,12 +19,7 @@ export function SeoHubPage({ hub, locale }: SeoHubPageProps) {
   const prefix = locale === "en" ? "/en" : "";
   const pagePath = `${prefix}/${hub.category}`;
   const pageUrl = absoluteUrl(pagePath);
-  const homeLabel = loc === "en" ? "Home" : "Главная";
 
-  const breadcrumb = breadcrumbJsonLd([
-    { name: homeLabel, url: absoluteUrl(prefix || "/") },
-    { name: copy.h1, url: pageUrl },
-  ]);
   const webPage = webPageJsonLd({
     name: copy.h1,
     description: copy.metaDescription,
@@ -33,14 +29,17 @@ export function SeoHubPage({ hub, locale }: SeoHubPageProps) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPage) }} />
       <SiteHeader />
       <main>
         <section className="section-band border-b border-hairline">
           <div className="container-editorial grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <Reveal>
-              <p className="eyebrow">{loc === "en" ? "Catalog" : "Каталог"}</p>
+              <Breadcrumbs
+                locale={locale}
+                items={[{ name: copy.h1, path: `/${hub.category}` }]}
+              />
+              <p className="eyebrow mt-2">{loc === "en" ? "Catalog" : "Каталог"}</p>
               <h1 className="mt-3 display-title text-balance">{copy.h1}</h1>
               <p className="mt-4 max-w-2xl text-lg text-muted">{copy.subtitle}</p>
             </Reveal>

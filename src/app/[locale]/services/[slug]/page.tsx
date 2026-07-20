@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { ContactForm } from "@/components/ContactForm";
 import { SeoServicePage } from "@/components/SeoServicePage";
@@ -72,9 +73,13 @@ export default async function ServiceOfferPage({ params }: PageProps) {
       <SiteHeader />
       <main className="section-band">
         <div className="container-editorial">
-          <Link href="/services" className="link-back">
-            {t("back")}
-          </Link>
+          <Breadcrumbs
+            locale={locale}
+            items={[
+              { name: locale === "en" ? "Services" : "Услуги", path: "/services" },
+              { name: offer.title, path: `/services/${offer.slug}` },
+            ]}
+          />
 
           <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_320px]">
             <article>

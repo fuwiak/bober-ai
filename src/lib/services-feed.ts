@@ -1,10 +1,10 @@
-import { CONTACT_EMAIL, CONTACT_PHONE, SITE_DESCRIPTION, SITE_NAME, TELEGRAM_URL } from "@/lib/site";
+import { CONTACT_EMAIL, CONTACT_PHONE, SITE_DESCRIPTION, SITE_NAME, SITE_REGION, SITE_URL, TELEGRAM_URL } from "@/lib/site";
 import { PROFILE } from "@/lib/profile";
 import { getEnterpriseServices } from "@/lib/enterprise-services";
 
 const FEED_CATEGORY_ID = "18";
 const FEED_CATEGORY_PARENT_ID = "1";
-const FEED_SITE_URL = "https://www.bober-ai.dev";
+const FEED_SITE_URL = SITE_URL.replace(/\/$/, "");
 const CONTACT_PHONE_URL = `${FEED_SITE_URL}/tel`;
 
 const FEED_CONVERSION: Record<string, number> = {
@@ -95,7 +95,7 @@ export function getServiceFeedXml(now = new Date()) {
       <param name="Рейтинг">${PROFILE.rating}</param>
       <param name="Число отзывов">${PROFILE.reviewsCount}</param>
       <param name="Годы опыта">${PROFILE.experienceYears}</param>
-      <param name="Регион">Россия</param>
+      <param name="Регион">${SITE_REGION}</param>
       <param name="Конверсия">${conversion}</param>
       ${urlParam("Ссылка на телефон", CONTACT_PHONE_URL)}
       ${urlParam("Ссылка на чат", TELEGRAM_URL)}
