@@ -13,6 +13,7 @@ export async function SiteHeader() {
     { href: "/services" as const, label: t("services") },
     { href: "/portfolio" as const, label: t("portfolio") },
     { href: "/blog" as const, label: t("blog") },
+    { href: "/academy", label: t("academy"), localeAgnostic: true },
     { href: "/pricing" as const, label: t("pricing") },
   ];
 
@@ -36,14 +37,15 @@ export async function SiteFooter() {
   const tNav = await getTranslations("nav");
 
   const sectionLinks = [
-    { href: "/automation" as const, label: tNav("automation") },
-    { href: "/services" as const, label: tNav("services") },
-    { href: "/portfolio" as const, label: tNav("portfolio") },
-    { href: "/pricing" as const, label: tNav("pricing") },
-    { href: "/blog" as const, label: tNav("blog") },
-    { href: "/guides" as const, label: tNav("guides") },
-    { href: "/faq" as const, label: tNav("faq") },
-    { href: "/#contact" as const, label: tNav("contact") },
+    { href: "/automation" as const, label: tNav("automation"), localeAgnostic: false },
+    { href: "/services" as const, label: tNav("services"), localeAgnostic: false },
+    { href: "/portfolio" as const, label: tNav("portfolio"), localeAgnostic: false },
+    { href: "/pricing" as const, label: tNav("pricing"), localeAgnostic: false },
+    { href: "/blog" as const, label: tNav("blog"), localeAgnostic: false },
+    { href: "/academy", label: tNav("academy"), localeAgnostic: true },
+    { href: "/guides" as const, label: tNav("guides"), localeAgnostic: false },
+    { href: "/faq" as const, label: tNav("faq"), localeAgnostic: false },
+    { href: "/#contact" as const, label: tNav("contact"), localeAgnostic: false },
   ];
 
   return (
@@ -54,11 +56,17 @@ export async function SiteFooter() {
         </div>
         <p className="meta-label text-on-dark-soft">{t("sectionsTitle")}</p>
         <nav className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm" aria-label={t("sectionsTitle")}>
-          {sectionLinks.map((item) => (
-            <Link key={item.href} href={item.href} className="text-on-dark active:opacity-75">
-              {item.label}
-            </Link>
-          ))}
+          {sectionLinks.map((item) =>
+            item.localeAgnostic ? (
+              <NextLink key={item.href} href={item.href} className="text-on-dark active:opacity-75">
+                {item.label}
+              </NextLink>
+            ) : (
+              <Link key={item.href} href={item.href as "/"} className="text-on-dark active:opacity-75">
+                {item.label}
+              </Link>
+            ),
+          )}
         </nav>
         <p className="mt-8 text-sm">
           <span className="text-on-dark">{t("legalName")}</span>

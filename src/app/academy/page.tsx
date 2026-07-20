@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BareIntlShell } from "@/components/BareIntlShell";
+import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { ACADEMY_POSTS } from "@/lib/academy-posts";
 import { DEFAULT_KEYWORDS, SITE_NAME, absoluteUrl } from "@/lib/site";
 
@@ -45,63 +47,57 @@ export default function AcademyIndexPage() {
   };
 
   return (
-    <main className="min-h-screen bg-background px-6 py-16 md:py-24">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }} />
-      <div className="mx-auto max-w-5xl">
-        <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
-          <div className="max-w-2xl">
-            <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">
-              Блог практикума
-            </span>
-            <h1 className="mt-2 text-3xl md:text-4xl font-bold tracking-tight">Yaga · Yandex CLI</h1>
-            <p className="mt-3 text-on-surface-variant">
-              Отдельные туториалы по фактам из{" "}
-              <code className="rounded bg-surface-container-low px-1.5 py-0.5 text-sm">cli/yaga</code>
-              . Не официальная программа Яндекса — внутренний практикум Bober AI.
-            </p>
-          </div>
-          <Link
-            href="/"
-            className="rounded-xl border border-outline-variant/30 bg-surface-container-low px-4 py-2 text-sm font-bold uppercase tracking-widest text-on-surface transition hover:bg-surface-container"
-          >
-            На главную
-          </Link>
-        </div>
+    <BareIntlShell>
+      <div className="page-shell min-h-screen">
+        <SiteHeader />
+        <main>
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }} />
+          <section className="section-band section--deep border-b border-hairline">
+            <div className="container-editorial max-w-5xl">
+              <span className="section-label">Блог практикума</span>
+              <h1 className="display-md mt-4">Yaga · Yandex CLI</h1>
+              <p className="body-copy mt-4 max-w-2xl text-lg">
+                Отдельные туториалы по фактам из{" "}
+                <code className="rounded bg-surface-soft px-1.5 py-0.5 text-sm">cli/yaga</code>
+                . Не официальная программа Яндекса — внутренний практикум Bober AI.
+              </p>
+            </div>
+          </section>
 
-        <div className="grid gap-5">
-          {ACADEMY_POSTS.map((post, index) => (
-            <Link
-              key={post.slug}
-              href={`/academy/${post.slug}`}
-              className="group block rounded-3xl border border-outline-variant/20 bg-surface-container-lowest p-6 md:p-7 transition hover:border-primary/40 hover:bg-surface-container-low"
-            >
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-bold uppercase tracking-widest text-on-surface-variant">
-                <span className="text-primary">{String(index + 1).padStart(2, "0")}</span>
-                <time dateTime={post.publishedAt}>{dateFormatter.format(new Date(post.publishedAt))}</time>
-                <span>·</span>
-                <span>{post.readingTime}</span>
-              </div>
-              <h2 className="mt-3 text-xl md:text-2xl font-bold text-on-surface group-hover:text-primary transition">
-                {post.title}
-              </h2>
-              <p className="mt-2 text-sm md:text-base text-on-surface-variant">{post.summary}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {post.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-outline-variant/30 px-2.5 py-1 text-[11px] font-bold uppercase tracking-widest text-on-surface-variant"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <span className="mt-5 inline-block text-sm font-bold uppercase tracking-widest text-primary">
-                Читать →
-              </span>
-            </Link>
-          ))}
-        </div>
+          <section className="section-band section--panel">
+            <div className="container-editorial max-w-5xl grid gap-5">
+              {ACADEMY_POSTS.map((post, index) => (
+                <Link
+                  key={post.slug}
+                  href={`/academy/${post.slug}`}
+                  className="group block rounded-2xl border border-hairline bg-canvas p-6 md:p-7 transition hover:border-primary/40"
+                >
+                  <div className="meta-label flex flex-wrap items-center gap-x-3 gap-y-1 text-muted">
+                    <span className="text-primary">{String(index + 1).padStart(2, "0")}</span>
+                    <time dateTime={post.publishedAt}>{dateFormatter.format(new Date(post.publishedAt))}</time>
+                    <span>·</span>
+                    <span>{post.readingTime}</span>
+                  </div>
+                  <h2 className="card-title mt-3 text-2xl group-hover:text-primary transition">{post.title}</h2>
+                  <p className="body-copy mt-2 text-base">{post.summary}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {post.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-hairline px-2.5 py-1 text-[11px] font-bold uppercase tracking-widest text-muted"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <span className="link-more mt-5">Читать</span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        </main>
+        <SiteFooter />
       </div>
-    </main>
+    </BareIntlShell>
   );
 }

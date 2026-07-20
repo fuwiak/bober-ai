@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import NextLink from "next/link";
 import { Menu, X } from "lucide-react";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -11,6 +12,8 @@ import { CONTACT_PHONE, TELEGRAM_URL } from "@/lib/site";
 type NavItem = {
   href: string;
   label: string;
+  /** RU-only routes like /academy — do not prefix /en */
+  localeAgnostic?: boolean;
 };
 
 type SiteHeaderClientProps = {
@@ -77,11 +80,17 @@ export function SiteHeaderClient({
           </Link>
 
           <nav className="hidden items-center gap-6 lg:flex" aria-label="Main">
-            {navItems.map((item) => (
-              <Link key={item.href} href={item.href as "/"} className="nav-link whitespace-nowrap">
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) =>
+              item.localeAgnostic ? (
+                <NextLink key={item.href} href={item.href} className="nav-link whitespace-nowrap">
+                  {item.label}
+                </NextLink>
+              ) : (
+                <Link key={item.href} href={item.href as "/"} className="nav-link whitespace-nowrap">
+                  {item.label}
+                </Link>
+              ),
+            )}
           </nav>
         </div>
 
@@ -134,9 +143,15 @@ export function SiteHeaderClient({
           <ul className="mobile-menu__links">
             {navItems.map((item) => (
               <li key={item.href}>
-                <Link href={item.href as "/"} className="mobile-menu__link" onClick={closeMenu}>
-                  {item.label}
-                </Link>
+                {item.localeAgnostic ? (
+                  <NextLink href={item.href} className="mobile-menu__link" onClick={closeMenu}>
+                    {item.label}
+                  </NextLink>
+                ) : (
+                  <Link href={item.href as "/"} className="mobile-menu__link" onClick={closeMenu}>
+                    {item.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

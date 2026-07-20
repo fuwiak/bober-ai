@@ -31,6 +31,7 @@ const en = {
     pricing: "Pricing",
     guides: "Guides",
     blog: "Blog",
+    academy: "Academy",
     partners: "Partners",
     process: "Process",
     about: "About",

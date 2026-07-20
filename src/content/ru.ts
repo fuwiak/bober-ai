@@ -37,6 +37,7 @@ const ru = {
     pricing: "Стоимость",
     guides: "Гайды",
     blog: "Блог",
+    academy: "Практикум",
     partners: "Партнёрам",
     process: "Процесс",
     about: "О мне",
