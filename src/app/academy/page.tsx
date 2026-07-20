@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { DEFAULT_KEYWORDS, ORGANIZATION_NAME, SITE_NAME, absoluteUrl } from "@/lib/site";
+import { DEFAULT_KEYWORDS, SITE_NAME, absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Академия Yandex",
+  title: "Практикум Yandex Webmaster и Yaga",
   description:
     `Практические туториалы ${SITE_NAME} по Yandex API и CLI yaga: OAuth, Вебмастер, Метрика, SEO-чеклист.`,
   keywords: [
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "Yandex Webmaster",
     "Yandex Metrika",
     "yaga CLI",
-    "Yandex Academy",
+    "переобход страниц",
   ],
   alternates: {
     canonical: absoluteUrl("/academy"),
@@ -35,7 +35,7 @@ const tutorials: Tutorial[] = [
     summary:
       "yaga — модульный Yandex CLI (Go + Bubble Tea). Каждый сервис Яндекса — отдельный brick: webmaster, metrika, cloud, gpt и другие.",
     steps: [
-      "В корне репозитория выполните npm run yaga:install — бинарь попадёт в ~/bin/yaga.",
+      "Установите Go 1.22 или новее, затем в корне клонированного репозитория выполните npm run yaga:install — команда соберёт бинарь и создаст запускатель в ~/bin/yaga.",
       "Запустите yaga без аргументов: откроется TUI с вкладками Bricks, Creds, Doctor, Output, Help.",
       "Проверьте окружение: yaga doctor — покажет наличие токенов и внешних бинарей (yc, yandex-disk и т.д.).",
       "Список bricks: yaga bricks. Спрятать owner-bricks для чужого окружения: yaga profile public.",
@@ -59,7 +59,7 @@ const tutorials: Tutorial[] = [
       "yaga webmaster oauth",
       "yaga webmaster status",
     ],
-    note: "Секреты хранятся в ~/.config/yaga/credentials.env и не коммитятся в репозиторий.",
+    note: "Секреты хранятся в ~/.config/yaga/credentials.env с правами файла 0600. Не добавляйте этот файл, token или Client Secret в Git и скриншоты.",
   },
   {
     id: "webmaster-seo",
@@ -69,33 +69,35 @@ const tutorials: Tutorial[] = [
     steps: [
       "Снимок Вебмастер + Метрика: yaga webmaster status (алиас: yaga wm status).",
       "Чеклист позиций: yaga webmaster seo — ИКС, диагностика, индекс, запросы.",
-      "Переобход конкретной страницы: yaga webmaster recrawl https://example.com/path.",
+      "Перед переобходом проверьте дневную квоту: yaga webmaster recrawl --quota.",
       "Фид исполнителей и зеркала: yaga webmaster feed · yaga webmaster mirrors.",
     ],
     commands: [
       "yaga webmaster status",
       "yaga webmaster seo",
+      "yaga webmaster recrawl --quota",
       "yaga webmaster recrawl https://www.bober-ai.dev/",
       "yaga webmaster feed",
     ],
+    note: "Отчёт читает данные API и не меняет настройки сайта. Отсутствие критических ошибок не гарантирует индексацию или высокую позицию.",
   },
   {
-    id: "metrika-cloud",
-    title: "Метрика, Cloud и профили bricks",
+    id: "recrawl",
+    title: "Безопасный переобход изменённой страницы",
     summary:
-      "Public-bricks доступны всем; Direct, GPT, AI Studio и Wordstat — owner. Профиль и config.json управляют видимостью.",
+      "Переобход сообщает роботу о новой или заметно обновлённой странице, но не гарантирует её индексацию или рост позиции.",
     steps: [
-      "Метрика: yaga metrika status · yaga metrika counter · yaga metrika ytm.",
-      "ID счётчика: NEXT_PUBLIC_YANDEX_METRIKA_ID (список счётчиков на metrika.yandex.ru).",
-      "Yandex Cloud CLI: yaga cloud <yc-args…> — нужен yc в PATH.",
-      "Config: ~/.config/yaga/config.json · профили owner | public | custom · YAGA_PROFILE=public yaga.",
+      "Сначала убедитесь, что URL возвращает HTTP 200, не закрыт в robots.txt и содержит правильный canonical.",
+      "Проверьте остаток дневного лимита командой yaga webmaster recrawl --quota.",
+      "Передайте полный URL в yaga webmaster recrawl. При успехе CLI выведет task_id и оставшуюся квоту.",
+      "После обработки проверяйте не только обход, но и статус страницы в поиске через Yandex Webmaster.",
     ],
     commands: [
-      "yaga metrika status",
-      "yaga cloud --help",
-      "yaga profile owner",
-      "YAGA_PROFILE=public yaga bricks",
+      "curl -I https://www.bober-ai.dev/academy",
+      "yaga webmaster recrawl --quota",
+      "yaga webmaster recrawl https://www.bober-ai.dev/academy",
     ],
+    note: "Квота возвращается самим Webmaster API и может отличаться между сайтами. Отправка URL не задаёт срок появления страницы в поиске.",
   },
 ];
 
@@ -105,30 +107,23 @@ export default function AcademyPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: SITE_NAME, item: absoluteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Академия Yandex", item: absoluteUrl("/academy") },
+      { "@type": "ListItem", position: 2, name: "Практикум Yaga", item: absoluteUrl("/academy") },
     ],
   };
 
   const educationJsonLd = {
     "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    name: `${SITE_NAME} Academy`,
-    parentOrganization: {
-      "@type": "Organization",
-      name: ORGANIZATION_NAME,
-    },
+    "@type": "CollectionPage",
+    name: "Практикум Yandex Webmaster и Yaga",
     url: absoluteUrl("/academy"),
     description:
       "Практические туториалы по Yandex API и CLI yaga: установка, OAuth, Вебмастер, Метрика и SEO-чеклист.",
-    hasCourse: tutorials.map((tutorial) => ({
-      "@type": "Course",
+    isPartOf: { "@type": "WebSite", name: SITE_NAME, url: absoluteUrl("/") },
+    hasPart: tutorials.map((tutorial) => ({
+      "@type": "HowTo",
       name: tutorial.title,
       description: tutorial.summary,
-      provider: {
-        "@type": "Organization",
-        name: SITE_NAME,
-        sameAs: absoluteUrl("/"),
-      },
+      url: absoluteUrl(`/academy#${tutorial.id}`),
     })),
   };
 
@@ -148,12 +143,15 @@ export default function AcademyPage() {
             <span className="text-primary font-bold uppercase tracking-widest text-xs font-body">
               Обучение и практика
             </span>
-            <h1 className="mt-2 text-3xl md:text-4xl font-bold tracking-tight">Академия Yandex</h1>
+            <h1 className="mt-2 text-3xl md:text-4xl font-bold tracking-tight">Практикум Yandex Webmaster и Yaga</h1>
             <p className="mt-3 max-w-2xl text-on-surface-variant">
               Практические туториалы по работе с сервисами Яндекса через CLI{" "}
               <code className="rounded bg-surface-container-low px-1.5 py-0.5 text-sm">yaga</code>
-              : установка, OAuth, Вебмастер, Метрика и SEO-чеклист. Команды соответствуют{" "}
+              : установка, OAuth, аудит индексации и переобход страниц. Команды соответствуют{" "}
               <code className="rounded bg-surface-container-low px-1.5 py-0.5 text-sm">cli/yaga</code>.
+            </p>
+            <p className="mt-3 max-w-2xl text-sm text-on-surface-variant">
+              Yaga — CLI проекта Bober AI. Этот раздел не является официальной образовательной программой Яндекса.
             </p>
           </div>
           <Link
@@ -212,8 +210,12 @@ export default function AcademyPage() {
           Подробнее в репозитории:{" "}
           <code className="rounded bg-surface-container-low px-1.5 py-0.5">cli/yaga/README.md</code>
           {" · "}
-          установка без clone:{" "}
-          <code className="rounded bg-surface-container-low px-1.5 py-0.5">npm run yaga:install</code>
+          официальные источники:{" "}
+          <a href="https://yandex.com/dev/webmaster/doc/en/tasks/how-to-get-oauth" target="_blank" rel="noreferrer" className="text-primary underline underline-offset-4">OAuth</a>
+          {" · "}
+          <a href="https://yandex.com/support/webmaster/en/service/site-indexing" target="_blank" rel="noreferrer" className="text-primary underline underline-offset-4">статистика обхода</a>
+          {" · "}
+          <a href="https://yandex.com/dev/webmaster/doc/en/reference/host-recrawl-quota-get" target="_blank" rel="noreferrer" className="text-primary underline underline-offset-4">квота переобхода</a>
         </p>
       </div>
     </main>
