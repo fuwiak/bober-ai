@@ -1870,3 +1870,92 @@ html.dark {
     transform: translateY(0);
   }
 }
+
+/* Academy / shell syntax highlighting */
+.shell-code {
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, #5eead4 18%, var(--color-hairline));
+  border-radius: 1rem;
+  background:
+    radial-gradient(120% 80% at 0% 0%, color-mix(in srgb, #5eead4 10%, transparent), transparent 55%),
+    radial-gradient(90% 70% at 100% 0%, color-mix(in srgb, #fbbf24 8%, transparent), transparent 50%),
+    #0a0c0f;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.shell-code__chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0.7rem 1rem;
+}
+
+.shell-code__dots {
+  display: inline-flex;
+  gap: 0.35rem;
+}
+
+.shell-code__dots i {
+  display: block;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: #3f3f46;
+}
+
+.shell-code__dots i:nth-child(1) { background: #f87171; }
+.shell-code__dots i:nth-child(2) { background: #fbbf24; }
+.shell-code__dots i:nth-child(3) { background: #34d399; }
+
+.shell-code__label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.shell-code__pre {
+  margin: 0;
+  overflow-x: auto;
+  padding: 1rem 0.75rem 1.15rem;
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  line-height: 1.7;
+  color: #e2e8f0;
+}
+
+.shell-code__line {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  gap: 0.75rem;
+  min-width: max-content;
+}
+
+.shell-code__gutter {
+  user-select: none;
+  text-align: right;
+  color: #475569;
+}
+
+.shell-code__content {
+  white-space: pre;
+}
+
+.tok--comment { color: #64748b; font-style: italic; }
+.tok--command { color: #5eead4; font-weight: 600; }
+.tok--subcommand { color: #7dd3fc; }
+.tok--flag { color: #fbbf24; }
+.tok--string { color: #86efac; }
+.tok--url { color: #93c5fd; text-decoration: underline; text-underline-offset: 0.18em; }
+.tok--path { color: #a5b4fc; }
+.tok--placeholder { color: #fb7185; }
+.tok--env { color: #fde68a; }
+.tok--operator { color: #94a3b8; }
+
+html:not(.dark) .shell-code {
+  background:
+    radial-gradient(120% 80% at 0% 0%, color-mix(in srgb, #0f766e 8%, transparent), transparent 55%),
+    #0f172a;
+}

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { ACADEMY_POSTS } from "@/lib/academy-posts";
 import { BLOG_POSTS } from "@/lib/blog-posts";
 import { PORTFOLIO } from "@/lib/profile";
 import { getAllServiceSlugs } from "@/lib/seo-services-content";
@@ -22,6 +23,7 @@ const UPDATED = {
   hubs: new Date("2026-07-19"),
   guides: new Date("2026-07-14"),
   blog: new Date("2026-07-19"),
+  academy: new Date("2026-07-20"),
   portfolio: new Date("2026-07-14"),
   legal: new Date("2026-07-16"),
 } as const;
@@ -45,7 +47,7 @@ const staticRoutes = [
 /** RU-only pages outside [locale] (no /en mirror). */
 const ruOnlyRoutes = [
   { path: "/career", priority: 0.7, changeFrequency: "monthly" as const, lastModified: UPDATED.core },
-  { path: "/academy", priority: 0.65, changeFrequency: "monthly" as const, lastModified: UPDATED.core },
+  { path: "/academy", priority: 0.7, changeFrequency: "weekly" as const, lastModified: UPDATED.academy },
   { path: "/news", priority: 0.6, changeFrequency: "daily" as const, lastModified: UPDATED.core },
   { path: "/events", priority: 0.55, changeFrequency: "weekly" as const, lastModified: UPDATED.core },
   { path: "/outages", priority: 0.4, changeFrequency: "weekly" as const, lastModified: UPDATED.core },
@@ -134,6 +136,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: UPDATED.blog,
       changeFrequency: "yearly",
       priority: 0.6,
+    });
+  }
+
+  for (const post of ACADEMY_POSTS) {
+    entries.push({
+      url: `${SITE_URL}/academy/${post.slug}`,
+      lastModified: UPDATED.academy,
+      changeFrequency: "monthly",
+      priority: 0.68,
     });
   }
 
