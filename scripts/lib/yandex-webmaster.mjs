@@ -1,4 +1,7 @@
 import fetch from "./fetch.mjs";
+import { applyYagaCredentials } from "./yaga-credentials.mjs";
+
+applyYagaCredentials();
 
 export const WEBMASTER_API = "https://api.webmaster.yandex.net/v4";
 
@@ -207,8 +210,13 @@ export async function waitForFeedReload(token, userId, hostId, feedUrl, config) 
 export async function resolveHostContext(overrides = {}) {
   const config = getConfig(overrides);
   if (!config.token) {
+    const hasApp =
+      process.env.YANDEX_WEBMASTER_CLIENT_ID?.trim() ||
+      process.env.YANDEX_WEBMASTER_CLIENT_SECRET?.trim();
     throw new Error(
-      "Нет OAuth-токена. Задайте YANDEX_WEBMASTER_OAUTH_TOKEN или YANDEX_OAUTH_TOKEN (yaga credentials).",
+      hasApp
+        ? "Есть ClientID/secret, но нет access token (это разные вещи). Один раз: yaga webmaster oauth"
+        : "Нет OAuth-токена. Задайте YANDEX_WEBMASTER_OAUTH_TOKEN или: yaga webmaster oauth",
     );
   }
   const userId = await getUserId(config.token);

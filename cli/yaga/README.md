@@ -16,6 +16,7 @@ npm run yaga:install
 ```bash
 yaga                         # TUI
 yaga webmaster status
+yaga webmaster oauth         # ClientID/secret → access token (один раз)
 yaga webmaster seo           # ИКС, диагностика, индекс, важные URL, запросы
 yaga webmaster recrawl URL   # переобход страницы
 yaga metrika status
@@ -28,6 +29,9 @@ yaga credentials             # список секретов + URL UI Яндек
 yaga credentials set KEY val
 yaga credentials open YANDEX_WEBMASTER_OAUTH_TOKEN
 ```
+
+> **OAuth:** ClientID + Client secret ≠ access token. После сохранения secret:
+> `yaga webmaster oauth` → браузер → code → token в `~/.config/yaga/credentials.env`.
 
 ### TUI
 

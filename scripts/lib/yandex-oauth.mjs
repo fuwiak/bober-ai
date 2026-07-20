@@ -3,14 +3,19 @@ import fetch from "./fetch.mjs";
 const TOKEN_URL = "https://oauth.yandex.ru/token";
 const INFO_URL = "https://login.yandex.ru/info";
 
+/** Default OAuth app for Webmaster / Metrika (bober-ai). */
+export const DEFAULT_WEBMASTER_CLIENT_ID = "f2e2f11ae7e3492886ad61a6e45a4c5c";
+export const DEFAULT_REDIRECT_URI = "https://oauth.yandex.ru/verification_code";
+
 export function getDirectOAuthConfig(overrides = {}) {
   return {
+    kind: "direct",
     clientId: (overrides.clientId || process.env.YANDEX_DIRECT_CLIENT_ID || "").trim(),
     clientSecret: (overrides.clientSecret || process.env.YANDEX_DIRECT_CLIENT_SECRET || "").trim(),
     redirectUri: (
       overrides.redirectUri ||
       process.env.YANDEX_DIRECT_REDIRECT_URI ||
-      "https://oauth.yandex.ru/verification_code"
+      DEFAULT_REDIRECT_URI
     ).trim(),
     accessToken: (overrides.accessToken || process.env.YANDEX_DIRECT_OAUTH_TOKEN || "").trim(),
     refreshToken: (overrides.refreshToken || process.env.YANDEX_DIRECT_REFRESH_TOKEN || "").trim(),
@@ -18,9 +23,52 @@ export function getDirectOAuthConfig(overrides = {}) {
   };
 }
 
+export function getWebmasterOAuthConfig(overrides = {}) {
+  return {
+    kind: "webmaster",
+    clientId: (
+      overrides.clientId ||
+      process.env.YANDEX_WEBMASTER_CLIENT_ID ||
+      DEFAULT_WEBMASTER_CLIENT_ID
+    ).trim(),
+    clientSecret: (
+      overrides.clientSecret ||
+      process.env.YANDEX_WEBMASTER_CLIENT_SECRET ||
+      ""
+    ).trim(),
+    redirectUri: (
+      overrides.redirectUri ||
+      process.env.YANDEX_WEBMASTER_REDIRECT_URI ||
+      DEFAULT_REDIRECT_URI
+    ).trim(),
+    accessToken: (
+      overrides.accessToken ||
+      process.env.YANDEX_WEBMASTER_OAUTH_TOKEN ||
+      process.env.YANDEX_OAUTH_TOKEN ||
+      ""
+    ).trim(),
+    refreshToken: (
+      overrides.refreshToken ||
+      process.env.YANDEX_WEBMASTER_REFRESH_TOKEN ||
+      ""
+    ).trim(),
+    expiresAt: Number(overrides.expiresAt || process.env.YANDEX_WEBMASTER_TOKEN_EXPIRES_AT || 0),
+  };
+}
+
+function clientIdEnvName(config) {
+  return config.kind === "webmaster" ? "YANDEX_WEBMASTER_CLIENT_ID" : "YANDEX_DIRECT_CLIENT_ID";
+}
+
+function clientSecretEnvName(config) {
+  return config.kind === "webmaster"
+    ? "YANDEX_WEBMASTER_CLIENT_SECRET"
+    : "YANDEX_DIRECT_CLIENT_SECRET";
+}
+
 export function getAuthorizeUrl(config, { responseType = "code" } = {}) {
   if (!config.clientId) {
-    throw new Error("YANDEX_DIRECT_CLIENT_ID не задан");
+    throw new Error(`${clientIdEnvName(config)} не задан`);
   }
 
   const params = new URLSearchParams({
@@ -41,7 +89,7 @@ function basicAuthHeader(clientId, clientSecret) {
 
 async function requestToken(config, body) {
   if (!config.clientId || !config.clientSecret) {
-    throw new Error("Нужны YANDEX_DIRECT_CLIENT_ID и YANDEX_DIRECT_CLIENT_SECRET");
+    throw new Error(`Нужны ${clientIdEnvName(config)} и ${clientSecretEnvName(config)}`);
   }
 
   const response = await fetch(TOKEN_URL, {
@@ -94,7 +142,11 @@ export async function exchangeCode(config, code) {
 
 export async function refreshAccessToken(config) {
   if (!config.refreshToken) {
-    throw new Error("YANDEX_DIRECT_REFRESH_TOKEN не задан — нужен одноразовый bootstrap через authorization code");
+    throw new Error(
+      config.kind === "webmaster"
+        ? "YANDEX_WEBMASTER_REFRESH_TOKEN не задан — один раз: yaga webmaster oauth"
+        : "YANDEX_DIRECT_REFRESH_TOKEN не задан — нужен одноразовый bootstrap через authorization code",
+    );
   }
 
   const payload = await requestToken(config, {
@@ -155,6 +207,30 @@ export async function getValidDirectToken(config, { refreshSkewMs = 60_000, onRe
   return current.accessToken;
 }
 
+export async function getValidWebmasterToken(config, { refreshSkewMs = 60_000, onRefresh } = {}) {
+  let current = { ...config };
+
+  if (current.refreshToken && (!current.accessToken || isTokenExpired(current, refreshSkewMs))) {
+    const refreshed = await refreshAccessToken(current);
+    current = {
+      ...current,
+      accessToken: refreshed.accessToken || current.accessToken,
+      refreshToken: refreshed.refreshToken || current.refreshToken,
+      expiresAt: Number(refreshed.expiresAt || 0),
+    };
+    if (onRefresh) await onRefresh(refreshed);
+  }
+
+  if (!current.accessToken) {
+    throw new Error(
+      "Нет OAuth-токена. ClientID/secret — не токен. Один раз: yaga webmaster oauth",
+    );
+  }
+
+  await getTokenInfo(current.accessToken);
+  return current.accessToken;
+}
+
 export function railwayVarsFromTokenBundle(bundle) {
   const vars = {
     YANDEX_DIRECT_OAUTH_TOKEN: bundle.accessToken,
@@ -163,5 +239,17 @@ export function railwayVarsFromTokenBundle(bundle) {
   if (bundle.refreshToken) vars.YANDEX_DIRECT_REFRESH_TOKEN = bundle.refreshToken;
   if (bundle.expiresAt) vars.YANDEX_DIRECT_TOKEN_EXPIRES_AT = bundle.expiresAt;
 
+  return vars;
+}
+
+export function webmasterCredentialVarsFromBundle(bundle, { clientId, clientSecret } = {}) {
+  const vars = {
+    YANDEX_WEBMASTER_OAUTH_TOKEN: bundle.accessToken,
+    YANDEX_OAUTH_TOKEN: bundle.accessToken,
+  };
+  if (bundle.refreshToken) vars.YANDEX_WEBMASTER_REFRESH_TOKEN = bundle.refreshToken;
+  if (bundle.expiresAt) vars.YANDEX_WEBMASTER_TOKEN_EXPIRES_AT = bundle.expiresAt;
+  if (clientId) vars.YANDEX_WEBMASTER_CLIENT_ID = clientId;
+  if (clientSecret) vars.YANDEX_WEBMASTER_CLIENT_SECRET = clientSecret;
   return vars;
 }

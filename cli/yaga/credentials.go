@@ -32,10 +32,10 @@ func allCredSpecs() []CredSpec {
 	return []CredSpec{
 		{
 			Key:   "YANDEX_OAUTH_TOKEN",
-			Title: "OAuth (общий / Метрика)",
+			Title: "OAuth access token (общий)",
 			Brick: "metrika",
 			UIURL: "https://oauth.yandex.ru/",
-			How:   "Создай приложение → получи token. Или: https://oauth.yandex.ru/authorize?response_type=token&client_id=<CLIENT_ID>",
+			How:   "Не ClientID/secret. Один раз: yaga webmaster oauth → получишь y0_… token",
 		},
 		{
 			Key:   "YANDEX_METRIKA_OAUTH_TOKEN",
@@ -54,17 +54,33 @@ func allCredSpecs() []CredSpec {
 		},
 		{
 			Key:   "YANDEX_WEBMASTER_OAUTH_TOKEN",
-			Title: "OAuth Вебмастер",
+			Title: "OAuth access token (Вебмастер)",
 			Brick: "webmaster",
-			UIURL: "https://webmaster.yandex.ru/",
-			How:   "Приложение: https://oauth.yandex.ru/client/new · права webmaster:hostinfo, webmaster:verify · Redirect: https://oauth.yandex.ru/verification_code",
+			UIURL: "https://oauth.yandex.ru/",
+			How:   "yaga webmaster oauth · ClientID/secret сами по себе API не открывают",
 		},
 		{
 			Key:   "YANDEX_WEBMASTER_CLIENT_ID",
 			Title: "Client ID приложения (Вебмастер)",
 			Brick: "webmaster",
 			UIURL: "https://oauth.yandex.ru/client/",
-			How:   "oauth.yandex.ru → Мои приложения → ClientID",
+			How:   "oauth.yandex.ru → Мои приложения → ClientID (это не token)",
+			Optional: true,
+		},
+		{
+			Key:   "YANDEX_WEBMASTER_CLIENT_SECRET",
+			Title: "Client secret приложения (Вебмастер)",
+			Brick: "webmaster",
+			UIURL: "https://oauth.yandex.ru/client/",
+			How:   "То же приложение → Client secret · нужен для exchange code→token",
+			Optional: true,
+		},
+		{
+			Key:   "YANDEX_WEBMASTER_REFRESH_TOKEN",
+			Title: "Refresh token (Вебмастер)",
+			Brick: "webmaster",
+			UIURL: "https://oauth.yandex.ru/",
+			How:   "Пишется автоматически после yaga webmaster oauth exchange",
 			Optional: true,
 		},
 		{

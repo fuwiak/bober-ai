@@ -18,6 +18,7 @@
     "webmaster:mirrors": "node scripts/yandex-webmaster-mirrors.mjs",
     "webmaster:seo": "node scripts/yandex-webmaster-seo.mjs",
     "webmaster:recrawl": "node scripts/yandex-webmaster-recrawl.mjs",
+    "webmaster:oauth": "node scripts/yandex-webmaster-oauth.mjs",
     "yandex:status": "node scripts/yandex-status.mjs",
     "yandex:feed:repair": "node scripts/yandex-feed-repair.mjs",
     "yandex360:mailbox": "node scripts/yandex360-mailbox.mjs",

@@ -15,6 +15,7 @@ export default {
   yaga webmaster mirrors    mirror settings
   yaga webmaster repair     feed repair helper
   yaga webmaster recrawl    submit URL for recrawl (or --quota)
+  yaga webmaster oauth      ClientID/secret → access token (browser once)
 `);
       return;
     }
@@ -40,6 +41,10 @@ export default {
     }
     if (sub === "recrawl" || sub === "crawl") {
       await ctx.runScript("yandex-webmaster-recrawl.mjs", rest);
+      return;
+    }
+    if (sub === "oauth" || sub === "login" || sub === "auth") {
+      await ctx.runScript("yandex-webmaster-oauth.mjs", rest);
       return;
     }
     await ctx.runScript("yandex-status.mjs", args);

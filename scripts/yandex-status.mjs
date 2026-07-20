@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 
 import fetch from "./lib/fetch.mjs";
+import { applyYagaCredentials } from "./lib/yaga-credentials.mjs";
+
+applyYagaCredentials();
 
 const WEBMASTER_API = "https://api.webmaster.yandex.net/v4";
 const METRIKA_API = "https://api-metrika.yandex.net/management/v1";
@@ -260,14 +263,16 @@ async function checkMetrikaApi() {
 }
 
 function printTokenHelp() {
-  console.log("OAuth-токен не задан. Для API-проверки:\n");
-  console.log("1. Откройте (права: webmaster:hostinfo, webmaster:verify, metrika:read):");
+  console.log("OAuth-токен не задан (ClientID/secret — не токен).\n");
+  console.log("Один раз:");
+  console.log("  yaga webmaster oauth");
+  console.log("  # или: npm run webmaster:oauth\n");
+  console.log("Вручную (implicit):");
   console.log(
-    `   https://oauth.yandex.ru/authorize?response_type=token&client_id=${config.clientId}`,
+    `  https://oauth.yandex.ru/authorize?response_type=token&client_id=${config.clientId}`,
   );
-  console.log("\n2. Скопируйте токен и запустите:");
-  console.log('   export YANDEX_OAUTH_TOKEN="y0_..."');
-  console.log("   npm run yandex:status\n");
+  console.log('  yaga credentials set YANDEX_OAUTH_TOKEN "y0_..."');
+  console.log("  yaga webmaster status\n");
 }
 
 async function main() {
