@@ -35,7 +35,9 @@
     "ops:health": "go run ./cli health",
     "ops:logs": "go run ./cli logs",
     "ops:build": "go run ./cli build",
-    "ops:install": "bash cli/install.sh"
+    "ops:install": "bash cli/install.sh",
+    "yaga": "node cli/yaga/bin/yaga.js",
+    "yaga:install": "bash cli/yaga/install.sh"
   },
   "dependencies": {
     "lucide-react": "^0.546.0",

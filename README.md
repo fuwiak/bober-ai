@@ -57,7 +57,20 @@ npm run ops:status
 npm run ops
 ```
 
-Env: `BOBER_HOST`, `BOBER_SSH_KEY`, `BOBER_PUBLIC_URL` (дефолт: Selectel `45.80.131.136`, ключ `~/.ssh/bober_selectel`).
+### Yaga — модульный Yandex CLI
+
+**yaga** (Яга): один CLI на сервисы Яндекса, каждый сервис = brick в `cli/yaga/src/bricks/`.
+
+```bash
+npm run yaga:install
+yaga bricks
+yaga profile public    # спрятать owner-bricks (Direct, GPT, …)
+yaga webmaster status
+yaga metrika status
+yaga direct campaigns status
+```
+
+Подробнее: [`cli/yaga/README.md`](cli/yaga/README.md).
 
 ### Docker локально
 
