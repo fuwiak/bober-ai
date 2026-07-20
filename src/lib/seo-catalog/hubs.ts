@@ -1,11 +1,11 @@
-import { DIAGRAM_IMAGES } from "@/lib/site";
+import { DIAGRAM_IMAGES, STOCK_IMAGES } from "@/lib/site";
 import type { HubDef } from "@/lib/seo-catalog/types";
 
 export const SEO_HUBS: HubDef[] = [
   {
     category: "automation",
     contentKey: "hubAutomation",
-    coverImage: DIAGRAM_IMAGES.workflow,
+    coverImage: STOCK_IMAGES.automation,
     children: [
       { href: "/automation/processes", labelRu: "Бизнес-процессы", labelEn: "Business processes", blurbRu: "Главный кластер спроса Wordstat", blurbEn: "Top Wordstat demand cluster" },
       { href: "/automation/documents", labelRu: "Документы", labelEn: "Documents", blurbRu: "Согласование, OCR, шаблоны", blurbEn: "Approvals, OCR, templates" },

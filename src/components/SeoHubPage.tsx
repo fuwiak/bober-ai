@@ -45,7 +45,15 @@ export function SeoHubPage({ hub, locale }: SeoHubPageProps) {
             </Reveal>
             <Reveal>
               <div className="relative aspect-[4/3] overflow-hidden rounded-sm border border-hairline bg-panel">
-                <Image src={hub.coverImage} alt={copy.h1} fill className="object-cover" sizes="(max-width:1024px) 100vw, 40vw" />
+                <Image
+                  src={hub.coverImage}
+                  alt={copy.h1}
+                  fill
+                  className={hub.coverImage.endsWith(".svg") ? "object-contain p-4" : "object-cover"}
+                  sizes="(max-width:1024px) 100vw, 40vw"
+                  priority
+                  unoptimized={hub.coverImage.endsWith(".svg")}
+                />
               </div>
             </Reveal>
           </div>
