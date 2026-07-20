@@ -6,9 +6,9 @@ import { constants as fsConstants } from "node:fs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-/** Repo root (bober-ai), two levels up from cli/yaga/src */
+/** Repo root (bober-ai): cli/yaga/node/src → ../../../.. */
 export function repoRoot() {
-  return resolve(__dirname, "../../..");
+  return resolve(__dirname, "../../../..");
 }
 
 export function yagaRoot() {

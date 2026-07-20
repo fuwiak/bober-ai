@@ -36,7 +36,7 @@
     "ops:logs": "go run ./cli logs",
     "ops:build": "go run ./cli build",
     "ops:install": "bash cli/install.sh",
-    "yaga": "node cli/yaga/bin/yaga.js",
+    "yaga": "go run ./cli/yaga",
     "yaga:install": "bash cli/yaga/install.sh"
   },
   "dependencies": {

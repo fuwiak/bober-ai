@@ -13,3 +13,4 @@ test-results/
 !.env.example
 out/
 cli/bober-ops
+cli/yaga/yaga

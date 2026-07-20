@@ -57,17 +57,16 @@ npm run ops:status
 npm run ops
 ```
 
-### Yaga — модульный Yandex CLI
+### Yaga — модульный Yandex CLI (Go + TUI)
 
-**yaga** (Яга): один CLI на сервисы Яндекса, каждый сервис = brick в `cli/yaga/src/bricks/`.
+**yaga** на том же стеке, что `bober` (Go + Bubble Tea). Сервисы = bricks.
 
 ```bash
 npm run yaga:install
+yaga                 # TUI
 yaga bricks
-yaga profile public    # спрятать owner-bricks (Direct, GPT, …)
+yaga profile public  # спрятать owner-bricks
 yaga webmaster status
-yaga metrika status
-yaga direct campaigns status
 ```
 
 Подробнее: [`cli/yaga/README.md`](cli/yaga/README.md).

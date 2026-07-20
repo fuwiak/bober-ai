@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Launch yaga from anywhere (symlink-safe).
+# Launch yaga (Go) from anywhere.
 set -euo pipefail
 SOURCE="${BASH_SOURCE[0]}"
 while [[ -L "$SOURCE" ]]; do
@@ -8,4 +8,9 @@ while [[ -L "$SOURCE" ]]; do
   if [[ "$LINK" == /* ]]; then SOURCE="$LINK"; else SOURCE="$DIR/$LINK"; fi
 done
 HERE="$(cd "$(dirname "$SOURCE")" && pwd)"
-exec node "$HERE/bin/yaga.js" "$@"
+cd "$HERE"
+export YAGA_REPO="$(cd "$HERE/../.." && pwd)"
+if [[ -x ./yaga ]]; then
+  exec ./yaga "$@"
+fi
+exec go run . "$@"

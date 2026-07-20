@@ -1,80 +1,57 @@
-# yaga
+# yaga (Go + Bubble Tea)
 
-**yaga** (Яга) — модульный CLI для сервисов Яндекса. Каждый сервис = **brick** (klocek) в `src/bricks/*.mjs`: можно добавить, скрыть или выключить без переписывания ядра.
+**yaga** (Яга) — модульный Yandex CLI на том же стеке, что **bober**: Go + Charm Bubble Tea.
 
-## Имя
+Каждый сервис = **brick** (klocek) в `bricks.go` (`allBricks()`). Профили прячут private-функции.
 
-Не `yc` и не «ещё один wrapper» — отдельный слой над API/скриптами bober-ai + passthrough к `yc` / `yandex-disk` / `yandex-ai-studio`.
-
-## Установка
+## Install
 
 ```bash
 npm run yaga:install
-# или: bash cli/yaga/install.sh
+# → ~/bin/yaga
 ```
 
-Дальше из любой директории: `yaga`.
-
-## Профили (ты vs остальные)
-
-| Profile | Что видно |
-|---------|-----------|
-| `owner` (default) | все bricks |
-| `public` | только `visibility: "public"` (metrika, webmaster, cloud, disk, core) |
-| `custom` | списки enable/disable/hide |
+## Usage
 
 ```bash
-yaga profile public          # спрятать Direct / Wordstat / GPT / mail…
-YAGA_PROFILE=public yaga help
-yaga bricks hide direct      # точечно
-yaga bricks list
-```
-
-Конфиг: `~/.config/yaga/config.json` (см. `config.example.json`).
-
-## Bricks
-
-| Brick | Visibility | Что делает |
-|-------|------------|------------|
-| `core` | public | архитектура |
-| `webmaster` | public | status / feed / mirrors |
-| `metrika` | public | status / counter / ytm |
-| `cloud` | public | passthrough → `yc` |
-| `disk` | public | passthrough → `yandex-disk` |
-| `wordstat` | owner | keyword research |
-| `direct` | owner | campaigns + oauth |
-| `mail` | owner | Yandex 360 mailbox |
-| `search` | owner | Cloud Search API |
-| `gpt` | owner | YandexGPT chat |
-| `aistudio` | owner | `yandex-ai-studio` |
-
-## Примеры
-
-```bash
-yaga bricks
-yaga doctor
+yaga                         # TUI
 yaga webmaster status
 yaga metrika status
 yaga direct campaigns status
-yaga wordstat run
-yaga gpt chat "кратко: что такое RAG"
-yaga cloud storage bucket list
+yaga bricks
+yaga profile public          # только public bricks
+yaga bricks hide gpt
+yaga doctor
 ```
 
-## Новый klocek
+### TUI
 
-1. Создай `cli/yaga/src/bricks/foo.mjs`
-2. Экспорт:
+| Tab | |
+|-----|--|
+| 1 Bricks | список klocek, Enter = default |
+| 2 Doctor | токены / binaries |
+| 3 Output | результат |
+| 4 Help | |
 
-```js
-export default {
-  id: "foo",
-  title: "Foo",
-  visibility: "owner", // или "public"
-  async run(ctx, args) {
-    await ctx.runScript("my-script.mjs", args);
-  },
-};
-```
+`Tab` / `←→` · `↑↓` · `Enter` · `q`
 
-3. Готово — `yaga foo` подхватит автоматически.
+## Profiles
+
+| Profile | |
+|---------|--|
+| `owner` | всё (тебе) |
+| `public` | только `visibility: public` |
+| `custom` | enable/disable/hide |
+
+Config: `~/.config/yaga/config.json`
+
+## Добавить brick
+
+В `bricks.go` добавь `Brick{ ID, Visibility, Run: ... }` в `allBricks()`.
+
+Тяжёлая логика API по-прежнему в `scripts/*.mjs` (вызывается из Go). Legacy Node entry: `node/` (только search/gpt helpers).
+
+## Stack
+
+- Go 1.22+
+- bubbletea + lipgloss + bubbles (как bober)
