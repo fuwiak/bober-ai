@@ -2,11 +2,11 @@
 
 import { useCallback, useEffect, useState } from "react";
 import NextLink from "next/link";
-import { Menu, X } from "lucide-react";
+import { motion, LayoutGroup } from "motion/react";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { ContactCta } from "@/components/ContactCta";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { CONTACT_PHONE, TELEGRAM_URL } from "@/lib/site";
 
 type NavItem = {
@@ -28,6 +28,22 @@ type SiteHeaderClientProps = {
   telegramLabel: string;
 };
 
+function isActivePath(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function TelegramIcon() {
+  return (
+    <svg className="site-header__icon" width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path
+        d="M21.5 3.5 2.8 10.8c-1.3.5-1.3 1.2-.2 1.5l4.8 1.5 1.8 5.5c.2.7.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8L22.8 4.7c.3-1.2-.4-1.7-1.3-1.2ZM9.4 14.3l-.3 3.5 1.5-1.4 6.3-5.7c.3-.2.5-.4.2-.6-.2-.2-.5 0-.7.1l-7 4.1Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 export function SiteHeaderClient({
   navItems,
   writeLabel,
@@ -39,15 +55,9 @@ export function SiteHeaderClient({
   callLabel,
   telegramLabel,
 }: SiteHeaderClientProps) {
-  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const [hoveredHref, setHoveredHref] = useState<string | null>(null);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -58,82 +68,129 @@ export function SiteHeaderClient({
 
   useEffect(() => {
     if (!menuOpen) return undefined;
-
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setMenuOpen(false);
     };
-
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [menuOpen]);
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
+  const indicatorHref = hoveredHref ?? navItems.find((item) => isActivePath(pathname, item.href))?.href ?? null;
 
   return (
-    <header
-      className={`site-header ${scrolled ? "site-header--scrolled" : ""} ${menuOpen ? "site-header--menu-open" : ""}`}
-    >
-      <div className="container-editorial flex h-16 items-center justify-between gap-3">
-        <div className="flex min-w-0 items-center gap-4">
-          <Link href="/" className="site-wordmark shrink-0 text-ink">
+    <header className={`site-header${menuOpen ? " site-header--menu-open" : ""}`}>
+      <div className="site-header__bar container-editorial">
+        <div className="site-header__cont">
+          <Link href="/" className="site-wordmark" onClick={closeMenu}>
             {wordmark}
           </Link>
 
-          <nav className="hidden items-center gap-6 lg:flex" aria-label="Main">
-            {navItems.map((item) =>
-              item.localeAgnostic ? (
-                <NextLink key={item.href} href={item.href} className="nav-link whitespace-nowrap">
-                  {item.label}
-                </NextLink>
-              ) : (
-                <Link key={item.href} href={item.href as "/"} className="nav-link whitespace-nowrap">
-                  {item.label}
-                </Link>
-              ),
-            )}
-          </nav>
+          <LayoutGroup id="site-header-nav">
+            <nav className="site-header__nav" aria-label="Main" onMouseLeave={() => setHoveredHref(null)}>
+              {navItems.map((item) => {
+                const active = isActivePath(pathname, item.href);
+                const showIndicator = indicatorHref === item.href;
+                const className = `nav-link${active ? " nav-link--active" : ""}`;
+                const content = (
+                  <>
+                    <span className="nav-link__label">{item.label}</span>
+                    {showIndicator ? (
+                      <motion.span
+                        layoutId="site-nav-indicator"
+                        className="nav-link__indicator"
+                        transition={{ type: "spring", stiffness: 420, damping: 34, mass: 0.6 }}
+                      />
+                    ) : null}
+                  </>
+                );
+
+                if (item.localeAgnostic) {
+                  return (
+                    <NextLink
+                      key={item.href}
+                      href={item.href}
+                      className={className}
+                      onMouseEnter={() => setHoveredHref(item.href)}
+                      onFocus={() => setHoveredHref(item.href)}
+                    >
+                      {content}
+                    </NextLink>
+                  );
+                }
+
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href as "/"}
+                    className={className}
+                    onMouseEnter={() => setHoveredHref(item.href)}
+                    onFocus={() => setHoveredHref(item.href)}
+                  >
+                    {content}
+                  </Link>
+                );
+              })}
+            </nav>
+          </LayoutGroup>
         </div>
 
-        <div className="flex shrink-0 items-center justify-end gap-2 sm:gap-3">
-          <div className="hidden items-center gap-2 sm:flex">
+        <div className="site-header__cont site-header__cont--actions">
+          <a href={`tel:${CONTACT_PHONE}`} className="site-header__phone">
+            {CONTACT_PHONE}
+          </a>
+          <a
+            href={TELEGRAM_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="site-header__icon-link"
+            aria-label={telegramLabel}
+          >
+            <TelegramIcon />
+          </a>
+          <div className="site-header__tools">
             <LocaleSwitcher />
             <ThemeToggle />
           </div>
-          <ContactCta className="contact-cta-header inline-flex min-h-11" goal="header_consult_cta_click">
+          <ContactCta className="header-cta contact-cta-header" goal="header_consult_cta_click">
             <span className="hidden md:inline">{writeLabel}</span>
             <span className="md:hidden">{writeShortLabel}</span>
           </ContactCta>
           <button
             type="button"
-            className="mobile-menu-toggle lg:hidden"
+            className="mobile-menu-toggle"
             onClick={() => setMenuOpen((open) => !open)}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu-panel"
             aria-label={menuOpen ? menuCloseLabel : menuOpenLabel}
           >
-            {menuOpen ? <X size={20} strokeWidth={1.5} aria-hidden="true" /> : <Menu size={20} strokeWidth={1.5} aria-hidden="true" />}
+            <span className="mobile-menu-toggle__bars" aria-hidden>
+              <span />
+              <span />
+              <span />
+            </span>
           </button>
         </div>
       </div>
 
-      <div className={`mobile-menu ${menuOpen ? "mobile-menu--open" : ""}`} aria-hidden={!menuOpen}>
+      <div className={`mobile-menu${menuOpen ? " mobile-menu--open" : ""}`} aria-hidden={!menuOpen}>
         <button type="button" className="mobile-menu__backdrop" onClick={closeMenu} aria-label={menuCloseLabel} />
         <nav id="mobile-menu-panel" className="mobile-menu__panel">
           <p className="meta-label">{quickContactLabel}</p>
           <div className="mt-4" onClick={closeMenu}>
-            <ContactCta className="btn-primary w-full justify-center" goal="mobile_consult_cta_click">
+            <ContactCta className="header-cta w-full justify-center" goal="mobile_consult_cta_click">
               {writeLabel}
             </ContactCta>
           </div>
           <div className="mt-3 grid grid-cols-2 gap-3">
-            <a href={`tel:${CONTACT_PHONE}`} className="btn-secondary w-full justify-center text-center text-[10px]" onClick={closeMenu}>
+            <a href={`tel:${CONTACT_PHONE}`} className="btn-secondary w-full justify-center text-center" onClick={closeMenu}>
               {callLabel}
             </a>
             <a
               href={TELEGRAM_URL}
               target="_blank"
               rel="noreferrer"
-              className="btn-secondary w-full justify-center text-center text-[10px]"
+              className="btn-secondary w-full justify-center text-center"
               onClick={closeMenu}
             >
               {telegramLabel}
