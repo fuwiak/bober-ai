@@ -7,7 +7,7 @@ import { GUIDES } from "@/lib/guides";
 import { LANDING_PAGES } from "@/lib/landing-pages";
 import { SEO_HUBS } from "@/lib/seo-catalog/hubs";
 import { getAllIntentArticles } from "@/lib/seo-catalog";
-import { SITE_URL } from "@/lib/site";
+import { BITRIX_SITE_URL, PARTNERS_SITE_URL, SITE_URL } from "@/lib/site";
 
 export const dynamic = "force-static";
 
@@ -17,15 +17,16 @@ export const dynamic = "force-static";
  * при каждом деплое, Яндекс и Google начинают игнорировать.
  */
 const UPDATED = {
-  core: new Date("2026-07-19"),
-  services: new Date("2026-07-19"),
-  landings: new Date("2026-07-19"),
-  hubs: new Date("2026-07-19"),
+  core: new Date("2026-07-22"),
+  services: new Date("2026-07-22"),
+  landings: new Date("2026-07-22"),
+  hubs: new Date("2026-07-22"),
   guides: new Date("2026-07-14"),
   blog: new Date("2026-07-19"),
   academy: new Date("2026-07-20"),
-  portfolio: new Date("2026-07-14"),
+  portfolio: new Date("2026-07-22"),
   legal: new Date("2026-07-16"),
+  microsites: new Date("2026-07-22"),
 } as const;
 
 const staticRoutes = [
@@ -145,6 +146,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: UPDATED.academy,
       changeFrequency: "monthly",
       priority: 0.68,
+    });
+  }
+
+  // Standalone GEO microsites (separate hosts)
+  for (const url of [
+    `${PARTNERS_SITE_URL.replace(/\/$/, "")}/`,
+    `${BITRIX_SITE_URL.replace(/\/$/, "")}/`,
+  ]) {
+    entries.push({
+      url,
+      lastModified: UPDATED.microsites,
+      changeFrequency: "weekly",
+      priority: 0.9,
     });
   }
 
