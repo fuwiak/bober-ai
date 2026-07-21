@@ -67,12 +67,14 @@ export type IntentArticleSpec = {
     description: string;
     h1: string;
     sections: { title: string; paragraphs: string[] }[];
+    faq?: { q: string; a: string }[];
   };
   en: {
     title: string;
     description: string;
     h1: string;
     sections: { title: string; paragraphs: string[] }[];
+    faq?: { q: string; a: string }[];
   };
 };
 

@@ -4,7 +4,7 @@ import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { ContactForm } from "@/components/ContactForm";
 import { Reveal } from "@/components/motion/Reveal";
 import type { IntentArticleSpec } from "@/lib/seo-catalog/types";
-import { articleJsonLd, webPageJsonLd } from "@/lib/seo";
+import { articleJsonLd, faqJsonLd, webPageJsonLd } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 
 type IntentArticlePageProps = {
@@ -38,10 +38,16 @@ export function IntentArticlePage({ article, locale }: IntentArticlePageProps) {
     inLanguage: loc === "en" ? "en-US" : "ru-RU",
   });
 
+  const faqItems = copy.faq ?? [];
+  const faqSchema = faqItems.length ? faqJsonLd(faqItems, pageUrl) : null;
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPage) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      {faqSchema ? (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      ) : null}
       <SiteHeader />
       <main>
         <article className="section-band border-b border-hairline">
@@ -74,6 +80,20 @@ export function IntentArticlePage({ article, locale }: IntentArticlePageProps) {
                 </section>
               ))}
             </div>
+
+            {faqItems.length ? (
+              <div className="mt-12 border-t border-hairline pt-8">
+                <h2 className="font-display text-xl">{loc === "en" ? "FAQ" : "Частые вопросы"}</h2>
+                <dl className="mt-6 space-y-6">
+                  {faqItems.map((item) => (
+                    <div key={item.q}>
+                      <dt className="font-display text-lg tracking-tight">{item.q}</dt>
+                      <dd className="body-copy mt-2 text-base text-muted">{item.a}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            ) : null}
 
             <div className="mt-12 border-t border-hairline pt-8">
               <h2 className="font-display text-xl">
