@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, IBM_Plex_Mono, Saira_Condensed } from "next/font/google";
+import { IBM_Plex_Mono, Manrope } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -8,21 +8,16 @@ import { Varioqub } from "@/components/Varioqub";
 import { YandexMetrika } from "@/components/YandexMetrika";
 import { DEFAULT_KEYWORDS, HERO_STOCK_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
 
-const sairaCondensed = Saira_Condensed({
-  subsets: ["latin", "latin-ext"],
-  weight: ["400"],
-  variable: "--font-saira",
-});
-
-const cormorant = Cormorant_Garamond({
+/** Architectural sans — близко к TT Wellingtons / DIN у Alcon DC. */
+const manrope = Manrope({
   subsets: ["latin", "cyrillic"],
-  weight: ["400"],
-  variable: "--font-cormorant",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-manrope",
 });
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin", "cyrillic"],
-  weight: ["400"],
+  weight: ["400", "500"],
   variable: "--font-ibm-plex-mono",
 });
 
@@ -108,8 +103,8 @@ export const viewport: Viewport = {
   maximumScale: 5,
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#000000" },
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#12141a" },
+    { media: "(prefers-color-scheme: light)", color: "#f4f6ec" },
   ],
 };
 
@@ -120,7 +115,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" className="dark" suppressHydrationWarning>
-      <body className={`${sairaCondensed.variable} ${cormorant.variable} ${ibmPlexMono.variable}`}>
+      <body className={`${manrope.variable} ${ibmPlexMono.variable}`}>
         <Script id="locale-lang" strategy="beforeInteractive">
           {`(function(){try{var p=location.pathname;var l=(p==='/en'||p.indexOf('/en/')===0)?'en':'ru';document.documentElement.lang=l;}catch(e){}})();`}
         </Script>

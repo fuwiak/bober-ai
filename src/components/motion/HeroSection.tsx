@@ -5,7 +5,7 @@ import { ContactCta } from "@/components/ContactCta";
 import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { Link } from "@/i18n/navigation";
 import { motion, useReducedMotion } from "motion/react";
-import { revealTransition } from "@/lib/motion";
+import { heroTitleTransition, revealTransition } from "@/lib/motion";
 
 type HeroSectionProps = {
   eyebrow: string;
@@ -40,7 +40,8 @@ export function HeroSection({
 }: HeroSectionProps) {
   const prefersReducedMotion = useReducedMotion();
   const transition = prefersReducedMotion ? { duration: 0 } : revealTransition;
-  const stagger = prefersReducedMotion ? 0 : 0.05;
+  const titleTransition = prefersReducedMotion ? { duration: 0 } : heroTitleTransition;
+  const stagger = prefersReducedMotion ? 0 : 0.09;
 
   return (
     <section className="hero-section section-band">
@@ -55,25 +56,44 @@ export function HeroSection({
         >
           <motion.p
             className="hero-label"
-            variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
+            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
             transition={transition}
           >
             {eyebrow}
           </motion.p>
 
-          <motion.h1
+          <h1
             className={`hero-title mt-8${titleStyle === "sentence" ? " hero-title--sentence" : ""}`}
-            variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
-            transition={transition}
+            aria-label={[titleLine1, titleLine2].filter(Boolean).join(" ")}
           >
-            <span className="block">{titleLine1}</span>
-            {titleLine2 ? <span className="block">{titleLine2}</span> : null}
-          </motion.h1>
+            <span className="hero-title-mask">
+              <motion.span
+                className="block"
+                initial={prefersReducedMotion ? false : { y: "110%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ ...titleTransition, delay: prefersReducedMotion ? 0 : 0.08 }}
+              >
+                {titleLine1}
+              </motion.span>
+            </span>
+            {titleLine2 ? (
+              <span className="hero-title-mask">
+                <motion.span
+                  className="block"
+                  initial={prefersReducedMotion ? false : { y: "110%", opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ ...titleTransition, delay: prefersReducedMotion ? 0 : 0.18 }}
+                >
+                  {titleLine2}
+                </motion.span>
+              </span>
+            ) : null}
+          </h1>
 
           {valueProposition ? (
             <motion.p
               className="hero-lead"
-              variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
+              variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
               transition={transition}
             >
               {valueProposition}
@@ -83,7 +103,7 @@ export function HeroSection({
           {differentiator ? (
             <motion.p
               className="hero-differentiator"
-              variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
+              variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
               transition={transition}
             >
               {differentiator}
@@ -93,7 +113,7 @@ export function HeroSection({
           {specialization ? (
             <motion.p
               className="hero-spec"
-              variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
+              variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
               transition={transition}
             >
               {specialization}
@@ -102,7 +122,7 @@ export function HeroSection({
 
           <motion.div
             className="mt-10 flex flex-wrap gap-4"
-            variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
+            variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
             transition={transition}
           >
             <ContactCta>{ctaPrimary}</ContactCta>
@@ -114,9 +134,9 @@ export function HeroSection({
 
         <motion.figure
           className="hero-media"
-          initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ ...transition, delay: prefersReducedMotion ? 0 : 0.2 }}
+          transition={{ ...transition, delay: prefersReducedMotion ? 0 : 0.28 }}
         >
           <EditorialImageFrame variant="hero" className="hero-media__frame">
             <Image

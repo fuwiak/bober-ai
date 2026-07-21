@@ -16,7 +16,7 @@ export function Stagger({ children, className, stagger = STAGGER_DELAY }: Stagge
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-48px 0px" }}
+      viewport={{ once: true, margin: "-80px 0px" }}
       variants={{
         hidden: {},
         visible: {
