@@ -1743,7 +1743,8 @@ html.dark {
     opacity: 0;
     transform: translateY(12px);
     transition: opacity 240ms ease, transform 240ms ease;
-    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+    bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+    max-width: 22rem;
   }
   .cookie-consent--open {
     opacity: 1;
@@ -1758,8 +1759,21 @@ html.dark {
     }
   }
   .cookie-consent-card {
-    @apply border border-hairline bg-surface-soft p-6;
+    @apply border border-hairline bg-surface-soft p-3.5;
     border-radius: 0;
+  }
+  .cookie-consent-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+  }
+  .cookie-consent-desc {
+    @apply mt-1.5 text-xs leading-snug text-muted;
+  }
+  .cookie-consent-actions {
+    @apply mt-3 flex flex-wrap gap-2;
   }
 
   .prose-legal h2 {
