@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
+import { getCookieConsent, type CookieConsentValue } from "@/components/CookieConsent";
 import {
   BITRIX_YANDEX_METRIKA_ID,
   PARTNERS_YANDEX_METRIKA_ID,
@@ -12,13 +13,28 @@ import {
 
 type YmFn = (id: number, method: string, ...args: unknown[]) => void;
 
-/** Loads on every visit (no cookie-consent gate) so traffic and Metrika code_status stay complete. */
+/** Loads only after cookie consent «Принять»; counter depends on hostname/path. */
 export function YandexMetrika() {
   const pathname = usePathname();
+  const [consent, setConsent] = useState<CookieConsentValue | null>(null);
   const firstPageRef = useRef(true);
   const previousUrlRef = useRef("");
 
   useEffect(() => {
+    setConsent(getCookieConsent());
+
+    function onConsentChange(event: Event) {
+      const detail = (event as CustomEvent<CookieConsentValue>).detail;
+      setConsent(detail);
+    }
+
+    window.addEventListener("cookie-consent-change", onConsentChange);
+    return () => window.removeEventListener("cookie-consent-change", onConsentChange);
+  }, []);
+
+  useEffect(() => {
+    if (consent !== "accepted") return;
+
     if (firstPageRef.current) {
       firstPageRef.current = false;
       previousUrlRef.current = window.location.href;
@@ -36,7 +52,9 @@ export function YandexMetrika() {
       referer: previousUrlRef.current || document.referrer,
     });
     previousUrlRef.current = window.location.href;
-  }, [pathname]);
+  }, [consent, pathname]);
+
+  if (consent !== "accepted") return null;
 
   return (
     <>

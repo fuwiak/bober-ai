@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { BareIntlShell } from "@/components/BareIntlShell";
 import { ContactForm } from "@/components/ContactForm";
+import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { TrackedAnchor } from "@/components/TrackedAnchor";
 import { Reveal } from "@/components/motion/Reveal";
 import { webPageJsonLd } from "@/lib/seo";
-import { PARTNERS_SITE_URL, TELEGRAM_URL } from "@/lib/site";
+import { OFFICE_STOCK_IMAGES, PARTNERS_SITE_URL, STOCK_IMAGES, TELEGRAM_URL } from "@/lib/site";
 import { TRUST_PARTNERS } from "@/lib/trust-partners";
 
 /**
@@ -292,11 +293,13 @@ export default function WhiteLabelPage() {
         </header>
 
         <main>
-          <section className="section-band section--deep border-b border-hairline">
+          <section className="section-band border-b border-hairline">
             <div className="container-editorial max-w-4xl">
               <Reveal>
-                <span className="section-label">Partner Program · White-label</span>
-                <h1 className="section-title mt-4 max-w-3xl">AI-разработка под вашим брендом</h1>
+                <p className="hero-label">Bober AI Systems · Partner Program</p>
+                <h1 className="section-title mt-6 max-w-3xl text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05]">
+                  AI-разработка под вашим брендом
+                </h1>
                 <p className="body-copy mt-5 max-w-2xl text-lg">
                   Проектируем и внедряем AI-системы для ваших клиентов — без выхода на прямой контакт и без
                   конкуренции с вашей компанией.
@@ -317,32 +320,120 @@ export default function WhiteLabelPage() {
                 </div>
               </Reveal>
 
-              <div className="mt-14 grid gap-4 sm:grid-cols-2">
-                {PROMISES.map((item) => (
-                  <div key={item.title} className="home-hub-card">
-                    <h2 className="card-title text-lg">{item.title}</h2>
-                    <p className="body-copy mt-2 text-sm">{item.text}</p>
+              <Reveal delay={0.12} className="landing-hero-media">
+                <EditorialImageFrame variant="hero" className="absolute inset-0">
+                  <Image
+                    src={OFFICE_STOCK_IMAGES.tower}
+                    alt=""
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 100vw, 960px"
+                    className="object-cover"
+                  />
+                </EditorialImageFrame>
+              </Reveal>
+            </div>
+          </section>
+
+          <section className="prestige-gallery border-b border-hairline" aria-label="Офис и атмосфера партнёрства">
+            <div className="prestige-gallery__grid">
+              <Reveal className="prestige-gallery__main">
+                <EditorialImageFrame variant="hero" className="prestige-gallery__frame">
+                  <Image
+                    src={STOCK_IMAGES.team}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </EditorialImageFrame>
+              </Reveal>
+              <Reveal delay={0.06} className="prestige-gallery__side">
+                <EditorialImageFrame variant="card" className="prestige-gallery__frame">
+                  <Image
+                    src={OFFICE_STOCK_IMAGES.interior}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    className="object-cover"
+                  />
+                </EditorialImageFrame>
+              </Reveal>
+              <Reveal delay={0.12} className="prestige-gallery__side">
+                <EditorialImageFrame variant="card" className="prestige-gallery__frame">
+                  <Image
+                    src={OFFICE_STOCK_IMAGES.facade}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    className="object-cover"
+                  />
+                </EditorialImageFrame>
+              </Reveal>
+            </div>
+          </section>
+
+          <section className="section-band section--deep border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <div className="trust-specs">
+                  <div className="spec-cell">
+                    <span className="spec-value">NDA</span>
+                    <span className="spec-label">и non-circumvention</span>
                   </div>
+                  <div className="spec-cell">
+                    <span className="spec-value">White-label</span>
+                    <span className="spec-label">под вашим брендом</span>
+                  </div>
+                  <div className="spec-cell">
+                    <span className="spec-value">Fixed / hourly</span>
+                    <span className="spec-label">или подрядное участие</span>
+                  </div>
+                  <div className="spec-cell">
+                    <span className="spec-value">Silent</span>
+                    <span className="spec-label">или technical partner</span>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+          </section>
+
+          <section className="section-band section--panel border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">Partner Program · White-label</span>
+                <h2 className="section-title mt-4 max-w-2xl">Четыре обещания партнёру</h2>
+              </Reveal>
+              <div className="mt-10 grid gap-4 sm:grid-cols-2">
+                {PROMISES.map((item) => (
+                  <Reveal key={item.title}>
+                    <div className="home-hub-card">
+                      <h2 className="card-title text-lg">{item.title}</h2>
+                      <p className="body-copy mt-2 text-sm">{item.text}</p>
+                    </div>
+                  </Reveal>
                 ))}
               </div>
 
-              <div className="mt-10 border border-hairline bg-surface-card p-6 md:p-8">
-                <span className="meta-label text-muted">Модель white-label</span>
-                <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-4">
-                  {MODEL_FLOW.map((step, index) => (
-                    <div key={step} className="flex items-center gap-3">
-                      <span className="border border-hairline-strong bg-canvas px-4 py-3 font-display text-sm text-ink">
-                        {step}
-                      </span>
-                      {index < MODEL_FLOW.length - 1 ? (
-                        <span aria-hidden className="text-muted-soft">
-                          →
+              <Reveal delay={0.08}>
+                <div className="mt-10 border border-hairline bg-surface-card p-6 md:p-8">
+                  <span className="meta-label text-muted">Модель white-label</span>
+                  <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-4">
+                    {MODEL_FLOW.map((step, index) => (
+                      <div key={step} className="flex items-center gap-3">
+                        <span className="border border-hairline-strong bg-canvas px-4 py-3 font-display text-sm text-ink">
+                          {step}
                         </span>
-                      ) : null}
-                    </div>
-                  ))}
+                        {index < MODEL_FLOW.length - 1 ? (
+                          <span aria-hidden className="text-muted-soft">
+                            →
+                          </span>
+                        ) : null}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              </Reveal>
             </div>
           </section>
 
@@ -358,10 +449,12 @@ export default function WhiteLabelPage() {
               </Reveal>
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
                 {SELLABLES.map((item) => (
-                  <div key={item.title} className="home-hub-card">
-                    <h3 className="card-title text-lg">{item.title}</h3>
-                    <p className="body-copy mt-2 text-sm">{item.text}</p>
-                  </div>
+                  <Reveal key={item.title}>
+                    <div className="home-hub-card">
+                      <h3 className="card-title text-lg">{item.title}</h3>
+                      <p className="body-copy mt-2 text-sm">{item.text}</p>
+                    </div>
+                  </Reveal>
                 ))}
               </div>
             </div>
@@ -407,10 +500,23 @@ export default function WhiteLabelPage() {
 
           <section className="section-band section--panel border-b border-hairline">
             <div className="container-editorial max-w-4xl">
-              <Reveal>
-                <span className="section-label">Для кого</span>
-                <h2 className="section-title mt-4 max-w-2xl">С кем мы работаем в этом формате</h2>
-              </Reveal>
+              <div className="grid items-center gap-10 md:grid-cols-2">
+                <Reveal>
+                  <span className="section-label">Для кого</span>
+                  <h2 className="section-title mt-4 max-w-2xl">С кем мы работаем в этом формате</h2>
+                </Reveal>
+                <Reveal delay={0.08} className="landing-split-media">
+                  <EditorialImageFrame variant="card" className="absolute inset-0">
+                    <Image
+                      src={STOCK_IMAGES.sales}
+                      alt=""
+                      fill
+                      sizes="(max-width: 768px) 100vw, 40vw"
+                      className="object-cover"
+                    />
+                  </EditorialImageFrame>
+                </Reveal>
+              </div>
               <ul className="mt-8 grid gap-3 sm:grid-cols-2">
                 {AUDIENCE.map((item) => (
                   <li
@@ -679,9 +785,14 @@ export default function WhiteLabelPage() {
         <footer className="border-t border-hairline py-10">
           <div className="container-editorial flex flex-wrap items-center justify-between gap-4 text-sm text-muted-soft">
             <span>© {new Date().getFullYear()} Bober AI Systems</span>
-            <a href="https://www.bober-ai.dev" className="text-muted-soft hover:text-muted">
-              bober-ai.dev
-            </a>
+            <div className="flex flex-wrap gap-4">
+              <a href="https://www.bober-ai.dev/privacy-policy" className="text-muted-soft hover:text-muted">
+                Политика конфиденциальности
+              </a>
+              <a href="https://www.bober-ai.dev" className="text-muted-soft hover:text-muted">
+                bober-ai.dev
+              </a>
+            </div>
           </div>
         </footer>
       </div>

@@ -1,8 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import Link from "next/link";
 import { COOKIE_CONSENT_KEY, LEGAL_ROUTES } from "@/lib/legal";
+import { absoluteUrl } from "@/lib/site";
+
+/** Always www — relative /privacy-policy breaks SPA routing on microsite hosts. */
+const PRIVACY_POLICY_URL = absoluteUrl(LEGAL_ROUTES.privacyPolicy);
 
 export type CookieConsentValue = "accepted" | "rejected";
 
@@ -65,9 +68,9 @@ export function CookieConsent() {
         <p id="cookie-consent-desc" className="cookie-consent-desc">
           Этот сайт собирает Cookies и&nbsp;данные о&nbsp;передвижении по&nbsp;сайту через сервис
           Яндекс.Метрика. Оставаясь на&nbsp;сайте, вы&nbsp;подтверждаете, что согласны с{" "}
-          <Link href={LEGAL_ROUTES.privacyPolicy} className="text-link">
+          <a href={PRIVACY_POLICY_URL} className="text-link">
             Политикой конфиденциальности
-          </Link>
+          </a>
         </p>
         <div className="cookie-consent-actions">
           <button type="button" onClick={reject} className="btn-secondary-on-dark text-xs">

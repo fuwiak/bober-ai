@@ -2678,6 +2678,28 @@ html:not(.dark) .shell-code {
     .case-meta-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
 
+  /* Microsite landings — wide atmospheric media under hero copy */
+  .landing-hero-media {
+    position: relative;
+    margin-top: 3rem;
+    aspect-ratio: 21 / 9;
+    min-height: 220px;
+    max-height: min(42vh, 440px);
+    width: 100%;
+  }
+  @media (max-width: 768px) {
+    .landing-hero-media {
+      aspect-ratio: 16 / 10;
+      max-height: none;
+    }
+  }
+  .landing-split-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    min-height: 240px;
+    width: 100%;
+  }
+
   /* bitrix.bober-ai.dev — two primary CRM platforms */
   .bitrix-platforms {
     display: grid;

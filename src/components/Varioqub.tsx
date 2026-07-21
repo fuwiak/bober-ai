@@ -1,14 +1,32 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Script from "next/script";
+import { getCookieConsent, type CookieConsentValue } from "@/components/CookieConsent";
 import {
   BITRIX_YANDEX_METRIKA_ID,
   PARTNERS_YANDEX_METRIKA_ID,
   YANDEX_METRIKA_ID,
 } from "@/lib/legal";
 
-/** Loads on every visit (no cookie-consent gate), same as Metrika. */
+/** Loads only after cookie consent «Принять», same gate as Metrika. */
 export function Varioqub() {
+  const [consent, setConsent] = useState<CookieConsentValue | null>(null);
+
+  useEffect(() => {
+    setConsent(getCookieConsent());
+
+    function onConsentChange(event: Event) {
+      const detail = (event as CustomEvent<CookieConsentValue>).detail;
+      setConsent(detail);
+    }
+
+    window.addEventListener("cookie-consent-change", onConsentChange);
+    return () => window.removeEventListener("cookie-consent-change", onConsentChange);
+  }, []);
+
+  if (consent !== "accepted") return null;
+
   return (
     <Script id="varioqub" strategy="afterInteractive">
       {`

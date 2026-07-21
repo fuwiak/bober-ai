@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { BareIntlShell } from "@/components/BareIntlShell";
 import { ContactForm } from "@/components/ContactForm";
+import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { TrackedAnchor } from "@/components/TrackedAnchor";
 import { Reveal } from "@/components/motion/Reveal";
 import { webPageJsonLd } from "@/lib/seo";
-import { BITRIX_SITE_URL, TELEGRAM_URL } from "@/lib/site";
+import { BITRIX_SITE_URL, OFFICE_STOCK_IMAGES, STOCK_IMAGES, TELEGRAM_URL } from "@/lib/site";
 
 /**
  * Served at bitrix.bober-ai.dev (see deploy/Caddyfile[.railway]) —
@@ -289,19 +291,16 @@ export default function BitrixLandingPage() {
         </header>
 
         <main>
-          <section className="section-band section--deep border-b border-hairline">
+          <section className="section-band border-b border-hairline">
             <div className="container-editorial max-w-4xl">
               <Reveal>
-                <span className="section-label">CRM · AI · интеграции</span>
-                <h1 className="section-title mt-4 max-w-3xl">
+                <p className="hero-label">Bober AI Systems · Битрикс24 · amoCRM</p>
+                <h1 className="section-title mt-6 max-w-3xl text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05]">
                   AI-автоматизация для Битрикс24 и amoCRM
                 </h1>
                 <p className="body-copy mt-5 max-w-2xl text-lg">
-                  Подключаем CRM к 1С, МойСклад, телефонии, документам и корпоративным данным. Разрабатываем
-                  AI-ассистентов, аналитику и сложные бизнес-процессы под задачи вашей компании.
-                </p>
-                <p className="mt-4 max-w-2xl font-display text-base text-body-strong">
-                  Когда стандартных роботов, виджетов и встроенного AI недостаточно.
+                  Подключаем CRM к 1С, МойСклад, телефонии, документам и корпоративным данным. Когда стандартных
+                  роботов, виджетов и встроенного AI недостаточно.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <TrackedAnchor href="#contact" className="btn-primary" goal="bitrix_cta_click">
@@ -319,53 +318,159 @@ export default function BitrixLandingPage() {
                 </div>
               </Reveal>
 
-              <div className="bitrix-platforms mt-14" aria-label="Главные платформы">
-                <div className="bitrix-platforms__card">
-                  <span className="bitrix-platforms__eyebrow">Главная платформа</span>
-                  <p className="bitrix-platforms__name">Битрикс24</p>
-                  <p className="bitrix-platforms__hint">CRM, задачи, диск, роботы, REST API</p>
-                </div>
-                <div className="bitrix-platforms__card">
-                  <span className="bitrix-platforms__eyebrow">Платформа продаж</span>
-                  <p className="bitrix-platforms__name">amoCRM</p>
-                  <p className="bitrix-platforms__hint">Воронка, лиды, коммуникации, sales AI</p>
-                </div>
-              </div>
-              <p className="meta-label mt-6 text-muted">Главные платформы автоматизации</p>
+              <Reveal delay={0.12} className="landing-hero-media">
+                <EditorialImageFrame variant="hero" className="absolute inset-0">
+                  <Image
+                    src={OFFICE_STOCK_IMAGES.interior}
+                    alt=""
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 100vw, 960px"
+                    className="object-cover"
+                  />
+                </EditorialImageFrame>
+              </Reveal>
+            </div>
+          </section>
 
-              <div className="mt-10 border border-hairline bg-surface-card p-6 md:p-8">
-                <span className="meta-label text-muted">Как проходит запрос</span>
-                <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-4">
-                  {FLOW_STEPS.map((step, index) => (
-                    <div key={step} className="flex items-center gap-3">
-                      <span className="border border-hairline-strong bg-canvas px-4 py-3 font-display text-sm text-ink">
-                        {step}
-                      </span>
-                      {index < FLOW_STEPS.length - 1 ? (
-                        <span aria-hidden className="text-muted-soft">
-                          →
-                        </span>
-                      ) : null}
-                    </div>
-                  ))}
+          <section className="prestige-gallery border-b border-hairline" aria-label="Офис и инфраструктура">
+            <div className="prestige-gallery__grid">
+              <Reveal className="prestige-gallery__main">
+                <EditorialImageFrame variant="hero" className="prestige-gallery__frame">
+                  <Image
+                    src={OFFICE_STOCK_IMAGES.tower}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </EditorialImageFrame>
+              </Reveal>
+              <Reveal delay={0.06} className="prestige-gallery__side">
+                <EditorialImageFrame variant="card" className="prestige-gallery__frame">
+                  <Image
+                    src={STOCK_IMAGES.automation}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    className="object-cover"
+                  />
+                </EditorialImageFrame>
+              </Reveal>
+              <Reveal delay={0.12} className="prestige-gallery__side">
+                <EditorialImageFrame variant="card" className="prestige-gallery__frame">
+                  <Image
+                    src={OFFICE_STOCK_IMAGES.facade}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    className="object-cover"
+                  />
+                </EditorialImageFrame>
+              </Reveal>
+            </div>
+          </section>
+
+          <section className="section-band section--deep border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <div className="trust-specs">
+                  <div className="spec-cell">
+                    <span className="spec-value">7 лет</span>
+                    <span className="spec-label">в AI и автоматизации</span>
+                  </div>
+                  <div className="spec-cell">
+                    <span className="spec-value">12+</span>
+                    <span className="spec-label">внедрений в проде</span>
+                  </div>
+                  <div className="spec-cell">
+                    <span className="spec-value">1С · ЭДО</span>
+                    <span className="spec-label">телефония и документы</span>
+                  </div>
+                  <div className="spec-cell">
+                    <span className="spec-value">On-prem</span>
+                    <span className="spec-label">или облако клиента</span>
+                  </div>
                 </div>
-                <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
-                  {FLOW_STATUSES.map((status) => (
-                    <span key={status} className="meta-label text-muted-soft">
-                      · {status}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              </Reveal>
             </div>
           </section>
 
           <section className="section-band section--panel border-b border-hairline">
             <div className="container-editorial max-w-4xl">
               <Reveal>
-                <span className="section-label">До и после</span>
-                <h2 className="section-title mt-4 max-w-2xl">Один и тот же запрос — два разных процесса</h2>
+                <span className="section-label">CRM · AI · интеграции</span>
+                <h2 className="section-title mt-4 max-w-2xl">Главные платформы автоматизации</h2>
+                <p className="body-copy mt-4 max-w-2xl">
+                  Битрикс24 — ядро процессов. amoCRM — продажи. Вокруг них — 1С, документы и телефония.
+                </p>
               </Reveal>
+
+              <div className="bitrix-platforms mt-10" aria-label="Главные платформы">
+                <Reveal>
+                  <div className="bitrix-platforms__card">
+                    <span className="bitrix-platforms__eyebrow">Главная платформа</span>
+                    <p className="bitrix-platforms__name">Битрикс24</p>
+                    <p className="bitrix-platforms__hint">CRM, задачи, диск, роботы, REST API</p>
+                  </div>
+                </Reveal>
+                <Reveal delay={0.06}>
+                  <div className="bitrix-platforms__card">
+                    <span className="bitrix-platforms__eyebrow">Платформа продаж</span>
+                    <p className="bitrix-platforms__name">amoCRM</p>
+                    <p className="bitrix-platforms__hint">Воронка, лиды, коммуникации, sales AI</p>
+                  </div>
+                </Reveal>
+              </div>
+
+              <Reveal delay={0.08}>
+                <div className="mt-10 border border-hairline bg-surface-card p-6 md:p-8">
+                  <span className="meta-label text-muted">Как проходит запрос</span>
+                  <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-4">
+                    {FLOW_STEPS.map((step, index) => (
+                      <div key={step} className="flex items-center gap-3">
+                        <span className="border border-hairline-strong bg-canvas px-4 py-3 font-display text-sm text-ink">
+                          {step}
+                        </span>
+                        {index < FLOW_STEPS.length - 1 ? (
+                          <span aria-hidden className="text-muted-soft">
+                            →
+                          </span>
+                        ) : null}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
+                    {FLOW_STATUSES.map((status) => (
+                      <span key={status} className="meta-label text-muted-soft">
+                        · {status}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+          </section>
+
+          <section className="section-band section--panel border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <div className="grid items-end gap-8 md:grid-cols-[1.1fr_0.9fr]">
+                <Reveal>
+                  <span className="section-label">До и после</span>
+                  <h2 className="section-title mt-4 max-w-2xl">Один и тот же запрос — два разных процесса</h2>
+                </Reveal>
+                <Reveal delay={0.08} className="landing-split-media">
+                  <EditorialImageFrame variant="card" className="absolute inset-0">
+                    <Image
+                      src={STOCK_IMAGES.roadmap}
+                      alt=""
+                      fill
+                      sizes="(max-width: 768px) 100vw, 40vw"
+                      className="object-cover"
+                    />
+                  </EditorialImageFrame>
+                </Reveal>
+              </div>
               <div className="mt-8 grid gap-6 sm:grid-cols-2">
                 <div className="border border-hairline bg-surface-card p-6">
                   <span className="meta-label text-muted-soft">Сейчас</span>
@@ -542,14 +647,27 @@ export default function BitrixLandingPage() {
 
           <section className="section-band section--panel border-b border-hairline">
             <div className="container-editorial max-w-4xl">
-              <Reveal>
-                <span className="section-label">Инфраструктура</span>
-                <h2 className="section-title mt-4 max-w-2xl">Интегрируем с вашей инфраструктурой</h2>
-                <p className="body-copy mt-4 max-w-2xl">
-                  1С · МойСклад · Диадок · СБИС · RetailCRM · телефония · Telegram · почта · Excel · базы
-                  данных
-                </p>
-              </Reveal>
+              <div className="grid items-center gap-10 md:grid-cols-2">
+                <Reveal>
+                  <span className="section-label">Инфраструктура</span>
+                  <h2 className="section-title mt-4 max-w-2xl">Интегрируем с вашей инфраструктурой</h2>
+                  <p className="body-copy mt-4 max-w-2xl">
+                    1С · МойСклад · Диадок · СБИС · RetailCRM · телефония · Telegram · почта · Excel · базы
+                    данных
+                  </p>
+                </Reveal>
+                <Reveal delay={0.08} className="landing-split-media">
+                  <EditorialImageFrame variant="card" className="absolute inset-0">
+                    <Image
+                      src={STOCK_IMAGES.security}
+                      alt=""
+                      fill
+                      sizes="(max-width: 768px) 100vw, 40vw"
+                      className="object-cover"
+                    />
+                  </EditorialImageFrame>
+                </Reveal>
+              </div>
               <div className="mt-10 grid gap-8 sm:grid-cols-2">
                 {INFRA_GROUPS.map((group) => (
                   <div key={group.title}>
@@ -695,9 +813,14 @@ export default function BitrixLandingPage() {
         <footer className="border-t border-hairline py-10">
           <div className="container-editorial flex flex-wrap items-center justify-between gap-4 text-sm text-muted-soft">
             <span>© {new Date().getFullYear()} Bober AI Systems</span>
-            <a href="https://www.bober-ai.dev" className="text-muted-soft hover:text-muted">
-              bober-ai.dev
-            </a>
+            <div className="flex flex-wrap gap-4">
+              <a href="https://www.bober-ai.dev/privacy-policy" className="text-muted-soft hover:text-muted">
+                Политика конфиденциальности
+              </a>
+              <a href="https://www.bober-ai.dev" className="text-muted-soft hover:text-muted">
+                bober-ai.dev
+              </a>
+            </div>
           </div>
         </footer>
       </div>
