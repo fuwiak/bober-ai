@@ -9,7 +9,7 @@ import { ImplementationCard, type ImplementationArea } from "@/components/motion
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger } from "@/components/motion/Stagger";
 import { routing } from "@/i18n/routing";
-import { getEnterpriseServices } from "@/lib/enterprise-services";
+import { getEnterpriseServicesListing } from "@/lib/enterprise-services";
 import { buildPageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -34,7 +34,7 @@ export default async function ServicesPage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations();
   const implementationAreas = t.raw("services.implementationAreas") as ImplementationArea[];
-  const services = getEnterpriseServices(locale);
+  const services = getEnterpriseServicesListing(locale);
 
   return (
     <div className="page-shell min-h-screen">

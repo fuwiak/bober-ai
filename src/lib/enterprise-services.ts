@@ -187,8 +187,28 @@ const enServices: EnterpriseService[] = [
   ...enExtra,
 ];
 
+/** Курируемый набор для маркетинговой сетки «Решения по задачам бизнеса» на /services. */
+export const ENTERPRISE_SERVICES_LISTING_SLUGS = [
+  "business-process-automation",
+  "sales-ai-agent",
+  "enterprise-ai-assistant",
+  "private-llm-gigachat",
+  "crm-integration",
+  "rag",
+  "ai-discovery-roadmap",
+  "document-processing",
+] as const;
+
 export function getEnterpriseServices(locale: string): EnterpriseService[] {
   return locale === "en" ? enServices : ruServices;
+}
+
+/** Короткий листинг для /services (SEO long-tail остаётся в маршрутах). */
+export function getEnterpriseServicesListing(locale: string): EnterpriseService[] {
+  const bySlug = new Map(getEnterpriseServices(locale).map((item) => [item.slug, item]));
+  return ENTERPRISE_SERVICES_LISTING_SLUGS.map((slug) => bySlug.get(slug)).filter(
+    (item): item is EnterpriseService => Boolean(item),
+  );
 }
 
 export function getEnterpriseService(slug: string, locale: string) {

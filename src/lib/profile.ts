@@ -209,6 +209,13 @@ export type PortfolioItem = {
   priceLabel?: string;
 };
 
+/** Кейсы в маркетинговых листингах (главная /portfolio). Остальные остаются как detail-страницы. */
+export const PORTFOLIO_LISTING_SLUGS = [
+  "kp-llm-automation",
+  "elia-suite",
+  "kaspersky-ai-assistant",
+] as const;
+
 export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "telemost",
@@ -218,7 +225,6 @@ export const PORTFOLIO: PortfolioItem[] = [
     stack: "1С · Bitrix · YandexGPT · JavaScript",
     image: PORTFOLIO_IMAGES.telemost,
     category: "Искусственный интеллект",
-    featured: true,
     priceLabel: "300 000 ₽",
     skills: ["1С", "Bitrix", "JavaScript", "YandexGPT", "Интеграция модели ИИ"],
     description:
@@ -236,6 +242,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     stack: "LLM · RAG · JavaScript",
     image: PORTFOLIO_IMAGES.kaspersky,
     category: "Искусственный интеллект",
+    featured: true,
     skills: ["LLM", "RAG", "JavaScript", "Интеграция модели ИИ"],
     description:
       "Линия поддержки и отдел продаж Kaspersky обрабатывали сотни однотипных вопросов о лицензиях, совместимости и тарифах. Консультанты тратили время на поиск в базе знаний вместо сложных кейсов.",
@@ -252,7 +259,6 @@ export const PORTFOLIO: PortfolioItem[] = [
     stack: "LLM-агенты · Telegram · VK · CRM · n8n",
     image: PORTFOLIO_IMAGES.leads,
     category: "Искусственный интеллект",
-    featured: true,
     priceLabel: "300 000 ₽",
     skills: ["LLM-агенты", "Telegram", "VK", "CRM", "n8n", "Интеграция модели ИИ"],
     description:
@@ -387,7 +393,6 @@ export const PORTFOLIO: PortfolioItem[] = [
     title: "CRM ↔ 1С: единый источник правды",
     image: STOCK_IMAGES.automation,
     category: "ИТ и разработка",
-    featured: true,
     skills: ["amoCRM", "1С", "OData", "Python"],
     description:
       "Заказы создавались дважды — в CRM и 1С разными сотрудниками. Остатки в CRM устаревали, оплаты не закрывали воронку.",
@@ -456,4 +461,12 @@ export const PORTFOLIO: PortfolioItem[] = [
 
 export function getPortfolioItem(slug: string) {
   return PORTFOLIO.find((item) => item.slug === slug);
+}
+
+/** Кейсы для сетки /portfolio и аналогичных листингов. */
+export function getPortfolioListing(): PortfolioItem[] {
+  const bySlug = new Map(PORTFOLIO.map((item) => [item.slug, item]));
+  return PORTFOLIO_LISTING_SLUGS.map((slug) => bySlug.get(slug)).filter(
+    (item): item is PortfolioItem => Boolean(item),
+  );
 }

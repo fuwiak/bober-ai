@@ -7,7 +7,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { Link } from "@/i18n/navigation";
-import { getPortfolioItem } from "@/lib/profile";
+import { getPortfolioItem, PORTFOLIO_LISTING_SLUGS } from "@/lib/profile";
 import type { HubDef } from "@/lib/seo-catalog/types";
 import { webPageJsonLd } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
@@ -17,7 +17,7 @@ type SeoHubPageProps = {
   locale: string;
 };
 
-const AUTOMATION_CASES = ["kp-llm-automation", "elia-suite", "kaspersky-ai-assistant"];
+const AUTOMATION_CASES = [...PORTFOLIO_LISTING_SLUGS];
 
 const AUTOMATION_COPY = {
   ru: {

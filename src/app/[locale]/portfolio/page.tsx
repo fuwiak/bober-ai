@@ -6,7 +6,7 @@ import { SectionCtaBand } from "@/components/SectionCtaBand";
 import { ProjectsCasesShowcase } from "@/components/motion/ProjectsCasesShowcase";
 import { Reveal } from "@/components/motion/Reveal";
 import { routing } from "@/i18n/routing";
-import { PORTFOLIO } from "@/lib/profile";
+import { getPortfolioListing } from "@/lib/profile";
 import { buildPageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -44,7 +44,7 @@ export default async function PortfolioPage({ params }: Props) {
               />
             </Reveal>
             <ProjectsCasesShowcase
-              items={PORTFOLIO}
+              items={getPortfolioListing()}
               title={t("portfolio.title")}
               subtitle={t("portfolio.subtitle")}
               detailsLabel={t("portfolio.details")}

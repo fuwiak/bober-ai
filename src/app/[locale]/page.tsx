@@ -3,7 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import HomePage from "@/components/HomePage";
 import { routing } from "@/i18n/routing";
 import { absoluteUrl } from "@/lib/site";
-import { getEnterpriseServices } from "@/lib/enterprise-services";
+import { getEnterpriseServicesListing } from "@/lib/enterprise-services";
 import {
   buildPageMetadata,
   organizationJsonLd as orgSchema,
@@ -37,7 +37,7 @@ export default async function Page({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "meta" });
 
-  const services = getEnterpriseServices(locale);
+  const services = getEnterpriseServicesListing(locale);
 
   const offersJsonLd = {
     "@context": "https://schema.org",
