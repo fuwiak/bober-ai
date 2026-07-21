@@ -22,7 +22,12 @@
 
 ## Деплой
 
-Прод сейчас на **Selectel VDS** (`deploy/` + Caddy). `Dockerfile` / `railway.toml` оставлены как запасной вариант.
+Прод: **два origin** — Selectel (РФ / без VPN) и Railway (VPN / мир). См. [`deploy/DUAL-ORIGIN.md`](deploy/DUAL-ORIGIN.md).
+
+- Railway: `railway up --detach` → `https://bober-ai-production.up.railway.app`
+- Selectel VDS: `deploy/` + Caddy (`45.80.131.136`)
+
+`Dockerfile` / `railway.toml` — основной путь для Railway; Selectel использует тот же образ/статику через `/opt/bober-ai`.
 
 ### Ops CLI (аналог Railway status / logs / healthcheck)
 
