@@ -80,96 +80,98 @@ export function SiteHeaderClient({
 
   return (
     <header className={`site-header${menuOpen ? " site-header--menu-open" : ""}`}>
-      <div className="site-header__bar container-editorial">
-        <div className="site-header__cont">
-          <Link href="/" className="site-wordmark" onClick={closeMenu}>
-            {wordmark}
-          </Link>
+      <div className="container-editorial site-header__frame">
+        <div className="site-header__bar">
+          <div className="site-header__cont">
+            <Link href="/" className="site-wordmark" onClick={closeMenu}>
+              {wordmark}
+            </Link>
 
-          <LayoutGroup id="site-header-nav">
-            <nav className="site-header__nav" aria-label="Main" onMouseLeave={() => setHoveredHref(null)}>
-              {navItems.map((item) => {
-                const active = isActivePath(pathname, item.href);
-                const showIndicator = indicatorHref === item.href;
-                const className = `nav-link${active ? " nav-link--active" : ""}`;
-                const content = (
-                  <>
-                    <span className="nav-link__label">{item.label}</span>
-                    {showIndicator ? (
-                      <motion.span
-                        layoutId="site-nav-indicator"
-                        className="nav-link__indicator"
-                        transition={{ type: "spring", stiffness: 420, damping: 34, mass: 0.6 }}
-                      />
-                    ) : null}
-                  </>
-                );
+            <LayoutGroup id="site-header-nav">
+              <nav className="site-header__nav" aria-label="Main" onMouseLeave={() => setHoveredHref(null)}>
+                {navItems.map((item) => {
+                  const active = isActivePath(pathname, item.href);
+                  const showIndicator = indicatorHref === item.href;
+                  const className = `site-header__link${active ? " site-header__link--active" : ""}`;
+                  const content = (
+                    <>
+                      <span className="site-header__link-label">{item.label}</span>
+                      {showIndicator ? (
+                        <motion.span
+                          layoutId="site-nav-indicator"
+                          className="site-header__link-indicator"
+                          transition={{ type: "spring", stiffness: 420, damping: 34, mass: 0.6 }}
+                        />
+                      ) : null}
+                    </>
+                  );
 
-                if (item.localeAgnostic) {
+                  if (item.localeAgnostic) {
+                    return (
+                      <NextLink
+                        key={item.href}
+                        href={item.href}
+                        className={className}
+                        onMouseEnter={() => setHoveredHref(item.href)}
+                        onFocus={() => setHoveredHref(item.href)}
+                      >
+                        {content}
+                      </NextLink>
+                    );
+                  }
+
                   return (
-                    <NextLink
+                    <Link
                       key={item.href}
-                      href={item.href}
+                      href={item.href as "/"}
                       className={className}
                       onMouseEnter={() => setHoveredHref(item.href)}
                       onFocus={() => setHoveredHref(item.href)}
                     >
                       {content}
-                    </NextLink>
+                    </Link>
                   );
-                }
-
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href as "/"}
-                    className={className}
-                    onMouseEnter={() => setHoveredHref(item.href)}
-                    onFocus={() => setHoveredHref(item.href)}
-                  >
-                    {content}
-                  </Link>
-                );
-              })}
-            </nav>
-          </LayoutGroup>
-        </div>
-
-        <div className="site-header__cont site-header__cont--actions">
-          <a href={`tel:${CONTACT_PHONE}`} className="site-header__phone">
-            {CONTACT_PHONE}
-          </a>
-          <a
-            href={TELEGRAM_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="site-header__icon-link"
-            aria-label={telegramLabel}
-          >
-            <TelegramIcon />
-          </a>
-          <div className="site-header__tools">
-            <LocaleSwitcher />
-            <ThemeToggle />
+                })}
+              </nav>
+            </LayoutGroup>
           </div>
-          <ContactCta className="header-cta contact-cta-header" goal="header_consult_cta_click">
-            <span className="hidden md:inline">{writeLabel}</span>
-            <span className="md:hidden">{writeShortLabel}</span>
-          </ContactCta>
-          <button
-            type="button"
-            className="mobile-menu-toggle"
-            onClick={() => setMenuOpen((open) => !open)}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu-panel"
-            aria-label={menuOpen ? menuCloseLabel : menuOpenLabel}
-          >
-            <span className="mobile-menu-toggle__bars" aria-hidden>
-              <span />
-              <span />
-              <span />
-            </span>
-          </button>
+
+          <div className="site-header__cont site-header__cont--actions">
+            <a href={`tel:${CONTACT_PHONE}`} className="site-header__phone">
+              {CONTACT_PHONE}
+            </a>
+            <a
+              href={TELEGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="site-header__icon-link"
+              aria-label={telegramLabel}
+            >
+              <TelegramIcon />
+            </a>
+            <div className="site-header__tools">
+              <LocaleSwitcher />
+              <ThemeToggle />
+            </div>
+            <ContactCta className="header-cta contact-cta-header" goal="header_consult_cta_click">
+              <span className="hidden md:inline">{writeLabel}</span>
+              <span className="md:hidden">{writeShortLabel}</span>
+            </ContactCta>
+            <button
+              type="button"
+              className="mobile-menu-toggle"
+              onClick={() => setMenuOpen((open) => !open)}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu-panel"
+              aria-label={menuOpen ? menuCloseLabel : menuOpenLabel}
+            >
+              <span className="mobile-menu-toggle__bars" aria-hidden>
+                <span />
+                <span />
+                <span />
+              </span>
+            </button>
+          </div>
         </div>
       </div>
 
