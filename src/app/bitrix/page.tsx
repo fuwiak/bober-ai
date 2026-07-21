@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { BareIntlShell } from "@/components/BareIntlShell";
 import { ContactForm } from "@/components/ContactForm";
+import { TrackedAnchor } from "@/components/TrackedAnchor";
 import { Reveal } from "@/components/motion/Reveal";
 import { webPageJsonLd } from "@/lib/seo";
 import { BITRIX_SITE_URL, TELEGRAM_URL } from "@/lib/site";
@@ -115,9 +116,15 @@ export default function BitrixLandingPage() {
               <span className="font-display text-lg tracking-tight text-ink">Bober AI Systems</span>
               <span className="meta-label ml-3 text-muted">Битрикс24 · amoCRM</span>
             </div>
-            <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary">
+            <TrackedAnchor
+              href={TELEGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-secondary"
+              goal="bitrix_telegram_click"
+            >
               Telegram
-            </a>
+            </TrackedAnchor>
           </div>
         </header>
 
@@ -137,12 +144,18 @@ export default function BitrixLandingPage() {
                   Когда стандартных роботов, виджетов и встроенного AI недостаточно.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <a href="#contact" className="btn-primary">
+                  <TrackedAnchor href="#contact" className="btn-primary" goal="bitrix_cta_click">
                     Обсудить проект
-                  </a>
-                  <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary">
+                  </TrackedAnchor>
+                  <TrackedAnchor
+                    href={TELEGRAM_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn-secondary"
+                    goal="bitrix_telegram_click"
+                  >
                     Написать в Telegram
-                  </a>
+                  </TrackedAnchor>
                 </div>
               </Reveal>
 
@@ -279,7 +292,7 @@ export default function BitrixLandingPage() {
                 </p>
               </Reveal>
               <div className="mt-8">
-                <ContactForm defaultService="Битрикс24 / amoCRM / AI" />
+                <ContactForm defaultService="Битрикс24 / amoCRM / AI" trackingPrefix="bitrix" />
               </div>
             </div>
           </section>

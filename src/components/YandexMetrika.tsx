@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 import {
+  BITRIX_YANDEX_METRIKA_ID,
   PARTNERS_YANDEX_METRIKA_ID,
   YANDEX_METRIKA_ID,
   yandexMetrikaIdForLocation,
@@ -43,8 +44,10 @@ export function YandexMetrika() {
         {`
           var mainId = ${YANDEX_METRIKA_ID};
           var partnersId = ${PARTNERS_YANDEX_METRIKA_ID};
+          var bitrixId = ${BITRIX_YANDEX_METRIKA_ID};
           var isPartnersLanding = location.hostname.toLowerCase() === 'partners.bober-ai.dev' || location.pathname.indexOf('/white-label') === 0;
-          var id = isPartnersLanding ? partnersId : mainId;
+          var isBitrixLanding = location.hostname.toLowerCase() === 'bitrix.bober-ai.dev' || location.pathname.indexOf('/bitrix') === 0;
+          var id = isPartnersLanding ? partnersId : (isBitrixLanding ? bitrixId : mainId);
           (function(m,e,t,r,i,k,a){
               m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
               m[i].l=1*new Date();
@@ -60,7 +63,8 @@ export function YandexMetrika() {
           {`
             (function() {
               var isPartnersLanding = location.hostname.toLowerCase() === 'partners.bober-ai.dev' || location.pathname.indexOf('/white-label') === 0;
-              var id = isPartnersLanding ? ${PARTNERS_YANDEX_METRIKA_ID} : ${YANDEX_METRIKA_ID};
+              var isBitrixLanding = location.hostname.toLowerCase() === 'bitrix.bober-ai.dev' || location.pathname.indexOf('/bitrix') === 0;
+              var id = isPartnersLanding ? ${PARTNERS_YANDEX_METRIKA_ID} : (isBitrixLanding ? ${BITRIX_YANDEX_METRIKA_ID} : ${YANDEX_METRIKA_ID});
               var hasYm = typeof window.ym === "function";
               if (hasYm) {
                 console.info("[YM debug] initialized: " + id);
@@ -71,15 +75,6 @@ export function YandexMetrika() {
           `}
         </Script>
       ) : null}
-      <noscript>
-        <div>
-          <img
-            src={`https://mc.yandex.ru/watch/${YANDEX_METRIKA_ID}`}
-            style={{ position: "absolute", left: "-9999px" }}
-            alt=""
-          />
-        </div>
-      </noscript>
     </>
   );
 }

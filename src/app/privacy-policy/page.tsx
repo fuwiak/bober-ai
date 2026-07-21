@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { LegalPageLayout } from "@/components/LegalPageLayout";
 import {
+  BITRIX_YANDEX_METRIKA_ID,
   LEGAL_ENTITY,
   LEGAL_ROUTES,
   PARTNERS_YANDEX_METRIKA_ID,
@@ -153,8 +154,8 @@ export default function PrivacyPolicyPage() {
         <ul className="mt-3 list-inside list-disc space-y-1">
           <li>оператор сервиса: ООО «Яндекс», Российская Федерация;</li>
           <li>
-            идентификаторы счётчиков: {YANDEX_METRIKA_ID} для www.bober-ai.dev и {PARTNERS_YANDEX_METRIKA_ID} для
-            partners.bober-ai.dev, bitrix.bober-ai.dev;
+            идентификаторы счётчиков: {YANDEX_METRIKA_ID} для www.bober-ai.dev, {PARTNERS_YANDEX_METRIKA_ID} для
+            partners.bober-ai.dev и {BITRIX_YANDEX_METRIKA_ID} для bitrix.bober-ai.dev;
           </li>
           <li>
             правовое основание обработки: согласие пользователя, выраженное через всплывающее уведомление о cookies;
