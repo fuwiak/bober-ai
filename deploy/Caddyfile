@@ -24,6 +24,11 @@
 		redir https://partners.bober-ai.dev{uri} permanent
 	}
 
+	@bitrixHost host bitrix.bober-ai.dev
+	handle @bitrixHost {
+		redir https://bitrix.bober-ai.dev{uri} permanent
+	}
+
 	handle {
 		encode gzip
 		root * /srv
@@ -70,7 +75,6 @@ https://www.bober-ai.dev {
 }
 
 # White-label partner landing — separate offer/audience, not linked from main nav.
-# Single-page microsite: everything except shared static assets serves white-label.html.
 https://partners.bober-ai.dev {
 	encode gzip
 	root * /srv
@@ -83,6 +87,23 @@ https://partners.bober-ai.dev {
 
 	handle {
 		rewrite * /white-label.html
+		file_server
+	}
+}
+
+# Bitrix24 + amoCRM landing
+https://bitrix.bober-ai.dev {
+	encode gzip
+	root * /srv
+
+	@shared path /_next/* /stock/* /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /privacy-policy /consent /terms /partners/trust/*
+	handle @shared {
+		try_files {path} {path}.html
+		file_server
+	}
+
+	handle {
+		rewrite * /bitrix.html
 		file_server
 	}
 }

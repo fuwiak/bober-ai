@@ -2677,3 +2677,42 @@ html:not(.dark) .shell-code {
   @media (min-width: 768px) {
     .case-meta-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
+
+  /* bitrix.bober-ai.dev — two primary CRM platforms */
+  .bitrix-platforms {
+    display: grid;
+    gap: 12px;
+  }
+  @media (min-width: 640px) {
+    .bitrix-platforms {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .bitrix-platforms__card {
+    border: 1px solid var(--color-hairline);
+    background: var(--color-surface-card);
+    padding: 28px 24px;
+    border-radius: 4px;
+  }
+  .bitrix-platforms__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .bitrix-platforms__name {
+    margin-top: 12px;
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--color-ink);
+  }
+  .bitrix-platforms__hint {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--color-body);
+    line-height: 1.45;
+  }

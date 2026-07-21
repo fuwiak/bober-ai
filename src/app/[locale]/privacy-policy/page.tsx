@@ -175,7 +175,7 @@ export default async function PrivacyPolicyPageEn({ params }: Props) {
           <li>service operator: Yandex LLC, Russian Federation;</li>
           <li>
             counter IDs: {YANDEX_METRIKA_ID} for www.bober-ai.dev and {PARTNERS_YANDEX_METRIKA_ID} for
-            partners.bober-ai.dev;
+            partners.bober-ai.dev, bitrix.bober-ai.dev;
           </li>
           <li>legal basis: the user&rsquo;s consent given through the cookie notification banner;</li>
           <li>

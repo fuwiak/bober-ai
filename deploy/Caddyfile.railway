@@ -20,17 +20,29 @@
 		redir https://www.bober-ai.dev{uri} permanent
 	}
 
-	# White-label partner landing — Host partners.bober-ai.dev → /white-label.html
-	# Must stay before the catch-all so partners. is never apex→www redirected.
+	# Microsite landings — must stay before catch-all (never apex→www).
+	@micrositeShared path /_next/* /stock/* /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /privacy-policy /consent /terms /partners/trust/*
+
 	@partners host partners.bober-ai.dev
 	handle @partners {
-		@partnersShared path /_next/* /stock/* /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /privacy-policy /consent /terms /partners/trust/*
-		handle @partnersShared {
+		handle @micrositeShared {
 			try_files {path} {path}.html
 			file_server
 		}
 		handle {
 			rewrite * /white-label.html
+			file_server
+		}
+	}
+
+	@bitrix host bitrix.bober-ai.dev
+	handle @bitrix {
+		handle @micrositeShared {
+			try_files {path} {path}.html
+			file_server
+		}
+		handle {
+			rewrite * /bitrix.html
 			file_server
 		}
 	}

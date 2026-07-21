@@ -77,6 +77,9 @@ export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.bober-a
 /** Отдельный white-label лендинг на subdomain (Caddy host rewrite → /white-label.html). */
 export const PARTNERS_SITE_URL =
   process.env.NEXT_PUBLIC_PARTNERS_SITE_URL?.trim() || "https://partners.bober-ai.dev";
+/** CRM landing: Bitrix24 + amoCRM (Caddy host rewrite → /bitrix.html). */
+export const BITRIX_SITE_URL =
+  process.env.NEXT_PUBLIC_BITRIX_SITE_URL?.trim() || "https://bitrix.bober-ai.dev";
 
 export const DEFAULT_KEYWORDS = [
   "автоматизация бизнес процессов",

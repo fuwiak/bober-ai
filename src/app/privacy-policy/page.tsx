@@ -154,7 +154,7 @@ export default function PrivacyPolicyPage() {
           <li>оператор сервиса: ООО «Яндекс», Российская Федерация;</li>
           <li>
             идентификаторы счётчиков: {YANDEX_METRIKA_ID} для www.bober-ai.dev и {PARTNERS_YANDEX_METRIKA_ID} для
-            partners.bober-ai.dev;
+            partners.bober-ai.dev, bitrix.bober-ai.dev;
           </li>
           <li>
             правовое основание обработки: согласие пользователя, выраженное через всплывающее уведомление о cookies;
