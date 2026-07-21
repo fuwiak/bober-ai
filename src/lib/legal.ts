@@ -20,8 +20,19 @@ export const LEGAL_ROUTES = {
 export const COOKIE_CONSENT_KEY = "cookie-consent";
 
 export const YANDEX_METRIKA_ID = process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID || "110635302";
+export const PARTNERS_YANDEX_METRIKA_ID =
+  process.env.NEXT_PUBLIC_PARTNERS_YANDEX_METRIKA_ID || "110926696";
 
-export const POLICY_UPDATED_AT = "20.07.2026";
+/** Select the dedicated counter for the white-label partner subdomain. */
+export function yandexMetrikaIdForLocation(hostname?: string, pathname?: string): string {
+  const isPartnersLanding =
+    hostname?.toLowerCase() === "partners.bober-ai.dev" || pathname?.startsWith("/white-label");
+  return isPartnersLanding
+    ? PARTNERS_YANDEX_METRIKA_ID
+    : YANDEX_METRIKA_ID;
+}
+
+export const POLICY_UPDATED_AT = "22.07.2026";
 
 /** Строка реквизитов для футера и кратких блоков */
 export function formatLegalRequisitesLine(): string {

@@ -11,11 +11,17 @@ type ContactFormProps = {
   defaultService?: string;
   defaultMessage?: string;
   onSuccess?: () => void;
+  trackingPrefix?: string;
 };
 
 const SUCCESS_CLOSE_MS = 2400;
 
-export function ContactForm({ defaultService = "", defaultMessage = "", onSuccess }: ContactFormProps) {
+export function ContactForm({
+  defaultService = "",
+  defaultMessage = "",
+  onSuccess,
+  trackingPrefix = "",
+}: ContactFormProps) {
   const t = useTranslations("form");
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
@@ -36,7 +42,7 @@ export function ContactForm({ defaultService = "", defaultMessage = "", onSucces
   function trackFormStart() {
     if (formStartedRef.current) return;
     formStartedRef.current = true;
-    reachGoal("form_start");
+    reachGoal(trackingPrefix ? `${trackingPrefix}_form_start` : "form_start");
   }
 
   function onSubmit(event: FormEvent) {
@@ -73,7 +79,9 @@ export function ContactForm({ defaultService = "", defaultMessage = "", onSucces
       ].join("\n"),
     );
 
-    reachGoal("form_submit", { service: defaultService || undefined });
+    reachGoal(trackingPrefix ? `${trackingPrefix}_form_submit` : "form_submit", {
+      service: defaultService || undefined,
+    });
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
     setStatus("ok");
     setName("");

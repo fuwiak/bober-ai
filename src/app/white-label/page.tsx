@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { BareIntlShell } from "@/components/BareIntlShell";
 import { ContactForm } from "@/components/ContactForm";
+import { TrackedAnchor } from "@/components/TrackedAnchor";
 import { Reveal } from "@/components/motion/Reveal";
 import { webPageJsonLd } from "@/lib/seo";
 import { PARTNERS_SITE_URL, TELEGRAM_URL } from "@/lib/site";
@@ -137,9 +138,15 @@ export default function WhiteLabelPage() {
               <span className="font-display text-lg tracking-tight text-ink">Bober AI Systems</span>
               <span className="meta-label ml-3 text-muted">Partner Program</span>
             </div>
-            <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary">
+            <TrackedAnchor
+              href={TELEGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-secondary"
+              goal="partner_telegram_click"
+            >
               Telegram
-            </a>
+            </TrackedAnchor>
           </div>
         </header>
 
@@ -154,12 +161,18 @@ export default function WhiteLabelPage() {
                   конкуренции с вашей компанией.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <a href="#contact" className="btn-primary">
+                  <TrackedAnchor href="#contact" className="btn-primary" goal="partner_cta_click">
                     Обсудить партнёрство
-                  </a>
-                  <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary">
+                  </TrackedAnchor>
+                  <TrackedAnchor
+                    href={TELEGRAM_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn-secondary"
+                    goal="partner_telegram_click"
+                  >
                     Написать в Telegram
-                  </a>
+                  </TrackedAnchor>
                 </div>
               </Reveal>
 
@@ -317,7 +330,7 @@ export default function WhiteLabelPage() {
                 </p>
               </Reveal>
               <div className="mt-8">
-                <ContactForm defaultService="Партнёрство / White-label" />
+                <ContactForm defaultService="Партнёрство / White-label" trackingPrefix="partner" />
               </div>
             </div>
           </section>

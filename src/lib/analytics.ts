@@ -1,4 +1,4 @@
-import { YANDEX_METRIKA_ID } from "@/lib/legal";
+import { yandexMetrikaIdForLocation } from "@/lib/legal";
 
 export type Attribution = {
   utm_source?: string;
@@ -76,7 +76,7 @@ export function reachGoal(goal: string, params?: Record<string, unknown>) {
   const ym = (window as Window & { ym?: YmFn }).ym;
   if (typeof ym !== "function") return;
 
-  const id = Number(YANDEX_METRIKA_ID);
+  const id = Number(yandexMetrikaIdForLocation(window.location.hostname, window.location.pathname));
   if (!Number.isFinite(id)) return;
 
   if (params) {

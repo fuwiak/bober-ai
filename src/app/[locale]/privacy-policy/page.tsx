@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { LegalPageLayout } from "@/components/LegalPageLayout";
-import { LEGAL_ENTITY, LEGAL_ROUTES, POLICY_UPDATED_AT, YANDEX_METRIKA_ID } from "@/lib/legal";
+import {
+  LEGAL_ENTITY,
+  LEGAL_ROUTES,
+  PARTNERS_YANDEX_METRIKA_ID,
+  POLICY_UPDATED_AT,
+  YANDEX_METRIKA_ID,
+} from "@/lib/legal";
 import { buildPageMetadata } from "@/lib/seo";
 import { SITE_NAME, absoluteUrl } from "@/lib/site";
 
@@ -167,7 +173,10 @@ export default async function PrivacyPolicyPageEn({ params }: Props) {
         <h3 className="mt-4 font-normal text-ink">7.1. Yandex Metrica service details</h3>
         <ul className="mt-3 list-inside list-disc space-y-1">
           <li>service operator: Yandex LLC, Russian Federation;</li>
-          <li>counter ID on the Website: {YANDEX_METRIKA_ID};</li>
+          <li>
+            counter IDs: {YANDEX_METRIKA_ID} for www.bober-ai.dev and {PARTNERS_YANDEX_METRIKA_ID} for
+            partners.bober-ai.dev;
+          </li>
           <li>legal basis: the user&rsquo;s consent given through the cookie notification banner;</li>
           <li>
             purposes: traffic accounting, traffic source analysis, page performance evaluation, click maps, session

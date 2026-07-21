@@ -1,15 +1,15 @@
 "use client";
 
 import Script from "next/script";
-import { YANDEX_METRIKA_ID } from "@/lib/legal";
+import { PARTNERS_YANDEX_METRIKA_ID, YANDEX_METRIKA_ID } from "@/lib/legal";
 
 /** Loads on every visit (no cookie-consent gate), same as Metrika. */
 export function Varioqub() {
-  const id = YANDEX_METRIKA_ID;
-
   return (
     <Script id="varioqub" strategy="afterInteractive">
       {`
+        var isPartnersLanding = location.hostname.toLowerCase() === 'partners.bober-ai.dev' || location.pathname.indexOf('/white-label') === 0;
+        var id = isPartnersLanding ? ${PARTNERS_YANDEX_METRIKA_ID} : ${YANDEX_METRIKA_ID};
         (function(e, x, pe, r, i, me, nt){
           e[i]=e[i]||function(){(e[i].a=e[i].a||[]).push(arguments)},
           me=x.createElement(pe),me.async=1,me.src=r,nt=x.getElementsByTagName(pe)[0],
@@ -20,7 +20,7 @@ export function Varioqub() {
           }),
           nt.parentNode.insertBefore(me,nt)
         })(window, document, 'script', 'https://abt.s3.yandex.net/expjs/latest/exp.js', 'ymab');
-        ymab('metrika.${id}', 'init');
+        ymab('metrika.' + id, 'init');
       `}
     </Script>
   );

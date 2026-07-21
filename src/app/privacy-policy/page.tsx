@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { LegalPageLayout } from "@/components/LegalPageLayout";
-import { LEGAL_ENTITY, LEGAL_ROUTES, POLICY_UPDATED_AT, YANDEX_METRIKA_ID } from "@/lib/legal";
+import {
+  LEGAL_ENTITY,
+  LEGAL_ROUTES,
+  PARTNERS_YANDEX_METRIKA_ID,
+  POLICY_UPDATED_AT,
+  YANDEX_METRIKA_ID,
+} from "@/lib/legal";
 import { DEFAULT_KEYWORDS, SITE_NAME, absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -146,7 +152,10 @@ export default function PrivacyPolicyPage() {
         <h3 className="mt-4 font-normal text-ink">7.1. Сведения о сервисе «Яндекс.Метрика»</h3>
         <ul className="mt-3 list-inside list-disc space-y-1">
           <li>оператор сервиса: ООО «Яндекс», Российская Федерация;</li>
-          <li>идентификатор счётчика на Сайте: {YANDEX_METRIKA_ID};</li>
+          <li>
+            идентификаторы счётчиков: {YANDEX_METRIKA_ID} для www.bober-ai.dev и {PARTNERS_YANDEX_METRIKA_ID} для
+            partners.bober-ai.dev;
+          </li>
           <li>
             правовое основание обработки: согласие пользователя, выраженное через всплывающее уведомление о cookies;
           </li>
