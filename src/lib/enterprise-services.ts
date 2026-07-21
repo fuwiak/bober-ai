@@ -11,26 +11,26 @@ export type EnterpriseService = {
 };
 
 const IMAGES: Record<string, string> = {
-  "enterprise-ai-assistant": "/stock/team-collab.jpg",
-  "ai-discovery-roadmap": "/stock/roadmap-sticky-notes.jpg",
-  "private-llm-gigachat": "/stock/cyber-padlock.jpg",
-  "business-process-automation": "/stock/automation-code.jpg",
-  "sales-ai-agent": "/stock/sales-proposal.jpg",
+  "enterprise-ai-assistant": "/stock/enterprise-ai-assistant.jpg",
+  "ai-discovery-roadmap": "/stock/ai-discovery-roadmap.jpg",
+  "private-llm-gigachat": "/stock/private-llm.jpg",
+  "business-process-automation": "/stock/business-process-automation.jpg",
+  "sales-ai-agent": "/stock/sales-ai-agent.jpg",
   "ai-automation": "/stock/automation-code.jpg",
-  rag: "/stock/team-collab.jpg",
+  rag: "/stock/rag-search.jpg",
   "llm-development": "/stock/automation-code.jpg",
   n8n: "/stock/automation-code.jpg",
   "ai-agent": "/stock/team-collab.jpg",
-  "document-processing": "/stock/roadmap-sticky-notes.jpg",
+  "document-processing": "/stock/document-processing.jpg",
   "voice-ai": "/stock/team-collab.jpg",
-  ocr: "/stock/roadmap-sticky-notes.jpg",
+  ocr: "/stock/document-processing.jpg",
   "open-webui": "/stock/cyber-padlock.jpg",
-  "self-hosted-ai": "/stock/cyber-padlock.jpg",
+  "self-hosted-ai": "/stock/private-llm.jpg",
   mcp: "/stock/automation-code.jpg",
   langgraph: "/stock/automation-code.jpg",
-  "knowledge-base": "/stock/team-collab.jpg",
-  "ai-consulting": "/stock/roadmap-sticky-notes.jpg",
-  "crm-integration": "/stock/sales-proposal.jpg",
+  "knowledge-base": "/stock/rag-search.jpg",
+  "ai-consulting": "/stock/ai-discovery-roadmap.jpg",
+  "crm-integration": "/stock/crm-integration.jpg",
 };
 
 const ruExtra: EnterpriseService[] = [
