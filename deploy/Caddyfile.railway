@@ -20,24 +20,43 @@
 		redir https://www.bober-ai.dev{uri} permanent
 	}
 
-	try_files {path} {path}.html {path}/index.html =404
-	file_server
-
-	handle_errors {
-		rewrite * /404.html
-		file_server
+	# White-label partner landing — separate offer/audience, not linked from main nav.
+	# Must stay before the catch-all main-site handle so partners. is never apex→www redirected.
+	# Single-page microsite: everything except shared static assets serves white-label.html.
+	@partners host partners.bober-ai.dev
+	handle @partners {
+		@partnersShared path /_next/* /stock/* /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /privacy-policy /consent /terms /partners/trust/*
+		handle @partnersShared {
+			try_files {path} {path}.html
+			file_server
+		}
+		handle {
+			rewrite * /white-label.html
+			file_server
+		}
 	}
 
-	header /performers-feed.yml Content-Type "application/xml; charset=utf-8"
-	header /info.md Content-Type "text/markdown; charset=utf-8"
-	header /info.txt Content-Type "text/plain; charset=utf-8"
-	header /partners/ru.html X-Robots-Tag "noindex, nofollow, noarchive, nosnippet"
-	header /tel* X-Robots-Tag "noindex, nofollow"
-	header /performers-feed.yml X-Robots-Tag "noindex"
-	header /performers-feed.yml Access-Control-Allow-Origin "*"
-	header /performers-feed.yml Cache-Control "public, max-age=300"
+	# Main site (www + Railway default host)
+	handle {
+		try_files {path} {path}.html {path}/index.html =404
+		file_server
 
-	redir /ru / permanent
-	redir /ru/ / permanent
-	redir /ru.html / permanent
+		handle_errors {
+			rewrite * /404.html
+			file_server
+		}
+
+		header /performers-feed.yml Content-Type "application/xml; charset=utf-8"
+		header /info.md Content-Type "text/markdown; charset=utf-8"
+		header /info.txt Content-Type "text/plain; charset=utf-8"
+		header /partners/ru.html X-Robots-Tag "noindex, nofollow, noarchive, nosnippet"
+		header /tel* X-Robots-Tag "noindex, nofollow"
+		header /performers-feed.yml X-Robots-Tag "noindex"
+		header /performers-feed.yml Access-Control-Allow-Origin "*"
+		header /performers-feed.yml Cache-Control "public, max-age=300"
+
+		redir /ru / permanent
+		redir /ru/ / permanent
+		redir /ru.html / permanent
+	}
 }

@@ -74,6 +74,9 @@ export const HOMEPAGE_PRESENCE_LINKS = [
 export const YOUTUBE_SHORTS_URL = "https://www.youtube.com/shorts/5DQzO5aPS5A";
 export const ORGANIZATION_NAME = "ИП Стасиньски Павел Кшиштоф";
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.bober-ai.dev";
+/** Отдельный white-label лендинг на subdomain (Caddy host rewrite → /white-label.html). */
+export const PARTNERS_SITE_URL =
+  process.env.NEXT_PUBLIC_PARTNERS_SITE_URL?.trim() || "https://partners.bober-ai.dev";
 
 export const DEFAULT_KEYWORDS = [
   "автоматизация бизнес процессов",

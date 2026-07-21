@@ -19,6 +19,11 @@
 		redir https://www.bober-ai.dev{uri} permanent
 	}
 
+	@partnersHost host partners.bober-ai.dev
+	handle @partnersHost {
+		redir https://partners.bober-ai.dev{uri} permanent
+	}
+
 	handle {
 		encode gzip
 		root * /srv
@@ -62,4 +67,22 @@ https://www.bober-ai.dev {
 	redir /ru / permanent
 	redir /ru/ / permanent
 	redir /ru.html / permanent
+}
+
+# White-label partner landing — separate offer/audience, not linked from main nav.
+# Single-page microsite: everything except shared static assets serves white-label.html.
+https://partners.bober-ai.dev {
+	encode gzip
+	root * /srv
+
+	@shared path /_next/* /stock/* /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /privacy-policy /consent /terms /partners/trust/*
+	handle @shared {
+		try_files {path} {path}.html
+		file_server
+	}
+
+	handle {
+		rewrite * /white-label.html
+		file_server
+	}
 }
