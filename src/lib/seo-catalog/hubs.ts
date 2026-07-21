@@ -7,20 +7,20 @@ export const SEO_HUBS: HubDef[] = [
     contentKey: "hubAutomation",
     coverImage: STOCK_IMAGES.automation,
     children: [
-      { href: "/automation/processes", labelRu: "Бизнес-процессы", labelEn: "Business processes", blurbRu: "Главный кластер спроса Wordstat", blurbEn: "Top Wordstat demand cluster" },
-      { href: "/automation/documents", labelRu: "Документы", labelEn: "Documents", blurbRu: "Согласование, OCR, шаблоны", blurbEn: "Approvals, OCR, templates" },
-      { href: "/automation/sales", labelRu: "Продажи", labelEn: "Sales", blurbRu: "КП, лиды, follow-up", blurbEn: "Proposals, leads, follow-up" },
-      { href: "/automation/support", labelRu: "Поддержка", labelEn: "Support", blurbRu: "Заявки, боты, SLA", blurbEn: "Tickets, bots, SLA" },
-      { href: "/automation/hr", labelRu: "HR", labelEn: "HR", blurbRu: "Резюме, онбординг, политики", blurbEn: "Resumes, onboarding, policies" },
-      { href: "/automation/management", labelRu: "Руководителю", labelEn: "Management", blurbRu: "Дашборды и сводки", blurbEn: "Dashboards and digests" },
-      { href: "/automation/knowledge-base", labelRu: "База знаний", labelEn: "Knowledge base", blurbRu: "Поиск по регламентам", blurbEn: "Policy search" },
+      { href: "/automation/processes", labelRu: "Бизнес-процессы", labelEn: "Business processes", blurbRu: "Сквозные workflow между CRM, 1С, почтой и внутренними системами.", blurbEn: "End-to-end workflows across CRM, 1C, email and internal systems." },
+      { href: "/automation/documents", labelRu: "Документы", labelEn: "Documents", blurbRu: "Извлечение данных, согласование, генерация DOCX/PDF и контроль версий.", blurbEn: "Data extraction, approvals, DOCX/PDF generation and version control." },
+      { href: "/automation/sales", labelRu: "Продажи", labelEn: "Sales", blurbRu: "Квалификация лидов, коммерческие предложения, follow-up и CRM-задачи.", blurbEn: "Lead qualification, proposals, follow-ups and CRM tasks." },
+      { href: "/automation/support", labelRu: "Поддержка", labelEn: "Support", blurbRu: "Классификация обращений, ответы по базе знаний, маршрутизация и SLA.", blurbEn: "Ticket classification, knowledge answers, routing and SLA control." },
+      { href: "/automation/hr", labelRu: "HR", labelEn: "HR", blurbRu: "Разбор резюме, онбординг, ответы по политикам и кадровые запросы.", blurbEn: "Resume processing, onboarding, policy answers and employee requests." },
+      { href: "/automation/management", labelRu: "Руководителю", labelEn: "Management", blurbRu: "Автоматические сводки, контроль отклонений и данные для решений.", blurbEn: "Automated digests, exception monitoring and decision-ready data." },
+      { href: "/automation/knowledge-base", labelRu: "База знаний", labelEn: "Knowledge base", blurbRu: "Поиск по регламентам и ответы со ссылками на корпоративные источники.", blurbEn: "Policy search and answers linked back to corporate sources." },
     ],
     ru: {
       metaTitle: "Автоматизация бизнес-процессов — каталог решений | Bober AI",
       metaDescription:
         "Автоматизация процессов, документов, продаж, поддержки, HR и управленческой аналитики. AI — только там, где даёт ROI.",
-      h1: "Автоматизация для бизнеса",
-      subtitle: "Кластеры решений по реальному спросу Wordstat: процессы, CRM-сценарии, документы и операции.",
+      h1: "Автоматизация бизнес-процессов с измеримым результатом",
+      subtitle: "Связываем CRM, 1С, документы, почту и AI в надёжные workflow. Убираем ручные операции, сокращаем время цикла и передаём production-систему вашей команде.",
       intro: [
         "AI не является продуктом. Продукт — автоматизация. Ниже — входные страницы по болям бизнеса.",
         "Выберите кластер или сценарий — получите план, смету и production-внедрение.",
@@ -30,8 +30,8 @@ export const SEO_HUBS: HubDef[] = [
       metaTitle: "Business process automation — solutions catalog | Bober AI",
       metaDescription:
         "Automation for processes, documents, sales, support, HR and management analytics. AI only where it pays back.",
-      h1: "Business automation",
-      subtitle: "Solution clusters based on real search demand: processes, CRM scenarios, documents and ops.",
+      h1: "Business process automation with measurable outcomes",
+      subtitle: "We connect CRM, 1C, documents, email and AI into reliable workflows. Cut manual work and cycle time, then hand over a production-ready system to your team.",
       intro: [
         "AI is not the product. Automation is. Below are entry pages by business pain.",
         "Pick a cluster or scenario — get a plan, fixed scope and production delivery.",
