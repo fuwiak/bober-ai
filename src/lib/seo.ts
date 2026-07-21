@@ -20,6 +20,7 @@ import {
   absoluteUrl,
 } from "@/lib/site";
 import { LEGAL_ENTITY } from "@/lib/legal";
+import { PROFILE } from "@/lib/profile";
 
 /** Default share / snippet image (not favicon — Yandex/social need a real preview). */
 export const DEFAULT_OG_IMAGE = HERO_STOCK_IMAGE;
@@ -252,6 +253,16 @@ export function webPageJsonLd(input: {
   };
 }
 
+export function aggregateRatingJsonLd() {
+  return {
+    "@type": "AggregateRating",
+    ratingValue: PROFILE.rating,
+    reviewCount: PROFILE.reviewsCount,
+    bestRating: 5,
+    worstRating: 1,
+  };
+}
+
 export function serviceJsonLd(input: {
   name: string;
   description: string;
@@ -265,6 +276,7 @@ export function serviceJsonLd(input: {
     description: input.description,
     url: input.url,
     provider: organizationJsonLd(input.locale),
+    aggregateRating: aggregateRatingJsonLd(),
     areaServed: input.locale === "en" ? "Worldwide" : "Russia",
   };
 }
@@ -351,6 +363,7 @@ export function organizationJsonLd(locale: string) {
           { "@type": "Country", name: SITE_COUNTRY },
         ],
     priceRange: "₽₽₽",
+    aggregateRating: aggregateRatingJsonLd(),
     knowsAbout: isEn
       ? [
           "Business process automation",

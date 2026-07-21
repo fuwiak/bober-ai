@@ -4,6 +4,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
 import { ContactForm } from "@/components/ContactForm";
 import { ContactCta } from "@/components/ContactCta";
+import { PerformerRating } from "@/components/PerformerRating";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { TrackedAnchor } from "@/components/TrackedAnchor";
 import { Reveal } from "@/components/motion/Reveal";
@@ -98,6 +99,7 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
                     <p className="mt-2 text-sm text-muted">
                       {t("timeline")}: {service.deliveryDays} {t("days")}
                     </p>
+                    <PerformerRating locale={locale} className="mt-4" />
                     <div className="relative mt-6 aspect-[4/3] overflow-hidden rounded-lg border border-hairline bg-surface-soft">
                       <Image
                         src={service.serviceImage}
