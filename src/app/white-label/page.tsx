@@ -31,6 +31,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: PARTNERS_URL },
   robots: { index: true, follow: true },
+  verification: { yandex: "b5643e127be991c8" },
   openGraph: {
     type: "website",
     locale: "ru_RU",
