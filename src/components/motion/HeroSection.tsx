@@ -21,6 +21,8 @@ type HeroSectionProps = {
   trustItems: string[];
   heroImage: string;
   heroImageAlt: string;
+  /** Office / architecture accents composed beside the portrait */
+  accentImages?: { src: string; alt?: string }[];
 };
 
 export function HeroSection({
@@ -37,6 +39,7 @@ export function HeroSection({
   trustItems,
   heroImage,
   heroImageAlt,
+  accentImages = [],
 }: HeroSectionProps) {
   const prefersReducedMotion = useReducedMotion();
   const transition = prefersReducedMotion ? { duration: 0 } : revealTransition;
@@ -133,22 +136,39 @@ export function HeroSection({
         </motion.div>
 
         <motion.figure
-          className="hero-media"
+          className={`hero-media${accentImages.length > 0 ? " hero-media--compose" : ""}`}
           initial={prefersReducedMotion ? false : { opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...transition, delay: prefersReducedMotion ? 0 : 0.28 }}
         >
-          <EditorialImageFrame variant="hero" className="hero-media__frame">
-            <Image
-              src={heroImage}
-              alt={heroImageAlt}
-              fill
-              sizes="100vw"
-              className="hero-media__image"
-              priority
-              unoptimized={heroImage.endsWith(".svg")}
-            />
-          </EditorialImageFrame>
+          <div className="hero-media__compose">
+            <EditorialImageFrame variant="hero" className="hero-media__frame hero-media__portrait">
+              <Image
+                src={heroImage}
+                alt={heroImageAlt}
+                fill
+                sizes={accentImages.length > 0 ? "(max-width: 768px) 100vw, 62vw" : "100vw"}
+                className="hero-media__image"
+                priority
+                unoptimized={heroImage.endsWith(".svg")}
+              />
+            </EditorialImageFrame>
+            {accentImages.length > 0 ? (
+              <div className="hero-media__accents" aria-hidden="true">
+                {accentImages.slice(0, 2).map((item) => (
+                  <EditorialImageFrame key={item.src} variant="card" className="hero-media__accent">
+                    <Image
+                      src={item.src}
+                      alt=""
+                      fill
+                      sizes="(max-width: 768px) 50vw, 20vw"
+                      className="hero-media__image"
+                    />
+                  </EditorialImageFrame>
+                ))}
+              </div>
+            ) : null}
+          </div>
           <figcaption className="sr-only">
             {heroImageAlt} · {trustItems.join(" · ")}
           </figcaption>

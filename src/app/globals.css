@@ -948,6 +948,15 @@ html.dark {
   .hero-media {
     @apply mt-16 w-full border-t border-hairline;
   }
+  .hero-media__compose {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .hero-media--compose .hero-media__compose {
+    grid-template-columns: minmax(0, 1.65fr) minmax(140px, 0.55fr);
+    align-items: stretch;
+  }
   .hero-media__frame {
     position: relative;
     width: 100%;
@@ -956,9 +965,44 @@ html.dark {
     overflow: hidden;
     border-radius: 4px;
   }
+  .hero-media--compose .hero-media__portrait {
+    aspect-ratio: auto;
+    max-height: none;
+    min-height: min(52vh, 560px);
+  }
+  .hero-media__accents {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    min-height: 0;
+  }
+  .hero-media__accent {
+    position: relative;
+    min-height: 0;
+    overflow: hidden;
+    border-radius: 4px;
+  }
   .hero-media__image {
     object-fit: cover;
     object-position: center center;
+  }
+  @media (max-width: 768px) {
+    .hero-media--compose .hero-media__compose {
+      grid-template-columns: 1fr;
+    }
+    .hero-media--compose .hero-media__portrait {
+      min-height: 0;
+      aspect-ratio: 16 / 10;
+      max-height: min(52vh, 420px);
+    }
+    .hero-media__accents {
+      grid-template-rows: none;
+      grid-template-columns: 1fr 1fr;
+      min-height: 140px;
+    }
+    .hero-media__accent {
+      aspect-ratio: 4 / 5;
+    }
   }
 
   .prestige-gallery {
@@ -966,7 +1010,7 @@ html.dark {
   }
   .prestige-gallery__grid {
     display: grid;
-    grid-template-columns: 1.7fr 1fr;
+    grid-template-columns: 1.4fr 0.8fr 0.8fr;
     gap: 0;
     min-height: min(52vh, 520px);
   }

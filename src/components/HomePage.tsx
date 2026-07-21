@@ -18,6 +18,7 @@ import { TrackedAnchor } from "@/components/TrackedAnchor";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
+  FOUNDER_IMAGE,
   OFFICE_STOCK_IMAGES,
   TELEGRAM_URL,
   WHATSAPP_URL,
@@ -63,8 +64,12 @@ export default async function HomePage() {
           ctaSecondary={t("hero.ctaSecondary")}
           ctaSecondaryHref="/portfolio"
           trustItems={t.raw("hero.trustItems") as string[]}
-          heroImage={OFFICE_STOCK_IMAGES.tower}
+          heroImage={FOUNDER_IMAGE}
           heroImageAlt={t("hero.heroImageAlt")}
+          accentImages={[
+            { src: OFFICE_STOCK_IMAGES.tower },
+            { src: OFFICE_STOCK_IMAGES.facade },
+          ]}
         />
 
         <section className="section-band section--deep border-b border-hairline">
@@ -73,26 +78,37 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="prestige-gallery border-b border-hairline" aria-label={t("hero.heroImageAlt")}>
+        <section className="prestige-gallery border-b border-hairline" aria-label={t("hero.officeGalleryLabel")}>
           <div className="prestige-gallery__grid">
             <Reveal className="prestige-gallery__main">
               <EditorialImageFrame variant="hero" className="prestige-gallery__frame">
                 <Image
-                  src={OFFICE_STOCK_IMAGES.facade}
+                  src={OFFICE_STOCK_IMAGES.interior}
                   alt=""
                   fill
-                  sizes="(max-width: 768px) 100vw, 66vw"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
                 />
               </EditorialImageFrame>
             </Reveal>
-            <Reveal delay={0.08} className="prestige-gallery__side">
+            <Reveal delay={0.06} className="prestige-gallery__side">
               <EditorialImageFrame variant="card" className="prestige-gallery__frame">
                 <Image
-                  src={OFFICE_STOCK_IMAGES.interior}
+                  src={OFFICE_STOCK_IMAGES.tower}
                   alt=""
                   fill
-                  sizes="(max-width: 768px) 100vw, 34vw"
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                  className="object-cover"
+                />
+              </EditorialImageFrame>
+            </Reveal>
+            <Reveal delay={0.12} className="prestige-gallery__side">
+              <EditorialImageFrame variant="card" className="prestige-gallery__frame">
+                <Image
+                  src={OFFICE_STOCK_IMAGES.facade}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, 25vw"
                   className="object-cover"
                 />
               </EditorialImageFrame>
