@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import { COOKIE_CONSENT_KEY, LEGAL_ROUTES, YANDEX_METRIKA_ID } from "@/lib/legal";
+import { COOKIE_CONSENT_KEY, LEGAL_ROUTES } from "@/lib/legal";
 
 export type CookieConsentValue = "accepted" | "rejected";
 
@@ -56,22 +56,19 @@ export function CookieConsent() {
       role="dialog"
       aria-labelledby="cookie-consent-title"
       aria-describedby="cookie-consent-desc"
-      className={`cookie-consent fixed inset-x-4 z-[100] md:inset-x-auto md:right-6 md:max-w-md${visible ? " cookie-consent--open" : ""}`}
+      className={`cookie-consent fixed inset-x-4 z-[100] md:inset-x-auto md:right-6${visible ? " cookie-consent--open" : ""}`}
     >
       <div className="cookie-consent-card">
-        <p id="cookie-consent-title" className="meta-label text-ink">
-          Мы используем cookies и Яндекс.Метрику
+        <p id="cookie-consent-title" className="cookie-consent-title">
+          Cookies и аналитика
         </p>
-        <p id="cookie-consent-desc" className="body-copy mt-3 text-base text-body">
-          Сайт использует cookies, «Яндекс.Метрику» (№ {YANDEX_METRIKA_ID}) и Varioqub для аналитики и экспериментов.
-          Счётчик Метрики загружается для измерения аудитории; дополнительные cookies маркетинга — по вашему выбору.
-          Подробнее — в{" "}
+        <p id="cookie-consent-desc" className="cookie-consent-desc">
+          Используем cookies и Яндекс.Метрику для статистики сайта.{" "}
           <Link href={LEGAL_ROUTES.privacyPolicy} className="text-link">
-            политике обработки ПДн
+            Политика
           </Link>
-          .
         </p>
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="cookie-consent-actions">
           <button type="button" onClick={reject} className="btn-secondary-on-dark text-xs">
             Только необходимые
           </button>
