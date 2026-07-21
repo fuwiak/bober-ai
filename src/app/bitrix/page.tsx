@@ -146,6 +146,101 @@ const COMPARISON_ROWS = [
   },
 ];
 
+const FLOWER_CASE_BUILT = [
+  "Синхронизация клиентов и заказов с МойСклад",
+  "Объединение прямых продаж и заказов с маркетплейсов",
+  "История заказов по каждому клиенту",
+  "Расчёт среднего чека и количества покупок",
+  "Определение даты последнего заказа",
+  "Автоматическая AI-сегментация клиентской базы",
+  "Выделение постоянных, корпоративных и премиальных клиентов",
+  "Обогащение карточек данными из Telegram, WhatsApp и других каналов",
+  "Фильтрация и поиск по клиентской базе",
+  "Группы для маркетинговых кампаний",
+  "Рекомендации по повторным продажам и персональным предложениям",
+  "Аналитический дашборд по выручке, заказам и каналам продаж",
+];
+
+const FLOWER_CASE_FLOW = ["МойСклад и каналы продаж", "Единая клиентская база", "AI-сегментация", "Рекомендации и группы", "Персональная коммуникация"];
+
+const FLOWER_TO_BITRIX_STEPS = [
+  "Битрикс24 или amoCRM остаётся основным рабочим интерфейсом",
+  "Данные о заказах и остатках поступают из МойСклад или 1С",
+  "AI автоматически сегментирует клиентскую базу",
+  "Менеджер получает рекомендации по следующему контакту",
+  "Система создаёт задачи и персональные предложения в CRM",
+  "Результаты коммуникации сохраняются в карточке клиента",
+];
+
+const SCENARIO_DISCLAIMER =
+  "Демонстрационный сценарий. Архитектура и эффект уточняются после аудита процесса.";
+
+const MAIN_SCENARIOS = [
+  {
+    title: "Запрос клиента → готовое КП",
+    problem: "Клиент присылает PDF или Excel со списком товаров — менеджер вручную ищет позиции, сверяет цены и остатки в 1С и собирает документ.",
+    steps: [
+      "Распознаёт позиции из PDF, Excel или сообщения",
+      "Создаёт или обновляет сделку в Битрикс24",
+      "Проверяет цены и остатки в 1С или МойСклад",
+      "Подбирает точный товар или аналог, отмечает отсутствующие позиции",
+      "Формирует DOCX/PDF и прикрепляет к сделке",
+    ],
+    systems: "Битрикс24 · 1С · OCR · каталог · DOCX/PDF",
+    result: "Менеджер проверяет готовый документ вместо ручного переноса данных между системами.",
+  },
+  {
+    title: "AI-ассистент руководителя",
+    problem: "Данные разбросаны по CRM, задачам, комментариям, телефонии и 1С — любой ответ требует ручного отчёта.",
+    steps: [
+      "Собирает цифры из CRM, задач и активностей",
+      "Анализирует комментарии и транскрипты звонков",
+      "Подтягивает дебиторскую задолженность из 1С",
+      "Указывает источник и дату актуальности каждой цифры",
+      "Формирует отчёт или задачу для руководителя",
+    ],
+    systems: "Битрикс24 · 1С · телефония · права доступа",
+    result: "Руководитель получает ответ по фактическим данным без ручной сборки отчёта из CRM, Excel и учётной системы.",
+  },
+  {
+    title: "Контроль звонков и следующий шаг",
+    problem: "Руководитель не может прослушать все звонки, а стандартная транскрипция не отвечает на вопрос, хорошо ли прошёл разговор.",
+    steps: [
+      "Получает запись из телефонии и создаёт транскрипт",
+      "Разделяет реплики клиента и менеджера",
+      "Определяет потребность, бюджет, срок и возражения",
+      "Проверяет соответствие скрипту, готовит сводку",
+      "Заполняет поля Битрикс24 и предлагает следующий шаг",
+    ],
+    systems: "Битрикс24 · телефония · речевая аналитика",
+    result: "Карточка сделки сама заполняется выводами из разговора — вместо ручного прослушивания записей.",
+  },
+  {
+    title: "Документ → 1С → согласование в Битрикс24",
+    problem: "Входящие счета, акты, спецификации и накладные сотрудник читает и вручную переносит в учётную систему.",
+    steps: [
+      "Классифицирует тип документа",
+      "Извлекает контрагента, номер, дату, позиции и суммы",
+      "Сверяет данные с контрагентом и заказом, находит расхождения",
+      "Создаёт черновик документа в 1С со ссылкой на источник",
+      "Создаёт задачу на согласование в Битрикс24",
+    ],
+    systems: "Битрикс24 · 1С · OCR · ЭДО",
+    result: "AI извлекает и проверяет данные, а проведение документа остаётся за человеком или чёткими правилами.",
+  },
+];
+
+const SMALL_SCENARIOS = [
+  { title: "Реактивация старых лидов", text: "Сегментация базы, персональные сообщения и передача заинтересованных менеджеру." },
+  { title: "Квалификация лидов", text: "AI ведёт первый диалог и передаёт в CRM заполненную карточку со scoring." },
+  { title: "Следующий лучший шаг", text: "Анализ стадии, активности и возражений — подсказка менеджеру, а не автодействие." },
+  { title: "Контроль качества данных CRM", text: "Поиск дублей, пустых полей и расхождений между стадией и реальным статусом." },
+  { title: "Дебиторская задолженность", text: "Группировка по риску, напоминания клиенту и алерт менеджеру перед новой отгрузкой." },
+  { title: "Поддержка и сервис", text: "Классификация обращений, история клиента, эскалация нетиповых случаев." },
+  { title: "Тендеры и документация", text: "Разбор конкурсной документации, чек-лист требований, контроль комплектности." },
+  { title: "Заказы с маркетплейсов", text: "Сверка остатков, задача на производство или закупку, обновление статуса в CRM." },
+];
+
 const EXPERTISE_POINTS = [
   "7 лет в AI и автоматизации бизнес-процессов",
   "12+ промышленных внедрений в проде, не демо",
@@ -330,6 +425,118 @@ export default function BitrixLandingPage() {
                   </tbody>
                 </table>
               </div>
+            </div>
+          </section>
+
+          <section className="section-band section--panel border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">Реализованный проект</span>
+                <h2 className="section-title mt-4 max-w-2xl">
+                  AI-CRM для цветочного бизнеса: данные из МойСклад и рекомендации для роста продаж
+                </h2>
+                <p className="body-copy mt-4 max-w-2xl">
+                  Единая клиентская база, которая объединяет покупателей, заказы и каналы продаж из МойСклад и
+                  других источников — не список карточек, а рабочий инструмент для поиска повторных продаж.
+                </p>
+              </Reveal>
+
+              <div className="mt-8 border border-hairline-strong bg-canvas p-6">
+                <span className="meta-label text-muted">Сценарий работы</span>
+                <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-4">
+                  {FLOWER_CASE_FLOW.map((step, index) => (
+                    <div key={step} className="flex items-center gap-3">
+                      <span className="border border-hairline-strong bg-surface-card px-4 py-3 font-display text-sm text-ink">
+                        {step}
+                      </span>
+                      {index < FLOWER_CASE_FLOW.length - 1 ? (
+                        <span aria-hidden className="text-muted-soft">
+                          →
+                        </span>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-8">
+                <span className="meta-label text-muted">Что было реализовано</span>
+                <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {FLOWER_CASE_BUILT.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm text-body">
+                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mt-8 border-t border-hairline pt-6">
+                <p className="body-copy text-sm text-body-strong">
+                  Результат: менеджер видит историю взаимодействия с клиентом, средний чек, последние покупки и
+                  подходящий повод для следующего контакта — вместо разрозненного списка заказчиков.
+                </p>
+                <p className="mt-3 text-sm text-muted">kinetic-ai.ru · МойСклад · AI-сегментация · Telegram · WhatsApp · маркетплейсы</p>
+              </div>
+
+              <div className="mt-8 border border-hairline bg-surface-card p-6">
+                <span className="meta-label text-muted">Аналогичный сценарий для Битрикс24 и amoCRM</span>
+                <p className="body-copy mt-3 text-sm">
+                  Эту архитектуру можно встроить в существующую CRM компании — без замены системы и без переноса
+                  работы сотрудников в новый интерфейс:
+                </p>
+                <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {FLOWER_TO_BITRIX_STEPS.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm text-body">
+                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section className="section-band border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">Примеры решений</span>
+                <h2 className="section-title mt-4 max-w-2xl">Типовые сценарии для Битрикс24 и amoCRM</h2>
+                <p className="body-copy mt-4 max-w-2xl">
+                  Технически реализуемо через REST API, вебхуки, ботов и обмен данными с 1С и МойСклад. Точная
+                  архитектура и эффект уточняются после аудита конкретного процесса.
+                </p>
+              </Reveal>
+
+              <div className="mt-8 grid gap-5 sm:grid-cols-2">
+                {MAIN_SCENARIOS.map((item) => (
+                  <div key={item.title} className="border border-hairline bg-surface-card p-6">
+                    <h3 className="card-title text-lg">{item.title}</h3>
+                    <p className="body-copy mt-2 text-sm text-muted">{item.problem}</p>
+                    <ul className="mt-4 space-y-2">
+                      {item.steps.map((step) => (
+                        <li key={step} className="flex items-start gap-2 text-sm text-body">
+                          <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                          {step}
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="meta-label mt-4 text-muted-soft">{item.systems}</p>
+                    <p className="body-copy mt-3 text-sm text-body-strong">{item.result}</p>
+                    <p className="mt-3 text-xs text-muted-soft">{SCENARIO_DISCLAIMER}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                {SMALL_SCENARIOS.map((item) => (
+                  <div key={item.title} className="border border-hairline px-5 py-4">
+                    <h4 className="font-display text-sm text-ink">{item.title}</h4>
+                    <p className="body-copy mt-1 text-sm text-muted">{item.text}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-6 text-xs text-muted-soft">{SCENARIO_DISCLAIMER}</p>
             </div>
           </section>
 

@@ -169,13 +169,94 @@ const PACKAGES = [
   },
 ];
 
-const EXAMPLE_STEPS = [
-  "Интегратор Битрикс24 получает от клиента запрос на AI-анализ звонков",
-  "Партнёр передаёт бриф — в течение 1–2 дней получает архитектуру и стоимость",
-  "Партнёр представляет предложение клиенту от своего имени",
-  "Мы делаем backend, интеграцию с телефонией и дашборд",
-  "Партнёр передаёт готовую систему клиенту под своим брендом",
-  "Мы остаёмся технической опорой за кулисами",
+const PARTNER_CASES = [
+  {
+    title: "Интегратор Bitrix24 продаёт AI-аналитику",
+    request: "Хотим задавать вопросы о продажах, задачах и звонках обычным языком",
+    partner: "Отношения с клиентом, анализ CRM, настройка Bitrix24, обучение, коммерческое сопровождение",
+    boberAi: "Архитектура, слой данных, контроль доступа, аналитика, интерфейс в Bitrix24, тесты, деплой, документация",
+    result: "Партнёр добавляет AI-модуль к своему проекту и сохраняет весь клиентский контракт.",
+  },
+  {
+    title: "Агентство продаёт voice AI для недвижимости",
+    request: "Нужна реактивация старых лидов и квалификация входящих звонков",
+    partner: "Клиент, сценарий продаж, контент, настройка кампаний, account management",
+    boberAi: "Voice-бэкенд, интеграция с телефонией, логика разговора, запись в CRM, транскрипция, scoring, назначение встреч",
+    result: "Агентство продаёт полный цикл от обращения до квалифицированной встречи, а не рекламный трафик.",
+  },
+  {
+    title: "1С-франчайзи добавляет обработку документов",
+    request: "Клиент вручную переносит заказы и спецификации в 1С",
+    partner: "Настройка 1С и бизнес-объектов",
+    boberAi: "OCR, извлечение данных, классификация документов, сопоставление позиций, confidence score, экран проверки, API",
+    result: "Франчайзи расширяет внедрение модулем интеллектуальной обработки документов без своей AI-команды.",
+  },
+  {
+    title: "Software house получает проект RAG",
+    request: "Нужен корпоративный ассистент по тысячам документов и политик",
+    partner: "Frontend, аккаунты пользователей, инфраструктура приложения, бизнес-интеграции",
+    boberAi: "Ingestion, chunking, embeddings, hybrid search, reranking, citations, eval, безопасность, выбор моделей",
+    result: "Software house сохраняет проект и сроки вместо отказа от AI-части или найма команды под один контракт.",
+  },
+  {
+    title: "Агентство создаёт систему коммерческих предложений",
+    request: "Дистрибьютор получает много запросов в PDF и Excel",
+    partner: "Портал и интерфейс",
+    boberAi: "Анализ документов, поиск товаров, подбор аналогов, интеграция с каталогом, ценовые правила, генерация документов",
+    result: "Партнёр продаёт клиенту отраслевой продукт, а не отдельную интеграцию с моделью.",
+  },
+  {
+    title: "Консультант автоматизирует операционный отдел",
+    request: "Найден процесс с большими издержками, но нет delivery-команды",
+    partner: "Бренд, стратегия, отношения с руководством, презентация результатов, своя маржа",
+    boberAi: "Техническая аналитика, PoC, внедрение, мониторинг, документация, сопровождение",
+    result: "Консультант сохраняет отношения и стратегию, делегируя техническую реализацию.",
+  },
+];
+
+const CAN_ADD_TO_OFFER = [
+  "AI-модуль для Битрикс24",
+  "Обработка документов для 1С",
+  "Корпоративный RAG",
+  "Голосовой агент",
+  "AI-контроль звонков",
+  "Генерация КП",
+  "AI-аналитика для руководителя",
+  "Классификация обращений",
+  "Кастомный агент с API",
+  "Локальная LLM в контуре клиента",
+];
+
+const PARTNER_GETS = [
+  "Описание решения под вашей маркой",
+  "Архитектуру",
+  "Объём работ",
+  "Техническую оценку стоимости",
+  "Список ограничений",
+  "Презентацию или демо",
+  "Ответы на вопросы IT клиента",
+  "Участие в разговоре как член команды",
+  "Документацию по сдаче проекта",
+];
+
+const PRESALE_FLOW = [
+  "Вы присылаете бриф",
+  "Мы задаём технические вопросы",
+  "Вы получаете архитектуру и себестоимость",
+  "Добавляете свою маржу и услуги",
+  "Презентуете клиенту под своим брендом",
+  "Мы выполняем delivery",
+];
+
+const FLOWER_WHITELABEL_BUILT = [
+  "Синхронизация клиентов и заказов",
+  "Единая клиентская база",
+  "AI-сегментация покупателей",
+  "Обогащение данных из каналов общения",
+  "Аналитика среднего чека и повторных заказов",
+  "Рекомендации для маркетинговых кампаний",
+  "Сценарии реактивации и персональных предложений",
+  "Интеграция с Битрикс24, amoCRM или интерфейсом партнёра",
 ];
 
 export default function WhiteLabelPage() {
@@ -444,24 +525,124 @@ export default function WhiteLabelPage() {
           <section className="section-band section--panel border-b border-hairline">
             <div className="container-editorial max-w-4xl">
               <Reveal>
-                <span className="section-label">Пример (иллюстрация)</span>
-                <h2 className="section-title mt-4 max-w-2xl">Как это работает на практике</h2>
+                <span className="section-label">Иллюстрации (не реальные клиенты)</span>
+                <h2 className="section-title mt-4 max-w-2xl">Как распределяются роли на практике</h2>
                 <p className="body-copy mt-4 max-w-2xl">
-                  Условный сценарий, чтобы показать распределение ролей — не описание конкретного клиента.
+                  Условные сценарии, чтобы показать разделение труда между партнёром и нами — не описание
+                  конкретных клиентов.
                 </p>
               </Reveal>
-              <ol className="mt-8 space-y-3">
-                {EXAMPLE_STEPS.map((step, index) => (
-                  <li key={step} className="flex gap-4 text-sm text-body">
-                    <span className="font-display text-muted-soft">{String(index + 1).padStart(2, "0")}</span>
-                    {step}
-                  </li>
+              <div className="mt-8 grid gap-5 sm:grid-cols-2">
+                {PARTNER_CASES.map((item) => (
+                  <div key={item.title} className="border border-hairline bg-surface-card p-6">
+                    <h3 className="card-title text-lg">{item.title}</h3>
+                    <p className="body-copy mt-2 text-sm text-muted">«{item.request}»</p>
+                    <div className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
+                      <div>
+                        <span className="meta-label text-muted-soft">Партнёр</span>
+                        <p className="mt-1 text-body">{item.partner}</p>
+                      </div>
+                      <div>
+                        <span className="meta-label text-muted-soft">Bober AI</span>
+                        <p className="mt-1 text-body">{item.boberAi}</p>
+                      </div>
+                    </div>
+                    <p className="mt-4 text-sm text-body-strong">{item.result}</p>
+                  </div>
                 ))}
-              </ol>
+              </div>
             </div>
           </section>
 
           <section className="section-band border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">Что добавить в предложение</span>
+                <h2 className="section-title mt-4 max-w-2xl">Что вы можете добавить в своё предложение</h2>
+              </Reveal>
+              <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+                {CAN_ADD_TO_OFFER.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-body">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+
+          <section className="section-band section--panel border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">Presale</span>
+                <h2 className="section-title mt-4 max-w-2xl">Что получает партнёр и как проходит presale</h2>
+              </Reveal>
+              <div className="mt-8 grid gap-8 sm:grid-cols-2">
+                <ul className="space-y-3">
+                  {PARTNER_GETS.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm text-body">
+                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <ol className="space-y-3">
+                  {PRESALE_FLOW.map((step, index) => (
+                    <li key={step} className="flex gap-3 text-sm text-body">
+                      <span className="font-display text-muted-soft">{String(index + 1).padStart(2, "0")}</span>
+                      {step}
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+          </section>
+
+          <section className="section-band border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">Реализованный проект вне Битрикс24</span>
+                <h2 className="section-title mt-4 max-w-2xl">
+                  Пример white-label проекта: AI-сегментация и повторные продажи на МойСклад
+                </h2>
+                <p className="body-copy mt-4 max-w-2xl">
+                  Партнёр работает с клиентом на МойСклад, сайте, маркетплейсах и в мессенджерах, который не
+                  использует накопленные данные для повторных продаж. Мы подключаемся как техническая AI-команда
+                  партнёра. Архитектура может быть встроена в Битрикс24 или amoCRM.
+                </p>
+              </Reveal>
+              <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+                {FLOWER_WHITELABEL_BUILT.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-body">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                <div className="border border-hairline bg-surface-card p-5">
+                  <span className="meta-label text-muted-soft">Партнёр</span>
+                  <p className="body-copy mt-2 text-sm">
+                    Ведёт отношения с клиентом, определяет коммерческое предложение, добавляет свою маржу,
+                    отвечает за CRM или маркетинговую стратегию.
+                  </p>
+                </div>
+                <div className="border border-hairline bg-surface-card p-5">
+                  <span className="meta-label text-muted-soft">Bober AI</span>
+                  <p className="body-copy mt-2 text-sm">
+                    Проектирует AI-архитектуру, разрабатывает backend и интеграции, настраивает сегментацию и
+                    рекомендации, тестирует и передаёт документацию под брендом партнёра.
+                  </p>
+                </div>
+              </div>
+              <p className="body-copy mt-6 text-sm text-body-strong">
+                Результат: партнёр продаёт систему роста повторных продаж, не создавая собственную AI-команду.
+              </p>
+              <p className="mt-3 text-sm text-muted">kinetic-ai.ru · МойСклад · AI-сегментация · Telegram · WhatsApp</p>
+            </div>
+          </section>
+
+          <section className="section-band section--panel border-b border-hairline">
             <div className="container-editorial max-w-4xl">
               <Reveal>
                 <span className="section-label">Модели сотрудничества</span>
