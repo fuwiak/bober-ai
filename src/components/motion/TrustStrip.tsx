@@ -35,12 +35,12 @@ export function TrustStrip({ stats }: TrustStripProps) {
             const program = partner.href ? t(`partnerPrograms.${partner.id}`) : null;
             const logo = (
               <>
-                <div className="trust-logo__mark">
+                <div className={`trust-logo__mark${partner.markTone === "dark" ? " trust-logo__mark--dark" : ""}`}>
                   <Image
                     src={partner.logoSrc}
                     alt=""
-                    width={28}
-                    height={28}
+                    width={partner.logoWidth}
+                    height={partner.logoHeight}
                     className="trust-logo__icon"
                     aria-hidden
                   />
