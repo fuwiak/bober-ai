@@ -129,10 +129,11 @@ html:not(.dark) {
   --color-body-strong: #12141a;
   --color-muted: #5c6375;
   --color-muted-soft: #8b91a1;
-  --color-accent: #6b7a12;
-  --color-primary: #6b7a12;
-  --color-on-accent: #f4f6ec;
-  --color-link: #4f5c0c;
+  /* Same lime as dark theme */
+  --color-accent: #e0f46a;
+  --color-primary: #e0f46a;
+  --color-on-accent: #1a1c22;
+  --color-link: #5a6214;
 }
 
 html.dark {
@@ -180,7 +181,7 @@ html.dark {
   }
   html:not(.dark) .page-shell {
     background-image:
-      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(107, 122, 18, 0.08), transparent 55%);
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(224, 244, 106, 0.14), transparent 55%);
   }
 
   .container-editorial {
