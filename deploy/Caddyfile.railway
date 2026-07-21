@@ -1,0 +1,43 @@
+# Railway / any reverse-proxy: TLS terminates at the edge. Listen only on $PORT.
+{
+	auto_https off
+	servers {
+		protocols h1 h2
+	}
+}
+
+:{$PORT:80} {
+	encode gzip
+	root * /srv
+
+	handle /api/health {
+		header Content-Type text/plain
+		respond "ok" 200
+	}
+
+	@apex host bober-ai.dev
+	handle @apex {
+		redir https://www.bober-ai.dev{uri} permanent
+	}
+
+	try_files {path} {path}.html {path}/index.html =404
+	file_server
+
+	handle_errors {
+		rewrite * /404.html
+		file_server
+	}
+
+	header /performers-feed.yml Content-Type "application/xml; charset=utf-8"
+	header /info.md Content-Type "text/markdown; charset=utf-8"
+	header /info.txt Content-Type "text/plain; charset=utf-8"
+	header /partners/ru.html X-Robots-Tag "noindex, nofollow, noarchive, nosnippet"
+	header /tel* X-Robots-Tag "noindex, nofollow"
+	header /performers-feed.yml X-Robots-Tag "noindex"
+	header /performers-feed.yml Access-Control-Allow-Origin "*"
+	header /performers-feed.yml Cache-Control "public, max-age=300"
+
+	redir /ru / permanent
+	redir /ru/ / permanent
+	redir /ru.html / permanent
+}
