@@ -1,6 +1,10 @@
 {
 	email stasinskipawel@yandex.ru
 	acme_ca https://acme-v02.api.letsencrypt.org/directory
+	# HTTP/3 (QUIC/UDP) often breaks behind VPNs — keep TCP only (h1/h2).
+	servers {
+		protocols h1 h2
+	}
 }
 
 # HTTP — ACME HTTP-01 + apex/www redirect + health.
