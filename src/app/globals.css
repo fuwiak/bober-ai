@@ -159,7 +159,9 @@ html.dark {
   }
 
   body {
-    @apply font-body antialiased overflow-x-hidden;
+    @apply font-body antialiased;
+    /* clip avoids the Safari bug where overflow-x:hidden breaks position:fixed */
+    overflow-x: clip;
     background: var(--color-canvas);
     color: var(--color-ink);
     padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -463,11 +465,12 @@ html.dark {
 
   /* Header — fixed floating bar (stays at top while scrolling) */
   .site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 50;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100%;
+    z-index: 200;
     --header-bar: #ebff8d;
     --header-ink: #40424d;
     --header-ink-soft: #5a5c66;
@@ -476,9 +479,17 @@ html.dark {
     min-height: var(--header-height);
     background: transparent;
     border-bottom: 0;
-    padding-top: 12px;
+    padding-top: max(12px, env(safe-area-inset-top, 0px));
     padding-bottom: 0;
+    /* Defeat Framer layout transforms that would unpin fixed from the viewport */
     transform: none !important;
+    filter: none !important;
+    perspective: none !important;
+    contain: none;
+    pointer-events: none;
+  }
+  .site-header > * {
+    pointer-events: auto;
   }
   html:not(.dark) .site-header {
     background: transparent;
