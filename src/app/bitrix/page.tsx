@@ -96,6 +96,70 @@ const INFRA_GROUPS = [
 
 const OTHER_CRM = ["RetailCRM", "Мегаплан", "ПланФикс"];
 
+const FLOW_STEPS = ["Входящий запрос", "Битрикс24", "AI-квалификация", "1С / телефония", "КП + задача менеджеру"];
+
+const FLOW_STATUSES = [
+  "сделка создана",
+  "клиент найден в 1С",
+  "остатки проверены",
+  "КП сформировано",
+  "задача назначена",
+];
+
+const BEFORE_STEPS = [
+  "Менеджер читает письмо или сообщение",
+  "Вручную создаёт сделку в CRM",
+  "Ищет клиента и остатки в 1С",
+  "Копирует данные в КП",
+  "Отдельно ставит себе задачу",
+];
+
+const AFTER_STEPS = [
+  "Письмо или сообщение поступает в систему",
+  "AI создаёт сделку в Битрикс24 или amoCRM",
+  "Проверяет клиента и остатки в 1С",
+  "Готовит КП по шаблону",
+  "Ставит задачу — менеджер подтверждает",
+];
+
+const COMPARISON_ROWS = [
+  {
+    label: "Где работает",
+    standard: "Внутри CRM: карточка, робот, виджет",
+    custom: "Связывает CRM, 1С, каталог, документы и телефонию",
+  },
+  {
+    label: "Сценарии",
+    standard: "Готовые шаблоны и стандартные роботы",
+    custom: "Процессы под логику именно вашей компании",
+  },
+  {
+    label: "Контроль",
+    standard: "Ограниченные правила внутри платформы",
+    custom: "Валидация данных, права доступа, логи, подтверждение человеком",
+  },
+  {
+    label: "Данные",
+    standard: "То, что видит платформа",
+    custom: "Ваши источники: 1С, МойСклад, документы, внутренние API",
+  },
+];
+
+const EXPERTISE_POINTS = [
+  "7 лет в AI и автоматизации бизнес-процессов",
+  "12+ промышленных внедрений в проде, не демо",
+  "Проектный опыт в решениях для сценариев Kaspersky, ELIA Suite",
+  "Партнёр Yandex Cloud · партнёрская программа Selectel · технологический партнёр Cloud.ru",
+  "Развёртывание в облаке или в вашем контуре (on-premise)",
+  "Код, документация и передача решения команде — без вендор-лока",
+];
+
+const PRICING_TIERS = [
+  { name: "Аудит интеграций", price: "от 150 000 ₽", note: "1–2 недели · карта процессов и точек потерь" },
+  { name: "Внедрение", price: "от 500 000 ₽", note: "4–12 недель · интеграции, тестирование, запуск" },
+  { name: "Сопровождение", price: "от 200 000 ₽/мес", note: "мониторинг, итерации, приоритетная поддержка" },
+];
+
 export default function BitrixLandingPage() {
   const webPage = webPageJsonLd({
     name: "AI-автоматизация для Битрикс24 и amoCRM",
@@ -172,10 +236,103 @@ export default function BitrixLandingPage() {
                 </div>
               </div>
               <p className="meta-label mt-6 text-muted">Главные платформы автоматизации</p>
+
+              <div className="mt-10 border border-hairline bg-surface-card p-6 md:p-8">
+                <span className="meta-label text-muted">Как проходит запрос</span>
+                <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-4">
+                  {FLOW_STEPS.map((step, index) => (
+                    <div key={step} className="flex items-center gap-3">
+                      <span className="border border-hairline-strong bg-canvas px-4 py-3 font-display text-sm text-ink">
+                        {step}
+                      </span>
+                      {index < FLOW_STEPS.length - 1 ? (
+                        <span aria-hidden className="text-muted-soft">
+                          →
+                        </span>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
+                  {FLOW_STATUSES.map((status) => (
+                    <span key={status} className="meta-label text-muted-soft">
+                      · {status}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="section-band section--panel border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">До и после</span>
+                <h2 className="section-title mt-4 max-w-2xl">Один и тот же запрос — два разных процесса</h2>
+              </Reveal>
+              <div className="mt-8 grid gap-6 sm:grid-cols-2">
+                <div className="border border-hairline bg-surface-card p-6">
+                  <span className="meta-label text-muted-soft">Сейчас</span>
+                  <ol className="mt-4 space-y-3">
+                    {BEFORE_STEPS.map((step, index) => (
+                      <li key={step} className="flex gap-3 text-sm text-body">
+                        <span className="text-muted-soft">{index + 1}.</span>
+                        {step}
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+                <div className="border border-hairline-strong bg-canvas p-6">
+                  <span className="meta-label text-accent">После внедрения</span>
+                  <ol className="mt-4 space-y-3">
+                    {AFTER_STEPS.map((step, index) => (
+                      <li key={step} className="flex gap-3 text-sm text-body-strong">
+                        <span className="text-accent">{index + 1}.</span>
+                        {step}
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              </div>
             </div>
           </section>
 
           <section className="section-band border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">Отличие</span>
+                <h2 className="section-title mt-4 max-w-2xl">
+                  Встроенные роботы и BitrixGPT против выделенного внедрения
+                </h2>
+                <p className="body-copy mt-4 max-w-2xl">
+                  Стандартные инструменты закрывают типовые сценарии внутри CRM. Мы подключаемся там, где нужно
+                  выйти за пределы платформы.
+                </p>
+              </Reveal>
+              <div className="mt-8 overflow-x-auto">
+                <table className="w-full min-w-[560px] border-collapse text-sm">
+                  <thead>
+                    <tr className="border-b border-hairline-strong text-left">
+                      <th className="py-3 pr-4 font-display font-medium text-muted">&nbsp;</th>
+                      <th className="py-3 pr-4 font-display font-medium text-muted">Стандартные функции</th>
+                      <th className="py-3 font-display font-medium text-ink">Выделенное внедрение</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {COMPARISON_ROWS.map((row) => (
+                      <tr key={row.label} className="border-b border-hairline">
+                        <td className="py-4 pr-4 meta-label text-muted-soft">{row.label}</td>
+                        <td className="py-4 pr-4 text-body">{row.standard}</td>
+                        <td className="py-4 text-body-strong">{row.custom}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <section className="section-band section--panel border-b border-hairline">
             <div className="container-editorial max-w-4xl">
               <Reveal>
                 <span className="section-label">Инфраструктура</span>
@@ -201,7 +358,7 @@ export default function BitrixLandingPage() {
             </div>
           </section>
 
-          <section className="section-band section--panel border-b border-hairline">
+          <section className="section-band border-b border-hairline">
             <div className="container-editorial max-w-4xl">
               <Reveal>
                 <span className="section-label">70% фокуса</span>
@@ -281,14 +438,43 @@ export default function BitrixLandingPage() {
             </div>
           </section>
 
+          <section className="section-band section--deep border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">Проект ведёт AI-архитектор лично</span>
+                <h2 className="section-title mt-4 max-w-2xl">Опыт, а не подрядчик на аутсорсе</h2>
+              </Reveal>
+              <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+                {EXPERTISE_POINTS.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-body">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-10 grid gap-4 border-t border-hairline pt-8 sm:grid-cols-3">
+                {PRICING_TIERS.map((tier) => (
+                  <div key={tier.name} className="home-hub-card">
+                    <span className="meta-label text-muted">{tier.name}</span>
+                    <p className="card-title mt-2 text-xl text-ink">{tier.price}</p>
+                    <p className="body-copy mt-2 text-sm">{tier.note}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="body-copy mt-6 text-sm text-muted">
+                Стоимость аудита засчитывается в бюджет внедрения, если продолжаем.
+              </p>
+            </div>
+          </section>
+
           <section id="contact" className="section-band">
             <div className="container-editorial max-w-2xl">
               <Reveal>
                 <span className="section-label">Контакт</span>
-                <h2 className="section-title mt-4">Разберём ваш контур CRM</h2>
+                <h2 className="section-title mt-4">Разберём ваш контур CRM за один звонок</h2>
                 <p className="body-copy mt-4">
-                  Битрикс24, amoCRM, 1С, телефония или документы — опишите задачу. Вернёмся с оценкой и
-                  планом в течение суток.
+                  Битрикс24, amoCRM, 1С, телефония или документы — опишите задачу. Вернёмся с архитектурой,
+                  оценкой и планом в течение суток.
                 </p>
               </Reveal>
               <div className="mt-8">

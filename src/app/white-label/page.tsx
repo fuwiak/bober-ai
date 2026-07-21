@@ -118,6 +118,65 @@ const MODELS = [
   },
 ];
 
+const MODEL_FLOW = [
+  "Ваш бренд",
+  "Клиент и контракт",
+  "Вы: продажа и отношения",
+  "Bober AI: архитектура и delivery",
+  "Система под вашим брендом",
+];
+
+const SELLABLES = [
+  {
+    title: "AI для CRM",
+    text: "Bitrix24, amoCRM: квалификация лидов, sales-ассистент, аналитика звонков.",
+  },
+  {
+    title: "AI для документов",
+    text: "OCR, договоры, счета, спецификации, автогенерация коммерческих предложений.",
+  },
+  {
+    title: "Корпоративные ассистенты",
+    text: "RAG, базы знаний, поиск по документам, действия через внутренние API.",
+  },
+  {
+    title: "Голосовые агенты",
+    text: "Телефония, квалификация звонков, поддержка, запись на встречи.",
+  },
+];
+
+const EARNINGS = [
+  "Партнёр устанавливает конечную цену для клиента",
+  "Мы называем стоимость технической реализации — это ваша база для расчёта маржи",
+  "Помогаем собрать объём работ и аргументацию для клиента",
+  "Партнёр может добавить свой консалтинг, account management и поддержку",
+  "Клиент и договор остаются на стороне партнёра",
+];
+
+const PACKAGES = [
+  {
+    title: "Presale support",
+    items: ["Анализ брифа", "Архитектура решения", "Оценка стоимости", "Участие в технической встрече"],
+  },
+  {
+    title: "Project delivery",
+    items: ["Разработка", "Интеграции", "Тестирование", "Deployment", "Документация"],
+  },
+  {
+    title: "Ongoing AI team",
+    items: ["Ежемесячный пул часов", "Развитие нескольких проектов", "Приоритетная поддержка", "Быстрые оценки"],
+  },
+];
+
+const EXAMPLE_STEPS = [
+  "Интегратор Битрикс24 получает от клиента запрос на AI-анализ звонков",
+  "Партнёр передаёт бриф — в течение 1–2 дней получает архитектуру и стоимость",
+  "Партнёр представляет предложение клиенту от своего имени",
+  "Мы делаем backend, интеграцию с телефонией и дашборд",
+  "Партнёр передаёт готовую систему клиенту под своим брендом",
+  "Мы остаёмся технической опорой за кулисами",
+];
+
 export default function WhiteLabelPage() {
   const webPage = webPageJsonLd({
     name: "AI-разработка под вашим брендом — Partner Program",
@@ -180,6 +239,45 @@ export default function WhiteLabelPage() {
                 {PROMISES.map((item) => (
                   <div key={item.title} className="home-hub-card">
                     <h2 className="card-title text-lg">{item.title}</h2>
+                    <p className="body-copy mt-2 text-sm">{item.text}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-10 border border-hairline bg-surface-card p-6 md:p-8">
+                <span className="meta-label text-muted">Модель white-label</span>
+                <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-4">
+                  {MODEL_FLOW.map((step, index) => (
+                    <div key={step} className="flex items-center gap-3">
+                      <span className="border border-hairline-strong bg-canvas px-4 py-3 font-display text-sm text-ink">
+                        {step}
+                      </span>
+                      {index < MODEL_FLOW.length - 1 ? (
+                        <span aria-hidden className="text-muted-soft">
+                          →
+                        </span>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="section-band section--panel border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">Что вы сможете продавать</span>
+                <h2 className="section-title mt-4 max-w-2xl">Новый каталог услуг для ваших клиентов</h2>
+                <p className="body-copy mt-4 max-w-2xl">
+                  Вы получаете не технологию, а готовые продукты, которые можно предложить клиенту под своим
+                  брендом.
+                </p>
+              </Reveal>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {SELLABLES.map((item) => (
+                  <div key={item.title} className="home-hub-card">
+                    <h3 className="card-title text-lg">{item.title}</h3>
                     <p className="body-copy mt-2 text-sm">{item.text}</p>
                   </div>
                 ))}
@@ -286,6 +384,46 @@ export default function WhiteLabelPage() {
           <section className="section-band border-b border-hairline">
             <div className="container-editorial max-w-4xl">
               <Reveal>
+                <span className="section-label">Как вы зарабатываете</span>
+                <h2 className="section-title mt-4 max-w-2xl">Маржа и отношения остаются у вас</h2>
+              </Reveal>
+              <ul className="mt-8 grid gap-3">
+                {EARNINGS.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-body">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+
+          <section className="section-band section--panel border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">Пакеты участия</span>
+                <h2 className="section-title mt-4 max-w-2xl">Три формата под разные проекты</h2>
+              </Reveal>
+              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                {PACKAGES.map((pkg) => (
+                  <div key={pkg.title} className="home-hub-card">
+                    <h3 className="card-title text-lg">{pkg.title}</h3>
+                    <ul className="mt-3 space-y-2">
+                      {pkg.items.map((item) => (
+                        <li key={item} className="text-sm text-body">
+                          — {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="section-band border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
                 <span className="section-label">Гарантии партнёру</span>
                 <h2 className="section-title mt-4 max-w-2xl">Ваш клиент — ваш клиент</h2>
               </Reveal>
@@ -303,6 +441,26 @@ export default function WhiteLabelPage() {
           </section>
 
           <section className="section-band section--panel border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">Пример (иллюстрация)</span>
+                <h2 className="section-title mt-4 max-w-2xl">Как это работает на практике</h2>
+                <p className="body-copy mt-4 max-w-2xl">
+                  Условный сценарий, чтобы показать распределение ролей — не описание конкретного клиента.
+                </p>
+              </Reveal>
+              <ol className="mt-8 space-y-3">
+                {EXAMPLE_STEPS.map((step, index) => (
+                  <li key={step} className="flex gap-4 text-sm text-body">
+                    <span className="font-display text-muted-soft">{String(index + 1).padStart(2, "0")}</span>
+                    {step}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </section>
+
+          <section className="section-band border-b border-hairline">
             <div className="container-editorial max-w-4xl">
               <Reveal>
                 <span className="section-label">Модели сотрудничества</span>
