@@ -9,16 +9,17 @@ import { CONTACT_EMAIL } from "@/lib/site";
 
 type ContactFormProps = {
   defaultService?: string;
+  defaultMessage?: string;
   onSuccess?: () => void;
 };
 
 const SUCCESS_CLOSE_MS = 2400;
 
-export function ContactForm({ defaultService = "", onSuccess }: ContactFormProps) {
+export function ContactForm({ defaultService = "", defaultMessage = "", onSuccess }: ContactFormProps) {
   const t = useTranslations("form");
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState(defaultMessage);
   const [consentAccepted, setConsentAccepted] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
   const [errorText, setErrorText] = useState("");

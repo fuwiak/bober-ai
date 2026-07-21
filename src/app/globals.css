@@ -1874,6 +1874,28 @@ html.dark {
     }
   }
 
+  .diagnostic-dot {
+    @apply h-1.5 w-6 rounded-full;
+    background: var(--color-hairline);
+    transition: background-color 200ms ease;
+  }
+  .diagnostic-dot--active {
+    background: var(--color-ink);
+  }
+  .diagnostic-option {
+    @apply rounded-lg border border-hairline bg-surface-card px-5 py-4 text-left text-base;
+    color: var(--color-body-strong);
+    transition: border-color 180ms ease, background-color 180ms ease;
+  }
+  .diagnostic-option:hover {
+    border-color: color-mix(in srgb, var(--color-primary, #7c3aed) 30%, var(--color-hairline));
+  }
+  .diagnostic-option--active {
+    border-color: var(--color-ink);
+    background: var(--color-surface-elevated);
+    color: var(--color-ink);
+  }
+
   .reveal {
     opacity: 0;
     transform: translateY(12px);

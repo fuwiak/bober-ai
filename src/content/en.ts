@@ -56,11 +56,11 @@ const en = {
   hero: {
     location: "Moscow · Remote · Russia & CIS",
     eyebrow: "Bober AI Systems · Claude · Business automation",
-    titleLine1: "AI AUTOMATION",
-    titleLine2: "FOR BUSINESS",
-    valueProposition: "I automate sales, documents, CRM, and support — fixed scope, production delivery, team handover.",
-    differentiator: "Not a ChatGPT demo — systems that run for months. Kaspersky, ELIA Suite, 12+ production deployments.",
-    specialization: "Claude · LLM · RAG · MCP · amoCRM · Bitrix24 · 1C · n8n",
+    titleLine1: "We cut manual work in sales, documents and CRM by 40–80%",
+    titleLine2: "",
+    valueProposition: "We build systems that process requests and documents, update your CRM, draft commercial offers and answer employees — without manual data re-entry.",
+    differentiator: "Not a ChatGPT demo — systems that run for months in production. Kaspersky, ELIA Suite, 12+ production deployments.",
+    specialization: "We work with your systems: CRM, ERP, documents, email, messengers",
     heroImageAlt: "AI implementation and business process automation",
     trustItems: [
       "12+ PRODUCTION DEPLOYMENTS",
@@ -75,8 +75,8 @@ const en = {
       "We design and implement business automation systems. CRM, documents, sales, support — fixed scope and team handover.",
     trustLine: "★ {rating} · {reviewCount} reviews · {years} years · 12+ production deployments",
     partnersLine: "Yandex Cloud Partner · Selectel Partner Program · Cloud.ru Technology Partner",
-    ctaPrimary: "Book a consultation",
-    ctaSecondary: "View case studies",
+    ctaPrimary: "Estimate the impact for your company",
+    ctaSecondary: "See real deployments",
     ctaTelegram: "Telegram",
     responseNote: "Response within 4 business hours · NDA available",
     legalNote: "Personal data published with the subject''s consent.",
@@ -103,6 +103,51 @@ const en = {
       "Payback from 3 months—we calculate before starting",
       "Full handover to your team, no vendor lock-in",
     ],
+  },
+  oneWindow: {
+    label: "One project",
+    title: "Everything you need for implementation — in one place",
+    subtitle: "Whatever is blocking you now, we scope it and close it within one project.",
+    items: [
+      {
+        q: "Processes aren't documented?",
+        a: "We map how your team actually works and identify what's worth automating.",
+      },
+      {
+        q: "Data lives in PDFs, spreadsheets, email and CRM?",
+        a: "We bring it into a single working loop.",
+      },
+      {
+        q: "CRM and ERP aren't connected?",
+        a: "We set up data exchange without manual copying.",
+      },
+      {
+        q: "Need document processing?",
+        a: "The system recognizes the request, finds the item, checks the data and prepares the document.",
+      },
+      {
+        q: "You have security requirements?",
+        a: "We deploy in your cloud or on-prem environment.",
+      },
+      {
+        q: "Not sure it will pay off?",
+        a: "We estimate cost, time savings and expected impact before development starts.",
+      },
+    ],
+  },
+  budgetGate: {
+    label: "How we work",
+    title: "We take on projects from €5,000",
+    whyLabel: "Why:",
+    reasons: [
+      "We start by mapping the process and data sources",
+      "We integrate with your existing systems",
+      "We test on real scenarios",
+      "We deploy to production",
+      "We hand over documentation and access",
+    ],
+    note: "If you only need a consultation or audit, you can start with a standalone diagnostic from €1,500.",
+    cta: "Request a quote",
   },
   homeHub: {
     label: "Sections",
@@ -255,6 +300,7 @@ const en = {
     cta: "Request a quote",
     featuredLabel: "CORE ENGAGEMENT",
     detailsLabel: "Details",
+    auditNote: "The audit fee is credited toward the project budget if we move on to implementation.",
     urgency: "I typically run only a few projects at a time. The next slot opens after the current deployment completes.",
   },
   microConversions: {
@@ -276,6 +322,44 @@ const en = {
       { title: "ChatGPT / Claude in browser", problem: "No CRM access, no audit trail, data leaves your perimeter, manual copy-paste.", solution: "We deploy AI in your stack: CRM, ERP, documents — under NDA with fixed scope." },
       { title: "Hiring another employee", problem: "Payroll grows every month, ramp-up takes months, no scale on peak load.", solution: "Automation pays back in 3–6 months and runs 24/7." },
       { title: "Off-the-shelf SaaS", problem: "Doesn't match your process, vendor lock-in, data in someone else's cloud.", solution: "Built for your stack: your perimeter, code handover, integrations included." },
+    ],
+  },
+  results: {
+    label: "Results",
+    title: "What changes after implementation",
+    items: [
+      { stat: "2 hours → 15 minutes", label: "to prepare a commercial offer" },
+      { stat: "80%", label: "of line items recognized automatically in procurement documents" },
+      { stat: "24/7", label: "processing of new requests, no downtime" },
+      { stat: "Fewer manual errors", label: "thanks to data validation at every step" },
+    ],
+    note: "Results depend on the process — we set metrics before the start and measure them on the pilot.",
+  },
+  problemSolution: {
+    label: "Problem → solution",
+    title: "What usually gets in the way — and what changes after implementation",
+    subtitle: "Situations we see most often before clients start working with us.",
+    items: [
+      {
+        title: "Employees manually re-enter data",
+        problem: "Requests arrive by email and messengers, then get typed into CRM and ERP by hand. It takes hours and creates errors.",
+        solution: "The system extracts the data, validates it and updates the right systems automatically.",
+      },
+      {
+        title: "Commercial offers take too long to prepare",
+        problem: "A manager searches for products, checks prices, finds substitutes and assembles the document manually.",
+        solution: "The system processes the request, finds the matching items and generates a ready offer under set rules.",
+      },
+      {
+        title: "Employees can't find information",
+        problem: "Policies, instructions and contracts are scattered across folders and internal systems.",
+        solution: "An employee asks in plain language and gets an answer with a link to the source.",
+      },
+      {
+        title: "There's an AI pilot, but no one can actually use it",
+        problem: "The prototype only works on ideal examples, isn't integrated with your systems and doesn't handle errors.",
+        solution: "The production version runs on real data, logs every action and escalates exceptions to a person.",
+      },
     ],
   },
   roiCalculator: {
@@ -403,11 +487,11 @@ const en = {
     title: "Implementation timeline",
     subtitle: "Five stages from discovery to support. Technology is chosen after ROI is calculated.",
     steps: [
-      { title: "Discovery", text: "Process analysis, time and cost loss mapping, baseline KPIs." },
-      { title: "Architecture", text: "Integration design, LLM/RAG/MCP choice, NDA and data perimeter." },
-      { title: "Prototype", text: "Working MVP on your data — validate quality before full scale." },
-      { title: "Production", text: "CRM/ERP integrations, monitoring, documentation, team handover." },
-      { title: "Support", text: "SLA, iterations, alerts — system stays under control after go-live." },
+      { title: "Map the process", text: "Where your team loses time, where errors happen, which systems are in play." },
+      { title: "Define the outcome", text: "Scenarios, metrics, timeline and project scope." },
+      { title: "Connect data and systems", text: "CRM, ERP, email, documents, messengers, internal databases." },
+      { title: "Ship a pilot", text: "Validate the system on real tasks and edge cases." },
+      { title: "Go to production", text: "Set up monitoring, documentation and handover to your team." },
     ],
   },
   security: {
@@ -422,6 +506,29 @@ const en = {
       "Monitoring, alerting and SLA support for production systems",
       "Data processing agreements and IP assignment in every B2B contract",
     ],
+  },
+  whyTrust: {
+    label: "Why us",
+    title: "Why you can trust us with the implementation",
+    items: [
+      "Not tied to one model — we pick the solution to fit the process, data and infrastructure",
+      "We work with the systems you already use — Bitrix24, amoCRM, ERP, email, messengers, your API",
+      "We can deploy in a closed environment — your cloud, on-prem, NDA",
+      "We fix scope before development starts — cost, risks, acceptance criteria",
+      "We hand the solution over to your company — code, instructions, access, documentation",
+      "I'm personally accountable for the architecture — 7 years in AI, publications, the Kaspersky case",
+    ],
+  },
+  timeline: {
+    label: "Timeline",
+    title: "When you'll see results",
+    items: [
+      { period: "1–2 weeks", text: "audit, process mapping and data preparation" },
+      { period: "3–6 weeks", text: "a working pilot" },
+      { period: "6–12 weeks", text: "integration and production launch" },
+      { period: "After launch", text: "measuring results and optimizing" },
+    ],
+    note: "The exact timeline depends less on model size than on data quality, the number of integrations and the number of edge cases in the process.",
   },
   partners: {
     badge: "For integrators & software houses",
@@ -614,6 +721,47 @@ const en = {
     errorConsent: "Please confirm consent to personal data processing",
     errorSend: "Failed to send request",
     errorGeneric: "Send error",
+  },
+  diagnosticForm: {
+    eyebrow: "Preliminary estimate",
+    title: "Leave a request — we'll review your process within 4 hours",
+    progressLabel: "Step {current} of {total}",
+    back: "Back",
+    finalCta: "Get a preliminary estimate",
+    steps: [
+      {
+        question: "What do you want to improve?",
+        options: [
+          "Sales and request handling",
+          "Documents and commercial offers",
+          "CRM or ERP",
+          "Employee support",
+          "Another process",
+        ],
+      },
+      {
+        question: "Where does the work happen today?",
+        options: ["Bitrix24", "amoCRM", "ERP / 1C", "Excel / Google Sheets", "Email and messengers", "Our own system"],
+      },
+      {
+        question: "What's the main outcome you need?",
+        options: [
+          "Reduce manual work",
+          "Speed up responses",
+          "Reduce errors",
+          "Track metrics",
+          "Replace an existing solution",
+        ],
+      },
+      {
+        question: "Scale",
+        options: ["Up to 10 employees", "10–50", "50–200", "More than 200"],
+      },
+      {
+        question: "Estimated budget",
+        options: ["Up to €5,000", "€5,000–€10,000", "€10,000–€20,000", "More than €20,000", "Need an estimate first"],
+      },
+    ],
   },
   footer: {
     legalName: "IE Pavel Stasinsky",
