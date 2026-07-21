@@ -1,6 +1,11 @@
 export const FOUNDER_IMAGE = "/hero/pavel-main.png";
-export const HERO_STOCK_IMAGE = "/stock/automation-code.jpg";
+export const HERO_STOCK_IMAGE = "/stock/office-tower.jpg";
 export const ABOUT_STOCK_IMAGE = FOUNDER_IMAGE;
+export const OFFICE_STOCK_IMAGES = {
+  tower: "/stock/office-tower.jpg",
+  facade: "/stock/office-facade.jpg",
+  interior: "/stock/office-interior.jpg",
+} as const;
 export const DIAGRAM_IMAGES = {
   workflow: "/diagrams/workflow-automation.svg",
   crm: "/diagrams/crm-integration.svg",
@@ -15,6 +20,9 @@ export const STOCK_IMAGES = {
   sales: "/stock/sales-proposal.jpg",
   security: "/stock/cyber-padlock.jpg",
   roadmap: "/stock/roadmap-sticky-notes.jpg",
+  officeTower: OFFICE_STOCK_IMAGES.tower,
+  officeFacade: OFFICE_STOCK_IMAGES.facade,
+  officeInterior: OFFICE_STOCK_IMAGES.interior,
 } as const;
 
 export const PORTFOLIO_IMAGES = {

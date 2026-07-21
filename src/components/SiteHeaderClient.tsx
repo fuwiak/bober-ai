@@ -79,6 +79,7 @@ export function SiteHeaderClient({
   const indicatorHref = hoveredHref ?? navItems.find((item) => isActivePath(pathname, item.href))?.href ?? null;
 
   return (
+    <>
     <header className={`site-header${menuOpen ? " site-header--menu-open" : ""}`}>
       <div className="container-editorial site-header__frame">
         <div className="site-header__bar">
@@ -222,5 +223,7 @@ export function SiteHeaderClient({
         </nav>
       </div>
     </header>
+    <div className="site-header__spacer" aria-hidden="true" />
+    </>
   );
 }

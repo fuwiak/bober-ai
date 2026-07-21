@@ -61,7 +61,7 @@ const en = {
     valueProposition: "We build systems that process requests and documents, update your CRM, draft commercial offers and answer employees — without manual data re-entry.",
     differentiator: "Not a ChatGPT demo — systems that run for months in production. Kaspersky, ELIA Suite, 12+ production deployments.",
     specialization: "We work with your systems: CRM, ERP, documents, email, messengers",
-    heroImageAlt: "AI implementation and business process automation",
+    heroImageAlt: "Modern business tower — corporate architecture",
     trustItems: [
       "12+ PRODUCTION DEPLOYMENTS",
       "€25K+ TYPICAL DEAL",

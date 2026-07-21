@@ -1,6 +1,8 @@
 import { getTranslations } from "next-intl/server";
+import Image from "next/image";
 import { ContactCta } from "@/components/ContactCta";
 import { DiagnosticForm } from "@/components/DiagnosticForm";
+import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { HomeHubSection } from "@/components/HomeHubSection";
 import { SectionCtaBand } from "@/components/SectionCtaBand";
 import { PartnerProgramBanner } from "@/components/PartnerProgramBanner";
@@ -16,7 +18,7 @@ import { TrackedAnchor } from "@/components/TrackedAnchor";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
-  FOUNDER_IMAGE,
+  OFFICE_STOCK_IMAGES,
   TELEGRAM_URL,
   WHATSAPP_URL,
 } from "@/lib/site";
@@ -61,13 +63,40 @@ export default async function HomePage() {
           ctaSecondary={t("hero.ctaSecondary")}
           ctaSecondaryHref="/portfolio"
           trustItems={t.raw("hero.trustItems") as string[]}
-          heroImage={FOUNDER_IMAGE}
+          heroImage={OFFICE_STOCK_IMAGES.tower}
           heroImageAlt={t("hero.heroImageAlt")}
         />
 
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial">
             <TrustStrip stats={trustStats} />
+          </div>
+        </section>
+
+        <section className="prestige-gallery border-b border-hairline" aria-label={t("hero.heroImageAlt")}>
+          <div className="prestige-gallery__grid">
+            <Reveal className="prestige-gallery__main">
+              <EditorialImageFrame variant="hero" className="prestige-gallery__frame">
+                <Image
+                  src={OFFICE_STOCK_IMAGES.facade}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, 66vw"
+                  className="object-cover"
+                />
+              </EditorialImageFrame>
+            </Reveal>
+            <Reveal delay={0.08} className="prestige-gallery__side">
+              <EditorialImageFrame variant="card" className="prestige-gallery__frame">
+                <Image
+                  src={OFFICE_STOCK_IMAGES.interior}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, 34vw"
+                  className="object-cover"
+                />
+              </EditorialImageFrame>
+            </Reveal>
           </div>
         </section>
 
