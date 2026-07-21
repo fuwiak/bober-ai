@@ -14,6 +14,7 @@ export async function SiteHeader() {
     { href: "/portfolio" as const, label: t("portfolio") },
     { href: "/blog" as const, label: t("blog") },
     { href: "/academy", label: t("academy"), localeAgnostic: true },
+    { href: "/media" as const, label: t("media") },
     { href: "/pricing" as const, label: t("pricing") },
   ];
 
@@ -43,6 +44,7 @@ export async function SiteFooter() {
     { href: "/pricing" as const, label: tNav("pricing"), localeAgnostic: false },
     { href: "/blog" as const, label: tNav("blog"), localeAgnostic: false },
     { href: "/academy", label: tNav("academy"), localeAgnostic: true },
+    { href: "/media" as const, label: tNav("media"), localeAgnostic: false },
     { href: "/guides" as const, label: tNav("guides"), localeAgnostic: false },
     { href: "/faq" as const, label: tNav("faq"), localeAgnostic: false },
     { href: "/#contact" as const, label: tNav("contact"), localeAgnostic: false },
