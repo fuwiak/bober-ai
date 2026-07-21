@@ -63,9 +63,10 @@ export function CookieConsent() {
           Cookies и аналитика
         </p>
         <p id="cookie-consent-desc" className="cookie-consent-desc">
-          Используем cookies и Яндекс.Метрику для статистики сайта.{" "}
+          Этот сайт собирает Cookies и&nbsp;данные о&nbsp;передвижении по&nbsp;сайту через сервис
+          Яндекс.Метрика. Оставаясь на&nbsp;сайте, вы&nbsp;подтверждаете, что согласны с{" "}
           <Link href={LEGAL_ROUTES.privacyPolicy} className="text-link">
-            Политика
+            Политикой конфиденциальности
           </Link>
         </p>
         <div className="cookie-consent-actions">
