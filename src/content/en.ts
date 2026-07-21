@@ -59,7 +59,7 @@ const en = {
     titleLine1: "We cut manual work in sales, documents and CRM by 40–80%",
     titleLine2: "",
     valueProposition: "We build systems that process requests and documents, update your CRM, draft commercial offers and answer employees — without manual data re-entry.",
-    differentiator: "Not a ChatGPT demo — systems that run for months in production. Kaspersky, ELIA Suite, 12+ production deployments.",
+    differentiator: "Not a ChatGPT demo — systems that run for months in production. Project experience in Kaspersky-related scenarios, ELIA Suite, 12+ production deployments.",
     specialization: "We work with your systems: CRM, ERP, documents, email, messengers",
     heroImageAlt: "Pawel Stasinski — AI architect, production implementations",
     officeGalleryLabel: "Corporate architecture and office spaces",
@@ -101,7 +101,7 @@ const en = {
     text: "Most AI integrators can build a polished demo. We deploy systems that run for months in real business—with measurable time and cost savings.",
     benefits: [
       "40–80% reduction in manual work on typical processes",
-      "Payback from 3 months—we calculate before starting",
+      "Payback from 3 months — for processes with enough repeating volume; exact term from actual load and cost, calculated before kickoff",
       "Full handover to your team, no vendor lock-in",
     ],
   },
@@ -162,7 +162,7 @@ const en = {
       {
         href: "/portfolio",
         title: "Case studies",
-        description: "Kaspersky, ELIA Suite, proposal automation and document workflows.",
+        description: "Project experience in Kaspersky-related scenarios, ELIA Suite, proposal automation — with measurement methodology.",
       },
       {
         href: "/pricing",
@@ -183,7 +183,7 @@ const en = {
     },
     portfolio: {
       metaTitle: "AI implementation case studies",
-      metaDescription: "Bober AI Systems portfolio: Kaspersky, ELIA Suite, proposal automation, CRM and documents.",
+      metaDescription: "Bober AI Systems portfolio: participation in Kaspersky-related AI assistant scenarios, ELIA Suite, proposal automation, CRM and documents.",
     },
     pricing: {
       metaTitle: "AI service price list — packages and estimates",
@@ -216,16 +216,20 @@ const en = {
     title: "Who we work with",
     items: [
       {
-        title: "Companies with manual processes",
-        text: "Sales, documents, tickets, support — losing time and money. Need automation with measurable ROI.",
+        title: "Owner / CEO",
+        text: "You need payback and risk control — not a hype experiment.",
       },
       {
-        title: "CRM/ERP integrators",
-        text: "Bitrix24, amoCRM, 1C — we deliver automation under your contract: white-label, NDA, fixed scope.",
+        title: "Commercial lead",
+        text: "Quotes, leads and CRM without copy-paste — shorter sales cycle.",
       },
       {
-        title: "Software houses",
-        text: "Subcontract automation and AI layers: APIs, integrations, documentation and handover to your team.",
+        title: "Operations lead",
+        text: "Documents, requests and routing without peak-load bottlenecks.",
+      },
+      {
+        title: "IT / integrator",
+        text: "Architecture, access, monitoring and handover into your perimeter.",
       },
     ],
   },
@@ -321,7 +325,7 @@ const en = {
     subtitle: "Custom implementation gives control over data, integrations, and unit economics.",
     items: [
       { title: "ChatGPT / Claude in browser", problem: "No CRM access, no audit trail, data leaves your perimeter, manual copy-paste.", solution: "We deploy AI in your stack: CRM, ERP, documents — under NDA with fixed scope." },
-      { title: "Hiring another employee", problem: "Payroll grows every month, ramp-up takes months, no scale on peak load.", solution: "Automation pays back in 3–6 months and runs 24/7." },
+      { title: "Hiring another employee", problem: "Payroll grows every month, ramp-up takes months, no scale on peak load.", solution: "For high-volume repeating work, automation often pays back in months — we calculate from actual load before kickoff." },
       { title: "Off-the-shelf SaaS", problem: "Doesn't match your process, vendor lock-in, data in someone else's cloud.", solution: "Built for your stack: your perimeter, code handover, integrations included." },
     ],
   },
@@ -329,12 +333,12 @@ const en = {
     label: "Results",
     title: "What changes after implementation",
     items: [
-      { stat: "2 hours → 15 minutes", label: "to prepare a commercial offer" },
-      { stat: "80%", label: "of line items recognized automatically in procurement documents" },
+      { stat: "45 min → 2–5 min", label: "proposal prep in a pilot process (client-reported)" },
+      { stat: "up to 80%", label: "line items auto-recognized in procurement docs on pilot" },
       { stat: "24/7", label: "processing of new requests, no downtime" },
       { stat: "Fewer manual errors", label: "thanks to data validation at every step" },
     ],
-    note: "Results depend on the process — we set metrics before the start and measure them on the pilot.",
+    note: "Outcomes depend on the process — we lock metrics before kickoff and measure on the pilot; we don’t publish absolute numbers without methodology.",
   },
   problemSolution: {
     label: "Problem → solution",
@@ -495,6 +499,133 @@ const en = {
       { title: "Go to production", text: "Set up monitoring, documentation and handover to your team." },
     ],
   },
+  deliverables: {
+    label: "Artifacts",
+    title: "What the company gets",
+    subtitle: "Not diplomas or certificates — working artifacts before build and after production launch.",
+    beforeTitle: "Before development starts",
+    afterTitle: "After go-live",
+    before: [
+      "Process map and loss points",
+      "Loss / savings estimate",
+      "Solution architecture and integration list",
+      "Fixed scope and acceptance criteria",
+    ],
+    after: [
+      "System in production on real data",
+      "Code and environment access",
+      "Documentation, logging and monitoring",
+      "Runbooks and handover to your IT team",
+      "Stabilization window after launch",
+    ],
+  },
+  beforeAfterDemo: {
+    label: "Before / After",
+    title: "Proposal automation: from 45 minutes to 2–5 minutes",
+    subtitle:
+      "Same process — different loop. Demo of a typical flow: PDF request → catalog → document → CRM.",
+    demoNote: "Demo UI fragment — not a client production screenshot",
+    beforeLabel: "Before automation",
+    afterLabel: "After go-live",
+    beforeMetric: "~45 min",
+    afterMetric: "2–5 min",
+    beforeSteps: [
+      { label: "Client PDF request", status: "Manual" },
+      { label: "Search items in catalog", status: "Manual" },
+      { label: "Copy prices and calculate VAT", status: "Excel / Word" },
+      { label: "Assemble Word and send", status: "Email" },
+    ],
+    afterSteps: [
+      { label: "PDF request ingested", status: "Input" },
+      { label: "Catalog match", status: "Auto" },
+      { label: "Status: exact / analog / not found", status: "Check" },
+      { label: "DOCX / PDF + CRM write", status: "Output" },
+    ],
+    flow: ["PDF", "Catalog table", "Row statuses", "DOCX / PDF"],
+  },
+  auditSample: {
+    label: "Audit",
+    title: "AI audit sample — what the from-€1,500 package delivers",
+    subtitle:
+      "A miniature report: process map, losses, impact/complexity matrix, 30/60/90 plan, risks and acceptance.",
+    demoNote: "Demo fragment — report structure example, not a specific client’s data",
+    cards: [
+      {
+        title: "Process map",
+        text: "Request → catalog → quote → CRM with bottlenecks and manual steps marked.",
+      },
+      {
+        title: "Impact / complexity matrix",
+        text: "Priorities: quick wins vs. longer integration cycles.",
+      },
+      {
+        title: "30 / 60 / 90 plan",
+        text: "Pilot on one process → expand → stabilize and hand over.",
+      },
+      {
+        title: "Risks & acceptance",
+        text: "Data gaps, access rights, human escalation, readiness criteria.",
+      },
+    ],
+    tableTitle: "Sample impact table (illustrative)",
+    tableHeaders: ["Process", "Hours / mo.", "Impact", "Complexity"],
+    tableRows: [
+      ["Proposal prep", "80", "High", "Medium"],
+      ["Inbound mail triage", "40", "Medium", "Low"],
+      ["PDF field extraction", "60", "High", "High"],
+    ],
+  },
+  preLaunch: {
+    label: "Before launch",
+    title: "What we check before go-live",
+    subtitle: "Quality and safety checklist — before production traffic.",
+    acceptanceNote: "Test scenarios and acceptance criteria are defined before development starts.",
+    items: [
+      "Answers on real data, not ideal examples",
+      "Behavior when data is missing",
+      "Access rights and perimeter boundaries",
+      "Prompt-injection resilience",
+      "No invented prices or documents",
+      "Human escalation on low confidence",
+      "Action logging and cost per process",
+      "Latency under load",
+      "Kill switch — ability to stop automation",
+    ],
+  },
+  architecturePlain: {
+    label: "Architecture",
+    title: "Architecture without magic",
+    subtitle: "AI is one layer in the loop — not a black box with access to everything.",
+    note: "AI does not get unrestricted access to company systems: only required sources, audit logs and write rules.",
+    steps: [
+      "Ingress: PDF, email, CRM, form",
+      "Rules & catalog: prices, SKUs, permissions",
+      "AI layer: parse, classify, draft",
+      "Checks and human escalation",
+      "Write to CRM / document / notification",
+    ],
+  },
+  whereAiNotNeeded: {
+    label: "Boundaries",
+    title: "Where AI is not needed",
+    subtitle: "Plain automation first — AI only where rules cannot cover the work.",
+    items: [
+      "Direct SQL sync and master-data exchange",
+      "CRM rules: stages, robots, assignment",
+      "Routine ERP operations without free-text parsing",
+      "RPA / workflow when steps are deterministic",
+    ],
+  },
+  exclusions: {
+    label: "Out of scope",
+    title: "What we don’t take on",
+    items: [
+      "Demo-for-demo with no path to production",
+      "Projects without process/data access for acceptance",
+      "“AI will fix everything” without a measurable scenario",
+      "Supporting third-party code with no docs or owner",
+    ],
+  },
   security: {
     title: "Security & compliance",
     items: [
@@ -517,7 +648,7 @@ const en = {
       "We can deploy in a closed environment — your cloud, on-prem, NDA",
       "We fix scope before development starts — cost, risks, acceptance criteria",
       "We hand the solution over to your company — code, instructions, access, documentation",
-      "I'm personally accountable for the architecture — 7 years in AI, publications, the Kaspersky case",
+      "I'm personally accountable for the architecture — 7 years in AI, publications, project experience in Kaspersky-related scenarios",
     ],
   },
   timeline: {
@@ -553,7 +684,7 @@ const en = {
     title: "About the company",
     tagline: "Business transformation partner · Bober AI Systems",
     imageAlt: "Team implementing business process automation",
-    text: "Bober AI Systems is a team that designs and implements automation for companies. CRM, documents, sales, support — with fixed scope, milestones, and handover to your team.\n\nNot a freelance marketplace or a ChatGPT demo. We work as an external automation department: audit → roadmap → production → support. Case studies: Kaspersky, ELIA Suite, proposal and document automation.\n\nWe respond within 4 business hours. NDA before kickoff.",
+    text: "Bober AI Systems is a team that designs and implements automation for companies. CRM, documents, sales, support — with fixed scope, milestones, and handover to your team.\n\nNot a freelance marketplace or a ChatGPT demo. We work as an external automation department: audit → roadmap → production → support. Case studies: participation in an internal AI assistant for Kaspersky-related scenarios, ELIA Suite, proposal and document automation.\n\nWe respond within 4 business hours. NDA before kickoff.",
     approach: "Approach",
     approachValue: "Process and ROI first, technology second. Fixed scope, milestone delivery, measurable outcomes.",
     schedule: "Schedule",
@@ -686,7 +817,7 @@ const en = {
       { q: "What is MCP and do you implement it?", a: "Model Context Protocol connects LLMs to tools and data sources. We build MCP servers for CRM, databases, and internal APIs." },
       { q: "Do you use LangGraph for agents?", a: "Yes, for multi-step agents with state, human-in-the-loop, and observability — when complexity exceeds simple chains." },
       { q: "How do you measure ROI?", a: "Baseline manual hours, error rates, and conversion metrics before launch. We report deltas after 30/60/90 days." },
-      { q: "What industries have you delivered in?", a: "Cybersecurity (Kaspersky), B2B sales, government affairs monitoring, education, banking media, and integrator subcontracting." },
+      { q: "What industries have you delivered in?", a: "Cybersecurity (project experience in Kaspersky-related scenarios), B2B sales, government affairs monitoring, education, banking media, and integrator subcontracting." },
       { q: "How fast do you respond to new requests?", a: "Within 4 business hours. Preliminary scope and estimate within 24 hours after the discovery call." },
     ],
   },

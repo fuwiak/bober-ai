@@ -29,6 +29,7 @@ export function CaseStudyCard({ item, viewLabel }: CaseStudyCardProps) {
       </div>
       <h3 className="mt-5 font-display text-2xl tracking-tight">{item.title}</h3>
       {item.metric ? <p className="case-study__metric mt-3">{item.metric}</p> : null}
+      {item.metricMethod ? <p className="body-copy mt-2 text-sm text-muted">{item.metricMethod}</p> : null}
       {item.stack ? <p className="meta-label mt-3">{item.stack}</p> : null}
       {item.result ? <p className="body-copy mt-3 text-base">{item.result}</p> : null}
       {item.priceLabel ? <p className="meta-label mt-4">{item.priceLabel}</p> : null}

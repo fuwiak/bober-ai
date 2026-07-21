@@ -3,6 +3,14 @@ import Image from "next/image";
 import { ContactCta } from "@/components/ContactCta";
 import { DiagnosticForm } from "@/components/DiagnosticForm";
 import { EditorialImageFrame } from "@/components/EditorialImageFrame";
+import {
+  ArchitecturePlainSection,
+  AuditSampleSection,
+  BeforeAfterDemoSection,
+  DeliverablesSection,
+  PreLaunchChecklistSection,
+  SimpleListSection,
+} from "@/components/ExpertiseEvidence";
 import { HomeHubSection } from "@/components/HomeHubSection";
 import { SectionCtaBand } from "@/components/SectionCtaBand";
 import { PartnerProgramBanner } from "@/components/PartnerProgramBanner";
@@ -46,6 +54,18 @@ export default async function HomePage() {
   const whyTrustItems = t.raw("whyTrust.items") as string[];
   const timelineItems = t.raw("timeline.items") as { period: string; text: string }[];
   const faqItems = (t.raw("faq.items") as { q: string; a: string }[]).slice(0, 6);
+  const deliverablesBefore = t.raw("deliverables.before") as string[];
+  const deliverablesAfter = t.raw("deliverables.after") as string[];
+  const beforeSteps = t.raw("beforeAfterDemo.beforeSteps") as { label: string; status: string }[];
+  const afterSteps = t.raw("beforeAfterDemo.afterSteps") as { label: string; status: string }[];
+  const auditCards = t.raw("auditSample.cards") as { title: string; text: string }[];
+  const auditHeaders = t.raw("auditSample.tableHeaders") as string[];
+  const auditRows = t.raw("auditSample.tableRows") as string[][];
+  const preLaunchItems = t.raw("preLaunch.items") as string[];
+  const architectureSteps = t.raw("architecturePlain.steps") as string[];
+  const whereAiItems = t.raw("whereAiNotNeeded.items") as string[];
+  const exclusionItems = t.raw("exclusions.items") as string[];
+  const demoFlow = t.raw("beforeAfterDemo.flow") as string[];
 
   return (
     <div className="page-shell min-h-screen">
@@ -116,7 +136,6 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* Problems the client recognizes */}
         <section className="section-band section--panel border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
@@ -140,7 +159,6 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* Why us */}
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
@@ -161,7 +179,14 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* One window — recognizable problem, direct answer */}
+        <SimpleListSection
+          label={t("whereAiNotNeeded.label")}
+          title={t("whereAiNotNeeded.title")}
+          subtitle={t("whereAiNotNeeded.subtitle")}
+          items={whereAiItems}
+          tone="panel"
+        />
+
         <section className="section-band section--panel border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
@@ -182,7 +207,6 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* Who we work with */}
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
@@ -202,7 +226,13 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* Budget gate */}
+        <SimpleListSection
+          label={t("exclusions.label")}
+          title={t("exclusions.title")}
+          items={exclusionItems}
+          tone="panel"
+        />
+
         <section className="section-band section--panel border-b border-hairline">
           <div className="container-editorial max-w-3xl">
             <Reveal>
@@ -229,7 +259,6 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* Process */}
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
@@ -253,7 +282,57 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* Results */}
+        <DeliverablesSection
+          label={t("deliverables.label")}
+          title={t("deliverables.title")}
+          subtitle={t("deliverables.subtitle")}
+          beforeTitle={t("deliverables.beforeTitle")}
+          afterTitle={t("deliverables.afterTitle")}
+          before={deliverablesBefore}
+          after={deliverablesAfter}
+        />
+
+        <BeforeAfterDemoSection
+          label={t("beforeAfterDemo.label")}
+          title={t("beforeAfterDemo.title")}
+          subtitle={t("beforeAfterDemo.subtitle")}
+          demoNote={t("beforeAfterDemo.demoNote")}
+          beforeLabel={t("beforeAfterDemo.beforeLabel")}
+          afterLabel={t("beforeAfterDemo.afterLabel")}
+          beforeMetric={t("beforeAfterDemo.beforeMetric")}
+          afterMetric={t("beforeAfterDemo.afterMetric")}
+          beforeSteps={beforeSteps}
+          afterSteps={afterSteps}
+          flow={demoFlow}
+        />
+
+        <AuditSampleSection
+          label={t("auditSample.label")}
+          title={t("auditSample.title")}
+          subtitle={t("auditSample.subtitle")}
+          demoNote={t("auditSample.demoNote")}
+          cards={auditCards}
+          tableTitle={t("auditSample.tableTitle")}
+          tableHeaders={auditHeaders}
+          tableRows={auditRows}
+        />
+
+        <PreLaunchChecklistSection
+          label={t("preLaunch.label")}
+          title={t("preLaunch.title")}
+          subtitle={t("preLaunch.subtitle")}
+          acceptanceNote={t("preLaunch.acceptanceNote")}
+          items={preLaunchItems}
+        />
+
+        <ArchitecturePlainSection
+          label={t("architecturePlain.label")}
+          title={t("architecturePlain.title")}
+          subtitle={t("architecturePlain.subtitle")}
+          note={t("architecturePlain.note")}
+          steps={architectureSteps}
+        />
+
         <section className="section-band section--panel border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
@@ -276,7 +355,6 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* Problem -> solution */}
         <ComparisonSection
           label={t("problemSolution.label")}
           title={t("problemSolution.title")}
@@ -284,7 +362,6 @@ export default async function HomePage() {
           items={problemSolutionItems}
         />
 
-        {/* Packages, with audit as the entry product */}
         <PackagesShowcase
           label={t("sections.engagement")}
           title={t("packages.title")}
@@ -296,7 +373,6 @@ export default async function HomePage() {
           urgency={`${t("packages.urgency")} ${t("packages.auditNote")}`}
         />
 
-        {/* Why trust us */}
         <section className="section-band section--panel border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
@@ -316,7 +392,6 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* Timeline expectations */}
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial">
             <Reveal>

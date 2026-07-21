@@ -22,6 +22,10 @@ type ProjectsCasesShowcaseProps = {
   resultLabel?: string;
   categoriesLabel?: string;
   sectionLabel?: string;
+  roleLabel?: string;
+  scopeLabel?: string;
+  durationLabel?: string;
+  architectureLabel?: string;
 };
 
 export function ProjectsCasesShowcase({
@@ -37,6 +41,10 @@ export function ProjectsCasesShowcase({
   resultLabel = "Результат",
   categoriesLabel = "Направления",
   sectionLabel = "Portfolio",
+  roleLabel = "Роль",
+  scopeLabel = "Объём",
+  durationLabel = "Срок",
+  architectureLabel = "Архитектура",
 }: ProjectsCasesShowcaseProps) {
   const categories = useMemo(() => {
     const counts = new Map<string, number>();
@@ -104,6 +112,39 @@ export function ProjectsCasesShowcase({
 
                 {item.metric ? (
                   <p className="case-study__metric">{item.metric}</p>
+                ) : null}
+
+                {item.metricMethod ? (
+                  <p className="body-copy mt-2 text-sm text-muted">{item.metricMethod}</p>
+                ) : null}
+
+                {(item.role || item.scope || item.duration || item.architecture) ? (
+                  <dl className="case-study__facts mt-4 space-y-2">
+                    {item.role ? (
+                      <div>
+                        <dt className="meta-label inline">{roleLabel}: </dt>
+                        <dd className="body-copy inline text-sm">{item.role}</dd>
+                      </div>
+                    ) : null}
+                    {item.scope ? (
+                      <div>
+                        <dt className="meta-label inline">{scopeLabel}: </dt>
+                        <dd className="body-copy inline text-sm">{item.scope}</dd>
+                      </div>
+                    ) : null}
+                    {item.duration ? (
+                      <div>
+                        <dt className="meta-label inline">{durationLabel}: </dt>
+                        <dd className="body-copy inline text-sm">{item.duration}</dd>
+                      </div>
+                    ) : null}
+                    {item.architecture ? (
+                      <div>
+                        <dt className="meta-label inline">{architectureLabel}: </dt>
+                        <dd className="body-copy inline text-sm">{item.architecture}</dd>
+                      </div>
+                    ) : null}
+                  </dl>
                 ) : null}
 
                 {item.stack ? (

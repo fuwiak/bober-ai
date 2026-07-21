@@ -56,6 +56,10 @@ export default async function PortfolioPage({ params }: Props) {
               stackLabel={t("portfolio.stackLabel")}
               categoriesLabel={t("portfolio.categoriesLabel")}
               sectionLabel={t("sections.portfolio")}
+              roleLabel={locale === "en" ? "Role" : "Роль"}
+              scopeLabel={locale === "en" ? "Scope" : "Объём"}
+              durationLabel={locale === "en" ? "Duration" : "Срок"}
+              architectureLabel={locale === "en" ? "Architecture" : "Архитектура"}
             />
           </div>
         </section>
@@ -66,7 +70,6 @@ export default async function PortfolioPage({ params }: Props) {
           commitment={t("sectionCta.commitment")}
           format={t("sectionCta.format")}
           cta={t("sectionCta.cta")}
-          urgency={t("sectionCta.urgency")}
           className="section--panel"
         />
       </main>

@@ -97,7 +97,6 @@ export default async function ServicesPage({ params }: Props) {
           commitment={t("sectionCta.commitment")}
           format={t("sectionCta.format")}
           cta={t("sectionCta.cta")}
-          urgency={t("sectionCta.urgency")}
         />
       </main>
       <SiteFooter />

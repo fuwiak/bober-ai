@@ -71,7 +71,6 @@ export default async function FaqPage({ params }: Props) {
           commitment={t("sectionCta.commitment")}
           format={t("sectionCta.format")}
           cta={t("sectionCta.cta")}
-          urgency={t("sectionCta.urgency")}
           className="section--panel"
         />
       </main>

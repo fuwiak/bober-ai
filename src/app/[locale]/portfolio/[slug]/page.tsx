@@ -139,6 +139,46 @@ export default async function PortfolioProjectPage({ params }: PageProps) {
             ) : (
               <p className="mt-10 text-sm text-muted">{isEn ? "Detailed case study coming soon." : "Подробное описание проекта готовится."}</p>
             )}
+
+            {item.role || item.scope || item.duration || item.architecture || item.metric || item.metricMethod ? (
+              <dl className="case-meta-grid mt-10">
+                {item.role ? (
+                  <div>
+                    <dt className="meta-label">{isEn ? "Role" : "Роль"}</dt>
+                    <dd className="body-copy mt-2 text-sm">{item.role}</dd>
+                  </div>
+                ) : null}
+                {item.scope ? (
+                  <div>
+                    <dt className="meta-label">{isEn ? "Scope" : "Объём"}</dt>
+                    <dd className="body-copy mt-2 text-sm">{item.scope}</dd>
+                  </div>
+                ) : null}
+                {item.duration ? (
+                  <div>
+                    <dt className="meta-label">{isEn ? "Duration" : "Срок"}</dt>
+                    <dd className="body-copy mt-2 text-sm">{item.duration}</dd>
+                  </div>
+                ) : null}
+                {item.architecture ? (
+                  <div>
+                    <dt className="meta-label">{isEn ? "Architecture" : "Архитектура"}</dt>
+                    <dd className="body-copy mt-2 text-sm">{item.architecture}</dd>
+                  </div>
+                ) : null}
+                {item.metric ? (
+                  <div>
+                    <dt className="meta-label">{isEn ? "Key metric" : "Ключевой результат"}</dt>
+                    <dd className="body-copy mt-2 text-sm">
+                      {item.metric}
+                      {item.metricMethod ? (
+                        <span className="mt-1 block text-muted">{item.metricMethod}</span>
+                      ) : null}
+                    </dd>
+                  </div>
+                ) : null}
+              </dl>
+            ) : null}
           </article>
 
           <div className="callout-accent mt-12">
