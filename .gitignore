@@ -18,3 +18,7 @@ cli/yaga/yaga
 articles/**/.export/
 # local yaga / publish secrets (also ~/.config/*/credentials.env)
 **/credentials.env
+
+# local yandex360 mailbox passwords / shared mailbox meta
+.yandex360-*-credentials
+.yandex360-*-shared

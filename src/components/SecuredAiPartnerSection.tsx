@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ContactCta } from "@/components/ContactCta";
+import { ArchitectureStepsCarousel } from "@/components/motion/ArchitectureStepsCarousel";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import {
@@ -161,14 +162,11 @@ export function SecuredAiPartnerSection({
             <h2 className="section-title mt-4 max-w-3xl">{architectureTitle}</h2>
             <p className="body-copy mt-4 max-w-3xl text-base">{architectureText}</p>
           </Reveal>
-          <Stagger className="architecture-flow mt-10" stagger={0.06}>
-            {architectureSteps.map((step, index) => (
-              <StaggerItem key={step} className="architecture-flow__item">
-                <span className="architecture-flow__index">{String(index + 1).padStart(2, "0")}</span>
-                <span className="architecture-flow__text">{step}</span>
-              </StaggerItem>
-            ))}
-          </Stagger>
+          <ArchitectureStepsCarousel
+            className="mt-10"
+            steps={architectureSteps}
+            label={architectureTitle}
+          />
         </div>
       </section>
 

@@ -2833,3 +2833,95 @@ html:not(.dark) .shell-code {
     color: var(--color-ink);
   }
 
+  /* Promo-style fade carousel for architecture steps (no slick). */
+  .architecture-slider {
+    outline: none;
+  }
+  .architecture-slider:focus-visible {
+    box-shadow: 0 0 0 1px var(--color-ink);
+  }
+  .architecture-slider__viewport {
+    position: relative;
+    min-height: 11.5rem;
+    border: 1px solid var(--color-hairline);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--color-surface-card);
+  }
+  .architecture-slider__slide {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 1.25rem;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--color-surface-card) 92%, var(--color-ink) 8%), var(--color-surface-card)),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 23px,
+        color-mix(in srgb, var(--color-hairline) 70%, transparent) 24px
+      );
+  }
+  .architecture-slider__index {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .architecture-slider__title {
+    margin: 0;
+    max-width: 28rem;
+    font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    align-self: center;
+  }
+  .architecture-slider__count {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--color-muted);
+  }
+  .architecture-slider__dots {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    margin-top: 1.25rem;
+  }
+  .architecture-slider__dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    padding: 0;
+    border: 1px solid var(--color-muted);
+    border-radius: 999px;
+    background: transparent;
+    cursor: pointer;
+    transition:
+      background-color 200ms ease,
+      border-color 200ms ease,
+      transform 200ms ease;
+  }
+  .architecture-slider__dot:hover {
+    border-color: var(--color-ink);
+  }
+  .architecture-slider__dot.is-active {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    transform: scale(1.15);
+  }
+  .architecture-slider__dot:focus-visible {
+    outline: 1px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+  @media (min-width: 768px) {
+    .architecture-slider__viewport {
+      min-height: 13.5rem;
+    }
+  }
+
