@@ -6,26 +6,35 @@ import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { TrackedAnchor } from "@/components/TrackedAnchor";
 import { Reveal } from "@/components/motion/Reveal";
 import { webPageJsonLd } from "@/lib/seo";
-import { BITRIX_SITE_URL, OFFICE_STOCK_IMAGES, STOCK_IMAGES, TELEGRAM_URL } from "@/lib/site";
+import {
+  BITRIX_SITE_URL,
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+  OFFICE_STOCK_IMAGES,
+  PORTFOLIO_IMAGES,
+  STOCK_IMAGES,
+  TELEGRAM_URL,
+  WHATSAPP_URL,
+} from "@/lib/site";
 
 /**
  * Served at bitrix.bober-ai.dev (see deploy/Caddyfile[.railway]) —
  * AI automation for Bitrix24 + amoCRM with RU business integrations.
  */
 const LANDING_URL = `${BITRIX_SITE_URL.replace(/\/$/, "")}/`;
-const LANDING_NAME = "Bober AI Systems — Битрикс24 и amoCRM";
+const LANDING_NAME = "Bober AI Systems — Битрикс24";
 
 export const metadata: Metadata = {
-  title: "AI-автоматизация для Битрикс24 и amoCRM",
+  title: "Автоматизация продаж и управления в Битрикс24",
   description:
-    "Подключаем CRM к 1С, МойСклад, телефонии, документам и корпоративным данным. AI-ассистенты, аналитика и сложные процессы, когда стандартных роботов недостаточно.",
+    "AI анализирует сделки и звонки, заполняет CRM, формирует задачи, готовит коммерческие предложения и синхронизирует данные с 1С и МойСклад. Пилот от 300 000 ₽.",
   keywords: [
     "битрикс24 ai",
     "автоматизация битрикс24",
-    "amocrm ai",
     "интеграция битрикс24 1с",
     "ai ассистент crm",
     "автоматизация amocrm",
+    "битрикс24 мойсклад",
   ],
   alternates: { canonical: LANDING_URL },
   robots: { index: true, follow: true },
@@ -35,234 +44,164 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     url: LANDING_URL,
     siteName: LANDING_NAME,
-    title: "AI-автоматизация для Битрикс24 и amoCRM",
+    title: "Автоматизация продаж и управления в Битрикс24",
     description:
-      "Подключаем CRM к 1С, МойСклад, телефонии и документам. AI там, где стандартных роботов и виджетов недостаточно.",
+      "AI анализирует сделки и звонки, заполняет CRM, готовит КП и синхронизирует данные с 1С и МойСклад.",
     images: [{ url: "/stock/office-tower.jpg", width: 1200, height: 630 }],
   },
 };
 
-const BITRIX_OFFERS = [
-  "Анализ воронки и работы менеджеров",
-  "Ассистент руководителя по сделкам и задачам",
-  "Генерация задач и отчётов",
-  "Работа с дисками, комментариями и документами",
-  "Сложные действия через REST API",
-  "Связка с 1С и корпоративными базами",
+const SYSTEMS_STRIP = ["Битрикс24", "1С", "МойСклад", "Диадок", "Телефония"];
+
+const BUSINESS_PAINS = [
+  "Менеджеры не заполняют карточки — руководитель смотрит на пустые поля",
+  "Отчёты собираются вручную из CRM, Excel и 1С",
+  "Лиды остаются без follow-up, пока менеджер занят другим клиентом",
+  "Цены и остатки копируются из 1С в КП вручную",
+  "Звонки и переписка не анализируются — только прослушиваются выборочно",
+  "Документы теряются между почтой, диском и CRM",
 ];
 
-const AMO_OFFERS = [
-  "Квалификация лидов",
-  "Саммари звонков и переписки",
-  "Автозаполнение карточек",
-  "Lead scoring и следующий лучший шаг",
-  "Реактивация старых лидов",
-  "Персонализированные сообщения и контроль проигранных сделок",
-];
-
-const ONEC_OFFERS = [
-  "Проверка цен и остатков",
-  "Создание заказов",
-  "Перенос данных из документов",
-  "Синхронизация контрагентов",
-  "Генерация КП и подбор аналогов",
-  "Отчёты по расхождениям",
-];
-
-const DOCFLOW_OFFERS = [
-  "Диадок и СБИС",
-  "Анализ договоров и актов",
-  "Распознавание счетов и спецификаций",
-  "Проверка комплектности",
-  "Маршрутизация документов",
-  "Автосоздание задач в CRM",
-];
-
-const INFRA_GROUPS = [
+const IMPLEMENTATION_SCENARIOS = [
   {
-    title: "Учёт и склад",
-    items: ["1С:Предприятие", "1С:ERP", "1С:УТ", "1С:Бухгалтерия", "МойСклад"],
+    title: "Анализ воронки и контроль сделок",
+    problem: "Руководитель не видит, на каком этапе ломается конверсия, пока не соберёт отчёт сам.",
+    outcome:
+      "AI собирает сделки, задачи, комментарии и звонки, показывает проблемные этапы и готовит задачи менеджерам.",
+    systems: "Битрикс24 · телефония · задачи · права доступа",
   },
   {
-    title: "Документы",
-    items: ["Контур.Диадок", "СБИС", "PDF", "сканы", "Excel", "Google Sheets"],
+    title: "Автозаполнение CRM и задачи",
+    problem: "После звонка или письма карточка остаётся пустой — данные живут в головах и чатах.",
+    outcome:
+      "Система заполняет поля, фиксирует следующий шаг и ставит задачу ответственному без ручного копипаста.",
+    systems: "Битрикс24 · почта · мессенджеры · REST API",
   },
   {
-    title: "Телефония и каналы",
-    items: ["MANGO OFFICE", "UIS", "МегаФон ВАТС", "Telegram", "VK", "WhatsApp", "e-mail", "формы сайта", "call tracking"],
+    title: "Скоринг и follow-up лидов",
+    problem: "Горячие и холодные лиды идут в одну очередь — часть сделок остывает без касания.",
+    outcome:
+      "AI оценивает вероятность сделки, предлагает следующий лучший шаг и поднимает просроченные follow-up.",
+    systems: "Битрикс24 · amoCRM · история коммуникаций",
   },
   {
-    title: "Данные",
-    items: ["PostgreSQL", "MySQL", "каталог товаров", "база знаний", "внутренние API"],
+    title: "КП и документы через REST",
+    problem: "Менеджер вручную сверяет каталог, цены, остатки и собирает DOCX между CRM и 1С.",
+    outcome:
+      "Запрос распознаётся, цены и остатки подтягиваются из учёта, документ прикрепляется к сделке — человек подтверждает отправку.",
+    systems: "Битрикс24 · 1С · МойСклад · OCR · DOCX/PDF",
   },
 ];
 
-const OTHER_CRM = ["RetailCRM", "Мегаплан", "ПланФикс"];
+type CaseStudy = {
+  label: string;
+  title: string;
+  lead: string;
+  steps: string[];
+  result: string;
+  systems: string;
+  metric?: string;
+  metricNote?: string;
+  image?: string;
+};
 
-const FLOW_STEPS = ["Входящий запрос", "Битрикс24", "AI-квалификация", "1С / телефония", "КП + задача менеджеру"];
-
-const FLOW_STATUSES = [
-  "сделка создана",
-  "клиент найден в 1С",
-  "остатки проверены",
-  "КП сформировано",
-  "задача назначена",
-];
-
-const BEFORE_STEPS = [
-  "Менеджер читает письмо или сообщение",
-  "Вручную создаёт сделку в CRM",
-  "Ищет клиента и остатки в 1С",
-  "Копирует данные в КП",
-  "Отдельно ставит себе задачу",
-];
-
-const AFTER_STEPS = [
-  "Письмо или сообщение поступает в систему",
-  "AI создаёт сделку в Битрикс24 или amoCRM",
-  "Проверяет клиента и остатки в 1С",
-  "Готовит КП по шаблону",
-  "Ставит задачу — менеджер подтверждает",
-];
-
-const COMPARISON_ROWS = [
+const CASES: CaseStudy[] = [
   {
-    label: "Где работает",
-    standard: "Внутри CRM: карточка, робот, виджет",
-    custom: "Связывает CRM, 1С, каталог, документы и телефонию",
-  },
-  {
-    label: "Сценарии",
-    standard: "Готовые шаблоны и стандартные роботы",
-    custom: "Процессы под логику именно вашей компании",
-  },
-  {
-    label: "Контроль",
-    standard: "Ограниченные правила внутри платформы",
-    custom: "Валидация данных, права доступа, логи, подтверждение человеком",
-  },
-  {
-    label: "Данные",
-    standard: "То, что видит платформа",
-    custom: "Ваши источники: 1С, МойСклад, документы, внутренние API",
-  },
-];
-
-const FLOWER_CASE_BUILT = [
-  "Синхронизация клиентов и заказов с МойСклад",
-  "Объединение прямых продаж и заказов с маркетплейсов",
-  "История заказов по каждому клиенту",
-  "Расчёт среднего чека и количества покупок",
-  "Определение даты последнего заказа",
-  "Автоматическая AI-сегментация клиентской базы",
-  "Выделение постоянных, корпоративных и премиальных клиентов",
-  "Обогащение карточек данными из Telegram, WhatsApp и других каналов",
-  "Фильтрация и поиск по клиентской базе",
-  "Группы для маркетинговых кампаний",
-  "Рекомендации по повторным продажам и персональным предложениям",
-  "Аналитический дашборд по выручке, заказам и каналам продаж",
-];
-
-const FLOWER_CASE_FLOW = ["МойСклад и каналы продаж", "Единая клиентская база", "AI-сегментация", "Рекомендации и группы", "Персональная коммуникация"];
-
-const FLOWER_TO_BITRIX_STEPS = [
-  "Битрикс24 или amoCRM остаётся основным рабочим интерфейсом",
-  "Данные о заказах и остатках поступают из МойСклад или 1С",
-  "AI автоматически сегментирует клиентскую базу",
-  "Менеджер получает рекомендации по следующему контакту",
-  "Система создаёт задачи и персональные предложения в CRM",
-  "Результаты коммуникации сохраняются в карточке клиента",
-];
-
-const SCENARIO_DISCLAIMER =
-  "Демонстрационный сценарий. Архитектура и эффект уточняются после аудита процесса.";
-
-const MAIN_SCENARIOS = [
-  {
-    title: "Запрос клиента → готовое КП",
-    problem: "Клиент присылает PDF или Excel со списком товаров — менеджер вручную ищет позиции, сверяет цены и остатки в 1С и собирает документ.",
+    label: "Кейс 1 · AI-чат владельца",
+    title: "«Почему упала конверсия отдела продаж за неделю?»",
+    lead: "Владелец задаёт вопрос в чат — система отвечает по фактическим данным CRM, а не по ощущениям менеджеров.",
     steps: [
-      "Распознаёт позиции из PDF, Excel или сообщения",
-      "Создаёт или обновляет сделку в Битрикс24",
-      "Проверяет цены и остатки в 1С или МойСклад",
-      "Подбирает точный товар или аналог, отмечает отсутствующие позиции",
-      "Формирует DOCX/PDF и прикрепляет к сделке",
+      "Собирает сделки, задачи, комментарии и статусы за период",
+      "Подтягивает звонки и саммари разговоров",
+      "Сверяет план/факт по этапам воронки",
+      "Выделяет проблемные этапы, менеджеров и причины просадок",
+      "Формирует вывод и список действий — без ручной сборки Excel",
     ],
-    systems: "Битрикс24 · 1С · OCR · каталог · DOCX/PDF",
-    result: "Менеджер проверяет готовый документ вместо ручного переноса данных между системами.",
+    result:
+      "Руководитель получает причины и точки вмешательства за минуты, а не после еженедельного совещания с отчётами.",
+    systems: "Битрикс24 · задачи · телефония · права доступа",
   },
   {
-    title: "AI-ассистент руководителя",
-    problem: "Данные разбросаны по CRM, задачам, комментариям, телефонии и 1С — любой ответ требует ручного отчёта.",
+    label: "Кейс 2 · Авто-КП · OfferKP",
+    title: "PDF клиента → цены и остатки → готовое КП в CRM",
+    lead: "Реализованный контур генерации коммерческих предложений: типовое КП за 2–5 минут вместо ~45.",
     steps: [
-      "Собирает цифры из CRM, задач и активностей",
-      "Анализирует комментарии и транскрипты звонков",
-      "Подтягивает дебиторскую задолженность из 1С",
-      "Указывает источник и дату актуальности каждой цифры",
-      "Формирует отчёт или задачу для руководителя",
+      "Распознаёт позиции из PDF или Excel",
+      "Сверяет артикулы, цены и остатки с каталогом / 1С / МойСклад",
+      "Отмечает точное совпадение, аналог или отсутствие позиции",
+      "Собирает DOCX/PDF с НДС, условиями и тарифами",
+      "Записывает документ в сделку Битрикс24",
     ],
-    systems: "Битрикс24 · 1С · телефония · права доступа",
-    result: "Руководитель получает ответ по фактическим данным без ручной сборки отчёта из CRM, Excel и учётной системы.",
+    result:
+      "Цены и SKU только из каталога — модель не выдумывает позиции. Менеджер проверяет готовый документ, а не собирает его с нуля.",
+    systems: "Битрикс24 · 1С / МойСклад · MySQL · OCR · DOCX/PDF",
+    metric: "45 мин → 2–5 мин на типовое КП",
+    metricNote: "По данным пилотного процесса заказчика",
+    image: PORTFOLIO_IMAGES.kpLlm,
   },
   {
-    title: "Контроль звонков и следующий шаг",
-    problem: "Руководитель не может прослушать все звонки, а стандартная транскрипция не отвечает на вопрос, хорошо ли прошёл разговор.",
+    label: "Кейс 3 · Kinetic AI · цветы",
+    title: "МойСклад + история продаж → рекомендации для роста повторных покупок",
+    lead: "Не чат-бот «для галочки», а рабочий контур сегментации и повторных продаж на данных заказов.",
     steps: [
-      "Получает запись из телефонии и создаёт транскрипт",
-      "Разделяет реплики клиента и менеджера",
-      "Определяет потребность, бюджет, срок и возражения",
-      "Проверяет соответствие скрипту, готовит сводку",
-      "Заполняет поля Битрикс24 и предлагает следующий шаг",
+      "Синхронизирует клиентов и заказы из МойСклад и каналов продаж",
+      "Строит историю покупок, средний чек и давность последнего заказа",
+      "Сегментирует постоянных, корпоративных и премиальных клиентов",
+      "Готовит группы для маркетинга и рекомендации менеджеру",
+      "Может встраиваться в Битрикс24 как основной рабочий интерфейс",
     ],
-    systems: "Битрикс24 · телефония · речевая аналитика",
-    result: "Карточка сделки сама заполняется выводами из разговора — вместо ручного прослушивания записей.",
-  },
-  {
-    title: "Документ → 1С → согласование в Битрикс24",
-    problem: "Входящие счета, акты, спецификации и накладные сотрудник читает и вручную переносит в учётную систему.",
-    steps: [
-      "Классифицирует тип документа",
-      "Извлекает контрагента, номер, дату, позиции и суммы",
-      "Сверяет данные с контрагентом и заказом, находит расхождения",
-      "Создаёт черновик документа в 1С со ссылкой на источник",
-      "Создаёт задачу на согласование в Битрикс24",
-    ],
-    systems: "Битрикс24 · 1С · OCR · ЭДО",
-    result: "AI извлекает и проверяет данные, а проведение документа остаётся за человеком или чёткими правилами.",
+    result:
+      "Менеджер видит, кому и с каким поводом писать дальше — вместо разрозненного списка заказчиков без контекста.",
+    systems: "kinetic-ai.ru · МойСклад · AI-сегментация · Telegram · WhatsApp · маркетплейсы",
   },
 ];
 
-const SMALL_SCENARIOS = [
-  { title: "Реактивация старых лидов", text: "Сегментация базы, персональные сообщения и передача заинтересованных менеджеру." },
-  { title: "Квалификация лидов", text: "AI ведёт первый диалог и передаёт в CRM заполненную карточку со scoring." },
-  { title: "Следующий лучший шаг", text: "Анализ стадии, активности и возражений — подсказка менеджеру, а не автодействие." },
-  { title: "Контроль качества данных CRM", text: "Поиск дублей, пустых полей и расхождений между стадией и реальным статусом." },
-  { title: "Дебиторская задолженность", text: "Группировка по риску, напоминания клиенту и алерт менеджеру перед новой отгрузкой." },
-  { title: "Поддержка и сервис", text: "Классификация обращений, история клиента, эскалация нетиповых случаев." },
-  { title: "Тендеры и документация", text: "Разбор конкурсной документации, чек-лист требований, контроль комплектности." },
-  { title: "Заказы с маркетплейсов", text: "Сверка остатков, задача на производство или закупку, обновление статуса в CRM." },
+const HOW_IT_WORKS = [
+  {
+    title: "Облако или коробочная версия",
+    text: "Работаем с Битрикс24 в облаке и on-premise. Точка входа — REST API, вебхуки и права приложения.",
+  },
+  {
+    title: "Где живут данные",
+    text: "CRM, 1С, МойСклад, телефония и документы остаются в ваших системах. AI-слой читает только согласованные источники.",
+  },
+  {
+    title: "Права приложения",
+    text: "Минимально необходимые scopes: сделки, контакты, задачи, диск, комментарии — без «доступа ко всему порталу».",
+  },
+  {
+    title: "Модели и контур",
+    text: "Модели могут работать в Yandex Cloud, Selectel или локально. NDA и свой контур — стандарт для B2B.",
+  },
+  {
+    title: "Подтверждение человеком",
+    text: "Критичные действия — отправка КП, проведение документа, массовые сообщения — только после одобрения сотрудника.",
+  },
+  {
+    title: "Журналы и передача",
+    text: "Логи действий, критерии приёмки, код и документация передаются вашей команде — без вендор-лока.",
+  },
 ];
 
-const EXPERTISE_POINTS = [
-  "7 лет в AI и автоматизации бизнес-процессов",
-  "12+ промышленных внедрений в проде, не демо",
-  "Проектный опыт в решениях для сценариев Kaspersky, ELIA Suite",
-  "Партнёр Yandex Cloud · партнёрская программа Selectel · технологический партнёр Cloud.ru",
-  "Развёртывание в облаке или в вашем контуре (on-premise)",
-  "Код, документация и передача решения команде — без вендор-лока",
+const PILOT_POINTS = [
+  "Срок: 2–4 недели",
+  "Бюджет: от 300 000 ₽",
+  "Объём: 1 процесс, 1 CRM, до 2 интеграций",
+  "Результат: рабочий сценарий, документация и расчёт эффекта",
 ];
 
-const PRICING_TIERS = [
-  { name: "Аудит интеграций", price: "от 150 000 ₽", note: "1–2 недели · карта процессов и точек потерь" },
-  { name: "Внедрение", price: "от 500 000 ₽", note: "4–12 недель · интеграции, тестирование, запуск" },
-  { name: "Сопровождение", price: "от 200 000 ₽/мес", note: "мониторинг, итерации, приоритетная поддержка" },
+const COLLAB_STEPS = [
+  { title: "Разбираем процесс", text: "Где теряется время, какие системы в контуре, что считать успехом пилота." },
+  { title: "Фиксируем границы", text: "Сценарий, интеграции, смета и критерии приёмки — до старта разработки." },
+  { title: "Запускаем пилот", text: "Проверяем на реальных сделках и исключениях, измеряем эффект." },
+  { title: "Масштабируем", text: "Промышленное внедрение от 500 000 ₽ — расширения, мониторинг, передача команде." },
 ];
 
 export default function BitrixLandingPage() {
   const webPage = webPageJsonLd({
-    name: "AI-автоматизация для Битрикс24 и amoCRM",
+    name: "Автоматизация продаж и управления в Битрикс24",
     description:
-      "Подключаем CRM к 1С, МойСклад, телефонии и корпоративным данным. AI-ассистенты и сложные процессы под задачи компании.",
+      "AI анализирует сделки и звонки, заполняет CRM, готовит КП и синхронизирует данные с 1С и МойСклад.",
     url: LANDING_URL,
     locale: "ru",
   });
@@ -276,7 +215,7 @@ export default function BitrixLandingPage() {
           <div className="container-editorial flex items-center justify-between py-6">
             <div>
               <span className="font-display text-lg tracking-tight text-ink">Bober AI Systems</span>
-              <span className="meta-label ml-3 text-muted">Битрикс24 · amoCRM</span>
+              <span className="meta-label ml-3 text-muted">Битрикс24</span>
             </div>
             <TrackedAnchor
               href={TELEGRAM_URL}
@@ -291,20 +230,24 @@ export default function BitrixLandingPage() {
         </header>
 
         <main>
+          {/* 1. Hero */}
           <section className="section-band border-b border-hairline">
             <div className="container-editorial max-w-4xl">
               <Reveal>
-                <p className="hero-label">Bober AI Systems · Битрикс24 · amoCRM</p>
+                <p className="hero-label">Bober AI Systems · Битрикс24</p>
                 <h1 className="section-title mt-6 max-w-3xl text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05]">
-                  AI-автоматизация для Битрикс24 и amoCRM
+                  Автоматизируем продажи и управление в Битрикс24
                 </h1>
                 <p className="body-copy mt-5 max-w-2xl text-lg">
-                  Подключаем CRM к 1С, МойСклад, телефонии, документам и корпоративным данным. Когда стандартных
-                  роботов, виджетов и встроенного AI недостаточно.
+                  AI анализирует сделки и звонки, заполняет CRM, формирует задачи, готовит коммерческие
+                  предложения и синхронизирует данные с 1С и МойСклад.
+                </p>
+                <p className="mt-4 max-w-2xl font-display text-base text-muted">
+                  Когда стандартных роботов и CoPilot уже недостаточно.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <TrackedAnchor href="#contact" className="btn-primary" goal="bitrix_cta_click">
-                    Обсудить проект
+                    Получить оценку интеграции
                   </TrackedAnchor>
                   <TrackedAnchor
                     href={TELEGRAM_URL}
@@ -316,6 +259,9 @@ export default function BitrixLandingPage() {
                     Написать в Telegram
                   </TrackedAnchor>
                 </div>
+                <p className="meta-label mt-6 text-muted">
+                  Пилот от 300 000 ₽ · 2–4 недели · облако или коробочная версия
+                </p>
               </Reveal>
 
               <Reveal delay={0.12} className="landing-hero-media">
@@ -333,327 +279,138 @@ export default function BitrixLandingPage() {
             </div>
           </section>
 
-          <section className="prestige-gallery border-b border-hairline" aria-label="Офис и инфраструктура">
-            <div className="prestige-gallery__grid">
-              <Reveal className="prestige-gallery__main">
-                <EditorialImageFrame variant="hero" className="prestige-gallery__frame">
-                  <Image
-                    src={OFFICE_STOCK_IMAGES.tower}
-                    alt=""
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover"
-                  />
-                </EditorialImageFrame>
-              </Reveal>
-              <Reveal delay={0.06} className="prestige-gallery__side">
-                <EditorialImageFrame variant="card" className="prestige-gallery__frame">
-                  <Image
-                    src={STOCK_IMAGES.automation}
-                    alt=""
-                    fill
-                    sizes="(max-width: 768px) 100vw, 25vw"
-                    className="object-cover"
-                  />
-                </EditorialImageFrame>
-              </Reveal>
-              <Reveal delay={0.12} className="prestige-gallery__side">
-                <EditorialImageFrame variant="card" className="prestige-gallery__frame">
-                  <Image
-                    src={OFFICE_STOCK_IMAGES.facade}
-                    alt=""
-                    fill
-                    sizes="(max-width: 768px) 100vw, 25vw"
-                    className="object-cover"
-                  />
-                </EditorialImageFrame>
-              </Reveal>
-            </div>
-          </section>
-
-          <section className="section-band section--deep border-b border-hairline">
+          {/* 2. Systems strip */}
+          <section className="section-band section--deep border-b border-hairline" aria-label="Системы">
             <div className="container-editorial max-w-4xl">
               <Reveal>
-                <div className="trust-specs">
-                  <div className="spec-cell">
-                    <span className="spec-value">7 лет</span>
-                    <span className="spec-label">в AI и автоматизации</span>
-                  </div>
-                  <div className="spec-cell">
-                    <span className="spec-value">12+</span>
-                    <span className="spec-label">внедрений в проде</span>
-                  </div>
-                  <div className="spec-cell">
-                    <span className="spec-value">1С · ЭДО</span>
-                    <span className="spec-label">телефония и документы</span>
-                  </div>
-                  <div className="spec-cell">
-                    <span className="spec-value">On-prem</span>
-                    <span className="spec-label">или облако клиента</span>
-                  </div>
+                <p className="meta-label text-muted">Работаем с контуром, который уже есть</p>
+                <div className="bitrix-systems-strip mt-5" role="list">
+                  {SYSTEMS_STRIP.map((name) => (
+                    <span key={name} className="bitrix-systems-strip__item" role="listitem">
+                      {name}
+                    </span>
+                  ))}
                 </div>
               </Reveal>
             </div>
           </section>
 
+          {/* 3. Business problems */}
           <section className="section-band section--panel border-b border-hairline">
             <div className="container-editorial max-w-4xl">
               <Reveal>
-                <span className="section-label">CRM · AI · интеграции</span>
-                <h2 className="section-title mt-4 max-w-2xl">Главные платформы автоматизации</h2>
+                <span className="section-label">Боли</span>
+                <h2 className="section-title mt-4 max-w-2xl">Что сейчас происходит без автоматизации</h2>
                 <p className="body-copy mt-4 max-w-2xl">
-                  Битрикс24 — ядро процессов. amoCRM — продажи. Вокруг них — 1С, документы и телефония.
+                  Битрикс24 установлен, но процессы живут вокруг него — в Excel, почте, 1С и головах менеджеров.
+                </p>
+              </Reveal>
+              <ul className="mt-8 max-w-3xl space-y-3">
+                {BUSINESS_PAINS.map((item) => (
+                  <Reveal key={item} delay={0.04}>
+                    <li className="body-copy flex gap-4 text-base">
+                      <span className="meta-label shrink-0">—</span>
+                      <span>{item}</span>
+                    </li>
+                  </Reveal>
+                ))}
+              </ul>
+            </div>
+          </section>
+
+          {/* 4. Implementation scenarios */}
+          <section className="section-band border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">Сценарии внедрения</span>
+                <h2 className="section-title mt-4 max-w-2xl">Четыре готовых бизнес-сценария</h2>
+                <p className="body-copy mt-4 max-w-2xl">
+                  Не список фич, а процессы, которые можно запустить в пилоте на вашей CRM.
+                </p>
+              </Reveal>
+              <div className="mt-8 grid gap-5 sm:grid-cols-2">
+                {IMPLEMENTATION_SCENARIOS.map((item) => (
+                  <div key={item.title} className="border border-hairline bg-surface-card p-6">
+                    <h3 className="card-title text-lg">{item.title}</h3>
+                    <p className="body-copy mt-3 text-sm text-muted">{item.problem}</p>
+                    <p className="body-copy mt-4 text-sm text-body-strong">{item.outcome}</p>
+                    <p className="meta-label mt-4 text-muted-soft">{item.systems}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* 5. Case studies */}
+          <section className="section-band section--panel border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">Кейсы</span>
+                <h2 className="section-title mt-4 max-w-2xl">Как это выглядит на реальных процессах</h2>
+                <p className="body-copy mt-4 max-w-2xl">
+                  Три сценария из практики: чат владельца по CRM, авто-КП и рост повторных продаж на данных склада.
                 </p>
               </Reveal>
 
-              <div className="bitrix-platforms mt-10" aria-label="Главные платформы">
-                <Reveal>
-                  <div className="bitrix-platforms__card">
-                    <span className="bitrix-platforms__eyebrow">Главная платформа</span>
-                    <p className="bitrix-platforms__name">Битрикс24</p>
-                    <p className="bitrix-platforms__hint">CRM, задачи, диск, роботы, REST API</p>
-                  </div>
-                </Reveal>
-                <Reveal delay={0.06}>
-                  <div className="bitrix-platforms__card">
-                    <span className="bitrix-platforms__eyebrow">Платформа продаж</span>
-                    <p className="bitrix-platforms__name">amoCRM</p>
-                    <p className="bitrix-platforms__hint">Воронка, лиды, коммуникации, sales AI</p>
-                  </div>
-                </Reveal>
-              </div>
+              <div className="mt-10 space-y-8">
+                {CASES.map((item, index) => (
+                  <Reveal key={item.title} delay={index * 0.04}>
+                    <article className="border border-hairline bg-canvas p-6 md:p-8">
+                      <span className="meta-label text-accent">{item.label}</span>
+                      <h3 className="card-title mt-3 text-xl md:text-2xl">{item.title}</h3>
+                      <p className="body-copy mt-3 max-w-2xl text-sm md:text-base">{item.lead}</p>
 
-              <Reveal delay={0.08}>
-                <div className="mt-10 border border-hairline bg-surface-card p-6 md:p-8">
-                  <span className="meta-label text-muted">Как проходит запрос</span>
-                  <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-4">
-                    {FLOW_STEPS.map((step, index) => (
-                      <div key={step} className="flex items-center gap-3">
-                        <span className="border border-hairline-strong bg-canvas px-4 py-3 font-display text-sm text-ink">
-                          {step}
-                        </span>
-                        {index < FLOW_STEPS.length - 1 ? (
-                          <span aria-hidden className="text-muted-soft">
-                            →
-                          </span>
-                        ) : null}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
-                    {FLOW_STATUSES.map((status) => (
-                      <span key={status} className="meta-label text-muted-soft">
-                        · {status}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </Reveal>
+                      {item.metric ? (
+                        <p className="mt-4 font-display text-lg text-ink">
+                          {item.metric}
+                          {item.metricNote ? (
+                            <span className="ml-2 text-sm font-normal text-muted">· {item.metricNote}</span>
+                          ) : null}
+                        </p>
+                      ) : null}
+
+                      {item.image ? (
+                        <div className="relative mt-6 aspect-[16/9] max-w-xl overflow-hidden border border-hairline">
+                          <Image
+                            src={item.image}
+                            alt=""
+                            fill
+                            sizes="(max-width: 768px) 100vw, 560px"
+                            className="object-cover object-top"
+                          />
+                        </div>
+                      ) : null}
+
+                      <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                        {item.steps.map((step) => (
+                          <li key={step} className="flex items-start gap-3 text-sm text-body">
+                            <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                            {step}
+                          </li>
+                        ))}
+                      </ul>
+
+                      <p className="body-copy mt-6 border-t border-hairline pt-5 text-sm text-body-strong">
+                        {item.result}
+                      </p>
+                      <p className="mt-3 text-sm text-muted">{item.systems}</p>
+                    </article>
+                  </Reveal>
+                ))}
+              </div>
             </div>
           </section>
 
-          <section className="section-band section--panel border-b border-hairline">
+          {/* 6. How it works + architecture & security */}
+          <section className="section-band border-b border-hairline">
             <div className="container-editorial max-w-4xl">
               <div className="grid items-end gap-8 md:grid-cols-[1.1fr_0.9fr]">
                 <Reveal>
-                  <span className="section-label">До и после</span>
-                  <h2 className="section-title mt-4 max-w-2xl">Один и тот же запрос — два разных процесса</h2>
-                </Reveal>
-                <Reveal delay={0.08} className="landing-split-media">
-                  <EditorialImageFrame variant="card" className="absolute inset-0">
-                    <Image
-                      src={STOCK_IMAGES.roadmap}
-                      alt=""
-                      fill
-                      sizes="(max-width: 768px) 100vw, 40vw"
-                      className="object-cover"
-                    />
-                  </EditorialImageFrame>
-                </Reveal>
-              </div>
-              <div className="mt-8 grid gap-6 sm:grid-cols-2">
-                <div className="border border-hairline bg-surface-card p-6">
-                  <span className="meta-label text-muted-soft">Сейчас</span>
-                  <ol className="mt-4 space-y-3">
-                    {BEFORE_STEPS.map((step, index) => (
-                      <li key={step} className="flex gap-3 text-sm text-body">
-                        <span className="text-muted-soft">{index + 1}.</span>
-                        {step}
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-                <div className="border border-hairline-strong bg-canvas p-6">
-                  <span className="meta-label text-accent">После внедрения</span>
-                  <ol className="mt-4 space-y-3">
-                    {AFTER_STEPS.map((step, index) => (
-                      <li key={step} className="flex gap-3 text-sm text-body-strong">
-                        <span className="text-accent">{index + 1}.</span>
-                        {step}
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="section-band border-b border-hairline">
-            <div className="container-editorial max-w-4xl">
-              <Reveal>
-                <span className="section-label">Отличие</span>
-                <h2 className="section-title mt-4 max-w-2xl">
-                  Встроенные роботы и BitrixGPT против выделенного внедрения
-                </h2>
-                <p className="body-copy mt-4 max-w-2xl">
-                  Стандартные инструменты закрывают типовые сценарии внутри CRM. Мы подключаемся там, где нужно
-                  выйти за пределы платформы.
-                </p>
-              </Reveal>
-              <div className="mt-8 overflow-x-auto">
-                <table className="w-full min-w-[560px] border-collapse text-sm">
-                  <thead>
-                    <tr className="border-b border-hairline-strong text-left">
-                      <th className="py-3 pr-4 font-display font-medium text-muted">&nbsp;</th>
-                      <th className="py-3 pr-4 font-display font-medium text-muted">Стандартные функции</th>
-                      <th className="py-3 font-display font-medium text-ink">Выделенное внедрение</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {COMPARISON_ROWS.map((row) => (
-                      <tr key={row.label} className="border-b border-hairline">
-                        <td className="py-4 pr-4 meta-label text-muted-soft">{row.label}</td>
-                        <td className="py-4 pr-4 text-body">{row.standard}</td>
-                        <td className="py-4 text-body-strong">{row.custom}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </section>
-
-          <section className="section-band section--panel border-b border-hairline">
-            <div className="container-editorial max-w-4xl">
-              <Reveal>
-                <span className="section-label">Реализованный проект</span>
-                <h2 className="section-title mt-4 max-w-2xl">
-                  AI-CRM для цветочного бизнеса: данные из МойСклад и рекомендации для роста продаж
-                </h2>
-                <p className="body-copy mt-4 max-w-2xl">
-                  Единая клиентская база, которая объединяет покупателей, заказы и каналы продаж из МойСклад и
-                  других источников — не список карточек, а рабочий инструмент для поиска повторных продаж.
-                </p>
-              </Reveal>
-
-              <div className="mt-8 border border-hairline-strong bg-canvas p-6">
-                <span className="meta-label text-muted">Сценарий работы</span>
-                <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-4">
-                  {FLOWER_CASE_FLOW.map((step, index) => (
-                    <div key={step} className="flex items-center gap-3">
-                      <span className="border border-hairline-strong bg-surface-card px-4 py-3 font-display text-sm text-ink">
-                        {step}
-                      </span>
-                      {index < FLOWER_CASE_FLOW.length - 1 ? (
-                        <span aria-hidden className="text-muted-soft">
-                          →
-                        </span>
-                      ) : null}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-8">
-                <span className="meta-label text-muted">Что было реализовано</span>
-                <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-                  {FLOWER_CASE_BUILT.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm text-body">
-                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="mt-8 border-t border-hairline pt-6">
-                <p className="body-copy text-sm text-body-strong">
-                  Результат: менеджер видит историю взаимодействия с клиентом, средний чек, последние покупки и
-                  подходящий повод для следующего контакта — вместо разрозненного списка заказчиков.
-                </p>
-                <p className="mt-3 text-sm text-muted">kinetic-ai.ru · МойСклад · AI-сегментация · Telegram · WhatsApp · маркетплейсы</p>
-              </div>
-
-              <div className="mt-8 border border-hairline bg-surface-card p-6">
-                <span className="meta-label text-muted">Аналогичный сценарий для Битрикс24 и amoCRM</span>
-                <p className="body-copy mt-3 text-sm">
-                  Эту архитектуру можно встроить в существующую CRM компании — без замены системы и без переноса
-                  работы сотрудников в новый интерфейс:
-                </p>
-                <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-                  {FLOWER_TO_BITRIX_STEPS.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm text-body">
-                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section className="section-band border-b border-hairline">
-            <div className="container-editorial max-w-4xl">
-              <Reveal>
-                <span className="section-label">Примеры решений</span>
-                <h2 className="section-title mt-4 max-w-2xl">Типовые сценарии для Битрикс24 и amoCRM</h2>
-                <p className="body-copy mt-4 max-w-2xl">
-                  Технически реализуемо через REST API, вебхуки, ботов и обмен данными с 1С и МойСклад. Точная
-                  архитектура и эффект уточняются после аудита конкретного процесса.
-                </p>
-              </Reveal>
-
-              <div className="mt-8 grid gap-5 sm:grid-cols-2">
-                {MAIN_SCENARIOS.map((item) => (
-                  <div key={item.title} className="border border-hairline bg-surface-card p-6">
-                    <h3 className="card-title text-lg">{item.title}</h3>
-                    <p className="body-copy mt-2 text-sm text-muted">{item.problem}</p>
-                    <ul className="mt-4 space-y-2">
-                      {item.steps.map((step) => (
-                        <li key={step} className="flex items-start gap-2 text-sm text-body">
-                          <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                          {step}
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="meta-label mt-4 text-muted-soft">{item.systems}</p>
-                    <p className="body-copy mt-3 text-sm text-body-strong">{item.result}</p>
-                    <p className="mt-3 text-xs text-muted-soft">{SCENARIO_DISCLAIMER}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                {SMALL_SCENARIOS.map((item) => (
-                  <div key={item.title} className="border border-hairline px-5 py-4">
-                    <h4 className="font-display text-sm text-ink">{item.title}</h4>
-                    <p className="body-copy mt-1 text-sm text-muted">{item.text}</p>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-6 text-xs text-muted-soft">{SCENARIO_DISCLAIMER}</p>
-            </div>
-          </section>
-
-          <section className="section-band section--panel border-b border-hairline">
-            <div className="container-editorial max-w-4xl">
-              <div className="grid items-center gap-10 md:grid-cols-2">
-                <Reveal>
-                  <span className="section-label">Инфраструктура</span>
-                  <h2 className="section-title mt-4 max-w-2xl">Интегрируем с вашей инфраструктурой</h2>
+                  <span className="section-label">Архитектура и безопасность</span>
+                  <h2 className="section-title mt-4 max-w-2xl">Как устроена интеграция</h2>
                   <p className="body-copy mt-4 max-w-2xl">
-                    1С · МойСклад · Диадок · СБИС · RetailCRM · телефония · Telegram · почта · Excel · базы
-                    данных
+                    AI — слой над вашим контуром, а не доступ «ко всему порталу». Данные остаются в CRM, 1С и
+                    вашем облаке.
                   </p>
                 </Reveal>
                 <Reveal delay={0.08} className="landing-split-media">
@@ -668,144 +425,108 @@ export default function BitrixLandingPage() {
                   </EditorialImageFrame>
                 </Reveal>
               </div>
-              <div className="mt-10 grid gap-8 sm:grid-cols-2">
-                {INFRA_GROUPS.map((group) => (
-                  <div key={group.title}>
-                    <h3 className="meta-label text-muted">{group.title}</h3>
-                    <p className="mt-3 font-display text-sm leading-relaxed text-body">
-                      {group.items.join(" · ")}
-                    </p>
+
+              <div className="mt-10 grid gap-5 sm:grid-cols-2">
+                {HOW_IT_WORKS.map((item) => (
+                  <div key={item.title} className="border border-hairline bg-surface-card p-5">
+                    <h3 className="font-display text-base text-ink">{item.title}</h3>
+                    <p className="body-copy mt-2 text-sm">{item.text}</p>
                   </div>
                 ))}
               </div>
-              <p className="mt-8 border-t border-hairline pt-6 text-sm text-muted">
-                Работаем и с другими системами: {OTHER_CRM.join(", ")}.
-              </p>
             </div>
           </section>
 
-          <section className="section-band border-b border-hairline">
-            <div className="container-editorial max-w-4xl">
-              <Reveal>
-                <span className="section-label">70% фокуса</span>
-                <h2 className="section-title mt-4 max-w-2xl">AI для Битрикс24</h2>
-                <p className="body-copy mt-4 max-w-2xl">
-                  Сложные процессы через REST API, связка с 1С и базами — не только готовые роботы и виджеты.
-                </p>
-              </Reveal>
-              <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-                {BITRIX_OFFERS.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-body">
-                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-
-          <section className="section-band border-b border-hairline">
-            <div className="container-editorial max-w-4xl">
-              <Reveal>
-                <span className="section-label">20% фокуса</span>
-                <h2 className="section-title mt-4 max-w-2xl">AI для amoCRM</h2>
-                <p className="body-copy mt-4 max-w-2xl">
-                  Акцент на продажах: квалификация, follow-up, scoring и контроль воронки.
-                </p>
-              </Reveal>
-              <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-                {AMO_OFFERS.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-body">
-                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-
-          <section className="section-band section--panel border-b border-hairline">
-            <div className="container-editorial max-w-4xl">
-              <Reveal>
-                <span className="section-label">Учёт и склад</span>
-                <h2 className="section-title mt-4 max-w-2xl">Интеграция с 1С и МойСклад</h2>
-                <p className="body-copy mt-4 max-w-2xl">
-                  Цены, остатки, заказы, контрагенты и КП — без ручного переноса между CRM и учётом.
-                </p>
-              </Reveal>
-              <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-                {ONEC_OFFERS.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-body">
-                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-
-          <section className="section-band border-b border-hairline">
-            <div className="container-editorial max-w-4xl">
-              <Reveal>
-                <span className="section-label">Документы</span>
-                <h2 className="section-title mt-4 max-w-2xl">Документооборот</h2>
-                <p className="body-copy mt-4 max-w-2xl">
-                  Диадок, СБИС, счета и договоры — в задачи CRM с проверкой комплектности.
-                </p>
-              </Reveal>
-              <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-                {DOCFLOW_OFFERS.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-body">
-                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-
+          {/* 7. Pilot */}
           <section className="section-band section--deep border-b border-hairline">
             <div className="container-editorial max-w-4xl">
               <Reveal>
-                <span className="section-label">Проект ведёт AI-архитектор лично</span>
-                <h2 className="section-title mt-4 max-w-2xl">Опыт, а не подрядчик на аутсорсе</h2>
+                <span className="section-label">Пилот</span>
+                <h2 className="section-title mt-4 max-w-2xl">Пилот за 2–4 недели</h2>
+                <p className="body-copy mt-4 max-w-2xl">
+                  Один процесс в вашей CRM — с измеримым эффектом до промышленного масштабирования.
+                </p>
               </Reveal>
               <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-                {EXPERTISE_POINTS.map((item) => (
+                {PILOT_POINTS.map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm text-body">
                     <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
                     {item}
                   </li>
                 ))}
               </ul>
-              <div className="mt-10 grid gap-4 border-t border-hairline pt-8 sm:grid-cols-3">
-                {PRICING_TIERS.map((tier) => (
-                  <div key={tier.name} className="home-hub-card">
-                    <span className="meta-label text-muted">{tier.name}</span>
-                    <p className="card-title mt-2 text-xl text-ink">{tier.price}</p>
-                    <p className="body-copy mt-2 text-sm">{tier.note}</p>
-                  </div>
-                ))}
-              </div>
               <p className="body-copy mt-6 text-sm text-muted">
-                Стоимость аудита засчитывается в бюджет внедрения, если продолжаем.
+                Промышленное внедрение — от 500 000 ₽. Аудит процессов — от 150 000 ₽, если нужна карта до пилота.
               </p>
+              <div className="mt-8">
+                <TrackedAnchor href="#contact" className="btn-primary" goal="bitrix_cta_click">
+                  Получить оценку интеграции
+                </TrackedAnchor>
+              </div>
             </div>
           </section>
 
-          <section id="contact" className="section-band">
+          {/* 8. Collaboration */}
+          <section className="section-band section--panel border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">Сотрудничество</span>
+                <h2 className="section-title mt-4 max-w-2xl">Как работаем</h2>
+              </Reveal>
+              <ol className="mt-8 grid gap-5 sm:grid-cols-2">
+                {COLLAB_STEPS.map((step, index) => (
+                  <li key={step.title} className="border border-hairline bg-surface-card p-5">
+                    <span className="meta-label text-muted-soft">{String(index + 1).padStart(2, "0")}</span>
+                    <h3 className="card-title mt-2 text-lg">{step.title}</h3>
+                    <p className="body-copy mt-2 text-sm">{step.text}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </section>
+
+          {/* 9. Form */}
+          <section id="contact" className="section-band scroll-mt-16 pb-24 md:pb-16">
             <div className="container-editorial max-w-2xl">
               <Reveal>
-                <span className="section-label">Контакт</span>
-                <h2 className="section-title mt-4">Разберём ваш контур CRM за один звонок</h2>
-                <p className="body-copy mt-4">
-                  Битрикс24, amoCRM, 1С, телефония или документы — опишите задачу. Вернёмся с архитектурой,
-                  оценкой и планом в течение суток.
-                </p>
+                <div className="text-center">
+                  <span className="section-label">Контакт</span>
+                  <h2 className="section-title mt-4">Получите оценку интеграции Битрикс24</h2>
+                  <p className="body-copy mt-4">
+                    Опишите CRM, 1С / МойСклад и процесс, который хотите закрыть первым. Вернёмся с архитектурой
+                    и оценкой — обычно в течение суток.
+                  </p>
+                  <div className="mt-8 flex flex-wrap justify-center gap-3">
+                    <TrackedAnchor
+                      href={TELEGRAM_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn-secondary"
+                      goal="bitrix_telegram_click"
+                    >
+                      Telegram
+                    </TrackedAnchor>
+                    <TrackedAnchor
+                      href={WHATSAPP_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn-secondary"
+                      goal="bitrix_whatsapp_click"
+                    >
+                      WhatsApp
+                    </TrackedAnchor>
+                    <TrackedAnchor href={`mailto:${CONTACT_EMAIL}`} className="btn-secondary" goal="bitrix_email_click">
+                      Email
+                    </TrackedAnchor>
+                    <TrackedAnchor href={`tel:${CONTACT_PHONE}`} className="btn-secondary" goal="bitrix_phone_click">
+                      {CONTACT_PHONE}
+                    </TrackedAnchor>
+                  </div>
+                </div>
+                <div className="mt-10 text-left">
+                  <ContactForm defaultService="Битрикс24 / AI-интеграция" trackingPrefix="bitrix" />
+                </div>
               </Reveal>
-              <div className="mt-8">
-                <ContactForm defaultService="Битрикс24 / amoCRM / AI" trackingPrefix="bitrix" />
-              </div>
             </div>
           </section>
         </main>
