@@ -188,10 +188,6 @@ export default async function HomePage() {
           architectureTitle={t("securedAi.architectureTitle")}
           architectureSteps={t.raw("securedAi.architectureSteps") as string[]}
           architectureText={t("securedAi.architectureText")}
-          noteLabel={t("securedAi.noteLabel")}
-          noteTitle={t("securedAi.noteTitle")}
-          noteBody={t("securedAi.noteBody")}
-          certificatesLink={t("securedAi.certificatesLink")}
           ctaPrimary={t("securedAi.ctaPrimary")}
           ctaSecondary={t("securedAi.ctaSecondary")}
         />

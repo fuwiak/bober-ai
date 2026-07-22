@@ -340,11 +340,10 @@ const en = {
     },
   },
   securedAi: {
-    certificatesLink: "Partner certificates — on the About page",
     architectureLabel: "Architecture",
     architectureTitle: "Corporate AI perimeter, turnkey",
     architectureText:
-      "Assessment, architecture, AI components, integrations with 1C / Bitrix24 / amoCRM, and go-live in the cloud or on-premise. Infrastructure protection is an optional perimeter layer — not a separate product brand.",
+      "Assessment, architecture, AI components, integrations with 1C / Bitrix24 / amoCRM, and go-live in the cloud or on-premise.",
     architectureSteps: [
       "Data sources",
       "Document intake and processing",
@@ -355,10 +354,6 @@ const en = {
       "Server and infrastructure protection",
       "Monitoring, logging and access control",
     ],
-    noteLabel: "Secured contour",
-    noteTitle: "When extra protection is needed",
-    noteBody:
-      "On request we can include protection for Linux servers, containers and cloud workloads — including Kaspersky Lab solutions (Authorized Partner). This is an option for an AI project, not the core service.",
     ctaPrimary: "Discuss a project",
     ctaSecondary: "Estimate architecture",
   },
