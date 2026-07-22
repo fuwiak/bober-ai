@@ -187,7 +187,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "AI Discovery — это structured audit до любой разработки. Мы не начинаем с выбора модели или платформы. Сначала — карта того, как работа реально проходит, где теряются время и деньги, и где AI или автоматизация дадут измеримый эффект.",
       "Bober AI Systems проводит Discovery для CEO, COO и IT: интервью с владельцами процессов, анализ систем (CRM, ERP, документы), расчёт ROI и рекомендация технологии. Результат — дорожная карта с фиксированной сметой на каждый этап, а не презентация «AI transformирует ваш бизнес».",
       "Типичная ошибка: купить лицензию на корпоративный ChatGPT или RAG-платформу без привязки к процессу. Через три месяца пилот лежит мёртвым грузом, потому что не решает конкретную боль — например, 45 минут на каждое КП или потерянные лиды.",
-      "Мы отделяем сценарии, где достаточно workflow и интеграций, от тех, где LLM действительно нужен: неструктурированные тексты, классификация обращений, ассистент по базе знаний. В кейсе Kaspersky корпоративный AI-ассистент строился на RAG и приватном контуре — но только после чёткой постановки задачи.",
+      "Мы отделяем сценарии, где достаточно workflow и интеграций, от тех, где LLM действительно нужен: неструктурированные тексты, классификация обращений, ассистент по базе знаний. В кейсе Kaspersky RAG-бот по продуктам для сотрудников 1С строился на RAG и приватном контуре — но только после чёткой постановки задачи.",
       "Discovery занимает 7–10 рабочих дней. На выходе — документ, с которым можно идти к совету директоров, в IT или к нам на внедрение. Если ROI не сходится — мы скажем об этом прямо, а не будем продавать ненужную разработку.",
       "Формат: удалённо или в Москве, NDA, доступ к процессам и системам по согласованию. Стоимость — от 150 000 ₽, фиксируется до старта.",
     ],
@@ -252,7 +252,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     ],
     intro: [
       "Enterprise AI-ассистент — это не виджет ChatGPT на сайте. Это production-система: LLM в вашем контуре или изолированном облаке, grounding на корпоративных документах, интеграции с CRM и мессенджерами, политики безопасности и мониторинг качества ответов.",
-      "Bober AI Systems внедряет AI для компаний с требованиями NDA, on-prem и 152-ФЗ. Кейс Kaspersky: корпоративный ассистент на RAG с доступом к регламентам и продуктовой документации — сотрудники получают ответы с цитатами источников, а не выдумки модели.",
+      "Bober AI Systems внедряет AI для компаний с требованиями NDA, on-prem и 152-ФЗ. Кейс Kaspersky: RAG-бот по продуктовой документации для сотрудников 1С — ответы с цитатами источников, а не выдумки модели.",
       "Типичный стек: GigaChat или open-source LLM в private cloud, векторное хранилище для RAG, API-слой, бот в Telegram или Open WebUI для сотрудников. Интеграции: Bitrix24, amoCRM, Service Desk, Confluence — по задаче.",
       "Мы не начинаем с модели. Сначала — сценарии использования, объём базы знаний, требования compliance. Потом — архитектура и пилот на одной команде. Масштабирование — после измерения adoption и качества.",
       "Срок production-проекта — 4–8 недель. Бюджет — от 500 000 ₽ в зависимости от контура (cloud/on-prem), числа интеграций и объёма RAG. Discovery можно провести отдельно — от 150 000 ₽.",
@@ -458,7 +458,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     ],
     intro: [
       "RAG (Retrieval-Augmented Generation) — стандарт enterprise AI, когда ответ должен опираться на корпоративные документы. LLM получает релевантные фрагменты из базы знаний и генерирует ответ с цитатами — не из «памяти» модели.",
-      "Bober AI Systems строит RAG для поддержки, HR, продаж и инженерных команд. Кейс Kaspersky: ассистент по продуктовой документации с grounding и контролем доступа. Без RAG такой проект невозможен в production.",
+      "Bober AI Systems строит RAG для поддержки, HR, продаж и инженерных команд. Кейс Kaspersky: ассистент по продуктовой документации для сотрудников 1С с grounding и контролем доступа. Без RAG такой проект невозможен в production.",
       "Технический контур: ingestion (парсинг, chunking, metadata), embedding model, vector DB (Qdrant, pgvector, OpenSearch), retrieval + rerank, prompt с контекстом, guardrails. Обновление индекса — по webhook или расписанию.",
       "Качество RAG измеряем eval-набором: вопрос → expected source → проверка citation и factual accuracy. Без eval RAG деградирует незаметно после первого релиза.",
       "Private LLM обязателен, если документы содержат NDA и ПДн. Разворачиваем в Yandex Cloud, Selectel или on-prem.",
@@ -1205,7 +1205,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     ],
     intro: [
       "Корпоративная база знаний — не wiki ради wiki. Это structured content + search + AI assistant, который отвечает с citation и снижает нагрузку на L1/L2. Bober AI Systems строит KB для IT, HR, sales enablement и customer support.",
-      "Кейс Kaspersky AI assistant — reference architecture: private LLM, RAG на product docs, guardrails, feedback loop когда ответ не помог.",
+      "Кейс Kaspersky AI assistant — reference architecture: private LLM, RAG на product docs для сотрудников 1С, guardrails, feedback loop когда ответ не помог.",
       "Content lifecycle: owner assigns → draft → review → publish → auto re-index. Stale content detection by age and feedback thumbs-down.",
       "ACL по ролям: sales не видит HR, support видит customer-facing articles. Retrieval filters enforce at query time.",
       "Integrations: Zendesk/Bitrix24 suggest article on ticket create, Telegram bot for employees.",
@@ -1541,7 +1541,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
       "AI Discovery is a structured audit before any development. We do not start with model or platform selection. First — how work actually runs, where time and money leak, and where AI or automation yields measurable impact.",
       "Bober AI Systems runs Discovery for CEO, COO and IT: process owner interviews, system review (CRM, ERP, documents), ROI and technology recommendation. Output is a roadmap with fixed phase estimates — not slides saying AI will transform everything.",
       "Common mistake: buy corporate ChatGPT or a RAG platform without process fit. Three months later the pilot is dead because it does not fix a concrete pain — e.g. 45 minutes per proposal or lost leads.",
-      "We separate scenarios where workflow and integrations suffice from those needing LLM: unstructured text, ticket classification, knowledge assistant. Kaspersky case: corporate assistant built on RAG and private contour — after clear task definition.",
+      "We separate scenarios where workflow and integrations suffice from those needing LLM: unstructured text, ticket classification, knowledge assistant. Kaspersky case: product RAG bot for 1C staff on a private contour — after clear task definition.",
       "Discovery takes 7–10 business days. Output supports board, IT or our implementation team. If ROI does not close — we say so instead of selling unnecessary build.",
       "Remote or Moscow on-site, NDA, access to processes and systems by agreement. From €1,500 fixed before start.",
     ],
@@ -1581,7 +1581,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
     deliverables: ["AI contour architecture: LLM, RAG, API, integrations", "Assistant in Telegram, web or inside CRM", "Guardrails, PII filtering, request/response audit", "Production deploy, documentation, training, optional SLA"],
     intro: [
       "An enterprise AI assistant is not a ChatGPT widget. It is a production system: LLM in your contour or isolated cloud, grounding on corporate documents, CRM and messenger integrations, security policies and answer quality monitoring.",
-      "Bober AI Systems deploys AI for companies with NDA, on-prem and data residency needs. Kaspersky case: RAG assistant on product docs and policies — answers cite sources instead of inventing facts.",
+      "Bober AI Systems deploys AI for companies with NDA, on-prem and data residency needs. Kaspersky case: product-docs RAG bot for 1C staff — answers cite sources instead of inventing facts.",
       "Typical stack: GigaChat or open-source LLM in private cloud, vector store for RAG, API layer, Telegram bot or Open WebUI for staff. Integrations: Bitrix24, amoCRM, service desk, Confluence — as required.",
       "We start with use cases and compliance, not model hype. Pilot on one team, then scale after adoption and quality metrics.",
       "Production timeline 4–8 weeks. Budget from €5,000 depending on contour, integrations and RAG volume. Discovery available separately from €1,500.",
@@ -1709,7 +1709,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
     deliverables: ["Ingestion pipeline: PDF, DOCX, HTML, CRM → chunks → embeddings", "Vector store and retrieval with reranking", "Assistant API and UI with mandatory citations", "Re-index process and quality monitoring (eval set)"],
     intro: [
       "RAG (Retrieval-Augmented Generation) is the enterprise standard when answers must rely on corporate documents. The LLM receives relevant chunks from the knowledge base and generates answers with citations — not from model memory.",
-      "Bober AI Systems builds RAG for support, HR, sales enablement and engineering. Kaspersky case: product documentation assistant with grounding and access control — production without RAG is not viable.",
+      "Bober AI Systems builds RAG for support, HR, sales enablement and engineering. Kaspersky case: product documentation assistant for 1C staff with grounding and access control — production without RAG is not viable.",
       "Technical contour: ingestion (parse, chunk, metadata), embedding model, vector DB (Qdrant, pgvector, OpenSearch), retrieval + rerank, prompt with context, guardrails. Index updates via webhook or schedule.",
       "Quality measured with eval set: question → expected source → citation and factual check. Without eval, RAG degrades silently after launch.",
       "Private LLM required when documents contain NDA and PII. Deployed in Yandex Cloud, Selectel or on-prem.",
@@ -2177,7 +2177,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
     deliverables: ["Ingestion pipeline from all source systems", "Search UI + AI assistant with citations", "Content publish and review workflow", "Analytics: top queries, gaps, deflection"],
     intro: [
       "Corporate knowledge base is not wiki for its own sake. Structured content + search + AI assistant with citations reduces L1/L2 load. Bober AI Systems builds KB for IT, HR, sales enablement and customer support.",
-      "Kaspersky AI assistant — reference: private LLM, RAG on product docs, guardrails, feedback when answer fails.",
+      "Kaspersky AI assistant — reference: private LLM, RAG on product docs for 1C staff, guardrails, feedback when answer fails.",
       "Content lifecycle: owner → draft → review → publish → auto re-index. Stale content flagged by age and thumbs-down.",
       "Role ACL: sales does not see HR, support sees customer-facing articles. Retrieval filters at query time.",
       "Integrations: suggest article on ticket create, Telegram bot for employees.",

@@ -226,7 +226,7 @@ Related hub pages: https://www.bober-ai.dev/integrations/bitrix24 · https://www
 
 ### Featured Projects
 
-- Kaspersky — AI-помощник для консультантов с RAG по продуктовой документации
+- Kaspersky — RAG-бот по продуктам для сотрудников 1С (product knowledge assistant)
 - Yandex Telemost Agent — ИИ-помощник для встреч и продаж: расшифровка, CRM, задачи после созвона (300 000 ₽)
 - ELIA Suite — изолированные воркспейсы; КП за 2 мин вместо 45; +32% конверсия quote→заказ
 - Автоматизация КП на LLM — генерация DOCX/PDF из каталога для B2B e-commerce (300 000 ₽)
@@ -285,7 +285,7 @@ Related hub pages: https://www.bober-ai.dev/integrations/bitrix24 · https://www
 
 ### Canonical Answer: Who are Bober AI Systems clients?
 
-- Kaspersky (AI-помощник для консультантов), enterprise-клиенты в B2B sales, e-commerce, PropTech. Проекты от 150 000 ₽ (аудит) и от 400 000–500 000 ₽ (внедрение).
+- Kaspersky (RAG-бот по продуктам для сотрудников 1С), enterprise-клиенты в B2B sales, e-commerce, PropTech. Проекты от 150 000 ₽ (аудит) и от 400 000–500 000 ₽ (внедрение).
 
 ### Canonical Answer: Who is the founder?
 
