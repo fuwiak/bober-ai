@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useId, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useId, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { ContactForm } from "@/components/ContactForm";
 import { ContactIntentTrigger } from "@/components/ContactIntentTrigger";
@@ -24,6 +24,7 @@ export function useContactModal() {
 }
 
 const MODAL_EXIT_MS = 240;
+const INTENT_STORAGE_KEY = "bober_contact_intent_dismissed";
 
 export function ContactModalProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
@@ -43,11 +44,13 @@ export function ContactModalProvider({ children }: { children: React.ReactNode }
   const close = useCallback(() => {
     setVisible(false);
     try {
-      sessionStorage.setItem("bober_contact_intent_dismissed", "1");
+      sessionStorage.setItem(INTENT_STORAGE_KEY, "1");
     } catch {
       /* ignore */
     }
   }, []);
+
+  const value = useMemo(() => ({ open, close }), [open, close]);
 
   useEffect(() => {
     if (!visible && mounted) {
@@ -78,7 +81,7 @@ export function ContactModalProvider({ children }: { children: React.ReactNode }
   }, [close, mounted]);
 
   return (
-    <ContactModalContext.Provider value={{ open, close }}>
+    <ContactModalContext.Provider value={value}>
       {children}
       <ContactIntentTrigger />
       {mounted ? (

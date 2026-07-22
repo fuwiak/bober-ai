@@ -2147,7 +2147,8 @@ html.dark {
   .contact-modal {
     position: fixed;
     inset: 0;
-    z-index: 120;
+    /* Above site-header (200) and floating UI */
+    z-index: 320;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2181,6 +2182,12 @@ html.dark {
   .contact-modal--open .contact-modal__panel {
     opacity: 1;
     transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .contact-modal__backdrop,
+    .contact-modal__panel {
+      transition: none;
+    }
   }
   @media (min-width: 768px) {
     .contact-modal__panel {
