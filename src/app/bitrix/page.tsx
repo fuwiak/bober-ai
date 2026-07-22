@@ -5,6 +5,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { TrackedAnchor } from "@/components/TrackedAnchor";
 import { Reveal } from "@/components/motion/Reveal";
+import { LEGAL_ENTITY, LEGAL_ROUTES, formatLegalRequisitesLine } from "@/lib/legal";
 import { webPageJsonLd } from "@/lib/seo";
 import {
   BITRIX_SITE_URL,
@@ -90,6 +91,34 @@ const IMPLEMENTATION_SCENARIOS = [
     outcome:
       "Запрос распознаётся, цены и остатки подтягиваются из учёта, документ прикрепляется к сделке — человек подтверждает отправку.",
     systems: "Битрикс24 · 1С · МойСклад · OCR · DOCX/PDF",
+  },
+];
+
+const PACKAGES = [
+  {
+    title: "Битрикс24 Старт",
+    text: "Разворачиваем и настраиваем портал: воронка, права доступа, поля сделок, интеграция с сайтом и рекламой.",
+    price: "от 150 000 ₽",
+  },
+  {
+    title: "CRM и автоматизация продаж",
+    text: "Роботы, бизнес-процессы, автозаполнение карточек, скоринг лидов и follow-up без ручной работы менеджера.",
+    price: "от 300 000 ₽",
+  },
+  {
+    title: "AI-аналитика для руководителя",
+    text: "Чат по данным CRM, звонкам и задачам — ответы на вопросы о воронке и менеджерах вместо ручных отчётов.",
+    price: "от 300 000 ₽",
+  },
+  {
+    title: "Интеграция с 1С, amoCRM, телефонией и мессенджерами",
+    text: "Двусторонняя синхронизация заказов, остатков и клиентов между Битрикс24 и вашим учётным контуром.",
+    price: "от 500 000 ₽",
+  },
+  {
+    title: "Локальный AI в защищённом контуре",
+    text: "Развёртывание в вашем облаке или on-premise — для данных, которые не должны покидать периметр компании.",
+    price: "по запросу",
   },
 ];
 
@@ -341,6 +370,28 @@ export default function BitrixLandingPage() {
             </div>
           </section>
 
+          {/* 4.5. Packages */}
+          <section className="section-band border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">Пакеты внедрения</span>
+                <h2 className="section-title mt-4 max-w-2xl">Внедрение Битрикс24 и AI-автоматизация под ключ</h2>
+                <p className="body-copy mt-4 max-w-2xl">
+                  От разворачивания портала до AI-слоя поверх CRM — можно взять один пакет или всю цепочку.
+                </p>
+              </Reveal>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {PACKAGES.map((item) => (
+                  <div key={item.title} className="border border-hairline bg-surface-card p-6">
+                    <h3 className="card-title text-lg">{item.title}</h3>
+                    <p className="body-copy mt-2 text-sm">{item.text}</p>
+                    <p className="meta-label mt-4 text-muted">{item.price}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
           {/* 5. Case studies */}
           <section className="section-band section--panel border-b border-hairline">
             <div className="container-editorial max-w-4xl">
@@ -532,15 +583,30 @@ export default function BitrixLandingPage() {
         </main>
 
         <footer className="border-t border-hairline py-10">
-          <div className="container-editorial flex flex-wrap items-center justify-between gap-4 text-sm text-muted-soft">
-            <span>© {new Date().getFullYear()} Bober AI Systems</span>
-            <div className="flex flex-wrap gap-4">
-              <a href="https://www.bober-ai.dev/privacy-policy" className="text-muted-soft hover:text-muted">
-                Политика конфиденциальности
-              </a>
-              <a href="https://www.bober-ai.dev" className="text-muted-soft hover:text-muted">
-                bober-ai.dev
-              </a>
+          <div className="container-editorial text-sm text-muted-soft">
+            <p>
+              <span className="text-muted">{LEGAL_ENTITY.name}</span> · {formatLegalRequisitesLine()}
+            </p>
+            <p className="mt-2">{LEGAL_ENTITY.address}</p>
+            <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+              <span>© {new Date().getFullYear()} Bober AI Systems</span>
+              <div className="flex flex-wrap gap-4">
+                <a href={`https://www.bober-ai.dev${LEGAL_ROUTES.terms}`} className="text-muted-soft hover:text-muted">
+                  Условия
+                </a>
+                <a
+                  href={`https://www.bober-ai.dev${LEGAL_ROUTES.privacyPolicy}`}
+                  className="text-muted-soft hover:text-muted"
+                >
+                  Политика конфиденциальности
+                </a>
+                <a href={`mailto:${LEGAL_ENTITY.email}`} className="text-muted-soft hover:text-muted">
+                  {LEGAL_ENTITY.email}
+                </a>
+                <a href="https://www.bober-ai.dev" className="text-muted-soft hover:text-muted">
+                  bober-ai.dev
+                </a>
+              </div>
             </div>
           </div>
         </footer>
