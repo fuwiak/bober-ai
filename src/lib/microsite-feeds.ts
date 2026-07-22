@@ -1,3 +1,4 @@
+import { BITRIX_LANDING_ABOUT, BITRIX_PACKAGES } from "@/lib/bitrix-landing";
 import {
   BITRIX_SITE_URL,
   CONTACT_EMAIL,
@@ -132,69 +133,20 @@ ${offerBlocks}
 </yml_catalog>`;
 }
 
-const BITRIX_ABOUT =
-  "Внедряем AI-автоматизацию в Битрикс24 и amoCRM: анализ сделок и звонков, автозаполнение CRM, КП из 1С/МойСклад, локальный контур. Пилот от 300 000 ₽.";
-
 const PARTNERS_ABOUT =
   "White-label AI-разработка для агентств и software house: архитектура, backend, LLM и deployment под вашим брендом. Клиент и маржа остаются у партнёра.";
 
-const BITRIX_OFFERS: MicrositeOffer[] = [
-  {
-    id: "bitrix-start",
-    slug: "bitrix-start",
-    title: "Битрикс24 Старт",
-    description: "Разворачиваем и настраиваем портал: воронка, права, поля сделок, интеграция с сайтом и рекламой.",
-    about: BITRIX_ABOUT,
-    salesNotes: "Аудит и запуск портала от 150 000 ₽",
-    price: 150000,
-    picture: "/stock/office-tower.jpg",
-    conversion: 91,
-  },
-  {
-    id: "bitrix-crm-automation",
-    slug: "crm-automation",
-    title: "CRM и автоматизация продаж",
-    description: "Роботы, бизнес-процессы, автозаполнение карточек, скоринг лидов и follow-up без ручной работы менеджера.",
-    about: BITRIX_ABOUT,
-    salesNotes: "Пилот автоматизации от 300 000 ₽ · 2–4 недели",
-    price: 300000,
-    picture: "/diagrams/crm-integration.svg",
-    conversion: 94,
-  },
-  {
-    id: "bitrix-ai-analytics",
-    slug: "ai-analytics",
-    title: "AI-аналитика для руководителя",
-    description: "Чат по данным CRM, звонкам и задачам — ответы о воронке и менеджерах вместо ручных отчётов.",
-    about: BITRIX_ABOUT,
-    salesNotes: "Пилот AI-аналитики от 300 000 ₽",
-    price: 300000,
-    picture: "/diagrams/sales-pipeline.svg",
-    conversion: 93,
-  },
-  {
-    id: "bitrix-integrations",
-    slug: "integrations-1c",
-    title: "Интеграция с 1С, amoCRM, телефонией и мессенджерами",
-    description: "Двусторонняя синхронизация заказов, остатков и клиентов между Битрикс24 и учётным контуром.",
-    about: BITRIX_ABOUT,
-    salesNotes: "Промышленная интеграция от 500 000 ₽",
-    price: 500000,
-    picture: "/diagrams/erp-sync.svg",
-    conversion: 92,
-  },
-  {
-    id: "bitrix-private-llm",
-    slug: "private-llm",
-    title: "Локальный AI в защищённом контуре",
-    description: "Развёртывание в облаке заказчика или on-premise — данные не покидают периметр без согласия.",
-    about: BITRIX_ABOUT,
-    salesNotes: "Цена по запросу · от 500 000 ₽",
-    price: 500000,
-    picture: "/stock/cyber-padlock.jpg",
-    conversion: 90,
-  },
-];
+const BITRIX_OFFERS: MicrositeOffer[] = BITRIX_PACKAGES.map((pkg) => ({
+  id: pkg.id,
+  slug: pkg.slug,
+  title: pkg.title,
+  description: pkg.description,
+  about: BITRIX_LANDING_ABOUT,
+  salesNotes: pkg.salesNotes,
+  price: pkg.priceFrom,
+  picture: pkg.picture,
+  conversion: pkg.conversion,
+}));
 
 const PARTNERS_OFFERS: MicrositeOffer[] = [
   {
@@ -261,7 +213,7 @@ export function getBitrixFeedXml(now = new Date()) {
       siteUrl: BITRIX_SITE_URL,
       shopName: `${SITE_NAME} — Битрикс24`,
       shopDescription:
-        "AI-автоматизация продаж и управления в Битрикс24 и amoCRM: CRM, звонки, КП, 1С и МойСклад. Пилот от 300 000 ₽.",
+        "Внедрение Битрикс24 и AI-автоматизация под ключ: продажи, аналитика, интеграции с 1С и МойСклад. Пилот от 300 000 ₽.",
       orderPath: "/#contact",
       offers: BITRIX_OFFERS,
     },

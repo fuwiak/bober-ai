@@ -5,6 +5,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { TrackedAnchor } from "@/components/TrackedAnchor";
 import { Reveal } from "@/components/motion/Reveal";
+import { BITRIX_PACKAGES, BITRIX_SERVICES_SUMMARY } from "@/lib/bitrix-landing";
 import { LEGAL_ENTITY, LEGAL_ROUTES, formatLegalRequisitesLine } from "@/lib/legal";
 import { webPageJsonLd } from "@/lib/seo";
 import {
@@ -13,6 +14,7 @@ import {
   CONTACT_PHONE,
   OFFICE_STOCK_IMAGES,
   PORTFOLIO_IMAGES,
+  SITE_URL,
   STOCK_IMAGES,
   TELEGRAM_URL,
   WHATSAPP_URL,
@@ -20,16 +22,19 @@ import {
 
 /**
  * Served at bitrix.bober-ai.dev (see deploy/Caddyfile[.railway]) —
- * AI automation for Bitrix24 + amoCRM with RU business integrations.
+ * Bitrix24 implementation + custom AI for sales, analytics, automation.
  */
 const LANDING_URL = `${BITRIX_SITE_URL.replace(/\/$/, "")}/`;
 const LANDING_NAME = "Bober AI Systems — Битрикс24";
+const PRIVACY_URL = `${SITE_URL.replace(/\/$/, "")}${LEGAL_ROUTES.privacyPolicy}`;
+const TERMS_URL = `${SITE_URL.replace(/\/$/, "")}${LEGAL_ROUTES.terms}`;
 
 export const metadata: Metadata = {
-  title: "Автоматизация продаж и управления в Битрикс24",
+  title: "Внедрение Битрикс24 и AI-автоматизация под ключ",
   description:
-    "AI анализирует сделки и звонки, заполняет CRM, формирует задачи, готовит коммерческие предложения и синхронизирует данные с 1С и МойСклад. Пилот от 300 000 ₽.",
+    "Внедрение Битрикс24 + индивидуальные AI-решения для продаж, аналитики и автоматизации. Интеграции с 1С, телефонией и мессенджерами. Пилот от 300 000 ₽.",
   keywords: [
+    "внедрение битрикс24",
     "битрикс24 ai",
     "автоматизация битрикс24",
     "интеграция битрикс24 1с",
@@ -45,9 +50,9 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     url: LANDING_URL,
     siteName: LANDING_NAME,
-    title: "Автоматизация продаж и управления в Битрикс24",
+    title: "Внедрение Битрикс24 и AI-автоматизация под ключ",
     description:
-      "AI анализирует сделки и звонки, заполняет CRM, готовит КП и синхронизирует данные с 1С и МойСклад.",
+      "Внедрение Битрикс24 + индивидуальные AI-решения для продаж, аналитики и автоматизации. Пилот от 300 000 ₽.",
     images: [{ url: "/stock/office-tower.jpg", width: 1200, height: 630 }],
   },
 };
@@ -91,34 +96,6 @@ const IMPLEMENTATION_SCENARIOS = [
     outcome:
       "Запрос распознаётся, цены и остатки подтягиваются из учёта, документ прикрепляется к сделке — человек подтверждает отправку.",
     systems: "Битрикс24 · 1С · МойСклад · OCR · DOCX/PDF",
-  },
-];
-
-const PACKAGES = [
-  {
-    title: "Битрикс24 Старт",
-    text: "Разворачиваем и настраиваем портал: воронка, права доступа, поля сделок, интеграция с сайтом и рекламой.",
-    price: "от 150 000 ₽",
-  },
-  {
-    title: "CRM и автоматизация продаж",
-    text: "Роботы, бизнес-процессы, автозаполнение карточек, скоринг лидов и follow-up без ручной работы менеджера.",
-    price: "от 300 000 ₽",
-  },
-  {
-    title: "AI-аналитика для руководителя",
-    text: "Чат по данным CRM, звонкам и задачам — ответы на вопросы о воронке и менеджерах вместо ручных отчётов.",
-    price: "от 300 000 ₽",
-  },
-  {
-    title: "Интеграция с 1С, amoCRM, телефонией и мессенджерами",
-    text: "Двусторонняя синхронизация заказов, остатков и клиентов между Битрикс24 и вашим учётным контуром.",
-    price: "от 500 000 ₽",
-  },
-  {
-    title: "Локальный AI в защищённом контуре",
-    text: "Развёртывание в вашем облаке или on-premise — для данных, которые не должны покидать периметр компании.",
-    price: "по запросу",
   },
 ];
 
@@ -226,11 +203,26 @@ const COLLAB_STEPS = [
   { title: "Масштабируем", text: "Промышленное внедрение от 500 000 ₽ — расширения, мониторинг, передача команде." },
 ];
 
+const PARTNER_CHECKLIST = [
+  {
+    title: "Своя CRM на Битрикс24",
+    text: "Внутренние продажи и проекты ведём в Битрикс24 — внедряем то, чем пользуемся сами в повседневной работе.",
+  },
+  {
+    title: "Пакеты внедрения",
+    text: "Пять фиксированных пакетов: от запуска портала до AI-аналитики, интеграций и локального контура — с понятной лестницей бюджета.",
+  },
+  {
+    title: "Лицензии и основная ценность",
+    text: "Можем помочь с процессом покупки лицензий Битрикс24. Основная ценность — внедрение, AI-автоматизация и сопровождение по подписке, а не перепродажа «коробки».",
+  },
+];
+
 export default function BitrixLandingPage() {
   const webPage = webPageJsonLd({
-    name: "Автоматизация продаж и управления в Битрикс24",
+    name: "Внедрение Битрикс24 и AI-автоматизация под ключ",
     description:
-      "AI анализирует сделки и звонки, заполняет CRM, готовит КП и синхронизирует данные с 1С и МойСклад.",
+      "Внедрение Битрикс24 + индивидуальные AI-решения для продаж, аналитики и автоматизации. Пилот от 300 000 ₽.",
     url: LANDING_URL,
     locale: "ru",
   });
@@ -265,27 +257,21 @@ export default function BitrixLandingPage() {
               <Reveal>
                 <p className="hero-label">Bober AI Systems · Битрикс24</p>
                 <h1 className="section-title mt-6 max-w-3xl text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05]">
-                  Автоматизируем продажи и управление в Битрикс24
+                  Внедрение Битрикс24 и AI-автоматизация под ключ
                 </h1>
                 <p className="body-copy mt-5 max-w-2xl text-lg">
-                  AI анализирует сделки и звонки, заполняет CRM, формирует задачи, готовит коммерческие
-                  предложения и синхронизирует данные с 1С и МойСклад.
+                  Официальное внедрение Битрикс24 + индивидуальные AI-решения для продаж, аналитики и
+                  автоматизации.
                 </p>
                 <p className="mt-4 max-w-2xl font-display text-base text-muted">
-                  Когда стандартных роботов и CoPilot уже недостаточно.
+                  Не перепродажа лицензий, а настройка процессов, интеграции и AI-слой поверх вашей CRM.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <TrackedAnchor href="#contact" className="btn-primary" goal="bitrix_cta_click">
-                    Получить оценку интеграции
+                    Получить оценку внедрения
                   </TrackedAnchor>
-                  <TrackedAnchor
-                    href={TELEGRAM_URL}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="btn-secondary"
-                    goal="bitrix_telegram_click"
-                  >
-                    Написать в Telegram
+                  <TrackedAnchor href="#packages" className="btn-secondary" goal="bitrix_packages_click">
+                    Смотреть пакеты
                   </TrackedAnchor>
                 </div>
                 <p className="meta-label mt-6 text-muted">
@@ -371,21 +357,51 @@ export default function BitrixLandingPage() {
           </section>
 
           {/* 4.5. Packages */}
-          <section className="section-band border-b border-hairline">
+          <section id="packages" className="section-band scroll-mt-16 border-b border-hairline">
             <div className="container-editorial max-w-4xl">
               <Reveal>
                 <span className="section-label">Пакеты внедрения</span>
-                <h2 className="section-title mt-4 max-w-2xl">Внедрение Битрикс24 и AI-автоматизация под ключ</h2>
+                <h2 className="section-title mt-4 max-w-2xl">Пакеты под ключ — от портала до AI-контура</h2>
                 <p className="body-copy mt-4 max-w-2xl">
-                  От разворачивания портала до AI-слоя поверх CRM — можно взять один пакет или всю цепочку.
+                  Можно взять один пакет или всю цепочку. Цены — за внедрение и разработку; процент от лицензий
+                  Битрикс24 не указываем.
                 </p>
               </Reveal>
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                {PACKAGES.map((item) => (
-                  <div key={item.title} className="border border-hairline bg-surface-card p-6">
+                {BITRIX_PACKAGES.map((item) => (
+                  <div
+                    key={item.id}
+                    id={item.slug}
+                    className="scroll-mt-20 border border-hairline bg-surface-card p-6"
+                  >
                     <h3 className="card-title text-lg">{item.title}</h3>
+                    <p className="body-copy mt-2 text-sm">{item.description}</p>
+                    <p className="body-copy mt-3 text-sm text-body-strong">
+                      <span className="meta-label text-muted">Клиент получает: </span>
+                      {item.gets}
+                    </p>
+                    <p className="meta-label mt-4 text-muted">{item.priceLabel}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* 4.6. Partner checklist */}
+          <section className="section-band section--deep border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">Подход</span>
+                <h2 className="section-title mt-4 max-w-2xl">Как закрываем внедрение Битрикс24</h2>
+                <p className="body-copy mt-4 max-w-2xl">
+                  Короткие ориентиры для заказчика и партнёрской заявки — без выдуманных сертификатов и значков.
+                </p>
+              </Reveal>
+              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                {PARTNER_CHECKLIST.map((item) => (
+                  <div key={item.title} className="border border-hairline bg-surface-card p-5">
+                    <h3 className="font-display text-base text-ink">{item.title}</h3>
                     <p className="body-copy mt-2 text-sm">{item.text}</p>
-                    <p className="meta-label mt-4 text-muted">{item.price}</p>
                   </div>
                 ))}
               </div>
@@ -511,7 +527,7 @@ export default function BitrixLandingPage() {
               </p>
               <div className="mt-8">
                 <TrackedAnchor href="#contact" className="btn-primary" goal="bitrix_cta_click">
-                  Получить оценку интеграции
+                  Получить оценку внедрения
                 </TrackedAnchor>
               </div>
             </div>
@@ -536,13 +552,71 @@ export default function BitrixLandingPage() {
             </div>
           </section>
 
+          {/* 8.5. Legal / trust */}
+          <section id="legal" className="section-band scroll-mt-16 border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">Исполнитель</span>
+                <h2 className="section-title mt-4 max-w-2xl">Реквизиты и контакты</h2>
+                <p className="body-copy mt-4 max-w-2xl">
+                  Публичные данные исполнителя — те же, что в договоре и политике конфиденциальности.
+                </p>
+              </Reveal>
+              <div className="mt-8 border border-hairline bg-surface-card p-6 md:p-8">
+                <dl className="grid gap-4 text-sm sm:grid-cols-2">
+                  <div>
+                    <dt className="meta-label text-muted">Исполнитель</dt>
+                    <dd className="mt-1 text-body-strong">{LEGAL_ENTITY.name}</dd>
+                  </div>
+                  <div>
+                    <dt className="meta-label text-muted">Реквизиты</dt>
+                    <dd className="mt-1 text-body">{formatLegalRequisitesLine()}</dd>
+                  </div>
+                  <div>
+                    <dt className="meta-label text-muted">Email</dt>
+                    <dd className="mt-1">
+                      <a href={`mailto:${LEGAL_ENTITY.email}`} className="text-body-strong hover:text-ink">
+                        {LEGAL_ENTITY.email}
+                      </a>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="meta-label text-muted">Телефон</dt>
+                    <dd className="mt-1">
+                      <a href={`tel:${LEGAL_ENTITY.phone}`} className="text-body-strong hover:text-ink">
+                        {LEGAL_ENTITY.phone}
+                      </a>
+                    </dd>
+                  </div>
+                  <div className="sm:col-span-2">
+                    <dt className="meta-label text-muted">Адрес</dt>
+                    <dd className="mt-1 text-body">{LEGAL_ENTITY.address}</dd>
+                  </div>
+                  <div className="sm:col-span-2">
+                    <dt className="meta-label text-muted">Услуги</dt>
+                    <dd className="mt-1 text-body">{BITRIX_SERVICES_SUMMARY}</dd>
+                  </div>
+                </dl>
+                <p className="mt-6 border-t border-hairline pt-5 text-sm text-muted">
+                  <a href={PRIVACY_URL} className="text-body-strong hover:text-ink">
+                    Политика конфиденциальности
+                  </a>
+                  <span className="mx-2 text-muted-soft">·</span>
+                  <a href={TERMS_URL} className="text-body-strong hover:text-ink">
+                    Условия оказания услуг
+                  </a>
+                </p>
+              </div>
+            </div>
+          </section>
+
           {/* 9. Form */}
           <section id="contact" className="section-band scroll-mt-16 pb-24 md:pb-16">
             <div className="container-editorial max-w-2xl">
               <Reveal>
                 <div className="text-center">
                   <span className="section-label">Контакт</span>
-                  <h2 className="section-title mt-4">Получите оценку интеграции Битрикс24</h2>
+                  <h2 className="section-title mt-4">Получите оценку внедрения Битрикс24</h2>
                   <p className="body-copy mt-4">
                     Опишите CRM, 1С / МойСклад и процесс, который хотите закрыть первым. Вернёмся с архитектурой
                     и оценкой — обычно в течение суток.
@@ -575,7 +649,7 @@ export default function BitrixLandingPage() {
                   </div>
                 </div>
                 <div className="mt-10 text-left">
-                  <ContactForm defaultService="Битрикс24 / AI-интеграция" trackingPrefix="bitrix" />
+                  <ContactForm defaultService="Битрикс24 / внедрение и AI" trackingPrefix="bitrix" />
                 </div>
               </Reveal>
             </div>
@@ -591,13 +665,10 @@ export default function BitrixLandingPage() {
             <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
               <span>© {new Date().getFullYear()} Bober AI Systems</span>
               <div className="flex flex-wrap gap-4">
-                <a href={`https://www.bober-ai.dev${LEGAL_ROUTES.terms}`} className="text-muted-soft hover:text-muted">
+                <a href={TERMS_URL} className="text-muted-soft hover:text-muted">
                   Условия
                 </a>
-                <a
-                  href={`https://www.bober-ai.dev${LEGAL_ROUTES.privacyPolicy}`}
-                  className="text-muted-soft hover:text-muted"
-                >
+                <a href={PRIVACY_URL} className="text-muted-soft hover:text-muted">
                   Политика конфиденциальности
                 </a>
                 <a href={`mailto:${LEGAL_ENTITY.email}`} className="text-muted-soft hover:text-muted">
