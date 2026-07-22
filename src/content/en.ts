@@ -97,12 +97,13 @@ const en = {
   },
   whyUs: {
     label: "Difference",
-    title: "Demo is not deployment",
+    title: "Not ChatGPT. Not a demo.",
     text: "Most AI integrators can build a polished demo. We deploy systems that run for months in real business—with measurable time and cost savings.",
     benefits: [
-      "40–80% reduction in manual work on typical processes",
-      "Payback from 3 months — for processes with enough repeating volume; exact term from actual load and cost, calculated before kickoff",
-      "Full handover to your team, no vendor lock-in",
+      "40–80% less manual work on typical processes",
+      "Fewer errors when data moves between CRM, email and documents",
+      "Payback from 3 months — calculated from real load before the estimate",
+      "Full handover: code, access, documentation — no vendor lock-in",
     ],
   },
   oneWindow: {
@@ -176,6 +177,30 @@ const en = {
       },
     ],
   },
+  homeLanding: {
+    casesLabel: "Case studies",
+    casesTitle: "Three deployments with measurable impact",
+    casesSubtitle: "Not demo slides — production scenarios with a measurement method.",
+    casesCta: "All case studies in the portfolio",
+    packagesMore: "Full price list, ROI and process on Pricing",
+    whyTrustMore: "Publications and proof — on Media",
+    faqMore: "All answers in FAQ",
+    depthLabel: "Depth",
+    depthTitle: "Need the long version? Not on the homepage",
+    depthSubtitle: "Full blocks live on dedicated pages so the homepage stays a sales path, not a wall of text.",
+    depthItems: [
+      {
+        href: "/services",
+        title: "Services & artifacts",
+        description: "Who we serve, where AI is not needed, what we decline, deliverables, audit sample, launch checklist and architecture.",
+      },
+      {
+        href: "/pricing",
+        title: "Pricing & process",
+        description: "Budget gate, ROI calculator, format comparison and step-by-step delivery process.",
+      },
+    ],
+  },
   pages: {
     services: {
       metaTitle: "Services — AI implementation and business automation",
@@ -210,7 +235,7 @@ const en = {
       "Documents require repetitive manual processing",
       "Customer requests disappear before anyone follows up",
     ],
-    solutionsIntro: "Here's how we solve these problems — see packages and solutions below.",
+    solutionsIntro: "Next: how we differ from ChatGPT, case studies, and packages.",
   },
   audiences: {
     title: "Who we work with",

@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/motion/Reveal";
+import { Link } from "@/i18n/navigation";
 import { faqJsonLd } from "@/lib/seo";
 
 type FaqItem = {
@@ -15,9 +16,21 @@ type FaqSectionProps = {
   className?: string;
   /** Absolute page URL for Metrika content analytics (@id fragments) */
   pageUrl?: string;
+  moreHref?: string;
+  moreLabel?: string;
 };
 
-export function FaqSection({ id, label, title, subtitle, items, className = "", pageUrl }: FaqSectionProps) {
+export function FaqSection({
+  id,
+  label,
+  title,
+  subtitle,
+  items,
+  className = "",
+  pageUrl,
+  moreHref,
+  moreLabel,
+}: FaqSectionProps) {
   const faqSchema = faqJsonLd(items, pageUrl);
 
   return (
@@ -39,6 +52,13 @@ export function FaqSection({ id, label, title, subtitle, items, className = "", 
             </Reveal>
           ))}
         </dl>
+        {moreHref && moreLabel ? (
+          <Reveal delay={0.1} className="mt-8">
+            <Link href={moreHref as "/"} className="link-more">
+              {moreLabel}
+            </Link>
+          </Reveal>
+        ) : null}
       </div>
     </section>
   );

@@ -22,6 +22,8 @@ type PackagesShowcaseProps = {
   detailsLabel: string;
   cta: string;
   urgency?: string;
+  moreHref?: string;
+  moreLabel?: string;
 };
 
 export function PackagesShowcase({
@@ -33,6 +35,8 @@ export function PackagesShowcase({
   detailsLabel,
   cta,
   urgency,
+  moreHref,
+  moreLabel,
 }: PackagesShowcaseProps) {
   return (
     <section id="packages" className="section-band section--deep scroll-mt-16 border-b border-hairline">
@@ -62,8 +66,13 @@ export function PackagesShowcase({
             </StaggerItem>
           ))}
         </Stagger>
-        <Reveal delay={0.1} className="mt-10">
+        <Reveal delay={0.1} className="mt-10 flex flex-wrap items-center gap-4">
           <ContactCta goal="packages_cta_click">{cta}</ContactCta>
+          {moreHref && moreLabel ? (
+            <Link href={moreHref as "/"} className="link-more">
+              {moreLabel}
+            </Link>
+          ) : null}
         </Reveal>
       </div>
     </section>

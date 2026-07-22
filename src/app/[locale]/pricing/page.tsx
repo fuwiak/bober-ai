@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import NextLink from "next/link";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { ContactCta } from "@/components/ContactCta";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { ComparisonSection } from "@/components/ComparisonSection";
 import { PackagesShowcase } from "@/components/PackagesShowcase";
@@ -44,6 +45,7 @@ export default async function PricingPage({ params }: Props) {
     featured?: boolean;
     detailsHref?: string;
   }[];
+  const budgetReasons = t.raw("budgetGate.reasons") as string[];
 
   return (
     <div className="page-shell min-h-screen">
@@ -70,6 +72,32 @@ export default async function PricingPage({ params }: Props) {
           cta={t("packages.cta")}
           urgency={t("packages.urgency")}
         />
+
+        <section className="section-band section--panel border-b border-hairline">
+          <div className="container-editorial max-w-3xl">
+            <Reveal>
+              <span className="section-label">{t("budgetGate.label")}</span>
+              <h2 className="section-title mt-4">{t("budgetGate.title")}</h2>
+              <p className="meta-label mt-6">{t("budgetGate.whyLabel")}</p>
+            </Reveal>
+            <ul className="mt-4 space-y-3">
+              {budgetReasons.map((item) => (
+                <Reveal key={item} delay={0.05}>
+                  <li className="body-copy flex gap-4 text-base">
+                    <span className="meta-label shrink-0">—</span>
+                    <span>{item}</span>
+                  </li>
+                </Reveal>
+              ))}
+            </ul>
+            <Reveal delay={0.1} className="mt-6">
+              <p className="body-copy text-sm text-muted">{t("budgetGate.note")}</p>
+              <ContactCta className="mt-6" goal="budget_gate_cta_click">
+                {t("budgetGate.cta")}
+              </ContactCta>
+            </Reveal>
+          </div>
+        </section>
 
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial max-w-3xl">
@@ -144,6 +172,13 @@ export default async function PricingPage({ params }: Props) {
           title={t("comparison.title")}
           subtitle={t("comparison.subtitle")}
           items={t.raw("comparison.items") as { title: string; problem: string; solution: string }[]}
+        />
+
+        <ComparisonSection
+          label={t("problemSolution.label")}
+          title={t("problemSolution.title")}
+          subtitle={t("problemSolution.subtitle")}
+          items={t.raw("problemSolution.items") as { title: string; problem: string; solution: string }[]}
         />
 
         <section className="section-band section--panel border-b border-hairline">

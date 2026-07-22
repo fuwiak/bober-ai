@@ -11,17 +11,19 @@ type HomeHubItem = {
 type HomeHubSectionProps = {
   label: string;
   title: string;
+  subtitle?: string;
   linkLabel: string;
   items: HomeHubItem[];
 };
 
-export function HomeHubSection({ label, title, linkLabel, items }: HomeHubSectionProps) {
+export function HomeHubSection({ label, title, subtitle, linkLabel, items }: HomeHubSectionProps) {
   return (
-    <section className="section-band section--panel border-b border-hairline">
+    <section className="section-band section--deep border-b border-hairline">
       <div className="container-editorial">
         <Reveal>
           <span className="section-label">{label}</span>
           <h2 className="section-title mt-4">{title}</h2>
+          {subtitle ? <p className="body-copy mt-4 max-w-2xl text-base">{subtitle}</p> : null}
         </Reveal>
         <Stagger className="home-hub-grid mt-10">
           {items.map((item) => (
