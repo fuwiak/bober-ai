@@ -4,7 +4,7 @@ import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
   GITHUB_URL,
-  HERO_STOCK_IMAGE,
+  FOUNDER_IMAGE,
   LINKEDIN_URL,
   SELECTEL_PARTNER_PROGRAM_URL,
   SITE_COUNTRY,
@@ -23,7 +23,7 @@ import { LEGAL_ENTITY } from "@/lib/legal";
 import { PROFILE } from "@/lib/profile";
 
 /** Default share / snippet image (not favicon — Yandex/social need a real preview). */
-export const DEFAULT_OG_IMAGE = HERO_STOCK_IMAGE;
+export const DEFAULT_OG_IMAGE = FOUNDER_IMAGE;
 
 type PageSeoInput = {
   title: string;
@@ -171,7 +171,7 @@ export function siteNavigationItems(locale: string) {
     { name: isEn ? "Automation" : "Автоматизация", path: "/automation" },
     { name: isEn ? "Services" : "Услуги", path: "/services" },
     { name: isEn ? "Portfolio" : "Портфолио", path: "/portfolio" },
-    { name: isEn ? "Certificates" : "Сертификаты", path: "/certificates" },
+    { name: isEn ? "About" : "О компании", path: "/about" },
     { name: isEn ? "Pricing" : "Цены", path: "/pricing" },
     { name: isEn ? "Blog" : "Блог", path: "/blog" },
     { name: isEn ? "Partners" : "Партнёрам", path: "/partners" },

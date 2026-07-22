@@ -1,4 +1,4 @@
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { ContactForm } from "@/components/ContactForm";
 import { BeforeAfterDemoSection } from "@/components/ExpertiseEvidence";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
@@ -20,13 +20,11 @@ import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
   FOUNDER_IMAGE,
-  OFFICE_STOCK_IMAGES,
   TELEGRAM_URL,
   WHATSAPP_URL,
 } from "@/lib/site";
 
 export default async function HomePage() {
-  const locale = await getLocale();
   const t = await getTranslations();
   const trustStats = t.raw("trust.stats") as { value: string; label: string }[];
   const problemItems = t.raw("problemsWeSolve.items") as string[];
@@ -72,10 +70,6 @@ export default async function HomePage() {
           trustItems={t.raw("hero.trustItems") as string[]}
           heroImage={FOUNDER_IMAGE}
           heroImageAlt={t("hero.heroImageAlt")}
-          accentImages={[
-            { src: OFFICE_STOCK_IMAGES.tower },
-            { src: OFFICE_STOCK_IMAGES.facade },
-          ]}
         />
 
         <section className="section-band section--deep border-b border-hairline">
@@ -83,29 +77,6 @@ export default async function HomePage() {
             <TrustStrip stats={trustStats} />
           </div>
         </section>
-
-        <SecuredAiPartnerSection
-          locale={locale}
-          label={t("securedAi.label")}
-          title={t("securedAi.title")}
-          body={t.raw("securedAi.body") as string[]}
-          certificatesLink={t("securedAi.certificatesLink")}
-          servicesLabel={t("securedAi.servicesLabel")}
-          serviceCards={t.raw("securedAi.serviceCards") as { title: string; text: string }[]}
-          architectureLabel={t("securedAi.architectureLabel")}
-          architectureTitle={t("securedAi.architectureTitle")}
-          architectureSteps={t.raw("securedAi.architectureSteps") as string[]}
-          architectureText={t("securedAi.architectureText")}
-          offeringsLabel={t("securedAi.offeringsLabel")}
-          offeringsTitle={t("securedAi.offeringsTitle")}
-          offeringsIntro={t("securedAi.offeringsIntro")}
-          offerings={t.raw("securedAi.offerings") as string[]}
-          projectsLabel={t("securedAi.projectsLabel")}
-          projectsTitle={t("securedAi.projectsTitle")}
-          projects={t.raw("securedAi.projects") as string[]}
-          ctaPrimary={t("securedAi.ctaPrimary")}
-          ctaSecondary={t("securedAi.ctaSecondary")}
-        />
 
         <section className="section-band section--panel border-b border-hairline">
           <div className="container-editorial">
@@ -146,6 +117,19 @@ export default async function HomePage() {
             </ul>
           </div>
         </section>
+
+        <SecuredAiPartnerSection
+          architectureLabel={t("securedAi.architectureLabel")}
+          architectureTitle={t("securedAi.architectureTitle")}
+          architectureSteps={t.raw("securedAi.architectureSteps") as string[]}
+          architectureText={t("securedAi.architectureText")}
+          noteLabel={t("securedAi.noteLabel")}
+          noteTitle={t("securedAi.noteTitle")}
+          noteBody={t("securedAi.noteBody")}
+          certificatesLink={t("securedAi.certificatesLink")}
+          ctaPrimary={t("securedAi.ctaPrimary")}
+          ctaSecondary={t("securedAi.ctaSecondary")}
+        />
 
         <section className="section-band section--panel border-b border-hairline">
           <div className="container-editorial">
@@ -270,7 +254,7 @@ export default async function HomePage() {
                 </div>
               </div>
               <div className="mt-10 text-left">
-                <ContactForm extended />
+                <ContactForm />
               </div>
             </Reveal>
           </div>

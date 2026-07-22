@@ -13,8 +13,7 @@ export async function SiteHeader() {
     { href: "/portfolio" as const, label: t("portfolio") },
     { href: "/pricing#process", label: t("howWeWork") },
     { href: "/pricing" as const, label: t("pricing") },
-    { href: "/certificates" as const, label: t("certificates") },
-    { href: "/media" as const, label: t("about") },
+    { href: "/about" as const, label: t("about") },
   ];
 
   return (
@@ -40,7 +39,7 @@ export async function SiteFooter() {
     { href: "/automation" as const, label: tNav("automation"), localeAgnostic: false },
     { href: "/services" as const, label: tNav("services"), localeAgnostic: false },
     { href: "/portfolio" as const, label: tNav("portfolio"), localeAgnostic: false },
-    { href: "/certificates" as const, label: tNav("certificates"), localeAgnostic: false },
+    { href: "/about" as const, label: tNav("about"), localeAgnostic: false },
     { href: "/pricing" as const, label: tNav("pricing"), localeAgnostic: false },
     { href: "/blog" as const, label: tNav("blog"), localeAgnostic: false },
     { href: "/academy", label: tNav("academy"), localeAgnostic: true },

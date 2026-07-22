@@ -45,6 +45,12 @@ export function HeroSection({
   const transition = prefersReducedMotion ? { duration: 0 } : revealTransition;
   const titleTransition = prefersReducedMotion ? { duration: 0 } : heroTitleTransition;
   const stagger = prefersReducedMotion ? 0 : 0.09;
+  const leadParagraphs = valueProposition
+    ? valueProposition
+        .split(/\n\n+/)
+        .map((part) => part.trim())
+        .filter(Boolean)
+    : [];
 
   return (
     <section className="hero-section section-band">
@@ -57,16 +63,8 @@ export function HeroSection({
             visible: { transition: { staggerChildren: stagger } },
           }}
         >
-          <motion.p
-            className="hero-label"
-            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-            transition={transition}
-          >
-            {eyebrow}
-          </motion.p>
-
           <h1
-            className={`hero-title mt-8${titleStyle === "sentence" ? " hero-title--sentence" : ""}`}
+            className={`hero-title mt-0${titleStyle === "sentence" ? " hero-title--sentence" : ""}`}
             aria-label={[titleLine1, titleLine2].filter(Boolean).join(" ")}
           >
             <span className="hero-title-mask">
@@ -93,15 +91,17 @@ export function HeroSection({
             ) : null}
           </h1>
 
-          {valueProposition ? (
+          {leadParagraphs.map((paragraph, index) => (
             <motion.p
+              key={paragraph}
               className="hero-lead"
               variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
               transition={transition}
+              style={index > 0 ? { marginTop: "1rem" } : undefined}
             >
-              {valueProposition}
+              {paragraph}
             </motion.p>
-          ) : null}
+          ))}
 
           {differentiator ? (
             <motion.p
@@ -110,6 +110,16 @@ export function HeroSection({
               transition={transition}
             >
               {differentiator}
+            </motion.p>
+          ) : null}
+
+          {eyebrow ? (
+            <motion.p
+              className="hero-partners"
+              variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
+              transition={transition}
+            >
+              {eyebrow}
             </motion.p>
           ) : null}
 
@@ -142,7 +152,7 @@ export function HeroSection({
         </motion.div>
 
         <motion.figure
-          className={`hero-media${accentImages.length > 0 ? " hero-media--compose" : ""}`}
+          className={`hero-media${accentImages.length > 0 ? " hero-media--compose" : " hero-media--banner"}`}
           initial={prefersReducedMotion ? false : { opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...transition, delay: prefersReducedMotion ? 0 : 0.28 }}

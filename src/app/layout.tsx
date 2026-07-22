@@ -6,7 +6,7 @@ import { CookieConsent } from "@/components/CookieConsent";
 import { AttributionCapture } from "@/components/AttributionCapture";
 import { Varioqub } from "@/components/Varioqub";
 import { YandexMetrika } from "@/components/YandexMetrika";
-import { DEFAULT_KEYWORDS, HERO_STOCK_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
+import { DEFAULT_KEYWORDS, FOUNDER_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
 
 /** Architectural sans — близко к TT Wellingtons / DIN у Alcon DC. */
 const manrope = Manrope({
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   applicationName: SITE_NAME,
   title: {
-    default: "Внедрение AI и автоматизация для бизнеса",
+    default: "AI-системы и автоматизация для компаний",
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
@@ -71,22 +71,22 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: "Внедрение AI и автоматизация для бизнеса",
+    title: "AI-системы и автоматизация для компаний",
     description: SITE_DESCRIPTION,
     images: [
       {
-        url: absoluteUrl(HERO_STOCK_IMAGE),
-        width: 1200,
-        height: 630,
+        url: absoluteUrl(FOUNDER_IMAGE),
+        width: 1024,
+        height: 768,
         alt: SITE_NAME,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Внедрение AI и автоматизация для бизнеса",
+    title: "AI-системы и автоматизация для компаний",
     description: SITE_DESCRIPTION,
-    images: [absoluteUrl(HERO_STOCK_IMAGE)],
+    images: [absoluteUrl(FOUNDER_IMAGE)],
   },
   other: {
     keywords: DEFAULT_KEYWORDS.join(", "),
