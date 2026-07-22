@@ -2701,6 +2701,18 @@ html:not(.dark) .shell-code {
 
 
   /* Kaspersky partner badges + secured AI architecture */
+  .partner-product-ui {
+    max-width: 52rem;
+    border: 1px solid var(--color-hairline);
+    background: #050505;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .partner-product-ui__image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
   .partner-badge-row {
     display: grid;
     gap: 1rem;
@@ -2722,6 +2734,69 @@ html:not(.dark) .shell-code {
     display: block;
     width: 100%;
     height: auto;
+  }
+  .partner-cert-row {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .partner-cert-row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: 52rem;
+    }
+  }
+  .partner-cert-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-hairline);
+    background: var(--color-surface-card);
+    border-radius: 4px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 280ms cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 280ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .partner-cert-card:hover {
+    border-color: color-mix(in srgb, var(--color-primary) 55%, var(--color-hairline));
+    background: color-mix(in srgb, var(--color-primary) 6%, var(--color-surface-card));
+    transform: translateY(-2px);
+  }
+  .partner-cert-card:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+  .partner-cert-card__preview {
+    background: #0a0a0a;
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .partner-cert-card__image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .partner-cert-card__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 1.1rem 1.15rem;
+  }
+  .partner-cert-card__title {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: var(--color-ink);
+  }
+  .partner-cert-card__action {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .partner-cert-card:hover .partner-cert-card__action {
+    color: var(--color-primary);
   }
   .architecture-flow {
     list-style: none;

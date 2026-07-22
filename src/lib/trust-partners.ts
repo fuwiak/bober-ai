@@ -65,3 +65,33 @@ export const KASPERSKY_PARTNER_BADGES = [
     height: 906,
   },
 ] as const;
+
+/** Product UI screenshot for Kaspersky SMB AI assistant (portfolio + secured AI section). */
+export const KASPERSKY_PRODUCT_UI = {
+  src: "/partners/kaspersky/smb-assistant-ui.png",
+  altRu: "Интерфейс AI-ассистента Kaspersky по продуктам для МСБ",
+  altEn: "Kaspersky SMB products AI assistant interface",
+  width: 1024,
+  height: 547,
+} as const;
+
+export const KASPERSKY_PARTNER_CERTIFICATES = [
+  {
+    id: "b2b",
+    previewSrc: "/partners/kaspersky/b2b-partner-certificate-preview.webp",
+    pdfSrc: "/partners/kaspersky/b2b-partner-certificate.pdf",
+    altRu: "Сертификат авторизованного партнёра „Лаборатории Касперского“ · B2B",
+    altEn: "Authorized Partner of Kaspersky Lab certificate · B2B",
+    width: 2339,
+    height: 1654,
+  },
+  {
+    id: "b2c",
+    previewSrc: "/partners/kaspersky/b2c-partner-certificate-preview.webp",
+    pdfSrc: "/partners/kaspersky/b2c-partner-certificate.pdf",
+    altRu: "Сертификат авторизованного партнёра „Лаборатории Касперского“ · B2C",
+    altEn: "Authorized Partner of Kaspersky Lab certificate · B2C",
+    width: 2339,
+    height: 1654,
+  },
+] as const;

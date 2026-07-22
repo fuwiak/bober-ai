@@ -293,6 +293,13 @@ const en = {
       "Within corporate AI projects, Bober AI can select, supply, implement and integrate Kaspersky Lab solutions to protect servers, workplaces, virtual infrastructure and cloud workloads.",
       "This delivers a single project: from business-process assessment and AI system development to infrastructure rollout and baseline protection of the corporate perimeter.",
     ],
+    certificatesLabel: "Partner certificates",
+    certificatesIntro: "Authorized Partner of Kaspersky Lab",
+    certificateTitles: {
+      b2b: "Authorized partner certificate · B2B",
+      b2c: "Authorized partner certificate · B2C",
+    },
+    certificateOpen: "Open PDF",
     servicesLabel: "What we cover in a project",
     serviceCards: [
       {

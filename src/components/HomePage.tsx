@@ -89,6 +89,10 @@ export default async function HomePage() {
           label={t("securedAi.label")}
           title={t("securedAi.title")}
           body={t.raw("securedAi.body") as string[]}
+          certificatesLabel={t("securedAi.certificatesLabel")}
+          certificatesIntro={t("securedAi.certificatesIntro")}
+          certificateTitles={t.raw("securedAi.certificateTitles") as { b2b: string; b2c: string }}
+          certificateOpen={t("securedAi.certificateOpen")}
           servicesLabel={t("securedAi.servicesLabel")}
           serviceCards={t.raw("securedAi.serviceCards") as { title: string; text: string }[]}
           architectureLabel={t("securedAi.architectureLabel")}
