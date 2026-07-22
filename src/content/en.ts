@@ -39,6 +39,7 @@ const en = {
     about: "About",
     faq: "FAQ",
     media: "Media",
+    certificates: "Certificates",
     reviews: "Reviews",
     contact: "Contact",
     consultCta: "Get a preliminary estimate",
@@ -229,6 +230,21 @@ const en = {
         "FAKRO FM interview, MK commentary, Severgazbank article, Habr and Medium publications, GitHub and Stack Exchange.",
       pageTitle: "Pawel Stasinski — publications, interviews and expert commentary",
     },
+    certificates: {
+      metaTitle: "Certificates — Authorized Partner of Kaspersky Lab",
+      metaDescription:
+        "Bober AI Systems certificates: Authorized Partner of Kaspersky Lab — B2B and B2C. PDF downloads and previews.",
+    },
+  },
+  certificates: {
+    label: "Partnership",
+    title: "Certificates",
+    intro: "Authorized Partner of Kaspersky Lab",
+    titles: {
+      b2b: "B2B",
+      b2c: "B2C",
+    },
+    openPdf: "Open PDF",
   },
   problemsWeSolve: {
     title: "Typical problems we solve",
@@ -293,13 +309,7 @@ const en = {
       "Within corporate AI projects, Bober AI can select, supply, implement and integrate Kaspersky Lab solutions to protect servers, workplaces, virtual infrastructure and cloud workloads.",
       "This delivers a single project: from business-process assessment and AI system development to infrastructure rollout and baseline protection of the corporate perimeter.",
     ],
-    certificatesLabel: "Partner certificates",
-    certificatesIntro: "Authorized Partner of Kaspersky Lab",
-    certificateTitles: {
-      b2b: "Authorized partner certificate · B2B",
-      b2c: "Authorized partner certificate · B2C",
-    },
-    certificateOpen: "Open PDF",
+    certificatesLink: "View certificates",
     servicesLabel: "What we cover in a project",
     serviceCards: [
       {

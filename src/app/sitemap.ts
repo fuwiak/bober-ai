@@ -39,6 +39,7 @@ const staticRoutes = [
   { path: "/guides", priority: 0.85, changeFrequency: "weekly" as const, lastModified: UPDATED.guides },
   { path: "/blog", priority: 0.85, changeFrequency: "weekly" as const, lastModified: UPDATED.blog },
   { path: "/partners", priority: 0.8, changeFrequency: "monthly" as const, lastModified: UPDATED.core },
+  { path: "/certificates", priority: 0.8, changeFrequency: "monthly" as const, lastModified: UPDATED.core },
   { path: "/privacy-policy", priority: 0.3, changeFrequency: "yearly" as const, lastModified: UPDATED.legal },
   { path: "/consent", priority: 0.3, changeFrequency: "yearly" as const, lastModified: UPDATED.legal },
   { path: "/terms", priority: 0.4, changeFrequency: "yearly" as const, lastModified: UPDATED.legal },

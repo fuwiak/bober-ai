@@ -3,11 +3,8 @@ import { ContactCta } from "@/components/ContactCta";
 import { ArchitectureStepsCarousel } from "@/components/motion/ArchitectureStepsCarousel";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
-import {
-  KASPERSKY_PARTNER_BADGES,
-  KASPERSKY_PARTNER_CERTIFICATES,
-  KASPERSKY_PRODUCT_UI,
-} from "@/lib/trust-partners";
+import { Link } from "@/i18n/navigation";
+import { KASPERSKY_PARTNER_BADGES, KASPERSKY_PRODUCT_UI } from "@/lib/trust-partners";
 
 type CardItem = {
   title: string;
@@ -19,10 +16,7 @@ type SecuredAiPartnerSectionProps = {
   label: string;
   title: string;
   body: string[];
-  certificatesLabel: string;
-  certificatesIntro: string;
-  certificateTitles: { b2b: string; b2c: string };
-  certificateOpen: string;
+  certificatesLink: string;
   servicesLabel: string;
   serviceCards: CardItem[];
   architectureLabel: string;
@@ -45,10 +39,7 @@ export function SecuredAiPartnerSection({
   label,
   title,
   body,
-  certificatesLabel,
-  certificatesIntro,
-  certificateTitles,
-  certificateOpen,
+  certificatesLink,
   servicesLabel,
   serviceCards,
   architectureLabel,
@@ -79,6 +70,11 @@ export function SecuredAiPartnerSection({
                 {paragraph}
               </p>
             ))}
+            <p className="mt-5">
+              <Link href="/certificates" className="text-link text-sm">
+                {certificatesLink}
+              </Link>
+            </p>
           </Reveal>
 
           <Reveal delay={0.04} className="partner-product-ui mt-10">
@@ -106,39 +102,6 @@ export function SecuredAiPartnerSection({
                 />
               </div>
             ))}
-          </Reveal>
-
-          <Reveal delay={0.1} className="mt-12">
-            <p className="meta-label">{certificatesLabel}</p>
-            <p className="body-copy mt-3 max-w-2xl text-base">{certificatesIntro}</p>
-            <div className="partner-cert-row mt-6">
-              {KASPERSKY_PARTNER_CERTIFICATES.map((cert) => (
-                <a
-                  key={cert.id}
-                  href={cert.pdfSrc}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="partner-cert-card"
-                >
-                  <div className="partner-cert-card__preview">
-                    <Image
-                      src={cert.previewSrc}
-                      alt={isEn ? cert.altEn : cert.altRu}
-                      width={cert.width}
-                      height={cert.height}
-                      className="partner-cert-card__image"
-                      sizes="(max-width: 640px) 100vw, 480px"
-                    />
-                  </div>
-                  <div className="partner-cert-card__meta">
-                    <span className="partner-cert-card__title">
-                      {certificateTitles[cert.id]}
-                    </span>
-                    <span className="partner-cert-card__action">{certificateOpen}</span>
-                  </div>
-                </a>
-              ))}
-            </div>
           </Reveal>
 
           <p className="meta-label mt-10">{servicesLabel}</p>

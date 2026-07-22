@@ -171,6 +171,7 @@ export function siteNavigationItems(locale: string) {
     { name: isEn ? "Automation" : "Автоматизация", path: "/automation" },
     { name: isEn ? "Services" : "Услуги", path: "/services" },
     { name: isEn ? "Portfolio" : "Портфолио", path: "/portfolio" },
+    { name: isEn ? "Certificates" : "Сертификаты", path: "/certificates" },
     { name: isEn ? "Pricing" : "Цены", path: "/pricing" },
     { name: isEn ? "Blog" : "Блог", path: "/blog" },
     { name: isEn ? "Partners" : "Партнёрам", path: "/partners" },
