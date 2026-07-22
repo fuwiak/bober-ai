@@ -28,15 +28,17 @@ export default async function HomePage() {
   const t = await getTranslations();
   const trustStats = t.raw("trust.stats") as { value: string; label: string }[];
   const problemItems = t.raw("problemsWeSolve.items") as string[];
-  const packageItems = t.raw("packages.items") as {
-    name: string;
-    price: string;
-    duration: string;
-    forWhom: string;
-    result: string;
-    featured?: boolean;
-    detailsHref?: string;
-  }[];
+  const packageItems = (
+    t.raw("packages.items") as {
+      name: string;
+      price: string;
+      duration: string;
+      forWhom: string;
+      result: string;
+      featured?: boolean;
+      detailsHref?: string;
+    }[]
+  ).slice(0, 3);
   const whyTrustItems = (t.raw("whyTrust.items") as string[]).slice(0, 4);
   const faqItems = (t.raw("faq.items") as { q: string; a: string }[]).slice(0, 5);
   const beforeSteps = t.raw("beforeAfterDemo.beforeSteps") as { label: string; status: string }[];

@@ -29,9 +29,23 @@ type SiteHeaderClientProps = {
   telegramLabel: string;
 };
 
+function pathWithoutHash(href: string) {
+  return href.split("#")[0] || "/";
+}
+
 function isActivePath(pathname: string, href: string) {
-  if (href === "/") return pathname === "/";
-  return pathname === href || pathname.startsWith(`${href}/`);
+  const path = pathWithoutHash(href);
+  if (path === "/") return pathname === "/";
+  return pathname === path || pathname.startsWith(`${path}/`);
+}
+
+function isNavItemActive(pathname: string, item: NavItem, navItems: NavItem[]) {
+  if (!isActivePath(pathname, item.href)) return false;
+  const path = pathWithoutHash(item.href);
+  const siblings = navItems.filter((candidate) => pathWithoutHash(candidate.href) === path);
+  if (siblings.length <= 1) return true;
+  const preferred = siblings.find((candidate) => !candidate.href.includes("#")) ?? siblings[0];
+  return preferred.href === item.href;
 }
 
 function TelegramIcon() {
@@ -82,7 +96,8 @@ export function SiteHeaderClient({
   }, [menuOpen]);
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
-  const indicatorHref = hoveredHref ?? navItems.find((item) => isActivePath(pathname, item.href))?.href ?? null;
+  const indicatorHref =
+    hoveredHref ?? navItems.find((item) => isNavItemActive(pathname, item, navItems))?.href ?? null;
 
   const header = (
     <header className={`site-header${menuOpen ? " site-header--menu-open" : ""}`}>
@@ -96,7 +111,7 @@ export function SiteHeaderClient({
             <LayoutGroup id="site-header-nav">
               <nav className="site-header__nav" aria-label="Main" onMouseLeave={() => setHoveredHref(null)}>
                 {navItems.map((item) => {
-                  const active = isActivePath(pathname, item.href);
+                  const active = isNavItemActive(pathname, item, navItems);
                   const showIndicator = indicatorHref === item.href;
                   const className = `site-header__link${active ? " site-header__link--active" : ""}`;
                   const content = (

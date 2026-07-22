@@ -181,7 +181,7 @@ export default async function PricingPage({ params }: Props) {
           items={t.raw("problemSolution.items") as { title: string; problem: string; solution: string }[]}
         />
 
-        <section className="section-band section--panel border-b border-hairline">
+        <section id="process" className="section-band section--panel scroll-mt-16 border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
               <span className="section-label">{t("sections.process")}</span>
