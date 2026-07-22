@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<yml_catalog date="2026-07-21 14:24">
+<yml_catalog date="2026-07-22 03:24">
   <shop>
     <name>Bober AI Systems</name>
     <company>Bober AI Systems</company>
@@ -132,7 +132,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>business-process-automation</set-ids>
-      <picture>https://www.bober-ai.dev/stock/automation-code.jpg</picture>
+      <picture>https://www.bober-ai.dev/stock/business-process-automation.jpg</picture>
       <description>Автоматизация бизнес-процессов</description>
       <param name="Рейтинг">5</param>
       <param name="Число отзывов">28</param>
@@ -165,7 +165,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>sales-ai-agent</set-ids>
-      <picture>https://www.bober-ai.dev/stock/sales-proposal.jpg</picture>
+      <picture>https://www.bober-ai.dev/stock/sales-ai-agent.jpg</picture>
       <description>Автоматизация отдела продаж</description>
       <param name="Рейтинг">5</param>
       <param name="Число отзывов">28</param>
@@ -198,7 +198,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>ai-discovery-roadmap</set-ids>
-      <picture>https://www.bober-ai.dev/stock/roadmap-sticky-notes.jpg</picture>
+      <picture>https://www.bober-ai.dev/stock/ai-discovery-roadmap.jpg</picture>
       <description>AI &amp; Automation Advisor</description>
       <param name="Рейтинг">5</param>
       <param name="Число отзывов">28</param>
@@ -231,7 +231,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>enterprise-ai-assistant</set-ids>
-      <picture>https://www.bober-ai.dev/stock/team-collab.jpg</picture>
+      <picture>https://www.bober-ai.dev/stock/enterprise-ai-assistant.jpg</picture>
       <description>Внедрение AI</description>
       <param name="Рейтинг">5</param>
       <param name="Число отзывов">28</param>
@@ -264,7 +264,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>private-llm-gigachat</set-ids>
-      <picture>https://www.bober-ai.dev/stock/cyber-padlock.jpg</picture>
+      <picture>https://www.bober-ai.dev/stock/private-llm.jpg</picture>
       <description>Приватный LLM-контур</description>
       <param name="Рейтинг">5</param>
       <param name="Число отзывов">28</param>
@@ -330,7 +330,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>rag</set-ids>
-      <picture>https://www.bober-ai.dev/stock/team-collab.jpg</picture>
+      <picture>https://www.bober-ai.dev/stock/rag-search.jpg</picture>
       <description>RAG и корпоративный поиск</description>
       <param name="Рейтинг">5</param>
       <param name="Число отзывов">28</param>
@@ -462,7 +462,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>document-processing</set-ids>
-      <picture>https://www.bober-ai.dev/stock/roadmap-sticky-notes.jpg</picture>
+      <picture>https://www.bober-ai.dev/stock/document-processing.jpg</picture>
       <description>Обработка документов</description>
       <param name="Рейтинг">5</param>
       <param name="Число отзывов">28</param>
@@ -528,7 +528,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>ocr</set-ids>
-      <picture>https://www.bober-ai.dev/stock/roadmap-sticky-notes.jpg</picture>
+      <picture>https://www.bober-ai.dev/stock/document-processing.jpg</picture>
       <description>OCR и распознавание</description>
       <param name="Рейтинг">5</param>
       <param name="Число отзывов">28</param>
@@ -594,7 +594,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>self-hosted-ai</set-ids>
-      <picture>https://www.bober-ai.dev/stock/cyber-padlock.jpg</picture>
+      <picture>https://www.bober-ai.dev/stock/private-llm.jpg</picture>
       <description>Self-hosted AI</description>
       <param name="Рейтинг">5</param>
       <param name="Число отзывов">28</param>
@@ -693,7 +693,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>knowledge-base</set-ids>
-      <picture>https://www.bober-ai.dev/stock/team-collab.jpg</picture>
+      <picture>https://www.bober-ai.dev/stock/rag-search.jpg</picture>
       <description>Корпоративная база знаний</description>
       <param name="Рейтинг">5</param>
       <param name="Число отзывов">28</param>
@@ -726,7 +726,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>ai-consulting</set-ids>
-      <picture>https://www.bober-ai.dev/stock/roadmap-sticky-notes.jpg</picture>
+      <picture>https://www.bober-ai.dev/stock/ai-discovery-roadmap.jpg</picture>
       <description>AI-консалтинг</description>
       <param name="Рейтинг">5</param>
       <param name="Число отзывов">28</param>
@@ -759,7 +759,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>crm-integration</set-ids>
-      <picture>https://www.bober-ai.dev/stock/sales-proposal.jpg</picture>
+      <picture>https://www.bober-ai.dev/stock/crm-integration.jpg</picture>
       <description>Интеграции CRM</description>
       <param name="Рейтинг">5</param>
       <param name="Число отзывов">28</param>
@@ -792,7 +792,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>ai-bot-llm-rasa-n8n</set-ids>
-      <picture>https://www.bober-ai.dev/stock/team-collab.jpg</picture>
+      <picture>https://www.bober-ai.dev/stock/enterprise-ai-assistant.jpg</picture>
       <description>Внедрение AI</description>
       <param name="Рейтинг">5</param>
       <param name="Число отзывов">28</param>
@@ -825,7 +825,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>llm-ai-consultation</set-ids>
-      <picture>https://www.bober-ai.dev/stock/roadmap-sticky-notes.jpg</picture>
+      <picture>https://www.bober-ai.dev/stock/ai-discovery-roadmap.jpg</picture>
       <description>AI &amp; Automation Advisor</description>
       <param name="Рейтинг">5</param>
       <param name="Число отзывов">28</param>
@@ -858,7 +858,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>ai-bot-gigachat-n8n-local</set-ids>
-      <picture>https://www.bober-ai.dev/stock/cyber-padlock.jpg</picture>
+      <picture>https://www.bober-ai.dev/stock/private-llm.jpg</picture>
       <description>Приватный LLM-контур</description>
       <param name="Рейтинг">5</param>
       <param name="Число отзывов">28</param>
@@ -891,7 +891,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>ml-data-consultation</set-ids>
-      <picture>https://www.bober-ai.dev/stock/roadmap-sticky-notes.jpg</picture>
+      <picture>https://www.bober-ai.dev/stock/ai-discovery-roadmap.jpg</picture>
       <description>AI &amp; Automation Advisor</description>
       <param name="Рейтинг">5</param>
       <param name="Число отзывов">28</param>
@@ -924,7 +924,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>telegram-discord-miniapp-bot</set-ids>
-      <picture>https://www.bober-ai.dev/stock/team-collab.jpg</picture>
+      <picture>https://www.bober-ai.dev/stock/enterprise-ai-assistant.jpg</picture>
       <description>Внедрение AI</description>
       <param name="Рейтинг">5</param>
       <param name="Число отзывов">28</param>
@@ -957,7 +957,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>claude-business-automation</set-ids>
-      <picture>https://www.bober-ai.dev/stock/automation-code.jpg</picture>
+      <picture>https://www.bober-ai.dev/stock/business-process-automation.jpg</picture>
       <description>Автоматизация бизнес-процессов</description>
       <param name="Рейтинг">5</param>
       <param name="Число отзывов">28</param>
@@ -990,7 +990,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>ai-kp-agent</set-ids>
-      <picture>https://www.bober-ai.dev/stock/sales-proposal.jpg</picture>
+      <picture>https://www.bober-ai.dev/stock/sales-ai-agent.jpg</picture>
       <description>Автоматизация отдела продаж</description>
       <param name="Рейтинг">5</param>
       <param name="Число отзывов">28</param>

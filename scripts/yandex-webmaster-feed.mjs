@@ -1,148 +1,52 @@
 #!/usr/bin/env node
 
 import fetch from "./lib/fetch.mjs";
+import {
+  getConfig,
+  getHosts,
+  getUserId,
+  listFeeds,
+  pickHost,
+  startFeedUpload,
+  waitForFeedReload,
+} from "./lib/yandex-webmaster.mjs";
 
 /**
- * Регистрация YML-фида в Яндекс Вебмастере для «Дополненного представления в поиске β».
+ * Регистрация YML-фида(ов) в Яндекс Вебмастере для «Дополненного представления в поиске β».
  *
- * Требования:
- * - OAuth-токен с правами webmaster:hostinfo и webmaster:verify
- * - Сайт добавлен в Вебмастер и права подтверждены
+ * Usage:
+ *   npm run webmaster:feed:upload              # основной фид www
+ *   npm run webmaster:feed:upload -- --all     # www + bitrix + partners
+ *   npm run webmaster:feed:upload -- --microsites
  *
  * Документация:
  * - https://yandex.ru/dev/webmaster/doc/ru/concepts/feeds
- * - https://yandex.ru/dev/webmaster/doc/ru/tasks/how-to-get-oauth
  */
 
-const API_BASE = "https://api.webmaster.yandex.net/v4";
+const args = new Set(process.argv.slice(2).filter((arg) => arg.startsWith("--")));
+const registerAll = args.has("--all");
+const registerMicrositesOnly = args.has("--microsites");
 
-const config = {
-  token:
-    process.env.YANDEX_WEBMASTER_OAUTH_TOKEN?.trim() ||
-    process.env.YANDEX_OAUTH_TOKEN?.trim(),
-  hostUrl: (process.env.YANDEX_WEBMASTER_HOST_URL || process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev").replace(/\/$/, ""),
-  feedUrl: (process.env.YANDEX_WEBMASTER_FEED_URL || `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev"}/performers-feed.yml`).replace(/\/$/, ""),
-  feedType: process.env.YANDEX_WEBMASTER_FEED_TYPE || "SERVICES",
-  regionIds: (process.env.YANDEX_WEBMASTER_REGION_IDS || "225")
-    .split(",")
-    .map((value) => Number(value.trim()))
-    .filter((value) => Number.isFinite(value)),
-  pollIntervalMs: Number(process.env.YANDEX_WEBMASTER_POLL_MS || 3000),
-  pollTimeoutMs: Number(process.env.YANDEX_WEBMASTER_POLL_TIMEOUT_MS || 120000),
-};
+const MICROSITE_FEEDS = [
+  {
+    label: "Bitrix24 + amoCRM",
+    hostUrl: process.env.YANDEX_WEBMASTER_BITRIX_HOST_URL?.trim() || "https://bitrix.bober-ai.dev",
+    feedUrl:
+      process.env.YANDEX_WEBMASTER_BITRIX_FEED_URL?.trim() ||
+      "https://bitrix.bober-ai.dev/performers-feed.yml",
+  },
+  {
+    label: "Partners / white-label",
+    hostUrl: process.env.YANDEX_WEBMASTER_PARTNERS_HOST_URL?.trim() || "https://partners.bober-ai.dev",
+    feedUrl:
+      process.env.YANDEX_WEBMASTER_PARTNERS_FEED_URL?.trim() ||
+      "https://partners.bober-ai.dev/performers-feed.yml",
+  },
+];
 
 function fail(message) {
   console.error(`\nОшибка: ${message}`);
   process.exit(1);
-}
-
-function authHeaders(includeJsonContentType = true) {
-  const headers = {
-    Authorization: `OAuth ${config.token}`,
-    Accept: "application/json",
-  };
-  if (includeJsonContentType) {
-    headers["Content-Type"] = "application/json; charset=utf-8";
-  }
-  return headers;
-}
-
-function normalizeHostUrl(value) {
-  try {
-    const url = new URL(value.startsWith("http") ? value : `https://${value}`);
-    return `${url.protocol}//${url.hostname}${url.port && url.port !== "80" && url.port !== "443" ? `:${url.port}` : ""}`;
-  } catch {
-    return value.toLowerCase();
-  }
-}
-
-async function apiRequest(path, options = {}) {
-  const response = await fetch(`${API_BASE}${path}`, {
-    ...options,
-    headers: {
-      ...authHeaders(),
-      ...(options.headers || {}),
-    },
-  });
-
-  const text = await response.text();
-  let body = null;
-  if (text) {
-    try {
-      body = JSON.parse(text);
-    } catch {
-      body = text;
-    }
-  }
-
-  if (!response.ok) {
-    const details = typeof body === "string" ? body : JSON.stringify(body, null, 2);
-    throw new Error(`HTTP ${response.status} ${response.statusText}\n${details}`);
-  }
-
-  return body;
-}
-
-async function getUserId() {
-  const data = await apiRequest("/user");
-  const userId = data?.user_id;
-  if (!userId) {
-    throw new Error("Не удалось получить user_id из ответа /v4/user");
-  }
-  return userId;
-}
-
-async function getHosts(userId) {
-  const data = await apiRequest(`/user/${userId}/hosts`);
-  return data?.hosts || [];
-}
-
-function pickHost(hosts, targetUrl) {
-  const normalizedTarget = normalizeHostUrl(targetUrl);
-  const targetHost = new URL(normalizedTarget).hostname.replace(/^www\./, "");
-
-  return hosts.find((host) => {
-    const hostId = String(host.host_id || "");
-    const asciiUrl = String(host.ascii_host_url || host.host_url || "");
-    const unicodeUrl = String(host.unicode_host_url || host.host_url || "");
-    const candidates = [hostId, asciiUrl, unicodeUrl].map((value) => value.toLowerCase());
-    return candidates.some((value) => value.includes(targetHost));
-  });
-}
-
-async function listFeeds(userId, hostId) {
-  const data = await apiRequest(`/user/${userId}/hosts/${encodeURIComponent(hostId)}/feeds/list`);
-  return data?.feeds || [];
-}
-
-async function startFeedUpload(userId, hostId) {
-  return apiRequest(`/user/${userId}/hosts/${encodeURIComponent(hostId)}/feeds/add/start`, {
-    method: "POST",
-    body: JSON.stringify({
-      feed: {
-        url: config.feedUrl,
-        type: config.feedType,
-        regionIds: config.regionIds,
-      },
-    }),
-  });
-}
-
-async function waitForUpload(userId, hostId) {
-  const startedAt = Date.now();
-
-  while (Date.now() - startedAt < config.pollTimeoutMs) {
-    const feeds = await listFeeds(userId, hostId);
-    if (feeds.some((feed) => feed.url === config.feedUrl)) {
-      console.log("Статус загрузки: OK");
-      return;
-    }
-
-    console.log("Статус загрузки: IN_PROGRESS");
-    await new Promise((resolve) => setTimeout(resolve, config.pollIntervalMs));
-  }
-
-  throw new Error("Истекло время ожидания загрузки фида");
 }
 
 function printSetupHelp() {
@@ -154,98 +58,176 @@ function printSetupHelp() {
    - Redirect URI: https://oauth.yandex.ru/verification_code
    - Права: webmaster:hostinfo, webmaster:verify
 
-2. Получите токен:
-   https://oauth.yandex.ru/authorize?response_type=token&client_id=<CLIENT_ID>
+2. Получите токен: npm run webmaster:oauth
 
 3. Экспортируйте переменные и запустите снова:
    export YANDEX_WEBMASTER_OAUTH_TOKEN="y0_..."
-   npm run webmaster:feed:upload
+   npm run webmaster:feed:upload -- --all
 
 Переменные:
-  YANDEX_WEBMASTER_OAUTH_TOKEN   OAuth-токен (обязательно)
-  YANDEX_WEBMASTER_HOST_URL      URL сайта в Вебмастере (по умолчанию https://www.bober-ai.dev)
-  YANDEX_WEBMASTER_FEED_URL      URL YML-фида (по умолчанию .../performers-feed.yml)
-  YANDEX_WEBMASTER_FEED_TYPE     Тип фида (по умолчанию SERVICES)
-  YANDEX_WEBMASTER_REGION_IDS    Регионы через запятую (по умолчанию 225)
+  YANDEX_WEBMASTER_OAUTH_TOKEN          OAuth-токен (обязательно)
+  YANDEX_WEBMASTER_HOST_URL             URL основного сайта
+  YANDEX_WEBMASTER_FEED_URL             URL основного YML-фида
+  YANDEX_WEBMASTER_BITRIX_HOST_URL      https://bitrix.bober-ai.dev
+  YANDEX_WEBMASTER_BITRIX_FEED_URL      .../performers-feed.yml
+  YANDEX_WEBMASTER_PARTNERS_HOST_URL    https://partners.bober-ai.dev
+  YANDEX_WEBMASTER_PARTNERS_FEED_URL    .../performers-feed.yml
+  YANDEX_WEBMASTER_FEED_TYPE            Тип фида (по умолчанию SERVICES)
+  YANDEX_WEBMASTER_REGION_IDS           Регионы через запятую (по умолчанию 225)
 `);
 }
 
-async function main() {
-  if (!config.token) {
-    printSetupHelp();
-    fail("Не задан YANDEX_WEBMASTER_OAUTH_TOKEN");
+async function ensureFeedReachable(feedUrl) {
+  const response = await fetch(feedUrl, { redirect: "follow" });
+  const text = await response.text();
+  if (!response.ok || !text.includes("<yml_catalog")) {
+    throw new Error(`Фид недоступен или некорректен: ${feedUrl} (HTTP ${response.status})`);
   }
+  console.log(`  YML доступен: ${feedUrl}`);
+}
 
-  console.log("Яндекс Вебмастер: загрузка фида для дополненного представления в поиске β\n");
-  console.log(`Сайт: ${config.hostUrl}`);
-  console.log(`Фид:  ${config.feedUrl}`);
-  console.log(`Тип:  ${config.feedType}`);
-  console.log(`Регионы: ${config.regionIds.join(", ")}\n`);
+async function registerFeed({ token, userId, hosts, hostUrl, feedUrl, feedType, regionIds, pollConfig }) {
+  console.log(`\n── ${hostUrl}`);
+  console.log(`Фид: ${feedUrl}`);
 
-  const userId = await getUserId();
-  console.log(`user_id: ${userId}`);
+  await ensureFeedReachable(feedUrl);
 
-  const hosts = await getHosts(userId);
-  if (!hosts.length) {
-    fail("В аккаунте нет сайтов. Добавьте https://www.bober-ai.dev в Вебмастер.");
-  }
-
-  const host = pickHost(hosts, config.hostUrl);
+  const host = pickHost(hosts, hostUrl);
   if (!host) {
     console.log("Доступные сайты:");
     for (const item of hosts) {
       console.log(`- ${item.unicode_host_url || item.ascii_host_url || item.host_id}`);
     }
-    fail(`Сайт ${config.hostUrl} не найден среди подтверждённых хостов`);
+    throw new Error(`Сайт ${hostUrl} не найден среди подтверждённых хостов`);
   }
 
   const hostId = host.host_id;
   console.log(`host_id: ${hostId}`);
 
-  const existingFeeds = await listFeeds(userId, hostId);
-  const alreadyRegistered = existingFeeds.some((feed) => feed.url === config.feedUrl);
-
+  const existingFeeds = await listFeeds(token, userId, hostId);
+  const alreadyRegistered = existingFeeds.some((feed) => feed.url === feedUrl);
   if (alreadyRegistered) {
-    console.log("\nФид уже зарегистрирован в Вебмастере.");
-    console.log("Яндекс периодически перекачивает его автоматически (обычно раз в несколько часов).");
-    console.log("Проверка ошибок: Вебмастер → Услуги и предложения в поиске → Фиды и ошибки");
-    return;
+    console.log("Фид уже зарегистрирован в Вебмастере.");
+    return { hostUrl, feedUrl, status: "already_registered" };
   }
 
-  console.log("\nЗапускаю асинхронную загрузку фида...");
-  const upload = await startFeedUpload(userId, hostId);
+  console.log("Запускаю асинхронную загрузку фида...");
+  const upload = await startFeedUpload(token, userId, hostId, {
+    url: feedUrl,
+    type: feedType,
+    regionIds,
+  });
   const requestId = upload?.requestId || upload?.request_id;
-
   if (!requestId) {
     throw new Error("API не вернул requestId");
   }
-
   console.log(`requestId: ${requestId}`);
-  await waitForUpload(userId, hostId);
 
-  const feeds = await listFeeds(userId, hostId);
-  const registered = feeds.some((feed) => feed.url === config.feedUrl);
+  process.stdout.write("Ожидание появления фида в списке");
+  await waitForFeedReload(token, userId, hostId, feedUrl, pollConfig);
+  console.log("");
 
-  console.log("\nГотово.");
-  if (registered) {
-    console.log("Фид зарегистрирован. Дальше:");
-    console.log("1. Вебмастер проверит фид (обычно до суток на повторную проверку).");
-    console.log("2. Служба качества проверит сайт и предложения в течение нескольких дней.");
-    console.log("3. Ошибки смотрите: Услуги и предложения в поиске → Фиды и ошибки.");
-  } else {
-    console.log("Загрузка завершилась, но фид пока не виден в списке. Проверьте статус в интерфейсе Вебмастера.");
+  const feeds = await listFeeds(token, userId, hostId);
+  const registered = feeds.some((feed) => feed.url === feedUrl);
+  if (!registered) {
+    throw new Error(`Загрузка завершилась, но фид ${feedUrl} пока не виден в списке`);
   }
+
+  console.log("Фид зарегистрирован.");
+  return { hostUrl, feedUrl, status: "registered" };
+}
+
+async function main() {
+  const base = getConfig();
+  if (!base.token) {
+    printSetupHelp();
+    fail("Не задан YANDEX_WEBMASTER_OAUTH_TOKEN");
+  }
+
+  const jobs = [];
+  if (!registerMicrositesOnly) {
+    jobs.push({
+      label: "Main (www)",
+      hostUrl: base.hostUrl,
+      feedUrl: base.feedUrl,
+    });
+  }
+  if (registerAll || registerMicrositesOnly) {
+    jobs.push(...MICROSITE_FEEDS);
+  }
+
+  console.log("Яндекс Вебмастер: загрузка фида(ов) для дополненного представления в поиске β\n");
+  console.log(`Тип: ${base.feedType}`);
+  console.log(`Регионы: ${base.regionIds.join(", ")}`);
+  console.log(`Задач: ${jobs.length} (${jobs.map((j) => j.label || j.hostUrl).join(", ")})\n`);
+
+  const userId = await getUserId(base.token);
+  console.log(`user_id: ${userId}`);
+  const hosts = await getHosts(base.token, userId);
+  if (!hosts.length) {
+    fail("В аккаунте нет сайтов. Добавьте хосты в Вебмастер.");
+  }
+
+  const results = [];
+  for (const job of jobs) {
+    try {
+      const result = await registerFeed({
+        token: base.token,
+        userId,
+        hosts,
+        hostUrl: job.hostUrl,
+        feedUrl: job.feedUrl,
+        feedType: base.feedType,
+        regionIds: base.regionIds,
+        pollConfig: base,
+      });
+      results.push({ ...result, label: job.label, ok: true });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.error(`\nОшибка для ${job.hostUrl}: ${message}`);
+      if (message.includes("401")) {
+        console.error("Токен недействителен или истёк. Получите новый: npm run webmaster:oauth");
+      }
+      if (message.includes("HOST_NOT_VERIFIED")) {
+        console.error("Права на сайт не подтверждены в Яндекс Вебмастере.");
+      }
+      if (message.includes("FEED_ALREADY_ADDED")) {
+        console.error("Такой фид уже добавлен.");
+        results.push({
+          hostUrl: job.hostUrl,
+          feedUrl: job.feedUrl,
+          label: job.label,
+          status: "already_registered",
+          ok: true,
+        });
+        continue;
+      }
+      results.push({
+        hostUrl: job.hostUrl,
+        feedUrl: job.feedUrl,
+        label: job.label,
+        status: "error",
+        error: message,
+        ok: false,
+      });
+    }
+  }
+
+  console.log("\n── Итог");
+  for (const item of results) {
+    const mark = item.ok ? "OK" : "FAIL";
+    console.log(`[${mark}] ${item.label || item.hostUrl}: ${item.status}${item.error ? ` — ${item.error}` : ""}`);
+  }
+
+  const failed = results.filter((item) => !item.ok);
+  if (failed.length) {
+    fail(`${failed.length} из ${results.length} фидов не зарегистрированы`);
+  }
+
+  console.log("\nГотово. Дальше Вебмастер проверит фиды (обычно до суток).");
+  console.log("Ошибки: Услуги и предложения в поиске → Фиды и ошибки.");
 }
 
 main().catch((error) => {
-  if (String(error.message).includes("401")) {
-    console.error("\nТокен недействителен или истёк. Получите новый OAuth-токен (срок — 6 месяцев).");
-  }
-  if (String(error.message).includes("HOST_NOT_VERIFIED")) {
-    console.error("\nПрава на сайт не подтверждены. Подтвердите сайт в Яндекс Вебмастере.");
-  }
-  if (String(error.message).includes("FEED_ALREADY_ADDED")) {
-    console.error("\nТакой фид уже добавлен.");
-  }
-  fail(error.message);
+  fail(error.message || String(error));
 });

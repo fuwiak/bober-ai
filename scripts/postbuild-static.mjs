@@ -1,5 +1,5 @@
 import { copyFileSync, cpSync, existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import { spawnSync } from "node:child_process";
 
 /**
@@ -63,6 +63,15 @@ function ensureSecurityTxt() {
   }
 }
 
+function copyFeedIfPresent(srcRel, destRel) {
+  const feedSrc = join("public", srcRel);
+  const feedDest = join(out, destRel);
+  if (!existsSync(feedSrc)) return;
+  mkdirSync(dirname(feedDest), { recursive: true });
+  copyFileSync(feedSrc, feedDest);
+  console.log(`postbuild-static: ${srcRel} → out/${destRel}`);
+}
+
 function regeneratePerformersFeed() {
   const result = spawnSync(process.execPath, [join("scripts", "generate-performers-feed.mjs")], {
     cwd: process.cwd(),
@@ -73,12 +82,9 @@ function regeneratePerformersFeed() {
     console.warn("postbuild-static: performers-feed regenerate failed:", result.stderr || result.stdout);
     return;
   }
-  const feedSrc = join("public", "performers-feed.yml");
-  const feedDest = join(out, "performers-feed.yml");
-  if (existsSync(feedSrc)) {
-    copyFileSync(feedSrc, feedDest);
-    console.log("postbuild-static: performers-feed.yml → out/");
-  }
+  copyFeedIfPresent("performers-feed.yml", "performers-feed.yml");
+  copyFeedIfPresent("feeds/bitrix.yml", "feeds/bitrix.yml");
+  copyFeedIfPresent("feeds/partners.yml", "feeds/partners.yml");
 }
 
 if (!existsSync(join(out, "ru.html"))) {

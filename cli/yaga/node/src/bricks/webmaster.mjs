@@ -11,7 +11,7 @@ export default {
 
   yaga webmaster status     overall webmaster + metrika snapshot
   yaga webmaster seo        ranking checklist (SQI, diagnostics, index, queries)
-  yaga webmaster feed       upload performers feed
+  yaga webmaster feed       upload performers feed (--all / --microsites)
   yaga webmaster mirrors    mirror settings
   yaga webmaster repair     feed repair helper
   yaga webmaster recrawl    submit URL for recrawl (or --quota)

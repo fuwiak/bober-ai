@@ -60,6 +60,7 @@ https://www.bober-ai.dev {
 	}
 
 	header /performers-feed.yml Content-Type "application/xml; charset=utf-8"
+	header /feeds/*.yml Content-Type "application/xml; charset=utf-8"
 	header /info.md Content-Type "text/markdown; charset=utf-8"
 	header /info.txt Content-Type "text/plain; charset=utf-8"
 
@@ -68,6 +69,9 @@ https://www.bober-ai.dev {
 	header /performers-feed.yml X-Robots-Tag "noindex"
 	header /performers-feed.yml Access-Control-Allow-Origin "*"
 	header /performers-feed.yml Cache-Control "public, max-age=300"
+	header /feeds/*.yml X-Robots-Tag "noindex"
+	header /feeds/*.yml Access-Control-Allow-Origin "*"
+	header /feeds/*.yml Cache-Control "public, max-age=300"
 
 	redir /ru / permanent
 	redir /ru/ / permanent
@@ -79,7 +83,24 @@ https://partners.bober-ai.dev {
 	encode gzip
 	root * /srv
 
-	@shared path /_next/* /stock/* /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /privacy-policy /consent /terms /partners/trust/*
+	handle /performers-feed.yml {
+		rewrite * /feeds/partners.yml
+		header Content-Type "application/xml; charset=utf-8"
+		header X-Robots-Tag "noindex"
+		header Access-Control-Allow-Origin "*"
+		header Cache-Control "public, max-age=300"
+		file_server
+	}
+
+	handle /feeds/partners.yml {
+		header Content-Type "application/xml; charset=utf-8"
+		header X-Robots-Tag "noindex"
+		header Access-Control-Allow-Origin "*"
+		header Cache-Control "public, max-age=300"
+		file_server
+	}
+
+	@shared path /_next/* /stock/* /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /privacy-policy /consent /terms /partners/trust/* /feeds/*
 	handle @shared {
 		try_files {path} {path}.html
 		file_server
@@ -96,7 +117,24 @@ https://bitrix.bober-ai.dev {
 	encode gzip
 	root * /srv
 
-	@shared path /_next/* /stock/* /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /privacy-policy /consent /terms /partners/trust/*
+	handle /performers-feed.yml {
+		rewrite * /feeds/bitrix.yml
+		header Content-Type "application/xml; charset=utf-8"
+		header X-Robots-Tag "noindex"
+		header Access-Control-Allow-Origin "*"
+		header Cache-Control "public, max-age=300"
+		file_server
+	}
+
+	handle /feeds/bitrix.yml {
+		header Content-Type "application/xml; charset=utf-8"
+		header X-Robots-Tag "noindex"
+		header Access-Control-Allow-Origin "*"
+		header Cache-Control "public, max-age=300"
+		file_server
+	}
+
+	@shared path /_next/* /stock/* /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /privacy-policy /consent /terms /partners/trust/* /feeds/*
 	handle @shared {
 		try_files {path} {path}.html
 		file_server
