@@ -5,7 +5,6 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { ContactForm } from "@/components/ContactForm";
-import { PerformerRating } from "@/components/PerformerRating";
 import { SeoServicePage } from "@/components/SeoServicePage";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { Link } from "@/i18n/navigation";
@@ -114,7 +113,6 @@ export default async function ServiceOfferPage({ params }: PageProps) {
               <p className="mt-1 text-sm text-muted">
                 {t("timeline")}: {offer.deliveryDays} {t("days")}
               </p>
-              <PerformerRating locale={locale} className="mt-4" />
 
               <div className="mt-5 flex flex-col gap-2">
                 <Link href="/#contact" className="btn-primary text-center">

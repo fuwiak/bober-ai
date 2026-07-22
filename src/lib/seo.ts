@@ -270,14 +270,15 @@ export function serviceJsonLd(input: {
   url: string;
   locale: string;
 }) {
+  // No aggregateRating on Service / nested provider — Yandex Uslugi compares offer pages to YML.
+  const { aggregateRating: _omitRating, ...provider } = organizationJsonLd(input.locale);
   return {
     "@context": "https://schema.org",
     "@type": "Service",
     name: input.name,
     description: input.description,
     url: input.url,
-    provider: organizationJsonLd(input.locale),
-    aggregateRating: aggregateRatingJsonLd(),
+    provider,
     areaServed: input.locale === "en" ? "Worldwide" : "Russia",
   };
 }

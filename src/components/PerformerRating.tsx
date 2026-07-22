@@ -6,7 +6,7 @@ type PerformerRatingProps = {
   className?: string;
 };
 
-/** Visible site rating (Yandex Uslugi). Not mirrored in YML — feed omits optional rating params. */
+/** Site rating block for non-offer pages. Do not mount on /services/* (Yandex YML moderation). */
 export function PerformerRating({ locale = "ru", className = "" }: PerformerRatingProps) {
   const isEn = locale === "en";
   const rating = PROFILE.rating;

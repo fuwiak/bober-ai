@@ -8,12 +8,11 @@ import {
   SITE_URL,
   TELEGRAM_URL,
 } from "@/lib/site";
-import { PROFILE, REVIEWS } from "@/lib/profile";
+import { PROFILE } from "@/lib/profile";
 
 const FEED_CATEGORY_ID = "18";
 const FEED_CATEGORY_PARENT_ID = "1";
-/** Omit Рейтинг / Число отзывов — optional in Yandex YML; mismatches fail moderation. */
-const FEED_REVIEW_SNIPPETS = REVIEWS.slice(0, 5);
+/** Omit rating/review params (Рейтинг, Число отзывов, Отзыв… unit="5") — Yandex compares them to the site. */
 /** Phone landing lives on the main host; microsites rewrite unknown paths to HTML. */
 const CONTACT_PHONE_URL = `${SITE_URL.replace(/\/$/, "")}/tel`;
 
@@ -93,10 +92,6 @@ function buildYmlCatalog(config: MicrositeFeedConfig, now = new Date()) {
       <param name="Выполняется по адресу исполнителя">false</param>
       <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">${escapeXml(offer.about)}</param>
-      ${FEED_REVIEW_SNIPPETS.map(
-        (review, index) =>
-          `<param name="Отзыв на исполнителя - ${index + 1}" unit="5">${escapeXml(`${review.author}: ${review.text}`)}</param>`,
-      ).join("\n      ")}
       <param name="Другая услуга исполнителя - 1">${escapeXml(offer.description)}</param>
       ${urlParam("Сайт работодателя", feedSiteUrl)}
       <sales_notes>${escapeXml(offer.salesNotes)}</sales_notes>
