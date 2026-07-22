@@ -27,7 +27,7 @@ export const STOCK_IMAGES = {
 
 export const PORTFOLIO_IMAGES = {
   telemost: "/portfolio/yandex-telemost-agent.png",
-  kaspersky: "/yandex/kaspersky 2.png",
+  kaspersky: "/stock/enterprise-ai-assistant.jpg",
   leads: "/portfolio/gtm-flow-leads.png",
   kpLlm: "/portfolio/offer-kp-llm.png",
   elia: "/portfolio/elia-suite.png",

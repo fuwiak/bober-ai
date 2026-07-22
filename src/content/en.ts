@@ -165,7 +165,7 @@ const en = {
       {
         href: "/portfolio",
         title: "Case studies",
-        description: "Project experience in Kaspersky-related scenarios, ELIA Suite, proposal automation — with measurement methodology.",
+        description: "A project built on Kaspersky-related solutions, ELIA Suite, proposal automation — with measurement methodology.",
       },
       {
         href: "/pricing",
@@ -215,7 +215,7 @@ const en = {
     },
     portfolio: {
       metaTitle: "AI implementation case studies",
-      metaDescription: "Bober AI Systems portfolio: participation in Kaspersky-related AI assistant scenarios, ELIA Suite, proposal automation, CRM and documents.",
+      metaDescription: "Bober AI Systems portfolio: a project built on Kaspersky-related solutions, ELIA Suite, proposal automation, CRM and documents.",
     },
     pricing: {
       metaTitle: "AI service price list — packages and estimates",
@@ -279,7 +279,7 @@ const en = {
       { value: "from €5k", label: "production implementation" },
       { value: "NDA", label: "and on-prem on request" },
     ],
-    logos: ["Kaspersky", "Yandex Cloud", "Selectel", "Cloud.ru"],
+    logos: ["Yandex Cloud", "Selectel", "Cloud.ru"],
     partnersAriaLabel: "Technology and cloud partners",
     partnerPrograms: {
       "yandex-cloud": "Yandex Cloud Partner",
@@ -680,7 +680,7 @@ const en = {
       "We can deploy in a closed environment — your cloud, on-prem, NDA",
       "We fix scope before development starts — cost, risks, acceptance criteria",
       "We hand the solution over to your company — code, instructions, access, documentation",
-      "I'm personally accountable for the architecture — 7 years in AI, publications, project experience in Kaspersky-related scenarios",
+      "I'm personally accountable for the architecture — 7 years in AI, publications, a project built on Kaspersky-related solutions",
     ],
   },
   timeline: {
@@ -716,7 +716,7 @@ const en = {
     title: "About the company",
     tagline: "Business transformation partner · Bober AI Systems",
     imageAlt: "Team implementing business process automation",
-    text: "Bober AI Systems is a team that designs and implements automation for companies. CRM, documents, sales, support — with fixed scope, milestones, and handover to your team.\n\nNot a freelance marketplace or a ChatGPT demo. We work as an external automation department: audit → roadmap → production → support. Case studies: participation in an internal AI assistant for Kaspersky-related scenarios, ELIA Suite, proposal and document automation.\n\nWe respond within 4 business hours. NDA before kickoff.",
+    text: "Bober AI Systems is a team that designs and implements automation for companies. CRM, documents, sales, support — with fixed scope, milestones, and handover to your team.\n\nNot a freelance marketplace or a ChatGPT demo. We work as an external automation department: audit → roadmap → production → support. Case studies: a project built on Kaspersky-related solutions (AI assistant), ELIA Suite, proposal and document automation.\n\nWe respond within 4 business hours. NDA before kickoff.",
     approach: "Approach",
     approachValue: "Process and ROI first, technology second. Fixed scope, milestone delivery, measurable outcomes.",
     schedule: "Schedule",
@@ -849,7 +849,7 @@ const en = {
       { q: "What is MCP and do you implement it?", a: "Model Context Protocol connects LLMs to tools and data sources. We build MCP servers for CRM, databases, and internal APIs." },
       { q: "Do you use LangGraph for agents?", a: "Yes, for multi-step agents with state, human-in-the-loop, and observability — when complexity exceeds simple chains." },
       { q: "How do you measure ROI?", a: "Baseline manual hours, error rates, and conversion metrics before launch. We report deltas after 30/60/90 days." },
-      { q: "What industries have you delivered in?", a: "Cybersecurity (project experience in Kaspersky-related scenarios), B2B sales, government affairs monitoring, education, banking media, and integrator subcontracting." },
+      { q: "What industries have you delivered in?", a: "Cybersecurity (a project built on Kaspersky-related solutions), B2B sales, government affairs monitoring, education, banking media, and integrator subcontracting." },
       { q: "How fast do you respond to new requests?", a: "Within 4 business hours. Preliminary scope and estimate within 24 hours after the discovery call." },
     ],
   },

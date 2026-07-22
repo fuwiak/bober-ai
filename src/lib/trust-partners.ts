@@ -14,13 +14,6 @@ export type TrustPartner = {
 
 export const TRUST_PARTNERS: TrustPartner[] = [
   {
-    id: "kaspersky",
-    name: "Kaspersky",
-    logoSrc: "/partners/trust/kaspersky.svg",
-    logoWidth: 160,
-    logoHeight: 33,
-  },
-  {
     id: "yandex-cloud",
     name: "Yandex Cloud",
     logoSrc: "/partners/trust/yandex-cloud.svg",

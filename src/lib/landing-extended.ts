@@ -271,7 +271,7 @@ const EXTENDED_RU: Record<string, LandingExtendedContent> = {
       { q: "Как обновлять документы?", a: "Автосинхронизация из SharePoint, Confluence, Google Drive или ручная загрузка с версионированием." },
     ],
     caseStudy: {
-      title: "AI-помощник Kaspersky",
+      title: "AI-помощник на базе решений Kaspersky",
       problem: "Консультанты тратили время на поиск в продуктовой документации.",
       solution: "RAG-ассистент с эскалацией к эксперту.",
       result: "Быстрее типовые обращения, единообразные ответы.",
@@ -303,7 +303,7 @@ const EXTENDED_RU: Record<string, LandingExtendedContent> = {
       { q: "Сколько стоит?", a: "Аудит — от 150 000 ₽. Внедрение — от 500 000 ₽ в зависимости от интеграций и объёма знаний." },
     ],
     caseStudy: {
-      title: "Kaspersky AI Assistant",
+      title: "AI-ассистент на базе решений Kaspersky",
       problem: "Сотни однотипных вопросов о продуктах и лицензиях.",
       solution: "LLM + RAG по документации + эскалация.",
       result: "Быстрее типовые кейсы, больше времени на сложные.",
@@ -596,7 +596,7 @@ const EXTENDED_EN: Record<string, LandingExtendedContent> = {
       { q: "How to update documents?", a: "Auto-sync from SharePoint, Confluence, Drive or manual upload with versioning." },
     ],
     caseStudy: {
-      title: "Kaspersky AI Assistant",
+      title: "AI assistant built on Kaspersky-related solutions",
       problem: "Consultants spent time searching product documentation.",
       solution: "RAG assistant with expert escalation.",
       result: "Faster typical cases, consistent answers.",
@@ -628,7 +628,7 @@ const EXTENDED_EN: Record<string, LandingExtendedContent> = {
       { q: "Cost?", a: "Audit from €1,500. Implementation from €5,000 depending on integrations and knowledge volume." },
     ],
     caseStudy: {
-      title: "Kaspersky AI Assistant",
+      title: "AI assistant built on Kaspersky-related solutions",
       problem: "Hundreds of repetitive product and license questions.",
       solution: "LLM + documentation RAG + escalation.",
       result: "Faster typical cases, more time on complex ones.",
