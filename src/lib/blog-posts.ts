@@ -1,3 +1,5 @@
+import { GENERATED_BLOG_POSTS } from "@/content/articles/index.generated";
+
 export type BlogPost = {
   slug: string;
   title: string;
@@ -10,7 +12,8 @@ export type BlogPost = {
   contentHtml: string;
 };
 
-export const BLOG_POSTS: BlogPost[] = [
+/** Исторические посты (Medium → сайт). Новые — через articles/ + `publish site`. */
+const LEGACY_BLOG_POSTS: BlogPost[] = [
   {
     slug: "rag-langchain-ot-haosa-k-smyslu",
     title: "От текстового хаоса к ясности: RAG и LangChain на практике",
@@ -270,6 +273,11 @@ button3 = 2137</code></pre>
       <p>Иллюстрации в оригинальной статье выбраны случайно, а автомобиль Solara — шутка, связанная с одинаковым названием. Я не получал денег за упоминание описанных технологий и сайтов и не связан профессионально или лично с командами Solara или Railway. Статья основана на моём опыте работы с данными.</p>
     `,
   },
+];
+
+export const BLOG_POSTS: BlogPost[] = [
+  ...LEGACY_BLOG_POSTS,
+  ...(GENERATED_BLOG_POSTS as BlogPost[]),
 ];
 
 export function getBlogPost(slug: string): BlogPost | undefined {

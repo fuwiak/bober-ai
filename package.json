@@ -40,7 +40,14 @@
     "ops:build": "go run ./cli build",
     "ops:install": "bash cli/install.sh",
     "yaga": "go run ./cli/yaga",
-    "yaga:install": "bash cli/yaga/install.sh"
+    "yaga:install": "bash cli/yaga/install.sh",
+    "publish": "node cli/publish/bin/publish.js",
+    "publish:install": "bash cli/publish/install.sh",
+    "publish:list": "node cli/publish/bin/publish.js list",
+    "publish:site": "node cli/publish/bin/publish.js site",
+    "publish:export-medium": "node cli/publish/bin/publish.js export-medium",
+    "publish:open-medium-import": "node cli/publish/bin/publish.js open-medium-import",
+    "publish:habr": "node cli/publish/bin/publish.js habr"
   },
   "dependencies": {
     "lucide-react": "^0.546.0",

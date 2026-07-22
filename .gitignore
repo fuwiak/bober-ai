@@ -14,5 +14,7 @@ test-results/
 out/
 cli/bober-ops
 cli/yaga/yaga
-# local yaga secrets (also ~/.config/yaga/credentials.env)
+# local article export artifacts (regenerate via publish CLI)
+articles/**/.export/
+# local yaga / publish secrets (also ~/.config/*/credentials.env)
 **/credentials.env

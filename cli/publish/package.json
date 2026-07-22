@@ -1,0 +1,13 @@
+{
+  "name": "bober-publish",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Site-first publish CLI — bober-ai.dev, Medium import, Habr draft helpers",
+  "type": "module",
+  "bin": {
+    "publish": "./bin/publish.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

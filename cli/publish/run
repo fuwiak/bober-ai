@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Launch publish CLI from anywhere (works via ~/bin/publish symlink).
+set -euo pipefail
+SOURCE="${BASH_SOURCE[0]}"
+while [[ -L "$SOURCE" ]]; do
+  DIR="$(cd "$(dirname "$SOURCE")" && pwd)"
+  LINK="$(readlink "$SOURCE")"
+  if [[ "$LINK" == /* ]]; then SOURCE="$LINK"; else SOURCE="$DIR/$LINK"; fi
+done
+HERE="$(cd "$(dirname "$SOURCE")" && pwd)"
+export PUBLISH_REPO="$(cd "$HERE/../.." && pwd)"
+exec node "$HERE/bin/publish.js" "$@"
