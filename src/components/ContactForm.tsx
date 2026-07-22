@@ -130,6 +130,7 @@ export function ContactForm({
 
   return (
     <form onSubmit={onSubmit} className="contact-form space-y-6">
+      <p className="body-copy text-sm text-muted">{t("intro")}</p>
       <div>
         <label htmlFor="name" className="form-label">
           {t("name")}

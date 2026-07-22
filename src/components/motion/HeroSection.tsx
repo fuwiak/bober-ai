@@ -130,10 +130,14 @@ export function HeroSection({
             transition={transition}
           >
             <ContactCta>{ctaPrimary}</ContactCta>
-            {ctaSecondaryHref.startsWith("#") || ctaSecondaryHref.includes("/#") ? (
+            {ctaSecondaryHref === "/#contact" || ctaSecondaryHref.endsWith("/#contact") ? (
               <ContactCta variant="secondary" goal="hero_secondary_cta_click" defaultService={ctaSecondary}>
                 {ctaSecondary}
               </ContactCta>
+            ) : ctaSecondaryHref.startsWith("#") || ctaSecondaryHref.includes("/#") ? (
+              <a href={ctaSecondaryHref.includes("/#") ? `#${ctaSecondaryHref.split("/#")[1]}` : ctaSecondaryHref} className="btn-secondary">
+                {ctaSecondary}
+              </a>
             ) : (
               <Link href={ctaSecondaryHref as "/"} className="btn-secondary">
                 {ctaSecondary}

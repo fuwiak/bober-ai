@@ -1356,6 +1356,53 @@ html.dark {
     line-height: 1.4;
   }
 
+  .trust-benefits {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 48px;
+    border-top: 1px solid var(--color-hairline);
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  @media (max-width: 900px) {
+    .trust-benefits {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .trust-benefit {
+    padding: 28px 20px;
+    border-right: 1px solid var(--color-hairline);
+  }
+  .trust-benefit:nth-child(4n),
+  .trust-benefit:last-child {
+    border-right: 0;
+  }
+  @media (max-width: 900px) {
+    .trust-benefit:nth-child(4n) {
+      border-right: 1px solid var(--color-hairline);
+    }
+    .trust-benefit:nth-child(2n) {
+      border-right: 0;
+    }
+    .trust-benefit:nth-child(n + 3) {
+      border-top: 1px solid var(--color-hairline);
+    }
+  }
+  .trust-benefit__title {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+    line-height: 1.35;
+  }
+  .trust-benefit__text {
+    margin-top: 10px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--color-body);
+  }
+
   /* Editorial rows */
   .editorial-row,
   .audience-row,
@@ -2366,6 +2413,18 @@ html.dark {
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--color-muted);
+  }
+  .roi-calculator__payback {
+    font-family: var(--font-display);
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+  }
+  .roi-calculator__gate,
+  .roi-calculator__success,
+  .roi-calculator__audit {
+    border-top: 1px solid var(--color-hairline);
+    padding-top: 1.5rem;
   }
   @media (max-width: 768px) {
     .btn-primary,

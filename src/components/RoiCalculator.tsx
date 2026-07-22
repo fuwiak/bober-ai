@@ -1,6 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import NextLink from "next/link";
+import { useMemo, useState, type FormEvent } from "react";
+import { ContactCta } from "@/components/ContactCta";
+import { reachGoal, getAttribution } from "@/lib/analytics";
+import { LEGAL_ROUTES } from "@/lib/legal";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 type RoiCalculatorProps = {
   locale: string;
@@ -12,8 +17,31 @@ type RoiCalculatorProps = {
   savingsLabel: string;
   resultLabel: string;
   resultNote: string;
-  cta: string;
-  onCta: () => void;
+  paybackLabel: string;
+  paybackSuffix: string;
+  auditDataTitle: string;
+  auditDataItems: string[];
+  captureCta: string;
+  gateTitle: string;
+  gateSubtitle: string;
+  emailLabel: string;
+  emailPlaceholder: string;
+  telegramLabel: string;
+  telegramPlaceholder: string;
+  telegramOptional: string;
+  gateSubmit: string;
+  gateSubmitting: string;
+  gateSuccessTitle: string;
+  gateSuccess: string;
+  consentCombined: string;
+  policyLink: string;
+  consentAnd: string;
+  consentLink: string;
+  errorConsent: string;
+  nextCtaPrimary: string;
+  nextCtaSecondary: string;
+  currency: string;
+  implementationFloor: number;
 };
 
 export function RoiCalculator({
@@ -26,18 +54,118 @@ export function RoiCalculator({
   savingsLabel,
   resultLabel,
   resultNote,
-  cta,
-  onCta,
+  paybackLabel,
+  paybackSuffix,
+  auditDataTitle,
+  auditDataItems,
+  captureCta,
+  gateTitle,
+  gateSubtitle,
+  emailLabel,
+  emailPlaceholder,
+  telegramLabel,
+  telegramPlaceholder,
+  telegramOptional,
+  gateSubmit,
+  gateSubmitting,
+  gateSuccessTitle,
+  gateSuccess,
+  consentCombined,
+  policyLink,
+  consentAnd,
+  consentLink,
+  errorConsent,
+  nextCtaPrimary,
+  nextCtaSecondary,
+  currency,
+  implementationFloor,
 }: RoiCalculatorProps) {
   const [employees, setEmployees] = useState(5);
   const [hours, setHours] = useState(12);
-  const [salary, setSalary] = useState(120000);
+  const [salary, setSalary] = useState(locale === "en" ? 3500 : 120000);
+  const [email, setEmail] = useState("");
+  const [telegram, setTelegram] = useState("");
+  const [consentAccepted, setConsentAccepted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
+  const [errorText, setErrorText] = useState("");
+  const [gateOpen, setGateOpen] = useState(false);
 
   const monthlySavings = useMemo(() => {
     const hourlyRate = salary / 168;
     const automatableShare = 0.55;
     return Math.round(employees * hours * 4.33 * hourlyRate * automatableShare);
   }, [employees, hours, salary]);
+
+  const paybackMonths = useMemo(() => {
+    if (monthlySavings <= 0) return null;
+    return Math.max(1, Math.ceil(implementationFloor / monthlySavings));
+  }, [implementationFloor, monthlySavings]);
+
+  const numberLocale = locale === "en" ? "en-US" : "ru-RU";
+
+  function openGate() {
+    setGateOpen(true);
+    reachGoal("roi_calculator_gate_open", {
+      employees,
+      hours,
+      savings: monthlySavings,
+    });
+  }
+
+  function onSubmitLead(event: FormEvent) {
+    event.preventDefault();
+    if (!consentAccepted) {
+      setStatus("error");
+      setErrorText(errorConsent);
+      return;
+    }
+
+    setStatus("sending");
+    setErrorText("");
+
+    const attribution = getAttribution();
+    const attrLines = [
+      attribution.landing_page && `Landing: ${attribution.landing_page}`,
+      attribution.utm_source && `utm_source: ${attribution.utm_source}`,
+      attribution.utm_campaign && `utm_campaign: ${attribution.utm_campaign}`,
+      attribution.yclid && `yclid: ${attribution.yclid}`,
+    ].filter(Boolean);
+
+    const subject = encodeURIComponent(
+      locale === "en" ? "ROI estimate request — Bober AI" : "Заявка: расчёт ROI — Bober AI",
+    );
+    const body = encodeURIComponent(
+      [
+        `Email: ${email.trim()}`,
+        telegram.trim() ? `Telegram: ${telegram.trim()}` : "",
+        "",
+        locale === "en" ? "ROI calculator inputs:" : "Ввод калькулятора ROI:",
+        `${employeesLabel}: ${employees}`,
+        `${hoursLabel}: ${hours}`,
+        `${salaryLabel}: ${salary.toLocaleString(numberLocale)} ${currency}`,
+        "",
+        `${resultLabel}: ${monthlySavings.toLocaleString(numberLocale)} ${currency} / ${savingsLabel}`,
+        paybackMonths
+          ? `${paybackLabel}: ~${paybackMonths} ${paybackSuffix}`
+          : "",
+        "",
+        auditDataTitle,
+        ...auditDataItems.map((item) => `— ${item}`),
+        ...(attrLines.length ? ["", ...attrLines] : []),
+      ]
+        .filter(Boolean)
+        .join("\n"),
+    );
+
+    reachGoal("roi_calculator_lead_submit", {
+      employees,
+      hours,
+      savings: monthlySavings,
+      payback: paybackMonths ?? undefined,
+    });
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    setStatus("ok");
+  }
 
   return (
     <div className="roi-calculator">
@@ -51,7 +179,11 @@ export function RoiCalculator({
             min={1}
             max={500}
             value={employees}
-            onChange={(e) => setEmployees(Number(e.target.value) || 1)}
+            onChange={(e) => {
+              setEmployees(Number(e.target.value) || 1);
+              setGateOpen(false);
+              setStatus("idle");
+            }}
             className="form-input mt-2"
           />
         </label>
@@ -62,7 +194,11 @@ export function RoiCalculator({
             min={1}
             max={80}
             value={hours}
-            onChange={(e) => setHours(Number(e.target.value) || 1)}
+            onChange={(e) => {
+              setHours(Number(e.target.value) || 1);
+              setGateOpen(false);
+              setStatus("idle");
+            }}
             className="form-input mt-2"
           />
         </label>
@@ -70,25 +206,132 @@ export function RoiCalculator({
           <span className="form-label">{salaryLabel}</span>
           <input
             type="number"
-            min={30000}
-            step={5000}
+            min={locale === "en" ? 1000 : 30000}
+            step={locale === "en" ? 100 : 5000}
             value={salary}
-            onChange={(e) => setSalary(Number(e.target.value) || 30000)}
+            onChange={(e) => {
+              setSalary(Number(e.target.value) || (locale === "en" ? 1000 : 30000));
+              setGateOpen(false);
+              setStatus("idle");
+            }}
             className="form-input mt-2"
           />
         </label>
       </div>
+
       <div className="roi-calculator__result mt-8">
         <p className="meta-label">{resultLabel}</p>
         <p className="roi-calculator__value mt-2">
-          {monthlySavings.toLocaleString(locale === "en" ? "en-US" : "ru-RU")} {locale === "en" ? "€" : "₽"}
+          {monthlySavings.toLocaleString(numberLocale)} {currency}
           <span className="roi-calculator__period"> / {savingsLabel}</span>
         </p>
+        {paybackMonths ? (
+          <p className="roi-calculator__payback mt-3">
+            {paybackLabel}: ~{paybackMonths} {paybackSuffix}
+          </p>
+        ) : null}
         <p className="body-copy mt-3 text-sm">{resultNote}</p>
       </div>
-      <button type="button" className="btn-primary mt-8" onClick={onCta}>
-        {cta}
-      </button>
+
+      <div className="roi-calculator__audit mt-8">
+        <p className="meta-label">{auditDataTitle}</p>
+        <ul className="mt-3 space-y-2">
+          {auditDataItems.map((item) => (
+            <li key={item} className="body-copy flex gap-3 text-sm">
+              <span className="meta-label shrink-0">—</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {!gateOpen && status !== "ok" ? (
+        <button type="button" className="btn-primary mt-8" onClick={openGate}>
+          {captureCta}
+        </button>
+      ) : null}
+
+      {gateOpen && status !== "ok" ? (
+        <form onSubmit={onSubmitLead} className="roi-calculator__gate mt-8 space-y-5">
+          <div>
+            <p className="card-title text-xl">{gateTitle}</p>
+            <p className="body-copy mt-2 text-sm">{gateSubtitle}</p>
+          </div>
+          <div>
+            <label htmlFor="roi-email" className="form-label">
+              {emailLabel}
+            </label>
+            <input
+              id="roi-email"
+              type="email"
+              required
+              autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder={emailPlaceholder}
+              className="text-input mt-2"
+            />
+          </div>
+          <div>
+            <label htmlFor="roi-telegram" className="form-label">
+              {telegramLabel} <span className="text-muted-soft">{telegramOptional}</span>
+            </label>
+            <input
+              id="roi-telegram"
+              value={telegram}
+              onChange={(e) => setTelegram(e.target.value)}
+              placeholder={telegramPlaceholder}
+              className="text-input mt-2"
+            />
+          </div>
+          <label htmlFor="roi-consent" className="flex cursor-pointer items-start gap-3">
+            <input
+              id="roi-consent"
+              type="checkbox"
+              checked={consentAccepted}
+              onChange={(e) => setConsentAccepted(e.target.checked)}
+              required
+              className="mt-1 h-4 w-4 shrink-0 border-hairline-strong accent-ink"
+            />
+            <span className="text-sm leading-relaxed text-muted">
+              {consentCombined}{" "}
+              <NextLink href={LEGAL_ROUTES.privacyPolicy} className="text-link" target="_blank">
+                {policyLink}
+              </NextLink>{" "}
+              {consentAnd}{" "}
+              <NextLink href={LEGAL_ROUTES.consent} className="text-link" target="_blank">
+                {consentLink}
+              </NextLink>
+              .
+            </span>
+          </label>
+          <button
+            type="submit"
+            disabled={!consentAccepted || status === "sending"}
+            className="btn-primary w-full"
+          >
+            {status === "sending" ? gateSubmitting : gateSubmit}
+          </button>
+          {status === "error" ? <p className="text-sm text-error">{errorText}</p> : null}
+        </form>
+      ) : null}
+
+      {status === "ok" ? (
+        <div className="roi-calculator__success mt-8" role="status" aria-live="polite">
+          <p className="card-title text-xl">{gateSuccessTitle}</p>
+          <p className="body-copy mt-3 text-base">{gateSuccess}</p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <ContactCta goal="roi_calculator_discuss_click">{nextCtaPrimary}</ContactCta>
+            <ContactCta
+              variant="secondary"
+              goal="roi_calculator_audit_click"
+              defaultService={locale === "en" ? "AI audit" : "AI-аудит"}
+            >
+              {nextCtaSecondary}
+            </ContactCta>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { ContactForm } from "@/components/ContactForm";
+import { ContactCta } from "@/components/ContactCta";
 import { BeforeAfterDemoSection } from "@/components/ExpertiseEvidence";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
 import { HomeHubSection } from "@/components/HomeHubSection";
@@ -7,6 +8,7 @@ import { SectionCtaBand } from "@/components/SectionCtaBand";
 import { PartnerProgramBanner } from "@/components/PartnerProgramBanner";
 import { PackagesShowcase } from "@/components/PackagesShowcase";
 import { FaqSection } from "@/components/FaqSection";
+import { RoiCalculatorSection } from "@/components/RoiCalculatorSection";
 import { SecuredAiPartnerSection } from "@/components/SecuredAiPartnerSection";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { HeroSection } from "@/components/motion/HeroSection";
@@ -27,6 +29,8 @@ import {
 export default async function HomePage() {
   const t = await getTranslations();
   const trustStats = t.raw("trust.stats") as { value: string; label: string }[];
+  const trustBenefits = t.raw("trust.benefits") as { title: string; text: string }[];
+  const budgetStats = t.raw("trust.budgetStats") as { value: string; label: string }[];
   const problemItems = t.raw("problemsWeSolve.items") as string[];
   const packageItems = (
     t.raw("packages.items") as {
@@ -66,7 +70,7 @@ export default async function HomePage() {
           specialization={t("hero.specialization")}
           ctaPrimary={t("hero.ctaPrimary")}
           ctaSecondary={t("hero.ctaSecondary")}
-          ctaSecondaryHref="/#contact"
+          ctaSecondaryHref="/#cases"
           trustItems={t.raw("hero.trustItems") as string[]}
           heroImage={FOUNDER_IMAGE}
           heroImageAlt={t("hero.heroImageAlt")}
@@ -74,11 +78,32 @@ export default async function HomePage() {
 
         <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial">
-            <TrustStrip stats={trustStats} />
+            <TrustStrip stats={trustStats} benefits={trustBenefits} />
           </div>
         </section>
 
         <section className="section-band section--panel border-b border-hairline">
+          <div className="container-editorial">
+            <Reveal>
+              <span className="section-label">{t("homeLanding.budgetLabel")}</span>
+              <h2 className="section-title mt-4">{t("homeLanding.budgetTitle")}</h2>
+              <p className="body-copy mt-4 max-w-2xl text-base">{t("homeLanding.budgetNote")}</p>
+            </Reveal>
+            <div className="trust-specs mt-8">
+              {budgetStats.map((stat) => (
+                <div key={stat.label} className="spec-cell">
+                  <span className="spec-value">{stat.value}</span>
+                  <span className="spec-label">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+            <Reveal delay={0.1} className="mt-8">
+              <ContactCta goal="home_budget_cta_click">{t("homeLanding.budgetCta")}</ContactCta>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className="section-band section--deep border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
               <span className="section-label">{t("sections.problems")}</span>
@@ -98,7 +123,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="section-band section--deep border-b border-hairline">
+        <section className="section-band section--panel border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
               <span className="section-label">{t("sections.whyUs")}</span>
@@ -118,7 +143,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="section-band section--panel border-b border-hairline">
+        <section id="cases" className="section-band section--deep scroll-mt-16 border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
               <span className="section-label">{t("homeLanding.casesLabel")}</span>
@@ -128,7 +153,13 @@ export default async function HomePage() {
             <Stagger className="mt-10 grid gap-6 md:grid-cols-3">
               {caseStudies.map((item) => (
                 <StaggerItem key={item.slug}>
-                  <CaseStudyCard item={item} viewLabel={t("common.viewCaseStudy")} />
+                  <CaseStudyCard
+                    item={item}
+                    viewLabel={t("common.viewCaseStudy")}
+                    beforeLabel={t("homeLanding.caseBeforeLabel")}
+                    afterLabel={t("homeLanding.caseAfterLabel")}
+                    discussLabel={t("homeLanding.caseDiscussCta")}
+                  />
                 </StaggerItem>
               ))}
             </Stagger>
@@ -139,6 +170,18 @@ export default async function HomePage() {
             </Reveal>
           </div>
         </section>
+
+        <RoiCalculatorSection
+          label={t("roiCalculator.label")}
+          title={t("roiCalculator.title")}
+          subtitle={t("roiCalculator.subtitle")}
+          employeesLabel={t("roiCalculator.employeesLabel")}
+          hoursLabel={t("roiCalculator.hoursLabel")}
+          salaryLabel={t("roiCalculator.salaryLabel")}
+          savingsLabel={t("roiCalculator.savingsLabel")}
+          resultLabel={t("roiCalculator.resultLabel")}
+          resultNote={t("roiCalculator.resultNote")}
+        />
 
         <SecuredAiPartnerSection
           architectureLabel={t("securedAi.architectureLabel")}
@@ -238,6 +281,7 @@ export default async function HomePage() {
                 <span className="section-label">{t("sections.contact")}</span>
                 <h2 className="section-title mt-4">{t("contact.title")}</h2>
                 <p className="body-copy mt-4 text-base">{t("contact.subtitle")}</p>
+                <p className="body-copy mt-3 text-sm text-muted">{t("contact.afterSubmit")}</p>
                 <div className="mt-8 flex flex-wrap justify-center gap-3">
                   <TrackedAnchor href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary" goal="telegram_click">
                     Telegram

@@ -1,9 +1,7 @@
 "use client";
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { RoiCalculator } from "@/components/RoiCalculator";
-import { useContactModal } from "@/components/ContactModalProvider";
-import { reachGoal } from "@/lib/analytics";
 
 type RoiCalculatorSectionProps = {
   label: string;
@@ -15,12 +13,13 @@ type RoiCalculatorSectionProps = {
   savingsLabel: string;
   resultLabel: string;
   resultNote: string;
-  cta: string;
+  cta?: string;
 };
 
 export function RoiCalculatorSection(props: RoiCalculatorSectionProps) {
-  const modal = useContactModal();
   const locale = useLocale();
+  const t = useTranslations("roiCalculator");
+  const tForm = useTranslations("form");
 
   return (
     <section id="roi" className="section-band section--panel scroll-mt-16 border-b border-hairline">
@@ -36,11 +35,31 @@ export function RoiCalculatorSection(props: RoiCalculatorSectionProps) {
           savingsLabel={props.savingsLabel}
           resultLabel={props.resultLabel}
           resultNote={props.resultNote}
-          cta={props.cta}
-          onCta={() => {
-            reachGoal("roi_calculator_cta_click");
-            modal?.open("ROI-калькулятор");
-          }}
+          paybackLabel={t("paybackLabel")}
+          paybackSuffix={t("paybackSuffix")}
+          auditDataTitle={t("auditDataTitle")}
+          auditDataItems={t.raw("auditDataItems") as string[]}
+          captureCta={t("captureCta")}
+          gateTitle={t("gateTitle")}
+          gateSubtitle={t("gateSubtitle")}
+          emailLabel={t("emailLabel")}
+          emailPlaceholder={t("emailPlaceholder")}
+          telegramLabel={t("telegramLabel")}
+          telegramPlaceholder={t("telegramPlaceholder")}
+          telegramOptional={tForm("optional")}
+          gateSubmit={t("gateSubmit")}
+          gateSubmitting={t("gateSubmitting")}
+          gateSuccessTitle={t("gateSuccessTitle")}
+          gateSuccess={t("gateSuccess")}
+          consentCombined={tForm("consentCombined")}
+          policyLink={tForm("policyLink")}
+          consentAnd={tForm("consentAnd")}
+          consentLink={tForm("consentLink")}
+          errorConsent={tForm("errorConsent")}
+          nextCtaPrimary={t("nextCtaPrimary")}
+          nextCtaSecondary={t("nextCtaSecondary")}
+          currency={t("currency")}
+          implementationFloor={Number(t("implementationFloor"))}
         />
       </div>
     </section>

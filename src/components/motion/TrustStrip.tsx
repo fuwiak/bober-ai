@@ -1,21 +1,28 @@
 "use client";
 
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Reveal } from "@/components/motion/Reveal";
-import { TRUST_PARTNERS } from "@/lib/trust-partners";
 
 type TrustStat = {
   value: string;
   label: string;
 };
 
-type TrustStripProps = {
-  stats: TrustStat[];
+type TrustBenefit = {
+  title: string;
+  text: string;
 };
 
-export function TrustStrip({ stats }: TrustStripProps) {
+type TrustStripProps = {
+  stats: TrustStat[];
+  benefits?: TrustBenefit[];
+};
+
+export function TrustStrip({ stats, benefits }: TrustStripProps) {
   const t = useTranslations("trust");
+  const benefitItems =
+    benefits ??
+    ((t.raw("benefits") as TrustBenefit[] | undefined) ?? []);
 
   return (
     <div className="trust-strip">
@@ -29,56 +36,18 @@ export function TrustStrip({ stats }: TrustStripProps) {
           ))}
         </div>
       </Reveal>
-      <Reveal delay={0.1}>
-        <div className="trust-logos" aria-label={t("partnersAriaLabel")}>
-          {TRUST_PARTNERS.map((partner) => {
-            const program = t.has(`partnerPrograms.${partner.id}`)
-              ? t(`partnerPrograms.${partner.id}`)
-              : null;
-            const logo = (
-              <>
-                <div className={`trust-logo__mark${partner.markTone === "dark" ? " trust-logo__mark--dark" : ""}`}>
-                  <Image
-                    src={partner.logoSrc}
-                    alt=""
-                    width={partner.logoWidth}
-                    height={partner.logoHeight}
-                    className="trust-logo__icon"
-                    aria-hidden
-                  />
-                </div>
-                <span className="trust-logo__name">{partner.name}</span>
-                {program ? <span className="trust-logo__program">{program}</span> : null}
-              </>
-            );
-
-            if (partner.href) {
-              return (
-                <a
-                  key={partner.id}
-                  href={partner.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="trust-logo trust-logo--linked"
-                  aria-label={program ? `${partner.name} — ${program}` : partner.name}
-                >
-                  {logo}
-                </a>
-              );
-            }
-
-            return (
-              <div
-                key={partner.id}
-                className="trust-logo"
-                aria-label={program ? `${partner.name} — ${program}` : partner.name}
-              >
-                {logo}
+      {benefitItems.length > 0 ? (
+        <Reveal delay={0.1}>
+          <div className="trust-benefits" aria-label={t("partnersAriaLabel")}>
+            {benefitItems.map((item) => (
+              <div key={item.title} className="trust-benefit">
+                <p className="trust-benefit__title">{item.title}</p>
+                <p className="trust-benefit__text">{item.text}</p>
               </div>
-            );
-          })}
-        </div>
-      </Reveal>
+            ))}
+          </div>
+        </Reveal>
+      ) : null}
     </div>
   );
 }
