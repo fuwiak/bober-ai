@@ -12,8 +12,7 @@ import { PROFILE, REVIEWS } from "@/lib/profile";
 
 const FEED_CATEGORY_ID = "18";
 const FEED_CATEGORY_PARENT_ID = "1";
-const FEED_RATING = Number.isInteger(PROFILE.rating) ? String(PROFILE.rating) : PROFILE.rating.toFixed(1);
-const FEED_REVIEWS_COUNT = String(PROFILE.reviewsCount);
+/** Omit Рейтинг / Число отзывов — optional in Yandex YML; mismatches fail moderation. */
 const FEED_REVIEW_SNIPPETS = REVIEWS.slice(0, 5);
 /** Phone landing lives on the main host; microsites rewrite unknown paths to HTML. */
 const CONTACT_PHONE_URL = `${SITE_URL.replace(/\/$/, "")}/tel`;
@@ -81,8 +80,6 @@ function buildYmlCatalog(config: MicrositeFeedConfig, now = new Date()) {
       <set-ids>${escapeXml(offer.slug)}</set-ids>
       <picture>${escapeXml(picture)}</picture>
       <description>${escapeXml(offer.title)}</description>
-      <param name="Рейтинг">${FEED_RATING}</param>
-      <param name="Число отзывов">${FEED_REVIEWS_COUNT}</param>
       <param name="Годы опыта">${PROFILE.experienceYears}</param>
       <param name="Регион">${SITE_REGION}</param>
       <param name="Конверсия">${offer.conversion}</param>

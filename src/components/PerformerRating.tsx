@@ -6,7 +6,7 @@ type PerformerRatingProps = {
   className?: string;
 };
 
-/** Visible rating that must match performers-feed.yml (Yandex moderation). */
+/** Visible site rating (Yandex Uslugi). Not mirrored in YML — feed omits optional rating params. */
 export function PerformerRating({ locale = "ru", className = "" }: PerformerRatingProps) {
   const isEn = locale === "en";
   const rating = PROFILE.rating;
