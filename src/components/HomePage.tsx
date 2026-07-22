@@ -3,6 +3,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { ContactCta } from "@/components/ContactCta";
 import { BeforeAfterDemoSection } from "@/components/ExpertiseEvidence";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
+import { FounderManifesto } from "@/components/FounderManifesto";
 import { HomeHubSection } from "@/components/HomeHubSection";
 import { LeadMagnetsSection } from "@/components/LeadMagnetsSection";
 import { SectionCtaBand } from "@/components/SectionCtaBand";
@@ -61,6 +62,7 @@ export default async function HomePage() {
     href?: string;
     service?: string;
   }[];
+  const founderStats = t.raw("founderManifesto.stats") as { value: string; label: string }[];
   const caseStudies = getPortfolioListing();
 
   return (
@@ -199,6 +201,16 @@ export default async function HomePage() {
           title={t("leadMagnets.title")}
           subtitle={t("leadMagnets.subtitle")}
           items={leadMagnetItems}
+        />
+
+        <FounderManifesto
+          label={t("founderManifesto.label")}
+          name={t("founderManifesto.name")}
+          role={t("founderManifesto.role")}
+          quote={t("founderManifesto.quote")}
+          goal={t("founderManifesto.goal")}
+          imageAlt={t("hero.heroImageAlt")}
+          stats={founderStats}
         />
 
         <BeforeAfterDemoSection

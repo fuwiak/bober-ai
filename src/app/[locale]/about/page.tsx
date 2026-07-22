@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ContactCta } from "@/components/ContactCta";
+import { FounderManifesto } from "@/components/FounderManifesto";
 import { PartnerCertificates } from "@/components/PartnerCertificates";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { Reveal } from "@/components/motion/Reveal";
@@ -35,11 +36,22 @@ export default async function AboutPage({ params }: Props) {
   const t = await getTranslations();
   const isEn = locale === "en";
   const skills = t.raw("about.skills") as string[];
+  const founderStats = t.raw("founderManifesto.stats") as { value: string; label: string }[];
 
   return (
     <div className="page-shell min-h-screen">
       <SiteHeader />
       <main>
+        <FounderManifesto
+          label={t("founderManifesto.label")}
+          name={t("founderManifesto.name")}
+          role={t("founderManifesto.role")}
+          quote={t("founderManifesto.quote")}
+          goal={t("founderManifesto.goal")}
+          imageAlt={t("hero.heroImageAlt")}
+          stats={founderStats}
+        />
+
         <section
           id="certificates"
           className="section-band section--deep scroll-mt-16 border-b border-hairline"
