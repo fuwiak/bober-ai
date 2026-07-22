@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { createPortal } from "react-dom";
 import NextLink from "next/link";
 import { motion, LayoutGroup } from "motion/react";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
@@ -73,11 +72,6 @@ export function SiteHeaderClient({
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [hoveredHref, setHoveredHref] = useState<string | null>(null);
-  const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null);
-
-  useEffect(() => {
-    setPortalTarget(document.body);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -99,7 +93,7 @@ export function SiteHeaderClient({
   const indicatorHref =
     hoveredHref ?? navItems.find((item) => isNavItemActive(pathname, item, navItems))?.href ?? null;
 
-  const header = (
+  return (
     <header className={`site-header${menuOpen ? " site-header--menu-open" : ""}`}>
       <div className="container-editorial site-header__frame">
         <div className="site-header__bar">
@@ -243,13 +237,5 @@ export function SiteHeaderClient({
         </nav>
       </div>
     </header>
-  );
-
-  return (
-    <>
-      {/* Portal to body so position:fixed is not trapped by page-shell / overflow ancestors */}
-      {portalTarget ? createPortal(header, portalTarget) : header}
-      <div className="site-header__spacer" aria-hidden="true" />
-    </>
   );
 }
