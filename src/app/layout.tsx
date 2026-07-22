@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.webmanifest",
   verification: {
-    yandex: "53fda44dc6d2443f",
+    yandex: "b5643e127be991c8",
   },
   robots: {
     index: true,

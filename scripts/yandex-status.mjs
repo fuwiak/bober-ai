@@ -17,7 +17,7 @@ const config = {
   siteUrl: (process.env.YANDEX_WEBMASTER_HOST_URL || process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev").replace(/\/$/, ""),
   feedUrl: (process.env.YANDEX_WEBMASTER_FEED_URL || "https://www.bober-ai.dev/performers-feed.yml").replace(/\/$/, ""),
   metrikaId: process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID?.trim() || "108972710",
-  verificationCode: process.env.YANDEX_WEBMASTER_VERIFICATION_CODE?.trim() || "53fda44dc6d2443f",
+  verificationCode: process.env.YANDEX_WEBMASTER_VERIFICATION_CODE?.trim() || "b5643e127be991c8",
 };
 
 function ok(message) {
