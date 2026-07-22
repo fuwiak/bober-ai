@@ -3,13 +3,14 @@ import { ContactForm } from "@/components/ContactForm";
 import { ContactCta } from "@/components/ContactCta";
 import { BeforeAfterDemoSection } from "@/components/ExpertiseEvidence";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
+import { FounderStrip } from "@/components/FounderStrip";
 import { HomeHubSection } from "@/components/HomeHubSection";
+import { LeadMagnetsSection } from "@/components/LeadMagnetsSection";
 import { SectionCtaBand } from "@/components/SectionCtaBand";
 import { PartnerProgramBanner } from "@/components/PartnerProgramBanner";
 import { PackagesShowcase } from "@/components/PackagesShowcase";
 import { FaqSection } from "@/components/FaqSection";
 import { RoiCalculatorSection } from "@/components/RoiCalculatorSection";
-import { SecuredAiPartnerSection } from "@/components/SecuredAiPartnerSection";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { HeroSection } from "@/components/motion/HeroSection";
 import { TrustStrip } from "@/components/motion/TrustStrip";
@@ -43,8 +44,8 @@ export default async function HomePage() {
       detailsHref?: string;
     }[]
   ).slice(0, 3);
-  const whyTrustItems = (t.raw("whyTrust.items") as string[]).slice(0, 4);
-  const faqItems = (t.raw("faq.items") as { q: string; a: string }[]).slice(0, 5);
+  const whyTrustItems = (t.raw("whyTrust.items") as string[]).slice(0, 5);
+  const faqItems = (t.raw("faq.items") as { q: string; a: string }[]).slice(0, 6);
   const beforeSteps = t.raw("beforeAfterDemo.beforeSteps") as { label: string; status: string }[];
   const afterSteps = t.raw("beforeAfterDemo.afterSteps") as { label: string; status: string }[];
   const demoFlow = t.raw("beforeAfterDemo.flow") as string[];
@@ -52,6 +53,14 @@ export default async function HomePage() {
     href: string;
     title: string;
     description: string;
+  }[];
+  const leadMagnetItems = t.raw("leadMagnets.items") as {
+    id: string;
+    title: string;
+    description: string;
+    cta: string;
+    href?: string;
+    service?: string;
   }[];
   const caseStudies = getPortfolioListing();
 
@@ -74,6 +83,17 @@ export default async function HomePage() {
           trustItems={t.raw("hero.trustItems") as string[]}
           heroImage={FOUNDER_IMAGE}
           heroImageAlt={t("hero.heroImageAlt")}
+          founderName={t("hero.nameLine")}
+          founderRole={t("hero.founderBadge")}
+          founderTeamLine={t("hero.teamLine")}
+        />
+
+        <FounderStrip
+          badge={t("founderStrip.badge")}
+          name={t("founderStrip.name")}
+          role={t("founderStrip.role")}
+          text={t("founderStrip.text")}
+          aboutCta={t("founderStrip.aboutCta")}
         />
 
         <section className="section-band section--deep border-b border-hairline">
@@ -183,13 +203,11 @@ export default async function HomePage() {
           resultNote={t("roiCalculator.resultNote")}
         />
 
-        <SecuredAiPartnerSection
-          architectureLabel={t("securedAi.architectureLabel")}
-          architectureTitle={t("securedAi.architectureTitle")}
-          architectureSteps={t.raw("securedAi.architectureSteps") as string[]}
-          architectureText={t("securedAi.architectureText")}
-          ctaPrimary={t("securedAi.ctaPrimary")}
-          ctaSecondary={t("securedAi.ctaSecondary")}
+        <LeadMagnetsSection
+          label={t("leadMagnets.label")}
+          title={t("leadMagnets.title")}
+          subtitle={t("leadMagnets.subtitle")}
+          items={leadMagnetItems}
         />
 
         <BeforeAfterDemoSection
@@ -294,7 +312,7 @@ export default async function HomePage() {
                 </div>
               </div>
               <div className="mt-10 text-left">
-                <ContactForm />
+                <ContactForm qualify />
               </div>
             </Reveal>
           </div>

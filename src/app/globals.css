@@ -1091,8 +1091,35 @@ html.dark {
       min-height: 200px;
     }
   }
-  .hero-media figcaption {
-    @apply mt-4 font-mono text-[11px] uppercase tracking-[0.16em] text-muted;
+  .hero-media figcaption,
+  .hero-founder-caption {
+    @apply mt-4 flex flex-col gap-1.5;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .hero-founder-caption__badge {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+  .hero-founder-caption__name {
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    text-transform: none;
+    color: var(--color-ink);
+  }
+  .hero-founder-caption__team {
+    max-width: 28rem;
+    letter-spacing: 0.08em;
+    text-transform: none;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: var(--color-body);
   }
 
   /* Editorial image effects */
@@ -2203,6 +2230,143 @@ html.dark {
     flex: 1;
     height: 1px;
     background: var(--color-hairline);
+  }
+  .contact-modal__offer {
+    display: inline-block;
+    padding-top: 0.25rem;
+    color: var(--color-ink);
+  }
+  .contact-qualify {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  .contact-qualify__grid {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 640px) {
+    .contact-qualify__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .founder-strip {
+    display: grid;
+    gap: 1.5rem;
+    align-items: start;
+  }
+  @media (min-width: 768px) {
+    .founder-strip {
+      grid-template-columns: 7.5rem minmax(0, 1fr);
+      gap: 2rem;
+      align-items: center;
+    }
+  }
+  .founder-strip__portrait {
+    position: relative;
+    width: 6rem;
+    height: 6rem;
+    overflow: hidden;
+    border: 1px solid var(--color-hairline);
+  }
+  @media (min-width: 768px) {
+    .founder-strip__portrait {
+      width: 7.5rem;
+      height: 7.5rem;
+    }
+  }
+  .founder-strip__image {
+    object-fit: cover;
+  }
+  .founder-strip__name {
+    margin-top: 0.75rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .founder-strip__role {
+    margin-top: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .lead-magnets {
+    display: grid;
+    gap: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .lead-magnets {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+  }
+  .lead-magnet {
+    padding-top: 0.25rem;
+    border-top: 1px solid var(--color-hairline);
+  }
+  .lead-magnet__title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+  }
+  .career-roles {
+    display: grid;
+    gap: 2rem;
+  }
+  .career-role {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .career-role:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+  .career-role__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+    align-items: baseline;
+  }
+  .career-role__type {
+    font-size: 0.875rem;
+    color: var(--color-muted);
+  }
+  .career-role__title {
+    margin-top: 0.75rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .career-role__columns {
+    display: grid;
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .career-role__columns {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2rem;
+    }
+  }
+  .career-perks {
+    display: grid;
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .career-perks {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .career-perk {
+    border-top: 1px solid var(--color-hairline);
+    padding-top: 1rem;
   }
   .contact-fab {
     position: fixed;

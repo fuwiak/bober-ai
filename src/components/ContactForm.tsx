@@ -14,6 +14,8 @@ type ContactFormProps = {
   trackingPrefix?: string;
   /** Extended fields for company / deployment; Kaspersky is optional only */
   extended?: boolean;
+  /** Short pre-meeting qualification selects (optional answers) */
+  qualify?: boolean;
 };
 
 const SUCCESS_CLOSE_MS = 2400;
@@ -24,6 +26,7 @@ export function ContactForm({
   onSuccess,
   trackingPrefix = "",
   extended = false,
+  qualify = false,
 }: ContactFormProps) {
   const t = useTranslations("form");
   const [name, setName] = useState("");
@@ -33,6 +36,10 @@ export function ContactForm({
   const [contact, setContact] = useState("");
   const [message, setMessage] = useState(defaultMessage);
   const [deployment, setDeployment] = useState("");
+  const [processType, setProcessType] = useState("");
+  const [systems, setSystems] = useState("");
+  const [budget, setBudget] = useState("");
+  const [timeline, setTimeline] = useState("");
   const [kasperskyOptional, setKasperskyOptional] = useState(false);
   const [consentAccepted, setConsentAccepted] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
@@ -41,6 +48,10 @@ export function ContactForm({
 
   const canSubmit = consentAccepted && status !== "sending";
   const deploymentOptions = t.raw("deploymentOptions") as string[];
+  const processOptions = t.raw("processOptions") as string[];
+  const systemsOptions = t.raw("systemsOptions") as string[];
+  const budgetOptions = t.raw("budgetOptions") as string[];
+  const timelineOptions = t.raw("timelineOptions") as string[];
 
   useEffect(() => {
     if (status !== "ok" || !onSuccess) return;
@@ -72,6 +83,10 @@ export function ContactForm({
     const parts = [
       defaultService ? `Услуга: ${defaultService}` : "",
       extended && company.trim() ? `Компания: ${company.trim()}` : "",
+      qualify && processType ? `Процесс: ${processType}` : "",
+      qualify && systems ? `Системы: ${systems}` : "",
+      qualify && budget ? `Бюджет: ${budget}` : "",
+      qualify && timeline ? `Сроки: ${timeline}` : "",
       extended && deployment ? `Контур: ${deployment}` : "",
       extended && kasperskyOptional ? "Опция: защита инфраструктуры (Kaspersky)" : "",
       message.trim(),
@@ -110,6 +125,10 @@ export function ContactForm({
     setContact("");
     setMessage("");
     setDeployment("");
+    setProcessType("");
+    setSystems("");
+    setBudget("");
+    setTimeline("");
     setKasperskyOptional(false);
     setConsentAccepted(false);
   }
@@ -209,6 +228,87 @@ export function ContactForm({
           />
         </div>
       )}
+
+      {qualify ? (
+        <fieldset className="contact-qualify">
+          <legend className="form-label">{t("qualifyLegend")}</legend>
+          <p className="body-copy mb-4 text-sm text-muted">{t("qualifyHint")}</p>
+          <div className="contact-qualify__grid">
+            <div>
+              <label htmlFor="process-type" className="form-label">
+                {t("processType")} <span className="text-muted-soft">{t("optional")}</span>
+              </label>
+              <select
+                id="process-type"
+                value={processType}
+                onChange={(e) => setProcessType(e.target.value)}
+                className="text-input"
+              >
+                <option value="">{t("selectPlaceholder")}</option>
+                {processOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label htmlFor="systems" className="form-label">
+                {t("systems")} <span className="text-muted-soft">{t("optional")}</span>
+              </label>
+              <select
+                id="systems"
+                value={systems}
+                onChange={(e) => setSystems(e.target.value)}
+                className="text-input"
+              >
+                <option value="">{t("selectPlaceholder")}</option>
+                {systemsOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label htmlFor="budget" className="form-label">
+                {t("budget")} <span className="text-muted-soft">{t("optional")}</span>
+              </label>
+              <select
+                id="budget"
+                value={budget}
+                onChange={(e) => setBudget(e.target.value)}
+                className="text-input"
+              >
+                <option value="">{t("selectPlaceholder")}</option>
+                {budgetOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label htmlFor="timeline" className="form-label">
+                {t("timeline")} <span className="text-muted-soft">{t("optional")}</span>
+              </label>
+              <select
+                id="timeline"
+                value={timeline}
+                onChange={(e) => setTimeline(e.target.value)}
+                className="text-input"
+              >
+                <option value="">{t("selectPlaceholder")}</option>
+                {timelineOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </fieldset>
+      ) : null}
 
       <div>
         <label htmlFor="message" className="form-label">

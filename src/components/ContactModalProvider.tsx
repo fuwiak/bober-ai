@@ -3,11 +3,17 @@
 import { createContext, useCallback, useContext, useEffect, useId, useState } from "react";
 import { useTranslations } from "next-intl";
 import { ContactForm } from "@/components/ContactForm";
+import { ContactIntentTrigger } from "@/components/ContactIntentTrigger";
 import { TrackedAnchor } from "@/components/TrackedAnchor";
 import { CONTACT_EMAIL, TELEGRAM_URL, WHATSAPP_URL } from "@/lib/site";
 
+type OpenOptions = {
+  softOffer?: boolean;
+  source?: string;
+};
+
 type ContactModalContextValue = {
-  open: (defaultService?: string) => void;
+  open: (defaultService?: string, options?: OpenOptions) => void;
   close: () => void;
 };
 
@@ -23,17 +29,24 @@ export function ContactModalProvider({ children }: { children: React.ReactNode }
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
   const [defaultService, setDefaultService] = useState("");
+  const [softOffer, setSoftOffer] = useState(false);
   const titleId = useId();
   const t = useTranslations("contact");
 
-  const open = useCallback((service = "") => {
+  const open = useCallback((service = "", options?: OpenOptions) => {
     setDefaultService(service);
+    setSoftOffer(Boolean(options?.softOffer));
     setMounted(true);
     requestAnimationFrame(() => setVisible(true));
   }, []);
 
   const close = useCallback(() => {
     setVisible(false);
+    try {
+      sessionStorage.setItem("bober_contact_intent_dismissed", "1");
+    } catch {
+      /* ignore */
+    }
   }, []);
 
   useEffect(() => {
@@ -41,6 +54,7 @@ export function ContactModalProvider({ children }: { children: React.ReactNode }
       const timer = window.setTimeout(() => {
         setMounted(false);
         setDefaultService("");
+        setSoftOffer(false);
       }, MODAL_EXIT_MS);
       return () => window.clearTimeout(timer);
     }
@@ -66,6 +80,7 @@ export function ContactModalProvider({ children }: { children: React.ReactNode }
   return (
     <ContactModalContext.Provider value={{ open, close }}>
       {children}
+      <ContactIntentTrigger />
       {mounted ? (
         <div
           className={`contact-modal${visible ? " contact-modal--open" : ""}`}
@@ -78,9 +93,12 @@ export function ContactModalProvider({ children }: { children: React.ReactNode }
             <div className="contact-modal__header">
               <div>
                 <h2 id={titleId} className="card-title text-2xl">
-                  {t("title")}
+                  {softOffer ? t("intentTitle") : t("title")}
                 </h2>
-                <p className="body-copy mt-3 text-base">{t("subtitle")}</p>
+                <p className="body-copy mt-3 text-base">
+                  {softOffer ? t("intentSubtitle") : t("subtitle")}
+                </p>
+                {softOffer ? <p className="contact-modal__offer meta-label mt-4">{t("intentOffer")}</p> : null}
               </div>
               <button type="button" className="contact-modal__close" onClick={close} aria-label={t("modalClose")}>
                 ×
@@ -103,7 +121,12 @@ export function ContactModalProvider({ children }: { children: React.ReactNode }
             <div className="contact-modal__divider" aria-hidden="true">
               <span>{t("modalFormDivider")}</span>
             </div>
-            <ContactForm defaultService={defaultService} onSuccess={close} extended />
+            <ContactForm
+              defaultService={defaultService || (softOffer ? t("intentDefaultService") : "")}
+              onSuccess={close}
+              extended
+              qualify
+            />
           </div>
         </div>
       ) : null}

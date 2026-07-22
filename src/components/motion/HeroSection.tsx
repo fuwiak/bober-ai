@@ -21,6 +21,10 @@ type HeroSectionProps = {
   trustItems: string[];
   heroImage: string;
   heroImageAlt: string;
+  /** Visible founder caption under portrait — not sr-only */
+  founderName?: string;
+  founderRole?: string;
+  founderTeamLine?: string;
   /** Office / architecture accents composed beside the portrait */
   accentImages?: { src: string; alt?: string }[];
 };
@@ -39,6 +43,9 @@ export function HeroSection({
   trustItems,
   heroImage,
   heroImageAlt,
+  founderName,
+  founderRole,
+  founderTeamLine,
   accentImages = [],
 }: HeroSectionProps) {
   const prefersReducedMotion = useReducedMotion();
@@ -180,8 +187,18 @@ export function HeroSection({
               </div>
             ) : null}
           </div>
-          <figcaption className="sr-only">
-            {heroImageAlt} · {trustItems.join(" · ")}
+          <figcaption className="hero-founder-caption">
+            {founderName || founderRole ? (
+              <>
+                {founderRole ? <span className="hero-founder-caption__badge">{founderRole}</span> : null}
+                {founderName ? <span className="hero-founder-caption__name">{founderName}</span> : null}
+                {founderTeamLine ? <span className="hero-founder-caption__team">{founderTeamLine}</span> : null}
+              </>
+            ) : (
+              <span className="sr-only">
+                {heroImageAlt} · {trustItems.join(" · ")}
+              </span>
+            )}
           </figcaption>
         </motion.figure>
       </div>
