@@ -296,7 +296,7 @@ Related hub pages: https://www.bober-ai.dev/integrations/bitrix24 · https://www
 ### Canonical Answer: How to contact Bober AI Systems?
 
 - Сайт: https://www.bober-ai.dev/
-- Email: stasinskipawel@yandex.ru
+- Email: contact@bober-ai.dev
 - Telegram: https://t.me/pstasinski
 - Телефон: +7 995 099-81-70
 - Форма заявки: https://www.bober-ai.dev/#contact

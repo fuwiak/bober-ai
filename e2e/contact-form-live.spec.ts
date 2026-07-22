@@ -5,7 +5,7 @@ const hasResendKey = Boolean(process.env.RESEND_API_KEY);
 test.describe("Живая отправка заявки", () => {
   test.skip(!hasResendKey, "Нужен RESEND_API_KEY в окружении для реальной отправки письма");
 
-  test("отправляет тестовое письмо на stasinskipawel@yandex.ru", async ({ request }) => {
+  test("отправляет тестовое письмо на contact@bober-ai.dev", async ({ request }) => {
     const stamp = new Date().toISOString();
     const payload = {
       name: `[TEST] Тестовый клиент`,
@@ -22,7 +22,7 @@ test.describe("Живая отправка заявки", () => {
     expect(body).toMatchObject({ ok: true });
 
     console.log("\n--- Тестовое письмо отправлено ---");
-    console.log("Получатели: stasinskipawel@yandex.ru");
+    console.log("Получатели: contact@bober-ai.dev");
     console.log(`Тема: Заявка с сайта Bober AI Systems от ${payload.name}`);
     console.log("Текст:\n" + `Имя: ${payload.name}\nКонтакт: ${payload.contact}\n\nСообщение:\n${payload.message}`);
     console.log("----------------------------------\n");

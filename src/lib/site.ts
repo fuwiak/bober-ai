@@ -44,7 +44,7 @@ export const SITE_COUNTRY = "Россия";
 export const SITE_GEO = { latitude: 55.6665, longitude: 37.7448 } as const;
 /** Публичный email на сайте. Меняется через NEXT_PUBLIC_CONTACT_EMAIL в Railway. */
 export const CONTACT_EMAIL =
-  process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "stasinskipawel@yandex.ru";
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "contact@bober-ai.dev";
 /** Получатели заявок, если CONTACT_TO_EMAIL не задан. */
 export const CONTACT_NOTIFICATION_EMAILS = [CONTACT_EMAIL];
 export const CONTACT_PHONE = "+79950998170";
