@@ -216,13 +216,6 @@ const en = {
       },
     ],
   },
-  founderStrip: {
-    badge: "Team",
-    name: "Pawel Stasinski",
-    role: "Founder of Bober AI · leads architecture",
-    text: "Bober AI is not a one-person shop. The founder owns architecture and outcomes; vetted specialists join for development, integrations and infrastructure on each project perimeter.",
-    aboutCta: "About the company and certificates",
-  },
   leadMagnets: {
     label: "Before the call",
     title: "Two practical next steps",

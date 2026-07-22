@@ -3,7 +3,6 @@ import { ContactForm } from "@/components/ContactForm";
 import { ContactCta } from "@/components/ContactCta";
 import { BeforeAfterDemoSection } from "@/components/ExpertiseEvidence";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
-import { FounderStrip } from "@/components/FounderStrip";
 import { HomeHubSection } from "@/components/HomeHubSection";
 import { LeadMagnetsSection } from "@/components/LeadMagnetsSection";
 import { SectionCtaBand } from "@/components/SectionCtaBand";
@@ -86,14 +85,6 @@ export default async function HomePage() {
           founderName={t("hero.nameLine")}
           founderRole={t("hero.founderBadge")}
           founderTeamLine={t("hero.teamLine")}
-        />
-
-        <FounderStrip
-          badge={t("founderStrip.badge")}
-          name={t("founderStrip.name")}
-          role={t("founderStrip.role")}
-          text={t("founderStrip.text")}
-          aboutCta={t("founderStrip.aboutCta")}
         />
 
         <section className="section-band section--deep border-b border-hairline">
