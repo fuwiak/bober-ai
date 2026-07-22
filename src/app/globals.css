@@ -911,13 +911,23 @@ html.dark {
     font-weight: 400;
     color: var(--color-muted);
   }
+  .hero-trust-lines {
+    margin-top: 1.25rem;
+    max-width: 42rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .hero-trust-lines .hero-partners {
+    margin-top: 0;
+  }
   .hero-partners {
     margin-top: 1.25rem;
     max-width: 42rem;
     font-family: var(--font-body);
     font-size: clamp(13px, 1.7vw, 15px);
     line-height: 1.5;
-    color: var(--color-body);
+    color: var(--color-muted);
   }
   .hero-spec {
     @apply mt-4 font-mono text-[11px] uppercase tracking-[0.14em];

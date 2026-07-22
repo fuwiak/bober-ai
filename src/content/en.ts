@@ -2,7 +2,7 @@ const en = {
   meta: {
     title: "AI systems and automation for companies — Bober AI",
     description:
-      "Automating documents, sales, support and internal processes. AI assistants, RAG, private LLMs. Integration with Bitrix24, 1C, amoCRM, CRM and ERP. Authorized Partner of Kaspersky Lab.",
+      "AI systems and automation for companies: documents, sales, support and internal processes. AI assistants, RAG, private LLMs. Integration with Bitrix24, 1C, amoCRM, CRM and ERP.",
     keywords: [
       "AI systems for companies",
       "business process automation",
@@ -12,7 +12,6 @@ const en = {
       "AI assistants",
       "amoCRM integration",
       "Bitrix24 integration",
-      "authorized Kaspersky partner",
       "AI on-premise",
       "document automation",
       "claude ai",
@@ -53,25 +52,22 @@ const en = {
   },
   hero: {
     location: "Moscow · Remote · Russia & CIS",
-    eyebrow:
-      "Authorized Partner of Kaspersky Lab · Business partner of Yandex Cloud, Cloud.ru and Selectel",
+    eyebrow: "Partners: Yandex Cloud, Cloud.ru and Selectel",
     titleLine1: "AI systems and automation for companies",
     titleLine2: "",
     valueProposition:
       "I automate work with documents, sales, support and internal processes. I integrate AI with Bitrix24, 1C, amoCRM, CRM, ERP, databases and company services.\n\nI build AI assistants, analytics, RAG systems and private LLMs — from prototype to production deployment.",
-    differentiator: "Additional infrastructure protection based on Kaspersky solutions.",
+    differentiator: "Certified Kaspersky infrastructure protection",
     specialization: "NDA · cloud / on-premise · Moscow / remote",
-    heroImageAlt: "Pawel Stasinski — AI architect, corporate systems, partners Kaspersky, Selectel, Yandex Cloud",
+    heroImageAlt: "Pawel Stasinski — AI architect, corporate systems and automation",
     officeGalleryLabel: "Corporate architecture and office spaces",
     trustItems: ["NDA", "CLOUD / ON-PREMISE", "MOSCOW / REMOTE"],
     title: "AI systems and automation for companies",
     roles: ["Automation architect", "Production implementation"],
     nameLine: "Pawel Stasinski · '@'pstasinski",
-    focus:
-      "Authorized Partner of Kaspersky Lab. AI systems, automation and integration with Bitrix24, 1C, amoCRM, CRM and ERP.",
+    focus: "AI systems, automation and integration with Bitrix24, 1C, amoCRM, CRM and ERP.",
     trustLine: "★ {rating} · {reviewCount} reviews · {years} years · 12+ production deployments",
-    partnersLine:
-      "Authorized Partner of Kaspersky Lab · Business partner of Yandex Cloud, Cloud.ru and Selectel",
+    partnersLine: "Partners: Yandex Cloud, Cloud.ru and Selectel",
     ctaPrimary: "Discuss a project",
     ctaSecondary: "Estimate architecture",
     ctaTelegram: "Telegram",
@@ -159,7 +155,7 @@ const en = {
       {
         href: "/portfolio",
         title: "Case studies",
-        description: "Kaspersky product RAG bot for 1C staff, ELIA Suite, proposal automation — with measurement methodology.",
+        description: "ELIA Suite, proposal automation, product-docs RAG — with measurement methodology.",
       },
       {
         href: "/pricing",
@@ -209,7 +205,7 @@ const en = {
     },
     portfolio: {
       metaTitle: "AI implementation case studies",
-      metaDescription: "Bober AI Systems portfolio: Kaspersky product RAG bot for 1C staff, ELIA Suite, proposal automation, CRM and documents.",
+      metaDescription: "Bober AI Systems portfolio: ELIA Suite, proposal automation, CRM and documents, corporate RAG assistants.",
     },
     pricing: {
       metaTitle: "AI service price list — packages and estimates",
@@ -231,9 +227,9 @@ const en = {
         "Bober AI Systems certificates: Authorized Partner of Kaspersky Lab — B2B and B2C. PDF downloads and previews.",
     },
     about: {
-      metaTitle: "About — certificates and team at Bober AI",
+      metaTitle: "About — Bober AI Systems",
       metaDescription:
-        "Bober AI: automation and AI for companies. Authorized Partner of Kaspersky Lab — B2B and B2C certificates, approach and expertise.",
+        "Bober AI: automation and AI for companies. Approach, expertise and Authorized Partner of Kaspersky Lab certificates.",
       pageTitle: "About",
       lead: "Design and implementation of automation and AI for companies. Partner certificates confirm status — not a product catalog.",
     },
@@ -295,13 +291,13 @@ const en = {
       { value: "from €5k", label: "production implementation" },
       { value: "NDA", label: "and your perimeter on request" },
     ],
-    logos: ["Kaspersky", "Yandex Cloud", "Selectel", "Cloud.ru"],
+    logos: ["Yandex Cloud", "Selectel", "Cloud.ru", "Kaspersky"],
     partnersAriaLabel: "Technology and cloud partners",
     partnerPrograms: {
-      kaspersky: "Authorized Partner of Kaspersky Lab",
       "yandex-cloud": "Yandex Cloud Partner",
       selectel: "Selectel Partner Program",
       cloudru: "Cloud.ru Technology Partner",
+      kaspersky: "Authorized Partner of Kaspersky Lab",
     },
   },
   securedAi: {
@@ -309,7 +305,7 @@ const en = {
     architectureLabel: "Architecture",
     architectureTitle: "Corporate AI perimeter, turnkey",
     architectureText:
-      "Assessment, architecture, AI components, integrations with 1C / Bitrix24 / amoCRM, and go-live in the cloud or on-premise. Infrastructure protection is one layer of the perimeter — not a separate product brand.",
+      "Assessment, architecture, AI components, integrations with 1C / Bitrix24 / amoCRM, and go-live in the cloud or on-premise. Infrastructure protection is an optional perimeter layer — not a separate product brand.",
     architectureSteps: [
       "Data sources",
       "Document intake and processing",
@@ -752,7 +748,7 @@ const en = {
       "We deploy in a closed perimeter — client cloud, on-prem server, NDA",
       "We lock boundaries before development — scope, cost, risks, acceptance criteria",
       "We hand the solution over to your company — code, instructions, access, documentation",
-      "I'm personally accountable for the architecture — 7 years in AI, publications, project experience: Kaspersky product RAG bot for 1C",
+      "I'm personally accountable for the architecture — 7 years in AI, publications, project experience: corporate RAG and AI assistants",
     ],
   },
   timeline: {
@@ -788,7 +784,7 @@ const en = {
     title: "About the company",
     tagline: "Business transformation partner · Bober AI Systems",
     imageAlt: "Team implementing business process automation",
-    text: "Bober AI Systems is a team that designs and implements automation for companies. CRM, documents, sales, support — with fixed scope, milestones, and handover to your team.\n\nNot a freelance marketplace or a ChatGPT demo. We work as an external automation department: audit → roadmap → production → support. Case studies: Kaspersky product RAG bot for 1C staff, ELIA Suite, proposal and document automation.\n\nWe respond within 4 business hours. NDA before kickoff.",
+    text: "Bober AI Systems is a team that designs and implements automation for companies. CRM, documents, sales, support — with fixed scope, milestones, and handover to your team.\n\nNot a freelance marketplace or a ChatGPT demo. We work as an external automation department: audit → roadmap → production → support. Case studies: ELIA Suite, proposal and document automation, corporate RAG assistants.\n\nWe respond within 4 business hours. NDA before kickoff.",
     approach: "Approach",
     approachValue: "Process and ROI first, technology second. Fixed scope, milestone delivery, measurable outcomes.",
     schedule: "Schedule",
@@ -902,26 +898,6 @@ const en = {
       { q: "Does it integrate with amoCRM, Bitrix24 and 1C?", a: "Yes. CRM/ERP is a core competency: bidirectional sync, webhooks, document flows, retry on failures." },
       { q: "Can you deploy in our own perimeter?", a: "Yes. On-prem, isolated VPC, Yandex Cloud, Selectel, Cloud.ru — data stays in your infrastructure." },
       { q: "When does AI actually make sense?", a: "When manual work is repetitive, documents are unstructured or support volume is high. We start with an ROI calculation — not hype." },
-      {
-        q: "Are you an official Kaspersky partner?",
-        a: "Yes. Bober AI is an Authorized Partner of Kaspersky Lab and can officially supply Kaspersky corporate products. This is an optional add-on to AI projects — not the core focus.",
-      },
-      {
-        q: "Can Kaspersky be included in an AI implementation project?",
-        a: "Yes. Kaspersky solutions can be part of the overall project architecture to protect servers, workplaces, virtual and cloud infrastructure — when the customer needs them.",
-      },
-      {
-        q: "Do you only implement Kaspersky products?",
-        a: "No. Bober AI’s core focus is corporate AI systems, automation and integrations. Kaspersky solutions are used as part of the infrastructure stack when needed.",
-      },
-      {
-        q: "Can you install in the customer’s perimeter?",
-        a: "Yes. On-premise, Russian clouds and hybrid architectures are supported.",
-      },
-      {
-        q: "Can we buy licenses only?",
-        a: "Yes, but Bober AI’s main value is solution selection, architecture, implementation, integration and support for AI and automation.",
-      },
       { q: "What if the AI makes a mistake?", a: "We design human-in-the-loop, confidence thresholds, action logs and escalation to an employee. Critical operations require human confirmation." },
       { q: "Does it work with confidential data?", a: "NDA before kickoff, DPA, 152-FZ, encryption, audit logs. Keys and models stay under client control." },
       { q: "What types of companies do you work with?", a: "Mid-market and enterprise companies, CRM/ERP integrators and software houses that need production AI delivery under NDA — not one-off chatbot demos." },
@@ -946,6 +922,26 @@ const en = {
       { q: "How do you measure ROI?", a: "Baseline manual hours, errors and conversion before launch. We report the delta after 30/60/90 days." },
       { q: "What industries have you already delivered in?", a: "Cybersecurity (Kaspersky product RAG bot for 1C staff), B2B sales, legislative monitoring, education, banking media, integrator subcontracting." },
       { q: "How fast do you respond to new requests?", a: "Within 4 business hours. Preliminary scope and estimate — within 24 hours after the discovery call." },
+      {
+        q: "Are you an official Kaspersky partner?",
+        a: "Yes. Bober AI is an Authorized Partner of Kaspersky Lab and can officially supply Kaspersky corporate products. This is an optional add-on to AI projects — not the core focus.",
+      },
+      {
+        q: "Can Kaspersky be included in an AI implementation project?",
+        a: "Yes. Kaspersky solutions can be part of the overall project architecture to protect servers, workplaces, virtual and cloud infrastructure — when the customer needs them.",
+      },
+      {
+        q: "Do you only implement Kaspersky products?",
+        a: "No. Bober AI’s core focus is corporate AI systems, automation and integrations. Kaspersky solutions are used as part of the infrastructure stack when needed.",
+      },
+      {
+        q: "Can you install in the customer’s perimeter?",
+        a: "Yes. On-premise, Russian clouds and hybrid architectures are supported.",
+      },
+      {
+        q: "Can we buy licenses only?",
+        a: "Yes, but Bober AI’s main value is solution selection, architecture, implementation, integration and support for AI and automation.",
+      },
     ],
   },
   contact: {
@@ -978,7 +974,7 @@ const en = {
     messagePlaceholder: "What to automate, current systems, scale",
     deployment: "Where should the system run",
     deploymentOptions: ["Cloud", "On-premise", "Hybrid"],
-    kasperskyNeed: "Do you need Kaspersky solutions supply",
+    kasperskyNeed: "Optional infrastructure protection (Kaspersky)",
     kasperskyOptions: ["Yes", "No", "Let's discuss"],
     selectPlaceholder: "Select an option",
     optional: "(optional)",

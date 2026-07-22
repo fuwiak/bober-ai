@@ -12,7 +12,7 @@ type ContactFormProps = {
   defaultMessage?: string;
   onSuccess?: () => void;
   trackingPrefix?: string;
-  /** Extended fields for secured AI / Kaspersky inquiries */
+  /** Extended fields for company / deployment; Kaspersky is optional only */
   extended?: boolean;
 };
 
@@ -33,7 +33,7 @@ export function ContactForm({
   const [contact, setContact] = useState("");
   const [message, setMessage] = useState(defaultMessage);
   const [deployment, setDeployment] = useState("");
-  const [kasperskyNeed, setKasperskyNeed] = useState("");
+  const [kasperskyOptional, setKasperskyOptional] = useState(false);
   const [consentAccepted, setConsentAccepted] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
   const [errorText, setErrorText] = useState("");
@@ -41,7 +41,6 @@ export function ContactForm({
 
   const canSubmit = consentAccepted && status !== "sending";
   const deploymentOptions = t.raw("deploymentOptions") as string[];
-  const kasperskyOptions = t.raw("kasperskyOptions") as string[];
 
   useEffect(() => {
     if (status !== "ok" || !onSuccess) return;
@@ -74,7 +73,7 @@ export function ContactForm({
       defaultService ? `Услуга: ${defaultService}` : "",
       extended && company.trim() ? `Компания: ${company.trim()}` : "",
       extended && deployment ? `Контур: ${deployment}` : "",
-      extended && kasperskyNeed ? `Поставка Kaspersky: ${kasperskyNeed}` : "",
+      extended && kasperskyOptional ? "Опция: защита инфраструктуры (Kaspersky)" : "",
       message.trim(),
     ].filter(Boolean);
     const fullMessage = parts.length > 0 ? parts.join("\n\n") : "—";
@@ -111,7 +110,7 @@ export function ContactForm({
     setContact("");
     setMessage("");
     setDeployment("");
-    setKasperskyNeed("");
+    setKasperskyOptional(false);
     setConsentAccepted(false);
   }
 
@@ -247,25 +246,18 @@ export function ContactForm({
             </select>
           </div>
 
-          <div>
-            <label htmlFor="kaspersky" className="form-label">
-              {t("kasperskyNeed")}
-            </label>
-            <select
-              id="kaspersky"
-              required
-              value={kasperskyNeed}
-              onChange={(e) => setKasperskyNeed(e.target.value)}
-              className="text-input"
-            >
-              <option value="">{t("selectPlaceholder")}</option>
-              {kasperskyOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </div>
+          <label htmlFor="kaspersky-optional" className="flex cursor-pointer items-start gap-3">
+            <input
+              id="kaspersky-optional"
+              type="checkbox"
+              checked={kasperskyOptional}
+              onChange={(e) => setKasperskyOptional(e.target.checked)}
+              className="mt-1 h-4 w-4 shrink-0 border-hairline-strong accent-ink"
+            />
+            <span className="text-sm leading-relaxed text-muted">
+              {t("kasperskyNeed")} <span className="text-muted-soft">{t("optional")}</span>
+            </span>
+          </label>
         </>
       ) : null}
 

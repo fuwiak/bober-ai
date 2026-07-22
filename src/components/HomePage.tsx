@@ -118,19 +118,6 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <SecuredAiPartnerSection
-          architectureLabel={t("securedAi.architectureLabel")}
-          architectureTitle={t("securedAi.architectureTitle")}
-          architectureSteps={t.raw("securedAi.architectureSteps") as string[]}
-          architectureText={t("securedAi.architectureText")}
-          noteLabel={t("securedAi.noteLabel")}
-          noteTitle={t("securedAi.noteTitle")}
-          noteBody={t("securedAi.noteBody")}
-          certificatesLink={t("securedAi.certificatesLink")}
-          ctaPrimary={t("securedAi.ctaPrimary")}
-          ctaSecondary={t("securedAi.ctaSecondary")}
-        />
-
         <section className="section-band section--panel border-b border-hairline">
           <div className="container-editorial">
             <Reveal>
@@ -152,6 +139,19 @@ export default async function HomePage() {
             </Reveal>
           </div>
         </section>
+
+        <SecuredAiPartnerSection
+          architectureLabel={t("securedAi.architectureLabel")}
+          architectureTitle={t("securedAi.architectureTitle")}
+          architectureSteps={t.raw("securedAi.architectureSteps") as string[]}
+          architectureText={t("securedAi.architectureText")}
+          noteLabel={t("securedAi.noteLabel")}
+          noteTitle={t("securedAi.noteTitle")}
+          noteBody={t("securedAi.noteBody")}
+          certificatesLink={t("securedAi.certificatesLink")}
+          ctaPrimary={t("securedAi.ctaPrimary")}
+          ctaSecondary={t("securedAi.ctaSecondary")}
+        />
 
         <BeforeAfterDemoSection
           label={t("beforeAfterDemo.label")}

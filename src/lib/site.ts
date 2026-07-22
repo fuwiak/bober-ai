@@ -99,7 +99,6 @@ export const DEFAULT_KEYWORDS = [
   "контейнеры и Linux-серверы",
   "Yandex Cloud",
   "Selectel",
-  "авторизованный партнёр Kaspersky",
 ];
 
 export function absoluteUrl(path = "/"): string {

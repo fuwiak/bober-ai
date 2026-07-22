@@ -103,26 +103,6 @@ export function HeroSection({
             </motion.p>
           ))}
 
-          {differentiator ? (
-            <motion.p
-              className="hero-differentiator"
-              variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
-              transition={transition}
-            >
-              {differentiator}
-            </motion.p>
-          ) : null}
-
-          {eyebrow ? (
-            <motion.p
-              className="hero-partners"
-              variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
-              transition={transition}
-            >
-              {eyebrow}
-            </motion.p>
-          ) : null}
-
           {specialization ? (
             <motion.p
               className="hero-spec"
@@ -131,6 +111,17 @@ export function HeroSection({
             >
               {specialization}
             </motion.p>
+          ) : null}
+
+          {(differentiator || eyebrow) ? (
+            <motion.div
+              className="hero-trust-lines"
+              variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
+              transition={transition}
+            >
+              {differentiator ? <p className="hero-partners">{differentiator}</p> : null}
+              {eyebrow ? <p className="hero-partners">{eyebrow}</p> : null}
+            </motion.div>
           ) : null}
 
           <motion.div
