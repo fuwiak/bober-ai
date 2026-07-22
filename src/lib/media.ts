@@ -376,7 +376,7 @@ export function founderPersonJsonLd(pageUrl: string) {
       "Pavel Stasinsky",
       "fuwiak",
     ],
-    jobTitle: "AI Architect / AI Automation Engineer",
+    jobTitle: "Founder / AI Architect",
     url: pageUrl,
     image: absoluteUrl(FOUNDER_IMAGE),
     worksFor: {

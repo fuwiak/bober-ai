@@ -59,12 +59,12 @@ const en = {
       "For companies where managers and operators lose hours on proposals, documents and copy-paste between CRM, email and ERP.\n\nWe deploy a production AI perimeter into your systems — with a fixed estimate, NDA and full code handover.",
     differentiator: "Fixed estimate · NDA · cloud or on-premise",
     specialization: "Project estimate — 30 minutes · reply within 4 business hours",
-    heroImageAlt: "Pawel Stasinski — AI architect, corporate systems and automation",
+    heroImageAlt: "Pawel Stasinski — founder of Bober AI, AI architect",
     officeGalleryLabel: "Corporate architecture and office spaces",
     trustItems: ["NDA", "CLOUD / ON-PREMISE", "MOSCOW / REMOTE"],
     title: "We automate proposals, documents and CRM workflows with AI — no manual data copying",
-    roles: ["Automation architect", "Production implementation"],
-    nameLine: "Pawel Stasinski · '@'pstasinski",
+    roles: ["Founder of Bober AI", "AI architect"],
+    nameLine: "Pawel Stasinski · founder of Bober AI",
     focus: "AI systems, automation and integration with Bitrix24, 1C, amoCRM, CRM and ERP.",
     trustLine: "★ {rating} · {reviewCount} reviews · {years} years · 12+ production deployments",
     partnersLine: "Partners: Yandex Cloud, Cloud.ru and Selectel",
@@ -246,7 +246,7 @@ const en = {
       metaDescription:
         "Bober AI: automation and AI for companies. Approach, expertise and Authorized Partner of Kaspersky Lab certificates.",
       pageTitle: "About",
-      lead: "Design and implementation of automation and AI for companies. Partner certificates confirm status — not a product catalog.",
+      lead: "Design and implementation of automation and AI for companies. Founder — Pawel Stasinski. Partner certificates confirm status — not a product catalog.",
     },
   },
   certificates: {
@@ -409,7 +409,7 @@ const en = {
     detailsLabel: "Details",
     auditNote: "The audit fee is credited toward the project budget if we continue to implementation.",
     urgency:
-      "I typically run only a few projects at a time. The next window for a new implementation opens after the current one completes.",
+      "We take on a limited number of implementations at a time — to keep architecture quality and clear ownership of outcomes. The next window opens after the current one completes.",
   },
   microConversions: {
     label: "Next step",
@@ -810,7 +810,7 @@ const en = {
       "We deploy in a closed perimeter — client cloud, on-prem server, NDA",
       "We lock boundaries before development — scope, cost, risks, acceptance criteria",
       "We hand the solution over to your company — code, instructions, access, documentation",
-      "I'm personally accountable for the architecture — 7 years in AI, publications, project experience: corporate RAG and AI assistants",
+      "Founder Pawel Stasinski leads architecture and is personally accountable for outcomes — 7 years in AI, publications, project experience; vetted developers and infra specialists join for specific workstreams",
     ],
   },
   timeline: {
@@ -846,7 +846,7 @@ const en = {
     title: "About the company",
     tagline: "Business transformation partner · Bober AI Systems",
     imageAlt: "Team implementing business process automation",
-    text: "Bober AI Systems is a team that designs and implements automation for companies. CRM, documents, sales, support — with fixed scope, milestones, and handover to your team.\n\nNot a freelance marketplace or a ChatGPT demo. We work as an external automation department: audit → roadmap → production → support. Case studies: ELIA Suite, proposal and document automation, corporate RAG assistants.\n\nWe respond within 4 business hours. NDA before kickoff.",
+    text: "Bober AI Systems is a team that designs and implements automation for companies. Founder Pawel Stasinski leads architecture and is personally accountable for outcomes; vetted developers and infrastructure specialists join for specific workstreams.\n\nCRM, documents, sales, support — with fixed scope, milestones, and handover to your team. Not a freelance marketplace or a ChatGPT demo: an external automation department — audit → roadmap → production → support. Case studies: ELIA Suite, proposal and document automation, corporate RAG assistants.\n\nWe respond within 4 business hours. NDA before kickoff.",
     approach: "Approach",
     approachValue: "Process and ROI first, technology second. Fixed scope, milestone delivery, measurable outcomes.",
     schedule: "Schedule",
