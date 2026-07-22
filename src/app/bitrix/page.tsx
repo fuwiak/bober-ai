@@ -5,7 +5,11 @@ import { ContactForm } from "@/components/ContactForm";
 import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { TrackedAnchor } from "@/components/TrackedAnchor";
 import { Reveal } from "@/components/motion/Reveal";
-import { BITRIX_PACKAGES, BITRIX_SERVICES_SUMMARY } from "@/lib/bitrix-landing";
+import {
+  BITRIX_LANDING_KEYWORDS,
+  BITRIX_PACKAGES,
+  BITRIX_SERVICES_SUMMARY,
+} from "@/lib/bitrix-landing";
 import { LEGAL_ENTITY, LEGAL_ROUTES, formatLegalRequisitesLine } from "@/lib/legal";
 import { webPageJsonLd } from "@/lib/seo";
 import {
@@ -30,18 +34,10 @@ const PRIVACY_URL = `${SITE_URL.replace(/\/$/, "")}${LEGAL_ROUTES.privacyPolicy}
 const TERMS_URL = `${SITE_URL.replace(/\/$/, "")}${LEGAL_ROUTES.terms}`;
 
 export const metadata: Metadata = {
-  title: "Внедрение Битрикс24 и AI-автоматизация под ключ",
+  title: "Внедрение Битрикс24 с AI — автоматизация и аналитика под ключ",
   description:
-    "Внедрение Битрикс24 + индивидуальные AI-решения для продаж, аналитики и автоматизации. Интеграции с 1С, телефонией и мессенджерами. Пилот от 300 000 ₽.",
-  keywords: [
-    "внедрение битрикс24",
-    "битрикс24 ai",
-    "автоматизация битрикс24",
-    "интеграция битрикс24 1с",
-    "ai ассистент crm",
-    "автоматизация amocrm",
-    "битрикс24 мойсклад",
-  ],
+    "Внедрение Битрикс24 с AI, AI-автоматизация и AI-аналитика Битрикс24, интеграция Битрикс24 и AI для продаж, Битрикс24 + локальный LLM. Пилот от 300 000 ₽.",
+  keywords: [...BITRIX_LANDING_KEYWORDS],
   alternates: { canonical: LANDING_URL },
   robots: { index: true, follow: true },
   verification: { yandex: "b5643e127be991c8" },
@@ -50,9 +46,9 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     url: LANDING_URL,
     siteName: LANDING_NAME,
-    title: "Внедрение Битрикс24 и AI-автоматизация под ключ",
+    title: "Внедрение Битрикс24 с AI — автоматизация и аналитика под ключ",
     description:
-      "Внедрение Битрикс24 + индивидуальные AI-решения для продаж, аналитики и автоматизации. Пилот от 300 000 ₽.",
+      "Внедрение Битрикс24 с AI + AI-автоматизация, аналитика и локальный LLM. Интеграции с 1С, телефонией и мессенджерами. Пилот от 300 000 ₽.",
     images: [{ url: "/stock/office-tower.jpg", width: 1200, height: 630 }],
   },
 };
@@ -210,7 +206,7 @@ const PARTNER_CHECKLIST = [
   },
   {
     title: "Пакеты внедрения",
-    text: "Пять фиксированных пакетов: от запуска портала до AI-аналитики, интеграций и локального контура — с понятной лестницей бюджета.",
+    text: "Пять фиксированных пакетов с ключами Битрикс24 + AI: внедрение, AI-автоматизация, AI-аналитика, интеграции для продаж и локальный LLM.",
   },
   {
     title: "Лицензии и основная ценность",
@@ -220,9 +216,9 @@ const PARTNER_CHECKLIST = [
 
 export default function BitrixLandingPage() {
   const webPage = webPageJsonLd({
-    name: "Внедрение Битрикс24 и AI-автоматизация под ключ",
+    name: "Внедрение Битрикс24 с AI — автоматизация и аналитика под ключ",
     description:
-      "Внедрение Битрикс24 + индивидуальные AI-решения для продаж, аналитики и автоматизации. Пилот от 300 000 ₽.",
+      "Внедрение Битрикс24 с AI, AI-автоматизация и AI-аналитика Битрикс24, интеграция Битрикс24 и AI для продаж, Битрикс24 + локальный LLM. Пилот от 300 000 ₽.",
     url: LANDING_URL,
     locale: "ru",
   });
@@ -257,11 +253,10 @@ export default function BitrixLandingPage() {
               <Reveal>
                 <p className="hero-label">Bober AI Systems · Битрикс24</p>
                 <h1 className="section-title mt-6 max-w-3xl text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05]">
-                  Внедрение Битрикс24 и AI-автоматизация под ключ
+                  Внедрение Битрикс24 с AI — автоматизация и аналитика под ключ
                 </h1>
                 <p className="body-copy mt-5 max-w-2xl text-lg">
-                  Официальное внедрение Битрикс24 + индивидуальные AI-решения для продаж, аналитики и
-                  автоматизации.
+                  Внедрение Битрикс24 с AI + индивидуальные решения для продаж, аналитики и автоматизации.
                 </p>
                 <p className="mt-4 max-w-2xl font-display text-base text-muted">
                   Не перепродажа лицензий, а настройка процессов, интеграции и AI-слой поверх вашей CRM.
@@ -361,7 +356,7 @@ export default function BitrixLandingPage() {
             <div className="container-editorial max-w-4xl">
               <Reveal>
                 <span className="section-label">Пакеты внедрения</span>
-                <h2 className="section-title mt-4 max-w-2xl">Пакеты под ключ — от портала до AI-контура</h2>
+                <h2 className="section-title mt-4 max-w-2xl">Пакеты под ключ — Битрикс24 + AI</h2>
                 <p className="body-copy mt-4 max-w-2xl">
                   Можно взять один пакет или всю цепочку. Цены — за внедрение и разработку; процент от лицензий
                   Битрикс24 не указываем.
@@ -375,7 +370,8 @@ export default function BitrixLandingPage() {
                     className="scroll-mt-20 border border-hairline bg-surface-card p-6"
                   >
                     <h3 className="card-title text-lg">{item.title}</h3>
-                    <p className="body-copy mt-2 text-sm">{item.description}</p>
+                    <p className="meta-label mt-2 text-muted">{item.keywords.join(" · ")}</p>
+                    <p className="body-copy mt-3 text-sm">{item.description}</p>
                     <p className="body-copy mt-3 text-sm text-body-strong">
                       <span className="meta-label text-muted">Клиент получает: </span>
                       {item.gets}

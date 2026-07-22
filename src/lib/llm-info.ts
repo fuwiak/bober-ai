@@ -217,10 +217,10 @@ Also on main site: https://www.bober-ai.dev/partners
 ### Bitrix24 & amoCRM specialty
 
 Dedicated CRM landing: https://bitrix.bober-ai.dev/
-- Внедрение Битрикс24 и AI-автоматизация под ключ (пилот от 300 000 ₽)
+- Внедрение Битрикс24 с AI — автоматизация и аналитика под ключ (пилот от 300 000 ₽)
 - AI для Битрикс24: воронка, REST API, задачи, диск, связка с 1С
 - AI для amoCRM: квалификация лидов, саммари, scoring, реактивация
-- Пакеты: Битрикс24 Старт · CRM и автоматизация продаж · AI-аналитика · интеграции · локальный AI
+- Пакеты (ключи): Внедрение Битрикс24 с AI · AI-автоматизация Битрикс24 · AI-аналитика Битрикс24 · Интеграция Битрикс24 и AI для продаж · Битрикс24 + локальный LLM
 - Интеграции: 1С, МойСклад, Диадок, СБИС, телефония, Telegram, Excel/БД
 Related hub pages: https://www.bober-ai.dev/integrations/bitrix24 · https://www.bober-ai.dev/integrations/amocrm · https://www.bober-ai.dev/integrations/crm
 

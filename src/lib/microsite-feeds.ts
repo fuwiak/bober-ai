@@ -213,7 +213,7 @@ export function getBitrixFeedXml(now = new Date()) {
       siteUrl: BITRIX_SITE_URL,
       shopName: `${SITE_NAME} — Битрикс24`,
       shopDescription:
-        "Внедрение Битрикс24 и AI-автоматизация под ключ: продажи, аналитика, интеграции с 1С и МойСклад. Пилот от 300 000 ₽.",
+        "Внедрение Битрикс24 с AI, AI-автоматизация и AI-аналитика Битрикс24, интеграция Битрикс24 и AI для продаж, Битрикс24 + локальный LLM. Пилот от 300 000 ₽.",
       orderPath: "/#contact",
       offers: BITRIX_OFFERS,
     },
