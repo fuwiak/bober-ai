@@ -1008,6 +1008,7 @@ const ru = {
     siteName: "Bober AI Systems",
     online: "Онлайн",
     readMore: "Подробнее",
+    viewCaseStudy: "Смотреть кейс",
   },
   servicePage: {
     back: "Все решения",

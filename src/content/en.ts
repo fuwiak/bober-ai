@@ -959,6 +959,7 @@ const en = {
     siteName: "Bober AI Systems",
     online: "Online",
     readMore: "Learn more",
+    viewCaseStudy: "View case study",
   },
   servicePage: {
     back: "All solutions",
