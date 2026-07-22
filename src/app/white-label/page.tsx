@@ -539,8 +539,9 @@ export default function WhiteLabelPage() {
                 <span className="section-label">Облако и инфраструктура</span>
                 <h2 className="section-title mt-4 max-w-2xl">С кем уже работаем по инфраструктуре</h2>
                 <p className="body-copy mt-4 max-w-2xl">
-                  Партнёр Yandex Cloud · партнёрская программа Selectel · технологический партнёр Cloud.ru.
-                  Деплой у клиента или в вашем контуре — без смены лица перед конечным заказчиком.
+                  Авторизованный партнёр „Лаборатории Касперского“ · партнёр Yandex Cloud · партнёрская
+                  программа Selectel · технологический партнёр Cloud.ru. Деплой у клиента или в вашем
+                  контуре — без смены лица перед конечным заказчиком.
                 </p>
               </Reveal>
               <div className="mt-8 flex flex-wrap gap-4" aria-label="Облачные и технологические партнёры">

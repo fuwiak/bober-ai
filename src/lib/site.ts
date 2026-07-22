@@ -82,6 +82,12 @@ export const BITRIX_SITE_URL =
   process.env.NEXT_PUBLIC_BITRIX_SITE_URL?.trim() || "https://bitrix.bober-ai.dev";
 
 export const DEFAULT_KEYWORDS = [
+  "защищённый корпоративный AI",
+  "авторизованный партнёр Kaspersky",
+  "внедрение Kaspersky для бизнеса",
+  "защита корпоративной AI-инфраструктуры",
+  "защита приватного LLM",
+  "безопасность AI-систем",
   "автоматизация бизнес процессов",
   "автоматизация документооборота",
   "внедрение crm",
@@ -95,6 +101,7 @@ export const DEFAULT_KEYWORDS = [
   "чат бот для бизнеса",
   "Yandex Cloud",
   "Selectel",
+  "AI on-premise",
 ];
 
 export function absoluteUrl(path = "/"): string {

@@ -103,7 +103,7 @@ export function ContactModalProvider({ children }: { children: React.ReactNode }
             <div className="contact-modal__divider" aria-hidden="true">
               <span>{t("modalFormDivider")}</span>
             </div>
-            <ContactForm defaultService={defaultService} onSuccess={close} />
+            <ContactForm defaultService={defaultService} onSuccess={close} extended />
           </div>
         </div>
       ) : null}

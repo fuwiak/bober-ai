@@ -2698,3 +2698,63 @@ html:not(.dark) .shell-code {
     letter-spacing: -0.01em;
     color: var(--color-ink);
   }
+
+
+  /* Kaspersky partner badges + secured AI architecture */
+  .partner-badge-row {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .partner-badge-row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: 52rem;
+    }
+  }
+  .partner-badge-frame {
+    border: 1px solid var(--color-hairline);
+    background: var(--color-surface-card);
+    padding: 1rem;
+    border-radius: 4px;
+  }
+  .partner-badge-image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .architecture-flow {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+    border: 1px solid var(--color-hairline);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .architecture-flow__item {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    gap: 1rem;
+    align-items: start;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--color-hairline);
+    background: var(--color-surface-card);
+  }
+  .architecture-flow__item:last-child {
+    border-bottom: none;
+  }
+  .architecture-flow__index {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--color-muted);
+    padding-top: 0.2rem;
+  }
+  .architecture-flow__text {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--color-ink);
+  }
+

@@ -129,9 +129,15 @@ export function HeroSection({
             transition={transition}
           >
             <ContactCta>{ctaPrimary}</ContactCta>
-            <Link href={ctaSecondaryHref as "/"} className="btn-secondary">
-              {ctaSecondary}
-            </Link>
+            {ctaSecondaryHref.startsWith("#") || ctaSecondaryHref.includes("/#") ? (
+              <ContactCta variant="secondary" goal="hero_secondary_cta_click" defaultService={ctaSecondary}>
+                {ctaSecondary}
+              </ContactCta>
+            ) : (
+              <Link href={ctaSecondaryHref as "/"} className="btn-secondary">
+                {ctaSecondary}
+              </Link>
+            )}
           </motion.div>
         </motion.div>
 

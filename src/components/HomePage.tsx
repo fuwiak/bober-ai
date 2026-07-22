@@ -1,5 +1,5 @@
-import { getTranslations } from "next-intl/server";
-import { DiagnosticForm } from "@/components/DiagnosticForm";
+import { getLocale, getTranslations } from "next-intl/server";
+import { ContactForm } from "@/components/ContactForm";
 import { BeforeAfterDemoSection } from "@/components/ExpertiseEvidence";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
 import { HomeHubSection } from "@/components/HomeHubSection";
@@ -7,6 +7,7 @@ import { SectionCtaBand } from "@/components/SectionCtaBand";
 import { PartnerProgramBanner } from "@/components/PartnerProgramBanner";
 import { PackagesShowcase } from "@/components/PackagesShowcase";
 import { FaqSection } from "@/components/FaqSection";
+import { SecuredAiPartnerSection } from "@/components/SecuredAiPartnerSection";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { HeroSection } from "@/components/motion/HeroSection";
 import { TrustStrip } from "@/components/motion/TrustStrip";
@@ -25,6 +26,7 @@ import {
 } from "@/lib/site";
 
 export default async function HomePage() {
+  const locale = await getLocale();
   const t = await getTranslations();
   const trustStats = t.raw("trust.stats") as { value: string; label: string }[];
   const problemItems = t.raw("problemsWeSolve.items") as string[];
@@ -66,7 +68,7 @@ export default async function HomePage() {
           specialization={t("hero.specialization")}
           ctaPrimary={t("hero.ctaPrimary")}
           ctaSecondary={t("hero.ctaSecondary")}
-          ctaSecondaryHref="/portfolio"
+          ctaSecondaryHref="/#contact"
           trustItems={t.raw("hero.trustItems") as string[]}
           heroImage={FOUNDER_IMAGE}
           heroImageAlt={t("hero.heroImageAlt")}
@@ -81,6 +83,28 @@ export default async function HomePage() {
             <TrustStrip stats={trustStats} />
           </div>
         </section>
+
+        <SecuredAiPartnerSection
+          locale={locale}
+          label={t("securedAi.label")}
+          title={t("securedAi.title")}
+          body={t.raw("securedAi.body") as string[]}
+          servicesLabel={t("securedAi.servicesLabel")}
+          serviceCards={t.raw("securedAi.serviceCards") as { title: string; text: string }[]}
+          architectureLabel={t("securedAi.architectureLabel")}
+          architectureTitle={t("securedAi.architectureTitle")}
+          architectureSteps={t.raw("securedAi.architectureSteps") as string[]}
+          architectureText={t("securedAi.architectureText")}
+          offeringsLabel={t("securedAi.offeringsLabel")}
+          offeringsTitle={t("securedAi.offeringsTitle")}
+          offeringsIntro={t("securedAi.offeringsIntro")}
+          offerings={t.raw("securedAi.offerings") as string[]}
+          projectsLabel={t("securedAi.projectsLabel")}
+          projectsTitle={t("securedAi.projectsTitle")}
+          projects={t.raw("securedAi.projects") as string[]}
+          ctaPrimary={t("securedAi.ctaPrimary")}
+          ctaSecondary={t("securedAi.ctaSecondary")}
+        />
 
         <section className="section-band section--panel border-b border-hairline">
           <div className="container-editorial">
@@ -245,7 +269,7 @@ export default async function HomePage() {
                 </div>
               </div>
               <div className="mt-10 text-left">
-                <DiagnosticForm />
+                <ContactForm extended />
               </div>
             </Reveal>
           </div>

@@ -12,6 +12,8 @@ type ContactFormProps = {
   defaultMessage?: string;
   onSuccess?: () => void;
   trackingPrefix?: string;
+  /** Extended fields for secured AI / Kaspersky inquiries */
+  extended?: boolean;
 };
 
 const SUCCESS_CLOSE_MS = 2400;
@@ -21,17 +23,25 @@ export function ContactForm({
   defaultMessage = "",
   onSuccess,
   trackingPrefix = "",
+  extended = false,
 }: ContactFormProps) {
   const t = useTranslations("form");
   const [name, setName] = useState("");
+  const [company, setCompany] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
   const [message, setMessage] = useState(defaultMessage);
+  const [deployment, setDeployment] = useState("");
+  const [kasperskyNeed, setKasperskyNeed] = useState("");
   const [consentAccepted, setConsentAccepted] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
   const [errorText, setErrorText] = useState("");
   const formStartedRef = useRef(false);
 
   const canSubmit = consentAccepted && status !== "sending";
+  const deploymentOptions = t.raw("deploymentOptions") as string[];
+  const kasperskyOptions = t.raw("kasperskyOptions") as string[];
 
   useEffect(() => {
     if (status !== "ok" || !onSuccess) return;
@@ -56,7 +66,17 @@ export function ContactForm({
     setStatus("sending");
     setErrorText("");
 
-    const parts = [defaultService ? `Услуга: ${defaultService}` : "", message.trim()].filter(Boolean);
+    const contactLine = extended
+      ? [`Телефон / Telegram: ${phone.trim()}`, `Email: ${email.trim()}`]
+      : [`Контакт: ${contact.trim()}`];
+
+    const parts = [
+      defaultService ? `Услуга: ${defaultService}` : "",
+      extended && company.trim() ? `Компания: ${company.trim()}` : "",
+      extended && deployment ? `Контур: ${deployment}` : "",
+      extended && kasperskyNeed ? `Поставка Kaspersky: ${kasperskyNeed}` : "",
+      message.trim(),
+    ].filter(Boolean);
     const fullMessage = parts.length > 0 ? parts.join("\n\n") : "—";
     const attribution = getAttribution();
     const attrLines = [
@@ -72,7 +92,7 @@ export function ContactForm({
     const body = encodeURIComponent(
       [
         `Имя: ${name.trim()}`,
-        `Контакт: ${contact.trim()}`,
+        ...contactLine,
         "",
         fullMessage,
         ...(attrLines.length ? ["", ...attrLines] : []),
@@ -85,8 +105,13 @@ export function ContactForm({
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
     setStatus("ok");
     setName("");
+    setCompany("");
+    setPhone("");
+    setEmail("");
     setContact("");
     setMessage("");
+    setDeployment("");
+    setKasperskyNeed("");
     setConsentAccepted(false);
   }
 
@@ -121,28 +146,78 @@ export function ContactForm({
         />
       </div>
 
-      <div>
-        <label htmlFor="contact" className="form-label">
-          {t("contact")}
-        </label>
-        <input
-          id="contact"
-          required
-          autoComplete="email tel"
-          value={contact}
-          onChange={(e) => setContact(e.target.value)}
-          className="text-input"
-          placeholder={t("contactPlaceholder")}
-        />
-      </div>
+      {extended ? (
+        <>
+          <div>
+            <label htmlFor="company" className="form-label">
+              {t("company")}
+            </label>
+            <input
+              id="company"
+              required
+              autoComplete="organization"
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+              className="text-input"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="phone" className="form-label">
+              {t("phone")}
+            </label>
+            <input
+              id="phone"
+              required
+              autoComplete="tel"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="text-input"
+              placeholder={t("phonePlaceholder")}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="email" className="form-label">
+              {t("email")}
+            </label>
+            <input
+              id="email"
+              type="email"
+              required
+              autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="text-input"
+              placeholder={t("emailPlaceholder")}
+            />
+          </div>
+        </>
+      ) : (
+        <div>
+          <label htmlFor="contact" className="form-label">
+            {t("contact")}
+          </label>
+          <input
+            id="contact"
+            required
+            autoComplete="email tel"
+            value={contact}
+            onChange={(e) => setContact(e.target.value)}
+            className="text-input"
+            placeholder={t("contactPlaceholder")}
+          />
+        </div>
+      )}
 
       <div>
         <label htmlFor="message" className="form-label">
-          {t("message")} <span className="text-muted-soft">{t("optional")}</span>
+          {t("message")} {extended ? null : <span className="text-muted-soft">{t("optional")}</span>}
         </label>
         <textarea
           id="message"
-          rows={3}
+          rows={extended ? 4 : 3}
+          required={extended}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder={t("messagePlaceholder")}
@@ -150,8 +225,52 @@ export function ContactForm({
         />
       </div>
 
+      {extended ? (
+        <>
+          <div>
+            <label htmlFor="deployment" className="form-label">
+              {t("deployment")}
+            </label>
+            <select
+              id="deployment"
+              required
+              value={deployment}
+              onChange={(e) => setDeployment(e.target.value)}
+              className="text-input"
+            >
+              <option value="">{t("selectPlaceholder")}</option>
+              {deploymentOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="kaspersky" className="form-label">
+              {t("kasperskyNeed")}
+            </label>
+            <select
+              id="kaspersky"
+              required
+              value={kasperskyNeed}
+              onChange={(e) => setKasperskyNeed(e.target.value)}
+              className="text-input"
+            >
+              <option value="">{t("selectPlaceholder")}</option>
+              {kasperskyOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </div>
+        </>
+      ) : null}
+
       <div className="border-t border-hairline pt-6">
-        <label htmlFor="pd-consent" className="flex items-start gap-3 cursor-pointer">
+        <label htmlFor="pd-consent" className="flex cursor-pointer items-start gap-3">
           <input
             id="pd-consent"
             type="checkbox"

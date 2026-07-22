@@ -32,7 +32,9 @@ export function TrustStrip({ stats }: TrustStripProps) {
       <Reveal delay={0.1}>
         <div className="trust-logos" aria-label={t("partnersAriaLabel")}>
           {TRUST_PARTNERS.map((partner) => {
-            const program = partner.href ? t(`partnerPrograms.${partner.id}`) : null;
+            const program = t.has(`partnerPrograms.${partner.id}`)
+              ? t(`partnerPrograms.${partner.id}`)
+              : null;
             const logo = (
               <>
                 <div className={`trust-logo__mark${partner.markTone === "dark" ? " trust-logo__mark--dark" : ""}`}>
@@ -58,7 +60,7 @@ export function TrustStrip({ stats }: TrustStripProps) {
                   target="_blank"
                   rel="noreferrer"
                   className="trust-logo trust-logo--linked"
-                  aria-label={`${partner.name} — ${program}`}
+                  aria-label={program ? `${partner.name} — ${program}` : partner.name}
                 >
                   {logo}
                 </a>
@@ -66,7 +68,11 @@ export function TrustStrip({ stats }: TrustStripProps) {
             }
 
             return (
-              <div key={partner.id} className="trust-logo">
+              <div
+                key={partner.id}
+                className="trust-logo"
+                aria-label={program ? `${partner.name} — ${program}` : partner.name}
+              >
                 {logo}
               </div>
             );
