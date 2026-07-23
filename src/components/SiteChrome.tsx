@@ -14,6 +14,7 @@ export async function SiteHeader() {
     { href: "/pricing#process", label: t("howWeWork") },
     { href: "/pricing" as const, label: t("pricing") },
     { href: "/about" as const, label: t("about") },
+    { href: "/blog" as const, label: t("blog") },
     { href: "/career" as const, label: t("career") },
   ];
 
@@ -120,6 +121,9 @@ export async function SiteFooter() {
             height={31}
             alt={t("sqiAlt")}
             className="rounded-lg"
+            loading="lazy"
+            decoding="async"
+            referrerPolicy="no-referrer"
           />
         </a>
       </div>
