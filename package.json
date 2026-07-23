@@ -7,8 +7,9 @@
   },
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build && node scripts/postbuild-static.mjs",
+    "build": "next build",
     "start": "next start -H 0.0.0.0 -p ${PORT:-3000}",
+    "postbuild:static": "node scripts/postbuild-static.mjs",
     "lint": "next lint",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",

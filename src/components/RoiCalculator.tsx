@@ -119,52 +119,86 @@ export function RoiCalculator({
       setErrorText(errorConsent);
       return;
     }
+    if (!email.trim()) {
+      setStatus("error");
+      setErrorText(locale === "en" ? "Enter your email" : "Укажите email");
+      return;
+    }
 
     setStatus("sending");
     setErrorText("");
 
     const attribution = getAttribution();
-    const attrLines = [
-      attribution.landing_page && `Landing: ${attribution.landing_page}`,
-      attribution.utm_source && `utm_source: ${attribution.utm_source}`,
-      attribution.utm_campaign && `utm_campaign: ${attribution.utm_campaign}`,
-      attribution.yclid && `yclid: ${attribution.yclid}`,
-    ].filter(Boolean);
+    const numberLocale = locale === "en" ? "en-US" : "ru-RU";
+    const message = [
+      locale === "en" ? "ROI calculator inputs:" : "Ввод калькулятора ROI:",
+      `${employeesLabel}: ${employees}`,
+      `${hoursLabel}: ${hours}`,
+      `${salaryLabel}: ${salary.toLocaleString(numberLocale)} ${currency}`,
+      "",
+      `${resultLabel}: ${monthlySavings.toLocaleString(numberLocale)} ${currency} / ${savingsLabel}`,
+      paybackMonths ? `${paybackLabel}: ~${paybackMonths} ${paybackSuffix}` : "",
+      "",
+      auditDataTitle,
+      ...auditDataItems.map((item) => `— ${item}`),
+    ]
+      .filter(Boolean)
+      .join("\n");
 
-    const subject = encodeURIComponent(
-      locale === "en" ? "ROI estimate request — Bober AI" : "Заявка: расчёт ROI — Bober AI",
-    );
-    const body = encodeURIComponent(
-      [
-        `Email: ${email.trim()}`,
-        telegram.trim() ? `Telegram: ${telegram.trim()}` : "",
-        "",
-        locale === "en" ? "ROI calculator inputs:" : "Ввод калькулятора ROI:",
-        `${employeesLabel}: ${employees}`,
-        `${hoursLabel}: ${hours}`,
-        `${salaryLabel}: ${salary.toLocaleString(numberLocale)} ${currency}`,
-        "",
-        `${resultLabel}: ${monthlySavings.toLocaleString(numberLocale)} ${currency} / ${savingsLabel}`,
-        paybackMonths
-          ? `${paybackLabel}: ~${paybackMonths} ${paybackSuffix}`
-          : "",
-        "",
-        auditDataTitle,
-        ...auditDataItems.map((item) => `— ${item}`),
-        ...(attrLines.length ? ["", ...attrLines] : []),
-      ]
-        .filter(Boolean)
-        .join("\n"),
-    );
+    const contactValue = [email.trim() && `Email: ${email.trim()}`, telegram.trim() && `Telegram: ${telegram.trim()}`]
+      .filter(Boolean)
+      .join("\n");
 
-    reachGoal("roi_calculator_lead_submit", {
-      employees,
-      hours,
-      savings: monthlySavings,
-      payback: paybackMonths ?? undefined,
-    });
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    setStatus("ok");
+    void (async () => {
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: email.trim(),
+            contact: contactValue,
+            email: email.trim(),
+            message,
+            source: "roi-calculator",
+            policyAccepted: true,
+            consent: true,
+            attribution,
+            website: "",
+          }),
+        });
+        const data = (await response.json().catch(() => ({}))) as { message?: string };
+        if (!response.ok) {
+          throw new Error(data.message || (locale === "en" ? "Failed to send request" : "Не удалось отправить заявку"));
+        }
+        reachGoal("roi_calculator_lead_submit", {
+          employees,
+          hours,
+          savings: monthlySavings,
+          payback: paybackMonths ?? undefined,
+        });
+        setStatus("ok");
+        setConsentAccepted(false);
+      } catch (error) {
+        const subject = encodeURIComponent(
+          locale === "en" ? "ROI estimate request — Bober AI" : "Заявка: расчёт ROI — Bober AI",
+        );
+        const body = encodeURIComponent(
+          [
+            `Email: ${email.trim()}`,
+            telegram.trim() ? `Telegram: ${telegram.trim()}` : "",
+            "",
+            message,
+          ]
+            .filter(Boolean)
+            .join("\n"),
+        );
+        setStatus("error");
+        setErrorText(error instanceof Error ? error.message : locale === "en" ? "Send error" : "Ошибка отправки");
+        window.setTimeout(() => {
+          window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+        }, 600);
+      }
+    })();
   }
 
   return (

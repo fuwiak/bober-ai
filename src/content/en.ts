@@ -548,9 +548,9 @@ const en = {
     telegramPlaceholder: "@username or phone",
     gateSubmit: "Send estimate",
     gateSubmitting: "Sending…",
-    gateSuccessTitle: "Estimate ready to send",
+    gateSuccessTitle: "Request sent",
     gateSuccess:
-      "Your email client will open with the summary. We reply within 4 business hours — with an audit plan or a project discussion.",
+      "We received your ROI estimate and will reply within 4 business hours — with an audit plan or a project discussion.",
     nextCtaPrimary: "Discuss a project",
     nextCtaSecondary: "Book an audit",
     cta: "Get exact calculation",
@@ -1038,7 +1038,7 @@ const en = {
     subtitle:
       "Name and contact are enough. In 30 minutes we review the task — within 4 business hours you get a preliminary plan and budget range.",
     afterSubmit:
-      "After submit, your email client opens with the request. We reply within 4 business hours: clarify the process and send a timeline and budget orientation.",
+      "After you submit, we reply within 4 business hours: clarify the process and send a timeline and budget orientation.",
     email: "Email",
     telegram: "Telegram",
     whatsapp: "WhatsApp",
@@ -1089,12 +1089,14 @@ const en = {
     consentLink: "consent to personal data processing",
     submit: "Get an estimate",
     submitting: "Sending…",
-    successTitle: "Request ready",
+    successTitle: "Request sent",
     success:
-      "Your email client will open with the request. We reply within 4 business hours — with a next step and a budget orientation.",
+      "We received your request and will reply within 4 business hours — with a next step and a budget orientation.",
     errorConsent: "Please confirm consent to personal data processing",
     errorSend: "Failed to send request",
     errorGeneric: "Send error",
+    mailtoFallbackHint: "If sending failed, submit manually:",
+    mailtoFallbackLink: "open email client",
   },
   diagnosticForm: {
     eyebrow: "Preliminary estimate",

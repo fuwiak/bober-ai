@@ -3,6 +3,7 @@
 import NextLink from "next/link";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
+import { useFormLengthVariant } from "@/hooks/useAbVariant";
 import { getAttribution, reachGoal } from "@/lib/analytics";
 import { LEGAL_ROUTES } from "@/lib/legal";
 import { CONTACT_EMAIL } from "@/lib/site";
@@ -16,6 +17,8 @@ type ContactFormProps = {
   extended?: boolean;
   /** Short pre-meeting qualification selects (optional answers) */
   qualify?: boolean;
+  /** When true (default), A/B short form drops qualify + extended extras */
+  abTestLength?: boolean;
 };
 
 const SUCCESS_CLOSE_MS = 2400;
@@ -27,8 +30,14 @@ export function ContactForm({
   trackingPrefix = "",
   extended = false,
   qualify = false,
+  abTestLength = true,
 }: ContactFormProps) {
   const t = useTranslations("form");
+  const formLength = useFormLengthVariant();
+  const shortForm = abTestLength && formLength === "short";
+  const showExtended = extended && !shortForm;
+  const showQualify = qualify && !shortForm;
+
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
   const [phone, setPhone] = useState("");
@@ -42,8 +51,10 @@ export function ContactForm({
   const [timeline, setTimeline] = useState("");
   const [kasperskyOptional, setKasperskyOptional] = useState(false);
   const [consentAccepted, setConsentAccepted] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
   const [errorText, setErrorText] = useState("");
+  const [mailtoHref, setMailtoHref] = useState("");
   const formStartedRef = useRef(false);
 
   const canSubmit = consentAccepted && status !== "sending";
@@ -62,44 +73,12 @@ export function ContactForm({
   function trackFormStart() {
     if (formStartedRef.current) return;
     formStartedRef.current = true;
-    reachGoal(trackingPrefix ? `${trackingPrefix}_form_start` : "form_start");
+    reachGoal(trackingPrefix ? `${trackingPrefix}_form_start` : "form_start", {
+      form_length: formLength,
+    });
   }
 
-  function onSubmit(event: FormEvent) {
-    event.preventDefault();
-    if (!consentAccepted) {
-      setStatus("error");
-      setErrorText(t("errorConsent"));
-      return;
-    }
-
-    setStatus("sending");
-    setErrorText("");
-
-    const contactLine = extended
-      ? [`Телефон / Telegram: ${phone.trim()}`, `Email: ${email.trim()}`]
-      : [`Контакт: ${contact.trim()}`];
-
-    const parts = [
-      defaultService ? `Услуга: ${defaultService}` : "",
-      extended && company.trim() ? `Компания: ${company.trim()}` : "",
-      qualify && processType ? `Процесс: ${processType}` : "",
-      qualify && systems ? `Системы: ${systems}` : "",
-      qualify && budget ? `Бюджет: ${budget}` : "",
-      qualify && timeline ? `Сроки: ${timeline}` : "",
-      extended && deployment ? `Контур: ${deployment}` : "",
-      extended && kasperskyOptional ? "Опция: защита инфраструктуры (Kaspersky)" : "",
-      message.trim(),
-    ].filter(Boolean);
-    const fullMessage = parts.length > 0 ? parts.join("\n\n") : "—";
-    const attribution = getAttribution();
-    const attrLines = [
-      attribution.landing_page && `Landing: ${attribution.landing_page}`,
-      attribution.utm_source && `utm_source: ${attribution.utm_source}`,
-      attribution.utm_campaign && `utm_campaign: ${attribution.utm_campaign}`,
-      attribution.yclid && `yclid: ${attribution.yclid}`,
-    ].filter(Boolean);
-
+  function buildMailtoHref(fullMessage: string, contactLine: string[], attrLines: string[]) {
     const subject = encodeURIComponent(
       defaultService ? `Заявка: ${defaultService}` : `Заявка с сайта Bober AI`,
     );
@@ -112,25 +91,112 @@ export function ContactForm({
         ...(attrLines.length ? ["", ...attrLines] : []),
       ].join("\n"),
     );
+    return `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+  }
 
-    reachGoal(trackingPrefix ? `${trackingPrefix}_form_submit` : "form_submit", {
-      service: defaultService || undefined,
-    });
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    setStatus("ok");
-    setName("");
-    setCompany("");
-    setPhone("");
-    setEmail("");
-    setContact("");
-    setMessage("");
-    setDeployment("");
-    setProcessType("");
-    setSystems("");
-    setBudget("");
-    setTimeline("");
-    setKasperskyOptional(false);
-    setConsentAccepted(false);
+  async function onSubmit(event: FormEvent) {
+    event.preventDefault();
+    if (!consentAccepted) {
+      setStatus("error");
+      setErrorText(t("errorConsent"));
+      return;
+    }
+
+    setStatus("sending");
+    setErrorText("");
+    setMailtoHref("");
+
+    const contactLine = showExtended
+      ? [`Телефон / Telegram: ${phone.trim()}`, `Email: ${email.trim()}`]
+      : [`Контакт: ${contact.trim()}`];
+
+    const parts = [
+      defaultService ? `Услуга: ${defaultService}` : "",
+      showExtended && company.trim() ? `Компания: ${company.trim()}` : "",
+      showQualify && processType ? `Процесс: ${processType}` : "",
+      showQualify && systems ? `Системы: ${systems}` : "",
+      showQualify && budget ? `Бюджет: ${budget}` : "",
+      showQualify && timeline ? `Сроки: ${timeline}` : "",
+      showExtended && deployment ? `Контур: ${deployment}` : "",
+      showExtended && kasperskyOptional ? "Опция: защита инфраструктуры (Kaspersky)" : "",
+      shortForm ? `AB form_length: short` : "",
+      message.trim(),
+    ].filter(Boolean);
+    const fullMessage = parts.length > 0 ? parts.join("\n\n") : "—";
+    const attribution = getAttribution();
+    const attrLines = [
+      attribution.landing_page && `Landing: ${attribution.landing_page}`,
+      attribution.utm_source && `utm_source: ${attribution.utm_source}`,
+      attribution.utm_campaign && `utm_campaign: ${attribution.utm_campaign}`,
+      attribution.yclid && `yclid: ${attribution.yclid}`,
+    ].filter(Boolean) as string[];
+
+    const contactValue = showExtended
+      ? [phone.trim() && `Телефон / Telegram: ${phone.trim()}`, email.trim() && `Email: ${email.trim()}`]
+          .filter(Boolean)
+          .join("\n")
+      : contact.trim();
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          contact: contactValue,
+          message: fullMessage,
+          service: defaultService || undefined,
+          company: showExtended ? company.trim() || undefined : undefined,
+          phone: showExtended ? phone.trim() || undefined : undefined,
+          email: showExtended ? email.trim() || undefined : undefined,
+          source: trackingPrefix || "contact-form",
+          policyAccepted: true,
+          consent: true,
+          attribution,
+          website: honeypot,
+        }),
+      });
+      const data = (await response.json().catch(() => ({}))) as {
+        message?: string;
+        ok?: boolean;
+        leadId?: string;
+        dryRun?: boolean;
+      };
+      if (!response.ok) {
+        throw new Error(data.message || t("errorSend"));
+      }
+
+      const goalParams = {
+        service: defaultService || undefined,
+        form_length: formLength,
+        leadId: data.leadId,
+      };
+      reachGoal(trackingPrefix ? `${trackingPrefix}_form_submit` : "form_submit", goalParams);
+
+      // Confirms actual delivery (SMTP path returned leadId), not dry-run / honeypot ack.
+      if (data.ok && data.leadId && !data.dryRun) {
+        reachGoal(trackingPrefix ? `${trackingPrefix}_lead_delivered` : "lead_delivered", goalParams);
+      }
+
+      setStatus("ok");
+      setName("");
+      setCompany("");
+      setPhone("");
+      setEmail("");
+      setContact("");
+      setMessage("");
+      setDeployment("");
+      setProcessType("");
+      setSystems("");
+      setBudget("");
+      setTimeline("");
+      setKasperskyOptional(false);
+      setConsentAccepted(false);
+    } catch (error) {
+      setStatus("error");
+      setErrorText(error instanceof Error ? error.message : t("errorGeneric"));
+      setMailtoHref(buildMailtoHref(fullMessage, contactLine, attrLines));
+    }
   }
 
   if (status === "ok") {
@@ -148,8 +214,19 @@ export function ContactForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className="contact-form space-y-6">
-      <p className="body-copy text-sm text-muted">{t("intro")}</p>
+    <form onSubmit={onSubmit} className="contact-form space-y-6" data-form-length={formLength}>
+      <p className="body-copy text-sm text-muted">{shortForm ? t("introShort") : t("intro")}</p>
+      {/* Honeypot — hidden from users */}
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute -left-[9999px] h-0 w-0 opacity-0"
+        value={honeypot}
+        onChange={(e) => setHoneypot(e.target.value)}
+      />
       <div>
         <label htmlFor="name" className="form-label">
           {t("name")}
@@ -165,7 +242,7 @@ export function ContactForm({
         />
       </div>
 
-      {extended ? (
+      {showExtended ? (
         <>
           <div>
             <label htmlFor="company" className="form-label">
@@ -229,7 +306,7 @@ export function ContactForm({
         </div>
       )}
 
-      {qualify ? (
+      {showQualify ? (
         <fieldset className="contact-qualify">
           <legend className="form-label">{t("qualifyLegend")}</legend>
           <p className="body-copy mb-4 text-sm text-muted">{t("qualifyHint")}</p>
@@ -310,22 +387,24 @@ export function ContactForm({
         </fieldset>
       ) : null}
 
-      <div>
-        <label htmlFor="message" className="form-label">
-          {t("message")} {extended ? null : <span className="text-muted-soft">{t("optional")}</span>}
-        </label>
-        <textarea
-          id="message"
-          rows={extended ? 4 : 3}
-          required={extended}
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder={t("messagePlaceholder")}
-          className="textarea-input"
-        />
-      </div>
+      {!shortForm ? (
+        <div>
+          <label htmlFor="message" className="form-label">
+            {t("message")} {showExtended ? null : <span className="text-muted-soft">{t("optional")}</span>}
+          </label>
+          <textarea
+            id="message"
+            rows={showExtended ? 4 : 3}
+            required={showExtended}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder={t("messagePlaceholder")}
+            className="textarea-input"
+          />
+        </div>
+      ) : null}
 
-      {extended ? (
+      {showExtended ? (
         <>
           <div>
             <label htmlFor="deployment" className="form-label">
@@ -395,7 +474,19 @@ export function ContactForm({
         {status === "sending" ? <span className="contact-submit__spinner" aria-hidden="true" /> : null}
       </button>
 
-      {status === "error" ? <p className="text-sm text-error">{errorText}</p> : null}
+      {status === "error" ? (
+        <div className="space-y-2">
+          <p className="text-sm text-error">{errorText}</p>
+          {mailtoHref ? (
+            <p className="text-sm text-muted">
+              {t("mailtoFallbackHint")}{" "}
+              <a href={mailtoHref} className="text-link">
+                {t("mailtoFallbackLink")}
+              </a>
+            </p>
+          ) : null}
+        </div>
+      ) : null}
     </form>
   );
 }
