@@ -65,9 +65,6 @@ export default async function HomePage() {
           trustItems={t.raw("hero.trustItems") as string[]}
           heroImage={FOUNDER_IMAGE}
           heroImageAlt={t("hero.heroImageAlt")}
-          founderName={t("hero.nameLine")}
-          founderRole={t("hero.founderBadge")}
-          founderTeamLine={t("hero.teamLine")}
         />
 
         <section className="section-band section--deep border-b border-hairline">
