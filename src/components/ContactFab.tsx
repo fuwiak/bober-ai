@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { ContactCta } from "@/components/ContactCta";
 import { useContactModal } from "@/components/ContactModalProvider";
-import { reachGoal } from "@/lib/analytics";
+import { PRIMARY_CTA_GOAL } from "@/lib/site";
 
 export function ContactFab() {
   const t = useTranslations("contact");
@@ -25,16 +26,12 @@ export function ContactFab() {
   if (!modal) return null;
 
   return (
-    <button
-      type="button"
+    <ContactCta
+      variant="bare"
+      goal={PRIMARY_CTA_GOAL}
       className={`contact-fab${hidden ? " contact-fab--hidden" : ""}`}
-      onClick={() => {
-        reachGoal("audit_cta_click");
-        modal.open();
-      }}
-      aria-label={t("fabLabel")}
     >
       {t("fabLabel")}
-    </button>
+    </ContactCta>
   );
 }

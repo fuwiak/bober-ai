@@ -1,5 +1,6 @@
 import { ContactCta } from "@/components/ContactCta";
 import { Reveal } from "@/components/motion/Reveal";
+import { PRIMARY_CTA_GOAL } from "@/lib/site";
 
 type SectionCtaBandProps = {
   title: string;
@@ -34,7 +35,7 @@ export function SectionCtaBand({
               </ul>
               {urgency ? <p className="body-copy mt-4 max-w-xl text-sm">{urgency}</p> : null}
             </div>
-            <ContactCta goal="audit_cta_click">{cta}</ContactCta>
+            <ContactCta goal={PRIMARY_CTA_GOAL}>{cta}</ContactCta>
           </div>
         </Reveal>
       </div>

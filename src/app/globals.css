@@ -40,7 +40,7 @@
   --font-body: var(--font-manrope), "Manrope", system-ui, sans-serif;
   --font-mono: var(--font-ibm-plex-mono), "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
 
-  --spacing-section: 104px;
+  --spacing-section: 80px;
 }
 
 /* Long-form editorial content translated from the author's Medium articles. */
@@ -206,7 +206,7 @@ html.dark {
   }
   @media (max-width: 768px) {
     .section-band {
-      padding-block: 58px;
+      padding-block: 48px;
     }
   }
 

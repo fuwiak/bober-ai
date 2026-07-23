@@ -166,16 +166,26 @@ export function RoiCalculator({
             website: "",
           }),
         });
-        const data = (await response.json().catch(() => ({}))) as { message?: string };
+        const data = (await response.json().catch(() => ({}))) as {
+          message?: string;
+          ok?: boolean;
+          leadId?: string;
+          dryRun?: boolean;
+        };
         if (!response.ok) {
           throw new Error(data.message || (locale === "en" ? "Failed to send request" : "Не удалось отправить заявку"));
         }
-        reachGoal("roi_calculator_lead_submit", {
+        const goalParams = {
           employees,
           hours,
           savings: monthlySavings,
           payback: paybackMonths ?? undefined,
-        });
+          leadId: data.leadId,
+        };
+        reachGoal("roi_calculator_lead_submit", goalParams);
+        if (data.ok && data.leadId && !data.dryRun) {
+          reachGoal("lead_delivered", { ...goalParams, source: "roi-calculator" });
+        }
         setStatus("ok");
         setConsentAccepted(false);
       } catch (error) {

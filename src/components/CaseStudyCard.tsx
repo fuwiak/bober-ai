@@ -78,6 +78,7 @@ export function CaseStudyCard({
             variant="link"
             goal="case_study_discuss_click"
             defaultService={item.title}
+            abTestDestination={false}
           >
             {discussLabel}
           </ContactCta>

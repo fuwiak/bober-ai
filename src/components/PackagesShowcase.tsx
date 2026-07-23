@@ -67,7 +67,7 @@ export function PackagesShowcase({
           ))}
         </Stagger>
         <Reveal delay={0.1} className="mt-10 flex flex-wrap items-center gap-4">
-          <ContactCta goal="packages_cta_click">{cta}</ContactCta>
+          <ContactCta>{cta}</ContactCta>
           {moreHref && moreLabel ? (
             <Link href={moreHref as "/"} className="link-more">
               {moreLabel}

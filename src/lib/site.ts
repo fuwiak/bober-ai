@@ -52,6 +52,10 @@ export const WHATSAPP_URL = "https://wa.me/79950998170";
 export const TELEGRAM_URL = "https://t.me/pstasinski";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/fuwiak";
 export const GITHUB_URL = "https://github.com/fuwiak";
+/** Booking / calendar for A/B CTA → direct schedule. Empty → calendar variant falls back to form. */
+export const CALENDAR_URL = process.env.NEXT_PUBLIC_CALENDAR_URL?.trim() || "";
+/** Unified primary conversion goal across header, hero, packages, FAB. */
+export const PRIMARY_CTA_GOAL = "primary_cta_click";
 export const YANDEX_USLUGI_URL = "https://uslugi.yandex.ru/profile/PawelStasinski-254144";
 /** Карточка на Картах — региональность и представление в поиске. */
 export const YANDEX_MAPS_URL =

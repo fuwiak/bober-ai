@@ -144,7 +144,7 @@ const en = {
       "We hand over documentation and access",
     ],
     note: "Budget ladder: audit from €1,500, pilot from €3,000, production implementation from €5,000.",
-    cta: "Get a preliminary estimate",
+    cta: "Get an estimate",
   },
   homeHub: {
     label: "Sections",
@@ -417,7 +417,7 @@ const en = {
         detailsHref: "/services/business-process-automation",
       },
     ],
-    cta: "Get a preliminary estimate",
+    cta: "Get an estimate",
     featuredLabel: "CORE FORMAT",
     detailsLabel: "Details",
     auditNote: "The audit fee is credited toward the project budget if we continue to implementation.",
@@ -943,6 +943,7 @@ const en = {
     subtitle: "Describe the task — a preliminary plan and quote within 24 hours.",
     primary: "Get an estimate",
     secondary: "Telegram",
+    calendar: "Book a call",
   },
   sectionCta: {
     title: "Get an estimate in 30 minutes",
@@ -1057,6 +1058,7 @@ const en = {
   form: {
     intro:
       "Name and contact are enough for the first step. A task description is optional.",
+    introShort: "Name and contact are enough. Reply within 4 business hours.",
     name: "Name",
     company: "Company",
     phone: "Phone or Telegram",
