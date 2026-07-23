@@ -1002,14 +1002,14 @@ html.dark {
     @apply mt-16 w-full border-t border-hairline;
   }
   .hero-media--banner .hero-media__frame {
-    /* Founder promo banner ~1024×704 */
-    aspect-ratio: 1024 / 704;
+    /* Founder promo banner is 4:3 — keep text/logos readable */
+    aspect-ratio: 4 / 3;
     max-height: min(72vh, 720px);
   }
   .hero-media--banner .hero-media__image {
     object-fit: contain;
     object-position: center center;
-    background: #9a9188;
+    background: #8a8178;
   }
   .hero-media__compose {
     display: grid;
@@ -2969,15 +2969,17 @@ html:not(.dark) .shell-code {
   }
   .about-company__frame {
     position: relative;
-    aspect-ratio: 1024 / 704;
+    aspect-ratio: 4 / 5;
     width: 100%;
-    max-width: 36rem;
+    max-width: 22rem;
     border: 1px solid var(--color-hairline);
-    background: #9a9188;
+    background: var(--color-surface-card);
     overflow: hidden;
   }
   .about-company__image {
-    object-fit: contain;
+    object-fit: cover;
+    /* Banner is landscape with portrait on the left — keep the face in the 4:5 crop */
+    object-position: 12% center;
   }
   .about-company__facts {
     display: grid;
