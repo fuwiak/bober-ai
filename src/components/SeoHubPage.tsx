@@ -34,9 +34,10 @@ const AUTOMATION_COPY = {
       { value: "+32%", label: "конверсия из предложения в заказ" },
       { value: "−50%", label: "повторные обращения на первой линии" },
     ],
-    solutionsLabel: "Направления",
-    solutionsTitle: "Что можно автоматизировать",
-    solutionsText: "Выберите процесс — внутри каждого направления описаны задачи, результат и варианты интеграции.",
+    solutionsLabel: "SEO-кластеры",
+    solutionsTitle: "Восемь кластеров под отдельные поисковые фразы",
+    solutionsText:
+      "Pillar «Автоматизация бизнес-процессов» ведёт в кластеры: КП, документооборот, AI для Bitrix24 / amoCRM / 1С, корпоративный RAG, распознавание документов и AI для отдела продаж — без пересечения head-термов.",
     fitLabel: "Точки роста",
     fitTitle: "Когда автоматизация уже окупится",
     fitItems: [
@@ -78,9 +79,10 @@ const AUTOMATION_COPY = {
       { value: "+32%", label: "quote-to-order conversion" },
       { value: "−50%", label: "repeat first-line requests" },
     ],
-    solutionsLabel: "Solutions",
-    solutionsTitle: "What you can automate",
-    solutionsText: "Choose a process — each area explains the jobs, outcomes and integration options.",
+    solutionsLabel: "SEO clusters",
+    solutionsTitle: "Eight clusters for distinct search phrases",
+    solutionsText:
+      "The “Business process automation” pillar links to clusters: proposals, documents, AI for Bitrix24 / amoCRM / 1C, corporate RAG, document recognition and AI for sales — without overlapping head terms.",
     fitLabel: "Growth points",
     fitTitle: "When automation can already pay back",
     fitItems: [

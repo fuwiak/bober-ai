@@ -69,7 +69,7 @@ const en = {
     roles: ["Founder & Project Lead", "AI architect"],
     nameLine: "Pawel Stasinski",
     focus: "AI systems, automation and integration with Bitrix24, 1C, amoCRM, CRM and ERP.",
-    trustLine: "★ {rating} · {reviewCount} reviews · {years} years · 12+ production deployments",
+    trustLine: "★ {rating} · {reviewCount} reviews · {years}+ years of experience · NDA / ON-PREM",
     partnersLine: "Partners: Yandex Cloud, Cloud.ru and Selectel",
     ctaPrimary: "Get an estimate",
     ctaSecondary: "View case studies",
@@ -822,10 +822,10 @@ const en = {
       "From day one I built the company on three principles: open architecture, engineering rigor, and honesty — including when AI is not the right tool. That let us ship production automation and AI systems, work with CRM, documents and integrations on fixed estimates, and hand clients the code with documentation.",
     goal: "My goal is a measurable business outcome for the client: less routine, faster workflows, a working system — not demos and slide decks.",
     stats: [
-      { value: "12+", label: "production deployments" },
-      { value: "7 yrs", label: "in AI and automation" },
-      { value: "from 500k ₽", label: "industrial launch" },
-      { value: "NDA", label: "before we discuss data" },
+      { value: "TURNKEY", label: "from analysis to implementation" },
+      { value: "from 500 000 ₽", label: "project start" },
+      { value: "10+", label: "years of experience" },
+      { value: "NDA / ON-PREM", label: "\u00a0" },
     ],
   },
   whyTrust: {
@@ -1295,32 +1295,38 @@ const en = {
     },
     pages: {
       processes: {
-        metaTitle: "Business process automation — implementation",
-        metaDescription: "Business process automation for companies: audit, CRM/ERP integrations, production launch and team handover.",
+        metaTitle: "End-to-end workflows across CRM, ERP and documents",
+        metaDescription:
+          "Design end-to-end workflows: CRM events → rules → documents → ERP. Not boxed SaaS — a production contour for your process.",
         metaKeywords: [
-          "business process automation",
+          "end-to-end workflow",
           "workflow automation",
-          "process automation company",
           "BPM implementation",
-          "business automation system",
-          "process optimization",
+          "process orchestration",
+          "CRM ERP document integration",
         ],
-        eyebrow: "Automation",
-        h1: "Business process automation for companies",
-        subtitle: "We design and implement process automation — sales, documents, approvals, CRM. AI only where it removes manual work.",
+        eyebrow: "Workflow",
+        h1: "End-to-end workflows across CRM, ERP and documents",
+        subtitle:
+          "Process cluster under the “Business process automation” pillar: orchestrating steps across systems — without reusing the pillar head term.",
         problemsTitle: "When you need this",
-        problems: ["Teams duplicate the same steps across CRM, email and spreadsheets", "Processes depend on specific people", "You need implementation, not another SaaS shelfware"],
+        problems: ["Teams duplicate the same steps across CRM, email and spreadsheets", "Processes depend on specific people", "You need workflow orchestration, not another SaaS shelfware"],
         deliverablesTitle: "Deliverables",
         deliverables: ["Process map and automation points", "CRM, ERP, messenger and document integrations", "Production launch, monitoring and handover"],
-        relatedTitle: "Related",
+        relatedTitle: "Pillar clusters",
         related: [
-          { href: "/automation/documents", label: "Document automation" },
-          { href: "/integrations/crm", label: "CRM implementation" },
-          { href: "/ai/corporate", label: "Enterprise AI" },
+          { href: "/automation", label: "Business process automation" },
+          { href: "/automation/documents", label: "Document workflow automation" },
+          { href: "/automation/proposal-generation", label: "Commercial proposal automation" },
+          { href: "/automation/ai-for-sales", label: "AI for the sales team" },
         ],
         faq: [
           {
-            q: "How long does process automation take?",
+            q: "How is this different from /automation?",
+            a: "The /automation pillar is the cluster catalog. This page covers end-to-end workflows between systems. The head term “business process automation” stays on the pillar.",
+          },
+          {
+            q: "How long does workflow delivery take?",
             a: "A typical scope is 4–6 weeks. Complex CRM, ERP and document integrations may take up to 3 months. We fix the timeline in the estimate after audit.",
           },
           {
@@ -1330,10 +1336,6 @@ const en = {
           {
             q: "Which systems do you integrate with?",
             a: "amoCRM, Bitrix24, 1C, Telegram, email, Google Sheets, Confluence and custom APIs.",
-          },
-          {
-            q: "How do you measure results?",
-            a: "We agree on metrics before launch: cycle time, manual work share, lead handling speed. After go-live — monitoring and reporting.",
           },
         ],
       },
@@ -1440,10 +1442,12 @@ const en = {
         problems: ["Documents lost between email, CRM and file shares", "Contract approval takes days", "Templates live in scattered files"],
         deliverablesTitle: "We implement",
         deliverables: ["Approval chains and notifications", "Data extraction from PDF/scans", "CRM, ERP and knowledge base links"],
-        relatedTitle: "Related",
+        relatedTitle: "SEO clusters",
         related: [
-          { href: "/automation/processes", label: "Process automation" },
-          { href: "/solutions/knowledge-base", label: "Knowledge base" },
+          { href: "/automation", label: "Business process automation" },
+          { href: "/automation/ocr-data-extraction", label: "Document recognition" },
+          { href: "/automation/proposal-generation", label: "Commercial proposal automation" },
+          { href: "/services/rag", label: "Corporate RAG" },
         ],
         faq: [
           {
@@ -1461,39 +1465,42 @@ const en = {
         ],
       },
       sales: {
-        metaTitle: "Sales and proposal automation",
-        metaDescription: "Sales automation, CRM for sales teams, proposal generation from templates.",
+        metaTitle: "Sales pipeline and CRM task automation",
+        metaDescription:
+          "Pipeline automation: qualification, tasks, follow-up and CRM stages. Proposal generation lives on /automation/proposal-generation.",
         metaKeywords: [
-          "sales automation",
-          "proposal automation",
+          "sales pipeline automation",
           "CRM for sales",
-          "commercial proposal generation",
-          "sales workflow automation",
+          "sales follow-up automation",
+          "pipeline discipline",
         ],
-        eyebrow: "Sales",
-        h1: "Sales & proposal automation",
-        subtitle: "Faster deal cycle: CRM data → proposal → PDF → client. No copy-paste between spreadsheets.",
+        eyebrow: "Sales pipeline",
+        h1: "Sales pipeline automation",
+        subtitle:
+          "CRM discipline: stages, tasks, reminders. Proposal generation is a separate cluster — no keyword overlap.",
         problemsTitle: "Sales team problems",
-        problems: ["Managers spend hours on proposals instead of calls", "Templates and price lists are out of sync", "CRM is not linked to documents"],
+        problems: ["Deals stall without follow-up and escalation", "CRM stages do not match reality", "Managers cannot see pipeline bottlenecks"],
         deliverablesTitle: "Outcome",
-        deliverables: ["Proposal generation from CRM", "Auto-filled pricing and terms", "amoCRM / Bitrix24 integration"],
-        relatedTitle: "Related",
+        deliverables: ["Stage rules and auto-tasks in CRM", "Follow-up and stalled-deal escalation", "Stage conversion dashboard"],
+        relatedTitle: "SEO clusters",
         related: [
-          { href: "/integrations/crm", label: "CRM implementation" },
-          { href: "/services/sales-ai-agent", label: "Sales AI agent" },
+          { href: "/automation", label: "Business process automation" },
+          { href: "/automation/proposal-generation", label: "Commercial proposal automation" },
+          { href: "/automation/ai-for-sales", label: "AI for the sales team" },
+          { href: "/integrations/amocrm-ai", label: "AI for amoCRM" },
         ],
         faq: [
           {
-            q: "How much time does proposal automation save?",
-            a: "In a typical case — from 45 minutes down to 2 minutes per commercial proposal.",
-          },
-          {
-            q: "Where do prices in proposals come from?",
-            a: "Only from your catalog or CRM — no invented line items or model hallucinations.",
+            q: "Where is proposal generation?",
+            a: "Cluster “Commercial proposal automation”: /automation/proposal-generation. This page is pipeline and CRM discipline.",
           },
           {
             q: "Which CRM systems do you support?",
             a: "amoCRM, Bitrix24 and custom CRM via API.",
+          },
+          {
+            q: "How is this different from AI for sales?",
+            a: "/automation/ai-for-sales covers AI qualification and a sales assistant. This page covers rules and tasks without requiring an LLM.",
           },
         ],
       },

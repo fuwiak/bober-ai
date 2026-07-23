@@ -25,12 +25,12 @@ export type SeoServiceContent = {
 
 const CONTENT_RU: Record<string, SeoServiceContent> = {
   "business-process-automation": {
-    metaTitle: "Автоматизация бизнес-процессов",
+    metaTitle: "Заказать автоматизацию бизнес-процессов — смета и SLA",
     metaDescription:
-      "Аудит, интеграции CRM/1С, workflow и AI-слой. Production-внедрение автоматизации бизнес-процессов для enterprise в Москве и России.",
-    eyebrow: "Enterprise automation",
-    h1: "Автоматизация бизнес-процессов",
-    subtitle: "От карты процесса до production: интеграции, workflow и измеримый ROI — без «ещё одного SaaS».",
+      "Коммерческое предложение: аудит от 150 000 ₽, внедрение от 400 000 ₽. Фиксированная смета, NDA, production. Каталог кластеров — на /automation.",
+    eyebrow: "Услуга · Offer",
+    h1: "Заказать автоматизацию бизнес-процессов",
+    subtitle: "Страница услуги: смета, этапы и SLA. Pillar-каталог кластеров — /automation. Не дублируем head-терм каталога в том же интенте.",
     problemsTitle: "Типичные проблемы",
     problems: [
       "Менеджеры обходят CRM и ведут сделки в Excel, Telegram и почте",
@@ -46,11 +46,11 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Документация, обучение команды и план масштабирования",
     ],
     intro: [
+      "Эта страница — коммерческий оффер «заказать внедрение». SEO-каталог кластеров живёт на /automation: КП, документооборот, AI для Bitrix24 / amoCRM / 1С, корпоративный RAG, OCR и AI для продаж.",
       "Автоматизация бизнес-процессов в enterprise начинается не с выбора платформы, а с честной карты того, как работа реально проходит через CRM, почту, мессенджеры, таблицы и учётные системы. Без этой карты любое внедрение превращается в очередной инструмент, который команда обходит через неделю после запуска.",
-      "Bober AI Systems работает как внешний отдел автоматизации для компаний в Москве и по всей России. Мы проводим аудит процессов, считаем ROI, проектируем архитектуру интеграций и доводим решение до production с передачей вашей команде. NDA, on-prem и требования 152-ФЗ — стандартная часть проектов.",
-      "Типичный сценарий: отдел продаж тратит 40% времени на рутину — сборку документов, перенос данных между системами, ручные напоминания. Бухгалтерия и юристы ждут согласований по email. Руководитель узнаёт о проблемах постфактум. Мы находим узкое место с максимальным эффектом и автоматизируем его первым — не всё сразу.",
-      "AI подключаем только там, где он снимает ручной труд с измеримым выигрышем: классификация документов, сборка текстов, квалификация обращений. В большинстве проектов 80% эффекта дают интеграции, workflow и правила — без LLM. Это снижает риски и ускоряет окупаемость.",
-      "Кейс ELIA Suite: подготовка коммерческих предложений сократилась с 45 минут до 2, конверсия quote→заказ выросла на 32%. Такой результат достигнут связкой CRM, шаблонов и workflow — не магией ChatGPT. Мы повторяем эту логику на ваших процессах: фиксированная смета, этапы с актами, production за 4–12 недель.",
+      "Bober AI Systems проводит аудит процессов, считает ROI, проектирует архитектуру интеграций и доводит решение до production с передачей вашей команде. NDA, on-prem и требования 152-ФЗ — стандартная часть проектов.",
+      "Типичный сценарий: отдел продаж тратит 40% времени на рутину — сборку документов, перенос данных между системами, ручные напоминания. Мы находим узкое место с максимальным эффектом и автоматизируем его первым — не всё сразу.",
+      "AI подключаем только там, где он снимает ручной труд с измеримым выигрышем. В большинстве проектов 80% эффекта дают интеграции, workflow и правила — без LLM.",
       "Если у вас уже есть CRM или ERP, но ими не пользуются — начинаем с диагностики adoption. Если систем нет — проектируем минимальный контур, который команда реально будет использовать каждый день.",
     ],
     howWeSolveTitle: "Как мы работаем",
@@ -76,19 +76,19 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     ],
     faqTitle: "Частые вопросы",
     faq: [
+      { q: "Где каталог сценариев?", a: "Pillar /automation — восемь SEO-кластеров. Эта страница — про заказ, смету и SLA." },
       { q: "С чего начать автоматизацию?", a: "С аудита одного процесса с максимальной болью: продажи, документы или согласования. Результат — карта, ROI и приоритеты, а не сразу разработка." },
       { q: "Нужен ли отдельный BPM-софт?", a: "Не всегда. Часто достаточно CRM + workflow + интеграции. BPM-платформу рекомендуем при сложных маршрутах согласования и формальном аудите." },
       { q: "Можно ли без AI?", a: "Да. Большинство проектов начинается с интеграций и правил. AI добавляем, когда он даёт измеримый выигрыш." },
       { q: "Какой бюджет?", a: "Аудит — от 150 000 ₽. Внедрение — от 400 000 ₽ в зависимости от числа интеграций и процессов." },
       { q: "Работаете удалённо?", a: "Да. Москва, Россия и СНГ. NDA, on-prem и 152-ФЗ — по запросу." },
       { q: "Какие CRM поддерживаете?", a: "amoCRM, Bitrix24, кастомные API. Двусторонняя синхронизация с 1С и документами." },
-      { q: "Кто будет поддерживать после запуска?", a: "Передаём документацию и обучаем ответственного сотрудника. SLA-сопровождение — опционально." },
     ],
     related: [
-      { href: "/services/crm-integration", label: "Интеграция CRM" },
-      { href: "/services/ai-automation", label: "AI-автоматизация" },
-      { href: "/services/document-processing", label: "Обработка документов" },
-      { href: "/services/n8n", label: "Автоматизация на n8n" },
+      { href: "/automation", label: "Каталог: автоматизация бизнес-процессов" },
+      { href: "/automation/proposal-generation", label: "Автоматизация КП" },
+      { href: "/automation/documents", label: "Документооборот" },
+      { href: "/services/rag", label: "Корпоративный RAG" },
     ],
     caseStudySlugs: ["elia-suite", "crm-1c-sync"],
   },
@@ -368,12 +368,12 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "ai-automation": {
-    metaTitle: "AI-автоматизация бизнес-процессов",
+    metaTitle: "AI + workflow: автоматизация с LLM-слоем",
     metaDescription:
-      "AI + workflow: документы, продажи, поддержка. Автоматизация с LLM там, где ROI измерим. Production в Москве и России.",
+      "AI + workflow: документы, продажи, поддержка. LLM точечно там, где ROI измерим. Pillar-каталог — /automation.",
     eyebrow: "AI + Workflow",
-    h1: "AI-автоматизация",
-    subtitle: "Workflow и интеграции — основа. LLM — точечно, где снимает ручной труд с измеримым эффектом.",
+    h1: "AI + workflow: автоматизация с LLM-слоем",
+    subtitle: "Workflow и интеграции — основа. LLM — точечно. Не конкурируем с pillar «Автоматизация бизнес-процессов».",
     problemsTitle: "Когда «просто AI» не работает",
     problems: [
       "ChatGPT-бот не подключён к CRM — менеджеры дублируют работу",
@@ -436,12 +436,12 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "rag": {
-    metaTitle: "RAG-системы для enterprise",
+    metaTitle: "Корпоративный RAG — внедрение под ключ",
     metaDescription:
-      "Retrieval-Augmented Generation: индексация документов, векторный поиск, цитаты источников. Production RAG для баз знаний и ассистентов.",
-    eyebrow: "RAG & Knowledge",
-    h1: "RAG-системы",
-    subtitle: "Ответы LLM с опорой на ваши документы — цитаты, актуальность, контроль галлюцинаций.",
+      "Корпоративный RAG: индексация документов, векторный поиск, цитаты источников. Production для баз знаний и ассистентов. От 400 000 ₽.",
+    eyebrow: "Корпоративный RAG",
+    h1: "Корпоративный RAG",
+    subtitle: "Кластер pillar-архитектуры: ответы LLM с опорой на ваши документы — цитаты, актуальность, контроль галлюцинаций.",
     problemsTitle: "Проблемы «голого» LLM",
     problems: [
       "Модель не знает ваших продуктов, регламентов и цен",
@@ -457,11 +457,11 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Процесс re-index и мониторинг качества (eval set)",
     ],
     intro: [
+      "Корпоративный RAG — money-page кластера. Сценарий поиска живёт на /solutions/rag-search; продукт «база знаний» — на отдельных URL без того же H1.",
       "RAG (Retrieval-Augmented Generation) — стандарт enterprise AI, когда ответ должен опираться на корпоративные документы. LLM получает релевантные фрагменты из базы знаний и генерирует ответ с цитатами — не из «памяти» модели.",
-      "Bober AI Systems строит RAG для поддержки, HR, продаж и инженерных команд. Кейс Kaspersky: ассистент по продуктовой документации для сотрудников 1С с grounding и контролем доступа. Без RAG такой проект невозможен в production.",
-      "Технический контур: ingestion (парсинг, chunking, metadata), embedding model, vector DB (Qdrant, pgvector, OpenSearch), retrieval + rerank, prompt с контекстом, guardrails. Обновление индекса — по webhook или расписанию.",
-      "Качество RAG измеряем eval-набором: вопрос → expected source → проверка citation и factual accuracy. Без eval RAG деградирует незаметно после первого релиза.",
-      "Private LLM обязателен, если документы содержат NDA и ПДн. Разворачиваем в Yandex Cloud, Selectel или on-prem.",
+      "Bober AI Systems строит RAG для поддержки, HR, продаж и инженерных команд. Кейс Kaspersky: ассистент по продуктовой документации для сотрудников 1С с grounding и контролем доступа.",
+      "Технический контур: ingestion (парсинг, chunking, metadata), embedding model, vector DB (Qdrant, pgvector, OpenSearch), retrieval + rerank, prompt с контекстом, guardrails.",
+      "Качество RAG измеряем eval-набором. Private LLM обязателен, если документы содержат NDA и ПДн.",
       "Срок — 4–6 недель до production MVP. Масштабирование на новые отделы — добавление ACL и источников.",
     ],
     howWeSolveTitle: "Этапы RAG-проекта",
@@ -487,19 +487,19 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     ],
     faqTitle: "FAQ по RAG",
     faq: [
+      { q: "Чем отличается от RAG-поиска?", a: "Эта страница — внедрение корпоративного RAG как услуги. /solutions/rag-search — сценарий поиска по документам." },
       { q: "RAG vs fine-tuning?", a: "RAG — для актуальных документов без переобучения. Fine-tuning — для стиля и узких доменов, дороже в поддержке." },
       { q: "Какие vector DB?", a: "Qdrant, pgvector, OpenSearch — по масштабу и инфраструктуре." },
       { q: "Multilingual?", a: "Да. Русский + English — типичный кейс для enterprise РФ." },
       { q: "Как обновлять документы?", a: "Webhook при публикации, nightly sync, версионирование chunks." },
       { q: "ACL?", a: "Metadata filters по роли/отделу на этапе retrieval." },
-      { q: "Галлюцинации?", a: "Citation-only mode, «не знаю» при low score, human escalation." },
       { q: "Бюджет?", a: "От 400 000 ₽ за MVP. Private LLM — отдельно или в пакете." },
     ],
     related: [
-      { href: "/services/knowledge-base", label: "База знаний" },
-      { href: "/services/enterprise-ai-assistant", label: "Enterprise AI" },
-      { href: "/services/private-llm-gigachat", label: "Private LLM" },
-      { href: "/services/llm-development", label: "LLM-разработка" },
+      { href: "/automation", label: "Автоматизация бизнес-процессов" },
+      { href: "/solutions/rag-search", label: "RAG-поиск по документам" },
+      { href: "/automation/ocr-data-extraction", label: "Распознавание документов" },
+      { href: "/services/knowledge-base", label: "База знаний как продукт" },
     ],
     caseStudySlugs: ["kaspersky-ai-assistant", "support-knowledge-base"],
   },
@@ -847,12 +847,12 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "ocr": {
-    metaTitle: "OCR и извлечение данных из документов",
+    metaTitle: "OCR-внедрение: извлечение данных в 1С и CRM",
     metaDescription:
-      "OCR для счетов, актов, договоров. Пакетная обработка, validation, выгрузка в 1С и CRM.",
-    eyebrow: "OCR",
-    h1: "OCR и извлечение текста",
-    subtitle: "Сканы и PDF → структурированные поля → учётная система. Без ручного ввода реквизитов.",
+      "Услуга OCR: счета, акты, договоры → поля в 1С/CRM. Кластер «распознавание документов» — /automation/ocr-data-extraction.",
+    eyebrow: "Услуга · OCR",
+    h1: "OCR-внедрение для бухгалтерии и операций",
+    subtitle: "Коммерческий оффер OCR-пайплайна. Problem-intent «распознавание документов» закреплён за /automation/ocr-data-extraction.",
     problemsTitle: "Боли OCR",
     problems: [
       "Бухгалтерия вводит реквизиты из сканов вручную — ошибки IBAN, ИНН, сумм",
@@ -872,7 +872,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Кейс OCR text extraction: пакетная обработка для бухгалтерии — минуты на пакет вместо часов ручного ввода. Confidence score определяет auto-post vs review queue.",
       "Для типовых счетов и актов — template detection и regex. LLM — fallback для нестандартных layout. Hybrid снижает cost и повышает accuracy.",
       "On-prem OCR (Tesseract, PaddleOCR, commercial SDK) для NDA. Cloud Yandex Vision — если compliance допускает.",
-      "Интegration с document-processing workflow: OCR — первый шаг перед согласованием и оплатой.",
+      "Интеграция с document-processing workflow: OCR — первый шаг перед согласованием и оплатой.",
       "Срок MVP — 3–4 недели. Бюджет — от 300 000 ₽.",
     ],
     howWeSolveTitle: "Этапы",
@@ -898,18 +898,19 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     ],
     faqTitle: "FAQ",
     faq: [
+      { q: "Где сценарий «распознавание документов»?", a: "Кластер /automation/ocr-data-extraction. Эта страница — услуга внедрения OCR." },
       { q: "Handwritten?", a: "Ограниченно. Печатные формы — основной scope." },
       { q: "Tables?", a: "Layout models + post-processing. Сложные tables — review UI." },
       { q: "Multi-page PDF?", a: "Page classifier, aggregate fields, duplicate detection." },
       { q: "On-prem?", a: "Да. Full pipeline in private cloud." },
       { q: "LLM нужен?", a: "Optional для messy docs. Rules first." },
-      { q: "152-ФЗ?", a: "Документы не покидают контур при on-prem OCR." },
       { q: "Бюджет?", a: "От 300 000 ₽." },
     ],
     related: [
+      { href: "/automation/ocr-data-extraction", label: "Распознавание документов" },
+      { href: "/automation/documents", label: "Автоматизация документооборота" },
       { href: "/services/document-processing", label: "Обработка документов" },
-      { href: "/services/ai-automation", label: "AI-автоматизация" },
-      { href: "/services/crm-integration", label: "CRM/1С" },
+      { href: "/automation", label: "Автоматизация бизнес-процессов" },
     ],
     caseStudySlugs: ["ocr-text-extraction", "invoice-processing-pipeline"],
   },
@@ -1183,12 +1184,12 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   },
 
   "knowledge-base": {
-    metaTitle: "Корпоративная база знаний с AI",
+    metaTitle: "База знаний как продукт — search, ACL, AI-слой",
     metaDescription:
-      "База знаний для поддержки и сотрудников: RAG, search, AI-ассистент. Кейс Kaspersky.",
-    eyebrow: "Knowledge",
-    h1: "Корпоративная база знаний",
-    subtitle: "Единый источник правды для поддержки и сотрудников — search + AI с цитатами и ACL.",
+      "Продукт «база знаний»: контент, search, ACL и AI-ассистент. Корпоративный RAG как технология — /services/rag.",
+    eyebrow: "Knowledge product",
+    h1: "База знаний как продукт для поддержки и HR",
+    subtitle: "Единый источник правды: search + AI с цитатами и ACL. Технологический кластер RAG — /services/rag.",
     problemsTitle: "Хаос знаний",
     problems: [
       "Регламенты в Confluence, PDF на SharePoint, ответы в Telegram-чатах",
@@ -1204,7 +1205,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Analytics: top queries, gaps, deflection",
     ],
     intro: [
-      "Корпоративная база знаний — не wiki ради wiki. Это structured content + search + AI assistant, который отвечает с citation и снижает нагрузку на L1/L2. Bober AI Systems строит KB для IT, HR, sales enablement и customer support.",
+      "База знаний как продукт — не wiki ради wiki. Это structured content + search + AI assistant. Корпоративный RAG как money-page кластера живёт на /services/rag.",
       "Кейс Kaspersky AI assistant — reference architecture: private LLM, RAG на product docs для сотрудников 1С, guardrails, feedback loop когда ответ не помог.",
       "Content lifecycle: owner assigns → draft → review → publish → auto re-index. Stale content detection by age and feedback thumbs-down.",
       "ACL по ролям: sales не видит HR, support видит customer-facing articles. Retrieval filters enforce at query time.",
@@ -1390,12 +1391,12 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
 
 const CONTENT_EN: Record<string, SeoServiceContent> = {
   "business-process-automation": {
-    metaTitle: "Business Process Automation",
+    metaTitle: "Order business process automation — estimate & SLA",
     metaDescription:
-      "Audit, CRM/ERP integrations, workflow and AI layer. Production business process automation for enterprise in Moscow and Russia.",
-    eyebrow: "Enterprise automation",
-    h1: "Business process automation",
-    subtitle: "From process map to production: integrations, workflow and measurable ROI — not another unused SaaS.",
+      "Commercial offer: audit from €1,500, implementation from €5,000. Fixed estimate, NDA, production. Cluster catalog — /automation.",
+    eyebrow: "Service · Offer",
+    h1: "Order business process automation",
+    subtitle: "Service page: estimate, stages and SLA. Pillar cluster catalog — /automation. No head-term overlap with the catalog.",
     problemsTitle: "Typical problems",
     problems: [
       "Managers bypass CRM and run deals in Excel, Telegram and email",
@@ -1450,10 +1451,10 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
       { q: "Support after launch?", a: "Docs and training included. SLA optional." },
     ],
     related: [
-      { href: "/services/crm-integration", label: "CRM integration" },
-      { href: "/services/ai-automation", label: "AI automation" },
-      { href: "/services/document-processing", label: "Document processing" },
-      { href: "/services/n8n", label: "n8n automation" },
+      { href: "/automation", label: "Catalog: business process automation" },
+      { href: "/automation/proposal-generation", label: "Proposal automation" },
+      { href: "/automation/documents", label: "Document workflow" },
+      { href: "/services/rag", label: "Corporate RAG" },
     ],
     caseStudySlugs: ["elia-suite", "crm-1c-sync"],
   },
@@ -1698,11 +1699,11 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   },
 
   "rag": {
-    metaTitle: "Enterprise RAG Systems",
-    metaDescription: "Retrieval-Augmented Generation: document indexing, vector search, source citations. Production RAG for knowledge bases and assistants.",
-    eyebrow: "RAG & Knowledge",
-    h1: "RAG systems",
-    subtitle: "LLM answers grounded in your documents — citations, freshness, hallucination control.",
+    metaTitle: "Corporate RAG — production delivery",
+    metaDescription: "Corporate RAG: document indexing, vector search, source citations. Production for knowledge bases and assistants.",
+    eyebrow: "Corporate RAG",
+    h1: "Corporate RAG",
+    subtitle: "Pillar cluster: LLM answers grounded in your documents — citations, freshness, hallucination control.",
     problemsTitle: "Bare LLM problems",
     problems: ["Model does not know your products, policies or prices", "Confident but wrong answers — legal and reputation risk", "Documents scattered across Confluence, SharePoint, PDF and CRM", "No process to refresh knowledge after policy changes"],
     deliverablesTitle: "Deliverables",
@@ -1736,7 +1737,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
       { q: "Hallucinations?", a: "Citation-only mode, «I don't know» on low score, human escalation." },
       { q: "Budget?", a: "From €4,000 MVP. Private LLM separate or bundled." },
     ],
-    related: [{ href: "/services/knowledge-base", label: "Knowledge base" }, { href: "/services/enterprise-ai-assistant", label: "Enterprise AI" }, { href: "/services/private-llm-gigachat", label: "Private LLM" }, { href: "/services/llm-development", label: "LLM development" }],
+    related: [{ href: "/automation", label: "Business process automation" }, { href: "/solutions/rag-search", label: "RAG search scenario" }, { href: "/automation/ocr-data-extraction", label: "Document recognition" }, { href: "/services/knowledge-base", label: "Knowledge base product" }],
     caseStudySlugs: ["kaspersky-ai-assistant", "support-knowledge-base"],
   },
 
