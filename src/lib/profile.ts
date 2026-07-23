@@ -1,4 +1,5 @@
 import { PORTFOLIO_IMAGES, STOCK_IMAGES } from "@/lib/site";
+import { localizePortfolioItem } from "@/lib/portfolio-i18n";
 
 export const PROFILE = {
   name: "Павел Стасиньский",
@@ -480,14 +481,17 @@ export const PORTFOLIO: PortfolioItem[] = [
   },
 ];
 
-export function getPortfolioItem(slug: string) {
-  return PORTFOLIO.find((item) => item.slug === slug);
+export function getPortfolioItem(slug: string, locale = "ru") {
+  const item = PORTFOLIO.find((entry) => entry.slug === slug);
+  if (!item) return undefined;
+  return locale === "en" ? localizePortfolioItem(item, locale) : item;
 }
 
 /** Кейсы для сетки /portfolio и аналогичных листингов. */
-export function getPortfolioListing(): PortfolioItem[] {
+export function getPortfolioListing(locale = "ru"): PortfolioItem[] {
   const bySlug = new Map(PORTFOLIO.map((item) => [item.slug, item]));
-  return PORTFOLIO_LISTING_SLUGS.map((slug) => bySlug.get(slug)).filter(
+  const items = PORTFOLIO_LISTING_SLUGS.map((slug) => bySlug.get(slug)).filter(
     (item): item is PortfolioItem => Boolean(item),
   );
+  return locale === "en" ? items.map((item) => localizePortfolioItem(item, locale)) : items;
 }

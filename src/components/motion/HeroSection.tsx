@@ -77,7 +77,7 @@ export function HeroSection({
             <span className="hero-title-mask">
               <motion.span
                 className="block"
-                initial={prefersReducedMotion ? false : { y: "110%", opacity: 0 }}
+                initial={prefersReducedMotion ? false : { y: "110%", opacity: 1 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ ...titleTransition, delay: prefersReducedMotion ? 0 : 0.08 }}
               >
@@ -88,7 +88,7 @@ export function HeroSection({
               <span className="hero-title-mask">
                 <motion.span
                   className="block"
-                  initial={prefersReducedMotion ? false : { y: "110%", opacity: 0 }}
+                  initial={prefersReducedMotion ? false : { y: "110%", opacity: 1 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ ...titleTransition, delay: prefersReducedMotion ? 0 : 0.18 }}
                 >
@@ -102,7 +102,7 @@ export function HeroSection({
             <motion.p
               key={paragraph}
               className="hero-lead"
-              variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
+              variants={{ hidden: { opacity: 1, y: 24 }, visible: { opacity: 1, y: 0 } }}
               transition={transition}
               style={index > 0 ? { marginTop: "1rem" } : undefined}
             >
@@ -113,7 +113,7 @@ export function HeroSection({
           {specialization ? (
             <motion.p
               className="hero-spec"
-              variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
+              variants={{ hidden: { opacity: 1, y: 24 }, visible: { opacity: 1, y: 0 } }}
               transition={transition}
             >
               {specialization}
@@ -123,7 +123,7 @@ export function HeroSection({
           {(differentiator || eyebrow) ? (
             <motion.div
               className="hero-trust-lines"
-              variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
+              variants={{ hidden: { opacity: 1, y: 24 }, visible: { opacity: 1, y: 0 } }}
               transition={transition}
             >
               {differentiator ? <p className="hero-partners">{differentiator}</p> : null}
@@ -133,7 +133,7 @@ export function HeroSection({
 
           <motion.div
             className="mt-10 flex flex-wrap gap-4"
-            variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
+            variants={{ hidden: { opacity: 1, y: 24 }, visible: { opacity: 1, y: 0 } }}
             transition={transition}
           >
             <ContactCta>{ctaPrimary}</ContactCta>
@@ -155,7 +155,7 @@ export function HeroSection({
 
         <motion.figure
           className={`hero-media${accentImages.length > 0 ? " hero-media--compose" : " hero-media--banner"}`}
-          initial={prefersReducedMotion ? false : { opacity: 0, y: 40 }}
+          initial={prefersReducedMotion ? false : { opacity: 1, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...transition, delay: prefersReducedMotion ? 0 : 0.28 }}
         >

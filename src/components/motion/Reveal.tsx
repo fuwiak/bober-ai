@@ -7,15 +7,19 @@ type RevealProps = HTMLMotionProps<"div"> & {
   delay?: number;
 };
 
+/**
+ * Entrance motion without hiding content: opacity stays 1 so SSR / failed JS
+ * never leaves blank sections. Only a short vertical settle remains.
+ */
 export function Reveal({ children, className, delay = 0, ...props }: RevealProps) {
   const prefersReducedMotion = useReducedMotion();
   const offset = REVEAL_OFFSET.desktop;
 
   return (
     <motion.div
-      initial={prefersReducedMotion ? false : { opacity: 0, y: offset }}
+      initial={prefersReducedMotion ? false : { opacity: 1, y: offset }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px 0px" }}
+      viewport={{ once: true, margin: "-80px 0px", amount: 0.15 }}
       transition={{ ...revealTransition, delay }}
       className={className}
       {...props}

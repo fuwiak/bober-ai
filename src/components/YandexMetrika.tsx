@@ -58,7 +58,7 @@ export function YandexMetrika() {
 
   return (
     <>
-      <Script id="yandex-metrika" strategy="afterInteractive">
+      <Script id="yandex-metrika" strategy="lazyOnload">
         {`
           var mainId = ${YANDEX_METRIKA_ID};
           var partnersId = ${PARTNERS_YANDEX_METRIKA_ID};

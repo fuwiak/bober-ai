@@ -56,7 +56,7 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
 
   const faqSchema = content.faq.length ? faqJsonLd(content.faq) : null;
   const caseStudies = (content.caseStudySlugs ?? [])
-    .map((caseSlug) => getPortfolioItem(caseSlug))
+    .map((caseSlug) => getPortfolioItem(caseSlug, locale))
     .filter((item): item is NonNullable<typeof item> => Boolean(item));
 
   return (

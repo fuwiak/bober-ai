@@ -44,7 +44,7 @@ export default async function PortfolioPage({ params }: Props) {
               />
             </Reveal>
             <ProjectsCasesShowcase
-              items={getPortfolioListing()}
+              items={getPortfolioListing(locale)}
               title={t("portfolio.title")}
               subtitle={t("portfolio.subtitle")}
               detailsLabel={t("portfolio.details")}

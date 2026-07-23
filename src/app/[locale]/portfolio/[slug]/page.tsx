@@ -7,6 +7,7 @@ import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { Link } from "@/i18n/navigation";
 import { getPortfolioItem, PORTFOLIO, PROFILE } from "@/lib/profile";
+import { hasPortfolioEnglish } from "@/lib/portfolio-i18n";
 import { articleJsonLd, buildPageMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 
@@ -16,9 +17,10 @@ type PageProps = {
 
 export async function generateStaticParams() {
   const params: { locale: string; slug: string }[] = [];
-  for (const locale of ["ru", "en"]) {
-    for (const item of PORTFOLIO) {
-      params.push({ locale, slug: item.slug });
+  for (const item of PORTFOLIO) {
+    params.push({ locale: "ru", slug: item.slug });
+    if (hasPortfolioEnglish(item.slug)) {
+      params.push({ locale: "en", slug: item.slug });
     }
   }
   return params;
@@ -26,7 +28,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale, slug } = await params;
-  const item = getPortfolioItem(slug);
+  const item = getPortfolioItem(slug, locale);
   if (!item) return {};
 
   return buildPageMetadata({
@@ -46,8 +48,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function PortfolioProjectPage({ params }: PageProps) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
-  const item = getPortfolioItem(slug);
+  const item = getPortfolioItem(slug, locale);
   if (!item) notFound();
+  if (locale === "en" && !hasPortfolioEnglish(slug)) notFound();
 
   const hasCaseStudy = Boolean(item.description && item.solution && item.result);
   const isEn = locale === "en";

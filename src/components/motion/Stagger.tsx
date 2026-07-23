@@ -16,7 +16,7 @@ export function Stagger({ children, className, stagger = STAGGER_DELAY }: Stagge
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-80px 0px" }}
+      viewport={{ once: true, margin: "-80px 0px", amount: 0.15 }}
       variants={{
         hidden: {},
         visible: {
@@ -37,6 +37,7 @@ type StaggerItemProps = {
   className?: string;
 };
 
+/** Keep opacity at 1 — animate only Y so content stays readable without JS. */
 export function StaggerItem({ children, className }: StaggerItemProps) {
   const prefersReducedMotion = useReducedMotion();
   const offset = REVEAL_OFFSET.desktop;
@@ -47,7 +48,7 @@ export function StaggerItem({ children, className }: StaggerItemProps) {
         prefersReducedMotion
           ? undefined
           : {
-              hidden: { opacity: 0, y: offset },
+              hidden: { opacity: 1, y: offset },
               visible: { opacity: 1, y: 0, transition: revealTransition },
             }
       }

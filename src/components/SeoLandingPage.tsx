@@ -113,7 +113,7 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
 
   const faqSchema = faqItems.length ? faqJsonLd(faqItems) : null;
   const caseStudies = (page.caseStudySlugs ?? [])
-    .map((slug) => getPortfolioItem(slug))
+    .map((slug) => getPortfolioItem(slug, locale))
     .filter((item): item is NonNullable<typeof item> => Boolean(item));
 
   return (

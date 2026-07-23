@@ -1,9 +1,8 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { ContactForm } from "@/components/ContactForm";
 import { ContactCta } from "@/components/ContactCta";
 import { BeforeAfterDemoSection } from "@/components/ExpertiseEvidence";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
-import { FounderManifesto } from "@/components/FounderManifesto";
 import { HomeHubSection } from "@/components/HomeHubSection";
 import { LeadMagnetsSection } from "@/components/LeadMagnetsSection";
 import { SectionCtaBand } from "@/components/SectionCtaBand";
@@ -28,6 +27,7 @@ import {
 } from "@/lib/site";
 
 export default async function HomePage() {
+  const locale = await getLocale();
   const t = await getTranslations();
   const trustStats = t.raw("trust.stats") as { value: string; label: string }[];
   const trustBenefits = t.raw("trust.benefits") as { title: string; text: string }[];
@@ -63,7 +63,7 @@ export default async function HomePage() {
     service?: string;
   }[];
   const founderStats = t.raw("founderManifesto.stats") as { value: string; label: string }[];
-  const caseStudies = getPortfolioListing();
+  const caseStudies = getPortfolioListing(locale);
 
   return (
     <div className="page-shell min-h-screen">

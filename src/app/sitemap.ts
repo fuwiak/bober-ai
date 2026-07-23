@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { ACADEMY_POSTS } from "@/lib/academy-posts";
 import { BLOG_POSTS } from "@/lib/blog-posts";
 import { PORTFOLIO } from "@/lib/profile";
+import { hasPortfolioEnglish } from "@/lib/portfolio-i18n";
 import { getAllServiceSlugs } from "@/lib/seo-services-content";
 import { GUIDES } from "@/lib/guides";
 import { LANDING_PAGES } from "@/lib/landing-pages";
@@ -24,7 +25,7 @@ const UPDATED = {
   guides: new Date("2026-07-14"),
   blog: new Date("2026-07-19"),
   academy: new Date("2026-07-20"),
-  portfolio: new Date("2026-07-22"),
+  portfolio: new Date("2026-07-23"),
   legal: new Date("2026-07-16"),
   microsites: new Date("2026-07-22"),
 } as const;
@@ -117,7 +118,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   for (const item of PORTFOLIO) {
-    pushLocalized(entries, `/portfolio/${item.slug}`, UPDATED.portfolio, "monthly", item.featured ? 0.8 : 0.6);
+    const lastModified = UPDATED.portfolio;
+    const changeFrequency = "monthly" as const;
+    const priority = item.featured ? 0.8 : 0.6;
+    const path = `/portfolio/${item.slug}`;
+    const hasEn = hasPortfolioEnglish(item.slug);
+
+    if (hasEn) {
+      pushLocalized(entries, path, lastModified, changeFrequency, priority);
+    } else {
+      // RU-only case — no /en mirror and no hreflang en alternate.
+      entries.push({
+        url: `${SITE_URL}${path}`,
+        lastModified,
+        changeFrequency,
+        priority,
+        alternates: {
+          languages: {
+            ru: `${SITE_URL}${path}`,
+            "x-default": `${SITE_URL}${path}`,
+          },
+        },
+      });
+    }
   }
 
   for (const page of LANDING_PAGES) {

@@ -118,7 +118,7 @@ function AutomationHubPage({ hub, locale }: SeoHubPageProps) {
   const pageCopy = AUTOMATION_COPY[loc];
   const prefix = loc === "en" ? "/en" : "";
   const pageUrl = absoluteUrl(`${prefix}/automation`);
-  const caseStudies = AUTOMATION_CASES.map(getPortfolioItem).filter(
+  const caseStudies = AUTOMATION_CASES.map((slug) => getPortfolioItem(slug, locale)).filter(
     (item): item is NonNullable<typeof item> => Boolean(item),
   );
   const webPage = webPageJsonLd({ name: copy.h1, description: copy.metaDescription, url: pageUrl, locale });
