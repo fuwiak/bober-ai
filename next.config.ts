@@ -46,19 +46,31 @@ const nextConfig: NextConfig = {
       },
     ];
 
+    // Next path-to-regexp rejects optional tokens like `woff2?` / `jpe?g` — list each ext.
+    const assetSources = [
+      "/:path*.js",
+      "/:path*.css",
+      "/:path*.woff",
+      "/:path*.woff2",
+      "/:path*.ttf",
+      "/:path*.otf",
+      "/:path*.eot",
+      "/:path*.png",
+      "/:path*.jpg",
+      "/:path*.jpeg",
+      "/:path*.gif",
+      "/:path*.webp",
+      "/:path*.avif",
+      "/:path*.svg",
+      "/:path*.ico",
+    ];
+
     return [
       {
         source: "/_next/static/:path*",
         headers: immutable,
       },
-      {
-        source: "/:path*\\.(?:js|css|woff2?|ttf|otf|eot)",
-        headers: immutable,
-      },
-      {
-        source: "/:path*\\.(?:png|jpe?g|gif|webp|avif|svg|ico)",
-        headers: immutable,
-      },
+      ...assetSources.map((source) => ({ source, headers: immutable })),
       {
         source: "/hero/:path*",
         headers: immutable,
