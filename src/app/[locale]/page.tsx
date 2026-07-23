@@ -4,9 +4,13 @@ import HomePage from "@/components/HomePage";
 import { routing } from "@/i18n/routing";
 import { absoluteUrl } from "@/lib/site";
 import { getEnterpriseServicesListing } from "@/lib/enterprise-services";
+import { PROFILE } from "@/lib/profile";
+import { GITHUB_URL, LINKEDIN_URL, TELEGRAM_URL, YANDEX_USLUGI_URL } from "@/lib/site";
 import {
   buildPageMetadata,
+  localizedAbsolute,
   organizationJsonLd as orgSchema,
+  personJsonLd,
   siteNavigationJsonLd,
   websiteJsonLd as siteSchema,
 } from "@/lib/seo";
@@ -61,9 +65,19 @@ export default async function Page({ params }: Props) {
     description: t("description"),
   };
 
+  const founderJsonLd = personJsonLd({
+    name: PROFILE.name,
+    jobTitle: PROFILE.roles[0],
+    description: PROFILE.focus,
+    image: PROFILE.heroImage,
+    url: localizedAbsolute("/about", locale),
+    sameAs: [LINKEDIN_URL, GITHUB_URL, TELEGRAM_URL, YANDEX_USLUGI_URL],
+  });
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(founderJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(offersJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema(locale)) }} />
       <script

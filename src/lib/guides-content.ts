@@ -188,11 +188,11 @@ const GUIDES_RU: Record<string, GuideContent> = {
     ctaText: "Проведём аудит, посчитаем ROI по сценариям и скажем честно — нужен ли AI или хватит workflow.",
   },
   aiGlossary: {
-    metaTitle: "Глоссарий AI для бизнеса — RAG, агенты, MCP, Claude",
+    metaTitle: "Глоссарий AI для бизнеса — RAG, агенты, MCP, Claude, AEO, GEO",
     metaDescription:
-      "Словарь терминов enterprise AI: LLM, RAG, AI-агенты, MCP, Claude API, Claude Code, on-prem — для закупки и IT.",
+      "Словарь терминов enterprise AI: LLM, RAG, AI-агенты, MCP, Claude API, Claude Code, on-prem, SEO/AEO/GEO — для закупки и IT.",
     h1: "Глоссарий AI для бизнеса",
-    subtitle: "Ключевые термины enterprise AI — без маркетингового шума. Включая популярные запросы про Claude.",
+    subtitle: "Ключевые термины enterprise AI — без маркетингового шума. Включая популярные запросы про Claude, AEO и GEO.",
     sections: [
       {
         title: "LLM (Large Language Model)",
@@ -238,6 +238,23 @@ const GUIDES_RU: Record<string, GuideContent> = {
         title: "Guardrails",
         paragraphs: [
           "Политики безопасности вокруг LLM: фильтрация PII, запрет опасных действий, лимиты токенов, эскалация при низкой уверенности, аудит запросов.",
+        ],
+      },
+      {
+        title: "SEO, AEO, GEO и AI SEO — в чём разница",
+        paragraphs: [
+          "SEO отвечает на вопрос «как поднять сайт в выдаче Яндекса или Google» — результат: позиция в выдаче и клик по ссылке.",
+          "AEO (Answer Engine Optimization) — подготовка контента так, чтобы поисковик или ассистент мог сразу вытащить короткий точный ответ: цена, диапазон, факторы, FAQ. Раньше это были featured snippets и голосовой поиск, сейчас — ещё и ответы AI.",
+          "GEO (Generative Engine Optimization) — цель шире: чтобы AI-система не просто ответила, а упомянула, порекомендовала или процитировала компанию в сгенерированном ответе (ChatGPT, Perplexity, Google AI Overviews, YandexGPT).",
+          "AI SEO / AISEO — самый неточный термин: либо использование AI для классического SEO (генерация текстов, анализ фраз), либо оптимизация под AI-поиск в целом. Границы между AEO, GEO и AI SEO пока не устоялись — даже Google описывает их как часть SEO, а не отдельную дисциплину.",
+        ],
+      },
+      {
+        title: "Как мы применяем AEO и GEO на этом сайте",
+        paragraphs: [
+          "Ключевые страницы построены по схеме: вопрос клиента → короткий прямой ответ → детали → пример → цифры → автор/эксперт → источники → FAQ — так ответ быстро находят и человек, и AI-ассистент.",
+          "FAQ на каждой странице размечен схемой FAQPage (schema.org), профиль основателя — схемой Person со ссылками на независимые профили (LinkedIn, GitHub, Яндекс.Услуги). Такие сигналы генеративные системы используют, чтобы проверить, кто стоит за ответом.",
+          "Важная оговорка: видимость в AI-ответах непостоянна, зависит от платформы и формулировки запроса. Это не разовая настройка, а постоянная работа с контентом — не магическая техника с гарантированным результатом.",
         ],
       },
       {
@@ -465,11 +482,11 @@ const GUIDES_EN: Record<string, GuideContent> = {
     ctaText: "We'll audit, calculate ROI by scenario and honestly say whether AI is needed or workflow suffices.",
   },
   aiGlossary: {
-    metaTitle: "AI glossary for business — RAG, agents, MCP, Claude",
+    metaTitle: "AI glossary for business — RAG, agents, MCP, Claude, AEO, GEO",
     metaDescription:
-      "Enterprise AI terms: LLM, RAG, AI agents, MCP, Claude API, Claude Code, on-prem — for procurement and IT.",
+      "Enterprise AI terms: LLM, RAG, AI agents, MCP, Claude API, Claude Code, on-prem, SEO/AEO/GEO — for procurement and IT.",
     h1: "AI glossary for business",
-    subtitle: "Key enterprise AI terms — without marketing noise. Including popular Claude searches.",
+    subtitle: "Key enterprise AI terms — without marketing noise. Including popular Claude, AEO, and GEO searches.",
     sections: [
       {
         title: "LLM (Large Language Model)",
@@ -515,6 +532,23 @@ const GUIDES_EN: Record<string, GuideContent> = {
         title: "Guardrails",
         paragraphs: [
           "Security policies around LLM: PII filtering, blocking dangerous actions, token limits, escalation on low confidence, request audit.",
+        ],
+      },
+      {
+        title: "SEO vs. AEO vs. GEO vs. AI SEO — what's the difference",
+        paragraphs: [
+          "SEO answers \"how do we rank higher in Google or Yandex\" — the outcome is a search position and a click on a link.",
+          "AEO (Answer Engine Optimization) is structuring content so a search engine or assistant can pull a short, precise answer straight from it: price, range, factors, FAQ. It used to mean featured snippets and voice search; now it also covers AI answers.",
+          "GEO (Generative Engine Optimization) aims wider: getting an AI system to mention, recommend, or cite the company inside a generated answer (ChatGPT, Perplexity, Google AI Overviews, YandexGPT).",
+          "AI SEO / AISEO is the least precise term — it can mean using AI to do classic SEO (generating articles, keyword analysis) or optimizing for AI search in general. The lines between AEO, GEO, and AI SEO aren't settled yet; even Google treats AEO and GEO as part of SEO rather than separate disciplines.",
+        ],
+      },
+      {
+        title: "How we apply AEO and GEO on this site",
+        paragraphs: [
+          "Key pages follow the pattern: customer question → short direct answer → details → example → numbers → author/expert → sources → FAQ — so both humans and AI assistants find the answer fast.",
+          "Every FAQ is marked up with FAQPage schema (schema.org), and the founder's profile carries Person schema linked to independent profiles (LinkedIn, GitHub, Yandex Uslugi) — signals generative systems use to verify who is behind the answer.",
+          "One caveat: visibility in AI answers is inconsistent, varies by platform and query phrasing. It's ongoing content work, not a one-time setting or a guaranteed-result trick.",
         ],
       },
       {

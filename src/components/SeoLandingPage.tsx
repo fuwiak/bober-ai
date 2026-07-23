@@ -25,7 +25,7 @@ import {
   serviceJsonLd,
   webPageJsonLd,
 } from "@/lib/seo";
-import { TELEGRAM_URL, absoluteUrl } from "@/lib/site";
+import { GITHUB_URL, LINKEDIN_URL, TELEGRAM_URL, absoluteUrl } from "@/lib/site";
 
 type LandingContent = {
   metaTitle: string;
@@ -109,6 +109,7 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
     description: PROFILE.focus,
     image: PROFILE.heroImage,
     url: TELEGRAM_URL,
+    sameAs: [LINKEDIN_URL, GITHUB_URL, TELEGRAM_URL],
   });
 
   const faqSchema = faqItems.length ? faqJsonLd(faqItems) : null;

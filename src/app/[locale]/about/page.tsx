@@ -8,8 +8,14 @@ import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { Reveal } from "@/components/motion/Reveal";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import { buildPageMetadata } from "@/lib/seo";
-import { FOUNDER_IMAGE } from "@/lib/site";
+import { PROFILE } from "@/lib/profile";
+import {
+  buildPageMetadata,
+  localizedAbsolute,
+  organizationJsonLd,
+  personJsonLd,
+} from "@/lib/seo";
+import { FOUNDER_IMAGE, GITHUB_URL, LINKEDIN_URL, TELEGRAM_URL, YANDEX_USLUGI_URL } from "@/lib/site";
 import { KASPERSKY_PARTNER_BADGES } from "@/lib/trust-partners";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -36,8 +42,25 @@ export default async function AboutPage({ params }: Props) {
   const isEn = locale === "en";
   const skills = t.raw("about.skills") as string[];
 
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    ...organizationJsonLd(locale),
+    description: t("about.text"),
+  };
+
+  const founderSchema = personJsonLd({
+    name: PROFILE.name,
+    jobTitle: PROFILE.roles[0],
+    description: PROFILE.focus,
+    image: PROFILE.heroImage,
+    url: localizedAbsolute("/about", locale),
+    sameAs: [LINKEDIN_URL, GITHUB_URL, TELEGRAM_URL, YANDEX_USLUGI_URL],
+  });
+
   return (
     <div className="page-shell min-h-screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(founderSchema) }} />
       <SiteHeader />
       <main>
         <section

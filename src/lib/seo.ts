@@ -400,15 +400,18 @@ export function personJsonLd(input: {
   description: string;
   image: string;
   url: string;
+  sameAs?: string[];
 }) {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": `${SITE_URL}/#founder`,
     name: input.name,
     jobTitle: input.jobTitle,
     description: input.description,
     image: absoluteUrl(input.image),
     url: input.url,
+    ...(input.sameAs && input.sameAs.length > 0 ? { sameAs: input.sameAs } : {}),
     worksFor: {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
