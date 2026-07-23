@@ -1,21 +1,21 @@
 const en = {
   meta: {
-    title: "AI systems and automation for companies — Bober AI",
+    title: "AI automation of proposals, documents and CRM — Bober AI",
     description:
-      "AI systems and automation for companies: documents, sales, support and internal processes. AI assistants, RAG, private LLMs. Integration with Bitrix24, 1C, amoCRM, CRM and ERP.",
+      "We implement AI automation for sales, documents, CRM and 1C. Pilot from €3,000, fixed estimate, NDA, cloud or on-premise.",
     keywords: [
-      "AI systems for companies",
-      "business process automation",
+      "proposal automation",
+      "document automation",
+      "CRM automation",
+      "AI sales automation",
+      "1C integration",
       "enterprise AI implementation",
-      "private LLM",
-      "corporate RAG",
-      "AI assistants",
       "amoCRM integration",
       "Bitrix24 integration",
       "AI on-premise",
-      "document automation",
+      "private LLM",
+      "corporate RAG",
       "claude ai",
-      "claude api",
     ],
   },
   nav: {

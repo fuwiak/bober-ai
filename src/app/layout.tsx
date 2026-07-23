@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   applicationName: SITE_NAME,
   title: {
-    default: "AI-системы и автоматизация для компаний",
+    default: "Автоматизация КП, документов и CRM с AI — Bober AI",
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: "AI-системы и автоматизация для компаний",
+    title: "Автоматизация КП, документов и CRM с AI — Bober AI",
     description: SITE_DESCRIPTION,
     images: [
       {
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI-системы и автоматизация для компаний",
+    title: "Автоматизация КП, документов и CRM с AI — Bober AI",
     description: SITE_DESCRIPTION,
     images: [absoluteUrl(FOUNDER_IMAGE)],
   },

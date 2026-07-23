@@ -76,8 +76,15 @@ export function buildPageMetadata({
   const enPath = path.startsWith("/en") ? path : `/en${path === "/" ? "" : path}`;
   const ogImageUrl = absoluteUrl(image);
 
+  // Titles that already include the brand must be absolute — otherwise the root
+  // template appends "| Bober AI Systems" and the SERP title doubles the brand.
+  const resolvedTitle =
+    /bober ai/i.test(title) || title.includes(SITE_NAME)
+      ? { absolute: title }
+      : title;
+
   return {
-    title,
+    title: resolvedTitle,
     description,
     keywords,
     alternates: {

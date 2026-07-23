@@ -33,10 +33,10 @@ export const PORTFOLIO_IMAGES = {
   elia: "/portfolio/elia-suite.png",
 } as const;
 export const SITE_NAME = "Bober AI Systems";
-export const SITE_TAGLINE_RU = "Автоматизация бизнес-процессов для компаний";
-export const SITE_TAGLINE_EN = "Business process automation for companies";
+export const SITE_TAGLINE_RU = "Автоматизация КП, документов и CRM с AI";
+export const SITE_TAGLINE_EN = "AI automation of proposals, documents and CRM";
 export const SITE_DESCRIPTION =
-  "Проектируем и внедряем системы автоматизации бизнеса. CRM, документы, продажи, поддержка. AI только там, где приносит ROI.";
+  "Внедряем AI-автоматизацию продаж, документов, CRM и 1С. Пилот от 300 000 ₽, фиксированная смета, NDA, облако или on-premise.";
 /** Регион для Вебмастера / schema (город важнее страны для локальной выдачи). */
 export const SITE_REGION = "Москва";
 export const SITE_COUNTRY = "Россия";
@@ -82,21 +82,18 @@ export const BITRIX_SITE_URL =
   process.env.NEXT_PUBLIC_BITRIX_SITE_URL?.trim() || "https://bitrix.bober-ai.dev";
 
 export const DEFAULT_KEYWORDS = [
-  "AI-системы для компаний",
-  "автоматизация бизнес процессов",
+  "автоматизация КП",
+  "автоматизация документов",
+  "автоматизация CRM",
+  "AI автоматизация продаж",
   "внедрение ии в бизнес",
-  "приватный LLM",
-  "корпоративный RAG",
-  "AI-ассистенты",
-  "автоматизация документооборота",
-  "внедрение crm",
-  "crm автоматизация",
-  "автоматизация продаж",
+  "интеграция 1С",
   "amocrm интеграция",
   "bitrix24 интеграция",
-  "интеграция 1С",
+  "приватный LLM",
+  "корпоративный RAG",
   "AI on-premise",
-  "контейнеры и Linux-серверы",
+  "автоматизация бизнес процессов",
   "Yandex Cloud",
   "Selectel",
 ];
