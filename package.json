@@ -21,6 +21,7 @@
     "feeds:generate": "node scripts/generate-performers-feed.mjs",
     "webmaster:mirrors": "node scripts/yandex-webmaster-mirrors.mjs",
     "webmaster:seo": "node scripts/yandex-webmaster-seo.mjs",
+    "webmaster:boost": "node scripts/yandex-webmaster-boost.mjs",
     "webmaster:recrawl": "node scripts/yandex-webmaster-recrawl.mjs",
     "webmaster:oauth": "node scripts/yandex-webmaster-oauth.mjs",
     "yandex:status": "node scripts/yandex-status.mjs",

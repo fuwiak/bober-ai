@@ -11,6 +11,7 @@ export default {
 
   yaga webmaster status     overall webmaster + metrika snapshot
   yaga webmaster seo        ranking checklist (SQI, diagnostics, index, queries)
+  yaga webmaster boost      recrawl important URLs + feed/region checklist
   yaga webmaster feed       upload performers feed (--all / --microsites)
   yaga webmaster mirrors    mirror settings
   yaga webmaster repair     feed repair helper
@@ -25,6 +26,10 @@ export default {
     }
     if (sub === "seo" || sub === "positions" || sub === "rank") {
       await ctx.runScript("yandex-webmaster-seo.mjs", rest);
+      return;
+    }
+    if (sub === "boost" || sub === "index") {
+      await ctx.runScript("yandex-webmaster-boost.mjs", rest);
       return;
     }
     if (sub === "feed") {

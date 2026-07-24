@@ -18,10 +18,10 @@ export const dynamic = "force-static";
  * при каждом деплое, Яндекс и Google начинают игнорировать.
  */
 const UPDATED = {
-  core: new Date("2026-07-22"),
-  services: new Date("2026-07-22"),
-  landings: new Date("2026-07-22"),
-  hubs: new Date("2026-07-22"),
+  core: new Date("2026-07-24"),
+  services: new Date("2026-07-24"),
+  landings: new Date("2026-07-24"),
+  hubs: new Date("2026-07-24"),
   guides: new Date("2026-07-14"),
   blog: new Date("2026-07-19"),
   academy: new Date("2026-07-20"),
@@ -114,7 +114,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   for (const slug of ruServiceSlugs) {
-    pushLocalized(entries, `/services/${slug}`, UPDATED.services, "weekly", 0.85);
+    const priority =
+      slug === "business-process-automation" ||
+      slug === "sales-ai-agent" ||
+      slug === "ai-discovery-roadmap" ||
+      slug === "crm-integration" ||
+      slug === "enterprise-ai-assistant"
+        ? 0.95
+        : 0.85;
+    pushLocalized(entries, `/services/${slug}`, UPDATED.services, "weekly", priority);
   }
 
   for (const item of PORTFOLIO) {
