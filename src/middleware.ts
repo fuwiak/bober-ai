@@ -107,7 +107,13 @@ export default function middleware(request: NextRequest) {
     return NextResponse.redirect(url, 301);
   }
 
-  if (pathname === "/performers-feed.yml" || (pathname.startsWith("/feeds/") && pathname.endsWith(".yml"))) {
+  if (pathname === "/performers-feed.yml") {
+    const url = request.nextUrl.clone();
+    url.pathname = "/api/feeds/performers";
+    return withYmlContentType(NextResponse.rewrite(url));
+  }
+
+  if (pathname.startsWith("/feeds/") && pathname.endsWith(".yml")) {
     return withYmlContentType(NextResponse.next());
   }
 
