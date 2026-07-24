@@ -264,8 +264,9 @@ export function webPageJsonLd(input: {
 export function aggregateRatingJsonLd() {
   return {
     "@type": "AggregateRating",
-    ratingValue: PROFILE.rating,
-    reviewCount: PROFILE.reviewsCount,
+    // Keep in sync with YML FEED_RATING / FEED_REVIEWS_COUNT (0 = no public rating yet).
+    ratingValue: 0,
+    reviewCount: 0,
     bestRating: 5,
     worstRating: 1,
   };

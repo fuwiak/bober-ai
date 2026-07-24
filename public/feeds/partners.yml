@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-24 17:18">
+<yml_catalog date="2026-07-24 17:50">
   <shop>
     <name>Bober AI Systems — Partner Program</name>
     <company>Bober AI Systems</company>
@@ -47,8 +47,8 @@
       <description>Presale support для агентств</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
@@ -56,14 +56,8 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://partners.bober-ai.dev/#contact</param>
       <param name="Ссылка на профиль исполнителя">https://partners.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">White-label AI-разработка для агентств и software house: архитектура, backend, LLM и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
-      <param name="Другая услуга исполнителя - 1">Анализ брифа, архитектура, оценка себестоимости и участие в технической встрече под брендом партнёра.</param>
-      <param name="Сайт работодателя">https://partners.bober-ai.dev</param>
     </offer>
     <offer id="partners-delivery">
       <name>Павел Стасиньский</name>
@@ -77,8 +71,8 @@
       <description>White-label project delivery</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -86,14 +80,8 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://partners.bober-ai.dev/#contact</param>
       <param name="Ссылка на профиль исполнителя">https://partners.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">White-label AI-разработка для агентств и software house: архитектура, backend, LLM и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
-      <param name="Другая услуга исполнителя - 1">Разработка, интеграции, тестирование, deployment и документация — клиент видит только вас.</param>
-      <param name="Сайт работодателя">https://partners.bober-ai.dev</param>
     </offer>
     <offer id="partners-ongoing">
       <name>Павел Стасиньский</name>
@@ -107,8 +95,8 @@
       <description>Ongoing AI team</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
@@ -116,14 +104,8 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://partners.bober-ai.dev/#contact</param>
       <param name="Ссылка на профиль исполнителя">https://partners.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">White-label AI-разработка для агентств и software house: архитектура, backend, LLM и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
-      <param name="Другая услуга исполнителя - 1">Ежемесячный пул часов, несколько проектов, приоритетная поддержка и быстрые оценки.</param>
-      <param name="Сайт работодателя">https://partners.bober-ai.dev</param>
     </offer>
     <offer id="partners-bitrix-analytics">
       <name>Павел Стасиньский</name>
@@ -133,12 +115,12 @@
       <sales_notes>Subcontract / technical partner</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>bitrix24-ai-analytics</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-partners-bitrix-analytics.svg</picture>
+      <picture>https://www.bober-ai.dev/stock/offers/ms-partners-bitrix-analytics.jpg</picture>
       <description>AI-аналитика для Битрикс24 (white-label)</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -146,14 +128,8 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://partners.bober-ai.dev/#contact</param>
       <param name="Ссылка на профиль исполнителя">https://partners.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">White-label AI-разработка для агентств и software house: архитектура, backend, LLM и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
-      <param name="Другая услуга исполнителя - 1">Вопросы о продажах, задачах и звонках на естественном языке — внутри CRM клиента под вашим брендом.</param>
-      <param name="Сайт работодателя">https://partners.bober-ai.dev</param>
     </offer>
     <offer id="partners-kp-docs">
       <name>Павел Стасиньский</name>
@@ -163,12 +139,12 @@
       <sales_notes>Delivery под брендом партнёра</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>kp-documents</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-partners-kp-docs.svg</picture>
+      <picture>https://www.bober-ai.dev/stock/offers/ms-partners-kp-docs.jpg</picture>
       <description>Автоматизация КП и документов</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -176,14 +152,8 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://partners.bober-ai.dev/#contact</param>
       <param name="Ссылка на профиль исполнителя">https://partners.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">White-label AI-разработка для агентств и software house: архитектура, backend, LLM и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
-      <param name="Другая услуга исполнителя - 1">OCR, договоры, счета, спецификации и генерация коммерческих предложений из каталога.</param>
-      <param name="Сайт работодателя">https://partners.bober-ai.dev</param>
     </offer>
     </offers>
   </shop>

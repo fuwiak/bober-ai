@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Regenerates Yandex YML feeds + unique offer pictures under public/stock/offers/.
+ * Regenerates Yandex YML feeds + unique 320×320 offer pictures under public/stock/offers/.
  */
 
 import { mkdirSync } from "node:fs";
@@ -17,9 +17,8 @@ function generateWithTsx() {
   mkdirSync(dirname(bitrixOut), { recursive: true });
   mkdirSync(join(root, "public", "stock", "offers"), { recursive: true });
   const inline = `
-    import { copyFileSync, existsSync, mkdirSync, writeFileSync } from "node:fs";
-    import { dirname, join } from "node:path";
-    import { getServiceFeedXml, materializeFeedPictures } from "./src/lib/services-feed.ts";
+    import { writeFileSync } from "node:fs";
+    import { getServiceFeedXml, materializeFeedPictures, materializeMicrositePictures } from "./src/lib/services-feed.ts";
     import { getBitrixFeedXml, getPartnersFeedXml } from "./src/lib/microsite-feeds.ts";
     import { BITRIX_PACKAGES } from "./src/lib/bitrix-landing.ts";
 
@@ -29,25 +28,18 @@ function generateWithTsx() {
     writeFileSync(${JSON.stringify(partnersOut)}, getPartnersFeedXml(), "utf8");
     const n = materializeFeedPictures(root);
 
-    function copyOfferPic(id, picturePath) {
-      const ext = picturePath.includes(".") ? picturePath.split(".").pop().toLowerCase() : "jpg";
-      const src = join(root, "public", picturePath.replace(/^\\//, ""));
-      const dest = join(root, "public", "stock", "offers", "ms-" + id + "." + ext);
-      mkdirSync(dirname(dest), { recursive: true });
-      if (!existsSync(src)) throw new Error("missing " + src);
-      copyFileSync(src, dest);
-    }
-
-    for (const pkg of BITRIX_PACKAGES) copyOfferPic(pkg.id, pkg.picture);
-
-    const partners = [
-      ["partners-presale", "/stock/roadmap-sticky-notes.jpg"],
-      ["partners-delivery", "/stock/team-collab.jpg"],
-      ["partners-ongoing", "/stock/automation-code.jpg"],
-      ["partners-bitrix-analytics", "/diagrams/crm-integration.svg"],
-      ["partners-kp-docs", "/diagrams/document-flow.svg"],
+    const microsite = [
+      ...BITRIX_PACKAGES.map((pkg) => ({
+        id: pkg.id,
+        picture: pkg.picture.endsWith(".svg") ? "/stock/team-collab.jpg" : pkg.picture,
+      })),
+      { id: "partners-presale", picture: "/stock/roadmap-sticky-notes.jpg" },
+      { id: "partners-delivery", picture: "/stock/team-collab.jpg" },
+      { id: "partners-ongoing", picture: "/stock/automation-code.jpg" },
+      { id: "partners-bitrix-analytics", picture: "/stock/team-collab.jpg" },
+      { id: "partners-kp-docs", picture: "/stock/automation-code.jpg" },
     ];
-    for (const [id, pic] of partners) copyOfferPic(id, pic);
+    materializeMicrositePictures(root, microsite);
 
     console.log("generate-performers-feed: wrote", ${JSON.stringify(mainOut)}, "offers=", n);
     console.log("generate-performers-feed: wrote", ${JSON.stringify(bitrixOut)});

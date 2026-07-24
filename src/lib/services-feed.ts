@@ -1,17 +1,16 @@
-import { copyFileSync, existsSync, mkdirSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { spawnSync } from "node:child_process";
+import { join } from "node:path";
 import { CONTACT_EMAIL, SITE_NAME, SITE_REGION, SITE_URL, TELEGRAM_URL } from "@/lib/site";
 import { PROFILE } from "@/lib/profile";
 import { getEnterpriseServices } from "@/lib/enterprise-services";
+import { FEED_RATING, FEED_REVIEWS_COUNT } from "@/lib/feed-rating";
+
+export { FEED_RATING, FEED_REVIEWS_COUNT } from "@/lib/feed-rating";
 
 const FEED_CATEGORY_ID = "18";
 const FEED_CATEGORY_PARENT_ID = "1";
 const FEED_SITE_URL = SITE_URL.replace(/\/$/, "");
 const CONTACT_PHONE_URL = `${FEED_SITE_URL}/tel`;
-/** Must match visible rating on /services/* (Yandex compares YML ↔ page). Always one decimal like sample YML. */
-const FEED_RATING = PROFILE.rating.toFixed(1);
-const FEED_REVIEWS_COUNT = String(PROFILE.reviewsCount);
-
 const FEED_CONVERSION: Record<string, number> = {
   "enterprise-ai-assistant": 92,
   "ai-discovery-roadmap": 95,
@@ -46,10 +45,9 @@ export const LEGACY_FEED_SLUGS: Record<string, string> = {
   "ai-kp-agent": "sales-ai-agent",
 };
 
-/** Yandex forbids repeating <picture> hrefs; use dedicated files (no query string — crawler often fails on ?). */
-export function feedPicturePath(offerId: string, serviceImage: string) {
-  const ext = serviceImage.includes(".") ? serviceImage.split(".").pop()!.toLowerCase() : "jpg";
-  return `/stock/offers/${offerId}.${ext}`;
+/** Always JPEG 320×320 under /stock/offers — unique href, small for Yandex crawler. */
+export function feedPicturePath(offerId: string) {
+  return `/stock/offers/${offerId}.jpg`;
 }
 
 export function getServiceOfferUrl(slug: string) {
@@ -61,20 +59,44 @@ export function getOrderTelegramUrl(serviceTitle: string) {
   return `${TELEGRAM_URL}?text=${encodeURIComponent(text)}`;
 }
 
-/** Copy each offer image to a unique public path for the YML <picture> tags. */
+/** Resize each offer image to unique 320×320 JPEG for YML <picture>. */
 export function materializeFeedPictures(rootDir = process.cwd()) {
   const offers = getEnterpriseServices("ru");
+  const mapping: Record<string, string> = {};
   for (const offer of offers) {
-    const rel = feedPicturePath(offer.id, offer.serviceImage);
-    const dest = join(rootDir, "public", rel.replace(/^\//, ""));
-    const src = join(rootDir, "public", offer.serviceImage.replace(/^\//, ""));
-    mkdirSync(dirname(dest), { recursive: true });
-    if (!existsSync(src)) {
-      throw new Error(`Feed picture source missing: ${src}`);
-    }
-    copyFileSync(src, dest);
+    mapping[offer.id] = offer.serviceImage;
   }
+  const script = join(rootDir, "scripts", "materialize-feed-pictures.py");
+  const result = spawnSync("python3", [script, rootDir, JSON.stringify(mapping)], {
+    cwd: rootDir,
+    encoding: "utf8",
+  });
+  if (result.status !== 0) {
+    throw new Error(result.stderr || result.stdout || "materialize-feed-pictures failed");
+  }
+  if (result.stdout) process.stdout.write(result.stdout);
   return offers.length;
+}
+
+/** Microsite offer pictures (ms-*.jpg), same 320×320 pipeline. */
+export function materializeMicrositePictures(
+  rootDir: string,
+  items: Array<{ id: string; picture: string }>,
+) {
+  const mapping: Record<string, string> = {};
+  for (const item of items) {
+    mapping[`ms-${item.id}`] = item.picture;
+  }
+  const script = join(rootDir, "scripts", "materialize-feed-pictures.py");
+  const result = spawnSync("python3", [script, rootDir, JSON.stringify(mapping)], {
+    cwd: rootDir,
+    encoding: "utf8",
+  });
+  if (result.status !== 0) {
+    throw new Error(result.stderr || result.stdout || "materialize microsite pictures failed");
+  }
+  if (result.stdout) process.stdout.write(result.stdout);
+  return items.length;
 }
 
 export function getServiceFeedXml(now = new Date()) {
@@ -100,11 +122,11 @@ export function getServiceFeedXml(now = new Date()) {
     })
     .join("\n");
 
-  // Element order matches https://edu.s3.yandex.net/sample/services.yml
+  // Minimal sample-compatible offer: required params first, then optional phone/chat.
   const offerBlocks = offers
     .map((offer) => {
       const url = getServiceOfferUrl(offer.slug);
-      const picture = `${FEED_SITE_URL}${feedPicturePath(offer.id, offer.serviceImage)}`;
+      const picture = `${FEED_SITE_URL}${feedPicturePath(offer.id)}`;
       const conversion = FEED_CONVERSION[offer.slug] ?? 90;
 
       return `    <offer id="${escapeXml(offer.id)}">
@@ -126,16 +148,10 @@ export function getServiceFeedXml(now = new Date()) {
       <param name="Конверсия">${conversion}</param>
       <param name="Ссылка на телефон">${escapeXml(CONTACT_PHONE_URL)}</param>
       <param name="Ссылка на чат">${escapeXml(TELEGRAM_URL)}</param>
-      <param name="Ссылка на создание заказа">${escapeXml(`${FEED_SITE_URL}/#contact`)}</param>
+      <param name="Ссылка на создание заказа">${escapeXml(url)}</param>
       <param name="Ссылка на профиль исполнителя">${escapeXml(FEED_SITE_URL)}</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">${escapeXml(offer.about)}</param>
-      <param name="Другая услуга исполнителя - 1">${escapeXml(offer.description)}</param>
-      <param name="Сайт работодателя">${escapeXml(FEED_SITE_URL)}</param>
     </offer>`;
     })
     .join("\n");

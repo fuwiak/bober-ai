@@ -1,4 +1,4 @@
-import { PROFILE } from "@/lib/profile";
+import { FEED_RATING, FEED_REVIEWS_COUNT } from "@/lib/feed-rating";
 import { YANDEX_USLUGI_URL } from "@/lib/site";
 
 type PerformerRatingProps = {
@@ -6,11 +6,9 @@ type PerformerRatingProps = {
   className?: string;
 };
 
-/** Rating block — values must match YML `Рейтинг` / `Число отзывов` on offer pages. */
+/** Must match YML `Рейтинг` / `Число отзывов` exactly (Webmaster compares page ↔ feed). */
 export function PerformerRating({ locale = "ru", className = "" }: PerformerRatingProps) {
   const isEn = locale === "en";
-  const rating = PROFILE.rating.toFixed(1);
-  const reviews = PROFILE.reviewsCount;
 
   return (
     <div
@@ -23,12 +21,12 @@ export function PerformerRating({ locale = "ru", className = "" }: PerformerRati
       <p className="text-sm text-ink">
         {isEn ? "Rating" : "Рейтинг"}{" "}
         <span itemProp="ratingValue" className="font-medium tabular-nums">
-          {rating}
+          {FEED_RATING}
         </span>
         {" · "}
         {isEn ? "Reviews" : "Число отзывов"}{" "}
         <span itemProp="reviewCount" className="font-medium tabular-nums">
-          {reviews}
+          {FEED_REVIEWS_COUNT}
         </span>
       </p>
       <a

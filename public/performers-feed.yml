@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-24 17:18">
+<yml_catalog date="2026-07-24 17:50">
   <shop>
     <name>Bober AI Systems</name>
     <company>Bober AI Systems</company>
@@ -107,23 +107,17 @@
       <description>Автоматизация бизнес-процессов</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/#contact</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/business-process-automation</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">Аудит процессов, настройка автоматизации, интеграция с CRM и документами, обучение команды.</param>
-      <param name="Другая услуга исполнителя - 1">Аудит, интеграции CRM/1С, workflow — цепочки задач без ручной рутины.</param>
-      <param name="Сайт работодателя">https://www.bober-ai.dev</param>
     </offer>
     <offer id="sales-ai-agent">
       <name>Павел Стасиньский</name>
@@ -137,23 +131,17 @@
       <description>Автоматизация отдела продаж</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/#contact</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/sales-ai-agent</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">Настраиваем автоматизацию под шаблоны и CRM, тестируем и запускаем в отделе продаж.</param>
-      <param name="Другая услуга исполнителя - 1">Лиды, CRM, коммерческие предложения, follow-up — PDF за минуты, не за часы.</param>
-      <param name="Сайт работодателя">https://www.bober-ai.dev</param>
     </offer>
     <offer id="ai-discovery-roadmap">
       <name>Павел Стасиньский</name>
@@ -167,23 +155,17 @@
       <description>AI &amp; Automation Advisor</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">95</param>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/#contact</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/ai-discovery-roadmap</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">Бизнес-аудит, карта процессов, расчёт ROI, дорожная карта и смета до старта разработки.</param>
-      <param name="Другая услуга исполнителя - 1">Анализируем процесс, считаем ROI, выбираем технологию, внедряем.</param>
-      <param name="Сайт работодателя">https://www.bober-ai.dev</param>
     </offer>
     <offer id="enterprise-ai-assistant">
       <name>Павел Стасиньский</name>
@@ -197,23 +179,17 @@
       <description>Внедрение AI</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/#contact</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/enterprise-ai-assistant</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">Архитектура, LLM, интеграции CRM/мессенджеры, production-деплой и передача команде.</param>
-      <param name="Другая услуга исполнителя - 1">LLM, агенты, интеграции с CRM — production, не пилот на ChatGPT.</param>
-      <param name="Сайт работодателя">https://www.bober-ai.dev</param>
     </offer>
     <offer id="private-llm-gigachat">
       <name>Павел Стасиньский</name>
@@ -227,23 +203,17 @@
       <description>Приватный LLM-контур</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/#contact</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/private-llm-gigachat</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">Разворачиваем LLM в вашем контуре, настраиваем API, guardrails, мониторинг и интеграции.</param>
-      <param name="Другая услуга исполнителя - 1">GigaChat, on-prem и изолированное облако — без утечки данных во внешние сервисы.</param>
-      <param name="Сайт работодателя">https://www.bober-ai.dev</param>
     </offer>
     <offer id="ai-automation">
       <name>Павел Стасиньский</name>
@@ -257,23 +227,17 @@
       <description>AI-автоматизация</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/#contact</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/ai-automation</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">Проектируем и внедряем AI-автоматизацию с интеграциями CRM, документов и workflow.</param>
-      <param name="Другая услуга исполнителя - 1">Системы AI для автоматизации операций — от аудита до production.</param>
-      <param name="Сайт работодателя">https://www.bober-ai.dev</param>
     </offer>
     <offer id="rag">
       <name>Павел Стасиньский</name>
@@ -287,23 +251,17 @@
       <description>RAG и корпоративный поиск</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/#contact</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/rag</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">Индексация, векторный поиск, guardrails и интеграция в чат/CRM.</param>
-      <param name="Другая услуга исполнителя - 1">Поиск по документам и ответы LLM со ссылкой на источник.</param>
-      <param name="Сайт работодателя">https://www.bober-ai.dev</param>
     </offer>
     <offer id="llm-development">
       <name>Павел Стасиньский</name>
@@ -317,23 +275,17 @@
       <description>Разработка LLM-решений</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/#contact</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/llm-development</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">Архитектура, разработка, тестирование и передача команде.</param>
-      <param name="Другая услуга исполнителя - 1">Кастомные LLM-приложения, API, промпт-инженерия и production-деплой.</param>
-      <param name="Сайт работодателя">https://www.bober-ai.dev</param>
     </offer>
     <offer id="n8n">
       <name>Павел Стасиньский</name>
@@ -347,23 +299,17 @@
       <description>Автоматизация на n8n</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/#contact</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/n8n</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">Проектируем, разворачиваем и сопровождаем n8n в production.</param>
-      <param name="Другая услуга исполнителя - 1">n8n-воркфлоу с AI-слоем и интеграциями CRM, мессенджеров, API.</param>
-      <param name="Сайт работодателя">https://www.bober-ai.dev</param>
     </offer>
     <offer id="ai-agent">
       <name>Павел Стасиньский</name>
@@ -377,23 +323,17 @@
       <description>AI-агенты для бизнеса</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/#contact</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/ai-agent</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">Многошаговые агенты с инструментами, мониторингом и handover.</param>
-      <param name="Другая услуга исполнителя - 1">Агенты с действиями: CRM, документы, workflow, эскалация к человеку.</param>
-      <param name="Сайт работодателя">https://www.bober-ai.dev</param>
     </offer>
     <offer id="document-processing">
       <name>Павел Стасиньский</name>
@@ -407,23 +347,17 @@
       <description>Обработка документов</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/#contact</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/document-processing</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">Пайплайны документов, workflow и интеграции с учётными системами.</param>
-      <param name="Другая услуга исполнителя - 1">OCR, согласования, извлечение данных — в CRM/ERP без ручного ввода.</param>
-      <param name="Сайт работодателя">https://www.bober-ai.dev</param>
     </offer>
     <offer id="voice-ai">
       <name>Павел Стасиньский</name>
@@ -437,23 +371,17 @@
       <description>Голосовой AI</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/#contact</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/voice-ai</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">Голосовые сценарии для поддержки и продаж с интеграцией в CRM.</param>
-      <param name="Другая услуга исполнителя - 1">Speech-to-text, голосовые боты, логирование звонков в CRM.</param>
-      <param name="Сайт работодателя">https://www.bober-ai.dev</param>
     </offer>
     <offer id="ocr">
       <name>Павел Стасиньский</name>
@@ -467,23 +395,17 @@
       <description>OCR и распознавание</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/#contact</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/ocr</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">OCR-пайплайны с валидацией и выгрузкой в 1С, CRM или ERP.</param>
-      <param name="Другая услуга исполнителя - 1">Извлечение текста и полей из PDF, сканов и фото.</param>
-      <param name="Сайт работодателя">https://www.bober-ai.dev</param>
     </offer>
     <offer id="open-webui">
       <name>Павел Стасиньский</name>
@@ -497,23 +419,17 @@
       <description>Open WebUI</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">89</param>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/#contact</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/open-webui</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">Развёртывание Open WebUI, подключение моделей и guardrails.</param>
-      <param name="Другая услуга исполнителя - 1">Корпоративный чат с LLM, SSO и политиками доступа.</param>
-      <param name="Сайт работодателя">https://www.bober-ai.dev</param>
     </offer>
     <offer id="self-hosted-ai">
       <name>Павел Стасиньский</name>
@@ -527,23 +443,17 @@
       <description>Self-hosted AI</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/#contact</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/self-hosted-ai</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">On-prem LLM, API, мониторинг и интеграции под NDA.</param>
-      <param name="Другая услуга исполнителя - 1">Приватный AI-стек в вашем контуре — без утечки данных.</param>
-      <param name="Сайт работодателя">https://www.bober-ai.dev</param>
     </offer>
     <offer id="mcp">
       <name>Павел Стасиньский</name>
@@ -557,23 +467,17 @@
       <description>MCP-интеграции</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/#contact</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/mcp</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">MCP-серверы для внутренних систем и инструментов агентов.</param>
-      <param name="Другая услуга исполнителя - 1">Model Context Protocol — подключение LLM к CRM, БД и API.</param>
-      <param name="Сайт работодателя">https://www.bober-ai.dev</param>
     </offer>
     <offer id="langgraph">
       <name>Павел Стасиньский</name>
@@ -587,23 +491,17 @@
       <description>LangGraph-агенты</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/#contact</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/langgraph</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">LangGraph для сложных сценариев с контролем и аудитом.</param>
-      <param name="Другая услуга исполнителя - 1">Многошаговые агенты со state, HITL и observability.</param>
-      <param name="Сайт работодателя">https://www.bober-ai.dev</param>
     </offer>
     <offer id="knowledge-base">
       <name>Павел Стасиньский</name>
@@ -617,23 +515,17 @@
       <description>Корпоративная база знаний</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/#contact</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/knowledge-base</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">База знаний, поиск, чат-бот для сотрудников и клиентов.</param>
-      <param name="Другая услуга исполнителя - 1">Единое место для регламентов, FAQ и AI-ответов со ссылками.</param>
-      <param name="Сайт работодателя">https://www.bober-ai.dev</param>
     </offer>
     <offer id="ai-consulting">
       <name>Павел Стасиньский</name>
@@ -647,23 +539,17 @@
       <description>AI-консалтинг</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/#contact</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/ai-consulting</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">Аудит, рекомендации и план до закупки разработки.</param>
-      <param name="Другая услуга исполнителя - 1">Стратегия, ROI, выбор технологий и дорожная карта внедрения.</param>
-      <param name="Сайт работодателя">https://www.bober-ai.dev</param>
     </offer>
     <offer id="crm-integration">
       <name>Павел Стасиньский</name>
@@ -677,23 +563,17 @@
       <description>Интеграции CRM</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/#contact</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/crm-integration</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">Двусторонние интеграции, webhooks, retry и мониторинг.</param>
-      <param name="Другая услуга исполнителя - 1">amoCRM, Bitrix24, 1С — синхронизация и автоматизация воронки.</param>
-      <param name="Сайт работодателя">https://www.bober-ai.dev</param>
     </offer>
     </offers>
   </shop>

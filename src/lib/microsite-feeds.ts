@@ -9,12 +9,10 @@ import {
   TELEGRAM_URL,
 } from "@/lib/site";
 import { PROFILE } from "@/lib/profile";
+import { FEED_RATING, FEED_REVIEWS_COUNT } from "@/lib/feed-rating";
 
 const FEED_CATEGORY_ID = "18";
 const FEED_CATEGORY_PARENT_ID = "1";
-/** Must match visible rating on offer pages (Yandex compares YML ↔ page). Always one decimal like sample YML. */
-const FEED_RATING = PROFILE.rating.toFixed(1);
-const FEED_REVIEWS_COUNT = String(PROFILE.reviewsCount);
 /** Phone landing lives on the main host; microsites rewrite unknown paths to HTML. */
 const CONTACT_PHONE_URL = `${SITE_URL.replace(/\/$/, "")}/tel`;
 
@@ -64,9 +62,7 @@ function buildYmlCatalog(config: MicrositeFeedConfig, now = new Date()) {
   const offerBlocks = config.offers
     .map((offer) => {
       const url = `${feedSiteUrl}/#${offer.slug}`;
-      // Unique picture file per offer (Yandex forbids repeating the same href).
-      const ext = offer.picture.includes(".") ? offer.picture.split(".").pop()!.toLowerCase() : "jpg";
-      const pictureUrl = `${SITE_URL.replace(/\/$/, "")}/stock/offers/ms-${offer.id}.${ext}`;
+      const pictureUrl = `${SITE_URL.replace(/\/$/, "")}/stock/offers/ms-${offer.id}.jpg`;
 
       return `    <offer id="${escapeXml(offer.id)}">
       <name>${escapeXml(PROFILE.name)}</name>
@@ -89,14 +85,8 @@ function buildYmlCatalog(config: MicrositeFeedConfig, now = new Date()) {
       <param name="Ссылка на чат">${escapeXml(TELEGRAM_URL)}</param>
       <param name="Ссылка на создание заказа">${escapeXml(orderUrl)}</param>
       <param name="Ссылка на профиль исполнителя">${escapeXml(feedSiteUrl)}</param>
-      <param name="Исполнитель проверен">true</param>
-      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Выполняется по адресу исполнителя">false</param>
-      <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">${escapeXml(offer.about)}</param>
-      <param name="Другая услуга исполнителя - 1">${escapeXml(offer.description)}</param>
-      <param name="Сайт работодателя">${escapeXml(feedSiteUrl)}</param>
     </offer>`;
     })
     .join("\n");
