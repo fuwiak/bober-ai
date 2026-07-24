@@ -6,10 +6,10 @@ type PerformerRatingProps = {
   className?: string;
 };
 
-/** Site rating block for non-offer pages. Do not mount on /services/* (Yandex YML moderation). */
+/** Rating block — values must match YML `Рейтинг` / `Число отзывов` on offer pages. */
 export function PerformerRating({ locale = "ru", className = "" }: PerformerRatingProps) {
   const isEn = locale === "en";
-  const rating = PROFILE.rating;
+  const rating = PROFILE.rating.toFixed(1);
   const reviews = PROFILE.reviewsCount;
 
   return (

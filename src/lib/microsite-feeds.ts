@@ -12,9 +12,9 @@ import { PROFILE } from "@/lib/profile";
 
 const FEED_CATEGORY_ID = "18";
 const FEED_CATEGORY_PARENT_ID = "1";
-/** Required by Yandex YML; use 0 when the offer page has no rating (non-zero must match the site). */
-const FEED_RATING = "0";
-const FEED_REVIEWS_COUNT = "0";
+/** Must match visible rating on offer pages (Yandex compares YML ↔ page). Always one decimal like sample YML. */
+const FEED_RATING = PROFILE.rating.toFixed(1);
+const FEED_REVIEWS_COUNT = String(PROFILE.reviewsCount);
 /** Phone landing lives on the main host; microsites rewrite unknown paths to HTML. */
 const CONTACT_PHONE_URL = `${SITE_URL.replace(/\/$/, "")}/tel`;
 
@@ -67,10 +67,11 @@ function buildYmlCatalog(config: MicrositeFeedConfig, now = new Date()) {
   const offerBlocks = config.offers
     .map((offer) => {
       const url = `${feedSiteUrl}/#${offer.slug}`;
-      // Pictures are served from the shared static tree (www + microsite hosts).
-      const picture = offer.picture.startsWith("http")
+      // Unique picture URL per offer (Yandex forbids repeating the same href).
+      const pictureBase = offer.picture.startsWith("http")
         ? offer.picture
         : `${SITE_URL.replace(/\/$/, "")}${offer.picture}`;
+      const picture = `${pictureBase}${pictureBase.includes("?") ? "&" : "?"}offer=${encodeURIComponent(offer.id)}`;
 
       return `    <offer id="${escapeXml(offer.id)}">
       <name>${escapeXml(PROFILE.name)}</name>

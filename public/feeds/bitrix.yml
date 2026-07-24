@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<yml_catalog date="2026-07-24 15:57">
+<yml_catalog date="2026-07-24 16:25">
   <shop>
     <name>Bober AI Systems — Битрикс24</name>
     <company>Bober AI Systems</company>
@@ -44,10 +44,10 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>bitrix-start</set-ids>
-      <picture>https://www.bober-ai.dev/stock/office-tower.jpg</picture>
+      <picture>https://www.bober-ai.dev/stock/office-tower.jpg?offer=bitrix-start</picture>
       <description>Внедрение Битрикс24 с AI</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
@@ -72,10 +72,10 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>crm-automation</set-ids>
-      <picture>https://www.bober-ai.dev/diagrams/crm-integration.svg</picture>
+      <picture>https://www.bober-ai.dev/diagrams/crm-integration.svg?offer=bitrix-crm-automation</picture>
       <description>AI-автоматизация Битрикс24</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -100,10 +100,10 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>ai-analytics</set-ids>
-      <picture>https://www.bober-ai.dev/diagrams/sales-pipeline.svg</picture>
+      <picture>https://www.bober-ai.dev/diagrams/sales-pipeline.svg?offer=bitrix-ai-analytics</picture>
       <description>AI-аналитика Битрикс24</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -128,10 +128,10 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>integrations-1c</set-ids>
-      <picture>https://www.bober-ai.dev/diagrams/erp-sync.svg</picture>
+      <picture>https://www.bober-ai.dev/diagrams/erp-sync.svg?offer=bitrix-integrations</picture>
       <description>Интеграция Битрикс24 и AI для продаж</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
@@ -156,10 +156,10 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>private-llm</set-ids>
-      <picture>https://www.bober-ai.dev/stock/cyber-padlock.jpg</picture>
+      <picture>https://www.bober-ai.dev/stock/cyber-padlock.jpg?offer=bitrix-private-llm</picture>
       <description>Битрикс24 + локальный LLM</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>

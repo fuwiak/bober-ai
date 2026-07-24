@@ -6,9 +6,9 @@ const FEED_CATEGORY_ID = "18";
 const FEED_CATEGORY_PARENT_ID = "1";
 const FEED_SITE_URL = SITE_URL.replace(/\/$/, "");
 const CONTACT_PHONE_URL = `${FEED_SITE_URL}/tel`;
-/** Required by Yandex YML; use 0 when the offer page has no rating (non-zero must match the site). */
-const FEED_RATING = "0";
-const FEED_REVIEWS_COUNT = "0";
+/** Must match visible rating on /services/* (Yandex compares YML ↔ page). Always one decimal like sample YML. */
+const FEED_RATING = PROFILE.rating.toFixed(1);
+const FEED_REVIEWS_COUNT = String(PROFILE.reviewsCount);
 
 const FEED_CONVERSION: Record<string, number> = {
   "enterprise-ai-assistant": 92,
@@ -16,16 +16,25 @@ const FEED_CONVERSION: Record<string, number> = {
   "private-llm-gigachat": 90,
   "business-process-automation": 93,
   "sales-ai-agent": 94,
-  "ai-bot-llm-rasa-n8n": 92,
-  "llm-ai-consultation": 95,
-  "ai-bot-gigachat-n8n-local": 90,
-  "ml-data-consultation": 88,
-  "telegram-discord-miniapp-bot": 91,
-  "claude-business-automation": 93,
-  "ai-kp-agent": 94,
+  "ai-automation": 92,
+  rag: 91,
+  "llm-development": 90,
+  n8n: 91,
+  "ai-agent": 93,
+  "document-processing": 92,
+  "voice-ai": 90,
+  ocr: 91,
+  "open-webui": 89,
+  "self-hosted-ai": 90,
+  mcp: 90,
+  langgraph: 91,
+  "knowledge-base": 92,
+  "ai-consulting": 94,
+  "crm-integration": 93,
 };
 
-const LEGACY_FEED_SLUGS: Record<string, string> = {
+/** Old slugs kept only for next.config redirects — never emit as feed offer URLs (308/404 fail moderation). */
+export const LEGACY_FEED_SLUGS: Record<string, string> = {
   "ai-bot-llm-rasa-n8n": "enterprise-ai-assistant",
   "llm-ai-consultation": "ai-discovery-roadmap",
   "ai-bot-gigachat-n8n-local": "private-llm-gigachat",
@@ -44,19 +53,16 @@ export function getOrderTelegramUrl(serviceTitle: string) {
   return `${TELEGRAM_URL}?text=${encodeURIComponent(text)}`;
 }
 
+/** Yandex requires unique <picture> URLs per offer; same file via distinct query is OK. */
+function uniquePictureUrl(pathOrUrl: string, offerId: string) {
+  const base = pathOrUrl.startsWith("http") ? pathOrUrl : `${FEED_SITE_URL}${pathOrUrl}`;
+  const sep = base.includes("?") ? "&" : "?";
+  return `${base}${sep}offer=${encodeURIComponent(offerId)}`;
+}
+
 export function getServiceFeedXml(now = new Date()) {
-  const enterpriseOffers = getEnterpriseServices("ru");
-  const offersBySlug = Object.fromEntries(enterpriseOffers.map((offer) => [offer.slug, offer]));
-
-  const legacyOffers = Object.entries(LEGACY_FEED_SLUGS)
-    .map(([legacySlug, sourceSlug]) => {
-      const source = offersBySlug[sourceSlug];
-      if (!source) return null;
-      return { ...source, id: legacySlug, slug: legacySlug };
-    })
-    .filter((offer): offer is (typeof enterpriseOffers)[number] => offer !== null);
-
-  const offers = [...enterpriseOffers, ...legacyOffers];
+  // Only live canonical offers — no legacy redirect/404 slugs.
+  const offers = getEnterpriseServices("ru");
   const date = now.toISOString().slice(0, 16).replace("T", " ");
 
   const escapeXml = (value: string) =>
@@ -83,7 +89,7 @@ export function getServiceFeedXml(now = new Date()) {
   const offerBlocks = offers
     .map((offer) => {
       const url = getServiceOfferUrl(offer.slug);
-      const picture = `${FEED_SITE_URL}${offer.serviceImage}`;
+      const picture = uniquePictureUrl(offer.serviceImage, offer.id);
       const conversion = FEED_CONVERSION[offer.slug] ?? 90;
 
       return `    <offer id="${escapeXml(offer.id)}">

@@ -4,6 +4,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
 import { ContactForm } from "@/components/ContactForm";
 import { ContactCta } from "@/components/ContactCta";
+import { PerformerRating } from "@/components/PerformerRating";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { TrackedAnchor } from "@/components/TrackedAnchor";
 import { Reveal } from "@/components/motion/Reveal";
@@ -86,6 +87,8 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
                   {locale === "en" ? "Performer" : "Исполнитель"}:{" "}
                   <span className="font-medium text-ink">{PROFILE.name}</span>
                 </p>
+                {/* Visible rating must match YML Рейтинг / Число отзывов for Webmaster moderation. */}
+                <PerformerRating locale={locale} className="mt-3" />
                 <p className="body-copy mt-5 max-w-3xl text-lg">{content.subtitle}</p>
                 <div className="mt-10 flex flex-wrap gap-4">
                   <ContactCta defaultService={content.h1} goal="audit_cta_click">
