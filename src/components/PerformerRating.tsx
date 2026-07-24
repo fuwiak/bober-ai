@@ -26,10 +26,10 @@ export function PerformerRating({ locale = "ru", className = "" }: PerformerRati
           {rating}
         </span>
         {" · "}
+        {isEn ? "Reviews" : "Число отзывов"}{" "}
         <span itemProp="reviewCount" className="font-medium tabular-nums">
           {reviews}
-        </span>{" "}
-        {isEn ? "reviews" : "отзывов"}
+        </span>
       </p>
       <a
         href={YANDEX_USLUGI_URL}

@@ -45,7 +45,16 @@ export function validateFeedXml(xml) {
   }
 
   const offerCount = (xml.match(/<offer[\s>]/g) || []).length;
+  const ratingParams = (xml.match(/<param name="Рейтинг">/g) || []).length;
+  const reviewParams = (xml.match(/<param name="Число отзывов">/g) || []).length;
   const phoneParams = [...xml.matchAll(/<param name="Ссылка на телефон"[^>]*>([^<]*)<\/param>/gi)];
+
+  if (ratingParams !== offerCount) {
+    errors.push(`Несовпадение: offer=${offerCount}, Рейтинг=${ratingParams}`);
+  }
+  if (reviewParams !== offerCount) {
+    errors.push(`Несовпадение: offer=${offerCount}, Число отзывов=${reviewParams}`);
+  }
 
   if (phoneParams.length === 0) {
     errors.push("Не найден ни один param «Ссылка на телефон»");
@@ -60,7 +69,7 @@ export function validateFeedXml(xml) {
   for (const [, rawValue] of phoneParams) {
     const value = rawValue.trim();
     if (/^tel:/i.test(value)) {
-      badPhones.push({ value, reason: "tel: не принимается с unit=URL, нужен https://" });
+      badPhones.push({ value, reason: "tel: не принимается, нужен https://" });
       continue;
     }
     if (/^\+?\d/.test(value)) {
@@ -77,9 +86,15 @@ export function validateFeedXml(xml) {
     errors.push(`Некорректные «Ссылка на телефон»: ${sample}`);
   }
 
-  const legacyOffer = "ai-bot-llm-rasa-n8n";
-  if (!xml.includes(legacyOffer)) {
-    errors.push(`Нет legacy-оффера ${legacyOffer} (Вебмастер может кэшировать старые URL)`);
+  for (const legacy of [
+    "ai-bot-llm-rasa-n8n",
+    "ai-bot-gigachat-n8n-local",
+    "ml-data-consultation",
+    "claude-business-automation",
+  ]) {
+    if (xml.includes(`id="${legacy}"`) || xml.includes(`/services/${legacy}`)) {
+      errors.push(`Legacy offer URL в фиде: ${legacy}`);
+    }
   }
 
   return errors;

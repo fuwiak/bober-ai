@@ -91,7 +91,7 @@ export function getServiceFeedXml(now = new Date()) {
       .replaceAll("'", "&apos;");
 
   const urlParam = (name: string, value: string) =>
-    `<param name="${escapeXml(name)}" unit="URL">${escapeXml(value)}</param>`;
+    `<param name="${escapeXml(name)}">${escapeXml(value)}</param>`;
 
   const sets = offers
     .map((offer) => {
@@ -118,6 +118,7 @@ export function getServiceFeedXml(now = new Date()) {
       <set-ids>${escapeXml(offer.slug)}</set-ids>
       <picture>${escapeXml(picture)}</picture>
       <description>${escapeXml(offer.title)}</description>
+      <!--Обязательные params: Рейтинг, Число отзывов, Годы опыта, Регион, Конверсия-->
       <param name="Рейтинг">${FEED_RATING}</param>
       <param name="Число отзывов">${FEED_REVIEWS_COUNT}</param>
       <param name="Годы опыта">${PROFILE.experienceYears}</param>
@@ -140,7 +141,7 @@ export function getServiceFeedXml(now = new Date()) {
     })
     .join("\n");
 
-  return `<?xml version="1.0" encoding="UTF-8"?>
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <yml_catalog date="${date}">
   <shop>
     <name>${escapeXml(SITE_NAME)}</name>

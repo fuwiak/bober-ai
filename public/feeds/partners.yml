@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<yml_catalog date="2026-07-24 16:52">
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<yml_catalog date="2026-07-24 17:03">
   <shop>
     <name>Bober AI Systems — Partner Program</name>
     <company>Bober AI Systems</company>
@@ -51,10 +51,10 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
-      <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
-      <param name="Ссылка на чат" unit="URL">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа" unit="URL">https://partners.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя" unit="URL">https://partners.bober-ai.dev</param>
+      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://partners.bober-ai.dev/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://partners.bober-ai.dev</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
@@ -62,7 +62,7 @@
       <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">White-label AI-разработка для агентств и software house: архитектура, backend, LLM и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
       <param name="Другая услуга исполнителя - 1">Анализ брифа, архитектура, оценка себестоимости и участие в технической встрече под брендом партнёра.</param>
-      <param name="Сайт работодателя" unit="URL">https://partners.bober-ai.dev</param>
+      <param name="Сайт работодателя">https://partners.bober-ai.dev</param>
       <sales_notes>Wholesale / fixed · база для вашей маржи</sales_notes>
     </offer>
     <offer id="partners-delivery">
@@ -79,10 +79,10 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
-      <param name="Ссылка на чат" unit="URL">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа" unit="URL">https://partners.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя" unit="URL">https://partners.bober-ai.dev</param>
+      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://partners.bober-ai.dev/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://partners.bober-ai.dev</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
@@ -90,7 +90,7 @@
       <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">White-label AI-разработка для агентств и software house: архитектура, backend, LLM и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
       <param name="Другая услуга исполнителя - 1">Разработка, интеграции, тестирование, deployment и документация — клиент видит только вас.</param>
-      <param name="Сайт работодателя" unit="URL">https://partners.bober-ai.dev</param>
+      <param name="Сайт работодателя">https://partners.bober-ai.dev</param>
       <sales_notes>Пилот на рынке от 300 000 ₽ · партнёрская цена по проекту</sales_notes>
     </offer>
     <offer id="partners-ongoing">
@@ -107,10 +107,10 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
-      <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
-      <param name="Ссылка на чат" unit="URL">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа" unit="URL">https://partners.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя" unit="URL">https://partners.bober-ai.dev</param>
+      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://partners.bober-ai.dev/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://partners.bober-ai.dev</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
@@ -118,7 +118,7 @@
       <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">White-label AI-разработка для агентств и software house: архитектура, backend, LLM и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
       <param name="Другая услуга исполнителя - 1">Ежемесячный пул часов, несколько проектов, приоритетная поддержка и быстрые оценки.</param>
-      <param name="Сайт работодателя" unit="URL">https://partners.bober-ai.dev</param>
+      <param name="Сайт работодателя">https://partners.bober-ai.dev</param>
       <sales_notes>Retainer / hourly · приоритет партнёра</sales_notes>
     </offer>
     <offer id="partners-bitrix-analytics">
@@ -135,10 +135,10 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
-      <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
-      <param name="Ссылка на чат" unit="URL">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа" unit="URL">https://partners.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя" unit="URL">https://partners.bober-ai.dev</param>
+      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://partners.bober-ai.dev/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://partners.bober-ai.dev</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
@@ -146,7 +146,7 @@
       <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">White-label AI-разработка для агентств и software house: архитектура, backend, LLM и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
       <param name="Другая услуга исполнителя - 1">Вопросы о продажах, задачах и звонках на естественном языке — внутри CRM клиента под вашим брендом.</param>
-      <param name="Сайт работодателя" unit="URL">https://partners.bober-ai.dev</param>
+      <param name="Сайт работодателя">https://partners.bober-ai.dev</param>
       <sales_notes>Subcontract / technical partner</sales_notes>
     </offer>
     <offer id="partners-kp-docs">
@@ -163,10 +163,10 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
-      <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
-      <param name="Ссылка на чат" unit="URL">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа" unit="URL">https://partners.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя" unit="URL">https://partners.bober-ai.dev</param>
+      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://partners.bober-ai.dev/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://partners.bober-ai.dev</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
@@ -174,7 +174,7 @@
       <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">White-label AI-разработка для агентств и software house: архитектура, backend, LLM и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
       <param name="Другая услуга исполнителя - 1">OCR, договоры, счета, спецификации и генерация коммерческих предложений из каталога.</param>
-      <param name="Сайт работодателя" unit="URL">https://partners.bober-ai.dev</param>
+      <param name="Сайт работодателя">https://partners.bober-ai.dev</param>
       <sales_notes>Delivery под брендом партнёра</sales_notes>
     </offer>
     </offers>

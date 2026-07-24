@@ -53,7 +53,7 @@ function buildYmlCatalog(config: MicrositeFeedConfig, now = new Date()) {
   const date = now.toISOString().slice(0, 16).replace("T", " ");
 
   const urlParam = (name: string, value: string) =>
-    `<param name="${escapeXml(name)}" unit="URL">${escapeXml(value)}</param>`;
+    `<param name="${escapeXml(name)}">${escapeXml(value)}</param>`;
 
   const sets = config.offers
     .map(
@@ -102,7 +102,7 @@ function buildYmlCatalog(config: MicrositeFeedConfig, now = new Date()) {
     })
     .join("\n");
 
-  return `<?xml version="1.0" encoding="UTF-8"?>
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <yml_catalog date="${date}">
   <shop>
     <name>${escapeXml(config.shopName)}</name>
