@@ -6,7 +6,9 @@ const FEED_CATEGORY_ID = "18";
 const FEED_CATEGORY_PARENT_ID = "1";
 const FEED_SITE_URL = SITE_URL.replace(/\/$/, "");
 const CONTACT_PHONE_URL = `${FEED_SITE_URL}/tel`;
-/** Omit rating/review params (Рейтинг, Число отзывов, Отзыв… unit="5") — Yandex compares them to the site. */
+/** Required by Yandex YML; use 0 when the offer page has no rating (non-zero must match the site). */
+const FEED_RATING = "0";
+const FEED_REVIEWS_COUNT = "0";
 
 const FEED_CONVERSION: Record<string, number> = {
   "enterprise-ai-assistant": 92,
@@ -93,6 +95,8 @@ export function getServiceFeedXml(now = new Date()) {
       <set-ids>${escapeXml(offer.slug)}</set-ids>
       <picture>${escapeXml(picture)}</picture>
       <description>${escapeXml(offer.title)}</description>
+      <param name="Рейтинг">${FEED_RATING}</param>
+      <param name="Число отзывов">${FEED_REVIEWS_COUNT}</param>
       <param name="Годы опыта">${PROFILE.experienceYears}</param>
       <param name="Регион">${SITE_REGION}</param>
       <param name="Конверсия">${conversion}</param>

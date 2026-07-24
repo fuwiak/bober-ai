@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<yml_catalog date="2026-07-22 22:19">
+<yml_catalog date="2026-07-24 15:53">
   <shop>
     <name>Bober AI Systems</name>
     <company>Bober AI Systems</company>
     <url>https://www.bober-ai.dev</url>
     <email>contact@bober-ai.dev</email>
     <picture>https://www.bober-ai.dev/favicon-120x120.png</picture>
-    <description>Проектируем и внедряем системы автоматизации бизнеса. CRM, документы, продажи, поддержка. AI только там, где приносит ROI.</description>
+    <description>Внедряем AI-автоматизацию продаж, документов, CRM и 1С. Пилот от 300 000 ₽, фиксированная смета, NDA, облако или on-premise.</description>
     <currencies>
       <currency id="RUR" rate="1"/>
     </currencies>
@@ -134,7 +134,9 @@
       <set-ids>business-process-automation</set-ids>
       <picture>https://www.bober-ai.dev/stock/business-process-automation.jpg</picture>
       <description>Автоматизация бизнес-процессов</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -160,7 +162,9 @@
       <set-ids>sales-ai-agent</set-ids>
       <picture>https://www.bober-ai.dev/stock/sales-ai-agent.jpg</picture>
       <description>Автоматизация отдела продаж</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -186,7 +190,9 @@
       <set-ids>ai-discovery-roadmap</set-ids>
       <picture>https://www.bober-ai.dev/stock/ai-discovery-roadmap.jpg</picture>
       <description>AI &amp; Automation Advisor</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">95</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -212,7 +218,9 @@
       <set-ids>enterprise-ai-assistant</set-ids>
       <picture>https://www.bober-ai.dev/stock/enterprise-ai-assistant.jpg</picture>
       <description>Внедрение AI</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -238,7 +246,9 @@
       <set-ids>private-llm-gigachat</set-ids>
       <picture>https://www.bober-ai.dev/stock/private-llm.jpg</picture>
       <description>Приватный LLM-контур</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -264,7 +274,9 @@
       <set-ids>ai-automation</set-ids>
       <picture>https://www.bober-ai.dev/stock/automation-code.jpg</picture>
       <description>AI-автоматизация</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -290,7 +302,9 @@
       <set-ids>rag</set-ids>
       <picture>https://www.bober-ai.dev/stock/rag-search.jpg</picture>
       <description>RAG и корпоративный поиск</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -316,7 +330,9 @@
       <set-ids>llm-development</set-ids>
       <picture>https://www.bober-ai.dev/stock/automation-code.jpg</picture>
       <description>Разработка LLM-решений</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -342,7 +358,9 @@
       <set-ids>n8n</set-ids>
       <picture>https://www.bober-ai.dev/stock/automation-code.jpg</picture>
       <description>Автоматизация на n8n</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -368,7 +386,9 @@
       <set-ids>ai-agent</set-ids>
       <picture>https://www.bober-ai.dev/stock/team-collab.jpg</picture>
       <description>AI-агенты для бизнеса</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -394,7 +414,9 @@
       <set-ids>document-processing</set-ids>
       <picture>https://www.bober-ai.dev/stock/document-processing.jpg</picture>
       <description>Обработка документов</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -420,7 +442,9 @@
       <set-ids>voice-ai</set-ids>
       <picture>https://www.bober-ai.dev/stock/team-collab.jpg</picture>
       <description>Голосовой AI</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -446,7 +470,9 @@
       <set-ids>ocr</set-ids>
       <picture>https://www.bober-ai.dev/stock/document-processing.jpg</picture>
       <description>OCR и распознавание</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -472,7 +498,9 @@
       <set-ids>open-webui</set-ids>
       <picture>https://www.bober-ai.dev/stock/cyber-padlock.jpg</picture>
       <description>Open WebUI</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -498,7 +526,9 @@
       <set-ids>self-hosted-ai</set-ids>
       <picture>https://www.bober-ai.dev/stock/private-llm.jpg</picture>
       <description>Self-hosted AI</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -524,7 +554,9 @@
       <set-ids>mcp</set-ids>
       <picture>https://www.bober-ai.dev/stock/automation-code.jpg</picture>
       <description>MCP-интеграции</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -550,7 +582,9 @@
       <set-ids>langgraph</set-ids>
       <picture>https://www.bober-ai.dev/stock/automation-code.jpg</picture>
       <description>LangGraph-агенты</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -576,7 +610,9 @@
       <set-ids>knowledge-base</set-ids>
       <picture>https://www.bober-ai.dev/stock/rag-search.jpg</picture>
       <description>Корпоративная база знаний</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -602,7 +638,9 @@
       <set-ids>ai-consulting</set-ids>
       <picture>https://www.bober-ai.dev/stock/ai-discovery-roadmap.jpg</picture>
       <description>AI-консалтинг</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -628,7 +666,9 @@
       <set-ids>crm-integration</set-ids>
       <picture>https://www.bober-ai.dev/stock/crm-integration.jpg</picture>
       <description>Интеграции CRM</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -654,7 +694,9 @@
       <set-ids>ai-bot-llm-rasa-n8n</set-ids>
       <picture>https://www.bober-ai.dev/stock/enterprise-ai-assistant.jpg</picture>
       <description>Внедрение AI</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -680,7 +722,9 @@
       <set-ids>llm-ai-consultation</set-ids>
       <picture>https://www.bober-ai.dev/stock/ai-discovery-roadmap.jpg</picture>
       <description>AI &amp; Automation Advisor</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">95</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -706,7 +750,9 @@
       <set-ids>ai-bot-gigachat-n8n-local</set-ids>
       <picture>https://www.bober-ai.dev/stock/private-llm.jpg</picture>
       <description>Приватный LLM-контур</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -732,7 +778,9 @@
       <set-ids>ml-data-consultation</set-ids>
       <picture>https://www.bober-ai.dev/stock/ai-discovery-roadmap.jpg</picture>
       <description>AI &amp; Automation Advisor</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">88</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -758,7 +806,9 @@
       <set-ids>telegram-discord-miniapp-bot</set-ids>
       <picture>https://www.bober-ai.dev/stock/enterprise-ai-assistant.jpg</picture>
       <description>Внедрение AI</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -784,7 +834,9 @@
       <set-ids>claude-business-automation</set-ids>
       <picture>https://www.bober-ai.dev/stock/business-process-automation.jpg</picture>
       <description>Автоматизация бизнес-процессов</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>
@@ -810,7 +862,9 @@
       <set-ids>ai-kp-agent</set-ids>
       <picture>https://www.bober-ai.dev/stock/sales-ai-agent.jpg</picture>
       <description>Автоматизация отдела продаж</description>
-      <param name="Годы опыта">7</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
       <param name="Ссылка на телефон" unit="URL">https://www.bober-ai.dev/tel</param>

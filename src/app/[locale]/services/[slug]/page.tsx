@@ -9,6 +9,7 @@ import { SeoServicePage } from "@/components/SeoServicePage";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { Link } from "@/i18n/navigation";
 import { getEnterpriseService } from "@/lib/enterprise-services";
+import { PROFILE } from "@/lib/profile";
 import { getAllServiceSlugs, getSeoServiceContent } from "@/lib/seo-services-content";
 import { TELEGRAM_URL } from "@/lib/site";
 import { buildPageMetadata } from "@/lib/seo";
@@ -84,6 +85,10 @@ export default async function ServiceOfferPage({ params }: PageProps) {
           <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_320px]">
             <article>
               <h1 className="display-md">{offer.title}</h1>
+              <p className="mt-3 text-sm text-muted">
+                {locale === "en" ? "Performer" : "Исполнитель"}:{" "}
+                <span className="font-medium text-ink">{PROFILE.name}</span>
+              </p>
               <p className="mt-4 text-base leading-relaxed text-body">{offer.description}</p>
 
               <EditorialImageFrame variant="card" className="mt-8 aspect-[16/9] rounded-xl bg-surface-card">

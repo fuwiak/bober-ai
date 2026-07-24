@@ -10,7 +10,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { Link } from "@/i18n/navigation";
 import { getEnterpriseService } from "@/lib/enterprise-services";
-import { getPortfolioItem } from "@/lib/profile";
+import { PROFILE, getPortfolioItem } from "@/lib/profile";
 import type { SeoServiceContent } from "@/lib/seo-services-content";
 import {
   faqJsonLd,
@@ -82,6 +82,10 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
               <Reveal className="max-w-4xl">
                 <span className="section-label">{content.eyebrow}</span>
                 <h1 className="display-md mt-4">{content.h1}</h1>
+                <p className="mt-3 text-sm text-muted">
+                  {locale === "en" ? "Performer" : "Исполнитель"}:{" "}
+                  <span className="font-medium text-ink">{PROFILE.name}</span>
+                </p>
                 <p className="body-copy mt-5 max-w-3xl text-lg">{content.subtitle}</p>
                 <div className="mt-10 flex flex-wrap gap-4">
                   <ContactCta defaultService={content.h1} goal="audit_cta_click">
