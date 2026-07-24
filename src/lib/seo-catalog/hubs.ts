@@ -67,25 +67,25 @@ export const SEO_HUBS: HubDef[] = [
     ru: {
       metaTitle: "Автоматизация бизнес-процессов — каталог решений | Bober AI",
       metaDescription:
-        "Pillar-страница: автоматизация КП, документооборота, Bitrix24, amoCRM, 1С, RAG, OCR и AI для продаж. Кластеры с фиксированной сметой.",
+        "Автоматизация КП, документооборота, Bitrix24, amoCRM, 1С, поиск по документам, OCR и AI для продаж. Фиксированная смета.",
       h1: "Автоматизация бизнес-процессов",
       subtitle:
-        "Один pillar-каталог — восемь кластеров. Выберите сценарий: КП, документы, CRM/1С, RAG, OCR или AI для продаж — получите план, смету и production.",
+        "Восемь направлений: КП, документы, CRM/1С, поиск по знаниям, OCR или AI для продаж — план, смета и production.",
       intro: [
         "AI не является продуктом. Продукт — автоматизация бизнес-процесса с KPI.",
-        "Ниже — кластеры без пересечения head-термов: каждый URL отвечает за свою фразу.",
+        "Ниже — направления автоматизации: каждое решает свою задачу.",
       ],
     },
     en: {
       metaTitle: "Business process automation — solutions catalog | Bober AI",
       metaDescription:
-        "Pillar page: proposal automation, documents, Bitrix24, amoCRM, 1C, RAG, OCR and AI for sales. Clusters with a fixed estimate.",
+        "Proposal automation, documents, Bitrix24, amoCRM, 1C, document search, OCR and AI for sales. Fixed estimate.",
       h1: "Business process automation",
       subtitle:
-        "One pillar catalog — eight clusters. Pick a scenario: proposals, documents, CRM/1C, RAG, OCR or AI for sales — get a plan, estimate and production delivery.",
+        "Eight directions: proposals, documents, CRM/1C, knowledge search, OCR or AI for sales — plan, estimate and production delivery.",
       intro: [
         "AI is not the product. The product is a business process with KPIs.",
-        "Below are non-overlapping clusters: each URL owns its head term.",
+        "Below are automation directions — each with a clear job-to-be-done.",
       ],
     },
   },
@@ -106,23 +106,23 @@ export const SEO_HUBS: HubDef[] = [
     ru: {
       metaTitle: "Интеграции CRM, 1С, Bitrix24, amoCRM | Bober AI",
       metaDescription:
-        "Интеграции и AI-слои для amoCRM, Bitrix24 и 1С. Отдельные кластеры: AI для CRM и синхронизация данных.",
+        "Интеграции и AI-слои для amoCRM, Bitrix24 и 1С. AI для CRM и синхронизация данных.",
       h1: "Интеграции для бизнеса",
-      subtitle: "Связываем CRM, учёт, сайт и мессенджеры — AI-кластеры отдельно от «просто синхронизации».",
+      subtitle: "Связываем CRM, учёт, сайт и мессенджеры — AI-слой и синхронизация данных как отдельные сценарии.",
       intro: [
         "Интеграция — часто самый быстрый ROI: убрать ручной мост между системами.",
-        "AI для amoCRM / Bitrix24 / 1С — отдельные кластеры; страницы синхронизации не конкурируют с ними по H1.",
+        "AI для amoCRM / Bitrix24 / 1С — отдельные направления; синхронизация данных — отдельный сценарий.",
       ],
     },
     en: {
       metaTitle: "CRM, 1C, Bitrix24, amoCRM integrations | Bober AI",
       metaDescription:
-        "Integrations and AI layers for amoCRM, Bitrix24 and 1C. Separate clusters: AI for CRM vs data sync.",
+        "Integrations and AI layers for amoCRM, Bitrix24 and 1C. AI for CRM and data sync as separate scenarios.",
       h1: "Business integrations",
-      subtitle: "Connect CRM, ledger, website and messengers — AI clusters stay separate from plain sync pages.",
+      subtitle: "Connect CRM, ledger, website and messengers — AI layer and data sync as distinct scenarios.",
       intro: [
         "Integration is often the fastest ROI: remove the manual bridge between systems.",
-        "AI for amoCRM / Bitrix24 / 1C are separate clusters; sync pages do not reuse those H1s.",
+        "AI for amoCRM / Bitrix24 / 1C are separate directions; data sync is its own scenario.",
       ],
     },
   },

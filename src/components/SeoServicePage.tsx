@@ -97,7 +97,7 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
                     {t("telegram")}
                   </TrackedAnchor>
                   <ContactCta variant="secondary" defaultService={content.h1} goal="service_estimate_cta_click">
-                    {locale === "en" ? "Get a project estimate" : "Получить смету проекта"}
+                    {locale === "en" ? "Get an estimate" : "Получить оценку"}
                   </ContactCta>
                 </div>
               </Reveal>

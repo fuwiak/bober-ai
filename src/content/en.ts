@@ -37,9 +37,9 @@ const en = {
     certificates: "Certificates",
     reviews: "Reviews",
     contact: "Contact",
-    consultCta: "Get a preliminary estimate",
+    consultCta: "Get an estimate",
     consultCtaShort: "Estimate",
-    write: "Get a preliminary estimate",
+    write: "Get an estimate",
     writeShort: "Estimate",
     menuOpen: "Open menu",
     menuClose: "Close menu",
@@ -53,7 +53,7 @@ const en = {
   },
   hero: {
     location: "Moscow · Remote · Russia & CIS",
-    eyebrow: "Partners: Yandex Cloud, Cloud.ru and Selectel",
+    eyebrow: "AI automation for business · Moscow",
     titleLine1: "We automate proposals, documents and CRM workflows with AI — no manual data copying",
     titleLine2: "",
     valueProposition:
@@ -189,7 +189,7 @@ const en = {
     budgetTitle: "A clear entry point — no hidden stages",
     budgetNote:
       "Audit — from €1,500 · pilot — from €3,000 · production implementation — from €5,000. NDA and your own perimeter — on request before sharing data.",
-    budgetCta: "Get a preliminary estimate",
+    budgetCta: "Get an estimate",
     roiEntryLabel: "ROI",
     roiEntryTitle: "Estimate savings before the call",
     roiEntryText:
@@ -1105,7 +1105,7 @@ const en = {
     title: "Leave a request — we'll review your process within 4 hours",
     progressLabel: "Step {current} of {total}",
     back: "Back",
-    finalCta: "Get a preliminary estimate",
+    finalCta: "Get an estimate",
     steps: [
       {
         question: "What do you want to improve?",
@@ -1312,12 +1312,12 @@ const en = {
         eyebrow: "Workflow",
         h1: "End-to-end workflows across CRM, ERP and documents",
         subtitle:
-          "Process cluster under the “Business process automation” pillar: orchestrating steps across systems — without reusing the pillar head term.",
+          "Orchestrating steps across CRM, ERP and documents — one workflow without manual data copying.",
         problemsTitle: "When you need this",
         problems: ["Teams duplicate the same steps across CRM, email and spreadsheets", "Processes depend on specific people", "You need workflow orchestration, not another SaaS shelfware"],
         deliverablesTitle: "Deliverables",
         deliverables: ["Process map and automation points", "CRM, ERP, messenger and document integrations", "Production launch, monitoring and handover"],
-        relatedTitle: "Pillar clusters",
+        relatedTitle: "Related topics",
         related: [
           { href: "/automation", label: "Business process automation" },
           { href: "/automation/documents", label: "Document workflow automation" },
@@ -1327,7 +1327,7 @@ const en = {
         faq: [
           {
             q: "How is this different from /automation?",
-            a: "The /automation pillar is the cluster catalog. This page covers end-to-end workflows between systems. The head term “business process automation” stays on the pillar.",
+            a: "/automation is the overview of automation directions. This page focuses on end-to-end workflows between systems.",
           },
           {
             q: "How long does workflow delivery take?",
@@ -1446,7 +1446,7 @@ const en = {
         problems: ["Documents lost between email, CRM and file shares", "Contract approval takes days", "Templates live in scattered files"],
         deliverablesTitle: "We implement",
         deliverables: ["Approval chains and notifications", "Data extraction from PDF/scans", "CRM, ERP and knowledge base links"],
-        relatedTitle: "SEO clusters",
+        relatedTitle: "Related topics",
         related: [
           { href: "/automation", label: "Business process automation" },
           { href: "/automation/ocr-data-extraction", label: "Document recognition" },
@@ -1486,7 +1486,7 @@ const en = {
         problems: ["Deals stall without follow-up and escalation", "CRM stages do not match reality", "Managers cannot see pipeline bottlenecks"],
         deliverablesTitle: "Outcome",
         deliverables: ["Stage rules and auto-tasks in CRM", "Follow-up and stalled-deal escalation", "Stage conversion dashboard"],
-        relatedTitle: "SEO clusters",
+        relatedTitle: "Related topics",
         related: [
           { href: "/automation", label: "Business process automation" },
           { href: "/automation/proposal-generation", label: "Commercial proposal automation" },

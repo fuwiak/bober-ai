@@ -27,10 +27,10 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   "business-process-automation": {
     metaTitle: "Заказать автоматизацию бизнес-процессов — смета и SLA",
     metaDescription:
-      "Коммерческое предложение: аудит от 150 000 ₽, внедрение от 400 000 ₽. Фиксированная смета, NDA, production. Каталог кластеров — на /automation.",
+      "Коммерческое предложение: аудит от 150 000 ₽, внедрение от 500 000 ₽. Фиксированная смета, NDA, production. Обзор направлений — на /automation.",
     eyebrow: "Услуга · Offer",
     h1: "Заказать автоматизацию бизнес-процессов",
-    subtitle: "Страница услуги: смета, этапы и SLA. Pillar-каталог кластеров — /automation. Не дублируем head-терм каталога в том же интенте.",
+    subtitle: "Страница услуги: смета, этапы и SLA. Обзор направлений автоматизации — на /automation.",
     problemsTitle: "Типичные проблемы",
     problems: [
       "Менеджеры обходят CRM и ведут сделки в Excel, Telegram и почте",
@@ -76,11 +76,11 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     ],
     faqTitle: "Частые вопросы",
     faq: [
-      { q: "Где каталог сценариев?", a: "Pillar /automation — восемь SEO-кластеров. Эта страница — про заказ, смету и SLA." },
+      { q: "Где каталог сценариев?", a: "На /automation — обзор восьми направлений. Эта страница — про заказ, смету и SLA." },
       { q: "С чего начать автоматизацию?", a: "С аудита одного процесса с максимальной болью: продажи, документы или согласования. Результат — карта, ROI и приоритеты, а не сразу разработка." },
       { q: "Нужен ли отдельный BPM-софт?", a: "Не всегда. Часто достаточно CRM + workflow + интеграции. BPM-платформу рекомендуем при сложных маршрутах согласования и формальном аудите." },
       { q: "Можно ли без AI?", a: "Да. Большинство проектов начинается с интеграций и правил. AI добавляем, когда он даёт измеримый выигрыш." },
-      { q: "Какой бюджет?", a: "Аудит — от 150 000 ₽. Внедрение — от 400 000 ₽ в зависимости от числа интеграций и процессов." },
+      { q: "Какой бюджет?", a: "Аудит — от 150 000 ₽. Внедрение — от 500 000 ₽ в зависимости от числа интеграций и процессов." },
       { q: "Работаете удалённо?", a: "Да. Москва, Россия и СНГ. NDA, on-prem и 152-ФЗ — по запросу." },
       { q: "Какие CRM поддерживаете?", a: "amoCRM, Bitrix24, кастомные API. Двусторонняя синхронизация с 1С и документами." },
     ],
@@ -151,7 +151,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       { q: "Сколько длится внедрение?", a: "Базовый контур КП + CRM — 2–3 недели. С AI-слоем и несколькими интеграциями — 4–6 недель." },
       { q: "Как измерить эффект?", a: "Время от лида до КП, конверсия этапов, доля сделок без активности > 3 дней, количество КП в неделю на менеджера." },
       { q: "Можно ли без 1С?", a: "Да, если каталог в PIM, Excel с API или другой системе. Главное — единый источник цен и SKU." },
-      { q: "Какой бюджет?", a: "От 400 000 ₽ в зависимости от числа шаблонов, интеграций и AI-сценариев." },
+      { q: "Какой бюджет?", a: "От 500 000 ₽ в зависимости от числа шаблонов, интеграций и AI-сценариев." },
     ],
     related: [
       { href: "/services/crm-integration", label: "Интеграция CRM" },
@@ -393,7 +393,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Bober AI Systems проектирует контуры, где 70–80% логики — детerministic rules и API-вызовы, а LLM — узкий слой с eval и fallback на человека. Так снижаются галлюцинации и стоимость inference.",
       "Типовой стек: n8n или custom Python для оркестрации, CRM/1С webhooks, GigaChat или private LLM для NLP-шагов, очередь сообщений для надёжности. Кейс ELIA: workflow + шаблоны дали основной ROI, AI — для нестандартных формулировок.",
       "Мы начинаем с одного сценария: входящее письмо → классификация → создание задачи в CRM; или скан счёта → OCR + LLM validation → проводка. После измерения эффекта — следующий сценарий.",
-      "Production за 3–6 недель. NDA, on-prem LLM — по требованию. Бюджет — от 400 000 ₽.",
+      "Production за 3–6 недель. NDA, on-prem LLM — по требованию. Бюджет — от 500 000 ₽.",
       "Если AI не нужен — скажем на Discovery. Часто достаточно n8n + CRM без единого токена LLM.",
     ],
     howWeSolveTitle: "Подход",
@@ -423,7 +423,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       { q: "Как контролировать качество LLM?", a: "Structured JSON output, schema validation, sample eval, эскалация при low confidence." },
       { q: "Можно без облачного LLM?", a: "Да. Private GigaChat или self-hosted — стандарт для enterprise." },
       { q: "Примеры сценариев?", a: "Классификация тикетов, извлечение реквизитов, генерация КП, квалификация лидов." },
-      { q: "Бюджет?", a: "От 400 000 ₽ за первый production-сценарий." },
+      { q: "Бюджет?", a: "От 500 000 ₽ за первый production-сценарий." },
       { q: "Поддержка?", a: "SLA на workflow и переобучение prompts — опционально." },
     ],
     related: [
@@ -438,7 +438,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   "rag": {
     metaTitle: "Корпоративный RAG — внедрение под ключ",
     metaDescription:
-      "Корпоративный RAG: индексация документов, векторный поиск, цитаты источников. Production для баз знаний и ассистентов. От 400 000 ₽.",
+      "Корпоративный RAG: индексация документов, векторный поиск, цитаты источников. Production для баз знаний и ассистентов. От 500 000 ₽.",
     eyebrow: "Корпоративный RAG",
     h1: "Корпоративный RAG",
     subtitle: "Кластер pillar-архитектуры: ответы LLM с опорой на ваши документы — цитаты, актуальность, контроль галлюцинаций.",
@@ -457,7 +457,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Процесс re-index и мониторинг качества (eval set)",
     ],
     intro: [
-      "Корпоративный RAG — money-page кластера. Сценарий поиска живёт на /solutions/rag-search; продукт «база знаний» — на отдельных URL без того же H1.",
+      "Корпоративный RAG для поиска по документам. Сценарий поиска — /solutions/rag-search; продукт «база знаний» — /services/knowledge-base.",
       "RAG (Retrieval-Augmented Generation) — стандарт enterprise AI, когда ответ должен опираться на корпоративные документы. LLM получает релевантные фрагменты из базы знаний и генерирует ответ с цитатами — не из «памяти» модели.",
       "Bober AI Systems строит RAG для поддержки, HR, продаж и инженерных команд. Кейс Kaspersky: ассистент по продуктовой документации для сотрудников 1С с grounding и контролем доступа.",
       "Технический контур: ingestion (парсинг, chunking, metadata), embedding model, vector DB (Qdrant, pgvector, OpenSearch), retrieval + rerank, prompt с контекстом, guardrails.",
@@ -493,7 +493,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       { q: "Multilingual?", a: "Да. Русский + English — типичный кейс для enterprise РФ." },
       { q: "Как обновлять документы?", a: "Webhook при публикации, nightly sync, версионирование chunks." },
       { q: "ACL?", a: "Metadata filters по роли/отделу на этапе retrieval." },
-      { q: "Бюджет?", a: "От 400 000 ₽ за MVP. Private LLM — отдельно или в пакете." },
+      { q: "Бюджет?", a: "От 500 000 ₽ за MVP. Private LLM — отдельно или в пакете." },
     ],
     related: [
       { href: "/automation", label: "Автоматизация бизнес-процессов" },
@@ -530,7 +530,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Стек: Python/TypeScript, LangChain/LangGraph, GigaChat или private LLM API, PostgreSQL для state, Redis для cache. Agents вызывают CRM, 1С, search — через MCP или REST.",
       "Каждый LLM-шаг покрываем eval-набором: input → expected JSON → regression в CI. Без этого каждое обновление модели — лотерея.",
       "Примеры: генератор КП с catalog grounding, классификатор тикетов, copilot для менеджера в CRM, multi-step agent для согласования документов.",
-      "Срок MVP — 3–5 недель. NDA, on-prem inference — стандарт. Бюджет — от 400 000 ₽.",
+      "Срок MVP — 3–5 недель. NDA, on-prem inference — стандарт. Бюджет — от 500 000 ₽.",
       "Discovery помогает отделить «нужен LLM» от «достаточно regex» — экономим бюджет клиента.",
     ],
     howWeSolveTitle: "Процесс разработки",
@@ -561,7 +561,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       { q: "Structured output?", a: "JSON mode, Pydantic validation, repair loop при parse errors." },
       { q: "Cost control?", a: "Caching, smaller models для простых шагов, batch где возможно." },
       { q: "Передача кода?", a: "Да. Repo клиента, документация, pair programming на handover." },
-      { q: "Бюджет?", a: "От 400 000 ₽ за MVP. Agents с интеграциями — от 500 000 ₽." },
+      { q: "Бюджет?", a: "От 500 000 ₽ за MVP. Agents с интеграциями — от 500 000 ₽." },
     ],
     related: [
       { href: "/services/rag", label: "RAG" },
@@ -736,7 +736,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Кейс OCR pipeline: пакетная обработка сканов для бухгалтерии — минуты вместо часов. ELIA: генерация КП из CRM — другой конец спectrum, та же дисциплина workflow.",
       "Маршруты согласования: parallel/serial approvers, SLA, эскалация CEO/CFO, интegration с Bitrix24 tasks. Документ не «висит» в почте.",
       "152-ФЗ и on-prem: хранение в РФ, шифрование, ACL. NDA — стандарт.",
-      "Срок — 4–8 недель. Бюджет — от 400 000 ₽.",
+      "Срок — 4–8 недель. Бюджет — от 500 000 ₽.",
     ],
     howWeSolveTitle: "Этапы",
     howWeSolve: [
@@ -767,7 +767,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       { q: "Мобильное согласование?", a: "Telegram bot / Bitrix mobile — по каналу клиента." },
       { q: "On-prem?", a: "Да. OCR и storage в private cloud." },
       { q: "KП generation?", a: "См. sales-ai-agent — генерация из CRM templates." },
-      { q: "Бюджет?", a: "От 400 000 ₽ за один тип документа + workflow." },
+      { q: "Бюджет?", a: "От 500 000 ₽ за один тип документа + workflow." },
     ],
     related: [
       { href: "/services/ocr", label: "OCR" },
@@ -1210,7 +1210,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Content lifecycle: owner assigns → draft → review → publish → auto re-index. Stale content detection by age and feedback thumbs-down.",
       "ACL по ролям: sales не видит HR, support видит customer-facing articles. Retrieval filters enforce at query time.",
       "Integrations: Zendesk/Bitrix24 suggest article on ticket create, Telegram bot for employees.",
-      "4–8 weeks to MVP. Budget from 400 000 ₽. Discovery identifies content debt first.",
+      "4–8 weeks to MVP. Budget from 500 000 ₽. Discovery identifies content debt first.",
     ],
     howWeSolveTitle: "Этапы",
     howWeSolve: [
@@ -1241,7 +1241,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       { q: "Customer vs internal?", a: "Separate indexes and ACL." },
       { q: "Measure ROI?", a: "Ticket deflection, CSAT, time-to-answer." },
       { q: "Kaspersky-like?", a: "Same RAG + private LLM pattern, your domain docs." },
-      { q: "Budget?", a: "From 400 000 ₽." },
+      { q: "Budget?", a: "From 500 000 ₽." },
     ],
     related: [
       { href: "/services/rag", label: "RAG" },

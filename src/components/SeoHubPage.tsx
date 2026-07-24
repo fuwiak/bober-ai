@@ -22,9 +22,9 @@ const AUTOMATION_CASES = [...PORTFOLIO_LISTING_SLUGS];
 const AUTOMATION_COPY = {
   ru: {
     catalog: "Автоматизация для бизнеса",
-    primaryCta: "Обсудить автоматизацию",
+    primaryCta: "Получить оценку",
     secondaryCta: "Смотреть кейсы",
-    heroNote: "Аудит от 150 000 ₽ · внедрение от 400 000 ₽",
+    heroNote: "Аудит от 150 000 ₽ · пилот от 300 000 ₽ · внедрение от 500 000 ₽",
     introLabel: "С чего начинаем",
     introTitle: "Автоматизируем не отдел целиком, а конкретный процесс с понятной экономикой",
     introText:
@@ -34,10 +34,10 @@ const AUTOMATION_COPY = {
       { value: "+32%", label: "конверсия из предложения в заказ" },
       { value: "−50%", label: "повторные обращения на первой линии" },
     ],
-    solutionsLabel: "SEO-кластеры",
-    solutionsTitle: "Восемь кластеров под отдельные поисковые фразы",
+    solutionsLabel: "Направления",
+    solutionsTitle: "Восемь сценариев автоматизации",
     solutionsText:
-      "Pillar «Автоматизация бизнес-процессов» ведёт в кластеры: КП, документооборот, AI для Bitrix24 / amoCRM / 1С, корпоративный RAG, распознавание документов и AI для отдела продаж — без пересечения head-термов.",
+      "КП, документооборот, AI для Bitrix24 / amoCRM / 1С, корпоративный поиск, распознавание документов и AI для отдела продаж — каждый сценарий со своей задачей и понятным результатом.",
     fitLabel: "Точки роста",
     fitTitle: "Когда автоматизация уже окупится",
     fitItems: [
@@ -67,9 +67,9 @@ const AUTOMATION_COPY = {
   },
   en: {
     catalog: "Business automation",
-    primaryCta: "Discuss automation",
+    primaryCta: "Get an estimate",
     secondaryCta: "View case studies",
-    heroNote: "Audit from €1,500 · implementation from €5,000",
+    heroNote: "Audit from 150 000 ₽ · pilot from 300 000 ₽ · implementation from 500 000 ₽",
     introLabel: "Where we start",
     introTitle: "We automate a measurable process, not an entire department at once",
     introText:
@@ -79,10 +79,10 @@ const AUTOMATION_COPY = {
       { value: "+32%", label: "quote-to-order conversion" },
       { value: "−50%", label: "repeat first-line requests" },
     ],
-    solutionsLabel: "SEO clusters",
-    solutionsTitle: "Eight clusters for distinct search phrases",
+    solutionsLabel: "Directions",
+    solutionsTitle: "Eight automation scenarios",
     solutionsText:
-      "The “Business process automation” pillar links to clusters: proposals, documents, AI for Bitrix24 / amoCRM / 1C, corporate RAG, document recognition and AI for sales — without overlapping head terms.",
+      "Proposals, documents, AI for Bitrix24 / amoCRM / 1C, corporate search, document recognition and AI for sales — each scenario has a clear job and outcome.",
     fitLabel: "Growth points",
     fitTitle: "When automation can already pay back",
     fitItems: [

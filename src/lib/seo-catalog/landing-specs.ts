@@ -1450,7 +1450,7 @@ export const CATALOG_LANDING_SPECS: LandingSpec[] = [
       subtitle: "AI-слой поверх Bitrix24: сделки, документы, задачи. Базовая интеграция — /integrations/bitrix24.",
       problems: ["Роботы Bitrix24 не покрывают нестандартные тексты","Документы собирают вручную из сделки","Нет AI-ассистента в открытых линиях","Пилоты ChatGPT живут вне CRM"],
       deliverables: ["AI-шаги в роботах и бизнес-процессах","Черновики КП и писем из карточки","Ассистент в открытых линиях с эскалацией","Логи, eval и контроль затрат"],
-      intro: ["AI для Bitrix24 — отдельный SEO-кластер. /integrations/bitrix24 закрывает внедрение и REST без LLM.","Подключаем AI к конкретным шагам воронки.","Production в контуре заказчика или облаке."],
+      intro: ["AI для Bitrix24 — отдельное направление. /integrations/bitrix24 закрывает внедрение и REST без LLM.","Подключаем AI к конкретным шагам воронки.","Production в контуре заказчика или облаке."],
       faq: [{"q":"Чем отличается от интеграции Bitrix24?","a":"/integrations/bitrix24 — настройка и API. Эта страница — AI-слой."},{"q":"Коробка или облако?","a":"Оба варианта. On-prem LLM — по запросу."},{"q":"Срок пилота?","a":"2–4 недели на одном сценарии."}],
     },
     en: {
@@ -1458,7 +1458,7 @@ export const CATALOG_LANDING_SPECS: LandingSpec[] = [
       subtitle: "AI layer on Bitrix24: deals, documents, tasks. Base integration lives on /integrations/bitrix24.",
       problems: ["Bitrix robots cannot cover non-standard copy","Documents are built manually from the deal","No AI assistant in open lines","ChatGPT pilots live outside CRM"],
       deliverables: ["AI steps in robots and workflows","Proposal and email drafts from the card","Open-lines assistant with escalation","Logs, eval and cost control"],
-      intro: ["AI for Bitrix24 is a dedicated SEO cluster. /integrations/bitrix24 covers setup and REST without an LLM.","We attach AI to concrete pipeline steps.","Production in your perimeter or the cloud."],
+      intro: ["AI for Bitrix24 is a dedicated direction. /integrations/bitrix24 covers setup and REST without an LLM.","We attach AI to concrete pipeline steps.","Production in your perimeter or the cloud."],
       faq: [{"q":"Different from Bitrix24 integration?","a":"/integrations/bitrix24 is setup and API. This page is the AI layer."},{"q":"On-prem or cloud?","a":"Both. On-prem LLM on request."},{"q":"Pilot length?","a":"2–4 weeks for one scenario."}],
     },
   },
