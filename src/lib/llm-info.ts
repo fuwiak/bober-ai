@@ -1,4 +1,4 @@
-export const LLM_INFO_UPDATED_AT = "23 июля 2026";
+export const LLM_INFO_UPDATED_AT = "25 июля 2026";
 
 export const LLM_INFO_MARKDOWN = `# Official Information About Bober AI Systems
 
@@ -8,6 +8,7 @@ Machine-readable mirrors:
 - https://www.bober-ai.dev/info.txt
 - https://www.bober-ai.dev/info.md
 - HTML version: https://www.bober-ai.dev/info
+- Short LLM index (llmstxt.org): https://www.bober-ai.dev/llms.txt
 
 ## Basic Information
 

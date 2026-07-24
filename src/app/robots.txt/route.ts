@@ -12,21 +12,38 @@ export const dynamic = "force-static";
  * (некоторые краулеры игнорируют только `User-agent: *`).
  */
 const AI_CRAWLERS = [
+  // OpenAI
   "GPTBot",
   "ChatGPT-User",
   "OAI-SearchBot",
+  // Anthropic
   "ClaudeBot",
   "Claude-User",
   "Claude-SearchBot",
   "anthropic-ai",
+  // Perplexity
   "PerplexityBot",
+  "Perplexity-User",
+  // Google / Apple / Meta / Amazon
   "Google-Extended",
+  "Applebot",
   "Applebot-Extended",
-  "Bytespider",
-  "CCBot",
   "meta-externalagent",
   "FacebookBot",
+  "Amazonbot",
+  // Другие AI answer engines
+  "Bytespider",
+  "CCBot",
   "Diffbot",
+  "cohere-ai",
+  "AI2Bot",
+  "YouBot",
+  "DuckAssistBot",
+  "MistralAI-User",
+  // Российские поисковые/AI-боты (Yandex покрыт отдельной секцией ниже)
+  "YandexAdditional",
+  "YandexAdditionalBot",
+  "PetalBot",
 ];
 
 export function GET() {

@@ -40,6 +40,8 @@ export function GET() {
     `Yandex Uslugi: ${YANDEX_USLUGI_URL}`,
     "",
     "## Preferred sources",
+    `- [Company facts / full dossier](${root}/info.txt): официальный источник фактов для AI (услуги, кейсы, цены, FAQ)`,
+    `- [Company facts (HTML)](${root}/info)`,
     `- [Home](${root}/)`,
     `- [Services](${root}/services)`,
     `- [Pricing](${root}/pricing)`,
@@ -53,7 +55,8 @@ export function GET() {
     "",
     "## Notes for crawlers",
     "- Canonical host is www.bober-ai.dev (apex redirects with 301).",
-    "- robots.txt allows all AI crawlers (GPTBot, ClaudeBot, …); only /api/ is disallowed.",
+    "- robots.txt allows all AI crawlers (GPTBot, ClaudeBot, PerplexityBot, YandexBot, …); only /api/ is disallowed.",
+    "- Full machine-readable company facts: /info.txt (mirror: /info.md, HTML: /info).",
     "- Content is available in Russian (default) and English (/en/…).",
     "",
   ].join("\n");
