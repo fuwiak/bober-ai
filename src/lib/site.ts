@@ -103,5 +103,8 @@ export const DEFAULT_KEYWORDS = [
 ];
 
 export function absoluteUrl(path = "/"): string {
-  return new URL(path, SITE_URL).toString();
+  const base = SITE_URL.replace(/\/$/, "");
+  if (!path || path === "/") return base;
+  const normalized = (path.startsWith("/") ? path : `/${path}`).replace(/\/+$/, "");
+  return `${base}${normalized}`;
 }

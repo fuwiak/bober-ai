@@ -8,7 +8,7 @@ import { GUIDES } from "@/lib/guides";
 import { LANDING_PAGES } from "@/lib/landing-pages";
 import { SEO_HUBS } from "@/lib/seo-catalog/hubs";
 import { getAllIntentArticles } from "@/lib/seo-catalog";
-import { BITRIX_SITE_URL, PARTNERS_SITE_URL, SITE_URL } from "@/lib/site";
+import { BITRIX_SITE_URL, PARTNERS_SITE_URL, absoluteUrl } from "@/lib/site";
 
 export const dynamic = "force-static";
 
@@ -18,10 +18,10 @@ export const dynamic = "force-static";
  * при каждом деплое, Яндекс и Google начинают игнорировать.
  */
 const UPDATED = {
-  core: new Date("2026-07-24"),
-  services: new Date("2026-07-24"),
-  landings: new Date("2026-07-24"),
-  hubs: new Date("2026-07-24"),
+  core: new Date("2026-07-25"),
+  services: new Date("2026-07-25"),
+  landings: new Date("2026-07-25"),
+  hubs: new Date("2026-07-25"),
   guides: new Date("2026-07-14"),
   blog: new Date("2026-07-19"),
   academy: new Date("2026-07-20"),
@@ -64,29 +64,31 @@ function pushLocalized(
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"],
   priority: number,
 ) {
+  const ruUrl = absoluteUrl(path || "/");
+  const enUrl = absoluteUrl(path ? `/en${path}` : "/en");
   entries.push({
-    url: `${SITE_URL}${path}`,
+    url: ruUrl,
     lastModified,
     changeFrequency,
     priority,
     alternates: {
       languages: {
-        ru: `${SITE_URL}${path}`,
-        en: `${SITE_URL}/en${path}`,
-        "x-default": `${SITE_URL}${path}`,
+        ru: ruUrl,
+        en: enUrl,
+        "x-default": ruUrl,
       },
     },
   });
   entries.push({
-    url: `${SITE_URL}/en${path}`,
+    url: enUrl,
     lastModified,
     changeFrequency,
     priority: priority * 0.9,
     alternates: {
       languages: {
-        ru: `${SITE_URL}${path}`,
-        en: `${SITE_URL}/en${path}`,
-        "x-default": `${SITE_URL}${path}`,
+        ru: ruUrl,
+        en: enUrl,
+        "x-default": ruUrl,
       },
     },
   });
@@ -102,7 +104,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const route of ruOnlyRoutes) {
     entries.push({
-      url: `${SITE_URL}${route.path}`,
+      url: absoluteUrl(route.path),
       lastModified: route.lastModified,
       changeFrequency: route.changeFrequency,
       priority: route.priority,
@@ -137,14 +139,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     } else {
       // RU-only case — no /en mirror and no hreflang en alternate.
       entries.push({
-        url: `${SITE_URL}${path}`,
+        url: absoluteUrl(path),
         lastModified,
         changeFrequency,
         priority,
         alternates: {
           languages: {
-            ru: `${SITE_URL}${path}`,
-            "x-default": `${SITE_URL}${path}`,
+            ru: absoluteUrl(path),
+            "x-default": absoluteUrl(path),
           },
         },
       });
@@ -166,7 +168,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Переводы статей с Medium существуют только на русском — без en-альтернатив.
   for (const post of BLOG_POSTS) {
     entries.push({
-      url: `${SITE_URL}/blog/${post.slug}`,
+      url: absoluteUrl(`/blog/${post.slug}`),
       lastModified: UPDATED.blog,
       changeFrequency: "yearly",
       priority: 0.6,
@@ -175,7 +177,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const post of ACADEMY_POSTS) {
     entries.push({
-      url: `${SITE_URL}/academy/${post.slug}`,
+      url: absoluteUrl(`/academy/${post.slug}`),
       lastModified: UPDATED.academy,
       changeFrequency: "monthly",
       priority: 0.68,

@@ -64,13 +64,13 @@ export const YANDEX_SELF_CHECKS: SelfCheckItem[] = [
     id: "indexable",
     title: "Целевые страницы не запрещены для индексации",
     status: "done",
-    evidence: "src/app/robots.txt/route.ts · Allow: / · Disallow только /api/",
+    evidence: "robots.txt Allow:/ · Yandex Allow:/ + Clean-param · npm run seo:tech",
   },
   {
     id: "submitted-to-bots",
     title: "Страницы сайта переданы индексирующим роботам",
     status: "done",
-    evidence: "sitemap.xml · npm run seo:indexnow · yaga webmaster boost (recrawl)",
+    evidence: "sitemap.xml (absoluteUrl) · npm run seo:indexnow · yaga webmaster boost",
   },
   {
     id: "content-in-index",
@@ -89,13 +89,13 @@ export const YANDEX_SELF_CHECKS: SelfCheckItem[] = [
     id: "main-mirror",
     title: "Определён основной адрес сайта в результатах поиска",
     status: "done",
-    evidence: "canonical www · 301 apex→www · Host: www.bober-ai.dev в robots.txt",
+    evidence: "Host: www.bober-ai.dev · 301 apex→www без :8080 · absoluteUrl() без trailing slash",
   },
   {
     id: "duplicates",
     title: "Дубли и малоценные страницы недоступны или приклеены к основным",
     status: "done",
-    evidence: "canonical + hreflang · redirects в next.config · Clean-param в robots",
+    evidence: "canonical · hreflang · 301 apex→www · Clean-param · legacy redirects · npm run seo:tech",
   },
   {
     id: "unique-content",
@@ -107,7 +107,7 @@ export const YANDEX_SELF_CHECKS: SelfCheckItem[] = [
     id: "ux-nav",
     title: "Навигация и интерфейс помогают решать задачи пользователя",
     status: "done",
-    evidence: "SiteChrome nav · FAQ · pricing · contact CTA · ROI calculator",
+    evidence: "SiteChrome nav · breadcrumbs · hub→landing related · FAQ · pricing · CTA",
   },
   {
     id: "usp",
@@ -125,14 +125,15 @@ export const YANDEX_SELF_CHECKS: SelfCheckItem[] = [
     id: "titles-descriptions",
     title: "Хорошие оригинальные заголовки и описания страниц",
     status: "done",
-    evidence: "buildPageMetadata · meta title/description с Москва + коммерческий интент",
+    evidence:
+      "buildPageMetadata · уникальные title/description на landing/hub · npm run seo:tech",
   },
   {
     id: "microdata",
     title: "Настроена микроразметка сайта",
     status: "done",
     evidence:
-      "Organization/LocalBusiness · WebSite · Service · FAQPage · BreadcrumbList · Article",
+      "Organization/LocalBusiness · WebSite · Service · FAQPage · BreadcrumbList · Article · валидатор Вебмастера",
   },
   {
     id: "sitelinks",

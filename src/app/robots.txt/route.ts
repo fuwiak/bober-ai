@@ -68,7 +68,11 @@ export function GET() {
     `# LLM summary: ${SITE_URL}/llms.txt`,
     "",
     "# Ignore tracking GET params (Yandex Clean-param; Webmaster UI has no API)",
+    "# Explicit Allow: for User-agent: Yandex this section replaces User-Agent: *",
     "User-agent: Yandex",
+    "Allow: /",
+    "Disallow: /api/",
+    "Disallow: /partners/ru.html",
     yandexCleanParamLine(),
     "",
   ].join("\n");
