@@ -36,7 +36,7 @@ export const SITE_NAME = "Bober AI Systems";
 export const SITE_TAGLINE_RU = "Автоматизация КП, документов и CRM с AI";
 export const SITE_TAGLINE_EN = "AI automation of proposals, documents and CRM";
 export const SITE_DESCRIPTION =
-  "Внедряем AI-автоматизацию продаж, документов, CRM и 1С. Пилот от 300 000 ₽, фиксированная смета, NDA, облако или on-premise.";
+  "Внедрение AI в продажи и операции в Москве: КП, документы, Bitrix24/amoCRM и 1С. Пилот от 300 000 ₽, фиксированная смета, NDA, облако или on-premise.";
 /** Регион для Вебмастера / schema (город важнее страны для локальной выдачи). */
 export const SITE_REGION = "Москва";
 export const SITE_COUNTRY = "Россия";

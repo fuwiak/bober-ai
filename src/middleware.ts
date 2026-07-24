@@ -6,6 +6,7 @@ const intlMiddleware = createMiddleware(routing);
 
 /** Канонический хост для поиска и Вебмастера (главное зеркало). */
 const CANONICAL_HOST = "www.bober-ai.dev";
+const APEX_HOST = "bober-ai.dev";
 const PARTNERS_HOST = "partners.bober-ai.dev";
 const BITRIX_HOST = "bitrix.bober-ai.dev";
 
@@ -13,6 +14,15 @@ const BITRIX_HOST = "bitrix.bober-ai.dev";
 function withYmlContentType(response: NextResponse) {
   response.headers.set("Content-Type", "application/xml; charset=utf-8");
   return response;
+}
+
+/** Файлы подтверждения прав (Вебмастер/GSC/IndexNow) — отдаём на apex без 301. */
+function isOwnershipVerificationPath(pathname: string): boolean {
+  if (pathname === "/robots.txt") return true;
+  if (/^\/yandex_[a-z0-9]+\.html$/i.test(pathname)) return true;
+  if (/^\/google[a-z0-9]+\.html$/i.test(pathname)) return true;
+  if (/^\/[a-f0-9]{32}\.txt$/i.test(pathname)) return true;
+  return false;
 }
 
 /**
@@ -100,7 +110,11 @@ export default function middleware(request: NextRequest) {
   }
 
   // Явный 301: Яндекс учитывает 301/302 при выборе главного зеркала (не 308).
-  if (host === "bober-ai.dev") {
+  // Verification-файлы на apex не редиректим — иначе нельзя подтвердить права на bober-ai.dev.
+  if (host === APEX_HOST) {
+    if (isOwnershipVerificationPath(pathname)) {
+      return NextResponse.next();
+    }
     const url = request.nextUrl.clone();
     url.protocol = "https:";
     url.host = CANONICAL_HOST;

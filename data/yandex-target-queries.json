@@ -1,0 +1,82 @@
+{
+  "updated": "2026-07-24",
+  "note": "Целевые запросы для мониторинга в Яндекс Вебмастере (Поисковые запросы) и посадочные на www.bober-ai.dev.",
+  "groups": [
+    {
+      "id": "automation-core",
+      "title": "Автоматизация КП / документов / CRM",
+      "queries": [
+        "автоматизация КП",
+        "автоматизация коммерческих предложений",
+        "автоматизация документов",
+        "автоматизация CRM Москва",
+        "автоматизация бизнес процессов",
+        "внедрение AI в бизнес"
+      ],
+      "landings": ["/", "/automation", "/services/business-process-automation", "/services/document-processing"]
+    },
+    {
+      "id": "crm-integrations",
+      "title": "Интеграции Bitrix24 / amoCRM / 1С",
+      "queries": [
+        "интеграция Bitrix24 AI",
+        "интеграция amoCRM",
+        "интеграция 1С",
+        "автоматизация Bitrix24",
+        "CRM автоматизация продаж"
+      ],
+      "landings": ["/integrations/bitrix24", "/integrations/amocrm", "/services/crm-integration"]
+    },
+    {
+      "id": "sales-ai",
+      "title": "AI в продажах",
+      "queries": [
+        "AI агент для продаж",
+        "автоматизация отдела продаж",
+        "ai для продаж",
+        "генерация коммерческих предложений"
+      ],
+      "landings": ["/services/sales-ai-agent", "/services/ai-automation"]
+    },
+    {
+      "id": "private-llm-rag",
+      "title": "Приватный LLM / RAG / on-premise",
+      "queries": [
+        "приватный LLM",
+        "корпоративный RAG",
+        "AI on-premise",
+        "корпоративная база знаний",
+        "GigaChat корпоративный"
+      ],
+      "landings": [
+        "/services/private-llm-gigachat",
+        "/services/rag",
+        "/services/knowledge-base",
+        "/services/self-hosted-ai"
+      ]
+    },
+    {
+      "id": "n8n-stack",
+      "title": "n8n / оркестрация",
+      "queries": ["n8n автоматизация", "n8n для бизнеса", "внедрение n8n"],
+      "landings": ["/services/n8n", "/services/langgraph", "/services/mcp"]
+    },
+    {
+      "id": "consulting",
+      "title": "Консалтинг / аудит / roadmap",
+      "queries": [
+        "AI консалтинг",
+        "аудит автоматизации",
+        "внедрение ии под ключ",
+        "стоимость внедрения AI"
+      ],
+      "landings": ["/services/ai-consulting", "/services/ai-discovery-roadmap", "/pricing", "/faq"]
+    },
+    {
+      "id": "brand",
+      "title": "Бренд / люди",
+      "queries": ["bober ai", "павел стасиньский", "bober ai systems"],
+      "landings": ["/", "/about", "/portfolio"]
+    }
+  ]
+}

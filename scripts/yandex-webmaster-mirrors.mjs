@@ -50,8 +50,22 @@ async function main() {
     console.log("");
   }
 
-  const picked = pickHost(hosts, PREFERRED);
-  console.log(`pickHost(${PREFERRED}) → ${picked?.host_id || "—"}\n`);
+  const pickedWww = pickHost(hosts, PREFERRED);
+  const pickedApex = pickHost(hosts, "https://bober-ai.dev");
+  console.log(`pickHost(${PREFERRED}) → ${pickedWww?.host_id || "—"}`);
+  console.log(`pickHost(https://bober-ai.dev) → ${pickedApex?.host_id || "—"}\n`);
+
+  const hasApex = related.some((h) => {
+    const id = String(h.host_id || "");
+    return id.includes(":bober-ai.dev:") && !id.includes(":www.");
+  });
+  if (!hasApex) {
+    console.log("! Apex https://bober-ai.dev ещё не добавлен/не подтверждён в Вебмастере.");
+    console.log("  1. DNS: ALIAS @ → qz3mo9ts.up.railway.app + TXT _railway-verify (см. deploy/DUAL-ORIGIN.md)");
+    console.log("  2. Добавьте сайт https://bober-ai.dev в Вебмастер и подтвердите права");
+    console.log("  3. Затем: Индексирование → Переезд сайта → выберите www как главное зеркало");
+    console.log("");
+  }
 
   if (preferredIsMain) {
     console.log("✓ https://www.bober-ai.dev выглядит главным в API Вебмастера.");

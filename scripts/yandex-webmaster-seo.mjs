@@ -114,7 +114,19 @@ async function main() {
   if (host.verified) ok("Права на сайт подтверждены");
   else fail("Права на сайт не подтверждены");
 
-  const uiBase = `https://webmaster.yandex.ru/site/${encodeURIComponent(hostId)}`;
+  // Deep-links /site/{hostId}/… в новом UI → 404. Сайт выбирается в шапке.
+  const UI = {
+    sites: "https://webmaster.yandex.ru/sites/",
+    dashboard: "https://webmaster.yandex.ru/site/dashboard/",
+    reindex: "https://webmaster.yandex.ru/site/indexing/reindex/",
+    searchable: "https://webmaster.yandex.ru/site/indexing/searchable/",
+    sitemap: "https://webmaster.yandex.ru/site/indexing/sitemap/",
+    quality: "https://webmaster.yandex.ru/site/optimization/quality/",
+    business: "https://business.yandex.ru/",
+  };
+
+  console.log(`\nUI: ${UI.sites} → выберите www → дальше по меню`);
+  info(`Дашборд ${UI.dashboard} · переобход ${UI.reindex} · Бизнес ${UI.business}`);
 
   // —— Качество / безопасность / польза (ИКС) ——
   section("Качество · безопасность · ИКС");
@@ -158,7 +170,7 @@ async function main() {
   else ok("Mobile-friendly: замечаний нет");
   if (sprav) warn("Сайт не в Яндекс Бизнес / Справочнике");
   else info("Справочник: NOT_IN_SPRAV не активна");
-  info(`UI региональность: ${uiBase}/search/regions/`);
+  info(`UI: ${UI.sites} → сайт → Представление в поиске → Региональность (или ${UI.business})`);
 
   // —— Индексация ——
   section("Индексация · обход");
@@ -199,7 +211,7 @@ async function main() {
     else info(`search-urls ответ: ${JSON.stringify(inSearch).slice(0, 180)}…`);
   }
 
-  info(`UI статистика обхода: ${uiBase}/indexing/`);
+  info(`UI обход: ${UI.reindex} · в поиске: ${UI.searchable} · sitemap: ${UI.sitemap}`);
 
   // —— Важные страницы ——
   section("Мониторинг важных страниц");
@@ -209,7 +221,8 @@ async function main() {
   if (important) {
     if (!important.length) {
       warn("Важные страницы не настроены — добавьте /, /services, ключевые лендинги в UI");
-      info(`UI: ${uiBase}/indexing/important/`);
+      info(`UI: ${UI.sites} → сайт → Индексирование → Мониторинг важных страниц`);
+      info(`    или отметьте «Отслеживать» на ${UI.reindex}`);
     } else {
       ok(`Отслеживается URL: ${important.length}`);
       for (const row of important.slice(0, 12)) {
@@ -243,7 +256,7 @@ async function main() {
   } else if (popular) {
     info("Популярных запросов пока нет (мало данных или сайт молодой)");
   }
-  info(`UI представление: ${uiBase}/search/`);
+  info(`UI: ${UI.dashboard} · качество ${UI.quality}`);
 
   // —— Переобход ——
   section("Переобход URL");
@@ -261,11 +274,11 @@ async function main() {
   const criticalCount = present.filter((p) => p.severity === "CRITICAL").length;
   if (fatalCount || criticalCount) {
     fail(`Нужно исправить: FATAL=${fatalCount}, CRITICAL=${criticalCount}`);
-    console.log(`\nДиагностика UI: ${uiBase}/diagnosis/\n`);
+    console.log(`\nДиагностика UI: ${UI.quality}\n`);
     process.exit(1);
   }
   ok("Критических блокеров позиций по API нет");
-  console.log(`\nПолная диагностика: ${uiBase}/diagnosis/`);
+  console.log(`\nПолная диагностика: ${UI.quality}`);
   console.log("Метрика (поведение): yaga metrika status\n");
 }
 

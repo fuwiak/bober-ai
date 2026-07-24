@@ -19,6 +19,7 @@ import {
   YANDEX_USLUGI_URL,
   absoluteUrl,
 } from "@/lib/site";
+import { FEED_RATING, FEED_REVIEWS_COUNT } from "@/lib/feed-rating";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { PROFILE } from "@/lib/profile";
 
@@ -261,12 +262,27 @@ export function webPageJsonLd(input: {
   };
 }
 
-export function aggregateRatingJsonLd() {
+/**
+ * AggregateRating for Organization — only when there is a real public rating.
+ * Rating 0 in JSON-LD looks like spam to Yandex; omit until FEED_RATING > 0.
+ */
+export function aggregateRatingJsonLd():
+  | {
+      "@type": "AggregateRating";
+      ratingValue: number;
+      reviewCount: number;
+      bestRating: number;
+      worstRating: number;
+    }
+  | undefined {
+  const ratingValue = Number(FEED_RATING);
+  const reviewCount = Number(FEED_REVIEWS_COUNT);
+  if (!Number.isFinite(ratingValue) || !Number.isFinite(reviewCount)) return undefined;
+  if (ratingValue <= 0 || reviewCount <= 0) return undefined;
   return {
     "@type": "AggregateRating",
-    // Keep in sync with YML FEED_RATING / FEED_REVIEWS_COUNT (0 = no public rating yet).
-    ratingValue: 0,
-    reviewCount: 0,
+    ratingValue,
+    reviewCount,
     bestRating: 5,
     worstRating: 1,
   };
@@ -278,8 +294,8 @@ export function serviceJsonLd(input: {
   url: string;
   locale: string;
 }) {
-  // No aggregateRating on Service / nested provider — Yandex Uslugi compares offer pages to YML.
-  const { aggregateRating: _omitRating, ...provider } = organizationJsonLd(input.locale);
+  // Nested provider without forcing AggregateRating (omitted when rating is 0).
+  const provider = organizationJsonLd(input.locale);
   return {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -373,7 +389,10 @@ export function organizationJsonLd(locale: string) {
           { "@type": "Country", name: SITE_COUNTRY },
         ],
     priceRange: "₽₽₽",
-    aggregateRating: aggregateRatingJsonLd(),
+    ...((): Record<string, unknown> => {
+      const rating = aggregateRatingJsonLd();
+      return rating ? { aggregateRating: rating } : {};
+    })(),
     knowsAbout: isEn
       ? [
           "Business process automation",

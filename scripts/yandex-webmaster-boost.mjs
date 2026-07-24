@@ -70,11 +70,29 @@ function loadImportantUrls() {
     "/services/n8n",
     "/services/document-processing",
   ];
-  return [
-    ...paths.map((p) => (p === "/" ? `${base}/` : `${base}${p}`)),
-    "https://partners.bober-ai.dev/",
-    "https://bitrix.bober-ai.dev/",
-  ];
+  return paths.map((p) => (p === "/" ? `${base}/` : `${base}${p}`));
+}
+
+function loadStandaloneUrls() {
+  const result = spawnSync(
+    "npx",
+    [
+      "--yes",
+      "tsx",
+      "-e",
+      `import { yandexImportantStandaloneUrls } from "./src/lib/yandex-important-urls.ts"; console.log(JSON.stringify(yandexImportantStandaloneUrls()));`,
+    ],
+    { cwd: root, encoding: "utf8", env: process.env },
+  );
+  if (result.status === 0 && result.stdout.trim()) {
+    try {
+      const line = result.stdout.trim().split("\n").filter(Boolean).pop();
+      return JSON.parse(line);
+    } catch {
+      /* fall through */
+    }
+  }
+  return ["https://partners.bober-ai.dev/", "https://bitrix.bober-ai.dev/"];
 }
 
 function section(title) {
@@ -85,18 +103,40 @@ async function main() {
   const skipRecrawl = process.argv.includes("--dry-run") || process.argv.includes("--checklist");
   const { config, userId, host, hostId } = await resolveHostContext();
   const hostUrl = host.unicode_host_url || host.ascii_host_url || config.hostUrl;
-  const uiBase = `https://webmaster.yandex.ru/site/${encodeURIComponent(hostId)}`;
+  // Deep-links вида /site/{hostId}/… в новом UI дают 404.
+  // Рабочие пути — без hostId; сайт выбирается в шапке Вебмастера.
+  const UI = {
+    sites: "https://webmaster.yandex.ru/sites/",
+    dashboard: "https://webmaster.yandex.ru/site/dashboard/",
+    reindex: "https://webmaster.yandex.ru/site/indexing/reindex/",
+    searchable: "https://webmaster.yandex.ru/site/indexing/searchable/",
+    sitemap: "https://webmaster.yandex.ru/site/indexing/sitemap/",
+    mirrors: "https://webmaster.yandex.ru/site/indexing/mirrors/",
+    business: "https://business.yandex.ru/",
+  };
 
   console.log("Яндекс Вебмастер · boost индексации\n");
   console.log(`Сайт:    ${hostUrl}`);
   console.log(`host_id: ${hostId}`);
 
   const urls = loadImportantUrls();
-  section("Важные URL (добавить в UI — API только читает)");
-  console.log(`Список (${urls.length}):`);
+  const standalone = loadStandaloneUrls();
+  section("Важные URL для www (добавить в UI — только этот хост)");
+  console.log(`Список (${urls.length}) — скопируйте в Вебмастер www:`);
   for (const url of urls) console.log(`  ${url}`);
-  console.log(`\nUI → Индексирование → Важные страницы:`);
-  console.log(`  ${uiBase}/indexing/important/`);
+  console.log(`
+Как добавить (UI, без deep-link с hostId — они 404):
+  1. Откройте ${UI.sites}
+  2. Выберите https://www.bober-ai.dev
+  3. Меню: Индексирование → Мониторинг важных страниц
+     (или на ${UI.reindex} отметьте URL «Отслеживать»)
+  Не добавляйте partners./bitrix. сюда — Вебмастер отклонит чужой хост.
+`);
+
+  section("Микросайты (отдельные хосты в Вебмастере)");
+  console.log("Добавляйте только открыв соответствующий сайт в списке:");
+  for (const url of standalone) console.log(`  ${url}  → свой host в ${UI.sites}`);
+  console.log("");
 
   try {
     const existing = await getImportantUrls(config.token, userId, hostId);
@@ -106,13 +146,17 @@ async function main() {
     console.log(`Не удалось прочитать important-urls: ${error.message}`);
   }
 
-  section("Региональность (только UI)");
-  console.log("Укажите: Москва и/или Россия + ссылка на /about или контакты.");
-  console.log(`  ${uiBase}/search/regions/`);
+  section("Региональность (только UI / Яндекс Бизнес)");
+  console.log(`Москва задаётся так:
+  1. ${UI.sites} → выберите www.bober-ai.dev
+  2. Представление в поиске → Региональность → Москва
+     ИЛИ привяжите организацию в Яндекс Бизнес (регион подтянется сам):
+     ${UI.business}
+`);
 
   section("Яндекс Бизнес / Справочник (только UI)");
   console.log("Карточка организации со сайтом https://www.bober-ai.dev");
-  console.log("  https://business.yandex.ru/");
+  console.log(`  ${UI.business}`);
 
   section("Фид услуг");
   try {
@@ -127,8 +171,8 @@ async function main() {
   } catch (error) {
     console.log(`feeds: ${error.message}`);
   }
-  console.log(`UI фиды: ${uiBase}/search/appearance/`);
-  console.log("После деплоя нажмите «Перепроверить».");
+  console.log(`UI переобход/фиды: ${UI.reindex} · ${UI.dashboard}`);
+  console.log("После деплоя нажмите «Перепроверить» у фида.");
 
   section("Переобход приоритетных URL");
   const quota = await getRecrawlQuota(config.token, userId, hostId);

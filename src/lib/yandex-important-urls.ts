@@ -4,11 +4,14 @@
  * Держим в коде, чтобы CLI и документация совпадали с реальным приоритетом.
  *
  * API Вебмастера умеет только GET important-urls — добавление только в UI.
- * Список ниже используется для recrawl / чеклиста: `npm run webmaster:boost`.
+ * В UI «Важные страницы» принимаются только URL текущего хоста
+ * (www ≠ partners. / bitrix.).
+ *
+ * Список: `npm run webmaster:boost` / `yaga webmaster boost --checklist`.
  */
 import { BITRIX_SITE_URL, PARTNERS_SITE_URL, SITE_URL } from "@/lib/site";
 
-/** Разделы и коммерческие лендинги — приоритет для индекса и сниппетов. */
+/** Разделы и коммерческие лендинги на главном зеркале (www). */
 export const YANDEX_IMPORTANT_PATHS = [
   "/",
   "/services",
@@ -35,7 +38,10 @@ export const YANDEX_IMPORTANT_PATHS = [
   "/services/document-processing",
 ] as const;
 
-/** Standalone GEO hosts (not under www path). */
+/**
+ * Отдельные хосты — добавлять только в Вебмастере на их собственном сайте
+ * (не в важных страницах www).
+ */
 export function yandexImportantStandaloneUrls(): string[] {
   return [
     `${PARTNERS_SITE_URL.replace(/\/$/, "")}/`,
@@ -43,9 +49,10 @@ export function yandexImportantStandaloneUrls(): string[] {
   ];
 }
 
+/** URL для текущего хоста (по умолчанию www) — то, что можно вставить в UI. */
 export function yandexImportantUrls(base = SITE_URL): string[] {
-  const hostPaths = YANDEX_IMPORTANT_PATHS.map((path) =>
-    path === "/" ? base.replace(/\/$/, "") + "/" : `${base.replace(/\/$/, "")}${path}`,
+  const root = base.replace(/\/$/, "");
+  return YANDEX_IMPORTANT_PATHS.map((path) =>
+    path === "/" ? `${root}/` : `${root}${path}`,
   );
-  return [...hostPaths, ...yandexImportantStandaloneUrls()];
 }

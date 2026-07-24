@@ -1,8 +1,8 @@
 const en = {
   meta: {
-    title: "AI automation of proposals, documents and CRM — Bober AI",
+    title: "AI automation of proposals, CRM and documents — Bober AI",
     description:
-      "We implement AI automation for sales, documents, CRM and 1C. Pilot from €3,000, fixed estimate, NDA, cloud or on-premise.",
+      "AI automation for sales ops: proposals, documents, Bitrix24/amoCRM and 1C. Pilot from €3,000, fixed estimate, NDA, cloud or on-premise.",
     keywords: [
       "proposal automation",
       "document automation",
@@ -15,7 +15,7 @@ const en = {
       "AI on-premise",
       "private LLM",
       "corporate RAG",
-      "claude ai",
+      "n8n automation",
     ],
   },
   nav: {

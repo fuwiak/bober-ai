@@ -105,6 +105,22 @@ export async function getHosts(token, userId) {
   return body?.hosts || [];
 }
 
+function hostHostname(host) {
+  const asciiUrl = String(host.ascii_host_url || host.host_url || "");
+  const unicodeUrl = String(host.unicode_host_url || host.host_url || "");
+  for (const candidate of [asciiUrl, unicodeUrl]) {
+    try {
+      return new URL(candidate).hostname.toLowerCase();
+    } catch {
+      /* try next */
+    }
+  }
+  // host_id вида https:www.bober-ai.dev:443
+  const id = String(host.host_id || "").toLowerCase();
+  const match = id.match(/^https?:([^:/]+)/);
+  return match?.[1] || "";
+}
+
 export function pickHost(hosts, targetUrl) {
   const normalizedTarget = normalizeHostUrl(targetUrl).toLowerCase();
   let targetHostname = "";
@@ -114,29 +130,16 @@ export function pickHost(hosts, targetUrl) {
     targetHostname = normalizedTarget.replace(/^https?:\/\//, "").split("/")[0];
   }
   const preferHttps = normalizedTarget.startsWith("https://");
-  const preferWww = targetHostname.startsWith("www.");
 
-  const matches = hosts.filter((host) => {
-    const hostId = String(host.host_id || "");
-    const asciiUrl = String(host.ascii_host_url || host.host_url || "");
-    const unicodeUrl = String(host.unicode_host_url || host.host_url || "");
-    const candidates = [hostId, asciiUrl, unicodeUrl].map((value) => value.toLowerCase());
-    return candidates.some((value) => value.includes(targetHostname.replace(/^www\./, "")) || value.includes(targetHostname));
-  });
-
+  // Точное совпадение hostname: иначе bober-ai.dev матчился на www.bober-ai.dev.
+  const matches = hosts.filter((host) => hostHostname(host) === targetHostname);
   if (!matches.length) return undefined;
 
   const exact = matches.find((host) => {
     const ascii = String(host.ascii_host_url || host.host_url || "").toLowerCase().replace(/\/$/, "");
-    const id = String(host.host_id || "").toLowerCase();
-    return ascii === normalizedTarget || id.includes(targetHostname);
+    return ascii === normalizedTarget;
   });
   if (exact) return exact;
-
-  if (preferWww) {
-    const wwwMatch = matches.find((host) => String(host.host_id || "").includes("www."));
-    if (wwwMatch) return wwwMatch;
-  }
 
   const httpsMatch = matches.find((host) => String(host.host_id || "").startsWith("https:"));
   if (preferHttps && httpsMatch) return httpsMatch;

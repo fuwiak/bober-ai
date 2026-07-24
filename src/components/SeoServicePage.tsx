@@ -49,10 +49,9 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
     locale,
   });
 
-  const { aggregateRating: _omitRating, ...orgWithoutRating } = organizationJsonLd(locale);
   const organization = {
     "@context": "https://schema.org",
-    ...orgWithoutRating,
+    ...organizationJsonLd(locale),
   };
 
   const faqSchema = content.faq.length ? faqJsonLd(content.faq) : null;

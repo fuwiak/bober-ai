@@ -47,18 +47,19 @@ Profiles: owner (all) · public (public only) · custom (enable/disable)
 func brickWebmaster() Brick {
 	return Brick{
 		ID: "webmaster", Title: "Yandex Webmaster", Visibility: VisPublic,
-		Aliases: []string{"wm"}, Description: "status / seo / boost / feed / mirrors / recrawl / oauth",
+		Aliases: []string{"wm"}, Description: "status / seo / selfcheck / boost / feed / mirrors / recrawl / oauth",
 		DefaultArgs: []string{"status"},
-		Help: `yaga webmaster status|seo|boost|feed|mirrors|repair|recrawl|oauth
+		Help: `yaga webmaster status|seo|selfcheck|boost|feed|mirrors|repair|recrawl|oauth
 
-  status   снимок Вебмастер + Метрика
-  seo      чеклист позиций (ИКС, диагностика, индекс, запросы)
-  boost    переобход важных URL + чеклист региона/фида
-  feed     загрузка performers feed
-  mirrors  зеркала
-  repair   перезагрузка фида
-  recrawl  переобход URL (или --quota)
-  oauth    ClientID/secret → access token (один раз в браузере)
+  status     снимок Вебмастер + Метрика
+  seo        чеклист позиций (ИКС, диагностика, индекс, запросы)
+  selfcheck  21 «Самостоятельные проверки» + группы целевых запросов
+  boost      переобход важных URL + чеклист региона/фида
+  feed       загрузка performers feed
+  mirrors    зеркала
+  repair     перезагрузка фида
+  recrawl    переобход URL (или --quota)
+  oauth      ClientID/secret → access token (один раз в браузере)
 `,
 		Run: func(cfg Config, args []string) error {
 			sub, rest := splitSub(args, "status")
@@ -70,6 +71,8 @@ func brickWebmaster() Brick {
 				return runScript(cfg, "yandex-status.mjs", rest)
 			case "seo", "positions", "rank":
 				return runScript(cfg, "yandex-webmaster-seo.mjs", rest)
+			case "selfcheck", "checks", "checklist":
+				return runScript(cfg, "yandex-webmaster-selfcheck.mjs", rest)
 			case "boost", "index":
 				return runScript(cfg, "yandex-webmaster-boost.mjs", rest)
 			case "feed":
