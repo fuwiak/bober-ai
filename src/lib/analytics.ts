@@ -16,6 +16,34 @@ const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "ut
 
 type YmFn = (id: number, method: string, ...args: unknown[]) => void;
 
+const PAID_MEDIUMS = new Set(["cpc", "cpm", "paid", "ppc", "display", "retargeting"]);
+const ORGANIC_MEDIUMS = new Set(["organic", "seo"]);
+
+/**
+ * Хосты поисковиков для диагностического события organic_visit.
+ * Источник истины для SEO-отчётов — автоклассификация Метрики
+ * (Источники → Поисковые системы), не этот список.
+ */
+const ORGANIC_SEARCH_HOSTS = [
+  "yandex.ru",
+  "yandex.com",
+  "yandex.by",
+  "yandex.kz",
+  "yandex.uz",
+  "ya.ru",
+  "google.com",
+  "google.ru",
+  "bing.com",
+  "search.mail.ru",
+  "go.mail.ru",
+  "rambler.ru",
+  "duckduckgo.com",
+  "yahoo.com",
+] as const;
+
+const YM_READY_ATTEMPTS = 40;
+const YM_READY_INTERVAL_MS = 250;
+
 function readStoredAttribution(): Attribution | null {
   if (typeof window === "undefined") return null;
   try {
@@ -70,19 +98,37 @@ export function getAttribution(): Attribution {
   return readStoredAttribution() ?? { landing_page: window.location.pathname };
 }
 
-const PAID_MEDIUMS = new Set(["cpc", "cpm", "paid", "ppc", "display", "retargeting"]);
-const ORGANIC_MEDIUMS = new Set(["organic", "seo"]);
+function normalizeHostname(hostname: string): string {
+  return hostname.toLowerCase().replace(/^www\./, "");
+}
 
-function searchEngineFromReferrer(referrer = ""): string | null {
+/** Диагностика: referrer с известного поисковика (не замена отчёта Метрики). */
+export function isOrganicSearchVisit(referrerUrl: string): boolean {
+  if (!referrerUrl) return false;
   try {
-    const host = new URL(referrer).hostname.toLowerCase();
-    if (/(^|\.)yandex\.|(^|\.)ya\.ru$/.test(host)) return "yandex";
-    if (/(^|\.)google\./.test(host)) return "google";
-    if (/(^|\.)bing\.com$/.test(host)) return "bing";
-    if (/(^|\.)duckduckgo\.com$/.test(host)) return "duckduckgo";
-    if (/(^|\.)mail\.ru$/.test(host) || /(^|\.)go\.mail\.ru$/.test(host)) return "mailru";
-    if (/(^|\.)yahoo\./.test(host)) return "yahoo";
-    return null;
+    const hostname = normalizeHostname(new URL(referrerUrl).hostname);
+    return ORGANIC_SEARCH_HOSTS.some(
+      (searchHost) => hostname === searchHost || hostname.endsWith(`.${searchHost}`),
+    );
+  } catch {
+    return false;
+  }
+}
+
+export function organicEngineFromReferrer(referrerUrl = ""): string | null {
+  if (!isOrganicSearchVisit(referrerUrl)) return null;
+  try {
+    const hostname = normalizeHostname(new URL(referrerUrl).hostname);
+    if (hostname === "ya.ru" || hostname.endsWith(".ya.ru") || hostname.includes("yandex.")) {
+      return "yandex";
+    }
+    if (hostname.includes("google.")) return "google";
+    if (hostname === "bing.com" || hostname.endsWith(".bing.com")) return "bing";
+    if (hostname.includes("duckduckgo.")) return "duckduckgo";
+    if (hostname.includes("mail.ru")) return "mailru";
+    if (hostname.includes("rambler.")) return "rambler";
+    if (hostname.includes("yahoo.")) return "yahoo";
+    return hostname;
   } catch {
     return null;
   }
@@ -99,7 +145,11 @@ export function isPaidTraffic(attr?: Attribution | null): boolean {
   return source === "yandex_direct" || source === "ydirect";
 }
 
-/** Органика: referrer поисковика или utm_medium=organic, без paid/yclid. */
+/**
+ * Органика для диагностического события organic_visit.
+ * Не использовать как конверсию / цель оптимизации Direct.
+ * SEO-отчёты: Метрика → Источники → Поисковые системы.
+ */
 export function isOrganicTraffic(attr?: Attribution | null): boolean {
   const a = attr ?? (typeof window === "undefined" ? null : getAttribution());
   if (!a || isPaidTraffic(a)) return false;
@@ -108,7 +158,7 @@ export function isOrganicTraffic(attr?: Attribution | null): boolean {
   if (ORGANIC_MEDIUMS.has(medium)) return true;
 
   if (typeof document === "undefined") return false;
-  return Boolean(searchEngineFromReferrer(document.referrer));
+  return isOrganicSearchVisit(document.referrer);
 }
 
 export function organicEngine(attr?: Attribution | null): string | undefined {
@@ -119,7 +169,7 @@ export function organicEngine(attr?: Attribution | null): string | undefined {
     return (a.utm_source || "organic").toLowerCase();
   }
   if (typeof document === "undefined") return undefined;
-  return searchEngineFromReferrer(document.referrer) ?? undefined;
+  return organicEngineFromReferrer(document.referrer) ?? undefined;
 }
 
 export function attributionGoalParams(extra?: Record<string, unknown>): Record<string, unknown> {
@@ -140,7 +190,7 @@ export function attributionGoalParams(extra?: Record<string, unknown>): Record<s
   };
 }
 
-/** Помечает <html data-paid-traffic> для CSS / sticky CTA. */
+/** Помечает <html data-paid-traffic / data-organic-traffic> для UI. */
 export function syncPaidTrafficMarker() {
   if (typeof document === "undefined") return false;
   const paid = isPaidTraffic();
@@ -149,19 +199,44 @@ export function syncPaidTrafficMarker() {
   return paid;
 }
 
+function counterId(): number | null {
+  if (typeof window === "undefined") return null;
+  const id = Number(yandexMetrikaIdForLocation(window.location.hostname, window.location.pathname));
+  return Number.isFinite(id) ? id : null;
+}
+
+function getYm(): YmFn | null {
+  if (typeof window === "undefined") return null;
+  const ym = (window as Window & { ym?: YmFn }).ym;
+  return typeof ym === "function" ? ym : null;
+}
+
+function fireGoal(goal: string, params?: Record<string, unknown>) {
+  const ym = getYm();
+  const id = counterId();
+  if (!ym || id == null) return false;
+  if (params) {
+    ym(id, "reachGoal", goal, params);
+  } else {
+    ym(id, "reachGoal", goal);
+  }
+  return true;
+}
+
+/**
+ * Отправляет reachGoal сразу или ждёт загрузки tag.js (послеInteractive).
+ * Без ожидания organic_visit/direct_visit часто теряются на первом hit.
+ */
 export function reachGoal(goal: string, params?: Record<string, unknown>) {
   if (typeof window === "undefined") return;
 
-  const ym = (window as Window & { ym?: YmFn }).ym;
-  if (typeof ym !== "function") return;
+  if (fireGoal(goal, params)) return;
 
-  const id = Number(yandexMetrikaIdForLocation(window.location.hostname, window.location.pathname));
-  if (!Number.isFinite(id)) return;
-
-  if (params) {
-    ym(id, "reachGoal", goal, params);
-    return;
-  }
-
-  ym(id, "reachGoal", goal);
+  let attempts = 0;
+  const timer = window.setInterval(() => {
+    attempts += 1;
+    if (fireGoal(goal, params) || attempts >= YM_READY_ATTEMPTS) {
+      window.clearInterval(timer);
+    }
+  }, YM_READY_INTERVAL_MS);
 }

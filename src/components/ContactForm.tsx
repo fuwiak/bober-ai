@@ -173,11 +173,14 @@ export function ContactForm({
       const goalParams = attributionGoalParams({
         service: defaultService || undefined,
         form_length: formLength,
-        leadId: data.leadId,
+        lead_id: data.leadId,
+        process_type: showQualify ? processType || undefined : undefined,
+        budget_range: showQualify ? budget || undefined : undefined,
+        systems: showQualify ? systems || undefined : undefined,
       });
+      // form_submit = успешный HTTP-ответ; lead_delivered = подтверждённая доставка (leadId).
       reachGoal(trackingPrefix ? `${trackingPrefix}_form_submit` : "form_submit", goalParams);
 
-      // Confirms actual delivery (SMTP path returned leadId), not dry-run / honeypot ack.
       if (data.ok && data.leadId && !data.dryRun) {
         reachGoal(trackingPrefix ? `${trackingPrefix}_lead_delivered` : "lead_delivered", goalParams);
       }

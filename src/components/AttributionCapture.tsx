@@ -9,21 +9,38 @@ import {
   syncPaidTrafficMarker,
 } from "@/lib/analytics";
 
-const PAID_VISIT_KEY = "bober_paid_visit_sent";
-const ORGANIC_VISIT_KEY = "bober_organic_visit_sent";
+/**
+ * Диагностические события источника (НЕ конверсии / НЕ цели Direct):
+ * - direct_visit — yclid / paid UTM
+ * - organic_visit — referrer поисковика / utm_medium=organic
+ *
+ * Источник истины для SEO: Метрика → Источники → Поисковые системы.
+ * Событие шлётся один раз за вкладку (sessionStorage), не на каждый route.
+ */
+const PAID_VISIT_KEY = "metrika_direct_visit_sent";
+const ORGANIC_VISIT_KEY = "metrika_organic_visit_sent";
+const LEGACY_PAID_KEY = "bober_paid_visit_sent";
+const LEGACY_ORGANIC_KEY = "bober_organic_visit_sent";
 let paidVisitSent = false;
 let organicVisitSent = false;
 
-function claimOnce(storageKey: string, alreadySent: boolean, markSent: () => void): boolean {
-  if (alreadySent) return false;
+function sessionHas(key: string): boolean {
   try {
-    if (sessionStorage.getItem(storageKey)) {
-      markSent();
-      return false;
-    }
+    return Boolean(sessionStorage.getItem(key));
+  } catch {
+    return false;
+  }
+}
+
+function claimOnce(storageKey: string, legacyKey: string, alreadySent: boolean, markSent: () => void): boolean {
+  if (alreadySent || sessionHas(storageKey) || sessionHas(legacyKey)) {
+    markSent();
+    return false;
+  }
+  try {
     sessionStorage.setItem(storageKey, "1");
   } catch {
-    // private mode
+    // private mode — once per page-load via memory flag
   }
   markSent();
   return true;
@@ -34,18 +51,25 @@ export function AttributionCapture() {
     captureAttribution();
     const paid = syncPaidTrafficMarker();
 
+    // Только первый hit визита — не при SPA-навигации (пустой deps).
     if (paid) {
-      if (claimOnce(PAID_VISIT_KEY, paidVisitSent, () => { paidVisitSent = true; })) {
-        reachGoal("direct_visit", attributionGoalParams());
+      if (
+        claimOnce(PAID_VISIT_KEY, LEGACY_PAID_KEY, paidVisitSent, () => {
+          paidVisitSent = true;
+        })
+      ) {
+        reachGoal("direct_visit", attributionGoalParams({ kind: "source_diag" }));
       }
       return;
     }
 
     if (
       isOrganicTraffic() &&
-      claimOnce(ORGANIC_VISIT_KEY, organicVisitSent, () => { organicVisitSent = true; })
+      claimOnce(ORGANIC_VISIT_KEY, LEGACY_ORGANIC_KEY, organicVisitSent, () => {
+        organicVisitSent = true;
+      })
     ) {
-      reachGoal("organic_visit", attributionGoalParams());
+      reachGoal("organic_visit", attributionGoalParams({ kind: "source_diag" }));
     }
   }, []);
 
