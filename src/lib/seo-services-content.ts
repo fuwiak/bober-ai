@@ -46,7 +46,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Документация, обучение команды и план масштабирования",
     ],
     intro: [
-      "Эта страница — коммерческий оффер «заказать внедрение». SEO-каталог кластеров живёт на /automation: КП, документооборот, AI для Bitrix24 / amoCRM / 1С, корпоративный RAG, OCR и AI для продаж.",
+      "Эта страница — коммерческий оффер «заказать внедрение». Обзор направлений — на /automation: КП, документооборот, AI для Bitrix24 / amoCRM / 1С, корпоративный поиск, OCR и AI для продаж.",
       "Автоматизация бизнес-процессов в enterprise начинается не с выбора платформы, а с честной карты того, как работа реально проходит через CRM, почту, мессенджеры, таблицы и учётные системы. Без этой карты любое внедрение превращается в очередной инструмент, который команда обходит через неделю после запуска.",
       "Bober AI Systems проводит аудит процессов, считает ROI, проектирует архитектуру интеграций и доводит решение до production с передачей вашей команде. NDA, on-prem и требования 152-ФЗ — стандартная часть проектов.",
       "Типичный сценарий: отдел продаж тратит 40% времени на рутину — сборку документов, перенос данных между системами, ручные напоминания. Мы находим узкое место с максимальным эффектом и автоматизируем его первым — не всё сразу.",
@@ -1189,7 +1189,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Продукт «база знаний»: контент, search, ACL и AI-ассистент. Корпоративный RAG как технология — /services/rag.",
     eyebrow: "Knowledge product",
     h1: "База знаний как продукт для поддержки и HR",
-    subtitle: "Единый источник правды: search + AI с цитатами и ACL. Технологический кластер RAG — /services/rag.",
+    subtitle: "Единый источник правды: search + AI с цитатами и ACL. Технология RAG — /services/rag.",
     problemsTitle: "Хаос знаний",
     problems: [
       "Регламенты в Confluence, PDF на SharePoint, ответы в Telegram-чатах",
@@ -1205,7 +1205,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Analytics: top queries, gaps, deflection",
     ],
     intro: [
-      "База знаний как продукт — не wiki ради wiki. Это structured content + search + AI assistant. Корпоративный RAG как money-page кластера живёт на /services/rag.",
+      "База знаний как продукт — не wiki ради wiki. Это structured content + search + AI assistant. Корпоративный RAG — /services/rag.",
       "Кейс Kaspersky AI assistant — reference architecture: private LLM, RAG на product docs для сотрудников 1С, guardrails, feedback loop когда ответ не помог.",
       "Content lifecycle: owner assigns → draft → review → publish → auto re-index. Stale content detection by age and feedback thumbs-down.",
       "ACL по ролям: sales не видит HR, support видит customer-facing articles. Retrieval filters enforce at query time.",
