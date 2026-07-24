@@ -1,0 +1,559 @@
+{
+  "generatedAt": "2026-07-24T16:14:52.762Z",
+  "webQueries": 18,
+  "priceEstimateRubPerWebQuery": 0.4,
+  "estimatedCostRub": 7.2,
+  "results": [
+    {
+      "phrase": "внедрение искусственного интеллекта",
+      "wordstat": 6254,
+      "intent": "commercial_high",
+      "priority": "P1-landing",
+      "position": null,
+      "url": null,
+      "http": 200,
+      "top3": [
+        "developers.sber.ru/help/gigachat-api/integrating-ai",
+        "www.moysklad.ru/poleznoe/shkola-torgovli/ai-ii-v-biznese/",
+        "www.forbes.ru/tekhnologii/565352-posobie-s-umom-sber-s-partn"
+      ]
+    },
+    {
+      "phrase": "внедрение технологий искусственного интеллекта",
+      "wordstat": 2045,
+      "intent": "commercial_high",
+      "priority": "P1-landing",
+      "position": null,
+      "url": null,
+      "http": 200,
+      "top3": [
+        "developers.sber.ru/help/gigachat-api/integrating-ai",
+        "www.forbes.ru/tekhnologii/565352-posobie-s-umom-sber-s-partn",
+        "www.directum.ru/blog-post/kak_vnedrit_ii_v_biznes-processy_v"
+      ]
+    },
+    {
+      "phrase": "внедрение crm",
+      "wordstat": 1376,
+      "intent": "commercial_high",
+      "priority": "P1-landing",
+      "position": null,
+      "url": null,
+      "http": 200,
+      "top3": [
+        "netology.ru/blog/chto-takoe-crm-i-kak-vnedrit",
+        "www.bitrix24.ru/journal/vnedrenie-crm-sistemy-na-predpriyati",
+        "habr.com/ru/companies/regionsoft/articles/335336/"
+      ]
+    },
+    {
+      "phrase": "центр раскрытия корпоративной информации",
+      "wordstat": 1220,
+      "intent": "commercial_high",
+      "priority": "P1-landing",
+      "position": null,
+      "url": null,
+      "http": 200,
+      "top3": [
+        "www.e-disclosure.ru/",
+        "group.interfax.ru/products/systems/disclosure/",
+        "nsddata.ru/ru/news"
+      ]
+    },
+    {
+      "phrase": "внедрение систем искусственного интеллекта",
+      "wordstat": 1145,
+      "intent": "commercial_high",
+      "priority": "P1-landing",
+      "position": null,
+      "url": null,
+      "http": 200,
+      "top3": [
+        "developers.sber.ru/help/gigachat-api/integrating-ai",
+        "habr.com/ru/articles/945648/",
+        "www.bitrix24.ru/journal/vnedrenie-ii-v-biznes/"
+      ]
+    },
+    {
+      "phrase": "автоматизация бизнес процессов компания",
+      "wordstat": 987,
+      "intent": "commercial_high",
+      "priority": "P1-landing",
+      "position": null,
+      "url": null,
+      "http": 200,
+      "top3": [
+        "2gis.ru/kaluga/search/%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D",
+        "a0.group/",
+        "elma365.com/"
+      ]
+    },
+    {
+      "phrase": "автоматизация бизнес процессов внедрение",
+      "wordstat": 835,
+      "intent": "commercial_high",
+      "priority": "P1-landing",
+      "position": null,
+      "url": null,
+      "http": 200,
+      "top3": [
+        "www.rbc.ru/industries/news/69898f529a79470598c24bd4",
+        "kurs.alfabank.ru/articles/korobka-avtomat-kak-avtomatizirova",
+        "kontur.ru/articles/6288"
+      ]
+    },
+    {
+      "phrase": "внедрение ии в бизнес",
+      "wordstat": 765,
+      "intent": "commercial_high",
+      "priority": "P1-landing",
+      "position": null,
+      "url": null,
+      "http": 200,
+      "top3": [
+        "sber.pro/publication/kak-vnedrit-generativnii-ii-v-biznes-po",
+        "secrets.tbank.ru/blogi-kompanij/kak-vnedryat-ii-v-kompanii/",
+        "habr.com/ru/articles/926580/"
+      ]
+    },
+    {
+      "phrase": "1c разработчик",
+      "wordstat": 740,
+      "intent": "commercial_high",
+      "priority": "P1-landing",
+      "position": null,
+      "url": null,
+      "http": 200,
+      "top3": [
+        "hh.ru/vacancies/razrabotchik-1c",
+        "developer.1c.ru/",
+        "practicum.yandex.ru/blog/kto-takoy-1c-programmist-i-kak-im-s"
+      ]
+    },
+    {
+      "phrase": "внедрение crm системы",
+      "wordstat": 693,
+      "intent": "commercial_high",
+      "priority": "P1-landing",
+      "position": null,
+      "url": null,
+      "http": 200,
+      "top3": [
+        "habr.com/ru/companies/regionsoft/articles/335336/",
+        "crm.is1c.ru/",
+        "reon.pro/"
+      ]
+    },
+    {
+      "phrase": "разработка и внедрение искусственного интеллекта",
+      "wordstat": 664,
+      "intent": "commercial_high",
+      "priority": "P1-landing",
+      "position": null,
+      "url": null,
+      "http": 200,
+      "top3": [
+        "www.forbes.ru/tekhnologii/565352-posobie-s-umom-sber-s-partn",
+        "bigdata.beeline.ru/blog/articles/razrabotka-sistem-iskusstve",
+        "sky.pro/wiki/python/kak-sozdaetsya-iskusstvennyj-intellekt/"
+      ]
+    },
+    {
+      "phrase": "создание и внедрение в искусственный интеллект",
+      "wordstat": 573,
+      "intent": "commercial_high",
+      "priority": "P1-landing",
+      "position": null,
+      "url": null,
+      "http": 200,
+      "top3": [
+        "sky.pro/wiki/python/kak-sozdaetsya-iskusstvennyj-intellekt/",
+        "habr.com/ru/companies/otus/articles/1033114/",
+        "serverflow.ru/blog/stati/istoriya-i-razvitie-iskusstvennogo-"
+      ]
+    },
+    {
+      "phrase": "автоматизация и внедрение искусственного интеллекта",
+      "wordstat": 501,
+      "intent": "commercial_high",
+      "priority": "P1-landing",
+      "position": null,
+      "url": null,
+      "http": 200,
+      "top3": [
+        "secrets.tbank.ru/blogi-kompanij/kak-vnedrit-ii-dlya-avtomati",
+        "practicum.yandex.ru/b2b/blog/ai-v-biznese/",
+        "www.1cbit.ru/blog/avtomatizatsiya-i-vnedrenie-ai-na-proizvod"
+      ]
+    },
+    {
+      "phrase": "внедрение искусственного интеллекта в образование",
+      "wordstat": 470,
+      "intent": "commercial_high",
+      "priority": "P1-landing",
+      "position": null,
+      "url": null,
+      "http": 200,
+      "top3": [
+        "kontur.ru/talk/spravka/56138-iskusstvennyy_intellekt_v_sfere",
+        "interneturok.ru/blog/uchebnye_voprosy/ii-v-obrazovanii-novye",
+        "education.yandex.ru/knowledge/iskusstvennii-intellekt-v-obra"
+      ]
+    },
+    {
+      "phrase": "внедрение битрикс24",
+      "wordstat": 454,
+      "intent": "commercial_high",
+      "priority": "P1-landing",
+      "position": null,
+      "url": null,
+      "http": 200,
+      "top3": [
+        "ivit.pro/automatizacia/vnedrenie-bitriks24/",
+        "www.bitrix24.ru/partners/vnedrenie/",
+        "waysupport.ru/"
+      ]
+    },
+    {
+      "phrase": "база знаний компании",
+      "wordstat": 422,
+      "intent": "commercial_high",
+      "priority": "P1-landing",
+      "position": null,
+      "url": null,
+      "http": 200,
+      "top3": [
+        "habr.com/ru/companies/kaiten/articles/984344/",
+        "practicum.yandex.ru/b2b/blog/sozdanie-korporativnoj-bazy-zna",
+        "360.yandex.ru/business/wiki/"
+      ]
+    },
+    {
+      "phrase": "1с автоматизация услуг",
+      "wordstat": 365,
+      "intent": "commercial_high",
+      "priority": "P1-landing",
+      "position": null,
+      "url": null,
+      "http": 200,
+      "top3": [
+        "www.1cbit.ru/1s-biznes-zadachi/avtomatizaciya-uslug/",
+        "wiseadvice-it.ru/uslugi-1s/otrasli/sphera-uslug/",
+        "v8.1c.ru/small.biz/uslugi/"
+      ]
+    },
+    {
+      "phrase": "внедрение искусственного интеллекта сферы",
+      "wordstat": 349,
+      "intent": "commercial_high",
+      "priority": "P1-landing",
+      "position": null,
+      "url": null,
+      "http": 200,
+      "top3": [
+        "netology.ru/blog/ai-application",
+        "timeweb.cloud/blog/oblasti-primeneniya-iskusstvennogo-intell",
+        "education.yandex.ru/knowledge/oblasti-primeneniia-iskusstven"
+      ]
+    }
+  ],
+  "targetB2b": {
+    "generatedAt": "2026-07-24T16:15:28.884Z",
+    "webQueries": 16,
+    "results": [
+      {
+        "phrase": "автоматизация бизнес процессов",
+        "wordstat": 5269,
+        "position": null,
+        "url": null,
+        "top": [
+          "https://practicum.yandex.ru/b2b/blog/tekhnologii-i-instrumenty-avtomatizacii-biznesa/",
+          "https://kurs.alfabank.ru/articles/korobka-avtomat-kak-avtomatizirovat-biznes-processy/",
+          "https://elma365.com/ru/articles/avtomatizaciya-biznes-processov/",
+          "https://www.bitrix24.ru/journal/instrumenty-avtomatizatsii-biznes-protsessov/",
+          "https://skillbox.ru/media/management/avtomatizatsiya-protsessov-komu-nuzhna-kto-eye-provodit-i-kakie-sistemy-dlya-neye-ispolzovat/",
+          "https://ru.ruwiki.ru/wiki/%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_%D0%B1%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2",
+          "https://kontur.ru/articles/6288",
+          "https://www.rbc.ru/industries/news/69898f529a79470598c24bd4",
+          "https://sberbs.ru/blogs/blog/avtomatizatsiya-biznes-protsessov-kak-rabotaet-i-zachem-nuzhna",
+          "https://simpleone.ru/blog/business-process-automation"
+        ]
+      },
+      {
+        "phrase": "автоматизация отдела продаж",
+        "wordstat": 126,
+        "position": null,
+        "url": null,
+        "top": [
+          "https://yandex.ru/images/search?text=%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F+%D0%BE%D1%82%D0%B4%D0%B5%D0%BB%D0%B0+%D0%BF%D1%80%D0%BE%D0%B4%D0%B0%D0%B6",
+          "https://practicum.yandex.ru/blog/kak-avtomatizirovat-otdel-prodazh/",
+          "https://www.bitrix24.ru/journal/avtomatizaciya-otdela-prodazh/",
+          "https://www.ispring.ru/elearning-insights/avtomatizaciya-processov-otdela-prodazh",
+          "https://360.yandex.com/blog/business/kak-avtomatizirovat-otdel-prodazh-i-kakie-servisy-v-etom-pomogut/",
+          "https://www.mango-office.ru/journal/newsletter/kak-avtomatizirovat-otdel-prodazh/",
+          "https://habr.com/ru/companies/bpmsoft/articles/977288/",
+          "https://factor-prodazh.ru/blog/avtomatizatsiya-otdela-prodazh-2/",
+          "https://aspro.cloud/crm/docs/sales-department-automation/",
+          "https://planerka.app/blog/avtomatizaciya-prodazh-servisy/"
+        ]
+      },
+      {
+        "phrase": "автоматизация коммерческих предложений",
+        "wordstat": "—",
+        "position": null,
+        "url": null,
+        "top": [
+          "https://timeweb.com/ru/community/articles/generator-kommercheskih-predlozheniy-top-15-neyrosetey-dlya-sozdaniya-kp",
+          "https://www.comindware.ru/blog/avtomatizaciya-sostavleniya-kommercheskih-predlojenii/",
+          "https://www.sostav.ru/blogs/290415/97402",
+          "https://www.bitrix24.ru/apps/app/estimates.estimates_guru/",
+          "https://yandex.ru/images/search?text=%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F+%D0%BA%D0%BE%D0%BC%D0%BC%D0%B5%D1%80%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D1%85+%D0%BF%D1%80%D0%B5%D0%B4%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9",
+          "https://fogsoft.ru/press_center/articles/avtomatizaciya-sravneniya-kommercheskih-predlozhenij-kontrol-obektivnost-konkurentnyh-zakupkah/",
+          "https://1seller.ru/ii-v-kommercheskikh-predlozheniyakh-kak-avtomatizirovat-i-prodavat-bolshe",
+          "https://kombinator.ru/for_whom/konstruktor-kommercheskih-predlozhenij/",
+          "https://it-solution.ru/cases/avtomatizacziya_formirovaniya_kp/",
+          "https://dm-marketing.pro/blog/pro-kp-i-prezentatsii/mozhno-li-kommercheskoe-predlozhenie-avtomatizirovat-instrumenty-i-podkhody/"
+        ]
+      },
+      {
+        "phrase": "автоматизация документов",
+        "wordstat": "—",
+        "position": null,
+        "url": null,
+        "top": [
+          "https://saby.ru/articles/edo/avtomatizaciya_dokumentov",
+          "https://www.bitrix24.ru/journal/avtomatizaciya-raboty-s-dokumentami/",
+          "https://kontur.ru/diadoc/spravka/25530-avtomatizaciya_elektronnogo_dokumentooborota",
+          "https://kurs.alfabank.ru/articles/kak-avtomatizirovat-dokumentooborot-s-pomoshchyu-ii/",
+          "https://companies.rbc.ru/news/CHTwed1Yhd/avtomatizatsiya-pervichki-kak-ii-pomogaet-biznesu-obrabatyivat-dokumentyi/",
+          "https://www.klerk.ru/materials/2025-08-25/14-sistem-dokumentooborota/",
+          "https://astral.ru/aj/elem/avtomatizatsiya-deloproizvodstva-i-dokumentooborota/",
+          "https://softline.ru/about/blog/sed-chto-eto-kak-rabotaet-i-zachem-nuzhna-v-2026-godu",
+          "https://www.kp.ru/money/biznes/luchshie-sistemy-ehlektronnogo-dokumentooborota/",
+          "https://www.cleverence.ru/articles/bukhgalteriya/avtomatizatsiya-dokumentooborota-na-predpriyatii-avtomatizirovannye-sistemy-upravleniya-dokumentami-/"
+        ]
+      },
+      {
+        "phrase": "внедрение ии в бизнес",
+        "wordstat": 765,
+        "position": null,
+        "url": null,
+        "top": [
+          "https://sber.pro/publication/kak-vnedrit-generativnii-ii-v-biznes-poshagovaya-instruktsiya-2026/",
+          "https://secrets.tbank.ru/blogi-kompanij/kak-vnedryat-ii-v-kompanii/",
+          "https://habr.com/ru/articles/926580/",
+          "https://www.bitrix24.ru/journal/vnedrenie-ii-v-biznes/",
+          "https://practicum.yandex.ru/blog/neyroseti-dlya-biznesa/",
+          "https://www.forbes.ru/tekhnologii/565352-posobie-s-umom-sber-s-partnerami-pomozet-biznesu-vnedrit-iskusstvennyj-intellekt",
+          "https://kurs.alfabank.ru/articles/zachem-nuzhen-iskusstvennyj-intellekt-v-biznese/",
+          "https://developers.sber.ru/help/gigachat-api/integrating-ai",
+          "https://skillbox.ru/media/business/5-neyrosetey-dlya-biznesa-s-chem-oni-mogut-pomoch-i-kak-ih-vnedrit/",
+          "https://kontur.ru/articles/504"
+        ]
+      },
+      {
+        "phrase": "ai автоматизация продаж",
+        "wordstat": "—",
+        "position": null,
+        "url": null,
+        "top": [
+          "https://habr.com/ru/companies/otus/articles/1034378/",
+          "https://vc.ru/ai/1933371-10-ii-servisov-dlya-avtomatizatsii-prodazh",
+          "https://www.sostav.ru/blogs/288561/92124",
+          "https://www.bitrix24.ru/journal/ai-v-crm/",
+          "https://secrets.tbank.ru/blogi-kompanij/ii-v-prodazhah/",
+          "https://sber.pro/publication/ii-v-prodazhah-kak-ispolzovat-iskusstvennii-intellekt-v-voronke-prodazh/",
+          "https://www.1cbit.ru/blog/iskusstvennyy-intellekt-v-prodazhakh-kak-ii-menyaet-rabotu-otdela/",
+          "https://giga.chat/help/articles/ai-for-the-sales-department",
+          "https://practicum.yandex.ru/blog/kak-ispolzovat-ai-i-neyroseti-v-prodazhah/",
+          "https://zvonobot.ru/blog/ai-menedzher-po-prodazham/"
+        ]
+      },
+      {
+        "phrase": "amocrm автоматизация",
+        "wordstat": "—",
+        "position": null,
+        "url": null,
+        "top": [
+          "https://www.amocrm.ru/",
+          "https://www.amocrm.ru/support/tasks/auto_action_tasks",
+          "https://mrocket.ru/automation",
+          "https://practicum.yandex.ru/blog/obzor-amocrm-kak-polzovatsya/",
+          "https://media.mts.ru/business/206793-amocrm-chto-ehto",
+          "https://cmdf5.ru/",
+          "https://nova-amocrm.ru/articles/crm-automation-best-practices",
+          "https://gnzs.ru/blog/amocrm",
+          "https://pro-automatization.ru/",
+          "https://delomatika.ru/blog/avtomatizaciya-biznes-processov-v-amocrm/"
+        ]
+      },
+      {
+        "phrase": "bitrix24 автоматизация",
+        "wordstat": "—",
+        "position": null,
+        "url": null,
+        "top": [
+          "https://www.bitrix24.ru/features/automatization/",
+          "https://helpdesk.bitrix24.ru/open/20962622/",
+          "https://habr.com/ru/companies/otus/articles/930888/",
+          "https://luckru.ru/articles/vokrug-crm/kak-avtomatizatsiya-protsessov-v-bitriks24-reshaet-zadachi-biznesa-vozmozhnosti-instrumentov/",
+          "https://crmacademy.ru/blog/avtomatizaciya-bitrix24",
+          "https://1solution.ru/events/articles/biznes-protsessy-v-bitrix24-chto-eto-i-kak-nastroit/",
+          "https://delomatika.ru/blog/10protsessov-kotorye-mozhno-avtomatizirovat-bitriks24/",
+          "https://partners24.1c-bitrix.ru/infocenter/courses/index.php?COURSE_ID=276&LESSON_ID=26092&LESSON_PATH=25970.26092",
+          "https://helpdesk.bitrix24.com/open/19141012/",
+          "https://b24.infoservice.ru/blog/secrety-avtomatizacii-bitrix24"
+        ]
+      },
+      {
+        "phrase": "внедрение битрикс24",
+        "wordstat": 454,
+        "position": null,
+        "url": null,
+        "top": [
+          "https://ivit.pro/automatizacia/vnedrenie-bitriks24/",
+          "https://www.bitrix24.ru/partners/vnedrenie/",
+          "https://bit-24.ru/uslugi/vnedrenie-bitrix24-pod-kluch/",
+          "https://waysupport.ru/",
+          "https://crmacademy.ru/blog/kak-vnedrit-bitrix24",
+          "https://reon.pro/bitrix24",
+          "https://www.intervolga.ru/bitrix24/",
+          "https://wejet.ru/bitrix24/integration-bitrix24/",
+          "https://www.mtt.ru/integratsii/vnedrenie-i-nastroyka-crm/vnedrenie-i-nastroyka-bitrix24/",
+          "https://secrets.tbank.ru/blogi-kompanij/kak-vnedrit-bitriks24/"
+        ]
+      },
+      {
+        "phrase": "интеграция 1с crm",
+        "wordstat": "—",
+        "position": null,
+        "url": null,
+        "top": [
+          "https://sbercrm.com/blog/start/tpost/0skhu305n1-integratsiya-crm-sistemi-s-1c",
+          "https://www.intervolga.ru/1c/1c-integratsiya-s-crm/",
+          "https://1crm.ru/help/Integraciya-s-1c-buhgalteriya-predpriyatiya/",
+          "https://crm.ru/blog/integratsiya-crm-s-1c/",
+          "https://trinion.org/blog/integraciya-crm-s-1s",
+          "https://www.bitrix24.ru/features/crm/1c/",
+          "https://solutions.1c.ru/add/obmen-mezhdu-1s-crm-i-1s-unf/",
+          "https://assino.ru/news/integratsiya-1s-s-crm-dlya-biznesa-bitriks24-i-amocrm/",
+          "https://rasa.pro/services/integraciya-crm-s-1s/",
+          "https://dzen.ru/a/aJ7xCS7EZ0sAv596"
+        ]
+      },
+      {
+        "phrase": "корпоративный rag",
+        "wordstat": "—",
+        "position": null,
+        "url": null,
+        "top": [
+          "https://habr.com/ru/companies/runity/articles/1014712/",
+          "https://sber.pro/publication/rag/",
+          "https://fortech.dev/blog/rag-sistemy-dlya-korporativnykh-znanii/",
+          "https://companies.rbc.ru/news/AOwVH20eBt/kak-rag-prevraschaet-korporativnyie-dokumentyi-v-rabochij-instrument/",
+          "https://cloud.ru/blog/rag",
+          "https://sberbs.ru/blogs/blog/chto-takoe-tehnologiya-rag-kak-sozdat-korporativnuyu-bazu-znaniy-kotoraya-sama-otvechaet-na-vopr",
+          "https://secrets.tbank.ru/blogi-kompanij/ne-zapuskayte-ai-bez-rag/",
+          "https://4g3g.ru/products/rag",
+          "https://www.kt-team.ru/instruments/rag",
+          "https://mediaten.ru/blog/rag-sistemy-dlya-biznesa"
+        ]
+      },
+      {
+        "phrase": "приватный llm",
+        "wordstat": "—",
+        "position": null,
+        "url": null,
+        "top": [
+          "https://privatellm.app/ru",
+          "https://companies.rbc.ru/news/tmUIzG05tL/privatnaya-korporativnaya-llm-chto-eto-zachem-i-skolko-stoit-na-samom-dele/",
+          "https://github.com/abi/secret-llama",
+          "https://scand.com/ru/company/blog/build-private-llm/",
+          "https://routerai.ru/pages/private-llm",
+          "https://www.onesourcecloud.net/blog/private-llm-deployment",
+          "https://apps.apple.com/ru/app/private-llm-local-ai-chat/id6448106860",
+          "https://airbyte.com/data-engineering-resources/how-to-build-a-private-llm",
+          "https://www.intuz.com/blog/how-to-build-private-llm/",
+          "https://cybrain.io/blog/zachem-rossijskim-kompaniyam-stroit-svoi-privatnye-llm-resheniya/"
+        ]
+      },
+      {
+        "phrase": "n8n автоматизация",
+        "wordstat": "—",
+        "position": null,
+        "url": null,
+        "top": [
+          "https://n8n.io/",
+          "https://habr.com/ru/articles/928038/",
+          "https://practicum.yandex.ru/blog/kak-ispolzovat-n8n-dlya-avtomatizacii-integracii/",
+          "https://skillbox.ru/media/code/n8n/",
+          "https://thecode.media/n8n-avtomatizacziya-bez-koda/",
+          "https://blog.skillfactory.ru/n8n/",
+          "https://elama.ru/blog/n8n-chto-eto-i-kak-polzovatsya/",
+          "https://digitalrocket.ru/articles/n8n-avtomatizatsiya-workflow-rukovodstvo-2025/",
+          "https://zerocoder.ru/course-n8n",
+          "https://trends.rbc.ru/trends/industry/69bd1ab79a794766c0e3d1e0"
+        ]
+      },
+      {
+        "phrase": "заказать автоматизацию бизнеса",
+        "wordstat": "—",
+        "position": null,
+        "url": null,
+        "top": [
+          "https://www.avito.ru/all/predlozheniya_uslug?q=%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F+%D0%B1%D0%B8%D0%B7%D0%BD%D0%B5%D1%81%D0%B0",
+          "https://erp-it.ru/",
+          "https://uslugi.yandex.ru/192-vladimir/category?text=%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%B1%D0%B8%D0%B7%D0%BD%D0%B5%D1%81%D0%B0",
+          "https://profi.ru/it_freelance/avtomatizaciya-biznesa/",
+          "https://www.fl.ru/freelancers/avtomatizaciya-biznesa/",
+          "https://saby.ru/business_automation",
+          "https://isu-it.ru/",
+          "https://studia-crm.ru/",
+          "https://vladimir.albus24.com/avtomatizaciya-biznesa",
+          "https://www.moysklad.ru/reshenija/"
+        ]
+      },
+      {
+        "phrase": "ai агент для продаж",
+        "wordstat": 23,
+        "position": null,
+        "url": null,
+        "top": [
+          "https://www.jivo.ru/ai-agent/",
+          "https://www.sostav.ru/blogs/288561/92124",
+          "https://noya-ai.ru/",
+          "https://bothelp.io/ru/ai-agent",
+          "https://blog.albato.ru/ii-agenty-dlya-otdela-prodazh/",
+          "https://tldv.io/ru/blog/best-ai-agents-for-sales/",
+          "https://cmdf5.ru/ai-manager",
+          "https://www.skolkovo.ru/qna/5-luchshih-ii-agentov-dlya-biznesa/",
+          "https://respond.io/ru/blog/best-ai-sales-agents",
+          "https://bezgranits.pro/"
+        ]
+      },
+      {
+        "phrase": "автоматизация crm",
+        "wordstat": 762,
+        "position": null,
+        "url": null,
+        "top": [
+          "https://habr.com/ru/companies/yougile/articles/944458/",
+          "https://sbercrm.com/blog/start/tpost/xsb6cj94b1-kak-avtomatizirovat-rabotu-s-pomoschyu-c",
+          "https://www.bitrix24.ru/solutions/",
+          "https://saby.ru/crm",
+          "https://t-j.ru/list/process-crm/",
+          "https://sendpulse.com/ru/knowledge-base/crm/automation",
+          "https://bpmsoft.ru/uslugi-avtomatizacii/prodazhi/",
+          "https://aspro.cloud/crm/avtomatizatsiya/",
+          "https://megaplan.ru/blog/crm/automation-company-management/",
+          "https://salesap.ru/blog/avtomatizacija-crm"
+        ]
+      }
+    ]
+  },
+  "session": {
+    "totalWebQueries": 34,
+    "estimatedCostRub": 13.600000000000001,
+    "priceRubPerWebQueryEstimate": 0.4
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "specializationId": "878078fb-7749-47a4-8ed2-9246fe847e56",
+  "note": "SEO-дополнение (не дублирует IT/Другое). Цены как на bober-ai.dev: от 150–500 тыс.",
+  "services": [
+    {
+      "name": "Автоматизация КП из PDF-запроса в CRM",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/portfolio/offer-kp-llm.png",
+      "description": "Автоматизация коммерческих предложений по сценарию сайта Bober AI: PDF-запрос → каталог → DOCX/PDF → запись в CRM. Генерация коммерческого предложения и автоматизация КП без ручного поиска SKU и НДС. Пилот: с ~45 минут до 2–5 минут на типовом процессе. MySQL, CRM, Python, LLM."
+    },
+    {
+      "name": "AI-пилот одного процесса с метриками ROI",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/office-tower.jpg",
+      "description": "Пилот внедрения ИИ на одном процессе: гипотеза, метрики, план масштабирования. Заказать автоматизацию бизнеса без полного промышленного запуска — фиксированная смета от 300 000 ₽. Подходит, когда нужен проверяемый AI для бизнеса до закупки «на всю компанию»."
+    },
+    {
+      "name": "Telegram-бот заявок с записью в CRM",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/yandex/mess_icons.png",
+      "description": "Бот для обработки входящих заявок в Telegram: квалификация лида, уведомления менеджеру, запись в CRM. Автоматизация обработки заявок и воронки без копипаста из мессенджера. Не общий «чат-бот на сайте» — канал Telegram → сделка."
+    },
+    {
+      "name": "Внедрение amoCRM с AI-сценариями продаж",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/office-facade.jpg",
+      "description": "amoCRM автоматизация и amoCRM интеграция под продажи: воронка, триггеры, AI для CRM и follow-up. Внедрение CRM в продажи без дублирования Bitrix-проектов. Связка с почтой, сайтом и LLM — webhooks, retry, логи."
+    },
+    {
+      "name": "Развёртывание AI-контура в Yandex Cloud",
+      "price": 500000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/yandex/Pasha_Yandex1.png",
+      "description": "Промышленное внедрение AI в контуре Yandex Cloud / РФ: модели, API, мониторинг, NDA. Корпоративный ИИ с размещением данных в нужном периметре — облако или гибрид. Для закупки и IT: фиксированная смета, передача кода и runbook команде."
+    }
+  ]
+}

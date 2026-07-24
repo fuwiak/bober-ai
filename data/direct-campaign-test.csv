@@ -1,0 +1,32 @@
+group,match_type,phrase,count,intent,landing,note
+КП,phrase,автоматизация коммерческих предложений,77,commercial_medium,https://www.bober-ai.dev/ru/automation/proposal-generation,core
+КП,phrase,генерация коммерческих предложений,65,commercial_medium,https://www.bober-ai.dev/ru/automation/proposal-generation,core
+КП,phrase,генерация коммерческого предложения,87,commercial_medium,https://www.bober-ai.dev/ru/automation/proposal-generation,core
+КП,phrase,автоматизация кп,62,commercial_medium,https://www.bober-ai.dev/ru/automation/proposal-generation,core
+КП,phrase,автоматизация подготовки коммерческих предложений,0,seed,https://www.bober-ai.dev/ru/automation/proposal-generation,seed low-volume
+КП,phrase,система для коммерческих предложений,279,commercial_medium,https://www.bober-ai.dev/ru/automation/proposal-generation,from raw seed
+Документы,phrase,автоматизация документооборота,1592,commercial_medium,https://www.bober-ai.dev/ru/automation/documents,core volume
+Документы,phrase,внедрение автоматизации документооборота,94,commercial_high,https://www.bober-ai.dev/ru/automation/documents,buy intent
+Документы,phrase,автоматизация документооборота компании,58,commercial_high,https://www.bober-ai.dev/ru/automation/documents,buy intent
+Документы,phrase,автоматизация работ с документами,478,commercial_medium,https://www.bober-ai.dev/ru/automation/documents,core
+Документы,phrase,автоматизация электронного документооборота,424,commercial_medium,https://www.bober-ai.dev/ru/automation/documents,narrow
+Документы,phrase,система автоматизации документооборота,622,commercial_medium,https://www.bober-ai.dev/ru/automation/documents,careful competitor SED
+Документы,phrase,ai для документов,301,commercial_medium,https://www.bober-ai.dev/ru/automation/documents,narrow + strong minus
+Продажи,phrase,автоматизация отдела продаж,132,commercial_medium,https://www.bober-ai.dev/ru/automation/sales,core
+Продажи,phrase,автоматизация обработки заявок,71,commercial_medium,https://www.bober-ai.dev/ru/automation/sales,core
+Продажи,phrase,обработка входящих заявок,263,commercial_medium,https://www.bober-ai.dev/ru/automation/sales,core
+Продажи,phrase,автоматизация продаж,1863,commercial_medium,https://www.bober-ai.dev/ru/automation/sales,broad — watch waste
+Продажи,phrase,внедрение crm в продажи,55,commercial_high,https://www.bober-ai.dev/ru/automation/sales,buy
+Продажи,phrase,crm системы для продаж внедрение,37,commercial_high,https://www.bober-ai.dev/ru/automation/sales,buy
+Продажи,phrase,автоматизация процессов отдела продаж,26,commercial_medium,https://www.bober-ai.dev/ru/automation/sales,narrow
+Продажи,phrase,ai для продаж,0,seed,https://www.bober-ai.dev/ru/automation/ai-for-sales,optional sibling landing
+Bitrix24,phrase,внедрение битрикс24,550,commercial_high,https://bitrix.bober-ai.dev/,core
+Bitrix24,phrase,внедрение crm битрикс24,71,commercial_high,https://bitrix.bober-ai.dev/,core
+Bitrix24,phrase,внедрение и настройка битрикс24,27,commercial_high,https://bitrix.bober-ai.dev/,buy
+Bitrix24,phrase,внедрение битрикс24 в компанию,18,commercial_high,https://bitrix.bober-ai.dev/,buy
+Bitrix24,phrase,внедрение битрикс24 цена,13,commercial_high,https://bitrix.bober-ai.dev/,price intent
+Bitrix24,phrase,bitrix24 автоматизация,29,commercial_medium,https://bitrix.bober-ai.dev/,ai angle
+Bitrix24,phrase,автоматизация bitrix24,29,commercial_medium,https://bitrix.bober-ai.dev/,ai angle
+Bitrix24,phrase,bitrix24 ии,20,commercial_medium,https://bitrix.bober-ai.dev/,ai angle
+Bitrix24,phrase,ai для bitrix24,19,commercial_medium,https://bitrix.bober-ai.dev/,ai angle
+Bitrix24,phrase,настройка crm битрикс24,80,commercial_medium,https://bitrix.bober-ai.dev/,setup

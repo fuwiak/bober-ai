@@ -1,0 +1,86 @@
+{
+  "specializationId": "187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "note": "9 новых услуг → итого 20 (после удаления дубликата персонального бота). Цены 150–500 тыс.",
+  "services": [
+    {
+      "name": "AI-аудит процессов и дорожная карта внедрения",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/ai-discovery-roadmap.jpg",
+      "description": "AI-консалтинг и аудит: карта процессов, точки потерь, расчёт ROI и дорожная карта внедрения ИИ в бизнес. Выбор технологий до закупки разработки. Фиксированная смета — от 150 000 ₽."
+    },
+    {
+      "name": "Автоматизация документооборота с AI",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/document-processing.jpg",
+      "description": "Автоматизация документооборота и AI для документов: извлечение полей, согласования, выгрузка в CRM/1С. Автоматизация работ с документами и электронного документооборота без ручного ввода."
+    },
+    {
+      "name": "Генерация коммерческих предложений с LLM",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/sales-proposal.jpg",
+      "description": "Генерация коммерческих предложений и автоматизация КП: шаблоны, прайс, PDF за минуты. Система для коммерческих предложений с LLM и интеграцией в CRM. Claude для документов и отдела продаж."
+    },
+    {
+      "name": "OCR и распознавание документов в учёт",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/portfolio/offer-kp-llm.png",
+      "description": "OCR и распознавание: извлечение текста и полей из PDF, сканов и фото. Пайплайн валидации и выгрузки в 1С, CRM или ERP. AI для документов — меньше ручного набора и ошибок."
+    },
+    {
+      "name": "Self-hosted AI и Open WebUI в контуре",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/cyber-padlock.jpg",
+      "description": "Self-hosted AI и корпоративный чат Open WebUI: SSO, политики доступа, свои модели. Приватный ИИ-стек без утечки данных. Подходит для IT и закупки с требованиями 152-ФЗ."
+    },
+    {
+      "name": "Голосовой AI и автоматизация колл-центра",
+      "price": 500000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/yandex/max1.png",
+      "description": "Голосовой AI: speech-to-text, голосовые боты, логирование звонков в CRM. Автоматизация колл-центра и поддержки клиентов. Сценарии продаж и эскалация к оператору."
+    },
+    {
+      "name": "AI-агенты на LangGraph под бизнес-сценарии",
+      "price": 500000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/portfolio/elia-suite.png",
+      "description": "AI-агенты для бизнеса на LangGraph: многошаговые сценарии, state, HITL и observability. Действия в CRM, документах и workflow с контролем и аудитом. Production, не демо-чат."
+    },
+    {
+      "name": "Внедрение Bitrix24 с AI-автоматизацией",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/portfolio/gtm-flow-leads.png",
+      "description": "Внедрение Битрикс24 и настройка CRM Битрикс24: воронка, роботы, Bitrix24 автоматизация и AI для Bitrix24. Связка с мессенджерами, сайтом и LLM. Внедрение CRM в продажи под ключ."
+    },
+    {
+      "name": "Автоматизация поддержки клиентов и заявок",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/office-interior.jpg",
+      "description": "Автоматизация поддержки клиентов и техподдержки: классификация обращений, ИИ-бот, эскалация. Обработка входящих заявок, база знаний, интеграция с helpdesk и CRM. Снижаем нагрузку на линию."
+    },
+    {
+      "name": "MCP-интеграции и Claude MCP для CRM",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/yandex/mac-mini.png",
+      "description": "MCP-интеграции и Claude MCP: подключение LLM к CRM, БД и внутренним API. Claude MCP интеграция для агентов и инструментов. Безопасный доступ моделей к данным компании без копипаста."
+    }
+  ]
+}

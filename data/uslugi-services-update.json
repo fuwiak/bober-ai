@@ -1,0 +1,86 @@
+{
+  "specializationId": "187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "note": "Единая сетка цен B2B: от 150–500 тыс. ₽ за услугу. Фото — только если пусто.",
+  "services": [
+    {
+      "match": "Приватный LLM-контур и корпоративный ИИ",
+      "price": 500000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/private-llm.jpg",
+      "description": "Внедрение искусственного интеллекта в закрытом контуре: on-prem / VPC LLM без утечки во внешние чаты. Корпоративный ИИ, Claude API для бизнеса, политики доступа и интеграции с CRM. NDA, 152-ФЗ — не публичный ChatGPT."
+    },
+    {
+      "match": "Создание чат-бота на базе ИИ и LLM",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/team-collab.jpg",
+      "description": "Чат-бот для бизнеса и ИИ-бот для поддержки клиентов: сценарии, эскалация к оператору, логи. Обработка входящих заявок, интеграция с сайтом, Telegram и CRM. LLM под ваш процесс — от брифа до запуска."
+    },
+    {
+      "match": "Настройка Claude AI и автоматизация бизнеса",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/enterprise-ai-assistant.jpg",
+      "description": "Внедрение Claude и Claude API для бизнеса: Claude для продаж, CRM и документов. Claude AI-агент, корпоративный ассистент, Claude n8n и workflow. Claude под ключ — от API до рабочих сценариев в отделе продаж и поддержке."
+    },
+    {
+      "match": "Автоматизация на n8n для бизнеса",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/automation-code.jpg",
+      "description": "n8n автоматизация для бизнеса: CRM, почта, мессенджеры и LLM в одном контуре. Автоматизация бизнес-процессов, обработка заявок, отчёты и retry. Production-воркфлоу, не схема «на коленке»."
+    },
+    {
+      "match": "RAG-система и корпоративная база знаний",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/rag-search.jpg",
+      "description": "RAG-система и корпоративная база знаний с ИИ: ответы со ссылкой на источник. AI для документов, Claude RAG, guardrails, интеграция в чат или CRM. Закрывает поиск по регламентам, договорам и FAQ."
+    },
+    {
+      "match": "Машинное обучение и внедрение нейросетей",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/roadmap-sticky-notes.jpg",
+      "description": "Машинное обучение и внедрение искусственного интеллекта: классификация, прогноз, распознавание, пайплайны данных. Нейросеть для бизнеса и ИИ для документов — от прототипа до production с метриками."
+    },
+    {
+      "match": "Внедрение AI-ассистента и ИИ-помощника",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/yandex/pasha-ai2.png",
+      "description": "AI-ассистент для компании и ИИ-помощник: поддержка, заявки, ответы по базе знаний. AI-агент для бизнеса, внедрение ИИ в бизнес, AI-автоматизация с CRM и мессенджерами. Аудит → пилот → запуск."
+    },
+    {
+      "match": "Автоматизация отдела продаж и коммерческих предложений",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/sales-ai-agent.jpg",
+      "description": "Автоматизация отдела продаж и автоматизация продаж: лиды, CRM, follow-up. Генерация коммерческих предложений и автоматизация КП — PDF за минуты. Обработка входящих заявок, AI для продаж, внедрение CRM в воронку."
+    },
+    {
+      "match": "Автоматизация бизнес-процессов с AI под ключ",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/business-process-automation.jpg",
+      "description": "Автоматизация бизнес-процессов под ключ: аудит, workflow, интеграции CRM/1С/почты. AI-автоматизация рутины, статусы, уведомления, контроль ошибок. Фиксированная смета до старта, передача кода команде."
+    },
+    {
+      "match": "Интеграции CRM: Bitrix24, amoCRM, 1С",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/crm-integration.jpg",
+      "description": "Внедрение Битрикс24 и CRM-автоматизация: Bitrix24 ИИ, amoCRM интеграция, интеграция 1С CRM. Синхронизация сделок и документов, webhooks, логи. Убираем ручной перенос данных между системами."
+    }
+  ]
+}

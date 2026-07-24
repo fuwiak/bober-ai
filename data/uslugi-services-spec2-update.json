@@ -1,0 +1,14 @@
+{
+  "specializationId": "878078fb-7749-47a4-8ed2-9246fe847e56",
+  "services": [
+    {
+      "match": "Автоматизации на n8n под ключ",
+      "name": "Автоматизации на n8n под ключ",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/automation-code.jpg",
+      "description": "n8n под ключ: воркфлоу CRM, почты, мессенджеров и API. Автоматизация бизнес-процессов без почасовой «настройки скриптов» — фиксированная смета от 300 000 ₽. Production: retry, логи, передача схемы команде."
+    }
+  ]
+}
