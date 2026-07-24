@@ -9,6 +9,12 @@ const CANONICAL_HOST = "www.bober-ai.dev";
 const PARTNERS_HOST = "partners.bober-ai.dev";
 const BITRIX_HOST = "bitrix.bober-ai.dev";
 
+/** Yandex requires application/xml|text/xml for YML (not text/yaml from .yml MIME). */
+function withYmlContentType(response: NextResponse) {
+  response.headers.set("Content-Type", "application/xml; charset=utf-8");
+  return response;
+}
+
 /**
  * Пути вне next-intl — без locale rewrite.
  * Редирект apex → www для них всё равно выполняется выше.
@@ -58,7 +64,10 @@ export default function middleware(request: NextRequest) {
       if (pathname === "/performers-feed.yml") {
         const url = request.nextUrl.clone();
         url.pathname = "/feeds/partners.yml";
-        return NextResponse.rewrite(url);
+        return withYmlContentType(NextResponse.rewrite(url));
+      }
+      if (pathname.startsWith("/feeds/") && pathname.endsWith(".yml")) {
+        return withYmlContentType(NextResponse.next());
       }
       return NextResponse.next();
     }
@@ -78,7 +87,10 @@ export default function middleware(request: NextRequest) {
       if (pathname === "/performers-feed.yml") {
         const url = request.nextUrl.clone();
         url.pathname = "/feeds/bitrix.yml";
-        return NextResponse.rewrite(url);
+        return withYmlContentType(NextResponse.rewrite(url));
+      }
+      if (pathname.startsWith("/feeds/") && pathname.endsWith(".yml")) {
+        return withYmlContentType(NextResponse.next());
       }
       return NextResponse.next();
     }
@@ -93,6 +105,10 @@ export default function middleware(request: NextRequest) {
     url.protocol = "https:";
     url.host = CANONICAL_HOST;
     return NextResponse.redirect(url, 301);
+  }
+
+  if (pathname === "/performers-feed.yml" || (pathname.startsWith("/feeds/") && pathname.endsWith(".yml"))) {
+    return withYmlContentType(NextResponse.next());
   }
 
   if (shouldSkipIntl(pathname)) {

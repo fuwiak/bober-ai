@@ -65,6 +65,12 @@ const nextConfig: NextConfig = {
       "/:path*.ico",
     ];
 
+    // Yandex Webmaster accepts application/xml|text/xml for YML feeds — not text/yaml.
+    const ymlFeed = [
+      { key: "Content-Type", value: "application/xml; charset=utf-8" },
+      ...html,
+    ];
+
     return [
       {
         source: "/_next/static/:path*",
@@ -86,6 +92,14 @@ const nextConfig: NextConfig = {
       {
         source: "/yandex/:path*",
         headers: immutable,
+      },
+      {
+        source: "/performers-feed.yml",
+        headers: ymlFeed,
+      },
+      {
+        source: "/feeds/:path*.yml",
+        headers: ymlFeed,
       },
       {
         source: "/api/:path*",
