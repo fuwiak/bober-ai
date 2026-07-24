@@ -52,9 +52,6 @@ function buildYmlCatalog(config: MicrositeFeedConfig, now = new Date()) {
   const orderUrl = `${feedSiteUrl}${config.orderPath}`;
   const date = now.toISOString().slice(0, 16).replace("T", " ");
 
-  const urlParam = (name: string, value: string) =>
-    `<param name="${escapeXml(name)}">${escapeXml(value)}</param>`;
-
   const sets = config.offers
     .map(
       (offer) => `      <set id="${escapeXml(offer.slug)}">
@@ -76,19 +73,22 @@ function buildYmlCatalog(config: MicrositeFeedConfig, now = new Date()) {
       <url>${escapeXml(url)}</url>
       <price from="true">${offer.price}</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>${escapeXml(offer.salesNotes)}</sales_notes>
       <categoryId>${FEED_CATEGORY_ID}</categoryId>
       <set-ids>${escapeXml(offer.slug)}</set-ids>
       <picture>${escapeXml(pictureUrl)}</picture>
       <description>${escapeXml(offer.title)}</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">${FEED_RATING}</param>
       <param name="Число отзывов">${FEED_REVIEWS_COUNT}</param>
       <param name="Годы опыта">${PROFILE.experienceYears}</param>
       <param name="Регион">${SITE_REGION}</param>
       <param name="Конверсия">${offer.conversion}</param>
-      ${urlParam("Ссылка на телефон", CONTACT_PHONE_URL)}
-      ${urlParam("Ссылка на чат", TELEGRAM_URL)}
-      ${urlParam("Ссылка на создание заказа", orderUrl)}
-      ${urlParam("Ссылка на профиль исполнителя", feedSiteUrl)}
+      <param name="Ссылка на телефон">${escapeXml(CONTACT_PHONE_URL)}</param>
+      <param name="Ссылка на чат">${escapeXml(TELEGRAM_URL)}</param>
+      <param name="Ссылка на создание заказа">${escapeXml(orderUrl)}</param>
+      <param name="Ссылка на профиль исполнителя">${escapeXml(feedSiteUrl)}</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
@@ -96,8 +96,7 @@ function buildYmlCatalog(config: MicrositeFeedConfig, now = new Date()) {
       <param name="Выполняется по адресу заказчика">true</param>
       <param name="Об исполнителе">${escapeXml(offer.about)}</param>
       <param name="Другая услуга исполнителя - 1">${escapeXml(offer.description)}</param>
-      ${urlParam("Сайт работодателя", feedSiteUrl)}
-      <sales_notes>${escapeXml(offer.salesNotes)}</sales_notes>
+      <param name="Сайт работодателя">${escapeXml(feedSiteUrl)}</param>
     </offer>`;
     })
     .join("\n");
@@ -109,8 +108,6 @@ function buildYmlCatalog(config: MicrositeFeedConfig, now = new Date()) {
     <company>${escapeXml(SITE_NAME)}</company>
     <url>${escapeXml(feedSiteUrl)}</url>
     <email>${escapeXml(CONTACT_EMAIL)}</email>
-    <picture>${escapeXml(`${feedSiteUrl}/favicon-120x120.png`)}</picture>
-    <description>${escapeXml(config.shopDescription)}</description>
     <currencies>
       <currency id="RUR" rate="1"/>
     </currencies>

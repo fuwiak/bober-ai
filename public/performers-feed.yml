@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-24 17:03">
+<yml_catalog date="2026-07-24 17:18">
   <shop>
     <name>Bober AI Systems</name>
     <company>Bober AI Systems</company>
     <url>https://www.bober-ai.dev</url>
     <email>contact@bober-ai.dev</email>
-    <picture>https://www.bober-ai.dev/favicon-120x120.png</picture>
-    <description>Внедряем AI-автоматизацию продаж, документов, CRM и 1С. Пилот от 300 000 ₽, фиксированная смета, NDA, облако или on-premise.</description>
     <currencies>
       <currency id="RUR" rate="1"/>
     </currencies>
@@ -102,11 +100,13 @@
       <url>https://www.bober-ai.dev/services/business-process-automation</url>
       <price from="true">400000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>от 400 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>business-process-automation</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/business-process-automation.jpg</picture>
       <description>Автоматизация бизнес-процессов</description>
-      <!--Обязательные params: Рейтинг, Число отзывов, Годы опыта, Регион, Конверсия-->
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -124,18 +124,19 @@
       <param name="Об исполнителе">Аудит процессов, настройка автоматизации, интеграция с CRM и документами, обучение команды.</param>
       <param name="Другая услуга исполнителя - 1">Аудит, интеграции CRM/1С, workflow — цепочки задач без ручной рутины.</param>
       <param name="Сайт работодателя">https://www.bober-ai.dev</param>
-      <sales_notes>от 400 000 ₽</sales_notes>
     </offer>
     <offer id="sales-ai-agent">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/sales-ai-agent</url>
       <price from="true">400000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>от 400 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>sales-ai-agent</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/sales-ai-agent.jpg</picture>
       <description>Автоматизация отдела продаж</description>
-      <!--Обязательные params: Рейтинг, Число отзывов, Годы опыта, Регион, Конверсия-->
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -153,18 +154,19 @@
       <param name="Об исполнителе">Настраиваем автоматизацию под шаблоны и CRM, тестируем и запускаем в отделе продаж.</param>
       <param name="Другая услуга исполнителя - 1">Лиды, CRM, коммерческие предложения, follow-up — PDF за минуты, не за часы.</param>
       <param name="Сайт работодателя">https://www.bober-ai.dev</param>
-      <sales_notes>от 400 000 ₽</sales_notes>
     </offer>
     <offer id="ai-discovery-roadmap">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/ai-discovery-roadmap</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>от 150 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>ai-discovery-roadmap</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ai-discovery-roadmap.jpg</picture>
       <description>AI &amp; Automation Advisor</description>
-      <!--Обязательные params: Рейтинг, Число отзывов, Годы опыта, Регион, Конверсия-->
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -182,18 +184,19 @@
       <param name="Об исполнителе">Бизнес-аудит, карта процессов, расчёт ROI, дорожная карта и смета до старта разработки.</param>
       <param name="Другая услуга исполнителя - 1">Анализируем процесс, считаем ROI, выбираем технологию, внедряем.</param>
       <param name="Сайт работодателя">https://www.bober-ai.dev</param>
-      <sales_notes>от 150 000 ₽</sales_notes>
     </offer>
     <offer id="enterprise-ai-assistant">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/enterprise-ai-assistant</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>enterprise-ai-assistant</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/enterprise-ai-assistant.jpg</picture>
       <description>Внедрение AI</description>
-      <!--Обязательные params: Рейтинг, Число отзывов, Годы опыта, Регион, Конверсия-->
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -211,18 +214,19 @@
       <param name="Об исполнителе">Архитектура, LLM, интеграции CRM/мессенджеры, production-деплой и передача команде.</param>
       <param name="Другая услуга исполнителя - 1">LLM, агенты, интеграции с CRM — production, не пилот на ChatGPT.</param>
       <param name="Сайт работодателя">https://www.bober-ai.dev</param>
-      <sales_notes>от 500 000 ₽</sales_notes>
     </offer>
     <offer id="private-llm-gigachat">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/private-llm-gigachat</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>private-llm-gigachat</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/private-llm-gigachat.jpg</picture>
       <description>Приватный LLM-контур</description>
-      <!--Обязательные params: Рейтинг, Число отзывов, Годы опыта, Регион, Конверсия-->
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -240,18 +244,19 @@
       <param name="Об исполнителе">Разворачиваем LLM в вашем контуре, настраиваем API, guardrails, мониторинг и интеграции.</param>
       <param name="Другая услуга исполнителя - 1">GigaChat, on-prem и изолированное облако — без утечки данных во внешние сервисы.</param>
       <param name="Сайт работодателя">https://www.bober-ai.dev</param>
-      <sales_notes>от 500 000 ₽</sales_notes>
     </offer>
     <offer id="ai-automation">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/ai-automation</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>ai-automation</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ai-automation.jpg</picture>
       <description>AI-автоматизация</description>
-      <!--Обязательные params: Рейтинг, Число отзывов, Годы опыта, Регион, Конверсия-->
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -269,18 +274,19 @@
       <param name="Об исполнителе">Проектируем и внедряем AI-автоматизацию с интеграциями CRM, документов и workflow.</param>
       <param name="Другая услуга исполнителя - 1">Системы AI для автоматизации операций — от аудита до production.</param>
       <param name="Сайт работодателя">https://www.bober-ai.dev</param>
-      <sales_notes>от 500 000 ₽</sales_notes>
     </offer>
     <offer id="rag">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/rag</url>
       <price from="true">400000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>от 400 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>rag</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/rag.jpg</picture>
       <description>RAG и корпоративный поиск</description>
-      <!--Обязательные params: Рейтинг, Число отзывов, Годы опыта, Регион, Конверсия-->
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -298,18 +304,19 @@
       <param name="Об исполнителе">Индексация, векторный поиск, guardrails и интеграция в чат/CRM.</param>
       <param name="Другая услуга исполнителя - 1">Поиск по документам и ответы LLM со ссылкой на источник.</param>
       <param name="Сайт работодателя">https://www.bober-ai.dev</param>
-      <sales_notes>от 400 000 ₽</sales_notes>
     </offer>
     <offer id="llm-development">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/llm-development</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>llm-development</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/llm-development.jpg</picture>
       <description>Разработка LLM-решений</description>
-      <!--Обязательные params: Рейтинг, Число отзывов, Годы опыта, Регион, Конверсия-->
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -327,18 +334,19 @@
       <param name="Об исполнителе">Архитектура, разработка, тестирование и передача команде.</param>
       <param name="Другая услуга исполнителя - 1">Кастомные LLM-приложения, API, промпт-инженерия и production-деплой.</param>
       <param name="Сайт работодателя">https://www.bober-ai.dev</param>
-      <sales_notes>от 500 000 ₽</sales_notes>
     </offer>
     <offer id="n8n">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/n8n</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>n8n</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/n8n.jpg</picture>
       <description>Автоматизация на n8n</description>
-      <!--Обязательные params: Рейтинг, Число отзывов, Годы опыта, Регион, Конверсия-->
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -356,18 +364,19 @@
       <param name="Об исполнителе">Проектируем, разворачиваем и сопровождаем n8n в production.</param>
       <param name="Другая услуга исполнителя - 1">n8n-воркфлоу с AI-слоем и интеграциями CRM, мессенджеров, API.</param>
       <param name="Сайт работодателя">https://www.bober-ai.dev</param>
-      <sales_notes>от 300 000 ₽</sales_notes>
     </offer>
     <offer id="ai-agent">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/ai-agent</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>ai-agent</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ai-agent.jpg</picture>
       <description>AI-агенты для бизнеса</description>
-      <!--Обязательные params: Рейтинг, Число отзывов, Годы опыта, Регион, Конверсия-->
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -385,18 +394,19 @@
       <param name="Об исполнителе">Многошаговые агенты с инструментами, мониторингом и handover.</param>
       <param name="Другая услуга исполнителя - 1">Агенты с действиями: CRM, документы, workflow, эскалация к человеку.</param>
       <param name="Сайт работодателя">https://www.bober-ai.dev</param>
-      <sales_notes>от 500 000 ₽</sales_notes>
     </offer>
     <offer id="document-processing">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/document-processing</url>
       <price from="true">400000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>от 400 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>document-processing</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/document-processing.jpg</picture>
       <description>Обработка документов</description>
-      <!--Обязательные params: Рейтинг, Число отзывов, Годы опыта, Регион, Конверсия-->
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -414,18 +424,19 @@
       <param name="Об исполнителе">Пайплайны документов, workflow и интеграции с учётными системами.</param>
       <param name="Другая услуга исполнителя - 1">OCR, согласования, извлечение данных — в CRM/ERP без ручного ввода.</param>
       <param name="Сайт работодателя">https://www.bober-ai.dev</param>
-      <sales_notes>от 400 000 ₽</sales_notes>
     </offer>
     <offer id="voice-ai">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/voice-ai</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>voice-ai</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/voice-ai.jpg</picture>
       <description>Голосовой AI</description>
-      <!--Обязательные params: Рейтинг, Число отзывов, Годы опыта, Регион, Конверсия-->
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -443,18 +454,19 @@
       <param name="Об исполнителе">Голосовые сценарии для поддержки и продаж с интеграцией в CRM.</param>
       <param name="Другая услуга исполнителя - 1">Speech-to-text, голосовые боты, логирование звонков в CRM.</param>
       <param name="Сайт работодателя">https://www.bober-ai.dev</param>
-      <sales_notes>от 500 000 ₽</sales_notes>
     </offer>
     <offer id="ocr">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/ocr</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>ocr</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ocr.jpg</picture>
       <description>OCR и распознавание</description>
-      <!--Обязательные params: Рейтинг, Число отзывов, Годы опыта, Регион, Конверсия-->
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -472,18 +484,19 @@
       <param name="Об исполнителе">OCR-пайплайны с валидацией и выгрузкой в 1С, CRM или ERP.</param>
       <param name="Другая услуга исполнителя - 1">Извлечение текста и полей из PDF, сканов и фото.</param>
       <param name="Сайт работодателя">https://www.bober-ai.dev</param>
-      <sales_notes>от 300 000 ₽</sales_notes>
     </offer>
     <offer id="open-webui">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/open-webui</url>
       <price from="true">400000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>от 400 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>open-webui</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/open-webui.jpg</picture>
       <description>Open WebUI</description>
-      <!--Обязательные params: Рейтинг, Число отзывов, Годы опыта, Регион, Конверсия-->
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -501,18 +514,19 @@
       <param name="Об исполнителе">Развёртывание Open WebUI, подключение моделей и guardrails.</param>
       <param name="Другая услуга исполнителя - 1">Корпоративный чат с LLM, SSO и политиками доступа.</param>
       <param name="Сайт работодателя">https://www.bober-ai.dev</param>
-      <sales_notes>от 400 000 ₽</sales_notes>
     </offer>
     <offer id="self-hosted-ai">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/self-hosted-ai</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>self-hosted-ai</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/self-hosted-ai.jpg</picture>
       <description>Self-hosted AI</description>
-      <!--Обязательные params: Рейтинг, Число отзывов, Годы опыта, Регион, Конверсия-->
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -530,18 +544,19 @@
       <param name="Об исполнителе">On-prem LLM, API, мониторинг и интеграции под NDA.</param>
       <param name="Другая услуга исполнителя - 1">Приватный AI-стек в вашем контуре — без утечки данных.</param>
       <param name="Сайт работодателя">https://www.bober-ai.dev</param>
-      <sales_notes>от 500 000 ₽</sales_notes>
     </offer>
     <offer id="mcp">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/mcp</url>
       <price from="true">400000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>от 400 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>mcp</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/mcp.jpg</picture>
       <description>MCP-интеграции</description>
-      <!--Обязательные params: Рейтинг, Число отзывов, Годы опыта, Регион, Конверсия-->
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -559,18 +574,19 @@
       <param name="Об исполнителе">MCP-серверы для внутренних систем и инструментов агентов.</param>
       <param name="Другая услуга исполнителя - 1">Model Context Protocol — подключение LLM к CRM, БД и API.</param>
       <param name="Сайт работодателя">https://www.bober-ai.dev</param>
-      <sales_notes>от 400 000 ₽</sales_notes>
     </offer>
     <offer id="langgraph">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/langgraph</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>langgraph</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/langgraph.jpg</picture>
       <description>LangGraph-агенты</description>
-      <!--Обязательные params: Рейтинг, Число отзывов, Годы опыта, Регион, Конверсия-->
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -588,18 +604,19 @@
       <param name="Об исполнителе">LangGraph для сложных сценариев с контролем и аудитом.</param>
       <param name="Другая услуга исполнителя - 1">Многошаговые агенты со state, HITL и observability.</param>
       <param name="Сайт работодателя">https://www.bober-ai.dev</param>
-      <sales_notes>от 500 000 ₽</sales_notes>
     </offer>
     <offer id="knowledge-base">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/knowledge-base</url>
       <price from="true">400000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>от 400 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>knowledge-base</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/knowledge-base.jpg</picture>
       <description>Корпоративная база знаний</description>
-      <!--Обязательные params: Рейтинг, Число отзывов, Годы опыта, Регион, Конверсия-->
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -617,18 +634,19 @@
       <param name="Об исполнителе">База знаний, поиск, чат-бот для сотрудников и клиентов.</param>
       <param name="Другая услуга исполнителя - 1">Единое место для регламентов, FAQ и AI-ответов со ссылками.</param>
       <param name="Сайт работодателя">https://www.bober-ai.dev</param>
-      <sales_notes>от 400 000 ₽</sales_notes>
     </offer>
     <offer id="ai-consulting">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/ai-consulting</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>от 150 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>ai-consulting</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ai-consulting.jpg</picture>
       <description>AI-консалтинг</description>
-      <!--Обязательные params: Рейтинг, Число отзывов, Годы опыта, Регион, Конверсия-->
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -646,18 +664,19 @@
       <param name="Об исполнителе">Аудит, рекомендации и план до закупки разработки.</param>
       <param name="Другая услуга исполнителя - 1">Стратегия, ROI, выбор технологий и дорожная карта внедрения.</param>
       <param name="Сайт работодателя">https://www.bober-ai.dev</param>
-      <sales_notes>от 150 000 ₽</sales_notes>
     </offer>
     <offer id="crm-integration">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/crm-integration</url>
       <price from="true">400000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>от 400 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>crm-integration</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/crm-integration.jpg</picture>
       <description>Интеграции CRM</description>
-      <!--Обязательные params: Рейтинг, Число отзывов, Годы опыта, Регион, Конверсия-->
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -675,7 +694,6 @@
       <param name="Об исполнителе">Двусторонние интеграции, webhooks, retry и мониторинг.</param>
       <param name="Другая услуга исполнителя - 1">amoCRM, Bitrix24, 1С — синхронизация и автоматизация воронки.</param>
       <param name="Сайт работодателя">https://www.bober-ai.dev</param>
-      <sales_notes>от 400 000 ₽</sales_notes>
     </offer>
     </offers>
   </shop>

@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-24 17:03">
+<yml_catalog date="2026-07-24 17:18">
   <shop>
     <name>Bober AI Systems — Partner Program</name>
     <company>Bober AI Systems</company>
     <url>https://partners.bober-ai.dev</url>
     <email>contact@bober-ai.dev</email>
-    <picture>https://partners.bober-ai.dev/favicon-120x120.png</picture>
-    <description>White-label AI-разработка для агентств и software house: архитектура, backend, LLM и deployment под вашим брендом.</description>
     <currencies>
       <currency id="RUR" rate="1"/>
     </currencies>
@@ -42,10 +40,13 @@
       <url>https://partners.bober-ai.dev/#presale-support</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>Wholesale / fixed · база для вашей маржи</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>presale-support</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-partners-presale.jpg</picture>
       <description>Presale support для агентств</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -63,17 +64,19 @@
       <param name="Об исполнителе">White-label AI-разработка для агентств и software house: архитектура, backend, LLM и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
       <param name="Другая услуга исполнителя - 1">Анализ брифа, архитектура, оценка себестоимости и участие в технической встрече под брендом партнёра.</param>
       <param name="Сайт работодателя">https://partners.bober-ai.dev</param>
-      <sales_notes>Wholesale / fixed · база для вашей маржи</sales_notes>
     </offer>
     <offer id="partners-delivery">
       <name>Павел Стасиньский</name>
       <url>https://partners.bober-ai.dev/#project-delivery</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>Пилот на рынке от 300 000 ₽ · партнёрская цена по проекту</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>project-delivery</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-partners-delivery.jpg</picture>
       <description>White-label project delivery</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -91,17 +94,19 @@
       <param name="Об исполнителе">White-label AI-разработка для агентств и software house: архитектура, backend, LLM и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
       <param name="Другая услуга исполнителя - 1">Разработка, интеграции, тестирование, deployment и документация — клиент видит только вас.</param>
       <param name="Сайт работодателя">https://partners.bober-ai.dev</param>
-      <sales_notes>Пилот на рынке от 300 000 ₽ · партнёрская цена по проекту</sales_notes>
     </offer>
     <offer id="partners-ongoing">
       <name>Павел Стасиньский</name>
       <url>https://partners.bober-ai.dev/#ongoing-ai-team</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>Retainer / hourly · приоритет партнёра</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>ongoing-ai-team</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-partners-ongoing.jpg</picture>
       <description>Ongoing AI team</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -119,17 +124,19 @@
       <param name="Об исполнителе">White-label AI-разработка для агентств и software house: архитектура, backend, LLM и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
       <param name="Другая услуга исполнителя - 1">Ежемесячный пул часов, несколько проектов, приоритетная поддержка и быстрые оценки.</param>
       <param name="Сайт работодателя">https://partners.bober-ai.dev</param>
-      <sales_notes>Retainer / hourly · приоритет партнёра</sales_notes>
     </offer>
     <offer id="partners-bitrix-analytics">
       <name>Павел Стасиньский</name>
       <url>https://partners.bober-ai.dev/#bitrix24-ai-analytics</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>Subcontract / technical partner</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>bitrix24-ai-analytics</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-partners-bitrix-analytics.svg</picture>
       <description>AI-аналитика для Битрикс24 (white-label)</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -147,17 +154,19 @@
       <param name="Об исполнителе">White-label AI-разработка для агентств и software house: архитектура, backend, LLM и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
       <param name="Другая услуга исполнителя - 1">Вопросы о продажах, задачах и звонках на естественном языке — внутри CRM клиента под вашим брендом.</param>
       <param name="Сайт работодателя">https://partners.bober-ai.dev</param>
-      <sales_notes>Subcontract / technical partner</sales_notes>
     </offer>
     <offer id="partners-kp-docs">
       <name>Павел Стасиньский</name>
       <url>https://partners.bober-ai.dev/#kp-documents</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>Delivery под брендом партнёра</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>kp-documents</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-partners-kp-docs.svg</picture>
       <description>Автоматизация КП и документов</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -175,7 +184,6 @@
       <param name="Об исполнителе">White-label AI-разработка для агентств и software house: архитектура, backend, LLM и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
       <param name="Другая услуга исполнителя - 1">OCR, договоры, счета, спецификации и генерация коммерческих предложений из каталога.</param>
       <param name="Сайт работодателя">https://partners.bober-ai.dev</param>
-      <sales_notes>Delivery под брендом партнёра</sales_notes>
     </offer>
     </offers>
   </shop>

@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-24 17:03">
+<yml_catalog date="2026-07-24 17:18">
   <shop>
     <name>Bober AI Systems — Битрикс24</name>
     <company>Bober AI Systems</company>
     <url>https://bitrix.bober-ai.dev</url>
     <email>contact@bober-ai.dev</email>
-    <picture>https://bitrix.bober-ai.dev/favicon-120x120.png</picture>
-    <description>Внедрение Битрикс24 с AI, AI-автоматизация и AI-аналитика Битрикс24, интеграция Битрикс24 и AI для продаж, Битрикс24 + локальный LLM. Пилот от 300 000 ₽.</description>
     <currencies>
       <currency id="RUR" rate="1"/>
     </currencies>
@@ -42,10 +40,13 @@
       <url>https://bitrix.bober-ai.dev/#bitrix-start</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>Внедрение Битрикс24 с AI · аудит и запуск от 150 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>bitrix-start</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-start.jpg</picture>
       <description>Внедрение Битрикс24 с AI</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -63,17 +64,19 @@
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Разворачиваем и настраиваем портал Битрикс24 с заделом под AI: воронка, права, поля сделок, сайт и реклама.</param>
       <param name="Сайт работодателя">https://bitrix.bober-ai.dev</param>
-      <sales_notes>Внедрение Битрикс24 с AI · аудит и запуск от 150 000 ₽</sales_notes>
     </offer>
     <offer id="bitrix-crm-automation">
       <name>Павел Стасиньский</name>
       <url>https://bitrix.bober-ai.dev/#crm-automation</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>AI-автоматизация Битрикс24 · пилот от 300 000 ₽ · 2–4 недели</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>crm-automation</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-crm-automation.svg</picture>
       <description>AI-автоматизация Битрикс24</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -91,17 +94,19 @@
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Роботы, бизнес-процессы и AI-слой: автозаполнение карточек, скоринг лидов и follow-up без ручной работы менеджера.</param>
       <param name="Сайт работодателя">https://bitrix.bober-ai.dev</param>
-      <sales_notes>AI-автоматизация Битрикс24 · пилот от 300 000 ₽ · 2–4 недели</sales_notes>
     </offer>
     <offer id="bitrix-ai-analytics">
       <name>Павел Стасиньский</name>
       <url>https://bitrix.bober-ai.dev/#ai-analytics</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>AI-аналитика Битрикс24 · пилот от 300 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>ai-analytics</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-ai-analytics.svg</picture>
       <description>AI-аналитика Битрикс24</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -119,17 +124,19 @@
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Чат по данным CRM, звонкам и задачам — ответы о воронке и менеджерах вместо ручных отчётов в Excel.</param>
       <param name="Сайт работодателя">https://bitrix.bober-ai.dev</param>
-      <sales_notes>AI-аналитика Битрикс24 · пилот от 300 000 ₽</sales_notes>
     </offer>
     <offer id="bitrix-integrations">
       <name>Павел Стасиньский</name>
       <url>https://bitrix.bober-ai.dev/#integrations-1c</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>Интеграция Битрикс24 и AI для продаж · от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>integrations-1c</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-integrations.svg</picture>
       <description>Интеграция Битрикс24 и AI для продаж</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -147,17 +154,19 @@
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Связка Битрикс24 с 1С, amoCRM, телефонией и мессенджерами плюс AI-сценарии поверх единого контура продаж.</param>
       <param name="Сайт работодателя">https://bitrix.bober-ai.dev</param>
-      <sales_notes>Интеграция Битрикс24 и AI для продаж · от 500 000 ₽</sales_notes>
     </offer>
     <offer id="bitrix-private-llm">
       <name>Павел Стасиньский</name>
       <url>https://bitrix.bober-ai.dev/#private-llm</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
+      <sales_notes>Битрикс24 + локальный LLM · цена по запросу · от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>private-llm</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-private-llm.jpg</picture>
       <description>Битрикс24 + локальный LLM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
@@ -175,7 +184,6 @@
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Локальный LLM в вашем облаке или on-premise — AI для Битрикс24 без передачи данных во внешние сервисы без согласия.</param>
       <param name="Сайт работодателя">https://bitrix.bober-ai.dev</param>
-      <sales_notes>Битрикс24 + локальный LLM · цена по запросу · от 500 000 ₽</sales_notes>
     </offer>
     </offers>
   </shop>
