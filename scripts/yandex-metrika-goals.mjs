@@ -144,56 +144,85 @@ async function api(path, options = {}) {
   return body;
 }
 
-function existingIdents(goals) {
-  const set = new Set();
+function existingByIdent(goals) {
+  /** @type {Map<string, any>} */
+  const map = new Map();
   for (const g of goals || []) {
     for (const c of g.conditions || []) {
-      if (c.type === "exact" && c.url) set.add(String(c.url));
-    }
-    // fallback: some goals store condition differently
-    if (g.type === "action" && g.conditions?.[0]?.url) {
-      set.add(String(g.conditions[0].url));
+      if (c?.type === "exact" && c.url) {
+        map.set(String(c.url), g);
+      }
     }
   }
-  return set;
+  return map;
 }
 
 async function ensureGoals(label, counterId, desired) {
   console.log(`\n[${label}] counter ${counterId}`);
   const data = await api(`/counter/${counterId}/goals`);
-  const have = existingIdents(data.goals);
+  const byIdent = existingByIdent(data.goals);
   let created = 0;
+  let updated = 0;
   let skipped = 0;
 
   for (const goal of desired) {
     const tier = goal.tier ? ` [${goal.tier}]` : "";
-    if (have.has(goal.ident)) {
-      console.log(`  = ${goal.ident}${tier}`);
-      skipped += 1;
+    const existing = byIdent.get(goal.ident);
+
+    if (!existing) {
+      try {
+        const createdBody = await api(`/counter/${counterId}/goals`, {
+          method: "POST",
+          body: JSON.stringify({
+            goal: {
+              name: goal.name,
+              type: "action",
+              is_retargeting: 0,
+              conditions: [{ type: "exact", url: goal.ident }],
+            },
+          }),
+        });
+        const newGoal = createdBody?.goal;
+        if (newGoal?.id) byIdent.set(goal.ident, newGoal);
+        console.log(`  + ${goal.ident}${tier}`);
+        created += 1;
+      } catch (err) {
+        console.error(`  ! ${goal.ident}: ${err.message}`);
+      }
       continue;
     }
-    try {
-      await api(`/counter/${counterId}/goals`, {
-        method: "POST",
-        body: JSON.stringify({
-          goal: {
-            name: goal.name,
-            type: "action",
-            is_retargeting: 0,
-            conditions: [{ type: "exact", url: goal.ident }],
-          },
-        }),
-      });
-      console.log(`  + ${goal.ident}${tier}`);
-      created += 1;
-      have.add(goal.ident);
-    } catch (err) {
-      console.error(`  ! ${goal.ident}: ${err.message}`);
+
+    if (existing.name !== goal.name) {
+      try {
+        await api(`/counter/${counterId}/goal/${existing.id}`, {
+          method: "PUT",
+          body: JSON.stringify({
+            goal: {
+              name: goal.name,
+              type: "action",
+              is_retargeting: existing.is_retargeting ?? 0,
+              conditions: existing.conditions?.length
+                ? existing.conditions
+                : [{ type: "exact", url: goal.ident }],
+            },
+          }),
+        });
+        console.log(`  ~ ${goal.ident}${tier}  «${existing.name}» → «${goal.name}»`);
+        updated += 1;
+        existing.name = goal.name;
+      } catch (err) {
+        console.error(`  ! rename ${goal.ident}: ${err.message}`);
+        skipped += 1;
+      }
+      continue;
     }
+
+    console.log(`  = ${goal.ident}${tier}`);
+    skipped += 1;
   }
 
-  console.log(`  → создано ${created}, уже было ${skipped}`);
-  return { created, skipped };
+  console.log(`  → создано ${created}, обновлено ${updated}, без изменений ${skipped}`);
+  return { created, updated, skipped };
 }
 
 async function ensureMirrors(counterId) {
@@ -252,14 +281,19 @@ async function main() {
   );
   await ensureMirrors(COUNTERS.main.id);
 
-  let total = 0;
+  let totalCreated = 0;
+  let totalUpdated = 0;
   for (const [label, cfg] of Object.entries(COUNTERS)) {
     const res = await ensureGoals(label, cfg.id, cfg.goals);
-    total += res.created;
+    totalCreated += res.created;
+    totalUpdated += res.updated;
   }
 
-  console.log(`\nГотово. Новых целей: ${total}`);
+  console.log(`\nГотово. Новых: ${totalCreated}, переименовано: ${totalUpdated}`);
   console.log("UI: https://metrika.yandex.ru/goals?id=" + COUNTERS.main.id);
+  console.log(
+    "source_diag (organic_visit / direct_visit) — не ставить целью оптимизации Direct.",
+  );
 }
 
 main().catch((err) => {
