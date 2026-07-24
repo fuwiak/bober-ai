@@ -4,7 +4,7 @@ import NextLink from "next/link";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
 import { useFormLengthVariant } from "@/hooks/useAbVariant";
-import { getAttribution, reachGoal } from "@/lib/analytics";
+import { getAttribution, attributionGoalParams, reachGoal } from "@/lib/analytics";
 import { LEGAL_ROUTES } from "@/lib/legal";
 import { CONTACT_EMAIL } from "@/lib/site";
 
@@ -75,6 +75,7 @@ export function ContactForm({
     formStartedRef.current = true;
     reachGoal(trackingPrefix ? `${trackingPrefix}_form_start` : "form_start", {
       form_length: formLength,
+      ...attributionGoalParams(),
     });
   }
 
@@ -127,7 +128,10 @@ export function ContactForm({
     const attrLines = [
       attribution.landing_page && `Landing: ${attribution.landing_page}`,
       attribution.utm_source && `utm_source: ${attribution.utm_source}`,
+      attribution.utm_medium && `utm_medium: ${attribution.utm_medium}`,
       attribution.utm_campaign && `utm_campaign: ${attribution.utm_campaign}`,
+      attribution.utm_content && `utm_content: ${attribution.utm_content}`,
+      attribution.utm_term && `utm_term: ${attribution.utm_term}`,
       attribution.yclid && `yclid: ${attribution.yclid}`,
     ].filter(Boolean) as string[];
 
@@ -166,11 +170,11 @@ export function ContactForm({
         throw new Error(data.message || t("errorSend"));
       }
 
-      const goalParams = {
+      const goalParams = attributionGoalParams({
         service: defaultService || undefined,
         form_length: formLength,
         leadId: data.leadId,
-      };
+      });
       reachGoal(trackingPrefix ? `${trackingPrefix}_form_submit` : "form_submit", goalParams);
 
       // Confirms actual delivery (SMTP path returned leadId), not dry-run / honeypot ack.

@@ -2,8 +2,8 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
-import { ContactForm } from "@/components/ContactForm";
 import { ContactCta } from "@/components/ContactCta";
+import { LandingHeroForm } from "@/components/LandingHeroForm";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { TrackedAnchor } from "@/components/TrackedAnchor";
 import { Reveal } from "@/components/motion/Reveal";
@@ -137,7 +137,7 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
                 { name: content.h1, path: `/${page.category}/${page.slug}` },
               ]}
             />
-            <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_360px] lg:items-start">
+            <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_minmax(300px,380px)] lg:items-start">
               <Reveal className="max-w-4xl">
                 <span className="section-label">{content.eyebrow}</span>
                 <h1 className="display-md mt-4">{content.h1}</h1>
@@ -150,19 +150,24 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
                     {t("common.telegram")}
                   </TrackedAnchor>
                 </div>
-              </Reveal>
-              <Reveal delay={0.08}>
-                <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-hairline bg-surface-soft">
+                <div className="relative mt-10 aspect-[4/3] max-w-md overflow-hidden rounded-lg border border-hairline bg-surface-soft lg:hidden">
                   <Image
                     src={page.coverImage}
                     alt={content.h1}
                     fill
                     className="object-contain p-4"
-                    sizes="360px"
+                    sizes="(max-width: 1023px) 90vw, 360px"
                     unoptimized={isDiagramImage(page.coverImage)}
                     priority
                   />
                 </div>
+              </Reveal>
+              <Reveal delay={0.08} className="landing-hero-form-wrap lg:sticky lg:top-24" id="contact">
+                <LandingHeroForm
+                  defaultService={content.h1}
+                  title={t("common.formTitle")}
+                  subtitle={t("common.formSubtitle")}
+                />
               </Reveal>
             </div>
           </div>
@@ -330,7 +335,7 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
           </section>
         ) : null}
 
-        <section className="section-band section--panel border-b border-hairline">
+        <section className="section-band section--panel border-b border-hairline landing-related">
           <div className="container-editorial">
             <Reveal>
               <h2 className="section-title">{content.relatedTitle}</h2>
@@ -343,19 +348,6 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
                   </StaggerItem>
                 ))}
               </Stagger>
-            </Reveal>
-          </div>
-        </section>
-
-        <section id="contact" className="section-band section--deep scroll-mt-16">
-          <div className="container-editorial grid gap-16 lg:grid-cols-2">
-            <Reveal>
-              <span className="section-label">{t("common.contact")}</span>
-              <h2 className="section-title mt-4">{t("common.formTitle")}</h2>
-              <p className="body-copy mt-4 max-w-xl text-base">{t("common.formSubtitle")}</p>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <ContactForm defaultService={content.h1} />
             </Reveal>
           </div>
         </section>

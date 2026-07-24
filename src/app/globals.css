@@ -2403,6 +2403,77 @@ html.dark {
     }
   }
 
+  /* Direct / paid traffic: sticky conversion bar */
+  .direct-sticky-bar {
+    position: fixed;
+    left: max(12px, env(safe-area-inset-left, 0px));
+    right: max(12px, env(safe-area-inset-right, 0px));
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border: 1px solid var(--color-hairline, rgba(255, 255, 255, 0.18));
+    border-radius: 14px;
+    background: rgba(8, 8, 8, 0.94);
+    backdrop-filter: blur(10px);
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+  .direct-sticky-bar--hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+  }
+  .direct-sticky-bar__link {
+    flex: 0 1 auto;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.78);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .direct-sticky-bar__cta {
+    margin-left: auto;
+    min-height: 44px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1px solid #ffffff;
+    background: #ffffff;
+    color: #000000;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  html:not(.dark) .direct-sticky-bar {
+    background: rgba(255, 255, 255, 0.96);
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+  html:not(.dark) .direct-sticky-bar__link {
+    color: rgba(0, 0, 0, 0.72);
+  }
+  html:not(.dark) .direct-sticky-bar__cta {
+    border-color: #000000;
+    background: #000000;
+    color: #ffffff;
+  }
+  @media (max-width: 639px) {
+    .direct-sticky-bar__link:first-child {
+      display: none;
+    }
+  }
+
+  /* Less SEO-nav leakage for paid clicks */
+  html[data-paid-traffic] .landing-related {
+    display: none;
+  }
+  .landing-hero-form .contact-form {
+    margin-top: 0;
+  }
+
   .footer-dark {
     @apply border-t border-hairline bg-canvas py-16 md:py-20;
     color: var(--color-muted);

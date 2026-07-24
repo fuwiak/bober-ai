@@ -29,6 +29,12 @@ const COUNTERS = {
     goals: [
       { name: "WWW: primary CTA", ident: "primary_cta_click" },
       { name: "WWW: lead delivered", ident: "lead_delivered" },
+      { name: "WWW: form start", ident: "form_start" },
+      { name: "WWW: form submit", ident: "form_submit" },
+      { name: "WWW: Direct / paid visit", ident: "direct_visit" },
+      { name: "WWW: phone click", ident: "phone_click" },
+      { name: "WWW: Telegram click", ident: "telegram_click" },
+      { name: "WWW: modal Telegram", ident: "modal_telegram_click" },
       { name: "WWW: calendar CTA", ident: "calendar_cta_click" },
       { name: "WWW: hero secondary CTA", ident: "hero_secondary_cta_click" },
       { name: "WWW: header consult CTA", ident: "header_consult_cta_click" },

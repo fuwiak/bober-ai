@@ -70,6 +70,40 @@ export function getAttribution(): Attribution {
   return readStoredAttribution() ?? { landing_page: window.location.pathname };
 }
 
+/** Яндекс Директ / CPC: yclid или классические UTM платного трафика. */
+export function isPaidTraffic(attr?: Attribution | null): boolean {
+  const a = attr ?? (typeof window === "undefined" ? null : getAttribution());
+  if (!a) return false;
+  if (a.yclid) return true;
+  const medium = (a.utm_medium || "").toLowerCase();
+  if (["cpc", "cpm", "paid", "ppc", "display", "retargeting"].includes(medium)) return true;
+  const source = (a.utm_source || "").toLowerCase();
+  return source === "yandex" || source === "ya" || source === "yandex_direct" || source === "direct";
+}
+
+export function attributionGoalParams(extra?: Record<string, unknown>): Record<string, unknown> {
+  const a = getAttribution();
+  return {
+    ...extra,
+    utm_source: a.utm_source,
+    utm_medium: a.utm_medium,
+    utm_campaign: a.utm_campaign,
+    utm_content: a.utm_content,
+    utm_term: a.utm_term,
+    yclid: a.yclid,
+    landing_page: a.landing_page,
+    paid: isPaidTraffic(a) ? 1 : 0,
+  };
+}
+
+/** Помечает <html data-paid-traffic> для CSS / sticky CTA. */
+export function syncPaidTrafficMarker() {
+  if (typeof document === "undefined") return false;
+  const paid = isPaidTraffic();
+  document.documentElement.toggleAttribute("data-paid-traffic", paid);
+  return paid;
+}
+
 export function reachGoal(goal: string, params?: Record<string, unknown>) {
   if (typeof window === "undefined") return;
 
