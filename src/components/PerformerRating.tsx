@@ -6,27 +6,22 @@ type PerformerRatingProps = {
   className?: string;
 };
 
-/** Must match YML `Рейтинг` / `Число отзывов` exactly (Webmaster compares page ↔ feed). */
+/** Plain text must match YML exactly — avoid React whitespace holes that break Yandex scrapers. */
 export function PerformerRating({ locale = "ru", className = "" }: PerformerRatingProps) {
   const isEn = locale === "en";
+  const line = isEn
+    ? `Rating ${FEED_RATING} · Reviews ${FEED_REVIEWS_COUNT}`
+    : `Рейтинг ${FEED_RATING} · Число отзывов ${FEED_REVIEWS_COUNT}`;
 
   return (
-    <div
-      className={`performer-rating ${className}`.trim()}
-      itemScope
-      itemType="https://schema.org/AggregateRating"
-    >
-      <meta itemProp="bestRating" content="5" />
-      <meta itemProp="worstRating" content="1" />
+    <div className={`performer-rating ${className}`.trim()}>
       <p className="text-sm text-ink">
-        {isEn ? "Rating" : "Рейтинг"}{" "}
-        <span itemProp="ratingValue" className="font-medium tabular-nums">
-          {FEED_RATING}
-        </span>
-        {" · "}
-        {isEn ? "Reviews" : "Число отзывов"}{" "}
-        <span itemProp="reviewCount" className="font-medium tabular-nums">
-          {FEED_REVIEWS_COUNT}
+        <span itemScope itemType="https://schema.org/AggregateRating">
+          <meta itemProp="bestRating" content="5" />
+          <meta itemProp="worstRating" content="1" />
+          <meta itemProp="ratingValue" content={FEED_RATING} />
+          <meta itemProp="reviewCount" content={FEED_REVIEWS_COUNT} />
+          {line}
         </span>
       </p>
       <a

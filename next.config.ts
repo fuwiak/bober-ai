@@ -8,10 +8,6 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  async rewrites() {
-    // Always serve generated YML (not a stale static snapshot) for Webmaster moderation.
-    return [{ source: "/performers-feed.yml", destination: "/api/feeds/performers" }];
-  },
   async redirects() {
     return [
       {

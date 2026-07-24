@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-24 17:50">
+<yml_catalog date="2026-07-24 17:56">
   <shop>
     <name>Bober AI Systems — Битрикс24</name>
     <company>Bober AI Systems</company>
@@ -45,13 +45,13 @@
       <set-ids>bitrix-start</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-start.jpg</picture>
       <description>Внедрение Битрикс24 с AI</description>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
@@ -69,13 +69,13 @@
       <set-ids>crm-automation</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-crm-automation.jpg</picture>
       <description>AI-автоматизация Битрикс24</description>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
@@ -93,13 +93,13 @@
       <set-ids>ai-analytics</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-ai-analytics.jpg</picture>
       <description>AI-аналитика Битрикс24</description>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
@@ -117,13 +117,13 @@
       <set-ids>integrations-1c</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-integrations.jpg</picture>
       <description>Интеграция Битрикс24 и AI для продаж</description>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
@@ -141,13 +141,13 @@
       <set-ids>private-llm</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-private-llm.jpg</picture>
       <description>Битрикс24 + локальный LLM</description>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
