@@ -11,6 +11,9 @@
  */
 
 import fetch from "./lib/fetch.mjs";
+import { applyYagaCredentials } from "./lib/yaga-credentials.mjs";
+
+applyYagaCredentials();
 
 const MANAGEMENT_API = "https://api-metrika.yandex.net/management/v1";
 
@@ -32,6 +35,7 @@ const COUNTERS = {
       { name: "WWW: form start", ident: "form_start" },
       { name: "WWW: form submit", ident: "form_submit" },
       { name: "WWW: Direct / paid visit", ident: "direct_visit" },
+      { name: "WWW: Organic search visit", ident: "organic_visit" },
       { name: "WWW: phone click", ident: "phone_click" },
       { name: "WWW: Telegram click", ident: "telegram_click" },
       { name: "WWW: modal Telegram", ident: "modal_telegram_click" },

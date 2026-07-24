@@ -70,19 +70,61 @@ export function getAttribution(): Attribution {
   return readStoredAttribution() ?? { landing_page: window.location.pathname };
 }
 
+const PAID_MEDIUMS = new Set(["cpc", "cpm", "paid", "ppc", "display", "retargeting"]);
+const ORGANIC_MEDIUMS = new Set(["organic", "seo"]);
+
+function searchEngineFromReferrer(referrer = ""): string | null {
+  try {
+    const host = new URL(referrer).hostname.toLowerCase();
+    if (/(^|\.)yandex\.|(^|\.)ya\.ru$/.test(host)) return "yandex";
+    if (/(^|\.)google\./.test(host)) return "google";
+    if (/(^|\.)bing\.com$/.test(host)) return "bing";
+    if (/(^|\.)duckduckgo\.com$/.test(host)) return "duckduckgo";
+    if (/(^|\.)mail\.ru$/.test(host) || /(^|\.)go\.mail\.ru$/.test(host)) return "mailru";
+    if (/(^|\.)yahoo\./.test(host)) return "yahoo";
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 /** Яндекс Директ / CPC: yclid или классические UTM платного трафика. */
 export function isPaidTraffic(attr?: Attribution | null): boolean {
   const a = attr ?? (typeof window === "undefined" ? null : getAttribution());
   if (!a) return false;
   if (a.yclid) return true;
   const medium = (a.utm_medium || "").toLowerCase();
-  if (["cpc", "cpm", "paid", "ppc", "display", "retargeting"].includes(medium)) return true;
+  if (PAID_MEDIUMS.has(medium)) return true;
   const source = (a.utm_source || "").toLowerCase();
-  return source === "yandex" || source === "ya" || source === "yandex_direct" || source === "direct";
+  return source === "yandex_direct" || source === "ydirect";
+}
+
+/** Органика: referrer поисковика или utm_medium=organic, без paid/yclid. */
+export function isOrganicTraffic(attr?: Attribution | null): boolean {
+  const a = attr ?? (typeof window === "undefined" ? null : getAttribution());
+  if (!a || isPaidTraffic(a)) return false;
+
+  const medium = (a.utm_medium || "").toLowerCase();
+  if (ORGANIC_MEDIUMS.has(medium)) return true;
+
+  if (typeof document === "undefined") return false;
+  return Boolean(searchEngineFromReferrer(document.referrer));
+}
+
+export function organicEngine(attr?: Attribution | null): string | undefined {
+  const a = attr ?? (typeof window === "undefined" ? null : getAttribution());
+  if (!a || isPaidTraffic(a)) return undefined;
+  const medium = (a.utm_medium || "").toLowerCase();
+  if (ORGANIC_MEDIUMS.has(medium)) {
+    return (a.utm_source || "organic").toLowerCase();
+  }
+  if (typeof document === "undefined") return undefined;
+  return searchEngineFromReferrer(document.referrer) ?? undefined;
 }
 
 export function attributionGoalParams(extra?: Record<string, unknown>): Record<string, unknown> {
   const a = getAttribution();
+  const organic = isOrganicTraffic(a);
   return {
     ...extra,
     utm_source: a.utm_source,
@@ -93,6 +135,8 @@ export function attributionGoalParams(extra?: Record<string, unknown>): Record<s
     yclid: a.yclid,
     landing_page: a.landing_page,
     paid: isPaidTraffic(a) ? 1 : 0,
+    organic: organic ? 1 : 0,
+    engine: organic ? organicEngine(a) : undefined,
   };
 }
 
@@ -101,6 +145,7 @@ export function syncPaidTrafficMarker() {
   if (typeof document === "undefined") return false;
   const paid = isPaidTraffic();
   document.documentElement.toggleAttribute("data-paid-traffic", paid);
+  document.documentElement.toggleAttribute("data-organic-traffic", !paid && isOrganicTraffic());
   return paid;
 }
 
