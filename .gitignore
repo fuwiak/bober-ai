@@ -22,3 +22,7 @@ articles/**/.export/
 # local yandex360 mailbox passwords / shared mailbox meta
 .yandex360-*-credentials
 .yandex360-*-shared
+
+# Яндекс Услуги (кабинет) — сессия Playwright и sniff API
+.yandex-uslugi-auth.json
+data/uslugi-sniff/

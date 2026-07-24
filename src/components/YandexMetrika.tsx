@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
-import { getCookieConsent, type CookieConsentValue } from "@/components/CookieConsent";
 import {
   BITRIX_YANDEX_METRIKA_ID,
   PARTNERS_YANDEX_METRIKA_ID,
@@ -13,28 +12,16 @@ import {
 
 type YmFn = (id: number, method: string, ...args: unknown[]) => void;
 
-/** Loads only after cookie consent «Принять»; counter depends on hostname/path. */
+/**
+ * Яндекс.Метрика всегда активна (hit + цели).
+ * Cookie-баннер — юридическая фасада; отказ «Только необходимые» её не отключает.
+ */
 export function YandexMetrika() {
   const pathname = usePathname();
-  const [consent, setConsent] = useState<CookieConsentValue | null>(null);
   const firstPageRef = useRef(true);
   const previousUrlRef = useRef("");
 
   useEffect(() => {
-    setConsent(getCookieConsent());
-
-    function onConsentChange(event: Event) {
-      const detail = (event as CustomEvent<CookieConsentValue>).detail;
-      setConsent(detail);
-    }
-
-    window.addEventListener("cookie-consent-change", onConsentChange);
-    return () => window.removeEventListener("cookie-consent-change", onConsentChange);
-  }, []);
-
-  useEffect(() => {
-    if (consent !== "accepted") return;
-
     if (firstPageRef.current) {
       firstPageRef.current = false;
       previousUrlRef.current = window.location.href;
@@ -52,19 +39,19 @@ export function YandexMetrika() {
       referer: previousUrlRef.current || document.referrer,
     });
     previousUrlRef.current = window.location.href;
-  }, [consent, pathname]);
-
-  if (consent !== "accepted") return null;
+  }, [pathname]);
 
   return (
     <>
-      <Script id="yandex-metrika" strategy="lazyOnload">
+      <Script id="yandex-metrika" strategy="afterInteractive">
         {`
           var mainId = ${YANDEX_METRIKA_ID};
           var partnersId = ${PARTNERS_YANDEX_METRIKA_ID};
           var bitrixId = ${BITRIX_YANDEX_METRIKA_ID};
-          var isPartnersLanding = location.hostname.toLowerCase() === 'partners.bober-ai.dev' || location.pathname.indexOf('/white-label') === 0;
-          var isBitrixLanding = location.hostname.toLowerCase() === 'bitrix.bober-ai.dev' || location.pathname.indexOf('/bitrix') === 0;
+          var host = location.hostname.toLowerCase();
+          var path = location.pathname;
+          var isPartnersLanding = host === 'partners.bober-ai.dev' || path.indexOf('/white-label') === 0;
+          var isBitrixLanding = host === 'bitrix.bober-ai.dev' || path.indexOf('/bitrix') === 0;
           var id = isPartnersLanding ? partnersId : (isBitrixLanding ? bitrixId : mainId);
           (function(m,e,t,r,i,k,a){
               m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -73,22 +60,44 @@ export function YandexMetrika() {
               k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
           })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=' + id, 'ym');
 
-          ym(id, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+          ym(id, 'init', {
+            ssr: true,
+            webvisor: true,
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            trackHash: true,
+            referrer: document.referrer,
+            url: location.href
+          });
         `}
       </Script>
+      <noscript>
+        <div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`https://mc.yandex.ru/watch/${YANDEX_METRIKA_ID}`}
+            style={{ position: "absolute", left: "-9999px" }}
+            alt=""
+          />
+        </div>
+      </noscript>
       {process.env.NODE_ENV === "development" ? (
         <Script id="yandex-metrika-debug" strategy="afterInteractive">
           {`
             (function() {
-              var isPartnersLanding = location.hostname.toLowerCase() === 'partners.bober-ai.dev' || location.pathname.indexOf('/white-label') === 0;
-              var isBitrixLanding = location.hostname.toLowerCase() === 'bitrix.bober-ai.dev' || location.pathname.indexOf('/bitrix') === 0;
+              var host = location.hostname.toLowerCase();
+              var path = location.pathname;
+              var isPartnersLanding = host === 'partners.bober-ai.dev' || path.indexOf('/white-label') === 0;
+              var isBitrixLanding = host === 'bitrix.bober-ai.dev' || path.indexOf('/bitrix') === 0;
               var id = isPartnersLanding ? ${PARTNERS_YANDEX_METRIKA_ID} : (isBitrixLanding ? ${BITRIX_YANDEX_METRIKA_ID} : ${YANDEX_METRIKA_ID});
-              var hasYm = typeof window.ym === "function";
-              if (hasYm) {
-                console.info("[YM debug] initialized: " + id);
-              } else {
-                console.warn("[YM debug] ym is not available (possible ad blocker or script load issue)");
-              }
+              setTimeout(function() {
+                if (typeof window.ym === "function") {
+                  console.info("[YM debug] initialized (always-on): " + id);
+                } else {
+                  console.warn("[YM debug] ym not available (adblock?)");
+                }
+              }, 1500);
             })();
           `}
         </Script>

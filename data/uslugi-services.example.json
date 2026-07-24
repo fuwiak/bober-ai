@@ -1,0 +1,23 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "specializationId": "187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "specializationNote": "Компьютеры и IT → Другое (кабинет)",
+  "services": [
+    {
+      "name": "Внедрение AI-ассистентов для бизнеса",
+      "price": 30000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/enterprise-ai-assistant.jpg",
+      "description": "Проектирование и внедрение AI-ассистентов: поддержка клиентов, обработка заявок, интеграции с CRM и мессенджерами. Под ключ — от аудита процесса до запуска."
+    },
+    {
+      "name": "Автоматизация процессов на n8n",
+      "price": 3000,
+      "priceMeasure": "hour",
+      "isMinimalPrice": true,
+      "photo": "public/stock/automation-code.jpg",
+      "description": "Связка сервисов, ботов и LLM в рабочие процессы. Интеграции CRM, Telegram, почты, отчёты и обработка ошибок."
+    }
+  ]
+}

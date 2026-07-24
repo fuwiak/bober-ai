@@ -66,11 +66,11 @@ export function CookieConsent() {
           Cookies и аналитика
         </p>
         <p id="cookie-consent-desc" className="cookie-consent-desc">
-          Этот сайт собирает Cookies и&nbsp;данные о&nbsp;передвижении по&nbsp;сайту через сервис
-          Яндекс.Метрика. Оставаясь на&nbsp;сайте, вы&nbsp;подтверждаете, что согласны с{" "}
+          Этот сайт использует Cookies и&nbsp;Яндекс.Метрику для аналитики посещений. Подробности — в{" "}
           <a href={PRIVACY_POLICY_URL} className="text-link">
-            Политикой конфиденциальности
+            Политике конфиденциальности
           </a>
+          . Продолжая пользоваться сайтом, вы&nbsp;подтверждаете ознакомление с&nbsp;политикой.
         </p>
         <div className="cookie-consent-actions">
           <button type="button" onClick={reject} className="btn-secondary-on-dark text-xs">
