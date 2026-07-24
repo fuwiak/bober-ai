@@ -111,14 +111,17 @@ export default function middleware(request: NextRequest) {
 
   // Явный 301: Яндекс учитывает 301/302 при выборе главного зеркала (не 308).
   // Verification-файлы на apex не редиректим — иначе нельзя подтвердить права на bober-ai.dev.
+  // Важно: не clone()+host — NextURL на Railway держит внутренний :8080 в Location
+  // и ломает Claude/ChatGPT/ботов при заходе на apex без www.
   if (host === APEX_HOST) {
     if (isOwnershipVerificationPath(pathname)) {
       return NextResponse.next();
     }
-    const url = request.nextUrl.clone();
-    url.protocol = "https:";
-    url.host = CANONICAL_HOST;
-    return NextResponse.redirect(url, 301);
+    const dest = new URL(
+      `${request.nextUrl.pathname}${request.nextUrl.search}`,
+      `https://${CANONICAL_HOST}`,
+    );
+    return NextResponse.redirect(dest, 301);
   }
 
   if (pathname === "/performers-feed.yml" || (pathname.startsWith("/feeds/") && pathname.endsWith(".yml"))) {

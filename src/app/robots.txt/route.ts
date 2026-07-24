@@ -7,17 +7,48 @@ export const dynamic = "force-static";
  * Custom robots.txt so we can emit Yandex `Clean-param` (not supported by
  * MetadataRoute.Robots). Replaces app/robots.ts — needed for standalone deploy
  * where postbuild-static.mjs never runs.
+ *
+ * Визитка: кормим всех поисковых и AI-ботов. Явные Allow для GPT/Claude/…
+ * (некоторые краулеры игнорируют только `User-agent: *`).
  */
+const AI_CRAWLERS = [
+  "GPTBot",
+  "ChatGPT-User",
+  "OAI-SearchBot",
+  "ClaudeBot",
+  "Claude-User",
+  "Claude-SearchBot",
+  "anthropic-ai",
+  "PerplexityBot",
+  "Google-Extended",
+  "Applebot-Extended",
+  "Bytespider",
+  "CCBot",
+  "meta-externalagent",
+  "FacebookBot",
+  "Diffbot",
+];
+
 export function GET() {
   const host = new URL(SITE_URL).host;
+  const aiBlocks = AI_CRAWLERS.flatMap((ua) => [
+    `User-agent: ${ua}`,
+    "Allow: /",
+    "",
+  ]);
+
   const body = [
+    "# Bober AI — open for search engines and AI assistants (визитка).",
+    "# Disallow only private API and a legacy static mirror page.",
     "User-Agent: *",
     "Allow: /",
     "Disallow: /api/",
     "Disallow: /partners/ru.html",
     "",
+    ...aiBlocks,
     `Host: ${host}`,
     `Sitemap: ${SITE_URL}/sitemap.xml`,
+    `# LLM summary: ${SITE_URL}/llms.txt`,
     "",
     "# Ignore tracking GET params (Yandex Clean-param; Webmaster UI has no API)",
     "User-agent: Yandex",

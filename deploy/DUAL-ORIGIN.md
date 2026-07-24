@@ -30,9 +30,13 @@ TXT    _railway-verify      → railway-verify=a9d433b771294aa24f94b66e85a3f5206
 
 ```bash
 dig +short bober-ai.dev                 # должен совпасть с IP www
-curl -sI --connect-timeout 5 https://bober-ai.dev/ | head -5   # 301 → www
+curl -sI --connect-timeout 5 https://bober-ai.dev/ | head -5
+# Location должен быть https://www.bober-ai.dev/… БЕЗ :8080
+# (баг clone()+host на Railway ломал Claude/ChatGPT)
 railway domain status www.bober-ai.dev
 ```
+
+AI / LLM: `robots.txt` явно Allow для GPTBot/ClaudeBot/…, визитка — `/llms.txt`.
 
 В Вебмастере API уже: главный = `https://www.bober-ai.dev` (36 URL в поиске),
 apex = неглавный. Если UI всё ещё пишет иначе — после рабочего 301 с apex
