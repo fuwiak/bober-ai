@@ -16,7 +16,7 @@ const config = {
   clientId: process.env.YANDEX_WEBMASTER_CLIENT_ID?.trim() || "f2e2f11ae7e3492886ad61a6e45a4c5c",
   siteUrl: (process.env.YANDEX_WEBMASTER_HOST_URL || process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev").replace(/\/$/, ""),
   feedUrl: (process.env.YANDEX_WEBMASTER_FEED_URL || "https://www.bober-ai.dev/performers-feed.yml").replace(/\/$/, ""),
-  metrikaId: process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID?.trim() || "108972710",
+  metrikaId: process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID?.trim() || "110635302",
   verificationCode: process.env.YANDEX_WEBMASTER_VERIFICATION_CODE?.trim() || "b5643e127be991c8",
 };
 
@@ -71,13 +71,20 @@ function normalizeHost(value) {
 }
 
 function pickHost(hosts, targetUrl) {
-  const targetHost = normalizeHost(targetUrl);
-  return hosts.find((host) => {
-    const candidates = [host.host_id, host.ascii_host_url, host.unicode_host_url]
-      .filter(Boolean)
-      .map((value) => String(value).toLowerCase());
-    return candidates.some((value) => value.includes(targetHost));
+  // Точное совпадение hostname, иначе www.bober-ai.dev матчился на bitrix.bober-ai.dev
+  // и статус показывал чужой хост.
+  const target = new URL(targetUrl.startsWith("http") ? targetUrl : `https://${targetUrl}`);
+  const targetHostname = target.hostname.toLowerCase();
+  const preferScheme = `${target.protocol.replace(":", "")}:`;
+  const matches = hosts.filter((host) => {
+    const url = String(host.ascii_host_url || host.unicode_host_url || host.host_id || "");
+    try {
+      return new URL(url).hostname.toLowerCase() === targetHostname;
+    } catch {
+      return String(host.host_id || "").toLowerCase().includes(`:${targetHostname}:`);
+    }
   });
+  return matches.find((host) => String(host.host_id || "").startsWith(preferScheme)) || matches[0];
 }
 
 async function checkPublicSignals() {
@@ -122,7 +129,7 @@ async function checkPublicSignals() {
   }
 
   console.log(`\n  Счётчик в коде: NEXT_PUBLIC_YANDEX_METRIKA_ID=${config.metrikaId}`);
-  console.log(`  Метрика грузится после согласия на cookies (см. YandexMetrika.tsx)\n`);
+  console.log(`  Метрика всегда активна, без ожидания согласия (см. YandexMetrika.tsx)\n`);
 }
 
 async function checkWebmasterApi() {

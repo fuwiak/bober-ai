@@ -54,6 +54,10 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
   verification: {
     yandex: "b5643e127be991c8",
+    // Задать в Railway после добавления сайта в Google Search Console.
+    ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+      ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+      : {}),
   },
   robots: {
     index: true,

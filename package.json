@@ -35,6 +35,7 @@
     "ytm:status": "node scripts/yandex-ytm-status.mjs",
     "yandex:wordstat": "node scripts/yandex-wordstat.mjs",
     "seo:generate-catalog": "node scripts/generate-seo-catalog.mjs",
+    "seo:indexnow": "node scripts/indexnow-submit.mjs",
     "yandex:direct:oauth": "node scripts/yandex-direct-oauth.mjs",
     "yandex:direct:oauth:refresh": "node scripts/yandex-direct-oauth.mjs refresh --update-railway",
     "yandex:direct:oauth:ensure": "node scripts/yandex-direct-oauth.mjs ensure --update-railway",
