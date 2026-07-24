@@ -42,6 +42,7 @@
     "yandex:direct:oauth:refresh": "node scripts/yandex-direct-oauth.mjs refresh --update-railway",
     "yandex:direct:oauth:ensure": "node scripts/yandex-direct-oauth.mjs ensure --update-railway",
     "yandex:direct:campaigns": "node scripts/yandex-direct-campaigns.mjs",
+    "yandex:direct:micro": "node scripts/yandex-direct-micro.mjs",
     "yandex:uslugi": "node scripts/yandex-uslugi.mjs",
     "yandex:uslugi:login": "node scripts/yandex-uslugi.mjs login",
     "yandex:uslugi:sniff": "node scripts/yandex-uslugi.mjs sniff",

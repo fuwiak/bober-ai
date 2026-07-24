@@ -1,0 +1,15 @@
+group,match_type,phrase,count,intent,landing,note
+Внедрение ИИ,phrase,внедрение ии в бизнес,791,commercial_high,https://www.bober-ai.dev/services/ai-discovery-roadmap,Wordstat popular · TAKE_high
+Внедрение ИИ,phrase,внедрение ии под ключ,45,commercial_high,https://www.bober-ai.dev/services/ai-discovery-roadmap,Wordstat popular · TAKE_high
+Внедрение ИИ,phrase,внедрение ии в бизнес под ключ,45,commercial_high,https://www.bober-ai.dev/services/ai-discovery-roadmap,Wordstat popular · TAKE_high
+Внедрение ИИ,phrase,услуги внедрение ии в бизнес,25,commercial_high,https://www.bober-ai.dev/services/ai-discovery-roadmap,Wordstat popular · TAKE_high
+Внедрение ИИ,phrase,заказать внедрение ии,10,commercial_high,https://www.bober-ai.dev/services/ai-discovery-roadmap,API totalCount=10 · micro volume · high intent
+Автоматизация,phrase,автоматизация бизнеса заказать,11,commercial_high,https://www.bober-ai.dev/services/business-process-automation,Wordstat popular · TAKE_micro
+КП,phrase,автоматизация коммерческих предложений,77,commercial_medium,https://www.bober-ai.dev/automation/proposal-generation,replace «…заказать» (API total=0)
+RAG,phrase,rag внедрение,55,commercial_high,https://www.bober-ai.dev/solutions/knowledge-base,better than bare «внедрение rag»
+RAG,phrase,разработка rag систем,40,commercial_high,https://www.bober-ai.dev/solutions/knowledge-base,Wordstat popular · TAKE_high
+Bitrix24+AI,phrase,внедрение битрикс24,550,commercial_high,https://bitrix.bober-ai.dev/,core buy intent
+Bitrix24+AI,phrase,внедрение bitrix24,49,commercial_high,https://bitrix.bober-ai.dev/,EN spelling
+Bitrix24+AI,phrase,внедрение crm битрикс24,71,commercial_high,https://bitrix.bober-ai.dev/,CRM+Bitrix buy
+Bitrix24+AI,phrase,внедрение битрикс24 цена,15,commercial_high,https://bitrix.bober-ai.dev/,price intent · micro
+Bitrix24+AI,phrase,автоматизация bitrix24,36,commercial_medium,https://bitrix.bober-ai.dev/,AI angle · needs minus login/скачать

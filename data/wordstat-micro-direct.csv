@@ -1,0 +1,145 @@
+phrase,count,source,seed,cluster,intent,intent_label,service_fit,priority
+битрикс 24,298315,similar,bitrix24 ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+купить робота,150713,similar,заказать автоматизацию бизнеса,automation-processes,informational,Информационный,blog,P4-blog
+him i,134131,similar,rag система,ai-tech,irrelevant,Нерелевантный (шум),skip,P0-skip
+битрикс 24 вход,130191,similar,bitrix24 ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+битрикс24,108736,similar,bitrix24 ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+инструкция по установке,86874,similar,внедрение ии под ключ,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+механизм это,49688,similar,rag система,ai-tech,irrelevant,Нерелевантный (шум),skip,P0-skip
+хочу в адреналин,44235,similar,внедрение rag,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+программы купить,40442,similar,заказать автоматизацию бизнеса,automation-processes,irrelevant,Нерелевантный (шум),skip,P0-skip
+рпд,39449,similar,rag система,ai-tech,irrelevant,Нерелевантный (шум),skip,P0-skip
+битрикс24 вход,26887,similar,bitrix24 ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+интеграция это,26617,similar,внедрение rag,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+bitrix24 ru,21136,similar,внедрение битрикс24,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P2-landing/ads
+купить проект,21453,similar,заказать автоматизацию бизнеса,automation-processes,irrelevant,Нерелевантный (шум),skip,P0-skip
+автомойка купить,17506,similar,заказать автоматизацию бизнеса,automation-processes,irrelevant,Нерелевантный (шум),skip,P0-skip
+установка кондиционера своими руками,17302,similar,внедрение rag,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+битрикс это,14024,similar,внедрение битрикс24,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+она говорит отстань перехожу эту грань,11960,similar,внедрение rag,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+федеративное устройство,11925,similar,rag система,ai-tech,irrelevant,Нерелевантный (шум),skip,P0-skip
+сколько стоит поставить машину на учет,11775,similar,заказать автоматизацию бизнеса,automation-processes,irrelevant,Нерелевантный (шум),skip,P0-skip
+не удается установить соединение с сайтом,10739,similar,внедрение битрикс24,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+b2b продажи,9180,similar,заказать автоматизацию бизнеса,automation-processes,commercial_medium,Коммерческий (средний),business-process-automation,P2-landing/ads
+роскомнадзор уведомление об обработке персональных данных,9078,similar,внедрение rag,other,informational,Информационный,blog,P4-blog
+бизнес процесс это,8620,similar,автоматизация коммерческих предложений,automation-sales,informational,Информационный,blog,P4-blog
+битрикс что это,8558,similar,внедрение битрикс24,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+раг,8148,similar,rag система,ai-tech,irrelevant,Нерелевантный (шум),skip,P0-skip
+она говорит отстань перехожу эту грань песня,7961,similar,внедрение rag,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+битрикс 24 что,7164,similar,bitrix24 ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+поменять регион на соединенные штаты,6675,similar,внедрение ии под ключ,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+агрегат это,6251,similar,rag система,ai-tech,irrelevant,Нерелевантный (шум),skip,P0-skip
+битрикс 24 это,6073,similar,внедрение битрикс24,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+интеграция что это,5708,similar,внедрение ии в бизнес,ai-corporate,irrelevant,Нерелевантный (шум),skip,P0-skip
+канал перехват управления,5394,similar,внедрение rag,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+ооо интеграция,4867,similar,внедрение ии в бизнес,ai-corporate,commercial_medium,Коммерческий (средний),enterprise-ai-assistant,P2-landing/ads
+битрикс войти,5278,similar,внедрение битрикс24,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+битрикс 24 что это,4589,similar,внедрение битрикс24,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+bitrix 24,3889,similar,bitrix24 ии,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P2-landing/ads
+y2k это,4376,similar,rag система,ai-tech,irrelevant,Нерелевантный (шум),skip,P0-skip
+как поменять регион в настройках,4212,similar,внедрение ии под ключ,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+вендинговый аппарат купить,4183,similar,заказать автоматизацию бизнеса,automation-processes,irrelevant,Нерелевантный (шум),skip,P0-skip
+чем отличается робот от автомата,4037,similar,автоматизация коммерческих предложений,automation-sales,informational,Информационный,blog,P4-blog
+чем отличается автомат от робота,4037,similar,автоматизация коммерческих предложений,automation-sales,informational,Информационный,blog,P4-blog
+что такое битрикс,4036,similar,внедрение битрикс24,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+я хочу в адреналин,3762,similar,внедрение rag,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+роп это,3057,similar,rag система,ai-tech,irrelevant,Нерелевантный (шум),skip,P0-skip
+битрикс24 это,2767,similar,bitrix24 ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+агс это,2767,similar,rag система,ai-tech,irrelevant,Нерелевантный (шум),skip,P0-skip
+zapret как установить,2701,similar,внедрение ии под ключ,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+crm для продаж,2133,similar,заказать автоматизацию бизнеса,automation-processes,commercial_medium,Коммерческий (средний),business-process-automation,P2-landing/ads
+rag система,1923,popular,rag система,ai-tech,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P2-landing/ads
+вендинг это,2398,similar,автоматизация коммерческих предложений,automation-sales,irrelevant,Нерелевантный (шум),skip,P0-skip
+либерализация цен,2359,similar,заказать автоматизацию бизнеса,automation-processes,irrelevant,Нерелевантный (шум),skip,P0-skip
+парентеральное введение это,2349,similar,внедрение rag,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+центр раскрытия корпоративной информации,1341,similar,внедрение ии в бизнес,ai-corporate,commercial_high,Коммерческий (высокий),enterprise-ai-assistant,P1-landing
+битрекс,2337,similar,внедрение битрикс24,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+оив это,2124,similar,rag система,ai-tech,irrelevant,Нерелевантный (шум),skip,P0-skip
+не мешайте я гуляю посреди весны,2075,similar,внедрение rag,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+битрикс24 что это,1857,similar,bitrix24 ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+битрикс 24 войти,1807,similar,внедрение битрикс24,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+внедрение ии в бизнес,791,popular,внедрение ии в бизнес,ai-corporate,commercial_high,Коммерческий (высокий),enterprise-ai-assistant,P1-landing
+faq что это,1689,similar,rag система,ai-tech,irrelevant,Нерелевантный (шум),skip,P0-skip
+чдд это,1639,similar,rag система,ai-tech,irrelevant,Нерелевантный (шум),skip,P0-skip
+внедрение битрикс24,546,popular,внедрение битрикс24,other,commercial_high,Коммерческий (высокий),ai-discovery-roadmap,P1-landing
+торговое дело кем работать после колледжа,1441,similar,внедрение ии в бизнес,ai-corporate,informational,Информационный,blog,P4-blog
+что такое битрикс 24,1428,similar,внедрение битрикс24,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+внедрение ии в бизнес процессы,254,popular,внедрение ии в бизнес,ai-corporate,commercial_high,Коммерческий (высокий),enterprise-ai-assistant,P1-landing
+bitrix24 что это,727,similar,внедрение битрикс24,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P2-landing/ads
+асу тп что это,1169,similar,автоматизация коммерческих предложений,automation-sales,irrelevant,Нерелевантный (шум),skip,P0-skip
+fbw что это,1113,similar,rag система,ai-tech,irrelevant,Нерелевантный (шум),skip,P0-skip
+внедрение crm битрикс24,63,popular,внедрение битрикс24,other,commercial_high,Коммерческий (высокий),ai-discovery-roadmap,P2-landing/ads
+rag внедрение,55,popular,внедрение rag,other,commercial_high,Коммерческий (высокий),ai-discovery-roadmap,P2-landing/ads
+бизнес ассистент это,563,similar,автоматизация коммерческих предложений,automation-sales,commercial_medium,Коммерческий (средний),sales-ai-agent,P2-landing/ads
+внедрение ии агентов в бизнес,47,popular,внедрение ии в бизнес,ai-corporate,commercial_high,Коммерческий (высокий),enterprise-ai-assistant,P2-landing/ads
+внедрение битрикс24 во владимире,47,popular,внедрение битрикс24,other,commercial_high,Коммерческий (высокий),ai-discovery-roadmap,P2-landing/ads
+внедрение ии под ключ,45,popular,внедрение ии под ключ,other,commercial_high,Коммерческий (высокий),ai-discovery-roadmap,P2-landing/ads
+разработка rag систем,40,popular,rag система,ai-tech,commercial_high,Коммерческий (высокий),ai-discovery-roadmap,P2-landing/ads
+внедрение ии в бизнес под ключ,35,popular,внедрение ии в бизнес,ai-corporate,commercial_high,Коммерческий (высокий),enterprise-ai-assistant,P2-landing/ads
+внедрение технологии ии в бизнес,34,popular,внедрение ии в бизнес,ai-corporate,commercial_high,Коммерческий (высокий),enterprise-ai-assistant,P2-landing/ads
+внедрение и настройка битрикс24,30,popular,внедрение битрикс24,other,commercial_high,Коммерческий (высокий),ai-discovery-roadmap,P2-landing/ads
+компании по внедрению ии в бизнес,29,popular,внедрение ии в бизнес,ai-corporate,commercial_high,Коммерческий (высокий),enterprise-ai-assistant,P2-landing/ads
+внедрение ии в бизнес решения,26,popular,внедрение ии в бизнес,ai-corporate,commercial_high,Коммерческий (высокий),enterprise-ai-assistant,P2-landing/ads
+услуги внедрение ии в бизнес,25,popular,внедрение ии в бизнес,ai-corporate,commercial_high,Коммерческий (высокий),enterprise-ai-assistant,P2-landing/ads
+кейс внедрения ии в бизнес,22,popular,внедрение ии в бизнес,ai-corporate,commercial_high,Коммерческий (высокий),enterprise-ai-assistant,P2-landing/ads
+внедрение битрикс24 в компанию,18,popular,внедрение битрикс24,other,commercial_high,Коммерческий (высокий),ai-discovery-roadmap,P2-landing/ads
+внедрение crm системы битрикс24,17,popular,внедрение битрикс24,other,commercial_high,Коммерческий (высокий),ai-discovery-roadmap,P2-landing/ads
+внедрение битрикс24 портал,16,popular,внедрение битрикс24,other,commercial_high,Коммерческий (высокий),ai-discovery-roadmap,P2-landing/ads
+внедрение битрикс24 цена,15,popular,внедрение битрикс24,other,commercial_high,Коммерческий (высокий),ai-discovery-roadmap,P2-landing/ads
+соль внедрение и сопровождение битрикс24,15,popular,внедрение битрикс24,other,commercial_high,Коммерческий (высокий),ai-discovery-roadmap,P2-landing/ads
+специалист по внедрению ии в бизнес,14,popular,внедрение ии в бизнес,ai-corporate,commercial_high,Коммерческий (высокий),enterprise-ai-assistant,P2-landing/ads
+внедрение ии в бизнес без иллюзий,13,popular,внедрение ии в бизнес,ai-corporate,commercial_high,Коммерческий (высокий),enterprise-ai-assistant,P2-landing/ads
+автоматизация бизнеса заказать,10,popular,заказать автоматизацию бизнеса,automation-processes,commercial_high,Коммерческий (высокий),business-process-automation,P2-landing/ads
+кейсы внедрения битрикс24,10,popular,внедрение битрикс24,other,commercial_high,Коммерческий (высокий),ai-discovery-roadmap,P2-landing/ads
+внедрение ии в бизнес тула,9,popular,внедрение ии в бизнес,ai-corporate,commercial_high,Коммерческий (высокий),enterprise-ai-assistant,P2-landing/ads
+внедрение ии в бизнес практику книга,7,popular,внедрение ии в бизнес,ai-corporate,commercial_high,Коммерческий (высокий),enterprise-ai-assistant,P2-landing/ads
+сколько стоит внедрение битрикс24 в 2026,6,popular,внедрение битрикс24,other,commercial_high,Коммерческий (высокий),ai-discovery-roadmap,P2-landing/ads
+красноярск внедрение битрикс24,5,popular,внедрение битрикс24,other,commercial_high,Коммерческий (высокий),ai-discovery-roadmap,P2-landing/ads
+внедрение битрикс24 челябинск,5,popular,внедрение битрикс24,other,commercial_high,Коммерческий (высокий),ai-discovery-roadmap,P2-landing/ads
+установка визуального расписания это адаптация,941,similar,внедрение rag,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+bitrixnodes,436,similar,bitrix24 ии,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P2-landing/ads
+федеративное устройство это,855,similar,rag система,ai-tech,irrelevant,Нерелевантный (шум),skip,P0-skip
+электронная коммерция это,838,similar,автоматизация коммерческих предложений,automation-sales,irrelevant,Нерелевантный (шум),skip,P0-skip
+данные для смены региона на соединенные штаты,815,similar,внедрение ии под ключ,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+техники продаж для менеджеров по продажам,295,similar,заказать автоматизацию бизнеса,automation-processes,commercial_medium,Коммерческий (средний),business-process-automation,P2-landing/ads
+деловые решения и технологии,679,similar,внедрение ии в бизнес,ai-corporate,informational,Информационный,blog,P4-blog
+центр корпоративных решений,779,similar,внедрение ии в бизнес,ai-corporate,irrelevant,Нерелевантный (шум),skip,P0-skip
+bitrix24 что это такое,249,similar,внедрение битрикс24,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P2-landing/ads
+ооо продамус что это за организация,691,similar,внедрение ии в бизнес,ai-corporate,irrelevant,Нерелевантный (шум),skip,P0-skip
+битрикс 24 регистрация,684,similar,bitrix24 ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+что такое франшиза простыми словами в бизнесе,578,similar,автоматизация коммерческих предложений,automation-sales,informational,Информационный,blog,P4-blog
+коммерция это простыми словами,666,similar,автоматизация коммерческих предложений,automation-sales,irrelevant,Нерелевантный (шум),skip,P0-skip
+f doc что это,634,similar,rag система,ai-tech,irrelevant,Нерелевантный (шум),skip,P0-skip
+как поменять страну на айфоне в настройках,589,similar,внедрение ии под ключ,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+автоматизация коммерческого предложения,73,popular,автоматизация коммерческих предложений,automation-sales,commercial_medium,Коммерческий (средний),sales-ai-agent,P3-seo
+система retrieval augmented generation rag,58,popular,rag система,ai-tech,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+rag системы ии,52,popular,rag система,ai-tech,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+rag системы от теории к практике,37,popular,rag система,ai-tech,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+создание rag системы,36,popular,rag система,ai-tech,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+построение rag систем,33,popular,rag система,ai-tech,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+rag система ai,26,popular,rag система,ai-tech,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+архитектура rag системы,26,popular,rag система,ai-tech,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+локальная rag система,22,popular,rag система,ai-tech,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+bitrix24 ии,20,popular,bitrix24 ии,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+вендинговый автомат что это,426,similar,автоматизация коммерческих предложений,automation-sales,informational,Информационный,blog,P4-blog
+rag системы от теории к практике pdf,11,popular,rag система,ai-tech,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+поисковая система rag,9,popular,rag система,ai-tech,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+rag система ai агент,9,popular,rag система,ai-tech,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+nlp cv рекомендательные системы rag llm mlops,9,popular,rag система,ai-tech,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+книга rag система,8,popular,rag система,ai-tech,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+схема rag системы,8,popular,rag система,ai-tech,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+rag система python,8,popular,rag система,ai-tech,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+rag система по пожарной безопасности,5,popular,rag система,ai-tech,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+вставлен носитель с другим уникальным номером,400,similar,внедрение ии под ключ,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+интегратор это простыми словами,369,similar,автоматизация коммерческих предложений,automation-sales,irrelevant,Нерелевантный (шум),skip,P0-skip
+битрикс 24 регистрация бесплатно,364,similar,bitrix24 ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+ксир что это за организация,266,similar,внедрение ии в бизнес,ai-corporate,irrelevant,Нерелевантный (шум),skip,P0-skip
+внедрение ии в бизнес обучение,50,popular,внедрение ии в бизнес,ai-corporate,informational,Информационный,blog,P4-blog
+fda что это за организация,141,similar,внедрение ии в бизнес,ai-corporate,irrelevant,Нерелевантный (шум),skip,P0-skip
+как сделать rag систему,25,popular,rag система,ai-tech,informational,Информационный,blog,P4-blog
+курс по внедрению ии в бизнес,20,popular,внедрение ии в бизнес,ai-corporate,informational,Информационный,blog,P4-blog
+примеры внедрения ии в бизнес процессы,15,popular,внедрение ии в бизнес,ai-corporate,informational,Информационный,blog,P4-blog
+внедрение ии в бизнес обучение бесплатно,8,popular,внедрение ии в бизнес,ai-corporate,informational,Информационный,blog,P4-blog
+примеры успешного внедрения ии в бизнес процессы,7,popular,внедрение ии в бизнес,ai-corporate,informational,Информационный,blog,P4-blog
+листинг программы это,104,similar,автоматизация коммерческих предложений,automation-sales,irrelevant,Нерелевантный (шум),skip,P0-skip
+ai automation что это,103,similar,автоматизация коммерческих предложений,automation-sales,irrelevant,Нерелевантный (шум),skip,P0-skip

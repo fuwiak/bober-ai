@@ -1,0 +1,110 @@
+{
+  "strategy": "micro-Direct: Search high-intent + Audience retargeting",
+  "dailyBudgetRub": {
+    "search": 800,
+    "retargeting": 400,
+    "totalCap": 1200
+  },
+  "wordstat": {
+    "checkedAt": "2026-07-25",
+    "sources": [
+      "data/wordstat-micro-direct.csv",
+      "data/wordstat-direct.csv",
+      "Yandex Search API topRequests (partial; rate limit 100/h)"
+    ],
+    "userPhrases": [
+      {
+        "phrase": "заказать внедрение ии",
+        "verdict": "TAKE_micro",
+        "evidence": "API totalCount≈10, no exact popular row — high intent, tiny demand"
+      },
+      {
+        "phrase": "интегратор ии для бизнеса",
+        "verdict": "SKIP",
+        "evidence": "API totalCount≈5 — too rare for Search bid"
+      },
+      {
+        "phrase": "автоматизация коммерческих предложений заказать",
+        "verdict": "SKIP_replace",
+        "evidence": "API totalCount=0; use «автоматизация коммерческих предложений» (77, commercial_medium)"
+      },
+      {
+        "phrase": "внедрение rag",
+        "verdict": "REPLACE",
+        "evidence": "prefer «rag внедрение» (55, commercial_high) / «разработка rag систем» (40)"
+      },
+      {
+        "phrase": "ии интеграция bitrix24",
+        "verdict": "REPLACE",
+        "evidence": "no exact row; use «внедрение битрикс24» (550) + «автоматизация bitrix24» (36) + «внедрение crm битрикс24» (71)"
+      }
+    ],
+    "rejectedBroad": [
+      {
+        "phrase": "внедрение искусственного интеллекта",
+        "count": 6254,
+        "why": "high volume but polluted (education/gov/healthcare expansions) — not surgical"
+      },
+      {
+        "phrase": "rag система",
+        "count": 1923,
+        "why": "commercial_medium / tech curiosity — keep for SEO, not Search ads without heavy minus"
+      }
+    ]
+  },
+  "campaign1Search": {
+    "name": "Bober · Search · High Intent",
+    "network": "Search only — no РСЯ",
+    "matchType": "phrase",
+    "csv": "data/direct-micro-campaign-search.csv",
+    "minus": "data/direct-minus.txt",
+    "extraMinus": [
+      "обучение",
+      "курс",
+      "вакансия",
+      "образование",
+      "здравоохранение",
+      "правительство",
+      "скачать",
+      "вход",
+      "логин",
+      "бесплатно",
+      "что такое"
+    ],
+    "optimizeGoals": ["lead_delivered", "form_submit"],
+    "doNotOptimizeOn": ["organic_visit", "direct_visit", "primary_cta_click"]
+  },
+  "campaign2Retargeting": {
+    "name": "Bober · Retargeting · Warm",
+    "network": "РСЯ via Yandex Audience (segment-only, not interest)",
+    "segments": [
+      {
+        "id": "pricing",
+        "metrika": "URL содержит /pricing за 14 дней"
+      },
+      {
+        "id": "cases",
+        "metrika": "цель case_study_view ИЛИ URL /portfolio за 14 дней"
+      },
+      {
+        "id": "roi",
+        "metrika": "цель roi_calculator_gate_open за 14 дней"
+      },
+      {
+        "id": "form",
+        "metrika": "цель form_start ИЛИ contact_intent_open за 14 дней"
+      },
+      {
+        "id": "return",
+        "metrika": "вернувшиеся ≥2 визита за 7 дней"
+      }
+    ],
+    "optimizeGoals": ["lead_delivered", "form_submit", "phone_click", "telegram_click"],
+    "doNotOptimizeOn": ["organic_visit", "direct_visit"],
+    "ui": [
+      "Метрика → Аудитории → сегменты по URL/целям",
+      "Яндекс Аудитории → импорт сегментов Метрики",
+      "Директ → кампания РСЯ → условия показа = только эти сегменты"
+    ]
+  }
+}
