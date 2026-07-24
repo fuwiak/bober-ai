@@ -17,6 +17,7 @@
     "webmaster:feed:upload": "node scripts/yandex-webmaster-feed.mjs",
     "webmaster:feed:upload:all": "node scripts/yandex-webmaster-feed.mjs --all",
     "webmaster:feed:upload:microsites": "node scripts/yandex-webmaster-feed.mjs --microsites",
+    "webmaster:feed:reload": "node scripts/yandex-feed-repair.mjs --reload-only",
     "webmaster:feed:status": "node scripts/yandex-status.mjs",
     "feeds:generate": "node scripts/generate-performers-feed.mjs",
     "webmaster:mirrors": "node scripts/yandex-webmaster-mirrors.mjs",

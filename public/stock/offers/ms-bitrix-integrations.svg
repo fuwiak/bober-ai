@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#f8f7f4"/>
+  <text x="40" y="48" font-family="system-ui,sans-serif" font-size="14" font-weight="600" fill="#1a1a1a" letter-spacing="0.08em">CRM ” 1C INTEGRATION</text>
+  <rect x="60" y="120" width="220" height="120" rx="6" fill="#fff" stroke="#c8c4bc" stroke-width="2"/>
+  <text x="170" y="160" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" font-weight="600" fill="#1a1a1a">CRM</text>
+  <text x="170" y="185" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6a6a6a">Deals · Contacts · Tasks</text>
+  <text x="170" y="210" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6a6a6a">amoCRM · Bitrix24</text>
+  <rect x="520" y="120" width="220" height="120" rx="6" fill="#fff" stroke="#c8c4bc" stroke-width="2"/>
+  <text x="630" y="160" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" font-weight="600" fill="#1a1a1a">1C</text>
+  <text x="630" y="185" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6a6a6a">Orders · Invoices · Stock</text>
+  <text x="630" y="210" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#6a6a6a">ERP · Accounting</text>
+  <rect x="300" y="150" width="200" height="60" rx="4" fill="#8b7355" fill-opacity="0.15" stroke="#8b7355" stroke-width="2"/>
+  <text x="400" y="178" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#1a1a1a">Sync Layer</text>
+  <text x="400" y="198" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6a6a6a">REST · OData · Queue</text>
+  <path d="M280 180h20" stroke="#8b7355" stroke-width="2"/>
+  <path d="M500 180h20" stroke="#8b7355" stroke-width="2"/>
+  <path d="M320 180l-15-8v16z" fill="#8b7355"/>
+  <path d="M480 180l15-8v16z" fill="#8b7355"/>
+  <rect x="60" y="300" width="680" height="150" rx="6" fill="#fff" stroke="#c8c4bc"/>
+  <text x="80" y="332" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#8b7355" letter-spacing="0.1em">DATA FLOWS</text>
+  <text x="80" y="365" font-family="system-ui,sans-serif" font-size="12" fill="#4a4a4a">’ New deal in CRM ’ create order in 1C</text>
+  <text x="80" y="395" font-family="system-ui,sans-serif" font-size="12" fill="#4a4a4a">’ Payment in 1C ’ update deal stage in CRM</text>
+  <text x="80" y="425" font-family="system-ui,sans-serif" font-size="12" fill="#4a4a4a">’ Stock change in 1C ’ notify sales manager</text>
+</svg>

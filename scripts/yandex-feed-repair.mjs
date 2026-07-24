@@ -217,6 +217,13 @@ async function main() {
     }
   }
 
+  if (flags.has("--reload-only")) {
+    await reloadFeedInWebmaster();
+    console.log("\nГотово (только перерегистрация фида).");
+    console.log("Дальше: Вебмастер → Фиды и ошибки → Перепроверить");
+    return;
+  }
+
   if (!flags.has("--skip-wait")) {
     await waitForValidProductionFeed();
   } else {

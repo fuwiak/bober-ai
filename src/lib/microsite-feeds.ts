@@ -67,11 +67,9 @@ function buildYmlCatalog(config: MicrositeFeedConfig, now = new Date()) {
   const offerBlocks = config.offers
     .map((offer) => {
       const url = `${feedSiteUrl}/#${offer.slug}`;
-      // Unique picture URL per offer (Yandex forbids repeating the same href).
-      const pictureBase = offer.picture.startsWith("http")
-        ? offer.picture
-        : `${SITE_URL.replace(/\/$/, "")}${offer.picture}`;
-      const picture = `${pictureBase}${pictureBase.includes("?") ? "&" : "?"}offer=${encodeURIComponent(offer.id)}`;
+      // Unique picture file per offer (Yandex forbids repeating the same href).
+      const ext = offer.picture.includes(".") ? offer.picture.split(".").pop()!.toLowerCase() : "jpg";
+      const pictureUrl = `${SITE_URL.replace(/\/$/, "")}/stock/offers/ms-${offer.id}.${ext}`;
 
       return `    <offer id="${escapeXml(offer.id)}">
       <name>${escapeXml(PROFILE.name)}</name>
@@ -80,7 +78,7 @@ function buildYmlCatalog(config: MicrositeFeedConfig, now = new Date()) {
       <currencyId>RUR</currencyId>
       <categoryId>${FEED_CATEGORY_ID}</categoryId>
       <set-ids>${escapeXml(offer.slug)}</set-ids>
-      <picture>${escapeXml(picture)}</picture>
+      <picture>${escapeXml(pictureUrl)}</picture>
       <description>${escapeXml(offer.title)}</description>
       <param name="Рейтинг">${FEED_RATING}</param>
       <param name="Число отзывов">${FEED_REVIEWS_COUNT}</param>

@@ -1,3 +1,5 @@
+import { copyFileSync, existsSync, mkdirSync } from "node:fs";
+import { dirname, join } from "node:path";
 import { CONTACT_EMAIL, SITE_DESCRIPTION, SITE_NAME, SITE_REGION, SITE_URL, TELEGRAM_URL } from "@/lib/site";
 import { PROFILE } from "@/lib/profile";
 import { getEnterpriseServices } from "@/lib/enterprise-services";
@@ -44,6 +46,12 @@ export const LEGACY_FEED_SLUGS: Record<string, string> = {
   "ai-kp-agent": "sales-ai-agent",
 };
 
+/** Yandex forbids repeating <picture> hrefs; use dedicated files (no query string — crawler often fails on ?). */
+export function feedPicturePath(offerId: string, serviceImage: string) {
+  const ext = serviceImage.includes(".") ? serviceImage.split(".").pop()!.toLowerCase() : "jpg";
+  return `/stock/offers/${offerId}.${ext}`;
+}
+
 export function getServiceOfferUrl(slug: string) {
   return `${FEED_SITE_URL}/services/${slug}`;
 }
@@ -53,11 +61,20 @@ export function getOrderTelegramUrl(serviceTitle: string) {
   return `${TELEGRAM_URL}?text=${encodeURIComponent(text)}`;
 }
 
-/** Yandex requires unique <picture> URLs per offer; same file via distinct query is OK. */
-function uniquePictureUrl(pathOrUrl: string, offerId: string) {
-  const base = pathOrUrl.startsWith("http") ? pathOrUrl : `${FEED_SITE_URL}${pathOrUrl}`;
-  const sep = base.includes("?") ? "&" : "?";
-  return `${base}${sep}offer=${encodeURIComponent(offerId)}`;
+/** Copy each offer image to a unique public path for the YML <picture> tags. */
+export function materializeFeedPictures(rootDir = process.cwd()) {
+  const offers = getEnterpriseServices("ru");
+  for (const offer of offers) {
+    const rel = feedPicturePath(offer.id, offer.serviceImage);
+    const dest = join(rootDir, "public", rel.replace(/^\//, ""));
+    const src = join(rootDir, "public", offer.serviceImage.replace(/^\//, ""));
+    mkdirSync(dirname(dest), { recursive: true });
+    if (!existsSync(src)) {
+      throw new Error(`Feed picture source missing: ${src}`);
+    }
+    copyFileSync(src, dest);
+  }
+  return offers.length;
 }
 
 export function getServiceFeedXml(now = new Date()) {
@@ -89,7 +106,7 @@ export function getServiceFeedXml(now = new Date()) {
   const offerBlocks = offers
     .map((offer) => {
       const url = getServiceOfferUrl(offer.slug);
-      const picture = uniquePictureUrl(offer.serviceImage, offer.id);
+      const picture = `${FEED_SITE_URL}${feedPicturePath(offer.id, offer.serviceImage)}`;
       const conversion = FEED_CONVERSION[offer.slug] ?? 90;
 
       return `    <offer id="${escapeXml(offer.id)}">

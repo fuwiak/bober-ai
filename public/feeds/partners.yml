@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<yml_catalog date="2026-07-24 16:25">
+<yml_catalog date="2026-07-24 16:52">
   <shop>
     <name>Bober AI Systems — Partner Program</name>
     <company>Bober AI Systems</company>
@@ -44,7 +44,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>presale-support</set-ids>
-      <picture>https://www.bober-ai.dev/stock/roadmap-sticky-notes.jpg?offer=partners-presale</picture>
+      <picture>https://www.bober-ai.dev/stock/offers/ms-partners-presale.jpg</picture>
       <description>Presale support для агентств</description>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
@@ -72,7 +72,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>project-delivery</set-ids>
-      <picture>https://www.bober-ai.dev/stock/team-collab.jpg?offer=partners-delivery</picture>
+      <picture>https://www.bober-ai.dev/stock/offers/ms-partners-delivery.jpg</picture>
       <description>White-label project delivery</description>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
@@ -100,7 +100,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>ongoing-ai-team</set-ids>
-      <picture>https://www.bober-ai.dev/stock/automation-code.jpg?offer=partners-ongoing</picture>
+      <picture>https://www.bober-ai.dev/stock/offers/ms-partners-ongoing.jpg</picture>
       <description>Ongoing AI team</description>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
@@ -128,7 +128,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>bitrix24-ai-analytics</set-ids>
-      <picture>https://www.bober-ai.dev/diagrams/crm-integration.svg?offer=partners-bitrix-analytics</picture>
+      <picture>https://www.bober-ai.dev/stock/offers/ms-partners-bitrix-analytics.svg</picture>
       <description>AI-аналитика для Битрикс24 (white-label)</description>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
@@ -156,7 +156,7 @@
       <currencyId>RUR</currencyId>
       <categoryId>18</categoryId>
       <set-ids>kp-documents</set-ids>
-      <picture>https://www.bober-ai.dev/diagrams/document-flow.svg?offer=partners-kp-docs</picture>
+      <picture>https://www.bober-ai.dev/stock/offers/ms-partners-kp-docs.svg</picture>
       <description>Автоматизация КП и документов</description>
       <param name="Рейтинг">5.0</param>
       <param name="Число отзывов">28</param>
