@@ -8,7 +8,11 @@ import { spawnSync } from "node:child_process";
  */
 const out = "out";
 
-/** Tracking params ignored by Yandex (Webmaster GET-params / Clean-param). No public API for Webmaster UI. */
+/**
+ * Tracking params ignored by Yandex (Webmaster GET-params / Clean-param).
+ * Keep in sync with src/lib/yandex-clean-params.ts (standalone robots.txt/route.ts).
+ * No-op when the route already emitted Clean-param into out/robots.txt.
+ */
 const YANDEX_CLEAN_PARAMS = [
   "utm_source",
   "utm_medium",
