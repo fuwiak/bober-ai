@@ -6,16 +6,16 @@ import logging
 from pathlib import Path
 from typing import Any
 
-from lead_radar.alerts import notify_session_expired
-from lead_radar.bitrix.client import BitrixClient, BitrixError
-from lead_radar.bitrix.funnel import ensure_funnel
-from lead_radar.bitrix.sync import upsert_lead
-from lead_radar.config import Settings, get_settings
-from lead_radar.models import Lead
-from lead_radar.sources.base import load_leads_from_json
-from lead_radar.sources.flru import FlRuSource
-from lead_radar.sources.kwork import KworkSessionExpired, KworkSource
-from lead_radar.sources.telegram import TelegramSource
+from kwork_bitrix.alerts import notify_session_expired
+from kwork_bitrix.bitrix.client import BitrixClient, BitrixError
+from kwork_bitrix.bitrix.funnel import ensure_funnel
+from kwork_bitrix.bitrix.sync import upsert_lead
+from kwork_bitrix.config import Settings, get_settings
+from kwork_bitrix.models import Lead
+from kwork_bitrix.sources.base import load_leads_from_json
+from kwork_bitrix.sources.flru import FlRuSource
+from kwork_bitrix.sources.kwork import KworkSessionExpired, KworkSource
+from kwork_bitrix.sources.telegram import TelegramSource
 
 log = logging.getLogger(__name__)
 

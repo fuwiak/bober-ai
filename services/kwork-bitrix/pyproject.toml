@@ -3,9 +3,9 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "lead-radar"
+name = "kwork-bitrix"
 version = "0.1.0"
-description = "Bober AI Lead Radar — Bitrix24 lead aggregation (Kwork + stubs)"
+description = "Bober AI Kwork Bitrix — Bitrix24 lead aggregation (Kwork + stubs)"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
@@ -19,7 +19,7 @@ dependencies = [
 ]
 
 [project.scripts]
-lead-radar = "lead_radar.__main__:main"
+kwork-bitrix = "kwork_bitrix.__main__:main"
 
 [tool.setuptools.packages.find]
-include = ["lead_radar*"]
+include = ["kwork_bitrix*"]

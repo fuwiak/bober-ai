@@ -22,7 +22,7 @@ FUNNEL_STAGES: tuple[tuple[str, str, int], ...] = (
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=(".env", "services/lead-radar/.env"),
+        env_file=(".env", "services/kwork-bitrix/.env"),
         env_file_encoding="utf-8",
         extra="ignore",
     )
@@ -31,7 +31,7 @@ class Settings(BaseSettings):
     host: str = "0.0.0.0"
     port: int = 8090
     log_level: str = "INFO"
-    sync_token: str = Field(default="", validation_alias="LEAD_RADAR_SYNC_TOKEN")
+    sync_token: str = Field(default="", validation_alias="KWORK_BITRIX_SYNC_TOKEN")
 
     # Bitrix — incoming webhook preferred for local / marketplace install docs
     bitrix_webhook_url: str = Field(default="", validation_alias="BITRIX_WEBHOOK_URL")
@@ -44,15 +44,15 @@ class Settings(BaseSettings):
 
     # Deal funnel
     funnel_category_name: str = Field(
-        default="Lead Radar", validation_alias="LEAD_RADAR_FUNNEL_NAME"
+        default="Kwork Bitrix", validation_alias="KWORK_BITRIX_FUNNEL_NAME"
     )
     funnel_category_id: int | None = Field(
-        default=None, validation_alias="LEAD_RADAR_CATEGORY_ID"
+        default=None, validation_alias="KWORK_BITRIX_CATEGORY_ID"
     )
     entity: Literal["deal", "lead"] = Field(
-        default="deal", validation_alias="LEAD_RADAR_ENTITY"
+        default="deal", validation_alias="KWORK_BITRIX_ENTITY"
     )
-    source_id: str = Field(default="LEADRADAR", validation_alias="LEAD_RADAR_SOURCE_ID")
+    source_id: str = Field(default="KWORKBITRIX", validation_alias="KWORK_BITRIX_SOURCE_ID")
 
     # Kwork — seller's own credentials only
     kwork_cookie: str = Field(default="", validation_alias="KWORK_COOKIE")
@@ -78,12 +78,12 @@ class Settings(BaseSettings):
 
     # Alerts when session dies
     alert_telegram_bot_token: str = Field(
-        default="", validation_alias="LEAD_RADAR_ALERT_TG_BOT_TOKEN"
+        default="", validation_alias="KWORK_BITRIX_ALERT_TG_BOT_TOKEN"
     )
     alert_telegram_chat_id: str = Field(
-        default="", validation_alias="LEAD_RADAR_ALERT_TG_CHAT_ID"
+        default="", validation_alias="KWORK_BITRIX_ALERT_TG_CHAT_ID"
     )
-    alert_email_to: str = Field(default="", validation_alias="LEAD_RADAR_ALERT_EMAIL")
+    alert_email_to: str = Field(default="", validation_alias="KWORK_BITRIX_ALERT_EMAIL")
 
     # HTTP retry
     http_max_retries: int = 3

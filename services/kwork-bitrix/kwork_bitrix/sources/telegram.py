@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import logging
 
-from lead_radar.models import Lead
+from kwork_bitrix.models import Lead
 
 log = logging.getLogger(__name__)
 
@@ -18,6 +18,6 @@ class TelegramSource:
 
     def fetch_leads(self) -> list[Lead]:
         log.warning(
-            "Telegram source is a stub — configure LEAD_RADAR_TG_* in a future release. Returning []."
+            "Telegram source is a stub — configure KWORK_BITRIX_TG_* in a future release. Returning []."
         )
         return []

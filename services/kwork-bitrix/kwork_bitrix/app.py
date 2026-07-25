@@ -8,16 +8,16 @@ from typing import Any
 from fastapi import FastAPI, Header, HTTPException, Query, Request
 from fastapi.responses import JSONResponse
 
-from lead_radar import __version__
-from lead_radar.config import get_settings
-from lead_radar.logging_setup import setup_logging
-from lead_radar.pipeline import run_sync
+from kwork_bitrix import __version__
+from kwork_bitrix.config import get_settings
+from kwork_bitrix.logging_setup import setup_logging
+from kwork_bitrix.pipeline import run_sync
 
 setup_logging(get_settings().log_level)
-log = logging.getLogger("lead_radar.app")
+log = logging.getLogger("kwork_bitrix.app")
 
 app = FastAPI(
-    title="Bober AI Lead Radar",
+    title="Bober AI Kwork Bitrix",
     description=(
         "Lead aggregation for Bitrix24 (Marketplace-ready local app). "
         "Kwork access is unofficial — sellers use their own credentials; disclose in listing."
@@ -35,7 +35,7 @@ def _check_sync_token(
     expected = settings.sync_token.strip()
     if not expected:
         # Dev-friendly: allow if unset, but warn
-        log.warning("LEAD_RADAR_SYNC_TOKEN unset — sync endpoint is open")
+        log.warning("KWORK_BITRIX_SYNC_TOKEN unset — sync endpoint is open")
         return
     provided = ""
     if x_sync_token:
@@ -53,7 +53,7 @@ def health() -> dict[str, Any]:
     settings = get_settings()
     return {
         "ok": True,
-        "service": "lead-radar",
+        "service": "kwork-bitrix",
         "version": __version__,
         "bitrix_configured": settings.bitrix_configured(),
         "kwork_cookie_configured": bool(
@@ -66,7 +66,7 @@ def health() -> dict[str, Any]:
 @app.get("/")
 def root() -> dict[str, str]:
     return {
-        "service": "lead-radar",
+        "service": "kwork-bitrix",
         "docs": "/docs",
         "health": "/health",
         "sync": "POST /sources/kwork/sync",
@@ -86,7 +86,7 @@ async def bitrix_install(request: Request) -> dict[str, Any]:
     except Exception:
         body = dict(await request.form())  # type: ignore[arg-type]
     log.info("bitrix/install ping keys=%s", list(body.keys())[:20])
-    return {"ok": True, "message": "Lead Radar install acknowledged (webhook mode)"}
+    return {"ok": True, "message": "Kwork Bitrix install acknowledged (webhook mode)"}
 
 
 @app.post("/bitrix/webhook")
@@ -145,8 +145,8 @@ def funnel_ensure(
     token: str | None = Query(None),
 ) -> dict[str, Any]:
     _check_sync_token(authorization, x_sync_token, token)
-    from lead_radar.bitrix.client import BitrixClient
-    from lead_radar.bitrix.funnel import ensure_funnel
+    from kwork_bitrix.bitrix.client import BitrixClient
+    from kwork_bitrix.bitrix.funnel import ensure_funnel
 
     settings = get_settings()
     client = BitrixClient.from_settings(settings)

@@ -7,8 +7,8 @@ from typing import Any
 
 import httpx
 
-from lead_radar.config import Settings
-from lead_radar.retry import with_retry
+from kwork_bitrix.config import Settings
+from kwork_bitrix.retry import with_retry
 
 log = logging.getLogger(__name__)
 

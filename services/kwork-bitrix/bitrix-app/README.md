@@ -1,24 +1,24 @@
-# Lead Radar — Bitrix local / Marketplace notes
+# Kwork Bitrix — Bitrix local / Marketplace notes
 
 ## Режим v0.1: входящий webhook (без карточки Market)
 
 Рекомендуется для пилота у `pasha_stasinski` / Bober AI:
 
 1. Создать входящий webhook с правом CRM.
-2. Развернуть `services/lead-radar` (Docker / VPS).
-3. Прописать `BITRIX_WEBHOOK_URL`, `LEAD_RADAR_SYNC_TOKEN`, credentials Kwork **на стороне клиента**.
+2. Развернуть `services/kwork-bitrix` (Docker / VPS).
+3. Прописать `BITRIX_WEBHOOK_URL`, `KWORK_BITRIX_SYNC_TOKEN`, credentials Kwork **на стороне клиента**.
 4. Один раз вызвать `ensure-funnel`.
 5. Повесить cron на `POST /sources/kwork/sync`.
 
-UI в портале не обязателен: воронка видна в CRM → Сделки → категория «Lead Radar».
+UI в портале не обязателен: воронка видна в CRM → Сделки → категория «Kwork Bitrix».
 
 ## Локальное приложение (следующий шаг)
 
 В кабинете разработчика Bitrix24:
 
 - Тип: **Серверное** / локальное приложение.
-- Handler install: `https://<lead-radar-host>/bitrix/install`
-- Handler: `https://<lead-radar-host>/bitrix/webhook` (события опциональны).
+- Handler install: `https://<kwork-bitrix-host>/bitrix/install`
+- Handler: `https://<kwork-bitrix-host>/bitrix/webhook` (события опциональны).
 - Scope: `crm`.
 - После установки предпочтительно сохранить incoming webhook URL, выданный порталом, или перейти на OAuth tokens.
 
@@ -26,7 +26,7 @@ UI в портале не обязателен: воронка видна в CRM
 
 ```json
 {
-  "name": "Lead Radar by Bober AI",
+  "name": "Kwork Bitrix by Bober AI",
   "description": "Агрегация лидов продавца (Kwork и др.) в воронку Bitrix24",
   "support": {
     "email": "support@bober-ai.dev"

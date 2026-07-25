@@ -1,4 +1,4 @@
-"""CLI entry: python -m lead_radar [serve|sync|ensure-funnel|dry-run]."""
+"""CLI entry: python -m kwork_bitrix [serve|sync|ensure-funnel|dry-run]."""
 
 from __future__ import annotations
 
@@ -7,14 +7,14 @@ import json
 import logging
 import sys
 
-from lead_radar.config import get_settings
-from lead_radar.logging_setup import setup_logging
+from kwork_bitrix.config import get_settings
+from kwork_bitrix.logging_setup import setup_logging
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        prog="lead-radar",
-        description="Bober AI Lead Radar — Bitrix24 lead aggregation",
+        prog="kwork-bitrix",
+        description="Bober AI Kwork Bitrix — Bitrix24 lead aggregation",
     )
     parser.add_argument(
         "command",
@@ -41,16 +41,16 @@ def main(argv: list[str] | None = None) -> int:
 
     settings = get_settings()
     setup_logging(settings.log_level)
-    log = logging.getLogger("lead_radar")
+    log = logging.getLogger("kwork_bitrix")
 
     if args.command == "serve":
         import uvicorn
 
         host = args.host or settings.host
         port = args.port or settings.port
-        log.info("Starting Lead Radar on %s:%s", host, port)
+        log.info("Starting Kwork Bitrix on %s:%s", host, port)
         uvicorn.run(
-            "lead_radar.app:app",
+            "kwork_bitrix.app:app",
             host=host,
             port=port,
             reload=False,
@@ -58,8 +58,8 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     if args.command == "ensure-funnel":
-        from lead_radar.bitrix.client import BitrixClient
-        from lead_radar.bitrix.funnel import ensure_funnel
+        from kwork_bitrix.bitrix.client import BitrixClient
+        from kwork_bitrix.bitrix.funnel import ensure_funnel
 
         client = BitrixClient.from_settings(settings)
         result = ensure_funnel(client, dry_run=False)
@@ -67,7 +67,7 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     dry = args.command == "dry-run" or args.no_write
-    from lead_radar.pipeline import run_sync
+    from kwork_bitrix.pipeline import run_sync
 
     result = run_sync(
         settings=settings,

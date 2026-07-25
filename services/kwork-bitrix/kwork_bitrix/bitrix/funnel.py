@@ -1,12 +1,12 @@
-"""Create / resolve Lead Radar deal category + 6 funnel stages."""
+"""Create / resolve Kwork Bitrix deal category + 6 funnel stages."""
 
 from __future__ import annotations
 
 import logging
 from typing import Any
 
-from lead_radar.bitrix.client import BitrixClient
-from lead_radar.config import FUNNEL_STAGES, Settings, get_settings
+from kwork_bitrix.bitrix.client import BitrixClient
+from kwork_bitrix.config import FUNNEL_STAGES, Settings, get_settings
 
 log = logging.getLogger(__name__)
 
@@ -18,13 +18,13 @@ def _stage_status_id(category_id: int, key: str) -> str:
 
 def ensure_source(client: BitrixClient, settings: Settings | None = None) -> str:
     settings = settings or get_settings()
-    source_id = settings.source_id.strip().upper() or "LEADRADAR"
+    source_id = settings.source_id.strip().upper() or "KWORKBITRIX"
     items = client.call("crm.status.entity.items", {"entityId": "SOURCE"}) or []
     for item in items:
         if str(item.get("STATUS_ID", "")).upper() == source_id:
             log.info("CRM source exists: %s", source_id)
             return str(item["STATUS_ID"])
-        if item.get("NAME") == "Lead Radar":
+        if item.get("NAME") == "Kwork Bitrix":
             return str(item["STATUS_ID"])
     sort = max((int(i.get("SORT") or 0) for i in items), default=0) + 10
     client.call(
@@ -33,7 +33,7 @@ def ensure_source(client: BitrixClient, settings: Settings | None = None) -> str
             "fields": {
                 "ENTITY_ID": "SOURCE",
                 "STATUS_ID": source_id,
-                "NAME": "Lead Radar",
+                "NAME": "Kwork Bitrix",
                 "SORT": sort,
             }
         },
@@ -68,7 +68,7 @@ def ensure_funnel(
 
     if settings.funnel_category_id is not None:
         category_id = int(settings.funnel_category_id)
-        log.info("Using configured LEAD_RADAR_CATEGORY_ID=%s", category_id)
+        log.info("Using configured KWORK_BITRIX_CATEGORY_ID=%s", category_id)
     else:
         existing = find_category_id(client, name)
         if existing is not None:

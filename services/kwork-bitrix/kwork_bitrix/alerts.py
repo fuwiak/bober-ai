@@ -8,14 +8,14 @@ from email.message import EmailMessage
 
 import httpx
 
-from lead_radar.config import Settings
+from kwork_bitrix.config import Settings
 
 log = logging.getLogger(__name__)
 
 
 def notify_session_expired(settings: Settings, detail: str) -> None:
     text = (
-        "Lead Radar: сессия Kwork истекла / не авторизована.\n"
+        "Kwork Bitrix: сессия Kwork истекла / не авторизована.\n"
         f"{detail}\n"
         "Обновите KWORK_COOKIE или KWORK_LOGIN/PASSWORD. "
         "Cookies не коммитить."

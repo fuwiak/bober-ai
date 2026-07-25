@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from lead_radar.models import Lead
+from kwork_bitrix.models import Lead
 
 
 def load_leads_from_json(path: str | Path, *, source: str = "kwork") -> list[Lead]:

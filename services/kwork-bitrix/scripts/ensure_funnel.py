@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One-shot: create Lead Radar deal category + 6 stages via Bitrix webhook."""
+"""One-shot: create Kwork Bitrix deal category + 6 stages via Bitrix webhook."""
 
 from __future__ import annotations
 
@@ -10,10 +10,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from lead_radar.bitrix.client import BitrixClient  # noqa: E402
-from lead_radar.bitrix.funnel import ensure_funnel  # noqa: E402
-from lead_radar.config import get_settings  # noqa: E402
-from lead_radar.logging_setup import setup_logging  # noqa: E402
+from kwork_bitrix.bitrix.client import BitrixClient  # noqa: E402
+from kwork_bitrix.bitrix.funnel import ensure_funnel  # noqa: E402
+from kwork_bitrix.config import get_settings  # noqa: E402
+from kwork_bitrix.logging_setup import setup_logging  # noqa: E402
 
 
 def main() -> int:

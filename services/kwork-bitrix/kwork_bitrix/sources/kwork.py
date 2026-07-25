@@ -16,9 +16,9 @@ from urllib.parse import urlencode
 
 import httpx
 
-from lead_radar.config import Settings, get_settings
-from lead_radar.models import Lead
-from lead_radar.retry import with_retry
+from kwork_bitrix.config import Settings, get_settings
+from kwork_bitrix.models import Lead
+from kwork_bitrix.retry import with_retry
 
 log = logging.getLogger(__name__)
 

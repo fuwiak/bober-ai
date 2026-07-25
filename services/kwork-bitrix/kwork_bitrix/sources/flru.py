@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import logging
 
-from lead_radar.models import Lead
+from kwork_bitrix.models import Lead
 
 log = logging.getLogger(__name__)
 

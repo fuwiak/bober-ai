@@ -6,9 +6,9 @@ import logging
 import re
 from typing import Any
 
-from lead_radar.bitrix.client import BitrixClient
-from lead_radar.config import Settings
-from lead_radar.models import Lead
+from kwork_bitrix.bitrix.client import BitrixClient
+from kwork_bitrix.config import Settings
+from kwork_bitrix.models import Lead
 
 log = logging.getLogger(__name__)
 

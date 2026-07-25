@@ -4,11 +4,11 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from lead_radar.models import Lead
-from lead_radar.pipeline import run_sync
-from lead_radar.sources.base import load_leads_from_json
-from lead_radar.sources.flru import FlRuSource
-from lead_radar.sources.telegram import TelegramSource
+from kwork_bitrix.models import Lead
+from kwork_bitrix.pipeline import run_sync
+from kwork_bitrix.sources.base import load_leads_from_json
+from kwork_bitrix.sources.flru import FlRuSource
+from kwork_bitrix.sources.telegram import TelegramSource
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -28,7 +28,7 @@ def test_stubs_empty():
 
 
 def test_dry_run_json_without_bitrix(monkeypatch):
-    from lead_radar import config
+    from kwork_bitrix import config
 
     monkeypatch.setenv("BITRIX_WEBHOOK_URL", "")
     monkeypatch.setenv("BITRIX24_ACCESS_TOKEN", "")
