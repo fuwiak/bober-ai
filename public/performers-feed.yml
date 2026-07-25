@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-24 17:56">
+<yml_catalog date="2026-07-25 04:53">
   <shop>
     <name>Bober AI Systems</name>
     <company>Bober AI Systems</company>
@@ -98,9 +98,9 @@
     <offer id="business-process-automation">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/business-process-automation</url>
-      <price from="true">400000</price>
+      <price from="true">500000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 400 000 ₽</sales_notes>
+      <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>business-process-automation</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/business-process-automation.jpg</picture>
@@ -122,9 +122,9 @@
     <offer id="sales-ai-agent">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/sales-ai-agent</url>
-      <price from="true">400000</price>
+      <price from="true">500000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 400 000 ₽</sales_notes>
+      <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>sales-ai-agent</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/sales-ai-agent.jpg</picture>
@@ -242,9 +242,9 @@
     <offer id="rag">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/rag</url>
-      <price from="true">400000</price>
+      <price from="true">500000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 400 000 ₽</sales_notes>
+      <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>rag</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/rag.jpg</picture>
@@ -338,9 +338,9 @@
     <offer id="document-processing">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/document-processing</url>
-      <price from="true">400000</price>
+      <price from="true">500000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 400 000 ₽</sales_notes>
+      <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>document-processing</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/document-processing.jpg</picture>
@@ -410,9 +410,9 @@
     <offer id="open-webui">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/open-webui</url>
-      <price from="true">400000</price>
+      <price from="true">500000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 400 000 ₽</sales_notes>
+      <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>open-webui</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/open-webui.jpg</picture>
@@ -458,9 +458,9 @@
     <offer id="mcp">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/mcp</url>
-      <price from="true">400000</price>
+      <price from="true">500000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 400 000 ₽</sales_notes>
+      <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>mcp</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/mcp.jpg</picture>
@@ -506,9 +506,9 @@
     <offer id="knowledge-base">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/knowledge-base</url>
-      <price from="true">400000</price>
+      <price from="true">500000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 400 000 ₽</sales_notes>
+      <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>knowledge-base</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/knowledge-base.jpg</picture>
@@ -554,9 +554,9 @@
     <offer id="crm-integration">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/crm-integration</url>
-      <price from="true">400000</price>
+      <price from="true">500000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 400 000 ₽</sales_notes>
+      <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>crm-integration</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/crm-integration.jpg</picture>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-24 17:56">
+<yml_catalog date="2026-07-25 04:53">
   <shop>
     <name>Bober AI Systems — Битрикс24</name>
     <company>Bober AI Systems</company>
@@ -28,6 +28,10 @@
       <set id="integrations-1c">
         <name>Интеграция Битрикс24 и AI для продаж</name>
         <url>https://bitrix.bober-ai.dev/#integrations-1c</url>
+      </set>
+      <set id="mcp">
+        <name>MCP для Битрикс24 и BitrixGPT</name>
+        <url>https://bitrix.bober-ai.dev/#mcp</url>
       </set>
       <set id="private-llm">
         <name>Битрикс24 + локальный LLM</name>
@@ -64,7 +68,7 @@
       <url>https://bitrix.bober-ai.dev/#crm-automation</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>AI-автоматизация Битрикс24 · пилот от 300 000 ₽ · 2–4 недели</sales_notes>
+      <sales_notes>AI-автоматизация Битрикс24 · AI-контур отдела продаж · пилот от 300 000 ₽ · 2–4 недели</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>crm-automation</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-crm-automation.jpg</picture>
@@ -122,6 +126,30 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-ai.dev</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
+    </offer>
+    <offer id="bitrix-mcp">
+      <name>Павел Стасиньский</name>
+      <url>https://bitrix.bober-ai.dev/#mcp</url>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>MCP Битрикс24 / BitrixGPT · пилот от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>mcp</set-ids>
+      <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-mcp.jpg</picture>
+      <description>MCP для Битрикс24 и BitrixGPT</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">93</param>
       <adult>false</adult>
       <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
