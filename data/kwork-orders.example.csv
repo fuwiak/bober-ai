@@ -1,0 +1,3 @@
+order_id,buyer_name,buyer_username,title,budget,status,order_url,email,phone,notes
+12345678,Иван Петров,ivan_demo,Настройка Bitrix24 CRM,15000,in_progress,https://kwork.ru/tracker/view?id=12345678,,,Пример строки — замените реальными заказами с Kwork
+12345679,Мария С.,maria_s,AI-автоматизация лидов,25000,done,https://kwork.ru/tracker/view?id=12345679,maria@example.com,,

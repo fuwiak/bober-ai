@@ -1,0 +1,25 @@
+{
+  "profile": "https://kwork.ru/user/pasha_stasinski",
+  "note": "Пример для npm run kwork:bitrix:sync -- --json data/kwork-orders.example.json --dry-run",
+  "orders": [
+    {
+      "order_id": "12345678",
+      "buyer_name": "Иван Петров",
+      "buyer_username": "ivan_demo",
+      "title": "Настройка Bitrix24 CRM",
+      "budget": "15000",
+      "status": "in_progress",
+      "order_url": "https://kwork.ru/tracker/view?id=12345678"
+    },
+    {
+      "order_id": "12345679",
+      "buyer_name": "Мария С.",
+      "buyer_username": "maria_s",
+      "title": "AI-автоматизация лидов",
+      "budget": 25000,
+      "status": "done",
+      "order_url": "https://kwork.ru/tracker/view?id=12345679",
+      "email": "maria@example.com"
+    }
+  ]
+}
