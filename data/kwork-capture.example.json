@@ -1,0 +1,45 @@
+{
+  "_comment": "EXAMPLE ONLY — cat-catch-style capture with response bodies. Cat-catch is mainly a media sniffer; for Kwork orders prefer DevTools HAR. Fake orders, not live data.",
+  "source": "cat-catch-or-manual-json-export",
+  "profile": "https://kwork.ru/user/pasha_stasinski",
+  "resources": [
+    {
+      "url": "https://api.kwork.ru/v1/seller/orders?page=1",
+      "name": "seller-orders.json",
+      "type": "json",
+      "body": {
+        "success": true,
+        "response": {
+          "orders": [
+            {
+              "id": 99002233,
+              "title": "Аудит рекламы Yandex Direct",
+              "price": 9000,
+              "status": "in_progress",
+              "buyer": {
+                "username": "capture_buyer_1",
+                "name": "Демо Покупатель"
+              }
+            },
+            {
+              "id": 99002234,
+              "gtitle": "Скрипт синхронизации лидов",
+              "price_seller": 22000,
+              "status": "new",
+              "buyer": {
+                "login": "capture_buyer_2",
+                "fullname": "Ольга Т."
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://kwork.ru/static/some-video.m3u8",
+      "name": "ignored-media.m3u8",
+      "type": "m3u8",
+      "note": "медиа без JSON-тела — парсер пропускает"
+    }
+  ]
+}

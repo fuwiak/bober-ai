@@ -56,6 +56,7 @@
     "bitrix:catalog:sync": "node scripts/bitrix-catalog-sync.mjs",
     "bitrix:site:teaser": "node scripts/bitrix-site-teaser.mjs",
     "kwork:bitrix:sync": "node scripts/kwork-bitrix-sync.mjs",
+    "kwork:bitrix:from-har": "node scripts/kwork-bitrix-sync.mjs --har",
     "yandex:uslugi": "node scripts/yandex-uslugi.mjs",
     "yandex:uslugi:login": "node scripts/yandex-uslugi.mjs login",
     "yandex:uslugi:sniff": "node scripts/yandex-uslugi.mjs sniff",

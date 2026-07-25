@@ -17,19 +17,25 @@
  *   C) Дедуп по ORIGINATOR_ID=kwork + ORIGIN_ID=<order_id>
  *   D) Принимает тот же JSON через webhook POST /api/kwork/webhook (см. route.ts)
  *
- * Альтернативы без API (документированы, не реализованы как парсеры):
+ * Альтернативы без API:
+ *   - Offline capture: Chrome HAR / cat-catch JSON → --har / --capture
+ *     (см. scripts/kwork-capture-guide.md). Живой логин в аккаунт из CI не делается.
  *   - Email/IMAP уведомлений Kwork — хрупко, зависит от шаблонов писем
- *   - Browser automation / логин в kwork.ru — не используем без явного запроса
+ *   - Browser automation / пароли в репо — запрещены
  *
  * Setup:
  *   1. Bitrix OAuth уже есть: npm run bitrix:oauth -- test (scope crm)
  *   2. Скопируйте data/kwork-orders.example.csv → свой файл с заказами
+ *      ИЛИ сохраните HAR со своей сессии (Network → Save all as HAR with content)
  *   3. (опционально) KWORK_PROFILE_URL, KWORK_WEBHOOK_SECRET в credentials.env
  *
  * Запуск:
  *   npm run kwork:bitrix:sync -- --csv data/kwork-orders.example.csv --dry-run
  *   npm run kwork:bitrix:sync -- --csv path/to/orders.csv
  *   npm run kwork:bitrix:sync -- --json path/to/orders.json
+ *   npm run kwork:bitrix:from-har -- data/kwork-orders.har.example.json --dry-run
+ *   npm run kwork:bitrix:sync -- --har path/to/session.har
+ *   npm run kwork:bitrix:sync -- --capture data/kwork-capture.example.json --dry-run
  *   npm run kwork:bitrix:sync -- --ensure-source-only
  *   npm run kwork:bitrix:sync -- --csv orders.csv --entity deal
  *
@@ -52,6 +58,7 @@ import {
   isTokenExpired,
   refreshAccessToken,
 } from "./lib/bitrix-oauth.mjs";
+import { loadOrdersFromCaptureFile } from "./lib/kwork-capture.mjs";
 
 applyYagaCredentials();
 
@@ -263,21 +270,58 @@ function normalizeOrder(raw) {
   };
 }
 
+function resolvePath(p) {
+  return path.isAbsolute(p) ? p : path.join(ROOT, p);
+}
+
 function loadOrders() {
   const csvPath = readFlag("--csv");
   const jsonPath = readFlag("--json");
-  if (!csvPath && !jsonPath) {
-    fail("Укажите --csv <file> или --json <file> (или --ensure-source-only)");
+  const harPath = readFlag("--har");
+  const capturePath = readFlag("--capture");
+  const sources = [csvPath, jsonPath, harPath, capturePath].filter(Boolean);
+  if (!sources.length) {
+    fail(
+      "Укажите --csv / --json / --har / --capture <file> (или --ensure-source-only). Гайд: scripts/kwork-capture-guide.md",
+    );
   }
+  if (sources.length > 1) {
+    fail("Укажите только один источник: --csv, --json, --har или --capture");
+  }
+
   if (csvPath) {
-    const abs = path.isAbsolute(csvPath) ? csvPath : path.join(ROOT, csvPath);
-    const text = fs.readFileSync(abs, "utf8");
+    const text = fs.readFileSync(resolvePath(csvPath), "utf8");
     return parseCsv(text).map(normalizeOrder);
   }
-  const abs = path.isAbsolute(jsonPath) ? jsonPath : path.join(ROOT, jsonPath);
-  const data = JSON.parse(fs.readFileSync(abs, "utf8"));
-  const list = Array.isArray(data) ? data : data.orders || data.items || [];
-  return list.map(normalizeOrder);
+  if (jsonPath) {
+    const data = JSON.parse(fs.readFileSync(resolvePath(jsonPath), "utf8"));
+    const list = Array.isArray(data) ? data : data.orders || data.items || [];
+    return list.map(normalizeOrder);
+  }
+  if (harPath) {
+    const abs = resolvePath(harPath);
+    const { orders, meta, kind } = loadOrdersFromCaptureFile(abs, "har");
+    log(
+      `Capture (${kind}): entries=${meta.entries ?? "?"} kwork=${meta.kworkEntries ?? "?"} jsonBodies=${meta.jsonBodies ?? "?"} → заказов ${orders.length}`,
+    );
+    if (!orders.length) {
+      fail(
+        "В HAR не найдено order-like JSON. Откройте трекер/заказы под своей сессией и сохраните HAR with content. См. scripts/kwork-capture-guide.md",
+      );
+    }
+    return orders.map(normalizeOrder);
+  }
+  const abs = resolvePath(capturePath);
+  const { orders, meta, kind } = loadOrdersFromCaptureFile(abs, "capture");
+  log(
+    `Capture (${kind}): items=${meta.items ?? "?"} withBody=${meta.withBody ?? "?"} → заказов ${orders.length}`,
+  );
+  if (!orders.length) {
+    fail(
+      "В capture JSON не найдено заказов. Нужны тела ответов (body/text/content), не только URL. См. scripts/kwork-capture-guide.md",
+    );
+  }
+  return orders.map(normalizeOrder);
 }
 
 function statePath() {
@@ -442,7 +486,8 @@ async function main() {
   log(`Профиль: ${DEFAULT_PROFILE}`);
   log(`Сущность: ${ENTITY}, SOURCE_ID=${SOURCE_ID}`);
   log("");
-  log("Ограничение: у Kwork нет публичного API — импорт только CSV/JSON/webhook.");
+  log("Ограничение: у Kwork нет публичного API — импорт CSV/JSON/HAR/capture/webhook.");
+  log("Живой сниффинг аккаунта из этой среды недоступен: нужен ваш локальный HAR/capture.");
   log("");
 
   const config = await ensureConfig();

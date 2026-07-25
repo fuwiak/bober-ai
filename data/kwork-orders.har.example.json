@@ -1,0 +1,71 @@
+{
+  "_comment": "EXAMPLE ONLY — anonymized fake HAR. Not live Kwork data. Paths resemble public/unofficial api.kwork.ru + kwork.ru patterns for parser tests.",
+  "log": {
+    "version": "1.2",
+    "creator": { "name": "kwork-capture-example", "version": "1.0" },
+    "entries": [
+      {
+        "startedDateTime": "2026-07-25T10:00:00.000Z",
+        "time": 120,
+        "request": {
+          "method": "GET",
+          "url": "https://api.kwork.ru/v1/seller/orders?page=1",
+          "httpVersion": "HTTP/1.1",
+          "headers": [{ "name": "Accept", "value": "application/json" }],
+          "queryString": [{ "name": "page", "value": "1" }],
+          "cookies": [],
+          "headersSize": -1,
+          "bodySize": 0
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "httpVersion": "HTTP/1.1",
+          "headers": [{ "name": "Content-Type", "value": "application/json; charset=utf-8" }],
+          "cookies": [],
+          "content": {
+            "size": 512,
+            "mimeType": "application/json",
+            "text": "{\"success\":true,\"response\":{\"orders\":[{\"id\":88001122,\"title\":\"Настройка воронки Bitrix24\",\"price\":12000,\"status\":\"in_progress\",\"buyer\":{\"username\":\"buyer_demo_a\",\"name\":\"Алексей Д.\"}},{\"id\":88001123,\"title\":\"Интеграция вебхуков CRM\",\"price\":18000,\"status\":\"done\",\"buyer\":{\"username\":\"buyer_demo_b\",\"name\":\"Елена К.\"}}]}}"
+          },
+          "redirectURL": "",
+          "headersSize": -1,
+          "bodySize": 512
+        },
+        "cache": {},
+        "timings": { "send": 0, "wait": 100, "receive": 20 }
+      },
+      {
+        "startedDateTime": "2026-07-25T10:00:05.000Z",
+        "time": 80,
+        "request": {
+          "method": "GET",
+          "url": "https://kwork.ru/tracker/view?id=88001122",
+          "httpVersion": "HTTP/1.1",
+          "headers": [],
+          "queryString": [{ "name": "id", "value": "88001122" }],
+          "cookies": [],
+          "headersSize": -1,
+          "bodySize": 0
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "httpVersion": "HTTP/1.1",
+          "headers": [{ "name": "Content-Type", "value": "text/html" }],
+          "cookies": [],
+          "content": {
+            "size": 32,
+            "mimeType": "text/html",
+            "text": "<html><!-- EXAMPLE page --></html>"
+          },
+          "redirectURL": "",
+          "headersSize": -1,
+          "bodySize": 32
+        },
+        "cache": {},
+        "timings": { "send": 0, "wait": 60, "receive": 20 }
+      }
+    ]
+  }
+}
