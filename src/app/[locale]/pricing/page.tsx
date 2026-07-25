@@ -42,6 +42,7 @@ export default async function PricingPage({ params }: Props) {
     duration: string;
     forWhom: string;
     result: string;
+    badge?: string;
     featured?: boolean;
     detailsHref?: string;
   }[];

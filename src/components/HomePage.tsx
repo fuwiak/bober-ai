@@ -37,6 +37,7 @@ export default async function HomePage() {
       duration: string;
       forWhom: string;
       result: string;
+      badge?: string;
       featured?: boolean;
       detailsHref?: string;
     }[]

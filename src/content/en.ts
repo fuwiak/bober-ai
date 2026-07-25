@@ -407,10 +407,11 @@ const en = {
         duration: "2–8 weeks",
         forWhom: "Need Bitrix24 implementation, an AI layer and integrations with 1C, telephony and documents",
         result:
-          "Working portal and AI sales loop on top of CRM: pipeline, autofill, follow-up, accounting links — 1C-Bitrix partner ID 28909898",
+          "Working portal and an AI sales loop on top of your CRM: pipeline, autofill, follow-up touches, accounting links.",
+        badge: "1C-Bitrix integrator · ID 28909898",
         includes: [
           "Bitrix24 setup and rollout",
-          "AI sales loop on top of BitrixGPT",
+          "AI sales loop on top of the native Bitrix24 assistant",
           "Integrations: 1C, telephony, documents, proposals",
         ],
         tier: "implementation",

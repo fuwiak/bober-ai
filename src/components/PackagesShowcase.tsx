@@ -9,6 +9,7 @@ type PackageItem = {
   duration: string;
   forWhom: string;
   result: string;
+  badge?: string;
   featured?: boolean;
   detailsHref?: string;
 };
@@ -77,6 +78,7 @@ export function PackagesShowcase({
               <article className={`package-card${item.featured ? " package-card--featured" : ""}`}>
                 {item.featured ? <span className="package-card__badge">{featuredLabel}</span> : null}
                 <h3 className="card-title text-xl">{item.name}</h3>
+                {item.badge ? <p className="meta-label mt-2 text-muted">{item.badge}</p> : null}
                 <p className="package-card__price mt-3">{item.price}</p>
                 <p className="meta-label mt-2">{item.duration}</p>
                 <p className="body-copy mt-4 text-base">{item.forWhom}</p>
