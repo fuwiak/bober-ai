@@ -359,8 +359,8 @@ const en = {
         text: "1C-Bitrix partner program participation · ID 28909898. Bitrix24 implementation and an AI layer on top of CRM.",
       },
       {
-        title: "Code and documentation handover",
-        text: "Lower vendor lock-in: repository, access and runbook stay with you.",
+        title: "Bitrix24 + AI layer",
+        text: "We extend BitrixGPT for your processes: 1C, telephony, documents and an AI sales loop — the portal and integrations stay with you.",
       },
       {
         title: "NDA before kickoff",
