@@ -198,6 +198,10 @@ export type PortfolioItem = {
   id: string;
   slug: string;
   title: string;
+  /** Подзаголовок под H1 (часто SEO-название). */
+  subtitle?: string;
+  /** Title для meta/OG, если отличается от видимого H1. */
+  seoTitle?: string;
   image: string;
   /** a11y: описательный alt вместо голого title, если задан. */
   imageAlt?: string;
@@ -214,6 +218,12 @@ export type PortfolioItem = {
   scope?: string;
   duration?: string;
   architecture?: string;
+  /** «Как это работает» — шаги потока. */
+  processSteps?: string[];
+  /** Production-элементы контура (честный список). */
+  productionNotes?: string[];
+  /** Одно упоминание про готовые коннекторы / ApiMonster — ниже по странице. */
+  whyCustom?: string;
   stack?: string;
   skills?: string[];
   featured?: boolean;
@@ -333,28 +343,47 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "bitrix-kwork",
     slug: "bitrix24-kwork-crm",
-    title: "Кастомная интеграция Kwork → Bitrix24 CRM",
-    metric: "Заказы Kwork → канбан сделок Bitrix24",
-    metricMethod: "Скриншот живой воронки на портале — без чужого коннектора",
-    role: "Архитектура и внедрение своего контура Kwork → Bitrix24",
-    scope: "Захват заказов Kwork, создание/обновление сделок, стадии и суммы в канбане CRM",
+    title: "Заказы Kwork автоматически попадают в воронку Bitrix24",
+    subtitle: "Кастомная интеграция Kwork с Bitrix24 CRM",
+    seoTitle: "Кастомная интеграция Kwork с Bitrix24 CRM",
+    metric: "Собственный интеграционный контур без зависимости от стороннего SaaS",
+    metricMethod: "Скриншот живой воронки на портале",
+    role: "Архитектура и внедрение sync-контура Kwork → Bitrix24",
+    scope: "Захват заказов, маппинг клиента и услуги, create/update сделки, сумма и статус в CRM",
     duration: "Рабочий контур в production на живом портале",
-    architecture: "Свой webhook/sync-контур Kwork → REST Bitrix24, не ApiMonster и не готовый marketplace-коннектор",
+    architecture: "Собственный sync-контур Kwork → REST Bitrix24: захват → маппинг → upsert сделки → сумма и статус",
+    processSteps: [
+      "Заказ появляется в Kwork у продавца",
+      "Контур забирает заказ (session pull, capture или webhook)",
+      "Маппинг клиента, услуги и суммы в поля Bitrix24",
+      "Создание или обновление сделки — без дублей",
+      "Фиксация суммы и статуса Kwork в карточке CRM",
+      "Лог синка и обработка ошибок по заказам без потери батча",
+    ],
+    productionNotes: [
+      "Дедупликация по ORIGIN_ID — повторный прогон не плодит дубли сделок",
+      "Update существующей сделки вместо повторного create",
+      "Журнал синка (state-файл + логи): создано / обновлено / ошибки",
+      "Статус Kwork пишется в карточку (источник и комментарии)",
+      "Защита webhook-секретом и обновление OAuth-токена Bitrix24",
+    ],
+    whyCustom:
+      "Почему не готовый коннектор: у Kwork нет публичного API под наш сценарий, а сторонний SaaS вроде ApiMonster не даёт нужного контроля над полями и дедупликацией. Свой контур — без зависимости от чужого middleware.",
     stack: "Kwork · Bitrix24 · REST · webhook",
     image: PORTFOLIO_IMAGES.bitrixKwork,
     imageAlt:
       "Скриншот канбана сделок Bitrix24 CRM: сделки из Kwork (в том числе ML и Python) на тёмном интерфейсе — живая воронка кастомной интеграции",
     imageCaption:
-      "Канбан сделок Bitrix24: заказы с Kwork в единой воронке со стадиями и суммами — свой контур, не ApiMonster",
+      "Канбан сделок Bitrix24: заказы с Kwork в единой воронке со стадиями и суммами",
     category: "ИТ и разработка",
     featured: true,
     skills: ["Bitrix24", "Kwork", "REST API", "CRM", "Интеграции"],
     description:
-      "Заявки и заказы с Kwork переносились вручную или через чужие коннекторы вроде ApiMonster — терялся контроль над воронкой, полями и стадиями в Bitrix24.",
+      "Заказы с Kwork переносились вручную: менеджеры копировали клиента, услугу и сумму в Bitrix24, теряли статусы и рисковали дублями сделок.",
     solution:
-      "Свой контур: заказы с Kwork попадают в сделки Bitrix24 с источником, суммами и стадиями — единый канбан без чужого middleware.",
+      "Собственный интеграционный контур: заказ с Kwork автоматически создаёт или обновляет сделку в воронке Bitrix24 — с клиентом, услугой, суммой и статусом.",
     result:
-      "Живая воронка в CRM: заказы (в том числе ML/Python) видны на доске со стадиями и суммами; команда ведёт работу в Bitrix24, а не копирует из маркетплейса.",
+      "Живая воронка в CRM: заказы (в том числе ML/Python) видны на канбане со стадиями и суммами; команда работает в Bitrix24, а не копирует из маркетплейса.",
   },
   {
     id: "crm-bot",

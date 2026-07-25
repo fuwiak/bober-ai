@@ -948,7 +948,7 @@ const en = {
   },
   portfolio: {
     title: "Case studies",
-    subtitle: "Three implementation examples — measurable result first, technology second",
+    subtitle: "Four implementation examples — measurable result first, technology second",
     allCases: "All case studies",
     metricLabel: "Key result",
     stackLabel: "Stack",

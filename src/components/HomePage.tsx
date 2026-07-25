@@ -46,7 +46,7 @@ export default async function HomePage() {
   const beforeSteps = t.raw("beforeAfterDemo.beforeSteps") as { label: string; status: string }[];
   const afterSteps = t.raw("beforeAfterDemo.afterSteps") as { label: string; status: string }[];
   const demoFlow = t.raw("beforeAfterDemo.flow") as string[];
-  const caseStudies = getPortfolioListing(locale).slice(0, 3);
+  const caseStudies = getPortfolioListing(locale);
 
   return (
     <div className="page-shell min-h-screen">
@@ -95,7 +95,7 @@ export default async function HomePage() {
               <h2 className="section-title mt-4">{t("homeLanding.casesTitle")}</h2>
               <p className="body-copy mt-4 max-w-2xl text-base">{t("homeLanding.casesSubtitle")}</p>
             </Reveal>
-            <Stagger className="mt-10 grid gap-6 md:grid-cols-3">
+            <Stagger className="mt-10 grid gap-6 md:grid-cols-2">
               {caseStudies.map((item) => (
                 <StaggerItem key={item.slug}>
                   <CaseStudyCard

@@ -5,6 +5,8 @@ export type PortfolioEnCopy = Partial<
   Pick<
     PortfolioItem,
     | "title"
+    | "subtitle"
+    | "seoTitle"
     | "category"
     | "description"
     | "solution"
@@ -15,6 +17,9 @@ export type PortfolioEnCopy = Partial<
     | "scope"
     | "duration"
     | "architecture"
+    | "processSteps"
+    | "productionNotes"
+    | "whyCustom"
     | "priceLabel"
     | "imageAlt"
     | "imageCaption"
@@ -77,22 +82,42 @@ export const PORTFOLIO_EN: Record<string, PortfolioEnCopy> = {
       "A typical proposal is assembled in 2–5 minutes instead of ~45. Prices and SKUs only from the catalog — no invented line items. Table, VAT, terms and DOCX/PDF download.",
   },
   "bitrix24-kwork-crm": {
-    title: "Custom Kwork → Bitrix24 CRM integration",
+    title: "Kwork orders land in the Bitrix24 funnel automatically",
+    subtitle: "Custom Kwork ↔ Bitrix24 CRM integration",
+    seoTitle: "Custom Kwork ↔ Bitrix24 CRM integration",
     category: "IT and development",
-    metric: "Kwork orders → Bitrix24 deals kanban",
-    metricMethod: "Screenshot of a live funnel on the portal — no third-party connector",
-    role: "Architecture and delivery of a custom Kwork → Bitrix24 contour",
-    scope: "Kwork order capture, deal create/update, stages and amounts in the CRM kanban",
+    metric: "Own integration contour — no dependency on third-party SaaS",
+    metricMethod: "Screenshot of a live funnel on the portal",
+    role: "Architecture and delivery of the Kwork → Bitrix24 sync contour",
+    scope: "Order capture, client and service mapping, deal create/update, amount and status in CRM",
     duration: "Production contour on a live portal",
-    architecture: "Custom webhook/sync contour Kwork → Bitrix24 REST — not ApiMonster or a marketplace connector",
+    architecture:
+      "Custom sync contour Kwork → Bitrix24 REST: capture → map → upsert deal → amount and status",
+    processSteps: [
+      "An order appears for the seller on Kwork",
+      "The contour fetches the order (session pull, capture, or webhook)",
+      "Client, service and amount map into Bitrix24 fields",
+      "Create or update the deal — no duplicates",
+      "Amount and Kwork status are written into the CRM card",
+      "Sync log and per-order error handling without losing the batch",
+    ],
+    productionNotes: [
+      "Deduplication by ORIGIN_ID — re-runs do not create duplicate deals",
+      "Update of an existing deal instead of a second create",
+      "Sync journal (state file + logs): created / updated / errors",
+      "Kwork status is written into the card (source and comments)",
+      "Webhook secret protection and Bitrix24 OAuth token refresh",
+    ],
+    whyCustom:
+      "Why not a ready-made connector: Kwork has no public API for our scenario, and third-party SaaS like ApiMonster does not give the control we need over fields and deduplication. A custom contour — without depending on someone else’s middleware.",
     imageAlt:
       "Screenshot of Bitrix24 CRM deals kanban with many Kwork-sourced deals (including ML and Python jobs) in the dark Bitrix UI — live custom integration funnel",
     imageCaption:
-      "Bitrix24 deals kanban: Kwork orders in one funnel with stages and amounts — custom contour, not ApiMonster",
+      "Bitrix24 deals kanban: Kwork orders in one funnel with stages and amounts",
     description:
-      "Kwork requests and orders were copied by hand or through third-party connectors like ApiMonster — losing control over the Bitrix24 funnel, fields and stages.",
+      "Kwork orders were copied by hand: managers typed client, service and amount into Bitrix24, lost statuses and risked duplicate deals.",
     solution:
-      "A custom contour: Kwork orders land as Bitrix24 deals with source, amounts and stages — one kanban without third-party middleware.",
+      "A custom integration contour: each Kwork order automatically creates or updates a Bitrix24 deal — with client, service, amount and status.",
     result:
       "A live CRM funnel: orders (including ML/Python) show on the board with stages and amounts; the team works in Bitrix24 instead of copying from the marketplace.",
   },

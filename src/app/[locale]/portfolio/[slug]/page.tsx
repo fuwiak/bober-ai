@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!item) return {};
 
   return buildPageMetadata({
-    title: item.title,
+    title: item.seoTitle ?? item.title,
     description: item.description ?? item.title,
     path: `/portfolio/${item.slug}`,
     locale,
@@ -99,6 +99,9 @@ export default async function PortfolioProjectPage({ params }: PageProps) {
             <div className="mt-6 max-w-3xl">
               <span className="badge-accent text-[10px]">{item.category}</span>
               <h1 className="display-md mt-4">{item.title}</h1>
+              {item.subtitle ? (
+                <p className="mt-3 text-base leading-relaxed text-muted">{item.subtitle}</p>
+              ) : null}
               {item.priceLabel ? (
                 <p className="mt-3 font-display text-2xl tracking-tight text-ink">{item.priceLabel}</p>
               ) : null}
@@ -145,6 +148,44 @@ export default async function PortfolioProjectPage({ params }: PageProps) {
             ) : (
               <p className="mt-10 text-sm text-muted">{isEn ? "Detailed case study coming soon." : "Подробное описание проекта готовится."}</p>
             )}
+
+            {item.processSteps?.length ? (
+              <section className="mt-12">
+                <h2 className="font-display text-2xl tracking-tight text-ink">
+                  {isEn ? "How it works" : "Как это работает"}
+                </h2>
+                <ol className="mt-6 space-y-3">
+                  {item.processSteps.map((step, index) => (
+                    <li key={step} className="flex gap-3 text-sm leading-relaxed text-body">
+                      <span className="meta-label shrink-0 tabular-nums">{index + 1}.</span>
+                      <span>{step}</span>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            ) : null}
+
+            {item.productionNotes?.length ? (
+              <section className="mt-12">
+                <h2 className="font-display text-2xl tracking-tight text-ink">
+                  {isEn ? "Production-grade contour" : "Что делает контур production-grade"}
+                </h2>
+                <ul className="mt-6 list-disc space-y-2 pl-5 text-sm leading-relaxed text-body">
+                  {item.productionNotes.map((note) => (
+                    <li key={note}>{note}</li>
+                  ))}
+                </ul>
+              </section>
+            ) : null}
+
+            {item.whyCustom ? (
+              <section className="mt-12">
+                <h2 className="font-display text-2xl tracking-tight text-ink">
+                  {isEn ? "Why not a ready-made connector" : "Почему не готовый коннектор"}
+                </h2>
+                <p className="mt-4 max-w-3xl text-sm leading-relaxed text-body">{item.whyCustom}</p>
+              </section>
+            ) : null}
 
             {item.role || item.scope || item.duration || item.architecture || item.metric || item.metricMethod ? (
               <dl className="case-meta-grid mt-10">
