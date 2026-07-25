@@ -8,6 +8,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import {
   BITRIX_LANDING_KEYWORDS,
   BITRIX_LAYER_POSITIONING,
+  BITRIX_MCP,
   BITRIX_PACKAGES,
   BITRIX_PARTNER_PROGRAM,
   BITRIX_SALES_LOOP,
@@ -213,7 +214,7 @@ const PARTNER_CHECKLIST = [
   },
   {
     title: "Пакеты внедрения",
-    text: "Пять фиксированных пакетов с ключами Битрикс24 + AI: внедрение, AI-автоматизация, AI-аналитика, интеграции для продаж и локальный LLM.",
+    text: "Шесть пакетов Битрикс24 + AI: внедрение, AI-автоматизация, AI-аналитика, интеграции, MCP для BitrixGPT и локальный LLM.",
   },
   {
     title: "Лицензии и основная ценность",
@@ -415,6 +416,52 @@ export default function BitrixLandingPage() {
               <div className="mt-8">
                 <TrackedAnchor href="#contact" className="btn-primary" goal="bitrix_cta_click">
                   Оценить AI-контур продаж
+                </TrackedAnchor>
+              </div>
+            </div>
+          </section>
+
+          {/* 4.3. MCP Hub + external AI */}
+          <section id="mcp-hub" className="section-band section--panel scroll-mt-16 border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">MCP</span>
+                <h2 className="section-title mt-4 max-w-3xl">{BITRIX_MCP.title}</h2>
+                <p className="body-copy mt-4 max-w-2xl">{BITRIX_MCP.lead}</p>
+              </Reveal>
+              <div className="mt-8 grid gap-5 sm:grid-cols-2">
+                <div className="border border-hairline bg-surface-card p-6">
+                  <h3 className="card-title text-lg">{BITRIX_MCP.inbound.title}</h3>
+                  <p className="body-copy mt-3 text-sm">{BITRIX_MCP.inbound.text}</p>
+                  <ul className="mt-4 space-y-2">
+                    {BITRIX_MCP.inbound.points.map((item) => (
+                      <li key={item} className="flex items-start gap-3 text-sm text-body">
+                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="border border-hairline bg-surface-card p-6">
+                  <h3 className="card-title text-lg">{BITRIX_MCP.outbound.title}</h3>
+                  <p className="body-copy mt-3 text-sm">{BITRIX_MCP.outbound.text}</p>
+                  <ul className="mt-4 space-y-2">
+                    {BITRIX_MCP.outbound.points.map((item) => (
+                      <li key={item} className="flex items-start gap-3 text-sm text-body">
+                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <p className="body-copy mt-6 max-w-2xl text-sm text-body-strong">{BITRIX_MCP.offer}</p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <TrackedAnchor href="#contact" className="btn-primary" goal="bitrix_cta_click">
+                  Оценить внедрение MCP
+                </TrackedAnchor>
+                <TrackedAnchor href="#mcp" className="btn-secondary" goal="bitrix_packages_click">
+                  Смотреть пакет MCP
                 </TrackedAnchor>
               </div>
             </div>
