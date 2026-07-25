@@ -206,6 +206,8 @@ function buildUnifiedCampaignPayload({ name, budgetRub, siteUrl, metrikaCounterI
               WbMaximumClicks: {
                 WeeklySpendLimit: amount * 7,
               },
+              // SearchOrganizationList = «Список организаций и галерея услуг»
+              // https://yandex.ru/support/direct/ru/service-gallery/organization.md
               PlacementTypes: {
                 SearchResults: "YES",
                 ProductGallery: "NO",

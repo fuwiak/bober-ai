@@ -44,6 +44,7 @@
     "yandex:direct:campaigns": "node scripts/yandex-direct-campaigns.mjs",
     "yandex:direct:micro": "node scripts/yandex-direct-micro.mjs",
     "yandex:direct:mini-hot": "node scripts/yandex-direct-mini-hot.mjs",
+    "yandex:direct:service-gallery": "node scripts/yandex-direct-service-gallery.mjs",
     "yandex:audience:oauth": "node scripts/yandex-audience-oauth.mjs",
     "yandex:audience:oauth:refresh": "node scripts/yandex-audience-oauth.mjs refresh --update-railway",
     "yandex:audience:oauth:ensure": "node scripts/yandex-audience-oauth.mjs ensure --update-railway",

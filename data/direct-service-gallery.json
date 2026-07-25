@@ -1,0 +1,27 @@
+{
+  "profileUrl": "https://uslugi.yandex.ru/profile/PawelStasinski-254144",
+  "siteUrl": "https://www.bober-ai.dev",
+  "feedUrl": "https://www.bober-ai.dev/performers-feed.yml",
+  "directUi": "https://direct.yandex.ru/dna/grid/campaigns",
+  "docs": {
+    "gallery": "https://yandex.ru/support/direct/ru/service-gallery/about",
+    "master": "https://yandex.ru/support/direct/ru/campaign-master/service.md",
+    "organization": "https://yandex.ru/support/direct/ru/service-gallery/organization.md"
+  },
+  "path": "private_master",
+  "campaignMaster": {
+    "type": "Продвижение специалистов",
+    "region": ["Москва", "Россия"],
+    "budgetRubPerDayHint": [300, 1500],
+    "audience": "Подобрать оптимальную"
+  },
+  "epkFallback": {
+    "name": "Bober AI — Галерея услуг (ЕПК)",
+    "placement": "SearchOrganizationList",
+    "command": "npm run yandex:direct:service-gallery -- create-epk --budget-rub=1500"
+  },
+  "blockers": [
+    "Campaign Master / specialist promotion is UI-only (no Direct API)",
+    "Direct API requires approved app registration (error 58 until confirmed)"
+  ]
+}
