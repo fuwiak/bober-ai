@@ -13,6 +13,8 @@ export const BITRIX_DEFAULT_INSTALL_URI = "https://www.bober-ai.dev/api/bitrix/o
 export const BITRIX_TOKEN_URL = "https://oauth.bitrix.info/oauth/token/";
 /** Scope для КЭДО/Sign + типичные каналы. */
 export const BITRIX_SIGN_SCOPES = ["sign.b2e", "crm", "user", "im"];
+/** + Sites / landing REST (npm run bitrix:site:teaser). */
+export const BITRIX_LANDING_SCOPES = [...BITRIX_SIGN_SCOPES, "landing"];
 
 function trimSlash(url) {
   return String(url || "").replace(/\/$/, "");

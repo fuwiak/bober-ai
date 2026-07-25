@@ -26,6 +26,7 @@ import {
   BITRIX_DEFAULT_INSTALL_URI,
   BITRIX_DEFAULT_PORTAL,
   BITRIX_DEFAULT_REDIRECT_URI,
+  BITRIX_LANDING_SCOPES,
   BITRIX_SIGN_SCOPES,
   bitrixCredentialVarsFromBundle,
   bitrixRest,
@@ -92,7 +93,8 @@ function cmdSetup() {
   log("Путь для первоначальной установки");
   log(`  ${install}`);
   log("  (НЕ https://example.com/install.php)\n");
-  log(`Права: ${BITRIX_SIGN_SCOPES.join(", ")}\n`);
+  log(`Права (Sign): ${BITRIX_SIGN_SCOPES.join(", ")}`);
+  log(`Права (+ Sites): ${BITRIX_LANDING_SCOPES.join(", ")}\n`);
   log("Сохраните → скопируйте client_id и client_secret\n");
   log("Дальше в терминале:\n");
   log("  npm run bitrix:oauth -- set-app --client-id local.XXXX --client-secret YYYY");

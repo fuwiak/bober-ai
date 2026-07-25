@@ -54,6 +54,7 @@
     "bitrix:oauth:authorize": "node scripts/bitrix-oauth.mjs authorize-url",
     "bitrix:oauth:test": "node scripts/bitrix-oauth.mjs test --sign",
     "bitrix:catalog:sync": "node scripts/bitrix-catalog-sync.mjs",
+    "bitrix:site:teaser": "node scripts/bitrix-site-teaser.mjs",
     "yandex:uslugi": "node scripts/yandex-uslugi.mjs",
     "yandex:uslugi:login": "node scripts/yandex-uslugi.mjs login",
     "yandex:uslugi:sniff": "node scripts/yandex-uslugi.mjs sniff",
