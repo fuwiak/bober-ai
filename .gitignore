@@ -30,3 +30,6 @@ data/uslugi-sniff/
 # Kwork/browser HAR captures (may contain session cookies)
 *.har
 data/*.har
+
+# Kwork→Bitrix local dedup cache (order ids)
+data/.kwork-bitrix-sync-state.json

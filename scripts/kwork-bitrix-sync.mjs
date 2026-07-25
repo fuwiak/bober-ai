@@ -12,35 +12,44 @@
  * - Профиль продавца (контекст): https://kwork.ru/user/pasha_stasinski
  *
  * Что делает этот MVP:
- *   A) Импорт заказов из CSV/JSON → лиды или сделки Bitrix24
+ *   A) Импорт заказов из CSV/JSON/session-pull → лиды или сделки Bitrix24
  *   B) Гарантирует SOURCE_ID=KWORK в crm.status (ENTITY_ID=SOURCE)
  *   C) Дедуп по ORIGINATOR_ID=kwork + ORIGIN_ID=<order_id>
  *   D) Принимает тот же JSON через webhook POST /api/kwork/webhook (см. route.ts)
  *
  * Альтернативы без API:
+ *   - Live pull своей сессии: KWORK_COOKIE → --pull (GET /get_manage_orders)
  *   - Offline capture: Chrome HAR / cat-catch JSON → --har / --capture
- *     (см. scripts/kwork-capture-guide.md). Живой логин в аккаунт из CI не делается.
+ *     (см. scripts/kwork-capture-guide.md)
  *   - Email/IMAP уведомлений Kwork — хрупко, зависит от шаблонов писем
  *   - Browser automation / пароли в репо — запрещены
  *
  * Setup:
  *   1. Bitrix OAuth уже есть: npm run bitrix:oauth -- test (scope crm)
- *   2. Скопируйте data/kwork-orders.example.csv → свой файл с заказами
- *      ИЛИ сохраните HAR со своей сессии (Network → Save all as HAR with content)
+ *   2. KWORK_COOKIE / KWORK_COOKIES_FILE в ~/.config/yaga/ (mode 0600; не коммитить)
+ *      ИЛИ CSV/JSON/HAR/capture файл с заказами
  *   3. (опционально) KWORK_PROFILE_URL, KWORK_WEBHOOK_SECRET в credentials.env
  *
  * Запуск:
+ *   npm run kwork:bitrix:pull -- --dry-run
+ *   npm run kwork:bitrix:pull
+ *   npm run kwork:bitrix:sync -- --pull --dry-run
  *   npm run kwork:bitrix:sync -- --csv data/kwork-orders.example.csv --dry-run
  *   npm run kwork:bitrix:sync -- --csv path/to/orders.csv
  *   npm run kwork:bitrix:sync -- --json path/to/orders.json
  *   npm run kwork:bitrix:from-har -- data/kwork-orders.har.example.json --dry-run
  *   npm run kwork:bitrix:sync -- --har path/to/session.har
  *   npm run kwork:bitrix:sync -- --capture data/kwork-capture.example.json --dry-run
+ *   npm run kwork:bitrix:categories
+ *   npm run kwork:bitrix:sync -- --capture data/kwork-categories.capture.json --kind categories
  *   npm run kwork:bitrix:sync -- --ensure-source-only
  *   npm run kwork:bitrix:sync -- --csv orders.csv --entity deal
  *
  * Env:
  *   BITRIX24_*          — существующий OAuth локального приложения
+ *   KWORK_COOKIE        — Cookie header (локально; не коммитить)
+ *   KWORK_COOKIES_FILE  — путь к файлу cookies (~/.config/yaga/)
+ *   KWORK_PULL_STATUSES — через запятую, по умолчанию all
  *   KWORK_PROFILE_URL   — по умолчанию https://kwork.ru/user/pasha_stasinski
  *   KWORK_SOURCE_ID     — STATUS_ID источника CRM (по умолчанию KWORK)
  *   KWORK_ENTITY        — lead | deal (по умолчанию lead)
@@ -58,7 +67,15 @@ import {
   isTokenExpired,
   refreshAccessToken,
 } from "./lib/bitrix-oauth.mjs";
-import { loadOrdersFromCaptureFile } from "./lib/kwork-capture.mjs";
+import {
+  loadCategoriesFromCaptureFile,
+  loadOrdersFromCaptureFile,
+} from "./lib/kwork-capture.mjs";
+import {
+  fetchSellerOrders,
+  getSession,
+  probeAuth,
+} from "./lib/kwork-session.mjs";
 
 applyYagaCredentials();
 
@@ -68,12 +85,18 @@ const ROOT = path.resolve(__dirname, "..");
 const SOURCE_ID = (process.env.KWORK_SOURCE_ID || "KWORK").trim().toUpperCase();
 const SOURCE_NAME = "Kwork";
 const ORIGINATOR_ID = "kwork";
+const CATALOG_ID = Number(process.env.KWORK_CATALOG_ID || 24);
+const CURRENCY_ID = "RUB";
+const MEASURE_PIECE = 9;
 const DEFAULT_PROFILE =
   process.env.KWORK_PROFILE_URL?.trim() || "https://kwork.ru/user/pasha_stasinski";
 
 const args = process.argv.slice(2);
 const DRY_RUN = args.includes("--dry-run");
 const ENSURE_SOURCE_ONLY = args.includes("--ensure-source-only");
+const PULL = args.includes("--pull");
+const DO_UPDATE = args.includes("--update");
+const KIND = (readFlag("--kind") || "").trim().toLowerCase();
 const ENTITY = (
   readFlag("--entity") ||
   process.env.KWORK_ENTITY ||
@@ -274,7 +297,47 @@ function resolvePath(p) {
   return path.isAbsolute(p) ? p : path.join(ROOT, p);
 }
 
-function loadOrders() {
+async function loadOrdersFromSession() {
+  const session = getSession();
+  const auth = await probeAuth(session);
+  if (!auth.authenticated) {
+    fail(
+      "Сессия Kwork не авторизована (редирект на login или нет userId в /seller). Обновите KWORK_COOKIE.",
+    );
+  }
+  log(
+    `Сессия OK: userId=${auth.userId || "?"} actor=${auth.actorType || "?"} seller=${auth.sellerStatus}`,
+  );
+  if (auth.ordersCount) {
+    log(
+      `Счётчик API: asWorker=${auth.ordersCount.asWorker ?? "?"} asPayer=${auth.ordersCount.asPayer ?? "?"} (активные; история — через get_manage_orders)`,
+    );
+  }
+
+  const statuses = (
+    readFlag("--statuses") ||
+    process.env.KWORK_PULL_STATUSES ||
+    "all"
+  )
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  const { orders, meta } = await fetchSellerOrders({ session, statuses });
+  log(
+    `Pull (${meta.endpoint}): statuses=${statuses.join("|")} unique=${meta.unique} → заказов ${orders.length}`,
+  );
+  for (const [name, info] of Object.entries(meta.statuses || {})) {
+    log(`  · ${name}: pages=${info.pages} ordersCount=${info.ordersCount} fetched=${info.fetched}`);
+  }
+  return orders.map(normalizeOrder);
+}
+
+async function loadOrders() {
+  if (PULL) {
+    return loadOrdersFromSession();
+  }
+
   const csvPath = readFlag("--csv");
   const jsonPath = readFlag("--json");
   const harPath = readFlag("--har");
@@ -282,7 +345,7 @@ function loadOrders() {
   const sources = [csvPath, jsonPath, harPath, capturePath].filter(Boolean);
   if (!sources.length) {
     fail(
-      "Укажите --csv / --json / --har / --capture <file> (или --ensure-source-only). Гайд: scripts/kwork-capture-guide.md",
+      "Укажите --pull / --csv / --json / --har / --capture <file> (или --ensure-source-only). Гайд: scripts/kwork-capture-guide.md",
     );
   }
   if (sources.length > 1) {
@@ -482,12 +545,16 @@ async function main() {
     fail(`--entity должен быть lead или deal, получено: ${ENTITY}`);
   }
 
-  log(`Kwork → Bitrix24 sync${DRY_RUN ? " (dry-run)" : ""}`);
+  log(`Kwork → Bitrix24 sync${DRY_RUN ? " (dry-run)" : ""}${PULL ? " (session pull)" : ""}`);
   log(`Профиль: ${DEFAULT_PROFILE}`);
   log(`Сущность: ${ENTITY}, SOURCE_ID=${SOURCE_ID}`);
   log("");
-  log("Ограничение: у Kwork нет публичного API — импорт CSV/JSON/HAR/capture/webhook.");
-  log("Живой сниффинг аккаунта из этой среды недоступен: нужен ваш локальный HAR/capture.");
+  if (PULL) {
+    log("Источник: своя сессия Kwork (KWORK_COOKIE) → GET /get_manage_orders.");
+    log("Только свой аккаунт. Cookies не коммитить; после теста лучше сбросить сессии на Kwork.");
+  } else {
+    log("Ограничение: у Kwork нет публичного API — импорт CSV/JSON/HAR/capture/webhook или --pull.");
+  }
   log("");
 
   const config = await ensureConfig();
@@ -498,8 +565,8 @@ async function main() {
     return;
   }
 
-  const orders = loadOrders();
-  if (!orders.length) fail("Нет заказов во входном файле");
+  const orders = await loadOrders();
+  if (!orders.length) fail(PULL ? "Нет заказов в сессии Kwork" : "Нет заказов во входном файле");
 
   const state = loadState();
   const stats = { created: 0, updated: 0, skipped: 0, errors: 0 };
