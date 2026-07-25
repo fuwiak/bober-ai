@@ -1,0 +1,380 @@
+{
+  "success": true,
+  "data": [
+    {
+      "name": "Дизайн",
+      "url": "https://kwork.ru/categories/design",
+      "id": "15",
+      "children": [
+        {
+          "name": "Логотип и брендинг",
+          "url": "https://kwork.ru/categories/logo",
+          "id": "25",
+          "children": []
+        },
+        {
+          "name": "Веб и мобильный дизайн",
+          "url": "https://kwork.ru/categories/web-plus-mobile-design",
+          "id": "24",
+          "children": []
+        },
+        {
+          "name": "Арт и иллюстрации",
+          "url": "https://kwork.ru/categories/illustrations",
+          "id": "28",
+          "children": []
+        },
+        {
+          "name": "Полиграфия",
+          "url": "https://kwork.ru/categories/graphic-design",
+          "id": "27",
+          "children": []
+        },
+        {
+          "name": "Интерьер и экстерьер",
+          "url": "https://kwork.ru/categories/interior-exterior-design",
+          "id": "90",
+          "children": []
+        },
+        {
+          "name": "Промышленный дизайн",
+          "url": "https://kwork.ru/categories/packaging",
+          "id": "250",
+          "children": []
+        },
+        {
+          "name": "ИИ-генерация изображений",
+          "url": "https://kwork.ru/categories/imagegeneration",
+          "id": "306",
+          "children": []
+        },
+        {
+          "name": "Презентации и инфографика",
+          "url": "https://kwork.ru/categories/presentations-infographics",
+          "id": "270",
+          "children": []
+        },
+        {
+          "name": "Обработка и редактирование",
+          "url": "https://kwork.ru/categories/vector-tracing",
+          "id": "68",
+          "children": []
+        },
+        {
+          "name": "Наружная реклама",
+          "url": "https://kwork.ru/categories/outdoor-advertising",
+          "id": "272",
+          "children": []
+        },
+        {
+          "name": "Маркетплейсы и соцсети",
+          "url": "https://kwork.ru/categories/e-commerce-social-network",
+          "id": "286",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Разработка и IT",
+      "url": "https://kwork.ru/categories/programming",
+      "id": "11",
+      "children": [
+        {
+          "name": "Доработка и настройка сайта",
+          "url": "https://kwork.ru/categories/website-repair",
+          "id": "38",
+          "children": []
+        },
+        {
+          "name": "Создание сайта",
+          "url": "https://kwork.ru/categories/website-development",
+          "id": "37",
+          "children": []
+        },
+        {
+          "name": "Скрипты, боты и mini apps",
+          "url": "https://kwork.ru/categories/script-programming",
+          "id": "41",
+          "children": []
+        },
+        {
+          "name": "Верстка",
+          "url": "https://kwork.ru/categories/frontend",
+          "id": "79",
+          "children": []
+        },
+        {
+          "name": "Десктоп программирование",
+          "url": "https://kwork.ru/categories/software",
+          "id": "80",
+          "children": []
+        },
+        {
+          "name": "Мобильные приложения",
+          "url": "https://kwork.ru/categories/mobile-apps",
+          "id": "39",
+          "children": []
+        },
+        {
+          "name": "Игры",
+          "url": "https://kwork.ru/categories/game-dev",
+          "id": "40",
+          "children": []
+        },
+        {
+          "name": "Сервера и хостинг",
+          "url": "https://kwork.ru/categories/server-administration",
+          "id": "255",
+          "children": []
+        },
+        {
+          "name": "Юзабилити, тесты и помощь",
+          "url": "https://kwork.ru/categories/usability-testing",
+          "id": "81",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Тексты и переводы",
+      "url": "https://kwork.ru/categories/writing-translations",
+      "id": "5",
+      "children": [
+        {
+          "name": "Резюме и вакансии",
+          "url": "https://kwork.ru/categories/resumes-and-letters",
+          "id": "235",
+          "children": []
+        },
+        {
+          "name": "Набор текста",
+          "url": "https://kwork.ru/categories/typing",
+          "id": "75",
+          "children": []
+        },
+        {
+          "name": "Продающие и бизнес-тексты",
+          "url": "https://kwork.ru/categories/business-copywriting",
+          "id": "74",
+          "children": []
+        },
+        {
+          "name": "Тексты и наполнение сайта",
+          "url": "https://kwork.ru/categories/creative-writing",
+          "id": "73",
+          "children": []
+        },
+        {
+          "name": "Переводы",
+          "url": "https://kwork.ru/categories/translations",
+          "id": "35",
+          "children": []
+        },
+        {
+          "name": "ИИ-тексты",
+          "url": "https://kwork.ru/categories/textgeneration",
+          "id": "303",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "SEO и трафик",
+      "url": "https://kwork.ru/categories/seo",
+      "id": "17",
+      "children": [
+        {
+          "name": "Трафик",
+          "url": "https://kwork.ru/categories/traffic",
+          "id": "72",
+          "children": []
+        },
+        {
+          "name": "Семантическое ядро",
+          "url": "https://kwork.ru/categories/keywords",
+          "id": "71",
+          "children": []
+        },
+        {
+          "name": "Ссылки",
+          "url": "https://kwork.ru/categories/links",
+          "id": "59",
+          "children": []
+        },
+        {
+          "name": "Статистика и аналитика",
+          "url": "https://kwork.ru/categories/analytics",
+          "id": "56",
+          "children": []
+        },
+        {
+          "name": "SEO аудиты, консультации",
+          "url": "https://kwork.ru/categories/audit",
+          "id": "44",
+          "children": []
+        },
+        {
+          "name": "Внутренняя оптимизация",
+          "url": "https://kwork.ru/categories/optimization",
+          "id": "43",
+          "children": []
+        },
+        {
+          "name": "Продвижение сайта в топ",
+          "url": "https://kwork.ru/categories/integrated-promotion",
+          "id": "273",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Соцсети и маркетинг",
+      "url": "https://kwork.ru/categories/promotion",
+      "id": "45",
+      "children": [
+        {
+          "name": "Базы данных и клиентов",
+          "url": "https://kwork.ru/categories/information-bases",
+          "id": "113",
+          "children": []
+        },
+        {
+          "name": "Маркетплейсы и доски объявлений",
+          "url": "https://kwork.ru/categories/bulletin-boards",
+          "id": "112",
+          "children": []
+        },
+        {
+          "name": "E-mail маркетинг и рассылки",
+          "url": "https://kwork.ru/categories/email-marketing",
+          "id": "108",
+          "children": []
+        },
+        {
+          "name": "Контекстная реклама",
+          "url": "https://kwork.ru/categories/context",
+          "id": "49",
+          "children": []
+        },
+        {
+          "name": "Маркетинг и PR",
+          "url": "https://kwork.ru/categories/marketing",
+          "id": "47",
+          "children": []
+        },
+        {
+          "name": "Соцсети и SMM",
+          "url": "https://kwork.ru/categories/smm",
+          "id": "46",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Аудио, видео, съемка",
+      "url": "https://kwork.ru/categories/audio-video",
+      "id": "7",
+      "children": [
+        {
+          "name": "Редактирование аудио",
+          "url": "https://kwork.ru/categories/editing-audio",
+          "id": "106",
+          "children": []
+        },
+        {
+          "name": "Видеосъемка и монтаж",
+          "url": "https://kwork.ru/categories/editing-media",
+          "id": "78",
+          "children": []
+        },
+        {
+          "name": "Интро и анимация логотипа",
+          "url": "https://kwork.ru/categories/intro",
+          "id": "77",
+          "children": []
+        },
+        {
+          "name": "Видеоролики",
+          "url": "https://kwork.ru/categories/animation",
+          "id": "76",
+          "children": []
+        },
+        {
+          "name": "Музыка и песни",
+          "url": "https://kwork.ru/categories/music",
+          "id": "23",
+          "children": []
+        },
+        {
+          "name": "Аудиозапись и озвучка",
+          "url": "https://kwork.ru/categories/audio",
+          "id": "20",
+          "children": []
+        },
+        {
+          "name": "ИИ-генерация видео",
+          "url": "https://kwork.ru/categories/videogeneration",
+          "id": "300",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Бизнес и жизнь",
+      "url": "https://kwork.ru/categories/business",
+      "id": "83",
+      "children": [
+        {
+          "name": "Продажа сайтов и групп",
+          "url": "https://kwork.ru/categories/sites-for-sale",
+          "id": "114",
+          "children": []
+        },
+        {
+          "name": "Персональный помощник",
+          "url": "https://kwork.ru/categories/personal-assistant",
+          "id": "84",
+          "children": []
+        },
+        {
+          "name": "Бухгалтерия и налоги",
+          "url": "https://kwork.ru/categories/financial-consulting",
+          "id": "64",
+          "children": []
+        },
+        {
+          "name": "Юридическая помощь",
+          "url": "https://kwork.ru/categories/lawyer-consulting",
+          "id": "63",
+          "children": []
+        },
+        {
+          "name": "Обучение и консалтинг",
+          "url": "https://kwork.ru/categories/training-consulting",
+          "id": "55",
+          "children": []
+        },
+        {
+          "name": "Обзвоны и продажи",
+          "url": "https://kwork.ru/categories/calls-sales",
+          "id": "262",
+          "children": []
+        },
+        {
+          "name": "Подбор персонала",
+          "url": "https://kwork.ru/categories/recruitment",
+          "id": "265",
+          "children": []
+        },
+        {
+          "name": "Стройка и ремонт",
+          "url": "https://kwork.ru/categories/engineering",
+          "id": "65",
+          "children": []
+        }
+      ]
+    }
+  ],
+  "_source": "https://kwork.ru/get_categories?lang=ru",
+  "_note": "Public Kwork categories menu (not seller orders). Captured for Bitrix catalog sync."
+}

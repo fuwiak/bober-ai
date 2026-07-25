@@ -96,6 +96,13 @@ const DRY_RUN = args.includes("--dry-run");
 const ENSURE_SOURCE_ONLY = args.includes("--ensure-source-only");
 const PULL = args.includes("--pull");
 const DO_UPDATE = args.includes("--update");
+
+function readFlag(name) {
+  const i = args.indexOf(name);
+  if (i >= 0 && args[i + 1] && !args[i + 1].startsWith("--")) return args[i + 1];
+  return "";
+}
+
 const KIND = (readFlag("--kind") || "").trim().toLowerCase();
 const ENTITY = (
   readFlag("--entity") ||
@@ -104,12 +111,6 @@ const ENTITY = (
 )
   .trim()
   .toLowerCase();
-
-function readFlag(name) {
-  const i = args.indexOf(name);
-  if (i >= 0 && args[i + 1] && !args[i + 1].startsWith("--")) return args[i + 1];
-  return "";
-}
 
 function log(msg) {
   console.log(msg);
@@ -540,16 +541,249 @@ async function upsertDeal(order, sourceId, config, stats) {
   return Number(id);
 }
 
+async function listCatalogProducts(config) {
+  const all = [];
+  let start = 0;
+  for (;;) {
+    const { body } = await bitrixRest(
+      "crm.product.list",
+      {
+        filter: { CATALOG_ID },
+        select: ["ID", "NAME", "PRICE", "CURRENCY_ID", "XML_ID", "SECTION_ID", "DESCRIPTION"],
+        start,
+      },
+      config,
+    );
+    if (body.error) throw new Error(body.error_description || body.error);
+    const batch = body.result || [];
+    all.push(...batch);
+    if (!body.next) break;
+    start = body.next;
+  }
+  return all;
+}
+
+async function listCatalogSections(config) {
+  return (
+    (await rest(
+      "crm.productsection.list",
+      { filter: { CATALOG_ID }, select: ["ID", "NAME", "XML_ID", "SECTION_ID"] },
+      config,
+    )) || []
+  );
+}
+
+/**
+ * @param {{ xmlId: string, name: string, parentId?: number }} def
+ */
+async function ensureCatalogSection(def, byXml, byName, config, stats) {
+  const existing = byXml.get(def.xmlId) || byName.get(def.name);
+  if (existing) {
+    stats.sectionsSkipped += 1;
+    return Number(existing.ID);
+  }
+  if (DRY_RUN) {
+    log(`  [dry-run] section + ${def.name}`);
+    stats.sectionsCreated += 1;
+    return -1;
+  }
+  const fields = {
+    CATALOG_ID,
+    NAME: def.name,
+    XML_ID: def.xmlId,
+  };
+  if (def.parentId && def.parentId > 0) fields.SECTION_ID = def.parentId;
+  const id = await rest("crm.productsection.add", { fields }, config);
+  log(`  section + ${def.name} (#${id})`);
+  stats.sectionsCreated += 1;
+  const row = { ID: String(id), NAME: def.name, XML_ID: def.xmlId };
+  byXml.set(def.xmlId, row);
+  byName.set(def.name, row);
+  return Number(id);
+}
+
+function categoryXmlId(leaf) {
+  if (leaf.id) return `kwork-cat-${leaf.id}`;
+  const slug = String(leaf.url || leaf.name)
+    .toLowerCase()
+    .replace(/^https?:\/\/kwork\.ru\/categories\//, "")
+    .replace(/[^a-z0-9а-яё_-]+/gi, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 80);
+  return `kwork-cat-${slug || Buffer.from(leaf.name).toString("base64url").slice(0, 16)}`;
+}
+
+async function syncCategoryProduct(leaf, sectionId, byXml, byName, config, stats) {
+  const xmlId = categoryXmlId(leaf);
+  const name = leaf.name;
+  const existing = byXml.get(xmlId) || byName.get(name);
+  const fields = {
+    CATALOG_ID,
+    NAME: name,
+    PRICE: 0,
+    CURRENCY_ID,
+    DESCRIPTION: leaf.url || leaf.path.join(" › "),
+    DESCRIPTION_TYPE: "text",
+    SECTION_ID: sectionId > 0 ? sectionId : undefined,
+    ACTIVE: "Y",
+    XML_ID: xmlId,
+    MEASURE: MEASURE_PIECE,
+  };
+
+  if (existing) {
+    if (DO_UPDATE && !DRY_RUN) {
+      await rest("crm.product.update", { id: existing.ID, fields }, config);
+      log(`  update  ${name} (#${existing.ID})`);
+      stats.updated += 1;
+    } else {
+      stats.skipped += 1;
+    }
+    return;
+  }
+
+  if (DRY_RUN) {
+    log(`  [dry-run] + ${name} · ${leaf.url || ""}`);
+    stats.created += 1;
+    return;
+  }
+
+  const id = await rest("crm.product.add", { fields }, config);
+  log(`  + ${name} (#${id})`);
+  stats.created += 1;
+  const row = { ID: String(id), NAME: name, XML_ID: xmlId };
+  byXml.set(xmlId, row);
+  byName.set(name, row);
+}
+
+async function syncCategoriesToCatalog(config) {
+  const capturePath =
+    readFlag("--capture") ||
+    path.join(ROOT, "data", "kwork-categories.capture.json");
+  const abs = resolvePath(capturePath);
+  if (!fs.existsSync(abs)) {
+    fail(`Нет файла категорий: ${abs}`);
+  }
+
+  const { categories, leaves, meta, kind } = loadCategoriesFromCaptureFile(abs);
+  log(
+    `Категории (${kind}): roots=${meta.roots ?? "?"} format=${meta.kind ?? "?"} → листьев ${leaves.length}`,
+  );
+  if (!categories.length || !leaves.length) {
+    fail(
+      "В файле нет дерева категорий {success,data:[{name,url,children[]}]} или get_categories. Это не заказы — см. scripts/kwork-capture-guide.md",
+    );
+  }
+
+  log(`Каталог CRM IBLOCK_ID=${CATALOG_ID}`);
+  if (DRY_RUN) log("Режим: --dry-run (без записи)");
+  if (DO_UPDATE) log("Режим: --update (обновлять существующие)");
+
+  const stats = {
+    sectionsCreated: 0,
+    sectionsSkipped: 0,
+    created: 0,
+    updated: 0,
+    skipped: 0,
+    failed: [],
+  };
+
+  const sections = await listCatalogSections(config);
+  const secByXml = new Map(sections.filter((s) => s.XML_ID).map((s) => [s.XML_ID, s]));
+  const secByName = new Map(sections.map((s) => [s.NAME, s]));
+
+  const rootSectionId = await ensureCatalogSection(
+    { xmlId: "kwork-categories", name: "Kwork категории" },
+    secByXml,
+    secByName,
+    config,
+    stats,
+  );
+
+  /** @type {Map<string, number>} */
+  const subSectionIds = new Map();
+  for (const root of categories) {
+    const rootName = String(root.name || "").trim();
+    if (!rootName) continue;
+    const subId = await ensureCatalogSection(
+      {
+        xmlId: `kwork-cat-sec-${root.id || rootName}`,
+        name: rootName,
+        parentId: rootSectionId,
+      },
+      secByXml,
+      secByName,
+      config,
+      stats,
+    );
+    subSectionIds.set(rootName, subId);
+  }
+
+  const products = await listCatalogProducts(config);
+  const prodByXml = new Map(products.filter((p) => p.XML_ID).map((p) => [p.XML_ID, p]));
+  const prodByName = new Map(products.map((p) => [p.NAME, p]));
+  log(`Уже в каталоге: ${products.length} позиций`);
+  log("Листья категорий → товары/услуги (PRICE=0):");
+
+  for (const leaf of leaves) {
+    try {
+      const sectionId =
+        subSectionIds.get(leaf.sectionName) ??
+        subSectionIds.get(leaf.path[0]) ??
+        rootSectionId;
+      await syncCategoryProduct(leaf, sectionId, prodByXml, prodByName, config, stats);
+    } catch (err) {
+      stats.failed.push({ name: leaf.name, error: err.message || String(err) });
+      console.error(`  ! ${leaf.name}: ${err.message || err}`);
+    }
+  }
+
+  log("");
+  log("—— Итог (категории → каталог) ——");
+  log(`Секции: создано ${stats.sectionsCreated}, пропущено ${stats.sectionsSkipped}`);
+  log(
+    `Позиции: создано ${stats.created}, обновлено ${stats.updated}, пропущено ${stats.skipped}, ошибок ${stats.failed.length}`,
+  );
+  log(
+    `Проверка: ${config.portal}/crm/catalog/list/0/?IBLOCK_ID=${CATALOG_ID}&type=CRM_PRODUCT_CATALOG&lang=ru`,
+  );
+  if (stats.failed.length) process.exitCode = 1;
+  return stats;
+}
+
 async function main() {
-  if (ENTITY !== "lead" && ENTITY !== "deal") {
+  let isCategories = KIND === "categories" || KIND === "category";
+
+  // Авто: capture-файл с меню категорий → каталог, не лиды
+  if (!isCategories && !PULL && !ENSURE_SOURCE_ONLY) {
+    const capturePath = readFlag("--capture");
+    if (capturePath) {
+      try {
+        const peek = loadCategoriesFromCaptureFile(resolvePath(capturePath));
+        if (peek.leaves?.length && peek.categories?.length) {
+          isCategories = true;
+          log("Обнаружено дерево категорий в --capture → режим catalog (как --kind categories)");
+        }
+      } catch {
+        // не категории — обычный order-path
+      }
+    }
+  }
+
+  if (!isCategories && ENTITY !== "lead" && ENTITY !== "deal") {
     fail(`--entity должен быть lead или deal, получено: ${ENTITY}`);
   }
 
-  log(`Kwork → Bitrix24 sync${DRY_RUN ? " (dry-run)" : ""}${PULL ? " (session pull)" : ""}`);
+  log(
+    `Kwork → Bitrix24 sync${DRY_RUN ? " (dry-run)" : ""}${PULL ? " (session pull)" : ""}${isCategories ? " (categories → catalog)" : ""}`,
+  );
   log(`Профиль: ${DEFAULT_PROFILE}`);
-  log(`Сущность: ${ENTITY}, SOURCE_ID=${SOURCE_ID}`);
+  if (!isCategories) log(`Сущность: ${ENTITY}, SOURCE_ID=${SOURCE_ID}`);
+  else log(`Каталог IBLOCK_ID=${CATALOG_ID}, дедуп по XML_ID/NAME`);
   log("");
-  if (PULL) {
+  if (isCategories) {
+    log("Источник: публичное меню категорий Kwork (не заказы продавца).");
+  } else if (PULL) {
     log("Источник: своя сессия Kwork (KWORK_COOKIE) → GET /get_manage_orders.");
     log("Только свой аккаунт. Cookies не коммитить; после теста лучше сбросить сессии на Kwork.");
   } else {
@@ -558,6 +792,12 @@ async function main() {
   log("");
 
   const config = await ensureConfig();
+
+  if (isCategories) {
+    await syncCategoriesToCatalog(config);
+    return;
+  }
+
   const sourceId = await ensureKworkSource(config);
 
   if (ENSURE_SOURCE_ONLY) {

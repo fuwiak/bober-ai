@@ -8,6 +8,11 @@
  *   1) Chrome DevTools HAR (Save all as HAR with content)
  *   2) cat-catch-style JSON: список ресурсов с url + body/text/content,
  *      либо уже распарсенные JSON-ответы / массив заказов
+ *   3) Публичное меню категорий: { success, data: [{ name, url, children[] }] }
+ *      или ответ GET /get_categories?lang=ru: { success, data: { id: { name, cats[] } } }
+ *
+ * Важно: XHR меню категорий ≠ заказы продавца. Для заказов ищите track/inbox/
+ * get_manage_orders / seller orders.
  *
  * cat-catch (https://github.com/xifangczy/cat-catch) — в первую очередь
  * медиа-сниффер (m3u8/video). Для заказов Kwork надёжнее HAR; JSON-список
@@ -379,6 +384,180 @@ export function parseCapture(data) {
 import fs from "node:fs";
 
 /**
+ * Узел публичного меню категорий Kwork (name + url/seo + children|cats).
+ * @param {unknown} obj
+ */
+export function looksLikeCategoryNode(obj) {
+  if (!isPlainObject(obj)) return false;
+  const name = obj.name ?? obj.short_name ?? obj.h1;
+  if (name == null || String(name).trim() === "") return false;
+  const hasUrl = obj.url != null || obj.seo != null || obj.link != null;
+  const hasKids =
+    Array.isArray(obj.children) ||
+    Array.isArray(obj.cats) ||
+    isPlainObject(obj.cats);
+  // id-only dict entry from get_categories
+  const hasCatId = obj.CATID != null || obj.id != null;
+  return Boolean(hasUrl || hasKids || (hasCatId && name));
+}
+
+/**
+ * @param {unknown} data
+ */
+export function isCategoriesPayload(data) {
+  if (!isPlainObject(data)) {
+    return Array.isArray(data) && data.length > 0 && looksLikeCategoryNode(data[0]);
+  }
+  if (data.orders != null) return false;
+  const payload = data.data !== undefined ? data.data : data.categories;
+  if (Array.isArray(payload) && payload.length > 0 && looksLikeCategoryNode(payload[0])) {
+    return true;
+  }
+  if (isPlainObject(payload)) {
+    const vals = Object.values(payload);
+    if (vals.length > 0 && looksLikeCategoryNode(vals[0])) return true;
+  }
+  if (Array.isArray(data.categories) && data.categories.length && looksLikeCategoryNode(data.categories[0])) {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * @param {Record<string, unknown>} cat
+ */
+function categoryUrl(cat) {
+  const direct = pick(cat, ["url", "link"]);
+  if (direct != null) return String(direct);
+  const seo = cat.seo != null ? String(cat.seo).trim() : "";
+  if (seo) {
+    if (/^https?:\/\//i.test(seo)) return seo;
+    return `https://kwork.ru/categories/${seo.replace(/^\/+/, "")}`;
+  }
+  const id = cat.CATID ?? cat.id;
+  if (id != null) return `https://kwork.ru/categories/${id}`;
+  return "";
+}
+
+/**
+ * @param {Record<string, unknown>} cat
+ */
+function categoryChildren(cat) {
+  const raw = cat.children ?? cat.cats;
+  if (Array.isArray(raw)) return raw.filter((x) => isPlainObject(x));
+  if (isPlainObject(raw)) return Object.values(raw).filter((x) => isPlainObject(x));
+  return [];
+}
+
+/**
+ * Нормализовать дерево к [{ name, url, id?, children[] }].
+ * @param {unknown} data
+ * @returns {{ categories: Record<string, unknown>[], meta: { roots: number, kind: string } }}
+ */
+export function extractCategoriesFromJson(data) {
+  /** @type {unknown} */
+  let roots = null;
+  let kind = "unknown";
+
+  if (Array.isArray(data) && data.length && looksLikeCategoryNode(data[0])) {
+    roots = data;
+    kind = "array";
+  } else if (isPlainObject(data)) {
+    const payload = data.data !== undefined ? data.data : data.categories;
+    if (Array.isArray(payload) && payload.length && looksLikeCategoryNode(payload[0])) {
+      roots = payload;
+      kind = "success-data-array";
+    } else if (isPlainObject(payload)) {
+      const vals = Object.values(payload).filter((x) => looksLikeCategoryNode(x));
+      if (vals.length) {
+        roots = vals;
+        kind = "success-data-map";
+      }
+    }
+  }
+
+  if (!roots) {
+    return { categories: [], meta: { roots: 0, kind: "none" } };
+  }
+
+  /**
+   * @param {Record<string, unknown>} cat
+   * @returns {Record<string, unknown>}
+   */
+  const norm = (cat) => {
+    const kids = categoryChildren(cat).map((c) => norm(/** @type {Record<string, unknown>} */ (c)));
+    const id = cat.CATID ?? cat.id;
+    return {
+      name: String(cat.name ?? cat.short_name ?? cat.h1 ?? "").trim(),
+      url: categoryUrl(cat),
+      id: id != null ? String(id) : undefined,
+      children: kids,
+    };
+  };
+
+  const categories = /** @type {Record<string, unknown>[]} */ (roots)
+    .filter((x) => isPlainObject(x))
+    .map((x) => norm(/** @type {Record<string, unknown>} */ (x)))
+    .filter((x) => x.name);
+
+  return { categories, meta: { roots: categories.length, kind } };
+}
+
+/**
+ * Листья дерева (или узлы без children). parentPath[0] — корневая секция.
+ * @param {Record<string, unknown>[]} nodes
+ * @param {string[]} [parentPath]
+ * @returns {{ id: string, name: string, url: string, path: string[], sectionName: string }[]}
+ */
+export function flattenCategoryLeaves(nodes, parentPath = []) {
+  /** @type {{ id: string, name: string, url: string, path: string[], sectionName: string }[]} */
+  const out = [];
+  for (const node of nodes) {
+    if (!isPlainObject(node)) continue;
+    const name = String(node.name || "").trim();
+    if (!name) continue;
+    const url = String(node.url || "");
+    const id = node.id != null ? String(node.id) : "";
+    const kids = Array.isArray(node.children)
+      ? /** @type {Record<string, unknown>[]} */ (node.children)
+      : [];
+    const path = [...parentPath, name];
+    if (!kids.length) {
+      out.push({
+        id,
+        name,
+        url,
+        path,
+        sectionName: parentPath[0] || "Kwork категории",
+      });
+    } else {
+      out.push(...flattenCategoryLeaves(kids, path));
+    }
+  }
+  return out;
+}
+
+/**
+ * Загрузить файл категорий (меню / get_categories).
+ * @param {string} filePath
+ */
+export function loadCategoriesFromCaptureFile(filePath) {
+  const text = fs.readFileSync(filePath, "utf8");
+  const data = JSON.parse(text);
+  if (!isCategoriesPayload(data)) {
+    return {
+      categories: [],
+      leaves: [],
+      meta: { roots: 0, kind: "none" },
+      kind: "categories",
+    };
+  }
+  const { categories, meta } = extractCategoriesFromJson(data);
+  const leaves = flattenCategoryLeaves(categories);
+  return { categories, leaves, meta: { ...meta, leaves: leaves.length }, kind: "categories" };
+}
+
+/**
  * Загрузить файл и вернуть сырые order-объекты (ещё до normalizeOrder).
  * @param {string} filePath
  * @param {"har" | "capture" | "auto"} [mode]
@@ -387,6 +566,17 @@ export function loadOrdersFromCaptureFile(filePath, mode = "auto") {
   const text = fs.readFileSync(filePath, "utf8");
   const data = JSON.parse(text);
   const kind = mode !== "auto" ? mode : detectCaptureKind(data, filePath);
+  if (kind === "categories") {
+    return {
+      orders: [],
+      meta: {
+        items: 0,
+        withBody: 0,
+        note: "Это меню категорий Kwork, не заказы. Используйте --kind categories.",
+      },
+      kind: "categories",
+    };
+  }
   if (kind === "har") {
     const { orders, meta } = parseHar(data);
     return { orders, meta, kind: "har" };
@@ -398,12 +588,14 @@ export function loadOrdersFromCaptureFile(filePath, mode = "auto") {
 /**
  * @param {unknown} data
  * @param {string} filePath
- * @returns {"har" | "capture"}
+ * @returns {"har" | "capture" | "categories"}
  */
 export function detectCaptureKind(data, filePath = "") {
   if (/\.har$/i.test(filePath)) return "har";
   if (isPlainObject(data) && isPlainObject(data.log) && Array.isArray(data.log.entries)) {
     return "har";
   }
+  if (/categor/i.test(filePath) && isCategoriesPayload(data)) return "categories";
+  if (isCategoriesPayload(data)) return "categories";
   return "capture";
 }

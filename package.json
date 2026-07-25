@@ -58,6 +58,7 @@
     "kwork:bitrix:sync": "node scripts/kwork-bitrix-sync.mjs",
     "kwork:bitrix:pull": "node scripts/kwork-bitrix-sync.mjs --pull",
     "kwork:bitrix:from-har": "node scripts/kwork-bitrix-sync.mjs --har",
+    "kwork:bitrix:categories": "node scripts/kwork-bitrix-sync.mjs --kind categories --capture data/kwork-categories.capture.json",
     "yandex:uslugi": "node scripts/yandex-uslugi.mjs",
     "yandex:uslugi:login": "node scripts/yandex-uslugi.mjs login",
     "yandex:uslugi:sniff": "node scripts/yandex-uslugi.mjs sniff",

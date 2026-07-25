@@ -4,6 +4,33 @@
 
 Только свой аккаунт. Не для чужих продавцов, не для обхода DRM/paywall.
 
+## Важно: категории ≠ заказы
+
+XHR/JSON вида `{"success":true,"data":[…дерево name/url/children…]}` или ответ `GET /get_categories?lang=ru` — это **публичное меню категорий** (Дизайн, Разработка и IT, SEO…), а не заказы продавца.
+
+- Категории → товарный каталог CRM (`IBLOCK_ID=24`):  
+  `npm run kwork:bitrix:categories`  
+  или `npm run kwork:bitrix:sync -- --capture data/kwork-categories.capture.json --kind categories`
+- Заказы → лиды/сделки: нужен другой XHR (см. ниже).
+
+## Какие XHR снимать для реальных заказов
+
+В DevTools → Network → Fetch/XHR на **своей** сессии продавца ищите ответы с списком заказов / трекера, например:
+
+| Что открыть на kwork.ru | Что искать в Network |
+|---|---|
+| Управление заказами / «Мои заказы» | `get_manage_orders`, `seller/orders`, `manage_orders` |
+| Трекер конкретного заказа | `tracker`, `track`, URL с `tracker/view` |
+| Входящие / диалоги по заказу | `inbox`, переписка track |
+
+В теле JSON должны быть order-like поля (`id`/`order_id`, title/price/status, buyer…). Меню категорий (`get_categories`, header menu) **пропустите**.
+
+Либо live-pull своей сессии (cookies только локально, не в git):
+
+```bash
+npm run kwork:bitrix:pull -- --dry-run
+```
+
 ## cat-catch vs DevTools
 
 | Инструмент | Что умеет | Для заказов Kwork |
@@ -54,14 +81,25 @@ npm run kwork:bitrix:sync -- --har path/to/session.har --dry-run
 npm run kwork:bitrix:sync -- --capture data/kwork-capture.example.json --dry-run
 ```
 
+## Workflow C — категории в каталог Bitrix
+
+Файл `data/kwork-categories.capture.json` — публичное меню (без cookies). Секция **Kwork категории**, листья → услуги с `PRICE=0`, `DESCRIPTION=url`, дедуп по `XML_ID` (`kwork-cat-<id>`).
+
+```bash
+npm run kwork:bitrix:categories -- --dry-run
+npm run kwork:bitrix:categories
+npm run kwork:bitrix:sync -- --capture data/kwork-categories.capture.json --kind categories
+```
+
 ## Примеры в репозитории
 
 - `data/kwork-orders.har.example.json` — урезанный HAR (**EXAMPLE**, фейковые заказы)
 - `data/kwork-capture.example.json` — cat-catch-style export (**EXAMPLE**)
 - `data/kwork-orders.example.csv` / `.json` — ручной импорт без сниффа
+- `data/kwork-categories.capture.json` — публичное меню категорий (не заказы)
 
 ## Bitrix
 
-Нужен уже настроенный OAuth (`npm run bitrix:oauth -- test`, scope `crm`). Источник `KWORK` создаётся автоматически.
+Нужен уже настроенный OAuth (`npm run bitrix:oauth -- test`, scope `crm`). Источник `KWORK` создаётся автоматически для заказов. Категории пишутся в CRM-каталог `IBLOCK_ID=24`.
 
 Профиль продавца (контекст): https://kwork.ru/user/pasha_stasinski
