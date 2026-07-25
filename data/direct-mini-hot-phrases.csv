@@ -1,0 +1,7 @@
+group,match_type,phrase,count,intent,landing,note
+ИИ · заказать,phrase,заказать внедрение ии,10,commercial_high,https://www.bober-ai.dev/services/ai-discovery-roadmap,max buy intent
+ИИ · заказать,phrase,внедрение ии под ключ,45,commercial_high,https://www.bober-ai.dev/services/ai-discovery-roadmap,turnkey
+ИИ · заказать,phrase,внедрение ии в бизнес под ключ,45,commercial_high,https://www.bober-ai.dev/services/ai-discovery-roadmap,turnkey+biz
+ИИ · заказать,phrase,услуги внедрение ии в бизнес,25,commercial_high,https://www.bober-ai.dev/services/ai-discovery-roadmap,services buy
+Автоматизация,phrase,автоматизация бизнеса заказать,11,commercial_high,https://www.bober-ai.dev/services/business-process-automation,order intent
+Bitrix24 · цена,phrase,внедрение битрикс24 цена,15,commercial_high,https://bitrix.bober-ai.dev/,price intent only — not broad bitrix

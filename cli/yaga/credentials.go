@@ -113,6 +113,21 @@ func allCredSpecs() []CredSpec {
 			Optional: true,
 		},
 		{
+			Key:   "YANDEX_AUDIENCE_OAUTH_TOKEN",
+			Title: "Audience access token",
+			Brick: "audience",
+			UIURL: "https://audience.yandex.com/",
+			How:   "npm run yandex:audience:oauth — приложение «direct wordstat» + scopes audience:read/write",
+		},
+		{
+			Key:   "YANDEX_AUDIENCE_REFRESH_TOKEN",
+			Title: "Audience refresh token",
+			Brick: "audience",
+			UIURL: "https://oauth.yandex.ru/",
+			How:   "Пишется после yandex:audience:oauth exchange",
+			Optional: true,
+		},
+		{
 			Key:   "YANDEX_SEARCH_API_KEY",
 			Title: "Cloud Search API key",
 			Brick: "search",

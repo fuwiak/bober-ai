@@ -5,12 +5,18 @@ const INFO_URL = "https://login.yandex.ru/info";
 
 /** Default OAuth app for Webmaster / Metrika (bober-ai). */
 export const DEFAULT_WEBMASTER_CLIENT_ID = "f2e2f11ae7e3492886ad61a6e45a4c5c";
+/** Default OAuth app for Direct / Wordstat / Audience («direct wordstat»). */
+export const DEFAULT_DIRECT_CLIENT_ID = "7e70ff5be45f40119890ecefc09d2008";
 export const DEFAULT_REDIRECT_URI = "https://oauth.yandex.ru/verification_code";
 
 export function getDirectOAuthConfig(overrides = {}) {
   return {
     kind: "direct",
-    clientId: (overrides.clientId || process.env.YANDEX_DIRECT_CLIENT_ID || "").trim(),
+    clientId: (
+      overrides.clientId ||
+      process.env.YANDEX_DIRECT_CLIENT_ID ||
+      DEFAULT_DIRECT_CLIENT_ID
+    ).trim(),
     clientSecret: (overrides.clientSecret || process.env.YANDEX_DIRECT_CLIENT_SECRET || "").trim(),
     redirectUri: (
       overrides.redirectUri ||
@@ -56,17 +62,55 @@ export function getWebmasterOAuthConfig(overrides = {}) {
   };
 }
 
+export function getAudienceOAuthConfig(overrides = {}) {
+  return {
+    kind: "audience",
+    // По умолчанию — приложение «direct wordstat» (те же Client ID/secret, что у Direct).
+    clientId: (
+      overrides.clientId ||
+      process.env.YANDEX_AUDIENCE_CLIENT_ID ||
+      process.env.YANDEX_DIRECT_CLIENT_ID ||
+      DEFAULT_DIRECT_CLIENT_ID
+    ).trim(),
+    clientSecret: (
+      overrides.clientSecret ||
+      process.env.YANDEX_AUDIENCE_CLIENT_SECRET ||
+      process.env.YANDEX_DIRECT_CLIENT_SECRET ||
+      ""
+    ).trim(),
+    redirectUri: (
+      overrides.redirectUri ||
+      process.env.YANDEX_AUDIENCE_REDIRECT_URI ||
+      process.env.YANDEX_DIRECT_REDIRECT_URI ||
+      DEFAULT_REDIRECT_URI
+    ).trim(),
+    accessToken: (
+      overrides.accessToken ||
+      process.env.YANDEX_AUDIENCE_OAUTH_TOKEN ||
+      ""
+    ).trim(),
+    refreshToken: (
+      overrides.refreshToken ||
+      process.env.YANDEX_AUDIENCE_REFRESH_TOKEN ||
+      ""
+    ).trim(),
+    expiresAt: Number(overrides.expiresAt || process.env.YANDEX_AUDIENCE_TOKEN_EXPIRES_AT || 0),
+  };
+}
+
 function clientIdEnvName(config) {
-  return config.kind === "webmaster" ? "YANDEX_WEBMASTER_CLIENT_ID" : "YANDEX_DIRECT_CLIENT_ID";
+  if (config.kind === "webmaster") return "YANDEX_WEBMASTER_CLIENT_ID";
+  if (config.kind === "audience") return "YANDEX_AUDIENCE_CLIENT_ID";
+  return "YANDEX_DIRECT_CLIENT_ID";
 }
 
 function clientSecretEnvName(config) {
-  return config.kind === "webmaster"
-    ? "YANDEX_WEBMASTER_CLIENT_SECRET"
-    : "YANDEX_DIRECT_CLIENT_SECRET";
+  if (config.kind === "webmaster") return "YANDEX_WEBMASTER_CLIENT_SECRET";
+  if (config.kind === "audience") return "YANDEX_AUDIENCE_CLIENT_SECRET";
+  return "YANDEX_DIRECT_CLIENT_SECRET";
 }
 
-export function getAuthorizeUrl(config, { responseType = "code" } = {}) {
+export function getAuthorizeUrl(config, { responseType = "code", scope } = {}) {
   if (!config.clientId) {
     throw new Error(`${clientIdEnvName(config)} не задан`);
   }
@@ -80,8 +124,15 @@ export function getAuthorizeUrl(config, { responseType = "code" } = {}) {
     params.set("redirect_uri", config.redirectUri);
   }
 
+  if (scope) {
+    params.set("scope", Array.isArray(scope) ? scope.join(" ") : String(scope));
+  }
+
   return `https://oauth.yandex.ru/authorize?${params.toString()}`;
 }
+
+/** Права API Яндекс Аудиторий — должны быть включены в OAuth-приложении. */
+export const AUDIENCE_OAUTH_SCOPES = ["audience:read", "audience:write"];
 
 function basicAuthHeader(clientId, clientSecret) {
   return `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString("base64")}`;
@@ -142,11 +193,13 @@ export async function exchangeCode(config, code) {
 
 export async function refreshAccessToken(config) {
   if (!config.refreshToken) {
-    throw new Error(
+    const hint =
       config.kind === "webmaster"
         ? "YANDEX_WEBMASTER_REFRESH_TOKEN не задан — один раз: yaga webmaster oauth"
-        : "YANDEX_DIRECT_REFRESH_TOKEN не задан — нужен одноразовый bootstrap через authorization code",
-    );
+        : config.kind === "audience"
+          ? "YANDEX_AUDIENCE_REFRESH_TOKEN не задан — npm run yandex:audience:oauth -- exchange --code <CODE>"
+          : "YANDEX_DIRECT_REFRESH_TOKEN не задан — нужен одноразовый bootstrap через authorization code";
+    throw new Error(hint);
   }
 
   const payload = await requestToken(config, {
@@ -251,5 +304,40 @@ export function webmasterCredentialVarsFromBundle(bundle, { clientId, clientSecr
   if (bundle.expiresAt) vars.YANDEX_WEBMASTER_TOKEN_EXPIRES_AT = bundle.expiresAt;
   if (clientId) vars.YANDEX_WEBMASTER_CLIENT_ID = clientId;
   if (clientSecret) vars.YANDEX_WEBMASTER_CLIENT_SECRET = clientSecret;
+  return vars;
+}
+
+export async function getValidAudienceToken(config, { refreshSkewMs = 60_000, onRefresh } = {}) {
+  let current = { ...config };
+
+  if (current.refreshToken && (!current.accessToken || isTokenExpired(current, refreshSkewMs))) {
+    const refreshed = await refreshAccessToken(current);
+    current = {
+      ...current,
+      accessToken: refreshed.accessToken || current.accessToken,
+      refreshToken: refreshed.refreshToken || current.refreshToken,
+      expiresAt: Number(refreshed.expiresAt || 0),
+    };
+    if (onRefresh) await onRefresh(refreshed);
+  }
+
+  if (!current.accessToken) {
+    throw new Error(
+      "Нет YANDEX_AUDIENCE_OAUTH_TOKEN. Один раз: npm run yandex:audience:oauth -- authorize-url",
+    );
+  }
+
+  await getTokenInfo(current.accessToken);
+  return current.accessToken;
+}
+
+export function audienceCredentialVarsFromBundle(bundle, { clientId, clientSecret } = {}) {
+  const vars = {
+    YANDEX_AUDIENCE_OAUTH_TOKEN: bundle.accessToken,
+  };
+  if (bundle.refreshToken) vars.YANDEX_AUDIENCE_REFRESH_TOKEN = bundle.refreshToken;
+  if (bundle.expiresAt) vars.YANDEX_AUDIENCE_TOKEN_EXPIRES_AT = bundle.expiresAt;
+  if (clientId) vars.YANDEX_AUDIENCE_CLIENT_ID = clientId;
+  if (clientSecret) vars.YANDEX_AUDIENCE_CLIENT_SECRET = clientSecret;
   return vars;
 }

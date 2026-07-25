@@ -1,0 +1,145 @@
+{
+  "status": "AWAITING_CONFIRMATION",
+  "doNotLaunchUntil": "explicit user OK",
+  "campaign": {
+    "name": "Bober · Mini · Hot Buy Intent",
+    "type": "Текстово-графические объявления",
+    "network": "Только Поиск (без РСЯ, без ретаргетинга)",
+    "whyNotRtgYet": "Сегменты Audience ещё is_processed / form_submit=few_data (<100 ID). RTG пока не сможет нормально крутиться. Hot Search даёт intent сразу.",
+    "geo": ["Россия"],
+    "strategy": "Ручное управление ставками (или «Максимум кликов» с дневным лимитом) — пока мало конверсий для автостратегии",
+    "dailyBudgetRub": 500,
+    "weeklyCapRub": 3500,
+    "bidHintRub": {
+      "search": "80–150 ₽ за клик на старте; смотреть в аукционе",
+      "note": "B2B ИИ/Bitrix — дорогой клик нормален; режем объём минусами, не ставкой в ноль"
+    }
+  },
+  "audienceIntent": {
+    "target": "Готовность платить / звонить / оставить заявку",
+    "signals": [
+      "фразы с «заказать», «под ключ», «цена», «услуги»",
+      "без широкого «внедрение ИИ» / «rag система»"
+    ],
+    "optimizeGoals": [
+      "phone_click",
+      "telegram_click",
+      "form_submit",
+      "lead_delivered"
+    ],
+    "doNotOptimizeOn": [
+      "organic_visit",
+      "direct_visit",
+      "primary_cta_click",
+      "case_study_view"
+    ]
+  },
+  "adGroups": [
+    {
+      "name": "ИИ · заказать / под ключ",
+      "landing": "https://www.bober-ai.dev/services/ai-discovery-roadmap",
+      "phrases": [
+        { "match": "phrase", "text": "заказать внедрение ии", "count": 10 },
+        { "match": "phrase", "text": "внедрение ии под ключ", "count": 45 },
+        { "match": "phrase", "text": "внедрение ии в бизнес под ключ", "count": 45 },
+        { "match": "phrase", "text": "услуги внедрение ии в бизнес", "count": 25 }
+      ],
+      "ads": [
+        {
+          "title": "Внедрение ИИ под ключ",
+          "title2": "Discovery → пилот → продакшен",
+          "text": "Закажите внедрение ИИ в бизнес. Созвон 30 мин, дорожная карта и оценка эффекта. Без курсов — только внедрение.",
+          "url": "https://www.bober-ai.dev/services/ai-discovery-roadmap?utm_source=yandex&utm_medium=cpc&utm_campaign=mini_hot_buy&utm_content=ai_key",
+          "displayUrl": "bober-ai.dev/ai"
+        }
+      ]
+    },
+    {
+      "name": "Автоматизация · заказать",
+      "landing": "https://www.bober-ai.dev/services/business-process-automation",
+      "phrases": [
+        { "match": "phrase", "text": "автоматизация бизнеса заказать", "count": 11 }
+      ],
+      "ads": [
+        {
+          "title": "Автоматизация бизнеса под заказ",
+          "title2": "Процессы → ИИ → результат",
+          "text": "Закажите автоматизацию коммерческих и операционных процессов. Звонок или Telegram — ответим в рабочий день.",
+          "url": "https://www.bober-ai.dev/services/business-process-automation?utm_source=yandex&utm_medium=cpc&utm_campaign=mini_hot_buy&utm_content=automation",
+          "displayUrl": "bober-ai.dev/automation"
+        }
+      ]
+    },
+    {
+      "name": "Bitrix24 · цена",
+      "landing": "https://bitrix.bober-ai.dev/",
+      "phrases": [
+        { "match": "phrase", "text": "внедрение битрикс24 цена", "count": 15 }
+      ],
+      "ads": [
+        {
+          "title": "Внедрение Битрикс24 — цена",
+          "title2": "CRM + ИИ под ваш процесс",
+          "text": "Оценка внедрения Bitrix24 с ИИ. Созвон, смета, сроки. Без «скачать бесплатно» — только внедрение.",
+          "url": "https://bitrix.bober-ai.dev/?utm_source=yandex&utm_medium=cpc&utm_campaign=mini_hot_buy&utm_content=bitrix_price",
+          "displayUrl": "bitrix.bober-ai.dev"
+        }
+      ]
+    }
+  ],
+  "minus": {
+    "files": ["data/direct-minus.txt", "data/direct-micro-minus.txt"],
+    "extraMust": [
+      "обучение",
+      "курс",
+      "вакансия",
+      "бесплатно",
+      "скачать",
+      "что такое",
+      "вход",
+      "логин",
+      "демо",
+      "самостоятельно"
+    ]
+  },
+  "extensions": {
+    "sitelinks": [
+      { "title": "Позвонить", "url": "https://www.bober-ai.dev/#contact" },
+      { "title": "Telegram", "url": "https://www.bober-ai.dev/#contact" },
+      { "title": "Кейсы", "url": "https://www.bober-ai.dev/portfolio" },
+      { "title": "Цены / оценка", "url": "https://www.bober-ai.dev/pricing" }
+    ],
+    "callouts": ["Созвон 30 мин", "Смета до старта", "Под ключ", "B2B"]
+  },
+  "phase2WhenAudienceReady": {
+    "when": "сегменты status=processed и охват ≥100 (не few_data)",
+    "campaign": "Bober · RTG · Hot Call",
+    "budgetRub": 300,
+    "includeSegments": [
+      { "id": 58179070, "name": "form_start" },
+      { "id": 58179071, "name": "contact_intent_open" },
+      { "id": 58179073, "name": "roi_calculator_gate_open" }
+    ],
+    "excludeOrSeparate": [
+      { "id": 58179075, "name": "form_submit", "why": "уже отправил форму — отдельный «дожим звонком» или exclude" },
+      { "id": 58179074, "name": "lead_delivered", "why": "уже лид — не крутить «оставьте заявку»" },
+      { "id": 58179072, "name": "case_study_view", "why": "слишком холодно для этой мини-кампании" }
+    ],
+    "network": "РСЯ, только сегменты Audience"
+  },
+  "launchChecklist": [
+    "1. Подтверждение: «ок, запускай» (этот файл status → CONFIRMED)",
+    "2. Direct OAuth токен (сейчас нет): npm run yandex:direct:oauth -- authorize-url",
+    "3. Создать кампанию в UI Директа ИЛИ через API если доступ одобрен",
+    "4. Импорт фраз из data/direct-mini-hot-phrases.csv",
+    "5. Минус-слова из minus.files + extraMust",
+    "6. Цели Метрики в Директе: phone_click, telegram_click, form_submit, lead_delivered",
+    "7. Старт со статусом «Активна», дневной лимит 500 ₽",
+    "8. Первый контроль через 48–72 ч: CTR, цена клика, цели"
+  ],
+  "costReality": {
+    "creatingCampaign": "бесплатно",
+    "whenCharged": "только за клики после старта",
+    "expectedDaily": "до 500 ₽ (лимит), часто меньше на старте из‑за узких фраз"
+  }
+}

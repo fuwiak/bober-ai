@@ -69,3 +69,5 @@ Config: `~/.config/yaga/config.json`
 
 - Go 1.22+
 - bubbletea + lipgloss + bubbles (как bober)
+
+> Upstream development: https://github.com/fuwiak/yaga
