@@ -2,6 +2,7 @@ import { appendFile, mkdir } from "node:fs/promises";
 import { dirname } from "node:path";
 import nodemailer from "nodemailer";
 import type { Attribution } from "@/lib/analytics";
+import { createBitrixLead } from "@/lib/bitrix-leads";
 import { CONTACT_NOTIFICATION_EMAILS, SITE_NAME } from "@/lib/site";
 
 export type ContactLead = {
@@ -186,6 +187,26 @@ export async function deliverContactLead(lead: ContactLead): Promise<ContactDeli
     await notifyTelegram(subject, text).catch((error) => {
       console.error("[contact] telegram notify failed", error);
     });
+    const bitrixResult = await createBitrixLead({
+      name: lead.name,
+      contact: lead.contact,
+      message: lead.message,
+      service: lead.service,
+      company: lead.company,
+      phone: lead.phone,
+      email: lead.email,
+      source: lead.source,
+      utmSource: lead.attribution?.utm_source,
+      utmMedium: lead.attribution?.utm_medium,
+      utmCampaign: lead.attribution?.utm_campaign,
+      landingPage: lead.attribution?.landing_page,
+    }).catch((error) => {
+      console.error("[contact] bitrix lead failed", error);
+      return null;
+    });
+    if (bitrixResult && !bitrixResult.ok && bitrixResult.error !== "disabled" && bitrixResult.error !== "no_token") {
+      console.error("[contact] bitrix lead error", bitrixResult.error);
+    }
 
     return { ok: true, leadId };
   } catch (error) {
