@@ -3,6 +3,7 @@ import { CATALOG_LANDING_SPECS } from "@/lib/seo-catalog/landing-specs";
 import { CATALOG_LANDING_SPECS_EXTRA } from "@/lib/seo-catalog/landing-specs-extra";
 import { INTENT_ARTICLE_SPECS } from "@/lib/seo-catalog/blog-specs";
 import { SEO_HUBS } from "@/lib/seo-catalog/hubs";
+import { SPECIALIST_ARTICLE_SPECS } from "@/lib/seo-catalog/specialist-blog-specs";
 import type {
   BuiltLanding,
   CatalogCategory,
@@ -12,6 +13,7 @@ import type {
 import type { LandingExtendedContent } from "@/lib/landing-extended";
 
 const ALL_SPECS = [...CATALOG_LANDING_SPECS, ...CATALOG_LANDING_SPECS_EXTRA];
+const ALL_ARTICLES = [...SPECIALIST_ARTICLE_SPECS, ...INTENT_ARTICLE_SPECS];
 
 const BUILT: BuiltLanding[] = ALL_SPECS.map(buildLanding);
 
@@ -51,19 +53,19 @@ export function getCatalogLandingsByCategory(category: CatalogCategory) {
 }
 
 export function getIntentArticle(slug: string): IntentArticleSpec | undefined {
-  return INTENT_ARTICLE_SPECS.find((item) => item.slug === slug);
+  return ALL_ARTICLES.find((item) => item.slug === slug);
 }
 
 export function getAllIntentArticles() {
-  return INTENT_ARTICLE_SPECS;
+  return ALL_ARTICLES;
 }
 
 export function getSeoCatalogStats() {
   return {
     catalogLandings: CATALOG_LANDING_DEFS.length,
     hubs: SEO_HUBS.length,
-    intentArticles: INTENT_ARTICLE_SPECS.length,
+    intentArticles: ALL_ARTICLES.length,
     totalNewUrlsRu:
-      CATALOG_LANDING_DEFS.length + SEO_HUBS.length + INTENT_ARTICLE_SPECS.length,
+      CATALOG_LANDING_DEFS.length + SEO_HUBS.length + ALL_ARTICLES.length,
   };
 }

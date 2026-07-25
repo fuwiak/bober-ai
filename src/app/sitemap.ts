@@ -23,7 +23,7 @@ const UPDATED = {
   landings: new Date("2026-07-25"),
   hubs: new Date("2026-07-25"),
   guides: new Date("2026-07-14"),
-  blog: new Date("2026-07-19"),
+  blog: new Date("2026-07-25"),
   academy: new Date("2026-07-20"),
   portfolio: new Date("2026-07-23"),
   legal: new Date("2026-07-16"),

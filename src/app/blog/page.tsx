@@ -27,19 +27,29 @@ const dateFormatter = new Intl.DateTimeFormat("ru-RU", {
 });
 
 export default async function BlogPage() {
+  const intentArticles = getAllIntentArticles();
   const blogJsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
     name: `Блог ${SITE_NAME}`,
     url: absoluteUrl("/blog"),
     inLanguage: "ru-RU",
-    blogPost: BLOG_POSTS.map((post) => ({
-      "@type": "BlogPosting",
-      headline: post.title,
-      url: absoluteUrl(`/blog/${post.slug}`),
-      datePublished: post.publishedAt,
-      author: { "@type": "Person", name: "Павел Стасиньски" },
-    })),
+    blogPost: [
+      ...BLOG_POSTS.map((post) => ({
+        "@type": "BlogPosting",
+        headline: post.title,
+        url: absoluteUrl(`/blog/${post.slug}`),
+        datePublished: post.publishedAt,
+        author: { "@type": "Person", name: "Павел Стасиньски" },
+      })),
+      ...intentArticles.map((article) => ({
+        "@type": "BlogPosting",
+        headline: article.ru.title,
+        url: absoluteUrl(`/blog/${article.slug}`),
+        datePublished: article.publishedAt,
+        author: { "@type": "Person", name: "Павел Стасиньски" },
+      })),
+    ],
   };
 
   return (
@@ -94,7 +104,7 @@ export default async function BlogPage() {
               Практические статьи по реальным поисковым запросам: автоматизация, CRM, документы, продажи и ROI от AI.
             </p>
             <div className="mt-8 grid gap-4 md:grid-cols-2">
-              {getAllIntentArticles().map((article) => (
+              {intentArticles.map((article) => (
                 <Link
                   key={article.slug}
                   href={`/blog/${article.slug}`}
