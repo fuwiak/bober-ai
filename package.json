@@ -55,6 +55,7 @@
     "bitrix:oauth:test": "node scripts/bitrix-oauth.mjs test --sign",
     "bitrix:catalog:sync": "node scripts/bitrix-catalog-sync.mjs",
     "bitrix:site:teaser": "node scripts/bitrix-site-teaser.mjs",
+    "bitrix:shop:configure": "node scripts/bitrix-shop-configure.mjs",
     "kwork:bitrix:sync": "node scripts/kwork-bitrix-sync.mjs",
     "kwork:bitrix:pull": "node scripts/kwork-bitrix-sync.mjs --pull",
     "kwork:bitrix:from-har": "node scripts/kwork-bitrix-sync.mjs --har",
