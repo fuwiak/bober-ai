@@ -1,7 +1,8 @@
 /**
- * Bitrix24 OAuth helpers (локальное приложение → Sign B2E и REST).
+ * Bitrix24 OAuth helpers (локальное приложение → Sign B2E, Sites, REST).
  * @see https://apidocs.bitrix24.ru/settings/oauth/index.html
  * @see https://apidocs.bitrix24.ru/api-reference/sign/index.html
+ * @see https://apidocs.bitrix24.com/api-reference/scopes/permissions.html
  */
 
 import fetch from "./fetch.mjs";
@@ -11,10 +12,16 @@ export const BITRIX_DEFAULT_PORTAL = "https://b24-tuh0lz.bitrix24.ru";
 export const BITRIX_DEFAULT_REDIRECT_URI = "https://www.bober-ai.dev/api/bitrix/oauth/callback";
 export const BITRIX_DEFAULT_INSTALL_URI = "https://www.bober-ai.dev/api/bitrix/oauth/install";
 export const BITRIX_TOKEN_URL = "https://oauth.bitrix.info/oauth/token/";
-/** Scope для КЭДО/Sign + типичные каналы. */
-export const BITRIX_SIGN_SCOPES = ["sign.b2e", "crm", "user", "im"];
-/** + Sites / landing REST (npm run bitrix:site:teaser). */
-export const BITRIX_LANDING_SCOPES = [...BITRIX_SIGN_SCOPES, "landing"];
+/**
+ * Полный набор прав локального приложения:
+ * sign.b2e (КЭДО), crm, user, im, landing (Сайты / Sites API).
+ * Права задаются чекбоксами в UI приложения; &scope= на authorize — запрос подмножества.
+ */
+export const BITRIX_OAUTH_SCOPES = ["sign.b2e", "crm", "user", "im", "landing"];
+/** @deprecated используйте BITRIX_OAUTH_SCOPES */
+export const BITRIX_SIGN_SCOPES = BITRIX_OAUTH_SCOPES.filter((s) => s !== "landing");
+/** Алиас: полный список включая landing (Sites). */
+export const BITRIX_LANDING_SCOPES = BITRIX_OAUTH_SCOPES;
 
 function trimSlash(url) {
   return String(url || "").replace(/\/$/, "");
@@ -49,11 +56,19 @@ export function getBitrixOAuthConfig() {
   };
 }
 
-export function getAuthorizeUrl(config = getBitrixOAuthConfig()) {
+export function getAuthorizeUrl(
+  config = getBitrixOAuthConfig(),
+  scopes = BITRIX_OAUTH_SCOPES,
+) {
   const url = new URL(`${config.portal}/oauth/authorize/`);
   url.searchParams.set("client_id", config.clientId);
   url.searchParams.set("response_type", "code");
   url.searchParams.set("redirect_uri", config.redirectUri);
+  // Bitrix принимает &scope= как запрос прав (фактический список = чекбоксы приложения ∩ scope).
+  const scopeList = Array.isArray(scopes) ? scopes : String(scopes || "").split(/[\s,]+/).filter(Boolean);
+  if (scopeList.length) {
+    url.searchParams.set("scope", scopeList.join(","));
+  }
   return url.toString();
 }
 

@@ -1,22 +1,25 @@
 #!/usr/bin/env node
 
 /**
- * OAuth для локального приложения Битрикс24 (Sign B2E / REST).
+ * OAuth для локального приложения Битрикс24 (Sign B2E / Sites / REST).
  *
- * Я НЕ могу зайти на ваш портал — client_id/secret выдаёт только UI Битрикс.
- * Этот скрипт делает остальное: ловит code на localhost и сохраняет токены.
+ * Я НЕ могу зайти на ваш портал — client_id/secret и чекбоксы прав — только UI Битрикс.
+ * Этот скрипт: authorize URL (+scope), exchange code, refresh, проверка REST.
  *
  *   npm run bitrix:oauth -- setup
+ *   npm run bitrix:oauth -- scopes
  *   npm run bitrix:oauth -- set-app --client-id local.xxx --client-secret yyy
  *   npm run bitrix:oauth -- authorize-url
  *   npm run bitrix:oauth -- exchange --code <CODE>
  *   npm run bitrix:oauth -- status
  *   npm run bitrix:oauth -- refresh
  *   npm run bitrix:oauth -- test
+ *   npm run bitrix:oauth -- test --landing
  *
  * В форме Битрикс (обязательно HTTPS, две косые в http://):
  *   Путь обработчика:     https://www.bober-ai.dev/api/bitrix/oauth/callback
  *   Путь установки:       https://www.bober-ai.dev/api/bitrix/oauth/install
+ *   Права: ☑ Сайты (landing), CRM, Пользователи, Чат, КЭДО/Sign
  *
  * Токены → ~/.config/yaga/credentials.env
  */
@@ -26,8 +29,7 @@ import {
   BITRIX_DEFAULT_INSTALL_URI,
   BITRIX_DEFAULT_PORTAL,
   BITRIX_DEFAULT_REDIRECT_URI,
-  BITRIX_LANDING_SCOPES,
-  BITRIX_SIGN_SCOPES,
+  BITRIX_OAUTH_SCOPES,
   bitrixCredentialVarsFromBundle,
   bitrixRest,
   exchangeCode,
@@ -83,7 +85,7 @@ function cmdSetup() {
   const redirect = BITRIX_DEFAULT_REDIRECT_URI;
   const install = BITRIX_DEFAULT_INSTALL_URI;
 
-  log("Bitrix24 Sign OAuth — заполните форму ТАК (не localhost)\n");
+  log("Bitrix24 OAuth (Sign + Sites) — заполните форму ТАК (не localhost)\n");
   log(`Портал: ${portal}\n`);
   log("Тип: Серверное");
   log("☑ Использует только API\n");
@@ -93,15 +95,47 @@ function cmdSetup() {
   log("Путь для первоначальной установки");
   log(`  ${install}`);
   log("  (НЕ https://example.com/install.php)\n");
-  log(`Права (Sign): ${BITRIX_SIGN_SCOPES.join(", ")}`);
-  log(`Права (+ Sites): ${BITRIX_LANDING_SCOPES.join(", ")}\n`);
+  log(`Права (scopes): ${BITRIX_OAUTH_SCOPES.join(", ")}`);
+  log("  В UI обязательно включите «Сайты» (landing) — иначе Sites API → insufficient_scope.\n");
+  log("Как включить landing у уже созданного локального приложения:");
+  log("  1) Разработчикам → Другое → Локальные приложения → ваше приложение → Изменить");
+  log("  2) В списке прав отметьте «Сайты» (landing) + нужные CRM/user/im/sign.b2e → Сохранить");
+  log("  3) Заново: npm run bitrix:oauth -- authorize-url → Разрешить → exchange --code …\n");
   log("Сохраните → скопируйте client_id и client_secret\n");
   log("Дальше в терминале:\n");
   log("  npm run bitrix:oauth -- set-app --client-id local.XXXX --client-secret YYYY");
+  log("  npm run bitrix:oauth -- scopes");
   log("  npm run bitrix:oauth -- authorize-url");
   log("  # откройте URL → Разрешить → на странице появится команда с code");
   log("  npm run bitrix:oauth -- exchange --code <CODE_С_СТРАНИЦЫ>");
+  log("  npm run bitrix:oauth -- test --landing");
+  log("  npm run bitrix:site:teaser");
   log("\nДокументация Sign: https://apidocs.bitrix24.ru/api-reference/sign/index.html");
+  log("Scopes: https://apidocs.bitrix24.com/api-reference/scopes/permissions.html");
+}
+
+function cmdScopes() {
+  applyYagaCredentials();
+  const config = getBitrixOAuthConfig();
+  log("Требуемые OAuth scopes локального приложения Bitrix24:\n");
+  for (const scope of BITRIX_OAUTH_SCOPES) {
+    const hint =
+      scope === "landing"
+        ? " ← Сайты / landing.site.* (npm run bitrix:site:teaser)"
+        : scope === "sign.b2e"
+          ? " ← КЭДО / Sign B2E"
+          : "";
+    log(`  • ${scope}${hint}`);
+  }
+  log("\nUI: Разработчикам → Локальные приложения → Изменить → ☑ Сайты → Сохранить");
+  log("Затем re-authorize (refresh токена НЕ добавляет новые scopes).\n");
+  if (!config.clientId) {
+    log("Client ID не задан → сначала set-app, или смотрите setup.");
+    return;
+  }
+  const url = getAuthorizeUrl(config);
+  log("Authorize URL (с &scope=):\n");
+  log(url);
 }
 
 async function cmdSetApp() {
@@ -140,8 +174,10 @@ async function cmdAuthorizeUrl() {
   const url = getAuthorizeUrl(config);
   log("Откройте в браузере (админ портала):\n");
   log(url);
-  log("\nПосле «Разрешить» откроется bober-ai.dev с командой exchange.");
+  log(`\nScopes в URL: ${BITRIX_OAUTH_SCOPES.join(", ")}`);
+  log("После «Разрешить» откроется bober-ai.dev с командой exchange.");
   log("Код живёт ~30 сек — сразу выполните exchange.");
+  log("Если landing не был отмечен в UI приложения — сначала Сохраните чекбокс «Сайты».");
   try {
     const { spawn } = await import("node:child_process");
     spawn("open", [url], { stdio: "ignore", detached: true }).unref();
@@ -229,12 +265,38 @@ async function cmdTest() {
       );
     }
   }
+
+  if (flags.has("--landing")) {
+    log("\nlanding.site.getlist (проверка scope landing)...");
+    const sites = await bitrixRest(
+      "landing.site.getlist",
+      {
+        params: {
+          select: ["ID", "TITLE", "TYPE"],
+          filter: { "=DELETED": "N" },
+          order: { ID: "DESC" },
+        },
+      },
+      getBitrixOAuthConfig(),
+    );
+    log(`HTTP ${sites.response.status}`);
+    log(JSON.stringify(sites.body, null, 2).slice(0, 1200));
+    if (sites.body.error) {
+      fail(
+        `${sites.body.error_description || sites.body.error}\n` +
+          "Включите «Сайты» (landing) в локальном приложении → Сохранить → re-authorize " +
+          "(npm run bitrix:oauth -- authorize-url). Refresh токена не добавляет scopes.",
+      );
+    }
+  }
 }
 
 const commands = {
   setup: cmdSetup,
+  scopes: cmdScopes,
   "set-app": cmdSetApp,
   "authorize-url": cmdAuthorizeUrl,
+  authorize: cmdAuthorizeUrl,
   exchange: cmdExchange,
   status: cmdStatus,
   refresh: cmdRefresh,
@@ -243,7 +305,9 @@ const commands = {
 
 const run = commands[command];
 if (!run) {
-  fail(`Неизвестная команда: ${command}. Доступны: ${Object.keys(commands).join(", ")}`);
+  fail(
+    `Неизвестная команда: ${command}. Доступны: ${Object.keys(commands).join(", ")}`,
+  );
 }
 
 Promise.resolve()
