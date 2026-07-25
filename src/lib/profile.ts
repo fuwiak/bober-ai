@@ -223,6 +223,7 @@ export type PortfolioItem = {
 /** Кейсы в маркетинговых листингах (главная /portfolio). Остальные остаются как detail-страницы. */
 export const PORTFOLIO_LISTING_SLUGS = [
   "bitrix24-kwork-crm",
+  "kaspersky-ai-assistant",
   "kp-llm-automation",
   "elia-suite",
 ] as const;

@@ -256,7 +256,7 @@ const ru = {
     },
     portfolio: {
       metaTitle: "Кейсы внедрения AI и автоматизации",
-      metaDescription: "Портфолио Bober AI Systems: Kwork → Bitrix24, ELIA Suite, автоматизация КП, CRM и документов, корпоративные RAG-ассистенты.",
+      metaDescription: "Портфолио Bober AI Systems: Kwork → Bitrix24, Kaspersky RAG, ELIA Suite, автоматизация КП, CRM и документов, корпоративные RAG-ассистенты.",
     },
     pricing: {
       metaTitle: "Прайс-лист и стоимость внедрения AI",

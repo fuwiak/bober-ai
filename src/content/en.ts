@@ -251,7 +251,7 @@ const en = {
     },
     portfolio: {
       metaTitle: "AI implementation case studies",
-      metaDescription: "Bober AI Systems portfolio: Kwork → Bitrix24, ELIA Suite, proposal automation, CRM and documents, corporate RAG assistants.",
+      metaDescription: "Bober AI Systems portfolio: Kwork → Bitrix24, Kaspersky RAG, ELIA Suite, proposal automation, CRM and documents, corporate RAG assistants.",
     },
     pricing: {
       metaTitle: "AI service price list — packages and estimates",
