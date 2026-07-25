@@ -26,3 +26,7 @@ articles/**/.export/
 # Яндекс Услуги (кабинет) — сессия Playwright и sniff API
 .yandex-uslugi-auth.json
 data/uslugi-sniff/
+
+# Kwork/browser HAR captures (may contain session cookies)
+*.har
+data/*.har
