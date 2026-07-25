@@ -26,6 +26,30 @@ type PackagesShowcaseProps = {
   moreLabel?: string;
 };
 
+function PackageDetailsLink({
+  href,
+  label,
+  className,
+}: {
+  href: string;
+  label: string;
+  className?: string;
+}) {
+  if (href.startsWith("http://") || href.startsWith("https://")) {
+    return (
+      <a href={href} target="_blank" rel="noreferrer" className={className}>
+        {label}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href as "/"} className={className}>
+      {label}
+    </Link>
+  );
+}
+
 export function PackagesShowcase({
   label,
   title,
@@ -58,9 +82,7 @@ export function PackagesShowcase({
                 <p className="body-copy mt-4 text-base">{item.forWhom}</p>
                 <p className="body-copy mt-3 text-base text-ink">{item.result}</p>
                 {item.detailsHref ? (
-                  <Link href={item.detailsHref as "/"} className="link-more mt-6">
-                    {detailsLabel}
-                  </Link>
+                  <PackageDetailsLink href={item.detailsHref} label={detailsLabel} className="link-more mt-6" />
                 ) : null}
               </article>
             </StaggerItem>

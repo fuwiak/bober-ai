@@ -23,6 +23,30 @@ type PackageCardProps = PackageItem & {
   index: number;
 };
 
+function PackageDetailsLink({
+  href,
+  label,
+  className,
+}: {
+  href: string;
+  label: string;
+  className?: string;
+}) {
+  if (href.startsWith("http://") || href.startsWith("https://")) {
+    return (
+      <a href={href} target="_blank" rel="noreferrer" className={className}>
+        {label}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href as "/"} className={className}>
+      {label}
+    </Link>
+  );
+}
+
 export function PackageCard({
   name,
   price,
@@ -62,9 +86,7 @@ export function PackageCard({
         <div className="engagement-row__cta flex flex-col gap-3">
           <ContactCta className="max-w-full whitespace-normal sm:whitespace-nowrap">{ctaLabel}</ContactCta>
           {detailsHref ? (
-            <Link href={detailsHref as "/"} className="link-more justify-center">
-              {detailsLabel}
-            </Link>
+            <PackageDetailsLink href={detailsHref} label={detailsLabel} className="link-more justify-center" />
           ) : null}
         </div>
       </article>

@@ -7,7 +7,10 @@ import { TrackedAnchor } from "@/components/TrackedAnchor";
 import { Reveal } from "@/components/motion/Reveal";
 import {
   BITRIX_LANDING_KEYWORDS,
+  BITRIX_LAYER_POSITIONING,
   BITRIX_PACKAGES,
+  BITRIX_PARTNER_PROGRAM,
+  BITRIX_SALES_LOOP,
   BITRIX_SERVICES_SUMMARY,
 } from "@/lib/bitrix-landing";
 import { LEGAL_ENTITY, LEGAL_ROUTES, formatLegalRequisitesLine } from "@/lib/legal";
@@ -201,6 +204,10 @@ const COLLAB_STEPS = [
 
 const PARTNER_CHECKLIST = [
   {
+    title: "Партнёр 1С-Битрикс",
+    text: `${BITRIX_PARTNER_PROGRAM.line}. Внедряем портал и AI-слой как участник официальной партнёрской программы.`,
+  },
+  {
     title: "Своя CRM на Битрикс24",
     text: "Внутренние продажи и проекты ведём в Битрикс24 — внедряем то, чем пользуемся сами в повседневной работе.",
   },
@@ -256,10 +263,11 @@ export default function BitrixLandingPage() {
                   Внедрение Битрикс24 с AI — автоматизация и аналитика под ключ
                 </h1>
                 <p className="body-copy mt-5 max-w-2xl text-lg">
-                  Внедрение Битрикс24 с AI + индивидуальные решения для продаж, аналитики и автоматизации.
+                  {BITRIX_LAYER_POSITIONING.headline}: 1С, телефония, документы, КП и собственная бизнес-логика.
                 </p>
                 <p className="mt-4 max-w-2xl font-display text-base text-muted">
-                  Не перепродажа лицензий, а настройка процессов, интеграции и AI-слой поверх вашей CRM.
+                  Не конкурируем с BitrixGPT — продаём слой внедрения поверх него.{" "}
+                  {BITRIX_PARTNER_PROGRAM.line}.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <TrackedAnchor href="#contact" className="btn-primary" goal="bitrix_cta_click">
@@ -270,7 +278,8 @@ export default function BitrixLandingPage() {
                   </TrackedAnchor>
                 </div>
                 <p className="meta-label mt-6 text-muted">
-                  Пилот от 300 000 ₽ · 2–4 недели · облако или коробочная версия
+                  Пилот от 300 000 ₽ · 2–4 недели · облако или коробочная версия · партнёр 1С-Битрикс ID{" "}
+                  {BITRIX_PARTNER_PROGRAM.id}
                 </p>
               </Reveal>
 
@@ -351,6 +360,66 @@ export default function BitrixLandingPage() {
             </div>
           </section>
 
+          {/* 4.1. Layer above BitrixGPT */}
+          <section className="section-band section--deep border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">Позиционирование</span>
+                <h2 className="section-title mt-4 max-w-3xl">{BITRIX_LAYER_POSITIONING.headline}</h2>
+                <p className="body-copy mt-4 max-w-2xl">{BITRIX_LAYER_POSITIONING.lead}</p>
+              </Reveal>
+              <div className="mt-8 grid gap-5 sm:grid-cols-2">
+                <div className="border border-hairline bg-surface-card p-6">
+                  <h3 className="font-display text-base text-ink">Что закрывает нативный агент CRM</h3>
+                  <ul className="mt-4 space-y-3">
+                    {BITRIX_LAYER_POSITIONING.nativeLimits.map((item) => (
+                      <li key={item} className="flex items-start gap-3 text-sm text-muted">
+                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-muted" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="border border-hairline bg-surface-card p-6">
+                  <h3 className="font-display text-base text-ink">Где ценность Bober AI</h3>
+                  <ul className="mt-4 space-y-3">
+                    {BITRIX_LAYER_POSITIONING.ourLayer.map((item) => (
+                      <li key={item} className="flex items-start gap-3 text-sm text-body">
+                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* 4.2. AI sales loop — strong product example */}
+          <section id="sales-loop" className="section-band scroll-mt-16 border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">Сильный пример</span>
+                <h2 className="section-title mt-4 max-w-2xl">{BITRIX_SALES_LOOP.title}</h2>
+                <p className="body-copy mt-4 max-w-2xl">{BITRIX_SALES_LOOP.lead}</p>
+              </Reveal>
+              <ol className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {BITRIX_SALES_LOOP.steps.map((step, index) => (
+                  <li key={step} className="border border-hairline bg-surface-card p-5">
+                    <span className="meta-label text-muted-soft">{String(index + 1).padStart(2, "0")}</span>
+                    <p className="mt-2 font-display text-base text-ink">{step}</p>
+                  </li>
+                ))}
+              </ol>
+              <p className="body-copy mt-6 max-w-2xl text-sm text-body-strong">{BITRIX_SALES_LOOP.why}</p>
+              <div className="mt-8">
+                <TrackedAnchor href="#contact" className="btn-primary" goal="bitrix_cta_click">
+                  Оценить AI-контур продаж
+                </TrackedAnchor>
+              </div>
+            </div>
+          </section>
+
           {/* 4.5. Packages */}
           <section id="packages" className="section-band scroll-mt-16 border-b border-hairline">
             <div className="container-editorial max-w-4xl">
@@ -390,10 +459,11 @@ export default function BitrixLandingPage() {
                 <span className="section-label">Подход</span>
                 <h2 className="section-title mt-4 max-w-2xl">Как закрываем внедрение Битрикс24</h2>
                 <p className="body-copy mt-4 max-w-2xl">
-                  Короткие ориентиры для заказчика и партнёрской заявки — без выдуманных сертификатов и значков.
+                  {BITRIX_PARTNER_PROGRAM.line}. Короткие ориентиры для заказчика — без выдуманных сертификатов и
+                  значков.
                 </p>
               </Reveal>
-              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
                 {PARTNER_CHECKLIST.map((item) => (
                   <div key={item.title} className="border border-hairline bg-surface-card p-5">
                     <h3 className="font-display text-base text-ink">{item.title}</h3>
@@ -589,6 +659,10 @@ export default function BitrixLandingPage() {
                     <dd className="mt-1 text-body">{LEGAL_ENTITY.address}</dd>
                   </div>
                   <div className="sm:col-span-2">
+                    <dt className="meta-label text-muted">Партнёрская программа</dt>
+                    <dd className="mt-1 text-body-strong">{BITRIX_PARTNER_PROGRAM.line}</dd>
+                  </div>
+                  <div className="sm:col-span-2">
                     <dt className="meta-label text-muted">Услуги</dt>
                     <dd className="mt-1 text-body">{BITRIX_SERVICES_SUMMARY}</dd>
                   </div>
@@ -658,6 +732,7 @@ export default function BitrixLandingPage() {
               <span className="text-muted">{LEGAL_ENTITY.name}</span> · {formatLegalRequisitesLine()}
             </p>
             <p className="mt-2">{LEGAL_ENTITY.address}</p>
+            <p className="mt-2 text-muted">{BITRIX_PARTNER_PROGRAM.line}</p>
             <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
               <span>© {new Date().getFullYear()} Bober AI Systems</span>
               <div className="flex flex-wrap gap-4">

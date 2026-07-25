@@ -75,7 +75,7 @@ const ru = {
     focus:
       "AI-системы, автоматизация и интеграция с Bitrix24, 1С, amoCRM, CRM и ERP.",
     trustLine: "★ {rating} · {reviewCount} отзывов · {years}+ лет опыта · NDA / ON-PREM",
-    partnersLine: "Партнёры Yandex Cloud, Cloud.ru и Selectel",
+    partnersLine: "Партнёры Yandex Cloud, Cloud.ru и Selectel · партнёрская программа 1С-Битрикс (ID 28909898)",
     ctaPrimary: "Получить оценку",
     ctaSecondary: "Смотреть кейсы",
     ctaTelegram: "Telegram",
@@ -349,7 +349,7 @@ const ru = {
       { value: "от 500k", label: "промышленное внедрение" },
       { value: "NDA", label: "и свой контур по запросу" },
     ],
-    logos: ["Yandex Cloud", "Selectel", "Cloud.ru", "Kaspersky"],
+    logos: ["Yandex Cloud", "Selectel", "Cloud.ru", "Kaspersky", "1С-Битрикс"],
     partnersAriaLabel: "Снижение рисков внедрения",
     benefits: [
       {
@@ -359,6 +359,10 @@ const ru = {
       {
         title: "Kaspersky — слой защиты",
         text: "Защита Linux, контейнеров и облачных нагрузок как опция AI-контура, не отдельный продукт.",
+      },
+      {
+        title: "1С-Битрикс — партнёрская программа",
+        text: "Участие в партнерской программе 1С-Битрикс · ID 28909898. Внедрение Битрикс24 и AI-слой поверх CRM.",
       },
       {
         title: "Передача кода и документации",
@@ -374,12 +378,13 @@ const ru = {
       selectel: "Партнёрская программа Selectel",
       cloudru: "Технологический партнёр Cloud.ru",
       kaspersky: "Авторизованный партнёр „Лаборатории Касперского“",
+      bitrix: "Участие в партнерской программе 1С-Битрикс · ID 28909898",
     },
   },
   packages: {
     title: "Форматы работы",
     subtitle:
-      "Одна лестница бюджетов: аудит, пилот и промышленное внедрение. Фиксированная смета до старта.",
+      "Одна лестница бюджетов: аудит, пилот, внедрение Битрикс24 + AI и промышленный запуск. Фиксированная смета до старта.",
     items: [
       {
         name: "Аудит",
@@ -401,6 +406,21 @@ const ru = {
         includes: ["Пилот на реальных сценариях", "Интеграция с ключевой системой", "Метрики и план промышленного запуска"],
         tier: "pilot",
         detailsHref: "/services/business-process-automation",
+      },
+      {
+        name: "Битрикс24 + AI",
+        price: "от 150 000 ₽",
+        duration: "2–8 недель",
+        forWhom: "Нужны внедрение Битрикс24, AI-слой и интеграции с 1С, телефонией и документами",
+        result:
+          "Рабочий портал и AI-контур поверх CRM: воронка, автозаполнение, follow-up, связка с учётом — партнёр 1С-Битрикс ID 28909898",
+        includes: [
+          "Внедрение и настройка Битрикс24",
+          "AI-контур отдела продаж поверх BitrixGPT",
+          "Интеграции: 1С, телефония, документы, КП",
+        ],
+        tier: "implementation",
+        detailsHref: "https://bitrix.bober-ai.dev/",
       },
       {
         name: "Промышленное внедрение",

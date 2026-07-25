@@ -40,7 +40,7 @@ export default async function HomePage() {
       featured?: boolean;
       detailsHref?: string;
     }[]
-  ).slice(0, 3);
+  ).slice(0, 4);
   const faqItems = (t.raw("faq.items") as { q: string; a: string }[]).slice(0, 4);
   const beforeSteps = t.raw("beforeAfterDemo.beforeSteps") as { label: string; status: string }[];
   const afterSteps = t.raw("beforeAfterDemo.afterSteps") as { label: string; status: string }[];

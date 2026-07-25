@@ -70,7 +70,7 @@ const en = {
     nameLine: "Pawel Stasinski",
     focus: "AI systems, automation and integration with Bitrix24, 1C, amoCRM, CRM and ERP.",
     trustLine: "★ {rating} · {reviewCount} reviews · {years}+ years of experience · NDA / ON-PREM",
-    partnersLine: "Partners: Yandex Cloud, Cloud.ru and Selectel",
+    partnersLine: "Partners: Yandex Cloud, Cloud.ru and Selectel · 1C-Bitrix partner program (ID 28909898)",
     ctaPrimary: "Get an estimate",
     ctaSecondary: "View case studies",
     ctaTelegram: "Telegram",
@@ -343,7 +343,7 @@ const en = {
       { value: "from €5k", label: "production implementation" },
       { value: "NDA", label: "and your perimeter on request" },
     ],
-    logos: ["Yandex Cloud", "Selectel", "Cloud.ru", "Kaspersky"],
+    logos: ["Yandex Cloud", "Selectel", "Cloud.ru", "Kaspersky", "1C-Bitrix"],
     partnersAriaLabel: "Implementation risk reduction",
     benefits: [
       {
@@ -353,6 +353,10 @@ const en = {
       {
         title: "Kaspersky — protection layer",
         text: "Linux, container and cloud workload protection as an optional AI-perimeter layer — not a standalone product pitch.",
+      },
+      {
+        title: "1C-Bitrix partner program",
+        text: "1C-Bitrix partner program participation · ID 28909898. Bitrix24 implementation and an AI layer on top of CRM.",
       },
       {
         title: "Code and documentation handover",
@@ -368,12 +372,13 @@ const en = {
       selectel: "Selectel Partner Program",
       cloudru: "Cloud.ru Technology Partner",
       kaspersky: "Authorized Partner of Kaspersky Lab",
+      bitrix: "1C-Bitrix partner program · ID 28909898",
     },
   },
   packages: {
     title: "Work formats",
     subtitle:
-      "One budget ladder: audit, pilot and production implementation. Fixed scope before kickoff.",
+      "One budget ladder: audit, pilot, Bitrix24 + AI and production rollout. Fixed scope before kickoff.",
     items: [
       {
         name: "Audit",
@@ -395,6 +400,21 @@ const en = {
         includes: ["Pilot on real scenarios", "Integration with a core system", "Metrics and production rollout plan"],
         tier: "pilot",
         detailsHref: "/services/business-process-automation",
+      },
+      {
+        name: "Bitrix24 + AI",
+        price: "from €1,500",
+        duration: "2–8 weeks",
+        forWhom: "Need Bitrix24 implementation, an AI layer and integrations with 1C, telephony and documents",
+        result:
+          "Working portal and AI sales loop on top of CRM: pipeline, autofill, follow-up, accounting links — 1C-Bitrix partner ID 28909898",
+        includes: [
+          "Bitrix24 setup and rollout",
+          "AI sales loop on top of BitrixGPT",
+          "Integrations: 1C, telephony, documents, proposals",
+        ],
+        tier: "implementation",
+        detailsHref: "https://bitrix.bober-ai.dev/",
       },
       {
         name: "Production implementation",
