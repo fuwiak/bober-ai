@@ -6,7 +6,7 @@ import { CookieConsent } from "@/components/CookieConsent";
 import { AttributionCapture } from "@/components/AttributionCapture";
 import { Varioqub } from "@/components/Varioqub";
 import { YandexMetrika } from "@/components/YandexMetrika";
-import { DEFAULT_KEYWORDS, FOUNDER_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
+import { DEFAULT_KEYWORDS, OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
 
 /** Architectural sans — близко к TT Wellingtons / DIN у Alcon DC. */
 const manrope = Manrope({
@@ -79,9 +79,9 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     images: [
       {
-        url: absoluteUrl(FOUNDER_IMAGE),
-        width: 1024,
-        height: 768,
+        url: absoluteUrl(OG_IMAGE),
+        width: 1200,
+        height: 630,
         alt: SITE_NAME,
       },
     ],
@@ -90,7 +90,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Автоматизация КП, документов и CRM с AI — Bober AI",
     description: SITE_DESCRIPTION,
-    images: [absoluteUrl(FOUNDER_IMAGE)],
+    images: [absoluteUrl(OG_IMAGE)],
   },
   other: {
     keywords: DEFAULT_KEYWORDS.join(", "),

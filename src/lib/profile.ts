@@ -27,7 +27,7 @@ export const PROFILE = {
 
 10+ лет опыта, партнёр Yandex Cloud, Cloud.ru и Selectel; участие в партнерской программе 1С-Битрикс (ID 28909898). Проекты от 30 000 ₽. Telegram — ответ в течение нескольких часов с планом и ценой.`,
   avatar: "/yandex/Pasha_Yandex1.png",
-  heroImage: "/hero/pavel-main.png",
+  heroImage: "/hero/pavel-main.webp",
 } as const;
 
 export type Review = {

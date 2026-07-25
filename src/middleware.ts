@@ -10,6 +10,46 @@ const APEX_HOST = "bober-ai.dev";
 const PARTNERS_HOST = "partners.bober-ai.dev";
 const BITRIX_HOST = "bitrix.bober-ai.dev";
 
+const SECURITY_HEADERS: Record<string, string> = {
+  "X-Content-Type-Options": "nosniff",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "X-Frame-Options": "SAMEORIGIN",
+  "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+  "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+};
+
+function withSecurityHeaders(response: NextResponse) {
+  for (const [key, value] of Object.entries(SECURITY_HEADERS)) {
+    response.headers.set(key, value);
+  }
+  return response;
+}
+
+/** HTML / document responses — short cache; assets use immutable via next.config. */
+function withHtmlCache(response: NextResponse) {
+  response.headers.set("Cache-Control", "public, max-age=0, must-revalidate");
+  return response;
+}
+
+function finalizeDocument(response: NextResponse, request: NextRequest) {
+  withSecurityHeaders(response);
+  withHtmlCache(response);
+
+  // next-intl locale cookie: add Secure behind HTTPS (Railway terminates TLS).
+  const locale = response.cookies.get("NEXT_LOCALE")?.value;
+  const forwardedProto = request.headers.get("x-forwarded-proto");
+  const isHttps =
+    forwardedProto === "https" || request.nextUrl.protocol === "https:";
+  if (locale && isHttps) {
+    response.cookies.set("NEXT_LOCALE", locale, {
+      path: "/",
+      sameSite: "lax",
+      secure: true,
+    });
+  }
+  return response;
+}
+
 /** Yandex requires application/xml|text/xml for YML (not text/yaml from .yml MIME). */
 function withYmlContentType(response: NextResponse) {
   response.headers.set("Content-Type", "application/xml; charset=utf-8");
@@ -74,16 +114,16 @@ export default function middleware(request: NextRequest) {
       if (pathname === "/performers-feed.yml") {
         const url = request.nextUrl.clone();
         url.pathname = "/feeds/partners.yml";
-        return withYmlContentType(NextResponse.rewrite(url));
+        return withYmlContentType(withSecurityHeaders(NextResponse.rewrite(url)));
       }
       if (pathname.startsWith("/feeds/") && pathname.endsWith(".yml")) {
-        return withYmlContentType(NextResponse.next());
+        return withYmlContentType(withSecurityHeaders(NextResponse.next()));
       }
-      return NextResponse.next();
+      return withSecurityHeaders(NextResponse.next());
     }
     const url = request.nextUrl.clone();
     url.pathname = "/white-label";
-    return NextResponse.rewrite(url);
+    return finalizeDocument(NextResponse.rewrite(url), request);
   }
 
   if (host === BITRIX_HOST) {
@@ -97,16 +137,16 @@ export default function middleware(request: NextRequest) {
       if (pathname === "/performers-feed.yml") {
         const url = request.nextUrl.clone();
         url.pathname = "/feeds/bitrix.yml";
-        return withYmlContentType(NextResponse.rewrite(url));
+        return withYmlContentType(withSecurityHeaders(NextResponse.rewrite(url)));
       }
       if (pathname.startsWith("/feeds/") && pathname.endsWith(".yml")) {
-        return withYmlContentType(NextResponse.next());
+        return withYmlContentType(withSecurityHeaders(NextResponse.next()));
       }
-      return NextResponse.next();
+      return withSecurityHeaders(NextResponse.next());
     }
     const url = request.nextUrl.clone();
     url.pathname = "/bitrix";
-    return NextResponse.rewrite(url);
+    return finalizeDocument(NextResponse.rewrite(url), request);
   }
 
   // Явный 301: Яндекс учитывает 301/302 при выборе главного зеркала (не 308).
@@ -115,25 +155,30 @@ export default function middleware(request: NextRequest) {
   // и ломает Claude/ChatGPT/ботов при заходе на apex без www.
   if (host === APEX_HOST) {
     if (isOwnershipVerificationPath(pathname)) {
-      return NextResponse.next();
+      return withSecurityHeaders(NextResponse.next());
     }
     const dest = new URL(
       `${request.nextUrl.pathname}${request.nextUrl.search}`,
       `https://${CANONICAL_HOST}`,
     );
-    return NextResponse.redirect(dest, 301);
+    return withSecurityHeaders(NextResponse.redirect(dest, 301));
   }
 
   if (pathname === "/performers-feed.yml" || (pathname.startsWith("/feeds/") && pathname.endsWith(".yml"))) {
     // Static public/*.yml — stable body for Webmaster (no per-request date churn via API).
-    return withYmlContentType(NextResponse.next());
+    return withYmlContentType(withSecurityHeaders(NextResponse.next()));
   }
 
   if (shouldSkipIntl(pathname)) {
-    return NextResponse.next();
+    // Static/API — security only; asset Cache-Control from next.config.
+    // Bare HTML routes that skip intl still need document cache headers.
+    if (pathname.startsWith("/api") || pathname.includes(".")) {
+      return withSecurityHeaders(NextResponse.next());
+    }
+    return finalizeDocument(NextResponse.next(), request);
   }
 
-  return intlMiddleware(request);
+  return finalizeDocument(intlMiddleware(request), request);
 }
 
 export const config = {

@@ -1,6 +1,5 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { ContactForm } from "@/components/ContactForm";
-import { ContactCta } from "@/components/ContactCta";
 import { BeforeAfterDemoSection } from "@/components/ExpertiseEvidence";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
 import { PackagesShowcase } from "@/components/PackagesShowcase";
@@ -24,6 +23,7 @@ import {
 /**
  * Compact homepage (~30% shorter): hero → proof → before/after (merged pains) →
  * cases → packages → FAQ → contact. Dropped repeating budget/problems/why/trust/hub/CTA bands.
+ * CTA budget: hero primary + packages band + form submit (no per-card / duplicate contact CTAs).
  */
 export default async function HomePage() {
   const locale = await getLocale();
@@ -58,8 +58,6 @@ export default async function HomePage() {
           titleLine2={t("hero.titleLine2") || undefined}
           titleStyle={t("hero.titleLine2") ? "headline" : "sentence"}
           valueProposition={t("hero.valueProposition")}
-          differentiator={t("hero.differentiator")}
-          specialization={t("hero.specialization")}
           ctaPrimary={t("cta.primary")}
           ctaSecondary={t("hero.ctaSecondary")}
           ctaSecondaryHref="/#cases"
@@ -103,7 +101,6 @@ export default async function HomePage() {
                     viewLabel={t("common.viewCaseStudy")}
                     beforeLabel={t("homeLanding.caseBeforeLabel")}
                     afterLabel={t("homeLanding.caseAfterLabel")}
-                    discussLabel={t("cta.primary")}
                   />
                 </StaggerItem>
               ))}
@@ -147,7 +144,6 @@ export default async function HomePage() {
                 <p className="body-copy mt-4 text-base">{t("contact.subtitle")}</p>
                 <p className="body-copy mt-3 text-sm text-muted">{t("contact.afterSubmit")}</p>
                 <div className="mt-8 flex flex-wrap justify-center gap-3">
-                  <ContactCta>{t("cta.primary")}</ContactCta>
                   <TrackedAnchor href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary" goal="telegram_click">
                     Telegram
                   </TrackedAnchor>

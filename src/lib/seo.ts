@@ -4,8 +4,8 @@ import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
   GITHUB_URL,
-  FOUNDER_IMAGE,
   LINKEDIN_URL,
+  OG_IMAGE,
   SELECTEL_PARTNER_PROGRAM_URL,
   SITE_COUNTRY,
   SITE_GEO,
@@ -24,7 +24,7 @@ import { LEGAL_ENTITY } from "@/lib/legal";
 import { PROFILE } from "@/lib/profile";
 
 /** Default share / snippet image (not favicon — Yandex/social need a real preview). */
-export const DEFAULT_OG_IMAGE = FOUNDER_IMAGE;
+export const DEFAULT_OG_IMAGE = OG_IMAGE;
 
 type PageSeoInput = {
   title: string;
