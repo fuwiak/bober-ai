@@ -181,8 +181,8 @@ const ru = {
     proofLabel: "Результаты",
     proofTitle: "Что уже измерили на пилотах",
     casesLabel: "Кейсы",
-    casesTitle: "Три внедрения с измеримым эффектом",
-    casesSubtitle: "Было → стало: production-сценарии с методологией измерения.",
+    casesTitle: "Внедрения с измеримым эффектом",
+    casesSubtitle: "Было → стало: production-сценарии с методологией измерения — включая живую воронку Kwork → Bitrix24.",
     casesCta: "Больше подробностей",
     caseBeforeLabel: "Было",
     caseAfterLabel: "Стало",
@@ -256,7 +256,7 @@ const ru = {
     },
     portfolio: {
       metaTitle: "Кейсы внедрения AI и автоматизации",
-      metaDescription: "Портфолио Bober AI Systems: ELIA Suite, автоматизация КП, CRM и документов, корпоративные RAG-ассистенты.",
+      metaDescription: "Портфолио Bober AI Systems: Kwork → Bitrix24, ELIA Suite, автоматизация КП, CRM и документов, корпоративные RAG-ассистенты.",
     },
     pricing: {
       metaTitle: "Прайс-лист и стоимость внедрения AI",

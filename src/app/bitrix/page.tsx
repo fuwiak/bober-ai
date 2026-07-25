@@ -6,6 +6,7 @@ import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { TrackedAnchor } from "@/components/TrackedAnchor";
 import { Reveal } from "@/components/motion/Reveal";
 import {
+  BITRIX_CASE_KWORK,
   BITRIX_LANDING_KEYWORDS,
   BITRIX_LAYER_POSITIONING,
   BITRIX_MCP,
@@ -109,11 +110,26 @@ type CaseStudy = {
   metric?: string;
   metricNote?: string;
   image?: string;
+  imageAlt?: string;
+  imageCaption?: string;
 };
 
 const CASES: CaseStudy[] = [
   {
-    label: "Кейс 1 · AI-чат владельца",
+    label: BITRIX_CASE_KWORK.label,
+    title: BITRIX_CASE_KWORK.title,
+    lead: BITRIX_CASE_KWORK.lead,
+    steps: [...BITRIX_CASE_KWORK.steps],
+    result: BITRIX_CASE_KWORK.result,
+    systems: BITRIX_CASE_KWORK.systems,
+    metric: BITRIX_CASE_KWORK.metric,
+    metricNote: BITRIX_CASE_KWORK.metricNote,
+    image: BITRIX_CASE_KWORK.image,
+    imageAlt: BITRIX_CASE_KWORK.imageAlt,
+    imageCaption: BITRIX_CASE_KWORK.imageCaption,
+  },
+  {
+    label: "Кейс · AI-чат владельца",
     title: "«Почему упала конверсия отдела продаж за неделю?»",
     lead: "Владелец задаёт вопрос в чат — система отвечает по фактическим данным CRM, а не по ощущениям менеджеров.",
     steps: [
@@ -128,7 +144,7 @@ const CASES: CaseStudy[] = [
     systems: "Битрикс24 · задачи · телефония · права доступа",
   },
   {
-    label: "Кейс 2 · Авто-КП · OfferKP",
+    label: "Кейс · Авто-КП · OfferKP",
     title: "PDF клиента → цены и остатки → готовое КП в CRM",
     lead: "Реализованный контур генерации коммерческих предложений: типовое КП за 2–5 минут вместо ~45.",
     steps: [
@@ -146,7 +162,7 @@ const CASES: CaseStudy[] = [
     image: PORTFOLIO_IMAGES.kpLlm,
   },
   {
-    label: "Кейс 3 · Kinetic AI · цветы",
+    label: "Кейс · Kinetic AI · цветы",
     title: "МойСклад + история продаж → рекомендации для роста повторных покупок",
     lead: "Не чат-бот «для галочки», а рабочий контур сегментации и повторных продаж на данных заказов.",
     steps: [
@@ -528,7 +544,8 @@ export default function BitrixLandingPage() {
                 <span className="section-label">Кейсы</span>
                 <h2 className="section-title mt-4 max-w-2xl">Как это выглядит на реальных процессах</h2>
                 <p className="body-copy mt-4 max-w-2xl">
-                  Три сценария из практики: чат владельца по CRM, авто-КП и рост повторных продаж на данных склада.
+                  Живые сценарии: кастомная воронка Kwork → Bitrix24, чат владельца по CRM, авто-КП и повторные
+                  продажи на данных склада.
                 </p>
               </Reveal>
 
@@ -550,15 +567,20 @@ export default function BitrixLandingPage() {
                       ) : null}
 
                       {item.image ? (
-                        <div className="relative mt-6 aspect-[16/9] max-w-xl overflow-hidden border border-hairline">
-                          <Image
-                            src={item.image}
-                            alt=""
-                            fill
-                            sizes="(max-width: 768px) 100vw, 560px"
-                            className="object-cover object-top"
-                          />
-                        </div>
+                        <figure className="mt-6 max-w-xl">
+                          <div className="relative aspect-[16/9] overflow-hidden border border-hairline">
+                            <Image
+                              src={item.image}
+                              alt={item.imageAlt ?? item.title}
+                              fill
+                              sizes="(max-width: 768px) 100vw, 560px"
+                              className="object-cover object-top"
+                            />
+                          </div>
+                          {item.imageCaption ? (
+                            <figcaption className="mt-3 text-sm text-muted">{item.imageCaption}</figcaption>
+                          ) : null}
+                        </figure>
                       ) : null}
 
                       <ul className="mt-6 grid gap-3 sm:grid-cols-2">

@@ -93,12 +93,15 @@ export function ProjectsCasesShowcase({
                 <EditorialImageFrame variant="card" className="aspect-[16/10] w-full bg-surface-soft">
                   <Image
                     src={item.image}
-                    alt={item.title}
+                    alt={item.imageAlt ?? item.title}
                     fill
                     sizes="100vw"
                     className="case-study__image"
                   />
                 </EditorialImageFrame>
+                {item.imageCaption ? (
+                  <p className="mt-2 text-sm text-muted">{item.imageCaption}</p>
+                ) : null}
 
                 <div className="case-study__meta">
                   <span>

@@ -116,13 +116,16 @@ export default async function PortfolioProjectPage({ params }: PageProps) {
             <EditorialImageFrame variant="card" className="mt-10 aspect-[16/10] rounded-xl border border-hairline bg-surface-card">
               <Image
                 src={item.image}
-                alt={item.title}
+                alt={item.imageAlt ?? item.title}
                 fill
                 sizes="(max-width: 1200px) 100vw, 1152px"
                 className="case-study__image"
                 priority
               />
             </EditorialImageFrame>
+            {item.imageCaption ? (
+              <p className="mt-3 text-sm text-muted">{item.imageCaption}</p>
+            ) : null}
 
             {hasCaseStudy ? (
               <div className="mt-12 grid gap-6 md:grid-cols-3">

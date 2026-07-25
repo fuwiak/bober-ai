@@ -176,8 +176,8 @@ const en = {
     proofLabel: "Results",
     proofTitle: "What we already measured on pilots",
     casesLabel: "Case studies",
-    casesTitle: "Three deployments with measurable impact",
-    casesSubtitle: "Before → after: production scenarios with a measurement method.",
+    casesTitle: "Deployments with measurable impact",
+    casesSubtitle: "Before → after: production scenarios with a measurement method — including a live Kwork → Bitrix24 funnel.",
     casesCta: "More details",
     caseBeforeLabel: "Before",
     caseAfterLabel: "After",
@@ -251,7 +251,7 @@ const en = {
     },
     portfolio: {
       metaTitle: "AI implementation case studies",
-      metaDescription: "Bober AI Systems portfolio: ELIA Suite, proposal automation, CRM and documents, corporate RAG assistants.",
+      metaDescription: "Bober AI Systems portfolio: Kwork → Bitrix24, ELIA Suite, proposal automation, CRM and documents, corporate RAG assistants.",
     },
     pricing: {
       metaTitle: "AI service price list — packages and estimates",

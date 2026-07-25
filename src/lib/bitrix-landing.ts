@@ -104,6 +104,34 @@ export const BITRIX_SALES_LOOP = {
     "Ценнее, чем «AI-анализ звонков»: напрямую влияет на дисциплину продаж, а не только на прослушку выборочных записей.",
 } as const;
 
+/**
+ * Сильный product-shot кейс: свой контур Kwork → Bitrix24 (не ApiMonster).
+ * Картинка: public/cases/bitrix24-kwork-crm.jpg
+ */
+export const BITRIX_CASE_KWORK = {
+  label: "Кейс · Kwork → Bitrix24",
+  title: "Кастомная интеграция Kwork → Bitrix24 CRM",
+  lead:
+    "Заказы с Kwork попадают в канбан сделок Bitrix24: стадии, суммы и источник в одной воронке — свой контур, не ApiMonster.",
+  steps: [
+    "Захват заказа / заявки с Kwork",
+    "Создание или обновление сделки в Bitrix24",
+    "Стадии и суммы на канбане CRM",
+    "Единая воронка без ручного копирования",
+    "Контроль полей и источника — без чужого middleware",
+  ],
+  result:
+    "Живая доска сделок: ML/Python и другие заказы с Kwork видны в Bitrix24 со стадиями и суммами.",
+  systems: "Kwork · Bitrix24 REST · webhook / sync",
+  metric: "Заказы Kwork → канбан сделок",
+  metricNote: "Скриншот живой воронки на портале",
+  image: "/cases/bitrix24-kwork-crm.jpg",
+  imageAlt:
+    "Скриншот канбана сделок Bitrix24 CRM: сделки из Kwork (в том числе ML и Python) на тёмном интерфейсе — живая воронка кастомной интеграции",
+  imageCaption:
+    "Канбан сделок Bitrix24: заказы с Kwork в единой воронке со стадиями и суммами — свой контур, не ApiMonster",
+} as const;
+
 /** SEO-ключи лендинга: явные пары Битрикс24 + AI. */
 export const BITRIX_LANDING_KEYWORDS = [
   "внедрение битрикс24 с ai",

@@ -206,11 +206,11 @@ const EXTENDED_RU: Record<string, LandingExtendedContent> = {
       { q: "Можно white-label для моих клиентов?", a: "Да. NDA, ваш бренд, фиксированная смета для вашего PM." },
     ],
     caseStudy: {
-      title: "Bitrix24 + 1С",
-      problem: "Менеджеры дублировали заказы в CRM и 1С вручную.",
-      solution: "Двусторонняя синхронизация сделок и заказов.",
-      result: "Единая картина по сделке, −80% ручного ввода.",
-      href: "/portfolio/bitrix24-erp-sync",
+      title: "Kwork → Bitrix24 CRM",
+      problem: "Заказы с Kwork переносились вручную или через чужие коннекторы — без контроля воронки.",
+      solution: "Свой контур: заказы попадают в канбан сделок Bitrix24 со стадиями и суммами.",
+      result: "Единая живая воронка в CRM, не ApiMonster.",
+      href: "/portfolio/bitrix24-kwork-crm",
     },
   },
   onec: {
@@ -531,11 +531,11 @@ const EXTENDED_EN: Record<string, LandingExtendedContent> = {
       { q: "White-label for my clients?", a: "Yes. NDA, your brand, fixed scope for your PM." },
     ],
     caseStudy: {
-      title: "Bitrix24 + 1C",
-      problem: "Managers duplicated orders in CRM and 1C manually.",
-      solution: "Bidirectional deal and order sync.",
-      result: "Single deal view, −80% manual entry.",
-      href: "/portfolio/bitrix24-erp-sync",
+      title: "Kwork → Bitrix24 CRM",
+      problem: "Kwork orders were copied by hand or via third-party connectors — no funnel control.",
+      solution: "A custom contour: orders land in the Bitrix24 deals kanban with stages and amounts.",
+      result: "One live CRM funnel — not ApiMonster.",
+      href: "/portfolio/bitrix24-kwork-crm",
     },
   },
   onec: {

@@ -16,6 +16,8 @@ export type PortfolioEnCopy = Partial<
     | "duration"
     | "architecture"
     | "priceLabel"
+    | "imageAlt"
+    | "imageCaption"
   >
 >;
 
@@ -73,6 +75,26 @@ export const PORTFOLIO_EN: Record<string, PortfolioEnCopy> = {
       "Automation: PDF → catalog matching → match statuses → DOCX/PDF assembly → CRM write-back. Prices are never invented by the model.",
     result:
       "A typical proposal is assembled in 2–5 minutes instead of ~45. Prices and SKUs only from the catalog — no invented line items. Table, VAT, terms and DOCX/PDF download.",
+  },
+  "bitrix24-kwork-crm": {
+    title: "Custom Kwork → Bitrix24 CRM integration",
+    category: "IT and development",
+    metric: "Kwork orders → Bitrix24 deals kanban",
+    metricMethod: "Screenshot of a live funnel on the portal — no third-party connector",
+    role: "Architecture and delivery of a custom Kwork → Bitrix24 contour",
+    scope: "Kwork order capture, deal create/update, stages and amounts in the CRM kanban",
+    duration: "Production contour on a live portal",
+    architecture: "Custom webhook/sync contour Kwork → Bitrix24 REST — not ApiMonster or a marketplace connector",
+    imageAlt:
+      "Screenshot of Bitrix24 CRM deals kanban with many Kwork-sourced deals (including ML and Python jobs) in the dark Bitrix UI — live custom integration funnel",
+    imageCaption:
+      "Bitrix24 deals kanban: Kwork orders in one funnel with stages and amounts — custom contour, not ApiMonster",
+    description:
+      "Kwork requests and orders were copied by hand or through third-party connectors like ApiMonster — losing control over the Bitrix24 funnel, fields and stages.",
+    solution:
+      "A custom contour: Kwork orders land as Bitrix24 deals with source, amounts and stages — one kanban without third-party middleware.",
+    result:
+      "A live CRM funnel: orders (including ML/Python) show on the board with stages and amounts; the team works in Bitrix24 instead of copying from the marketplace.",
   },
   "elia-suite": {
     title: "ELIA Suite — isolated workspaces",

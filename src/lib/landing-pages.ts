@@ -74,7 +74,7 @@ const CORE_LANDING_PAGES: LandingPageDef[] = [
     contentKey: "bitrix24",
     serviceSlug: "business-process-automation",
     coverImage: PORTFOLIO_IMAGES.elia,
-    caseStudySlugs: ["elia-suite", "yandex-telemost-agent"],
+    caseStudySlugs: ["bitrix24-kwork-crm", "elia-suite", "yandex-telemost-agent"],
   },
   {
     category: "integrations",

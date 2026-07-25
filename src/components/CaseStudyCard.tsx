@@ -31,13 +31,16 @@ export function CaseStudyCard({
         <div className="relative aspect-[16/10] overflow-hidden rounded-lg bg-surface-soft">
           <Image
             src={item.image}
-            alt={item.title}
+            alt={item.imageAlt ?? item.title}
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 420px"
             unoptimized={item.image.endsWith(".png")}
           />
         </div>
+        {item.imageCaption ? (
+          <p className="mt-2 text-sm text-muted">{item.imageCaption}</p>
+        ) : null}
         <h3 className="mt-5 font-display text-2xl tracking-tight">{item.title}</h3>
         {item.metric ? <p className="case-study__metric mt-3">{item.metric}</p> : null}
         {item.metricMethod ? <p className="body-copy mt-2 text-sm text-muted">{item.metricMethod}</p> : null}
