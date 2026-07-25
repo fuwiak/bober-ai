@@ -24,7 +24,6 @@
       "price": 18000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
-      "photo": "public/stock/offers/ms-bitrix-integrations.jpg",
       "geo": "Москва",
       "includes": [
         "Подключение источника лидов (Kwork / похожие площадки) к CRM Bitrix24",
@@ -40,7 +39,6 @@
       "price": 15000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
-      "photo": "public/stock/offers/ms-bitrix-crm-automation.jpg",
       "geo": "Москва",
       "includes": [
         "Аудит текущей воронки (до 1 ч)",
@@ -56,7 +54,6 @@
       "price": 12000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
-      "photo": "public/stock/offers/ms-bitrix-integrations.jpg",
       "geo": "Москва",
       "includes": [
         "Входящие вебхуки / формы сайта → лид или сделка",
@@ -72,7 +69,6 @@
       "price": 35000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
-      "photo": "public/stock/offers/ms-bitrix-start.jpg",
       "geo": "Москва",
       "includes": [
         "Локальное или тиражное приложение (по задаче)",
@@ -88,7 +84,6 @@
       "price": 25000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
-      "photo": "public/stock/offers/ms-bitrix-ai-analytics.jpg",
       "geo": "Москва",
       "includes": [
         "Базовая настройка интернет-магазина на 1С-Битрикс",
@@ -98,5 +93,6 @@
       ],
       "description": "Настройка 1С-Битрикс (интернет-магазин) и связка с CRM Bitrix24: заказы и заявки в одной воронке. Когда сайт на Битрикс уже есть или нужен быстрый запуск витрины. Москва и удалённо. Входит: базовая настройка магазина, уведомления, интеграция с CRM, чек-лист запуска."
     }
-  ]
+  ],
+  "liveCount": 5
 }
