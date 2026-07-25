@@ -1,0 +1,102 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "categoryRef": "https://uslugi.yandex.ru/213-moscow/category/kompyuteryi-i-it/administrirovanie/nastrojka-1sbitriks--4583",
+  "targetSpecialty": "Настройка Битрикс",
+  "specializationId": "14621107-8394-44af-96e5-331a0f9dafed",
+  "categoryId": "4584",
+  "specializationNote": "Настройка Битрикс (кабинет) — категория публичной выдачи «Настройка 1С-Битрикс» / nastrojka-1sbitriks.",
+  "priceBandNote": "Ориентир категории ~3–50 тыс. ₽; цены «от» за услугу.",
+  "publishedAt": "2026-07-25",
+  "publishedStatus": "created_in_cabinet",
+  "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=14621107-8394-44af-96e5-331a0f9dafed",
+  "publicProfile": "https://uslugi.yandex.ru/profile/PawelStasinski-254144",
+  "publishHint": [
+    "npm run yandex:uslugi:login — если нет .yandex-uslugi-auth.json",
+    "npm run yandex:uslugi:add -- --file=data/yandex-uslugi-bitrix-listings.json --headless",
+    "npm run yandex:uslugi:list -- --spec=14621107-8394-44af-96e5-331a0f9dafed",
+    "Публичный профиль: https://uslugi.yandex.ru/profile/PawelStasinski-254144"
+  ],
+  "services": [
+    {
+      "id": "bx24-leads-kwork",
+      "name": "Интеграция Bitrix24 с Kwork и маркетплейсами лидов",
+      "price": 18000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/offers/ms-bitrix-integrations.jpg",
+      "geo": "Москва",
+      "includes": [
+        "Подключение источника лидов (Kwork / похожие площадки) к CRM Bitrix24",
+        "Создание лидов/сделок с полями источника, статуса и суммы",
+        "Базовая дедупликация и уведомление менеджеру",
+        "Краткий регламент и тест на 3–5 заявках"
+      ],
+      "description": "Связка внешних источников лидов (Kwork и аналоги) с Bitrix24 CRM: заявки попадают в воронку без копипаста. Настройка полей, статусов, уведомлений и проверки дублей. Москва и удалённо. Входит: подключение источника, маппинг полей, тест на реальных заявках, краткий регламент для менеджеров."
+    },
+    {
+      "id": "bx24-funnel-robots",
+      "name": "Настройка воронки и роботов в Bitrix24",
+      "price": 15000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/offers/ms-bitrix-crm-automation.jpg",
+      "geo": "Москва",
+      "includes": [
+        "Аудит текущей воронки (до 1 ч)",
+        "Стадии, обязательные поля, права менеджеров",
+        "Роботы/триггеры: задачи, письма, смены статуса",
+        "Инструкция для отдела продаж"
+      ],
+      "description": "Настройка воронки продаж и автоматизации в Bitrix24: стадии, роботы, задачи и контроль сроков. Убираем «зависшие» сделки и ручные напоминания. Москва и удалённо. Входит: аудит воронки, настройка стадий и роботов, права доступа, короткая инструкция для менеджеров."
+    },
+    {
+      "id": "bx24-webhooks-site",
+      "name": "Интеграция сайта и вебхуков с Bitrix24",
+      "price": 12000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/offers/ms-bitrix-integrations.jpg",
+      "geo": "Москва",
+      "includes": [
+        "Входящие вебхуки / формы сайта → лид или сделка",
+        "Проверка подписи/токена и логирование ошибок",
+        "UTM и источник в карточке CRM",
+        "Тест с формы на сайте заказчика"
+      ],
+      "description": "Интеграция сайта и вебхуков с Bitrix24: формы, заявки и события уходят в CRM автоматически. Настройка входящих webhook, UTM, источника и базового логирования. Москва и удалённо. Входит: подключение эндпоинта, маппинг полей, тест с вашей формы, краткая схема потока данных."
+    },
+    {
+      "id": "bx24-rest-oauth-app",
+      "name": "Кастомное приложение REST и OAuth для Bitrix24",
+      "price": 35000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/offers/ms-bitrix-start.jpg",
+      "geo": "Москва",
+      "includes": [
+        "Локальное или тиражное приложение (по задаче)",
+        "OAuth / входящий вебхук, нужные scope",
+        "1–2 рабочих сценария (создание сущности, синхронизация)",
+        "Документация по установке и обновлению токена"
+      ],
+      "description": "Разработка приложения Bitrix24 на REST и OAuth: локальное или серверное, под ваш сценарий. Рабочий контур с правами, токенами и документацией. Москва и удалённо. Входит: приложение, авторизация, один-два сценария API, инструкция по установке."
+    },
+    {
+      "id": "bx-site-shop-crm",
+      "name": "Настройка 1С-Битрикс: магазин и связь с CRM",
+      "price": 25000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/offers/ms-bitrix-ai-analytics.jpg",
+      "geo": "Москва",
+      "includes": [
+        "Базовая настройка интернет-магазина на 1С-Битрикс",
+        "Каталог, оформление заказа, уведомления",
+        "Связка заказов/лидов с Bitrix24 CRM (по возможности портала)",
+        "Чек-лист запуска и рекомендации по сопровождению"
+      ],
+      "description": "Настройка 1С-Битрикс (интернет-магазин) и связка с CRM Bitrix24: заказы и заявки в одной воронке. Когда сайт на Битрикс уже есть или нужен быстрый запуск витрины. Москва и удалённо. Входит: базовая настройка магазина, уведомления, интеграция с CRM, чек-лист запуска."
+    }
+  ]
+}

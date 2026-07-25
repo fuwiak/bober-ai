@@ -30,16 +30,45 @@ const AUTH_PATH = resolve(ROOT, ".yandex-uslugi-auth.json");
 const SNIFF_DIR = resolve(ROOT, "data/uslugi-sniff");
 const BASE = "https://uslugi.yandex.ru";
 
-const args = process.argv.slice(2);
+/** Split glued flags like `--file=path.json--spec=uuid` into separate argv tokens. */
+function expandGluedArgv(raw) {
+  const out = [];
+  for (const token of raw) {
+    if (!token.startsWith("--") || !token.includes("=")) {
+      out.push(token);
+      continue;
+    }
+    // e.g. --file=data/x.json--spec=uuid  or  --file=data/x.json --spec=uuid already ok
+    const parts = token.split(/(?=--[a-zA-Z][\w-]*=)/);
+    if (parts.length > 1 && parts.every((p) => p.startsWith("--"))) {
+      out.push(...parts.filter(Boolean));
+    } else {
+      out.push(token);
+    }
+  }
+  return out;
+}
+
+const args = expandGluedArgv(process.argv.slice(2));
 const command = args[0] || "help";
 const flags = new Set(args.filter((a) => a.startsWith("--") && !a.includes("=")));
 
 function flag(name, fallback) {
   const hit = args.find((a) => a.startsWith(`${name}=`));
-  if (hit) return hit.slice(name.length + 1);
+  if (hit) {
+    let val = hit.slice(name.length + 1);
+    // Extra safety: if value still contains a glued next flag
+    const glued = val.match(/^(.*?)(--[a-zA-Z][\w-]*=.*)$/);
+    if (glued) val = glued[1];
+    return val;
+  }
   const i = args.indexOf(name);
   if (i >= 0 && args[i + 1] && !args[i + 1].startsWith("--")) return args[i + 1];
   return fallback;
+}
+
+function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
 }
 
 function fail(msg) {
@@ -202,57 +231,96 @@ async function isCheckboxOn(btn) {
 
 async function setPriceFields(page, modal, service) {
   if (service.byAgreement) {
+    log("  цена: по договорённости");
     const agree = modal.locator(".ServiceForm-PriceCheckbox").filter({ hasText: "договорённости" });
-    await agree.locator("button").click();
+    await agree.locator("button").click({ timeout: 8_000 });
     return;
   }
-  if (service.price == null) return;
+  if (service.price == null) {
+    log("  цена: пропуск (нет price)");
+    return;
+  }
 
+  log(`  цена: сумма ${service.price}`);
   const price = modal.locator('input[name="price"]');
-  await price.click();
+  await price.waitFor({ state: "visible", timeout: 15_000 });
+  await price.click({ timeout: 8_000 });
   await price.fill(String(service.price));
   await price.blur();
 
   if (service.isMinimalPrice !== false) {
+    log("  цена: чекбокс «от»");
     const from = modal.locator(".ServiceForm-PriceCheckbox").filter({ hasText: /^от$/ });
     const btn = from.locator("button").first();
-    if (!(await isCheckboxOn(btn))) {
-      await btn.click();
-      await new Promise((r) => setTimeout(r, 300));
-    }
-    // если после клика всё ещё выкл — ещё раз
-    if (!(await isCheckboxOn(btn))) {
-      await btn.click();
-      await new Promise((r) => setTimeout(r, 300));
+    if ((await btn.count().catch(() => 0)) > 0) {
+      for (let attempt = 0; attempt < 3; attempt++) {
+        const on = await isCheckboxOn(btn).catch(() => false);
+        if (on) break;
+        await btn.click({ timeout: 5_000 }).catch(() => {});
+        await sleep(300);
+      }
+    } else {
+      log("  цена: чекбокс «от» не найден — пропуск");
     }
   }
 
-  if (service.priceMeasure) {
-    const measureMap = {
-      service: "за услугу",
-      hour: "за час",
-      lesson: "за занятие",
-      day: "за день",
-      month: "за месяц",
-      piece: "за штуку",
-    };
-    const label = measureMap[service.priceMeasure] || service.priceMeasureLabel;
-    if (label) {
-      const current = modal.locator(".ServiceForm-PriceMeasureItem .select2__button .Button2-Text, .ServiceForm-PriceMeasureItem .Button2-Text");
-      const curText = ((await current.first().textContent().catch(() => "")) || "").trim();
-      if (curText !== label) {
-        const selectBtn = modal.locator(
-          ".ServiceForm-PriceMeasureItem button.select2__button, .ServiceForm-PriceMeasureItem .select2__button",
-        );
-        await selectBtn.first().click();
-        const option = page.locator(".select2__popup .menu__item").filter({ hasText: label });
-        await option.first().click({ timeout: 10_000 });
-      }
-    }
+  if (!service.priceMeasure && !service.priceMeasureLabel) return;
+
+  const measureMap = {
+    service: "за услугу",
+    hour: "за час",
+    lesson: "за занятие",
+    day: "за день",
+    month: "за месяц",
+    piece: "за штуку",
+  };
+  const label = measureMap[service.priceMeasure] || service.priceMeasureLabel;
+  if (!label) return;
+
+  const current = modal.locator(
+    ".ServiceForm-PriceMeasureItem .select2__button .Button2-Text, .ServiceForm-PriceMeasureItem button.select2__button .Button2-Text",
+  );
+  const curText = ((await current.first().textContent({ timeout: 5_000 }).catch(() => "")) || "")
+    .replace(/\s+/g, " ")
+    .trim();
+  // Не сравнивать через includes("") — пустой curText всегда «совпадает»
+  if (curText && (curText === label || curText.includes(label) || label.includes(curText))) {
+    log(`  цена: единица уже «${curText}»`);
+    return;
+  }
+
+  log(`  цена: единица «${curText || "?"}» → «${label}»`);
+  try {
+    const selectBtn = modal.locator(
+      ".ServiceForm-PriceMeasureItem button.select2__button, .ServiceForm-PriceMeasureItem .select2__button",
+    );
+    await selectBtn.first().click({ timeout: 8_000 });
+    const option = page.locator(".select2__popup .menu__item, .Popup2 .menu__item").filter({ hasText: label });
+    await option.first().click({ timeout: 8_000 });
+    await sleep(200);
+  } catch (err) {
+    log(`  цена: единица — пропуск (${err.message?.split("\n")[0] || err})`);
+    await page.keyboard.press("Escape").catch(() => {});
+    await sleep(200);
+  }
+}
+
+async function clearExistingPhotos(modal) {
+  // Крестик `.ImagesManager-RemoveButton` на превью (в т.ч. отклонённых)
+  for (let round = 0; round < 8; round++) {
+    const remove = modal.locator(".ImagesManager-RemoveButton").first();
+    if ((await remove.count()) === 0) break;
+    await remove.click({ timeout: 3000, force: true }).catch(() => {});
+    await new Promise((r) => setTimeout(r, 400));
   }
 }
 
 async function uploadPhotos(modal, service, { onlyIfEmpty = false } = {}) {
+  if (service.clearPhotos) {
+    log("  фото: удаление существующих");
+    await clearExistingPhotos(modal);
+  }
+
   const photos = []
     .concat(service.photos || [])
     .concat(service.photo ? [service.photo] : []);
@@ -262,7 +330,7 @@ async function uploadPhotos(modal, service, { onlyIfEmpty = false } = {}) {
     return;
   }
 
-  if (onlyIfEmpty) {
+  if (onlyIfEmpty && !service.clearPhotos) {
     const existing = modal.locator(
       ".ImagesManager-Preview img, .ImagesManager-Thumb img, img.ImagesManager-Thumb",
     );
@@ -312,6 +380,109 @@ async function uploadPhotos(modal, service, { onlyIfEmpty = false } = {}) {
   await new Promise((r) => setTimeout(r, 400));
 }
 
+function resolveDescription(service) {
+  const direct = String(service.description || "").trim();
+  if (direct) return direct;
+  const includes = Array.isArray(service.includes) ? service.includes.filter(Boolean) : [];
+  if (includes.length) {
+    return `${service.name || "Услуга"}. ${includes.join(". ")}.`;
+  }
+  return "";
+}
+
+async function readDescriptionValue(modal) {
+  return modal.evaluate((root) => {
+    const ta =
+      root.querySelector('textarea[name="description"]') ||
+      root.querySelector("textarea.ServiceForm-Description") ||
+      root.querySelector(".ServiceForm textarea") ||
+      root.querySelector('textarea[placeholder*="пис"]');
+    if (ta) return String(ta.value || "").trim();
+    const editable =
+      root.querySelector('[contenteditable="true"][name="description"]') ||
+      root.querySelector(".ServiceForm [contenteditable='true']");
+    if (editable) return String(editable.innerText || editable.textContent || "").trim();
+    return "";
+  });
+}
+
+async function fillDescription(page, modal, text) {
+  const wanted = String(text || "").trim();
+  if (!wanted) fail("описание пустое — добавьте description (или includes[]) в JSON");
+
+  const candidates = [
+    'textarea[name="description"]',
+    "textarea.ServiceForm-Description",
+    ".ServiceForm-Description textarea",
+    ".ServiceForm textarea",
+    'textarea[placeholder*="пис"]',
+    '[contenteditable="true"][name="description"]',
+    ".ServiceForm [contenteditable='true']",
+  ];
+
+  let lastErr = null;
+  for (let attempt = 1; attempt <= 4; attempt++) {
+    log(`  поле: описание (попытка ${attempt}/4, ${wanted.length} симв.)`);
+    try {
+      let target = null;
+      for (const sel of candidates) {
+        const loc = modal.locator(sel).first();
+        if ((await loc.count()) === 0) continue;
+        const visible = await loc.isVisible().catch(() => false);
+        if (visible || sel.includes("textarea")) {
+          target = loc;
+          break;
+        }
+      }
+      if (!target) {
+        throw new Error("не найден textarea/contenteditable описания");
+      }
+
+      await target.scrollIntoViewIfNeeded().catch(() => {});
+      await sleep(150);
+      await target.click({ timeout: 8_000 });
+      await sleep(100);
+
+      const tag = await target.evaluate((el) => el.tagName.toLowerCase()).catch(() => "");
+      if (tag === "textarea" || tag === "input") {
+        await target.fill("");
+        await target.fill(wanted);
+      } else {
+        // contenteditable: fill() часто не триггерит React — через keyboard
+        await page.keyboard.press(process.platform === "darwin" ? "Meta+A" : "Control+A");
+        await page.keyboard.press("Backspace");
+        await page.keyboard.type(wanted, { delay: 0 });
+      }
+
+      // Триггер input/change на случай React-controlled
+      await target
+        .evaluate((el, value) => {
+          if (el.tagName === "TEXTAREA" || el.tagName === "INPUT") {
+            el.value = value;
+            el.dispatchEvent(new Event("input", { bubbles: true }));
+            el.dispatchEvent(new Event("change", { bubbles: true }));
+          }
+        }, wanted)
+        .catch(() => {});
+
+      await sleep(250);
+      const got = await readDescriptionValue(modal);
+      if (got && (got === wanted || got.includes(wanted.slice(0, 40)) || wanted.includes(got.slice(0, 40)))) {
+        log(`  описание: OK (${got.length} симв.)`);
+        return;
+      }
+      lastErr = new Error(`после заполнения в поле «${(got || "").slice(0, 60)}»`);
+      log(`  описание: не подтвердилось — повтор`);
+    } catch (err) {
+      lastErr = err;
+      log(`  описание: ошибка — ${err.message?.split("\n")[0] || err}`);
+      await page.keyboard.press("Escape").catch(() => {});
+      await sleep(400);
+    }
+  }
+  fail(`не удалось заполнить описание. ${lastErr?.message || ""}`);
+}
+
 async function fillServiceForm(page, modal, service) {
   log("  поле: название");
   const nameInput = modal.locator('input[name="name"]');
@@ -321,13 +492,8 @@ async function fillServiceForm(page, modal, service) {
   log("  поле: цена");
   await setPriceFields(page, modal, service);
 
-  if (service.description) {
-    log("  поле: описание");
-    const desc = modal.locator('textarea[name="description"]');
-    await desc.scrollIntoViewIfNeeded().catch(() => {});
-    await desc.click({ timeout: 10_000 });
-    await desc.fill(String(service.description));
-  }
+  const description = resolveDescription(service);
+  await fillDescription(page, modal, description);
 
   log("  поле: фотографии");
   await uploadPhotos(modal, service);
@@ -352,24 +518,16 @@ async function submitServiceForm(modal) {
   await modal.waitFor({ state: "hidden", timeout: 60_000 }).catch(() => {});
 }
 
-async function cmdAdd() {
-  const file = flag("--file", "data/uslugi-services.example.json");
-  const dry = flags.has("--dry-run");
-  const data = loadJson(file);
-  const spec = flag("--spec", data.specializationId);
-  const services = data.services || [];
-  if (!services.length) fail("в JSON нет services[]");
+async function dismissPromo(page) {
+  await page
+    .locator(".UserServices-ServiceListPromo a, .tooltip a")
+    .filter({ hasText: "Понятно" })
+    .first()
+    .click({ timeout: 3000 })
+    .catch(() => {});
+}
 
-  const browser = await launchBrowser(!flags.has("--headless"));
-  const context = await newContext(browser, { withAuth: true });
-  const page = await context.newPage();
-
-  if (flags.has("--sniff")) {
-    const logPath = attachSniffer(page, SNIFF_DIR);
-    log(`Sniff: ${logPath}`);
-  }
-
-  log(`Специализация: ${spec}`);
+async function openSpecializationPage(page, spec) {
   await page.goto(specializationUrl(spec), {
     waitUntil: "domcontentloaded",
     timeout: 120_000,
@@ -377,30 +535,81 @@ async function cmdAdd() {
   await page
     .locator("button.SpecializationEditor-AddCustomService")
     .waitFor({ state: "visible", timeout: 60_000 });
+  await dismissPromo(page);
+}
 
-  // dismiss promo tooltip if any
-  await page
-    .locator(".UserServices-ServiceListPromo a, .tooltip a")
-    .filter({ hasText: "Понятно" })
-    .first()
-    .click({ timeout: 3000 })
-    .catch(() => {});
+async function cmdAdd() {
+  const file = flag("--file", "data/uslugi-services.example.json");
+  const dry = flags.has("--dry-run");
+  const data = loadJson(file);
+  const spec = flag("--spec", data.specializationId);
+  const services = data.services || [];
+  if (!services.length) fail("в JSON нет services[]");
+  // По умолчанию новый браузер на каждую услугу: 2-я модалка в одной сессии
+  // часто роняет Playwright («Target page/browser has been closed»).
+  const reuseSession = flags.has("--reuse-session");
+  const headed = !flags.has("--headless");
 
-  for (const [i, service] of services.entries()) {
-    log(`\n[${i + 1}/${services.length}] ${service.name}`);
-    if (dry) {
+  log(`Специализация: ${spec}`);
+  if (dry) {
+    for (const [i, service] of services.entries()) {
+      log(`\n[${i + 1}/${services.length}] ${service.name}`);
       log("  (dry-run — пропуск)");
-      continue;
     }
-    const modal = await openAddServiceModal(page);
-    await fillServiceForm(page, modal, service);
-    await submitServiceForm(modal);
-    await page.waitForTimeout(1500);
-    log("  OK (форма отправлена)");
+    return;
   }
 
-  await context.storageState({ path: AUTH_PATH });
-  await browser.close();
+  let browser = null;
+  let context = null;
+  let page = null;
+
+  async function ensurePage(forceNew = false) {
+    if (!forceNew && page && !page.isClosed()) return page;
+    if (browser) {
+      await context?.storageState({ path: AUTH_PATH }).catch(() => {});
+      await browser.close().catch(() => {});
+    }
+    browser = await launchBrowser(headed);
+    context = await newContext(browser, { withAuth: true });
+    page = await context.newPage();
+    if (flags.has("--sniff")) {
+      const logPath = attachSniffer(page, SNIFF_DIR);
+      log(`Sniff: ${logPath}`);
+    }
+    await openSpecializationPage(page, spec);
+    return page;
+  }
+
+  try {
+    for (const [i, service] of services.entries()) {
+      log(`\n[${i + 1}/${services.length}] ${service.name}`);
+      // Новый браузер на каждую услугу (или reuse + перезагрузка страницы)
+      const p = await ensurePage(!reuseSession || i === 0);
+      try {
+        const modal = await openAddServiceModal(p);
+        await fillServiceForm(p, modal, service);
+        await submitServiceForm(modal);
+        await sleep(1500);
+        log("  OK (форма отправлена)");
+      } catch (err) {
+        log(`  ошибка: ${err.message?.split("\n")[0] || err}`);
+        if (reuseSession && i + 1 < services.length) {
+          log("  перезапуск браузера и продолжение…");
+          await ensurePage(true);
+          continue;
+        }
+        throw err;
+      }
+      if (reuseSession && i + 1 < services.length) {
+        await openSpecializationPage(p, spec).catch(async () => {
+          await ensurePage(true);
+        });
+      }
+    }
+  } finally {
+    if (context) await context.storageState({ path: AUTH_PATH }).catch(() => {});
+    if (browser) await browser.close().catch(() => {});
+  }
   log("\nГотово. Проверьте услуги в кабинете / на публичной странице.");
 }
 
@@ -446,18 +655,22 @@ async function openEditServiceModal(page, matchTitle) {
 
 async function fillUpdateForm(page, modal, service) {
   if (service.name) {
+    log("  поле: название");
     const nameInput = modal.locator('input[name="name"]');
     await nameInput.fill(String(service.name));
   }
-  if (service.description) {
-    const desc = modal.locator('textarea[name="description"]');
-    await desc.click();
-    await desc.fill(String(service.description));
-  }
   if (service.price != null || service.byAgreement || service.priceMeasure) {
+    log("  поле: цена");
     await setPriceFields(page, modal, service);
   }
-  await uploadPhotos(modal, service, { onlyIfEmpty: !service.forcePhoto });
+  const description = resolveDescription(service);
+  if (description) {
+    await fillDescription(page, modal, description);
+  }
+  log("  поле: фотографии");
+  await uploadPhotos(modal, service, {
+    onlyIfEmpty: !service.forcePhoto && !service.clearPhotos,
+  });
 }
 
 async function cmdUpdate() {
@@ -610,7 +823,11 @@ function help() {
   --headed           С окном (list по умолчанию headless)
   --keep             Не закрывать браузер сразу (list / удобно смотреть)
   --skip-photos      Не загружать фото (если зависает на «Описание и фотографии»)
+  --reuse-session    add: один браузер на все услуги (по умолчанию — новый на каждую)
   --sniff            При add писать Network в data/uslugi-sniff/
+
+Склеенные флаги ок: --file=data/x.json--spec=UUID (пробел не обязателен).
+Порядок полей add: название → цена → описание → фото → сохранить.
 
 Пример JSON: data/uslugi-services.example.json
 
