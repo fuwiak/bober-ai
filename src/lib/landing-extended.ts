@@ -183,15 +183,21 @@ const EXTENDED_RU: Record<string, LandingExtendedContent> = {
   },
   bitrix24: {
     intro: [
-      "Bitrix24 — мощная платформа, но без настройки процессов и интеграций превращается в «ещё один чат». Мы автоматизируем CRM-роботов, связку с 1С, телефонией и документами.",
-      "Работаем как интегратор Bitrix24: аудит, настройка воронки, REST API, бизнес-процессы и AI-слой поверх — когда есть база знаний и повторяющиеся запросы.",
-      "Типичный клиент: Bitrix24 установлен, но сотрудники ведут сделки в Excel и Telegram.",
+      "Автоматизация Битрикс24 — это не только роботы на стадиях. Связываем портал с учётом и сайтом, подключаем открытые линии и убираем рутину внутри CRM.",
+      "Интеграция с различными системами: 1С, 1С:Битрикс, МойСклад, WordPress и другими — через REST, вебхуки и стабильный API-слой.",
+      "Подключение открытых линий и мессенджеров: Telegram, ВКонтакте, WhatsApp и др. Плюс автоматизация рабочих процессов внутри Битрикс24 для повышения продуктивности.",
     ],
     howWeSolveTitle: "Этапы работы с Bitrix24",
     howWeSolve: [
       { title: "Аудит и воронка", text: "Этапы, поля, роботы, права доступа. Убираем лишнее, оставляем то, что команда реально использует." },
-      { title: "Интеграции", text: "1С, телефония, сайт, документы, внешние API через REST и вебхуки." },
-      { title: "AI-ассистент", text: "Опционально: бот для сотрудников по регламентам, подсказки в карточке сделки." },
+      {
+        title: "Интеграции и линии",
+        text: "1С, 1С:Битрикс, МойСклад, WordPress; открытые линии Telegram, ВКонтакте, WhatsApp — REST и вебхуки.",
+      },
+      {
+        title: "Процессы и AI",
+        text: "Бизнес-процессы и роботы внутри портала; опционально AI-слой поверх Bitrix24.",
+      },
     ],
     roiTitle: "Результат",
     roi: [
@@ -508,15 +514,21 @@ const EXTENDED_EN: Record<string, LandingExtendedContent> = {
   },
   bitrix24: {
     intro: [
-      "Bitrix24 is powerful but without process setup and integrations becomes another chat app. We automate CRM robots, 1C links, telephony and documents.",
-      "We work as Bitrix24 integrators: audit, pipeline setup, REST API, business processes and optional AI layer when knowledge base and repetitive queries exist.",
-      "Typical client: Bitrix24 installed but deals still tracked in Excel and Telegram.",
+      "Bitrix24 automation is more than stage robots. We connect the portal to accounting and the website, wire open lines, and remove CRM busywork.",
+      "Integrations with 1C, 1C-Bitrix, MoySklad, WordPress and other systems — via REST, webhooks and a stable API layer.",
+      "Open lines and messengers: Telegram, VK, WhatsApp and more. Plus workflow automation inside Bitrix24 to raise productivity.",
     ],
     howWeSolveTitle: "Bitrix24 engagement stages",
     howWeSolve: [
       { title: "Audit & pipeline", text: "Stages, fields, robots, access rights. Remove clutter, keep what team actually uses." },
-      { title: "Integrations", text: "1C, telephony, website, documents, external APIs via REST and webhooks." },
-      { title: "AI assistant", text: "Optional: employee bot for policies, deal card suggestions." },
+      {
+        title: "Integrations & lines",
+        text: "1C, 1C-Bitrix, MoySklad, WordPress; open lines for Telegram, VK, WhatsApp — REST and webhooks.",
+      },
+      {
+        title: "Workflows & AI",
+        text: "Business processes and robots inside the portal; optional AI layer on Bitrix24.",
+      },
     ],
     roiTitle: "Outcomes",
     roi: [

@@ -1568,27 +1568,38 @@ const en = {
         ],
       },
       bitrix24: {
-        metaTitle: "Bitrix24 integration and automation",
-        metaDescription: "Bitrix24 integration and automation: CRM, tasks, documents, AI layer.",
+        metaTitle: "Bitrix24 automation — integrations, open lines, workflows",
+        metaDescription:
+          "Bitrix24 automation: integrate 1C, 1C-Bitrix, MoySklad, WordPress; connect open lines with Telegram, VK, WhatsApp; automate internal workflows.",
         metaKeywords: [
+          "Bitrix24 automation",
           "Bitrix24 integration",
           "Bitrix24 implementation",
-          "Bitrix24 automation",
-          "Bitrix24 CRM setup",
+          "Bitrix24 open lines",
           "Bitrix24 integrator",
         ],
         eyebrow: "Bitrix24",
-        h1: "Bitrix24: integration & automation",
-        subtitle: "We automate CRM workflows and add AI on top.",
+        h1: "Bitrix24 automation",
+        subtitle:
+          "Integrations with 1C, MoySklad and your site, open lines with messengers, and workflow automation inside the portal.",
         problemsTitle: "When clients come",
-        problems: ["Bitrix24 is installed but processes are manual", "Need ERP, telephony and document integrations", "Looking for a Bitrix24 integrator"],
+        problems: [
+          "Bitrix24 is installed but processes stay manual",
+          "Need integrations with 1C, 1C-Bitrix, MoySklad, WordPress and other systems",
+          "Open lines and messengers (Telegram, VK, WhatsApp) are not tied to CRM",
+        ],
         deliverablesTitle: "Deliverables",
-        deliverables: ["CRM and robot setup", "REST API integrations", "AI assistant on Bitrix24"],
+        deliverables: [
+          "Integration with 1C, 1C-Bitrix, MoySklad, WordPress and other systems",
+          "Open lines and messengers: Telegram, VK, WhatsApp",
+          "Workflow automation inside Bitrix24 to raise team productivity",
+        ],
         relatedTitle: "Related",
         related: [
           { href: "/integrations/crm", label: "CRM overview" },
           { href: "/integrations/amocrm", label: "amoCRM" },
           { href: "/integrations/1c", label: "1C integration" },
+          { href: "/integrations/bitrix24-ai", label: "AI in Bitrix24" },
         ],
       },
       onec: {

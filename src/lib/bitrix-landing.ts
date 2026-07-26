@@ -172,7 +172,7 @@ export const BITRIX_WORDSTAT_SERVICES = [
     priceFrom: 20000,
     priceLabel: "от 20 000 ₽",
     description:
-      "Автоматизация Bitrix24: роботы, триггеры, задачи и уведомления по стадиям. Убираем рутину менеджеров.",
+      "Автоматизация Bitrix24: интеграция с 1С, 1С:Битрикс, МойСклад, WordPress; открытые линии Telegram, ВКонтакте, WhatsApp; роботы и бизнес-процессы внутри портала.",
   },
   {
     id: "ws-bitrix-1c",
