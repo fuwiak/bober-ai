@@ -1,0 +1,194 @@
+{
+  "date": "2026-07-27",
+  "source": "data/wordstat-kaspersky.csv",
+  "seedsFile": "data/wordstat-seeds-kaspersky.txt",
+  "goal": "Silver Partner Kaspersky: ≥6 000 000 RUB закупок лицензий/год (~500 000 ₽/мес по ценам отгрузки)",
+  "rule": "Prefer купить/лицензия/стоимость/настройка/внедрение/миграция. Skip consumer noise (фри, ключи, что такое, топ антивирусов) and unrelated similar (1С ключи защиты, авто).",
+  "apiNote": "Wordstat run without --with-modifiers. Taxonomy often marks brand «купить» as informational — still commercial for reseller path.",
+  "skipNoise": {
+    "reason": "Consumer / brand navigation / unrelated similar",
+    "examples": [
+      "антивирус",
+      "касперский фри",
+      "касперский ключи",
+      "какой антивирус лучше",
+      "что такое касперский",
+      "сервер ключа защиты 1с",
+      "1с фреш стоимость",
+      "хавал н6 2025"
+    ]
+  },
+  "keepAndShip": [
+    {
+      "phrase": "kaspersky endpoint security купить",
+      "count": 454,
+      "motion": "buy_license",
+      "offer": "Поставка Kaspersky Endpoint Security для бизнеса",
+      "action": "/kaspersky#endpoint + distributor quote"
+    },
+    {
+      "phrase": "лицензия kaspersky endpoint security для бизнеса",
+      "count": 420,
+      "motion": "buy_license",
+      "offer": "Лицензирование KES (стандартный / расширенный)",
+      "action": "/kaspersky#endpoint"
+    },
+    {
+      "phrase": "настройка kaspersky security center",
+      "count": 279,
+      "motion": "implement",
+      "offer": "Внедрение и настройка Kaspersky Security Center",
+      "action": "/kaspersky#ksc — pulls seats after policies"
+    },
+    {
+      "phrase": "защита терминальных серверов",
+      "count": 216,
+      "motion": "problem_infra",
+      "offer": "Защита терминальных / RDS серверов (KES + KSC)",
+      "action": "/kaspersky#servers"
+    },
+    {
+      "phrase": "защита сервера 1с",
+      "count": 205,
+      "motion": "problem_infra",
+      "offer": "Защита сервера 1С (endpoint + политики)",
+      "action": "Attach to existing 1C / Bitrix clients"
+    },
+    {
+      "phrase": "kaspersky security for mail server",
+      "count": 184,
+      "motion": "buy_mail",
+      "offer": "Kaspersky Security for Mail Server",
+      "action": "/kaspersky#mail"
+    },
+    {
+      "phrase": "купить kaspersky для бизнеса",
+      "count": 140,
+      "motion": "buy_license",
+      "offer": "Корпоративный контур Kaspersky (пакет)",
+      "action": "/kaspersky"
+    },
+    {
+      "phrase": "kaspersky security для бизнеса купить",
+      "count": 108,
+      "motion": "buy_license",
+      "offer": "Security для бизнеса — подбор редакции",
+      "action": "/kaspersky#endpoint"
+    },
+    {
+      "phrase": "kaspersky endpoint security для бизнеса купить",
+      "count": 100,
+      "motion": "buy_license",
+      "offer": "KES для бизнеса купить через партнёра",
+      "action": "/kaspersky#endpoint"
+    },
+    {
+      "phrase": "защита почтового сервера",
+      "count": 83,
+      "motion": "problem_mail",
+      "offer": "Защита почтового сервера",
+      "action": "/kaspersky#mail"
+    },
+    {
+      "phrase": "продление лицензии kaspersky endpoint security",
+      "count": 73,
+      "motion": "renew",
+      "offer": "Продление KES (удержание базы)",
+      "action": "CRM renewals pipeline"
+    },
+    {
+      "phrase": "аудит информационной безопасности компания",
+      "count": 56,
+      "motion": "entry",
+      "offer": "Аудит ИБ → смета лицензий Kaspersky",
+      "action": "/kaspersky#audit — entry deal before seats"
+    },
+    {
+      "phrase": "kaspersky endpoint security стоимость",
+      "count": 51,
+      "motion": "buy_license",
+      "offer": "Расчёт стоимости KES",
+      "action": "calculator / quote CTA"
+    },
+    {
+      "phrase": "kaspersky security center установка и настройка",
+      "count": 46,
+      "motion": "implement",
+      "offer": "Установка KSC",
+      "action": "/kaspersky#ksc"
+    },
+    {
+      "phrase": "kaspersky optimum security",
+      "count": 26,
+      "motion": "buy_license",
+      "offer": "Kaspersky Optimum Security",
+      "action": "/kaspersky#optimum"
+    },
+    {
+      "phrase": "kaspersky edr для бизнеса оптимальный купить",
+      "count": 25,
+      "motion": "buy_license",
+      "offer": "EDR / Optimum для бизнеса",
+      "action": "/kaspersky#optimum"
+    }
+  ],
+  "weakOrSkipAsPrimary": [
+    {
+      "phrase": "миграция на kaspersky / замена антивируса в компании",
+      "reason": "Seeds weak in this run — keep as offer copy, not primary SEO H1 until re-check"
+    },
+    {
+      "phrase": "безопасность bitrix24 сервер",
+      "reason": "Near-zero Wordstat — sell as attach to Bitrix24 projects, not SEO seed"
+    }
+  ],
+  "sixMillionPlan": {
+    "targetRubYear": 6000000,
+    "targetRubMonthAvg": 500000,
+    "note": "Считаются закупки лицензий/продуктов Kaspersky у дистрибьютора, не выручка с услуг внедрения.",
+    "dealMixHint": [
+      {
+        "segment": "SMB 10–30 мест KES",
+        "avgLicenseRub": 150000,
+        "dealsPerYear": 20,
+        "licenseTotal": 3000000
+      },
+      {
+        "segment": "Mid 50–150 мест KES + KSC",
+        "avgLicenseRub": 450000,
+        "dealsPerYear": 6,
+        "licenseTotal": 2700000
+      },
+      {
+        "segment": "Mail Server / Optimum / renewals",
+        "avgLicenseRub": 200000,
+        "dealsPerYear": 2,
+        "licenseTotal": 400000
+      }
+    ],
+    "attachPlaybook": [
+      "Каждый AI / Bitrix24 / on-prem проект → строка «защита контура» (KES/KSC)",
+      "Клиенты 1С → «защита сервера 1С» (Wordstat 205)",
+      "RDS/терминалы → отдельный пакет (216)",
+      "Почта Exchange/Linux → Mail Server (184)",
+      "Аудит ИБ (56) как вход → смета лицензий",
+      "Продления KES (73) — удержание, не только новые"
+    ],
+    "priorityOffers": [
+      "Поставка и продление Kaspersky Endpoint Security",
+      "Внедрение Kaspersky Security Center (политики, агенты)",
+      "Защита терминальных серверов и серверов 1С",
+      "Kaspersky Security for Mail Server",
+      "Аудит ИБ → миграция с другого AV на Kaspersky",
+      "Optimum / EDR для бизнеса"
+    ]
+  },
+  "landing": "/kaspersky",
+  "partnerStatusNow": "Registered Partner (B2B/B2C)",
+  "silverGap": [
+    "Сертификации Sales: S02, S36, S53, S54, B2BPL",
+    "Технические: 002, 009",
+    "Оборот закупок ≥6M RUB/год",
+    "Корректная страница /kaspersky (материалы согласовать с Kaspersky)"
+  ]
+}

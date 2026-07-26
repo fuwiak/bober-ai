@@ -1,0 +1,28 @@
+# Kaspersky B2B — high sales intent + problem-aware (Silver path: ~6M RUB licenses/year)
+# Prefer: купить/внедрение/лицензия/настройка/миграция over «что такое»
+# Run: npm run yandex:wordstat -- --file=data/wordstat-seeds-kaspersky.txt --csv --out=data/wordstat-kaspersky.csv
+
+купить kaspersky endpoint security
+купить kaspersky для бизнеса
+лицензия kaspersky endpoint security
+стоимость kaspersky endpoint security
+внедрение kaspersky endpoint security
+настройка kaspersky security center
+внедрение kaspersky security center
+миграция на kaspersky
+замена антивируса в компании
+защита серверов от вирусов
+защита рабочих станций бизнес
+ransomware защита компании
+защита почтового сервера
+kaspersky security for mail server
+kaspersky optimum security
+партнер kaspersky купить
+антивирус для серверов windows
+защита терминального сервера
+защита 1с сервера
+безопасность bitrix24 сервер
+защита on-premise инфраструктуры
+корпоративный антивирус купить
+аудит информационной безопасности компании
+внедрение endpoint protection

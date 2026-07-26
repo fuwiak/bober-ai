@@ -108,6 +108,23 @@
       "landings": ["/services/ai-consulting", "/services/ai-discovery-roadmap", "/pricing", "/faq"]
     },
     {
+      "id": "kaspersky",
+      "title": "Kaspersky B2B / Silver path",
+      "queries": [
+        "kaspersky endpoint security купить",
+        "лицензия kaspersky endpoint security для бизнеса",
+        "настройка kaspersky security center",
+        "купить kaspersky для бизнеса",
+        "защита терминальных серверов",
+        "защита сервера 1с",
+        "kaspersky security for mail server",
+        "защита почтового сервера",
+        "аудит информационной безопасности компания",
+        "kaspersky endpoint security стоимость"
+      ],
+      "landings": ["/kaspersky", "/about", "/portfolio/kaspersky-ai-assistant"]
+    },
+    {
       "id": "brand",
       "title": "Бренд / люди",
       "queries": ["bober ai", "павел стасиньский", "bober ai systems"],

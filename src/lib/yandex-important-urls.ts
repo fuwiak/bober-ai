@@ -24,6 +24,7 @@ export const YANDEX_IMPORTANT_PATHS = [
   "/integrations",
   "/solutions",
   "/partners",
+  "/kaspersky",
   "/guides",
   "/media",
   // Priority commercial pack (problem + system)
