@@ -19,9 +19,9 @@ export const SECURE_AI_PAGE = {
   subtitleEn:
     "A focused pitch for security and IT: model, data, agent and infrastructure safety. Same brand group and legal entity as Bober AI Systems.",
   brandNoteRu:
-    "Отдельную марку и домен (Bober Secure Systems / security.*) имеет смысл только когда пойдут независимые продажи Container Security, SIEM/KUMA, managed security. Сейчас отдельный бренд дробит SEO и референсы.",
+    "Bober Secure AI — не отдельная компания, а специализация той же команды и того же ИП, что и Bober AI Systems. Это значит: одни и те же сертификаты, портфолио, контакты и юридические реквизиты — без «прокладки» между вами и исполнителем.",
   brandNoteEn:
-    "A separate brand and domain (Bober Secure Systems / security.*) only makes sense once you sell Container Security, SIEM/KUMA and managed security on their own. Today a second brand splits SEO and references.",
+    "Bober Secure AI is not a separate company — it is the same team and legal entity as Bober AI Systems, specialized for security work. That means the same certificates, portfolio, contacts and legal details — no intermediary between you and the people doing the work.",
   mainBrandTitleRu: "Bober AI Systems — основная деятельность",
   mainBrandTitleEn: "Bober AI Systems — core business",
   mainBrandRu: [
@@ -66,6 +66,65 @@ export const SECURE_AI_PAGE = {
   kasperskyHref: "/kaspersky",
   kasperskyLabelRu: "Партнёрский хаб Kaspersky",
   kasperskyLabelEn: "Kaspersky partner hub",
+
+  trustTitleRu: "Партнёрский статус",
+  trustTitleEn: "Partner status",
+  trustIntroRu:
+    "Registered Partner «Лаборатории Касперского» (B2B и B2C) — оригиналы сертификатов ниже, лицензии поставляются через авторизованную дистрибуцию.",
+  trustIntroEn:
+    "Kaspersky Lab Registered Partner (B2B and B2C) — certificate originals below; licenses are supplied via authorized distribution.",
+
+  processTitleRu: "Как проходит внедрение",
+  processTitleEn: "How an engagement runs",
+  processRu: [
+    "Аудит контура: данные, модель, агенты, инфраструктура — что уже есть и чего не хватает",
+    "Выбор линии: LLM/RAG + аудит AIST, Container Security, SOC-ассистент на KUMA/KIRA, Agent Gateway или защита почты",
+    "Внедрение слоя Bober Dev (gateway, RAG, интеграции) и продуктов Kaspersky через партнёрскую дистрибуцию",
+    "Мониторинг, отчёты для руководства и ИБ, продление лицензий",
+  ],
+  processEn: [
+    "Contour audit: data, model, agents, infrastructure — what exists and what is missing",
+    "Pick a line: LLM/RAG + AIST audit, Container Security, SOC assistant on KUMA/KIRA, Agent Gateway or mail protection",
+    "Deploy the Bober Dev layer (gateway, RAG, integrations) plus Kaspersky products via authorized distribution",
+    "Monitoring, reports for leadership and security, license renewals",
+  ],
+
+  faqRu: [
+    {
+      q: "Bober Secure AI — это отдельная компания?",
+      a: "Нет. Это специализированная линия той же команды и того же ИП, что Bober AI Systems: общие сертификаты, портфолио, контакты и реквизиты.",
+    },
+    {
+      q: "Можно развернуть решение on-prem или в закрытом контуре?",
+      a: "Да. Private LLM/RAG и Secure AI Agent Gateway разворачиваются on-prem, в российском облаке (Yandex Cloud, Selectel, Cloud.ru) или в гибридном контуре — вариант зависит от требований к данным.",
+    },
+    {
+      q: "Чем Secure AI Agent Gateway отличается от антивируса Kaspersky?",
+      a: "Kaspersky защищает инфраструктуру — хосты, контейнеры, почту, SIEM. Gateway — отдельный слой контроля над самим LLM-агентом: RBAC, allowlist инструментов, маскирование данных, human approval и audit log.",
+    },
+    {
+      q: "С чего начать, если ещё нет лицензий Kaspersky?",
+      a: "С аудита контура и сметы лицензий через партнёрскую дистрибуцию (Registered Partner Kaspersky) — после этого выбираем линию: LLM/RAG с AIST, Container Security, SOC-ассистент или защита почты.",
+    },
+  ],
+  faqEn: [
+    {
+      q: "Is Bober Secure AI a separate company?",
+      a: "No. It's a specialist line of the same team and legal entity as Bober AI Systems — same certificates, portfolio, contacts and legal details.",
+    },
+    {
+      q: "Can this run on-prem or in a closed contour?",
+      a: "Yes. Private LLM/RAG and the Secure AI Agent Gateway deploy on-prem, in a Russian cloud (Yandex Cloud, Selectel, Cloud.ru) or in a hybrid contour, depending on data requirements.",
+    },
+    {
+      q: "How is the Secure AI Agent Gateway different from Kaspersky antivirus?",
+      a: "Kaspersky protects infrastructure — hosts, containers, mail, SIEM. The Gateway is a separate control layer over the LLM agent itself: RBAC, tool allowlists, data masking, human approval and an audit log.",
+    },
+    {
+      q: "Where do we start without existing Kaspersky licenses?",
+      a: "With a contour audit and a license quote via authorized distribution (Kaspersky Registered Partner) — then we pick a line: LLM/RAG with AIST, Container Security, a SOC assistant, or mail protection.",
+    },
+  ],
 } as const;
 
 export function getSecureAiProductLinks() {

@@ -1,13 +1,22 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
+import Image from "next/image";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { ContactForm } from "@/components/ContactForm";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import { getEnterpriseService } from "@/lib/enterprise-services";
 import { getSecureAiProductLinks, SECURE_AI_PAGE } from "@/lib/secure-ai-page";
-import { buildPageMetadata } from "@/lib/seo";
+import {
+  buildPageMetadata,
+  faqJsonLd,
+  localizedAbsolute,
+  pageBreadcrumbJsonLd,
+  webPageJsonLd,
+} from "@/lib/seo";
 import { TELEGRAM_URL } from "@/lib/site";
+import { KASPERSKY_PARTNER_CERTIFICATES } from "@/lib/trust-partners";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -33,9 +42,26 @@ export default async function SecureAiPage({ params }: Props) {
   const ru = locale !== "en";
   const p = SECURE_AI_PAGE;
   const products = getSecureAiProductLinks();
+  const pack = getEnterpriseService("secure-private-ai-cloud", ru ? "ru" : "en");
+  const pageUrl = localizedAbsolute("/secure-ai", locale);
+
+  const breadcrumbs = pageBreadcrumbJsonLd(locale, [{ name: "Secure AI", path: "/secure-ai" }]);
+  const webPage = webPageJsonLd({
+    name: ru ? p.metaTitleRu : p.metaTitleEn,
+    description: ru ? p.metaDescRu : p.metaDescEn,
+    url: pageUrl,
+    locale,
+  });
+  const faq = faqJsonLd(
+    (ru ? p.faqRu : p.faqEn).map((item) => ({ q: item.q, a: item.a })),
+    pageUrl,
+  );
 
   return (
     <div className="min-h-screen bg-canvas">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPage) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }} />
       <SiteHeader />
       <main>
         <section className="section-band border-b border-hairline">
@@ -128,11 +154,74 @@ export default async function SecureAiPage({ params }: Props) {
               <Link href={p.packHref} className="text-link">
                 {ru ? p.packLabelRu : p.packLabelEn} →
               </Link>
+              {pack && (
+                <span className="text-muted">
+                  {" "}
+                  ({pack.salesNotes} · {pack.deliveryDays} {ru ? "дней" : "days"})
+                </span>
+              )}
               <span className="text-muted"> · </span>
               <Link href={p.kasperskyHref} className="text-link">
                 {ru ? p.kasperskyLabelRu : p.kasperskyLabelEn} →
               </Link>
             </p>
+          </div>
+        </section>
+
+        <section className="section-band border-b border-hairline">
+          <div className="container-editorial max-w-3xl">
+            <h2 className="section-title">{ru ? p.processTitleRu : p.processTitleEn}</h2>
+            <ol className="mt-6 space-y-3 text-sm text-body">
+              {(ru ? p.processRu : p.processEn).map((step, i) => (
+                <li key={step} className="flex gap-3">
+                  <span className="font-display text-primary/50">{String(i + 1).padStart(2, "0")}</span>
+                  <span>{step}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        <section className="section-band border-b border-hairline">
+          <div className="container-editorial max-w-3xl">
+            <h2 className="section-title">{ru ? p.trustTitleRu : p.trustTitleEn}</h2>
+            <p className="body-copy mt-3 max-w-2xl text-sm">
+              {ru ? p.trustIntroRu : p.trustIntroEn}
+            </p>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              {KASPERSKY_PARTNER_CERTIFICATES.map((cert) => (
+                <a
+                  key={cert.id}
+                  href={cert.pdfSrc}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="feature-card block transition hover:border-primary/40"
+                >
+                  <Image
+                    src={cert.previewSrc}
+                    alt={ru ? cert.altRu : cert.altEn}
+                    width={400}
+                    height={283}
+                    className="w-full rounded-sm"
+                  />
+                  <span className="mt-2 inline-block text-xs text-link">PDF</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section-band border-b border-hairline">
+          <div className="container-editorial max-w-3xl">
+            <h2 className="section-title">{ru ? "Частые вопросы" : "FAQ"}</h2>
+            <div className="mt-6 space-y-6">
+              {(ru ? p.faqRu : p.faqEn).map((item) => (
+                <div key={item.q}>
+                  <h3 className="font-medium text-ink">{item.q}</h3>
+                  <p className="mt-2 text-sm text-body">{item.a}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
