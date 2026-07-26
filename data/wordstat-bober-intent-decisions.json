@@ -1,0 +1,47 @@
+{
+  "date": "2026-07-26",
+  "source": "data/wordstat-bober-intent.csv",
+  "rule": "Prefer внедрение/автоматизация/интеграция over консалтинг. Skip high-volume informational noise.",
+  "skipConsulting": {
+    "reason": "Exact Wordstat hits = 0 for core consulting seeds; buyers search implementation.",
+    "seeds": [
+      "консалтинг по внедрению ии",
+      "консультация по внедрению ии",
+      "консалтинг по искусственному интеллекту"
+    ]
+  },
+  "keepAndShip": [
+    { "phrase": "автоматизация бизнес процессов", "count": 4543, "action": "keywords on /automation/processes + hub" },
+    { "phrase": "автоматизация компании", "count": 3843, "action": "NEW /automation/company-automation" },
+    { "phrase": "автоматизация документооборота", "count": 1557, "action": "existing /automation/documents + NEW /automation/document-ai" },
+    { "phrase": "внедрение ии в бизнес", "count": 783, "action": "NEW /ai/ai-implementation" },
+    { "phrase": "автоматизация crm", "count": 653, "action": "NEW /integrations/crm-automation" },
+    { "phrase": "аудит бизнес процессов", "count": 570, "action": "NEW /automation/business-process-audit" },
+    { "phrase": "автоматизация битрикс24", "count": 300, "action": "keywords on /integrations/bitrix24-ai" },
+    { "phrase": "ии для обработки документов", "count": 282, "action": "NEW /automation/document-ai" },
+    { "phrase": "внедрение ии в бизнес процессы", "count": 253, "action": "keywords on /ai/ai-implementation" },
+    { "phrase": "корпоративная нейросеть", "count": 243, "action": "NEW /ai/corporate-neural-net" },
+    { "phrase": "стоимость внедрения ии", "count": 153, "action": "FAQ + keywords on /ai/ai-implementation" },
+    { "phrase": "автоматизация бизнеса с помощью ии", "count": 144, "action": "NEW /automation/ai-business-automation" },
+    { "phrase": "ии для crm", "count": 143, "action": "NEW /integrations/ai-for-crm" },
+    { "phrase": "автоматизация отдела продаж", "count": 123, "action": "existing /automation/sales-department" },
+    { "phrase": "корпоративный ии ассистент", "count": 112, "action": "NEW /ai/corporate-neural-net keywords" },
+    { "phrase": "автоматизация обработки заявок", "count": 74, "action": "existing /automation/request-intake" },
+    { "phrase": "услуги по внедрению ии", "count": 44, "action": "keywords on /ai/ai-implementation" },
+    { "phrase": "внедрение ии под ключ", "count": 44, "action": "keywords on /ai/ai-implementation (no H1 «под ключ»)" },
+    { "phrase": "ии для битрикс24", "count": 36, "action": "keywords on /integrations/bitrix24-ai" },
+    { "phrase": "rag для бизнеса", "count": 29, "action": "keywords on /solutions/rag-search + NEW knowledge-chatbot" }
+  ],
+  "newUrls": [
+    "/ai/ai-implementation",
+    "/automation/company-automation",
+    "/automation/ai-business-automation",
+    "/automation/document-ai",
+    "/automation/routine-tasks",
+    "/integrations/crm-automation",
+    "/integrations/ai-for-crm",
+    "/ai/corporate-neural-net",
+    "/solutions/knowledge-chatbot",
+    "/automation/business-process-audit"
+  ]
+}

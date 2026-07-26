@@ -167,7 +167,7 @@ export const CATALOG_LANDING_SPECS: LandingSpec[] = [
     cluster: "automation-processes",
     serviceSlug: "business-process-automation",
     coverImage: "/diagrams/workflow-automation.svg",
-    keywords: ["аудит процессов","карта бизнес-процессов","автоматизация бизнес процессов"],
+    keywords: ["аудит процессов","карта бизнес-процессов","автоматизация бизнес процессов","аудит бизнес процессов","аудит процессов компании","аудит автоматизации бизнеса"],
     
     related: [
       { href: "/automation/processes", labelRu: "Автоматизация процессов", labelEn: "Process automation" },
@@ -1437,7 +1437,7 @@ export const CATALOG_LANDING_SPECS: LandingSpec[] = [
     cluster: "bitrix24",
     serviceSlug: "crm-integration",
     coverImage: "/diagrams/crm-integration.svg",
-    keywords: ["ai для bitrix24","ai bitrix24","автоматизация bitrix24 с ai"],
+    keywords: ["ai для bitrix24","ai bitrix24","автоматизация bitrix24 с ai","ии для битрикс24","интеграция ии с битрикс24","внедрение ии в битрикс24","автоматизация битрикс24","интеграция ии в битрикс24 цена"],
     
     related: [
       { href: "/automation", labelRu: "Автоматизация бизнес-процессов", labelEn: "Business process automation" },
@@ -2237,7 +2237,7 @@ export const CATALOG_LANDING_SPECS: LandingSpec[] = [
     cluster: "ai-corporate",
     serviceSlug: "enterprise-ai-assistant",
     coverImage: "/diagrams/system-architecture.svg",
-    keywords: ["rag система","поиск по документам"],
+    keywords: ["rag система","поиск по документам","rag для бизнеса","внедрение rag","rag система для компании","rag система для компании цена"],
     
     related: [
       { href: "/services/rag", labelRu: "Корпоративный RAG", labelEn: "Corporate RAG" },
@@ -2328,7 +2328,7 @@ export const CATALOG_LANDING_SPECS: LandingSpec[] = [
     cluster: "ai-corporate",
     serviceSlug: "private-llm-gigachat",
     coverImage: "/diagrams/system-architecture.svg",
-    keywords: ["приватный llm","on premise llm"],
+    keywords: ["приватный llm","on premise llm","локальная llm для компании","локальная нейросеть для бизнеса","ии в закрытом контуре","llm on premise","развертывание llm","внедрение llm"],
     
     related: [
       { href: "/ai/corporate", labelRu: "Корпоративный ИИ", labelEn: "Enterprise AI" },
@@ -2358,7 +2358,7 @@ export const CATALOG_LANDING_SPECS: LandingSpec[] = [
     cluster: "ai-corporate",
     serviceSlug: "ai-discovery-roadmap",
     coverImage: "/diagrams/system-architecture.svg",
-    keywords: ["ai аудит","стратегия внедрения ии"],
+    keywords: ["ai аудит","стратегия внедрения ии","аудит автоматизации бизнеса","аудит бизнес процессов","консультация по внедрению ии"],
     
     related: [
       { href: "/ai/corporate", labelRu: "Корпоративный ИИ", labelEn: "Enterprise AI" },

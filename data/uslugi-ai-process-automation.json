@@ -1,0 +1,88 @@
+{
+  "specializationId": "187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "specializationNote": "Компьютеры и IT → Другое",
+  "note": "10 вариантов по Wordstat вокруг «ИИ / автоматизация процессов». В названиях без «под ключ» (модерация). Сиды: автоматизация процессов с ии (372), внедрение ии в бизнес процессы (253), ии автоматизация для бизнеса (216) и др.",
+  "wordstatSource": "data/wordstat-ai-process-automation.csv",
+  "services": [
+    {
+      "name": "Автоматизация процессов с ИИ",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/business-process-automation.jpg",
+      "description": "Автоматизация процессов с ИИ: аудит узких мест, workflow, интеграции CRM и почты. Убираем рутину, статусы и уведомления — фиксированная смета до старта, передача схемы команде."
+    },
+    {
+      "name": "Внедрение ИИ в бизнес-процессы",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/ai-discovery-roadmap.jpg",
+      "description": "Внедрение ИИ в бизнес-процессы: пилот одного контура с метриками, затем масштабирование. Связка LLM с CRM, документами и заявками. Смета и критерии приёмки — до разработки."
+    },
+    {
+      "name": "ИИ-автоматизация для бизнеса",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/enterprise-ai-assistant.jpg",
+      "description": "ИИ-автоматизация для бизнеса: заявки, документы, продажи и поддержка без ручного копирования. Интеграции и контроль ошибок. От пилота до рабочего контура с фиксированной сметой."
+    },
+    {
+      "name": "ИИ-автоматизация бизнес-процессов",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/automation-code.jpg",
+      "description": "ИИ-автоматизация бизнес-процессов: карта шагов, правила, LLM там где ускоряет. CRM, 1С, мессенджеры. Production-контур с логами и передачей кода, не демо-чат."
+    },
+    {
+      "name": "Автоматизация процессов с помощью ИИ",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/roadmap-sticky-notes.jpg",
+      "description": "Автоматизация процессов с помощью ИИ: классификация, черновики, маршруты согласования. Меньше ручного ввода и потерь между системами. Пилот 2–4 недели с понятным эффектом."
+    },
+    {
+      "name": "Автоматизация бизнеса с помощью ИИ",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/sales-ai-agent.jpg",
+      "description": "Автоматизация бизнеса с помощью ИИ: от заявки до CRM и типовых документов. Сценарии отдела продаж и поддержки. Фиксированная смета, NDA и передача решения вашей команде."
+    },
+    {
+      "name": "AI-автоматизация бизнес-процессов",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/crm-integration.jpg",
+      "description": "AI-автоматизация бизнес-процессов: агенты и workflow вокруг CRM. Обработка заявок, статусы, эскалации. Без «коробки ради коробки» — только шаги с измеримым ROI."
+    },
+    {
+      "name": "Автоматизация рутинных процессов с ИИ",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/document-processing.jpg",
+      "description": "Автоматизация рутинных процессов с ИИ: повторяющиеся задачи, разбор писем и файлов, напоминания. Быстрый пилот на одном процессе, затем расширение по смете."
+    },
+    {
+      "name": "Автоматизация бизнеса через ИИ",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/team-collab.jpg",
+      "description": "Автоматизация бизнеса через ИИ: связка каналов заявок, CRM и отчётности. Меньше ручных переносов данных. Внедрение с критериями приёмки и передачей документации."
+    },
+    {
+      "name": "ИИ для бизнеса: внедрение и автоматизация",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "photo": "public/stock/private-llm.jpg",
+      "description": "ИИ для бизнеса: внедрение и автоматизация одного или нескольких процессов. Аудит → пилот → запуск. Интеграции, политики доступа, фиксированная смета до старта работ."
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+phrase,count,source,seed,cluster,intent,intent_label,service_fit,priority
+купить автомат,220670,similar,автоматизация бизнеса под ключ,automation-processes,informational,Информационный,blog,P4-blog
+свое дело,166528,similar,внедрение ии в бизнес процессы,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+купить робота,151852,similar,заказать автоматизацию бизнеса,automation-processes,informational,Информационный,blog,P4-blog
+инструкция по установке,87022,similar,внедрение ии под ключ,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+купить кассу,57288,similar,заказать автоматизацию бизнеса,automation-processes,irrelevant,Нерелевантный (шум),skip,P0-skip
+программы купить,40288,similar,заказать автоматизацию бизнеса,automation-processes,irrelevant,Нерелевантный (шум),skip,P0-skip
+торговый автомат,34664,similar,автоматизация бизнеса под ключ,automation-processes,informational,Информационный,blog,P4-blog
+операционная деятельность в логистике,30890,similar,внедрение ии в бизнес процессы,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+асу это,29151,similar,автоматизация процессов с ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+automation,26414,similar,автоматизация процессов с ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+интеграция это,26134,similar,внедрение ии в бизнес процессы,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+как сделать автомат,25635,similar,автоматизация бизнеса под ключ,automation-processes,informational,Информационный,blog,P4-blog
+купить проект,21369,similar,заказать автоматизацию бизнеса,automation-processes,irrelevant,Нерелевантный (шум),skip,P0-skip
+автомойка купить,17641,similar,заказать автоматизацию бизнеса,automation-processes,irrelevant,Нерелевантный (шум),skip,P0-skip
+дела ру,15119,similar,внедрение ии в бизнес процессы,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+crm система это,14408,similar,автоматизация бизнес процессов с ии,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P2-landing/ads
+crm системы что это,12058,similar,автоматизация процессов с ии,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P2-landing/ads
+сколько стоит поставить машину на учет,11746,similar,заказать автоматизацию бизнеса,automation-processes,irrelevant,Нерелевантный (шум),skip,P0-skip
+вендинговый автомат,10919,similar,автоматизация бизнеса под ключ,automation-processes,informational,Информационный,blog,P4-blog
+что такое crm система,10717,similar,внедрение ии в бизнес процессы,other,informational,Информационный,blog,P4-blog
+b2b продажи,9072,similar,заказать автоматизацию бизнеса,automation-processes,commercial_medium,Коммерческий (средний),business-process-automation,P2-landing/ads
+crm система что это такое,8828,similar,автоматизация процессов с ии,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P2-landing/ads
+ооо автоматика,8265,similar,автоматизация бизнеса под ключ,automation-processes,informational,Информационный,blog,P4-blog
+поменять регион на соединенные штаты,6639,similar,внедрение ии под ключ,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+что такое интеграция,5812,similar,внедрение ии в бизнес процессы,other,informational,Информационный,blog,P4-blog
+интеграция что это,5656,similar,внедрение ии в бизнес процессы,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+ооо интеграция,4839,similar,внедрение ии в бизнес процессы,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P2-landing/ads
+нпо автоматики,4964,similar,ai автоматизация бизнес процессов,other,informational,Информационный,blog,P4-blog
+1с управление нашей фирмой,3877,similar,автоматизация бизнеса под ключ,automation-processes,commercial_medium,Коммерческий (средний),business-process-automation,P2-landing/ads
+вендинговый аппарат купить,4251,similar,заказать автоматизацию бизнеса,automation-processes,irrelevant,Нерелевантный (шум),skip,P0-skip
+процессный подход,4141,similar,внедрение ии в бизнес процессы,other,informational,Информационный,blog,P4-blog
+как поменять регион в настройках,4156,similar,внедрение ии под ключ,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+чем отличается робот от автомата,4044,similar,автоматизация процессов с ии,other,informational,Информационный,blog,P4-blog
+поменять регион в аппсторе на соединенные штаты,3952,similar,внедрение ии под ключ,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+асу тп это,3849,similar,автоматизация бизнес процессов с ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+система управления заказами пвз,3786,similar,автоматизация бизнеса под ключ,automation-processes,irrelevant,Нерелевантный (шум),skip,P0-skip
+промышленная автоматика,3428,similar,ии автоматизация бизнеса,other,informational,Информационный,blog,P4-blog
+erp система что это такое,3343,similar,автоматизация процессов с ии,other,informational,Информационный,blog,P4-blog
+концерн автоматика,2949,similar,автоматизация процессов с ии,other,informational,Информационный,blog,P4-blog
+как открыть свой магазин,2929,similar,автоматизация бизнеса под ключ,automation-processes,irrelevant,Нерелевантный (шум),skip,P0-skip
+текон автоматика,2755,similar,автоматизация бизнес процессов с ии,other,informational,Информационный,blog,P4-blog
+автоматика сервис,2694,similar,автоматизация бизнеса под ключ,automation-processes,informational,Информационный,blog,P4-blog
+zapret как установить,2689,similar,внедрение ии под ключ,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+crm для продаж,2156,similar,заказать автоматизацию бизнеса,automation-processes,commercial_medium,Коммерческий (средний),business-process-automation,P2-landing/ads
+робот и автомат в чем разница,2092,similar,ии автоматизация бизнеса,other,informational,Информационный,blog,P4-blog
+теория автоматического управления,2063,similar,автоматизация процессов с ии,other,informational,Информационный,blog,P4-blog
+либерализация цен,2020,similar,заказать автоматизацию бизнеса,automation-processes,irrelevant,Нерелевантный (шум),skip,P0-skip
+интегратор это,1995,similar,внедрение ии в бизнес процессы,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+сколько стоит поставить спираль,1961,similar,заказать автоматизацию бизнеса,automation-processes,irrelevant,Нерелевантный (шум),skip,P0-skip
+роботизация производства,1791,similar,ии автоматизация бизнеса,other,informational,Информационный,blog,P4-blog
+windows service zapret is installed,1790,similar,внедрение ии в бизнес процессы,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+зависеть спряжение,1659,similar,автоматизация процессов с ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+как ездить на автомате для начинающих,1546,similar,автоматизация бизнеса под ключ,automation-processes,informational,Информационный,blog,P4-blog
+срм система это,1633,similar,автоматизация бизнес процессов с ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+как подключить родительский контроль,1626,similar,внедрение ии под ключ,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+как сделать автоматическое содержание,1445,similar,автоматизация процессов с ии,other,informational,Информационный,blog,P4-blog
+создание систем искусственного интеллекта взаимодействие с разработчиками,403,similar,ai автоматизация бизнес процессов,other,commercial_high,Коммерческий (высокий),ai-discovery-roadmap,P1-landing
+внедрение ии в бизнес процессы,253,popular,внедрение ии в бизнес процессы,other,commercial_high,Коммерческий (высокий),ai-discovery-roadmap,P1-landing
+workflow это,678,similar,ai автоматизация бизнес процессов,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P2-landing/ads
+асу тп что это,1164,similar,автоматизация бизнес процессов с ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+error windows service zapret is installed,1117,similar,внедрение ии в бизнес процессы,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+ао концерн автоматика,1015,similar,автоматизация бизнес процессов с ии,other,informational,Информационный,blog,P4-blog
+ниеншанц автоматика,1015,similar,ai автоматизация бизнес процессов,other,informational,Информационный,blog,P4-blog
+автоматизация бизнеса под ключ,68,popular,автоматизация бизнеса под ключ,automation-processes,commercial_high,Коммерческий (высокий),business-process-automation,P2-landing/ads
+внедрение ии под ключ,44,popular,внедрение ии под ключ,other,commercial_high,Коммерческий (высокий),ai-discovery-roadmap,P2-landing/ads
+внедрение ии в бизнес под ключ,35,popular,внедрение ии под ключ,other,commercial_high,Коммерческий (высокий),ai-discovery-roadmap,P2-landing/ads
+настройка устройства воспроизведения по умолчанию,1028,similar,автоматизация процессов с ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+ии для бизнеса внедрение и автоматизация,15,popular,ии автоматизация бизнеса,other,commercial_high,Коммерческий (высокий),ai-discovery-roadmap,P2-landing/ads
+специалист по работе с системами искусственного интеллекта,920,similar,ai автоматизация бизнес процессов,other,informational,Информационный,blog,P4-blog
+как поменять роутер на другой и подключить,985,similar,внедрение ии под ключ,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+что такое асу тп,979,similar,автоматизация бизнес процессов с ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+sap что это за программа,939,similar,автоматизация процессов с ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+срм система что это,921,similar,автоматизация процессов с ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+автоматизация процессов с ии,372,popular,автоматизация процессов с ии,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P2-landing/ads
+проавтобизнес,750,similar,ии автоматизация бизнеса,other,informational,Информационный,blog,P4-blog
+ai automation,829,similar,автоматизация процессов с ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+данные для смены региона на соединенные штаты,811,similar,внедрение ии под ключ,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+ооо автоматика сервис,695,similar,автоматизация бизнеса под ключ,automation-processes,informational,Информационный,blog,P4-blog
+техники продаж для менеджеров по продажам,288,similar,заказать автоматизацию бизнеса,automation-processes,commercial_medium,Коммерческий (средний),business-process-automation,P2-landing/ads
+деловые решения и технологии,677,similar,внедрение ии в бизнес процессы,other,informational,Информационный,blog,P4-blog
+установка визуального расписания это адаптация,766,similar,внедрение ии под ключ,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+amocrm что это такое,259,similar,автоматизация бизнес процессов с ии,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P2-landing/ads
+ии автоматизация для бизнеса,216,popular,ии автоматизация бизнеса,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P2-landing/ads
+amo crm что это такое,223,similar,автоматизация бизнес процессов с ии,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P2-landing/ads
+ии автоматизация бизнес процессов,170,popular,ии автоматизация бизнеса,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+автоматизация процессов с помощью ии,161,popular,автоматизация процессов с ии,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+автоматизация бизнеса с помощью ии,144,popular,ии автоматизация бизнеса,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+нпп автоматика,532,similar,ai автоматизация бизнес процессов,other,informational,Информационный,blog,P4-blog
+стоимость акций система,597,similar,заказать автоматизацию бизнеса,automation-processes,irrelevant,Нерелевантный (шум),skip,P0-skip
+автоматизация бизнес процессов с ии,83,popular,автоматизация процессов с ии,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+написать дипломную работу с помощью нейросети,84,similar,внедрение ии в бизнес процессы,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+ai автоматизация бизнес процессов,71,popular,ai автоматизация бизнес процессов,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+автоматизация рутинных процессов с ии,41,popular,автоматизация процессов с ии,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+автоматизация бизнес процессов с помощью ии,35,popular,автоматизация процессов с ии,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+ет автоматика,442,similar,ии автоматизация бизнеса,other,informational,Информационный,blog,P4-blog
+автоматизация бизнеса через ии,31,popular,ии автоматизация бизнеса,other,commercial_medium,Коммерческий (средний),ai-discovery-roadmap,P3-seo
+я построил торговый автомат в майнкрафте,432,similar,автоматизация бизнеса под ключ,automation-processes,informational,Информационный,blog,P4-blog
+вендинговый автомат что это,424,similar,автоматизация бизнеса под ключ,automation-processes,informational,Информационный,blog,P4-blog
+когда вы автоматизируете промышленность,388,similar,автоматизация процессов с ии,other,informational,Информационный,blog,P4-blog
+кэр автоматика,338,similar,ai автоматизация бизнес процессов,other,informational,Информационный,blog,P4-blog
+modulus factory automation,394,similar,автоматизация бизнес процессов с ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+вставлен носитель с другим уникальным номером,393,similar,внедрение ии под ключ,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+автоматика для самогонного аппарата своими руками,287,similar,ии автоматизация бизнеса,other,informational,Информационный,blog,P4-blog
+mes система управления производством,364,similar,ии автоматизация бизнеса,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+црм система это,363,similar,автоматизация бизнес процессов с ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+automation empire,336,similar,ии автоматизация бизнеса,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+купи продай ру официальный сайт,265,similar,заказать автоматизацию бизнеса,automation-processes,irrelevant,Нерелевантный (шум),skip,P0-skip
+данная установка запрещена политикой заданной системным администратором,235,similar,внедрение ии под ключ,other,irrelevant,Нерелевантный (шум),skip,P0-skip
+начать сотрудничество оптимизатор про рф,69,similar,внедрение ии в бизнес процессы,other,informational,Информационный,blog,P4-blog
+автоматизация бизнеса с помощью ии курсы,26,popular,ии автоматизация бизнеса,other,informational,Информационный,blog,P4-blog
+примеры внедрения ии в бизнес процессы,15,popular,внедрение ии в бизнес процессы,other,informational,Информационный,blog,P4-blog
+ai automation что это,103,similar,автоматизация процессов с ии,other,irrelevant,Нерелевантный (шум),skip,P0-skip

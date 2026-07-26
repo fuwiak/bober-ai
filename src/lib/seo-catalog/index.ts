@@ -1,6 +1,7 @@
 import { buildLanding } from "@/lib/seo-catalog/build-content";
 import { CATALOG_LANDING_SPECS } from "@/lib/seo-catalog/landing-specs";
 import { CATALOG_LANDING_SPECS_EXTRA } from "@/lib/seo-catalog/landing-specs-extra";
+import { CATALOG_LANDING_SPECS_INTENT } from "@/lib/seo-catalog/landing-specs-intent";
 import { INTENT_ARTICLE_SPECS } from "@/lib/seo-catalog/blog-specs";
 import { SEO_HUBS } from "@/lib/seo-catalog/hubs";
 import { SPECIALIST_ARTICLE_SPECS } from "@/lib/seo-catalog/specialist-blog-specs";
@@ -12,7 +13,11 @@ import type {
 } from "@/lib/seo-catalog/types";
 import type { LandingExtendedContent } from "@/lib/landing-extended";
 
-const ALL_SPECS = [...CATALOG_LANDING_SPECS, ...CATALOG_LANDING_SPECS_EXTRA];
+const ALL_SPECS = [
+  ...CATALOG_LANDING_SPECS,
+  ...CATALOG_LANDING_SPECS_EXTRA,
+  ...CATALOG_LANDING_SPECS_INTENT,
+];
 const ALL_ARTICLES = [...SPECIALIST_ARTICLE_SPECS, ...INTENT_ARTICLE_SPECS];
 
 const BUILT: BuiltLanding[] = ALL_SPECS.map(buildLanding);
