@@ -23,6 +23,7 @@ export const SPECIALIST_ARTICLE_SPECS: IntentArticleSpec[] = [
       { href: "/services/sales-ai-agent", labelRu: "AI-агент для продаж", labelEn: "Sales AI agent" },
       { href: "/blog/ai-agents-in-sales-architecture", labelRu: "Архитектура AI-агента в продажах", labelEn: "Sales AI agent architecture" },
       { href: "/blog/mcp-vs-api", labelRu: "MCP vs API", labelEn: "MCP vs API" },
+      { href: "/blog/ai-automation-architecture", labelRu: "AI Automation: архитектура", labelEn: "AI automation architecture" },
     ],
     publishedAt: "2026-07-25",
     ru: {
@@ -257,6 +258,7 @@ export const SPECIALIST_ARTICLE_SPECS: IntentArticleSpec[] = [
       { href: "/services/enterprise-ai-assistant", labelRu: "Корпоративный AI-ассистент", labelEn: "Enterprise AI assistant" },
       { href: "/blog/ai-document-processing-pipeline", labelRu: "AI-обработка документов", labelEn: "AI document processing" },
       { href: "/blog/ai-agents-in-sales-architecture", labelRu: "AI-агенты в продажах", labelEn: "AI agents in sales" },
+      { href: "/blog/ai-proposal-generation", labelRu: "AI Proposal Generation", labelEn: "AI proposal generation" },
     ],
     publishedAt: "2026-07-25",
     ru: {
@@ -365,6 +367,7 @@ export const SPECIALIST_ARTICLE_SPECS: IntentArticleSpec[] = [
       { href: "/services/crm-integration", labelRu: "Интеграция CRM", labelEn: "CRM integration" },
       { href: "/blog/ai-crm-automation-architecture", labelRu: "AI CRM Automation", labelEn: "AI CRM Automation" },
       { href: "/blog/rag-architecture-production", labelRu: "Production-архитектура RAG", labelEn: "Production RAG architecture" },
+      { href: "/blog/ai-proposal-generation", labelRu: "AI Proposal Generation", labelEn: "AI proposal generation" },
     ],
     publishedAt: "2026-07-25",
     ru: {
@@ -473,6 +476,7 @@ export const SPECIALIST_ARTICLE_SPECS: IntentArticleSpec[] = [
       { href: "/services/crm-integration", labelRu: "Интеграция с CRM и ERP", labelEn: "CRM and ERP integration" },
       { href: "/blog/rag-architecture-production", labelRu: "Production-архитектура RAG", labelEn: "Production RAG architecture" },
       { href: "/blog/mcp-vs-api", labelRu: "MCP vs API", labelEn: "MCP vs API" },
+      { href: "/blog/ai-for-manufacturing", labelRu: "AI для производства", labelEn: "AI for manufacturing" },
     ],
     publishedAt: "2026-07-25",
     ru: {
@@ -569,6 +573,402 @@ export const SPECIALIST_ARTICLE_SPECS: IntentArticleSpec[] = [
         { q: "Can an LLM replace OCR?", a: "Not in every pipeline. Multimodal models help with difficult layouts, but production IDP still needs coordinates, confidence, validation and repeatable extraction." },
         { q: "When should a document go to human review?", a: "When confidence is low, rules conflict, the document type is unknown or financial risk is high. Thresholds should vary by field and process." },
         { q: "How do you prevent duplicate posting?", a: "Use checksums, business keys, duplicate checks in the ERP and an idempotency key during export." },
+      ],
+    },
+  },
+  {
+    slug: "ai-automation-architecture",
+    cluster: "specialist-ai-architecture",
+    keywords: [
+      "AI automation",
+      "AI business automation",
+      "автоматизация с AI",
+      "внедрение AI в бизнес-процессы",
+      "enterprise AI automation",
+    ],
+    related: [
+      { href: "/services/business-process-automation", labelRu: "Автоматизация бизнес-процессов", labelEn: "Business process automation" },
+      { href: "/services/ai-discovery-roadmap", labelRu: "AI-аудит и дорожная карта", labelEn: "AI audit and roadmap" },
+      { href: "/blog/ai-crm-automation-architecture", labelRu: "AI CRM Automation", labelEn: "AI CRM automation" },
+      { href: "/blog/ai-document-processing-pipeline", labelRu: "AI-обработка документов", labelEn: "AI document processing" },
+    ],
+    publishedAt: "2026-07-25",
+    ru: {
+      title: "AI Automation: как ИИ реально встраивается в бизнес-процессы",
+      description:
+        "AI automation — не чат-бот и не демо на GPT. Разбираем архитектуру: где workflow, где модель, как считать эффект и почему большинство пилотов не доходит до продакшена.",
+      h1: "AI Automation: архитектура внедрения ИИ в операционные процессы",
+      sections: [
+        {
+          title: "Что на самом деле означает AI automation",
+          paragraphs: [
+            "AI automation — это не отдельный продукт и не «нейросеть вместо сотрудника». Это слой обработки неструктурированных данных и решений внутри уже существующего процесса: CRM, документооборота, поддержки, продаж или производства. Ценность появляется не от факта использования модели, а от того, что конкретный ручной шаг перестаёт требовать человека.",
+            "Граница ответственности должна быть явной с самого начала. Правила, которые можно записать как «если-то» — смена статуса после оплаты, расчёт скидки по прайсу, маршрутизация по региону — остаются в детерминированном коде. Модель отвечает за то, что требует понимания смысла: свободный текст письма, фото дефекта, голосовое обращение, неструктурированный документ.",
+          ],
+        },
+        {
+          title: "Почему демо не доезжает до продакшена",
+          paragraphs: [
+            "Большинство пилотов AI automation умирает на переходе от чат-интерфейса к встроенному в процесс сервису. Демо показывает, что модель умеет отвечать; продакшен требует, чтобы система умела повторить запрос после сбоя, не терять события, соблюдать права доступа и не создавать дубликаты действий.",
+            "Второй частый провал — выбор технологии раньше процесса: компания покупает подписку на «AI-платформу», а затем ищет задачу под неё. Рабочий порядок обратный — сначала аудит процесса и данных, потом выбор архитектуры (workflow, интеграция, RAG, агент), и только затем модель.",
+          ],
+        },
+        {
+          title: "Референсная архитектура автоматизации",
+          paragraphs: [
+            "Независимо от домена (CRM, документы, поддержка, продажи, производство) устойчивый паттерн один: событие → очередь → сервис оркестрации → сбор ограниченного контекста → вызов модели → валидация структурированного ответа по схеме → запись результата в систему-источник правды. Очередь отделяет медленный AI-вызов от пользовательской операции и позволяет безопасно повторять запросы.",
+            "Каждый сценарий получает собственный контракт данных и идемпотентный ключ, а не общий «универсальный агент». Классификация обращения, генерация черновика документа и next-best-action — это разные контракты с разными допустимыми полями, даже если под капотом используется одна модель.",
+          ],
+        },
+        {
+          title: "Guardrails и постепенное расширение автономии",
+          paragraphs: [
+            "На старте AI automation должна готовить черновики и рекомендации, а не выполнять необратимые действия. Отправка письма клиенту, изменение цены, закрытие сделки, остановка производственной линии — операции, которые требуют подтверждения человеком или жёсткого бизнес-правила поверх модели.",
+            "Автономию расширяют только после накопления статистики ошибок на реальных сценариях, а не по расписанию проекта. Нужны allowlist полей и действий, лимиты значений, фильтрация входа (защита от prompt injection), валидация выхода и журнал аудита с версией prompt, моделью и источниками контекста для каждого результата.",
+          ],
+        },
+        {
+          title: "Как измерять эффект и когда масштабировать",
+          paragraphs: [
+            "Технические метрики — задержка, доля валидных структурированных ответов, стоимость вызова, число повторов. Бизнес-метрики зависят от процесса: время обработки заявки, доля карточек с корректно заполненными полями, время подготовки документа, число ручных правок в черновике модели.",
+            "Безопасный путь — один процесс, контрольная группа и 2–4 недели сравнения с прежним способом работы. Если AI automation только переносит труд с написания текста на исправление плохих черновиков, сценарий не готов к масштабированию на соседние процессы.",
+          ],
+        },
+      ],
+      faq: [
+        {
+          q: "AI automation — это то же самое, что RPA?",
+          a: "Нет. RPA автоматизирует фиксированную последовательность кликов и полей. AI automation добавляет слой понимания неструктурированных данных — текста, изображений, речи — там, где правило нельзя записать одной инструкцией.",
+        },
+        {
+          q: "Нужна ли отдельная AI-платформа для старта?",
+          a: "Обычно нет. Для одного сценария достаточно очереди событий, вызова модели с валидацией и записи результата в существующую систему — CRM, ERP или документооборот.",
+        },
+        {
+          q: "Сколько времени занимает переход от пилота к продакшену?",
+          a: "На одном процессе с понятным контрактом данных — от 4 до 8 недель, включая обработку ошибок, guardrails и передачу команде. Более широкие сценарии требуют отдельного аудита.",
+        },
+      ],
+    },
+    en: {
+      title: "AI Automation: how AI actually gets embedded into business processes",
+      description:
+        "AI automation is not a chatbot or a GPT demo. A breakdown of the architecture: where the workflow ends and the model begins, how to measure impact, and why most pilots never reach production.",
+      h1: "AI Automation: an architecture for embedding AI in operational processes",
+      sections: [
+        {
+          title: "What AI automation actually means",
+          paragraphs: [
+            "AI automation is not a standalone product or “a neural network instead of an employee.” It is a layer that handles unstructured data and decisions inside a process that already exists — CRM, documents, support, sales or manufacturing. The value comes not from using a model, but from one specific manual step no longer needing a person.",
+            "The boundary of responsibility has to be explicit from day one. Rules that fit an if-then statement — advancing a status after payment, calculating a discount from a price list, routing by region — stay in deterministic code. The model owns what requires understanding meaning: free-text email, a photo of a defect, a voice request, an unstructured document.",
+          ],
+        },
+        {
+          title: "Why demos don't reach production",
+          paragraphs: [
+            "Most AI automation pilots die at the transition from a chat interface to a service embedded in the process. A demo shows the model can answer; production requires the system to retry safely after a failure, avoid losing events, respect access permissions and avoid duplicate actions.",
+            "The second common failure is picking the technology before the process: a company buys an “AI platform” subscription, then looks for a task to justify it. The working order runs the opposite way — audit the process and data first, choose the architecture (workflow, integration, RAG, agent), and only then the model.",
+          ],
+        },
+        {
+          title: "A reference automation architecture",
+          paragraphs: [
+            "Regardless of the domain — CRM, documents, support, sales, manufacturing — the durable pattern is the same: event → queue → orchestration service → scoped context retrieval → model call → schema-validated structured output → write-back to the system of record. The queue separates the slow AI call from the user transaction and makes retries safe.",
+            "Every use case gets its own data contract and idempotency key, not a single “universal agent.” Request classification, document draft generation and next-best-action are different contracts with different allowed fields, even when the same model runs underneath.",
+          ],
+        },
+        {
+          title: "Guardrails and gradually expanding autonomy",
+          paragraphs: [
+            "At launch, AI automation should produce drafts and recommendations, not irreversible actions. Sending a customer email, changing a price, closing a deal, stopping a production line — these require human approval or a hard business rule layered on top of the model.",
+            "Autonomy expands only after error statistics accumulate on real scenarios, not on a project schedule. You need allowlists for fields and actions, value limits, input filtering against prompt injection, output validation and an audit log recording the prompt version, model and context sources behind every result.",
+          ],
+        },
+        {
+          title: "Measuring impact and deciding when to scale",
+          paragraphs: [
+            "Technical metrics: latency, valid structured-output rate, cost per call, retry count. Business metrics depend on the process: request handling time, share of correctly filled records, document preparation time, number of manual edits to the model's draft.",
+            "The safe path is one process, a control group, and 2–4 weeks comparing against the previous way of working. If AI automation just shifts effort from writing to fixing bad drafts, the use case isn't ready to scale to adjacent processes.",
+          ],
+        },
+      ],
+      faq: [
+        {
+          q: "Is AI automation the same as RPA?",
+          a: "No. RPA automates a fixed sequence of clicks and fields. AI automation adds a layer for understanding unstructured data — text, images, speech — wherever a rule can't be written as one instruction.",
+        },
+        {
+          q: "Do you need a dedicated AI platform to start?",
+          a: "Usually not. One use case needs an event queue, a validated model call and a write-back into an existing system — CRM, ERP or a document workflow.",
+        },
+        {
+          q: "How long does it take to go from pilot to production?",
+          a: "For one process with a clear data contract: 4 to 8 weeks, including error handling, guardrails and team handover. Broader scenarios need a separate audit.",
+        },
+      ],
+    },
+  },
+  {
+    slug: "ai-for-manufacturing",
+    cluster: "specialist-ai-architecture",
+    keywords: [
+      "AI for manufacturing",
+      "manufacturing AI automation",
+      "AI на производстве",
+      "автоматизация производства с AI",
+      "MES AI integration",
+    ],
+    related: [
+      { href: "/industries/manufacturing", labelRu: "AI и автоматизация для производства", labelEn: "AI and automation for manufacturing" },
+      { href: "/services/document-processing", labelRu: "AI-обработка документов", labelEn: "AI document processing" },
+      { href: "/blog/ai-document-processing-pipeline", labelRu: "AI-обработка документов: архитектура", labelEn: "AI document processing pipeline" },
+      { href: "/blog/ai-automation-architecture", labelRu: "AI Automation: архитектура", labelEn: "AI automation architecture" },
+    ],
+    publishedAt: "2026-07-25",
+    ru: {
+      title: "AI для производства: где автоматизация с ИИ реально даёт эффект",
+      description:
+        "Не «умный завод» из презентации, а конкретные сценарии: контроль качества, сменные отчёты, заявки на снабжение и документы поставщиков. Архитектура AI на производстве без риска для линии.",
+      h1: "AI для производства: архитектура и сценарии с измеримым ROI",
+      sections: [
+        {
+          title: "Что реально работает на производстве",
+          paragraphs: [
+            "AI для производства редко означает замену SCADA или MES нейросетью. Детерминированный контроль оборудования, ПЛК и системы безопасности остаются детерминированными — там, где сбой стоит остановки линии или травмы, правило должно быть предсказуемым, а не вероятностным выводом модели.",
+            "Модель приносит пользу там, где вход — неструктурированные данные: фото дефекта на конвейере, свободный текст сменного отчёта мастера, скан накладной от поставщика, голосовая заявка на ремонт оборудования. Именно эти потоки сейчас обрабатываются вручную и медленно.",
+          ],
+        },
+        {
+          title: "Референсная архитектура для цеха",
+          paragraphs: [
+            "Поток данных начинается на уровне MES/SCADA/ERP и не подменяет их: события (партия, смена, дефект, простой) публикуются в очередь, сервис оркестрации собирает контекст (нормы качества, спецификацию партии, историю оборудования) и вызывает модель для конкретной задачи — классификации дефекта, извлечения полей из накладной, суммаризации сменного отчёта.",
+            "Результат модели — черновик, а не финальное решение: предложенная категория дефекта, извлечённые реквизиты накладной, краткая сводка простоя с причинами. Запись в MES/ERP происходит после проверки правилами (допуски, лимиты, обязательные поля) и, для критичных решений, после подтверждения ОТК или мастера смены.",
+          ],
+        },
+        {
+          title: "Типовые сценарии с быстрым ROI",
+          paragraphs: [
+            "Первичная классификация дефектов по фото как помощник контролёра ОТК (не замена), а также приоритизация очереди повторной проверки. Автоматизация обработки документов поставщиков — накладные, сертификаты соответствия, ГОСТ-документы — с извлечением полей и сверкой с заказом в 1С или ERP.",
+            "Суммаризация сменных и аварийных отчётов из свободного текста в структурированный журнал для анализа простоев. AI-ассистент по регламентам и техническим картам для операторов — быстрый поиск инструкции без похода к мастеру, с ответом на языке цеха, а не общей документации.",
+          ],
+        },
+        {
+          title: "Безопасность, соответствие и контур данных",
+          paragraphs: [
+            "Производственные данные часто чувствительны (спецификации, поставщики, объёмы) и подпадают под требования безопасности заказчика или 152-ФЗ. AI-слой должен работать в контуре предприятия — on-prem или в изолированном облаке — с теми же контрактами инструментов, что и облачная версия, без утечки данных во внешние сервисы.",
+            "Любое действие, способное повлиять на физический процесс — остановка линии, изменение параметра оборудования, блокировка партии — остаётся за человеком. Модель формирует рекомендацию и обоснование, решение и ответственность — у мастера смены, технолога или ОТК.",
+          ],
+        },
+        {
+          title: "С чего начинать пилот",
+          paragraphs: [
+            "Пилот стоит запускать на одном участке с измеримой болью — не на «всём производстве». Хороший кандидат: один тип дефекта с понятным визуальным признаком, один тип входящего документа с высоким объёмом, или один вид отчёта, который сейчас теряется в бумажном журнале.",
+            "Метрики пилота — не «точность модели» сама по себе, а бизнес-эффект: время от обнаружения дефекта до реакции, доля документов без ручной сверки, время восстановления после простоя. 3–6 недель на одном процессе достаточно, чтобы понять, масштабировать сценарий или нет.",
+          ],
+        },
+      ],
+      faq: [
+        {
+          q: "Заменяет ли AI систему MES или SCADA?",
+          a: "Нет. AI-слой работает поверх них как помощник для неструктурированных данных — фото, текста, документов. Контроль оборудования и безопасность остаются в детерминированных системах.",
+        },
+        {
+          q: "Можно ли развернуть решение в закрытом контуре предприятия?",
+          a: "Да. Для чувствительных производственных данных предусмотрен on-prem или изолированный облачный контур с теми же контрактами валидации, что и в облачной версии.",
+        },
+        {
+          q: "Какой процесс выбрать для первого пилота?",
+          a: "Тот, где сейчас теряется больше всего времени на ручной обработке при высоком объёме: один тип дефекта, один тип документа поставщика или сменные отчёты о простоях.",
+        },
+      ],
+    },
+    en: {
+      title: "AI for manufacturing: where AI automation actually pays off",
+      description:
+        "Not the “smart factory” from a slide deck — concrete scenarios: quality inspection, shift reports, supply requests and supplier documents. An architecture for AI on the shop floor that doesn't put the line at risk.",
+      h1: "AI for manufacturing: architecture and scenarios with measurable ROI",
+      sections: [
+        {
+          title: "What actually works on the shop floor",
+          paragraphs: [
+            "AI for manufacturing rarely means replacing SCADA or MES with a neural network. Deterministic equipment control, PLCs and safety systems stay deterministic — where a failure means a stopped line or an injury, the rule needs to be predictable, not a probabilistic model output.",
+            "The model earns its place where the input is unstructured: a photo of a defect on the line, a foreman's free-text shift report, a scanned supplier invoice, a voice request for equipment repair. These are exactly the flows still handled manually and slowly today.",
+          ],
+        },
+        {
+          title: "A reference architecture for the shop floor",
+          paragraphs: [
+            "The data flow starts at the MES/SCADA/ERP layer and doesn't replace it: events (batch, shift, defect, downtime) publish to a queue, an orchestration service assembles context (quality specs, batch specification, equipment history) and calls the model for a specific task — defect classification, invoice field extraction, shift-report summarization.",
+            "The model's output is a draft, not a final decision: a proposed defect category, extracted invoice fields, a downtime summary with causes. Writing back to MES/ERP happens after rule-based validation (tolerances, limits, required fields) and, for critical decisions, after sign-off from quality control or the shift foreman.",
+          ],
+        },
+        {
+          title: "Common scenarios with fast ROI",
+          paragraphs: [
+            "First-pass defect classification from photos as a quality-control assistant (not a replacement), plus prioritizing the re-inspection queue. Automating supplier document processing — invoices, certificates of conformity, compliance documents — with field extraction and matching against the purchase order in the ERP.",
+            "Summarizing shift and incident reports from free text into a structured log for downtime analysis. A regulations and technical-card assistant for operators — fast lookup of an instruction without walking over to the foreman, answering in shop-floor language rather than generic documentation.",
+          ],
+        },
+        {
+          title: "Security, compliance and the data boundary",
+          paragraphs: [
+            "Manufacturing data is often sensitive — specs, suppliers, volumes — and falls under the customer's security requirements or local data-protection law. The AI layer should run inside the plant's environment — on-prem or an isolated cloud — with the same tool contracts as the cloud version, with no data leaking to external services.",
+            "Any action that could affect the physical process — stopping a line, changing an equipment parameter, blocking a batch — stays with a person. The model produces a recommendation and its reasoning; the decision and accountability stay with the shift foreman, process engineer or quality control.",
+          ],
+        },
+        {
+          title: "Where to start a pilot",
+          paragraphs: [
+            "A pilot should launch on one area with a measurable pain point — not “the whole plant.” A good candidate: one defect type with a clear visual signature, one high-volume incoming document type, or one report type currently getting lost in a paper log.",
+            "Pilot metrics aren't “model accuracy” on its own — they're business impact: time from defect detection to response, share of documents processed without manual reconciliation, downtime recovery time. 3–6 weeks on one process is enough to decide whether to scale the scenario.",
+          ],
+        },
+      ],
+      faq: [
+        {
+          q: "Does AI replace the MES or SCADA system?",
+          a: "No. The AI layer sits on top of them as an assistant for unstructured data — photos, text, documents. Equipment control and safety stay in deterministic systems.",
+        },
+        {
+          q: "Can this run inside our own plant's environment?",
+          a: "Yes. For sensitive manufacturing data, an on-prem or isolated cloud environment is available, with the same validation contracts as the cloud version.",
+        },
+        {
+          q: "Which process should we pick for the first pilot?",
+          a: "The one currently losing the most time to manual handling at high volume: one defect type, one supplier document type, or shift downtime reports.",
+        },
+      ],
+    },
+  },
+  {
+    slug: "ai-proposal-generation",
+    cluster: "specialist-ai-architecture",
+    keywords: [
+      "AI proposal generation",
+      "AI generated sales proposals",
+      "автоматическая генерация КП",
+      "генерация коммерческих предложений с AI",
+      "sales proposal automation",
+    ],
+    related: [
+      { href: "/automation/proposal-generation", labelRu: "Генерация коммерческих предложений", labelEn: "Commercial proposal generation" },
+      { href: "/services/sales-ai-agent", labelRu: "AI-агент для продаж", labelEn: "Sales AI agent" },
+      { href: "/blog/ai-agents-in-sales-architecture", labelRu: "AI-агенты в продажах", labelEn: "AI agents in sales" },
+      { href: "/blog/ai-document-processing-pipeline", labelRu: "AI-обработка документов", labelEn: "AI document processing" },
+    ],
+    publishedAt: "2026-07-25",
+    ru: {
+      title: "AI Proposal Generation: архитектура автогенерации коммерческих предложений",
+      description:
+        "Автогенерация КП — это не «LLM пишет текст». Разбираем архитектуру: откуда берутся цены, как проверяются цифры, кто подтверждает скидку и как измерять эффект на конверсии.",
+      h1: "AI Proposal Generation: как автоматизировать подготовку КП без риска для цифр",
+      sections: [
+        {
+          title: "Что на самом деле означает AI proposal generation",
+          paragraphs: [
+            "AI proposal generation — это не генератор текста поверх шаблона. Это конвейер, который собирает контекст сделки (продукт, объём, историю переговоров), берёт цены и условия из системы-источника правды (прайс, CRM, ERP), и только использует модель для структуры документа и убедительного текста — не для расчёта суммы.",
+            "Разделение ответственности здесь критично: менеджер тратит часы не на подбор формулировок, а на сверку цифр вручную. Если цена, скидка и сроки приходят из детерминированного расчёта, а модель отвечает только за текст и адаптацию под клиента, риск ошибки в документе резко падает.",
+          ],
+        },
+        {
+          title: "Референсная архитектура генерации КП",
+          paragraphs: [
+            "Триггер — переход сделки на этап «КП» в CRM или явный запрос менеджера. Сервис оркестрации собирает контекст: карточку сделки, выбранные позиции каталога, применимые скидки по политике, историю похожих успешных предложений. Модель получает этот контекст и генерирует структуру документа и текст разделов, но не итоговые суммы.",
+            "Числовые поля — цена, скидка, итог, сроки — рассчитываются отдельным детерминированным шагом до или после вызова модели и валидируются по схеме перед рендерингом в PDF/DOCX по шаблону. Идемпотентный ключ на сделку и версию КП предотвращает дублирование документов при повторном триггере.",
+          ],
+        },
+        {
+          title: "Контекст без выдуманных фактов",
+          paragraphs: [
+            "Убедительный текст требует фактов о продукте, кейсах и условиях — и здесь модель особенно уязвима к выдумыванию. RAG по каталогу товаров, актуальным условиям и релевантным кейс-стади ограничивает модель реальными источниками вместо общих знаний.",
+            "Каждое фактическое утверждение в тексте КП — характеристика, гарантия, срок поставки — должно быть привязано к источнику в контексте, который можно показать при проверке. Черновик без такой привязки уходит на ручную проверку менеджера перед отправкой, а не сразу клиенту.",
+          ],
+        },
+        {
+          title: "Guardrails: скидки, условия и подтверждение",
+          paragraphs: [
+            "Изменение цены за пределами стандартной скидочной сетки, нестандартные условия оплаты и юридически значимые формулировки договора требуют подтверждения человеком — руководителем продаж или юристом — до отправки документа клиенту. Модель может предложить скидку как рекомендацию, но не применяет её самостоятельно.",
+            "Каждая версия КП сохраняется с указанием, кто утвердил цифры, какая модель и версия prompt использовались для текста, и какие источники контекста были доступны. Это превращает «AI сгенерировал предложение» в проверяемый и воспроизводимый процесс, а не чёрный ящик.",
+          ],
+        },
+        {
+          title: "Как измерять эффект",
+          paragraphs: [
+            "Операционные метрики — время от триггера до готового черновика, доля КП, отправленных без ручных правок цифр, число итераций до утверждения. Эти метрики показывают, снимает ли система рутину или просто добавляет шаг проверки.",
+            "Бизнес-метрики — время от заявки до отправленного КП, конверсия из КП в оплату по сравнению с ручным процессом, число сделок, где скорость подготовки предложения повлияла на выбор клиента. Пилот на одном сегменте каталога за 2–4 недели даёт достаточно данных для решения о масштабировании.",
+          ],
+        },
+      ],
+      faq: [
+        {
+          q: "Может ли модель самостоятельно назначать скидку в КП?",
+          a: "Нет в стандартной архитектуре. Скидки рассчитываются по политике в детерминированном шаге; модель может предложить скидку как рекомендацию, но применение остаётся за человеком или жёстким правилом.",
+        },
+        {
+          q: "Как избежать выдуманных цифр и характеристик в предложении?",
+          a: "Числовые поля никогда не генерируются моделью напрямую — они приходят из прайса, CRM или ERP. Фактические утверждения о продукте привязываются к источникам через RAG по каталогу, а не к общим знаниям модели.",
+        },
+        {
+          q: "Чем это отличается от обычного генератора документов по шаблону?",
+          a: "Генератор шаблонов просто подставляет поля. AI proposal generation дополнительно адаптирует структуру и текст под контекст конкретной сделки и клиента, сохраняя детерминированную проверку всех цифр.",
+        },
+      ],
+    },
+    en: {
+      title: "AI Proposal Generation: an architecture for automating sales proposals",
+      description:
+        "AI proposal generation isn't “an LLM writes the copy.” A breakdown of the architecture: where the numbers come from, how they're validated, who approves a discount, and how to measure the effect on conversion.",
+      h1: "AI Proposal Generation: automating proposal prep without risking the numbers",
+      sections: [
+        {
+          title: "What AI proposal generation actually means",
+          paragraphs: [
+            "AI proposal generation is not a text generator layered on a template. It's a pipeline that assembles deal context (product, volume, negotiation history), pulls prices and terms from the system of record (price list, CRM, ERP), and only uses the model for document structure and persuasive copy — never for calculating the amount.",
+            "This separation of responsibility matters because reps spend hours not on wording, but on manually double-checking numbers. When price, discount and timeline come from a deterministic calculation and the model only owns text and customer-fit framing, the risk of an error in the document drops sharply.",
+          ],
+        },
+        {
+          title: "A reference architecture for proposal generation",
+          paragraphs: [
+            "The trigger is a deal reaching the “proposal” stage in the CRM, or an explicit rep request. An orchestration service assembles context: the deal record, selected catalog items, applicable discounts under policy, and a history of similar successful proposals. The model receives this context and generates the document structure and section copy — not the final totals.",
+            "Numeric fields — price, discount, total, delivery date — are computed in a separate deterministic step before or after the model call and validated against a schema before rendering into a PDF/DOCX template. An idempotency key on the deal and proposal version prevents duplicate documents on a repeated trigger.",
+          ],
+        },
+        {
+          title: "Grounded context, not invented facts",
+          paragraphs: [
+            "Persuasive copy needs facts about the product, cases and terms — exactly where a model is most prone to inventing details. RAG over the product catalog, current terms and relevant case studies constrains the model to real sources instead of its general knowledge.",
+            "Every factual claim in the proposal copy — a spec, a warranty, a delivery timeline — should be traceable to a source in the assembled context that can be shown during review. A draft without that traceability goes to manual rep review before it reaches the client, not straight out the door.",
+          ],
+        },
+        {
+          title: "Guardrails: discounts, terms and approval",
+          paragraphs: [
+            "Pricing changes beyond the standard discount grid, non-standard payment terms and legally binding contract language require human approval — a sales manager or legal — before the document reaches the client. The model can propose a discount as a recommendation; it never applies one on its own.",
+            "Every proposal version is stored with who approved the numbers, which model and prompt version generated the copy, and which context sources were available. That turns “AI generated the proposal” into a reviewable, reproducible process instead of a black box.",
+          ],
+        },
+        {
+          title: "Measuring the impact",
+          paragraphs: [
+            "Operational metrics: time from trigger to a ready draft, share of proposals sent with no manual number corrections, iterations to approval. These show whether the system removes busywork or just adds another review step.",
+            "Business metrics: time from request to a sent proposal, proposal-to-payment conversion compared with the manual process, and deals where proposal turnaround speed influenced the customer's decision. A pilot on one catalog segment over 2–4 weeks gives enough data to decide on scaling.",
+          ],
+        },
+      ],
+      faq: [
+        {
+          q: "Can the model set a discount in the proposal on its own?",
+          a: "Not in the standard architecture. Discounts are computed by policy in a deterministic step; the model can suggest a discount as a recommendation, but applying it stays with a person or a hard rule.",
+        },
+        {
+          q: "How do you avoid invented numbers or specs in a proposal?",
+          a: "Numeric fields are never generated by the model directly — they come from the price list, CRM or ERP. Product claims are grounded via RAG over the catalog, not the model's general knowledge.",
+        },
+        {
+          q: "How is this different from a plain template generator?",
+          a: "A template generator just fills in fields. AI proposal generation additionally adapts structure and copy to the specific deal and customer context, while keeping deterministic validation on every number.",
+        },
       ],
     },
   },
