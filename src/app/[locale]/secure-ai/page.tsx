@@ -114,10 +114,6 @@ export default async function SecureAiPage({ params }: Props) {
               </ul>
             </div>
           </div>
-          <div className="container-editorial max-w-3xl mt-8">
-            <p className="text-sm text-body">{ru ? p.homePitchRu : p.homePitchEn}</p>
-            <p className="mt-4 text-xs text-muted">{ru ? p.brandNoteRu : p.brandNoteEn}</p>
-          </div>
         </section>
 
         <section className="section-band border-b border-hairline">

@@ -18,10 +18,6 @@ export const SECURE_AI_PAGE = {
     "Отдельный коммерческий питч для ИБ и IT: безопасность модели, данных, агентов и инфраструктуры. Формально — та же марка и тот же ИП, что Bober AI Systems.",
   subtitleEn:
     "A focused pitch for security and IT: model, data, agent and infrastructure safety. Same brand group and legal entity as Bober AI Systems.",
-  brandNoteRu:
-    "Bober Secure AI — не отдельная компания, а специализация той же команды и того же ИП, что и Bober AI Systems. Это значит: одни и те же сертификаты, портфолио, контакты и юридические реквизиты — без «прокладки» между вами и исполнителем.",
-  brandNoteEn:
-    "Bober Secure AI is not a separate company — it is the same team and legal entity as Bober AI Systems, specialized for security work. That means the same certificates, portfolio, contacts and legal details — no intermediary between you and the people doing the work.",
   mainBrandTitleRu: "Bober AI Systems — основная деятельность",
   mainBrandTitleEn: "Bober AI Systems — core business",
   mainBrandRu: [
@@ -56,10 +52,6 @@ export const SECURE_AI_PAGE = {
     "Kubernetes and Container Security",
     "Infrastructure with Kaspersky products",
   ],
-  homePitchRu:
-    "На главной Bober Dev безопасность — элемент внедрения, не отдельный продукт: корпоративные AI-системы в cloud, on-prem и закрытом контуре с контролем доступа и защитой инфраструктуры.",
-  homePitchEn:
-    "On the main Bober Dev site, security is a deployment trait — not a standalone product: corporate AI systems in cloud, on-prem and closed contours with access control and infrastructure protection.",
   packHref: "/services/secure-private-ai-cloud",
   packLabelRu: "Пакет Secure Private AI Cloud",
   packLabelEn: "Secure Private AI Cloud pack",
