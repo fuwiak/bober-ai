@@ -46,6 +46,7 @@ const IMAGES: Record<string, string> = {
   "corporate-ai-assistant": "/stock/enterprise-ai-assistant.jpg",
   "business-process-audit": "/stock/ai-discovery-roadmap.jpg",
   "wildberries-independent-sales-channel": "/cases/wildberries-independent-sales-channel.jpg",
+  "secure-private-ai-cloud": "/stock/private-llm.jpg",
 };
 
 const ruExtra: EnterpriseService[] = [
@@ -77,6 +78,19 @@ const ruExtra: EnterpriseService[] = [
     deliveryDays: 14,
     price: 300000,
     serviceImage: IMAGES["wildberries-independent-sales-channel"],
+  },
+  {
+    id: "secure-private-ai-cloud",
+    slug: "secure-private-ai-cloud",
+    title: "Защищенная AI-инфраструктура на базе российских облаков и решений Kaspersky",
+    description:
+      "Приватный AI (RAG, ассистент, модели) + Yandex Cloud / Selectel / Cloud.ru + защита Kaspersky для VM, серверов и контейнеров.",
+    about:
+      "Контур: слой AI (private LLM, RAG, база знаний, Bitrix24/1С), инфраструктура (российское облако, VPN, IAM, backup, логи) и Kaspersky (VM, Linux/Windows, контейнеры, Security Center). Внедрение, мониторинг, отчёт, реакция на события. Лицензии Kaspersky — через авторизованную дистрибуцию.",
+    salesNotes: "от 800 000 ₽",
+    deliveryDays: 28,
+    price: 800000,
+    serviceImage: IMAGES["secure-private-ai-cloud"],
   },
   // Wordstat niche offers (exact titles) → SEO landings; feed-only (no thin /services pages).
   { id: "company-automation", slug: "company-automation", title: "Автоматизация компании", description: "Процессы, CRM, документы и отчёты без ручного копирования — фиксированная смета и ROI.", about: "Аудит узкого места, workflow и интеграции, production-запуск и обучение команды.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["company-automation"], feedPath: "/automation/company-automation", inServicesCatalog: false },
@@ -116,6 +130,19 @@ const enExtra: EnterpriseService[] = [
     deliveryDays: 14,
     price: 3000,
     serviceImage: IMAGES["wildberries-independent-sales-channel"],
+  },
+  {
+    id: "secure-private-ai-cloud",
+    slug: "secure-private-ai-cloud",
+    title: "Secure Private AI Cloud on Russian clouds + Kaspersky",
+    description:
+      "Private AI (RAG, assistant, models) + Yandex Cloud / Selectel / Cloud.ru + Kaspersky for VMs, servers and containers.",
+    about:
+      "Contour: AI layer (private LLM, RAG, knowledge base, Bitrix24/1C), infrastructure (RU cloud, VPN, IAM, backup, logs) and Kaspersky (VM, Linux/Windows, containers, Security Center). Deploy, monitoring, monthly report, incident response. Kaspersky licenses via authorized distribution.",
+    salesNotes: "from €8,000",
+    deliveryDays: 28,
+    price: 8000,
+    serviceImage: IMAGES["secure-private-ai-cloud"],
   },
   { id: "company-automation", slug: "company-automation", title: "Company automation", description: "Processes, CRM, documents and reports without manual copy-paste.", about: "Bottleneck audit, workflow and integrations, production launch and team training.", salesNotes: "from €5,000", deliveryDays: 21, price: 5000, serviceImage: IMAGES["company-automation"], feedPath: "/automation/company-automation", inServicesCatalog: false },
   { id: "crm-automation", slug: "crm-automation", title: "CRM automation", description: "Stages, robots, website and messenger intake, reports without manual entry.", about: "CRM pipeline automation — triggers, tasks, alerts and conversion control.", salesNotes: "from €4,000", deliveryDays: 21, price: 4000, serviceImage: IMAGES["crm-automation"], feedPath: "/integrations/crm-automation", inServicesCatalog: false },
@@ -251,6 +278,7 @@ export const ENTERPRISE_SERVICES_LISTING_SLUGS = [
   "ai-sales-loop",
   "sales-ai-agent",
   "wildberries-independent-sales-channel",
+  "secure-private-ai-cloud",
   "enterprise-ai-assistant",
   "private-llm-gigachat",
   "crm-integration",

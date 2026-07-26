@@ -108,6 +108,23 @@
       "landings": ["/services/ai-consulting", "/services/ai-discovery-roadmap", "/pricing", "/faq"]
     },
     {
+      "id": "secure-ai-cloud",
+      "title": "Secure Private AI Cloud / защищённая AI-инфраструктура",
+      "queries": [
+        "внедрение llm",
+        "корпоративный ии",
+        "частное облако",
+        "приватное облако",
+        "база знаний с ии",
+        "корпоративный rag",
+        "kaspersky для виртуальных сред",
+        "защита виртуальных машин",
+        "безопасность облачной инфраструктуры",
+        "kaspersky hybrid cloud security"
+      ],
+      "landings": ["/services/secure-private-ai-cloud", "/kaspersky", "/services/self-hosted-ai"]
+    },
+    {
       "id": "kaspersky",
       "title": "Kaspersky B2B / Silver path",
       "queries": [

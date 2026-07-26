@@ -1,0 +1,31 @@
+# Secure Private AI Cloud — RU problem/solution seeds (English brand phrase ≈0)
+# Product H1 stays marketing; SEO uses these if counts >0
+# npm run yandex:wordstat -- --file=data/wordstat-seeds-secure-ai-cloud.txt --csv --out=data/wordstat-secure-ai-cloud.csv --min=1
+
+приватный llm
+локальная нейросеть
+корпоративный ии
+внедрение llm
+развертывание llm
+защищенное облако
+частное облако
+приватное облако
+облако для бизнеса yandex
+selectel облако для бизнеса
+cloud.ru для бизнеса
+безопасность облачной инфраструктуры
+защита виртуальных машин
+защита контейнеров
+защита серверов linux
+kaspersky hybrid cloud
+kaspersky для виртуальных сред
+информационная безопасность облака
+корпоративный rag
+база знаний с ии
+on premise нейросеть
+закрытый контур ии
+безопасный контур данных
+внедрение ai on premise
+мssp безопасность
+управляемая безопасность
+защита рабочих нагрузок в облаке

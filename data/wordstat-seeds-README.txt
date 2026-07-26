@@ -19,5 +19,8 @@
 # --file=data/wordstat-seeds-consulting.txt  # secondary
 # --file=data/wordstat-seeds-kaspersky.txt   # Silver path: licenses ~6M RUB/year
 #   → data/wordstat-kaspersky.csv + data/wordstat-kaspersky-decisions.json → /kaspersky
+# --file=data/wordstat-seeds-secure-ai-cloud.txt  # Secure Private AI Cloud pack
+#   → data/wordstat-secure-ai-cloud.csv + decisions → /services/secure-private-ai-cloud
+#   Note: EN brand phrase ≈0; ship RU component keywords (внедрение llm, корпоративный ии, частное облако)
 
 # Taxonomy CSV columns: intent + intent_legacy (backward compat)

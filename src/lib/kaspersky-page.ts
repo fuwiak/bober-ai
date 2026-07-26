@@ -106,12 +106,14 @@ export const KASPERSKY_PAGE = {
   attachTitleEn: "What we usually bundle Kaspersky with",
   attachRu: [
     "On-prem / private LLM и серверы AI",
+    "Защищенная AI-инфраструктура (Secure Private AI Cloud)",
     "Bitrix24 и корпоративные порталы",
     "Контуры 1С и терминальный доступ",
     "Почтовые серверы компании",
   ],
   attachEn: [
     "On-prem / private LLM and AI servers",
+    "Secure Private AI Cloud pack",
     "Bitrix24 and corporate portals",
     "1C contours and terminal access",
     "Company mail servers",

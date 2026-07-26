@@ -1,0 +1,298 @@
+phrase,count,source,seed,cluster,intent,intent_label,intent_legacy,service_fit,priority
+защитная,1690027,similar,защита контейнеров,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+защищены,1107345,similar,защита контейнеров,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+нейросеть бесплатно,903319,similar,локальная нейросеть,automation-processes,informational,Информационный,informational,blog,P4-blog
+защитник,706590,similar,защита контейнеров,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+cloud,670333,similar,защищенное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+она такая,646840,similar,база знаний с ии,knowledge-base,negative,Негатив / шум,irrelevant,skip,P0-skip
+касперский,417192,similar,kaspersky hybrid cloud,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+не со мной,400874,similar,внедрение llm,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+business,305868,similar,корпоративный ии,ai-corporate,negative,Негатив / шум,irrelevant,skip,P0-skip
+услышь меня,250046,similar,база знаний с ии,knowledge-base,negative,Негатив / шум,irrelevant,skip,P0-skip
+т бизнес,220716,similar,корпоративный ии,ai-corporate,informational,Информационный,informational,blog,P4-blog
+от а до я,121223,similar,база знаний с ии,knowledge-base,negative,Негатив / шум,irrelevant,skip,P0-skip
+защита информации,115893,similar,защищенное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+предприятие это,98156,similar,корпоративный ии,ai-corporate,negative,Негатив / шум,irrelevant,skip,P0-skip
+защита данных,88739,similar,безопасность облачной инфраструктуры,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+cloud ru,78431,similar,защищенное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+мой бизнес,77944,similar,корпоративный ии,ai-corporate,informational,Информационный,informational,blog,P4-blog
+не особо,78009,similar,внедрение llm,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+деловое предложение,73033,similar,корпоративный ии,ai-corporate,negative,Негатив / шум,irrelevant,skip,P0-skip
+защитная сетка,60949,similar,защита контейнеров,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+я бизнес,59287,similar,корпоративный ии,ai-corporate,informational,Информационный,informational,blog,P4-blog
+ии нейросеть бесплатно,56638,similar,локальная нейросеть,automation-processes,informational,Информационный,informational,blog,P4-blog
+веселая защита владений,56106,similar,защищенное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+локально это,55176,similar,развертывание llm,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+виртуализация,46093,similar,защита виртуальных машин,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+управление устройствами,45271,similar,управляемая безопасность,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+что такое ооо,40046,similar,корпоративный ии,ai-corporate,negative,Негатив / шум,irrelevant,skip,P0-skip
+что такое организация,39772,similar,корпоративный ии,ai-corporate,negative,Негатив / шум,irrelevant,skip,P0-skip
+cloud mail,38964,similar,защищенное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+перехват управления,38038,similar,управляемая безопасность,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+моя наука,37074,similar,база знаний с ии,knowledge-base,negative,Негатив / шум,irrelevant,skip,P0-skip
+защитные сооружения,36116,similar,защита контейнеров,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+on cloud,32466,similar,защищенное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+нейросеть это,30388,similar,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+yandex cloud,30023,similar,частное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+принципы управления,29393,similar,управляемая безопасность,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+qwen нейросеть,25337,similar,локальная нейросеть,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+интернет безопасность,22393,similar,защита виртуальных машин,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+средства защиты информации,20203,similar,безопасность облачной инфраструктуры,automation-processes,informational,Информационный,informational,blog,P4-blog
+виды инструктажей по охране,16879,similar,безопасность облачной инфраструктуры,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+как включить виртуализацию,16040,similar,защита виртуальных машин,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+деловая репутация,15796,similar,корпоративный rag,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+фнс юл,15515,similar,корпоративный rag,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+antimalware service executable,14987,similar,kaspersky hybrid cloud,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+безопасный интернет,14602,similar,защита виртуальных машин,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+цифровая безопасность,13331,similar,защита виртуальных машин,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+техническая защита информации,13007,similar,информационная безопасность облака,automation-processes,informational,Информационный,informational,blog,P4-blog
+коммерческая организация это,9910,similar,корпоративный ии,ai-corporate,solution_aware,Решение / автоматизация,commercial_medium,enterprise-ai-assistant,P2-landing/ads
+перехват управления бастион,10366,similar,управляемая безопасность,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+сервис клауд,10307,similar,защищенное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+корпорация это,10226,similar,корпоративный ии,ai-corporate,negative,Негатив / шум,irrelevant,skip,P0-skip
+как войти в безопасный режим,9963,similar,управляемая безопасность,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+i cloud,9583,similar,защищенное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+перплексити нейросеть,8844,similar,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+тракт это,9175,similar,база знаний с ии,knowledge-base,negative,Негатив / шум,irrelevant,skip,P0-skip
+яндекс диск это,8820,similar,частное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+облачные технологии,7937,similar,частное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+antimalware service executable что это,7796,similar,kaspersky hybrid cloud,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+защита информации это,7147,similar,защищенное облако,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+in the clouds,7407,similar,защищенное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+virtual machine,7402,similar,защита виртуальных машин,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+касперский секьюрити,7266,similar,kaspersky hybrid cloud,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+защитные меры,6763,similar,защита контейнеров,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+айклауд это,6586,similar,приватное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+локальные нейросети,5926,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+защитан,6354,similar,защита контейнеров,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+касперский free,6112,similar,kaspersky hybrid cloud,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+знаешь я так соскучился,6073,similar,база знаний с ии,knowledge-base,negative,Негатив / шум,irrelevant,skip,P0-skip
+касперский утилита,5756,similar,kaspersky для виртуальных сред,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+утилита касперского,5756,similar,kaspersky для виртуальных сред,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+icloud это,5571,similar,приватное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+органы управления рсчс,5513,similar,управляемая безопасность,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+t business,5455,similar,корпоративный ии,ai-corporate,negative,Негатив / шум,irrelevant,skip,P0-skip
+ip68 степень защиты,5349,similar,защищенное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+касперский это,4609,similar,kaspersky hybrid cloud,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+касперский пробная версия,4455,similar,kaspersky hybrid cloud,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+айдентика нейросеть,3872,similar,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+business fm,4125,similar,корпоративный rag,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+автору бизнес,3967,similar,корпоративный rag,automation-processes,informational,Информационный,informational,blog,P4-blog
+lenovo legion go s,4019,similar,развертывание llm,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+поменять регион в аппсторе на соединенные штаты,3936,similar,внедрение llm,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+дверь мне запили,3845,similar,внедрение llm,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+better clouds,3626,similar,частное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+что такое айклауд,3607,similar,частное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+нейросеть педагога,3047,similar,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+as i lay dying,3361,similar,развертывание llm,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+айклауд что это,3172,similar,приватное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+secure system,3070,similar,управляемая безопасность,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+ip67 степень защиты,3048,similar,защищенное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+перехват управления сегодня,3039,similar,управляемая безопасность,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+корпоратив это,2996,similar,корпоративный ии,ai-corporate,negative,Негатив / шум,irrelevant,skip,P0-skip
+как включить аппаратную виртуализацию,2905,similar,защита виртуальных машин,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+cloud ии,2740,similar,частное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+цель оправдывает средства,2578,similar,внедрение llm,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+виды юр лиц,2539,similar,корпоративный ии,ai-corporate,negative,Негатив / шум,irrelevant,skip,P0-skip
+информзащита,2395,similar,информационная безопасность облака,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+сенсорная интеграция это,2379,similar,внедрение llm,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+приказ ни шагу назад,2354,similar,внедрение llm,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+касперский интернет секьюрити,2306,similar,kaspersky hybrid cloud,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+business studio,2253,similar,корпоративный rag,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+облачное хранилище данных,2159,similar,приватное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+monkey business,2139,similar,корпоративный rag,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+virtualization technology,2130,similar,защита виртуальных машин,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+мой касперский,2123,similar,kaspersky hybrid cloud,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+контейнеризация,2097,similar,защита контейнеров,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+система безопасный город,2095,similar,безопасность облачной инфраструктуры,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+onedrive что это,2090,similar,частное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+корпоративный ии,1925,popular,корпоративный ии,ai-corporate,informational,Информационный,informational,blog,P4-blog
+ли да ин,1862,similar,база знаний с ии,knowledge-base,negative,Негатив / шум,irrelevant,skip,P0-skip
+heygen нейросеть,1289,similar,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+ооо рэд,1834,similar,корпоративный rag,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+кто мы откуда куда мы идем,1826,similar,база знаний с ии,knowledge-base,negative,Негатив / шум,irrelevant,skip,P0-skip
+ты знаешь у меня давно все хорошо,1687,similar,база знаний с ии,knowledge-base,negative,Негатив / шум,irrelevant,skip,P0-skip
+все эти суки базарят,1607,similar,база знаний с ии,knowledge-base,negative,Негатив / шум,irrelevant,skip,P0-skip
+только дай знать где ты находишься,1535,similar,база знаний с ии,knowledge-base,negative,Негатив / шум,irrelevant,skip,P0-skip
+этот сайт не может обеспечить безопасное подключение,1473,similar,внедрение llm,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+видеонаблюдение безопасный регион,1446,similar,безопасность облачной инфраструктуры,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+квэн нейросеть,886,similar,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+подписано запечатано доставлено к алтарю фильм 2018,1323,similar,развертывание llm,automation-processes,informational,Информационный,informational,blog,P4-blog
+контейнирование,1397,similar,защита контейнеров,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+оповещение о беспилотной опасности,1392,similar,информационная безопасность облака,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+виртуализация это,1381,similar,защита виртуальных машин,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+business casual,1334,similar,корпоративный rag,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+управляющая компания пожарная безопасность,221,popular,управляемая безопасность,automation-processes,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P1-landing
+кем осуществляется государственное управление охраной труда,1261,similar,управляемая безопасность,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+внедрение llm,145,popular,внедрение llm,automation-processes,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P1-landing
+локальные нейросети без цензуры,137,popular,локальная нейросеть,automation-processes,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P1-landing
+алса нейросеть,641,similar,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+управляющая компания обеспечение безопасности,34,popular,управляемая безопасность,automation-processes,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P2-landing/ads
+нарушение пожарной безопасности управляющая компания,27,popular,управляемая безопасность,automation-processes,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P2-landing/ads
+китайские компании по защищенному частному облаку,21,popular,защищенное облако,automation-processes,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P2-landing/ads
+услуга частное облако,18,popular,частное облако,automation-processes,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P2-landing/ads
+пожарная безопасность ответственность управляющей компании,18,popular,управляемая безопасность,automation-processes,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P2-landing/ads
+локальные llm архитектура и внедрение сбер,17,popular,внедрение llm,automation-processes,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P2-landing/ads
+как сделать облачное хранилище,1122,similar,приватное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+error windows service zapret is installed,1104,similar,внедрение llm,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+локальные нейросети для генерации,543,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+защищенное хранилище в бурных потоках,1090,similar,безопасность облачной инфраструктуры,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+атакующий защитник,1082,similar,защита контейнеров,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+облачное хранилище это,1039,similar,частное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+правила устройства и безопасной эксплуатации грузоподъемных кранов,487,similar,управляемая безопасность,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+локальная нейросеть на пк,474,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+cloud text,1015,similar,частное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+все эти базарят но эта со мною,957,similar,база знаний с ии,knowledge-base,negative,Негатив / шум,irrelevant,skip,P0-skip
+чем отличается гта 5 легаси от энчантед,943,similar,развертывание llm,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+корпоративизм,932,similar,корпоративный rag,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+светя другим сгораю сам на латыни,911,similar,развертывание llm,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+локальные нейросети для изображений,343,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+лучшие локальные нейросети,333,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+как создать облачное хранилище,882,similar,приватное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+касперский секьюрити центр,850,similar,kaspersky hybrid cloud,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+локальная модель нейросети,282,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+обучение по тех защите информации,736,similar,защищенное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+локальная нейросеть для генерации изображений,271,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+частное облако,714,popular,частное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+p l что это такое в бизнесе,711,similar,корпоративный ии,ai-corporate,informational,Информационный,informational,blog,P4-blog
+система противопожарной защиты это,804,similar,безопасность облачной инфраструктуры,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+локальная нейросеть для видео,228,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+запуск нейросети локально,202,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+нейросеть локально текст,195,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+лучшие облачные хранилища,751,similar,приватное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+база знаний с ии,172,popular,база знаний с ии,knowledge-base,solution_aware,Решение / автоматизация,commercial_medium,enterprise-ai-assistant,P2-landing/ads
+корпоративный ии сервис,165,popular,корпоративный ии,ai-corporate,solution_aware,Решение / автоматизация,commercial_medium,enterprise-ai-assistant,P2-landing/ads
+топ локальных нейросетей,162,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+создание локальных нейросетей,158,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+нейросеть на локальном компьютере,157,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+myaccount google com security,709,similar,информационная безопасность облака,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+локальная нейросеть на телефон,134,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+локальная нейросеть для генерации видео,126,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P3-seo
+grok com нейросеть,131,similar,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P3-seo
+корпоративный ии ассистент,111,popular,корпоративный ии,ai-corporate,solution_aware,Решение / автоматизация,commercial_medium,enterprise-ai-assistant,P3-seo
+нейросети работающие локально,97,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P3-seo
+локальные нейросети 2026,95,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P3-seo
+безопасное расстояние это,649,similar,безопасность облачной инфраструктуры,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+использование нейросетей локально,88,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P3-seo
+защищенные облака,538,popular,защищенное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+установка локальной нейросети,85,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P3-seo
+корпоративная ии платформа,84,popular,корпоративный ии,ai-corporate,solution_aware,Решение / автоматизация,commercial_medium,enterprise-ai-assistant,P3-seo
+видеокарты для локальных нейросетей,76,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P3-seo
+comodo internet security,632,similar,kaspersky для виртуальных сред,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+локальные нейросети для картинок,63,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P3-seo
+локальные нейросети для программирования,62,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P3-seo
+https legal max ru ps,622,similar,развертывание llm,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+развертывание локальной нейросети,59,popular,локальная нейросеть,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P3-seo
+корпоративный rag,103,popular,корпоративный rag,automation-processes,technology_specific,Технология / стек,commercial_medium,business-process-automation,P3-seo
+ии в корпоративном управлении,44,popular,корпоративный ии,ai-corporate,solution_aware,Решение / автоматизация,commercial_medium,enterprise-ai-assistant,P3-seo
+корпоративный ии для бизнеса,36,popular,корпоративный ии,ai-corporate,solution_aware,Решение / автоматизация,commercial_medium,enterprise-ai-assistant,P3-seo
+как включить виртуализацию в биос gigabyte,593,similar,kaspersky для виртуальных сред,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+ии корпоративная презентация,20,popular,корпоративный ии,ai-corporate,solution_aware,Решение / автоматизация,commercial_medium,enterprise-ai-assistant,P3-seo
+астра линукс что это,580,similar,защита серверов linux,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+платформа корпоративных ии агентов,14,popular,корпоративный ии,ai-corporate,solution_aware,Решение / автоматизация,commercial_medium,enterprise-ai-assistant,P3-seo
+айклауд com,569,similar,приватное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+ии для создания корпоративного стиля,8,popular,корпоративный ии,ai-corporate,solution_aware,Решение / автоматизация,commercial_medium,enterprise-ai-assistant,P3-seo
+база знаний с помощью ии,8,popular,база знаний с ии,knowledge-base,solution_aware,Решение / автоматизация,commercial_medium,enterprise-ai-assistant,P3-seo
+ии в корпоративных финансах,7,popular,корпоративный ии,ai-corporate,solution_aware,Решение / автоматизация,commercial_medium,enterprise-ai-assistant,P3-seo
+управляющая система безопасности,454,popular,управляемая безопасность,automation-processes,informational,Информационный,informational,blog,P4-blog
+что такое корпоратив,555,similar,корпоративный rag,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+что такое облачное хранилище,509,similar,частное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+кто осуществляет государственное управление охраной труда,509,similar,управляемая безопасность,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+zvirt виртуализация,476,similar,защита виртуальных машин,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+скачать локальную нейросеть,357,popular,локальная нейросеть,automation-processes,informational,Информационный,informational,blog,P4-blog
+a simple life with my unobtrusive прохождение,432,similar,развертывание llm,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+корпоративное обучение ии,294,popular,корпоративный ии,ai-corporate,informational,Информационный,informational,blog,P4-blog
+как включить аппаратную виртуализацию на пк,391,similar,защита виртуальных машин,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+gemini business,391,similar,корпоративный rag,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+kaspersky для виртуальных сред,274,popular,kaspersky для виртуальных сред,automation-processes,informational,Информационный,informational,blog,P4-blog
+для чего предназначены защитные каски,364,similar,защита контейнеров,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+как управлять безопасностью,249,popular,управляемая безопасность,automation-processes,informational,Информационный,informational,blog,P4-blog
+кто создал ядро линукс,355,similar,защита серверов linux,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+что такое защитное заземление,352,similar,защита контейнеров,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+kaspersky security для виртуальных сред,242,popular,kaspersky для виртуальных сред,automation-processes,informational,Информационный,informational,blog,P4-blog
+регион сша для айфона ап стор,339,similar,развертывание llm,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+anti malware service executable что это,332,similar,защита виртуальных машин,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+mcafee что это за программа,326,similar,защита виртуальных машин,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+virtualization technology в биосе что это,303,similar,kaspersky для виртуальных сред,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+защита из контейнеров,192,popular,защита контейнеров,automation-processes,informational,Информационный,informational,blog,P4-blog
+бесплатная локальная нейросеть,163,popular,локальная нейросеть,automation-processes,informational,Информационный,informational,blog,P4-blog
+account security noreply accountprotection microsoft com,261,similar,безопасность облачной инфраструктуры,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+защита морского контейнера,148,popular,защита контейнеров,automation-processes,informational,Информационный,informational,blog,P4-blog
+касперский онлайн проверка компьютера на вирусы,254,similar,kaspersky hybrid cloud,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+как запустить локальную нейросеть,141,popular,локальная нейросеть,automation-processes,informational,Информационный,informational,blog,P4-blog
+как установить нейросеть локально,139,popular,локальная нейросеть,automation-processes,informational,Информационный,informational,blog,P4-blog
+линукс чья операционная система,248,similar,защита серверов linux,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+управляющая безопасность дома,133,popular,управляемая безопасность,automation-processes,informational,Информационный,informational,blog,P4-blog
+частное публичное облако,132,popular,частное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+приватное облако,132,popular,приватное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+kaspersky для виртуальных и облачных сред,130,popular,kaspersky для виртуальных сред,automation-processes,informational,Информационный,informational,blog,P4-blog
+kaspersky endpoint security скачать дистрибутив,133,similar,защита серверов linux,automation-processes,informational,Информационный,informational,blog,P4-blog
+kaspersky security для виртуальных и облачных сред,121,popular,kaspersky для виртуальных сред,automation-processes,informational,Информационный,informational,blog,P4-blog
+как развернуть локальную нейросеть,117,popular,локальная нейросеть,automation-processes,informational,Информационный,informational,blog,P4-blog
+защита от бпла контейнерами,110,popular,защита контейнеров,automation-processes,informational,Информационный,informational,blog,P4-blog
+антивирус против майнера,213,similar,защита серверов linux,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+инфраструктура частного облака,96,popular,частное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+управляющая служба безопасности,93,popular,управляемая безопасность,automation-processes,informational,Информационный,informational,blog,P4-blog
+kaspersky легкий агент для виртуальных сред,89,popular,kaspersky для виртуальных сред,automation-processes,informational,Информационный,informational,blog,P4-blog
+как включить virtualization technology в bios,193,similar,kaspersky для виртуальных сред,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+защита виртуальных машин,82,popular,защита виртуальных машин,automation-processes,informational,Информационный,informational,blog,P4-blog
+kaspersky security для виртуальных сред легкий агент,81,popular,kaspersky для виртуальных сред,automation-processes,informational,Информационный,informational,blog,P4-blog
+публичное частное гибридное облако,76,popular,частное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+скачать локальную нейросеть на пк,73,popular,локальная нейросеть,automation-processes,informational,Информационный,informational,blog,P4-blog
+частное облако private cloud,73,popular,частное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+топ облачных хранилищ,178,similar,приватное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+управляемые сервисы безопасности,65,popular,управляемая безопасность,automation-processes,informational,Информационный,informational,blog,P4-blog
+безопасность облачной инфраструктуры,57,popular,безопасность облачной инфраструктуры,automation-processes,informational,Информационный,informational,blog,P4-blog
+защита замка контейнера,53,popular,защита контейнеров,automation-processes,informational,Информационный,informational,blog,P4-blog
+защита сервера linux,50,popular,защита серверов linux,automation-processes,informational,Информационный,informational,blog,P4-blog
+провайдер частного облака,47,popular,частное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+защита от бпла морскими контейнерами,47,popular,защита контейнеров,automation-processes,informational,Информационный,informational,blog,P4-blog
+ркн что это за организация,155,similar,корпоративный rag,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+локальное развертывание llm,44,popular,развертывание llm,automation-processes,informational,Информационный,informational,blog,P4-blog
+касперский утилита для проверки и уничтожения вирусов,153,similar,kaspersky hybrid cloud,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+бонго приват голые девки,152,similar,приватное облако,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+управляющая система важная для безопасности,40,popular,управляемая безопасность,automation-processes,informational,Информационный,informational,blog,P4-blog
+модель развертывания частное облако,37,popular,частное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+kaspersky security для виртуальных сред server,30,popular,kaspersky для виртуальных сред,automation-processes,informational,Информационный,informational,blog,P4-blog
+записки морализатора пустоты livejournal com,139,similar,развертывание llm,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+защита контейнера от проникновения,29,popular,защита контейнеров,automation-processes,informational,Информационный,informational,blog,P4-blog
+частное облако 2,26,popular,частное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+что понимают под управлением охраной труда,136,similar,управляемая безопасность,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+корпоративный университет ии,25,popular,корпоративный ии,ai-corporate,informational,Информационный,informational,blog,P4-blog
+модели развертывания публичное частное гибридное облако,22,popular,частное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+защитное зануление это,131,similar,защита контейнеров,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+частное облако системы,19,popular,частное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+примеры частного облака,17,popular,частное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+visio защита фигуры контейнера или слоя,17,popular,защита контейнеров,automation-processes,informational,Информационный,informational,blog,P4-blog
+параметрами безопасности управляет ваша организация,17,popular,управляемая безопасность,automation-processes,informational,Информационный,informational,blog,P4-blog
+контейнер динамической защиты,16,popular,защита контейнеров,automation-processes,informational,Информационный,informational,blog,P4-blog
+luntry защита контейнеров,16,popular,защита контейнеров,automation-processes,informational,Информационный,informational,blog,P4-blog
+kaspersky hybrid cloud security,16,popular,kaspersky hybrid cloud,automation-processes,informational,Информационный,informational,blog,P4-blog
+контейнер со съемной биологической защитой,15,popular,защита контейнеров,automation-processes,informational,Информационный,informational,blog,P4-blog
+информационная безопасность облаков,15,popular,информационная безопасность облака,automation-processes,informational,Информационный,informational,blog,P4-blog
+мойофис частное облако,14,popular,частное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+частное облако является,12,popular,частное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+частные интим фото в облаке майл,12,popular,частное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+касперский защита контейнеров,12,popular,защита контейнеров,automation-processes,informational,Информационный,informational,blog,P4-blog
+самое защищенное облако,11,popular,защищенное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+китайские поставщики решений частного облака,11,popular,частное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+внутренняя защита контейнера сталкрафт,11,popular,защита контейнеров,automation-processes,informational,Информационный,informational,blog,P4-blog
+частное облако геоп,10,popular,частное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+мой офис частное облако,10,popular,частное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+дополнительная защита замков контейнера,10,popular,защита контейнеров,automation-processes,informational,Информационный,informational,blog,P4-blog
+директор по экономической безопасности управляющая компания вакансия,10,popular,управляемая безопасность,automation-processes,informational,Информационный,informational,blog,P4-blog
+как защитить данные в облаке,9,popular,защищенное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+контейнер для рао со съемной биологической защитой,9,popular,защита контейнеров,automation-processes,informational,Информационный,informational,blog,P4-blog
+мойофис защищенное облако,8,popular,защищенное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+защита для навесного замка из пищевого контейнера,8,popular,защита контейнеров,automation-processes,informational,Информационный,informational,blog,P4-blog
+контейнер с защитой от взрыва извне,8,popular,защита контейнеров,automation-processes,informational,Информационный,informational,blog,P4-blog
+kaspersky security для виртуальных сред 6.2,8,popular,kaspersky для виртуальных сред,automation-processes,informational,Информационный,informational,blog,P4-blog
+корпоративное обучение ии для сотрудников,7,popular,корпоративный ии,ai-corporate,informational,Информационный,informational,blog,P4-blog
+слайд про публичные и частные облака,7,popular,частное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+мусорный контейнер с защитой от птиц,7,popular,защита контейнеров,automation-processes,informational,Информационный,informational,blog,P4-blog
+пассивная защита от бпла из контейнера,7,popular,защита контейнеров,automation-processes,informational,Информационный,informational,blog,P4-blog
+безопасность движения управляя транспортным средством тест пдд,7,popular,управляемая безопасность,automation-processes,informational,Информационный,informational,blog,P4-blog
+типы облаков частные и публичные,6,popular,частное облако,automation-processes,informational,Информационный,informational,blog,P4-blog
+контейнер бокс для защиты аккумулятора,6,popular,защита контейнеров,automation-processes,informational,Информационный,informational,blog,P4-blog
+антидроновая защита из контейнеров,5,popular,защита контейнеров,automation-processes,informational,Информационный,informational,blog,P4-blog
+лаборатория касперского secure connection,91,similar,kaspersky hybrid cloud,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip

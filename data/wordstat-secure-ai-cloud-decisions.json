@@ -1,0 +1,38 @@
+{
+  "date": "2026-07-27",
+  "source": "data/wordstat-secure-ai-cloud.csv",
+  "seedsFile": "data/wordstat-seeds-secure-ai-cloud.txt",
+  "productNameRu": "Защищенная AI-инфраструктура на базе российских облаков и решений Kaspersky",
+  "productNameEn": "Secure Private AI Cloud",
+  "landing": "/services/secure-private-ai-cloud",
+  "verdict": {
+    "englishBrandPhrase": "Secure Private AI Cloud / private ai cloud — practically no Wordstat demand (first seed pack = 0 rows).",
+    "useAsMarketingH1": true,
+    "seoPrimary": "Sell via component RU phrases with real volume; do not expect organic on the English brand alone."
+  },
+  "keepAndShip": [
+    { "phrase": "корпоративный ии", "count": 1925, "role": "category demand — H1/related" },
+    { "phrase": "частное облако", "count": 714, "role": "infra layer keyword" },
+    { "phrase": "kaspersky для виртуальных сред", "count": 274, "role": "Kaspersky VM layer" },
+    { "phrase": "база знаний с ии", "count": 172, "role": "AI knowledge layer" },
+    { "phrase": "корпоративный ии сервис", "count": 165, "role": "service intent" },
+    { "phrase": "внедрение llm", "count": 145, "role": "strongest implementation intent" },
+    { "phrase": "приватное облако", "count": 132, "role": "infra synonym" },
+    { "phrase": "корпоративный ии ассистент", "count": 111, "role": "assistant layer" },
+    { "phrase": "корпоративный rag", "count": 103, "role": "RAG layer" },
+    { "phrase": "защита виртуальных машин", "count": 82, "role": "Kaspersky attach" },
+    { "phrase": "безопасность облачной инфраструктуры", "count": 57, "role": "cloud security" },
+    { "phrase": "локальное развертывание llm", "count": 44, "role": "on-prem AI" },
+    { "phrase": "услуга частное облако", "count": 18, "role": "buy private cloud service" },
+    { "phrase": "kaspersky hybrid cloud security", "count": 16, "role": "product attach" },
+    { "phrase": "касперский защита контейнеров", "count": 12, "role": "container security" }
+  ],
+  "skipNoise": [
+    "локальные нейросети для изображений / видео / телефон",
+    "управляющая компания пожарная безопасность",
+    "consumer «нейросеть на пк»",
+    "broad similar: cloud, касперский, бизнес memes"
+  ],
+  "sixMillionFit": "Better than office AV: one infra AI project can include VM/server/container/admin seats + mail. Volume still depends on perimeter size (100–500 devices).",
+  "pricingFromRub": 800000
+}

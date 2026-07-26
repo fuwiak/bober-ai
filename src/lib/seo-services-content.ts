@@ -1226,6 +1226,106 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     caseStudySlugs: ["kaspersky-ai-assistant"],
   },
 
+  "secure-private-ai-cloud": {
+    metaTitle: "Защищенная AI-инфраструктура: российские облака + Kaspersky | Bober AI",
+    metaDescription:
+      "Приватный AI (RAG, ассистент, LLM) в Yandex Cloud / Selectel / Cloud.ru с защитой Kaspersky: VM, серверы, контейнеры. От 800 000 ₽.",
+    eyebrow: "Secure Private AI Cloud",
+    h1: "Защищенная AI-инфраструктура на базе российских облаков и решений Kaspersky",
+    subtitle:
+      "Слой AI + российское облако + Kaspersky в одном контуре: внедрение, мониторинг и реакция на события. От 800 000 ₽.",
+    problemsTitle: "Когда нужен защищённый AI-контур",
+    problems: [
+      "Данные нельзя отдавать в публичные LLM — нужен закрытый контур",
+      "AI крутится в облаке или on-prem без единой модели безопасности",
+      "VM, Linux/Windows и контейнеры не закрыты endpoint/workload protection",
+      "Нет мониторинга, бэкапов и понятного SLA по инцидентам",
+    ],
+    deliverablesTitle: "Что входит",
+    deliverables: [
+      "Слой AI: приватный ассистент, RAG, база знаний, модели cloud/on-prem, связка с Bitrix24 / 1С / документами",
+      "Инфраструктура: Yandex Cloud, Selectel или Cloud.ru; VPN, IAM, backup, шифрование, логи",
+      "Kaspersky: защита VM, серверов Linux/Windows, контейнеров; контроль угроз; Security Center",
+      "Обслуживание: внедрение, мониторинг, месячный отчёт, обновления, реакция на события",
+    ],
+    intro: [
+      "Это не «антивирус для офиса». Это защищённая AI-инфраструктура: модели и RAG рядом с российским облаком и продуктами Kaspersky.",
+      "Два режима: интеграционный проект (лицензии клиент закупает через дистрибуцию, мы внедряем) или управляемый контур с мониторингом — ближе к модели MSSP при полной техподдержке на Subscription Services.",
+      "Wordstat: прямой EN-запрос «Secure Private AI Cloud» почти не ищут. Спрос идёт через «внедрение LLM», «корпоративный ИИ», «частное/приватное облако», «Kaspersky для виртуальных сред», «база знаний с ИИ».",
+      "Бюджет пилота/контура — от 800 000 ₽. Объём лицензий Kaspersky зависит от числа VM, серверов и рабочих мест — в инфраструктурных проектах это путь к объёму для Silver.",
+    ],
+    howWeSolveTitle: "Как собираем контур",
+    howWeSolve: [
+      {
+        title: "Аудит",
+        text: "Данные, модели, облако/on-prem, периметр, требования 152-ФЗ и NDA. Фиксируем KPI и состав лицензий.",
+      },
+      {
+        title: "AI + infra",
+        text: "Private LLM / RAG / база знаний; сеть, IAM, backup, логи в Yandex Cloud / Selectel / Cloud.ru.",
+      },
+      {
+        title: "Kaspersky",
+        text: "Защита VM, серверов, контейнеров; политики Security Center; поставка лицензий через дистрибуцию.",
+      },
+      {
+        title: "Ops",
+        text: "Мониторинг, обновления, месячный отчёт, реакция на события. Runbook для вашей команды или наш SLA.",
+      },
+    ],
+    architectureTitle: "Три слоя",
+    architecture: [
+      "AI: ассистент, RAG, knowledge base, inference cloud или on-prem",
+      "Интеграции: Bitrix24, 1С, документы, API",
+      "Cloud RU: Yandex Cloud / Selectel / Cloud.ru — VPC, VPN, IAM",
+      "Backup, шифрование, централизованные логи",
+      "Kaspersky: VM / Linux / Windows / containers + Security Center",
+      "Ops: мониторинг, отчёт, incident response",
+    ],
+    roiTitle: "Эффект",
+    roi: [
+      { value: "1 контур", label: "AI + облако + безопасность" },
+      { value: "RU cloud", label: "резидентность данных" },
+      { value: "Kaspersky", label: "объём лицензий в инфраструктурных сделках" },
+    ],
+    faqTitle: "FAQ",
+    faq: [
+      {
+        q: "Это сертифицированный продукт Kaspersky «Secure AI Cloud»?",
+        a: "Нет. Это наша сборка: AI + российские облака + продукты Kaspersky. Статус партнёра — Registered; материалы по бренду согласовываем.",
+      },
+      {
+        q: "Чем отличается от Self-hosted AI?",
+        a: "Self-hosted — слой моделей. Здесь три слоя: AI, инфраструктура и Kaspersky, плюс ops.",
+      },
+      {
+        q: "Кто покупает лицензии Kaspersky?",
+        a: "Через авторизованную дистрибуцию. В интеграционном проекте — на клиента; в managed — по модели сопровождения/MSSP при полной поддержке.",
+      },
+      {
+        q: "Поможет ли это обороту 6 млн ₽ лицензий?",
+        a: "Инфраструктурный пакет тянет VM/серверы/контейнеры/места админов — больше, чем «антивирус для офиса». Объём зависит от размера периметра клиента.",
+      },
+      {
+        q: "Какие облака?",
+        a: "Yandex Cloud, Selectel, Cloud.ru — или ваш on-prem / гибрид.",
+      },
+      {
+        q: "Срок и цена?",
+        a: "От 800 000 ₽ и от ~4 недель до рабочего контура после аудита.",
+      },
+    ],
+    related: [
+      { href: "/services/self-hosted-ai", label: "Self-hosted AI" },
+      { href: "/services/private-llm-gigachat", label: "Private LLM" },
+      { href: "/services/rag", label: "RAG" },
+      { href: "/kaspersky", label: "Kaspersky для бизнеса" },
+      { href: "/services/crm-integration", label: "интеграции CRM" },
+      { href: "/pricing", label: "стоимость внедрения" },
+    ],
+    caseStudySlugs: ["kaspersky-ai-assistant", "crm-1c-sync"],
+  },
+
   "mcp": {
     metaTitle: "MCP интеграции для AI-агентов",
     metaDescription:
@@ -2427,6 +2527,101 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
     ],
     related: [{ href: "/services/private-llm-gigachat", label: "Private LLM" }, { href: "/services/open-webui", label: "Open WebUI" }, { href: "/services/rag", label: "RAG" }],
     caseStudySlugs: ["kaspersky-ai-assistant"],
+  },
+
+  "secure-private-ai-cloud": {
+    metaTitle: "Secure Private AI Cloud: Russian clouds + Kaspersky | Bober AI",
+    metaDescription:
+      "Private AI (RAG, assistant, LLM) on Yandex Cloud / Selectel / Cloud.ru with Kaspersky for VMs, servers and containers. From €8,000.",
+    eyebrow: "Secure Private AI Cloud",
+    h1: "Secure Private AI infrastructure on Russian clouds and Kaspersky",
+    subtitle:
+      "AI layer + RU cloud + Kaspersky in one contour: deploy, monitoring and incident response. From €8,000.",
+    problemsTitle: "When you need a secured AI contour",
+    problems: [
+      "Data cannot go to public LLMs — you need a closed contour",
+      "AI runs in cloud or on-prem without a unified security model",
+      "VMs, Linux/Windows and containers lack endpoint/workload protection",
+      "No monitoring, backups or clear incident SLA",
+    ],
+    deliverablesTitle: "What is included",
+    deliverables: [
+      "AI layer: private assistant, RAG, knowledge base, cloud/on-prem models, Bitrix24 / 1C / documents",
+      "Infrastructure: Yandex Cloud, Selectel or Cloud.ru; VPN, IAM, backup, encryption, logs",
+      "Kaspersky: VM, Linux/Windows servers, containers; threat control; Security Center",
+      "Ops: deploy, monitoring, monthly report, updates, incident response",
+    ],
+    intro: [
+      "Not “office antivirus”. A secured AI infrastructure: models and RAG next to Russian cloud and Kaspersky products.",
+      "Two modes: integration project (client buys licenses via distribution, we deploy) or managed contour with monitoring — closer to MSSP when full technical support runs on Subscription Services.",
+      "Wordstat: English “Secure Private AI Cloud” has near-zero search. Demand comes via “LLM implementation”, “corporate AI”, “private cloud”, “Kaspersky for virtual environments”, “AI knowledge base”.",
+      "Pilot/contour from €8,000. Kaspersky license volume depends on VMs, servers and seats — infrastructure deals are the path to Silver volume.",
+    ],
+    howWeSolveTitle: "How we build it",
+    howWeSolve: [
+      {
+        title: "Audit",
+        text: "Data, models, cloud/on-prem, perimeter, 152-FZ and NDA. Fix KPIs and license mix.",
+      },
+      {
+        title: "AI + infra",
+        text: "Private LLM / RAG / knowledge base; network, IAM, backup, logs on Yandex Cloud / Selectel / Cloud.ru.",
+      },
+      {
+        title: "Kaspersky",
+        text: "Protect VMs, servers, containers; Security Center policies; licenses via distribution.",
+      },
+      {
+        title: "Ops",
+        text: "Monitoring, updates, monthly report, incident response. Runbook for your team or our SLA.",
+      },
+    ],
+    architectureTitle: "Three layers",
+    architecture: [
+      "AI: assistant, RAG, knowledge base, cloud or on-prem inference",
+      "Integrations: Bitrix24, 1C, documents, APIs",
+      "RU cloud: Yandex Cloud / Selectel / Cloud.ru — VPC, VPN, IAM",
+      "Backup, encryption, centralized logs",
+      "Kaspersky: VM / Linux / Windows / containers + Security Center",
+      "Ops: monitoring, report, incident response",
+    ],
+    roiTitle: "Outcomes",
+    roi: [
+      { value: "1 contour", label: "AI + cloud + security" },
+      { value: "RU cloud", label: "data residency" },
+      { value: "Kaspersky", label: "license volume in infra deals" },
+    ],
+    faqTitle: "FAQ",
+    faq: [
+      {
+        q: "Is this a certified Kaspersky “Secure AI Cloud” product?",
+        a: "No. It is our pack: AI + Russian clouds + Kaspersky products. Partner status is Registered; brand materials are coordinated.",
+      },
+      {
+        q: "Difference from Self-hosted AI?",
+        a: "Self-hosted is the model layer. Here: AI + infrastructure + Kaspersky, plus ops.",
+      },
+      {
+        q: "Who buys Kaspersky licenses?",
+        a: "Via authorized distribution. Integration projects: on the client. Managed: per support/MSSP model when full support is in place.",
+      },
+      {
+        q: "Cloud options?",
+        a: "Yandex Cloud, Selectel, Cloud.ru — or your on-prem / hybrid.",
+      },
+      {
+        q: "Price and timeline?",
+        a: "From €8,000 and about 4 weeks to a working contour after audit.",
+      },
+    ],
+    related: [
+      { href: "/services/self-hosted-ai", label: "Self-hosted AI" },
+      { href: "/services/private-llm-gigachat", label: "Private LLM" },
+      { href: "/services/rag", label: "RAG" },
+      { href: "/kaspersky", label: "Kaspersky for business" },
+      { href: "/pricing", label: "Pricing" },
+    ],
+    caseStudySlugs: ["kaspersky-ai-assistant", "crm-1c-sync"],
   },
 
   "mcp": {

@@ -119,6 +119,13 @@ export default async function KasperskyPage({ params }: Props) {
                 <li key={item}>— {item}</li>
               ))}
             </ul>
+            <p className="mt-6 text-sm">
+              <Link href="/services/secure-private-ai-cloud" className="text-link">
+                {ru
+                  ? "Пакет: защищенная AI-инфраструктура →"
+                  : "Pack: Secure Private AI Cloud →"}
+              </Link>
+            </p>
           </div>
         </section>
 

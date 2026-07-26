@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-26 09:06">
+<yml_catalog date="2026-07-26 21:18">
   <shop>
     <name>Bober AI Systems</name>
     <company>Bober AI Systems</company>
@@ -100,6 +100,10 @@
       <set id="wildberries-independent-sales-channel">
         <name>Независимый канал продаж для продавцов Wildberries</name>
         <url>https://www.bober-ai.dev/services/wildberries-independent-sales-channel</url>
+      </set>
+      <set id="secure-private-ai-cloud">
+        <name>Защищенная AI-инфраструктура на базе российских облаков и решений Kaspersky</name>
+        <url>https://www.bober-ai.dev/services/secure-private-ai-cloud</url>
       </set>
       <set id="company-automation">
         <name>Автоматизация компании</name>
@@ -654,6 +658,30 @@
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Запуск собственного канала продаж параллельно с Wildberries: витрина, Bitrix24/amoCRM, 1С/МойСклад, оплата, доставка, Telegram/VK/email, AI-ассистент по товарам, синхронизация цен и остатков. Срок от 14 дней.</param>
+    </offer>
+    <offer id="secure-private-ai-cloud">
+      <name>Павел Стасиньский</name>
+      <url>https://www.bober-ai.dev/services/secure-private-ai-cloud</url>
+      <price from="true">800000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 800 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>secure-private-ai-cloud</set-ids>
+      <picture>https://www.bober-ai.dev/stock/offers/secure-private-ai-cloud.jpg</picture>
+      <description>Защищенная AI-инфраструктура на базе российских облаков и решений Kaspersky</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">94</param>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/secure-private-ai-cloud</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Контур: слой AI (private LLM, RAG, база знаний, Bitrix24/1С), инфраструктура (российское облако, VPN, IAM, backup, логи) и Kaspersky (VM, Linux/Windows, контейнеры, Security Center). Внедрение, мониторинг, отчёт, реакция на события. Лицензии Kaspersky — через авторизованную дистрибуцию.</param>
     </offer>
     <offer id="company-automation">
       <name>Павел Стасиньский</name>
