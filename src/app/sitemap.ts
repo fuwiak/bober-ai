@@ -19,8 +19,8 @@ export const dynamic = "force-static";
  * при каждом деплое, Яндекс и Google начинают игнорировать.
  */
 const UPDATED = {
-  core: new Date("2026-07-25"),
-  services: new Date("2026-07-25"),
+  core: new Date("2026-07-27"),
+  services: new Date("2026-07-27"),
   landings: new Date("2026-07-25"),
   hubs: new Date("2026-07-25"),
   guides: new Date("2026-07-14"),

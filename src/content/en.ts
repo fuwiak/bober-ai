@@ -29,7 +29,7 @@ const en = {
     blog: "Blog",
     academy: "Workshop",
     partners: "Partners",
-    secureAi: "Secure AI",
+    secureAi: "Bober Secure AI",
     process: "Process",
     about: "About",
     career: "Career",

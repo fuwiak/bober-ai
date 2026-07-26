@@ -29,7 +29,7 @@ const ru = {
     blog: "Блог",
     academy: "Практикум",
     partners: "Партнёрам",
-    secureAi: "Secure AI",
+    secureAi: "Bober Secure AI",
     process: "Процесс",
     about: "О компании",
     career: "Карьера",

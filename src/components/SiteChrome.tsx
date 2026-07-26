@@ -10,6 +10,7 @@ export async function SiteHeader() {
 
   const navItems = [
     { href: "/services" as const, label: t("services") },
+    { href: "/secure-ai" as const, label: t("secureAi") },
     { href: "/portfolio" as const, label: t("portfolio") },
     { href: "/pricing#process", label: t("howWeWork") },
     { href: "/pricing" as const, label: t("pricing") },
