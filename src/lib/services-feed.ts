@@ -2,7 +2,7 @@ import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 import { CONTACT_EMAIL, SITE_NAME, SITE_REGION, SITE_URL, TELEGRAM_URL } from "@/lib/site";
 import { PROFILE } from "@/lib/profile";
-import { getEnterpriseServices } from "@/lib/enterprise-services";
+import { getEnterpriseServices, type EnterpriseService } from "@/lib/enterprise-services";
 import { FEED_RATING, FEED_REVIEWS_COUNT } from "@/lib/feed-rating";
 
 export { FEED_RATING, FEED_REVIEWS_COUNT } from "@/lib/feed-rating";
@@ -32,6 +32,13 @@ const FEED_CONVERSION: Record<string, number> = {
   "knowledge-base": 92,
   "ai-consulting": 94,
   "crm-integration": 93,
+  "ai-sales-loop": 94,
+  "company-automation": 94,
+  "crm-automation": 93,
+  "document-ai": 92,
+  "ai-for-crm": 93,
+  "corporate-ai-assistant": 92,
+  "business-process-audit": 95,
 };
 
 /** Old slugs kept only for next.config redirects — never emit as feed offer URLs (308/404 fail moderation). */
@@ -50,8 +57,19 @@ export function feedPicturePath(offerId: string) {
   return `/stock/offers/${offerId}.jpg`;
 }
 
-export function getServiceOfferUrl(slug: string) {
-  return `${FEED_SITE_URL}/services/${slug}`;
+/** Yandex YML: sales_notes max 50 chars — longer → feed errors. */
+function clampSalesNotes(value: string, max = 50) {
+  const text = String(value || "").trim();
+  if (text.length <= max) return text;
+  return `${text.slice(0, Math.max(0, max - 1)).trimEnd()}…`;
+}
+
+export function getServiceOfferUrl(offer: Pick<EnterpriseService, "slug" | "feedPath"> | string) {
+  if (typeof offer === "string") {
+    return `${FEED_SITE_URL}/services/${offer}`;
+  }
+  const path = offer.feedPath?.trim() || `/services/${offer.slug}`;
+  return `${FEED_SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
 export function getOrderTelegramUrl(serviceTitle: string) {
@@ -114,7 +132,7 @@ export function getServiceFeedXml(now = new Date()) {
 
   const sets = offers
     .map((offer) => {
-      const url = getServiceOfferUrl(offer.slug);
+      const url = getServiceOfferUrl(offer);
       return `      <set id="${escapeXml(offer.slug)}">
         <name>${escapeXml(offer.title)}</name>
         <url>${escapeXml(url)}</url>
@@ -125,7 +143,7 @@ export function getServiceFeedXml(now = new Date()) {
   // Element order: required params immediately after description (Yandex sample).
   const offerBlocks = offers
     .map((offer) => {
-      const url = getServiceOfferUrl(offer.slug);
+      const url = getServiceOfferUrl(offer);
       const picture = `${FEED_SITE_URL}${feedPicturePath(offer.id)}`;
       const conversion = FEED_CONVERSION[offer.slug] ?? 90;
 
@@ -134,7 +152,7 @@ export function getServiceFeedXml(now = new Date()) {
       <url>${escapeXml(url)}</url>
       <price from="true">${offer.price}</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>${escapeXml(offer.salesNotes)}</sales_notes>
+      <sales_notes>${escapeXml(clampSalesNotes(offer.salesNotes))}</sales_notes>
       <categoryId>${FEED_CATEGORY_ID}</categoryId>
       <set-ids>${escapeXml(offer.slug)}</set-ids>
       <picture>${escapeXml(picture)}</picture>

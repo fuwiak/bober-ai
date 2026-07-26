@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
 import { ContactCta } from "@/components/ContactCta";
+import { PerformerRating } from "@/components/PerformerRating";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { ContactForm } from "@/components/ContactForm";
 import { Reveal } from "@/components/motion/Reveal";
@@ -9,7 +10,7 @@ import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { Link } from "@/i18n/navigation";
 import { getPortfolioItem, PORTFOLIO_LISTING_SLUGS } from "@/lib/profile";
 import type { HubDef } from "@/lib/seo-catalog/types";
-import { webPageJsonLd } from "@/lib/seo";
+import { organizationJsonLd, webPageJsonLd } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 
 type SeoHubPageProps = {
@@ -122,10 +123,15 @@ function AutomationHubPage({ hub, locale }: SeoHubPageProps) {
     (item): item is NonNullable<typeof item> => Boolean(item),
   );
   const webPage = webPageJsonLd({ name: copy.h1, description: copy.metaDescription, url: pageUrl, locale });
+  const organization = {
+    "@context": "https://schema.org",
+    ...organizationJsonLd(locale),
+  };
 
   return (
     <div className="page-shell min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPage) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} />
       <SiteHeader />
       <main>
         <section className="section-band section--deep border-b border-hairline">
@@ -135,6 +141,7 @@ function AutomationHubPage({ hub, locale }: SeoHubPageProps) {
               <Reveal>
                 <span className="section-label">{pageCopy.catalog}</span>
                 <h1 className="display-md mt-4 text-balance">{copy.h1}</h1>
+                <PerformerRating locale={locale} className="mt-4" />
                 <p className="body-copy mt-5 max-w-2xl text-lg">{copy.subtitle}</p>
                 <div className="mt-8 flex flex-wrap gap-4">
                   <ContactCta defaultService={pageCopy.catalog}>{pageCopy.primaryCta}</ContactCta>
@@ -296,10 +303,15 @@ export function SeoHubPage({ hub, locale }: SeoHubPageProps) {
     url: pageUrl,
     locale,
   });
+  const organization = {
+    "@context": "https://schema.org",
+    ...organizationJsonLd(locale),
+  };
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPage) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} />
       <SiteHeader />
       <main>
         <section className="section-band border-b border-hairline">
@@ -311,7 +323,13 @@ export function SeoHubPage({ hub, locale }: SeoHubPageProps) {
               />
               <p className="eyebrow mt-2">{loc === "en" ? "Catalog" : "Каталог"}</p>
               <h1 className="mt-3 display-title text-balance">{copy.h1}</h1>
+              <PerformerRating locale={locale} className="mt-4" />
               <p className="mt-4 max-w-2xl text-lg text-muted">{copy.subtitle}</p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <ContactCta defaultService={copy.h1}>
+                  {loc === "en" ? "Get an estimate" : "Получить оценку"}
+                </ContactCta>
+              </div>
             </Reveal>
             <Reveal>
               <div className="relative aspect-[4/3] overflow-hidden rounded-sm border border-hairline bg-panel">

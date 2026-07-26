@@ -8,9 +8,11 @@ import { PerformerRating } from "@/components/PerformerRating";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { TrackedAnchor } from "@/components/TrackedAnchor";
 import { Reveal } from "@/components/motion/Reveal";
+import { ReviewsShowcase } from "@/components/motion/ReviewsShowcase";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { Link } from "@/i18n/navigation";
 import { getEnterpriseService } from "@/lib/enterprise-services";
+import { getEnterpriseReviews } from "@/lib/enterprise-reviews";
 import { PROFILE, getPortfolioItem } from "@/lib/profile";
 import type { SeoServiceContent } from "@/lib/seo-services-content";
 import {
@@ -34,6 +36,8 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
   const pagePath = `${prefix}/services/${slug}`;
   const pageUrl = absoluteUrl(pagePath);
   const servicesLabel = locale === "en" ? "Services" : "Услуги";
+  const isEn = locale === "en";
+  const reviews = getEnterpriseReviews();
 
   const webPage = webPageJsonLd({
     name: content.h1,
@@ -47,6 +51,9 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
     description: content.metaDescription,
     url: pageUrl,
     locale,
+    price: service?.price,
+    priceCurrency: isEn ? "EUR" : "RUB",
+    priceLabel: service?.salesNotes,
   });
 
   const organization = {
@@ -54,7 +61,7 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
     ...organizationJsonLd(locale),
   };
 
-  const faqSchema = content.faq.length ? faqJsonLd(content.faq) : null;
+  const faqSchema = content.faq.length ? faqJsonLd(content.faq, pageUrl) : null;
   const caseStudies = (content.caseStudySlugs ?? [])
     .map((caseSlug) => getPortfolioItem(caseSlug, locale))
     .filter((item): item is NonNullable<typeof item> => Boolean(item));
@@ -108,6 +115,9 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
                     <p className="mt-2 text-sm text-muted">
                       {t("timeline")}: {service.deliveryDays} {t("days")}
                     </p>
+                    <p className="mt-3 text-sm text-muted">
+                      {isEn ? "Fixed estimate · remote" : "Фиксированная смета · удалённо"}
+                    </p>
                     <div className="relative mt-6 aspect-[4/3] overflow-hidden rounded-lg border border-hairline bg-surface-soft">
                       <Image
                         src={service.serviceImage}
@@ -118,6 +128,9 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
                         priority
                       />
                     </div>
+                    <ContactCta className="mt-6 w-full" defaultService={content.h1} goal="audit_cta_click">
+                      {t("quote")}
+                    </ContactCta>
                   </aside>
                 </Reveal>
               ) : null}
@@ -221,6 +234,55 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
           </section>
         ) : null}
 
+        {service ? (
+          <section className="section-band section--panel border-b border-hairline">
+            <div className="container-editorial max-w-3xl">
+              <Reveal>
+                <h2 className="section-title">
+                  {isEn ? "Price and conditions" : "Цена и условия"}
+                </h2>
+                <div className="mt-8 overflow-x-auto">
+                  <table className="w-full border-collapse text-left text-sm">
+                    <caption className="sr-only">
+                      {isEn ? "Commercial terms for this service" : "Коммерческие условия услуги"}
+                    </caption>
+                    <tbody>
+                      <tr className="border-b border-hairline">
+                        <th scope="row" className="py-3 pr-6 font-medium text-ink">
+                          {isEn ? "Price" : "Цена"}
+                        </th>
+                        <td className="py-3 text-muted">{service.salesNotes}</td>
+                      </tr>
+                      <tr className="border-b border-hairline">
+                        <th scope="row" className="py-3 pr-6 font-medium text-ink">
+                          {t("timeline")}
+                        </th>
+                        <td className="py-3 text-muted">
+                          {service.deliveryDays} {t("days")}
+                        </td>
+                      </tr>
+                      <tr className="border-b border-hairline">
+                        <th scope="row" className="py-3 pr-6 font-medium text-ink">
+                          {isEn ? "Format" : "Формат"}
+                        </th>
+                        <td className="py-3 text-muted">
+                          {isEn ? "Fixed estimate · remote delivery" : "Фиксированная смета · удалённо"}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" className="py-3 pr-6 font-medium text-ink">
+                          {isEn ? "Scope" : "Состав"}
+                        </th>
+                        <td className="py-3 text-muted">{service.about}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </Reveal>
+            </div>
+          </section>
+        ) : null}
+
         {caseStudies.length > 0 ? (
           <section className="section-band section--deep border-b border-hairline">
             <div className="container-editorial">
@@ -238,6 +300,19 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
               </Reveal>
             </div>
           </section>
+        ) : null}
+
+        {reviews.length ? (
+          <ReviewsShowcase
+            sectionLabel={isEn ? "Trust" : "Доверие"}
+            title={isEn ? "Reviews from Yandex" : "Отзывы на Яндексе"}
+            subtitle={
+              isEn
+                ? "Public feedback from Yandex Services — same performer profile as the feed."
+                : "Публичные отзывы с Яндекс Услуг — тот же профиль исполнителя, что в фиде."
+            }
+            reviews={reviews}
+          />
         ) : null}
 
         {content.faq.length ? (

@@ -2447,7 +2447,9 @@ export function getSeoServiceSlugs(locale: "ru" | "en"): string[] {
 
 export function getAllServiceSlugs(locale: string): string[] {
   const loc = locale === "en" ? "en" : "ru";
-  const enterprise = getEnterpriseServices(loc).map((item) => item.slug);
+  const enterprise = getEnterpriseServices(loc)
+    .filter((item) => item.inServicesCatalog !== false)
+    .map((item) => item.slug);
   const seo = getSeoServiceSlugs(loc);
   return [...new Set([...enterprise, ...seo])];
 }

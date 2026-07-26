@@ -8,6 +8,13 @@ export type EnterpriseService = {
   deliveryDays: number;
   price: number;
   serviceImage: string;
+  /** YML offer URL path (SEO landing). Defaults to `/services/{slug}`. */
+  feedPath?: string;
+  /**
+   * When false, offer is feed-only (Wordstat niche) — no `/services/{slug}` page.
+   * Default true.
+   */
+  inServicesCatalog?: boolean;
 };
 
 const IMAGES: Record<string, string> = {
@@ -32,15 +39,21 @@ const IMAGES: Record<string, string> = {
   "ai-consulting": "/stock/ai-discovery-roadmap.jpg",
   "crm-integration": "/stock/crm-integration.jpg",
   "ai-sales-loop": "/stock/crm-integration.jpg",
+  "company-automation": "/stock/business-process-automation.jpg",
+  "crm-automation": "/stock/crm-integration.jpg",
+  "document-ai": "/stock/document-processing.jpg",
+  "ai-for-crm": "/stock/crm-integration.jpg",
+  "corporate-ai-assistant": "/stock/enterprise-ai-assistant.jpg",
+  "business-process-audit": "/stock/ai-discovery-roadmap.jpg",
 };
 
 const ruExtra: EnterpriseService[] = [
   { id: "ai-automation", slug: "ai-automation", title: "AI-автоматизация", description: "Системы AI для автоматизации операций — от аудита до production.", about: "Проектируем и внедряем AI-автоматизацию с интеграциями CRM, документов и workflow.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["ai-automation"] },
-  { id: "rag", slug: "rag", title: "RAG и корпоративный поиск", description: "Поиск по документам и ответы LLM со ссылкой на источник.", about: "Индексация, векторный поиск, guardrails и интеграция в чат/CRM.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES.rag },
+  { id: "rag", slug: "rag", title: "RAG для бизнеса", description: "Поиск по документам и ответы LLM со ссылкой на источник.", about: "Индексация, векторный поиск, guardrails и интеграция в чат/CRM.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES.rag, feedPath: "/solutions/rag-search" },
   { id: "llm-development", slug: "llm-development", title: "Разработка LLM-решений", description: "Кастомные LLM-приложения, API, промпт-инженерия и production-деплой.", about: "Архитектура, разработка, тестирование и передача команде.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["llm-development"] },
   { id: "n8n", slug: "n8n", title: "Автоматизация на n8n", description: "n8n-воркфлоу с AI-слоем и интеграциями CRM, мессенджеров, API.", about: "Проектируем, разворачиваем и сопровождаем n8n в production.", salesNotes: "от 300 000 ₽", deliveryDays: 14, price: 300000, serviceImage: IMAGES.n8n },
   { id: "ai-agent", slug: "ai-agent", title: "AI-агенты для бизнеса", description: "Агенты с действиями: CRM, документы, workflow, эскалация к человеку.", about: "Многошаговые агенты с инструментами, мониторингом и handover.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["ai-agent"] },
-  { id: "document-processing", slug: "document-processing", title: "Обработка документов", description: "OCR, согласования, извлечение данных — в CRM/ERP без ручного ввода.", about: "Пайплайны документов, workflow и интеграции с учётными системами.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["document-processing"] },
+  { id: "document-processing", slug: "document-processing", title: "Автоматизация документооборота", description: "OCR, согласования, извлечение данных — в CRM/ERP без ручного ввода.", about: "Пайплайны документов, workflow и интеграции с учётными системами.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["document-processing"], feedPath: "/automation/documents" },
   { id: "voice-ai", slug: "voice-ai", title: "Голосовой AI", description: "Speech-to-text, голосовые боты, логирование звонков в CRM.", about: "Голосовые сценарии для поддержки и продаж с интеграцией в CRM.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["voice-ai"] },
   { id: "ocr", slug: "ocr", title: "OCR и распознавание", description: "Извлечение текста и полей из PDF, сканов и фото.", about: "OCR-пайплайны с валидацией и выгрузкой в 1С, CRM или ERP.", salesNotes: "от 300 000 ₽", deliveryDays: 14, price: 300000, serviceImage: IMAGES.ocr },
   { id: "open-webui", slug: "open-webui", title: "Open WebUI", description: "Корпоративный чат с LLM, SSO и политиками доступа.", about: "Развёртывание Open WebUI, подключение моделей и guardrails.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["open-webui"] },
@@ -51,15 +64,22 @@ const ruExtra: EnterpriseService[] = [
   { id: "ai-consulting", slug: "ai-consulting", title: "AI-консалтинг", description: "Стратегия, ROI, выбор технологий и дорожная карта внедрения.", about: "Аудит, рекомендации и план до закупки разработки.", salesNotes: "от 150 000 ₽", deliveryDays: 10, price: 150000, serviceImage: IMAGES["ai-consulting"] },
   { id: "crm-integration", slug: "crm-integration", title: "Интеграции CRM", description: "amoCRM, Bitrix24, 1С — синхронизация и автоматизация воронки.", about: "Двусторонние интеграции, webhooks, retry и мониторинг.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["crm-integration"] },
   { id: "ai-sales-loop", slug: "ai-sales-loop", title: "AI-контур отдела продаж", description: "Телефония, переписки, CRM и автоматические следующие действия — один продукт, не отдельные боты.", about: "Интеграция Bitrix24 / amoCRM с телефонией и AI: квалификация лидов, саммари звонков, задачи, follow-up и отчёт об упущенных сделках.", salesNotes: "от 300 000 ₽", deliveryDays: 21, price: 300000, serviceImage: IMAGES["ai-sales-loop"] },
+  // Wordstat niche offers (exact titles) → SEO landings; feed-only (no thin /services pages).
+  { id: "company-automation", slug: "company-automation", title: "Автоматизация компании", description: "Процессы, CRM, документы и отчёты без ручного копирования — фиксированная смета и ROI.", about: "Аудит узкого места, workflow и интеграции, production-запуск и обучение команды.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["company-automation"], feedPath: "/automation/company-automation", inServicesCatalog: false },
+  { id: "crm-automation", slug: "crm-automation", title: "Автоматизация CRM", description: "Стадии, роботы, заявки с сайта и мессенджеров, отчёты без ручного ввода.", about: "Автоматизация воронки CRM: триггеры, задачи, уведомления и контроль конверсии.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["crm-automation"], feedPath: "/integrations/crm-automation", inServicesCatalog: false },
+  { id: "document-ai", slug: "document-ai", title: "ИИ для обработки документов", description: "Извлечение полей, классификация, маршруты в CRM/1С — меньше ручного ввода.", about: "ИИ-пайплайн документов: OCR, классификация, валидация и выгрузка в учётные системы.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["document-ai"], feedPath: "/automation/document-ai", inServicesCatalog: false },
+  { id: "ai-for-crm", slug: "ai-for-crm", title: "ИИ для CRM", description: "Ассистент в карточке сделки, квалификация лидов, черновики писем и КП.", about: "ИИ-слой поверх CRM: саммари, скоринг, follow-up без хаоса в воронке.", salesNotes: "от 300 000 ₽", deliveryDays: 21, price: 300000, serviceImage: IMAGES["ai-for-crm"], feedPath: "/integrations/ai-for-crm", inServicesCatalog: false },
+  { id: "corporate-ai-assistant", slug: "corporate-ai-assistant", title: "Корпоративный ИИ-ассистент", description: "Корпоративная нейросеть и ассистент в закрытом контуре — без утечки данных.", about: "Приватный LLM-контур, политики доступа, интеграции с внутренними системами.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["corporate-ai-assistant"], feedPath: "/ai/corporate-neural-net", inServicesCatalog: false },
+  { id: "business-process-audit", slug: "business-process-audit", title: "Аудит бизнес-процессов", description: "Карта потерь, приоритеты и смета пилота — до закупки разработки.", about: "Аудит процессов, ROI, дорожная карта на 90 дней и критерии приёмки пилота.", salesNotes: "от 150 000 ₽", deliveryDays: 10, price: 150000, serviceImage: IMAGES["business-process-audit"], feedPath: "/automation/business-process-audit", inServicesCatalog: false },
 ];
 
 const enExtra: EnterpriseService[] = [
   { id: "ai-automation", slug: "ai-automation", title: "AI automation", description: "AI systems for operations automation — from audit to production.", about: "Design and deploy AI automation with CRM, document and workflow integrations.", salesNotes: "from €5,000", deliveryDays: 28, price: 5000, serviceImage: IMAGES["ai-automation"] },
-  { id: "rag", slug: "rag", title: "RAG & corporate search", description: "Document search and LLM answers with source citations.", about: "Indexing, vector search, guardrails and chat/CRM integration.", salesNotes: "from €4,000", deliveryDays: 21, price: 4000, serviceImage: IMAGES.rag },
+  { id: "rag", slug: "rag", title: "RAG for business", description: "Document search and LLM answers with source citations.", about: "Indexing, vector search, guardrails and chat/CRM integration.", salesNotes: "from €4,000", deliveryDays: 21, price: 4000, serviceImage: IMAGES.rag, feedPath: "/solutions/rag-search" },
   { id: "llm-development", slug: "llm-development", title: "LLM development", description: "Custom LLM apps, APIs, prompt engineering and production deploy.", about: "Architecture, development, testing and team handover.", salesNotes: "from €5,000", deliveryDays: 28, price: 5000, serviceImage: IMAGES["llm-development"] },
   { id: "n8n", slug: "n8n", title: "n8n automation", description: "n8n workflows with AI layer and CRM, messenger, API integrations.", about: "Design, deploy and support n8n in production.", salesNotes: "from €3,000", deliveryDays: 14, price: 3000, serviceImage: IMAGES.n8n },
   { id: "ai-agent", slug: "ai-agent", title: "AI agents for business", description: "Agents that act: CRM updates, documents, workflow, human escalation.", about: "Multi-step agents with tools, monitoring and handover.", salesNotes: "from €5,000", deliveryDays: 28, price: 5000, serviceImage: IMAGES["ai-agent"] },
-  { id: "document-processing", slug: "document-processing", title: "Document processing", description: "OCR, approvals, data extraction — into CRM/ERP without manual entry.", about: "Document pipelines, workflow and accounting system integrations.", salesNotes: "from €4,000", deliveryDays: 21, price: 4000, serviceImage: IMAGES["document-processing"] },
+  { id: "document-processing", slug: "document-processing", title: "Document workflow automation", description: "OCR, approvals, data extraction — into CRM/ERP without manual entry.", about: "Document pipelines, workflow and accounting system integrations.", salesNotes: "from €4,000", deliveryDays: 21, price: 4000, serviceImage: IMAGES["document-processing"], feedPath: "/automation/documents" },
   { id: "voice-ai", slug: "voice-ai", title: "Voice AI", description: "Speech-to-text, voice bots, call logging in CRM.", about: "Voice scenarios for support and sales with CRM integration.", salesNotes: "from €5,000", deliveryDays: 28, price: 5000, serviceImage: IMAGES["voice-ai"] },
   { id: "ocr", slug: "ocr", title: "OCR & recognition", description: "Text and field extraction from PDF, scans and photos.", about: "OCR pipelines with validation and export to 1C, CRM or ERP.", salesNotes: "from €3,000", deliveryDays: 14, price: 3000, serviceImage: IMAGES.ocr },
   { id: "open-webui", slug: "open-webui", title: "Open WebUI", description: "Corporate LLM chat with SSO and access policies.", about: "Open WebUI deployment, model connectors and guardrails.", salesNotes: "from €4,000", deliveryDays: 21, price: 4000, serviceImage: IMAGES["open-webui"] },
@@ -70,6 +90,12 @@ const enExtra: EnterpriseService[] = [
   { id: "ai-consulting", slug: "ai-consulting", title: "AI consulting", description: "Strategy, ROI, technology selection and implementation roadmap.", about: "Audit, recommendations and plan before procurement.", salesNotes: "from €1,500", deliveryDays: 10, price: 1500, serviceImage: IMAGES["ai-consulting"] },
   { id: "crm-integration", slug: "crm-integration", title: "CRM integrations", description: "amoCRM, Bitrix24, 1C — sync and pipeline automation.", about: "Bidirectional integrations, webhooks, retry and monitoring.", salesNotes: "from €4,000", deliveryDays: 21, price: 4000, serviceImage: IMAGES["crm-integration"] },
   { id: "ai-sales-loop", slug: "ai-sales-loop", title: "AI sales loop", description: "Telephony, chats, CRM and automatic next actions — one product, not separate bots.", about: "Bitrix24 / amoCRM with telephony and AI: lead qualification, call summaries, tasks, follow-up and lost-deal reports.", salesNotes: "from €3,000", deliveryDays: 21, price: 3000, serviceImage: IMAGES["ai-sales-loop"] },
+  { id: "company-automation", slug: "company-automation", title: "Company automation", description: "Processes, CRM, documents and reports without manual copy-paste.", about: "Bottleneck audit, workflow and integrations, production launch and team training.", salesNotes: "from €5,000", deliveryDays: 21, price: 5000, serviceImage: IMAGES["company-automation"], feedPath: "/automation/company-automation", inServicesCatalog: false },
+  { id: "crm-automation", slug: "crm-automation", title: "CRM automation", description: "Stages, robots, website and messenger intake, reports without manual entry.", about: "CRM pipeline automation: triggers, tasks, alerts and conversion control.", salesNotes: "from €4,000", deliveryDays: 21, price: 4000, serviceImage: IMAGES["crm-automation"], feedPath: "/integrations/crm-automation", inServicesCatalog: false },
+  { id: "document-ai", slug: "document-ai", title: "AI for document processing", description: "Field extraction, classification, routes into CRM/ERP — less manual entry.", about: "AI document pipeline: OCR, classification, validation and export to accounting systems.", salesNotes: "from €4,000", deliveryDays: 21, price: 4000, serviceImage: IMAGES["document-ai"], feedPath: "/automation/document-ai", inServicesCatalog: false },
+  { id: "ai-for-crm", slug: "ai-for-crm", title: "AI for CRM", description: "In-deal assistant, lead scoring, email and proposal drafts.", about: "AI layer on CRM: summaries, scoring, follow-up without pipeline chaos.", salesNotes: "from €3,000", deliveryDays: 21, price: 3000, serviceImage: IMAGES["ai-for-crm"], feedPath: "/integrations/ai-for-crm", inServicesCatalog: false },
+  { id: "corporate-ai-assistant", slug: "corporate-ai-assistant", title: "Corporate AI assistant", description: "Corporate neural net and assistant in a private contour — no data leakage.", about: "Private LLM contour, access policies, integrations with internal systems.", salesNotes: "from €5,000", deliveryDays: 28, price: 5000, serviceImage: IMAGES["corporate-ai-assistant"], feedPath: "/ai/corporate-neural-net", inServicesCatalog: false },
+  { id: "business-process-audit", slug: "business-process-audit", title: "Business process audit", description: "Loss map, priorities and pilot estimate — before procurement.", about: "Process audit, ROI, 90-day roadmap and pilot acceptance criteria.", salesNotes: "from €1,500", deliveryDays: 10, price: 1500, serviceImage: IMAGES["business-process-audit"], feedPath: "/automation/business-process-audit", inServicesCatalog: false },
 ];
 
 const ruServices: EnterpriseService[] = [
@@ -109,13 +135,14 @@ const ruServices: EnterpriseService[] = [
   {
     id: "enterprise-ai-assistant",
     slug: "enterprise-ai-assistant",
-    title: "Внедрение AI",
+    title: "Внедрение ИИ в бизнес",
     description: "LLM, агенты, интеграции с CRM — production, не пилот на ChatGPT.",
     about: "Архитектура, LLM, интеграции CRM/мессенджеры, production-деплой и передача команде.",
     salesNotes: "от 500 000 ₽",
     deliveryDays: 28,
     price: 500000,
     serviceImage: IMAGES["enterprise-ai-assistant"],
+    feedPath: "/ai/ai-implementation",
   },
   {
     id: "private-llm-gigachat",
@@ -168,13 +195,14 @@ const enServices: EnterpriseService[] = [
   {
     id: "enterprise-ai-assistant",
     slug: "enterprise-ai-assistant",
-    title: "AI implementation",
+    title: "AI implementation for business",
     description: "LLM, agents, CRM integrations — production, not a ChatGPT pilot.",
     about: "Architecture, LLM integration, CRM/messenger connectors, production deployment, and team handover.",
     salesNotes: "from €5,000",
     deliveryDays: 28,
     price: 5000,
     serviceImage: IMAGES["enterprise-ai-assistant"],
+    feedPath: "/ai/ai-implementation",
   },
   {
     id: "private-llm-gigachat",
@@ -216,4 +244,10 @@ export function getEnterpriseServicesListing(locale: string): EnterpriseService[
 
 export function getEnterpriseService(slug: string, locale: string) {
   return getEnterpriseServices(locale).find((item) => item.slug === slug);
+}
+
+/** Match YML feed offer by landing path (`/automation/company-automation`). */
+export function getEnterpriseServiceByFeedPath(path: string, locale: string) {
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  return getEnterpriseServices(locale).find((item) => item.feedPath === normalized);
 }

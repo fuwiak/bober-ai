@@ -4,12 +4,18 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
 import { ContactCta } from "@/components/ContactCta";
 import { LandingHeroForm } from "@/components/LandingHeroForm";
+import { PerformerRating } from "@/components/PerformerRating";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { TrackedAnchor } from "@/components/TrackedAnchor";
 import { Reveal } from "@/components/motion/Reveal";
+import { ReviewsShowcase } from "@/components/motion/ReviewsShowcase";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { Link } from "@/i18n/navigation";
-import { getEnterpriseService } from "@/lib/enterprise-services";
+import {
+  getEnterpriseService,
+  getEnterpriseServiceByFeedPath,
+} from "@/lib/enterprise-services";
+import { getEnterpriseReviews } from "@/lib/enterprise-reviews";
 import { getLandingExtended } from "@/lib/landing-extended";
 import type { LandingPageDef } from "@/lib/landing-pages";
 import {
@@ -77,12 +83,16 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
     content = t.raw(`pages.${page.contentKey}`) as LandingContent;
   }
 
-  const service = getEnterpriseService(page.serviceSlug, locale);
+  const catalogService = getEnterpriseService(page.serviceSlug, locale);
+  const feedOffer = getEnterpriseServiceByFeedPath(`/${page.category}/${page.slug}`, locale);
+  const commercial = feedOffer ?? catalogService;
   const prefix = locale === "en" ? "/en" : "";
   const pagePath = `${prefix}/${page.category}/${page.slug}`;
   const pageUrl = absoluteUrl(pagePath);
   const categoryLabel = CATEGORY_LABELS[page.category]?.[loc] ?? page.category;
   const faqItems = extended?.faq ?? content.faq ?? [];
+  const reviews = getEnterpriseReviews();
+  const isEn = loc === "en";
 
   const webPage = webPageJsonLd({
     name: content.h1,
@@ -96,6 +106,9 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
     description: content.metaDescription,
     url: pageUrl,
     locale,
+    price: commercial?.price,
+    priceCurrency: isEn ? "EUR" : "RUB",
+    priceLabel: commercial?.salesNotes,
   });
 
   const organization = {
@@ -112,7 +125,7 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
     sameAs: [LINKEDIN_URL, GITHUB_URL, TELEGRAM_URL],
   });
 
-  const faqSchema = faqItems.length ? faqJsonLd(faqItems) : null;
+  const faqSchema = faqItems.length ? faqJsonLd(faqItems, pageUrl) : null;
   const caseStudies = (page.caseStudySlugs ?? [])
     .map((slug) => getPortfolioItem(slug, locale))
     .filter((item): item is NonNullable<typeof item> => Boolean(item));
@@ -141,7 +154,21 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
               <Reveal className="max-w-4xl">
                 <span className="section-label">{content.eyebrow}</span>
                 <h1 className="display-md mt-4">{content.h1}</h1>
+                <p className="mt-3 text-sm text-muted">
+                  {isEn ? "Performer" : "Исполнитель"}:{" "}
+                  <span className="font-medium text-ink">{PROFILE.name}</span>
+                </p>
+                <PerformerRating locale={locale} className="mt-3" />
                 <p className="body-copy mt-5 max-w-3xl text-lg">{content.subtitle}</p>
+                {commercial ? (
+                  <p className="meta-label mt-5">
+                    {commercial.salesNotes}
+                    {" · "}
+                    {t("common.timeline")}: {commercial.deliveryDays} {t("common.days")}
+                    {" · "}
+                    {isEn ? "Fixed estimate · remote" : "Фиксированная смета · удалённо"}
+                  </p>
+                ) : null}
                 <div className="mt-10 flex flex-wrap gap-4">
                   <ContactCta defaultService={content.h1} goal="audit_cta_click">
                     {t("common.cta")}
@@ -251,22 +278,64 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
           </section>
         ) : null}
 
-        {service ? (
+        {commercial ? (
           <section className="section-band section--panel border-b border-hairline">
             <div className="container-editorial grid gap-10 lg:grid-cols-[1fr_280px] lg:items-start">
               <Reveal>
                 <span className="section-label">{t("common.service")}</span>
-                <h2 className="section-title mt-4">{service.title}</h2>
-                <p className="body-copy mt-4 max-w-2xl text-base">{service.about}</p>
-                <Link href={`/services/${service.slug}`} className="link-more mt-6">
-                  {t("common.serviceDetails")}
-                </Link>
+                <h2 className="section-title mt-4">{commercial.title}</h2>
+                <p className="body-copy mt-4 max-w-2xl text-base">{commercial.about}</p>
+                <div className="mt-8 overflow-x-auto">
+                  <table className="w-full max-w-xl border-collapse text-left text-sm">
+                    <caption className="sr-only">
+                      {isEn ? "Price and delivery conditions" : "Цена и условия поставки"}
+                    </caption>
+                    <tbody>
+                      <tr className="border-b border-hairline">
+                        <th scope="row" className="py-3 pr-6 font-medium text-ink">
+                          {isEn ? "Price" : "Цена"}
+                        </th>
+                        <td className="py-3 text-muted">{commercial.salesNotes}</td>
+                      </tr>
+                      <tr className="border-b border-hairline">
+                        <th scope="row" className="py-3 pr-6 font-medium text-ink">
+                          {t("common.timeline")}
+                        </th>
+                        <td className="py-3 text-muted">
+                          {commercial.deliveryDays} {t("common.days")}
+                        </td>
+                      </tr>
+                      <tr className="border-b border-hairline">
+                        <th scope="row" className="py-3 pr-6 font-medium text-ink">
+                          {isEn ? "Format" : "Формат"}
+                        </th>
+                        <td className="py-3 text-muted">
+                          {isEn ? "Fixed estimate · remote delivery" : "Фиксированная смета · удалённо"}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" className="py-3 pr-6 font-medium text-ink">
+                          {isEn ? "Deliverables" : "Результат"}
+                        </th>
+                        <td className="py-3 text-muted">{commercial.description}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                {catalogService && catalogService.inServicesCatalog !== false ? (
+                  <Link href={`/services/${catalogService.slug}`} className="link-more mt-6">
+                    {t("common.serviceDetails")}
+                  </Link>
+                ) : null}
               </Reveal>
               <aside className="feature-card-bordered">
-                <p className="font-display text-2xl tracking-tight">{service.salesNotes}</p>
+                <p className="font-display text-2xl tracking-tight">{commercial.salesNotes}</p>
                 <p className="mt-2 text-sm text-muted">
-                  {t("common.timeline")}: {service.deliveryDays} {t("common.days")}
+                  {t("common.timeline")}: {commercial.deliveryDays} {t("common.days")}
                 </p>
+                <ContactCta className="mt-6 w-full" defaultService={content.h1} goal="audit_cta_click">
+                  {t("common.cta")}
+                </ContactCta>
               </aside>
             </div>
           </section>
@@ -315,6 +384,19 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
               </Reveal>
             </div>
           </section>
+        ) : null}
+
+        {reviews.length ? (
+          <ReviewsShowcase
+            sectionLabel={isEn ? "Trust" : "Доверие"}
+            title={isEn ? "Reviews from Yandex" : "Отзывы на Яндексе"}
+            subtitle={
+              isEn
+                ? "Public feedback from Yandex Services — same performer profile as the feed."
+                : "Публичные отзывы с Яндекс Услуг — тот же профиль исполнителя, что в фиде."
+            }
+            reviews={reviews}
+          />
         ) : null}
 
         {faqItems.length ? (

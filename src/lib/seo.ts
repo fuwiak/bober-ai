@@ -293,9 +293,32 @@ export function serviceJsonLd(input: {
   description: string;
   url: string;
   locale: string;
+  /** Visible «from» price — helps Yandex Services / Alice extract commercial facts. */
+  price?: number;
+  priceCurrency?: string;
+  priceLabel?: string;
 }) {
   // Nested provider without forcing AggregateRating (omitted when rating is 0).
   const provider = organizationJsonLd(input.locale);
+  const currency = input.priceCurrency ?? (input.locale === "en" ? "EUR" : "RUB");
+  const offers =
+    typeof input.price === "number" && Number.isFinite(input.price) && input.price > 0
+      ? {
+          "@type": "Offer",
+          url: input.url,
+          price: input.price,
+          priceCurrency: currency,
+          priceSpecification: {
+            "@type": "UnitPriceSpecification",
+            price: input.price,
+            priceCurrency: currency,
+            valueAddedTaxIncluded: true,
+          },
+          availability: "https://schema.org/InStock",
+          ...(input.priceLabel ? { name: input.priceLabel } : {}),
+        }
+      : undefined;
+
   return {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -304,6 +327,7 @@ export function serviceJsonLd(input: {
     url: input.url,
     provider,
     areaServed: input.locale === "en" ? "Worldwide" : "Russia",
+    ...(offers ? { offers } : {}),
   };
 }
 
