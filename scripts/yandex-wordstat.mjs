@@ -1,8 +1,116 @@
 #!/usr/bin/env node
 
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import fetch from "./lib/fetch.mjs";
+
+/** Buyer modifiers — optional expand via --with-modifiers (API cost × N). */
+const BUYER_MODIFIERS = [
+  "цена",
+  "стоимость",
+  "заказать",
+  "услуги",
+  "под ключ",
+  "внедрение",
+  "настройка",
+  "разработка",
+  "интегратор",
+  "консультант",
+  "компания",
+  "москва",
+  "для бизнеса",
+  "для компании",
+];
+
+/**
+ * New CSV taxonomy (primary intent).
+ * Legacy commercial_high / commercial_medium kept via intent_legacy column.
+ */
+const TAXONOMY_LABELS = {
+  consulting_high: "Консалтинг / аудит (высокий)",
+  implementation_high: "Внедрение / заказ (высокий)",
+  integration_high: "Интеграция (высокий)",
+  problem_aware: "Проблемный спрос",
+  solution_aware: "Решение / автоматизация",
+  technology_specific: "Технология / стек",
+  informational: "Информационный",
+  negative: "Негатив / шум",
+  // legacy aliases (if any cached pipeline still emits them)
+  commercial_high: "Коммерческий (высокий)",
+  commercial_medium: "Коммерческий (средний)",
+  product_1c: "Продукт 1С (не услуга)",
+  irrelevant: "Нерелевантный (шум)",
+};
+
+const CONSULTING_TOKENS = [
+  "консалтинг",
+  "консультац",
+  "консультант",
+  "аудит ",
+  "аудит",
+  "оптимизац",
+];
+
+const IMPLEMENTATION_TOKENS = [
+  "под ключ",
+  "заказать",
+  "услуг",
+  "внедрен",
+  "настрой",
+  "разработ",
+  "стоимост",
+  "цен",
+  "на заказ",
+  "компани",
+  "агентств",
+  "москва",
+];
+
+const INTEGRATION_TOKENS = [
+  "интеграц",
+  "интегратор",
+  "синхрониз",
+  "обмен данн",
+  "связк",
+  "связать",
+];
+
+const PROBLEM_TOKENS = [
+  "как автоматиз",
+  "как внедр",
+  "как настро",
+  "как связ",
+  "как интегрир",
+  "теря",
+  "хаос",
+  "вручную",
+  "ручн",
+  "не попада",
+  "не ведут",
+  "разрознен",
+  "двойной ввод",
+  "потеря лид",
+];
+
+const TECHNOLOGY_TOKENS = [
+  "bitrix",
+  "битрикс",
+  "amocrm",
+  "амосрм",
+  "1с",
+  "1c",
+  "n8n",
+  "crm",
+  "erp",
+  "rag",
+  "claude",
+  "anthropic",
+  "langgraph",
+  "mcp",
+  "gigachat",
+  "yandexgpt",
+  "workflow",
+];
 
 const DEFAULT_SEEDS = [
   // Автоматизация процессов (ядро бизнеса)
@@ -107,12 +215,32 @@ const SEED_CLUSTERS = {
   "ai-corporate": "Корпоративный ИИ",
   "ai-tech": "AI / RAG / tech",
   "claude": "Claude / Anthropic",
+  consulting: "Консалтинг / аудит",
+  integration: "Интеграция систем",
 };
 
 const SEED_TO_CLUSTER = {
   "автоматизация бизнес процессов": "automation-processes",
-  "автоматизация бизнеса под ключ": "automation-processes",
+  "автоматизация бизнеса": "automation-processes",
+  "внедрение автоматизации бизнеса": "automation-processes",
+  "автоматизация бизнес процессов под ключ": "automation-processes",
+  "консалтинг по автоматизации бизнеса": "consulting",
+  "аудит бизнес процессов": "consulting",
+  "аудит автоматизации бизнеса": "consulting",
+  "оптимизация бизнес процессов": "consulting",
+  "интеграция бизнес систем": "integration",
+  "интеграция информационных систем": "integration",
+  "интеграция crm": "crm",
+  "внедрение crm": "crm",
+  "настройка crm под ключ": "crm",
+  "консультация по внедрению crm": "consulting",
+  "интегратор crm систем": "crm",
+  "интеграция битрикс24": "bitrix24",
+  "внедрение битрикс24": "bitrix24",
+  "интеграция amocrm": "amocrm",
+  "интеграция 1с и crm": "1c",
   "автоматизация отдела продаж": "automation-sales",
+  "автоматизация бизнеса под ключ": "automation-processes",
   "автоматизация обработки заявок": "support",
   "автоматизация воронки продаж": "automation-sales",
   "автоматизация колл центра": "support",
@@ -144,7 +272,6 @@ const SEED_TO_CLUSTER = {
   "ai агент для бизнеса": "ai-tech",
   "ai ассистент для компании": "chat-assistant",
   "rag система": "ai-tech",
-  "внедрение crm": "crm",
   "crm автоматизация": "crm",
   "ai для crm": "crm",
   "amocrm автоматизация": "amocrm",
@@ -191,29 +318,9 @@ const SEED_TO_CLUSTER = {
   "claude чат бот для бизнеса": "chat-assistant",
 };
 
-const HIGH_COMMERCIAL = [
-  "под ключ",
-  "заказать",
-  "услуг",
-  "компани",
-  "агентств",
-  "интегратор",
-  "разработ",
-  "на заказ",
-  "стоимост",
-  "цен",
-  "внедрен",
-];
-
-const MEDIUM_COMMERCIAL = [
+const SOLUTION_TOKENS = [
   "автоматиза",
-  "настрой",
-  "интеграц",
-  "crm",
-  "bitrix",
-  "amocrm",
-  "1с",
-  "1c",
+  "оптимизац",
   "документ",
   "продаж",
   "поддерж",
@@ -226,21 +333,11 @@ const MEDIUM_COMMERCIAL = [
   "ии ",
   " ai",
   "нейросет",
-  "rag",
-  "gigachat",
-  "yandexgpt",
-  "claude",
-  "anthropic",
-  "opus",
-  "sonnet",
-  "mcp",
-  "langgraph",
-  "n8n",
-  "workflow",
   "воронк",
   "заяв",
   "кп",
   "лид",
+  "процесс",
 ];
 
 const INFORMATIONAL = [
@@ -380,6 +477,34 @@ const IRRELEVANT = [
   "portal 1c",
 ];
 
+function hasAny(phrase, tokens) {
+  return tokens.some((token) => phrase.includes(token));
+}
+
+async function loadEnvFile() {
+  try {
+    const text = await readFile(resolve(process.cwd(), ".env"), "utf8");
+    for (const raw of text.split(/\r?\n/)) {
+      const line = raw.trim();
+      if (!line || line.startsWith("#")) continue;
+      const eq = line.indexOf("=");
+      if (eq <= 0) continue;
+      const key = line.slice(0, eq).trim();
+      if (!key || process.env[key] != null) continue;
+      let value = line.slice(eq + 1).trim();
+      if (
+        (value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'"))
+      ) {
+        value = value.slice(1, -1);
+      }
+      process.env[key] = value;
+    }
+  } catch {
+    // .env optional when vars already exported
+  }
+}
+
 function getConfig() {
   const apiKey = process.env.YANDEX_SEARCH_API_KEY?.trim();
   const folderId = (
@@ -423,48 +548,96 @@ async function topRequests(config, phrase, numPhrases = 50) {
   return body;
 }
 
+/**
+ * Primary taxonomy for CSV.
+ * Order: negative → informational → consulting → integration → implementation → problem → technology → solution.
+ */
 function classifyIntent(phrase, source = "popular") {
   const p = phrase.toLowerCase();
 
   if (IRRELEVANT.some((token) => p.includes(token))) {
-    return "irrelevant";
+    return "negative";
   }
 
   if (!isRelevantPhrase(phrase, source)) {
-    return "irrelevant";
+    return "negative";
   }
 
   if (PRODUCT_1C.some((token) => p.includes(token))) {
-    return "product_1c";
+    return "negative";
   }
 
   if (INFORMATIONAL.some((token) => p.includes(token))) {
     return "informational";
   }
 
-  if (HIGH_COMMERCIAL.some((token) => p.includes(token))) {
-    return "commercial_high";
-  }
+  const isConsulting = hasAny(p, CONSULTING_TOKENS);
+  const isIntegration = hasAny(p, INTEGRATION_TOKENS);
+  const isImplementation = hasAny(p, IMPLEMENTATION_TOKENS);
+  const isProblem = hasAny(p, PROBLEM_TOKENS);
+  const isTech = hasAny(p, TECHNOLOGY_TOKENS);
+  const isSolution = hasAny(p, SOLUTION_TOKENS);
 
-  if (MEDIUM_COMMERCIAL.some((token) => p.includes(token))) {
-    return "commercial_medium";
+  // Prefer внедрение/интеграция over bare консалтинг when both present
+  if (isIntegration && (isImplementation || isTech || isSolution)) {
+    return "integration_high";
+  }
+  if (isIntegration && !isConsulting) {
+    return "integration_high";
+  }
+  if (isImplementation && !isConsulting) {
+    return "implementation_high";
+  }
+  if (isConsulting && (isImplementation || isIntegration)) {
+    // «консультация по внедрению crm» → consulting still, but marked high
+    return "consulting_high";
+  }
+  if (isConsulting) {
+    return "consulting_high";
+  }
+  if (isImplementation) {
+    return "implementation_high";
+  }
+  if (isProblem) {
+    return "problem_aware";
+  }
+  if (isTech && !isSolution) {
+    return "technology_specific";
+  }
+  if (isTech) {
+    return "technology_specific";
+  }
+  if (isSolution) {
+    return "solution_aware";
   }
 
   return "informational";
 }
 
+/** Map new taxonomy → legacy intent labels (backward compat). */
+function toLegacyIntent(intent, phrase = "") {
+  const p = phrase.toLowerCase();
+  if (intent === "negative") {
+    if (PRODUCT_1C.some((token) => p.includes(token))) return "product_1c";
+    return "irrelevant";
+  }
+  if (intent === "informational") return "informational";
+  if (["consulting_high", "implementation_high", "integration_high"].includes(intent)) {
+    return "commercial_high";
+  }
+  if (["problem_aware", "solution_aware", "technology_specific"].includes(intent)) {
+    return "commercial_medium";
+  }
+  // pass-through if already legacy
+  return intent;
+}
+
 function intentLabel(intent) {
-  return {
-    commercial_high: "Коммерческий (высокий)",
-    commercial_medium: "Коммерческий (средний)",
-    informational: "Информационный",
-    product_1c: "Продукт 1С (не услуга)",
-    irrelevant: "Нерелевантный (шум)",
-  }[intent];
+  return TAXONOMY_LABELS[intent] || intent;
 }
 
 function serviceFit(intent, cluster) {
-  if (intent === "irrelevant" || intent === "product_1c") return "skip";
+  if (intent === "negative" || intent === "irrelevant" || intent === "product_1c") return "skip";
   if (intent === "informational") return "blog";
 
   const map = {
@@ -481,32 +654,61 @@ function serviceFit(intent, cluster) {
     "ai-corporate": "enterprise-ai-assistant",
     "ai-tech": "ai-discovery-roadmap",
     claude: "business-process-automation",
+    consulting: "ai-discovery-roadmap",
+    integration: "business-process-automation",
   };
 
   return map[cluster] || "ai-discovery-roadmap";
 }
 
+function expandWithModifiers(seeds, enabled) {
+  if (!enabled) return seeds;
+  const prefixMods = new Set(["заказать"]);
+  const out = [];
+  const seen = new Set();
+  for (const seed of seeds) {
+    const base = seed.trim();
+    if (!base) continue;
+    const key0 = base.toLowerCase();
+    if (!seen.has(key0)) {
+      seen.add(key0);
+      out.push(base);
+    }
+    for (const mod of BUYER_MODIFIERS) {
+      if (base.toLowerCase().includes(mod.toLowerCase())) continue;
+      const combo = prefixMods.has(mod) ? `${mod} ${base}` : `${base} ${mod}`;
+      const key = combo.toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push(combo);
+    }
+  }
+  return out;
+}
+
 async function readSeeds(args) {
   const inline = args.find((arg) => arg.startsWith("--seeds="));
+  let seeds;
   if (inline) {
-    return inline
+    seeds = inline
       .slice("--seeds=".length)
       .split(",")
       .map((value) => value.trim())
       .filter(Boolean);
+  } else {
+    const fileArg = args.find((arg) => arg.startsWith("--file="));
+    if (fileArg) {
+      const text = await readFile(fileArg.slice("--file=".length), "utf8");
+      seeds = text
+        .split(/\r?\n/)
+        .map((line) => line.trim())
+        .filter((line) => line && !line.startsWith("#"));
+    } else {
+      seeds = [...DEFAULT_SEEDS];
+    }
   }
 
-  const fileArg = args.find((arg) => arg.startsWith("--file="));
-  if (fileArg) {
-    const { readFile } = await import("node:fs/promises");
-    const text = await readFile(fileArg.slice("--file=".length), "utf8");
-    return text
-      .split(/\r?\n/)
-      .map((line) => line.trim())
-      .filter((line) => line && !line.startsWith("#"));
-  }
-
-  return DEFAULT_SEEDS;
+  return expandWithModifiers(seeds, args.includes("--with-modifiers"));
 }
 
 function csvEscape(value) {
@@ -524,6 +726,7 @@ function toCsv(rows) {
     "cluster",
     "intent",
     "intent_label",
+    "intent_legacy",
     "service_fit",
     "priority",
   ];
@@ -538,6 +741,7 @@ function toCsv(rows) {
         row.cluster,
         row.intent,
         row.intentLabel,
+        row.intentLegacy,
         row.serviceFit,
         row.priority,
       ]
@@ -550,9 +754,17 @@ function toCsv(rows) {
 
 function priorityScore(row) {
   const intentWeight = {
+    implementation_high: 1100,
+    integration_high: 1050,
+    consulting_high: 900,
+    problem_aware: 700,
+    solution_aware: 550,
+    technology_specific: 500,
+    informational: 100,
+    negative: 0,
+    // legacy
     commercial_high: 1000,
     commercial_medium: 500,
-    informational: 100,
     product_1c: 10,
     irrelevant: 0,
   };
@@ -561,19 +773,44 @@ function priorityScore(row) {
 }
 
 function priorityLabel(score, intent) {
-  if (intent === "irrelevant" || intent === "product_1c") return "P0-skip";
+  if (intent === "negative" || intent === "irrelevant" || intent === "product_1c") return "P0-skip";
+  if (intent === "implementation_high" && score > 1200) return "P1-landing";
+  if (intent === "integration_high" && score > 1200) return "P1-landing";
+  if (["implementation_high", "integration_high"].includes(intent)) return "P2-landing/ads";
+  if (intent === "consulting_high" && score > 1100) return "P2-landing/ads";
+  if (intent === "consulting_high") return "P3-seo";
+  if (intent === "problem_aware" && score > 800) return "P2-landing/ads";
+  if (intent === "problem_aware") return "P3-seo";
+  if (["solution_aware", "technology_specific", "commercial_high"].includes(intent) && score > 700) {
+    return "P2-landing/ads";
+  }
+  if (["solution_aware", "technology_specific", "commercial_medium"].includes(intent)) return "P3-seo";
   if (intent === "commercial_high" && score > 1200) return "P1-landing";
   if (intent === "commercial_high") return "P2-landing/ads";
-  if (intent === "commercial_medium" && score > 700) return "P2-landing/ads";
-  if (intent === "commercial_medium") return "P3-seo";
   return "P4-blog";
 }
 
 async function loadFromJson(path) {
-  const { readFile } = await import("node:fs/promises");
   const payload = JSON.parse(await readFile(path, "utf8"));
   if (Array.isArray(payload)) return payload;
   return payload.seeds || [];
+}
+
+function buildRow(phrase, count, source, seed, cluster, seedTotal) {
+  const intent = classifyIntent(phrase, source);
+  return {
+    phrase,
+    count,
+    source,
+    seed,
+    cluster,
+    clusterLabel: SEED_CLUSTERS[cluster] || cluster,
+    intent,
+    intentLabel: intentLabel(intent),
+    intentLegacy: toLegacyIntent(intent, phrase),
+    serviceFit: serviceFit(intent, cluster),
+    seedTotal,
+  };
 }
 
 function ingestCachedSeed(deduped, entry, minCount) {
@@ -587,22 +824,10 @@ function ingestCachedSeed(deduped, entry, minCount) {
     if (!phrase || count < minCount) return;
 
     const key = phrase.toLowerCase();
-    const intent = classifyIntent(phrase, source);
     const existing = deduped.get(key);
     if (existing && existing.count >= count) return;
 
-    deduped.set(key, {
-      phrase,
-      count,
-      source,
-      seed,
-      cluster,
-      clusterLabel: SEED_CLUSTERS[cluster] || cluster,
-      intent,
-      intentLabel: intentLabel(intent),
-      serviceFit: serviceFit(intent, cluster),
-      seedTotal,
-    });
+    deduped.set(key, buildRow(phrase, count, source, seed, cluster, seedTotal));
   };
 
   for (const item of entry.results || []) push(item, "popular");
@@ -610,6 +835,8 @@ function ingestCachedSeed(deduped, entry, minCount) {
 }
 
 async function main() {
+  await loadEnvFile();
+
   const args = process.argv.slice(2);
   const json = args.includes("--json");
   const csv = args.includes("--csv");
@@ -617,46 +844,42 @@ async function main() {
   const numPhrases = Number(args.find((arg) => arg.startsWith("--num="))?.slice(6) || 50);
   const outArg = args.find((arg) => arg.startsWith("--out="));
   const fromJsonArg = args.find((arg) => arg.startsWith("--from-json="));
+  const withModifiers = args.includes("--with-modifiers");
   const deduped = new Map();
+  let seedsUsed = [];
 
   if (fromJsonArg) {
     const cached = await loadFromJson(fromJsonArg.slice("--from-json=".length));
     for (const entry of cached) ingestCachedSeed(deduped, entry, minCount);
   } else {
     const config = getConfig();
-    const seeds = await readSeeds(args);
+    seedsUsed = await readSeeds(args);
 
-    for (const seed of seeds) {
-      const cluster = SEED_TO_CLUSTER[seed] || "other";
+    if (withModifiers) {
+      console.error(
+        `Seeds after --with-modifiers: ${seedsUsed.length} (base×modifiers). API budget caution.`,
+      );
+    }
+
+    for (const seed of seedsUsed) {
+      const cluster = SEED_TO_CLUSTER[seed] || inferCluster(seed);
       const data = await topRequests(config, seed, numPhrases);
       const seedTotal = Number(data.totalCount || 0);
 
       const push = (item, source) => {
-      const phrase = item.phrase?.trim();
-      const count = Number(item.count || 0);
-      if (!phrase || count < minCount) return;
+        const phrase = item.phrase?.trim();
+        const count = Number(item.count || 0);
+        if (!phrase || count < minCount) return;
 
-      const key = phrase.toLowerCase();
-      const intent = classifyIntent(phrase, source);
-      const existing = deduped.get(key);
-      if (existing && existing.count >= count) return;
+        const key = phrase.toLowerCase();
+        const existing = deduped.get(key);
+        if (existing && existing.count >= count) return;
 
-      deduped.set(key, {
-        phrase,
-        count,
-        source,
-        seed,
-        cluster,
-        clusterLabel: SEED_CLUSTERS[cluster] || cluster,
-        intent,
-        intentLabel: intentLabel(intent),
-        serviceFit: serviceFit(intent, cluster),
-        seedTotal,
-      });
-    };
+        deduped.set(key, buildRow(phrase, count, source, seed, cluster, seedTotal));
+      };
 
-    for (const item of data.results || []) push(item, "popular");
-    for (const item of data.associations || []) push(item, "similar");
+      for (const item of data.results || []) push(item, "popular");
+      for (const item of data.associations || []) push(item, "similar");
 
       await sleep(120);
     }
@@ -664,7 +887,7 @@ async function main() {
 
   const seedCount = fromJsonArg
     ? new Set([...deduped.values()].map((row) => row.seed)).size
-    : (await readSeeds(args)).length;
+    : seedsUsed.length || (await readSeeds(args)).length;
 
   const rows = [...deduped.values()]
     .map((row) => {
@@ -673,7 +896,7 @@ async function main() {
     })
     .sort((a, b) => b.score - a.score);
 
-  const actionable = rows.filter((row) => !["irrelevant", "product_1c"].includes(row.intent));
+  const actionable = rows.filter((row) => !["negative", "irrelevant", "product_1c"].includes(row.intent));
 
   if (csv || outArg) {
     const outPath = resolve(outArg ? outArg.slice("--out=".length) : "data/wordstat-intent.csv");
@@ -687,8 +910,12 @@ async function main() {
     return;
   }
 
-  console.log("Wordstat: популярные + похожие | intent | service fit\n");
-  console.log(`Seeds: ${seedCount} | Фраз: ${rows.length} | Actionable: ${actionable.length} | min=${minCount}\n`);
+  console.log("Wordstat: популярные + похожие | taxonomy | service fit\n");
+  console.log(
+    `Seeds: ${seedCount} | Фраз: ${rows.length} | Actionable: ${actionable.length} | min=${minCount}${
+      withModifiers ? " | modifiers=on" : ""
+    }\n`,
+  );
 
   const byIntent = {};
   for (const row of actionable) {
@@ -706,9 +933,10 @@ async function main() {
     );
   }
 
-  console.log("\n=== TOP SIMILAR (похожие) с коммерческим intent ===");
+  const highIntents = ["implementation_high", "integration_high", "consulting_high", "commercial_high"];
+  console.log("\n=== TOP SIMILAR (похожие) high-intent ===");
   for (const row of actionable
-    .filter((r) => r.source === "similar" && ["commercial_high", "commercial_medium"].includes(r.intent))
+    .filter((r) => r.source === "similar" && highIntents.includes(r.intent))
     .slice(0, 25)) {
     console.log(
       `${String(row.count).padStart(6)}  ${row.priority.padEnd(12)}  ${row.phrase}  (${row.intentLabel})`,
@@ -717,8 +945,21 @@ async function main() {
 
   console.log("\n=== TOP POPULAR (популярные) ===");
   for (const row of actionable.filter((r) => r.source === "popular").slice(0, 25)) {
-    console.log(`${String(row.count).padStart(6)}  ${row.phrase}`);
+    console.log(`${String(row.count).padStart(6)}  ${row.phrase}  (${row.intent})`);
   }
+}
+
+function inferCluster(seed) {
+  const p = seed.toLowerCase();
+  if (p.includes("битрикс") || p.includes("bitrix")) return "bitrix24";
+  if (p.includes("amocrm") || p.includes("амо")) return "amocrm";
+  if (p.includes("1с") || p.includes("1c")) return "1c";
+  if (p.includes("консалт") || p.includes("аудит") || p.includes("оптимизац")) return "consulting";
+  if (p.includes("интеграц")) return "integration";
+  if (p.includes("crm")) return "crm";
+  if (p.includes("продаж") || p.includes("заяв")) return "automation-sales";
+  if (p.includes("документ")) return "automation-documents";
+  return "automation-processes";
 }
 
 main().catch((error) => {

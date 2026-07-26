@@ -1,0 +1,159 @@
+{
+  "date": "2026-07-26",
+  "source": "data/wordstat-top20.csv",
+  "seedsFile": "data/wordstat-seeds-top20.txt",
+  "rule": "Prefer внедрение/интеграция/problem over bare консалтинг. Skip high-volume noise and tech-brand info queries.",
+  "runNote": "Top 20 only, no --with-modifiers. Buyer/problem/Bitrix/amo/1C clusters left for later runs.",
+  "skip": {
+    "consultingSecondary": {
+      "reason": "Консалтинг слабее внедрения; exact «консалтинг по автоматизации» / «консультация по внедрению crm» в popular почти нулевые рядом с внедрением CRM/Bitrix.",
+      "phrases": [
+        "консалтинг по автоматизации бизнеса",
+        "консультация по внедрению crm",
+        "интегратор crm систем"
+      ]
+    },
+    "noise": {
+      "reason": "Similar/popular шум: бренды, «что такое», вендинг, функции управления, 1c enterprise без CRM.",
+      "examples": [
+        "функции управления",
+        "bitrix24 ru",
+        "ооо интеграция",
+        "интеграция простыми словами",
+        "1c enterprise",
+        "bitrix24 это",
+        "amocrm что это",
+        "купить автомат"
+      ]
+    }
+  },
+  "keep": [
+    {
+      "phrase": "автоматизация бизнеса",
+      "count": 9920,
+      "intent": "solution_aware",
+      "action": "keywords + hub /automation; already on company-automation"
+    },
+    {
+      "phrase": "автоматизация бизнес процессов",
+      "count": 4543,
+      "intent": "solution_aware",
+      "action": "existing /automation/* + reduce-manual-work"
+    },
+    {
+      "phrase": "интеграция информационных систем",
+      "count": 2246,
+      "intent": "integration_high",
+      "action": "keywords on /automation/cross-system-sync (added)"
+    },
+    {
+      "phrase": "интеграция битрикс24",
+      "count": 1993,
+      "intent": "integration_high",
+      "action": "keywords on /integrations/bitrix24-ai (added); hub /integrations/bitrix24"
+    },
+    {
+      "phrase": "внедрение crm",
+      "count": 1293,
+      "intent": "implementation_high",
+      "action": "keywords on /integrations/crm-automation (added); /integrations/crm"
+    },
+    {
+      "phrase": "интеграция с crm",
+      "count": 1138,
+      "intent": "integration_high",
+      "action": "keywords on /integrations/crm-automation (added)"
+    },
+    {
+      "phrase": "amocrm интеграции",
+      "count": 735,
+      "intent": "integration_high",
+      "action": "keywords on /integrations/amocrm-ai (added); /integrations/amocrm"
+    },
+    {
+      "phrase": "автоматизация бизнес процессов внедрение",
+      "count": 683,
+      "intent": "implementation_high",
+      "action": "FAQ/keywords on /automation/company-automation"
+    },
+    {
+      "phrase": "аудит бизнес процессов",
+      "count": 570,
+      "intent": "consulting_high",
+      "action": "existing /automation/business-process-audit — keep, secondary CTA"
+    },
+    {
+      "phrase": "внедрение битрикс24",
+      "count": 560,
+      "intent": "implementation_high",
+      "action": "keywords on /integrations/bitrix24-ai (added)"
+    },
+    {
+      "phrase": "внедрение crm системы",
+      "count": 543,
+      "intent": "implementation_high",
+      "action": "keywords on /integrations/crm-automation (added)"
+    },
+    {
+      "phrase": "интеграция бизнес систем",
+      "count": 434,
+      "intent": "integration_high",
+      "action": "keywords on /automation/cross-system-sync (added)"
+    },
+    {
+      "phrase": "интеграция crm систем",
+      "count": 375,
+      "intent": "integration_high",
+      "action": "keywords on /integrations/crm-automation (added)"
+    },
+    {
+      "phrase": "автоматизация отдела продаж",
+      "count": 123,
+      "intent": "solution_aware",
+      "action": "existing /automation/sales-department"
+    },
+    {
+      "phrase": "интеграция 1с и crm",
+      "count": 72,
+      "intent": "integration_high",
+      "action": "keywords on /integrations/1c-crm-sync (added); /integrations/crm-1c-automation"
+    }
+  ],
+  "gapsNoted": [
+    {
+      "phrase": "оптимизация бизнес процессов",
+      "count": 2967,
+      "note": "Высокий volume, consulting_high. Не плодить landing — держать на audit/process-audit, CTA → внедрение."
+    },
+    {
+      "phrase": "настройка crm под ключ",
+      "count": "low/near-zero exact in this run",
+      "note": "Buyer seed; keyword added preemptively. Next: --file=buyer-intent or --with-modifiers на CRM seeds."
+    },
+    {
+      "phrase": "внедрение автоматизации бизнеса",
+      "count": "exact 0 in popular",
+      "note": "Слабый seed; брать «автоматизация бизнес процессов внедрение» (683)."
+    }
+  ],
+  "nextRuns": [
+    "data/wordstat-seeds-buyer-intent.txt (без полного --with-modifiers на 20×15)",
+    "data/wordstat-seeds-hot-shortlist.txt",
+    "data/wordstat-seeds-bitrix24.txt + amocrm + 1c по отдельности",
+    "data/wordstat-seeds-problem.txt"
+  ],
+  "cli": {
+    "taxonomy": [
+      "consulting_high",
+      "implementation_high",
+      "integration_high",
+      "problem_aware",
+      "solution_aware",
+      "technology_specific",
+      "informational",
+      "negative"
+    ],
+    "legacyColumn": "intent_legacy (commercial_high|commercial_medium|informational|irrelevant|product_1c)",
+    "modifiersFlag": "--with-modifiers"
+  }
+}

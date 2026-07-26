@@ -490,6 +490,12 @@ export const CATALOG_LANDING_SPECS_INTENT: LandingSpec[] = [
       "комплексная автоматизация crm",
       "внедрение crm с искусственным интеллектом",
       "автоматизация воронки продаж",
+      "внедрение crm",
+      "внедрение crm системы",
+      "интеграция crm",
+      "интеграция с crm",
+      "интеграция crm систем",
+      "настройка crm под ключ",
     ],
     related: [
       { href: "/integrations/crm", labelRu: "Внедрение CRM", labelEn: "CRM implementation" },
