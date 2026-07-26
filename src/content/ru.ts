@@ -182,7 +182,8 @@ const ru = {
     proofTitle: "Что уже измерили на пилотах",
     casesLabel: "Кейсы",
     casesTitle: "Внедрения с измеримым эффектом",
-    casesSubtitle: "Было → стало: production-сценарии с методологией измерения — включая живую воронку Kwork → Bitrix24.",
+    casesSubtitle:
+      "Было → стало: production-сценарии с методологией измерения — включая живую воронку Kwork → Bitrix24 и независимый канал продаж параллельно с Wildberries.",
     casesCta: "Больше подробностей",
     caseBeforeLabel: "Было",
     caseAfterLabel: "Стало",

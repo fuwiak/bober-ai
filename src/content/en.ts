@@ -177,7 +177,8 @@ const en = {
     proofTitle: "What we already measured on pilots",
     casesLabel: "Case studies",
     casesTitle: "Deployments with measurable impact",
-    casesSubtitle: "Before → after: production scenarios with a measurement method — including a live Kwork → Bitrix24 funnel.",
+    casesSubtitle:
+      "Before → after: production scenarios with a measurement method — including a live Kwork → Bitrix24 funnel and an independent sales channel alongside Wildberries.",
     casesCta: "More details",
     caseBeforeLabel: "Before",
     caseAfterLabel: "After",

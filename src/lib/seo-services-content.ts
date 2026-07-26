@@ -328,7 +328,12 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       { href: "/integrations/amocrm", label: "amoCRM" },
       { href: "/pricing", label: "стоимость внедрения" },
     ],
-    caseStudySlugs: ["amocrm-website-integration", "kp-llm-automation", "crm-1c-sync"],
+    caseStudySlugs: [
+      "wildberries-independent-sales-channel",
+      "amocrm-website-integration",
+      "kp-llm-automation",
+      "crm-1c-sync",
+    ],
   },
 
   "ai-discovery-roadmap": {
@@ -1862,7 +1867,12 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
       { href: "/integrations/amocrm", label: "amoCRM" },
       { href: "/pricing", label: "Pricing" },
     ],
-    caseStudySlugs: ["amocrm-website-integration", "kp-llm-automation", "crm-1c-sync"],
+    caseStudySlugs: [
+      "wildberries-independent-sales-channel",
+      "amocrm-website-integration",
+      "kp-llm-automation",
+      "crm-1c-sync",
+    ],
   },
 
   "ai-discovery-roadmap": {

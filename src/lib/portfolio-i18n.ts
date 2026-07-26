@@ -121,6 +121,46 @@ export const PORTFOLIO_EN: Record<string, PortfolioEnCopy> = {
     result:
       "A live CRM funnel: orders (including ML/Python) show on the board with stages and amounts; the team works in Bitrix24 instead of copying from the marketplace.",
   },
+  "wildberries-independent-sales-channel": {
+    title: "Independent sales channel alongside Wildberries",
+    subtitle: "Store/catalog + Bitrix24/amoCRM + 1C/MoySklad sync",
+    seoTitle:
+      "Owned sales channel for Wildberries sellers: store, CRM and order automation",
+    category: "Sales automation",
+    metric: "WB → owned channel: customer base and repeats stay with the seller",
+    metricMethod:
+      "Typical production pack contour: storefront, CRM, price/stock/order sync, catalog AI",
+    role: "Architecture and launch of an owned sales channel next to the marketplace",
+    scope:
+      "Checkout storefront, catalog import from WB/1C/MoySklad, Bitrix24 or amoCRM, payments and delivery, Telegram/VK/email, AI assistant, marketplace vs owned-channel analytics",
+    duration: "Working contour in 14–30 days",
+    architecture:
+      "Wildberries API ↔ middleware (products, prices, stock, orders) ↔ 1C/MoySklad ↔ store/catalog ↔ Bitrix24/amoCRM ↔ messengers and AI",
+    processSteps: [
+      "Audit assortment, ledger, CRM and FBO/FBS scheme",
+      "Launch storefront or catalog with checkout",
+      "Import products and sync prices and stock",
+      "Bitrix24 or amoCRM as the order and inbox hub",
+      "Payments, delivery, Telegram / VK / email and ads to the owned channel",
+      "Product AI assistant and dashboard: marketplace vs owned channel",
+    ],
+    productionNotes: [
+      "Wildberries stays an acquisition channel — no need to leave the marketplace",
+      "One source of prices and stock: 1C, MoySklad or WB export",
+      "Order deduplication on re-sync",
+      "Customer base and purchase history stay with the seller",
+      "Analytics for off-marketplace order share and repeats",
+    ],
+    whyCustom:
+      "A seller landing page alone does not close orders, stock or CRM. We assemble CRM, catalog automation and Sales AI so repeats run without marketplace fees.",
+    priceLabel: "from €3,000",
+    description:
+      "Wildberries sellers: buyer base and repeats stay on the marketplace; prices and stock drift across WB, 1C/MoySklad and spreadsheets; ads send traffic to marketplace cards, not the seller.",
+    solution:
+      "Owned store or catalog with checkout + Bitrix24/amoCRM + product/price/stock sync + payments/delivery + Telegram/VK/email + catalog AI. WB stays traffic; orders and customers live in the seller’s contour.",
+    result:
+      "Working owned channel in 14–30 days: one CRM, automated order handling, repeats without marketplace fees, and a backup if the platform fails or restricts the account.",
+  },
   "elia-suite": {
     title: "ELIA Suite — isolated workspaces",
     category: "Sales automation",

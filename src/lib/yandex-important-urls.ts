@@ -41,6 +41,7 @@ export const YANDEX_IMPORTANT_PATHS = [
   "/solutions/knowledge-base",
   "/ai/private-llm",
   "/portfolio/bitrix24-kwork-crm",
+  "/portfolio/wildberries-independent-sales-channel",
   "/portfolio/invoice-processing-pipeline",
   // Ключевые услуги (коммерческий интент)
   "/services/business-process-automation",
