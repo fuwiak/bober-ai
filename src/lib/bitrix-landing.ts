@@ -139,16 +139,121 @@ export const BITRIX_CASE_KWORK = {
     "Канбан сделок Bitrix24: заказы с Kwork в единой воронке со стадиями и суммами",
 } as const;
 
-/** SEO-ключи лендинга: явные пары Битрикс24 + AI. */
+/**
+ * Точные Wordstat-фразы = title услуг в кабинете Яндекс Услуг
+ * (спека «Настройка Битрикс»). Порядок — по частоте.
+ */
+export const BITRIX_WORDSTAT_SERVICES = [
+  {
+    id: "ws-doc-automation",
+    slug: "avtomatizaciya-dokumentov",
+    title: "Автоматизация документов",
+    wordstat: 4771,
+    priceFrom: 24000,
+    priceLabel: "от 24 000 ₽",
+    description:
+      "Автоматизация документов: шаблоны, генерация из сделки Bitrix24, согласования и PDF. Меньше ручного копипаста.",
+  },
+  {
+    id: "ws-bitrix-setup",
+    slug: "nastrojka-bitrix24",
+    title: "Настройка Bitrix24",
+    wordstat: 1377,
+    priceFrom: 18000,
+    priceLabel: "от 18 000 ₽",
+    description:
+      "Настройка Bitrix24: воронка, поля, права, базовые роботы под отдел продаж. Фиксированная смета.",
+  },
+  {
+    id: "ws-bitrix-automation",
+    slug: "avtomatizaciya-bitrix24",
+    title: "Автоматизация Bitrix24",
+    wordstat: 300,
+    priceFrom: 20000,
+    priceLabel: "от 20 000 ₽",
+    description:
+      "Автоматизация Bitrix24: роботы, триггеры, задачи и уведомления по стадиям. Убираем рутину менеджеров.",
+  },
+  {
+    id: "ws-bitrix-1c",
+    slug: "integraciya-bitrix24-1c",
+    title: "Интеграция Bitrix24 с 1С",
+    wordstat: 162,
+    priceFrom: 35000,
+    priceLabel: "от 35 000 ₽",
+    description:
+      "Интеграция Bitrix24 с 1С: заказы, контрагенты, статусы без ручного переноса. Маппинг, тест, регламент.",
+  },
+  {
+    id: "ws-kp-gen",
+    slug: "generaciya-kommercheskogo-predlozheniya",
+    title: "Генерация коммерческого предложения",
+    wordstat: 90,
+    priceFrom: 20000,
+    priceLabel: "от 20 000 ₽",
+    description:
+      "Генерация коммерческого предложения из Bitrix24: каталог, условия, PDF. Типовое КП за минуты.",
+  },
+  {
+    id: "ws-bitrix-ai",
+    slug: "bitrix24-ai",
+    title: "Bitrix24 AI",
+    wordstat: 79,
+    priceFrom: 28000,
+    priceLabel: "от 28 000 ₽",
+    description:
+      "Bitrix24 AI: ассистент в CRM — черновики писем, суммаризация сделки, подсказки менеджеру.",
+  },
+  {
+    id: "ws-kp-auto",
+    slug: "avtomatizaciya-kommercheskogo-predlozheniya",
+    title: "Автоматизация коммерческого предложения",
+    wordstat: 73,
+    priceFrom: 22000,
+    priceLabel: "от 22 000 ₽",
+    description:
+      "Автоматизация коммерческого предложения в Bitrix24: прайс → КП → отправка из сделки.",
+  },
+  {
+    id: "ws-telephony",
+    slug: "nastrojka-telefonii-bitrix24",
+    title: "Настройка телефонии Bitrix24",
+    wordstat: 59,
+    priceFrom: 18000,
+    priceLabel: "от 18 000 ₽",
+    description:
+      "Настройка телефонии Bitrix24: запись звонков, привязка к сделке, пропущенные и задачи.",
+  },
+  {
+    id: "ws-ai-assistant",
+    slug: "vnedrenie-ai-assistenta",
+    title: "Внедрение AI-ассистента",
+    wordstat: 46,
+    priceFrom: 32000,
+    priceLabel: "от 32 000 ₽",
+    description:
+      "Внедрение AI-ассистента: база знаний, ответы в чате или CRM Bitrix24, контроль качества.",
+  },
+  {
+    id: "ws-rag",
+    slug: "razrabotka-rag-sistem",
+    title: "Разработка RAG-систем",
+    wordstat: 39,
+    priceFrom: 45000,
+    priceLabel: "от 45 000 ₽",
+    description:
+      "Разработка RAG-систем: поиск по документам со ссылкой на источник, связка с Bitrix24.",
+  },
+] as const;
+
+/** SEO-ключи лендинга: сначала точные Wordstat, затем пары Битрикс24 + AI. */
 export const BITRIX_LANDING_KEYWORDS = [
+  ...BITRIX_WORDSTAT_SERVICES.map((s) => s.title),
   "внедрение битрикс24 с ai",
   "ai-автоматизация битрикс24",
   "ai-аналитика битрикс24",
   "битрикс24 + локальный llm",
   "интеграция битрикс24 и ai для продаж",
-  "битрикс24 ai",
-  "автоматизация битрикс24",
-  "интеграция битрикс24 1с",
   "ai ассистент crm",
   "автоматизация amocrm",
   "bitrixgpt",
@@ -273,4 +378,4 @@ export const BITRIX_PACKAGES: BitrixPackage[] = [
 ];
 
 export const BITRIX_SERVICES_SUMMARY =
-  "Внедрение Битрикс24 с AI, AI-автоматизация и AI-аналитика, AI-контур отдела продаж (телефония + CRM + AI), MCP для BitrixGPT и внешних AI, интеграция с 1С / МойСклад / телефонией / мессенджерами, Битрикс24 + локальный LLM, сопровождение. Участие в партнерской программе 1С-Битрикс · ID 28909898.";
+  "Настройка Bitrix24, автоматизация документов, автоматизация Bitrix24, интеграция Bitrix24 с 1С, генерация и автоматизация коммерческого предложения, Bitrix24 AI, настройка телефонии Bitrix24, внедрение AI-ассистента, разработка RAG-систем. Плюс внедрение Битрикс24 с AI, AI-контур отдела продаж, MCP, локальный LLM. Участие в партнерской программе 1С-Битрикс · ID 28909898.";

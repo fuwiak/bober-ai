@@ -1,4 +1,4 @@
-import { BITRIX_LANDING_ABOUT, BITRIX_PACKAGES } from "@/lib/bitrix-landing";
+import { BITRIX_LANDING_ABOUT, BITRIX_PACKAGES, BITRIX_WORDSTAT_SERVICES } from "@/lib/bitrix-landing";
 import {
   BITRIX_SITE_URL,
   CONTACT_EMAIL,
@@ -118,17 +118,30 @@ ${offerBlocks}
 const PARTNERS_ABOUT =
   "White-label AI-разработка для агентств и software house: архитектура, backend, LLM и deployment под вашим брендом. Клиент и маржа остаются у партнёра.";
 
-const BITRIX_OFFERS: MicrositeOffer[] = BITRIX_PACKAGES.map((pkg) => ({
-  id: pkg.id,
-  slug: pkg.slug,
-  title: pkg.title,
-  description: pkg.description,
-  about: BITRIX_LANDING_ABOUT,
-  salesNotes: pkg.salesNotes,
-  price: pkg.priceFrom,
-  picture: pkg.picture,
-  conversion: pkg.conversion,
-}));
+const BITRIX_OFFERS: MicrositeOffer[] = [
+  ...BITRIX_WORDSTAT_SERVICES.map((s) => ({
+    id: s.id,
+    slug: s.slug,
+    title: s.title,
+    description: s.description,
+    about: BITRIX_LANDING_ABOUT,
+    salesNotes: `${s.title} · ${s.priceLabel} · Москва и удалённо`,
+    price: s.priceFrom,
+    picture: "/stock/office-tower.jpg",
+    conversion: 94,
+  })),
+  ...BITRIX_PACKAGES.map((pkg) => ({
+    id: pkg.id,
+    slug: pkg.slug,
+    title: pkg.title,
+    description: pkg.description,
+    about: BITRIX_LANDING_ABOUT,
+    salesNotes: pkg.salesNotes,
+    price: pkg.priceFrom,
+    picture: pkg.picture,
+    conversion: pkg.conversion,
+  })),
+];
 
 const PARTNERS_OFFERS: MicrositeOffer[] = [
   {
@@ -195,7 +208,7 @@ export function getBitrixFeedXml(now = new Date()) {
       siteUrl: BITRIX_SITE_URL,
       shopName: `${SITE_NAME} — Битрикс24`,
       shopDescription:
-        "Внедрение Битрикс24 с AI, AI-автоматизация и AI-аналитика Битрикс24, интеграция Битрикс24 и AI для продаж, Битрикс24 + локальный LLM. Пилот от 300 000 ₽.",
+        "Настройка Bitrix24, автоматизация документов, автоматизация Bitrix24, интеграция Bitrix24 с 1С, Bitrix24 AI, генерация коммерческого предложения, внедрение AI-ассистента, разработка RAG-систем. Пилот и пакеты внедрения от 18 000 ₽.",
       orderPath: "/#contact",
       offers: BITRIX_OFFERS,
     },

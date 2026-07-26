@@ -14,6 +14,7 @@ import {
   BITRIX_PARTNER_PROGRAM,
   BITRIX_SALES_LOOP,
   BITRIX_SERVICES_SUMMARY,
+  BITRIX_WORDSTAT_SERVICES,
 } from "@/lib/bitrix-landing";
 import { LEGAL_ENTITY, LEGAL_ROUTES, formatLegalRequisitesLine } from "@/lib/legal";
 import { webPageJsonLd } from "@/lib/seo";
@@ -39,9 +40,9 @@ const PRIVACY_URL = `${SITE_URL.replace(/\/$/, "")}${LEGAL_ROUTES.privacyPolicy}
 const TERMS_URL = `${SITE_URL.replace(/\/$/, "")}${LEGAL_ROUTES.terms}`;
 
 export const metadata: Metadata = {
-  title: "Внедрение Битрикс24 с AI — автоматизация и аналитика под ключ",
+  title: "Настройка Bitrix24 — автоматизация документов, AI и интеграция с 1С",
   description:
-    "Внедрение Битрикс24 с AI, AI-автоматизация и AI-аналитика Битрикс24, интеграция Битрикс24 и AI для продаж, Битрикс24 + локальный LLM. Пилот от 300 000 ₽.",
+    "Настройка Bitrix24, автоматизация документов, автоматизация Bitrix24, интеграция Bitrix24 с 1С, Bitrix24 AI, генерация коммерческого предложения, внедрение AI-ассистента, разработка RAG-систем. Москва и удалённо.",
   keywords: [...BITRIX_LANDING_KEYWORDS],
   alternates: { canonical: LANDING_URL },
   robots: { index: true, follow: true },
@@ -51,9 +52,9 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     url: LANDING_URL,
     siteName: LANDING_NAME,
-    title: "Внедрение Битрикс24 с AI — автоматизация и аналитика под ключ",
+    title: "Настройка Bitrix24 — автоматизация документов и AI",
     description:
-      "Внедрение Битрикс24 с AI + AI-автоматизация, аналитика и локальный LLM. Интеграции с 1С, телефонией и мессенджерами. Пилот от 300 000 ₽.",
+      "Настройка Bitrix24, автоматизация документов, Bitrix24 AI, интеграция Bitrix24 с 1С, телефония, КП и RAG. От 18 000 ₽.",
     images: [{ url: "/stock/office-tower.jpg", width: 1200, height: 630 }],
   },
 };
@@ -277,7 +278,7 @@ export default function BitrixLandingPage() {
               <Reveal>
                 <p className="hero-label">Bober AI Systems · Битрикс24</p>
                 <h1 className="section-title mt-6 max-w-3xl text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05]">
-                  Внедрение Битрикс24 с AI — автоматизация и аналитика под ключ
+                  Настройка Bitrix24 — автоматизация документов и AI
                 </h1>
                 <p className="body-copy mt-5 max-w-2xl text-lg">
                   {BITRIX_LAYER_POSITIONING.headline}: 1С, телефония, документы, КП и собственная бизнес-логика.
@@ -490,6 +491,39 @@ export default function BitrixLandingPage() {
                   Смотреть пакет MCP
                 </TrackedAnchor>
               </div>
+            </div>
+          </section>
+
+          {/* 4.4. Wordstat services — exact query titles */}
+          <section id="uslugi-wordstat" className="section-band border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
+                <span className="section-label">Услуги · Яндекс</span>
+                <h2 className="section-title mt-4 max-w-2xl">Услуги по поисковым запросам</h2>
+                <p className="body-copy mt-4 max-w-2xl">
+                  Точные названия, как в Wordstat и кабинете Яндекс Услуг — так вас находят по этим фразам.
+                </p>
+              </Reveal>
+              <ul className="mt-8 divide-y divide-hairline border-y border-hairline">
+                {BITRIX_WORDSTAT_SERVICES.map((item) => (
+                  <li
+                    key={item.id}
+                    id={item.slug}
+                    className="scroll-mt-20 py-5 sm:flex sm:items-baseline sm:justify-between sm:gap-6"
+                  >
+                    <div className="min-w-0">
+                      <h3 className="font-display text-lg text-body-strong">{item.title}</h3>
+                      <p className="body-copy mt-2 text-sm">{item.description}</p>
+                    </div>
+                    <p className="meta-label mt-3 shrink-0 text-muted sm:mt-0">{item.priceLabel}</p>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6">
+                <TrackedAnchor href="#contact" className="btn-secondary" goal="bitrix_wordstat_cta">
+                  Запросить оценку по услуге
+                </TrackedAnchor>
+              </p>
             </div>
           </section>
 

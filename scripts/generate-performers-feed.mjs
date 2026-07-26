@@ -20,7 +20,7 @@ function generateWithTsx() {
     import { writeFileSync } from "node:fs";
     import { getServiceFeedXml, materializeFeedPictures, materializeMicrositePictures } from "./src/lib/services-feed.ts";
     import { getBitrixFeedXml, getPartnersFeedXml } from "./src/lib/microsite-feeds.ts";
-    import { BITRIX_PACKAGES } from "./src/lib/bitrix-landing.ts";
+    import { BITRIX_PACKAGES, BITRIX_WORDSTAT_SERVICES } from "./src/lib/bitrix-landing.ts";
 
     const root = ${JSON.stringify(root)};
     writeFileSync(${JSON.stringify(mainOut)}, getServiceFeedXml(), "utf8");
@@ -29,6 +29,10 @@ function generateWithTsx() {
     const n = materializeFeedPictures(root);
 
     const microsite = [
+      ...BITRIX_WORDSTAT_SERVICES.map((s) => ({
+        id: s.id,
+        picture: "/stock/office-tower.jpg",
+      })),
       ...BITRIX_PACKAGES.map((pkg) => ({
         id: pkg.id,
         picture: pkg.picture.endsWith(".svg") ? "/stock/team-collab.jpg" : pkg.picture,

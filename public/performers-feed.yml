@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-25 04:53">
+<yml_catalog date="2026-07-26 03:55">
   <shop>
     <name>Bober AI Systems</name>
     <company>Bober AI Systems</company>
@@ -92,6 +92,10 @@
       <set id="crm-integration">
         <name>Интеграции CRM</name>
         <url>https://www.bober-ai.dev/services/crm-integration</url>
+      </set>
+      <set id="ai-sales-loop">
+        <name>AI-контур отдела продаж</name>
+        <url>https://www.bober-ai.dev/services/ai-sales-loop</url>
       </set>
     </sets>
     <offers>
@@ -574,6 +578,30 @@
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Двусторонние интеграции, webhooks, retry и мониторинг.</param>
+    </offer>
+    <offer id="ai-sales-loop">
+      <name>Павел Стасиньский</name>
+      <url>https://www.bober-ai.dev/services/ai-sales-loop</url>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>ai-sales-loop</set-ids>
+      <picture>https://www.bober-ai.dev/stock/offers/ai-sales-loop.jpg</picture>
+      <description>AI-контур отдела продаж</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/ai-sales-loop</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Интеграция Bitrix24 / amoCRM с телефонией и AI: квалификация лидов, саммари звонков, задачи, follow-up и отчёт об упущенных сделках.</param>
     </offer>
     </offers>
   </shop>

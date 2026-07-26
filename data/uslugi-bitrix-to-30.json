@@ -1,0 +1,187 @@
+{
+  "specializationId": "14621107-8394-44af-96e5-331a0f9dafed",
+  "specializationNote": "Настройка Битрикс — добить с 5 до 30",
+  "note": "25 услуг: точные Wordstat-title где возможно (см. data/uslugi-bitrix-wordstat-exact.json — 10 фраз 1:1 в кабинете). Без «под ключ»/«цена» в title.",
+  "wordstatSources": [
+    "data/wordstat-bitrix-uslugi.csv",
+    "data/wordstat-bitrix-templates.csv"
+  ],
+  "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=14621107-8394-44af-96e5-331a0f9dafed",
+  "services": [
+    {
+      "name": "Настройка Bitrix24",
+      "price": 18000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Настройка Bitrix24: стадии, поля, права, базовые роботы под отдел продаж. Меньше потерянных сделок и ручных напоминаний. Москва и удалённо. Фиксированная смета — от 18 000 ₽."
+    },
+    {
+      "name": "Внедрение CRM Bitrix24",
+      "price": 25000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Внедрение CRM Bitrix24: воронка, роли, импорт контактов, обучение менеджеров. Рабочий контур под ваш процесс, не «коробка как есть». Москва и удалённо. От 25 000 ₽."
+    },
+    {
+      "name": "Внедрение и настройка Bitrix24",
+      "price": 28000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Внедрение и настройка Bitrix24: аудит процессов → воронка → роботы → сдача. Критерии приёмки до старта. Москва и удалённо. Фиксированная смета от 28 000 ₽."
+    },
+    {
+      "name": "Автоматизация Bitrix24",
+      "price": 20000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Автоматизация Bitrix24: роботы, триггеры, задачи и уведомления по стадиям. Убираем рутину менеджеров. Москва и удалённо. От 20 000 ₽ за согласованный контур."
+    },
+    {
+      "name": "Автоматизация процессов в Bitrix24",
+      "price": 22000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Автоматизация процессов в Bitrix24: карта шагов, роботы, эскалации. Фокус на одном-двух узких местах с измеримым эффектом. Москва и удалённо. От 22 000 ₽."
+    },
+    {
+      "name": "Интеграция Bitrix24 с 1С",
+      "price": 35000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Интеграция Bitrix24 с 1С: заказы, контрагенты, статусы без ручного переноса. Маппинг полей, тест, регламент. Москва и удалённо. Стоимость от 35 000 ₽."
+    },
+    {
+      "name": "Автоматизация документов",
+      "price": 24000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Автоматизация документов: шаблоны, генерация из сделки Bitrix24, согласования. Меньше копипаста и ошибок в КП и договорах. Москва и удалённо. От 24 000 ₽."
+    },
+    {
+      "name": "Автоматизация коммерческого предложения",
+      "price": 22000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Автоматизация коммерческого предложения в Bitrix24: каталог → КП → PDF → сделка. Типовое КП за минуты, не за час. Москва и удалённо. От 22 000 ₽."
+    },
+    {
+      "name": "Генерация коммерческого предложения",
+      "price": 20000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Генерация коммерческого предложения из Bitrix24 с AI: черновик из карточки сделки, прайс и условия. Контроль менеджера перед отправкой. Москва и удалённо. От 20 000 ₽."
+    },
+    {
+      "name": "Автоматизация обработки PDF в Bitrix24",
+      "price": 26000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Автоматизация обработки PDF в Bitrix24: разбор входящих файлов, поля в сделку, задача менеджеру. Меньше ручного ввода. Москва и удалённо. От 26 000 ₽."
+    },
+    {
+      "name": "Автоматизация обработки заявок в Bitrix24",
+      "price": 18000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Автоматизация обработки заявок в Bitrix24: источники → лид → ответственный → статус. Дедуп и уведомления. Москва и удалённо. От 18 000 ₽."
+    },
+    {
+      "name": "Интеграция ИИ в Bitrix24",
+      "price": 30000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Интеграция ИИ в Bitrix24: ассистент в карточке сделки, черновики писем и КП, классификация заявок. Без хаоса в воронке. Москва и удалённо. От 30 000 ₽."
+    },
+    {
+      "name": "Внедрение AI-ассистента",
+      "price": 32000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Внедрение AI-ассистента: ответы по базе знаний, подсказки менеджеру в Bitrix24, логирование в CRM. Пилот на одном сценарии. Москва и удалённо. От 32 000 ₽."
+    },
+    {
+      "name": "AI-ассистент по базе знаний для Bitrix24",
+      "price": 35000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "AI-ассистент по базе знаний для Bitrix24: ответы со ссылкой на регламенты и FAQ. Связка с чатом или карточкой CRM. Москва и удалённо. От 35 000 ₽."
+    },
+    {
+      "name": "Bitrix24 AI",
+      "price": 28000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Bitrix24 AI: суммаризация сделки, следующие шаги, черновики сообщений. Контроль качества и права доступа. Москва и удалённо. От 28 000 ₽."
+    },
+    {
+      "name": "AI для отдела продаж в Bitrix24",
+      "price": 30000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "AI для отдела продаж в Bitrix24: квалификация лида, подсказки по возражениям, подготовка КП. Метрики до/после. Москва и удалённо. От 30 000 ₽."
+    },
+    {
+      "name": "Разработка RAG-систем",
+      "price": 45000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Разработка RAG-систем для компании и Bitrix24: поиск по документам со ссылкой на источник. Интеграция в чат или CRM. Москва и удалённо. От 45 000 ₽."
+    },
+    {
+      "name": "Локальный AI-ассистент без передачи данных",
+      "price": 45000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Локальный AI-ассистент для компании без передачи данных во внешние чаты: контур у вас или в VPC, связка с Bitrix24. NDA и политики доступа. Москва и удалённо. От 45 000 ₽."
+    },
+    {
+      "name": "Аудит автоматизации в Bitrix24",
+      "price": 15000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Аудит автоматизации бизнес-процессов в Bitrix24: карта потерь, приоритеты, смета пилота. Перед закупкой разработки. Москва и удалённо. От 15 000 ₽."
+    },
+    {
+      "name": "Чат-бот для Bitrix24",
+      "price": 22000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Чат-бот для Bitrix24: заявки из мессенджера в CRM, квалификация, эскалация менеджеру. Тест на реальных диалогах. Москва и удалённо. От 22 000 ₽."
+    },
+    {
+      "name": "Интеграция Bitrix24 с Telegram",
+      "price": 16000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Интеграция Bitrix24 с Telegram: лиды и уведомления в чат, ответы менеджера обратно в сделку. Москва и удалённо. От 16 000 ₽."
+    },
+    {
+      "name": "Настройка роботов Bitrix24",
+      "price": 14000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Настройка роботов Bitrix24: задачи, письма, смены статуса, контроль сроков. Без перегруза воронки лишними триггерами. Москва и удалённо. От 14 000 ₽."
+    },
+    {
+      "name": "Настройка CRM Bitrix24",
+      "price": 16000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Настройка CRM Bitrix24: карточки, обязательные поля, справочники, права ролей. Готово к ежедневной работе отдела продаж. Москва и удалённо. От 16 000 ₽."
+    },
+    {
+      "name": "Настройка телефонии Bitrix24",
+      "price": 18000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Настройка телефонии Bitrix24: запись звонков, привязка к сделке, пропущенные и задачи. Москва и удалённо. От 18 000 ₽."
+    },
+    {
+      "name": "Настройка почты Bitrix24",
+      "price": 12000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Настройка почты Bitrix24: ящики, привязка писем к CRM, шаблоны ответов. Меньше потерянной переписки. Москва и удалённо. От 12 000 ₽."
+    }
+  ]
+}
