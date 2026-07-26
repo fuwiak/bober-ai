@@ -1,0 +1,14 @@
+{
+  "specializationId": "14621107-8394-44af-96e5-331a0f9dafed",
+  "specializationNote": "Настройка Битрикс — exact Wordstat Bitrix AI title",
+  "note": "Автоматизация Bitrix24 уже есть. Добавляем «ИИ для Bitrix24».",
+  "services": [
+    {
+      "name": "ИИ для Bitrix24",
+      "price": 28000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "ИИ для Bitrix24: ассистент в сделке, квалификация лидов, черновики писем и КП. Связка с воронкой CRM. Москва и удалённо. От 28 000 ₽."
+    }
+  ]
+}

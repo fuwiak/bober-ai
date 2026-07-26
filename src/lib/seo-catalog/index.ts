@@ -2,6 +2,7 @@ import { buildLanding } from "@/lib/seo-catalog/build-content";
 import { CATALOG_LANDING_SPECS } from "@/lib/seo-catalog/landing-specs";
 import { CATALOG_LANDING_SPECS_EXTRA } from "@/lib/seo-catalog/landing-specs-extra";
 import { CATALOG_LANDING_SPECS_INTENT } from "@/lib/seo-catalog/landing-specs-intent";
+import { CATALOG_LANDING_SPECS_CRM_WORDSTAT } from "@/lib/seo-catalog/landing-specs-crm-wordstat";
 import { INTENT_ARTICLE_SPECS } from "@/lib/seo-catalog/blog-specs";
 import { SEO_HUBS } from "@/lib/seo-catalog/hubs";
 import { SPECIALIST_ARTICLE_SPECS } from "@/lib/seo-catalog/specialist-blog-specs";
@@ -17,6 +18,7 @@ const ALL_SPECS = [
   ...CATALOG_LANDING_SPECS,
   ...CATALOG_LANDING_SPECS_EXTRA,
   ...CATALOG_LANDING_SPECS_INTENT,
+  ...CATALOG_LANDING_SPECS_CRM_WORDSTAT,
 ];
 const ALL_ARTICLES = [...SPECIALIST_ARTICLE_SPECS, ...INTENT_ARTICLE_SPECS];
 

@@ -1,0 +1,20 @@
+{
+  "specializationId": "2673db51-904b-429a-8871-35eeb8b5f4e2",
+  "specializationNote": "CRM/ERP — Wordstat CRM phrases",
+  "services": [
+    {
+      "name": "Автоматизация CRM",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Автоматизация CRM: воронка, роботы, заявки с сайта и мессенджеров, отчёты без ручного ввода. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "name": "ИИ для CRM",
+      "price": 350000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "ИИ для CRM: ассистент в карточке сделки, квалификация лидов, черновики писем и КП. Контроль качества и эскалация. Москва и удалённо. От 350 000 ₽."
+    }
+  ]
+}

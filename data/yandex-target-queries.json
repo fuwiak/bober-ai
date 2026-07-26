@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-24",
+  "updated": "2026-07-26",
   "note": "Целевые запросы для мониторинга в Яндекс Вебмастере (Поисковые запросы) и посадочные на www.bober-ai.dev.",
   "groups": [
     {
@@ -17,15 +17,34 @@
     },
     {
       "id": "crm-integrations",
-      "title": "Интеграции Bitrix24 / amoCRM / 1С",
+      "title": "Интеграции Bitrix24 / amoCRM / 1С / CRM-автоматизация",
       "queries": [
+        "автоматизация crm",
+        "система автоматизации crm",
+        "crm автоматизация процессов",
+        "crm автоматизация бизнеса",
+        "автоматизация продаж crm",
+        "автоматизация crm маркетинг",
+        "1с crm автоматизация",
+        "ai crm и автоматизации",
         "интеграция Bitrix24 AI",
         "интеграция amoCRM",
         "интеграция 1С",
         "автоматизация Bitrix24",
         "CRM автоматизация продаж"
       ],
-      "landings": ["/integrations/bitrix24", "/integrations/amocrm", "/services/crm-integration"]
+      "landings": [
+        "/integrations/crm-automation",
+        "/integrations/crm-automation-system",
+        "/integrations/crm-process-automation",
+        "/integrations/crm-sales-automation",
+        "/integrations/crm-marketing-automation",
+        "/integrations/crm-1c-automation",
+        "/integrations/ai-for-crm",
+        "/integrations/bitrix24",
+        "/integrations/amocrm",
+        "/services/crm-integration"
+      ]
     },
     {
       "id": "sales-ai",

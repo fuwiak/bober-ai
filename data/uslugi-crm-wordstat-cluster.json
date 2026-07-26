@@ -1,0 +1,77 @@
+{
+  "specializationId": "2673db51-904b-429a-8871-35eeb8b5f4e2",
+  "specializationNote": "CRM/ERP — Wordstat +автоматизация crm cluster",
+  "note": "Exact titles from Wordstat (+ops). Skip «кейсы сайтов…» (informational). Soft on «1с комплексная автоматизация» — product noise; keep as 1С CRM автоматизация.",
+  "services": [
+    {
+      "name": "Система автоматизации CRM",
+      "price": 350000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Система автоматизации CRM: воронка, роботы, источники заявок и отчёты. Комплексный контур под отдел продаж. Москва и удалённо. От 350 000 ₽."
+    },
+    {
+      "name": "CRM автоматизация процессов",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "CRM автоматизация процессов: заявки → сделки → задачи → документы без ручного копирования. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "name": "CRM автоматизация бизнеса",
+      "price": 350000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "CRM автоматизация бизнеса: продажи, сервис и отчётность в одной системе. Пилот с KPI. Москва и удалённо. От 350 000 ₽."
+    },
+    {
+      "name": "Автоматизация продаж CRM",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Автоматизация продаж CRM: follow-up, КП, контроль воронки и SLA касаний. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "name": "CRM автоматизация бизнес-процессов",
+      "price": 350000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "CRM автоматизация бизнес-процессов: стадии, роботы, связка с документами и учётом. Москва и удалённо. От 350 000 ₽."
+    },
+    {
+      "name": "1С CRM автоматизация",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "1С CRM автоматизация: обмен заказами, контрагентами и статусами без ручного переноса. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "name": "Комплексная автоматизация CRM",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Комплексная автоматизация CRM: воронка, маркетинг-лиды, продажи и отчёты в одном контуре. Не лицензия 1С. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "name": "Автоматизация CRM маркетинг",
+      "price": 280000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Автоматизация CRM маркетинг: лиды с рекламы и сайта, UTM, nurture и передача в продажи. Москва и удалённо. От 280 000 ₽."
+    },
+    {
+      "name": "Автоматизация продаж CRM система",
+      "price": 320000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Автоматизация продаж CRM система: воронка, роботы, КП и контроль дисциплины менеджеров. Москва и удалённо. От 320 000 ₽."
+    },
+    {
+      "name": "AI CRM и автоматизация",
+      "price": 350000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "AI CRM и автоматизация: ассистент в сделке, квалификация лидов, черновики писем плюс роботы воронки. Москва и удалённо. От 350 000 ₽."
+    }
+  ]
+}
