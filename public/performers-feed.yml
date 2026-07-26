@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-26 04:59">
+<yml_catalog date="2026-07-26 05:08">
   <shop>
     <name>Bober AI Systems</name>
     <company>Bober AI Systems</company>
@@ -625,7 +625,7 @@
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/ai-sales-loop</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Интеграция Bitrix24 / amoCRM с телефонией и AI: квалификация лидов, саммари звонков, задачи, follow-up и отчёт об упущенных сделках.</param>
+      <param name="Об исполнителе">Интеграция Bitrix24 / amoCRM с телефонией и AI — квалификация лидов, саммари звонков, задачи, follow-up и отчёт об упущенных сделках.</param>
     </offer>
     <offer id="company-automation">
       <name>Павел Стасиньский</name>
@@ -673,7 +673,7 @@
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/integrations/crm-automation</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Автоматизация воронки CRM: триггеры, задачи, уведомления и контроль конверсии.</param>
+      <param name="Об исполнителе">Автоматизация воронки CRM — триггеры, задачи, уведомления и контроль конверсии.</param>
     </offer>
     <offer id="document-ai">
       <name>Павел Стасиньский</name>
@@ -697,7 +697,7 @@
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/automation/document-ai</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">ИИ-пайплайн документов: OCR, классификация, валидация и выгрузка в учётные системы.</param>
+      <param name="Об исполнителе">ИИ-пайплайн документов — OCR, классификация, валидация и выгрузка в учётные системы.</param>
     </offer>
     <offer id="ai-for-crm">
       <name>Павел Стасиньский</name>
@@ -721,7 +721,7 @@
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/integrations/ai-for-crm</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">ИИ-слой поверх CRM: саммари, скоринг, follow-up без хаоса в воронке.</param>
+      <param name="Об исполнителе">ИИ-слой поверх CRM — саммари, скоринг, follow-up без хаоса в воронке.</param>
     </offer>
     <offer id="corporate-ai-assistant">
       <name>Павел Стасиньский</name>
