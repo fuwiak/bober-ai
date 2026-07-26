@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-26 05:08">
+<yml_catalog date="2026-07-26 08:30">
   <shop>
     <name>Bober AI Systems</name>
     <company>Bober AI Systems</company>
@@ -96,6 +96,10 @@
       <set id="ai-sales-loop">
         <name>AI-контур отдела продаж</name>
         <url>https://www.bober-ai.dev/services/ai-sales-loop</url>
+      </set>
+      <set id="wildberries-independent-sales-channel">
+        <name>Независимый канал продаж для продавцов Wildberries</name>
+        <url>https://www.bober-ai.dev/services/wildberries-independent-sales-channel</url>
       </set>
       <set id="company-automation">
         <name>Автоматизация компании</name>
@@ -626,6 +630,30 @@
       <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Интеграция Bitrix24 / amoCRM с телефонией и AI — квалификация лидов, саммари звонков, задачи, follow-up и отчёт об упущенных сделках.</param>
+    </offer>
+    <offer id="wildberries-independent-sales-channel">
+      <name>Павел Стасиньский</name>
+      <url>https://www.bober-ai.dev/services/wildberries-independent-sales-channel</url>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>wildberries-independent-sales-channel</set-ids>
+      <picture>https://www.bober-ai.dev/stock/offers/wildberries-independent-sales-channel.jpg</picture>
+      <description>Независимый канал продаж для продавцов Wildberries</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">93</param>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/wildberries-independent-sales-channel</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Запуск собственного канала продаж параллельно с Wildberries: витрина, Bitrix24/amoCRM, 1С/МойСклад, оплата, доставка, Telegram/VK/email, AI-ассистент по товарам, синхронизация цен и остатков. Срок от 14 дней.</param>
     </offer>
     <offer id="company-automation">
       <name>Павел Стасиньский</name>

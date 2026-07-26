@@ -231,6 +231,106 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     caseStudySlugs: ["elia-suite", "kp-llm-automation"],
   },
 
+  "wildberries-independent-sales-channel": {
+    metaTitle: "Альтернатива Wildberries для продавца — собственный канал продаж | Bober AI",
+    metaDescription:
+      "Независимый канал продаж для продавцов Wildberries: магазин/каталог, Bitrix24 или amoCRM, 1С/МойСклад, оплата, доставка, Telegram/VK, AI-ассистент. От 300 000 ₽, срок от 14 дней.",
+    eyebrow: "Wildberries → свой канал",
+    h1: "Независимый канал продаж для продавцов Wildberries",
+    subtitle:
+      "Запустим собственный интернет-магазин или каталог, CRM и автоматизацию заказов параллельно с Wildberries. От 300 000 ₽, срок от 14 дней.",
+    problemsTitle: "Зачем продавцу свой канал",
+    problems: [
+      "Вся база покупателей и повторные продажи остаются на маркетплейсе",
+      "Комиссия, правила и сбои площадки бьют по выручке без запасного канала",
+      "Цены, остатки и заказы разъезжаются между WB, 1С/МойСклад и таблицами",
+      "Реклама и мессенджеры ведут на карточку WB, а не к вам",
+    ],
+    deliverablesTitle: "Что входит в пакет",
+    deliverables: [
+      "Магазин или каталог с оформлением заказа",
+      "Импорт товаров с Wildberries / 1С / МойСклад и синхронизация цен и остатков",
+      "Bitrix24 или amoCRM как центр заказов и обращений",
+      "Оплата, доставка, Telegram / VK / email и AI-ассистент по товарам",
+    ],
+    intro: [
+      "Wildberries остаётся каналом привлечения, но клиентская база, повторные продажи и часть заказов переходят под ваш контроль.",
+      "Это не «лендинг за неделю». Пакет собирает три компетенции Bober AI: CRM (Bitrix24/amoCRM), Sales AI Agent и автоматизацию процессов — каталог, остатки, цены, заказы.",
+      "Типовой результат: собственная витрина, единая CRM, автоматическая обработка заказов, повторные продажи без комиссии площадки и резервный канал при ограничениях WB.",
+      "Срок: от 14 до 30 дней до рабочего контура. Стоимость: от 300 000 ₽ — фиксированная смета после аудита ассортимента и систем.",
+    ],
+    howWeSolveTitle: "Как запускаем",
+    howWeSolve: [
+      {
+        title: "Аудит селлера",
+        text: "Ассортимент, 1С/МойСклад, текущий CRM, каналы трафика, схема FBO/FBS. Фиксируем KPI: повторные продажи, доля заказов вне WB.",
+      },
+      {
+        title: "Витрина + каталог",
+        text: "Магазин или каталог с заказом. Импорт карточек с WB/учёта, синхронизация цен и остатков без ручного Excel.",
+      },
+      {
+        title: "CRM и каналы",
+        text: "Bitrix24 или amoCRM: заказы, обращения, Telegram/VK/email, реклама на свой сайт. Оплата и доставка по вашим правилам.",
+      },
+      {
+        title: "AI и аналитика",
+        text: "Ассистент отвечает на вопросы о товарах. Дашборд: маркетплейс vs собственный канал, повторные покупки и cross-sell.",
+      },
+    ],
+    architectureTitle: "Архитектура контура",
+    architecture: [
+      "Wildberries (API) ↔ middleware: товары, цены, остатки, заказы",
+      "1С или МойСклад — учёт и склад",
+      "Собственный магазин/каталог — витрина и checkout",
+      "Bitrix24 / amoCRM — центр заказов и коммуникаций",
+      "Telegram, VK, email, реклама → на ваш канал",
+      "Sales AI Agent — квалификация и ответы по каталогу",
+    ],
+    roiTitle: "Результат для селлера",
+    roi: [
+      { value: "14–30 дн.", label: "запуск рабочего контура" },
+      { value: "своя база", label: "клиенты и повторные продажи у вас" },
+      { value: "−зависимость", label: "резерв при сбоях и правилах WB" },
+    ],
+    faqTitle: "FAQ",
+    faq: [
+      {
+        q: "Нужно ли уходить с Wildberries?",
+        a: "Нет. WB остаётся каналом привлечения. Мы добавляем собственный канал рядом.",
+      },
+      {
+        q: "Это просто сайт на Тильде?",
+        a: "Нет. В пакете — CRM, синхронизация каталога/остатков, оплата, доставка, мессенджеры и AI. Лендинг без контура заказов не продаём как основной продукт.",
+      },
+      {
+        q: "Какую CRM ставите?",
+        a: "Bitrix24 или amoCRM — по вашему процессу. Обе стыкуем с сайтом, 1С/МойСклад и мессенджерами.",
+      },
+      {
+        q: "Можно без 1С?",
+        a: "Да — через МойСклад, выгрузку с WB или другой каталог. Главное — единый источник цен и остатков.",
+      },
+      {
+        q: "Сколько стоит и сколько длится?",
+        a: "От 300 000 ₽. Базовый контур — от 14 дней; полный пакет с рекламой и AI — обычно до 30 дней.",
+      },
+      {
+        q: "Какие запросы закрывает страница?",
+        a: "Интеграция Wildberries с 1С/Bitrix24, интернет-магазин для селлера, автоматизация заказов и свой канал параллельно с маркетплейсом.",
+      },
+    ],
+    related: [
+      { href: "/services/crm-integration", label: "интеграции CRM" },
+      { href: "/services/sales-ai-agent", label: "AI-агент для продаж" },
+      { href: "/services/business-process-automation", label: "автоматизация бизнес-процессов" },
+      { href: "/integrations/bitrix24", label: "Bitrix24" },
+      { href: "/integrations/amocrm", label: "amoCRM" },
+      { href: "/pricing", label: "стоимость внедрения" },
+    ],
+    caseStudySlugs: ["amocrm-website-integration", "kp-llm-automation", "crm-1c-sync"],
+  },
+
   "ai-discovery-roadmap": {
     metaTitle: "AI Discovery и дорожная карта внедрения",
     metaDescription:
@@ -1667,6 +1767,102 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
       { href: "/services/business-process-automation", label: "Process automation" },
     ],
     caseStudySlugs: ["elia-suite", "kp-llm-automation"],
+  },
+
+  "wildberries-independent-sales-channel": {
+    metaTitle: "Wildberries alternative for sellers — owned sales channel | Bober AI",
+    metaDescription:
+      "Independent sales channel for Wildberries sellers: store/catalog, Bitrix24 or amoCRM, 1C/MoySklad, payments, delivery, Telegram/VK, product AI. From €3,000, launch from 14 days.",
+    eyebrow: "Wildberries → owned channel",
+    h1: "Independent sales channel for Wildberries sellers",
+    subtitle:
+      "We launch your own store or catalog, CRM and order automation alongside Wildberries. From €3,000, from 14 days.",
+    problemsTitle: "Why sellers need an owned channel",
+    problems: [
+      "Buyer base and repeat sales stay locked on the marketplace",
+      "Fees, policy changes and outages hit revenue with no backup channel",
+      "Prices, stock and orders drift across WB, 1C/MoySklad and spreadsheets",
+      "Ads and messengers send traffic to WB cards — not to you",
+    ],
+    deliverablesTitle: "What is in the pack",
+    deliverables: [
+      "Store or catalog with checkout",
+      "Product import from Wildberries / 1C / MoySklad plus price and stock sync",
+      "Bitrix24 or amoCRM as the order and inbox hub",
+      "Payments, delivery, Telegram / VK / email and a product AI assistant",
+    ],
+    intro: [
+      "Wildberries stays an acquisition channel — but the customer base, repeat sales and part of the orders move under your control.",
+      "This is not a one-week landing. The pack combines Bober AI CRM (Bitrix24/amoCRM), Sales AI Agent and process automation — catalog, stock, prices, orders.",
+      "Typical outcome: owned storefront, one CRM, automated order handling, repeat sales without marketplace fees, and a backup channel if WB restricts the account.",
+      "Timeline: 14–30 days to a working contour. Price: from €3,000 after an assortment and systems audit.",
+    ],
+    howWeSolveTitle: "How we launch",
+    howWeSolve: [
+      {
+        title: "Seller audit",
+        text: "Assortment, 1C/MoySklad, CRM, traffic, FBO/FBS. KPI: repeat sales and share of orders off WB.",
+      },
+      {
+        title: "Storefront + catalog",
+        text: "Store or catalog with checkout. Import from WB/ledger, sync prices and stock without Excel.",
+      },
+      {
+        title: "CRM and channels",
+        text: "Bitrix24 or amoCRM for orders and chats; Telegram/VK/email; ads to your site. Payments and delivery per your rules.",
+      },
+      {
+        title: "AI and analytics",
+        text: "Assistant answers product questions. Dashboard: marketplace vs owned channel, repeats and cross-sell.",
+      },
+    ],
+    architectureTitle: "Contour",
+    architecture: [
+      "Wildberries API ↔ middleware: products, prices, stock, orders",
+      "1C or MoySklad for ledger and warehouse",
+      "Owned store/catalog for storefront and checkout",
+      "Bitrix24 / amoCRM as order and communication hub",
+      "Telegram, VK, email, ads → your channel",
+      "Sales AI Agent for qualification and catalog answers",
+    ],
+    roiTitle: "Seller outcomes",
+    roi: [
+      { value: "14–30 d", label: "working contour launch" },
+      { value: "owned base", label: "customers and repeats stay with you" },
+      { value: "less lock-in", label: "backup if WB fails or restricts" },
+    ],
+    faqTitle: "FAQ",
+    faq: [
+      {
+        q: "Do we leave Wildberries?",
+        a: "No. WB stays for acquisition. We add an owned channel next to it.",
+      },
+      {
+        q: "Is this just a landing page?",
+        a: "No. The pack includes CRM, catalog/stock sync, payments, delivery, messengers and AI.",
+      },
+      {
+        q: "Which CRM?",
+        a: "Bitrix24 or amoCRM — matched to your process.",
+      },
+      {
+        q: "Without 1C?",
+        a: "Yes — MoySklad, WB export or another catalog. One price/stock source is required.",
+      },
+      {
+        q: "Price and timeline?",
+        a: "From €3,000. Basic contour from 14 days; full pack with ads and AI usually within 30 days.",
+      },
+    ],
+    related: [
+      { href: "/services/crm-integration", label: "CRM integrations" },
+      { href: "/services/sales-ai-agent", label: "Sales AI agent" },
+      { href: "/services/business-process-automation", label: "Process automation" },
+      { href: "/integrations/bitrix24", label: "Bitrix24" },
+      { href: "/integrations/amocrm", label: "amoCRM" },
+      { href: "/pricing", label: "Pricing" },
+    ],
+    caseStudySlugs: ["amocrm-website-integration", "kp-llm-automation", "crm-1c-sync"],
   },
 
   "ai-discovery-roadmap": {

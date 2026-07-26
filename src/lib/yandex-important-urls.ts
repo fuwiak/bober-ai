@@ -53,6 +53,7 @@ export const YANDEX_IMPORTANT_PATHS = [
   "/services/ai-consulting",
   "/services/n8n",
   "/services/document-processing",
+  "/services/wildberries-independent-sales-channel",
 ] as const;
 
 /**

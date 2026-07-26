@@ -33,6 +33,7 @@ const FEED_CONVERSION: Record<string, number> = {
   "ai-consulting": 94,
   "crm-integration": 93,
   "ai-sales-loop": 94,
+  "wildberries-independent-sales-channel": 93,
   "company-automation": 94,
   "crm-automation": 93,
   "document-ai": 92,

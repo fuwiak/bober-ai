@@ -1,0 +1,66 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "specializationId": "187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "specializationNote": "Компьютеры и IT → Другое — пакет «Независимый канал продаж для продавцов Wildberries»",
+  "note": "Один основной оффер + 2 коммерческих варианта по сильным фразам (WB↔1С, WB↔Bitrix24). Wordstat API 429 — отбор по SERP/intent, см. data/wordstat-wildberries-decisions.json.",
+  "wordstatSource": "data/wordstat-wildberries-decisions.json",
+  "publishedAt": "2026-07-26",
+  "publishedStatus": "created_in_cabinet",
+  "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "publicProfile": "https://uslugi.yandex.ru/profile/PawelStasinski-254144",
+  "publishHint": [
+    "npm run yandex:uslugi:login",
+    "npm run yandex:uslugi:add -- --file=data/uslugi-wildberries-channel.json --headless"
+  ],
+  "services": [
+    {
+      "id": "wb-independent-channel",
+      "name": "Независимый канал продаж для продавцов Wildberries",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/sales-ai-agent.jpg",
+      "includes": [
+        "Магазин или каталог с оформлением заказа",
+        "Импорт и синхронизация товаров, цен и остатков (WB / 1С / МойСклад)",
+        "Bitrix24 или amoCRM, оплата, доставка, Telegram / VK / email",
+        "AI-ассистент по товарам и аналитика: маркетплейс vs свой канал"
+      ],
+      "description": "Независимый канал продаж для продавцов Wildberries: собственный магазин или каталог, CRM и автоматизация заказов параллельно с площадкой. Подключим Bitrix24 или amoCRM, 1С / МойСклад, оплату, доставку, Telegram, VK и email. Синхронизация товаров, цен, остатков и заказов. База клиентов и повторные продажи — у вас. Срок от 14 дней. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "wb-1c-integration",
+      "name": "Интеграция Wildberries с 1С",
+      "price": 80000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/crm-integration.jpg",
+      "includes": [
+        "Схема обмена: товары, цены, остатки, заказы",
+        "Подключение API Wildberries и контура 1С / МойСклад",
+        "Правила статусов и журнал ошибок",
+        "Тест на реальном ассортименте"
+      ],
+      "description": "Интеграция Wildberries с 1С: синхронизация номенклатуры, цен, остатков и заказов без ручного Excel. Можно как отдельный контур или часть запуска собственного канала продаж рядом с WB. Москва и удалённо. От 80 000 ₽."
+    },
+    {
+      "id": "wb-bitrix24-integration",
+      "name": "Интеграция Wildberries с Битрикс24",
+      "price": 80000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/crm-integration.jpg",
+      "includes": [
+        "Заказы и обращения WB / сайта → сделки Bitrix24",
+        "Связка с каталогом и остатками (по согласованию)",
+        "Уведомления менеджерам и статусы",
+        "Чек-лист запуска"
+      ],
+      "description": "Интеграция Wildberries с Битрикс24: заказы и обращения в единой CRM. Основа для собственного канала продаж селлера — витрина, мессенджеры и автоматизация рядом с маркетплейсом. Москва и удалённо. От 80 000 ₽."
+    }
+  ]
+}

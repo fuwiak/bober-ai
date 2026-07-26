@@ -45,6 +45,7 @@ const IMAGES: Record<string, string> = {
   "ai-for-crm": "/stock/crm-integration.jpg",
   "corporate-ai-assistant": "/stock/enterprise-ai-assistant.jpg",
   "business-process-audit": "/stock/ai-discovery-roadmap.jpg",
+  "wildberries-independent-sales-channel": "/stock/sales-ai-agent.jpg",
 };
 
 const ruExtra: EnterpriseService[] = [
@@ -64,6 +65,19 @@ const ruExtra: EnterpriseService[] = [
   { id: "ai-consulting", slug: "ai-consulting", title: "AI-консалтинг", description: "Стратегия, ROI, выбор технологий и дорожная карта внедрения.", about: "Аудит, рекомендации и план до закупки разработки.", salesNotes: "от 150 000 ₽", deliveryDays: 10, price: 150000, serviceImage: IMAGES["ai-consulting"] },
   { id: "crm-integration", slug: "crm-integration", title: "Интеграции CRM", description: "amoCRM, Bitrix24, 1С — синхронизация и автоматизация воронки.", about: "Двусторонние интеграции, webhooks, retry и мониторинг.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["crm-integration"] },
   { id: "ai-sales-loop", slug: "ai-sales-loop", title: "AI-контур отдела продаж", description: "Телефония, переписки, CRM и автоматические следующие действия — один продукт, не отдельные боты.", about: "Интеграция Bitrix24 / amoCRM с телефонией и AI — квалификация лидов, саммари звонков, задачи, follow-up и отчёт об упущенных сделках.", salesNotes: "от 300 000 ₽", deliveryDays: 21, price: 300000, serviceImage: IMAGES["ai-sales-loop"] },
+  {
+    id: "wildberries-independent-sales-channel",
+    slug: "wildberries-independent-sales-channel",
+    title: "Независимый канал продаж для продавцов Wildberries",
+    description:
+      "Собственный магазин/каталог, CRM и автоматизация заказов параллельно с Wildberries — база клиентов остаётся у вас.",
+    about:
+      "Запуск собственного канала продаж параллельно с Wildberries: витрина, Bitrix24/amoCRM, 1С/МойСклад, оплата, доставка, Telegram/VK/email, AI-ассистент по товарам, синхронизация цен и остатков. Срок от 14 дней.",
+    salesNotes: "от 300 000 ₽",
+    deliveryDays: 14,
+    price: 300000,
+    serviceImage: IMAGES["wildberries-independent-sales-channel"],
+  },
   // Wordstat niche offers (exact titles) → SEO landings; feed-only (no thin /services pages).
   { id: "company-automation", slug: "company-automation", title: "Автоматизация компании", description: "Процессы, CRM, документы и отчёты без ручного копирования — фиксированная смета и ROI.", about: "Аудит узкого места, workflow и интеграции, production-запуск и обучение команды.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["company-automation"], feedPath: "/automation/company-automation", inServicesCatalog: false },
   { id: "crm-automation", slug: "crm-automation", title: "Автоматизация CRM", description: "Стадии, роботы, заявки с сайта и мессенджеров, отчёты без ручного ввода.", about: "Автоматизация воронки CRM — триггеры, задачи, уведомления и контроль конверсии.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["crm-automation"], feedPath: "/integrations/crm-automation", inServicesCatalog: false },
@@ -90,6 +104,19 @@ const enExtra: EnterpriseService[] = [
   { id: "ai-consulting", slug: "ai-consulting", title: "AI consulting", description: "Strategy, ROI, technology selection and implementation roadmap.", about: "Audit, recommendations and plan before procurement.", salesNotes: "from €1,500", deliveryDays: 10, price: 1500, serviceImage: IMAGES["ai-consulting"] },
   { id: "crm-integration", slug: "crm-integration", title: "CRM integrations", description: "amoCRM, Bitrix24, 1C — sync and pipeline automation.", about: "Bidirectional integrations, webhooks, retry and monitoring.", salesNotes: "from €4,000", deliveryDays: 21, price: 4000, serviceImage: IMAGES["crm-integration"] },
   { id: "ai-sales-loop", slug: "ai-sales-loop", title: "AI sales loop", description: "Telephony, chats, CRM and automatic next actions — one product, not separate bots.", about: "Bitrix24 / amoCRM with telephony and AI — lead qualification, call summaries, tasks, follow-up and lost-deal reports.", salesNotes: "from €3,000", deliveryDays: 21, price: 3000, serviceImage: IMAGES["ai-sales-loop"] },
+  {
+    id: "wildberries-independent-sales-channel",
+    slug: "wildberries-independent-sales-channel",
+    title: "Independent sales channel for Wildberries sellers",
+    description:
+      "Your own store/catalog, CRM and order automation alongside Wildberries — the customer base stays yours.",
+    about:
+      "Launch an owned sales channel next to Wildberries: storefront, Bitrix24/amoCRM, 1C/MoySklad, payments, delivery, Telegram/VK/email, product AI assistant, price and stock sync. From 14 days.",
+    salesNotes: "from €3,000",
+    deliveryDays: 14,
+    price: 3000,
+    serviceImage: IMAGES["wildberries-independent-sales-channel"],
+  },
   { id: "company-automation", slug: "company-automation", title: "Company automation", description: "Processes, CRM, documents and reports without manual copy-paste.", about: "Bottleneck audit, workflow and integrations, production launch and team training.", salesNotes: "from €5,000", deliveryDays: 21, price: 5000, serviceImage: IMAGES["company-automation"], feedPath: "/automation/company-automation", inServicesCatalog: false },
   { id: "crm-automation", slug: "crm-automation", title: "CRM automation", description: "Stages, robots, website and messenger intake, reports without manual entry.", about: "CRM pipeline automation — triggers, tasks, alerts and conversion control.", salesNotes: "from €4,000", deliveryDays: 21, price: 4000, serviceImage: IMAGES["crm-automation"], feedPath: "/integrations/crm-automation", inServicesCatalog: false },
   { id: "document-ai", slug: "document-ai", title: "AI for document processing", description: "Field extraction, classification, routes into CRM/ERP — less manual entry.", about: "AI document pipeline — OCR, classification, validation and export to accounting systems.", salesNotes: "from €4,000", deliveryDays: 21, price: 4000, serviceImage: IMAGES["document-ai"], feedPath: "/automation/document-ai", inServicesCatalog: false },
@@ -223,6 +250,7 @@ export const ENTERPRISE_SERVICES_LISTING_SLUGS = [
   "business-process-automation",
   "ai-sales-loop",
   "sales-ai-agent",
+  "wildberries-independent-sales-channel",
   "enterprise-ai-assistant",
   "private-llm-gigachat",
   "crm-integration",

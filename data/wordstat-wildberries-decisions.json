@@ -1,0 +1,79 @@
+{
+  "date": "2026-07-26",
+  "source": "data/wordstat-seeds-wildberries.txt",
+  "apiStatus": "Wordstat API 429 (100 req/hour quota). Counts not refreshed this run; decisions from prior seeds + SERP demand (интеграция WB↔1С/CRM, магазин для селлера).",
+  "rule": "Prefer transactional seeds (интеграция / интернет-магазин / синхронизация / автоматизация заказов). Demote brand-product H1 and pure informational how-to as primary feed keywords.",
+  "keepAndShip": [
+    {
+      "phrase": "интеграция wildberries с 1с",
+      "action": "primary keyword + FAQ on /services/wildberries-independent-sales-channel; Uslugi variant",
+      "signal": "high commercial SERP (модули 1С↔WB)"
+    },
+    {
+      "phrase": "интеграция wildberries с битрикс24",
+      "action": "keyword + Bitrix-flavored Uslugi title; related /integrations/bitrix24",
+      "signal": "commercial intent, CRM hub"
+    },
+    {
+      "phrase": "создание интернет-магазина для селлера",
+      "action": "keyword cluster; pack deliverable (не отдельный тонкий лендинг)",
+      "signal": "buyer language for owned channel"
+    },
+    {
+      "phrase": "интернет магазин для селлера wildberries",
+      "action": "meta / intro synonyms",
+      "signal": "long-tail seller intent"
+    },
+    {
+      "phrase": "синхронизация wildberries с 1с",
+      "action": "architecture + deliverables (цены/остатки)",
+      "signal": "ops pain, high conversion"
+    },
+    {
+      "phrase": "выгрузка товаров с wildberries",
+      "action": "import deliverable wording",
+      "signal": "transactional"
+    },
+    {
+      "phrase": "автоматизация продаж на wildberries",
+      "action": "secondary; careful — often means ads/bots inside WB, not owned channel",
+      "signal": "mixed intent"
+    },
+    {
+      "phrase": "альтернатива wildberries для продавца",
+      "action": "SEO title (metaTitle), not sole H1 seed",
+      "signal": "navigational/commercial hybrid — good title, weak alone as Uslugi name"
+    },
+    {
+      "phrase": "свой интернет-магазин вместо wildberries",
+      "action": "clarify in copy: параллельно, не «вместо» как уход с площадки",
+      "signal": "intent OK, messaging risk"
+    },
+    {
+      "phrase": "свой магазин для продавца wildberries",
+      "action": "synonym for owned channel",
+      "signal": "long-tail"
+    }
+  ],
+  "demote": [
+    {
+      "phrase": "независимый канал продаж для продавца",
+      "reason": "product H1 — keep as offer title, weak as Wordstat seed / feed keyword alone"
+    },
+    {
+      "phrase": "резервный канал продаж",
+      "reason": "abstract benefit language, low search specificity"
+    },
+    {
+      "phrase": "как продавать без wildberries",
+      "reason": "informational how-to; blog/FAQ, not Uslugi title"
+    },
+    {
+      "phrase": "омниканал для продавца маркетплейса",
+      "reason": "jargon; buyers search интеграции/магазин/1С"
+    }
+  ],
+  "landing": "/services/wildberries-independent-sales-channel",
+  "feedOfferId": "wildberries-independent-sales-channel",
+  "priceFromRub": 300000
+}

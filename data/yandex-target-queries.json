@@ -58,6 +58,22 @@
       "landings": ["/services/sales-ai-agent", "/services/ai-automation"]
     },
     {
+      "id": "wildberries-channel",
+      "title": "Независимый канал продаж / Wildberries",
+      "queries": [
+        "альтернатива wildberries для продавца",
+        "интеграция wildberries с 1с",
+        "интеграция wildberries с битрикс24",
+        "создание интернет-магазина для селлера",
+        "интернет магазин для селлера wildberries",
+        "синхронизация wildberries с 1с",
+        "выгрузка товаров с wildberries",
+        "свой магазин для продавца wildberries",
+        "независимый канал продаж для продавца"
+      ],
+      "landings": ["/services/wildberries-independent-sales-channel"]
+    },
+    {
       "id": "private-llm-rag",
       "title": "Приватный LLM / RAG / on-premise",
       "queries": [
