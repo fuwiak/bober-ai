@@ -545,12 +545,11 @@ async function cmdAdd() {
   const spec = flag("--spec", data.specializationId);
   const services = data.services || [];
   if (!services.length) fail("в JSON нет services[]");
-  // По умолчанию новый браузер на каждую услугу: 2-я модалка в одной сессии
-  // часто роняет Playwright («Target page/browser has been closed»).
-  const reuseSession = flags.has("--reuse-session");
+  // Default: new browser per service (stable). --reuse-session / --fast = one browser (much faster).
+  const reuseSession = flags.has("--reuse-session") || flags.has("--fast");
   const headed = !flags.has("--headless");
 
-  log(`Специализация: ${spec}`);
+  log(`Специализация: ${spec}${reuseSession ? " (reuse-session)" : ""}`);
   if (dry) {
     for (const [i, service] of services.entries()) {
       log(`\n[${i + 1}/${services.length}] ${service.name}`);
@@ -589,7 +588,8 @@ async function cmdAdd() {
         const modal = await openAddServiceModal(p);
         await fillServiceForm(p, modal, service);
         await submitServiceForm(modal);
-        await sleep(1500);
+        // Short settle; --fast cuts further. Full browser relaunch (default) is the real cost.
+        await sleep(flags.has("--fast") ? 250 : 600);
         log("  OK (форма отправлена)");
       } catch (err) {
         log(`  ошибка: ${err.message?.split("\n")[0] || err}`);
@@ -821,6 +821,9 @@ function help() {
   --dry-run          Только показать, не кликать
   --headless         Без окна (add/update/remove)
   --headed           С окном (list по умолчанию headless)
+  --reuse-session    Один браузер на все услуги (быстрее)
+  --fast             = reuse-session + короткие паузы
+  --skip-photos      Не загружать фото (ещё быстрее)
   --keep             Не закрывать браузер сразу (list / удобно смотреть)
   --skip-photos      Не загружать фото (если зависает на «Описание и фотографии»)
   --reuse-session    add: один браузер на все услуги (по умолчанию — новый на каждую)
