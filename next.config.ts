@@ -46,6 +46,89 @@ const nextConfig: NextConfig = {
       { source: "/en/automation/crm", destination: "/en/integrations/crm", permanent: true },
       { source: "/ru", destination: "/", permanent: true },
       { source: "/ru/:path*", destination: "/:path*", permanent: true },
+      // Priority commercial aliases (problem+system URLs → canonical catalog paths)
+      { source: "/bitrix24", destination: "/integrations/bitrix24", permanent: true },
+      { source: "/bitrix24/ai", destination: "/integrations/bitrix24-ai", permanent: true },
+      {
+        source: "/bitrix24/sales-automation",
+        destination: "/integrations/bitrix24-sales-automation",
+        permanent: true,
+      },
+      {
+        source: "/bitrix24/1c-integration",
+        destination: "/integrations/bitrix24-1c",
+        permanent: true,
+      },
+      { source: "/amocrm", destination: "/integrations/amocrm", permanent: true },
+      {
+        source: "/amocrm/automation",
+        destination: "/integrations/amocrm-automation",
+        permanent: true,
+      },
+      {
+        source: "/solutions/commercial-proposals",
+        destination: "/automation/proposal-generation",
+        permanent: true,
+      },
+      {
+        source: "/solutions/corporate-knowledge-base",
+        destination: "/solutions/knowledge-base",
+        permanent: true,
+      },
+      { source: "/services/private-ai", destination: "/services/self-hosted-ai", permanent: true },
+      {
+        source: "/cases/kwork-bitrix24",
+        destination: "/portfolio/bitrix24-kwork-crm",
+        permanent: true,
+      },
+      {
+        source: "/cases/document-processing-1c",
+        destination: "/portfolio/invoice-processing-pipeline",
+        permanent: true,
+      },
+      { source: "/en/bitrix24", destination: "/en/integrations/bitrix24", permanent: true },
+      { source: "/en/bitrix24/ai", destination: "/en/integrations/bitrix24-ai", permanent: true },
+      {
+        source: "/en/bitrix24/sales-automation",
+        destination: "/en/integrations/bitrix24-sales-automation",
+        permanent: true,
+      },
+      {
+        source: "/en/bitrix24/1c-integration",
+        destination: "/en/integrations/bitrix24-1c",
+        permanent: true,
+      },
+      { source: "/en/amocrm", destination: "/en/integrations/amocrm", permanent: true },
+      {
+        source: "/en/amocrm/automation",
+        destination: "/en/integrations/amocrm-automation",
+        permanent: true,
+      },
+      {
+        source: "/en/solutions/commercial-proposals",
+        destination: "/en/automation/proposal-generation",
+        permanent: true,
+      },
+      {
+        source: "/en/solutions/corporate-knowledge-base",
+        destination: "/en/solutions/knowledge-base",
+        permanent: true,
+      },
+      {
+        source: "/en/services/private-ai",
+        destination: "/en/services/self-hosted-ai",
+        permanent: true,
+      },
+      {
+        source: "/en/cases/kwork-bitrix24",
+        destination: "/en/portfolio/bitrix24-kwork-crm",
+        permanent: true,
+      },
+      {
+        source: "/en/cases/document-processing-1c",
+        destination: "/en/portfolio/invoice-processing-pipeline",
+        permanent: true,
+      },
     ];
   },
   async headers() {

@@ -18,10 +18,11 @@ import type { SeoServiceContent } from "@/lib/seo-services-content";
 import {
   faqJsonLd,
   organizationJsonLd,
+  personJsonLd,
   serviceJsonLd,
   webPageJsonLd,
 } from "@/lib/seo";
-import { TELEGRAM_URL, absoluteUrl } from "@/lib/site";
+import { GITHUB_URL, LINKEDIN_URL, TELEGRAM_URL, absoluteUrl } from "@/lib/site";
 
 type SeoServicePageProps = {
   slug: string;
@@ -61,6 +62,15 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
     ...organizationJsonLd(locale),
   };
 
+  const person = personJsonLd({
+    name: PROFILE.name,
+    jobTitle: PROFILE.roles[0],
+    description: PROFILE.focus,
+    image: PROFILE.heroImage,
+    url: TELEGRAM_URL,
+    sameAs: [LINKEDIN_URL, GITHUB_URL, TELEGRAM_URL],
+  });
+
   const faqSchema = content.faq.length ? faqJsonLd(content.faq, pageUrl) : null;
   const caseStudies = (content.caseStudySlugs ?? [])
     .map((caseSlug) => getPortfolioItem(caseSlug, locale))
@@ -71,6 +81,7 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPage) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(person) }} />
       {faqSchema ? (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       ) : null}

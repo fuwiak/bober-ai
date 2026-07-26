@@ -551,4 +551,323 @@ export const INTENT_ARTICLE_SPECS: IntentArticleSpec[] = [
     ru: {"title":"AI в отделе продаж: что реально работает, а что маркетинг","description":"Не «AI, который продаёт сам», а конкретные точки: подсказки по следующему шагу, черновик письма клиенту, сводка звонка. Что из этого даёт эффект на практике.","h1":"AI в отделе продаж: что реально работает, а что маркетинг","sections":[{"title":"Короткий ответ","paragraphs":["В продажах AI хорошо справляется с точечными задачами: черновик персонального письма клиенту на основе истории переписки, сводка звонка вместо ручных заметок, подсказка менеджеру, с какой сделкой стоит связаться сегодня.", "AI не заменяет переговоры и финальное решение клиента — там, где маркетинг обещает «AI, который продаёт сам», на практике речь идёт о хорошо настроенной автоматизации плюс AI-слое для рутинных шагов вокруг переговоров."]},{"title":"Что обычно ломается","paragraphs":["Компании покупают AI-инструмент для продаж отдельно от CRM — он даёт подсказки в своём интерфейсе, а менеджер всё равно переключается между вкладками, и рутина не исчезает.", "Второй провал — ожидают, что AI повысит конверсию сам по себе, без изменения процесса: инструмент подсвечивает проблему (например, зависшие сделки), но её всё равно должен решать человек."]},{"title":"План на 4 недели","paragraphs":["Неделя 1 — аудит: на каких конкретных шагах менеджеры тратят время на рутину (заметки, письма, приоритизация). Недели 2–3 — встраивание AI-подсказок в CRM на пилотной группе менеджеров. Неделя 4 — сравнение времени на рутинные задачи и конверсии до и после."]},{"title":"Как помогает Bober AI Systems","paragraphs":["Встраиваем AI-слой на базе Claude прямо в CRM — сводки звонков, черновики писем и приоритизация сделок в одном интерфейсе с менеджером, без отдельного инструмента.", "Рекомендуем решение с максимальной бизнес-ценностью: если узкое место — не рутина, а сам процесс продаж, начинаем с перестройки воронки, а не с AI-слоя поверх неё."]}],"faq":[{"q":"Может ли AI заменить менеджера по продажам?","a":"Нет — AI хорошо закрывает рутину вокруг переговоров (заметки, письма, приоритизация), но само решение клиента и переговоры по-прежнему держит человек."},{"q":"Какой AI-инструмент для продаж внедрять в первую очередь?","a":"Тот, что встроен в CRM, а не работает отдельно — иначе менеджер тратит время на переключение между интерфейсами, и эффект от AI съедается новой рутиной."}]},
     en: {"title":"AI in the sales team: what actually works vs. what's marketing","description":"Not \"AI that sells for you\" — specific points: next-step suggestions, a draft follow-up email, a call summary. What actually moves the needle in practice.","h1":"AI in the sales team: what actually works vs. what's marketing","sections":[{"title":"Short answer","paragraphs":["In sales, AI is genuinely good at narrow tasks: drafting a personalized follow-up email from the conversation history, summarizing a call instead of manual notes, flagging which deal a rep should follow up with today.", "AI doesn't replace negotiation or the customer's final decision — where marketing promises \"AI that sells for you,\" in practice it's well-configured automation plus an AI layer for the routine steps around the negotiation."]},{"title":"What usually breaks","paragraphs":["Companies buy a sales AI tool separate from the CRM — it gives suggestions in its own interface, and the rep still switches between tabs, so the routine work never actually disappears.", "The second failure: expecting AI to lift conversion on its own, with no process change — the tool highlights the problem (stalled deals), but a person still has to solve it."]},{"title":"4-week plan","paragraphs":["Week 1 — audit which specific steps eat rep time on routine work (notes, emails, prioritization). Weeks 2–3 — embed AI suggestions into the CRM for a pilot group of reps. Week 4 — compare time on routine tasks and conversion before and after."]},{"title":"How Bober AI Systems helps","paragraphs":["We embed a Claude-based AI layer directly in the CRM — call summaries, email drafts, and deal prioritization in the same interface the rep already works in, not a separate tool.", "We recommend whatever has the highest business value: if the bottleneck is the sales process itself, not the routine around it, we start by rebuilding the funnel, not by adding an AI layer on top of it."]}],"faq":[{"q":"Can AI replace a sales rep?","a":"No — AI handles the routine work around negotiation well (notes, emails, prioritization), but the actual decision and negotiation still rest with a person."},{"q":"Which sales AI tool should you implement first?","a":"One embedded in the CRM, not a standalone tool — otherwise the rep spends time switching between interfaces, and the AI's benefit gets eaten by new routine work."}]},
   },
+  {
+    slug: "skolko-stoit-vnedrenie-ii-2026",
+    cluster: "buyer-decision",
+    keywords: [
+      "сколько стоит внедрение ии",
+      "стоимость внедрения ии в компанию",
+      "внедрение ии цена 2026",
+    ],
+    related: [
+      { href: "/pricing", labelRu: "стоимость внедрения AI", labelEn: "AI implementation pricing" },
+      { href: "/services/ai-consulting", labelRu: "AI-консалтинг", labelEn: "AI consulting" },
+      {
+        href: "/integrations/bitrix24-sales-automation",
+        labelRu: "автоматизация продаж в Битрикс24",
+        labelEn: "Bitrix24 sales automation",
+      },
+    ],
+    publishedAt: "2026-07-26",
+    ru: {
+      title: "Сколько стоит внедрение ИИ в компанию в 2026 году",
+      description:
+        "Реалистичные вилки: аудит, пилот, промышленный контур. Почему «ИИ под ключ за 50 тыс.» почти никогда не доходит до production.",
+      h1: "Сколько стоит внедрение ИИ в компанию в 2026 году",
+      sections: [
+        {
+          title: "Короткий ответ",
+          paragraphs: [
+            "В 2026 году рабочая шкала у интеграторов выглядит так: аудит и дорожная карта — от 150 000 ₽; пилот одного процесса — от 300 000 ₽; промышленное внедрение с интеграциями — от 500 000 ₽.",
+            "Цена растёт не от «модели», а от числа систем (Bitrix24/amoCRM/1С), требований к контуру данных и того, нужен ли on-prem LLM.",
+          ],
+        },
+        {
+          title: "Что обычно ломается",
+          paragraphs: [
+            "Покупают лицензию на «платформу ИИ» до того, как посчитали часы ручного труда на конкретном процессе — инструмент простаивает.",
+            "В смете нет интеграций и сопровождения: демо в чате есть, а сделки/документы по-прежнему копируют руками.",
+          ],
+        },
+        {
+          title: "Как считать бюджет",
+          paragraphs: [
+            "1) Зафиксировать процесс и KPI. 2) Решить: хватит workflow без LLM или нужен AI-слой. 3) Заложить интеграции и мониторинг. 4) Отдельно — приватный контур, если нельзя публичные API.",
+          ],
+        },
+        {
+          title: "Как помогает Bober AI Systems",
+          paragraphs: [
+            "Фиксированная смета до старта разработки, NDA, пилот с измеримым эффектом. Смотрите /pricing и коммерческие сценарии Bitrix24/amoCRM/1С.",
+          ],
+        },
+      ],
+      faq: [
+        {
+          q: "Почему не 50–100 тысяч «под ключ»?",
+          a: "Такой бюджет обычно хватает на прототип без production-интеграций, журнала ошибок и передачи команде.",
+        },
+        {
+          q: "С чего начать при ограниченном бюджете?",
+          a: "С аудита от 150 000 ₽ на одном процессе — его стоимость часто засчитывается в внедрение.",
+        },
+      ],
+    },
+    en: {
+      title: "What does AI implementation cost for a company in 2026",
+      description:
+        "Realistic ranges: audit, pilot, production contour. Why “turnkey AI for peanuts” rarely reaches production.",
+      h1: "What does AI implementation cost for a company in 2026",
+      sections: [
+        {
+          title: "Short answer",
+          paragraphs: [
+            "Working integrator ranges in 2026: audit/roadmap from €1,500; one-process pilot from €3,000; production with integrations from €5,000.",
+            "Cost grows from systems (Bitrix24/amoCRM/1C), data-perimeter rules, and whether you need an on-prem LLM — not from “the model” alone.",
+          ],
+        },
+        {
+          title: "What usually breaks",
+          paragraphs: [
+            "Buying an “AI platform” before counting hours on one process — the tool sits idle.",
+            "Quotes omit integrations and ops: a chat demo exists, deals/docs are still copied by hand.",
+          ],
+        },
+        {
+          title: "How to budget",
+          paragraphs: [
+            "1) Lock process + KPI. 2) Decide workflow-only vs AI layer. 3) Budget integrations and monitoring. 4) Add private contour if public APIs are banned.",
+          ],
+        },
+        {
+          title: "How Bober AI Systems helps",
+          paragraphs: [
+            "Fixed estimate before build, NDA, measurable pilot. See /pricing and Bitrix24/amoCRM/1C commercial scenarios.",
+          ],
+        },
+      ],
+      faq: [
+        {
+          q: "Why not a tiny turnkey quote?",
+          a: "That budget usually covers a prototype without production integrations, error logs and handover.",
+        },
+        {
+          q: "Where to start on a tight budget?",
+          a: "An audit of one process — often credited toward implementation.",
+        },
+      ],
+    },
+  },
+  {
+    slug: "bitrix24-ili-amocrm-dlya-avtomatizacii-prodazh",
+    cluster: "buyer-decision",
+    keywords: [
+      "битрикс24 или amocrm",
+      "bitrix24 или amocrm для продаж",
+      "какую crm выбрать для автоматизации",
+    ],
+    related: [
+      {
+        href: "/integrations/bitrix24-sales-automation",
+        labelRu: "автоматизация продаж в Битрикс24",
+        labelEn: "Bitrix24 sales automation",
+      },
+      {
+        href: "/integrations/amocrm-automation",
+        labelRu: "автоматизация amoCRM",
+        labelEn: "amoCRM automation",
+      },
+      { href: "/automation/sales", labelRu: "автоматизация отдела продаж", labelEn: "sales automation" },
+    ],
+    publishedAt: "2026-07-26",
+    ru: {
+      title: "Битрикс24 или amoCRM для автоматизации отдела продаж",
+      description:
+        "Не «какая CRM лучше», а какая быстрее закроет ваш контур: заявки, роботы, КП, 1С. Критерии выбора и когда не надо менять систему.",
+      h1: "Битрикс24 или amoCRM для автоматизации отдела продаж",
+      sections: [
+        {
+          title: "Короткий ответ",
+          paragraphs: [
+            "Если команда уже живёт в Bitrix24 (задачи, портал, линии) — автоматизируем там. Если ядро — продажи и лёгкая воронка — чаще выигрывает amoCRM.",
+            "Менять CRM ради «ИИ» почти никогда не нужно: сначала интеграция заявок, роботы, КП и связка с 1С.",
+          ],
+        },
+        {
+          title: "Критерии",
+          paragraphs: [
+            "Bitrix24 сильнее как портал + CRM. amoCRM сильнее как sales CRM с быстрыми роботами и экосистемой виджетов.",
+            "Интеграция с 1С и документами важнее бренда CRM: оба варианта нормально стыкуются через API.",
+          ],
+        },
+        {
+          title: "Как помогает Bober AI Systems",
+          paragraphs: [
+            "Остаёмся на вашей CRM в большинстве проектов. Смотрите /integrations/bitrix24-sales-automation и /integrations/amocrm-automation.",
+          ],
+        },
+      ],
+      faq: [
+        {
+          q: "Нужно ли мигрировать с amoCRM на Bitrix ради AI?",
+          a: "Обычно нет. AI-слой и автоматизация ставятся поверх текущей CRM.",
+        },
+        {
+          q: "Что автоматизировать первым?",
+          a: "Приём заявок в CRM, follow-up и сборку КП — там быстрее всего виден ROI.",
+        },
+      ],
+    },
+    en: {
+      title: "Bitrix24 or amoCRM for sales automation",
+      description:
+        "Not “which CRM is better” — which one closes your contour faster: intake, robots, proposals, 1C. When you should not migrate.",
+      h1: "Bitrix24 or amoCRM for sales automation",
+      sections: [
+        {
+          title: "Short answer",
+          paragraphs: [
+            "If the team already lives in Bitrix24 (tasks, portal, lines) — automate there. If the core is sales pipeline — amoCRM often wins.",
+            "Migrating CRM “for AI” is rarely needed: start with intake, robots, proposals and 1C sync.",
+          ],
+        },
+        {
+          title: "Criteria",
+          paragraphs: [
+            "Bitrix24 is stronger as portal + CRM. amoCRM is stronger as a sales CRM with fast robots and widgets.",
+            "1C and document links matter more than the CRM brand — both connect via API.",
+          ],
+        },
+        {
+          title: "How Bober AI Systems helps",
+          paragraphs: [
+            "We stay on your CRM in most projects. See /integrations/bitrix24-sales-automation and /integrations/amocrm-automation.",
+          ],
+        },
+      ],
+      faq: [
+        {
+          q: "Must we migrate to Bitrix for AI?",
+          a: "Usually no. The AI layer and automation sit on the current CRM.",
+        },
+        {
+          q: "What to automate first?",
+          a: "Lead intake, follow-up and proposal assembly — fastest ROI.",
+        },
+      ],
+    },
+  },
+  {
+    slug: "kogda-nuzhen-rag-a-kogda-poisk",
+    cluster: "buyer-decision",
+    keywords: [
+      "когда нужен rag",
+      "rag или поиск по документам",
+      "корпоративная база знаний с ии",
+    ],
+    related: [
+      {
+        href: "/solutions/knowledge-base",
+        labelRu: "корпоративная база знаний с ИИ",
+        labelEn: "corporate knowledge base with AI",
+      },
+      { href: "/services/rag", labelRu: "корпоративный RAG", labelEn: "corporate RAG" },
+      {
+        href: "/services/self-hosted-ai",
+        labelRu: "приватный AI / локальная нейросеть",
+        labelEn: "private AI / on-prem LLM",
+      },
+    ],
+    publishedAt: "2026-07-26",
+    ru: {
+      title: "Когда компании нужен RAG, а когда достаточно поиска",
+      description:
+        "RAG — не обязательный первый шаг. Разбираем, когда хватает структуры и поиска, а когда нужен диалоговый ответ с цитатами.",
+      h1: "Когда компании нужен RAG, а когда достаточно поиска",
+      sections: [
+        {
+          title: "Короткий ответ",
+          paragraphs: [
+            "Если сотрудники не находят актуальный регламент — сначала структура, владельцы документов и поиск. RAG имеет смысл, когда нужен ответ «своими словами» со ссылкой на источник в чате/портале.",
+            "Без контроля версий RAG лишь красиво отвечает по устаревшим PDF.",
+          ],
+        },
+        {
+          title: "Признаки, что хватит поиска",
+          paragraphs: [
+            "Документов мало, они уже структурированы, вопросы типовые («где инструкция»).",
+            "Главная боль — найти файл, а не сформулировать ответ.",
+          ],
+        },
+        {
+          title: "Признаки, что нужен RAG",
+          paragraphs: [
+            "Много регламентов, смежные темы, нужна цитата и эскалация при низкой уверенности.",
+            "L1-поддержка или онбординг тонут в повторяющихся вопросах.",
+          ],
+        },
+        {
+          title: "Как помогает Bober AI Systems",
+          paragraphs: [
+            "Не продаём RAG «по умолчанию». Сценарии: /solutions/knowledge-base, /services/rag, при необходимости /services/self-hosted-ai.",
+          ],
+        },
+      ],
+      faq: [
+        {
+          q: "Можно начать без LLM?",
+          a: "Да — часто сначала наводим порядок в базе знаний и поиске, потом добавляем диалоговый слой.",
+        },
+        {
+          q: "Нужен ли on-prem?",
+          a: "Если регламенты нельзя отдавать в публичные API — да, смотрите приватный контур.",
+        },
+      ],
+    },
+    en: {
+      title: "When a company needs RAG vs plain search",
+      description:
+        "RAG is not the mandatory first step. When structure + search is enough, and when you need cited conversational answers.",
+      h1: "When a company needs RAG vs plain search",
+      sections: [
+        {
+          title: "Short answer",
+          paragraphs: [
+            "If people cannot find the current policy — start with structure, owners and search. RAG helps when you need an answer “in plain language” with a source citation in chat/portal.",
+            "Without version ownership, RAG just answers from stale PDFs.",
+          ],
+        },
+        {
+          title: "When search is enough",
+          paragraphs: [
+            "Few documents, already structured, typical “where is the guide” questions.",
+            "The pain is finding the file, not phrasing an answer.",
+          ],
+        },
+        {
+          title: "When RAG helps",
+          paragraphs: [
+            "Many overlapping policies, need citations and escalation on low confidence.",
+            "L1 support or onboarding drowns in repeat questions.",
+          ],
+        },
+        {
+          title: "How Bober AI Systems helps",
+          paragraphs: [
+            "We do not sell RAG by default. See /solutions/knowledge-base, /services/rag, and /services/self-hosted-ai when needed.",
+          ],
+        },
+      ],
+      faq: [
+        {
+          q: "Can we start without an LLM?",
+          a: "Yes — often fix knowledge structure and search first, then add a conversational layer.",
+        },
+        {
+          q: "Do we need on-prem?",
+          a: "If policies cannot leave to public APIs — yes, use a private contour.",
+        },
+      ],
+    },
+  },
 ];

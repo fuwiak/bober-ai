@@ -246,8 +246,9 @@ const en = {
   },
   pages: {
     services: {
-      metaTitle: "Hire AI implementation and automation — Bober AI services",
-      metaDescription: "Request an audit, pilot or production AI rollout: CRM, documents, sales, support. Fixed estimate, NDA, reply within 4 hours.",
+      metaTitle: "AI implementation services: Bitrix24, amoCRM, 1C, documents | Bober AI",
+      metaDescription:
+        "Bober AI Systems commercial services: Bitrix24 and amoCRM sales automation, 1C integration, document processing, private AI, RAG and AI consulting. Audit from €1,500, implementation from €5,000, NDA, reply within 4 hours.",
     },
     portfolio: {
       metaTitle: "AI implementation case studies",

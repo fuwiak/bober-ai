@@ -229,7 +229,13 @@ export const CATALOG_LANDING_SPECS: LandingSpec[] = [
     cluster: "automation-processes",
     serviceSlug: "business-process-automation",
     coverImage: "/diagrams/workflow-automation.svg",
-    keywords: ["синхронизация crm 1с","интеграция систем","автоматизация бизнес процессов"],
+    keywords: [
+      "синхронизация crm 1с",
+      "интеграция систем",
+      "автоматизация бизнес процессов",
+      "интеграция бизнес систем",
+      "интеграция информационных систем",
+    ],
     
     related: [
       { href: "/automation/processes", labelRu: "Автоматизация процессов", labelEn: "Process automation" },
@@ -729,26 +735,108 @@ export const CATALOG_LANDING_SPECS: LandingSpec[] = [
     keywords: ["автоматизация коммерческих предложений","автоматизация кп","генерация кп из crm"],
     caseStudySlugs: ["elia-suite", "kp-llm-automation"],
     related: [
-      { href: "/automation", labelRu: "Автоматизация бизнес-процессов", labelEn: "Business process automation" },
-      { href: "/automation/ai-for-sales", labelRu: "AI для отдела продаж", labelEn: "AI for the sales team" },
-      { href: "/automation/documents", labelRu: "Документооборот", labelEn: "Document automation" },
-      { href: "/integrations/amocrm-ai", labelRu: "AI для amoCRM", labelEn: "AI for amoCRM" },
+      {
+        href: "/automation/sales",
+        labelRu: "автоматизация отдела продаж",
+        labelEn: "sales team automation",
+      },
+      {
+        href: "/integrations/bitrix24-sales-automation",
+        labelRu: "автоматизация продаж в Битрикс24",
+        labelEn: "Bitrix24 sales automation",
+      },
+      {
+        href: "/integrations/amocrm-automation",
+        labelRu: "автоматизация amoCRM",
+        labelEn: "amoCRM automation",
+      },
+      {
+        href: "/automation/ai-for-sales",
+        labelRu: "ИИ для отдела продаж",
+        labelEn: "AI for the sales team",
+      },
+      {
+        href: "/portfolio/kp-llm-automation",
+        labelRu: "кейс: КП за 2–5 минут",
+        labelEn: "case: proposals in 2–5 minutes",
+      },
+      {
+        href: "/pricing",
+        labelRu: "стоимость внедрения AI",
+        labelEn: "AI implementation pricing",
+      },
     ],
     ru: {
-      h1: "Автоматизация коммерческих предложений",
-      subtitle: "КП из CRM и прайса за минуты: без копипаста в Word. Кластер pillar «Автоматизация бизнес-процессов».",
-      problems: ["Менеджеры готовят КП часами","Лиды остывают без follow-up","Шаблоны и прайсы разъехались по файлам","Данные сделки размазаны по чатам и таблицам"],
-      deliverables: ["Генерация DOCX/PDF из CRM и каталога","Автозаполнение цен и условий","Отправка и версия документа в сделке","Метрики: время до КП, конверсия quote→заказ"],
-      intro: ["Автоматизация коммерческих предложений — основная страница направления. Воронка CRM — на /automation/sales, AI-помощник — на /automation/ai-for-sales.","Связываем CRM и документы: сделка → шаблон → PDF → клиент.","Цены только из каталога — без «галлюцинаций» модели."],
-      faq: [{"q":"Сколько экономит времени?","a":"В кейсе ELIA — с ~45 минут до 2–5 минут на КП."},{"q":"Нужна ли замена CRM?","a":"Редко. Настраиваем amoCRM или Bitrix24."},{"q":"Чем отличается от AI для продаж?","a":"Здесь — генерация КП. /automation/ai-for-sales — квалификация и помощник менеджера."}],
+      h1: "Автоматизация коммерческих предложений из CRM и прайса",
+      subtitle:
+        "КП в DOCX/PDF за минуты: цены только из каталога, без копипаста в Word. От 300 000 ₽, типичный пилот 4–8 недель.",
+      problems: [
+        "Менеджеры готовят КП часами",
+        "Лиды остывают без follow-up",
+        "Шаблоны и прайсы разъехались по файлам",
+        "Данные сделки размазаны по чатам и таблицам",
+      ],
+      deliverables: [
+        "Генерация DOCX/PDF из CRM и каталога",
+        "Автозаполнение цен и условий",
+        "Отправка и версия документа в сделке",
+        "Метрики: время до КП, конверсия quote→заказ",
+      ],
+      intro: [
+        "Автоматизация КП — коммерческий сценарий с быстрым ROI: минуты вместо десятков минут на типовом запросе.",
+        "Воронка CRM — /automation/sales; AI-помощник менеджера — /automation/ai-for-sales.",
+        "Цены только из каталога — без «галлюцинаций» модели.",
+      ],
+      faq: [
+        {
+          q: "Сколько экономит времени?",
+          a: "В кейсе ELIA / КП-пайплайне — с ~45 минут до 2–5 минут на типовое КП.",
+        },
+        {
+          q: "Нужна ли замена CRM?",
+          a: "Редко. Настраиваем amoCRM или Bitrix24.",
+        },
+        {
+          q: "Сколько стоит?",
+          a: "От 300 000 ₽ за контур генерации КП; полный sales-пакет — от 500 000 ₽.",
+        },
+      ],
     },
     en: {
-      h1: "Commercial proposal automation",
-      subtitle: "Proposals from CRM and price lists in minutes — no Word copy-paste. Cluster under the business process automation pillar.",
-      problems: ["Reps spend hours building proposals","Leads go cold without follow-up","Templates and price lists drift","Deal data lives in chats and sheets"],
-      deliverables: ["DOCX/PDF generation from CRM and catalog","Auto-filled prices and terms","Document version attached to the deal","Metrics: time-to-quote, quote-to-order"],
-      intro: ["Commercial proposal automation is the cluster money-page. Pipeline discipline lives on /automation/sales; the AI assistant on /automation/ai-for-sales.","We connect CRM and documents: deal → template → PDF → client.","Prices come only from your catalog — no model hallucinations."],
-      faq: [{"q":"How much time does it save?","a":"In the ELIA case — from ~45 minutes to 2–5 minutes per proposal."},{"q":"Must we change CRM?","a":"Rarely. We configure amoCRM or Bitrix24."},{"q":"Different from AI for sales?","a":"This page is proposal generation. /automation/ai-for-sales is qualification and a sales assistant."}],
+      h1: "Commercial proposal automation from CRM and price lists",
+      subtitle:
+        "DOCX/PDF proposals in minutes: catalog prices only, no Word copy-paste. From €3,000; typical pilot 4–8 weeks.",
+      problems: [
+        "Reps spend hours building proposals",
+        "Leads go cold without follow-up",
+        "Templates and price lists drift",
+        "Deal data lives in chats and sheets",
+      ],
+      deliverables: [
+        "DOCX/PDF generation from CRM and catalog",
+        "Auto-filled prices and terms",
+        "Document version attached to the deal",
+        "Metrics: time-to-quote, quote-to-order",
+      ],
+      intro: [
+        "Proposal automation is a high-ROI scenario: minutes instead of tens of minutes on a typical request.",
+        "Pipeline discipline: /automation/sales; sales assistant: /automation/ai-for-sales.",
+        "Prices come only from your catalog — no model hallucinations.",
+      ],
+      faq: [
+        {
+          q: "How much time does it save?",
+          a: "In the ELIA / KP pipeline case — from ~45 minutes to 2–5 minutes per typical proposal.",
+        },
+        {
+          q: "Must we change CRM?",
+          a: "Rarely. We configure amoCRM or Bitrix24.",
+        },
+        {
+          q: "Pricing?",
+          a: "From €3,000 for the proposal contour; full sales pack from €5,000.",
+        },
+      ],
     },
   },
   {
@@ -1345,7 +1433,13 @@ export const CATALOG_LANDING_SPECS: LandingSpec[] = [
     cluster: "amocrm",
     serviceSlug: "crm-integration",
     coverImage: "/diagrams/crm-integration.svg",
-    keywords: ["ai для amocrm","ai amocrm","автоматизация amocrm с ai"],
+    keywords: [
+      "ai для amocrm",
+      "ai amocrm",
+      "автоматизация amocrm с ai",
+      "интеграция amocrm",
+      "amocrm интеграции",
+    ],
     
     related: [
       { href: "/automation", labelRu: "Автоматизация бизнес-процессов", labelEn: "Business process automation" },
@@ -1437,29 +1531,123 @@ export const CATALOG_LANDING_SPECS: LandingSpec[] = [
     cluster: "bitrix24",
     serviceSlug: "crm-integration",
     coverImage: "/diagrams/crm-integration.svg",
-    keywords: ["ai для bitrix24","ai bitrix24","автоматизация bitrix24 с ai","ии для битрикс24","интеграция ии с битрикс24","внедрение ии в битрикс24","автоматизация битрикс24","интеграция ии в битрикс24 цена"],
+    keywords: [
+      "ai для bitrix24",
+      "ai bitrix24",
+      "автоматизация bitrix24 с ai",
+      "ии для битрикс24",
+      "интеграция ии с битрикс24",
+      "внедрение ии в битрикс24",
+      "автоматизация битрикс24",
+      "интеграция ии в битрикс24 цена",
+      "интеграция битрикс24",
+      "внедрение битрикс24",
+    ],
     
+    caseStudySlugs: ["bitrix24-kwork-crm", "kp-llm-automation"],
     related: [
-      { href: "/automation", labelRu: "Автоматизация бизнес-процессов", labelEn: "Business process automation" },
-      { href: "/integrations/bitrix24", labelRu: "Bitrix24 интеграция", labelEn: "Bitrix24 integration" },
-      { href: "/automation/ai-for-sales", labelRu: "AI для отдела продаж", labelEn: "AI for the sales team" },
-      { href: "/automation/proposal-generation", labelRu: "Автоматизация КП", labelEn: "Proposal automation" },
+      {
+        href: "/integrations/bitrix24-sales-automation",
+        labelRu: "автоматизация отдела продаж в Битрикс24",
+        labelEn: "Bitrix24 sales automation",
+      },
+      {
+        href: "/integrations/bitrix24",
+        labelRu: "внедрение и настройка Битрикс24",
+        labelEn: "Bitrix24 setup and integration",
+      },
+      {
+        href: "/integrations/bitrix24-1c",
+        labelRu: "интеграция Битрикс24 с 1С",
+        labelEn: "Bitrix24 ↔ 1C integration",
+      },
+      {
+        href: "/automation/proposal-generation",
+        labelRu: "автоматизация коммерческих предложений",
+        labelEn: "commercial proposal automation",
+      },
+      {
+        href: "/portfolio/bitrix24-kwork-crm",
+        labelRu: "кейс Kwork → Битрикс24",
+        labelEn: "Kwork → Bitrix24 case",
+      },
+      {
+        href: "/pricing",
+        labelRu: "стоимость внедрения AI",
+        labelEn: "AI implementation pricing",
+      },
     ],
     ru: {
-      h1: "AI для Bitrix24",
-      subtitle: "AI-слой поверх Bitrix24: сделки, документы, задачи. Базовая интеграция — /integrations/bitrix24.",
-      problems: ["Роботы Bitrix24 не покрывают нестандартные тексты","Документы собирают вручную из сделки","Нет AI-ассистента в открытых линиях","Пилоты ChatGPT живут вне CRM"],
-      deliverables: ["AI-шаги в роботах и бизнес-процессах","Черновики КП и писем из карточки","Ассистент в открытых линиях с эскалацией","Логи, eval и контроль затрат"],
-      intro: ["AI для Bitrix24 — отдельное направление. /integrations/bitrix24 закрывает внедрение и REST без LLM.","Подключаем AI к конкретным шагам воронки.","Production в контуре заказчика или облаке."],
-      faq: [{"q":"Чем отличается от интеграции Bitrix24?","a":"/integrations/bitrix24 — настройка и API. Эта страница — AI-слой."},{"q":"Коробка или облако?","a":"Оба варианта. On-prem LLM — по запросу."},{"q":"Срок пилота?","a":"2–4 недели на одном сценарии."}],
+      h1: "Внедрение ИИ в Битрикс24: сделки, документы и открытые линии",
+      subtitle:
+        "AI-слой поверх Bitrix24 для коммерческих команд: квалификация, КП, задачи. От 500 000 ₽, пилот 2–4 недели. Базовая интеграция — /integrations/bitrix24.",
+      problems: [
+        "Роботы Bitrix24 не покрывают нестандартные тексты",
+        "Документы собирают вручную из сделки",
+        "Нет AI-ассистента в открытых линиях",
+        "Пилоты ChatGPT живут вне CRM и без контроля затрат",
+      ],
+      deliverables: [
+        "AI-шаги в роботах и бизнес-процессах",
+        "Черновики КП и писем из карточки сделки",
+        "Ассистент в открытых линиях с эскалацией",
+        "Логи, eval и контроль затрат",
+      ],
+      intro: [
+        "Внедряем ИИ в конкретные шаги воронки Bitrix24 — не абстрактный чат для всей компании.",
+        "/integrations/bitrix24 закрывает внедрение и REST без LLM; автоматизация продаж — /integrations/bitrix24-sales-automation.",
+        "Production в контуре заказчика или облаке, с фиксированной сметой.",
+      ],
+      faq: [
+        {
+          q: "Чем отличается от интеграции Bitrix24?",
+          a: "/integrations/bitrix24 — настройка и API. Эта страница — AI-слой на роботах, документах и линиях.",
+        },
+        {
+          q: "Сколько стоит?",
+          a: "От 500 000 ₽ за промышленный сценарий; пилот одного процесса — 2–4 недели.",
+        },
+        {
+          q: "Коробка или облако?",
+          a: "Оба варианта. On-prem LLM — по запросу безопасности.",
+        },
+      ],
     },
     en: {
-      h1: "AI for Bitrix24",
-      subtitle: "AI layer on Bitrix24: deals, documents, tasks. Base integration lives on /integrations/bitrix24.",
-      problems: ["Bitrix robots cannot cover non-standard copy","Documents are built manually from the deal","No AI assistant in open lines","ChatGPT pilots live outside CRM"],
-      deliverables: ["AI steps in robots and workflows","Proposal and email drafts from the card","Open-lines assistant with escalation","Logs, eval and cost control"],
-      intro: ["AI for Bitrix24 is a dedicated direction. /integrations/bitrix24 covers setup and REST without an LLM.","We attach AI to concrete pipeline steps.","Production in your perimeter or the cloud."],
-      faq: [{"q":"Different from Bitrix24 integration?","a":"/integrations/bitrix24 is setup and API. This page is the AI layer."},{"q":"On-prem or cloud?","a":"Both. On-prem LLM on request."},{"q":"Pilot length?","a":"2–4 weeks for one scenario."}],
+      h1: "AI in Bitrix24: deals, documents and open lines",
+      subtitle:
+        "AI layer on Bitrix24 for sales teams: qualification, proposals, tasks. From €5,000; pilot 2–4 weeks. Base setup — /integrations/bitrix24.",
+      problems: [
+        "Bitrix robots cannot cover non-standard copy",
+        "Documents are built manually from the deal",
+        "No AI assistant in open lines",
+        "ChatGPT pilots live outside CRM without cost control",
+      ],
+      deliverables: [
+        "AI steps in robots and workflows",
+        "Proposal and email drafts from the deal card",
+        "Open-lines assistant with escalation",
+        "Logs, eval and cost control",
+      ],
+      intro: [
+        "We attach AI to concrete Bitrix24 pipeline steps — not a company-wide chat toy.",
+        "/integrations/bitrix24 covers setup and REST without an LLM; sales automation — /integrations/bitrix24-sales-automation.",
+        "Production in your perimeter or the cloud, with a fixed estimate.",
+      ],
+      faq: [
+        {
+          q: "Different from Bitrix24 integration?",
+          a: "/integrations/bitrix24 is setup and API. This page is the AI layer on robots, documents and lines.",
+        },
+        {
+          q: "Pricing?",
+          a: "From €5,000 for a production scenario; one-process pilot — 2–4 weeks.",
+        },
+        {
+          q: "On-prem or cloud?",
+          a: "Both. On-prem LLM when security requires it.",
+        },
+      ],
     },
   },
   {
@@ -1529,7 +1717,7 @@ export const CATALOG_LANDING_SPECS: LandingSpec[] = [
     cluster: "1c",
     serviceSlug: "crm-integration",
     coverImage: "/diagrams/erp-sync.svg",
-    keywords: ["интеграция 1с crm","синхронизация 1с"],
+    keywords: ["интеграция 1с crm", "интеграция 1с и crm", "синхронизация 1с"],
     
     related: [
       { href: "/integrations/1c", labelRu: "Интеграция 1С", labelEn: "1C integration" },
@@ -1594,24 +1782,100 @@ export const CATALOG_LANDING_SPECS: LandingSpec[] = [
     keywords: ["счета из 1с","документы 1с"],
     
     related: [
-      { href: "/integrations/1c", labelRu: "Интеграция 1С", labelEn: "1C integration" },
-      { href: "/automation/documents", labelRu: "Документооборот", labelEn: "Document automation" }
+      { href: "/integrations/1c", labelRu: "интеграция 1С с CRM", labelEn: "1C ↔ CRM integration" },
+      {
+        href: "/integrations/bitrix24-1c",
+        labelRu: "интеграция Битрикс24 с 1С",
+        labelEn: "Bitrix24 ↔ 1C",
+      },
+      {
+        href: "/automation/documents",
+        labelRu: "автоматизация обработки документов",
+        labelEn: "document processing automation",
+      },
+      {
+        href: "/portfolio/invoice-processing-pipeline",
+        labelRu: "кейс: счета → OCR → 1С",
+        labelEn: "case: invoices → OCR → 1C",
+      },
+      {
+        href: "/automation/ocr-data-extraction",
+        labelRu: "распознавание документов OCR",
+        labelEn: "document OCR",
+      },
+      { href: "/pricing", labelRu: "стоимость внедрения", labelEn: "implementation pricing" },
     ],
     ru: {
-      h1: "Документы и счета из 1С автоматически",
-      subtitle: "Документы и счета из 1С автоматически: надёжный обмен данными без ручного копирования и «файл на почту».",
-      problems: ["Данные расходятся между системами","Ручной перенос каждый день","Ошибки в заказах и статусах","Нет логов и повторных попыток"],
-      deliverables: ["Схема потоков данных","Production-интеграция с логированием","Обработка ошибок и ретраи","Документация для вашей команды"],
-      intro: ["Документы и счета из 1С автоматически убирает ручной мост между системами.","Проектируем контракты данных, идемпотентность и мониторинг.","AI не обязателен: часто достаточно стабильного API-слоя."],
-      faq: [{"q":"Сколько длится типовая интеграция?","a":"2–6 недель в зависимости от числа сущностей и окружений."},{"q":"Можно ли on-prem?","a":"Да. Часто для 1С и внутренних API."},{"q":"Кто поддерживает после запуска?","a":"Передаём вам или сопровождаем по SLA."}],
+      h1: "Распознавание документов с выгрузкой в 1С",
+      subtitle:
+        "Счета и первичка из почты/сканов → OCR → документ в 1С. От 300 000 ₽, пилот 2–4 недели.",
+      problems: [
+        "Операторы вручную переносят реквизиты из PDF в 1С",
+        "Ошибки ввода и задержки закрытия периода",
+        "Нет журнала и повторных попыток при сбоях обмена",
+        "Публичные OCR-сервисы нельзя отдать учётные данные",
+      ],
+      deliverables: [
+        "Автоприём вложений из почты или папки",
+        "OCR и извлечение полей под ваши документы",
+        "Валидация и создание документа в 1С",
+        "Журнал, retry и ручной review при низкой уверенности",
+      ],
+      intro: [
+        "Собираем production-контур обработки первички — не демо OCR в браузере.",
+        "Синхронизация CRM↔1С — соседний сценарий /integrations/1c и /integrations/bitrix24-1c.",
+        "Кейс: /portfolio/invoice-processing-pipeline.",
+      ],
+      faq: [
+        {
+          q: "Какие документы?",
+          a: "Чаще счета, УПД, акты; расширяем под ваш набор полей.",
+        },
+        {
+          q: "Срок и цена?",
+          a: "От 300 000 ₽; пилот 2–4 недели, промышленный поток обычно 4–8 недель.",
+        },
+        {
+          q: "Данные уходят в ChatGPT?",
+          a: "Нет без согласования. Типовой контур — ваш периметр или закрытое облако.",
+        },
+      ],
     },
     en: {
-      h1: "Automatic documents and invoices from 1C",
-      subtitle: "Automatic documents and invoices from 1C: reliable data exchange without copy-paste and “file by email”.",
-      problems: ["Systems drift out of sync","Daily manual transfers","Order and status errors","No logs or retries"],
-      deliverables: ["Data-flow diagram","Production integration with logging","Error handling and retries","Docs for your team"],
-      intro: ["Automatic documents and invoices from 1C removes the manual bridge between systems.","We design data contracts, idempotency and monitoring.","AI is optional — a stable API layer is often enough."],
-      faq: [{"q":"Typical timeline?","a":"2–6 weeks depending on entities and environments."},{"q":"On-prem possible?","a":"Yes — common for ERP and internal APIs."},{"q":"Who supports after launch?","a":"Your team after handover, or us under SLA."}],
+      h1: "Document recognition with export into 1C",
+      subtitle:
+        "Invoices and source docs from mail/scans → OCR → 1C document. From €3,000; pilot 2–4 weeks.",
+      problems: [
+        "Operators retype PDF fields into 1C by hand",
+        "Entry errors and period-close delays",
+        "No journal or retries on sync failures",
+        "Public OCR cannot receive ledger data",
+      ],
+      deliverables: [
+        "Auto-intake from email or folder",
+        "OCR and field extraction for your docs",
+        "Validation and 1C document create",
+        "Journal, retry and human review on low confidence",
+      ],
+      intro: [
+        "We ship a production contour for source docs — not a browser OCR demo.",
+        "CRM↔1C sync: /integrations/1c and /integrations/bitrix24-1c.",
+        "Case: /portfolio/invoice-processing-pipeline.",
+      ],
+      faq: [
+        {
+          q: "Which documents?",
+          a: "Most often invoices and acts; we expand fields to your set.",
+        },
+        {
+          q: "Price and timeline?",
+          a: "From €3,000; pilot 2–4 weeks; production stream usually 4–8 weeks.",
+        },
+        {
+          q: "Does data go to ChatGPT?",
+          a: "Not without approval. Typical contour is your perimeter or private cloud.",
+        },
+      ],
     },
   },
   {
