@@ -26,6 +26,18 @@ function generateWithTsx() {
     writeFileSync(${JSON.stringify(mainOut)}, getServiceFeedXml(), "utf8");
     writeFileSync(${JSON.stringify(bitrixOut)}, getBitrixFeedXml(), "utf8");
     writeFileSync(${JSON.stringify(partnersOut)}, getPartnersFeedXml(), "utf8");
+
+    for (const [label, xml] of [
+      ["bitrix", getBitrixFeedXml()],
+      ["partners", getPartnersFeedXml()],
+    ]) {
+      const notes = [...xml.matchAll(/<sales_notes>([^<]*)<\/sales_notes>/g)].map((m) => m[1]);
+      const bad = notes.filter((n) => n.length > 50);
+      if (bad.length) {
+        throw new Error(\`\${label} feed: sales_notes >50 chars: \${bad.slice(0, 3).join(" | ")}\`);
+      }
+    }
+
     const n = materializeFeedPictures(root);
 
     const microsite = [

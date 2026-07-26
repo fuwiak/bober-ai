@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-26 03:55">
+<yml_catalog date="2026-07-26 04:04">
   <shop>
     <name>Bober AI Systems — Partner Program</name>
     <company>Bober AI Systems</company>
@@ -64,7 +64,7 @@
       <url>https://partners.bober-ai.dev/#project-delivery</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>Пилот на рынке от 300 000 ₽ · партнёрская цена по проекту</sales_notes>
+      <sales_notes>от 300 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>project-delivery</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-partners-delivery.jpg</picture>

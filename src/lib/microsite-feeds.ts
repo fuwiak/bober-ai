@@ -45,6 +45,13 @@ function escapeXml(value: string) {
     .replaceAll("'", "&apos;");
 }
 
+/** Yandex YML: sales_notes max 50 chars — longer → feed errors. */
+function clampSalesNotes(value: string, max = 50) {
+  const text = String(value || "").trim();
+  if (text.length <= max) return text;
+  return `${text.slice(0, Math.max(0, max - 1)).trimEnd()}…`;
+}
+
 function buildYmlCatalog(config: MicrositeFeedConfig, now = new Date()) {
   const feedSiteUrl = config.siteUrl.replace(/\/$/, "");
   const orderUrl = `${feedSiteUrl}${config.orderPath}`;
@@ -69,7 +76,7 @@ function buildYmlCatalog(config: MicrositeFeedConfig, now = new Date()) {
       <url>${escapeXml(url)}</url>
       <price from="true">${offer.price}</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>${escapeXml(offer.salesNotes)}</sales_notes>
+      <sales_notes>${escapeXml(clampSalesNotes(offer.salesNotes))}</sales_notes>
       <categoryId>${FEED_CATEGORY_ID}</categoryId>
       <set-ids>${escapeXml(offer.slug)}</set-ids>
       <picture>${escapeXml(pictureUrl)}</picture>
@@ -125,7 +132,7 @@ const BITRIX_OFFERS: MicrositeOffer[] = [
     title: s.title,
     description: s.description,
     about: BITRIX_LANDING_ABOUT,
-    salesNotes: `${s.title} · ${s.priceLabel} · Москва и удалённо`,
+    salesNotes: s.priceLabel,
     price: s.priceFrom,
     picture: "/stock/office-tower.jpg",
     conversion: 94,
@@ -161,7 +168,7 @@ const PARTNERS_OFFERS: MicrositeOffer[] = [
     title: "White-label project delivery",
     description: "Разработка, интеграции, тестирование, deployment и документация — клиент видит только вас.",
     about: PARTNERS_ABOUT,
-    salesNotes: "Пилот на рынке от 300 000 ₽ · партнёрская цена по проекту",
+    salesNotes: "от 300 000 ₽",
     price: 300000,
     picture: "/stock/team-collab.jpg",
     conversion: 94,

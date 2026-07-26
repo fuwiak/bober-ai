@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-26 03:55">
+<yml_catalog date="2026-07-26 04:04">
   <shop>
     <name>Bober AI Systems — Битрикс24</name>
     <company>Bober AI Systems</company>
@@ -88,7 +88,7 @@
       <url>https://bitrix.bober-ai.dev/#avtomatizaciya-dokumentov</url>
       <price from="true">24000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>Автоматизация документов · от 24 000 ₽ · Москва и удалённо</sales_notes>
+      <sales_notes>от 24 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>avtomatizaciya-dokumentov</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-ws-doc-automation.jpg</picture>
@@ -112,7 +112,7 @@
       <url>https://bitrix.bober-ai.dev/#nastrojka-bitrix24</url>
       <price from="true">18000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>Настройка Bitrix24 · от 18 000 ₽ · Москва и удалённо</sales_notes>
+      <sales_notes>от 18 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>nastrojka-bitrix24</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-ws-bitrix-setup.jpg</picture>
@@ -136,7 +136,7 @@
       <url>https://bitrix.bober-ai.dev/#avtomatizaciya-bitrix24</url>
       <price from="true">20000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>Автоматизация Bitrix24 · от 20 000 ₽ · Москва и удалённо</sales_notes>
+      <sales_notes>от 20 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>avtomatizaciya-bitrix24</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-ws-bitrix-automation.jpg</picture>
@@ -160,7 +160,7 @@
       <url>https://bitrix.bober-ai.dev/#integraciya-bitrix24-1c</url>
       <price from="true">35000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>Интеграция Bitrix24 с 1С · от 35 000 ₽ · Москва и удалённо</sales_notes>
+      <sales_notes>от 35 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>integraciya-bitrix24-1c</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-ws-bitrix-1c.jpg</picture>
@@ -184,7 +184,7 @@
       <url>https://bitrix.bober-ai.dev/#generaciya-kommercheskogo-predlozheniya</url>
       <price from="true">20000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>Генерация коммерческого предложения · от 20 000 ₽ · Москва и удалённо</sales_notes>
+      <sales_notes>от 20 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>generaciya-kommercheskogo-predlozheniya</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-ws-kp-gen.jpg</picture>
@@ -208,7 +208,7 @@
       <url>https://bitrix.bober-ai.dev/#bitrix24-ai</url>
       <price from="true">28000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>Bitrix24 AI · от 28 000 ₽ · Москва и удалённо</sales_notes>
+      <sales_notes>от 28 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>bitrix24-ai</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-ws-bitrix-ai.jpg</picture>
@@ -232,7 +232,7 @@
       <url>https://bitrix.bober-ai.dev/#avtomatizaciya-kommercheskogo-predlozheniya</url>
       <price from="true">22000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>Автоматизация коммерческого предложения · от 22 000 ₽ · Москва и удалённо</sales_notes>
+      <sales_notes>от 22 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>avtomatizaciya-kommercheskogo-predlozheniya</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-ws-kp-auto.jpg</picture>
@@ -256,7 +256,7 @@
       <url>https://bitrix.bober-ai.dev/#nastrojka-telefonii-bitrix24</url>
       <price from="true">18000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>Настройка телефонии Bitrix24 · от 18 000 ₽ · Москва и удалённо</sales_notes>
+      <sales_notes>от 18 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>nastrojka-telefonii-bitrix24</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-ws-telephony.jpg</picture>
@@ -280,7 +280,7 @@
       <url>https://bitrix.bober-ai.dev/#vnedrenie-ai-assistenta</url>
       <price from="true">32000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>Внедрение AI-ассистента · от 32 000 ₽ · Москва и удалённо</sales_notes>
+      <sales_notes>от 32 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>vnedrenie-ai-assistenta</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-ws-ai-assistant.jpg</picture>
@@ -304,7 +304,7 @@
       <url>https://bitrix.bober-ai.dev/#razrabotka-rag-sistem</url>
       <price from="true">45000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>Разработка RAG-систем · от 45 000 ₽ · Москва и удалённо</sales_notes>
+      <sales_notes>от 45 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>razrabotka-rag-sistem</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-ws-rag.jpg</picture>
@@ -328,7 +328,7 @@
       <url>https://bitrix.bober-ai.dev/#bitrix-start</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>Внедрение Битрикс24 с AI · аудит и запуск от 150 000 ₽</sales_notes>
+      <sales_notes>от 150 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>bitrix-start</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-start.jpg</picture>
@@ -352,7 +352,7 @@
       <url>https://bitrix.bober-ai.dev/#crm-automation</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>AI-автоматизация Битрикс24 · AI-контур отдела продаж · пилот от 300 000 ₽ · 2–4 недели</sales_notes>
+      <sales_notes>от 300 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>crm-automation</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-crm-automation.jpg</picture>
@@ -376,7 +376,7 @@
       <url>https://bitrix.bober-ai.dev/#ai-analytics</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>AI-аналитика Битрикс24 · пилот от 300 000 ₽</sales_notes>
+      <sales_notes>от 300 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>ai-analytics</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-ai-analytics.jpg</picture>
@@ -400,7 +400,7 @@
       <url>https://bitrix.bober-ai.dev/#sales-loop</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>AI-контур отдела продаж · телефония + CRM + AI · пилот от 300 000 ₽ · 2–4 недели</sales_notes>
+      <sales_notes>от 300 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>sales-loop</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-sales-loop.jpg</picture>
@@ -424,7 +424,7 @@
       <url>https://bitrix.bober-ai.dev/#integrations-1c</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>Интеграция Битрикс24 и AI для продаж · от 500 000 ₽</sales_notes>
+      <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>integrations-1c</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-integrations.jpg</picture>
@@ -448,7 +448,7 @@
       <url>https://bitrix.bober-ai.dev/#mcp</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>MCP Битрикс24 / BitrixGPT · пилот от 300 000 ₽</sales_notes>
+      <sales_notes>от 300 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>mcp</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-mcp.jpg</picture>
@@ -472,7 +472,7 @@
       <url>https://bitrix.bober-ai.dev/#private-llm</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>Битрикс24 + локальный LLM · цена по запросу · от 500 000 ₽</sales_notes>
+      <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>private-llm</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-private-llm.jpg</picture>
