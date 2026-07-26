@@ -4,6 +4,10 @@
   "specializationId": "14621107-8394-44af-96e5-331a0f9dafed",
   "specializationNote": "Настройка Битрикс — 10 вариантов «автоматизация битрикс24» (интеграции, открытые линии, процессы)",
   "note": "Кластер вокруг запроса «автоматизация битрикс24»: системы (1С-Битрикс, МойСклад, WordPress), мессенджеры/открытые линии, рабочие процессы. Без дублей уже опубликованных title.",
+  "publishedAt": "2026-07-26",
+  "publishedStatus": "created_in_cabinet",
+  "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=14621107-8394-44af-96e5-331a0f9dafed",
+  "publicProfile": "https://uslugi.yandex.ru/profile/PawelStasinski-254144",
   "publishHint": [
     "npm run yandex:uslugi:login",
     "npm run yandex:uslugi:add -- --file=data/uslugi-bitrix24-automation-10.json --headless",
