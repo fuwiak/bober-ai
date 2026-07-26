@@ -140,7 +140,7 @@ export default async function SecureAiPage({ params }: Props) {
                   <p className="mt-2 text-sm text-body">
                     {ru ? product.summaryRu : product.summaryEn}
                   </p>
-                  <Link href={product.href} className="link-more mt-4 inline-block">
+                  <Link href={product.href} className="link-more mt-4">
                     {ru ? "Подробнее" : "Details"}
                   </Link>
                 </article>
@@ -193,13 +193,15 @@ export default async function SecureAiPage({ params }: Props) {
                   rel="noreferrer"
                   className="feature-card block transition hover:border-primary/40"
                 >
-                  <Image
-                    src={cert.previewSrc}
-                    alt={ru ? cert.altRu : cert.altEn}
-                    width={400}
-                    height={283}
-                    className="w-full rounded-sm"
-                  />
+                  <div className="bg-white p-3">
+                    <Image
+                      src={cert.previewSrc}
+                      alt={ru ? cert.altRu : cert.altEn}
+                      width={400}
+                      height={283}
+                      className="w-full rounded-sm"
+                    />
+                  </div>
                   <span className="mt-2 inline-block text-xs text-link">PDF</span>
                 </a>
               ))}
