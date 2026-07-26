@@ -9,11 +9,67 @@
     "organization": "https://yandex.ru/support/direct/ru/service-gallery/organization.md"
   },
   "path": "private_master",
+  "advertisement": {
+    "source": "yandex_uslugi",
+    "title": "Павел Стасиньский — AI, Bitrix24 и 1С-Битрикс",
+    "performer": "Павел Стасиньский",
+    "profileUrl": "https://uslugi.yandex.ru/profile/PawelStasinski-254144",
+    "geo": "Москва",
+    "rating": 5.0,
+    "reviewsCount": 28,
+    "phone": "+79950998170",
+    "telegram": "https://t.me/pstasinski",
+    "siteUrl": "https://www.bober-ai.dev",
+    "avatar": "https://www.bober-ai.dev/yandex/Pasha_Yandex1.png",
+    "summary": "Внедрение AI, автоматизация CRM/Bitrix24 и настройка 1С-Битрикс. Фиксированная смета, Москва и удалённо.",
+    "uslugiOfferFiles": [
+      "data/uslugi-bitrix-cms-category.json",
+      "data/yandex-uslugi-bitrix-listings.json",
+      "data/uslugi-bitrix24-automation-10.json"
+    ],
+    "featuredOffers": [
+      {
+        "name": "Настройка 1С-Битрикс",
+        "priceFrom": 12000,
+        "categoryUrl": "https://uslugi.yandex.ru/1-moscow-and-moscow-oblast/category/kompyuteryi-i-it/nastrojka-bitriks--4584"
+      },
+      {
+        "name": "Доработка сайта на Битрикс",
+        "priceFrom": 9000,
+        "categoryUrl": "https://uslugi.yandex.ru/1-moscow-and-moscow-oblast/category/kompyuteryi-i-it/nastrojka-bitriks--4584"
+      },
+      {
+        "name": "Администрирование 1С-Битрикс",
+        "priceFrom": 8000,
+        "categoryUrl": "https://uslugi.yandex.ru/1-moscow-and-moscow-oblast/category/kompyuteryi-i-it/nastrojka-bitriks--4584"
+      },
+      {
+        "name": "Настройка воронки и роботов в Bitrix24",
+        "priceFrom": 15000,
+        "categoryUrl": "https://uslugi.yandex.ru/profile/PawelStasinski-254144"
+      },
+      {
+        "name": "Интеграция сайта и вебхуков с Bitrix24",
+        "priceFrom": 12000,
+        "categoryUrl": "https://uslugi.yandex.ru/profile/PawelStasinski-254144"
+      }
+    ]
+  },
   "campaignMaster": {
     "type": "Продвижение специалистов",
+    "profileUrl": "https://uslugi.yandex.ru/profile/PawelStasinski-254144",
     "region": ["Москва", "Россия"],
     "budgetRubPerDayHint": [300, 1500],
-    "audience": "Подобрать оптимальную"
+    "audience": "Подобрать оптимальную",
+    "goal": "Максимум целевых действий",
+    "steps": [
+      "Добавить → Кампанию → вкладка «Мастер кампаний»",
+      "Выбрать «Продвижение специалистов» (или «Конверсии и трафик»)",
+      "Вставить profileUrl объявления Услуг",
+      "Регион: Москва (+ Россия при необходимости)",
+      "Аудитория: «Подобрать оптимальную»",
+      "Бюджет теста: от 300–1500 ₽/день, запустить"
+    ]
   },
   "epkFallback": {
     "name": "Bober AI — Галерея услуг (ЕПК)",
@@ -22,6 +78,7 @@
   },
   "blockers": [
     "Campaign Master / specialist promotion is UI-only (no Direct API)",
-    "Direct API requires approved app registration (error 58 until confirmed)"
+    "Direct API requires approved app registration (error 58 until confirmed)",
+    "Ads in gallery are generated from Uslugi profile data after moderation sync"
   ]
 }
