@@ -1,0 +1,224 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "specializationId": "187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "specializationNote": "Компьютеры и IT → Другое — Bober Secure AI + Kaspersky (Registered Partner)",
+  "note": "20 объявлений под линию Secure AI / Kaspersky с сайта (/secure-ai, /kaspersky, /services/secure-private-ai-cloud). Без «под ключ» в title. Лицензии Kaspersky — через авторизованную дистрибуцию.",
+  "publishedAt": "2026-07-27",
+  "publishedStatus": "created_in_cabinet",
+  "publishedCount": 20,
+  "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "publicProfile": "https://uslugi.yandex.ru/profile/PawelStasinski-254144",
+  "siteRefs": [
+    "https://www.bober-ai.dev/secure-ai",
+    "https://www.bober-ai.dev/kaspersky",
+    "https://www.bober-ai.dev/services/secure-private-ai-cloud"
+  ],
+  "publishHint": [
+    "npm run yandex:uslugi:login",
+    "npm run yandex:uslugi:add -- --file=data/uslugi-secure-ai-kaspersky.json --headless --fast",
+    "npm run yandex:uslugi:list -- --spec=187ddab3-5a27-4a55-8240-dd1baca3b87f"
+  ],
+  "services": [
+    {
+      "id": "secure-private-ai-cloud",
+      "name": "Защищенная AI-инфраструктура на российских облаках",
+      "price": 800000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/cyber-padlock.jpg",
+      "description": "Защищенная AI-инфраструктура: приватный LLM/RAG + Yandex Cloud / Selectel / Cloud.ru + защита Kaspersky для VM, серверов и контейнеров. Внедрение, мониторинг, отчёт. Москва и удалённо. От 800 000 ₽."
+    },
+    {
+      "id": "secure-corporate-llm",
+      "name": "Безопасный корпоративный LLM",
+      "price": 500000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/private-llm.jpg",
+      "description": "Безопасный корпоративный LLM в закрытом контуре: контроль доступа, логи, политики использования, без утечки данных во внешние API. Москва и удалённо. От 500 000 ₽."
+    },
+    {
+      "id": "secure-rag",
+      "name": "Безопасный корпоративный RAG",
+      "price": 500000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/rag-search.jpg",
+      "description": "Безопасный корпоративный RAG: поиск по документам со ссылками, защита от отравления базы знаний, контроль источников. Москва и удалённо. От 500 000 ₽."
+    },
+    {
+      "id": "llm-rag-aist",
+      "name": "Внедрение LLM RAG с аудитом безопасности AI",
+      "price": 600000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/cyber-padlock.jpg",
+      "description": "Внедрение корпоративного LLM/RAG с подготовкой к оценке Kaspersky AIST: угрозы, данные, модель, мониторинг. Registered Partner Kaspersky. Москва и удалённо. От 600 000 ₽."
+    },
+    {
+      "id": "prompt-injection-audit",
+      "name": "Аудит безопасности LLM и RAG",
+      "price": 250000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/cyber-padlock.jpg",
+      "description": "Аудит безопасности LLM и RAG: prompt injection, jailbreak, утечки данных, права агента, отчёт для ИБ и руководства. Москва и удалённо. От 250 000 ₽."
+    },
+    {
+      "id": "secure-ai-agent-gateway",
+      "name": "Secure AI Agent Gateway",
+      "price": 450000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/offers/ai-agent.jpg",
+      "description": "Secure AI Agent Gateway: безопасный AI-агент с ограниченным доступом к API, CRM и документам. Логи, RBAC, эскалация к человеку. Москва и удалённо. От 450 000 ₽."
+    },
+    {
+      "id": "container-security-kira",
+      "name": "Kaspersky Container Security и KIRA",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/cyber-padlock.jpg",
+      "description": "Внедрение Kaspersky Container Security + связка с KIRA/LLM: контроль образов, Registry/K8s, тикеты в Bitrix24/Jira, отчёты. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "id": "soc-kuma-kira",
+      "name": "AI-ассистент для SOC на KUMA",
+      "price": 450000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/enterprise-ai-assistant.jpg",
+      "description": "AI-ассистент для отдела ИБ на Kaspersky KUMA / KIRA: разбор алертов, RAG по регламентам, эскалации. Москва и удалённо. От 450 000 ₽."
+    },
+    {
+      "id": "mail-ai-phishing",
+      "name": "Защита корпоративной почты от AI-фишинга",
+      "price": 180000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/cyber-padlock.jpg",
+      "description": "Защита корпоративной почты от AI-фишинга: Kaspersky Mail Security, политики, сценарии реакции, обучение команды. Москва и удалённо. От 180 000 ₽."
+    },
+    {
+      "id": "kaspersky-endpoint",
+      "name": "Kaspersky Endpoint Security для бизнеса",
+      "price": 50000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/cyber-padlock.jpg",
+      "description": "Kaspersky Endpoint Security для бизнеса: подбор редакции, поставка и продление лицензий через авторизованную дистрибуцию. Registered Partner. Москва и удалённо. От 50 000 ₽."
+    },
+    {
+      "id": "kaspersky-ksc",
+      "name": "Внедрение Kaspersky Security Center",
+      "price": 80000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/cyber-padlock.jpg",
+      "description": "Внедрение Kaspersky Security Center: установка, политики, агенты, отчёты. Связка с Endpoint. Москва и удалённо. От 80 000 ₽."
+    },
+    {
+      "id": "kaspersky-1c-servers",
+      "name": "Защита серверов 1С и терминалов Kaspersky",
+      "price": 70000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/cyber-padlock.jpg",
+      "description": "Защита серверов 1С и терминалов (RDS) продуктами Kaspersky: политики KSC, Endpoint, регламент обновлений. Москва и удалённо. От 70 000 ₽."
+    },
+    {
+      "id": "private-ai-onprem",
+      "name": "Приватный AI on-prem без утечки данных",
+      "price": 500000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/private-llm.jpg",
+      "description": "Приватный AI on-prem: LLM, RAG, API в вашем контуре — данные не уходят в публичные сервисы. 152-ФЗ, NDA. Москва и удалённо. От 500 000 ₽."
+    },
+    {
+      "id": "ai-security-policy",
+      "name": "Политика безопасного использования AI",
+      "price": 120000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/ai-discovery-roadmap.jpg",
+      "description": "Политика безопасного использования AI в компании: правила для сотрудников, классификация данных, контроль инструментов, согласование с ИБ. Москва и удалённо. От 120 000 ₽."
+    },
+    {
+      "id": "secure-ai-agents",
+      "name": "Безопасные AI-агенты для бизнеса",
+      "price": 500000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/offers/ai-agent.jpg",
+      "description": "Безопасные AI-агенты: действия в CRM и документах только в рамках прав, HITL, аудит логов. Москва и удалённо. От 500 000 ₽."
+    },
+    {
+      "id": "kaspersky-ai-contour",
+      "name": "Корпоративный AI с защитой Kaspersky",
+      "price": 700000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/cyber-padlock.jpg",
+      "description": "Корпоративный AI (LLM/RAG/агенты) со слоем Kaspersky: endpoint, контейнеры, почта, опционально AIST. Registered Partner. Москва и удалённо. От 700 000 ₽."
+    },
+    {
+      "id": "secure-ai-bitrix",
+      "name": "Безопасный AI для Bitrix24",
+      "price": 350000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/crm-integration.jpg",
+      "description": "Безопасный AI для Bitrix24: ассистент и агенты с контролем прав, логов и данных сделки. Без утечки карточек во внешние чаты. Москва и удалённо. От 350 000 ₽."
+    },
+    {
+      "id": "ai-risk-report",
+      "name": "Отчёт рисков AI для руководства",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/ai-discovery-roadmap.jpg",
+      "description": "Отчёт рисков AI для руководства и ИБ: модель угроз, утечки, права агентов, план устранения. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "id": "k8s-ai-security",
+      "name": "Безопасность AI в Kubernetes",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/automation-code.jpg",
+      "description": "Безопасность AI-стека в Kubernetes: образы, секреты, сеть, Container Security, мониторинг. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "id": "bober-secure-ai-audit",
+      "name": "Аудит внедрения Secure AI",
+      "price": 200000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/ai-discovery-roadmap.jpg",
+      "description": "Аудит внедрения Secure AI: карта контура LLM/RAG/агентов, пробелы ИБ, смета пилота и roadmap на 90 дней. Москва и удалённо. От 200 000 ₽."
+    }
+  ]
+}
