@@ -6,7 +6,7 @@ import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { ContactForm } from "@/components/ContactForm";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import { KASPERSKY_PAGE } from "@/lib/kaspersky-page";
+import { KASPERSKY_PAGE, KASPERSKY_PRODUCTS } from "@/lib/kaspersky-page";
 import { buildPageMetadata } from "@/lib/seo";
 import { KASPERSKY_PARTNER_CERTIFICATES } from "@/lib/trust-partners";
 import { TELEGRAM_URL } from "@/lib/site";
@@ -66,8 +66,8 @@ export default async function KasperskyPage({ params }: Props) {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/#contact" className="btn-primary">
-                {ru ? "Запросить смету лицензий" : "Request a license quote"}
+              <Link href="#ai-kaspersky" className="btn-primary">
+                {ru ? "Линии AI × Kaspersky" : "AI × Kaspersky lines"}
               </Link>
               <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary">
                 Telegram
@@ -79,15 +79,71 @@ export default async function KasperskyPage({ params }: Props) {
           </div>
         </section>
 
+        <section id="ai-kaspersky" className="section-band border-b border-hairline scroll-mt-16">
+          <div className="container-editorial max-w-3xl">
+            <h2 className="section-title">{ru ? p.productsTitleRu : p.productsTitleEn}</h2>
+            <p className="body-copy mt-3 max-w-2xl text-sm">
+              {ru ? p.productsIntroRu : p.productsIntroEn}
+            </p>
+            <div className="mt-8 grid gap-4">
+              {KASPERSKY_PRODUCTS.map((product) => (
+                <article key={product.slug} className="feature-card">
+                  <span className="text-[10px] uppercase tracking-wide text-muted">
+                    {ru ? product.badgeRu : product.badgeEn}
+                  </span>
+                  <h3 className="mt-2 font-medium text-ink">
+                    <Link href={`/kaspersky/${product.slug}`} className="hover:text-primary">
+                      {ru ? product.titleRu : product.titleEn}
+                    </Link>
+                  </h3>
+                  <p className="mt-2 text-sm text-body">
+                    {ru ? product.summaryRu : product.summaryEn}
+                  </p>
+                  <Link
+                    href={`/kaspersky/${product.slug}`}
+                    className="link-more mt-4 inline-block"
+                  >
+                    {ru ? "Подробнее" : "Details"}
+                  </Link>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section-band border-b border-hairline">
+          <div className="container-editorial max-w-3xl">
+            <h2 className="section-title">{ru ? p.matrixTitleRu : p.matrixTitleEn}</h2>
+            <div className="mt-6 overflow-x-auto">
+              <table className="w-full min-w-[28rem] text-left text-sm">
+                <thead>
+                  <tr className="border-b border-hairline text-muted">
+                    <th className="py-2 pr-4 font-medium">Kaspersky</th>
+                    <th className="py-2 font-medium">Bober Dev</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {(ru ? p.matrixRu : p.matrixEn).map((row) => (
+                    <tr key={row.k} className="border-b border-hairline/60">
+                      <td className="py-3 pr-4 text-body">{row.k}</td>
+                      <td className="py-3 text-body">{row.b}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
         <section className="section-band border-b border-hairline">
           <div className="container-editorial max-w-3xl">
             <h2 className="section-title">
-              {ru ? "Что продаём и внедряем" : "What we sell and deploy"}
+              {ru ? "Лицензии и классические внедрения" : "Licenses and classic deployments"}
             </h2>
             <p className="body-copy mt-3 max-w-2xl text-sm">
               {ru
-                ? "Приоритеты по Wordstat: купить/лицензия KES, настройка Security Center, защита серверов 1С и терминалов, почта, Optimum/EDR, аудит ИБ."
-                : "Wordstat priorities: buy/license KES, Security Center setup, 1C and terminal server protection, mail, Optimum/EDR, security audit."}
+                ? "Wordstat-приоритеты: KES купить, настройка Security Center, серверы 1С/терминалы, почта, Optimum/EDR, аудит ИБ."
+                : "Wordstat priorities: buy KES, Security Center setup, 1C/terminals, mail, Optimum/EDR, security audit."}
             </p>
             <div className="mt-8 grid gap-4">
               {p.offers.map((offer) => (
@@ -165,7 +221,9 @@ export default async function KasperskyPage({ params }: Props) {
             </h2>
             <div className="feature-card-bordered mt-6">
               <ContactForm
-                defaultService={ru ? "Kaspersky — лицензии / внедрение" : "Kaspersky — licenses / deployment"}
+                defaultService={
+                  ru ? "Kaspersky — AI / лицензии / внедрение" : "Kaspersky — AI / licenses / deploy"
+                }
               />
             </div>
           </div>

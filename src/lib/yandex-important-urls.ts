@@ -25,6 +25,11 @@ export const YANDEX_IMPORTANT_PATHS = [
   "/solutions",
   "/partners",
   "/kaspersky",
+  "/kaspersky/llm-rag-aist",
+  "/kaspersky/container-security-kira",
+  "/kaspersky/soc-kuma-kira",
+  "/kaspersky/secure-ai-agent-gateway",
+  "/kaspersky/mail-ai-phishing",
   "/guides",
   "/media",
   // Priority commercial pack (problem + system)

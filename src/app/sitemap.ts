@@ -8,6 +8,7 @@ import { GUIDES } from "@/lib/guides";
 import { LANDING_PAGES } from "@/lib/landing-pages";
 import { SEO_HUBS } from "@/lib/seo-catalog/hubs";
 import { getAllIntentArticles } from "@/lib/seo-catalog";
+import { getAllKasperskyProductSlugs } from "@/lib/kaspersky-page";
 import { BITRIX_SITE_URL, PARTNERS_SITE_URL, absoluteUrl } from "@/lib/site";
 
 export const dynamic = "force-static";
@@ -101,6 +102,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const route of staticRoutes) {
     pushLocalized(entries, route.path, route.lastModified, route.changeFrequency, route.priority);
+  }
+
+  const kasperskyUpdated = new Date("2026-07-27");
+  for (const slug of getAllKasperskyProductSlugs()) {
+    pushLocalized(entries, `/kaspersky/${slug}`, kasperskyUpdated, "monthly", 0.82);
   }
 
   for (const route of ruOnlyRoutes) {
