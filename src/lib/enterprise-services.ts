@@ -31,6 +31,7 @@ const IMAGES: Record<string, string> = {
   "knowledge-base": "/stock/rag-search.jpg",
   "ai-consulting": "/stock/ai-discovery-roadmap.jpg",
   "crm-integration": "/stock/crm-integration.jpg",
+  "ai-sales-loop": "/stock/crm-integration.jpg",
 };
 
 const ruExtra: EnterpriseService[] = [
@@ -49,6 +50,7 @@ const ruExtra: EnterpriseService[] = [
   { id: "knowledge-base", slug: "knowledge-base", title: "Корпоративная база знаний", description: "Единое место для регламентов, FAQ и AI-ответов со ссылками.", about: "База знаний, поиск, чат-бот для сотрудников и клиентов.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["knowledge-base"] },
   { id: "ai-consulting", slug: "ai-consulting", title: "AI-консалтинг", description: "Стратегия, ROI, выбор технологий и дорожная карта внедрения.", about: "Аудит, рекомендации и план до закупки разработки.", salesNotes: "от 150 000 ₽", deliveryDays: 10, price: 150000, serviceImage: IMAGES["ai-consulting"] },
   { id: "crm-integration", slug: "crm-integration", title: "Интеграции CRM", description: "amoCRM, Bitrix24, 1С — синхронизация и автоматизация воронки.", about: "Двусторонние интеграции, webhooks, retry и мониторинг.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["crm-integration"] },
+  { id: "ai-sales-loop", slug: "ai-sales-loop", title: "AI-контур отдела продаж", description: "Телефония, переписки, CRM и автоматические следующие действия — один продукт, не отдельные боты.", about: "Интеграция Bitrix24 / amoCRM с телефонией и AI: квалификация лидов, саммари звонков, задачи, follow-up и отчёт об упущенных сделках.", salesNotes: "от 300 000 ₽", deliveryDays: 21, price: 300000, serviceImage: IMAGES["ai-sales-loop"] },
 ];
 
 const enExtra: EnterpriseService[] = [
@@ -67,6 +69,7 @@ const enExtra: EnterpriseService[] = [
   { id: "knowledge-base", slug: "knowledge-base", title: "Corporate knowledge base", description: "One place for policies, FAQ and AI answers with citations.", about: "Knowledge base, search, employee and client chatbot.", salesNotes: "from €4,000", deliveryDays: 21, price: 4000, serviceImage: IMAGES["knowledge-base"] },
   { id: "ai-consulting", slug: "ai-consulting", title: "AI consulting", description: "Strategy, ROI, technology selection and implementation roadmap.", about: "Audit, recommendations and plan before procurement.", salesNotes: "from €1,500", deliveryDays: 10, price: 1500, serviceImage: IMAGES["ai-consulting"] },
   { id: "crm-integration", slug: "crm-integration", title: "CRM integrations", description: "amoCRM, Bitrix24, 1C — sync and pipeline automation.", about: "Bidirectional integrations, webhooks, retry and monitoring.", salesNotes: "from €4,000", deliveryDays: 21, price: 4000, serviceImage: IMAGES["crm-integration"] },
+  { id: "ai-sales-loop", slug: "ai-sales-loop", title: "AI sales loop", description: "Telephony, chats, CRM and automatic next actions — one product, not separate bots.", about: "Bitrix24 / amoCRM with telephony and AI: lead qualification, call summaries, tasks, follow-up and lost-deal reports.", salesNotes: "from €3,000", deliveryDays: 21, price: 3000, serviceImage: IMAGES["ai-sales-loop"] },
 ];
 
 const ruServices: EnterpriseService[] = [
@@ -190,13 +193,13 @@ const enServices: EnterpriseService[] = [
 /** Курируемый набор для маркетинговой сетки «Решения по задачам бизнеса» на /services. */
 export const ENTERPRISE_SERVICES_LISTING_SLUGS = [
   "business-process-automation",
+  "ai-sales-loop",
   "sales-ai-agent",
   "enterprise-ai-assistant",
   "private-llm-gigachat",
   "crm-integration",
   "rag",
   "ai-discovery-roadmap",
-  "document-processing",
 ] as const;
 
 export function getEnterpriseServices(locale: string): EnterpriseService[] {

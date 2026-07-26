@@ -93,6 +93,75 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     caseStudySlugs: ["elia-suite", "crm-1c-sync"],
   },
 
+  "ai-sales-loop": {
+    metaTitle: "AI-контур отдела продаж: телефония, CRM и follow-up",
+    metaDescription:
+      "Телефония + переписки + Bitrix24/amoCRM + AI — один продукт. Квалификация лидов, саммари звонков, автозадачи и отчёт об упущенных сделках. Пилот от 300 000 ₽.",
+    eyebrow: "Услуга · Продажи",
+    h1: "AI-контур отдела продаж",
+    subtitle:
+      "Не чат-бот, не «анализ звонков» и не CRM-интеграция порознь — замкнутый цикл: контакт → анализ → CRM → следующее действие → отчёт менеджеру.",
+    problemsTitle: "Типичные потери в продажах",
+    problems: [
+      "Звонки и чаты не попадают в CRM — факты сделки живут в голове менеджера",
+      "Follow-up забывается: лид «остыл», сделка упущена без сигнала руководителю",
+      "Контроль качества — выборочная прослушка, а не системный разбор всех разговоров",
+      "Старая база не реактивируется: нет автоматических касаний и скоринга",
+    ],
+    deliverablesTitle: "Что вы получаете",
+    deliverables: [
+      "Связка телефонии (MANGO, UIS, Voximplant и др.) с Bitrix24 / amoCRM",
+      "AI-саммари, классификация намерений и автозаполнение карточек",
+      "Автозадачи, follow-up и эскалации по правилам отдела",
+      "Отчёты: качество разговоров, упущенные сделки, дисциплина касаний",
+    ],
+    intro: [
+      "Рынок уходит от отдельных ботов к автоматизации всего цикла продаж. Крупные вендоры собирают CRM, телефонию, чаты, speech-аналитику и LLM в один операционный контур — мы внедряем такой же слой под ваш Bitrix24 или amoCRM.",
+      "AI классифицирует обращения, суммирует разговоры, вытягивает факты и пишет их в CRM. Дальше — задача, напоминание, эскалация и отчёт руководителю. Анализ звонков — только компонент, не весь продукт.",
+      "Сценарии для МСП: квалификация новых лидов, реактивация старой базы, контроль качества разговоров, автосоздание задач и follow-up, выявление упущенных сделок.",
+      "Не конкурируем со штатным BitrixGPT: расширяем его телефонией, правилами квалификации, действиями вне портала и отчётами по дисциплине продаж.",
+      "Пилот — 2–4 недели на одном канале (входящие звонки или чаты). Бюджет — от 300 000 ₽. NDA и размещение в вашем контуре — по запросу.",
+      "Лендинг Битрикс24: https://bitrix.bober-ai.dev/#sales-loop",
+    ],
+    howWeSolveTitle: "Как внедряем",
+    howWeSolve: [
+      { title: "Карта каналов", text: "Телефония, мессенджеры, почта — что пишется в CRM сейчас и где теряются факты." },
+      { title: "Контур AI", text: "STT/саммари, поля CRM, правила задач и эскалаций, роли доступа." },
+      { title: "Интеграция Bitrix24", text: "REST/webhooks, роботы, стадии воронки, карточка сделки и задачи." },
+      { title: "Пилот и метрики", text: "% заполненных карточек, SLA follow-up, упущенные сделки, качество разговоров." },
+    ],
+    architectureTitle: "Типовая архитектура",
+    architecture: [
+      "Телефония / чаты → запись и транскрипт",
+      "AI-слой: классификация, факты, скоринг, саммари",
+      "Bitrix24 / amoCRM: поля сделки, контакты, история",
+      "Автозадачи, напоминания, эскалации руководителю",
+      "Дашборд: дисциплина касаний и упущенные сделки",
+    ],
+    roiTitle: "Типичный эффект",
+    roi: [
+      { value: "−30–50%", label: "ручного ввода в CRM после звонка" },
+      { value: "2–4 нед.", label: "до пилота на одном канале" },
+      { value: "1 контур", label: "вместо трёх отдельных продуктов" },
+    ],
+    faqTitle: "Частые вопросы",
+    faq: [
+      { q: "Это только анализ звонков?", a: "Нет. Анализ — вход. Продукт — обновление CRM, задачи, follow-up и отчёт об упущенных сделках." },
+      { q: "Какая CRM?", a: "Bitrix24 (партнёр 1С-Битрикс · ID 28909898) и amoCRM. Другие CRM — через REST." },
+      { q: "Какая телефония?", a: "MANGO Office, UIS, Voximplant, Asterisk и штатная телефония Bitrix24 — подключаем существующую." },
+      { q: "Нужен ли отдельный чат-бот?", a: "Нет как отдельный продукт. Чаты входят в тот же контур: классификация → CRM → действие." },
+      { q: "Бюджет?", a: "Пилот от 300 000 ₽. Полный контур с несколькими каналами — от 500 000 ₽." },
+      { q: "Где лендинг Bitrix?", a: "https://bitrix.bober-ai.dev/ — пакеты внедрения и секция AI-контура продаж." },
+      { q: "Данные и NDA?", a: "Можно в вашем облаке или on-prem. NDA до обмена записями звонков." },
+    ],
+    related: [
+      { href: "https://bitrix.bober-ai.dev/#sales-loop", label: "Bitrix24 · AI-контур продаж" },
+      { href: "/services/sales-ai-agent", label: "Автоматизация отдела продаж" },
+      { href: "/services/crm-integration", label: "Интеграции CRM" },
+      { href: "/services/voice-ai", label: "Голосовой AI" },
+    ],
+  },
+
   "sales-ai-agent": {
     metaTitle: "AI-агент для продаж и автоматизация отдела продаж",
     metaDescription:
@@ -839,6 +908,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       { q: "Бюджет?", a: "От 500 000 ₽ pilot line." },
     ],
     related: [
+      { href: "/services/ai-sales-loop", label: "AI-контур отдела продаж" },
       { href: "/services/ai-agent", label: "AI-агенты" },
       { href: "/services/enterprise-ai-assistant", label: "Enterprise AI" },
       { href: "/services/self-hosted-ai", label: "Self-hosted AI" },
@@ -1459,6 +1529,75 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
     caseStudySlugs: ["elia-suite", "crm-1c-sync"],
   },
 
+  "ai-sales-loop": {
+    metaTitle: "AI sales loop: telephony, CRM and follow-up",
+    metaDescription:
+      "Telephony + chats + Bitrix24/amoCRM + AI as one product. Lead qualification, call summaries, auto-tasks and lost-deal reports. Pilot from €3,000.",
+    eyebrow: "Service · Sales",
+    h1: "AI sales loop",
+    subtitle:
+      "Not a chatbot, not call analytics alone, and not a CRM connector in isolation — one cycle: contact → analysis → CRM → next action → manager report.",
+    problemsTitle: "Typical sales leakage",
+    problems: [
+      "Calls and chats never reach CRM — deal facts stay in the rep’s head",
+      "Follow-up is forgotten: leads go cold with no signal to leadership",
+      "Quality control is spot-check listening, not systematic review of all conversations",
+      "Old base never reactivates: no auto touches or scoring",
+    ],
+    deliverablesTitle: "What you get",
+    deliverables: [
+      "Telephony (MANGO, UIS, Voximplant, etc.) linked to Bitrix24 / amoCRM",
+      "AI summaries, intent classification and card autofill",
+      "Auto-tasks, follow-up and escalations by sales rules",
+      "Reports: call quality, lost deals, touch discipline",
+    ],
+    intro: [
+      "The market is moving from standalone bots to full-cycle sales automation. Vendors combine CRM, telephony, chats, speech analytics and LLMs into one operating loop — we implement that layer on your Bitrix24 or amoCRM.",
+      "AI classifies requests, summarizes conversations, extracts facts and writes them to CRM. Then: task, reminder, escalation and a manager report. Call analysis is only an input, not the product.",
+      "SMB scenarios: qualify new leads, reactivate the old base, call quality control, auto tasks and follow-up, detect lost deals.",
+      "We do not compete with native BitrixGPT: we extend it with telephony, qualification rules, actions outside the portal and sales-discipline reporting.",
+      "Pilot: 2–4 weeks on one channel (inbound calls or chats). Budget from €3,000. NDA and your own perimeter on request.",
+      "Bitrix24 landing: https://bitrix.bober-ai.dev/#sales-loop",
+    ],
+    howWeSolveTitle: "How we deliver",
+    howWeSolve: [
+      { title: "Channel map", text: "Telephony, messengers, email — what hits CRM today and where facts are lost." },
+      { title: "AI loop", text: "STT/summaries, CRM fields, task and escalation rules, access roles." },
+      { title: "Bitrix24 integration", text: "REST/webhooks, robots, funnel stages, deal card and tasks." },
+      { title: "Pilot & metrics", text: "Card completeness, follow-up SLA, lost deals, conversation quality." },
+    ],
+    architectureTitle: "Typical architecture",
+    architecture: [
+      "Telephony / chats → recording and transcript",
+      "AI layer: classification, facts, scoring, summaries",
+      "Bitrix24 / amoCRM: deal fields, contacts, history",
+      "Auto-tasks, reminders, manager escalations",
+      "Dashboard: touch discipline and lost deals",
+    ],
+    roiTitle: "Typical impact",
+    roi: [
+      { value: "−30–50%", label: "manual CRM entry after a call" },
+      { value: "2–4 wks", label: "to pilot on one channel" },
+      { value: "1 loop", label: "instead of three separate products" },
+    ],
+    faqTitle: "FAQ",
+    faq: [
+      { q: "Is this only call analytics?", a: "No. Analysis is the input. The product is CRM updates, tasks, follow-up and lost-deal reporting." },
+      { q: "Which CRM?", a: "Bitrix24 (1C-Bitrix partner · ID 28909898) and amoCRM. Other CRMs via REST." },
+      { q: "Which telephony?", a: "MANGO Office, UIS, Voximplant, Asterisk and native Bitrix24 telephony — we connect what you already use." },
+      { q: "Do we need a separate chatbot?", a: "Not as a standalone product. Chats join the same loop: classify → CRM → action." },
+      { q: "Budget?", a: "Pilot from €3,000. Full multi-channel loop from €5,000." },
+      { q: "Bitrix landing?", a: "https://bitrix.bober-ai.dev/ — implementation packages and the AI sales loop section." },
+      { q: "Data & NDA?", a: "Your cloud or on-prem. NDA before exchanging call recordings." },
+    ],
+    related: [
+      { href: "https://bitrix.bober-ai.dev/#sales-loop", label: "Bitrix24 · AI sales loop" },
+      { href: "/services/sales-ai-agent", label: "Sales automation" },
+      { href: "/services/crm-integration", label: "CRM integrations" },
+      { href: "/services/voice-ai", label: "Voice AI" },
+    ],
+  },
+
   "sales-ai-agent": {
     metaTitle: "Sales AI Agent & Sales Automation",
     metaDescription:
@@ -1951,7 +2090,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
       { q: "Telephony?", a: "Voximplant, Mango, Asterisk — we integrate yours." },
       { q: "Budget?", a: "From €5,000 pilot line." },
     ],
-    related: [{ href: "/services/ai-agent", label: "AI agents" }, { href: "/services/enterprise-ai-assistant", label: "Enterprise AI" }, { href: "/services/self-hosted-ai", label: "Self-hosted AI" }],
+    related: [{ href: "/services/ai-sales-loop", label: "AI sales loop" }, { href: "/services/ai-agent", label: "AI agents" }, { href: "/services/enterprise-ai-assistant", label: "Enterprise AI" }, { href: "/services/self-hosted-ai", label: "Self-hosted AI" }],
     caseStudySlugs: ["yandex-telemost-agent"],
   },
 

@@ -147,7 +147,7 @@ const PRODUCTS = [
     name: "AI-контур отдела продаж",
     price: 300000,
     description:
-      "Разговор → вывод → CRM → задача → follow-up → контроль. Анализ звонков и чатов с замкнутым процессом продаж.",
+      "Телефония + переписки + Bitrix24/amoCRM + AI: квалификация лидов, саммари, автозадачи, follow-up и отчёт об упущенных сделках. Пилот от 300 000 ₽.",
   },
   {
     xmlId: "bx-amocrm-ai",
@@ -172,6 +172,14 @@ const PRODUCTS = [
     name: "Автоматизация отдела продаж",
     price: 500000,
     description: "Лиды, CRM, коммерческие предложения, follow-up — PDF за минуты. ~14 дн.",
+  },
+  {
+    xmlId: "svc-ai-sales-loop",
+    sectionXmlId: "bober-services",
+    name: "AI-контур отдела продаж",
+    price: 300000,
+    description:
+      "Телефония, переписки, CRM и автоматические следующие действия — один продукт. Bitrix24 / amoCRM. ~21 дн.",
   },
   {
     xmlId: "svc-advisor",

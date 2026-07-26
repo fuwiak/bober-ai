@@ -405,17 +405,17 @@ const en = {
         name: "Bitrix24 + AI",
         price: "from €1,500",
         duration: "2–8 weeks",
-        forWhom: "Need Bitrix24 implementation, an AI layer and integrations with 1C, telephony and documents",
+        forWhom: "Need Bitrix24, telephony+CRM+AI and integrations with 1C and documents",
         result:
-          "Working portal and an AI sales loop on top of your CRM: pipeline, autofill, follow-up touches, accounting links.",
+          "Working portal and AI sales loop: calls and chats → CRM facts → tasks and follow-up → lost-deal report.",
         badge: "1C-Bitrix integrator · ID 28909898",
         includes: [
           "Bitrix24 setup and rollout",
-          "AI sales loop on top of the native Bitrix24 assistant",
+          "Telephony + chats + CRM + AI in one loop",
           "Integrations: 1C, telephony, documents, proposals",
         ],
         tier: "implementation",
-        detailsHref: "https://bitrix.bober-ai.dev/",
+        detailsHref: "/services/ai-sales-loop",
       },
       {
         name: "Production implementation",
@@ -590,7 +590,6 @@ const en = {
         description: "24/7 first line, escalation for complex cases, CRM logging — no lost requests.",
         items: ["Ticket triage", "FAQ & knowledge base", "CRM case logging"],
         layout: "wide",
-        featured: true,
         slug: "enterprise-ai-assistant",
         href: "/services/ai-agent",
       },
@@ -620,6 +619,21 @@ const en = {
         layout: "default",
         slug: "sales-ai-agent",
         href: "/services/sales-ai-agent",
+      },
+      {
+        badge: "Telephony · CRM",
+        title: "AI sales loop",
+        description:
+          "Calls, chats, Bitrix24/amoCRM and automatic next actions — one product, not separate bots.",
+        items: [
+          "Lead qualification and call summaries",
+          "Auto-tasks and CRM follow-up",
+          "Quality control and lost deals",
+        ],
+        layout: "large",
+        featured: true,
+        slug: "ai-sales-loop",
+        href: "/services/ai-sales-loop",
       },
       {
         badge: "HR",

@@ -428,6 +428,16 @@ export default function BitrixLandingPage() {
                   </li>
                 ))}
               </ol>
+              <ul className="mt-8 flex flex-wrap gap-2">
+                {BITRIX_SALES_LOOP.scenarios.map((item) => (
+                  <li
+                    key={item}
+                    className="border border-hairline bg-surface-card px-3 py-2 text-sm text-body"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
               <p className="body-copy mt-6 max-w-2xl text-sm text-body-strong">{BITRIX_SALES_LOOP.why}</p>
               <div className="mt-8">
                 <TrackedAnchor href="#contact" className="btn-primary" goal="bitrix_cta_click">
