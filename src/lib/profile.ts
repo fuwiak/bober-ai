@@ -424,7 +424,11 @@ export const PORTFOLIO: PortfolioItem[] = [
     whyCustom:
       "Готовый «лендинг для селлера» не закрывает заказы, остатки и CRM. Собираем контур из CRM, автоматизации каталога и Sales AI — чтобы повторные продажи шли без комиссии площадки.",
     stack: "Wildberries · Bitrix24 · amoCRM · 1С · МойСклад · AI",
-    image: STOCK_IMAGES.sales,
+    image: PORTFOLIO_IMAGES.wildberriesChannel,
+    imageAlt:
+      "Селлер за ноутбуком в офисе-складе: на экранах каталог интернет-магазина и дашборд продаж, на полках коробки с заказами",
+    imageCaption:
+      "Собственный канал продаж: витрина, аналитика и склад в одном контуре рядом с маркетплейсом",
     category: "Автоматизация продаж",
     featured: true,
     priceLabel: "от 300 000 ₽",

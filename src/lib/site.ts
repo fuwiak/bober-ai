@@ -35,6 +35,7 @@ export const PORTFOLIO_IMAGES = {
   kpLlm: "/portfolio/offer-kp-llm.png",
   elia: "/portfolio/elia-suite.png",
   bitrixKwork: "/cases/bitrix24-kwork-crm.jpg",
+  wildberriesChannel: "/cases/wildberries-independent-sales-channel.jpg",
 } as const;
 export const SITE_NAME = "Bober AI Systems";
 export const SITE_TAGLINE_RU = "Автоматизация КП, документов и CRM с AI";

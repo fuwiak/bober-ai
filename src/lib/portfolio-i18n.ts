@@ -154,6 +154,10 @@ export const PORTFOLIO_EN: Record<string, PortfolioEnCopy> = {
     whyCustom:
       "A seller landing page alone does not close orders, stock or CRM. We assemble CRM, catalog automation and Sales AI so repeats run without marketplace fees.",
     priceLabel: "from €3,000",
+    imageAlt:
+      "Seller at a laptop in an office-warehouse: e-commerce catalog and sales dashboard on screens, shipping boxes on shelves",
+    imageCaption:
+      "Owned sales channel: storefront, analytics and warehouse in one contour next to the marketplace",
     description:
       "Wildberries sellers: buyer base and repeats stay on the marketplace; prices and stock drift across WB, 1C/MoySklad and spreadsheets; ads send traffic to marketplace cards, not the seller.",
     solution:

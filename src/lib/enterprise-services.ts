@@ -45,7 +45,7 @@ const IMAGES: Record<string, string> = {
   "ai-for-crm": "/stock/crm-integration.jpg",
   "corporate-ai-assistant": "/stock/enterprise-ai-assistant.jpg",
   "business-process-audit": "/stock/ai-discovery-roadmap.jpg",
-  "wildberries-independent-sales-channel": "/stock/sales-ai-agent.jpg",
+  "wildberries-independent-sales-channel": "/cases/wildberries-independent-sales-channel.jpg",
 };
 
 const ruExtra: EnterpriseService[] = [
