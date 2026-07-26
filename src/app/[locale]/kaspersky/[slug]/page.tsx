@@ -57,6 +57,7 @@ export default async function KasperskyProductPage({ params }: Props) {
             <Breadcrumbs
               locale={locale}
               items={[
+                { name: "Secure AI", path: "/secure-ai" },
                 { name: "Kaspersky", path: "/kaspersky" },
                 { name: ru ? product.titleRu : product.titleEn, path: `/kaspersky/${slug}` },
               ]}

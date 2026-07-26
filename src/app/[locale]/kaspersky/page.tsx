@@ -42,7 +42,10 @@ export default async function KasperskyPage({ params }: Props) {
           <div className="container-editorial max-w-3xl">
             <Breadcrumbs
               locale={locale}
-              items={[{ name: "Kaspersky", path: "/kaspersky" }]}
+              items={[
+                { name: "Secure AI", path: "/secure-ai" },
+                { name: "Kaspersky", path: "/kaspersky" },
+              ]}
             />
             <span className="badge-accent mt-2 inline-block text-[10px]">
               {ru ? p.statusRu : p.statusEn}
@@ -72,6 +75,9 @@ export default async function KasperskyPage({ params }: Props) {
               <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary">
                 Telegram
               </a>
+              <Link href="/secure-ai" className="btn-secondary">
+                Bober Secure AI
+              </Link>
               <Link href="/about#certificates" className="btn-secondary">
                 {ru ? "Сертификаты" : "Certificates"}
               </Link>

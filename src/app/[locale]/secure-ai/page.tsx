@@ -1,0 +1,153 @@
+import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
+import { ContactForm } from "@/components/ContactForm";
+import { Link } from "@/i18n/navigation";
+import { routing } from "@/i18n/routing";
+import { getSecureAiProductLinks, SECURE_AI_PAGE } from "@/lib/secure-ai-page";
+import { buildPageMetadata } from "@/lib/seo";
+import { TELEGRAM_URL } from "@/lib/site";
+
+type Props = { params: Promise<{ locale: string }> };
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const ru = locale !== "en";
+  const p = SECURE_AI_PAGE;
+  return buildPageMetadata({
+    title: ru ? p.metaTitleRu : p.metaTitleEn,
+    description: ru ? p.metaDescRu : p.metaDescEn,
+    path: "/secure-ai",
+    locale,
+  });
+}
+
+export default async function SecureAiPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const ru = locale !== "en";
+  const p = SECURE_AI_PAGE;
+  const products = getSecureAiProductLinks();
+
+  return (
+    <div className="min-h-screen bg-canvas">
+      <SiteHeader />
+      <main>
+        <section className="section-band border-b border-hairline">
+          <div className="container-editorial max-w-3xl">
+            <Breadcrumbs
+              locale={locale}
+              items={[{ name: "Secure AI", path: "/secure-ai" }]}
+            />
+            <span className="badge-accent mt-2 inline-block text-[10px]">
+              {p.lineRu} · {ru ? p.parentRu : p.parentEn}
+            </span>
+            <h1 className="display-md mt-4">{ru ? p.h1Ru : p.h1En}</h1>
+            <p className="mt-4 text-base leading-relaxed text-body">
+              {ru ? p.subtitleRu : p.subtitleEn}
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="#contact" className="btn-primary">
+                {ru ? "Обсудить Secure AI" : "Discuss Secure AI"}
+              </Link>
+              <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary">
+                Telegram
+              </a>
+              <Link href={p.kasperskyHref} className="btn-secondary">
+                Kaspersky
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="section-band border-b border-hairline">
+          <div className="container-editorial max-w-3xl grid gap-8 md:grid-cols-2">
+            <div>
+              <h2 className="section-title text-xl">
+                {ru ? p.mainBrandTitleRu : p.mainBrandTitleEn}
+              </h2>
+              <ul className="mt-4 space-y-2 text-sm text-body">
+                {(ru ? p.mainBrandRu : p.mainBrandEn).map((item) => (
+                  <li key={item}>— {item}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h2 className="section-title text-xl">
+                {ru ? p.lineTitleRu : p.lineTitleEn}
+              </h2>
+              <ul className="mt-4 space-y-2 text-sm text-body">
+                {(ru ? p.lineScopeRu : p.lineScopeEn).map((item) => (
+                  <li key={item}>— {item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div className="container-editorial max-w-3xl mt-8">
+            <p className="text-sm text-body">{ru ? p.homePitchRu : p.homePitchEn}</p>
+            <p className="mt-4 text-xs text-muted">{ru ? p.brandNoteRu : p.brandNoteEn}</p>
+          </div>
+        </section>
+
+        <section className="section-band border-b border-hairline">
+          <div className="container-editorial max-w-3xl">
+            <h2 className="section-title">
+              {ru ? "Продуктовые линии" : "Product lines"}
+            </h2>
+            <p className="body-copy mt-3 max-w-2xl text-sm">
+              {ru
+                ? "Коммерческие подстраницы на хабе Kaspersky — техническая интеграция LLM/RAG с продуктами безопасности."
+                : "Commercial subpages on the Kaspersky hub — LLM/RAG wired to security products."}
+            </p>
+            <div className="mt-8 grid gap-4">
+              {products.map((product) => (
+                <article key={product.slug} className="feature-card">
+                  <span className="text-[10px] uppercase tracking-wide text-muted">
+                    {ru ? product.badgeRu : product.badgeEn}
+                  </span>
+                  <h3 className="mt-2 font-medium text-ink">
+                    <Link href={product.href} className="hover:text-primary">
+                      {ru ? product.titleRu : product.titleEn}
+                    </Link>
+                  </h3>
+                  <p className="mt-2 text-sm text-body">
+                    {ru ? product.summaryRu : product.summaryEn}
+                  </p>
+                  <Link href={product.href} className="link-more mt-4 inline-block">
+                    {ru ? "Подробнее" : "Details"}
+                  </Link>
+                </article>
+              ))}
+            </div>
+            <p className="mt-8 text-sm">
+              <Link href={p.packHref} className="text-link">
+                {ru ? p.packLabelRu : p.packLabelEn} →
+              </Link>
+              <span className="text-muted"> · </span>
+              <Link href={p.kasperskyHref} className="text-link">
+                {ru ? p.kasperskyLabelRu : p.kasperskyLabelEn} →
+              </Link>
+            </p>
+          </div>
+        </section>
+
+        <section id="contact" className="section-band">
+          <div className="container-editorial max-w-3xl">
+            <h2 className="section-title">{ru ? "Запрос" : "Request"}</h2>
+            <div className="feature-card-bordered mt-6">
+              <ContactForm
+                defaultService={ru ? "Bober Secure AI" : "Bober Secure AI"}
+              />
+            </div>
+          </div>
+        </section>
+      </main>
+      <SiteFooter />
+    </div>
+  );
+}

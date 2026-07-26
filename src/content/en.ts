@@ -29,6 +29,7 @@ const en = {
     blog: "Blog",
     academy: "Workshop",
     partners: "Partners",
+    secureAi: "Secure AI",
     process: "Process",
     about: "About",
     career: "Career",
@@ -57,8 +58,8 @@ const en = {
     titleLine1: "We automate proposals, documents and CRM workflows with AI — no manual data copying",
     titleLine2: "",
     valueProposition:
-      "For companies where managers and operators lose hours on proposals, documents and copy-paste between CRM, email and ERP.\n\nWe deploy a production AI perimeter into your systems — with a fixed estimate, NDA and full code handover.",
-    differentiator: "Fixed estimate · NDA · cloud or on-premise",
+      "For companies where managers and operators lose hours on proposals, documents and copy-paste between CRM, email and ERP.\n\nWe deploy a production AI perimeter into your systems — with a fixed estimate, NDA and full code handover.\n\nCorporate AI systems in cloud, on-prem and closed contours — with access control and infrastructure protection.",
+    differentiator: "Fixed estimate · NDA · cloud / on-prem / secured contour",
     specialization: "Project estimate — 30 minutes · reply within 4 business hours",
     heroImageAlt: "Pawel Stasinski — founder of Bober AI, AI architect",
     founderBadge: "Founder & Project Lead",
