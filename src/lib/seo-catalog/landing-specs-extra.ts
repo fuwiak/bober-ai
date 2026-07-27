@@ -415,26 +415,83 @@ export const CATALOG_LANDING_SPECS_EXTRA: LandingSpec[] = [
     cluster: "integrations",
     serviceSlug: "crm-integration",
     coverImage: "/diagrams/crm-integration.svg",
-    keywords: ["телефония crm","запись звонков"],
+    keywords: ["телефония crm", "запись звонков", "телефония битрикс24", "настройка телефонии bitrix24"],
     related: [
+      { href: "/integrations/telephony-ai", labelRu: "Телефония + CRM + AI", labelEn: "Telephony + CRM + AI" },
+      { href: "/services/ai-sales-loop", labelRu: "AI-контур отдела продаж", labelEn: "AI sales loop" },
       { href: "/integrations/crm", labelRu: "Внедрение CRM", labelEn: "CRM implementation" },
-      { href: "/automation/sales", labelRu: "Автоматизация продаж", labelEn: "Sales automation" }
     ],
     ru: {
       h1: "Телефония и запись звонков в CRM",
-      subtitle: "Телефония и запись звонков в CRM: меньше ручной работы, данные в системах учёта, измеримый ROI.",
-      problems: ["Процесс держится на людях и чатах","Нет единого статуса задачи","Ошибки из-за ручного переноса","Руководитель видит результат слишком поздно"],
-      deliverables: ["Карта процесса и KPI","Рабочий контур в production","Интеграции с CRM/документами","Регламент и обучение"],
-      intro: ["Телефония и запись звонков в CRM — практический сценарий автоматизации под спрос Wordstat.","Сначала процесс и данные, затем интеграции и AI-слой.","Пилот обычно занимает 2–6 недель."],
-      faq: [{"q":"С чего начать?","a":"С аудита одного узкого сценария и расчёта часов/денег."},{"q":"Нужен ли AI?","a":"Не всегда. Часто хватает workflow и интеграций."},{"q":"Какой бюджет?","a":"Пилот — от 150–400 тыс. ₽ в зависимости от интеграций."}],
+      subtitle:
+        "MANGO / UIS / Voximplant / Asterisk → Bitrix24 или amoCRM: запись, привязка к сделке, пропущенные и задачи. Базовый контур без полного AI-слоя — или шаг к AI-контуру продаж.",
+      problems: [
+        "Звонки не привязаны к сделкам — история клиента рвётся",
+        "Пропущенные без задач и эскалации",
+        "Руководитель не видит дисциплину касаний",
+        "Хотите AI-саммари и follow-up, но сначала нужна стабильная телефония",
+      ],
+      deliverables: [
+        "Подключение телефонии к Bitrix24 / amoCRM",
+        "Запись звонков и карточка сделки",
+        "Правила для пропущенных и задач менеджеру",
+        "Дорожная карта до AI-контура (саммари → CRM → follow-up)",
+      ],
+      intro: [
+        "Сначала замыкаем телефонию с CRM: каждый звонок в карточке, пропущенные не теряются. Это фундамент для AI-контура отдела продаж.",
+        "Полный продукт «звонки + переписки + CRM + автоматические следующие действия» — на /integrations/telephony-ai и /services/ai-sales-loop.",
+        "Слой поверх BitrixGPT (1С, телефония, документы, своя логика) — на /integrations/bitrix24-ai и https://bitrix.bober-ai.dev/",
+      ],
+      faq: [
+        {
+          q: "Это уже AI-контур продаж?",
+          a: "Нет — это связка телефонии с CRM. AI-саммари, квалификация и follow-up — следующий шаг: /integrations/telephony-ai.",
+        },
+        {
+          q: "Какая телефония?",
+          a: "MANGO Office, UIS, Voximplant, Asterisk и штатная телефония Bitrix24.",
+        },
+        {
+          q: "Бюджет?",
+          a: "Базовая настройка телефонии — от 18 000 ₽ (Wordstat-пакет на bitrix.bober-ai.dev). AI-контур — от 300 000 ₽.",
+        },
+      ],
     },
     en: {
       h1: "Telephony and call logging in CRM",
-      subtitle: "Telephony and call logging in CRM: less manual work, data in systems of record, measurable ROI.",
-      problems: ["The process depends on people and chats","No single task status","Errors from manual transfer","Leaders see results too late"],
-      deliverables: ["Process map and KPIs","Production workflow","CRM/document integrations","Playbook and training"],
-      intro: ["Telephony and call logging in CRM is a practical automation scenario.","Process and data first, then integrations and optional AI.","Pilots usually take 2–6 weeks."],
-      faq: [{"q":"Where to start?","a":"Audit one narrow scenario and calculate hours/money."},{"q":"Is AI required?","a":"Not always. Workflow and integrations are often enough."},{"q":"Budget?","a":"Pilots typically start from a fixed mid-market scope."}],
+      subtitle:
+        "MANGO / UIS / Voximplant / Asterisk → Bitrix24 or amoCRM: recording, deal linking, missed-call tasks. Foundation for an AI sales loop.",
+      problems: [
+        "Calls are not linked to deals — customer history breaks",
+        "Missed calls without tasks or escalation",
+        "Managers cannot see touch discipline",
+        "You want AI summaries and follow-up, but telephony must be stable first",
+      ],
+      deliverables: [
+        "Telephony connected to Bitrix24 / amoCRM",
+        "Call recording on the deal card",
+        "Rules for missed calls and manager tasks",
+        "Roadmap to the AI sales loop (summary → CRM → follow-up)",
+      ],
+      intro: [
+        "First we close telephony to CRM: every call on the card, missed calls tracked. That foundation enables the AI sales loop.",
+        "Full product “calls + chats + CRM + automatic next actions” — /integrations/telephony-ai and /services/ai-sales-loop.",
+        "Layer on top of BitrixGPT (1C, telephony, documents, custom logic) — /integrations/bitrix24-ai and https://bitrix.bober-ai.dev/",
+      ],
+      faq: [
+        {
+          q: "Is this already the AI sales loop?",
+          a: "No — this is telephony↔CRM wiring. AI summaries, qualification and follow-up are the next step: /integrations/telephony-ai.",
+        },
+        {
+          q: "Which telephony?",
+          a: "MANGO Office, UIS, Voximplant, Asterisk and native Bitrix24 telephony.",
+        },
+        {
+          q: "Budget?",
+          a: "Basic telephony setup from a fixed small package on bitrix.bober-ai.dev. AI sales loop from €3,000.",
+        },
+      ],
     },
   },
   {

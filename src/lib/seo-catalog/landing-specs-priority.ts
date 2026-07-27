@@ -504,4 +504,147 @@ export const CATALOG_LANDING_SPECS_PRIORITY: LandingSpec[] = [
       ],
     },
   },
+  {
+    category: "integrations",
+    slug: "telephony-ai",
+    contentKey: "prio_telephony_ai",
+    cluster: "bitrix24",
+    serviceSlug: "ai-sales-loop",
+    coverImage: "/diagrams/sales-pipeline.svg",
+    keywords: [
+      "телефония crm ai",
+      "телефония битрикс24 ai",
+      "анализ звонков crm",
+      "ai контур отдела продаж",
+      "связка телефонии с crm",
+      "mango bitrix24",
+      "uis bitrix24",
+      "bitrix24 telephony ai",
+    ],
+    caseStudySlugs: ["yandex-telemost-agent", "bitrix24-kwork-crm"],
+    related: [
+      {
+        href: "/services/ai-sales-loop",
+        labelRu: "AI-контур отдела продаж",
+        labelEn: "AI sales loop",
+      },
+      {
+        href: "/integrations/bitrix24-ai",
+        labelRu: "Bitrix24 AI — слой внедрения",
+        labelEn: "Bitrix24 AI implementation layer",
+      },
+      {
+        href: "/integrations/bitrix24-sales-automation",
+        labelRu: "Автоматизация продаж в Bitrix24",
+        labelEn: "Bitrix24 sales automation",
+      },
+      {
+        href: "/integrations/telephony-crm",
+        labelRu: "Телефония и запись звонков в CRM",
+        labelEn: "Telephony and call logging in CRM",
+      },
+      {
+        href: "https://bitrix.bober-ai.dev/#sales-loop",
+        labelRu: "Bitrix-лендинг · AI-контур",
+        labelEn: "Bitrix landing · AI sales loop",
+      },
+      {
+        href: "/pricing",
+        labelRu: "Цены и форматы",
+        labelEn: "Pricing and formats",
+      },
+    ],
+    ru: {
+      h1: "Телефония + CRM + AI: один операционный контур продаж",
+      subtitle:
+        "Звонки, переписки, Bitrix24/amoCRM и автоматические следующие действия — один продукт. Не отдельный чат-бот, не «анализ звонков» и не CRM-интеграция порознь. Пилот от 300 000 ₽.",
+      problems: [
+        "Звонки и чаты не попадают в CRM — факты сделки живут в голове менеджера",
+        "Отдельно купили бота, отдельно анализ звонков, отдельно CRM — контур не замкнут",
+        "BitrixGPT умеет текст и саммари внутри портала, но не знает вашу телефонию, 1С и правила квалификации",
+        "Follow-up забывается, старая база не реактивируется, упущенные сделки без сигнала руководителю",
+      ],
+      deliverables: [
+        "Связка телефонии (MANGO, UIS, Voximplant, Asterisk, штатная Bitrix24) с CRM",
+        "AI: классификация обращений, саммари, факты в карточке сделки",
+        "Автозадачи, follow-up, эскалации и отчёт об упущенных сделках",
+        "Слой поверх BitrixGPT: 1С, телефония, документы, КП и своя бизнес-логика",
+      ],
+      intro: [
+        "Рынок уходит от одиночных ботов к автоматизации всего цикла: контакт → анализ разговора → обновление CRM → следующее действие → отчёт менеджеру. Так же собирают CRM, телефонию, чаты, speech-аналитику и LLM крупные вендоры — мы внедряем такой контур под ваш Bitrix24 или amoCRM.",
+        "Продукт — AI-контур отдела продаж: звонки, переписки, CRM и автоматические следующие действия. Анализ звонков — только вход, не весь оффер.",
+        "Параллельно Bitrix24 консолидирует AI в одном агенте CRM (BitrixGPT). Не конкурируем с генерацией сообщений и простыми саммари внутри портала. Продаём слой внедрения поверх него: телефония, 1С, склад, документы, свои правила квалификации, действия вне Bitrix24 и нестандартные отчёты.",
+        "Сценарии для МСП: квалификация новых лидов; реактивация старой базы; контроль качества разговоров; автосоздание задач и follow-up; выявление упущенных сделок.",
+        "Пилот — 2–4 недели на одном канале. Полный контур — от 300 000 ₽. Подробный пакет: /services/ai-sales-loop · лендинг Bitrix: https://bitrix.bober-ai.dev/#sales-loop",
+      ],
+      faq: [
+        {
+          q: "Чем это отличается от «анализа звонков»?",
+          a: "Анализ — вход. Продукт замыкает цикл: факты в CRM, задача, follow-up, эскалация и отчёт об упущенных сделках.",
+        },
+        {
+          q: "Не конкурируете ли вы с BitrixGPT?",
+          a: "Нет. BitrixGPT закрывает текст и базовые сценарии внутри CRM. Мы расширяем его телефонией, 1С, документами, правилами квалификации и действиями вне портала.",
+        },
+        {
+          q: "Какая телефония поддерживается?",
+          a: "MANGO Office, UIS, Voximplant, Asterisk и штатная телефония Bitrix24 — подключаем то, что уже есть.",
+        },
+        {
+          q: "С чего начать МСП?",
+          a: "С одного канала (входящие звонки или чаты) и одного сценария: квалификация лидов или контроль качества. Затем — реактивация базы и отчёт об упущенных сделках.",
+        },
+        {
+          q: "Где коммерческий пакет?",
+          a: "/services/ai-sales-loop — AI-контур отдела продаж от 300 000 ₽. Настройка записи звонков без AI-слоя — /integrations/telephony-crm.",
+        },
+      ],
+    },
+    en: {
+      h1: "Telephony + CRM + AI: one sales operating loop",
+      subtitle:
+        "Calls, chats, Bitrix24/amoCRM and automatic next actions — one product. Not a standalone chatbot, not “call analytics”, not a CRM integration sold separately. Pilot from €3,000.",
+      problems: [
+        "Calls and chats never land in CRM — deal facts live in the rep’s head",
+        "You bought a bot, call analytics and CRM separately — the loop never closes",
+        "BitrixGPT handles text inside the portal but not your telephony, 1C or qualification rules",
+        "Follow-ups slip, the old base stays cold, lost deals never surface for the manager",
+      ],
+      deliverables: [
+        "Telephony (MANGO, UIS, Voximplant, Asterisk, native Bitrix24) wired to CRM",
+        "AI: intent classification, summaries, facts written into the deal card",
+        "Auto tasks, follow-ups, escalations and a lost-deal report",
+        "Layer on top of BitrixGPT: 1C, telephony, documents, proposals and your own business logic",
+      ],
+      intro: [
+        "The market is moving from standalone bots to full-cycle automation: contact → conversation analysis → CRM update → next action → manager report. Major vendors combine CRM, telephony, chats, speech analytics and LLMs — we implement that loop on your Bitrix24 or amoCRM.",
+        "The product is an AI sales loop: calls, chats, CRM and automatic next actions. Call analytics is an input, not the whole offer.",
+        "In parallel Bitrix24 consolidates AI into one CRM agent (BitrixGPT). We do not compete on message drafts and basic summaries inside the portal. We sell the implementation layer above it: telephony, 1C, warehouse, documents, custom qualification rules, actions outside Bitrix24 and management reports.",
+        "SMB scenarios: qualify new leads; reactivate the old base; conversation quality control; auto tasks and follow-ups; detect lost deals.",
+        "Pilot — 2–4 weeks on one channel. Full loop from €3,000. Package: /services/ai-sales-loop · Bitrix landing: https://bitrix.bober-ai.dev/#sales-loop",
+      ],
+      faq: [
+        {
+          q: "How is this different from call analytics?",
+          a: "Analytics is the input. The product closes the loop: CRM fields, task, follow-up, escalation and a lost-deal report.",
+        },
+        {
+          q: "Do you compete with BitrixGPT?",
+          a: "No. BitrixGPT covers text and basic in-CRM scenarios. We extend it with telephony, 1C, documents, qualification rules and actions outside the portal.",
+        },
+        {
+          q: "Which telephony stacks?",
+          a: "MANGO Office, UIS, Voximplant, Asterisk and native Bitrix24 telephony — we connect what you already use.",
+        },
+        {
+          q: "Where should an SMB start?",
+          a: "One channel (inbound calls or chats) and one scenario: lead qualification or quality control. Then reactivation and lost-deal reporting.",
+        },
+        {
+          q: "Where is the commercial package?",
+          a: "/services/ai-sales-loop — AI sales loop from €3,000. Call logging without the AI layer — /integrations/telephony-crm.",
+        },
+      ],
+    },
+  },
 ];

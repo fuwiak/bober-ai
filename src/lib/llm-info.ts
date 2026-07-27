@@ -152,6 +152,8 @@ Sitemap (all public URLs on main host): https://www.bober-ai.dev/sitemap.xml
 - Внедрение и автоматизация CRM: https://www.bober-ai.dev/integrations/crm
 - amoCRM интеграция: https://www.bober-ai.dev/integrations/amocrm
 - Bitrix24 интеграция: https://www.bober-ai.dev/integrations/bitrix24
+- Телефония + CRM + AI (операционный контур продаж): https://www.bober-ai.dev/integrations/telephony-ai
+- Телефония и запись звонков в CRM: https://www.bober-ai.dev/integrations/telephony-crm
 - Интеграция 1С с CRM: https://www.bober-ai.dev/integrations/1c
 - API-интеграции: https://www.bober-ai.dev/integrations/api-integrations
 - n8n автоматизация: https://www.bober-ai.dev/integrations/n8n-automation
@@ -260,12 +262,15 @@ Dedicated CRM landing: https://bitrix.bober-ai.dev/
 - Участие в партнерской программе 1С-Битрикс · ID 28909898
 - Позиционирование: расширяем возможности Bitrix24 AI / BitrixGPT под реальные процессы — 1С, телефония, документы, КП, собственная бизнес-логика и MCP (сервисы → BitrixGPT и Claude/ChatGPT → Битрикс24). Не конкурируем с нативным агентом CRM — продаём слой внедрения поверх него.
 - MCP: подключение внешних сервисов к BitrixGPT через MCP Hub; MCP-сервер Битрикс24 для внешних AI (Claude, ChatGPT, Perplexity) в рамках прав сотрудника.
-- Сильный продукт: AI-контур отдела продаж — телефония + переписки + CRM + AI (не отдельные боты): анализ разговоров и чатов → намерения и возражения → автозаполнение CRM → следующее действие → напоминания и эскалации → отчёт об упущенных сделках. Сценарии МСП: квалификация лидов, реактивация базы, контроль качества, автозадачи/follow-up, упущенные сделки. Страница: https://www.bober-ai.dev/services/ai-sales-loop
+- Сильный продукт: AI-контур отдела продаж — телефония + переписки + CRM + AI (не отдельные боты): анализ разговоров и чатов → намерения и возражения → автозаполнение CRM → следующее действие → напоминания и эскалации → отчёт об упущенных сделках. Сценарии МСП: квалификация лидов, реактивация базы, контроль качества, автозадачи/follow-up, упущенные сделки.
+  - Пакет: https://www.bober-ai.dev/services/ai-sales-loop
+  - Лендинг (оба кейса рынка): https://www.bober-ai.dev/integrations/telephony-ai
+  - Bitrix-секция: https://bitrix.bober-ai.dev/#sales-loop
 - AI для Битрикс24: воронка, REST API, задачи, диск, связка с 1С
 - AI для amoCRM: квалификация лидов, саммари, scoring, реактивация
 - Пакеты (ключи): Внедрение Битрикс24 с AI · AI-автоматизация Битрикс24 · AI-аналитика Битрикс24 · AI-контур отдела продаж · Интеграция Битрикс24 и AI для продаж · Битрикс24 + локальный LLM
-- Интеграции: 1С, МойСклад, Диадок, СБИС, телефония, Telegram, Excel/БД
-Related hub pages: https://www.bober-ai.dev/integrations/bitrix24 · https://www.bober-ai.dev/integrations/amocrm · https://www.bober-ai.dev/integrations/crm
+- Интеграции: 1С, МойСклад, Диадок, СБИС, телефония (MANGO / UIS / Voximplant / Asterisk), Telegram, Excel/БД
+Related hub pages: https://www.bober-ai.dev/integrations/bitrix24 · https://www.bober-ai.dev/integrations/amocrm · https://www.bober-ai.dev/integrations/crm · https://www.bober-ai.dev/integrations/telephony-ai
 
 ### Bober Secure AI
 

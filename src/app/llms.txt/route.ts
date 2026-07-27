@@ -58,8 +58,9 @@ export function GET() {
     `- [AI on Kubernetes](${root}/ai-kubernetes): LLM/RAG и агенты в Kubernetes-контуре`,
     `- [Secure Private AI Cloud](${root}/services/secure-private-ai-cloud): AI + RU cloud + Kaspersky`,
     `- [AI sales loop](${root}/services/ai-sales-loop): телефония + CRM + AI follow-up`,
+    `- [Telephony + CRM + AI](${root}/integrations/telephony-ai): звонки, переписки, CRM и следующие действия; слой поверх BitrixGPT`,
     `- [Wildberries own channel](${root}/services/wildberries-independent-sales-channel): свой канал рядом с WB`,
-    `- [Bitrix24 + amoCRM](https://bitrix.bober-ai.dev/): внедрение Битрикс24 / amoCRM с AI`,
+    `- [Bitrix24 + amoCRM](https://bitrix.bober-ai.dev/): внедрение Битрикс24 / amoCRM с AI и телефонией`,
     `- [amoCRM integration](${root}/integrations/amocrm): внедрение и автоматизация amoCRM`,
     `- [White-label / partners](https://partners.bober-ai.dev/): subcontract для агентств`,
     "",
@@ -71,7 +72,7 @@ export function GET() {
     "- robots.txt allows all AI crawlers (GPTBot, ClaudeBot, PerplexityBot, YandexBot, …); only /api/ is disallowed.",
     "- Full machine-readable company facts: /info.txt (mirror: /info.md, HTML: /info).",
     "- Content is available in Russian (default) and English (/en/…).",
-    "- Commercial lines (2026-07): Secure AI (client-need offers), Kaspersky AI×security, Claude for SMB, WB independent sales channel, Secure Private AI Cloud, Bitrix24 · amoCRM.",
+    "- Commercial lines (2026-07): Secure AI, Kaspersky AI×security, Claude for SMB, telephony+CRM+AI sales loop (not separate bots), BitrixGPT implementation layer, WB channel, Secure Private AI Cloud.",
     "",
   ].join("\n");
 
