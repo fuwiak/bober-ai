@@ -48,7 +48,8 @@ function buildExtended(locale: "ru" | "en", copy: LocaleCopy): LandingExtendedCo
     intro: copy.intro,
     howWeSolveTitle: locale === "ru" ? "Как мы решаем задачу" : "How we solve it",
     howWeSolve:
-      locale === "ru"
+      copy.howWeSolve ??
+      (locale === "ru"
         ? [
             {
               title: "Аудит и ROI",
@@ -76,7 +77,7 @@ function buildExtended(locale: "ru" | "en", copy: LocaleCopy): LandingExtendedCo
               title: "Delivery & handover",
               text: "Production launch, documentation, team training, and optional SLA support.",
             },
-          ],
+          ]),
     roiTitle: locale === "ru" ? "Типичный эффект" : "Typical impact",
     roi:
       locale === "ru"

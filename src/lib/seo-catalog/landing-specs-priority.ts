@@ -520,6 +520,10 @@ export const CATALOG_LANDING_SPECS_PRIORITY: LandingSpec[] = [
       "mango bitrix24",
       "uis bitrix24",
       "bitrix24 telephony ai",
+      "yandex телефония ai",
+      "yandex speechkit crm",
+      "speechsense yandex",
+      "yandex contact center ai",
     ],
     caseStudySlugs: ["yandex-telemost-agent", "bitrix24-kwork-crm"],
     related: [
@@ -557,25 +561,37 @@ export const CATALOG_LANDING_SPECS_PRIORITY: LandingSpec[] = [
     ru: {
       h1: "Телефония + CRM + AI: один операционный контур продаж",
       subtitle:
-        "Звонки, переписки, Bitrix24/amoCRM и автоматические следующие действия — один продукт. Не отдельный чат-бот, не «анализ звонков» и не CRM-интеграция порознь. Пилот от 300 000 ₽.",
+        "Звонки, переписки, CRM и автоматические следующие действия — один продукт. Bitrix24/amoCRM или стек Yandex Cloud (SpeechKit, YandexGPT) — под вашу инфраструктуру. Пилот от 300 000 ₽.",
       problems: [
-        "Звонки и чаты не попадают в CRM — факты сделки живут в голове менеджера",
-        "Отдельно купили бота, отдельно анализ звонков, отдельно CRM — контур не замкнут",
-        "BitrixGPT умеет текст и саммари внутри портала, но не знает вашу телефонию, 1С и правила квалификации",
-        "Follow-up забывается, старая база не реактивируется, упущенные сделки без сигнала руководителю",
+        "Звонок закончился — и всё, что менеджер услышал, осталось у него в голове, а не в CRM",
+        "Бота купили отдельно, анализ звонков — отдельно, CRM — отдельно, и контур так и не замкнулся",
+        "BitrixGPT пишет текст и саммари внутри портала, но не знает вашу телефонию, 1С и правила квалификации",
+        "Follow-up забывается, старая база не реактивируется, а об упущенной сделке руководитель узнаёт последним",
       ],
       deliverables: [
         "Связка телефонии (MANGO, UIS, Voximplant, Asterisk, штатная Bitrix24) с CRM",
         "AI: классификация обращений, саммари, факты в карточке сделки",
         "Автозадачи, follow-up, эскалации и отчёт об упущенных сделках",
         "Слой поверх BitrixGPT: 1С, телефония, документы, КП и своя бизнес-логика",
+        "Тот же контур на стеке Yandex Cloud: SpeechKit/SpeechSense распознаёт речь, YandexGPT анализирует и суммирует",
       ],
       intro: [
-        "Рынок уходит от одиночных ботов к автоматизации всего цикла: контакт → анализ разговора → обновление CRM → следующее действие → отчёт менеджеру. Так же собирают CRM, телефонию, чаты, speech-аналитику и LLM крупные вендоры — мы внедряем такой контур под ваш Bitrix24 или amoCRM.",
-        "Продукт — AI-контур отдела продаж: звонки, переписки, CRM и автоматические следующие действия. Анализ звонков — только вход, не весь оффер.",
-        "Параллельно Bitrix24 консолидирует AI в одном агенте CRM (BitrixGPT). Не конкурируем с генерацией сообщений и простыми саммари внутри портала. Продаём слой внедрения поверх него: телефония, 1С, склад, документы, свои правила квалификации, действия вне Bitrix24 и нестандартные отчёты.",
-        "Сценарии для МСП: квалификация новых лидов; реактивация старой базы; контроль качества разговоров; автосоздание задач и follow-up; выявление упущенных сделок.",
-        "Пилот — 2–4 недели на одном канале. Полный контур — от 300 000 ₽. Подробный пакет: /services/ai-sales-loop · лендинг Bitrix: https://bitrix.bober-ai.dev/#sales-loop",
+        "Звонок закончился — и всё, что услышал менеджер, осталось у него в голове. В CRM попадает в лучшем случае наспех написанный комментарий. Мы собираем звонки, переписки и CRM в один контур: разговор анализируется, факты попадают в карточку сделки, а задача на follow-up создаётся сама.",
+        "Это не ещё один бот и не отдельный сервис анализа звонков. Разбор разговора — только первый шаг. Дальше — обновление CRM, задача менеджеру и отчёт по упущенным сделкам, без ручного переноса данных.",
+        "Если вы на Bitrix24: BitrixGPT уже умеет писать сообщения и делать саммари внутри портала — это никуда не девается. Мы достраиваем то, чего там нет: связь с телефонией, 1С, складом, документами, свои правила квалификации и действия за пределами портала.",
+        "Если вы на стеке Yandex Cloud (или готовы на него перейти) — собираем тот же контур на инструментах Yandex: распознавание речи через SpeechKit/SpeechSense, анализ и саммари через YandexGPT, факты — в вашу CRM (Bitrix24, amoCRM или свою). Актуально, если для вас важны российское облако и 152-ФЗ.",
+        "Готовые сценарии для малого и среднего бизнеса: квалификация новых лидов, реактивация старой базы, контроль качества разговоров, автозадачи и follow-up, отчёт по упущенным сделкам.",
+        "Начинаем с одного канала — пилот на 2–4 недели. Полный контур — от 300 000 ₽. Подробности: /services/ai-sales-loop · отдельный лендинг под Bitrix24: https://bitrix.bober-ai.dev/#sales-loop",
+      ],
+      howWeSolve: [
+        {
+          title: "Bitrix24: телефония + CRM + AI",
+          text: "Звонки через MANGO, UIS, Voximplant, Asterisk или штатную телефонию Bitrix24 → факты в карточке сделки → задача и follow-up. Строим поверх BitrixGPT, а не вместо него.",
+        },
+        {
+          title: "Yandex: телефония + CRM + AI",
+          text: "SpeechKit/SpeechSense распознаёт речь, YandexGPT анализирует и делает саммари — те же факты и задачи в вашей CRM. Весь контур на стеке Yandex Cloud.",
+        },
       ],
       faq: [
         {
@@ -587,8 +603,12 @@ export const CATALOG_LANDING_SPECS_PRIORITY: LandingSpec[] = [
           a: "Нет. BitrixGPT закрывает текст и базовые сценарии внутри CRM. Мы расширяем его телефонией, 1С, документами, правилами квалификации и действиями вне портала.",
         },
         {
+          q: "А если мы на Yandex Cloud, а не на своей телефонии?",
+          a: "Собираем контур на инструментах Yandex: SpeechKit/SpeechSense распознаёт речь, YandexGPT анализирует и суммирует разговор, факты уходят в вашу CRM. Хорошо подходит, если важны российское облако и 152-ФЗ.",
+        },
+        {
           q: "Какая телефония поддерживается?",
-          a: "MANGO Office, UIS, Voximplant, Asterisk и штатная телефония Bitrix24 — подключаем то, что уже есть.",
+          a: "MANGO Office, UIS, Voximplant, Asterisk и штатная телефония Bitrix24 — подключаем то, что уже есть. Либо распознавание речи через Yandex SpeechKit, если вы на этом стеке.",
         },
         {
           q: "С чего начать МСП?",
@@ -603,25 +623,37 @@ export const CATALOG_LANDING_SPECS_PRIORITY: LandingSpec[] = [
     en: {
       h1: "Telephony + CRM + AI: one sales operating loop",
       subtitle:
-        "Calls, chats, Bitrix24/amoCRM and automatic next actions — one product. Not a standalone chatbot, not “call analytics”, not a CRM integration sold separately. Pilot from €3,000.",
+        "Calls, chats, CRM and automatic next actions — one product. Bitrix24/amoCRM or the Yandex Cloud stack (SpeechKit, YandexGPT) — built for your infrastructure. Pilot from €3,000.",
       problems: [
-        "Calls and chats never land in CRM — deal facts live in the rep’s head",
-        "You bought a bot, call analytics and CRM separately — the loop never closes",
-        "BitrixGPT handles text inside the portal but not your telephony, 1C or qualification rules",
-        "Follow-ups slip, the old base stays cold, lost deals never surface for the manager",
+        "The call ends, and whatever the rep heard stays in their head, not in CRM",
+        "You bought a bot, call analytics and CRM separately, and the loop never closed",
+        "BitrixGPT drafts text and summaries inside the portal but doesn't know your telephony, 1C or qualification rules",
+        "Follow-ups slip, the old base stays cold, and the manager is the last to hear about a lost deal",
       ],
       deliverables: [
         "Telephony (MANGO, UIS, Voximplant, Asterisk, native Bitrix24) wired to CRM",
         "AI: intent classification, summaries, facts written into the deal card",
         "Auto tasks, follow-ups, escalations and a lost-deal report",
         "Layer on top of BitrixGPT: 1C, telephony, documents, proposals and your own business logic",
+        "The same loop on the Yandex Cloud stack: SpeechKit/SpeechSense for speech recognition, YandexGPT for analysis and summaries",
       ],
       intro: [
-        "The market is moving from standalone bots to full-cycle automation: contact → conversation analysis → CRM update → next action → manager report. Major vendors combine CRM, telephony, chats, speech analytics and LLMs — we implement that loop on your Bitrix24 or amoCRM.",
-        "The product is an AI sales loop: calls, chats, CRM and automatic next actions. Call analytics is an input, not the whole offer.",
-        "In parallel Bitrix24 consolidates AI into one CRM agent (BitrixGPT). We do not compete on message drafts and basic summaries inside the portal. We sell the implementation layer above it: telephony, 1C, warehouse, documents, custom qualification rules, actions outside Bitrix24 and management reports.",
-        "SMB scenarios: qualify new leads; reactivate the old base; conversation quality control; auto tasks and follow-ups; detect lost deals.",
-        "Pilot — 2–4 weeks on one channel. Full loop from €3,000. Package: /services/ai-sales-loop · Bitrix landing: https://bitrix.bober-ai.dev/#sales-loop",
+        "The call ends, and whatever the rep heard stays in their head. At best, CRM gets a rushed one-line comment. We wire calls, chats and CRM into one loop: the conversation gets analyzed, the facts land in the deal card, and a follow-up task gets created automatically.",
+        "This isn't another bot or a standalone call-analytics tool. Analyzing the conversation is just the first step — next comes the CRM update, a task for the rep, and a lost-deal report, with nothing copied by hand.",
+        "If you're on Bitrix24: BitrixGPT already drafts messages and summaries inside the portal — that stays. We build what's missing: telephony, 1C, warehouse, documents, your own qualification rules, and actions outside the portal.",
+        "If you run on Yandex Cloud (or are open to it) — we build the same loop on Yandex tools: speech recognition via SpeechKit/SpeechSense, analysis and summaries via YandexGPT, with the facts landing in your CRM (Bitrix24, amoCRM, or your own). Useful if a Russian cloud and 152-FZ compliance matter to you.",
+        "Ready-made scenarios for small and mid-size teams: qualifying new leads, reactivating the old base, call quality control, auto tasks and follow-ups, a lost-deal report.",
+        "We start with one channel — a 2–4 week pilot. The full loop is from €3,000. Details: /services/ai-sales-loop · dedicated Bitrix24 landing: https://bitrix.bober-ai.dev/#sales-loop",
+      ],
+      howWeSolve: [
+        {
+          title: "Bitrix24: telephony + CRM + AI",
+          text: "Calls via MANGO, UIS, Voximplant, Asterisk or native Bitrix24 telephony → facts in the deal card → task and follow-up. Built on top of BitrixGPT, not instead of it.",
+        },
+        {
+          title: "Yandex: telephony + CRM + AI",
+          text: "SpeechKit/SpeechSense transcribes the call, YandexGPT analyzes and summarizes it — the same facts and tasks land in your CRM. The whole loop on the Yandex Cloud stack.",
+        },
       ],
       faq: [
         {
@@ -633,8 +665,12 @@ export const CATALOG_LANDING_SPECS_PRIORITY: LandingSpec[] = [
           a: "No. BitrixGPT covers text and basic in-CRM scenarios. We extend it with telephony, 1C, documents, qualification rules and actions outside the portal.",
         },
         {
+          q: "What if we're on Yandex Cloud instead of our own telephony?",
+          a: "We build the loop on Yandex tools: SpeechKit/SpeechSense transcribes the call, YandexGPT analyzes and summarizes it, and the facts land in your CRM. A good fit if a Russian cloud and 152-FZ compliance matter.",
+        },
+        {
           q: "Which telephony stacks?",
-          a: "MANGO Office, UIS, Voximplant, Asterisk and native Bitrix24 telephony — we connect what you already use.",
+          a: "MANGO Office, UIS, Voximplant, Asterisk and native Bitrix24 telephony — we connect what you already use. Or speech recognition via Yandex SpeechKit if that's your stack.",
         },
         {
           q: "Where should an SMB start?",

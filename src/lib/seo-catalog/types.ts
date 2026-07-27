@@ -10,6 +10,8 @@ export type LocaleCopy = {
   deliverables: string[];
   intro: string[];
   faq: { q: string; a: string }[];
+  /** Override the generic 3-step "how we solve it" cards, e.g. to compare two service options. */
+  howWeSolve?: { title: string; text: string }[];
 };
 
 export type LandingSpec = {
