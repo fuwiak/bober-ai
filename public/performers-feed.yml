@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-27 02:54">
+<yml_catalog date="2026-07-27 14:38">
   <shop>
     <name>Bober AI Systems</name>
     <company>Bober AI Systems</company>
@@ -97,6 +97,14 @@
         <name>AI-контур отдела продаж</name>
         <url>https://www.bober-ai.dev/services/ai-sales-loop</url>
       </set>
+      <set id="claude-smb">
+        <name>Claude AI для малого и среднего бизнеса</name>
+        <url>https://www.bober-ai.dev/claude</url>
+      </set>
+      <set id="ii-dlya-biznesa">
+        <name>ИИ для бизнеса — аудит, разработка и внедрение</name>
+        <url>https://www.bober-ai.dev/ii-dlya-biznesa</url>
+      </set>
       <set id="wildberries-independent-sales-channel">
         <name>Независимый канал продаж для продавцов Wildberries</name>
         <url>https://www.bober-ai.dev/services/wildberries-independent-sales-channel</url>
@@ -141,6 +149,8 @@
       <set-ids>business-process-automation</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/business-process-automation.jpg</picture>
       <description>Автоматизация бизнес-процессов</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -163,6 +173,8 @@
       <set-ids>sales-ai-agent</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/sales-ai-agent.jpg</picture>
       <description>Автоматизация отдела продаж</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -185,6 +197,8 @@
       <set-ids>ai-discovery-roadmap</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ai-discovery-roadmap.jpg</picture>
       <description>AI &amp; Automation Advisor</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">95</param>
@@ -207,6 +221,8 @@
       <set-ids>enterprise-ai-assistant</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/enterprise-ai-assistant.jpg</picture>
       <description>Внедрение ИИ в бизнес</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
@@ -229,6 +245,8 @@
       <set-ids>private-llm-gigachat</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/private-llm-gigachat.jpg</picture>
       <description>Приватный LLM-контур</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
@@ -251,6 +269,8 @@
       <set-ids>ai-automation</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ai-automation.jpg</picture>
       <description>AI-автоматизация</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
@@ -273,6 +293,8 @@
       <set-ids>rag</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/rag.jpg</picture>
       <description>RAG для бизнеса</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
@@ -295,6 +317,8 @@
       <set-ids>llm-development</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/llm-development.jpg</picture>
       <description>Разработка LLM-решений</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
@@ -317,6 +341,8 @@
       <set-ids>n8n</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/n8n.jpg</picture>
       <description>Автоматизация на n8n</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
@@ -339,6 +365,8 @@
       <set-ids>ai-agent</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ai-agent.jpg</picture>
       <description>AI-агенты для бизнеса</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -361,6 +389,8 @@
       <set-ids>document-processing</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/document-processing.jpg</picture>
       <description>Автоматизация документооборота</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
@@ -383,6 +413,8 @@
       <set-ids>voice-ai</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/voice-ai.jpg</picture>
       <description>Голосовой AI</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
@@ -405,6 +437,8 @@
       <set-ids>ocr</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ocr.jpg</picture>
       <description>OCR и распознавание</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
@@ -427,6 +461,8 @@
       <set-ids>open-webui</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/open-webui.jpg</picture>
       <description>Open WebUI</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">89</param>
@@ -449,6 +485,8 @@
       <set-ids>self-hosted-ai</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/self-hosted-ai.jpg</picture>
       <description>Self-hosted AI</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
@@ -471,6 +509,8 @@
       <set-ids>mcp</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/mcp.jpg</picture>
       <description>MCP-интеграции</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
@@ -493,6 +533,8 @@
       <set-ids>langgraph</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/langgraph.jpg</picture>
       <description>LangGraph-агенты</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
@@ -515,6 +557,8 @@
       <set-ids>knowledge-base</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/knowledge-base.jpg</picture>
       <description>Корпоративная база знаний</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
@@ -537,6 +581,8 @@
       <set-ids>ai-consulting</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ai-consulting.jpg</picture>
       <description>AI-консалтинг</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -559,6 +605,8 @@
       <set-ids>crm-integration</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/crm-integration.jpg</picture>
       <description>Интеграции CRM</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -581,6 +629,8 @@
       <set-ids>ai-sales-loop</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ai-sales-loop.jpg</picture>
       <description>AI-контур отдела продаж</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -593,6 +643,54 @@
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Интеграция Bitrix24 / amoCRM с телефонией и AI — квалификация лидов, саммари звонков, задачи, follow-up и отчёт об упущенных сделках.</param>
     </offer>
+    <offer id="claude-smb">
+      <name>Павел Стасиньский</name>
+      <url>https://www.bober-ai.dev/claude</url>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>claude-smb</set-ids>
+      <picture>https://www.bober-ai.dev/stock/offers/claude-smb.jpg</picture>
+      <description>Claude AI для малого и среднего бизнеса</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/claude</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Claude API и MCP в CRM, документы, продажи и базу знаний — не подписка Claude Pro. Фиксированная смета, NDA, Россия и СНГ.</param>
+    </offer>
+    <offer id="ii-dlya-biznesa">
+      <name>Павел Стасиньский</name>
+      <url>https://www.bober-ai.dev/ii-dlya-biznesa</url>
+      <price from="true">150000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 150 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>ii-dlya-biznesa</set-ids>
+      <picture>https://www.bober-ai.dev/stock/offers/ii-dlya-biznesa.jpg</picture>
+      <description>ИИ для бизнеса — аудит, разработка и внедрение</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/ii-dlya-biznesa</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Гибрид коммерческого лендинга и гида: сценарии, ассистент vs агент, архитектура (Yandex Cloud / Selectel / on-prem), безопасность, кейсы. Фиксированная смета, NDA.</param>
+    </offer>
     <offer id="wildberries-independent-sales-channel">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-ai.dev/services/wildberries-independent-sales-channel</url>
@@ -603,6 +701,8 @@
       <set-ids>wildberries-independent-sales-channel</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/wildberries-independent-sales-channel.jpg</picture>
       <description>Независимый канал продаж для продавцов Wildberries</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -625,6 +725,8 @@
       <set-ids>secure-private-ai-cloud</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/secure-private-ai-cloud.jpg</picture>
       <description>Защищенная AI-инфраструктура на базе российских облаков и решений Kaspersky</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -647,6 +749,8 @@
       <set-ids>company-automation</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/company-automation.jpg</picture>
       <description>Автоматизация компании</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -669,6 +773,8 @@
       <set-ids>crm-automation</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/crm-automation.jpg</picture>
       <description>Автоматизация CRM</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -691,6 +797,8 @@
       <set-ids>document-ai</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/document-ai.jpg</picture>
       <description>ИИ для обработки документов</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
@@ -713,6 +821,8 @@
       <set-ids>ai-for-crm</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ai-for-crm.jpg</picture>
       <description>ИИ для CRM</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -735,6 +845,8 @@
       <set-ids>corporate-ai-assistant</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/corporate-ai-assistant.jpg</picture>
       <description>Корпоративный ИИ-ассистент</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
@@ -757,6 +869,8 @@
       <set-ids>business-process-audit</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/business-process-audit.jpg</picture>
       <description>Аудит бизнес-процессов</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">95</param>

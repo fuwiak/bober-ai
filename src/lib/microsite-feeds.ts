@@ -81,12 +81,9 @@ function buildYmlCatalog(config: MicrositeFeedConfig, now = new Date()) {
       <set-ids>${escapeXml(offer.slug)}</set-ids>
       <picture>${escapeXml(pictureUrl)}</picture>
       <description>${escapeXml(offer.title)}</description>
-${
-        Number(FEED_RATING) > 0 && Number(FEED_REVIEWS_COUNT) > 0
-          ? `      <param name="Рейтинг">${FEED_RATING}</param>
-      <param name="Число отзывов">${FEED_REVIEWS_COUNT}</param>\n`
-          : ""
-      }      <param name="Годы опыта">${PROFILE.experienceYears}</param>
+      <param name="Рейтинг">${FEED_RATING}</param>
+      <param name="Число отзывов">${FEED_REVIEWS_COUNT}</param>
+      <param name="Годы опыта">${PROFILE.experienceYears}</param>
       <param name="Регион">${SITE_REGION}</param>
       <param name="Конверсия">${offer.conversion}</param>
       <adult>false</adult>

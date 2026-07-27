@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-27 02:54">
+<yml_catalog date="2026-07-27 14:38">
   <shop>
     <name>Bober AI Systems — Partner Program</name>
     <company>Bober AI Systems</company>
@@ -57,6 +57,8 @@
       <set-ids>presale-support</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-partners-presale.jpg</picture>
       <description>Presale support для агентств</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
@@ -79,6 +81,8 @@
       <set-ids>project-delivery</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-partners-delivery.jpg</picture>
       <description>White-label project delivery</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -101,6 +105,8 @@
       <set-ids>ongoing-ai-team</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-partners-ongoing.jpg</picture>
       <description>Ongoing AI team</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
@@ -123,6 +129,8 @@
       <set-ids>bitrix24-ai-analytics</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-partners-bitrix-analytics.jpg</picture>
       <description>AI-аналитика для Bitrix24 и amoCRM</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -145,6 +153,8 @@
       <set-ids>telephony-crm-ai</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-partners-telephony.jpg</picture>
       <description>Телефония + CRM + AI (white-label)</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -167,6 +177,8 @@
       <set-ids>ai-sales-loop</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-partners-sales-loop.jpg</picture>
       <description>AI-контур отдела продаж</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -189,6 +201,8 @@
       <set-ids>secure-private-ai</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-partners-secure-ai.jpg</picture>
       <description>Secure Private AI Cloud</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
@@ -211,6 +225,8 @@
       <set-ids>kp-documents</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-partners-kp-docs.jpg</picture>
       <description>Автоматизация КП и документов</description>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
