@@ -45,8 +45,8 @@ export const KASPERSKY_PRODUCTS: KasperskyProduct[] = [
   {
     slug: "llm-rag-aist",
     priority: 1,
-    badgeRu: "Продукт 1 — старт",
-    badgeEn: "Product 1 — easiest start",
+    badgeRu: "Безопасный корпоративный RAG",
+    badgeEn: "Secure corporate RAG",
     titleRu: "Внедрение корпоративного LLM/RAG с аудитом безопасности AI",
     titleEn: "Corporate LLM/RAG with Kaspersky AIST security audit",
     metaTitleRu: "Безопасный корпоративный LLM/RAG + аудит Kaspersky AIST | Bober AI",
@@ -128,8 +128,8 @@ export const KASPERSKY_PRODUCTS: KasperskyProduct[] = [
   {
     slug: "container-security-kira",
     priority: 2,
-    badgeRu: "Продукт 2 — технический",
-    badgeEn: "Product 2 — most technical",
+    badgeRu: "Защищённый AI DevOps-контур",
+    badgeEn: "Secured AI DevOps contour",
     titleRu: "Безопасный AI DevOps-контур (Container Security + KIRA)",
     titleEn: "Secure AI DevOps contour (Container Security + KIRA)",
     metaTitleRu: "AI DevSecOps: Kaspersky Container Security + KIRA / LLM | Bober AI",
@@ -206,8 +206,8 @@ export const KASPERSKY_PRODUCTS: KasperskyProduct[] = [
   {
     slug: "soc-kuma-kira",
     priority: 3,
-    badgeRu: "Продукт 3 — крупный контракт",
-    badgeEn: "Product 3 — largest contract",
+    badgeRu: "AI-ассистент для SOC",
+    badgeEn: "AI assistant for SOC",
     titleRu: "AI-ассистент для отдела информационной безопасности (KUMA / KIRA)",
     titleEn: "AI assistant for the security team (KUMA / KIRA)",
     metaTitleRu: "AI-ассистент SOC на базе Kaspersky KUMA и KIRA | Bober AI",
@@ -276,14 +276,14 @@ export const KASPERSKY_PRODUCTS: KasperskyProduct[] = [
       "KIRA / private LLM → translate, timeline, risk, actions, report",
       "Bober automation → Bitrix24 / Telegram / email / helpdesk",
     ],
-    fitRu: "Крупные ИБ-контракты: SIEM уже есть или планируется — не хватает аналитиков.",
-    fitEn: "Larger security deals: SIEM exists or is planned — analysts are the bottleneck.",
+    fitRu: "Когда SIEM уже есть или планируется, а аналитиков SOC не хватает.",
+    fitEn: "When SIEM already exists or is planned, but SOC analysts are the bottleneck.",
   },
   {
     slug: "secure-ai-agent-gateway",
     priority: 4,
-    badgeRu: "AI Security Gateway",
-    badgeEn: "AI Security Gateway",
+    badgeRu: "Контроль действий AI-агентов",
+    badgeEn: "AI agent action control",
     titleRu: "Secure AI Agent Gateway — безопасный агент с ограниченным доступом",
     titleEn: "Secure AI Agent Gateway — limited-access AI agent",
     metaTitleRu: "Secure AI Agent Gateway: RBAC, allowlist, human approval | Bober AI",
@@ -354,8 +354,8 @@ export const KASPERSKY_PRODUCTS: KasperskyProduct[] = [
   {
     slug: "mail-ai-phishing",
     priority: 5,
-    badgeRu: "Лёгкий вход",
-    badgeEn: "Easier entry",
+    badgeRu: "Защита почты от AI-фишинга",
+    badgeEn: "Mail protection against AI phishing",
     titleRu: "Защита корпоративной почты от AI-фишинга",
     titleEn: "Corporate mail protection against AI phishing",
     metaTitleRu: "Защита почты от AI-фишинга: Kaspersky Mail Security | Bober AI",
@@ -365,9 +365,9 @@ export const KASPERSKY_PRODUCTS: KasperskyProduct[] = [
     metaDescEn:
       "Deploy Kaspersky Secure Mail Gateway / Mail Server, LLM-phishing filter, internal LLM triage, helpdesk tickets, training and reports.",
     summaryRu:
-      "Проще в продаже, чем полный SIEM: Mail Security умеет детектировать письма, сгенерированные LLM, и стыкуется с Next XDR / KATA / Threat Intelligence.",
+      "Фильтр писем, сгенерированных LLM, плюс стыковка с Next XDR / KATA / Threat Intelligence — без обязательного полного SIEM.",
     summaryEn:
-      "Easier to sell than full SIEM: Mail Security detects LLM-generated messages and links to Next XDR / KATA / Threat Intelligence.",
+      "Filter for LLM-generated messages plus links to Next XDR / KATA / Threat Intelligence — without requiring a full SIEM.",
     clientBuysRu: [
       "Фильтрация AI-фишинга без ссылок и вложений",
       "Процесс разбора подозрительных писем",
@@ -418,8 +418,8 @@ export const KASPERSKY_PRODUCTS: KasperskyProduct[] = [
       "Suspicious → optional internal LLM",
       "→ helpdesk / training / campaign report",
     ],
-    fitRu: "Быстрый коммерческий вход рядом с поставкой лицензий почты.",
-    fitEn: "Fast commercial entry next to mail license supply.",
+    fitRu: "Усиливает поставку лицензий почты: фильтр AI-фишинга и процесс разбора писем.",
+    fitEn: "Pairs with mail license supply: AI-phishing filter and a triage process for suspicious mail.",
   },
 ];
 
@@ -454,9 +454,9 @@ export const KASPERSKY_PAGE = {
   productsTitleRu: "Линии AI × Kaspersky",
   productsTitleEn: "AI × Kaspersky lines",
   productsIntroRu:
-    "Самое сильное — не антивирус «для AI», а ваш LLM/RAG + продукты безопасности Kaspersky. Ниже — пять подстраниц с зонами ответственности.",
+    "Не антивирус «для AI», а ваш LLM/RAG вместе с продуктами безопасности Kaspersky. Ниже — пять направлений с зонами ответственности.",
   productsIntroEn:
-    "The strongest play is not antivirus “for AI”, but your LLM/RAG plus Kaspersky security products. Five subpages with responsibility split.",
+    "Not antivirus “for AI”, but your LLM/RAG with Kaspersky security products. Five lines with a clear responsibility split.",
   matrixTitleRu: "Что делает Kaspersky, что — Bober AI Systems",
   matrixTitleEn: "Kaspersky vs Bober AI Systems",
   matrixRu: [
@@ -524,8 +524,8 @@ export const KASPERSKY_PAGE = {
       wordstatHint: "аудит ИБ ~56",
     },
   ] as KasperskyOffer[],
-  processTitleRu: "Как закрываем сделку",
-  processTitleEn: "How we close a deal",
+  processTitleRu: "Как проходит внедрение",
+  processTitleEn: "How an engagement runs",
   processRu: [
     "Выбор линии: лицензии, LLM/RAG+AIST, Container+KIRA, SOC или почта",
     "Аудит контура и смета лицензий через дистрибьютора",

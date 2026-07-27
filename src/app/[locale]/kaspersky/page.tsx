@@ -125,7 +125,7 @@ export default async function KasperskyPage({ params }: Props) {
                 <thead>
                   <tr className="border-b border-hairline text-muted">
                     <th className="py-2 pr-4 font-medium">Kaspersky</th>
-                    <th className="py-2 font-medium">Bober Dev</th>
+                    <th className="py-2 font-medium">Bober AI Systems</th>
                   </tr>
                 </thead>
                 <tbody>

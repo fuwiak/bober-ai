@@ -389,7 +389,7 @@ const en = {
       },
       {
         title: "Kaspersky — protection layer",
-        text: "Linux, container and cloud workload protection as an optional AI-perimeter layer — not a standalone product pitch.",
+        text: "Linux, container and cloud workload protection as an optional AI-perimeter layer — not a standalone product.",
       },
       {
         title: "1C-Bitrix partner program",

@@ -84,7 +84,7 @@ export const SECURE_AI_PAGE = {
   faqRu: [
     {
       q: "Bober Secure AI — это отдельная компания?",
-      a: "Нет. Это специализированная линия той же команды и того же ИП, что Bober AI Systems: общие сертификаты, портфолио, контакты и реквизиты.",
+      a: "Нет. Bober Secure AI — направление Bober AI Systems: те же сертификаты, портфолио, контакты и реквизиты.",
     },
     {
       q: "Можно развернуть решение on-prem или в закрытом контуре?",
@@ -102,7 +102,7 @@ export const SECURE_AI_PAGE = {
   faqEn: [
     {
       q: "Is Bober Secure AI a separate company?",
-      a: "No. It's a specialist line of the same team and legal entity as Bober AI Systems — same certificates, portfolio, contacts and legal details.",
+      a: "No. Bober Secure AI is a line of Bober AI Systems — same certificates, portfolio, contacts and legal details.",
     },
     {
       q: "Can this run on-prem or in a closed contour?",

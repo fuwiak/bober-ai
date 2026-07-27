@@ -99,7 +99,7 @@ export default async function KasperskyProductPage({ params }: Props) {
         <section className="section-band border-b border-hairline">
           <div className="container-editorial max-w-3xl grid gap-8 md:grid-cols-2">
             <div>
-              <h2 className="section-title text-xl">Bober Dev</h2>
+              <h2 className="section-title text-xl">Bober AI Systems</h2>
               <ul className="mt-4 space-y-2 text-sm text-body">
                 {(ru ? product.boberScopeRu : product.boberScopeEn).map((item) => (
                   <li key={item}>— {item}</li>
