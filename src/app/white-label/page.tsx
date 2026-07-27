@@ -58,6 +58,14 @@ const AUDIENCE = [
   "Зарубежные агентства без своей AI-команды",
 ];
 
+const PARTNER_HIGHLIGHTS = [
+  { value: "Крупнее сделки", label: "AI в вашем каталоге услуг" },
+  { value: "Быстрее офферы", label: "архитектура и смета под бриф" },
+  { value: "Маржа у вас", label: "wholesale + ваш наценка" },
+  { value: "White-label", label: "silent или technical" },
+  { value: "Ответ за 4ч", label: "оценка ролей за 24ч" },
+];
+
 const WHATS_NEW = [
   {
     title: "Bober Secure AI",
@@ -338,33 +346,31 @@ export default function WhiteLabelPage() {
             </div>
           </section>
 
-          <section className="section-band section--deep border-b border-hairline">
-            <div className="container-editorial max-w-4xl">
-              <Reveal>
-                <div className="trust-specs">
-                  <div className="spec-cell">
-                    <span className="spec-value">Крупнее сделки</span>
-                    <span className="spec-label">AI в вашем каталоге услуг</span>
+          <section
+            className="partner-marquee-band border-b border-hairline"
+            aria-label="Преимущества партнёрства"
+          >
+            <div className="partner-marquee" aria-hidden="true">
+              <div className="partner-marquee__track">
+                {[0, 1].map((copy) => (
+                  <div key={copy} className="partner-marquee__group">
+                    {PARTNER_HIGHLIGHTS.map((item) => (
+                      <div key={`${copy}-${item.value}`} className="partner-marquee__item">
+                        <span className="partner-marquee__value">{item.value}</span>
+                        <span className="partner-marquee__label">{item.label}</span>
+                      </div>
+                    ))}
                   </div>
-                  <div className="spec-cell">
-                    <span className="spec-value">Быстрее офферы</span>
-                    <span className="spec-label">архитектура и смета под бриф</span>
-                  </div>
-                  <div className="spec-cell">
-                    <span className="spec-value">Маржа у вас</span>
-                    <span className="spec-label">wholesale + ваш наценка</span>
-                  </div>
-                  <div className="spec-cell">
-                    <span className="spec-value">White-label</span>
-                    <span className="spec-label">silent или technical</span>
-                  </div>
-                  <div className="spec-cell">
-                    <span className="spec-value">Ответ за 4ч</span>
-                    <span className="spec-label">оценка ролей за 24ч</span>
-                  </div>
-                </div>
-              </Reveal>
+                ))}
+              </div>
             </div>
+            <ul className="partner-marquee-static sr-only">
+              {PARTNER_HIGHLIGHTS.map((item) => (
+                <li key={item.value}>
+                  {item.value}: {item.label}
+                </li>
+              ))}
+            </ul>
           </section>
 
           <section className="section-band section--panel border-b border-hairline">

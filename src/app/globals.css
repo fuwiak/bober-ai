@@ -1657,6 +1657,77 @@ html.dark {
     color: var(--color-body);
     line-height: 1.35;
   }
+
+  /* Partners microsite — scrolling highlights strip */
+  .partner-marquee-band {
+    background: var(--color-canvas);
+    border-block: 1px solid var(--color-hairline);
+    padding-block: 1.25rem;
+  }
+  .partner-marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  }
+  .partner-marquee__track {
+    display: flex;
+    width: max-content;
+    animation: partner-marquee-scroll 42s linear infinite;
+    will-change: transform;
+  }
+  .partner-marquee:hover .partner-marquee__track {
+    animation-play-state: paused;
+  }
+  .partner-marquee__group {
+    display: flex;
+    align-items: stretch;
+    flex-shrink: 0;
+  }
+  .partner-marquee__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.35rem;
+    min-width: 13.5rem;
+    padding: 0.35rem 2rem;
+    border-right: 1px solid var(--color-hairline);
+  }
+  .partner-marquee__value {
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--color-accent);
+    white-space: nowrap;
+  }
+  .partner-marquee__label {
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--color-body);
+    white-space: nowrap;
+  }
+  @keyframes partner-marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .partner-marquee {
+      mask-image: none;
+      -webkit-mask-image: none;
+      overflow-x: auto;
+    }
+    .partner-marquee__track {
+      animation: none;
+      width: 100%;
+    }
+    .partner-marquee__group:last-child {
+      display: none;
+    }
+  }
+
   .trust-logos {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
