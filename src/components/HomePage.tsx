@@ -163,6 +163,19 @@ export default async function HomePage() {
           cta={t("roiCalculator.cta")}
         />
 
+        <section className="section-band section--panel border-b border-hairline">
+          <div className="container-editorial flex flex-wrap gap-x-8 gap-y-3">
+            <Link href="/audit" className="link-more">
+              {locale === "en"
+                ? "Take the full 5-minute AI process audit →"
+                : "Пройти полный AI-аудит процесса за 5 минут →"}
+            </Link>
+            <Link href="/process-review" className="link-more">
+              {locale === "en" ? "Get one process reviewed for free →" : "Разобрать один процесс бесплатно →"}
+            </Link>
+          </div>
+        </section>
+
         <PackagesShowcase
           label={t("sections.engagement")}
           title={t("packages.title")}

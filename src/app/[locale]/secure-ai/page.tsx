@@ -6,6 +6,7 @@ import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { ContactForm } from "@/components/ContactForm";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import { SecureAiChecklist } from "@/components/SecureAiChecklist";
 import { getEnterpriseService } from "@/lib/enterprise-services";
 import { getSecureAiProductLinks, SECURE_AI_PAGE } from "@/lib/secure-ai-page";
 import {
@@ -180,6 +181,25 @@ export default async function SecureAiPage({ params }: Props) {
                 </li>
               ))}
             </ol>
+          </div>
+        </section>
+
+        <section className="section-band section--panel border-b border-hairline">
+          <div className="container-editorial max-w-3xl">
+            <span className="section-label">{ru ? "Экспресс-самопроверка" : "Express self-check"}</span>
+            <h2 className="section-title mt-4">
+              {ru
+                ? "Готов ли ваш AI-сервис к работе с корпоративными данными?"
+                : "Is your AI service ready to handle corporate data?"}
+            </h2>
+            <p className="body-copy mt-4 max-w-2xl text-base">
+              {ru
+                ? "25 вопросов, которые нужно проверить до запуска корпоративного LLM, RAG или AI-агента."
+                : "25 questions to check before launching a corporate LLM, RAG or AI agent."}
+            </p>
+            <div className="mt-8">
+              <SecureAiChecklist locale={locale} />
+            </div>
           </div>
         </section>
 

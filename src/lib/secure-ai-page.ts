@@ -119,6 +119,143 @@ export const SECURE_AI_PAGE = {
   ],
 } as const;
 
+export type ChecklistSection = {
+  titleRu: string;
+  titleEn: string;
+  itemsRu: string[];
+  itemsEn: string[];
+};
+
+/** "25 вопросов" lead magnet on /secure-ai — self-assessment before launching a corporate LLM/RAG/agent. */
+export const SECURE_AI_CHECKLIST: ChecklistSection[] = [
+  {
+    titleRu: "Куда попадают данные",
+    titleEn: "Where data goes",
+    itemsRu: [
+      "Данные не покидают периметр компании без контроля",
+      "Известно, какие именно данные передаются во внешний LLM API",
+      "Данные не используются для дообучения публичной модели без согласия",
+    ],
+    itemsEn: [
+      "Data doesn't leave the company perimeter uncontrolled",
+      "You know exactly what data is sent to an external LLM API",
+      "Data isn't used to fine-tune a public model without consent",
+    ],
+  },
+  {
+    titleRu: "Доступ пользователей",
+    titleEn: "User access",
+    itemsRu: [
+      "Доступ к AI разграничен по ролям (RBAC)",
+      "Есть список сотрудников с доступом к чувствительным сценариям",
+    ],
+    itemsEn: ["AI access is role-restricted (RBAC)", "There's a list of staff with access to sensitive scenarios"],
+  },
+  {
+    titleRu: "Утечки",
+    titleEn: "Leaks",
+    itemsRu: [
+      "Есть защита от утечки данных через ответы модели",
+      "Модель не может выдать чужие персональные данные",
+    ],
+    itemsEn: [
+      "There's protection against data leakage via model responses",
+      "The model cannot output another party's personal data",
+    ],
+  },
+  {
+    titleRu: "Prompt injection",
+    titleEn: "Prompt injection",
+    itemsRu: [
+      "Проведены тесты на prompt injection и jailbreak",
+      "Ввод пользователя не может переопределить системные политики",
+    ],
+    itemsEn: [
+      "Prompt injection and jailbreak tests have been run",
+      "User input cannot override system policies",
+    ],
+  },
+  {
+    titleRu: "Логирование",
+    titleEn: "Logging",
+    itemsRu: ["Все запросы и ответы AI логируются", "Логи доступны для аудита ИБ"],
+    itemsEn: ["All AI requests and responses are logged", "Logs are available for security audits"],
+  },
+  {
+    titleRu: "Контроль действий агентов",
+    titleEn: "Agent action control",
+    itemsRu: [
+      "Агент не выполняет необратимые действия без подтверждения человека",
+      "Есть allowlist инструментов и API, которые агент может вызывать",
+      "Есть лимиты на количество и стоимость операций агента",
+    ],
+    itemsEn: [
+      "The agent cannot take irreversible actions without human approval",
+      "There's an allowlist of tools/APIs the agent can call",
+      "There are limits on the number and cost of agent operations",
+    ],
+  },
+  {
+    titleRu: "Хранение истории",
+    titleEn: "History storage",
+    itemsRu: [
+      "Понятно, где и как долго хранится история диалогов",
+      "Есть политика удаления истории по запросу",
+    ],
+    itemsEn: [
+      "You know where and for how long conversation history is stored",
+      "There's a policy for deleting history on request",
+    ],
+  },
+  {
+    titleRu: "Kubernetes",
+    titleEn: "Kubernetes",
+    itemsRu: [
+      "Образы AI-сервисов сканируются на уязвимости до продакшена",
+      "Сетевые политики ограничивают доступ AI-подов к остальной инфраструктуре",
+    ],
+    itemsEn: [
+      "AI service images are scanned for vulnerabilities before production",
+      "Network policies restrict AI pods' access to the rest of the infrastructure",
+    ],
+  },
+  {
+    titleRu: "Секреты и ключи",
+    titleEn: "Secrets and keys",
+    itemsRu: [
+      "API-ключи и секреты не хранятся в коде или промптах",
+      "Ключи ротируются и имеют ограниченный scope",
+    ],
+    itemsEn: ["API keys and secrets aren't stored in code or prompts", "Keys are rotated and scoped"],
+  },
+  {
+    titleRu: "On-prem / российское облако",
+    titleEn: "On-prem / Russian cloud",
+    itemsRu: [
+      "Понятно, можно ли развернуть решение on-prem или в российском облаке",
+      "Учтены требования 152-ФЗ, если есть персональные данные",
+    ],
+    itemsEn: [
+      "You know whether the solution can run on-prem or in a Russian cloud",
+      "152-FZ requirements are accounted for if personal data is involved",
+    ],
+  },
+  {
+    titleRu: "Ответственность за ошибочные действия",
+    titleEn: "Liability for erroneous actions",
+    itemsRu: [
+      "Определено, кто отвечает за ошибочное решение AI",
+      "Есть процесс отката / исправления при ошибке агента",
+      "Есть план коммуникации с клиентами на случай инцидента",
+    ],
+    itemsEn: [
+      "It's defined who is accountable for an incorrect AI decision",
+      "There's a rollback / correction process when the agent errs",
+      "There's a client communication plan in case of an incident",
+    ],
+  },
+];
+
 export function getSecureAiProductLinks() {
   return KASPERSKY_PRODUCTS.map((p) => ({
     slug: p.slug,
