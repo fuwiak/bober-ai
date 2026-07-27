@@ -32,6 +32,8 @@
 
 	@apex host bober-ai.dev
 	handle @apex {
+		# Absolute www Location — never inherit listener :8080 from Railway $PORT.
+		header Cache-Control "no-store"
 		redir https://www.bober-ai.dev{uri} permanent
 	}
 

@@ -16,6 +16,8 @@
 
 	@siteHost host www.bober-ai.dev bober-ai.dev
 	handle @siteHost {
+		# Absolute www — no port from :{$PORT}. Bust stale :8080 Location caches.
+		header Cache-Control "no-store"
 		redir https://www.bober-ai.dev{uri} permanent
 	}
 
@@ -44,6 +46,7 @@
 }
 
 https://bober-ai.dev {
+	header Cache-Control "no-store"
 	redir https://www.bober-ai.dev{uri} permanent
 }
 

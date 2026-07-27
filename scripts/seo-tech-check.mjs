@@ -103,10 +103,14 @@ async function checkCanonicalHost() {
   section("канон и 301");
   const apex = await head(`${APEX}/`, { redirect: "manual" });
   if (apex.status === 301 || apex.status === 302) {
-    if (/https:\/\/www\.bober-ai\.dev\/?(\?|$)/i.test(apex.location) && !/:8080/.test(apex.location)) {
-      ok(`apex → ${apex.location} (${apex.status})`);
+    const loc = apex.location || "";
+    const okLoc =
+      /^https:\/\/www\.bober-ai\.dev\/?(\?.*)?$/i.test(loc) &&
+      !/:\d+/.test(loc);
+    if (okLoc) {
+      ok(`apex → ${loc} (${apex.status})`);
     } else {
-      fail(`плохой Location: ${apex.location || "(пусто)"}`);
+      fail(`плохой Location: ${loc || "(пусто)"} — нужен https://www.bober-ai.dev/ без порта`);
     }
   } else {
     fail(`apex HTTP ${apex.status}, ожидали 301`);

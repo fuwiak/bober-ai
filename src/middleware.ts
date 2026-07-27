@@ -25,6 +25,37 @@ function withSecurityHeaders(response: NextResponse) {
   return response;
 }
 
+/**
+ * Railway / internal listeners expose :8080 (or :3000) on NextURL.
+ * Never let that leak into Location — browsers and LLM fetchers block it as unsafe.
+ */
+function stripInternalPortFromLocation(response: NextResponse): NextResponse {
+  const loc = response.headers.get("location");
+  if (!loc || !/:(?:8080|3000)\b/.test(loc)) return response;
+  try {
+    const url = new URL(loc, `https://${CANONICAL_HOST}`);
+    if (url.port === "8080" || url.port === "3000") {
+      url.port = "";
+      if (url.hostname === APEX_HOST) url.hostname = CANONICAL_HOST;
+      response.headers.set("location", url.toString());
+    }
+  } catch {
+    // keep original Location if unparsable
+  }
+  return response;
+}
+
+/** Absolute apex→www 301. Never clone()+host — that baked :8080 into Location. */
+function redirectApexToWww(pathname: string, search: string): NextResponse {
+  const dest = `https://${CANONICAL_HOST}${pathname}${search}`;
+  const response = NextResponse.redirect(dest, 301);
+  // Force exact Location (some runtimes re-serialize from nextUrl with internal port).
+  response.headers.set("Location", dest);
+  // Bust stale CDN/proxy caches of the old :8080 Location.
+  response.headers.set("Cache-Control", "no-store");
+  return stripInternalPortFromLocation(withSecurityHeaders(response));
+}
+
 /** HTML / document responses — short cache; assets use immutable via next.config. */
 function withHtmlCache(response: NextResponse) {
   response.headers.set("Cache-Control", "public, max-age=0, must-revalidate");
@@ -34,6 +65,7 @@ function withHtmlCache(response: NextResponse) {
 function finalizeDocument(response: NextResponse, request: NextRequest) {
   withSecurityHeaders(response);
   withHtmlCache(response);
+  stripInternalPortFromLocation(response);
 
   // next-intl locale cookie: add Secure behind HTTPS (Railway terminates TLS).
   const locale = response.cookies.get("NEXT_LOCALE")?.value;
@@ -157,11 +189,7 @@ export default function middleware(request: NextRequest) {
     if (isOwnershipVerificationPath(pathname)) {
       return withSecurityHeaders(NextResponse.next());
     }
-    const dest = new URL(
-      `${request.nextUrl.pathname}${request.nextUrl.search}`,
-      `https://${CANONICAL_HOST}`,
-    );
-    return withSecurityHeaders(NextResponse.redirect(dest, 301));
+    return redirectApexToWww(pathname, request.nextUrl.search);
   }
 
   if (pathname === "/performers-feed.yml" || (pathname.startsWith("/feeds/") && pathname.endsWith(".yml"))) {

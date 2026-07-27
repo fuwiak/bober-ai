@@ -30,9 +30,12 @@ TXT    _railway-verify      → railway-verify=a9d433b771294aa24f94b66e85a3f5206
 
 ```bash
 dig +short bober-ai.dev                 # должен совпасть с IP www
-curl -sI --connect-timeout 5 https://bober-ai.dev/ | head -5
-# Location должен быть https://www.bober-ai.dev/… БЕЗ :8080
-# (баг clone()+host на Railway ломал Claude/ChatGPT)
+curl -sI --connect-timeout 5 https://bober-ai.dev/ | head -8
+# Ожидание:
+#   HTTP/2 301
+#   location: https://www.bober-ai.dev/
+# БЕЗ :8080 / :3000 в Location (баг NextURL clone()+host на Railway).
+# npm run seo:tech — тоже валит любой порт в Location.
 railway domain status www.bober-ai.dev
 ```
 
