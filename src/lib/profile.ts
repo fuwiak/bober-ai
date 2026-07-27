@@ -16,7 +16,7 @@ export const PROFILE = {
   education: "University of Warsaw — Physics and Neuroscience",
   workDays: "любой день недели",
   workHours: "0:00–23:00",
-  minProjectPrice: 30000,
+  minProjectPrice: 150000,
   collaboration: {
     summary: "Опишите задачу в Telegram — ответ и смета в течение суток.",
     detail: "Под ключ: от брифа до внедрения, документация и передача решения. Фиксированная цена или почасово.",
@@ -25,7 +25,7 @@ export const PROFILE = {
 
 К конкретным задачам подключаются проверенные разработчики и специалисты по инфраструктуре — не «один человек на всё», а команда под контур проекта. Фиксированная смета, этапы, передача вашей команде.
 
-10+ лет опыта, партнёр Yandex Cloud, Cloud.ru и Selectel; участие в партнерской программе 1С-Битрикс (ID 28909898). Проекты от 30 000 ₽. Telegram — ответ в течение нескольких часов с планом и ценой.`,
+10+ лет опыта, партнёр Yandex Cloud, Cloud.ru и Selectel; участие в партнерской программе 1С-Битрикс (ID 28909898). Проекты от 150 000 ₽. Telegram — ответ в течение нескольких часов с планом и ценой.`,
   avatar: "/yandex/Pasha_Yandex1.png",
   heroImage: "/hero/pavel-main.webp",
 } as const;
@@ -255,14 +255,15 @@ function withPortfolioSegment(item: PortfolioItem): PortfolioItem {
   return { ...item, segment: item.segment ?? getPortfolioSegment(item.slug) };
 }
 
-/** Кейсы в маркетинговых листингах (главная /portfolio). Остальные остаются как detail-страницы. */
+/** Кейсы в маркетинговых листингах (главная /portfolio). Остальные остаются как detail-страницы.
+ * Kwork → Bitrix24 (SMB, от 30k) — detail only, не главная enterprise-лестница. */
 export const PORTFOLIO_LISTING_SLUGS = [
-  "bitrix24-kwork-crm",
   "wildberries-independent-sales-channel",
   "invoice-processing-pipeline",
   "kaspersky-ai-assistant",
   "kp-llm-automation",
   "elia-suite",
+  "crm-1c-sync",
 ] as const;
 
 export const PORTFOLIO: PortfolioItem[] = [

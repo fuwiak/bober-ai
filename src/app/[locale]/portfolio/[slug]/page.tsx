@@ -7,7 +7,7 @@ import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { PortfolioImageBadge } from "@/components/PortfolioImageBadge";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { Link } from "@/i18n/navigation";
-import { getPortfolioItem, PORTFOLIO, PROFILE } from "@/lib/profile";
+import { getPortfolioItem, getPortfolioSegment, PORTFOLIO, PROFILE } from "@/lib/profile";
 import { hasPortfolioEnglish } from "@/lib/portfolio-i18n";
 import { articleJsonLd, buildPageMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
@@ -58,6 +58,10 @@ export default async function PortfolioProjectPage({ params }: PageProps) {
   const prefix = isEn ? "/en" : "";
   const pageUrl = absoluteUrl(`${prefix}/portfolio/${item.slug}`);
   const portfolioLabel = isEn ? "Case studies" : "Портфолио";
+  const segment = item.segment ?? getPortfolioSegment(item.slug);
+  const segmentLabel = segment === "enterprise"
+    ? (isEn ? "Enterprise" : "Корпорации")
+    : (isEn ? "SMB" : "МСБ");
 
   const articleText = [item.description, item.solution, item.result, item.stack, ...(item.skills ?? [])]
     .filter(Boolean)
@@ -98,7 +102,10 @@ export default async function PortfolioProjectPage({ params }: PageProps) {
 
           <article id="article">
             <div className="mt-6 max-w-3xl">
-              <span className="badge-accent text-[10px]">{item.category}</span>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="badge-accent text-[10px]">{segmentLabel}</span>
+                <span className="badge-pill text-[10px]">{item.category}</span>
+              </div>
               <h1 className="display-md mt-4">{item.title}</h1>
               {item.subtitle ? (
                 <p className="mt-3 text-base leading-relaxed text-muted">{item.subtitle}</p>

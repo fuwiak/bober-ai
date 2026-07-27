@@ -76,6 +76,7 @@ export default async function MediaPage({ params }: Props) {
           dossierCta={t("media.dossierCta")}
           closing={t("media.closing")}
           showDossierLink={false}
+          showCards={false}
         />
 
         {sections.map((section) => (

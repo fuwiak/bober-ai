@@ -215,7 +215,7 @@ const en = {
     casesLabel: "Case studies",
     casesTitle: "Deployments with measurable impact",
     casesSubtitle:
-      "Before → after: SMB and enterprise cases with a measurement method — including a live Kwork → Bitrix24 funnel and an independent sales channel alongside Wildberries.",
+      "Before → after: SMB and enterprise cases with a measurement method — including Kaspersky RAG, ELIA Suite, CRM↔1C and an independent sales channel alongside Wildberries.",
     casesCta: "More details",
     caseBeforeLabel: "Before",
     caseAfterLabel: "After",
@@ -290,7 +290,7 @@ const en = {
     },
     portfolio: {
       metaTitle: "AI implementation case studies",
-      metaDescription: "Bober AI Systems portfolio: Kwork → Bitrix24, Kaspersky RAG, ELIA Suite, proposal automation, CRM and documents, corporate RAG assistants.",
+      metaDescription: "Bober AI Systems portfolio: Kaspersky RAG, ELIA Suite, proposal automation, CRM↔1C, documents, corporate RAG assistants.",
     },
     pricing: {
       metaTitle: "Cost of AI and business automation implementation",
@@ -422,21 +422,8 @@ const en = {
   packages: {
     title: "Work formats",
     subtitle:
-      "One budget ladder: from an AI starter kit for small business to audit, pilot, Bitrix24 + AI and production rollout. Fixed scope before kickoff.",
+      "Budget ladder for implementation: audit, pilot, Bitrix24 + AI and production rollout. Fixed scope before kickoff.",
     items: [
-      {
-        name: "AI Starter Kit for small business",
-        price: "from €300",
-        duration: "3–5 days",
-        forWhom: "A team of 3–5 people without a CRM or IT department — you need fast results, not a big project",
-        result: "Ready-made AI templates and a mini-assistant: answer a client, write a promo, generate an instruction — no training, no integrations",
-        includes: [
-          "A library of ready-made prompts for your tasks",
-          "A mini-assistant in Telegram or a custom GPT",
-          "Team onboarding — 15 minutes, no training needed",
-        ],
-        tier: "starter",
-      },
       {
         name: "Audit",
         price: "from €1,500",

@@ -20,6 +20,8 @@ type FounderCredibilitySectionProps = {
   dossierCta: string;
   closing: string;
   showDossierLink?: boolean;
+  /** When false, render intro only (no tabbed cards) — used on /media to avoid DOM duplicates with dossier sections. */
+  showCards?: boolean;
 };
 
 function CredibilityCard({ item }: { item: CredibilityItem }) {
@@ -57,34 +59,6 @@ function CredibilityCard({ item }: { item: CredibilityItem }) {
   );
 }
 
-function Panel({
-  id,
-  labelledBy,
-  active,
-  items,
-}: {
-  id: string;
-  labelledBy: string;
-  active: boolean;
-  items: CredibilityItem[];
-}) {
-  return (
-    <div
-      id={id}
-      role="tabpanel"
-      aria-labelledby={labelledBy}
-      hidden={!active}
-      className="credibility-panel"
-    >
-      <div className="credibility-grid">
-        {items.map((item) => (
-          <CredibilityCard key={item.id} item={item} />
-        ))}
-      </div>
-    </div>
-  );
-}
-
 export function FounderCredibilitySection({
   locale,
   label,
@@ -99,6 +73,7 @@ export function FounderCredibilitySection({
   dossierCta,
   closing,
   showDossierLink = true,
+  showCards = true,
 }: FounderCredibilitySectionProps) {
   const baseId = useId();
   const defaultTab: CredibilityMarket = locale === "en" ? "international" : "russian";
@@ -129,71 +104,67 @@ export function FounderCredibilitySection({
           ))}
         </ul>
 
-        <div className="credibility-tabs mt-10" role="tablist" aria-label={locale === "en" ? "Market focus" : "Фокус рынка"}>
-          <button
-            type="button"
-            role="tab"
-            id={russianTabId}
-            aria-selected={tab === "russian"}
-            aria-controls={russianPanelId}
-            className={`credibility-tab${tab === "russian" ? " credibility-tab--active" : ""}`}
-            onClick={() => setTab("russian")}
-          >
-            {tabRussian}
-          </button>
-          <button
-            type="button"
-            role="tab"
-            id={internationalTabId}
-            aria-selected={tab === "international"}
-            aria-controls={internationalPanelId}
-            className={`credibility-tab${tab === "international" ? " credibility-tab--active" : ""}`}
-            onClick={() => setTab("international")}
-          >
-            {tabInternational}
-          </button>
-        </div>
-
-        {/* Both panels remain in the HTML document for crawlers. */}
-        <div className="mt-8">
-          <div
-            id={russianPanelId}
-            role="tabpanel"
-            aria-labelledby={russianTabId}
-            data-active={tab === "russian" ? "true" : "false"}
-            className={`credibility-panel${tab === "russian" ? "" : " credibility-panel--inactive"}`}
-          >
-            <div className="credibility-grid">
-              {russianItems.map((item) => (
-                <CredibilityCard key={item.id} item={item} />
-              ))}
+        {showCards ? (
+          <>
+            <div className="credibility-tabs mt-10" role="tablist" aria-label={locale === "en" ? "Market focus" : "Фокус рынка"}>
+              <button
+                type="button"
+                role="tab"
+                id={russianTabId}
+                aria-selected={tab === "russian"}
+                aria-controls={russianPanelId}
+                className={`credibility-tab${tab === "russian" ? " credibility-tab--active" : ""}`}
+                onClick={() => setTab("russian")}
+              >
+                {tabRussian}
+              </button>
+              <button
+                type="button"
+                role="tab"
+                id={internationalTabId}
+                aria-selected={tab === "international"}
+                aria-controls={internationalPanelId}
+                className={`credibility-tab${tab === "international" ? " credibility-tab--active" : ""}`}
+                onClick={() => setTab("international")}
+              >
+                {tabInternational}
+              </button>
             </div>
-          </div>
-          <div
-            id={internationalPanelId}
-            role="tabpanel"
-            aria-labelledby={internationalTabId}
-            data-active={tab === "international" ? "true" : "false"}
-            className={`credibility-panel${tab === "international" ? "" : " credibility-panel--inactive"}`}
-          >
-            <div className="credibility-grid">
-              {internationalItems.map((item) => (
-                <CredibilityCard key={item.id} item={item} />
-              ))}
+
+            {/* Only the active panel stays in the accessibility tree — avoids duplicate card DOM. */}
+            <div className="mt-8">
+              {tab === "russian" ? (
+                <div
+                  id={russianPanelId}
+                  role="tabpanel"
+                  aria-labelledby={russianTabId}
+                  className="credibility-panel"
+                >
+                  <div className="credibility-grid">
+                    {russianItems.map((item) => (
+                      <CredibilityCard key={item.id} item={item} />
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div
+                  id={internationalPanelId}
+                  role="tabpanel"
+                  aria-labelledby={internationalTabId}
+                  className="credibility-panel"
+                >
+                  <div className="credibility-grid">
+                    {internationalItems.map((item) => (
+                      <CredibilityCard key={item.id} item={item} />
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
-          </div>
-        </div>
+          </>
+        ) : null}
 
-        {/* Noscript fallback: always show both markets */}
-        <noscript>
-          <div className="credibility-grid mt-8">
-            {[...russianItems, ...internationalItems].map((item) => (
-              <CredibilityCard key={`ns-${item.id}`} item={item} />
-            ))}
-          </div>
-        </noscript>
-
-        <Reveal delay={0.1} className="mt-12 border-t border-hairline pt-8">
+        <Reveal delay={0.1} className={`border-t border-hairline pt-8 ${showCards ? "mt-12" : "mt-10"}`}>
           <p className="body-copy max-w-3xl text-base text-muted">{closing}</p>
           {showDossierLink ? (
             <Link href="/media" className="text-link mt-4 inline-flex items-center gap-2 text-sm">

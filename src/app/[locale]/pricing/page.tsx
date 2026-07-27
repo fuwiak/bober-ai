@@ -36,6 +36,7 @@ export default async function PricingPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations();
+  const tp = await getTranslations("pages.pricing");
   const packageItems = t.raw("packages.items") as {
     name: string;
     price: string;
@@ -59,12 +60,8 @@ export default async function PricingPage({ params }: Props) {
                 locale={locale}
                 items={[{ name: locale === "en" ? "Pricing" : "Цены", path: "/pricing" }]}
               />
-              <h1 className="display-md mt-6 max-w-3xl">
-                {t("pages.pricing.h1")}
-              </h1>
-              <p className="body-copy mt-4 max-w-2xl text-base">
-                {t("pages.pricing.subtitle")}
-              </p>
+              <h1 className="display-md mt-6 max-w-3xl">{tp("h1")}</h1>
+              <p className="body-copy mt-4 max-w-2xl text-base">{tp("subtitle")}</p>
             </Reveal>
           </div>
         </section>

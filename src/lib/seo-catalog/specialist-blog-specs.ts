@@ -68,6 +68,33 @@ export const SPECIALIST_ARTICLE_SPECS: IntentArticleSpec[] = [
           ],
         },
       ],
+      checklist: {
+        title: "Чек-лист перед запуском AI в CRM",
+        items: [
+          "Контракт данных для каждого сценария задан схемой (JSON Schema или аналог), сломанный ответ не пишется в CRM",
+          "Idempotency-ключ на входящий webhook — повтор события не создаёт вторую задачу или письмо",
+          "Права агента наследуются из CRM — сервисный аккаунт не видит больше, чем видит менеджер",
+          "Необратимые действия (отправка письма, скидка, закрытие сделки) требуют подтверждения человека",
+          "Есть журнал аудита: сценарий, версия prompt, модель и источники контекста по каждому результату",
+          "Запуск на одном процессе с контрольной группой на 2–4 недели, а не сразу на весь отдел продаж",
+        ],
+      },
+      codeSnippet: {
+        title: "Пример контракта ответа для классификатора лида",
+        language: "json",
+        code: `{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["category", "confidence", "reasons"],
+  "properties": {
+    "category": { "enum": ["hot", "warm", "cold", "spam"] },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "reasons": { "type": "array", "items": { "type": "string" }, "maxItems": 3 },
+    "suggested_next_action": { "type": "string", "maxLength": 200 }
+  },
+  "additionalProperties": false
+}`,
+      },
       faq: [
         {
           q: "Может ли AI самостоятельно менять данные в CRM?",
@@ -125,6 +152,33 @@ export const SPECIALIST_ARTICLE_SPECS: IntentArticleSpec[] = [
           ],
         },
       ],
+      checklist: {
+        title: "Pre-launch checklist for AI in CRM",
+        items: [
+          "Every use case has a schema-validated data contract (JSON Schema or equivalent) — malformed output never gets written to the CRM",
+          "Idempotency key on the inbound webhook — a retried event doesn't create a duplicate task or message",
+          "Agent permissions inherit from the CRM — the service account never sees more than the rep does",
+          "Irreversible actions (sending an email, a discount, closing a deal) require human approval",
+          "An audit log records the scenario, prompt version, model and context sources for every result",
+          "Launch on one process with a control group for 2–4 weeks, not the whole sales team at once",
+        ],
+      },
+      codeSnippet: {
+        title: "Example response contract for a lead classifier",
+        language: "json",
+        code: `{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["category", "confidence", "reasons"],
+  "properties": {
+    "category": { "enum": ["hot", "warm", "cold", "spam"] },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "reasons": { "type": "array", "items": { "type": "string" }, "maxItems": 3 },
+    "suggested_next_action": { "type": "string", "maxLength": 200 }
+  },
+  "additionalProperties": false
+}`,
+      },
       faq: [
         {
           q: "Can AI update CRM data autonomously?",
@@ -194,6 +248,35 @@ export const SPECIALIST_ARTICLE_SPECS: IntentArticleSpec[] = [
           ],
         },
       ],
+      comparisonTable: {
+        title: "MCP или прямой API — что выбрать",
+        headers: ["Критерий", "Прямой API", "MCP"],
+        rows: [
+          ["Клиент", "Один известный клиент", "Несколько AI-приложений/хостов"],
+          ["Discovery инструментов", "Не нужен, контракт фиксирован", "Клиент сам находит tools/resources/prompts"],
+          ["Детерминированные транзакции", "Лучше — меньше слоёв", "Хуже — модель выбирает вызов"],
+          ["Governance (лимиты, роли, аудит)", "Пишется вручную под каждый сервис", "Единый слой поверх всех инструментов"],
+          ["Стоимость поддержки на старте", "Ниже при 1–3 операциях", "Выше — отдельный сервер и схемы"],
+        ],
+      },
+      codeSnippet: {
+        title: "Пример MCP tool поверх CRM API",
+        language: "json",
+        code: `{
+  "name": "create_follow_up_task",
+  "description": "Создаёт задачу follow-up по сделке CRM",
+  "inputSchema": {
+    "type": "object",
+    "required": ["dealId", "dueDate"],
+    "properties": {
+      "dealId": { "type": "string" },
+      "dueDate": { "type": "string", "format": "date" },
+      "note": { "type": "string", "maxLength": 500 }
+    }
+  },
+  "annotations": { "mutating": true, "requiresApproval": false, "idempotencyKey": "dealId+dueDate" }
+}`,
+      },
       faq: [
         { q: "Заменит ли MCP REST API?", a: "Нет. MCP обычно оборачивает существующий API и стандартизированно предоставляет AI-приложениям его безопасное подмножество." },
         { q: "Нужен ли MCP для одного агента?", a: "Не всегда. Для нескольких фиксированных функций прямой tool calling может быть проще. MCP особенно полезен при множестве клиентов, систем и команд." },
@@ -242,6 +325,35 @@ export const SPECIALIST_ARTICLE_SPECS: IntentArticleSpec[] = [
           ],
         },
       ],
+      comparisonTable: {
+        title: "MCP vs a direct API — how to choose",
+        headers: ["Criterion", "Direct API", "MCP"],
+        rows: [
+          ["Client", "One known client", "Multiple AI applications/hosts"],
+          ["Tool discovery", "Not needed, contract is fixed", "Client discovers tools/resources/prompts itself"],
+          ["Deterministic transactions", "Better — fewer layers", "Worse — the model picks the call"],
+          ["Governance (limits, roles, audit)", "Hand-written per service", "One layer across all tools"],
+          ["Maintenance cost at the start", "Lower for 1–3 operations", "Higher — a separate server and schemas"],
+        ],
+      },
+      codeSnippet: {
+        title: "Example MCP tool wrapping a CRM API",
+        language: "json",
+        code: `{
+  "name": "create_follow_up_task",
+  "description": "Creates a follow-up task on a CRM deal",
+  "inputSchema": {
+    "type": "object",
+    "required": ["dealId", "dueDate"],
+    "properties": {
+      "dealId": { "type": "string" },
+      "dueDate": { "type": "string", "format": "date" },
+      "note": { "type": "string", "maxLength": 500 }
+    }
+  },
+  "annotations": { "mutating": true, "requiresApproval": false, "idempotencyKey": "dealId+dueDate" }
+}`,
+      },
       faq: [
         { q: "Does MCP replace REST APIs?", a: "No. MCP normally wraps an existing API and exposes a safe subset of it to AI applications through a standardized interface." },
         { q: "Do you need MCP for a single agent?", a: "Not always. Direct tool calling can be simpler for a few fixed functions. MCP is most useful across multiple clients, systems and teams." },
@@ -303,6 +415,30 @@ export const SPECIALIST_ARTICLE_SPECS: IntentArticleSpec[] = [
           ],
         },
       ],
+      checklist: {
+        title: "Чек-лист перед выводом RAG в production",
+        items: [
+          "Каждый chunk несёт document_id, version, section, source_url, access labels и checksum — не только текст",
+          "Реиндексация идемпотентна и удаляет фрагменты старой версии, дубликаты не накапливаются",
+          "ACL фильтруются до retrieval, а не после генерации ответа",
+          "Есть порог релевантности — система отвечает «данных недостаточно», а не придумывает",
+          "Citations ведут на документ и место, доступные текущему пользователю, а не на сгенерированное название файла",
+          "Есть регрессионный набор вопросов — каждое изменение chunking/embeddings/reranker/prompt сравнивается на нём, а не на паре demo-примеров",
+        ],
+      },
+      codeSnippet: {
+        title: "Метаданные chunk перед записью в индекс",
+        language: "json",
+        code: `{
+  "document_id": "policy-2026-14",
+  "version": 3,
+  "section": "4.2 Возврат средств",
+  "source_url": "/docs/policy-2026-14.pdf#page=6",
+  "access_labels": ["role:support", "role:sales"],
+  "checksum": "sha256:9f2a...",
+  "indexed_at": "2026-07-25T09:00:00Z"
+}`,
+      },
       faq: [
         { q: "Нужна ли RAG отдельная векторная база?", a: "Не обязательно отдельный продукт, но нужен индекс с векторным поиском или эквивалентный механизм. На практике его стоит сочетать с полнотекстовым поиском." },
         { q: "Какой размер chunk лучше?", a: "Единого значения нет. Chunk должен сохранять самостоятельный смысл и структуру документа; параметры подбирают на репрезентативном наборе вопросов." },
@@ -351,6 +487,30 @@ export const SPECIALIST_ARTICLE_SPECS: IntentArticleSpec[] = [
           ],
         },
       ],
+      checklist: {
+        title: "Pre-production checklist for RAG",
+        items: [
+          "Every chunk carries document_id, version, section, source_url, access labels and a checksum — not just text",
+          "Reindexing is idempotent and removes old-version chunks — duplicates don't accumulate",
+          "ACLs are filtered before retrieval, not after generation",
+          "There's a relevance threshold — the system answers \"not enough data\" instead of making it up",
+          "Citations resolve to a document and location the current user can access, not a model-generated filename",
+          "A regression question set exists — every chunking/embedding/reranker/prompt change is compared against it, not a couple of demo questions",
+        ],
+      },
+      codeSnippet: {
+        title: "Chunk metadata before writing to the index",
+        language: "json",
+        code: `{
+  "document_id": "policy-2026-14",
+  "version": 3,
+  "section": "4.2 Refunds",
+  "source_url": "/docs/policy-2026-14.pdf#page=6",
+  "access_labels": ["role:support", "role:sales"],
+  "checksum": "sha256:9f2a...",
+  "indexed_at": "2026-07-25T09:00:00Z"
+}`,
+      },
       faq: [
         { q: "Does RAG require a vector database?", a: "Not necessarily a separate product, but it needs an index with vector retrieval or an equivalent mechanism. In practice, combine it with text search." },
         { q: "What is the best RAG chunk size?", a: "There is no universal value. A chunk must preserve a self-contained meaning and document structure; tune it on representative questions." },
@@ -412,6 +572,30 @@ export const SPECIALIST_ARTICLE_SPECS: IntentArticleSpec[] = [
           ],
         },
       ],
+      checklist: {
+        title: "Чек-лист безопасного AI-агента в продажах",
+        items: [
+          "Отправка письма (send_email) отделена от черновика (create_draft_email) и защищена более строгим approval",
+          "Каждый запуск несёт deal_id, event_id и idempotency key — сбой не создаёт дублирующее действие",
+          "Есть лимит шагов и бюджет на запуск — runaway agent останавливается, а не работает бесконечно",
+          "Пилот идёт по стадиям: shadow mode → draft mode с подтверждением → автоматизация только low-risk действий",
+          "Логируется выбранный tool, замаскированные аргументы, стоимость, версия prompt и решение пользователя",
+          "KPI — не число сообщений, а acceptance rate черновиков, время до первого ответа и конверсия этапов",
+        ],
+      },
+      codeSnippet: {
+        title: "Разделение draft и send на уровне схемы инструмента",
+        language: "json",
+        code: `{
+  "name": "create_draft_email",
+  "annotations": { "mutating": false, "requiresApproval": false }
+},
+{
+  "name": "send_email",
+  "description": "Отправляет письмо клиенту — только после подтверждения менеджера",
+  "annotations": { "mutating": true, "requiresApproval": true, "maxPerDealPerDay": 3 }
+}`,
+      },
       faq: [
         { q: "Может ли AI-агент сам писать клиентам?", a: "Технически да, но начинать лучше с черновиков и подтверждения. Автоматическую отправку ограничивают проверенными сценариями низкого риска." },
         { q: "Чем агент отличается от автоматизации CRM?", a: "Автоматизация CRM выполняет заранее заданные правила. Агент использует модель для интерпретации контекста и выбора разрешённых шагов, оставаясь в границах workflow." },
@@ -460,6 +644,30 @@ export const SPECIALIST_ARTICLE_SPECS: IntentArticleSpec[] = [
           ],
         },
       ],
+      checklist: {
+        title: "Safety checklist for a sales AI agent",
+        items: [
+          "Sending email (send_email) is separated from drafting (create_draft_email) and gated by a stricter approval",
+          "Every run carries a deal_id, event_id and idempotency key — a failure can't create a duplicate action",
+          "There's a step limit and a per-run budget — a runaway agent stops instead of looping indefinitely",
+          "The pilot goes through phases: shadow mode → draft mode with approval → automation of low-risk actions only",
+          "The selected tool, masked arguments, cost, prompt version and user decision are all logged",
+          "KPIs are draft acceptance rate, time to first response and stage conversion — not messages generated",
+        ],
+      },
+      codeSnippet: {
+        title: "Separating draft and send at the tool-schema level",
+        language: "json",
+        code: `{
+  "name": "create_draft_email",
+  "annotations": { "mutating": false, "requiresApproval": false }
+},
+{
+  "name": "send_email",
+  "description": "Sends an email to the customer — only after rep approval",
+  "annotations": { "mutating": true, "requiresApproval": true, "maxPerDealPerDay": 3 }
+}`,
+      },
       faq: [
         { q: "Can an AI agent email customers autonomously?", a: "Technically yes, but start with drafts and approval. Limit automatic sending to tested, low-risk scenarios." },
         { q: "How is an agent different from CRM automation?", a: "CRM automation follows predefined rules. An agent uses a model to interpret context and select among allowed steps, still inside a governed workflow." },
@@ -521,6 +729,26 @@ export const SPECIALIST_ARTICLE_SPECS: IntentArticleSpec[] = [
           ],
         },
       ],
+      checklist: {
+        title: "Чек-лист IDP-пайплайна перед продакшеном",
+        items: [
+          "Каждый файл получает document_id, checksum, tenant и timestamp до основного процесса",
+          "Извлечённое значение хранит confidence, страницу и область источника — не только текст",
+          "Бизнес-правила проверяются отдельно от OCR: сумма нетто + НДС = брутто, валюта, поставщик в справочнике",
+          "Документы с низким confidence или конфликтом правил уходят в human review, а не проводятся автоматически",
+          "Экспорт в ERP/CRM идёт с idempotency key — сбой не создаёт задвоенную запись",
+          "Правки рецензента сохраняются как evaluation data, но не обучают модель автоматически без контроля качества",
+        ],
+      },
+      comparisonTable: {
+        title: "Подходы к извлечению данных из документов",
+        headers: ["Подход", "Точность на типовых формах", "Гибкость макета", "Стоимость поддержки"],
+        rows: [
+          ["Regex / шаблон под конкретную форму", "Высокая", "Низкая — ломается при смене макета", "Растёт с числом форм"],
+          ["Классический OCR + бизнес-правила", "Средняя–высокая", "Средняя", "Стабильная"],
+          ["LLM-экстракция с confidence и review", "Средняя, растёт с review", "Высокая — разные макеты без переписывания правил", "Ниже на старте, требует мониторинга дрейфа"],
+        ],
+      },
       faq: [
         { q: "Может ли LLM заменить OCR?", a: "Не в каждом pipeline. Мультимодальные модели помогают со сложными макетами, но production IDP всё равно нужны координаты, confidence, валидация и воспроизводимое чтение." },
         { q: "Когда документ должен попасть к человеку?", a: "При низкой уверенности, конфликте правил, неизвестном типе или высоком финансовом риске. Порог следует различать по полям и процессам." },
@@ -569,6 +797,26 @@ export const SPECIALIST_ARTICLE_SPECS: IntentArticleSpec[] = [
           ],
         },
       ],
+      checklist: {
+        title: "Pre-production checklist for an IDP pipeline",
+        items: [
+          "Every file gets a document_id, checksum, tenant and timestamp before processing starts",
+          "Every extracted value stores confidence, page and source region — not just text",
+          "Business rules are checked separately from OCR: net plus tax equals gross, approved currency, known vendor",
+          "Documents with low confidence or a rule conflict go to human review instead of posting automatically",
+          "Export to ERP/CRM uses an idempotency key — a failure doesn't create a duplicate record",
+          "Reviewer corrections are saved as evaluation data but don't automatically retrain the model without quality control",
+        ],
+      },
+      comparisonTable: {
+        title: "Approaches to extracting data from documents",
+        headers: ["Approach", "Accuracy on standard forms", "Layout flexibility", "Maintenance cost"],
+        rows: [
+          ["Regex / template for a specific form", "High", "Low — breaks when the layout changes", "Grows with the number of forms"],
+          ["Classic OCR + business rules", "Medium–high", "Medium", "Stable"],
+          ["LLM extraction with confidence and review", "Medium, improves with review", "High — different layouts without rewriting rules", "Lower upfront, needs drift monitoring"],
+        ],
+      },
       faq: [
         { q: "Can an LLM replace OCR?", a: "Not in every pipeline. Multimodal models help with difficult layouts, but production IDP still needs coordinates, confidence, validation and repeatable extraction." },
         { q: "When should a document go to human review?", a: "When confidence is low, rules conflict, the document type is unknown or financial risk is high. Thresholds should vary by field and process." },
@@ -635,6 +883,27 @@ export const SPECIALIST_ARTICLE_SPECS: IntentArticleSpec[] = [
           ],
         },
       ],
+      checklist: {
+        title: "Чек-лист перед переходом пилота в продакшен",
+        items: [
+          "Сценарий имеет собственный контракт данных и идемпотентный ключ — не общий «универсальный агент»",
+          "Необратимые действия (письмо клиенту, изменение цены, остановка линии) требуют подтверждения или жёсткого правила",
+          "Есть allowlist полей и действий, лимиты значений и фильтрация входа от prompt injection",
+          "Журнал аудита фиксирует версию prompt, модель и источники контекста для каждого результата",
+          "Пилот идёт на одном процессе с контрольной группой минимум 2–4 недели, а не сразу на весь отдел",
+          "Определены технические метрики (задержка, доля валидных ответов, стоимость) и бизнес-метрики процесса",
+        ],
+      },
+      comparisonTable: {
+        title: "RPA vs AI automation",
+        headers: ["", "RPA", "AI automation"],
+        rows: [
+          ["Вход", "Структурированный, фиксированный формат", "Неструктурированный: текст, фото, речь"],
+          ["Логика", "Жёсткая последовательность кликов/полей", "Модель интерпретирует смысл, правила остаются в коде"],
+          ["Устойчивость к смене интерфейса", "Низкая — ломается при смене макета", "Выше, если контракт данных не завязан на макет"],
+          ["Типичная задача", "Перенос данных между системами по шаблону", "Классификация обращения, извлечение из письма, черновик документа"],
+        ],
+      },
       faq: [
         {
           q: "AI automation — это то же самое, что RPA?",
@@ -692,6 +961,27 @@ export const SPECIALIST_ARTICLE_SPECS: IntentArticleSpec[] = [
           ],
         },
       ],
+      checklist: {
+        title: "Checklist before moving a pilot to production",
+        items: [
+          "The use case has its own data contract and idempotency key — not a shared \"universal agent\"",
+          "Irreversible actions (customer email, price change, stopping a line) require approval or a hard rule",
+          "There's an allowlist for fields and actions, value limits, and input filtering against prompt injection",
+          "An audit log records the prompt version, model and context sources behind every result",
+          "The pilot runs on one process with a control group for at least 2–4 weeks, not the whole department at once",
+          "Both technical metrics (latency, valid-output rate, cost) and business metrics for the process are defined",
+        ],
+      },
+      comparisonTable: {
+        title: "RPA vs AI automation",
+        headers: ["", "RPA", "AI automation"],
+        rows: [
+          ["Input", "Structured, fixed format", "Unstructured: text, photos, speech"],
+          ["Logic", "Rigid sequence of clicks/fields", "The model interprets meaning; rules stay in code"],
+          ["Resilience to UI changes", "Low — breaks when the layout changes", "Higher, if the data contract isn't tied to the layout"],
+          ["Typical task", "Template-based data transfer between systems", "Request classification, extraction from email, document drafting"],
+        ],
+      },
       faq: [
         {
           q: "Is AI automation the same as RPA?",
@@ -767,6 +1057,27 @@ export const SPECIALIST_ARTICLE_SPECS: IntentArticleSpec[] = [
           ],
         },
       ],
+      checklist: {
+        title: "Чек-лист перед пилотом AI на производстве",
+        items: [
+          "Выбран один участок с измеримой болью — не «всё производство» сразу",
+          "Модель формирует черновик/рекомендацию, финальное решение — за ОТК, мастером или технологом",
+          "Действия, влияющие на физический процесс (остановка линии, изменение параметра), исключены из автоматизации",
+          "AI-слой развёрнут в контуре предприятия (on-prem/изолированное облако), если данные подпадают под 152-ФЗ или требования заказчика",
+          "Запись в MES/ERP проходит проверку допусков и лимитов до сохранения",
+          "Метрики пилота — бизнес-эффект (время реакции, доля документов без ручной сверки), а не точность модели саму по себе",
+        ],
+      },
+      comparisonTable: {
+        title: "Где AI помогает на производстве, а где остаётся детерминированная логика",
+        headers: ["Задача", "Подход", "Почему"],
+        rows: [
+          ["Контроль оборудования, ПЛК, безопасность", "Детерминированные правила", "Сбой стоит остановки линии или травмы — нужен предсказуемый результат"],
+          ["Классификация дефекта по фото", "AI как помощник контролёра ОТК", "Вход неструктурирован, финальное решение — за человеком"],
+          ["Извлечение полей из накладной поставщика", "AI + сверка правилами", "Формат документов различается, но данные проверяемы"],
+          ["Суммаризация сменного отчёта", "AI-суммаризация свободного текста", "Вход — рукописный/устный текст, задача не требует детерминизма"],
+        ],
+      },
       faq: [
         {
           q: "Заменяет ли AI систему MES или SCADA?",
@@ -824,6 +1135,27 @@ export const SPECIALIST_ARTICLE_SPECS: IntentArticleSpec[] = [
           ],
         },
       ],
+      checklist: {
+        title: "Checklist before an AI pilot on the shop floor",
+        items: [
+          "One area with a measurable pain point is chosen — not \"the whole plant\" at once",
+          "The model produces a draft/recommendation; the final decision stays with QC, the foreman or process engineer",
+          "Actions affecting the physical process (stopping a line, changing a parameter) are excluded from automation",
+          "The AI layer runs inside the plant's environment (on-prem/isolated cloud) if data falls under local data-protection law or customer requirements",
+          "Writes to MES/ERP pass tolerance and limit checks before being saved",
+          "Pilot metrics are business impact (response time, share of documents without manual reconciliation), not model accuracy alone",
+        ],
+      },
+      comparisonTable: {
+        title: "Where AI helps on the shop floor vs. where logic stays deterministic",
+        headers: ["Task", "Approach", "Why"],
+        rows: [
+          ["Equipment control, PLCs, safety", "Deterministic rules", "A failure means a stopped line or an injury — the result must be predictable"],
+          ["Defect classification from photos", "AI as a QC assistant", "Input is unstructured; the final call stays with a person"],
+          ["Extracting fields from a supplier invoice", "AI + rule-based reconciliation", "Document formats vary, but the data is verifiable"],
+          ["Shift-report summarization", "AI summarization of free text", "Input is handwritten/spoken text; the task doesn't need determinism"],
+        ],
+      },
       faq: [
         {
           q: "Does AI replace the MES or SCADA system?",
@@ -899,6 +1231,32 @@ export const SPECIALIST_ARTICLE_SPECS: IntentArticleSpec[] = [
           ],
         },
       ],
+      checklist: {
+        title: "Чек-лист автогенерации КП перед запуском",
+        items: [
+          "Цена, скидка, итог и сроки считаются отдельным детерминированным шагом — модель их не генерирует",
+          "Идемпотентный ключ на сделку и версию КП — повторный триггер не плодит дубликаты документа",
+          "Факты о продукте привязаны к источнику через RAG по каталогу, а не к общим знаниям модели",
+          "Скидка вне стандартной сетки и нестандартные условия оплаты требуют подтверждения человеком",
+          "Каждая версия КП хранит, кто утвердил цифры, версию prompt и использованные источники контекста",
+          "Черновик без привязки фактов к источнику уходит на ручную проверку, а не сразу клиенту",
+        ],
+      },
+      codeSnippet: {
+        title: "Валидация числовых полей перед рендерингом КП",
+        language: "json",
+        code: `{
+  "proposal_id": "PROP-2026-0731",
+  "deal_id": "D-4471",
+  "pricing_source": "1c-price-list-v12",
+  "line_items": [
+    { "sku": "SVC-100", "qty": 1, "unit_price": 300000, "discount_pct": 0 }
+  ],
+  "total": 300000,
+  "discount_requires_approval": false,
+  "approved_by": null
+}`,
+      },
       faq: [
         {
           q: "Может ли модель самостоятельно назначать скидку в КП?",
@@ -956,6 +1314,32 @@ export const SPECIALIST_ARTICLE_SPECS: IntentArticleSpec[] = [
           ],
         },
       ],
+      checklist: {
+        title: "Proposal-generation checklist before launch",
+        items: [
+          "Price, discount, total and delivery date are computed in a separate deterministic step — the model never generates them",
+          "An idempotency key on the deal and proposal version stops a repeated trigger from creating duplicate documents",
+          "Product claims are grounded via RAG over the catalog, not the model's general knowledge",
+          "Discounts beyond the standard grid and non-standard payment terms require human approval",
+          "Every proposal version stores who approved the numbers, the prompt version and the context sources used",
+          "A draft without source-grounded facts goes to manual review, not straight to the client",
+        ],
+      },
+      codeSnippet: {
+        title: "Validating numeric fields before rendering the proposal",
+        language: "json",
+        code: `{
+  "proposal_id": "PROP-2026-0731",
+  "deal_id": "D-4471",
+  "pricing_source": "1c-price-list-v12",
+  "line_items": [
+    { "sku": "SVC-100", "qty": 1, "unit_price": 3000, "discount_pct": 0 }
+  ],
+  "total": 3000,
+  "discount_requires_approval": false,
+  "approved_by": null
+}`,
+      },
       faq: [
         {
           q: "Can the model set a discount in the proposal on its own?",
