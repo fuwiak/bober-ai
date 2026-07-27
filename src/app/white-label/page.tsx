@@ -3,11 +3,13 @@ import Image from "next/image";
 import { BareIntlShell } from "@/components/BareIntlShell";
 import { ContactForm } from "@/components/ContactForm";
 import { EditorialImageFrame } from "@/components/EditorialImageFrame";
+import { PartnerCertificates } from "@/components/PartnerCertificates";
 import { TrackedAnchor } from "@/components/TrackedAnchor";
 import { Reveal } from "@/components/motion/Reveal";
+import { LEGAL_ROUTES } from "@/lib/legal";
 import { webPageJsonLd } from "@/lib/seo";
 import { OFFICE_STOCK_IMAGES, PARTNERS_SITE_URL, STOCK_IMAGES, TELEGRAM_URL } from "@/lib/site";
-import { TRUST_PARTNERS } from "@/lib/trust-partners";
+import { KASPERSKY_PARTNER_BADGES, TRUST_PARTNERS } from "@/lib/trust-partners";
 
 /**
  * Served at partners.bober-ai.dev (see deploy/Caddyfile[.railway]) — a separate
@@ -22,13 +24,15 @@ const CLOUD_PARTNERS = TRUST_PARTNERS.filter((p) => Boolean(p.href));
 export const metadata: Metadata = {
   title: "AI-разработка в ваши услуги без найма команды — Partner Program",
   description:
-    "White-label AI-разработка для агентств, software house и интеграторов: закрываем архитектуру, backend, LLM и deployment под вашим брендом. Вы сохраняете клиента, управление и маржу.",
+    "White-label AI для агентств и интеграторов: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и RAG под вашим брендом. Клиент и маржа остаются у вас. Ответ за 4 рабочих часа.",
   keywords: [
     "white label ai разработка",
     "субподряд ai разработка",
     "партнёрская программа для агентств",
     "аутсорс ai для software house",
     "технический партнёр ии",
+    "secure ai white label",
+    "телефония crm ai для интеграторов",
   ],
   alternates: { canonical: PARTNERS_URL },
   robots: { index: true, follow: true },
@@ -40,7 +44,7 @@ export const metadata: Metadata = {
     siteName: PARTNERS_NAME,
     title: "AI-разработка в ваши услуги без найма команды",
     description:
-      "Закрываем архитектуру, backend, LLM, интеграции и deployment под вашим брендом. Вы сохраняете клиента, управление проектом и свою маржу.",
+      "Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и RAG — под вашим брендом. Клиент, управление и маржа остаются у партнёра.",
     images: [{ url: "/stock/office-tower.jpg", width: 1200, height: 630 }],
   },
 };
@@ -48,44 +52,81 @@ export const metadata: Metadata = {
 const AUDIENCE = [
   "Digital-агентства",
   "Software house",
-  "Интеграторы Bitrix24 и 1С",
-  "Консалтинговые компании",
-  "Фрилансеры с крупными проектами",
+  "Интеграторы Bitrix24, amoCRM и 1С",
+  "Партнёры по телефонии и контакт-центрам",
+  "Консалтинговые и ИБ-компании",
   "Зарубежные агентства без своей AI-команды",
+];
+
+const WHATS_NEW = [
+  {
+    title: "Bober Secure AI",
+    text: "Приватный LLM/RAG, Agent Gateway и защита контура — в том числе с продуктами Kaspersky.",
+  },
+  {
+    title: "Телефония + CRM + AI",
+    text: "MANGO, UIS, Voximplant, Asterisk или штатная телефония Bitrix24 → факты в сделке и follow-up.",
+  },
+  {
+    title: "AI-контур отдела продаж",
+    text: "Заявка → квалификация → CRM → КП и задачи менеджеру — готовый продукт в вашем каталоге.",
+  },
+  {
+    title: "Ответ за 4 часа",
+    text: "Wholesale-оценка и распределение ролей — в течение 24 часов после брифа.",
+  },
 ];
 
 const CLIENT_OFFERS = [
   {
-    title: "AI-аналитика для Битрикс24",
+    id: "bitrix24-ai-analytics",
+    title: "AI-аналитика для Bitrix24 и amoCRM",
     text: "Вопросы о продажах, задачах и звонках на естественном языке — внутри CRM клиента.",
   },
   {
+    id: "telephony-crm-ai",
+    title: "Телефония + CRM + AI",
+    text: "Слой поверх BitrixGPT или Yandex SpeechKit: звонок → факты в карточке → задача и follow-up.",
+  },
+  {
+    id: "ai-sales-loop",
+    title: "AI-контур отдела продаж",
+    text: "Сквозной контур от лида до КП: квалификация, CRM, документы и контроль менеджеров.",
+  },
+  {
+    id: "kp-documents",
     title: "Автоматизация КП и документов",
     text: "OCR, договоры, счета, спецификации и генерация коммерческих предложений из каталога.",
   },
   {
+    id: "secure-private-ai",
+    title: "Secure Private AI Cloud",
+    text: "On-prem или выделенный контур: LLM/RAG без утечки данных + опционально Kaspersky.",
+  },
+  {
+    id: "first-line-ai",
     title: "AI-оператор первой линии",
     text: "Квалификация обращений, ответы по базе знаний, эскалация сложных кейсов менеджеру.",
   },
   {
+    id: "call-scoring",
     title: "Анализ звонков и контроль менеджеров",
     text: "Транскрипция, scoring диалогов, соблюдение скрипта и сигналы для руководителя.",
   },
   {
+    id: "corp-rag",
     title: "Корпоративная база знаний",
     text: "RAG по регламентам и внутренним документам со ссылками на источники.",
   },
   {
+    id: "crm-1c",
     title: "Интеграция CRM с 1С и МойСклад",
     text: "Синхронизация заказов, остатков, клиентов и документов между контурами учёта.",
   },
   {
+    id: "lead-reactivation",
     title: "Реактивация старых лидов",
     text: "Voice- и messaging-сценарии возврата в воронку с записью результата в CRM.",
-  },
-  {
-    title: "Локальный AI в защищённом контуре",
-    text: "On-premise или выделенный контур клиента — без передачи данных во внешние сервисы без согласия.",
   },
 ];
 
@@ -108,14 +149,17 @@ const WORKFLOW = [
 
 const PACKAGES = [
   {
+    id: "presale-support",
     title: "Presale support",
     items: ["Анализ брифа", "Архитектура", "Оценка себестоимости", "Участие в технической встрече"],
   },
   {
+    id: "project-delivery",
     title: "Project delivery",
     items: ["Разработка", "Интеграции", "Тестирование", "Deployment", "Документация"],
   },
   {
+    id: "ongoing-ai-team",
     title: "Ongoing AI team",
     items: ["Ежемесячный пул часов", "Несколько проектов", "Приоритетная поддержка", "Быстрые оценки"],
   },
@@ -124,12 +168,14 @@ const PACKAGES = [
 const SCOPE = [
   "Discovery и анализ требований",
   "Архитектура решения",
-  "Backend и интеграции",
+  "Backend и интеграции (Bitrix24, amoCRM, 1С, МойСклад)",
   "RAG, AI-агенты, voice AI, OCR",
+  "Телефония + CRM + AI (MANGO, UIS, Voximplant, Asterisk)",
+  "Bober Secure AI: приватный LLM, Agent Gateway, Container Security",
+  "Лицензии и внедрение продуктов Kaspersky через дистрибуцию",
   "Развёртывание в облаке или on-premise",
   "DevOps и мониторинг",
   "Техническая документация под вашим брендом",
-  "Техподдержка на согласованных встречах",
 ];
 
 const PARTNER_CASE = {
@@ -164,7 +210,7 @@ export default function WhiteLabelPage() {
   const webPage = webPageJsonLd({
     name: "AI-разработка в ваши услуги без найма команды — Partner Program",
     description:
-      "White-label AI-разработка для агентств и интеграторов: больше проектов, быстрее офферы, маржа у партнёра. NDA и non-circumvention.",
+      "White-label AI для агентств: Secure AI, телефония+CRM, Bitrix24/amoCRM и документы под брендом партнёра. NDA, non-circumvention, ответ за 4 часа.",
     url: PARTNERS_URL,
     locale: "ru",
   });
@@ -201,8 +247,8 @@ export default function WhiteLabelPage() {
                   Добавьте AI-разработку в свои услуги без найма собственной команды
                 </h1>
                 <p className="body-copy mt-5 max-w-2xl text-lg">
-                  Закрываем архитектуру, backend, LLM, интеграции и deployment под вашим брендом. Вы сохраняете
-                  клиента, управление проектом и свою маржу.
+                  Закрываем архитектуру, backend, LLM, Secure AI, телефонию+CRM, интеграции и deployment под
+                  вашим брендом. Вы сохраняете клиента, управление проектом и свою маржу.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <TrackedAnchor href="#contact" className="btn-primary" goal="partner_cta_click">
@@ -312,6 +358,10 @@ export default function WhiteLabelPage() {
                     <span className="spec-value">White-label</span>
                     <span className="spec-label">silent или technical</span>
                   </div>
+                  <div className="spec-cell">
+                    <span className="spec-value">Ответ за 4ч</span>
+                    <span className="spec-label">оценка ролей за 24ч</span>
+                  </div>
                 </div>
               </Reveal>
             </div>
@@ -320,17 +370,40 @@ export default function WhiteLabelPage() {
           <section className="section-band section--panel border-b border-hairline">
             <div className="container-editorial max-w-4xl">
               <Reveal>
+                <span className="section-label">Новое в каталоге</span>
+                <h2 className="section-title mt-4 max-w-2xl">Что появилось для партнёров</h2>
+                <p className="body-copy mt-4 max-w-2xl">
+                  Линейка расширилась: Secure AI, телефония и готовый AI-контур продаж — можно продавать без
+                  найма своей LLM-команды.
+                </p>
+              </Reveal>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {WHATS_NEW.map((item) => (
+                  <Reveal key={item.title}>
+                    <div className="home-hub-card">
+                      <h3 className="card-title text-lg">{item.title}</h3>
+                      <p className="body-copy mt-2 text-sm">{item.text}</p>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="section-band border-b border-hairline">
+            <div className="container-editorial max-w-4xl">
+              <Reveal>
                 <span className="section-label">Каталог для клиента</span>
                 <h2 className="section-title mt-4 max-w-2xl">Что вы сможете предложить своим клиентам</h2>
                 <p className="body-copy mt-4 max-w-2xl">
-                  Упаковываем RAG, агентов, voice и OCR в продаваемые продукты — под вашим брендом и в вашей
-                  смете.
+                  Упаковываем RAG, агентов, Secure AI, voice, телефонию и OCR в продаваемые продукты — под
+                  вашим брендом и в вашей смете.
                 </p>
               </Reveal>
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
                 {CLIENT_OFFERS.map((item) => (
-                  <Reveal key={item.title}>
-                    <div className="home-hub-card">
+                  <Reveal key={item.id}>
+                    <div id={item.id} className="home-hub-card scroll-mt-24">
                       <h3 className="card-title text-lg">{item.title}</h3>
                       <p className="body-copy mt-2 text-sm">{item.text}</p>
                     </div>
@@ -348,7 +421,8 @@ export default function WhiteLabelPage() {
                 <p className="body-copy mt-4 max-w-2xl">
                   Партнёр ставит цену для клиента и добавляет свою маржу. Мы даём wholesale-оценку технической
                   реализации. Presale и account — на стороне партнёра; инвойс клиенту — обычно тоже. Клиентский
-                  пилот на рынке — от 300&nbsp;000&nbsp;₽; партнёрская цена обсуждается по проекту.
+                  пилот на рынке — от 300&nbsp;000&nbsp;₽; партнёрская цена обсуждается по проекту. Ответ на
+                  бриф — в течение 4 рабочих часов.
                 </p>
               </Reveal>
               <div className="mt-8 overflow-x-auto">
@@ -501,7 +575,7 @@ export default function WhiteLabelPage() {
               </Reveal>
               <div className="mt-8 grid gap-4 sm:grid-cols-3">
                 {PACKAGES.map((pkg) => (
-                  <div key={pkg.title} className="home-hub-card">
+                  <div key={pkg.id} id={pkg.id} className="home-hub-card scroll-mt-24">
                     <h3 className="card-title text-lg">{pkg.title}</h3>
                     <ul className="mt-3 space-y-2">
                       {pkg.items.map((item) => (
@@ -539,10 +613,10 @@ export default function WhiteLabelPage() {
                 <span className="section-label">Облако и инфраструктура</span>
                 <h2 className="section-title mt-4 max-w-2xl">С кем уже работаем по инфраструктуре</h2>
                 <p className="body-copy mt-4 max-w-2xl">
-                  Авторизованный партнёр „Лаборатории Касперского“ · партнёр Yandex Cloud · партнёрская
-                  программа Selectel · технологический партнёр Cloud.ru · участие в партнерской программе
-                  1С-Битрикс (ID 28909898). Деплой у клиента или в вашем контуре — без смены лица перед
-                  конечным заказчиком.
+                  Авторизованный партнёр „Лаборатории Касперского“ (B2B и B2C) · партнёр Yandex Cloud ·
+                  партнёрская программа Selectel · технологический партнёр Cloud.ru · участие в партнерской
+                  программе 1С-Битрикс (ID 28909898). Деплой у клиента или в вашем контуре — без смены лица
+                  перед конечным заказчиком.
                 </p>
               </Reveal>
               <div className="mt-8 flex flex-wrap gap-4" aria-label="Облачные и технологические партнёры">
@@ -569,6 +643,47 @@ export default function WhiteLabelPage() {
                     <span className="trust-logo__name">{partner.name}</span>
                   </a>
                 ))}
+                {TRUST_PARTNERS.filter((p) => !p.href).map((partner) => (
+                  <div key={partner.id} className="trust-logo">
+                    <div
+                      className={`trust-logo__mark${partner.markTone === "dark" ? " trust-logo__mark--dark" : ""}`}
+                    >
+                      <Image
+                        src={partner.logoSrc}
+                        alt=""
+                        width={partner.logoWidth}
+                        height={partner.logoHeight}
+                        className="trust-logo__icon"
+                        aria-hidden
+                      />
+                    </div>
+                    <span className="trust-logo__name">{partner.name}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Reveal delay={0.06} className="partner-badge-row mt-12">
+                {KASPERSKY_PARTNER_BADGES.map((badge) => (
+                  <div key={badge.id} className="partner-badge-frame">
+                    <Image
+                      src={badge.src}
+                      alt={badge.altRu}
+                      width={badge.width}
+                      height={badge.height}
+                      className="partner-badge-image"
+                      sizes="(max-width: 768px) 100vw, 420px"
+                    />
+                  </div>
+                ))}
+              </Reveal>
+
+              <div className="mt-12">
+                <PartnerCertificates
+                  locale="ru"
+                  intro="Оригиналы сертификатов Registered Partner — для пресейла и согласования ИБ у клиента партнёра."
+                  titles={{ b2b: "B2B", b2c: "B2C" }}
+                  openLabel="Открыть PDF"
+                />
               </div>
             </div>
           </section>
@@ -579,8 +694,8 @@ export default function WhiteLabelPage() {
                 <span className="section-label">Контакт</span>
                 <h2 className="section-title mt-4">Обсудим партнёрство</h2>
                 <p className="body-copy mt-4">
-                  Пришлите бриф или тип сотрудничества — вернёмся с wholesale-оценкой и распределением ролей в
-                  течение суток.
+                  Пришлите бриф или тип сотрудничества — ответим в течение 4 рабочих часов. Wholesale-оценка и
+                  распределение ролей — в течение 24 часов после брифа.
                 </p>
               </Reveal>
               <div className="mt-8">
@@ -594,8 +709,17 @@ export default function WhiteLabelPage() {
           <div className="container-editorial flex flex-wrap items-center justify-between gap-4 text-sm text-muted-soft">
             <span>© {new Date().getFullYear()} Bober AI Systems</span>
             <div className="flex flex-wrap gap-4">
-              <a href="https://www.bober-ai.dev/privacy-policy" className="text-muted-soft hover:text-muted">
+              <a
+                href={`https://www.bober-ai.dev${LEGAL_ROUTES.privacyPolicy}`}
+                className="text-muted-soft hover:text-muted"
+              >
                 Политика конфиденциальности
+              </a>
+              <a
+                href={`https://www.bober-ai.dev${LEGAL_ROUTES.consent}`}
+                className="text-muted-soft hover:text-muted"
+              >
+                Согласие на обработку ПДн
               </a>
               <a href="https://www.bober-ai.dev" className="text-muted-soft hover:text-muted">
                 bober-ai.dev

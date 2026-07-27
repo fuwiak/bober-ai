@@ -123,7 +123,7 @@ ${offerBlocks}
 }
 
 const PARTNERS_ABOUT =
-  "White-label AI-разработка для агентств и software house: архитектура, backend, LLM и deployment под вашим брендом. Клиент и маржа остаются у партнёра.";
+  "White-label AI для агентств и software house: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и deployment под вашим брендом. Клиент и маржа остаются у партнёра.";
 
 const BITRIX_OFFERS: MicrositeOffer[] = [
   ...BITRIX_WORDSTAT_SERVICES.map((s) => ({
@@ -187,13 +187,46 @@ const PARTNERS_OFFERS: MicrositeOffer[] = [
   {
     id: "partners-bitrix-analytics",
     slug: "bitrix24-ai-analytics",
-    title: "AI-аналитика для Битрикс24 (white-label)",
+    title: "AI-аналитика для Bitrix24 и amoCRM",
     description: "Вопросы о продажах, задачах и звонках на естественном языке — внутри CRM клиента под вашим брендом.",
     about: PARTNERS_ABOUT,
     salesNotes: "Subcontract / technical partner",
     price: 300000,
     picture: "/diagrams/crm-integration.svg",
     conversion: 93,
+  },
+  {
+    id: "partners-telephony",
+    slug: "telephony-crm-ai",
+    title: "Телефония + CRM + AI (white-label)",
+    description: "MANGO, UIS, Voximplant, Asterisk или штатная телефония Bitrix24 → факты в сделке и follow-up.",
+    about: PARTNERS_ABOUT,
+    salesNotes: "Subcontract / technical partner",
+    price: 300000,
+    picture: "/diagrams/crm-integration.svg",
+    conversion: 93,
+  },
+  {
+    id: "partners-sales-loop",
+    slug: "ai-sales-loop",
+    title: "AI-контур отдела продаж",
+    description: "Сквозной контур от лида до КП: квалификация, CRM, документы и контроль менеджеров.",
+    about: PARTNERS_ABOUT,
+    salesNotes: "от 300 000 ₽ · white-label",
+    price: 300000,
+    picture: "/diagrams/sales-pipeline.svg",
+    conversion: 94,
+  },
+  {
+    id: "partners-secure-ai",
+    slug: "secure-private-ai",
+    title: "Secure Private AI Cloud",
+    description: "Приватный LLM/RAG и Agent Gateway в контуре клиента; опционально продукты Kaspersky.",
+    about: PARTNERS_ABOUT,
+    salesNotes: "от 800 000 ₽ · Secure AI",
+    price: 800000,
+    picture: "/stock/cyber-padlock.jpg",
+    conversion: 92,
   },
   {
     id: "partners-kp-docs",
@@ -230,7 +263,7 @@ export function getPartnersFeedXml(now = new Date()) {
       siteUrl: PARTNERS_SITE_URL,
       shopName: `${SITE_NAME} — Partner Program`,
       shopDescription:
-        "White-label AI-разработка для агентств и software house: архитектура, backend, LLM и deployment под вашим брендом.",
+        "White-label AI для агентств: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и deployment под вашим брендом.",
       orderPath: "/#contact",
       offers: PARTNERS_OFFERS,
     },
