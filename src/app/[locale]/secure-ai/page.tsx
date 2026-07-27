@@ -77,9 +77,14 @@ export default async function SecureAiPage({ params }: Props) {
             <p className="mt-4 text-base leading-relaxed text-body">
               {ru ? p.subtitleRu : p.subtitleEn}
             </p>
+            <p className="mt-4 max-w-2xl text-sm text-muted">
+              {ru
+                ? "Проверьте, готов ли ваш AI-сервис к работе с корпоративными данными."
+                : "Check whether your AI service is ready to handle corporate data."}
+            </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="#contact" className="btn-primary">
-                {ru ? "Обсудить Secure AI" : "Discuss Secure AI"}
+                {ru ? "Получить экспресс-разбор архитектуры" : "Get an express architecture review"}
               </Link>
               <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn-secondary">
                 Telegram

@@ -589,7 +589,7 @@ const en = {
   },
   roiCalculator: {
     label: "ROI",
-    title: "ROI calculator for AI automation of CRM and documents",
+    title: "Find out how much time and money your manual process is losing",
     subtitle:
       "Enter employee count, routine hours and salary — get a savings range, payback period and the data list needed for an audit.",
     employeesLabel: "People in the process",
@@ -610,7 +610,7 @@ const en = {
       "Current bottlenecks and errors",
       "Perimeter requirements: cloud / on-prem / NDA",
     ],
-    captureCta: "Get the estimate by email / Telegram",
+    captureCta: "Send the full breakdown to Telegram",
     gateTitle: "Where should we send the estimate",
     gateSubtitle:
       "We'll send the calculation summary and an audit checklist. No commitment — you choose the next step.",

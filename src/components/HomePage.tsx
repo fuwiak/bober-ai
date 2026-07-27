@@ -3,6 +3,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { BeforeAfterDemoSection } from "@/components/ExpertiseEvidence";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
 import { PackagesShowcase } from "@/components/PackagesShowcase";
+import { RoiCalculatorSection } from "@/components/RoiCalculatorSection";
 import { FaqSection } from "@/components/FaqSection";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { HeroSection } from "@/components/motion/HeroSection";
@@ -148,6 +149,19 @@ export default async function HomePage() {
             </Reveal>
           </div>
         </section>
+
+        <RoiCalculatorSection
+          label={t("roiCalculator.label")}
+          title={t("roiCalculator.title")}
+          subtitle={t("roiCalculator.subtitle")}
+          employeesLabel={t("roiCalculator.employeesLabel")}
+          hoursLabel={t("roiCalculator.hoursLabel")}
+          salaryLabel={t("roiCalculator.salaryLabel")}
+          savingsLabel={t("roiCalculator.savingsLabel")}
+          resultLabel={t("roiCalculator.resultLabel")}
+          resultNote={t("roiCalculator.resultNote")}
+          cta={t("roiCalculator.cta")}
+        />
 
         <PackagesShowcase
           label={t("sections.engagement")}

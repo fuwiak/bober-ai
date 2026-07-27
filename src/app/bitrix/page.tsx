@@ -442,7 +442,7 @@ export default function BitrixLandingPage() {
               <p className="body-copy mt-6 max-w-2xl text-sm text-body-strong">{BITRIX_SALES_LOOP.why}</p>
               <div className="mt-8">
                 <TrackedAnchor href="#contact" className="btn-primary" goal="bitrix_cta_click">
-                  Оценить AI-контур продаж
+                  Получить карту AI-автоматизации отдела продаж
                 </TrackedAnchor>
               </div>
             </div>
