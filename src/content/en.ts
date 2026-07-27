@@ -105,7 +105,7 @@ const en = {
     nameLine: "Pawel Stasinski",
     focus: "AI systems, automation and integration with Bitrix24, 1C, amoCRM, CRM and ERP.",
     trustLine: "★ {rating} · {reviewCount} reviews · {years}+ years of experience · NDA / ON-PREM",
-    partnersLine: "Partners: Yandex Cloud, Cloud.ru and Selectel · 1C-Bitrix partner program (ID 28909898)",
+    partnersLine: "Partners: Yandex Cloud, Cloud.ru and Selectel · 1C-Bitrix (ID 28909898) · Bitrix24 / amoCRM",
     ctaPrimary: "Get an estimate",
     ctaSecondary: "View case studies",
     ctaTelegram: "Telegram",
@@ -380,7 +380,7 @@ const en = {
       { value: "from €5k", label: "production implementation" },
       { value: "NDA", label: "and your perimeter on request" },
     ],
-    logos: ["Yandex Cloud", "Selectel", "Cloud.ru", "Kaspersky", "1C-Bitrix"],
+    logos: ["Yandex Cloud", "Selectel", "Cloud.ru", "Kaspersky", "1C-Bitrix", "amoCRM"],
     partnersAriaLabel: "Implementation risk reduction",
     benefits: [
       {
@@ -396,8 +396,8 @@ const en = {
         text: "1C-Bitrix partner program participation · ID 28909898. Bitrix24 implementation and an AI layer on top of CRM.",
       },
       {
-        title: "Bitrix24 + AI layer",
-        text: "We extend BitrixGPT for your processes: 1C, telephony, documents and an AI sales loop — the portal and integrations stay with you.",
+        title: "Bitrix24 · amoCRM",
+        text: "CRM implementation and automation: Bitrix24 (AI layer on BitrixGPT) and amoCRM — 1C, telephony, documents, pipelines; the portal and integrations stay with you.",
       },
       {
         title: "NDA before kickoff",
@@ -410,6 +410,7 @@ const en = {
       cloudru: "Cloud.ru Technology Partner",
       kaspersky: "Authorized Partner of Kaspersky Lab",
       bitrix: "1C-Bitrix partner program · ID 28909898",
+      amocrm: "amoCRM implementation and integrations",
     },
   },
   packages: {

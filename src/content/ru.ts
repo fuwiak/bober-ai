@@ -110,7 +110,7 @@ const ru = {
     focus:
       "AI-системы, автоматизация и интеграция с Bitrix24, 1С, amoCRM, CRM и ERP.",
     trustLine: "★ {rating} · {reviewCount} отзывов · {years}+ лет опыта · NDA / ON-PREM",
-    partnersLine: "Партнёры Yandex Cloud, Cloud.ru и Selectel · партнёрская программа 1С-Битрикс (ID 28909898)",
+    partnersLine: "Партнёры Yandex Cloud, Cloud.ru и Selectel · 1С-Битрикс (ID 28909898) · Bitrix24 / amoCRM",
     ctaPrimary: "Получить оценку",
     ctaSecondary: "Смотреть кейсы",
     ctaTelegram: "Telegram",
@@ -386,7 +386,7 @@ const ru = {
       { value: "от 500k", label: "промышленное внедрение" },
       { value: "NDA", label: "и свой контур по запросу" },
     ],
-    logos: ["Yandex Cloud", "Selectel", "Cloud.ru", "Kaspersky", "1С-Битрикс"],
+    logos: ["Yandex Cloud", "Selectel", "Cloud.ru", "Kaspersky", "1С-Битрикс", "amoCRM"],
     partnersAriaLabel: "Снижение рисков внедрения",
     benefits: [
       {
@@ -402,8 +402,8 @@ const ru = {
         text: "Участие в партнерской программе 1С-Битрикс · ID 28909898. Внедрение Битрикс24 и AI-слой поверх CRM.",
       },
       {
-        title: "Битрикс24 + AI-слой",
-        text: "Расширяем BitrixGPT под ваши процессы: 1С, телефония, документы и AI-контур продаж — портал и интеграции остаются у вас.",
+        title: "Bitrix24 · amoCRM",
+        text: "Внедрение и автоматизация CRM: Bitrix24 (AI-слой поверх BitrixGPT) и amoCRM — 1С, телефония, документы, воронки; портал и интеграции остаются у вас.",
       },
       {
         title: "NDA до старта",
@@ -416,6 +416,7 @@ const ru = {
       cloudru: "Технологический партнёр Cloud.ru",
       kaspersky: "Авторизованный партнёр „Лаборатории Касперского“",
       bitrix: "Участие в партнерской программе 1С-Битрикс · ID 28909898",
+      amocrm: "Внедрение и интеграции amoCRM",
     },
   },
   packages: {
