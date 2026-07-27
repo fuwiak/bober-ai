@@ -2,12 +2,13 @@ const en = {
   meta: {
     title: "AI automation of proposals, CRM and documents — Bober AI",
     description:
-      "AI automation for sales ops: proposals, documents, Bitrix24/amoCRM and 1C. Pilot from €3,000, fixed estimate, NDA, cloud or on-premise.",
+      "Corporate AI integrator: automation of proposals, CRM (Bitrix24/amoCRM) and documents for businesses of any size. Secure AI and LLM Security expertise. Pilot from €3,000, NDA.",
     keywords: [
       "proposal automation",
       "document automation",
       "CRM automation",
       "AI sales automation",
+      "corporate AI integrator",
       "1C integration",
       "enterprise AI implementation",
       "amoCRM integration",
@@ -16,6 +17,8 @@ const en = {
       "private LLM",
       "corporate RAG",
       "n8n automation",
+      "Secure AI",
+      "LLM Security",
     ],
   },
   nav: {
@@ -30,6 +33,7 @@ const en = {
     academy: "Workshop",
     partners: "Partners",
     secureAi: "Bober Secure AI",
+    aiKubernetes: "AI on Kubernetes",
     process: "Process",
     about: "About",
     career: "Career",
@@ -54,11 +58,11 @@ const en = {
   },
   hero: {
     location: "Moscow · Remote · Russia & CIS",
-    eyebrow: "AI automation for business · Moscow",
+    eyebrow: "Corporate AI integrator · automation for business of any size · Moscow",
     titleLine1: "We automate proposals, documents and CRM workflows with AI — no manual data copying",
     titleLine2: "",
     valueProposition:
-      "For companies where managers and operators lose hours on proposals, documents and copy-paste between CRM, email and ERP.\n\nWe deploy a production AI perimeter into your systems — with a fixed estimate, NDA and full code handover.\n\nCorporate AI systems in cloud, on-prem and closed contours — with access control and infrastructure protection.",
+      "For companies where managers and operators lose hours on proposals, documents and copy-paste between CRM, email and ERP — from a small sales team to a corporate perimeter.\n\nWe deploy a production AI perimeter into your systems — with a fixed estimate, NDA and full code handover.\n\nCorporate AI integrator: automation and AI implementation is our core offer, Secure AI and LLM Security is a high-margin specialization for perimeters with elevated data-protection requirements.",
     differentiator: "Fixed estimate · NDA · cloud / on-prem / secured contour",
     specialization: "Project estimate — 30 minutes · reply within 4 business hours",
     heroImageAlt: "Pawel Stasinski — founder of Bober AI, AI architect",
@@ -908,9 +912,9 @@ const en = {
   },
   about: {
     title: "About the company",
-    tagline: "Business transformation partner · Bober AI Systems",
+    tagline: "Corporate AI integrator for business of any size · Bober AI Systems",
     imageAlt: "Team implementing business process automation",
-    text: "Bober AI Systems is a team that designs and implements automation for companies. Founder Pawel Stasinski leads architecture and is personally accountable for outcomes; vetted developers and infrastructure specialists join for specific workstreams.\n\nCRM, documents, sales, support — with fixed scope, milestones, and handover to your team. Not a freelance marketplace or a ChatGPT demo: an external automation department — audit → roadmap → production → support. Case studies: ELIA Suite, proposal and document automation, corporate RAG assistants.\n\nWe respond within 4 business hours. NDA before kickoff.",
+    text: "Bober AI Systems is a corporate AI integrator: a team that designs and implements automation and AI systems for companies. Founder Pawel Stasinski leads architecture and is personally accountable for outcomes; vetted developers and infrastructure specialists join for specific workstreams.\n\nCRM, documents, sales, support — with fixed scope, milestones, and handover to your team. Not a freelance marketplace or a ChatGPT demo: an external automation department — audit → roadmap → production → support. Case studies: ELIA Suite, proposal and document automation, corporate RAG assistants.\n\nA dedicated line — Bober Secure AI: LLM Security, corporate AI perimeter protection and AI security audits — a high-margin specialization for clients with elevated data-protection requirements.\n\nAutomation and AI implementation is our core service: we work with small sales teams and corporate clients alike, sizing the format and estimate to the business.\n\nWe respond within 4 business hours. NDA before kickoff.",
     approach: "Approach",
     approachValue: "Process and ROI first, technology second. Fixed scope, milestone delivery, measurable outcomes.",
     schedule: "Schedule",
