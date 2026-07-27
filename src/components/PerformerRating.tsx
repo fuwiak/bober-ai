@@ -16,9 +16,11 @@ export function PerformerRating({ locale = "ru", className = "" }: PerformerRati
 
   return (
     <div className={`performer-rating ${className}`.trim()}>
-      <p className="text-sm text-ink">
-        {/* Don't emit AggregateRating microdata at 0 — Yandex treats it as spam. */}
-        {hasRating ? (
+      {/* Don't claim "0 rating / 0 reviews" — omit the line entirely, same reasoning
+          as suppressing AggregateRating microdata at 0 (Yandex treats it as spam,
+          and a visible zero reads worse to buyers than no rating claim at all). */}
+      {hasRating && (
+        <p className="text-sm text-ink">
           <span itemScope itemType="https://schema.org/AggregateRating">
             <meta itemProp="bestRating" content="5" />
             <meta itemProp="worstRating" content="1" />
@@ -26,10 +28,8 @@ export function PerformerRating({ locale = "ru", className = "" }: PerformerRati
             <meta itemProp="reviewCount" content={FEED_REVIEWS_COUNT} />
             {line}
           </span>
-        ) : (
-          line
-        )}
-      </p>
+        </p>
+      )}
       <a
         href={YANDEX_USLUGI_URL}
         target="_blank"

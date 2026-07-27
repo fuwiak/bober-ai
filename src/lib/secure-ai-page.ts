@@ -9,15 +9,15 @@ export const SECURE_AI_PAGE = {
   metaTitleRu: "Bober Secure AI — безопасные LLM, RAG и AI-агенты | Bober AI",
   metaTitleEn: "Bober Secure AI — secure LLM, RAG and AI agents | Bober AI",
   metaDescRu:
-    "Специализированная линия Bober AI Systems: безопасные корпоративные LLM/RAG, Agent Gateway, Container Security и Kaspersky. Не отдельный бренд — один ИП.",
+    "Специализированная линия Bober AI Systems: безопасные корпоративные LLM/RAG, Agent Gateway, Container Security и Kaspersky для ИБ и IT-команд.",
   metaDescEn:
-    "Specialist line of Bober AI Systems: secure corporate LLM/RAG, Agent Gateway, Container Security and Kaspersky. Not a separate brand — same legal entity.",
+    "Specialist line of Bober AI Systems: secure corporate LLM/RAG, Agent Gateway, Container Security and Kaspersky for security and IT teams.",
   h1Ru: "Безопасные корпоративные LLM, RAG и AI-агенты",
   h1En: "Secure corporate LLM, RAG and AI agents",
   subtitleRu:
-    "Отдельный коммерческий питч для ИБ и IT: безопасность модели, данных, агентов и инфраструктуры. Формально — та же марка и тот же ИП, что Bober AI Systems.",
+    "Специализированные решения для ИБ и IT: безопасное проектирование LLM, RAG и агентов, внедрение в существующую инфраструктуру клиента и опциональная интеграция с решениями защиты инфраструктуры.",
   subtitleEn:
-    "A focused pitch for security and IT: model, data, agent and infrastructure safety. Same brand group and legal entity as Bober AI Systems.",
+    "Specialized solutions for security and IT teams: secure design of LLM, RAG and agents, deployment into the client's existing infrastructure, with optional integration into infrastructure-protection products.",
   mainBrandTitleRu: "Bober AI Systems — основная деятельность",
   mainBrandTitleEn: "Bober AI Systems — core business",
   mainBrandRu: [
@@ -71,13 +71,13 @@ export const SECURE_AI_PAGE = {
   processRu: [
     "Аудит контура: данные, модель, агенты, инфраструктура — что уже есть и чего не хватает",
     "Выбор линии: LLM/RAG + аудит AIST, Container Security, SOC-ассистент на KUMA/KIRA, Agent Gateway или защита почты",
-    "Внедрение слоя Bober Dev (gateway, RAG, интеграции) и продуктов Kaspersky через партнёрскую дистрибуцию",
+    "Внедрение AI Security Gateway (RAG, интеграции) и продуктов Kaspersky через партнёрскую дистрибуцию",
     "Мониторинг, отчёты для руководства и ИБ, продление лицензий",
   ],
   processEn: [
     "Contour audit: data, model, agents, infrastructure — what exists and what is missing",
     "Pick a line: LLM/RAG + AIST audit, Container Security, SOC assistant on KUMA/KIRA, Agent Gateway or mail protection",
-    "Deploy the Bober Dev layer (gateway, RAG, integrations) plus Kaspersky products via authorized distribution",
+    "Deploy the AI Security Gateway (RAG, integrations) plus Kaspersky products via authorized distribution",
     "Monitoring, reports for leadership and security, license renewals",
   ],
 

@@ -56,9 +56,9 @@ export const KASPERSKY_PRODUCTS: KasperskyProduct[] = [
     metaDescEn:
       "Private LLM/RAG, access control, AI logs, prep for Kaspersky AIST: threats, data, model, monitoring. Kaspersky partner.",
     summaryRu:
-      "Не «чатбот», а безопасный корпоративный AI: контроль утечек, prompt injection, уязвимости RAG, политика использования и отчёт для руководства. Слой Bober Dev + услуги Kaspersky AIST.",
+      "Не «чатбот», а безопасный корпоративный AI: контроль утечек, prompt injection, уязвимости RAG, политика использования и отчёт для руководства. AI Security Gateway Bober AI Systems + услуги Kaspersky AIST.",
     summaryEn:
-      "Not a chatbot — secure corporate AI: data leakage control, prompt injection, RAG risks, usage policy and exec report. Bober Dev layer + Kaspersky AIST services.",
+      "Not a chatbot — secure corporate AI: data leakage control, prompt injection, RAG risks, usage policy and exec report. Bober AI Systems' AI Security Gateway + Kaspersky AIST services.",
     clientBuysRu: [
       "Контроль утечки данных через модель",
       "Тесты prompt injection и jailbreak",
@@ -282,8 +282,8 @@ export const KASPERSKY_PRODUCTS: KasperskyProduct[] = [
   {
     slug: "secure-ai-agent-gateway",
     priority: 4,
-    badgeRu: "Слой Bober Dev",
-    badgeEn: "Bober Dev layer",
+    badgeRu: "AI Security Gateway",
+    badgeEn: "AI Security Gateway",
     titleRu: "Secure AI Agent Gateway — безопасный агент с ограниченным доступом",
     titleEn: "Secure AI Agent Gateway — limited-access AI agent",
     metaTitleRu: "Secure AI Agent Gateway: RBAC, allowlist, human approval | Bober AI",
@@ -338,13 +338,13 @@ export const KASPERSKY_PRODUCTS: KasperskyProduct[] = [
     ],
     architectureRu: [
       "Пользователь → LLM / агент",
-      "→ Security Gateway Bober Dev (RBAC, allowlist, mask, limits, HITL, audit)",
+      "→ Security Gateway (RBAC, allowlist, mask, limits, HITL, audit)",
       "→ Bitrix24 / 1С / CRM / email / документы",
       "Параллельно: Kaspersky на инфраструктуре",
     ],
     architectureEn: [
       "User → LLM / agent",
-      "→ Bober Dev Security Gateway (RBAC, allowlist, mask, limits, HITL, audit)",
+      "→ Security Gateway (RBAC, allowlist, mask, limits, HITL, audit)",
       "→ Bitrix24 / 1C / CRM / email / documents",
       "In parallel: Kaspersky on infrastructure",
     ],
@@ -444,9 +444,9 @@ export const KASPERSKY_PAGE = {
   h1Ru: "Kaspersky и безопасный корпоративный AI",
   h1En: "Kaspersky and secure corporate AI",
   subtitleRu:
-    "Не «антивирус к чатботу». Связка LLM/RAG/агентов Bober Dev с продуктами Kaspersky: AIST, Container Security, KIRA, KUMA, Mail Security и endpoint.",
+    "Не «антивирус к чатботу». Связка LLM/RAG/агентов Bober AI Systems с продуктами Kaspersky: AIST, Container Security, KIRA, KUMA, Mail Security и endpoint.",
   subtitleEn:
-    "Not “antivirus bolted to a chatbot”. Bober Dev LLM/RAG/agents wired to Kaspersky: AIST, Container Security, KIRA, KUMA, Mail Security and endpoint.",
+    "Not “antivirus bolted to a chatbot”. Bober AI Systems' LLM/RAG/agents wired to Kaspersky: AIST, Container Security, KIRA, KUMA, Mail Security and endpoint.",
   disclaimerRu:
     "Маркетинговые материалы по продуктам Kaspersky согласуются с требованиями бренда. Возможность реселла отдельных сервисов AIST / KIRA уточняем у партнёрского менеджера. Статус — Registered Partner.",
   disclaimerEn:
@@ -457,8 +457,8 @@ export const KASPERSKY_PAGE = {
     "Самое сильное — не антивирус «для AI», а ваш LLM/RAG + продукты безопасности Kaspersky. Ниже — пять подстраниц с зонами ответственности.",
   productsIntroEn:
     "The strongest play is not antivirus “for AI”, but your LLM/RAG plus Kaspersky security products. Five subpages with responsibility split.",
-  matrixTitleRu: "Что делает Kaspersky, что — Bober Dev",
-  matrixTitleEn: "Kaspersky vs Bober Dev",
+  matrixTitleRu: "Что делает Kaspersky, что — Bober AI Systems",
+  matrixTitleEn: "Kaspersky vs Bober AI Systems",
   matrixRu: [
     { k: "Оценка модели и данных (AIST)", b: "Подготовка системы и координация аудита" },
     { k: "Container Security / KIRA", b: "Внедрение, LLM, тикеты, автоматизация" },
@@ -529,13 +529,13 @@ export const KASPERSKY_PAGE = {
   processRu: [
     "Выбор линии: лицензии, LLM/RAG+AIST, Container+KIRA, SOC или почта",
     "Аудит контура и смета лицензий через дистрибьютора",
-    "Внедрение продуктов Kaspersky + слой Bober Dev (RAG, gateway, автоматизация)",
+    "Внедрение продуктов Kaspersky + AI Security Gateway (RAG, gateway, автоматизация)",
     "Мониторинг, отчёты, продления",
   ],
   processEn: [
     "Pick a line: licenses, LLM/RAG+AIST, Container+KIRA, SOC or mail",
     "Contour audit and license quote via distributor",
-    "Deploy Kaspersky products + Bober Dev layer (RAG, gateway, automation)",
+    "Deploy Kaspersky products + AI Security Gateway (RAG, gateway, automation)",
     "Monitoring, reports, renewals",
   ],
   attachTitleRu: "С чем связываем",

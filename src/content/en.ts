@@ -64,7 +64,7 @@ const en = {
     valueProposition:
       "For companies where managers and operators lose hours on proposals, documents and copy-paste between CRM, email and ERP — from a small sales team to a corporate perimeter.\n\nWe deploy a production AI perimeter into your systems — with a fixed estimate, NDA and full code handover.\n\nCorporate AI integrator: automation and AI implementation is our core offer, Secure AI and LLM Security is a high-margin specialization for perimeters with elevated data-protection requirements.",
     differentiator: "Fixed estimate · NDA · cloud / on-prem / secured contour",
-    specialization: "Project estimate — 30 minutes · reply within 4 business hours",
+    specialization: "30-minute call · reply within 4 business hours",
     heroImageAlt: "Pawel Stasinski — founder of Bober AI, AI architect",
     founderBadge: "Founder & Project Lead",
     teamLine: "Architecture, delivery and accountability for outcomes",
@@ -988,13 +988,13 @@ const en = {
     calendar: "Book a call",
   },
   sectionCta: {
-    title: "Get an estimate in 30 minutes",
+    title: "Book a 30-minute call",
     duration: "30 minutes",
     commitment: "no commitment",
     format: "online",
     cta: "Get an estimate",
     urgency:
-      "After you submit: a short brief → a preliminary plan and budget range within 4 business hours. NDA available before sharing data.",
+      "After you submit: a short brief → a preliminary plan and budget range within 24 hours. NDA available before sharing data.",
   },
   claude: {
     label: "Claude · Anthropic",
@@ -1025,7 +1025,7 @@ const en = {
     subtitle: "Answers for procurement, IT and business owners.",
     items: [
       { q: "How much does it cost to hire AI implementation?", a: "Audit — from €1,500. Pilot — from €3,000. Production implementation — from €5,000. Fixed scope before development starts." },
-      { q: "How do I buy a pilot or audit?", a: "Leave a request or message on Telegram — in 30 minutes we review the task and send a plan with timeline and budget range within 4 business hours." },
+      { q: "How do I buy a pilot or audit?", a: "Leave a request or message on Telegram — in 30 minutes we review the task and send a plan with timeline and budget range within 24 hours." },
       { q: "How long does implementation take?", a: "Discovery: 1–2 weeks. Prototype: 2–4 weeks. Production launch: 4–12 weeks — depending on integrations and data requirements." },
       { q: "Does it integrate with amoCRM, Bitrix24 and 1C?", a: "Yes. CRM/ERP is a core competency: bidirectional sync, webhooks, document flows, retry on failures." },
       { q: "Can you deploy in our own perimeter?", a: "Yes. On-prem, isolated VPC, Yandex Cloud, Selectel, Cloud.ru — data stays in your infrastructure." },
@@ -1079,7 +1079,7 @@ const en = {
   contact: {
     title: "Get a project estimate",
     subtitle:
-      "Name and contact are enough. In 30 minutes we review the task — within 4 business hours you get a preliminary plan and budget range.",
+      "Name and contact are enough. In 30 minutes we review the task — we reply within 4 business hours, and send the preliminary plan and budget range within 24 hours.",
     afterSubmit:
       "After you submit, we reply within 4 business hours: clarify the process and send a timeline and budget orientation.",
     email: "Email",
@@ -1092,8 +1092,8 @@ const en = {
     fabLabel: "Get an estimate",
     modalChannels: "Or reach out directly",
     modalFormDivider: "Or leave a request",
-    intentTitle: "Get a 30-minute project assessment",
-    intentSubtitle: "Name and contact are enough. You get a preliminary plan and budget range within 4 business hours.",
+    intentTitle: "Get your project reviewed in 30 minutes",
+    intentSubtitle: "Name and contact are enough. We reply within 4 business hours and send the plan and budget range within 24 hours.",
     intentOffer: "No commitment · ROI orientation · NDA on request",
     intentDefaultService: "30-minute project assessment",
   },
