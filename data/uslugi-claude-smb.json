@@ -1,0 +1,225 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "specializationId": "187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "specializationNote": "Компьютеры и IT → Другое — Claude AI для МСБ (/claude)",
+  "note": "20 объявлений по лендингу https://www.bober-ai.dev/claude: Claude AI/API/Code/MCP/Agent, CRM, документы, Россия. Не продаём подписку Claude Pro — внедрение в процессы. Без «под ключ» в title.",
+  "publishedAt": "2026-07-27",
+  "publishedStatus": "created_in_cabinet",
+  "publishedCount": 20,
+  "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "publicProfile": "https://uslugi.yandex.ru/profile/PawelStasinski-254144",
+  "siteRefs": [
+    "https://www.bober-ai.dev/claude",
+    "https://www.bober-ai.dev/guides/ai-glossary",
+    "https://www.bober-ai.dev/services"
+  ],
+  "priceBandNote": "Аудит от 150 000 ₽ · пилот от 300 000 ₽ · production от 500 000 ₽ (как на /claude)",
+  "publishHint": [
+    "npm run yandex:uslugi:login",
+    "npm run yandex:uslugi:add -- --file=data/uslugi-claude-smb.json --headless --fast",
+    "npm run yandex:uslugi:list -- --spec=187ddab3-5a27-4a55-8240-dd1baca3b87f"
+  ],
+  "services": [
+    {
+      "id": "claude-ai-smb",
+      "name": "Claude AI для малого и среднего бизнеса",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/enterprise-ai-assistant.jpg",
+      "description": "Claude AI для МСБ: внедрение в CRM, документы, продажи и поддержку. Не подписка Claude Pro — рабочий контур с фиксированной сметой и NDA. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "claude-api-business",
+      "name": "Claude API для бизнеса",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/automation-code.jpg",
+      "description": "Claude API (Anthropic) в ваших системах: Bitrix24, amoCRM, почта, n8n. Ключи и инфраструктура у клиента, лимиты и логи. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "claude-api-crm",
+      "name": "Claude API в CRM и почте",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/crm-integration.jpg",
+      "description": "Claude API в CRM и почте: черновики писем, КП, саммари звонков и follow-up в Bitrix24 / amoCRM. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "claude-mcp",
+      "name": "Claude MCP",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/offers/mcp.jpg",
+      "description": "Claude MCP (Model Context Protocol): подключение Claude к CRM, файлам и внутренним API без ручных выгрузок. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "id": "claude-mcp-bitrix",
+      "name": "Claude MCP для Bitrix24",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/crm-integration.jpg",
+      "description": "Claude MCP для Bitrix24: агент читает сделки и файлы в рамках прав сотрудника, обновляет CRM без копипаста. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "id": "claude-code",
+      "name": "Claude Code для интеграций",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/automation-code.jpg",
+      "description": "Claude Code для бизнеса: ускорение скриптов, MCP-серверов и внутренних инструментов под ваш контур. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "claude-agent-sales",
+      "name": "Claude-агент для продаж",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/sales-ai-agent.jpg",
+      "description": "Claude-агент для продаж: заявки, черновики КП, обновление сделок, эскалация к менеджеру. Не чат — действия в CRM. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "id": "claude-agent-support",
+      "name": "Claude-агент для поддержки",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/enterprise-ai-assistant.jpg",
+      "description": "Claude-агент для поддержки: ответы из базы знаний, маршрутизация тикетов, эскалация к человеку. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "id": "claude-agent",
+      "name": "Claude Agent для бизнеса",
+      "price": 450000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/offers/ai-agent.jpg",
+      "description": "Claude Agent для бизнеса: многошаговые сценарии с инструментами, CRM и документами. Контроль прав и журналы. Москва и удалённо. От 450 000 ₽."
+    },
+    {
+      "id": "claude-docs-ocr",
+      "name": "Документы и OCR с Claude",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/document-processing.jpg",
+      "description": "Документы и OCR + Claude: извлечение полей из PDF/сканов и маршрутизация в 1С / CRM. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "claude-kp",
+      "name": "Генерация КП с Claude",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/sales-ai-agent.jpg",
+      "description": "Генерация коммерческих предложений с Claude: каталог и условия из CRM → черновик КП → PDF. Контроль менеджера. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "claude-russia",
+      "name": "Claude в России для компаний",
+      "price": 350000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/private-llm.jpg",
+      "description": "Claude в России: корпоративные ключи, прокси при необходимости, гибрид с YandexGPT/GigaChat где требует compliance. Москва и удалённо. От 350 000 ₽."
+    },
+    {
+      "id": "claude-anthropic-api",
+      "name": "Внедрение Anthropic API",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/automation-code.jpg",
+      "description": "Внедрение Anthropic API (Claude) в процессы компании: архитектура, ключи, лимиты, интеграции CRM и документов. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "claude-automation-crm",
+      "name": "Автоматизация CRM с Claude",
+      "price": 350000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/crm-integration.jpg",
+      "description": "Автоматизация CRM с Claude: саммари сделок, следующие шаги, черновики сообщений в Bitrix24 / amoCRM. Москва и удалённо. От 350 000 ₽."
+    },
+    {
+      "id": "claude-knowledge",
+      "name": "База знаний на Claude",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/rag-search.jpg",
+      "description": "База знаний на Claude: ответы сотрудникам и клиентам со ссылкой на регламенты и FAQ. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "id": "claude-skills",
+      "name": "Claude Skills для бизнес-процессов",
+      "price": 350000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/ai-discovery-roadmap.jpg",
+      "description": "Claude Skills под ваши процессы: повторные сценарии продаж, поддержки и документов с контролем качества. Москва и удалённо. От 350 000 ₽."
+    },
+    {
+      "id": "claude-sonnet-opus",
+      "name": "Внедрение Claude Sonnet и Opus",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/enterprise-ai-assistant.jpg",
+      "description": "Внедрение Claude Sonnet и Opus под задачу: выбор модели по цене/качеству, маршрутизация запросов, мониторинг. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "id": "claude-n8n",
+      "name": "Claude и n8n автоматизация",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/automation-code.jpg",
+      "description": "Claude и n8n: workflow с LLM-слоем — CRM, мессенджеры, почта, документы. Production-контур с обработкой ошибок. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "claude-audit",
+      "name": "Аудит внедрения Claude для МСБ",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/ai-discovery-roadmap.jpg",
+      "description": "Аудит внедрения Claude для МСБ: узкое место, системы, вилка пилота и фиксированная смета до старта. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "id": "claude-pilot",
+      "name": "Пилот Claude на одном процессе",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/business-process-automation.jpg",
+      "description": "Пилот Claude на одном процессе (КП, поддержка или документы) за 2–4 недели: KPI, runbook, передача команде. Москва и удалённо. От 300 000 ₽."
+    }
+  ]
+}
