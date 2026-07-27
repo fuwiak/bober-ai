@@ -311,5 +311,6 @@ export function localizePortfolioItem(item: PortfolioItem, locale: string): Port
     slug: item.slug,
     id: item.id,
     featured: item.featured,
+    segment: item.segment,
   };
 }

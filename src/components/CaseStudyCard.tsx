@@ -12,6 +12,8 @@ type CaseStudyCardProps = {
   beforeLabel?: string;
   afterLabel?: string;
   discussLabel?: string;
+  /** МСБ / Корпорации — если передан, показывается над заголовком. */
+  segmentLabel?: string;
 };
 
 export function CaseStudyCard({
@@ -20,6 +22,7 @@ export function CaseStudyCard({
   beforeLabel,
   afterLabel,
   discussLabel,
+  segmentLabel,
 }: CaseStudyCardProps) {
   return (
     <article className="feature-card-bordered">
@@ -41,7 +44,10 @@ export function CaseStudyCard({
         {item.imageCaption ? (
           <p className="mt-2 text-sm text-muted">{item.imageCaption}</p>
         ) : null}
-        <h3 className="mt-5 font-display text-2xl tracking-tight">{item.title}</h3>
+        {segmentLabel ? <p className="meta-label mt-5">{segmentLabel}</p> : null}
+        <h3 className={`font-display text-2xl tracking-tight ${segmentLabel ? "mt-2" : "mt-5"}`}>
+          {item.title}
+        </h3>
         {item.metric ? <p className="case-study__metric mt-3">{item.metric}</p> : null}
         {item.metricMethod ? <p className="body-copy mt-2 text-sm text-muted">{item.metricMethod}</p> : null}
       </Link>

@@ -55,6 +55,11 @@ export default async function PortfolioPage({ params }: Props) {
               metricLabel={t("portfolio.metricLabel")}
               stackLabel={t("portfolio.stackLabel")}
               categoriesLabel={t("portfolio.categoriesLabel")}
+              segmentsLabel={t("portfolio.segmentsLabel")}
+              segmentSmbLabel={t("portfolio.segmentSmb")}
+              segmentEnterpriseLabel={t("portfolio.segmentEnterprise")}
+              segmentSmbTitle={t("portfolio.segmentSmbTitle")}
+              segmentEnterpriseTitle={t("portfolio.segmentEnterpriseTitle")}
               sectionLabel={t("sections.portfolio")}
               roleLabel={locale === "en" ? "Role" : "Роль"}
               scopeLabel={locale === "en" ? "Scope" : "Объём"}

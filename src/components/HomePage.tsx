@@ -47,6 +47,12 @@ export default async function HomePage() {
   const afterSteps = t.raw("beforeAfterDemo.afterSteps") as { label: string; status: string }[];
   const demoFlow = t.raw("beforeAfterDemo.flow") as string[];
   const caseStudies = getPortfolioListing(locale);
+  const smbCases = caseStudies.filter((item) => (item.segment ?? "smb") === "smb");
+  const enterpriseCases = caseStudies.filter((item) => item.segment === "enterprise");
+  const segmentLabel = (segment?: string) =>
+    segment === "enterprise"
+      ? t("portfolio.segmentEnterprise")
+      : t("portfolio.segmentSmb");
 
   return (
     <div className="page-shell min-h-screen">
@@ -93,18 +99,48 @@ export default async function HomePage() {
               <h2 className="section-title mt-4">{t("homeLanding.casesTitle")}</h2>
               <p className="body-copy mt-4 max-w-2xl text-base">{t("homeLanding.casesSubtitle")}</p>
             </Reveal>
-            <Stagger className="mt-10 grid gap-6 md:grid-cols-2">
-              {caseStudies.map((item) => (
-                <StaggerItem key={item.slug}>
-                  <CaseStudyCard
-                    item={item}
-                    viewLabel={t("common.viewCaseStudy")}
-                    beforeLabel={t("homeLanding.caseBeforeLabel")}
-                    afterLabel={t("homeLanding.caseAfterLabel")}
-                  />
-                </StaggerItem>
-              ))}
-            </Stagger>
+            {smbCases.length ? (
+              <>
+                <Reveal delay={0.06} className="mt-10">
+                  <h3 className="font-display text-2xl tracking-tight">{t("portfolio.segmentSmbTitle")}</h3>
+                </Reveal>
+                <Stagger className="mt-6 grid gap-6 md:grid-cols-2" stagger={0.05}>
+                  {smbCases.map((item) => (
+                    <StaggerItem key={item.slug}>
+                      <CaseStudyCard
+                        item={item}
+                        segmentLabel={segmentLabel(item.segment)}
+                        viewLabel={t("common.viewCaseStudy")}
+                        beforeLabel={t("homeLanding.caseBeforeLabel")}
+                        afterLabel={t("homeLanding.caseAfterLabel")}
+                      />
+                    </StaggerItem>
+                  ))}
+                </Stagger>
+              </>
+            ) : null}
+            {enterpriseCases.length ? (
+              <>
+                <Reveal delay={0.06} className="mt-12">
+                  <h3 className="font-display text-2xl tracking-tight">
+                    {t("portfolio.segmentEnterpriseTitle")}
+                  </h3>
+                </Reveal>
+                <Stagger className="mt-6 grid gap-6 md:grid-cols-2" stagger={0.05}>
+                  {enterpriseCases.map((item) => (
+                    <StaggerItem key={item.slug}>
+                      <CaseStudyCard
+                        item={item}
+                        segmentLabel={segmentLabel(item.segment)}
+                        viewLabel={t("common.viewCaseStudy")}
+                        beforeLabel={t("homeLanding.caseBeforeLabel")}
+                        afterLabel={t("homeLanding.caseAfterLabel")}
+                      />
+                    </StaggerItem>
+                  ))}
+                </Stagger>
+              </>
+            ) : null}
             <Reveal delay={0.1} className="mt-8">
               <Link href="/portfolio" className="link-more">
                 {t("homeLanding.casesCta")}

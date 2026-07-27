@@ -218,7 +218,7 @@ const ru = {
     casesLabel: "Кейсы",
     casesTitle: "Внедрения с измеримым эффектом",
     casesSubtitle:
-      "Было → стало: production-сценарии с методологией измерения — включая живую воронку Kwork → Bitrix24 и независимый канал продаж параллельно с Wildberries.",
+      "Было → стало: кейсы для МСБ и корпораций — с методологией измерения. В том числе живая воронка Kwork → Bitrix24 и независимый канал продаж параллельно с Wildberries.",
     casesCta: "Больше подробностей",
     caseBeforeLabel: "Было",
     caseAfterLabel: "Стало",
@@ -1020,7 +1020,8 @@ const ru = {
   },
   portfolio: {
     title: "Кейсы",
-    subtitle: "Четыре примера внедрения — измеримый результат, потом технология",
+    subtitle:
+      "Примеры для МСБ и корпораций — измеримый результат, потом технология",
     allCases: "Все кейсы",
     metricLabel: "Ключевой результат",
     stackLabel: "Стек",
@@ -1030,6 +1031,11 @@ const ru = {
     solutionLabel: "Решение",
     resultLabel: "Результат",
     categoriesLabel: "Направления",
+    segmentsLabel: "Сегмент",
+    segmentSmb: "МСБ",
+    segmentEnterprise: "Корпорации",
+    segmentSmbTitle: "Малый и средний бизнес",
+    segmentEnterpriseTitle: "Корпорации",
   },
   cta: {
     title: "Получите оценку внедрения",

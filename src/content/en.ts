@@ -213,7 +213,7 @@ const en = {
     casesLabel: "Case studies",
     casesTitle: "Deployments with measurable impact",
     casesSubtitle:
-      "Before → after: production scenarios with a measurement method — including a live Kwork → Bitrix24 funnel and an independent sales channel alongside Wildberries.",
+      "Before → after: SMB and enterprise cases with a measurement method — including a live Kwork → Bitrix24 funnel and an independent sales channel alongside Wildberries.",
     casesCta: "More details",
     caseBeforeLabel: "Before",
     caseAfterLabel: "After",
@@ -1012,7 +1012,8 @@ const en = {
   },
   portfolio: {
     title: "Case studies",
-    subtitle: "Four implementation examples — measurable result first, technology second",
+    subtitle:
+      "SMB and enterprise examples — measurable result first, technology second",
     allCases: "All case studies",
     metricLabel: "Key result",
     stackLabel: "Stack",
@@ -1022,6 +1023,11 @@ const en = {
     solutionLabel: "Solution",
     resultLabel: "Result",
     categoriesLabel: "Directions",
+    segmentsLabel: "Segment",
+    segmentSmb: "SMB",
+    segmentEnterprise: "Enterprise",
+    segmentSmbTitle: "Small and mid-size business",
+    segmentEnterpriseTitle: "Enterprise",
   },
   cta: {
     title: "Get an implementation estimate",

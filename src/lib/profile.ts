@@ -194,6 +194,8 @@ export const SKILLS = [
   "Yandex Cloud",
 ] as const;
 
+export type PortfolioSegment = "smb" | "enterprise";
+
 export type PortfolioItem = {
   id: string;
   slug: string;
@@ -208,6 +210,8 @@ export type PortfolioItem = {
   /** Подпись под скриншотом / product shot. */
   imageCaption?: string;
   category: string;
+  /** МСБ vs корпоративный контур — для фильтров и группировки кейсов. */
+  segment?: PortfolioSegment;
   description?: string;
   solution?: string;
   result?: string;
@@ -229,6 +233,25 @@ export type PortfolioItem = {
   featured?: boolean;
   priceLabel?: string;
 };
+
+/** Корпоративные кейсы; остальное в листингах считается МСБ. */
+const ENTERPRISE_PORTFOLIO_SLUGS = new Set([
+  "kaspersky-ai-assistant",
+  "elia-suite",
+  "bitrix24-erp-sync",
+  "crm-1c-sync",
+  "contract-approval-workflow",
+  "employee-onboarding-portal",
+  "support-knowledge-base",
+]);
+
+export function getPortfolioSegment(slug: string): PortfolioSegment {
+  return ENTERPRISE_PORTFOLIO_SLUGS.has(slug) ? "enterprise" : "smb";
+}
+
+function withPortfolioSegment(item: PortfolioItem): PortfolioItem {
+  return { ...item, segment: item.segment ?? getPortfolioSegment(item.slug) };
+}
 
 /** Кейсы в маркетинговых листингах (главная /portfolio). Остальные остаются как detail-страницы. */
 export const PORTFOLIO_LISTING_SLUGS = [
@@ -629,7 +652,8 @@ export const PORTFOLIO: PortfolioItem[] = [
 export function getPortfolioItem(slug: string, locale = "ru") {
   const item = PORTFOLIO.find((entry) => entry.slug === slug);
   if (!item) return undefined;
-  return locale === "en" ? localizePortfolioItem(item, locale) : item;
+  const localized = locale === "en" ? localizePortfolioItem(item, locale) : item;
+  return withPortfolioSegment(localized);
 }
 
 /** Кейсы для сетки /portfolio и аналогичных листингов. */
@@ -638,5 +662,6 @@ export function getPortfolioListing(locale = "ru"): PortfolioItem[] {
   const items = PORTFOLIO_LISTING_SLUGS.map((slug) => bySlug.get(slug)).filter(
     (item): item is PortfolioItem => Boolean(item),
   );
-  return locale === "en" ? items.map((item) => localizePortfolioItem(item, locale)) : items;
+  const localized = locale === "en" ? items.map((item) => localizePortfolioItem(item, locale)) : items;
+  return localized.map(withPortfolioSegment);
 }
