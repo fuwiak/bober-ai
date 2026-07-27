@@ -364,6 +364,8 @@ export function SiteHeaderClient({
                           event.preventDefault();
                           if (isOpen) closeDesktop();
                           else openOnly(group.id);
+                          // Mouse/pointer only — keyboard keeps focus for a11y
+                          if (event.detail > 0) event.currentTarget.blur();
                         }}
                       >
                         {group.label}

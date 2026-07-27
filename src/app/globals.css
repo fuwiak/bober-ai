@@ -638,7 +638,31 @@ html.dark {
     color: var(--header-ink);
     white-space: nowrap;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
     transition: color 180ms ease, background 180ms ease;
+  }
+  /* Mouse click leaves :focus ring — kill it; keep keyboard :focus-visible */
+  .site-header__trigger:focus,
+  .site-wordmark:focus,
+  .site-mega__card:focus,
+  .site-mega__foot-link:focus,
+  .site-mega__promo-cta:focus,
+  .site-drop a:focus,
+  .site-header__phone:focus,
+  .site-header__icon-link:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  .site-header__trigger:focus-visible,
+  .site-wordmark:focus-visible,
+  .site-mega__card:focus-visible,
+  .site-mega__foot-link:focus-visible,
+  .site-mega__promo-cta:focus-visible,
+  .site-drop a:focus-visible,
+  .site-header__phone:focus-visible,
+  .site-header__icon-link:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--header-ink) 45%, transparent);
+    outline-offset: 2px;
   }
   @media (hover: hover) and (pointer: fine) {
     .site-header__trigger:hover {
