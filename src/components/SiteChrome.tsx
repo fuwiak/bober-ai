@@ -49,6 +49,7 @@ export async function SiteHeader() {
               icon: "sales" as const,
             },
             { href: "/services/rag", label: "RAG", description: t("ragDesc"), icon: "search" as const },
+            { href: "/claude", label: t("claude"), description: t("claudeDesc"), icon: "bolt" as const },
           ],
         },
       ],
@@ -90,7 +91,6 @@ export async function SiteHeader() {
       type: "drop" as const,
       label: t("resources"),
       items: [
-        { href: "/claude", label: t("claude"), description: t("claudeDesc"), icon: "bolt" as const },
         { href: "/blog", label: t("blog"), description: t("blogDesc"), icon: "news" as const },
         { href: "/academy", label: t("academy"), description: t("academyDesc"), icon: "book" as const, localeAgnostic: true },
         { href: "/guides", label: t("guides"), description: t("guidesDesc"), icon: "check" as const },

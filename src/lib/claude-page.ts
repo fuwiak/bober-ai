@@ -1,3 +1,5 @@
+import type { SeoServiceContent } from "@/lib/seo-services-content";
+
 /** Claude AI for SMB — path /claude. SEO + GEO (generative-engine) landing. */
 export const CLAUDE_PAGE = {
   lineRu: "Claude AI для МСБ",
@@ -234,3 +236,66 @@ export const CLAUDE_PAGE = {
     },
   ],
 } as const;
+
+export function getClaudeSeoContent(locale: "ru" | "en"): SeoServiceContent {
+  const ru = locale === "ru";
+  const p = CLAUDE_PAGE;
+
+  return {
+    metaTitle: ru ? p.metaTitleRu : p.metaTitleEn,
+    metaDescription: ru ? p.metaDescRu : p.metaDescEn,
+    eyebrow: ru ? `${p.lineRu} · Anthropic` : `${p.lineEn} · Anthropic`,
+    h1: ru ? p.h1Ru : p.h1En,
+    subtitle: ru ? p.subtitleRu : p.subtitleEn,
+    problemsTitle: ru ? p.problemsTitleRu : p.problemsTitleEn,
+    problems: [...(ru ? p.problemsRu : p.problemsEn)],
+    deliverablesTitle: ru ? p.servicesTitleRu : p.servicesTitleEn,
+    deliverables: (ru ? p.servicesRu : p.servicesEn).map(
+      (item) => `${item.title}: ${item.summary}`,
+    ),
+    intro: [
+      ...(ru ? p.geoFactsRu : p.geoFactsEn),
+      ru
+        ? "Claude AI, Claude API, Claude Code и Claude MCP — самые частые запросы в поиске. Мы не продаём подписку Anthropic: внедряем Claude в CRM, документы, продажи, поддержку и базу знаний с фиксированной сметой до старта."
+        : "Claude AI, Claude API, Claude Code and Claude MCP are top search intents. We don't sell Anthropic subscriptions: we deploy Claude into CRM, documents, sales, support and knowledge bases with a fixed estimate before build.",
+      ru
+        ? "Популярные запросы: Claude Agent, Claude Opus/Sonnet, Claude в России, Anthropic API, Claude Skills. Ответы на термины — в глоссарии и в блоке FAQ ниже."
+        : "Popular searches: Claude Agent, Claude Opus/Sonnet, Claude in Russia, Anthropic API, Claude Skills. Glossary and FAQ below.",
+    ],
+    howWeSolveTitle: ru ? p.processTitleRu : p.processTitleEn,
+    howWeSolve: (ru ? p.processRu : p.processEn).map((text, index) => ({
+      title: ru ? `Этап ${index + 1}` : `Step ${index + 1}`,
+      text,
+    })),
+    architectureTitle: ru ? "Типовой контур Claude для МСБ" : "Typical Claude contour for SMB",
+    architecture: (ru ? p.servicesRu : p.servicesEn).map((item) => `${item.title} — ${item.summary}`),
+    roiTitle: ru ? "Старт и бюджет" : "Start and budget",
+    roi: ru
+      ? [
+          { value: "от 150 000 ₽", label: "аудит процесса и карта интеграций" },
+          { value: "от 300 000 ₽", label: "пилот на одном процессе (2–4 недели)" },
+          { value: "от 500 000 ₽", label: "промышленное внедрение" },
+        ]
+      : [
+          { value: "from ~€1,500", label: "process audit and integration map" },
+          { value: "from ~€3,000", label: "pilot on one process (2–4 weeks)" },
+          { value: "from ~€5,000", label: "production deployment" },
+        ],
+    faqTitle: ru ? "Частые вопросы" : "FAQ",
+    faq: (ru ? p.faqRu : p.faqEn).map((item) => ({ q: item.q, a: item.a })),
+    related: [
+      { href: p.glossaryHref, label: ru ? p.glossaryLabelRu : p.glossaryLabelEn },
+      { href: "/services/rag", label: ru ? "Корпоративный RAG" : "Corporate RAG" },
+      { href: "/services/ai-sales-loop", label: ru ? "AI-контур отдела продаж" : "AI sales loop" },
+      { href: "/services/mcp", label: "Claude MCP" },
+      { href: p.servicesHref, label: ru ? p.servicesLabelRu : p.servicesLabelEn },
+      { href: p.faqHref, label: ru ? p.faqLabelRu : p.faqLabelEn },
+    ],
+    caseStudySlugs: [
+      "kaspersky-ai-assistant",
+      "support-knowledge-base",
+      "elia-suite",
+      "kp-llm-automation",
+    ],
+  };
+}

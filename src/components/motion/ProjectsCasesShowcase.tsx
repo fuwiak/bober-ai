@@ -9,6 +9,29 @@ import { FilterChip } from "@/components/motion/FilterChip";
 import { Link } from "@/i18n/navigation";
 import type { PortfolioItem, PortfolioSegment } from "@/lib/profile";
 
+const CATEGORY_ORDER = [
+  "Искусственный интеллект",
+  "Artificial intelligence",
+  "Автоматизация",
+  "Automation",
+  "Автоматизация продаж",
+  "Sales automation",
+  "ИТ и разработка",
+  "IT and development",
+];
+
+function categoryRank(category: string): number {
+  const index = CATEGORY_ORDER.indexOf(category);
+  return index === -1 ? CATEGORY_ORDER.length : index;
+}
+
+function sortByCategory<T extends { category: string }>(items: T[]): T[] {
+  return [...items].sort((a, b) => {
+    const byCategory = categoryRank(a.category) - categoryRank(b.category);
+    return byCategory !== 0 ? byCategory : a.category.localeCompare(b.category, "ru");
+  });
+}
+
 type ProjectsCasesShowcaseProps = {
   items: PortfolioItem[];
   title: string;
@@ -198,14 +221,18 @@ export function ProjectsCasesShowcase({
   const categories = useMemo(() => {
     const counts = new Map<string, number>();
     for (const item of segmentFiltered) counts.set(item.category, (counts.get(item.category) ?? 0) + 1);
-    return Array.from(counts.entries()).sort((a, b) => a[0].localeCompare(b[0], "ru"));
+    return Array.from(counts.entries()).sort(
+      (a, b) => categoryRank(a[0]) - categoryRank(b[0]) || a[0].localeCompare(b[0], "ru"),
+    );
   }, [segmentFiltered]);
 
   const filtered = useMemo(
     () =>
-      activeCategory
-        ? segmentFiltered.filter((item) => item.category === activeCategory)
-        : segmentFiltered,
+      sortByCategory(
+        activeCategory
+          ? segmentFiltered.filter((item) => item.category === activeCategory)
+          : segmentFiltered,
+      ),
     [activeCategory, segmentFiltered],
   );
 
@@ -238,8 +265,8 @@ export function ProjectsCasesShowcase({
     </Stagger>
   );
 
-  const smbItems = filtered.filter((item) => (item.segment ?? "smb") === "smb");
-  const enterpriseItems = filtered.filter((item) => item.segment === "enterprise");
+  const smbItems = sortByCategory(filtered.filter((item) => (item.segment ?? "smb") === "smb"));
+  const enterpriseItems = sortByCategory(filtered.filter((item) => item.segment === "enterprise"));
   const showGrouped = !activeSegment && !activeCategory && smbItems.length > 0 && enterpriseItems.length > 0;
 
   return (

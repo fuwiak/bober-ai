@@ -28,17 +28,37 @@ type SeoServicePageProps = {
   slug: string;
   locale: string;
   content: SeoServiceContent;
+  /** Canonical path segment, e.g. `/claude` instead of `/services/{slug}`. */
+  pagePath?: string;
+  breadcrumbItems?: { name: string; path: string }[];
+  /** Enterprise service lookup slug when different from page slug. */
+  serviceSlug?: string;
 };
 
-export async function SeoServicePage({ slug, locale, content }: SeoServicePageProps) {
+export async function SeoServicePage({
+  slug,
+  locale,
+  content,
+  pagePath,
+  breadcrumbItems,
+  serviceSlug,
+}: SeoServicePageProps) {
   const t = await getTranslations("servicePage");
-  const service = getEnterpriseService(slug, locale);
+  const lookupSlug = serviceSlug ?? slug;
+  const service = getEnterpriseService(lookupSlug, locale);
   const prefix = locale === "en" ? "/en" : "";
-  const pagePath = `${prefix}/services/${slug}`;
-  const pageUrl = absoluteUrl(pagePath);
+  const resolvedPath = pagePath ?? `/services/${slug}`;
+  const pageUrl = absoluteUrl(`${prefix}${resolvedPath}`);
   const servicesLabel = locale === "en" ? "Services" : "Услуги";
   const isEn = locale === "en";
   const reviews = getEnterpriseReviews();
+
+  const breadcrumbs =
+    breadcrumbItems ??
+    [
+      { name: servicesLabel, path: "/services" },
+      { name: content.h1, path: resolvedPath },
+    ];
 
   const webPage = webPageJsonLd({
     name: content.h1,
@@ -91,10 +111,7 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
           <div className="container-editorial">
             <Breadcrumbs
               locale={locale}
-              items={[
-                { name: servicesLabel, path: "/services" },
-                { name: content.h1, path: `/services/${slug}` },
-              ]}
+              items={breadcrumbs}
             />
             <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_360px] lg:items-start">
               <Reveal className="max-w-4xl">

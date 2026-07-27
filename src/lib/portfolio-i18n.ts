@@ -70,7 +70,7 @@ export const PORTFOLIO_EN: Record<string, PortfolioEnCopy> = {
   },
   "kp-llm-automation": {
     title: "Commercial proposal automation",
-    category: "Sales automation",
+    category: "Automation",
     metric: "45 min → 2–5 min per proposal",
     metricMethod: "From the client’s pilot process on typical PDF requests",
     role: "Architecture and delivery of the proposal-generation contour",
@@ -174,7 +174,7 @@ export const PORTFOLIO_EN: Record<string, PortfolioEnCopy> = {
   },
   "elia-suite": {
     title: "ELIA Suite — isolated workspaces",
-    category: "Sales automation",
+    category: "Automation",
     metric: "+32% quote→order conversion",
     metricMethod: "Per client data for the first 4 months after launch",
     role: "Workspace design and quote automation",

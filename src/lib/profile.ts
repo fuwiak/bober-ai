@@ -258,11 +258,12 @@ function withPortfolioSegment(item: PortfolioItem): PortfolioItem {
 /** Кейсы в маркетинговых листингах (главная /portfolio). Остальные остаются как detail-страницы.
  * Kwork → Bitrix24 (SMB, от 30k) — detail only, не главная enterprise-лестница. */
 export const PORTFOLIO_LISTING_SLUGS = [
+  "kaspersky-ai-assistant",
+  "support-knowledge-base",
+  "elia-suite",
+  "kp-llm-automation",
   "wildberries-independent-sales-channel",
   "invoice-processing-pipeline",
-  "kaspersky-ai-assistant",
-  "kp-llm-automation",
-  "elia-suite",
   "crm-1c-sync",
 ] as const;
 
@@ -335,7 +336,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     duration: "4–8 недель до промышленного запуска",
     architecture: "LLM только для разбора запроса; цены и SKU — строго из каталога MySQL/CRM",
     stack: "MySQL · CRM · Python · LLM",
-    category: "Автоматизация продаж",
+    category: "Автоматизация",
     featured: true,
     priceLabel: "300 000 ₽",
     skills: ["MySQL", "CRM", "JavaScript", "Python", "LLM"],
@@ -358,7 +359,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     architecture: "Ролевые воркспейсы + CRM workflow + AI-сборка документов без пересечения данных",
     stack: "CRM · Claude · PDF · Workflow",
     image: PORTFOLIO_IMAGES.elia,
-    category: "Автоматизация продаж",
+    category: "Автоматизация",
     featured: true,
     skills: ["CRM", "Claude", "JavaScript", "PDF", "Интеграции"],
     description:
