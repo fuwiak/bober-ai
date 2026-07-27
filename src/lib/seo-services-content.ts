@@ -121,8 +121,6 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Сценарии для МСП: квалификация новых лидов, реактивация старой базы, контроль качества разговоров, автосоздание задач и follow-up, выявление упущенных сделок.",
       "Не конкурируем со штатным BitrixGPT: расширяем его телефонией, правилами квалификации, действиями вне портала и отчётами по дисциплине продаж.",
       "Пилот — 2–4 недели на одном канале (входящие звонки или чаты). Бюджет — от 300 000 ₽. NDA и размещение в вашем контуре — по запросу.",
-      "Отдельный лендинг по телефонии + AI (оба кейса рынка): /integrations/telephony-ai",
-      "Лендинг Битрикс24: https://bitrix.bober-ai.dev/#sales-loop",
     ],
     howWeSolveTitle: "Как внедряем",
     howWeSolve: [
@@ -152,7 +150,10 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       { q: "Какая телефония?", a: "MANGO Office, UIS, Voximplant, Asterisk и штатная телефония Bitrix24 — подключаем существующую." },
       { q: "Нужен ли отдельный чат-бот?", a: "Нет как отдельный продукт. Чаты входят в тот же контур: классификация → CRM → действие." },
       { q: "Бюджет?", a: "Пилот от 300 000 ₽. Полный контур с несколькими каналами — от 500 000 ₽." },
-      { q: "Где лендинг Bitrix?", a: "https://bitrix.bober-ai.dev/ — пакеты внедрения и секция AI-контура продаж." },
+      {
+        q: "Где лендинг Bitrix?",
+        a: "Отдельный лендинг bitrix.bober-ai.dev — пакеты внедрения и секция AI-контура продаж. Ссылка в блоке связанных услуг ниже.",
+      },
       { q: "Данные и NDA?", a: "Можно в вашем облаке или on-prem. NDA до обмена записями звонков." },
     ],
     related: [
@@ -1766,8 +1767,6 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
       "SMB scenarios: qualify new leads, reactivate the old base, call quality control, auto tasks and follow-up, detect lost deals.",
       "We do not compete with native BitrixGPT: we extend it with telephony, qualification rules, actions outside the portal and sales-discipline reporting.",
       "Pilot: 2–4 weeks on one channel (inbound calls or chats). Budget from €3,000. NDA and your own perimeter on request.",
-      "Dedicated telephony + AI landing (both market cases): /integrations/telephony-ai",
-      "Bitrix24 landing: https://bitrix.bober-ai.dev/#sales-loop",
     ],
     howWeSolveTitle: "How we deliver",
     howWeSolve: [
@@ -1797,7 +1796,10 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
       { q: "Which telephony?", a: "MANGO Office, UIS, Voximplant, Asterisk and native Bitrix24 telephony — we connect what you already use." },
       { q: "Do we need a separate chatbot?", a: "Not as a standalone product. Chats join the same loop: classify → CRM → action." },
       { q: "Budget?", a: "Pilot from €3,000. Full multi-channel loop from €5,000." },
-      { q: "Bitrix landing?", a: "https://bitrix.bober-ai.dev/ — implementation packages and the AI sales loop section." },
+      {
+        q: "Bitrix landing?",
+        a: "Dedicated bitrix.bober-ai.dev landing — implementation packages and the AI sales loop section. Link is in the related services below.",
+      },
       { q: "Data & NDA?", a: "Your cloud or on-prem. NDA before exchanging call recordings." },
     ],
     related: [

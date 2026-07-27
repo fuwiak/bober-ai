@@ -350,13 +350,28 @@ export async function SeoServicePage({ slug, locale, content }: SeoServicePagePr
               <Reveal>
                 <h2 className="section-title">{locale === "en" ? "Related services" : "Связанные услуги"}</h2>
                 <Stagger className="mt-6">
-                  {content.related.map((item) => (
-                    <StaggerItem key={item.href}>
-                      <Link href={item.href} className="link-more py-2">
-                        {item.label}
-                      </Link>
-                    </StaggerItem>
-                  ))}
+                  {content.related.map((item) => {
+                    const isExternal =
+                      item.href.startsWith("http://") || item.href.startsWith("https://");
+                    return (
+                      <StaggerItem key={item.href}>
+                        {isExternal ? (
+                          <a
+                            href={item.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="link-more py-2"
+                          >
+                            {item.label}
+                          </a>
+                        ) : (
+                          <Link href={item.href} className="link-more py-2">
+                            {item.label}
+                          </Link>
+                        )}
+                      </StaggerItem>
+                    );
+                  })}
                 </Stagger>
               </Reveal>
             </div>

@@ -581,7 +581,7 @@ export const CATALOG_LANDING_SPECS_PRIORITY: LandingSpec[] = [
         "Если вы на Bitrix24: BitrixGPT уже умеет писать сообщения и делать саммари внутри портала — это никуда не девается. Мы достраиваем то, чего там нет: связь с телефонией, 1С, складом, документами, свои правила квалификации и действия за пределами портала.",
         "Если вы на стеке Yandex Cloud (или готовы на него перейти) — собираем тот же контур на инструментах Yandex: распознавание речи через SpeechKit/SpeechSense, анализ и саммари через YandexGPT, факты — в вашу CRM (Bitrix24, amoCRM или свою). Актуально, если для вас важны российское облако и 152-ФЗ.",
         "Готовые сценарии для малого и среднего бизнеса: квалификация новых лидов, реактивация старой базы, контроль качества разговоров, автозадачи и follow-up, отчёт по упущенным сделкам.",
-        "Начинаем с одного канала — пилот на 2–4 недели. Полный контур — от 300 000 ₽. Подробности: /services/ai-sales-loop · отдельный лендинг под Bitrix24: https://bitrix.bober-ai.dev/#sales-loop",
+        "Начинаем с одного канала — пилот на 2–4 недели. Полный контур — от 300 000 ₽. Коммерческий пакет и лендинг Bitrix24 — в связанных ссылках ниже.",
       ],
       howWeSolve: [
         {
@@ -616,7 +616,7 @@ export const CATALOG_LANDING_SPECS_PRIORITY: LandingSpec[] = [
         },
         {
           q: "Где коммерческий пакет?",
-          a: "/services/ai-sales-loop — AI-контур отдела продаж от 300 000 ₽. Настройка записи звонков без AI-слоя — /integrations/telephony-crm.",
+          a: "AI-контур отдела продаж — от 300 000 ₽. Можно начать с записи звонков в CRM без AI-слоя. Ссылки на пакет и лендинг Bitrix24 — в блоке связанных материалов ниже.",
         },
       ],
     },
@@ -643,7 +643,7 @@ export const CATALOG_LANDING_SPECS_PRIORITY: LandingSpec[] = [
         "If you're on Bitrix24: BitrixGPT already drafts messages and summaries inside the portal — that stays. We build what's missing: telephony, 1C, warehouse, documents, your own qualification rules, and actions outside the portal.",
         "If you run on Yandex Cloud (or are open to it) — we build the same loop on Yandex tools: speech recognition via SpeechKit/SpeechSense, analysis and summaries via YandexGPT, with the facts landing in your CRM (Bitrix24, amoCRM, or your own). Useful if a Russian cloud and 152-FZ compliance matter to you.",
         "Ready-made scenarios for small and mid-size teams: qualifying new leads, reactivating the old base, call quality control, auto tasks and follow-ups, a lost-deal report.",
-        "We start with one channel — a 2–4 week pilot. The full loop is from €3,000. Details: /services/ai-sales-loop · dedicated Bitrix24 landing: https://bitrix.bober-ai.dev/#sales-loop",
+        "We start with one channel — a 2–4 week pilot. The full loop is from €3,000. The commercial package and Bitrix24 landing are in the related links below.",
       ],
       howWeSolve: [
         {
@@ -678,7 +678,7 @@ export const CATALOG_LANDING_SPECS_PRIORITY: LandingSpec[] = [
         },
         {
           q: "Where is the commercial package?",
-          a: "/services/ai-sales-loop — AI sales loop from €3,000. Call logging without the AI layer — /integrations/telephony-crm.",
+          a: "AI sales loop from €3,000. You can start with call logging into CRM without the AI layer. Package and Bitrix24 landing links are in the related section below.",
         },
       ],
     },

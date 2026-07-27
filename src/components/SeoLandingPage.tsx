@@ -422,13 +422,28 @@ export async function SeoLandingPage({ page, locale }: SeoLandingPageProps) {
             <Reveal>
               <h2 className="section-title">{content.relatedTitle}</h2>
               <Stagger className="mt-6">
-                {content.related.map((item) => (
-                  <StaggerItem key={item.href}>
-                    <Link href={item.href} className="link-more py-2">
-                      {item.label}
-                    </Link>
-                  </StaggerItem>
-                ))}
+                {content.related.map((item) => {
+                  const isExternal =
+                    item.href.startsWith("http://") || item.href.startsWith("https://");
+                  return (
+                    <StaggerItem key={item.href}>
+                      {isExternal ? (
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="link-more py-2"
+                        >
+                          {item.label}
+                        </a>
+                      ) : (
+                        <Link href={item.href} className="link-more py-2">
+                          {item.label}
+                        </Link>
+                      )}
+                    </StaggerItem>
+                  );
+                })}
               </Stagger>
             </Reveal>
           </div>
