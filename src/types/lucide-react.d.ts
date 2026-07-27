@@ -17,4 +17,5 @@ declare module "lucide-react" {
   export const Info: any;
   export const Moon: any;
   export const Sun: any;
+  export const BadgePercent: any;
 }
