@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-27 02:50">
+<yml_catalog date="2026-07-27 02:54">
   <shop>
     <name>Bober AI Systems — Битрикс24</name>
     <company>Bober AI Systems</company>
@@ -93,8 +93,6 @@
       <set-ids>avtomatizaciya-dokumentov</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-ws-doc-automation.jpg</picture>
       <description>Автоматизация документов</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -117,8 +115,6 @@
       <set-ids>nastrojka-bitrix24</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-ws-bitrix-setup.jpg</picture>
       <description>Настройка Bitrix24</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -141,8 +137,6 @@
       <set-ids>avtomatizaciya-bitrix24</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-ws-bitrix-automation.jpg</picture>
       <description>Автоматизация Bitrix24</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -165,8 +159,6 @@
       <set-ids>integraciya-bitrix24-1c</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-ws-bitrix-1c.jpg</picture>
       <description>Интеграция Bitrix24 с 1С</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -189,8 +181,6 @@
       <set-ids>generaciya-kommercheskogo-predlozheniya</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-ws-kp-gen.jpg</picture>
       <description>Генерация коммерческого предложения</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -213,8 +203,6 @@
       <set-ids>bitrix24-ai</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-ws-bitrix-ai.jpg</picture>
       <description>Bitrix24 AI</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -237,8 +225,6 @@
       <set-ids>avtomatizaciya-kommercheskogo-predlozheniya</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-ws-kp-auto.jpg</picture>
       <description>Автоматизация коммерческого предложения</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -261,8 +247,6 @@
       <set-ids>nastrojka-telefonii-bitrix24</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-ws-telephony.jpg</picture>
       <description>Настройка телефонии Bitrix24</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -285,8 +269,6 @@
       <set-ids>vnedrenie-ai-assistenta</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-ws-ai-assistant.jpg</picture>
       <description>Внедрение AI-ассистента</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -309,8 +291,6 @@
       <set-ids>razrabotka-rag-sistem</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-ws-rag.jpg</picture>
       <description>Разработка RAG-систем</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -333,8 +313,6 @@
       <set-ids>bitrix-start</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-start.jpg</picture>
       <description>Внедрение Битрикс24 с AI</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
@@ -357,8 +335,6 @@
       <set-ids>crm-automation</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-crm-automation.jpg</picture>
       <description>AI-автоматизация Битрикс24</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -381,8 +357,6 @@
       <set-ids>ai-analytics</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-ai-analytics.jpg</picture>
       <description>AI-аналитика Битрикс24</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -405,8 +379,6 @@
       <set-ids>sales-loop</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-sales-loop.jpg</picture>
       <description>AI-контур отдела продаж</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">95</param>
@@ -429,8 +401,6 @@
       <set-ids>integrations-1c</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-integrations.jpg</picture>
       <description>Интеграция Битрикс24 и AI для продаж</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
@@ -453,8 +423,6 @@
       <set-ids>mcp</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-mcp.jpg</picture>
       <description>MCP для Битрикс24 и BitrixGPT</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -477,8 +445,6 @@
       <set-ids>private-llm</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-private-llm.jpg</picture>
       <description>Битрикс24 + локальный LLM</description>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
