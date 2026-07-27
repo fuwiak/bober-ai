@@ -56,6 +56,8 @@ const en = {
     resources: "Resources",
     claude: "Claude AI",
     claudeDesc: "Claude API and MCP for SMB",
+    iiDlyaBiznesa: "AI for business",
+    iiDlyaBiznesaDesc: "Audit, pilot and turnkey deployment",
     colPlatform: "Platform",
     colSecurity: "Security",
     colAutomation: "Automation",

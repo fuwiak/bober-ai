@@ -56,6 +56,8 @@ const ru = {
     resources: "Ресурсы",
     claude: "Claude AI",
     claudeDesc: "Claude API и MCP для МСБ",
+    iiDlyaBiznesa: "ИИ для бизнеса",
+    iiDlyaBiznesaDesc: "Аудит, пилот и внедрение под ключ",
     colPlatform: "Платформа",
     colSecurity: "Безопасность",
     colAutomation: "Автоматизация",

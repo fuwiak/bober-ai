@@ -23,6 +23,12 @@ export async function SiteHeader() {
           title: t("colPlatform"),
           items: [
             { href: "/services", label: t("servicesPage"), description: t("servicesDesc"), icon: "grid" as const },
+            {
+              href: "/ii-dlya-biznesa",
+              label: t("iiDlyaBiznesa"),
+              description: t("iiDlyaBiznesaDesc"),
+              icon: "bolt" as const,
+            },
             { href: "/ai-kubernetes", label: t("aiKubernetes"), description: t("aiKubernetesDesc"), icon: "bolt" as const },
             { href: "/automation", label: t("automation"), description: t("automationDesc"), icon: "process" as const },
           ],
@@ -127,6 +133,7 @@ export async function SiteFooter() {
     { href: "/secure-ai" as const, label: tNav("secureAi"), localeAgnostic: false },
     { href: "/ai-kubernetes" as const, label: tNav("aiKubernetes"), localeAgnostic: false },
     { href: "/claude" as const, label: tNav("claude"), localeAgnostic: false },
+    { href: "/ii-dlya-biznesa" as const, label: tNav("iiDlyaBiznesa"), localeAgnostic: false },
     { href: "/about" as const, label: tNav("about"), localeAgnostic: false },
     { href: "/career" as const, label: tNav("career"), localeAgnostic: false },
     { href: "/pricing" as const, label: tNav("pricing"), localeAgnostic: false },

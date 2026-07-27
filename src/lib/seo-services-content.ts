@@ -1,5 +1,12 @@
 import { getEnterpriseServices } from "@/lib/enterprise-services";
 
+export type SeoServiceComparison = {
+  label: string;
+  title: string;
+  subtitle: string;
+  items: { title: string; problem: string; solution: string }[];
+};
+
 export type SeoServiceContent = {
   metaTitle: string;
   metaDescription: string;
@@ -21,6 +28,9 @@ export type SeoServiceContent = {
   faq: { q: string; a: string }[];
   related: { href: string; label: string }[];
   caseStudySlugs?: string[];
+  /** Optional comparison grids (e.g. scenarios, assistant vs agent). */
+  comparison?: SeoServiceComparison;
+  comparisonSecondary?: SeoServiceComparison;
 };
 
 const CONTENT_RU: Record<string, SeoServiceContent> = {

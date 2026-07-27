@@ -2,6 +2,7 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
+import { ComparisonSection } from "@/components/ComparisonSection";
 import { ContactForm } from "@/components/ContactForm";
 import { ContactCta } from "@/components/ContactCta";
 import { PerformerRating } from "@/components/PerformerRating";
@@ -207,12 +208,38 @@ export async function SeoServicePage({
           </div>
         </section>
 
+        {content.comparison ? (
+          <ComparisonSection
+            label={content.comparison.label}
+            title={content.comparison.title}
+            subtitle={content.comparison.subtitle}
+            items={content.comparison.items}
+          />
+        ) : null}
+
+        {content.comparisonSecondary ? (
+          <ComparisonSection
+            label={content.comparisonSecondary.label}
+            title={content.comparisonSecondary.title}
+            subtitle={content.comparisonSecondary.subtitle}
+            items={content.comparisonSecondary.items}
+          />
+        ) : null}
+
         {content.howWeSolve.length ? (
           <section className="section-band section--panel border-b border-hairline">
             <div className="container-editorial">
               <Reveal>
                 <h2 className="section-title">{content.howWeSolveTitle}</h2>
-                <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                <div
+                  className={`mt-10 grid gap-6 md:grid-cols-2 ${
+                    content.howWeSolve.length >= 5
+                      ? "lg:grid-cols-5"
+                      : content.howWeSolve.length === 3
+                        ? "lg:grid-cols-3"
+                        : "lg:grid-cols-4"
+                  }`}
+                >
                   {content.howWeSolve.map((step, index) => (
                     <article key={step.title} className="feature-card">
                       <span className="font-display text-3xl text-primary/40">{String(index + 1).padStart(2, "0")}</span>

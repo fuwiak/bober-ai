@@ -45,6 +45,7 @@ const staticRoutes = [
   { path: "/secure-ai", priority: 0.88, changeFrequency: "monthly" as const, lastModified: new Date("2026-07-27") },
   { path: "/ai-kubernetes", priority: 0.85, changeFrequency: "monthly" as const, lastModified: new Date("2026-07-27") },
   { path: "/claude", priority: 0.86, changeFrequency: "monthly" as const, lastModified: new Date("2026-07-27") },
+  { path: "/ii-dlya-biznesa", priority: 0.9, changeFrequency: "monthly" as const, lastModified: new Date("2026-07-27") },
   { path: "/audit", priority: 0.75, changeFrequency: "monthly" as const, lastModified: new Date("2026-07-27") },
   { path: "/process-review", priority: 0.7, changeFrequency: "monthly" as const, lastModified: new Date("2026-07-27") },
   { path: "/about", priority: 0.85, changeFrequency: "monthly" as const, lastModified: UPDATED.core },

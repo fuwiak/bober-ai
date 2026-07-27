@@ -40,6 +40,7 @@ const IMAGES: Record<string, string> = {
   "crm-integration": "/stock/crm-integration.jpg",
   "ai-sales-loop": "/stock/crm-integration.jpg",
   "claude-smb": "/stock/enterprise-ai-assistant.jpg",
+  "ii-dlya-biznesa": "/stock/enterprise-ai-assistant.jpg",
   "company-automation": "/stock/business-process-automation.jpg",
   "crm-automation": "/stock/crm-integration.jpg",
   "document-ai": "/stock/document-processing.jpg",
@@ -78,6 +79,21 @@ const ruExtra: EnterpriseService[] = [
     price: 300000,
     serviceImage: IMAGES["claude-smb"],
     feedPath: "/claude",
+    inServicesCatalog: false,
+  },
+  {
+    id: "ii-dlya-biznesa",
+    slug: "ii-dlya-biznesa",
+    title: "ИИ для бизнеса — аудит, разработка и внедрение",
+    description:
+      "ИИ для бизнеса под ключ: аудит процессов, пилот с KPI и production-внедрение в CRM, документы, базу знаний и продажи.",
+    about:
+      "Гибрид коммерческого лендинга и гида: сценарии, ассистент vs агент, архитектура (Yandex Cloud / Selectel / on-prem), безопасность, кейсы. Фиксированная смета, NDA.",
+    salesNotes: "от 150 000 ₽",
+    deliveryDays: 28,
+    price: 150000,
+    serviceImage: IMAGES["ii-dlya-biznesa"],
+    feedPath: "/ii-dlya-biznesa",
     inServicesCatalog: false,
   },
   {
@@ -143,6 +159,21 @@ const enExtra: EnterpriseService[] = [
     price: 3000,
     serviceImage: IMAGES["claude-smb"],
     feedPath: "/claude",
+    inServicesCatalog: false,
+  },
+  {
+    id: "ii-dlya-biznesa",
+    slug: "ii-dlya-biznesa",
+    title: "AI for business — audit, development and deployment",
+    description:
+      "Turnkey AI for business: process audit, KPI pilot and production deployment into CRM, documents, knowledge base and sales.",
+    about:
+      "Hybrid commercial landing and guide: scenarios, assistant vs agent, architecture (Yandex Cloud / Selectel / on-prem), security, cases. Fixed estimate, NDA.",
+    salesNotes: "from €1,500",
+    deliveryDays: 28,
+    price: 1500,
+    serviceImage: IMAGES["ii-dlya-biznesa"],
+    feedPath: "/ii-dlya-biznesa",
     inServicesCatalog: false,
   },
   {
