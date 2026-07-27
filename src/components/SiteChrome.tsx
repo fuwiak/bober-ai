@@ -8,21 +8,95 @@ import { LEGAL_ENTITY, LEGAL_ROUTES, formatLegalRequisitesLine } from "@/lib/leg
 export async function SiteHeader() {
   const t = await getTranslations("nav");
 
-  const navItems = [
-    { href: "/services" as const, label: t("services") },
-    { href: "/secure-ai" as const, label: t("secureAi") },
-    { href: "/ai-kubernetes" as const, label: t("aiKubernetes") },
-    { href: "/portfolio" as const, label: t("portfolio") },
-    { href: "/pricing#process", label: t("howWeWork") },
-    { href: "/pricing" as const, label: t("pricing") },
-    { href: "/about" as const, label: t("about") },
-    { href: "/blog" as const, label: t("blog") },
-    { href: "/career" as const, label: t("career") },
+  const groups = [
+    {
+      id: "solutions",
+      type: "mega" as const,
+      label: t("services"),
+      columns: [
+        {
+          title: t("colPlatform"),
+          items: [
+            { href: "/services", label: t("servicesPage"), description: t("servicesDesc"), icon: "grid" as const },
+            { href: "/ai-kubernetes", label: t("aiKubernetes"), description: t("aiKubernetesDesc"), icon: "bolt" as const },
+            { href: "/automation", label: t("automation"), description: t("automationDesc"), icon: "process" as const },
+          ],
+        },
+        {
+          title: t("colSecurity"),
+          items: [
+            { href: "/secure-ai", label: t("secureAi"), description: t("secureAiDesc"), icon: "shield" as const },
+            {
+              href: "/kaspersky",
+              label: "Kaspersky Secure AI",
+              description: t("secureAiDesc"),
+              icon: "shield" as const,
+            },
+          ],
+        },
+        {
+          title: t("colAutomation"),
+          items: [
+            {
+              href: "/services/ai-sales-loop",
+              label: "AI Sales Loop",
+              description: t("salesLoopDesc"),
+              icon: "sales" as const,
+            },
+            { href: "/services/rag", label: "RAG", description: t("ragDesc"), icon: "search" as const },
+          ],
+        },
+      ],
+      footerTags: [t("footTagNda"), t("footTagFixed"), t("footTagRu")],
+      footerLink: { href: "/services", label: t("allSolutions") },
+      promo: {
+        title: t("promoTitle"),
+        text: t("promoText"),
+        href: "/#contact",
+        cta: t("promoCta"),
+      },
+    },
+    {
+      id: "portfolio",
+      type: "link" as const,
+      label: t("portfolio"),
+      href: "/portfolio",
+    },
+    {
+      id: "pricing",
+      type: "link" as const,
+      label: t("pricing"),
+      href: "/pricing",
+    },
+    {
+      id: "company",
+      type: "drop" as const,
+      label: t("company"),
+      items: [
+        { href: "/about", label: t("about"), description: t("aboutDesc"), icon: "about" as const },
+        { href: "/pricing#process", label: t("howWeWork"), description: t("howWeWorkDesc"), icon: "process" as const },
+        { href: "/career", label: t("career"), description: t("careerDesc"), icon: "career" as const },
+        { href: "/partners", label: t("partners"), description: t("partnersDesc"), icon: "partner" as const },
+        { href: "/portfolio", label: t("portfolio"), description: t("portfolioDesc"), icon: "case" as const },
+      ],
+    },
+    {
+      id: "resources",
+      type: "drop" as const,
+      label: t("resources"),
+      items: [
+        { href: "/blog", label: t("blog"), description: t("blogDesc"), icon: "news" as const },
+        { href: "/academy", label: t("academy"), description: t("academyDesc"), icon: "book" as const, localeAgnostic: true },
+        { href: "/guides", label: t("guides"), description: t("guidesDesc"), icon: "check" as const },
+        { href: "/media", label: t("media"), description: t("mediaDesc"), icon: "media" as const },
+        { href: "/faq", label: t("faq"), description: t("faqDesc"), icon: "help" as const },
+      ],
+    },
   ];
 
   return (
     <SiteHeaderClient
-      navItems={navItems}
+      groups={groups}
       writeLabel={t("consultCta")}
       writeShortLabel={t("consultCtaShort")}
       wordmark="BOBER AI"
