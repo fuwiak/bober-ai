@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
-import { ClaudeSection } from "@/components/ClaudeSection";
 import { FaqSection } from "@/components/FaqSection";
 import { SectionCtaBand } from "@/components/SectionCtaBand";
 import { Reveal } from "@/components/motion/Reveal";
@@ -53,16 +52,6 @@ export default async function FaqPage({ params }: Props) {
           items={t.raw("faq.items") as { q: string; a: string }[]}
           pageUrl={pageUrl}
           className="section--deep"
-        />
-
-        <ClaudeSection
-          label={t("claude.label")}
-          title={t("claude.title")}
-          subtitle={t("claude.subtitle")}
-          popularLabel={t("claude.popularLabel")}
-          terms={t.raw("claude.terms") as string[]}
-          glossaryLink={t("claude.glossaryLink")}
-          cta={t("claude.cta")}
         />
 
         <SectionCtaBand

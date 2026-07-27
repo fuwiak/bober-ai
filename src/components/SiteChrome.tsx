@@ -85,6 +85,7 @@ export async function SiteHeader() {
       type: "drop" as const,
       label: t("resources"),
       items: [
+        { href: "/claude", label: t("claude"), description: t("claudeDesc"), icon: "bolt" as const },
         { href: "/blog", label: t("blog"), description: t("blogDesc"), icon: "news" as const },
         { href: "/academy", label: t("academy"), description: t("academyDesc"), icon: "book" as const, localeAgnostic: true },
         { href: "/guides", label: t("guides"), description: t("guidesDesc"), icon: "check" as const },
@@ -119,6 +120,7 @@ export async function SiteFooter() {
     { href: "/portfolio" as const, label: tNav("portfolio"), localeAgnostic: false },
     { href: "/secure-ai" as const, label: tNav("secureAi"), localeAgnostic: false },
     { href: "/ai-kubernetes" as const, label: tNav("aiKubernetes"), localeAgnostic: false },
+    { href: "/claude" as const, label: tNav("claude"), localeAgnostic: false },
     { href: "/about" as const, label: tNav("about"), localeAgnostic: false },
     { href: "/career" as const, label: tNav("career"), localeAgnostic: false },
     { href: "/pricing" as const, label: tNav("pricing"), localeAgnostic: false },

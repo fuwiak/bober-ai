@@ -54,6 +54,8 @@ const en = {
     servicesPage: "All solutions",
     company: "Company",
     resources: "Resources",
+    claude: "Claude AI",
+    claudeDesc: "Claude API and MCP for SMB",
     colPlatform: "Platform",
     colSecurity: "Security",
     colAutomation: "Automation",
@@ -413,8 +415,21 @@ const en = {
   packages: {
     title: "Work formats",
     subtitle:
-      "One budget ladder: audit, pilot, Bitrix24 + AI and production rollout. Fixed scope before kickoff.",
+      "One budget ladder: from an AI starter kit for small business to audit, pilot, Bitrix24 + AI and production rollout. Fixed scope before kickoff.",
     items: [
+      {
+        name: "AI Starter Kit for small business",
+        price: "from €300",
+        duration: "3–5 days",
+        forWhom: "A team of 3–5 people without a CRM or IT department — you need fast results, not a big project",
+        result: "Ready-made AI templates and a mini-assistant: answer a client, write a promo, generate an instruction — no training, no integrations",
+        includes: [
+          "A library of ready-made prompts for your tasks",
+          "A mini-assistant in Telegram or a custom GPT",
+          "Team onboarding — 15 minutes, no training needed",
+        ],
+        tier: "starter",
+      },
       {
         name: "Audit",
         price: "from €1,500",
