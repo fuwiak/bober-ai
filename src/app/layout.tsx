@@ -6,6 +6,11 @@ import { CookieConsent } from "@/components/CookieConsent";
 import { AttributionCapture } from "@/components/AttributionCapture";
 import { Varioqub } from "@/components/Varioqub";
 import { YandexMetrika } from "@/components/YandexMetrika";
+import {
+  BITRIX_YANDEX_METRIKA_ID,
+  PARTNERS_YANDEX_METRIKA_ID,
+  YANDEX_METRIKA_ID,
+} from "@/lib/legal";
 import { DEFAULT_KEYWORDS, OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
 
 /** Architectural sans — близко к TT Wellingtons / DIN у Alcon DC. */
@@ -129,6 +134,32 @@ export default function RootLayout({
         <Script id="scroll-top-init" strategy="beforeInteractive">
           {`(function(){try{if('scrollRestoration'in history)history.scrollRestoration='manual';var h=location.hash;if(h&&h!=='#')return;scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0;}catch(e){}})();`}
         </Script>
+        {/* Inline early so static microsites (bitrix/partners) expose all counter IDs in HTML for Webmaster. */}
+        <Script id="yandex-metrika-bootstrap" strategy="beforeInteractive">
+          {`(function(){var mainId=${YANDEX_METRIKA_ID};var partnersId=${PARTNERS_YANDEX_METRIKA_ID};var bitrixId=${BITRIX_YANDEX_METRIKA_ID};var host=(location.hostname||'').toLowerCase();var path=location.pathname||'';var id=host==='partners.bober-ai.dev'||path.indexOf('/white-label')===0?partnersId:(host==='bitrix.bober-ai.dev'||path.indexOf('/bitrix')===0?bitrixId:mainId);window.__boberYmId=id;(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return;}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id='+id,'ym');ym(id,'init',{ssr:true,webvisor:true,clickmap:true,trackLinks:true,accurateTrackBounce:true,trackHash:true,referrer:document.referrer,url:location.href});})();`}
+        </Script>
+        <noscript>
+          <div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`https://mc.yandex.ru/watch/${YANDEX_METRIKA_ID}`}
+              style={{ position: "absolute", left: "-9999px" }}
+              alt=""
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`https://mc.yandex.ru/watch/${PARTNERS_YANDEX_METRIKA_ID}`}
+              style={{ position: "absolute", left: "-9999px" }}
+              alt=""
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`https://mc.yandex.ru/watch/${BITRIX_YANDEX_METRIKA_ID}`}
+              style={{ position: "absolute", left: "-9999px" }}
+              alt=""
+            />
+          </div>
+        </noscript>
         {children}
         <AttributionCapture />
         <CookieConsent />
