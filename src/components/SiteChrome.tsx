@@ -11,6 +11,7 @@ export async function SiteHeader() {
   const navItems = [
     { href: "/services" as const, label: t("services") },
     { href: "/secure-ai" as const, label: t("secureAi") },
+    { href: "/ai-kubernetes" as const, label: t("aiKubernetes") },
     { href: "/portfolio" as const, label: t("portfolio") },
     { href: "/pricing#process", label: t("howWeWork") },
     { href: "/pricing" as const, label: t("pricing") },
@@ -43,6 +44,7 @@ export async function SiteFooter() {
     { href: "/services" as const, label: tNav("services"), localeAgnostic: false },
     { href: "/portfolio" as const, label: tNav("portfolio"), localeAgnostic: false },
     { href: "/secure-ai" as const, label: tNav("secureAi"), localeAgnostic: false },
+    { href: "/ai-kubernetes" as const, label: tNav("aiKubernetes"), localeAgnostic: false },
     { href: "/about" as const, label: tNav("about"), localeAgnostic: false },
     { href: "/career" as const, label: tNav("career"), localeAgnostic: false },
     { href: "/pricing" as const, label: tNav("pricing"), localeAgnostic: false },

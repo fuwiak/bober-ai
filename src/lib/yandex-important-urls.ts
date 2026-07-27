@@ -25,6 +25,7 @@ export const YANDEX_IMPORTANT_PATHS = [
   "/solutions",
   "/partners",
   "/secure-ai",
+  "/ai-kubernetes",
   "/kaspersky",
   "/kaspersky/llm-rag-aist",
   "/kaspersky/container-security-kira",
