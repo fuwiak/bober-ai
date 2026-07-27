@@ -21,14 +21,14 @@ export const dynamic = "force-static";
 const UPDATED = {
   core: new Date("2026-07-27"),
   services: new Date("2026-07-27"),
-  landings: new Date("2026-07-25"),
-  hubs: new Date("2026-07-25"),
+  landings: new Date("2026-07-27"),
+  hubs: new Date("2026-07-27"),
   guides: new Date("2026-07-14"),
-  blog: new Date("2026-07-25"),
+  blog: new Date("2026-07-27"),
   academy: new Date("2026-07-20"),
-  portfolio: new Date("2026-07-23"),
+  portfolio: new Date("2026-07-27"),
   legal: new Date("2026-07-16"),
-  microsites: new Date("2026-07-22"),
+  microsites: new Date("2026-07-27"),
 } as const;
 
 const staticRoutes = [
