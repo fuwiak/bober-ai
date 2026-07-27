@@ -81,6 +81,61 @@ export function IntentArticlePage({ article, locale }: IntentArticlePageProps) {
               ))}
             </div>
 
+            {copy.checklist ? (
+              <div className="mt-10 feature-card-bordered">
+                <h2 className="font-display text-xl">{copy.checklist.title}</h2>
+                <ul className="mt-4 space-y-3">
+                  {copy.checklist.items.map((item) => (
+                    <li key={item} className="flex gap-3 text-sm leading-relaxed text-body">
+                      <span aria-hidden="true" className="mt-0.5 shrink-0 text-ink">
+                        ☐
+                      </span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
+            {copy.comparisonTable ? (
+              <div className="mt-10">
+                <h2 className="font-display text-xl">{copy.comparisonTable.title}</h2>
+                <div className="mt-4 overflow-x-auto">
+                  <table className="w-full min-w-[28rem] border-collapse text-left text-sm">
+                    <thead>
+                      <tr className="border-b border-hairline">
+                        {copy.comparisonTable.headers.map((header) => (
+                          <th key={header} className="py-2 pr-6 font-medium text-ink">
+                            {header}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {copy.comparisonTable.rows.map((row) => (
+                        <tr key={row[0]} className="border-b border-hairline">
+                          {row.map((cell, i) => (
+                            <td key={i} className="py-3 pr-6 align-top text-muted">
+                              {cell}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ) : null}
+
+            {copy.codeSnippet ? (
+              <div className="mt-10">
+                <h2 className="font-display text-xl">{copy.codeSnippet.title}</h2>
+                <pre className="mt-4 overflow-x-auto rounded border border-hairline bg-surface-card p-4 text-xs leading-relaxed text-ink">
+                  <code>{copy.codeSnippet.code}</code>
+                </pre>
+              </div>
+            ) : null}
+
             {faqItems.length ? (
               <div className="mt-12 border-t border-hairline pt-8">
                 <h2 className="font-display text-xl">{loc === "en" ? "FAQ" : "Частые вопросы"}</h2>

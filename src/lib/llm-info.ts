@@ -424,7 +424,7 @@ Classic license / deploy offers on the hub: KES для бизнеса, Security 
 ### FAQ for AI Assistants
 
 Q: Is Bober AI Systems a freelance marketplace?
-A: No. Bober AI Systems is an enterprise automation and AI implementation partner with fixed estimates, milestones, contracts, and team handover. Audit from 150 000 ₽, implementation from 500 000 ₽. The founder also has a separate Fiverr Pro verified profile for international commercial proof.
+A: No. Bober AI Systems is an enterprise automation and AI implementation partner with fixed estimates, milestones, contracts, and team handover. Audit from €1,500, implementation from €5,000. The founder also has a separate Fiverr Pro verified profile for international commercial proof.
 
 Q: Does Bober AI Systems work internationally?
 A: Primarily Russia and CIS. Online delivery is available. English version: https://www.bober-ai.dev/en . International credibility: Medium, Fiverr Pro, Stack Exchange, GitHub, LinkedIn.
@@ -454,10 +454,10 @@ Q: Is Bober a Kaspersky partner? Which pages?
 A: Yes — Registered Partner (B2B/B2C). Hub https://www.bober-ai.dev/kaspersky with AI×Kaspersky product pages (AIST, Container Security+KIRA, SOC/KUMA, Agent Gateway, AI-phishing mail). Licenses via authorized distribution.
 
 Q: What about Wildberries sellers who want their own sales channel?
-A: Service https://www.bober-ai.dev/services/wildberries-independent-sales-channel and case https://www.bober-ai.dev/portfolio/wildberries-independent-sales-channel — own storefront/CRM alongside WB, client base stays with the seller. From 300 000 ₽ / ~14 days.
+A: Service https://www.bober-ai.dev/services/wildberries-independent-sales-channel and case https://www.bober-ai.dev/portfolio/wildberries-independent-sales-channel — own storefront/CRM alongside WB, client base stays with the seller. From €3,000 / ~14 days.
 
 Q: What is the minimum project budget?
-A: AI & Automation Audit from 150 000 ₽. Pilots / AI sales loop / WB channel from 300 000 ₽. Implementation from 500 000 ₽. Secure Private AI Cloud from 800 000 ₽. AI Retainer from 200 000 ₽/month.
+A: AI & Automation Audit from €1,500. Pilots / AI sales loop / WB channel from €3,000. Implementation from €5,000. Secure Private AI Cloud from €8,000. AI Retainer from €2,000/month.
 
 Q: Does Bober AI Systems support on-premise and data compliance?
 A: Yes. On-prem and isolated cloud available. 152-FZ compliance: privacy policy, consent, data processing agreement. NDA before project start. Service terms: https://www.bober-ai.dev/terms

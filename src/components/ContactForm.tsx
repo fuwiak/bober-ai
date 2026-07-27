@@ -1,10 +1,10 @@
 "use client";
 
-import NextLink from "next/link";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
 import { useFormLengthVariant } from "@/hooks/useAbVariant";
 import { getAttribution, attributionGoalParams, reachGoal } from "@/lib/analytics";
+import { Link } from "@/i18n/navigation";
 import { LEGAL_ROUTES } from "@/lib/legal";
 import { CONTACT_EMAIL } from "@/lib/site";
 
@@ -81,11 +81,13 @@ export function ContactForm({
 
   function buildMailtoHref(fullMessage: string, contactLine: string[], attrLines: string[]) {
     const subject = encodeURIComponent(
-      defaultService ? `Заявка: ${defaultService}` : `Заявка с сайта Bober AI`,
+      defaultService
+        ? t("payloadSubjectService", { service: defaultService })
+        : t("payloadSubjectDefault"),
     );
     const body = encodeURIComponent(
       [
-        `Имя: ${name.trim()}`,
+        t("payloadName", { name: name.trim() }),
         ...contactLine,
         "",
         fullMessage,
@@ -108,18 +110,21 @@ export function ContactForm({
     setMailtoHref("");
 
     const contactLine = showExtended
-      ? [`Телефон / Telegram: ${phone.trim()}`, `Email: ${email.trim()}`]
-      : [`Контакт: ${contact.trim()}`];
+      ? [
+          t("payloadPhone", { value: phone.trim() }),
+          t("payloadEmail", { value: email.trim() }),
+        ]
+      : [t("payloadContact", { value: contact.trim() })];
 
     const parts = [
-      defaultService ? `Услуга: ${defaultService}` : "",
-      showExtended && company.trim() ? `Компания: ${company.trim()}` : "",
-      showQualify && processType ? `Процесс: ${processType}` : "",
-      showQualify && systems ? `Системы: ${systems}` : "",
-      showQualify && budget ? `Бюджет: ${budget}` : "",
-      showQualify && timeline ? `Сроки: ${timeline}` : "",
-      showExtended && deployment ? `Контур: ${deployment}` : "",
-      showExtended && kasperskyOptional ? "Опция: защита инфраструктуры (Kaspersky)" : "",
+      defaultService ? t("payloadService", { value: defaultService }) : "",
+      showExtended && company.trim() ? t("payloadCompany", { value: company.trim() }) : "",
+      showQualify && processType ? t("payloadProcess", { value: processType }) : "",
+      showQualify && systems ? t("payloadSystems", { value: systems }) : "",
+      showQualify && budget ? t("payloadBudget", { value: budget }) : "",
+      showQualify && timeline ? t("payloadTimeline", { value: timeline }) : "",
+      showExtended && deployment ? t("payloadDeployment", { value: deployment }) : "",
+      showExtended && kasperskyOptional ? t("payloadKaspersky") : "",
       shortForm ? `AB form_length: short` : "",
       message.trim(),
     ].filter(Boolean);
@@ -460,13 +465,13 @@ export function ContactForm({
           />
           <span className="text-sm leading-relaxed text-muted">
             {t("consentCombined")}{" "}
-            <NextLink href={LEGAL_ROUTES.privacyPolicy} className="text-link" target="_blank">
+            <Link href={LEGAL_ROUTES.privacyPolicy} className="text-link" target="_blank">
               {t("policyLink")}
-            </NextLink>{" "}
+            </Link>{" "}
             {t("consentAnd")}{" "}
-            <NextLink href={LEGAL_ROUTES.consent} className="text-link" target="_blank">
+            <Link href={LEGAL_ROUTES.consent} className="text-link" target="_blank">
               {t("consentLink")}
-            </NextLink>
+            </Link>
             .
           </span>
         </label>

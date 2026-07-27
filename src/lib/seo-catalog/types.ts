@@ -58,26 +58,30 @@ export type BuiltLanding = {
   extended: { ru: LandingExtendedContent; en: LandingExtendedContent };
 };
 
+export type ArticleChecklist = { title: string; items: string[] };
+export type ArticleCodeSnippet = { title: string; language: string; code: string };
+export type ArticleComparisonTable = { title: string; headers: string[]; rows: string[][] };
+
+export type IntentArticleLocaleCopy = {
+  title: string;
+  description: string;
+  h1: string;
+  sections: { title: string; paragraphs: string[] }[];
+  faq?: { q: string; a: string }[];
+  /** Concrete artifacts (checklist/code/table) — the "thin AI content" antidote. At least one is expected on new articles. */
+  checklist?: ArticleChecklist;
+  codeSnippet?: ArticleCodeSnippet;
+  comparisonTable?: ArticleComparisonTable;
+};
+
 export type IntentArticleSpec = {
   slug: string;
   cluster: string;
   keywords: string[];
   related: { href: string; labelRu: string; labelEn: string }[];
   publishedAt: string;
-  ru: {
-    title: string;
-    description: string;
-    h1: string;
-    sections: { title: string; paragraphs: string[] }[];
-    faq?: { q: string; a: string }[];
-  };
-  en: {
-    title: string;
-    description: string;
-    h1: string;
-    sections: { title: string; paragraphs: string[] }[];
-    faq?: { q: string; a: string }[];
-  };
+  ru: IntentArticleLocaleCopy;
+  en: IntentArticleLocaleCopy;
 };
 
 export type HubDef = {

@@ -32,6 +32,7 @@ export const PORTFOLIO_EN: Record<string, PortfolioEnCopy> = {
     title: "Yandex Telemost Agent — AI for meetings and sales",
     category: "Artificial intelligence",
     metric: "Automatic meeting summaries in CRM",
+    priceLabel: "from €3,000",
     description:
       "An AI assistant for meetings and sales that captures key agreements during the call, transcribes the conversation and helps teams keep important client details.",
     solution:
@@ -59,6 +60,7 @@ export const PORTFOLIO_EN: Record<string, PortfolioEnCopy> = {
     title: "GTM Flow — leads from ads and messengers",
     category: "Artificial intelligence",
     metric: "One funnel without lost leads",
+    priceLabel: "from €3,000",
     description:
       "Inbound requests scatter across Google, VK, Telegram, Profi.ru and Avito. Clients go cold, managers forget to call back — budget goes to competitors. GTM Flow collects everything in one place and moves each lead from first message to payment.",
     solution:
@@ -75,6 +77,7 @@ export const PORTFOLIO_EN: Record<string, PortfolioEnCopy> = {
     scope: "PDF request → catalog match → exact/analog/not-found statuses → DOCX/PDF → CRM",
     duration: "4–8 weeks to production launch",
     architecture: "LLM only for request parsing; prices and SKUs strictly from MySQL/CRM catalog",
+    priceLabel: "from €3,000",
     description:
       "Preparing commercial proposals took about 45 minutes: managers searched prices and SKUs in the catalog by hand, laid out Word/PDF, and calculated VAT and currency.",
     solution:
@@ -112,7 +115,7 @@ export const PORTFOLIO_EN: Record<string, PortfolioEnCopy> = {
     ],
     whyCustom:
       "Why not a ready-made connector: Kwork has no public API for our scenario, and third-party SaaS like ApiMonster does not give the control we need over fields and deduplication. A custom contour — without depending on someone else’s middleware.",
-    priceLabel: "₽30,000",
+    priceLabel: "from €300",
     imageBadge: "Special offer for small business",
     imageAlt:
       "Screenshot of Bitrix24 CRM deals kanban with many Kwork-sourced deals (including ML and Python jobs) in the dark Bitrix UI — live custom integration funnel",
@@ -277,13 +280,41 @@ export const PORTFOLIO_EN: Record<string, PortfolioEnCopy> = {
   },
   "invoice-processing-pipeline": {
     title: "Invoice processing pipeline: batches in minutes",
+    subtitle: "OCR pipeline for inbound invoices → validation → 1C document",
+    seoTitle: "Document processing into 1C: OCR invoices from email without manual entry",
     category: "IT and development",
+    metric: "Batch of 50 invoices in ~10 minutes instead of ~4 hours",
+    metricMethod: "Measured on a pilot inbound-mail stream for accounting",
+    role: "Architecture and delivery of the OCR → 1C contour",
+    scope:
+      "Auto-intake from email, OCR, field extraction, validation, 1C document creation, error journal",
+    duration: "Pilot 2–4 weeks; production contour typically 4–8 weeks",
+    architecture:
+      "Mail/files → OCR → field extraction → validation rules → 1C API/exchange → retry and alerts",
+    processSteps: [
+      "An invoice arrives by email or in a scan folder",
+      "The contour picks up the attachment (PDF/image)",
+      "OCR and extraction of tax ID, amount, line items, date",
+      "Validation and match against counterparties/orders",
+      "Create or update the document in 1C",
+      "Log: success / manual review / error with alert",
+    ],
+    productionNotes: [
+      "Idempotency: reprocessing the same file does not create duplicate documents",
+      "Queue and retry when 1C is unavailable",
+      "Manual review for low OCR confidence",
+      "Operation journal for accounting and audit",
+      "Accounting data does not go to public LLMs without approval",
+    ],
+    whyCustom:
+      "Ready-made “OCR in the cloud” often cannot connect to the client’s 1C contour and security policy. We assemble the pipeline around your exchange and access rights.",
+    priceLabel: "from €3,000",
     description:
-      "Accounting received 50+ invoices a day by email. Operators typed details into 1C by hand.",
+      "Accounting received 50+ invoices a day by email. Operators typed details into 1C by hand — errors and period-close delays piled up.",
     solution:
-      "Auto-intake from mail → OCR → field extraction → validation → 1C document creation.",
+      "Auto-intake from mail → OCR → field extraction → validation → 1C document creation. AI only where text parsing is needed; postings follow accounting rules.",
     result:
-      "A batch of 50 invoices in 10 minutes instead of 4 hours, −90% entry errors.",
+      "A batch of 50 invoices in ~10 minutes instead of ~4 hours, −90% entry errors on the pilot.",
   },
   "employee-onboarding-portal": {
     title: "Employee onboarding: 2 weeks instead of 2 months",
@@ -297,6 +328,23 @@ export const PORTFOLIO_EN: Record<string, PortfolioEnCopy> = {
   },
 };
 
+const SKILL_EN: Record<string, string> = {
+  Автоматизация: "Automation",
+  "Интеграция модели ИИ": "AI model integration",
+  "Искусственный интеллект": "Artificial intelligence",
+};
+
+/** Strip RUB / Cyrillic price leftovers so EN cards never mix currencies. */
+function sanitizeEnPriceLabel(label: string | undefined): string | undefined {
+  if (!label) return undefined;
+  if (/[₽руб]/i.test(label) || /[А-Яа-яЁё]/.test(label)) return undefined;
+  return label;
+}
+
+function localizeSkills(skills: string[]): string[] {
+  return skills.map((skill) => SKILL_EN[skill] ?? skill);
+}
+
 export function hasPortfolioEnglish(slug: string): boolean {
   const copy = PORTFOLIO_EN[slug];
   return Boolean(copy?.title && copy.description && copy.solution && copy.result);
@@ -306,10 +354,10 @@ export function localizePortfolioItem(item: PortfolioItem, locale: string): Port
   if (locale !== "en") return item;
   const en = PORTFOLIO_EN[item.slug];
   if (!en) return item;
-  return {
+  const merged: PortfolioItem = {
     ...item,
     ...en,
-    skills: item.skills,
+    skills: localizeSkills(item.skills ?? []),
     stack: item.stack,
     image: item.image,
     slug: item.slug,
@@ -317,4 +365,6 @@ export function localizePortfolioItem(item: PortfolioItem, locale: string): Port
     featured: item.featured,
     segment: item.segment,
   };
+  merged.priceLabel = sanitizeEnPriceLabel(merged.priceLabel);
+  return merged;
 }

@@ -1,5 +1,5 @@
 {
-	email stasinskipawel@yandex.ru
+	email contact@bober-ai.dev
 	acme_ca https://acme-v02.api.letsencrypt.org/directory
 	# HTTP/3 (QUIC/UDP) often breaks behind VPNs — keep TCP only (h1/h2).
 	servers {

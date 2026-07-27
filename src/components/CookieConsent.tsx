@@ -1,11 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { usePathname } from "next/navigation";
 import { COOKIE_CONSENT_KEY, LEGAL_ROUTES } from "@/lib/legal";
 import { absoluteUrl } from "@/lib/site";
-
-/** Always www — relative /privacy-policy breaks SPA routing on microsite hosts. */
-const PRIVACY_POLICY_URL = absoluteUrl(LEGAL_ROUTES.privacyPolicy);
 
 export type CookieConsentValue = "accepted" | "rejected";
 
@@ -23,7 +21,41 @@ export function setCookieConsent(value: CookieConsentValue): void {
 
 const COOKIE_EXIT_MS = 240;
 
+const COPY = {
+  ru: {
+    title: "Cookies и аналитика",
+    descBefore: "Этот сайт использует Cookies и\u00a0Яндекс.Метрику для аналитики посещений. Подробности — в\u00a0",
+    policy: "Политике конфиденциальности",
+    descAfter:
+      ". Продолжая пользоваться сайтом, вы\u00a0подтверждаете ознакомление с\u00a0политикой.",
+    reject: "Только необходимые",
+    accept: "Принять",
+  },
+  en: {
+    title: "Cookies and analytics",
+    descBefore:
+      "This site uses cookies and\u00a0Yandex.Metrica for visit analytics. Details in the\u00a0",
+    policy: "Privacy policy",
+    descAfter: ". By continuing to use the site, you confirm that you have read the policy.",
+    reject: "Essential only",
+    accept: "Accept",
+  },
+} as const;
+
+function isEnPath(pathname: string | null): boolean {
+  if (!pathname) return false;
+  return pathname === "/en" || pathname.startsWith("/en/");
+}
+
 export function CookieConsent() {
+  const pathname = usePathname();
+  const locale = isEnPath(pathname) ? "en" : "ru";
+  const copy = COPY[locale];
+  const privacyUrl = useMemo(
+    () => absoluteUrl(locale === "en" ? `/en${LEGAL_ROUTES.privacyPolicy}` : LEGAL_ROUTES.privacyPolicy),
+    [locale],
+  );
+
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
 
@@ -63,21 +95,21 @@ export function CookieConsent() {
     >
       <div className="cookie-consent-card">
         <p id="cookie-consent-title" className="cookie-consent-title">
-          Cookies и аналитика
+          {copy.title}
         </p>
         <p id="cookie-consent-desc" className="cookie-consent-desc">
-          Этот сайт использует Cookies и&nbsp;Яндекс.Метрику для аналитики посещений. Подробности — в{" "}
-          <a href={PRIVACY_POLICY_URL} className="text-link">
-            Политике конфиденциальности
+          {copy.descBefore}
+          <a href={privacyUrl} className="text-link">
+            {copy.policy}
           </a>
-          . Продолжая пользоваться сайтом, вы&nbsp;подтверждаете ознакомление с&nbsp;политикой.
+          {copy.descAfter}
         </p>
         <div className="cookie-consent-actions">
           <button type="button" onClick={reject} className="btn-secondary-on-dark text-xs">
-            Только необходимые
+            {copy.reject}
           </button>
           <button type="button" onClick={accept} className="btn-inverted text-xs">
-            Принять
+            {copy.accept}
           </button>
         </div>
       </div>

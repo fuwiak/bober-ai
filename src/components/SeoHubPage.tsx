@@ -70,7 +70,7 @@ const AUTOMATION_COPY = {
     catalog: "Business automation",
     primaryCta: "Get an estimate",
     secondaryCta: "View case studies",
-    heroNote: "Audit from 150 000 ₽ · pilot from 300 000 ₽ · implementation from 500 000 ₽",
+    heroNote: "Audit from €1,500 · pilot from €3,000 · implementation from €5,000",
     introLabel: "Where we start",
     introTitle: "We automate a measurable process, not an entire department at once",
     introText:
