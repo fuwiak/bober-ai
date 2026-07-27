@@ -21,6 +21,7 @@ export type PortfolioEnCopy = Partial<
     | "productionNotes"
     | "whyCustom"
     | "priceLabel"
+    | "imageBadge"
     | "imageAlt"
     | "imageCaption"
   >
@@ -83,10 +84,11 @@ export const PORTFOLIO_EN: Record<string, PortfolioEnCopy> = {
   },
   "bitrix24-kwork-crm": {
     title: "Kwork orders land in the Bitrix24 funnel automatically",
-    subtitle: "Custom Kwork ↔ Bitrix24 CRM integration",
+    subtitle:
+      "Demo of a custom marketplace → CRM integration contour — no dependency on a ready-made connector",
     seoTitle: "Custom Kwork ↔ Bitrix24 CRM integration",
     category: "IT and development",
-    metric: "Own integration contour — no dependency on third-party SaaS",
+    metric: "Marketplace → CRM contour demo — no ready-made connector",
     metricMethod: "Screenshot of a live funnel on the portal",
     role: "Architecture and delivery of the Kwork → Bitrix24 sync contour",
     scope: "Order capture, client and service mapping, deal create/update, amount and status in CRM",
@@ -99,7 +101,7 @@ export const PORTFOLIO_EN: Record<string, PortfolioEnCopy> = {
       "Client, service and amount map into Bitrix24 fields",
       "Create or update the deal — no duplicates",
       "Amount and Kwork status are written into the CRM card",
-      "Sync log and per-order error handling without losing the batch",
+      "Then in CRM: funnel stages, tasks and follow-up without copy-paste from the marketplace",
     ],
     productionNotes: [
       "Deduplication by ORIGIN_ID — re-runs do not create duplicate deals",
@@ -110,16 +112,18 @@ export const PORTFOLIO_EN: Record<string, PortfolioEnCopy> = {
     ],
     whyCustom:
       "Why not a ready-made connector: Kwork has no public API for our scenario, and third-party SaaS like ApiMonster does not give the control we need over fields and deduplication. A custom contour — without depending on someone else’s middleware.",
+    priceLabel: "₽30,000",
+    imageBadge: "Special offer for small business",
     imageAlt:
       "Screenshot of Bitrix24 CRM deals kanban with many Kwork-sourced deals (including ML and Python jobs) in the dark Bitrix UI — live custom integration funnel",
     imageCaption:
       "Bitrix24 deals kanban: Kwork orders in one funnel with stages and amounts",
     description:
-      "Kwork orders were copied by hand: managers typed client, service and amount into Bitrix24, lost statuses and risked duplicate deals.",
+      "Marketplace sales via Kwork. Orders — client, service, amount and status — were copied by hand into Bitrix24, follow-ups were lost and duplicates appeared. This case shows a typical marketplace → CRM contour for small business: orders land in the funnel, then work continues in CRM.",
     solution:
-      "A custom integration contour: each Kwork order automatically creates or updates a Bitrix24 deal — with client, service, amount and status.",
+      "Demo of a custom marketplace → CRM integration contour without a ready-made connector: each Kwork order creates or updates a Bitrix24 deal — with client, service, amount and status.",
     result:
-      "A live CRM funnel: orders (including ML/Python) show on the board with stages and amounts; the team works in Bitrix24 instead of copying from the marketplace.",
+      "A live CRM funnel: orders show on the board with stages and amounts; the team runs follow-up in Bitrix24 instead of copying from the marketplace. Priced as a special offer for small business.",
   },
   "wildberries-independent-sales-channel": {
     title: "Independent sales channel alongside Wildberries",

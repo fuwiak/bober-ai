@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { ContactCta } from "@/components/ContactCta";
+import { PortfolioImageBadge } from "@/components/PortfolioImageBadge";
 import { Link } from "@/i18n/navigation";
 import { reachGoal } from "@/lib/analytics";
 import type { PortfolioItem } from "@/lib/profile";
@@ -40,6 +41,7 @@ export function CaseStudyCard({
             sizes="(max-width: 768px) 100vw, 420px"
             unoptimized={item.image.endsWith(".png")}
           />
+          {item.imageBadge ? <PortfolioImageBadge label={item.imageBadge} /> : null}
         </div>
         {item.imageCaption ? (
           <p className="mt-2 text-sm text-muted">{item.imageCaption}</p>
@@ -72,7 +74,12 @@ export function CaseStudyCard({
       ) : null}
 
       {item.stack ? <p className="meta-label mt-3">{item.stack}</p> : null}
-      {item.priceLabel ? <p className="meta-label mt-4">{item.priceLabel}</p> : null}
+      {item.priceLabel ? (
+        <div className="mt-4">
+          <p className="meta-label">{item.priceLabel}</p>
+          {item.imageBadge ? <p className="mt-1 text-sm text-muted">{item.imageBadge}</p> : null}
+        </div>
+      ) : null}
 
       <div className="mt-5 flex flex-wrap items-center gap-4">
         <Link

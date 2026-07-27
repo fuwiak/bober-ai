@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { EditorialImageFrame } from "@/components/EditorialImageFrame";
+import { PortfolioImageBadge } from "@/components/PortfolioImageBadge";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { Link } from "@/i18n/navigation";
 import { getPortfolioItem, PORTFOLIO, PROFILE } from "@/lib/profile";
@@ -103,7 +104,12 @@ export default async function PortfolioProjectPage({ params }: PageProps) {
                 <p className="mt-3 text-base leading-relaxed text-muted">{item.subtitle}</p>
               ) : null}
               {item.priceLabel ? (
-                <p className="mt-3 font-display text-2xl tracking-tight text-ink">{item.priceLabel}</p>
+                <div className="mt-3">
+                  <p className="font-display text-2xl tracking-tight text-ink">{item.priceLabel}</p>
+                  {item.imageBadge ? (
+                    <p className="mt-1 text-sm text-muted">{item.imageBadge}</p>
+                  ) : null}
+                </div>
               ) : null}
               {item.skills?.length ? (
                 <div className="mt-4 flex flex-wrap gap-2">
@@ -125,6 +131,7 @@ export default async function PortfolioProjectPage({ params }: PageProps) {
                 className="case-study__image"
                 priority
               />
+              {item.imageBadge ? <PortfolioImageBadge label={item.imageBadge} /> : null}
             </EditorialImageFrame>
             {item.imageCaption ? (
               <p className="mt-3 text-sm text-muted">{item.imageCaption}</p>

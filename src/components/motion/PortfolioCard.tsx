@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { EditorialImageFrame } from "@/components/EditorialImageFrame";
+import { PortfolioImageBadge } from "@/components/PortfolioImageBadge";
 import type { PortfolioItem } from "@/lib/profile";
 
 type PortfolioCardProps = {
@@ -22,6 +23,7 @@ export function PortfolioCard({ item, detailsLabel }: PortfolioCardProps) {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="case-study__image"
           />
+          {item.imageBadge ? <PortfolioImageBadge label={item.imageBadge} /> : null}
         </EditorialImageFrame>
 
         <div className="case-study__meta">
