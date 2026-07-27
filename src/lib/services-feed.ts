@@ -43,6 +43,10 @@ const FEED_CONVERSION: Record<string, number> = {
   "business-process-audit": 95,
 };
 
+export function getFeedConversion(slug: string, fallback = 90) {
+  return FEED_CONVERSION[slug] ?? fallback;
+}
+
 /** Old slugs kept only for next.config redirects — never emit as feed offer URLs (308/404 fail moderation). */
 export const LEGACY_FEED_SLUGS: Record<string, string> = {
   "ai-bot-llm-rasa-n8n": "enterprise-ai-assistant",
@@ -142,12 +146,13 @@ export function getServiceFeedXml(now = new Date()) {
     })
     .join("\n");
 
-  // Element order: required params immediately after description (Yandex sample).
+  // Official sample: description → adult → expiry → required params block.
+  // https://edu.s3.yandex.net/sample/services.yml
   const offerBlocks = offers
     .map((offer) => {
       const url = getServiceOfferUrl(offer);
       const picture = `${FEED_SITE_URL}${feedPicturePath(offer.id)}`;
-      const conversion = FEED_CONVERSION[offer.slug] ?? 90;
+      const conversion = getFeedConversion(offer.slug);
 
       return `    <offer id="${escapeXml(offer.id)}">
       <name>${escapeXml(PROFILE.name)}</name>
@@ -159,13 +164,13 @@ export function getServiceFeedXml(now = new Date()) {
       <set-ids>${escapeXml(offer.slug)}</set-ids>
       <picture>${escapeXml(picture)}</picture>
       <description>${escapeXml(offer.title)}</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">${FEED_RATING}</param>
       <param name="Число отзывов">${FEED_REVIEWS_COUNT}</param>
       <param name="Годы опыта">${PROFILE.experienceYears}</param>
       <param name="Регион">${SITE_REGION}</param>
       <param name="Конверсия">${conversion}</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">${escapeXml(CONTACT_PHONE_URL)}</param>
       <param name="Ссылка на чат">${escapeXml(TELEGRAM_URL)}</param>
       <param name="Ссылка на создание заказа">${escapeXml(url)}</param>

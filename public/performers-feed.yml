@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-27 14:38">
+<yml_catalog date="2026-07-27 14:48">
   <shop>
     <name>Bober AI Systems</name>
     <company>Bober AI Systems</company>
@@ -149,13 +149,13 @@
       <set-ids>business-process-automation</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/business-process-automation.jpg</picture>
       <description>Автоматизация бизнес-процессов</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/business-process-automation</param>
@@ -173,13 +173,13 @@
       <set-ids>sales-ai-agent</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/sales-ai-agent.jpg</picture>
       <description>Автоматизация отдела продаж</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/sales-ai-agent</param>
@@ -197,13 +197,13 @@
       <set-ids>ai-discovery-roadmap</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ai-discovery-roadmap.jpg</picture>
       <description>AI &amp; Automation Advisor</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">95</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/ai-discovery-roadmap</param>
@@ -221,13 +221,13 @@
       <set-ids>enterprise-ai-assistant</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/enterprise-ai-assistant.jpg</picture>
       <description>Внедрение ИИ в бизнес</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/ai/ai-implementation</param>
@@ -245,13 +245,13 @@
       <set-ids>private-llm-gigachat</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/private-llm-gigachat.jpg</picture>
       <description>Приватный LLM-контур</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/private-llm-gigachat</param>
@@ -269,13 +269,13 @@
       <set-ids>ai-automation</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ai-automation.jpg</picture>
       <description>AI-автоматизация</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/ai-automation</param>
@@ -293,13 +293,13 @@
       <set-ids>rag</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/rag.jpg</picture>
       <description>RAG для бизнеса</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/solutions/rag-search</param>
@@ -317,13 +317,13 @@
       <set-ids>llm-development</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/llm-development.jpg</picture>
       <description>Разработка LLM-решений</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/llm-development</param>
@@ -341,13 +341,13 @@
       <set-ids>n8n</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/n8n.jpg</picture>
       <description>Автоматизация на n8n</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/n8n</param>
@@ -365,13 +365,13 @@
       <set-ids>ai-agent</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ai-agent.jpg</picture>
       <description>AI-агенты для бизнеса</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/ai-agent</param>
@@ -389,13 +389,13 @@
       <set-ids>document-processing</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/document-processing.jpg</picture>
       <description>Автоматизация документооборота</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/automation/documents</param>
@@ -413,13 +413,13 @@
       <set-ids>voice-ai</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/voice-ai.jpg</picture>
       <description>Голосовой AI</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/voice-ai</param>
@@ -437,13 +437,13 @@
       <set-ids>ocr</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ocr.jpg</picture>
       <description>OCR и распознавание</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/ocr</param>
@@ -461,13 +461,13 @@
       <set-ids>open-webui</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/open-webui.jpg</picture>
       <description>Open WebUI</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">89</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/open-webui</param>
@@ -485,13 +485,13 @@
       <set-ids>self-hosted-ai</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/self-hosted-ai.jpg</picture>
       <description>Self-hosted AI</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/self-hosted-ai</param>
@@ -509,13 +509,13 @@
       <set-ids>mcp</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/mcp.jpg</picture>
       <description>MCP-интеграции</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/mcp</param>
@@ -533,13 +533,13 @@
       <set-ids>langgraph</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/langgraph.jpg</picture>
       <description>LangGraph-агенты</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/langgraph</param>
@@ -557,13 +557,13 @@
       <set-ids>knowledge-base</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/knowledge-base.jpg</picture>
       <description>Корпоративная база знаний</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/knowledge-base</param>
@@ -581,13 +581,13 @@
       <set-ids>ai-consulting</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ai-consulting.jpg</picture>
       <description>AI-консалтинг</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/ai-consulting</param>
@@ -605,13 +605,13 @@
       <set-ids>crm-integration</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/crm-integration.jpg</picture>
       <description>Интеграции CRM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/crm-integration</param>
@@ -629,13 +629,13 @@
       <set-ids>ai-sales-loop</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ai-sales-loop.jpg</picture>
       <description>AI-контур отдела продаж</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/ai-sales-loop</param>
@@ -653,13 +653,13 @@
       <set-ids>claude-smb</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/claude-smb.jpg</picture>
       <description>Claude AI для малого и среднего бизнеса</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/claude</param>
@@ -677,13 +677,13 @@
       <set-ids>ii-dlya-biznesa</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ii-dlya-biznesa.jpg</picture>
       <description>ИИ для бизнеса — аудит, разработка и внедрение</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/ii-dlya-biznesa</param>
@@ -701,13 +701,13 @@
       <set-ids>wildberries-independent-sales-channel</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/wildberries-independent-sales-channel.jpg</picture>
       <description>Независимый канал продаж для продавцов Wildberries</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/wildberries-independent-sales-channel</param>
@@ -725,13 +725,13 @@
       <set-ids>secure-private-ai-cloud</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/secure-private-ai-cloud.jpg</picture>
       <description>Защищенная AI-инфраструктура на базе российских облаков и решений Kaspersky</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/secure-private-ai-cloud</param>
@@ -749,13 +749,13 @@
       <set-ids>company-automation</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/company-automation.jpg</picture>
       <description>Автоматизация компании</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/automation/company-automation</param>
@@ -773,13 +773,13 @@
       <set-ids>crm-automation</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/crm-automation.jpg</picture>
       <description>Автоматизация CRM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/integrations/crm-automation</param>
@@ -797,13 +797,13 @@
       <set-ids>document-ai</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/document-ai.jpg</picture>
       <description>ИИ для обработки документов</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/automation/document-ai</param>
@@ -821,13 +821,13 @@
       <set-ids>ai-for-crm</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/ai-for-crm.jpg</picture>
       <description>ИИ для CRM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/integrations/ai-for-crm</param>
@@ -845,13 +845,13 @@
       <set-ids>corporate-ai-assistant</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/corporate-ai-assistant.jpg</picture>
       <description>Корпоративный ИИ-ассистент</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/ai/corporate-neural-net</param>
@@ -869,13 +869,13 @@
       <set-ids>business-process-audit</set-ids>
       <picture>https://www.bober-ai.dev/stock/offers/business-process-audit.jpg</picture>
       <description>Аудит бизнес-процессов</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
       <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">95</param>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
       <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-ai.dev/automation/business-process-audit</param>

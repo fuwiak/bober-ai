@@ -15,6 +15,7 @@ import { Link } from "@/i18n/navigation";
 import { getEnterpriseService } from "@/lib/enterprise-services";
 import { getEnterpriseReviews } from "@/lib/enterprise-reviews";
 import { PROFILE, getPortfolioItem } from "@/lib/profile";
+import { getFeedConversion } from "@/lib/services-feed";
 import type { SeoServiceContent } from "@/lib/seo-services-content";
 import {
   faqJsonLd,
@@ -123,7 +124,11 @@ export async function SeoServicePage({
                   <span className="font-medium text-ink">{PROFILE.name}</span>
                 </p>
                 {/* Visible rating must match YML Рейтинг / Число отзывов for Webmaster moderation. */}
-                <PerformerRating locale={locale} className="mt-3" />
+                <PerformerRating
+                  locale={locale}
+                  className="mt-3"
+                  conversion={getFeedConversion(lookupSlug)}
+                />
                 <p className="body-copy mt-5 max-w-3xl text-lg">{content.subtitle}</p>
                 <div className="mt-10 flex flex-wrap gap-4">
                   <ContactCta defaultService={content.h1} goal="audit_cta_click">

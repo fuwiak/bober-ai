@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { EditorialImageFrame } from "@/components/EditorialImageFrame";
 import { ContactForm } from "@/components/ContactForm";
 import { PerformerRating } from "@/components/PerformerRating";
+import { getFeedConversion } from "@/lib/services-feed";
 import { SeoServicePage } from "@/components/SeoServicePage";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { Link } from "@/i18n/navigation";
@@ -90,7 +91,11 @@ export default async function ServiceOfferPage({ params }: PageProps) {
                 {locale === "en" ? "Performer" : "Исполнитель"}:{" "}
                 <span className="font-medium text-ink">{PROFILE.name}</span>
               </p>
-              <PerformerRating locale={locale} className="mt-3" />
+              <PerformerRating
+                locale={locale}
+                className="mt-3"
+                conversion={getFeedConversion(offer.slug)}
+              />
               <p className="mt-4 text-base leading-relaxed text-body">{offer.description}</p>
 
               <EditorialImageFrame variant="card" className="mt-8 aspect-[16/9] rounded-xl bg-surface-card">

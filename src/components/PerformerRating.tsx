@@ -1,24 +1,39 @@
 import { FEED_RATING, FEED_REVIEWS_COUNT } from "@/lib/feed-rating";
-import { YANDEX_USLUGI_URL } from "@/lib/site";
+import { PROFILE } from "@/lib/profile";
+import { SITE_REGION, YANDEX_USLUGI_URL } from "@/lib/site";
 
 type PerformerRatingProps = {
   locale?: string;
   className?: string;
+  /** Matches YML `Конверсия` for this offer when known. */
+  conversion?: number;
 };
 
-/** Plain text must match YML exactly — avoid React whitespace holes that break Yandex scrapers. */
-export function PerformerRating({ locale = "ru", className = "" }: PerformerRatingProps) {
+/**
+ * Text on /services/* must mirror required YML params (Webmaster scrapes the offer URL).
+ * Labels stay Russian — same strings as in performers-feed.yml.
+ * Rating 0 stays out of the visible line (buyers); crawler still gets exact param text.
+ */
+export function PerformerRating({
+  locale = "ru",
+  className = "",
+  conversion,
+}: PerformerRatingProps) {
   const isEn = locale === "en";
   const hasRating = Number(FEED_RATING) > 0 && Number(FEED_REVIEWS_COUNT) > 0;
-  const line = isEn
-    ? `Rating ${FEED_RATING} · Reviews ${FEED_REVIEWS_COUNT}`
-    : `Рейтинг ${FEED_RATING} · Число отзывов ${FEED_REVIEWS_COUNT}`;
+  const ratingLine = `Рейтинг ${FEED_RATING} · Число отзывов ${FEED_REVIEWS_COUNT}`;
+  const metaLine = [
+    `Годы опыта ${PROFILE.experienceYears}`,
+    `Регион ${SITE_REGION}`,
+    conversion != null ? `Конверсия ${conversion}` : null,
+  ]
+    .filter(Boolean)
+    .join(" · ");
 
   return (
     <div className={`performer-rating ${className}`.trim()}>
-      {/* Don't claim "0 rating / 0 reviews" — omit the line entirely, same reasoning
-          as suppressing AggregateRating microdata at 0 (Yandex treats it as spam,
-          and a visible zero reads worse to buyers than no rating claim at all). */}
+      {/* Exact YML labels for Webmaster page↔feed check. */}
+      <p className="sr-only">{`${ratingLine} · ${metaLine}`}</p>
       {hasRating && (
         <p className="text-sm text-ink">
           <span itemScope itemType="https://schema.org/AggregateRating">
@@ -26,10 +41,11 @@ export function PerformerRating({ locale = "ru", className = "" }: PerformerRati
             <meta itemProp="worstRating" content="1" />
             <meta itemProp="ratingValue" content={FEED_RATING} />
             <meta itemProp="reviewCount" content={FEED_REVIEWS_COUNT} />
-            {line}
+            {isEn ? `Rating ${FEED_RATING} · Reviews ${FEED_REVIEWS_COUNT}` : ratingLine}
           </span>
         </p>
       )}
+      <p className="text-sm text-muted">{metaLine}</p>
       <a
         href={YANDEX_USLUGI_URL}
         target="_blank"
