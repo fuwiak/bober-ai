@@ -368,7 +368,6 @@ export function organizationJsonLd(locale: string) {
     ],
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Перервинский б-р, д. 3, кв. 57",
       addressLocality: SITE_REGION,
       addressRegion: SITE_REGION,
       postalCode: "109451",

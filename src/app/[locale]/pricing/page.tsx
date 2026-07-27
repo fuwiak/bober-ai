@@ -59,6 +59,12 @@ export default async function PricingPage({ params }: Props) {
                 locale={locale}
                 items={[{ name: locale === "en" ? "Pricing" : "Цены", path: "/pricing" }]}
               />
+              <h1 className="display-md mt-6 max-w-3xl">
+                {t("pages.pricing.h1")}
+              </h1>
+              <p className="body-copy mt-4 max-w-2xl text-base">
+                {t("pages.pricing.subtitle")}
+              </p>
             </Reveal>
           </div>
         </section>

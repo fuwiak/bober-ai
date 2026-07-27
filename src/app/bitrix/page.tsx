@@ -769,7 +769,7 @@ export default function BitrixLandingPage() {
                   </div>
                   <div className="sm:col-span-2">
                     <dt className="meta-label text-muted">Адрес</dt>
-                    <dd className="mt-1 text-body">{LEGAL_ENTITY.address}</dd>
+                    <dd className="mt-1 text-body">{LEGAL_ENTITY.addressPublic}</dd>
                   </div>
                   <div className="sm:col-span-2">
                     <dt className="meta-label text-muted">Партнёрская программа</dt>
@@ -844,7 +844,7 @@ export default function BitrixLandingPage() {
             <p>
               <span className="text-muted">{LEGAL_ENTITY.name}</span> · {formatLegalRequisitesLine()}
             </p>
-            <p className="mt-2">{LEGAL_ENTITY.address}</p>
+            <p className="mt-2">{LEGAL_ENTITY.addressPublic}</p>
             <p className="mt-2 text-muted">{BITRIX_PARTNER_PROGRAM.line}</p>
             <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
               <span>© {new Date().getFullYear()} Bober AI Systems</span>

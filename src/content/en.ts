@@ -94,7 +94,8 @@ const en = {
     valueProposition:
       "For companies where managers and operators lose hours on proposals, documents and copy-paste between CRM, email and ERP — from a small sales team to a corporate perimeter.\n\nWe deploy a production AI perimeter into your systems — with a fixed estimate, NDA and full code handover.\n\nCorporate AI integrator: automation and AI implementation is our core offer. For projects with sensitive data we deploy AI in a Russian cloud or a closed perimeter and add access control, logging and infrastructure protection.",
     differentiator: "Fixed estimate · NDA · cloud / on-prem / secured contour",
-    specialization: "30-minute call · reply within 4 business hours",
+    specialization:
+      "We reply within 4 business hours. After a 30-minute call we send a preliminary plan and budget range within 24 hours.",
     heroImageAlt: "Pawel Stasinski — founder of Bober AI, AI architect",
     founderBadge: "Founder & Project Lead",
     teamLine: "Architecture, delivery and accountability for outcomes",
@@ -109,7 +110,8 @@ const en = {
     ctaPrimary: "Get an estimate",
     ctaSecondary: "View case studies",
     ctaTelegram: "Telegram",
-    responseNote: "Response within 4 business hours · NDA available",
+    responseNote:
+      "We reply within 4 business hours. After a 30-minute call we send a preliminary plan and budget range within 24 hours.",
     legalNote: "Personal data published with the subject''s consent.",
     legalLink: "Privacy policy",
   },
@@ -291,8 +293,12 @@ const en = {
       metaDescription: "Bober AI Systems portfolio: Kwork → Bitrix24, Kaspersky RAG, ELIA Suite, proposal automation, CRM and documents, corporate RAG assistants.",
     },
     pricing: {
-      metaTitle: "AI service price list — packages and estimates",
-      metaDescription: "Price list: audit from €1,500, pilot from €3,000, production implementation from €5,000. Fixed estimate before start.",
+      metaTitle: "Cost of AI and business automation implementation",
+      metaDescription:
+        "Price list: audit from €1,500, pilot from €3,000, production implementation from €5,000. Fixed estimate before start.",
+      h1: "Cost of AI and business automation implementation",
+      subtitle:
+        "Fixed estimate before kickoff. Audit, pilot and production rollout — with clear timelines and NDA on request.",
     },
     faq: {
       metaTitle: "FAQ — AI implementation for business",
@@ -499,17 +505,17 @@ const en = {
   microConversions: {
     label: "Next step",
     title: "Not ready for full implementation — start smaller",
-    subtitle: "Choose a no-obligation format. Response within 4 business hours.",
+    subtitle: "Choose a no-obligation format. We reply within 4 business hours. After a 30-minute call we send a preliminary plan and budget range within 24 hours.",
     items: [
       {
         title: "Schedule a call",
-        description: "30 minutes: we review the task, processes and expected business impact.",
+        description: "30-minute call: we review the task and processes. Then — plan and budget range within 24 hours.",
         cta: "Schedule a call",
         service: "Discovery call",
       },
       {
         title: "Get an estimate",
-        description: "Preliminary quote and work plan — within 24 hours after the brief.",
+        description: "We reply within 4 business hours. Preliminary plan and budget range — within 24 hours after the call.",
         cta: "Get an estimate",
         service: "Project estimate",
       },
@@ -909,7 +915,7 @@ const en = {
     goal: "My goal is a measurable business outcome for the client: less routine, faster workflows, a working system — not demos and slide decks.",
     stats: [
       { value: "TURNKEY", label: "from analysis to implementation" },
-      { value: "from 500 000 ₽", label: "project start" },
+      { value: "from €5,000", label: "project start" },
       { value: "10+", label: "years of experience" },
       { value: "NDA / ON-PREM", label: "\u00a0" },
     ],
@@ -1032,7 +1038,7 @@ const en = {
   },
   cta: {
     title: "Get an implementation estimate",
-    subtitle: "Describe the task — a preliminary plan and quote within 24 hours.",
+    subtitle: "Describe the task — we reply within 4 business hours. After a 30-minute call we send a preliminary plan and budget range within 24 hours.",
     primary: "Get an estimate",
     secondary: "Telegram",
     calendar: "Book a call",
@@ -1075,7 +1081,7 @@ const en = {
     subtitle: "Answers for procurement, IT and business owners.",
     items: [
       { q: "How much does it cost to hire AI implementation?", a: "Audit — from €1,500. Pilot — from €3,000. Production implementation — from €5,000. Fixed scope before development starts." },
-      { q: "How do I buy a pilot or audit?", a: "Leave a request or message on Telegram — in 30 minutes we review the task and send a plan with timeline and budget range within 24 hours." },
+      { q: "How do I buy a pilot or audit?", a: "Leave a request or message on Telegram. We reply within 4 business hours. After a 30-minute call we send a preliminary plan and budget range within 24 hours." },
       { q: "How long does implementation take?", a: "Discovery: 1–2 weeks. Prototype: 2–4 weeks. Production launch: 4–12 weeks — depending on integrations and data requirements." },
       { q: "Does it integrate with amoCRM, Bitrix24 and 1C?", a: "Yes. CRM/ERP is a core competency: bidirectional sync, webhooks, document flows, retry on failures." },
       { q: "Can you deploy in our own perimeter?", a: "Yes. On-prem, isolated VPC, Yandex Cloud, Selectel, Cloud.ru — data stays in your infrastructure." },
@@ -1129,9 +1135,9 @@ const en = {
   contact: {
     title: "Get a project estimate",
     subtitle:
-      "Name and contact are enough. In 30 minutes we review the task — we reply within 4 business hours, and send the preliminary plan and budget range within 24 hours.",
+      "We reply within 4 business hours. After a 30-minute call we send a preliminary plan and budget range within 24 hours.",
     afterSubmit:
-      "After you submit, we reply within 4 business hours: clarify the process and send a timeline and budget orientation.",
+      "We reply within 4 business hours. After a 30-minute call we send a preliminary plan and budget range within 24 hours.",
     email: "Email",
     telegram: "Telegram",
     whatsapp: "WhatsApp",
@@ -1142,15 +1148,17 @@ const en = {
     fabLabel: "Get an estimate",
     modalChannels: "Or reach out directly",
     modalFormDivider: "Or leave a request",
-    intentTitle: "Get your project reviewed in 30 minutes",
-    intentSubtitle: "Name and contact are enough. We reply within 4 business hours and send the plan and budget range within 24 hours.",
+    intentTitle: "Get a project estimate",
+    intentSubtitle:
+      "We reply within 4 business hours. After a 30-minute call we send a preliminary plan and budget range within 24 hours.",
     intentOffer: "No commitment · ROI orientation · NDA on request",
     intentDefaultService: "30-minute project assessment",
   },
   form: {
     intro:
       "Name and contact are enough for the first step. A task description is optional.",
-    introShort: "Name and contact are enough. Reply within 4 business hours.",
+    introShort:
+      "We reply within 4 business hours. After a 30-minute call we send a preliminary plan and budget range within 24 hours.",
     name: "Name",
     company: "Company",
     phone: "Phone or Telegram",
@@ -1194,7 +1202,7 @@ const en = {
   },
   diagnosticForm: {
     eyebrow: "Preliminary estimate",
-    title: "Leave a request — we'll review your process within 4 hours",
+    title: "Leave a request — we reply within 4 business hours",
     progressLabel: "Step {current} of {total}",
     back: "Back",
     finalCta: "Get an estimate",
@@ -1380,7 +1388,8 @@ const en = {
       days: "days",
       contact: "Contact",
       formTitle: "Discuss your project",
-      formSubtitle: "Describe the process or integration — we reply within 4 business hours.",
+      formSubtitle:
+        "Describe the process or integration — we reply within 4 business hours. After a 30-minute call we send a preliminary plan and budget range within 24 hours.",
       faqTitle: "FAQ",
       caseStudiesTitle: "Case studies",
       viewCaseStudy: "View case study",

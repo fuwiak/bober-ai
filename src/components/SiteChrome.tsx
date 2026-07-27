@@ -1,9 +1,14 @@
 import NextLink from "next/link";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { SiteHeaderClient } from "@/components/SiteHeaderClient";
 import { Link } from "@/i18n/navigation";
 import { CONTACT_PHONE, HOMEPAGE_PRESENCE_LINKS, SITE_NAME, SITE_URL, TELEGRAM_URL } from "@/lib/site";
-import { LEGAL_ENTITY, LEGAL_ROUTES, formatLegalRequisitesLine } from "@/lib/legal";
+import {
+  LEGAL_ENTITY,
+  LEGAL_ROUTES,
+  formatLegalRequisitesLine,
+  legalAddressForLocale,
+} from "@/lib/legal";
 
 export async function SiteHeader() {
   const t = await getTranslations("nav");
@@ -111,6 +116,7 @@ export async function SiteHeader() {
 }
 
 export async function SiteFooter() {
+  const locale = await getLocale();
   const t = await getTranslations("footer");
   const tNav = await getTranslations("nav");
 
@@ -155,19 +161,19 @@ export async function SiteFooter() {
         <p className="mt-8 text-sm">
           <span className="text-on-dark">{t("legalName")}</span>
           {" · "}
-          {formatLegalRequisitesLine()}
+          {formatLegalRequisitesLine(locale)}
         </p>
-        <p className="mt-2 text-sm text-on-dark-soft">{LEGAL_ENTITY.address}</p>
+        <p className="mt-2 text-sm text-on-dark-soft">{legalAddressForLocale(locale)}</p>
         <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-          <NextLink href={LEGAL_ROUTES.terms} className="text-on-dark-soft active:text-on-dark">
+          <Link href={LEGAL_ROUTES.terms} className="text-on-dark-soft active:text-on-dark">
             {t("terms")}
-          </NextLink>
-          <NextLink href={LEGAL_ROUTES.privacyPolicy} className="text-on-dark-soft active:text-on-dark">
+          </Link>
+          <Link href={LEGAL_ROUTES.privacyPolicy} className="text-on-dark-soft active:text-on-dark">
             {t("privacy")}
-          </NextLink>
-          <NextLink href={LEGAL_ROUTES.consent} className="text-on-dark-soft active:text-on-dark">
+          </Link>
+          <Link href={LEGAL_ROUTES.consent} className="text-on-dark-soft active:text-on-dark">
             {t("consent")}
-          </NextLink>
+          </Link>
           <a href={`mailto:${LEGAL_ENTITY.email}`} className="text-on-dark-soft active:text-on-dark">
             {LEGAL_ENTITY.email}
           </a>

@@ -1,12 +1,24 @@
-import { CONTACT_EMAIL, CONTACT_PHONE, ORGANIZATION_NAME, SITE_NAME, SITE_URL } from "@/lib/site";
+import { CONTACT_PHONE, ORGANIZATION_NAME, SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const LEGAL_ENTITY = {
   name: ORGANIZATION_NAME,
   inn: "772356334324",
   ogrnip: "325774600389226",
-  /** Полный адрес места нахождения / регистрации ИП */
+  /** Полный адрес регистрации ИП — на оферте, политике ПДн и согласии. */
   address: "109451, Россия, г. Москва, Перервинский б-р, д. 3, кв. 57",
-  email: CONTACT_EMAIL,
+  /**
+   * Публичный адрес для футера и витрин: достаточно для идентификации
+   * исполнителя (ФЗ), без номера квартиры на каждой странице.
+   */
+  addressPublic: "109451, Россия, г. Москва",
+  /** International footer: city/country only */
+  addressEn: "Moscow, Russia",
+  /**
+   * Публичный email в политике, согласии и футере legal-страниц.
+   * Зафиксирован явно — не зависит от NEXT_PUBLIC_CONTACT_EMAIL,
+   * чтобы документы не разъезжались при смене env.
+   */
+  email: "contact@bober-ai.dev" as const,
   phone: CONTACT_PHONE,
   site: SITE_URL,
 } as const;
@@ -39,9 +51,16 @@ export function yandexMetrikaIdForLocation(hostname?: string, pathname?: string)
   return YANDEX_METRIKA_ID;
 }
 
-export const POLICY_UPDATED_AT = "22.07.2026";
+export const POLICY_UPDATED_AT = "27.07.2026";
 
 /** Строка реквизитов для футера и кратких блоков */
-export function formatLegalRequisitesLine(): string {
+export function formatLegalRequisitesLine(locale: string = "ru"): string {
+  if (locale === "en") {
+    return `Tax ID (INN) ${LEGAL_ENTITY.inn} · Primary state reg. no. (OGRNIP) ${LEGAL_ENTITY.ogrnip}`;
+  }
   return `ИНН ${LEGAL_ENTITY.inn} · ОГРНИП ${LEGAL_ENTITY.ogrnip}`;
+}
+
+export function legalAddressForLocale(locale: string = "ru"): string {
+  return locale === "en" ? LEGAL_ENTITY.addressEn : LEGAL_ENTITY.addressPublic;
 }
