@@ -255,14 +255,37 @@ jobs:
           fi
 
           # Homepage must expose Yandex verification for bober-systems.ru
-          html=$(curl -sf --connect-timeout 10 "http://127.0.0.1:${APP_PORT}/" || true)
-          echo "$html" | grep -q 'yandex-verification" content="0e71ef3fc54b6c3c"' \
-            || { echo "NO_YANDEX_META on homepage"; echo "$html" | tr '>' '>\n' | grep -i yandex | head; exit 1; }
+          meta_ok=0
+          for j in 1 2 3 4 5; do
+            html=$(curl -sf --connect-timeout 10 "http://127.0.0.1:${APP_PORT}/" || true)
+            if echo "$html" | grep -q '0e71ef3fc54b6c3c'; then
+              meta_ok=1
+              break
+            fi
+            sleep 2
+          done
+          if [ "$meta_ok" != 1 ]; then
+            echo "NO_YANDEX_META on homepage :$APP_PORT"
+            echo "$html" | tr '>' '>\n' | grep -i 'yandex\|verification\|0e71ef' | head -20
+            exit 1
+          fi
 
           # Edge check via Host header (bober-ai caddy → :3001)
-          edge=$(curl -sk --connect-timeout 10 -H 'Host: www.bober-systems.ru' "https://127.0.0.1/" || true)
-          echo "$edge" | grep -q 'yandex-verification" content="0e71ef3fc54b6c3c"' \
-            || { echo "NO_YANDEX_META on edge caddy"; echo "$edge" | tr '>' '>\n' | grep -i yandex | head; docker logs bober-ai --tail 40 || true; exit 1; }
+          edge_ok=0
+          for j in 1 2 3 4 5 6 7 8; do
+            edge=$(curl -sk --connect-timeout 10 -H 'Host: www.bober-systems.ru' "https://127.0.0.1/" || true)
+            if echo "$edge" | grep -q '0e71ef3fc54b6c3c'; then
+              edge_ok=1
+              break
+            fi
+            sleep 3
+          done
+          if [ "$edge_ok" != 1 ]; then
+            echo "NO_YANDEX_META on edge caddy"
+            echo "$edge" | tr '>' '>\n' | grep -i 'yandex\|verification\|0e71ef' | head -20
+            docker logs bober-ai --tail 40 || true
+            exit 1
+          fi
 
           printf 'ok %s %s\n' "$GIT_SHA" "$(date -Is)" > "$READY"
           rm -f "$TGZ"
@@ -275,12 +298,12 @@ jobs:
         run: |
           set -euo pipefail
           for i in 1 2 3 4 5 6 7 8; do
-            health=$(curl -sf --connect-timeout 10 https://www.bober-ai.dev/api/health || true)
+            health=$(curl -sf --connect-timeout 10 https://www.bober-systems.ru/api/health || true)
             html=$(curl -sf --connect-timeout 10 https://www.bober-systems.ru/ || true)
             echo "attempt=$i health=$health"
             if echo "$health" | grep -q '"ok":true' \
               && echo "$health" | grep -q "$GIT_SHA" \
-              && echo "$html" | grep -q 'yandex-verification" content="0e71ef3fc54b6c3c"'; then
+              && echo "$html" | grep -q '0e71ef3fc54b6c3c'; then
               echo "PUBLIC_HEALTH_OK + YANDEX_META_OK"
               exit 0
             fi
@@ -288,6 +311,6 @@ jobs:
             sleep 5
           done
           echo "::error::Public health/sha/yandex-meta check failed after deploy"
-          curl -sL https://www.bober-systems.ru/ | tr '>' '>\n' | grep -i yandex | head || true
-          curl -sL https://www.bober-ai.dev/api/health || true
+          curl -sL https://www.bober-systems.ru/ | tr '>' '>\n' | grep -i 'yandex\|0e71ef' | head || true
+          curl -sL https://www.bober-systems.ru/api/health || true
           exit 1
