@@ -1,0 +1,26 @@
+{
+  "name": "Bober AI Systems",
+  "short_name": "Bober AI",
+  "description": "Внедрение AI в продажи и операции в Москве: КП, документы, Bitrix24/amoCRM и 1С. Пилот от 300 000 ₽, фиксированная смета, NDA, облако или on-premise.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

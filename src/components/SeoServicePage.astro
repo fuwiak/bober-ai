@@ -1,0 +1,448 @@
+---
+/**
+ * Astro port of Next SeoServicePage — rich commercial service landings.
+ */
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import CaseStudyCard from "@/components/CaseStudyCard.astro";
+import ComparisonSection from "@/components/ComparisonSection.astro";
+import ContactForm from "@/components/ContactForm.astro";
+import { getEnterpriseService } from "@/lib/enterprise-services";
+import { getEnterpriseReviews } from "@/lib/enterprise-reviews";
+import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
+import { PROFILE, getPortfolioItem } from "@/lib/profile";
+import {
+  faqJsonLd,
+  organizationJsonLd,
+  personJsonLd,
+  serviceJsonLd,
+  webPageJsonLd,
+} from "@/lib/seo";
+import type { SeoServiceContent } from "@/lib/seo-services-content";
+import { absoluteUrl, GITHUB_URL, LINKEDIN_URL, TELEGRAM_URL } from "@/lib/site";
+
+interface Props {
+  slug: string;
+  locale: Locale;
+  content: SeoServiceContent;
+  pagePath?: string;
+  breadcrumbItems?: { name: string; path: string }[];
+  serviceSlug?: string;
+}
+
+const {
+  slug,
+  locale,
+  content,
+  pagePath,
+  breadcrumbItems,
+  serviceSlug,
+} = Astro.props;
+
+const messages = loadMessages(locale);
+const sp = messages.servicePage;
+const lookupSlug = serviceSlug ?? slug;
+const service = getEnterpriseService(lookupSlug, locale);
+const resolvedPath = pagePath ?? `/services/${slug}`;
+const canonicalPath = localizePath(resolvedPath, locale);
+const pageUrl = absoluteUrl(canonicalPath);
+const servicesLabel = locale === "en" ? "Services" : "Услуги";
+const isEn = locale === "en";
+const reviews = getEnterpriseReviews();
+
+const breadcrumbs =
+  breadcrumbItems ??
+  [
+    { name: servicesLabel, path: "/services" },
+    { name: content.h1, path: resolvedPath },
+  ];
+
+const webPage = webPageJsonLd({
+  name: content.h1,
+  description: content.metaDescription,
+  url: pageUrl,
+  locale,
+});
+
+const serviceSchema = serviceJsonLd({
+  name: content.h1,
+  description: content.metaDescription,
+  url: pageUrl,
+  locale,
+  price: service?.price,
+  priceCurrency: isEn ? "EUR" : "RUB",
+  priceLabel: service?.salesNotes,
+});
+
+const organization = {
+  "@context": "https://schema.org",
+  ...organizationJsonLd(locale),
+};
+
+const person = personJsonLd({
+  name: PROFILE.name,
+  jobTitle: PROFILE.roles[0],
+  description: PROFILE.focus,
+  image: PROFILE.heroImage,
+  url: TELEGRAM_URL,
+  sameAs: [LINKEDIN_URL, GITHUB_URL, TELEGRAM_URL],
+});
+
+const faqSchema = content.faq.length ? faqJsonLd(content.faq, pageUrl) : null;
+const caseStudies = (content.caseStudySlugs ?? [])
+  .map((caseSlug) => getPortfolioItem(caseSlug, locale))
+  .filter((item): item is NonNullable<typeof item> => Boolean(item));
+
+const howCols =
+  content.howWeSolve.length >= 5
+    ? "lg:grid-cols-5"
+    : content.howWeSolve.length === 3
+      ? "lg:grid-cols-3"
+      : "lg:grid-cols-4";
+
+const jsonLd = [webPage, serviceSchema, organization, person, ...(faqSchema ? [faqSchema] : [])];
+---
+
+<BaseLayout
+  title={content.metaTitle}
+  description={content.metaDescription}
+  locale={locale}
+  canonicalPath={canonicalPath}
+  jsonLd={jsonLd}
+>
+  <main>
+    <section class="section-band section--deep border-b border-hairline">
+      <div class="container-editorial">
+        <Breadcrumbs locale={locale} items={breadcrumbs} />
+        <div class="mt-8 grid gap-12 lg:grid-cols-[1fr_360px] lg:items-start">
+          <div class="max-w-4xl">
+            <span class="section-label">{content.eyebrow}</span>
+            <h1 class="display-md mt-4">{content.h1}</h1>
+            <p class="mt-3 text-sm text-muted">
+              {isEn ? "Performer" : "Исполнитель"}:{" "}
+              <span class="font-medium text-ink">{PROFILE.name}</span>
+            </p>
+            <p class="body-copy mt-5 max-w-3xl text-lg">{content.subtitle}</p>
+            <div class="mt-10 flex flex-wrap gap-4">
+              <a href="#contact" class="btn-primary" data-goal="audit_cta_click">{sp.quote}</a>
+              <a
+                href={TELEGRAM_URL}
+                target="_blank"
+                rel="noreferrer"
+                class="btn-secondary"
+                data-goal="telegram_click">{sp.telegram}</a
+              >
+              <a href="#contact" class="btn-secondary" data-goal="service_estimate_cta_click">
+                {isEn ? "Get an estimate" : "Получить оценку"}
+              </a>
+            </div>
+          </div>
+          {
+            service && (
+              <aside class="feature-card-bordered">
+                <p class="font-display text-2xl tracking-tight">{service.salesNotes}</p>
+                <p class="mt-2 text-sm text-muted">
+                  {sp.timeline}: {service.deliveryDays} {sp.days}
+                </p>
+                <p class="mt-3 text-sm text-muted">
+                  {isEn ? "Fixed estimate · remote" : "Фиксированная смета · удалённо"}
+                </p>
+                <div class="relative mt-6 aspect-[4/3] overflow-hidden rounded-lg border border-hairline bg-surface-soft">
+                  <img
+                    src={service.serviceImage}
+                    alt={service.title}
+                    class="h-full w-full object-cover"
+                    width="360"
+                    height="270"
+                    fetchpriority="high"
+                    decoding="async"
+                  />
+                </div>
+                <a href="#contact" class="btn-primary mt-6 w-full text-center" data-goal="audit_cta_click">
+                  {sp.quote}
+                </a>
+              </aside>
+            )
+          }
+        </div>
+      </div>
+    </section>
+
+    {
+      content.intro.length > 0 && (
+        <section class="section-band section--panel border-b border-hairline">
+          <div class="container-editorial max-w-3xl">
+            {content.intro.map((paragraph) => (
+              <p class="body-copy mt-4 text-base first:mt-0">{paragraph}</p>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    <section class="section-band section--deep border-b border-hairline">
+      <div class="container-editorial grid gap-16 lg:grid-cols-2">
+        <div>
+          <h2 class="section-title">{content.problemsTitle}</h2>
+          <ul class="mt-8 space-y-4">
+            {
+              content.problems.map((item) => (
+                <li class="body-copy flex gap-4 text-base">
+                  <span class="meta-label shrink-0">—</span>
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div>
+          <h2 class="section-title">{content.deliverablesTitle}</h2>
+          <ul class="mt-8 space-y-4">
+            {
+              content.deliverables.map((item) => (
+                <li class="body-copy flex gap-4 text-base">
+                  <span class="meta-label shrink-0">—</span>
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    {
+      content.comparison && (
+        <ComparisonSection
+          label={content.comparison.label}
+          title={content.comparison.title}
+          subtitle={content.comparison.subtitle}
+          items={content.comparison.items}
+        />
+      )
+    }
+
+    {
+      content.comparisonSecondary && (
+        <ComparisonSection
+          label={content.comparisonSecondary.label}
+          title={content.comparisonSecondary.title}
+          subtitle={content.comparisonSecondary.subtitle}
+          items={content.comparisonSecondary.items}
+        />
+      )
+    }
+
+    {
+      content.howWeSolve.length > 0 && (
+        <section class="section-band section--panel border-b border-hairline">
+          <div class="container-editorial">
+            <h2 class="section-title">{content.howWeSolveTitle}</h2>
+            <div class={`mt-10 grid gap-6 md:grid-cols-2 ${howCols}`}>
+              {content.howWeSolve.map((step, index) => (
+                <article class="feature-card">
+                  <span class="font-display text-3xl text-primary/40">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h3 class="card-title mt-3">{step.title}</h3>
+                  <p class="body-copy mt-3 text-base">{step.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      content.architecture.length > 0 && (
+        <section class="section-band section--deep border-b border-hairline">
+          <div class="container-editorial max-w-3xl">
+            <h2 class="section-title">{content.architectureTitle}</h2>
+            <ul class="mt-8 space-y-4">
+              {content.architecture.map((item) => (
+                <li class="body-copy flex gap-4 text-base">
+                  <span class="meta-label shrink-0">—</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      content.roi.length > 0 && (
+        <section class="section-band section--panel border-b border-hairline">
+          <div class="container-editorial">
+            <h2 class="section-title">{content.roiTitle}</h2>
+            <div class="mt-10 grid gap-6 sm:grid-cols-3">
+              {content.roi.map((item) => (
+                <div class="feature-card-bordered text-center">
+                  <p class="font-display text-3xl tracking-tight text-ink">{item.value}</p>
+                  <p class="body-copy mt-2 text-sm">{item.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      service && (
+        <section class="section-band section--panel border-b border-hairline">
+          <div class="container-editorial max-w-3xl">
+            <h2 class="section-title">{isEn ? "Price and conditions" : "Цена и условия"}</h2>
+            <div class="mt-8 overflow-x-auto">
+              <table class="w-full border-collapse text-left text-sm">
+                <caption class="sr-only">
+                  {isEn ? "Commercial terms for this service" : "Коммерческие условия услуги"}
+                </caption>
+                <tbody>
+                  <tr class="border-b border-hairline">
+                    <th scope="row" class="py-3 pr-6 font-medium text-ink">
+                      {isEn ? "Price" : "Цена"}
+                    </th>
+                    <td class="py-3 text-muted">{service.salesNotes}</td>
+                  </tr>
+                  <tr class="border-b border-hairline">
+                    <th scope="row" class="py-3 pr-6 font-medium text-ink">
+                      {sp.timeline}
+                    </th>
+                    <td class="py-3 text-muted">
+                      {service.deliveryDays} {sp.days}
+                    </td>
+                  </tr>
+                  <tr class="border-b border-hairline">
+                    <th scope="row" class="py-3 pr-6 font-medium text-ink">
+                      {isEn ? "Format" : "Формат"}
+                    </th>
+                    <td class="py-3 text-muted">
+                      {isEn ? "Fixed estimate · remote delivery" : "Фиксированная смета · удалённо"}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="py-3 pr-6 font-medium text-ink">
+                      {isEn ? "Scope" : "Состав"}
+                    </th>
+                    <td class="py-3 text-muted">{service.about}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      caseStudies.length > 0 && (
+        <section class="section-band section--deep border-b border-hairline">
+          <div class="container-editorial">
+            <h2 class="section-title">{isEn ? "Related case studies" : "Связанные кейсы"}</h2>
+            <div class="mt-8 grid gap-8 lg:grid-cols-2">
+              {caseStudies.map((item) => (
+                <CaseStudyCard
+                  item={item}
+                  locale={locale}
+                  viewLabel={isEn ? "View case study" : "Подробнее о проекте"}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      reviews.length > 0 && (
+        <section class="section-band section--panel border-b border-hairline">
+          <div class="container-editorial">
+            <span class="section-label">{isEn ? "Trust" : "Доверие"}</span>
+            <h2 class="section-title mt-4">
+              {isEn ? "Reviews from Yandex" : "Отзывы на Яндексе"}
+            </h2>
+            <p class="body-copy mt-4 max-w-2xl text-base">
+              {isEn
+                ? "Public feedback from Yandex Services — same performer profile as the feed."
+                : "Публичные отзывы с Яндекс Услуг — тот же профиль исполнителя, что в фиде."}
+            </p>
+            <div class="mt-10 grid gap-6 md:grid-cols-2">
+              {reviews.map((review) => (
+                <blockquote class="feature-card">
+                  <p class="body-copy text-base">“{review.text}”</p>
+                  <footer class="mt-4 text-sm text-muted">
+                    — {review.author}
+                    {review.date ? ` · ${review.date}` : ""}
+                    {" · "}
+                    {review.source}
+                  </footer>
+                </blockquote>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      content.faq.length > 0 && (
+        <section class="section-band section--panel border-b border-hairline">
+          <div class="container-editorial max-w-3xl">
+            <h2 class="section-title">{content.faqTitle}</h2>
+            <dl class="mt-8 space-y-8">
+              {content.faq.map((item) => (
+                <div>
+                  <dt class="font-display text-xl tracking-tight">{item.q}</dt>
+                  <dd class="body-copy mt-3 text-base">{item.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      content.related.length > 0 && (
+        <section class="section-band section--deep border-b border-hairline">
+          <div class="container-editorial">
+            <h2 class="section-title">{isEn ? "Related services" : "Связанные услуги"}</h2>
+            <ul class="mt-6 space-y-2">
+              {content.related.map((item) => {
+                const isExternal =
+                  item.href.startsWith("http://") || item.href.startsWith("https://");
+                return (
+                  <li>
+                    {isExternal ? (
+                      <a href={item.href} target="_blank" rel="noreferrer" class="link-more py-2">
+                        {item.label}
+                      </a>
+                    ) : (
+                      <a href={localizePath(item.href, locale)} class="link-more py-2">
+                        {item.label}
+                      </a>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </section>
+      )
+    }
+
+    <section id="contact" class="section-band section--panel scroll-mt-16">
+      <div class="container-editorial grid gap-16 lg:grid-cols-2">
+        <div>
+          <span class="section-label">{isEn ? "Contact" : "Контакт"}</span>
+          <h2 class="section-title mt-4">{sp.formTitle}</h2>
+          <p class="body-copy mt-4 max-w-xl text-base">{content.subtitle}</p>
+        </div>
+        <ContactForm locale={locale} messages={messages} defaultService={content.h1} />
+      </div>
+    </section>
+  </main>
+</BaseLayout>

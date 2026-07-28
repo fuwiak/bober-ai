@@ -1,0 +1,235 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import {
+  NEWS_CATEGORY_LABEL,
+  type NewsItem,
+} from "@/lib/news-agent";
+import { getCachedDigest, kickoffRefresh, startNewsScheduler } from "@/lib/news-scheduler";
+import { DEFAULT_KEYWORDS, SITE_NAME, absoluteUrl } from "@/lib/site";
+
+export const prerender = false;
+
+const title = "ИИ подборка новостей";
+const description = `Подборка новостей по темам Yandex Cloud, Selectel, Россия и Мир от ${SITE_NAME}.`;
+const keywords = [...DEFAULT_KEYWORDS, "новости ИИ", "Yandex Cloud новости", "Selectel новости", "AI digest"];
+
+const FALLBACK_PLACEHOLDERS = [
+  { tag: "LLM", title: "Новости по LLM и корпоративному ИИ" },
+  { tag: "Облака", title: "Обновления Yandex Cloud, Selectel и cloud.ru" },
+  { tag: "Безопасность", title: "152-ФЗ, приватные модели и защищённые контуры" },
+  { tag: "Автоматизация", title: "Кейсы по автоматизации поддержки и продаж" },
+  { tag: "GPU", title: "Анонсы сертифицированных GPU и инфраструктуры" },
+  { tag: "Индустрия", title: "Главное из мира AI" },
+];
+
+const BUCKET_ORDER: NewsItem["category"][] = ["yandex-selectel", "russia", "world"];
+
+function groupItems(items: NewsItem[]): Record<NewsItem["category"], NewsItem[]> {
+  const groups: Record<NewsItem["category"], NewsItem[]> = {
+    "yandex-selectel": [],
+    russia: [],
+    world: [],
+  };
+  for (const item of items) {
+    groups[item.category].push(item);
+  }
+  return groups;
+}
+
+function formatStreamTime(iso?: string): string | null {
+  if (!iso) return null;
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return null;
+  const now = new Date();
+  const sameDay =
+    d.getFullYear() === now.getFullYear() &&
+    d.getMonth() === now.getMonth() &&
+    d.getDate() === now.getDate();
+  const time = new Intl.DateTimeFormat("ru-RU", { hour: "2-digit", minute: "2-digit" }).format(d);
+  if (sameDay) return `сегодня ${time}`;
+  const date = new Intl.DateTimeFormat("ru-RU", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }).format(d);
+  return `${date} ${time}`;
+}
+
+startNewsScheduler();
+kickoffRefresh();
+
+let items: NewsItem[] = [];
+let generatedAt: string | null = null;
+try {
+  const digest = await getCachedDigest();
+  items = digest.items ?? [];
+  generatedAt = digest.generatedAt ?? null;
+} catch {
+  items = [];
+}
+
+const grouped = groupItems(items);
+const hasData = items.length > 0;
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: SITE_NAME, item: absoluteUrl("/") },
+    { "@type": "ListItem", position: 2, name: "ИИ подборка новостей", item: absoluteUrl("/news") },
+  ],
+};
+const pageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "ИИ подборка новостей",
+  url: absoluteUrl("/news"),
+  isPartOf: { "@type": "WebSite", name: SITE_NAME, url: absoluteUrl("/") },
+  about: ["Yandex Cloud", "Selectel", "Искусственный интеллект", "Россия", "Мир"],
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  locale="ru"
+  canonicalPath="/news"
+  keywords={keywords}
+  jsonLd={[breadcrumbJsonLd, pageJsonLd]}
+>
+  <section class="container-editorial py-12 md:py-20" data-news-generated={generatedAt || ""}>
+    <div class="mb-12 flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <p class="meta-label">AI-дайджест</p>
+        <h1 class="mt-2 display-title">ИИ подборка новостей</h1>
+        <p class="mt-3 max-w-2xl body-copy text-muted">
+          Подборку готовит <span class="font-semibold">{SITE_NAME} agent</span>. Он сам ищет актуальные
+          материалы по ИИ, LLM и облачной AI-инфраструктуре и обновляет ленту автоматически.
+        </p>
+      </div>
+      <a href="/" class="btn-secondary text-sm uppercase tracking-widest">На главную</a>
+    </div>
+
+    <div class="mb-10 flex justify-center border border-hairline bg-surface p-4">
+      <a
+        href="https://selectel.ru/services/cloud/vpc/?ref_code=a9a9119ad2"
+        target="_blank"
+        rel="noreferrer nofollow sponsored"
+        aria-label="Реферальная ссылка на облачную платформу Selectel"
+        class="inline-block overflow-hidden"
+      >
+        <img
+          src="https://static.selectel.ru/referral_2/vpc/yandex/240x400_0+.png"
+          alt="Облачная платформа"
+          width="240"
+          height="400"
+          loading="lazy"
+          class="h-auto w-full max-w-[240px]"
+        />
+      </a>
+    </div>
+
+    {
+      hasData ? (
+        <div class="space-y-14">
+          {BUCKET_ORDER.map((category) => {
+            const bucketItems = grouped[category];
+            if (!bucketItems || bucketItems.length === 0) return null;
+            return (
+              <section>
+                <div class="mb-6 flex items-end justify-between gap-4 border-b border-hairline pb-3">
+                  <h2 class="section-title text-2xl md:text-3xl">{NEWS_CATEGORY_LABEL[category]}</h2>
+                  <span class="text-xs font-bold uppercase tracking-widest text-muted">
+                    {bucketItems.length} материал{bucketItems.length === 1 ? "" : "ов"}
+                  </span>
+                </div>
+                <div class="flex flex-col">
+                  {bucketItems.map((item) => {
+                    const time = formatStreamTime(item.publishedAt);
+                    return (
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        class="group flex flex-col gap-4 border-b border-hairline py-6 transition first:pt-0 last:border-b-0 sm:flex-row"
+                      >
+                        <div class="relative aspect-[3/2] w-full shrink-0 overflow-hidden border border-hairline bg-surface sm:w-[260px]">
+                          {item.image ? (
+                            <img
+                              src={item.image}
+                              alt={item.title}
+                              class="h-full w-full object-cover object-center transition duration-500 group-hover:scale-[1.03]"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <div class="grid h-full w-full place-items-center text-xs font-bold uppercase tracking-widest text-muted">
+                              {SITE_NAME}
+                            </div>
+                          )}
+                        </div>
+                        <div class="flex min-w-0 flex-col">
+                          <div class="flex flex-wrap items-center gap-2">
+                            <span class="meta-label text-primary">{NEWS_CATEGORY_LABEL[item.category]}</span>
+                            {item.source ? <span class="text-xs text-muted">{item.source}</span> : null}
+                          </div>
+                          <h3 class="mt-3 text-xl font-bold leading-snug transition group-hover:text-primary md:text-2xl">
+                            {item.title}
+                          </h3>
+                          {item.summary ? (
+                            <p class="mt-2 line-clamp-3 text-sm text-muted md:text-base">{item.summary}</p>
+                          ) : null}
+                          {time ? (
+                            <div class="mt-3 text-xs font-medium uppercase tracking-wider text-muted">{time}</div>
+                          ) : null}
+                        </div>
+                      </a>
+                    );
+                  })}
+                </div>
+              </section>
+            );
+          })}
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {FALLBACK_PLACEHOLDERS.map((item, idx) => (
+            <div class="border border-hairline bg-surface p-6">
+              <span class="meta-label text-primary">{item.tag}</span>
+              <h3 class="mt-4 text-lg font-bold">{item.title}</h3>
+              <div class="mt-4 grid h-28 place-items-center border border-dashed border-hairline bg-canvas">
+                <p class="text-xs font-bold uppercase tracking-widest text-muted">Материал скоро появится</p>
+              </div>
+              <p class="mt-4 text-sm text-muted">
+                Слот {idx + 1}: здесь появится новость, подобранная {SITE_NAME} agent.
+              </p>
+            </div>
+          ))}
+        </div>
+      )
+    }
+  </section>
+
+  <script define:vars={{ hasData, generatedAt }}>
+    (function () {
+      let lastSeen = generatedAt;
+      const initialDelay = hasData ? 60000 : 2500;
+      const interval = hasData ? 5 * 60 * 1000 : 4000;
+      function check() {
+        fetch("/api/news", { cache: "no-store" })
+          .then((res) => (res.ok ? res.json() : null))
+          .then((data) => {
+            if (!data) return;
+            const gen = typeof data.generatedAt === "string" ? data.generatedAt : null;
+            const hasItems = Array.isArray(data.items) && data.items.length > 0;
+            if (gen && gen !== lastSeen && hasItems) {
+              lastSeen = gen;
+              location.reload();
+            }
+          })
+          .catch(() => {});
+      }
+      setTimeout(check, initialDelay);
+      setInterval(check, interval);
+    })();
+  </script>
+</BaseLayout>

@@ -1,0 +1,123 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import ContactForm from "@/components/ContactForm.astro";
+import {
+  getAllKasperskyProductSlugs,
+  getKasperskyProduct,
+  KASPERSKY_PRODUCTS,
+} from "@/lib/kaspersky-page";
+import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
+import { TELEGRAM_URL } from "@/lib/site";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return getAllKasperskyProductSlugs().map((slug) => ({ params: { slug } }));
+}
+
+const locale = "ru" as Locale;
+const { slug } = Astro.params;
+const product = getKasperskyProduct(slug!);
+if (!product) {
+  throw new Error(`Unknown Kaspersky product: ${slug}`);
+}
+const messages = loadMessages(locale);
+const others = KASPERSKY_PRODUCTS.filter((p) => p.slug !== slug);
+const title = product.metaTitleRu;
+const description = product.metaDescRu;
+---
+
+<BaseLayout title={title} description={description} locale={locale} canonicalPath={`/kaspersky/${slug}`}>
+  <main>
+    <section class="container-editorial max-w-3xl py-12 md:py-16">
+      <Breadcrumbs
+        locale={locale}
+        items={[
+          { name: "Secure AI", path: "/secure-ai" },
+          { name: "Kaspersky", path: "/kaspersky" },
+          { name: product.titleRu, path: `/kaspersky/${slug}` },
+        ]}
+      />
+      <span class="meta-label mt-2 inline-block text-primary">{product.badgeRu}</span>
+      <h1 class="mt-4 display-title">{product.titleRu}</h1>
+      <p class="mt-4 body-copy text-muted">{product.summaryRu}</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={localizePath("/kaspersky#contact", locale)} class="btn-primary">Обсудить проект</a>
+        <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" class="btn-secondary">Telegram</a>
+        <a href={localizePath("/kaspersky", locale)} class="btn-secondary">Все линии Kaspersky</a>
+      </div>
+    </section>
+
+    <section class="container-editorial max-w-3xl border-t border-hairline py-12">
+      <h2 class="section-title">Что клиент покупает</h2>
+      <ul class="mt-4 space-y-2 text-sm text-muted">
+        {product.clientBuysRu.map((item) => <li>— {item}</li>)}
+      </ul>
+    </section>
+
+    <section class="container-editorial max-w-3xl border-t border-hairline py-12">
+      <div class="grid gap-8 md:grid-cols-2">
+        <div>
+          <h2 class="section-title text-xl">Bober AI Systems</h2>
+          <ul class="mt-4 space-y-2 text-sm text-muted">
+            {product.boberScopeRu.map((item) => <li>— {item}</li>)}
+          </ul>
+        </div>
+        <div>
+          <h2 class="section-title text-xl">Kaspersky</h2>
+          <ul class="mt-4 space-y-2 text-sm text-muted">
+            {product.kasperskyScopeRu.map((item) => <li>— {item}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="container-editorial max-w-3xl border-t border-hairline py-12">
+      <h2 class="section-title">Архитектура</h2>
+      <ol class="mt-6 space-y-3 text-sm text-muted">
+        {
+          product.architectureRu.map((step, i) => (
+            <li class="flex gap-3">
+              <span class="text-primary/50">{String(i + 1).padStart(2, "0")}</span>
+              <span>{step}</span>
+            </li>
+          ))
+        }
+      </ol>
+      <p class="mt-6 text-sm text-muted">{product.fitRu}</p>
+      {
+        product.relatedHref ? (
+          <p class="mt-4 text-sm">
+            <a href={localizePath(product.relatedHref, locale)} class="text-link">
+              {product.relatedLabelRu} →
+            </a>
+          </p>
+        ) : null
+      }
+      {product.noteRu ? <p class="mt-4 text-xs text-muted">{product.noteRu}</p> : null}
+    </section>
+
+    <section class="container-editorial max-w-3xl border-t border-hairline py-12">
+      <h2 class="section-title">Другие линии</h2>
+      <ul class="mt-4 space-y-3 text-sm">
+        {
+          others.map((p) => (
+            <li>
+              <a href={`/kaspersky/${p.slug}`} class="text-link">
+                {p.titleRu}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section id="contact" class="container-editorial max-w-3xl border-t border-hairline py-12 md:py-16">
+      <h2 class="section-title">Запрос</h2>
+      <div class="mt-6 max-w-xl">
+        <ContactForm locale={locale} messages={messages} defaultService={product.titleRu} />
+      </div>
+    </section>
+  </main>
+</BaseLayout>

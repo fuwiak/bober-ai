@@ -15,6 +15,11 @@
 	}
 }
 
+(yml_headers) {
+	header Content-Type "application/xml; charset=utf-8"
+	header X-Content-Type-Options "nosniff"
+}
+
 :80 {
 	handle /api/health {
 		reverse_proxy 127.0.0.1:3000
@@ -48,21 +53,82 @@ https://www.bober-systems.ru {
 }
 
 https://partners.bober-ai.dev {
-	rewrite * /white-label
-	import astro_proxy
+	# Pass through API, feeds, static assets (Next middleware parity)
+	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
+	handle @passthrough {
+		handle /performers-feed.yml {
+			rewrite * /feeds/partners.yml
+			import yml_headers
+			import astro_proxy
+		}
+		@yml path *.yml
+		handle @yml {
+			import yml_headers
+		}
+		import astro_proxy
+	}
+	handle {
+		rewrite * /white-label
+		import astro_proxy
+	}
 }
 
 https://partners.bober-systems.ru {
-	rewrite * /white-label
-	import astro_proxy
+	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
+	handle @passthrough {
+		handle /performers-feed.yml {
+			rewrite * /feeds/partners.yml
+			import yml_headers
+			import astro_proxy
+		}
+		@yml path *.yml
+		handle @yml {
+			import yml_headers
+		}
+		import astro_proxy
+	}
+	handle {
+		rewrite * /white-label
+		import astro_proxy
+	}
 }
 
 https://bitrix.bober-ai.dev {
-	rewrite * /bitrix
-	import astro_proxy
+	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
+	handle @passthrough {
+		handle /performers-feed.yml {
+			rewrite * /feeds/bitrix.yml
+			import yml_headers
+			import astro_proxy
+		}
+		@yml path *.yml
+		handle @yml {
+			import yml_headers
+		}
+		import astro_proxy
+	}
+	handle {
+		rewrite * /bitrix
+		import astro_proxy
+	}
 }
 
 https://bitrix.bober-systems.ru {
-	rewrite * /bitrix
-	import astro_proxy
+	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
+	handle @passthrough {
+		handle /performers-feed.yml {
+			rewrite * /feeds/bitrix.yml
+			import yml_headers
+			import astro_proxy
+		}
+		@yml path *.yml
+		handle @yml {
+			import yml_headers
+		}
+		import astro_proxy
+	}
+	handle {
+		rewrite * /bitrix
+		import astro_proxy
+	}
 }

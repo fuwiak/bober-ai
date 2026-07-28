@@ -1,0 +1,110 @@
+---
+/**
+ * Express AI readiness checklist on /secure-ai (Next SecureAiChecklist port).
+ * Scoring via light client script; CTA → contact form (no React LeadCaptureGate).
+ */
+import { SECURE_AI_CHECKLIST } from "@/lib/secure-ai-page";
+import type { Locale } from "@/lib/i18n";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ru = locale !== "en";
+const total = SECURE_AI_CHECKLIST.reduce((sum, section) => sum + section.itemsRu.length, 0);
+---
+
+<div class="roi-calculator" data-secure-ai-checklist data-locale={locale} data-total={total}>
+  <div class="space-y-8">
+    {
+      SECURE_AI_CHECKLIST.map((section, sectionIndex) => (
+        <div>
+          <p class="meta-label">{ru ? section.titleRu : section.titleEn}</p>
+          <ul class="mt-3 space-y-2">
+            {(ru ? section.itemsRu : section.itemsEn).map((item, itemIndex) => {
+              const key = `${sectionIndex}-${itemIndex}`;
+              return (
+                <li>
+                  <label for={`checklist-${key}`} class="flex cursor-pointer items-start gap-3">
+                    <input
+                      id={`checklist-${key}`}
+                      type="checkbox"
+                      data-checklist-item
+                      data-key={key}
+                      class="mt-1 h-4 w-4 shrink-0 border-hairline-strong accent-ink"
+                    />
+                    <span class="text-sm leading-relaxed text-body">{item}</span>
+                  </label>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="roi-calculator__result mt-8">
+    <p class="meta-label">{ru ? "Готовность" : "Readiness"}</p>
+    <p class="roi-calculator__value mt-2">
+      <span data-checklist-score>0</span> / {total}
+    </p>
+    <p class="body-copy mt-3 text-base" data-checklist-band>
+      {
+        ru
+          ? "Отметьте пункты — увидите уровень готовности."
+          : "Check items to see your readiness level."
+      }
+    </p>
+  </div>
+
+  <p class="mt-6">
+    <a href="#contact" class="btn-primary">
+      {ru ? "Получить экспресс-разбор архитектуры" : "Get an express architecture review"}
+    </a>
+  </p>
+</div>
+
+<script>
+  function scoreBand(score, total, ru) {
+    const ratio = total > 0 ? score / total : 0;
+    if (ratio === 0) {
+      return ru
+        ? "Отметьте пункты — увидите уровень готовности."
+        : "Check items to see your readiness level.";
+    }
+    if (ratio < 0.4) {
+      return ru
+        ? "Есть значительные пробелы в безопасности AI-контура"
+        : "There are significant gaps in your AI perimeter's security";
+    }
+    if (ratio < 0.76) {
+      return ru
+        ? "Базовый уровень готов, но есть точки риска"
+        : "Basic level is in place, but there are risk points";
+    }
+    return ru
+      ? "Хороший уровень готовности — стоит проверить детали"
+      : "Good readiness level — worth verifying the details";
+  }
+
+  function bind(root) {
+    const ru = root.dataset.locale !== "en";
+    const total = Number(root.dataset.total) || 0;
+    const scoreEl = root.querySelector("[data-checklist-score]");
+    const bandEl = root.querySelector("[data-checklist-band]");
+    const inputs = root.querySelectorAll("[data-checklist-item]");
+
+    function refresh() {
+      const score = Array.from(inputs).filter((el) => el.checked).length;
+      if (scoreEl) scoreEl.textContent = String(score);
+      if (bandEl) bandEl.textContent = scoreBand(score, total, ru);
+    }
+
+    inputs.forEach((input) => input.addEventListener("change", refresh));
+    refresh();
+  }
+
+  document.querySelectorAll("[data-secure-ai-checklist]").forEach(bind);
+</script>

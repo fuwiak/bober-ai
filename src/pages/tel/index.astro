@@ -1,0 +1,33 @@
+---
+/**
+ * Landing for YML «Ссылка на телефон» — HTTPS 200 with a tel: link
+ * (not tel: in the feed itself). Restored from Next src/app/tel/page.tsx.
+ */
+import { LEGAL_ENTITY } from "@/lib/legal";
+
+export const prerender = true;
+
+const phone = LEGAL_ENTITY.phone;
+const href = phone.startsWith("tel:") ? phone : `tel:${phone.replace(/\s+/g, "")}`;
+const display = phone.replace(/^tel:/i, "");
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Телефон — Bober AI Systems</title>
+  </head>
+  <body
+    style="margin:0;min-height:100vh;display:grid;place-items:center;font-family:system-ui,sans-serif;background:#0a0a0a;color:#f5f5f5;"
+  >
+    <main style="text-align:center">
+      <a href={href} style="color:#f5f5f5;font-size:1.5rem;letter-spacing:0.04em">{display}</a>
+      <p style="margin:0.75rem 0 0;color:#a3a3a3;font-size:0.875rem">
+        Bober AI Systems · звонок по клику
+      </p>
+    </main>
+  </body>
+</html>

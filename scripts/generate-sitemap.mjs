@@ -39,7 +39,13 @@ const urls = files
   .filter((u) => !u.includes("/amocrm") && !u.includes("/bitrix24") && !u.includes("/cases/") && !u.endsWith("/ru"))
   .sort();
 
-const unique = [...new Set(urls)];
+/** SSR/on-demand routes not present as dist/client HTML (Next parity). */
+const EXTRA_SSR_PATHS = ["/news", "/outages", "/tel"];
+for (const path of EXTRA_SSR_PATHS) {
+  urls.push(SITE + path);
+}
+
+const unique = [...new Set(urls)].sort();
 const body = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${unique.map((loc) => `  <url><loc>${loc}</loc></url>`).join("\n")}
