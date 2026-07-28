@@ -1,15 +1,62 @@
 /**
  * Site header: desktop mega/drop + mobile drawer.
  * Event delegation so HTMX body swaps rebind without duplicate listeners.
+ *
+ * Mega/drop panels are laid out with position:fixed (measured from the lime bar /
+ * trigger) so body overflow-x:clip + sticky header cannot clip the flyout —
+ * same intent as the Next.js portal era.
  */
 
 function getRoot(): HTMLElement | null {
   return document.querySelector<HTMLElement>("[data-nav-root]");
 }
 
+function clearPanelLayout(panel: HTMLElement) {
+  panel.style.position = "";
+  panel.style.left = "";
+  panel.style.right = "";
+  panel.style.top = "";
+  panel.style.width = "";
+  panel.style.minWidth = "";
+}
+
+function layoutPanel(root: HTMLElement, panel: HTMLElement, pop: HTMLElement) {
+  const isMega = panel.classList.contains("site-mega");
+  if (isMega) {
+    const bar = root.querySelector<HTMLElement>(".site-header__bar");
+    if (!bar) return;
+    const rect = bar.getBoundingClientRect();
+    panel.style.position = "fixed";
+    panel.style.left = `${Math.round(rect.left)}px`;
+    panel.style.width = `${Math.round(rect.width)}px`;
+    panel.style.right = "auto";
+    panel.style.top = `${Math.round(rect.bottom + 10)}px`;
+    panel.style.minWidth = "";
+    return;
+  }
+
+  const rect = pop.getBoundingClientRect();
+  panel.style.position = "fixed";
+  panel.style.left = `${Math.round(rect.left)}px`;
+  panel.style.top = `${Math.round(rect.bottom + 10)}px`;
+  panel.style.right = "auto";
+  panel.style.width = "auto";
+  panel.style.minWidth = "300px";
+}
+
+function relayoutOpenPanels(root: HTMLElement) {
+  root.querySelectorAll<HTMLElement>("[data-nav-pop].site-header__pop--open").forEach((pop) => {
+    const id = pop.getAttribute("data-nav-pop");
+    if (!id) return;
+    const panel = root.querySelector<HTMLElement>(`[data-nav-panel="${id}"]`);
+    if (panel) layoutPanel(root, panel, pop);
+  });
+}
+
 function closeAllPanels(root: HTMLElement) {
   root.querySelectorAll<HTMLElement>("[data-nav-panel]").forEach((panel) => {
     panel.setAttribute("aria-hidden", "true");
+    clearPanelLayout(panel);
   });
   root.querySelectorAll<HTMLButtonElement>("[data-nav-trigger]").forEach((trigger) => {
     trigger.setAttribute("aria-expanded", "false");
@@ -25,11 +72,12 @@ function openPanel(root: HTMLElement, id: string) {
   const panel = root.querySelector<HTMLElement>(`[data-nav-panel="${id}"]`);
   const trigger = root.querySelector<HTMLButtonElement>(`[data-nav-trigger="${id}"]`);
   const pop = root.querySelector<HTMLElement>(`[data-nav-pop="${id}"]`);
-  if (!panel || !trigger) return;
+  if (!panel || !trigger || !pop) return;
   panel.setAttribute("aria-hidden", "false");
   trigger.setAttribute("aria-expanded", "true");
-  pop?.classList.add("site-header__pop--open");
+  pop.classList.add("site-header__pop--open");
   root.classList.add("site-header--pop-open");
+  layoutPanel(root, panel, pop);
 }
 
 function closeMobile(root: HTMLElement) {
@@ -59,11 +107,24 @@ function isPanelOpen(root: HTMLElement, id: string): boolean {
   return Boolean(pop?.classList.contains("site-header__pop--open"));
 }
 
+/** True if node is inside an open desktop flyout (pop trigger or its panel). */
+function isInsideOpenFlyout(root: HTMLElement, node: Node | null): boolean {
+  if (!node || !(node instanceof Element)) return false;
+  const pop = node.closest<HTMLElement>("[data-nav-pop]");
+  if (pop && root.contains(pop) && pop.classList.contains("site-header__pop--open")) return true;
+  const panel = node.closest<HTMLElement>("[data-nav-panel]");
+  if (!panel || !root.contains(panel)) return false;
+  const id = panel.getAttribute("data-nav-panel");
+  if (!id) return false;
+  return isPanelOpen(root, id);
+}
+
 let closeTimer: ReturnType<typeof setTimeout> | null = null;
 let wired = false;
 
 function syncScroll(root: HTMLElement) {
   root.classList.toggle("site-header--scrolled", window.scrollY > 8);
+  if (root.classList.contains("site-header--pop-open")) relayoutOpenPanels(root);
 }
 
 function wireNav() {
@@ -116,6 +177,8 @@ function wireNav() {
       if (!id) return;
       if (isPanelOpen(root, id)) closeAllPanels(root);
       else openPanel(root, id);
+      // Mouse/pointer only — keyboard keeps focus for a11y (Next SiteHeaderClient)
+      if (event.detail > 0) trigger.blur();
       return;
     }
 
@@ -123,12 +186,13 @@ function wireNav() {
       closeMobile(root);
     }
 
-    if (!root.contains(target)) closeAllPanels(root);
+    if (!root.contains(target) && !isInsideOpenFlyout(root, target)) closeAllPanels(root);
   });
 
   document.addEventListener(
-    "mouseover",
+    "pointerover",
     (event) => {
+      if (event.pointerType === "touch") return;
       const root = getRoot();
       if (!root) return;
       const pop = (event.target as Element | null)?.closest<HTMLElement>("[data-nav-pop]");
@@ -142,19 +206,26 @@ function wireNav() {
   );
 
   document.addEventListener(
-    "mouseout",
+    "pointerout",
     (event) => {
+      if (event.pointerType === "touch") return;
       const root = getRoot();
       if (!root) return;
-      const pop = (event.target as Element | null)?.closest<HTMLElement>("[data-nav-pop]");
-      if (!pop || !root.contains(pop)) return;
       const related = event.relatedTarget as Node | null;
-      if (related && pop.contains(related)) return;
+      if (isInsideOpenFlyout(root, related)) return;
+
+      const target = event.target as Element | null;
+      const fromPop = target?.closest<HTMLElement>("[data-nav-pop]");
+      const fromPanel = target?.closest<HTMLElement>("[data-nav-panel]");
+      const leavingFlyout =
+        (fromPop && root.contains(fromPop)) || (fromPanel && root.contains(fromPanel));
+      if (!leavingFlyout) return;
+
       if (closeTimer) clearTimeout(closeTimer);
       closeTimer = setTimeout(() => {
         const current = getRoot();
         if (current) closeAllPanels(current);
-      }, 150);
+      }, 160);
     },
     true,
   );
@@ -172,6 +243,15 @@ function wireNav() {
     () => {
       const root = getRoot();
       if (root) syncScroll(root);
+    },
+    { passive: true },
+  );
+
+  window.addEventListener(
+    "resize",
+    () => {
+      const root = getRoot();
+      if (root?.classList.contains("site-header--pop-open")) relayoutOpenPanels(root);
     },
     { passive: true },
   );

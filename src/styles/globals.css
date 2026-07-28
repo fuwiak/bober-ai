@@ -492,12 +492,13 @@ html.dark {
     }
   }
 
-  /* Header — sticky lime bar + Komanda-style mega animations */
+  /* Header — sticky lime bar + Komanda-style mega animations (Next SiteHeaderClient) */
   .site-header {
     position: sticky;
     top: 0;
     width: 100%;
     z-index: 200;
+    overflow: visible;
     --header-bar: #ebff8d;
     --header-ink: #40424d;
     --header-ink-soft: #5a5c66;
@@ -522,6 +523,10 @@ html.dark {
   html:not(.dark) .site-header {
     background: transparent;
   }
+  /* Above page content while flyout is open (fixed mega/drop) */
+  .site-header--pop-open {
+    z-index: 280;
+  }
   .site-header--scrolled {
     padding-top: max(8px, env(safe-area-inset-top, 0px));
   }
@@ -533,6 +538,7 @@ html.dark {
     pointer-events: none;
     width: min(1400px, calc(100% - 48px));
     position: relative;
+    overflow: visible;
   }
   @media (max-width: 768px) {
     .site-header__frame {
@@ -555,6 +561,7 @@ html.dark {
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
     transition: box-shadow 220ms ease;
     position: relative;
+    overflow: visible;
   }
   @media (max-width: 768px) {
     .site-header__bar {
@@ -719,6 +726,7 @@ html.dark {
       transform 0.22s cubic-bezier(0.2, 0.7, 0.3, 1),
       visibility 0.2s;
   }
+  /* Open state: panel may be position:fixed via nav.ts (still a DOM child of pop) */
   .site-header__pop--open > .site-mega,
   .site-header__pop--open > .site-drop {
     opacity: 1;
@@ -740,8 +748,10 @@ html.dark {
       0 30px 70px -28px rgba(0, 0, 0, 0.92),
       0 0 0 1px rgba(255, 255, 255, 0.015) inset;
     padding: 22px;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     color: var(--mega-text);
+    max-height: min(70vh, 640px);
   }
   .site-mega::before {
     content: "";

@@ -23,8 +23,8 @@ function megaCols(group: Extract<NavGroup, { type: "mega" }>) {
 }
 ---
 
-<header class="site-header" data-nav-root>
-  <!-- Icon sprite (same as Next SiteHeaderClient) -->
+<header class="site-header" data-nav-root data-mega-v="next-2026-07-27">
+  <!-- Icon sprite (same as Next SiteHeaderClient MegaCard) -->
   <svg width="0" height="0" class="site-mega__sprite" aria-hidden="true">
     <defs>
       <symbol id="bmd-i-grid" viewBox="0 0 24 24">
@@ -147,7 +147,7 @@ function megaCols(group: Extract<NavGroup, { type: "mega" }>) {
                               {col.items.map((item: NavLinkItem) => (
                                 <a href={hrefFor(item)} class="site-mega__card">
                                   <span class="site-mega__tile">
-                                    <svg class="site-mega__ic" aria-hidden="true">
+                                    <svg class="site-mega__ic" viewBox="0 0 24 24" aria-hidden="true">
                                       <use href={`#bmd-i-${(item.icon ?? "grid") as NavIconId}`} />
                                     </svg>
                                   </span>
@@ -188,7 +188,7 @@ function megaCols(group: Extract<NavGroup, { type: "mega" }>) {
                             {group.footerLink && (
                               <a href={hrefFor(group.footerLink)} class="site-mega__foot-link">
                                 {group.footerLink.label}
-                                <svg class="site-mega__ic site-mega__ic--sm" aria-hidden="true">
+                                <svg class="site-mega__ic site-mega__ic--sm" viewBox="0 0 24 24" aria-hidden="true">
                                   <use href="#bmd-i-arrow" />
                                 </svg>
                               </a>
@@ -201,7 +201,7 @@ function megaCols(group: Extract<NavGroup, { type: "mega" }>) {
                         {group.items.map((item: NavLinkItem) => (
                           <a href={hrefFor(item)} class="site-mega__card">
                             <span class="site-mega__tile">
-                              <svg class="site-mega__ic" aria-hidden="true">
+                              <svg class="site-mega__ic" viewBox="0 0 24 24" aria-hidden="true">
                                 <use href={`#bmd-i-${(item.icon ?? "grid") as NavIconId}`} />
                               </svg>
                             </span>
@@ -303,6 +303,9 @@ function megaCols(group: Extract<NavGroup, { type: "mega" }>) {
                 <div class="mobile-menu__acc">
                   <a href={hrefFor(group)} class="mobile-menu__acc-link">
                     {group.label}
+                    <svg class="mobile-menu__acc-chev mobile-menu__acc-chev--link" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                    </svg>
                   </a>
                 </div>
               );
@@ -317,6 +320,9 @@ function megaCols(group: Extract<NavGroup, { type: "mega" }>) {
                   data-nav-mobile-acc-trigger={group.id}
                 >
                   {group.label}
+                  <svg class="mobile-menu__acc-chev" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                  </svg>
                 </button>
                 <div class="mobile-menu__acc-body" data-nav-mobile-acc-panel={group.id} aria-hidden="true">
                   <div class="mobile-menu__acc-inner">
@@ -328,7 +334,7 @@ function megaCols(group: Extract<NavGroup, { type: "mega" }>) {
                               {col.items.map((item) => (
                                 <a href={hrefFor(item)} class="mobile-menu__mrow">
                                   <span class="site-mega__tile site-mega__tile--sm">
-                                    <svg class="site-mega__ic" aria-hidden="true">
+                                    <svg class="site-mega__ic" viewBox="0 0 24 24" aria-hidden="true">
                                       <use href={`#bmd-i-${item.icon ?? "grid"}`} />
                                     </svg>
                                   </span>
@@ -340,7 +346,7 @@ function megaCols(group: Extract<NavGroup, { type: "mega" }>) {
                         : group.items.map((item) => (
                             <a href={hrefFor(item)} class="mobile-menu__mrow">
                               <span class="site-mega__tile site-mega__tile--sm">
-                                <svg class="site-mega__ic" aria-hidden="true">
+                                <svg class="site-mega__ic" viewBox="0 0 24 24" aria-hidden="true">
                                   <use href={`#bmd-i-${item.icon ?? "grid"}`} />
                                 </svg>
                               </span>
