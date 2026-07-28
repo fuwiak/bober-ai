@@ -24,6 +24,7 @@ interface Props {
   cta: string;
   moreHref?: string;
   moreLabel?: string;
+  urgency?: string;
 }
 
 const {
@@ -37,6 +38,7 @@ const {
   cta,
   moreHref,
   moreLabel,
+  urgency,
 } = Astro.props;
 ---
 
@@ -45,6 +47,7 @@ const {
     <span class="section-label">{label}</span>
     <h2 class="section-title mt-4">{title}</h2>
     <p class="body-copy mt-4 max-w-2xl text-base">{subtitle}</p>
+    {urgency && <p class="meta-label mt-4 max-w-2xl">{urgency}</p>}
 
     <div class="packages-grid mt-10">
       {

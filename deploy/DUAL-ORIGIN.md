@@ -45,8 +45,10 @@ curl -s https://www.bober-ai.dev/api/health
 
 | Что | Статус |
 |-----|--------|
-| A на Selectel | `45.80.131.136` |
-| Caddy | `tls internal` до публичного LE |
+| A на Selectel | `45.80.131.136` (apex, www, partners, bitrix) |
+| Caddy | публичный Let's Encrypt (как у `bober-ai.dev`); apex→www |
+
+После смены Caddyfile на VDS: `docker compose up -d` в `/opt/bober-ai/deploy` — Caddy сам получит LE-сертификаты (порты 80/443 открыты, DNS уже на Selectel).
 
 ## Origins
 

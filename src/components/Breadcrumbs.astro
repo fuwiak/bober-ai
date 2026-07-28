@@ -1,0 +1,45 @@
+---
+import { localizePath, type Locale } from "@/lib/i18n";
+import { pageBreadcrumbJsonLd } from "@/lib/seo";
+
+type Crumb = { name: string; path: string };
+
+interface Props {
+  locale: Locale;
+  items: Crumb[];
+}
+
+const { locale, items } = Astro.props;
+const homeLabel = locale === "en" ? "Home" : "Главная";
+const ariaLabel = locale === "en" ? "Breadcrumb" : "Навигационная цепочка";
+const schema = pageBreadcrumbJsonLd(locale, items);
+---
+
+{
+  schema && (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  )
+}
+<nav aria-label={ariaLabel} class="breadcrumbs">
+  <ol class="breadcrumbs__list">
+    <li class="breadcrumbs__item">
+      <a href={localizePath("/", locale)} class="breadcrumbs__link">{homeLabel}</a>
+    </li>
+    {
+      items.map((item, index) => {
+        const isLast = index === items.length - 1;
+        return (
+          <li class="breadcrumbs__item" aria-current={isLast ? "page" : undefined}>
+            {isLast ? (
+              <span class="breadcrumbs__current">{item.name}</span>
+            ) : (
+              <a href={localizePath(item.path, locale)} class="breadcrumbs__link">
+                {item.name}
+              </a>
+            )}
+          </li>
+        );
+      })
+    }
+  </ol>
+</nav>

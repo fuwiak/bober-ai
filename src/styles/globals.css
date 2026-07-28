@@ -867,9 +867,6 @@ html.dark {
     padding: 9px 16px;
     border-radius: 10px;
     text-decoration: none;
-    border: 0;
-    cursor: pointer;
-    font-family: inherit;
   }
   .site-mega__foot {
     margin-top: 16px;

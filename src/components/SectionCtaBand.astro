@@ -1,0 +1,34 @@
+---
+import { PRIMARY_CTA_GOAL } from "@/lib/site";
+
+interface Props {
+  title: string;
+  duration: string;
+  commitment: string;
+  format: string;
+  cta: string;
+  urgency?: string;
+  className?: string;
+}
+
+const { title, duration, commitment, format, cta, urgency, className = "" } = Astro.props;
+---
+
+<section class={`section-cta-band border-b border-hairline ${className}`.trim()}>
+  <div class="container-editorial">
+    <div class="section-cta-band__inner">
+      <div>
+        <h2 class="section-cta-band__title">{title}</h2>
+        <ul class="section-cta-band__meta">
+          <li>{duration}</li>
+          <li>{commitment}</li>
+          <li>{format}</li>
+        </ul>
+        {urgency && <p class="body-copy mt-4 max-w-xl text-sm">{urgency}</p>}
+      </div>
+      <button type="button" class="btn-primary" data-contact-open data-contact-goal={PRIMARY_CTA_GOAL}>
+        {cta}
+      </button>
+    </div>
+  </div>
+</section>

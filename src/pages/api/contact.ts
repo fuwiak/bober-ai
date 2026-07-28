@@ -103,27 +103,33 @@ export const POST: APIRoute = async ({ request }) => {
     };
   }
 
+  const wantsJson = contentType.includes("application/json");
+  const json = (body: Record<string, unknown>, status = 200) =>
+    new Response(JSON.stringify(body), {
+      status,
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+    });
+
   // Honeypot — silent success
   if (website) {
-    return htmlResponse(successHtml(locale));
+    return wantsJson ? json({ ok: true, dryRun: true }) : htmlResponse(successHtml(locale));
   }
 
   if (!name || !contact) {
-    return htmlResponse(
-      errorHtml(locale === "en" ? "Fill required fields" : "Заполните обязательные поля"),
-      400,
-    );
+    const messageText = locale === "en" ? "Fill required fields" : "Заполните обязательные поля";
+    return wantsJson
+      ? json({ ok: false, message: messageText }, 400)
+      : htmlResponse(errorHtml(messageText), 400);
   }
 
   if (!policyAccepted || !consent) {
-    return htmlResponse(
-      errorHtml(
-        locale === "en"
-          ? "Consent to personal data processing is required"
-          : "Необходимо согласие на обработку персональных данных",
-      ),
-      400,
-    );
+    const messageText =
+      locale === "en"
+        ? "Consent to personal data processing is required"
+        : "Необходимо согласие на обработку персональных данных";
+    return wantsJson
+      ? json({ ok: false, message: messageText }, 400)
+      : htmlResponse(errorHtml(messageText), 400);
   }
 
   const result = await deliverContactLead({
@@ -139,7 +145,17 @@ export const POST: APIRoute = async ({ request }) => {
   });
 
   if (!result.ok) {
-    return htmlResponse(errorHtml(result.message), result.status);
+    return wantsJson
+      ? json({ ok: false, message: result.message, error: result.error }, result.status)
+      : htmlResponse(errorHtml(result.message), result.status);
+  }
+
+  if (wantsJson) {
+    return json({
+      ok: true,
+      leadId: "leadId" in result ? result.leadId : undefined,
+      dryRun: "dryRun" in result ? result.dryRun : undefined,
+    });
   }
 
   return htmlResponse(successHtml(locale));

@@ -35,7 +35,6 @@ https://bober-ai.dev {
 }
 
 https://bober-systems.ru {
-	tls internal
 	header Cache-Control "no-store"
 	redir https://www.bober-systems.ru{uri} permanent
 }
@@ -45,7 +44,6 @@ https://www.bober-ai.dev {
 }
 
 https://www.bober-systems.ru {
-	tls internal
 	import astro_proxy
 }
 
@@ -55,7 +53,6 @@ https://partners.bober-ai.dev {
 }
 
 https://partners.bober-systems.ru {
-	tls internal
 	rewrite * /white-label
 	import astro_proxy
 }
@@ -66,7 +63,6 @@ https://bitrix.bober-ai.dev {
 }
 
 https://bitrix.bober-systems.ru {
-	tls internal
 	rewrite * /bitrix
 	import astro_proxy
 }

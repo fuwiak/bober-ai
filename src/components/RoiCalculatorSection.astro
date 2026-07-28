@@ -1,0 +1,177 @@
+---
+import { localizePath, type Locale, type Messages } from "@/lib/i18n";
+import { LEGAL_ROUTES } from "@/lib/legal";
+
+interface Props {
+  locale: Locale;
+  messages: Messages;
+}
+
+const { locale, messages } = Astro.props;
+const r = messages.roiCalculator;
+const form = messages.form;
+const privacyHref = localizePath(LEGAL_ROUTES.privacyPolicy, locale);
+const consentHref = localizePath(LEGAL_ROUTES.consent, locale);
+const floor = Number(r.implementationFloor) || 500000;
+const defaultSalary = locale === "en" ? 3500 : 120000;
+---
+
+<section id="roi" class="section-band section--panel scroll-mt-16 border-b border-hairline">
+  <div class="container-editorial max-w-3xl">
+    <span class="section-label">{r.label}</span>
+    <div
+      class="roi-calculator mt-4"
+      data-roi-calculator
+      data-locale={locale}
+      data-currency={r.currency}
+      data-floor={floor}
+      data-employees-label={r.employeesLabel}
+      data-hours-label={r.hoursLabel}
+      data-salary-label={r.salaryLabel}
+      data-result-label={r.resultLabel}
+      data-savings-label={r.savingsLabel}
+      data-payback-label={r.paybackLabel}
+      data-payback-suffix={r.paybackSuffix}
+      data-audit-title={r.auditDataTitle}
+      data-error-email={locale === "en" ? "Enter your email" : "Укажите email"}
+      data-error-consent={form.errorConsent}
+      data-error-send={locale === "en" ? "Failed to send request" : "Не удалось отправить заявку"}
+      data-audit-items={JSON.stringify(r.auditDataItems)}
+    >
+      <h3 class="card-title">{r.title}</h3>
+      <p class="body-copy mt-4 max-w-2xl text-base">{r.subtitle}</p>
+
+      <div class="roi-calculator__grid mt-8">
+        <label class="roi-calculator__field">
+          <span class="form-label">{r.employeesLabel}</span>
+          <input
+            type="number"
+            min="1"
+            max="500"
+            value="5"
+            class="form-input mt-2 text-input"
+            data-roi-employees
+          />
+        </label>
+        <label class="roi-calculator__field">
+          <span class="form-label">{r.hoursLabel}</span>
+          <input type="number" min="1" max="80" value="12" class="form-input mt-2 text-input" data-roi-hours />
+        </label>
+        <label class="roi-calculator__field">
+          <span class="form-label">{r.salaryLabel}</span>
+          <input
+            type="number"
+            min={locale === "en" ? 1000 : 30000}
+            step={locale === "en" ? 100 : 5000}
+            value={defaultSalary}
+            class="form-input mt-2 text-input"
+            data-roi-salary
+          />
+        </label>
+      </div>
+
+      <div class="roi-calculator__result mt-8">
+        <p class="meta-label">{r.resultLabel}</p>
+        <p class="roi-calculator__value mt-2">
+          <span data-roi-savings>0</span>
+          {" "}
+          {r.currency}
+          <span class="roi-calculator__period"> / {r.savingsLabel}</span>
+        </p>
+        <p class="roi-calculator__payback mt-3" data-roi-payback></p>
+        <p class="body-copy mt-3 text-sm">{r.resultNote}</p>
+      </div>
+
+      <div class="roi-calculator__audit mt-8">
+        <p class="meta-label">{r.auditDataTitle}</p>
+        <ul class="mt-3 space-y-2">
+          {
+            r.auditDataItems.map((item) => (
+              <li class="body-copy flex gap-3 text-sm">
+                <span class="meta-label shrink-0">—</span>
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <button type="button" class="btn-primary mt-8" data-roi-open-gate>{r.captureCta}</button>
+
+      <form class="roi-calculator__gate mt-8 space-y-5" data-roi-gate hidden>
+        <div>
+          <p class="card-title text-xl">{r.gateTitle}</p>
+          <p class="body-copy mt-2 text-sm">{r.gateSubtitle}</p>
+        </div>
+        <div>
+          <label for="roi-email" class="form-label">{r.emailLabel}</label>
+          <input
+            id="roi-email"
+            type="email"
+            required
+            autocomplete="email"
+            placeholder={r.emailPlaceholder}
+            class="text-input mt-2"
+            data-roi-email
+          />
+        </div>
+        <div>
+          <label for="roi-telegram" class="form-label">
+            {r.telegramLabel}
+            <span class="text-muted-soft">{form.optional}</span>
+          </label>
+          <input
+            id="roi-telegram"
+            placeholder={r.telegramPlaceholder}
+            class="text-input mt-2"
+            data-roi-telegram
+          />
+        </div>
+        <label for="roi-consent" class="flex cursor-pointer items-start gap-3">
+          <input
+            id="roi-consent"
+            type="checkbox"
+            required
+            class="mt-1 h-4 w-4 shrink-0 border-hairline-strong accent-ink"
+            data-roi-consent
+          />
+          <span class="text-sm leading-relaxed text-muted">
+            {form.consentCombined}
+            <a href={privacyHref} class="text-link" target="_blank" rel="noopener noreferrer">
+              {form.policyLink}
+            </a>
+            {form.consentAnd}
+            <a href={consentHref} class="text-link" target="_blank" rel="noopener noreferrer">
+              {form.consentLink}
+            </a>
+            .
+          </span>
+        </label>
+        <button type="submit" class="btn-primary w-full" data-roi-submit>
+          <span data-roi-submit-label>{r.gateSubmit}</span>
+          <span data-roi-submitting hidden>{r.gateSubmitting}</span>
+        </button>
+        <p class="text-sm text-error" data-roi-error hidden></p>
+      </form>
+
+      <div class="roi-calculator__success mt-8" data-roi-success hidden role="status" aria-live="polite">
+        <p class="card-title text-xl">{r.gateSuccessTitle}</p>
+        <p class="body-copy mt-3 text-base">{r.gateSuccess}</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <button type="button" class="btn-primary" data-contact-open data-contact-goal="roi_calculator_discuss_click">
+            {r.nextCtaPrimary}
+          </button>
+          <button
+            type="button"
+            class="btn-secondary"
+            data-contact-open
+            data-contact-goal="roi_calculator_audit_click"
+            data-contact-service={locale === "en" ? "AI audit" : "AI-аудит"}
+          >
+            {r.nextCtaSecondary}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

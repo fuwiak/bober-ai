@@ -1,0 +1,31 @@
+---
+type ComparisonItem = { title: string; problem: string; solution: string };
+
+interface Props {
+  label: string;
+  title: string;
+  subtitle: string;
+  items: ComparisonItem[];
+}
+
+const { label, title, subtitle, items } = Astro.props;
+---
+
+<section class="section-band section--deep border-b border-hairline">
+  <div class="container-editorial">
+    <span class="section-label">{label}</span>
+    <h2 class="section-title mt-4">{title}</h2>
+    <p class="body-copy mt-4 max-w-2xl text-base">{subtitle}</p>
+    <div class="comparison-grid mt-10">
+      {
+        items.map((item) => (
+          <article class="comparison-card">
+            <h3 class="card-title text-xl">{item.title}</h3>
+            <p class="body-copy mt-4 text-base">{item.problem}</p>
+            <p class="body-copy mt-4 text-base text-ink">{item.solution}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

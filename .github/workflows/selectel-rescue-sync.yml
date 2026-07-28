@@ -128,7 +128,6 @@ jobs:
           }
 
           https://bober-systems.ru {
-          	tls internal
           	header Cache-Control "no-store"
           	redir https://www.bober-systems.ru{uri} permanent
           }
@@ -142,7 +141,6 @@ jobs:
           }
 
           https://www.bober-systems.ru {
-          	tls internal
           	root * /srv
           	encode gzip
           	try_files {path} {path}.html {path}/index.html /index.html
@@ -156,7 +154,6 @@ jobs:
           }
 
           https://partners.bober-systems.ru {
-          	tls internal
           	root * /srv
           	rewrite * /white-label.html
           	file_server
@@ -169,7 +166,6 @@ jobs:
           }
 
           https://bitrix.bober-systems.ru {
-          	tls internal
           	root * /srv
           	rewrite * /bitrix.html
           	file_server
