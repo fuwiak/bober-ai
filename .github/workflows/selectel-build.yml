@@ -213,27 +213,79 @@ jobs:
           GIT_SHA="$GIT_SHA" "${dc[@]}" -f "$COMPOSE_FILE" up -d --force-recreate --remove-orphans
           sleep 5
 
-          # Edge TLS is the host container named `bober-ai` (file_server on /out by default).
-          # Point it at Astro on :3001 via our proxy Caddyfile and recreate if needed.
+          # Edge TLS: container `bober-ai`. NEVER recreate without caddy_data —
+          # wiping /data drops Let's Encrypt certs → ERR_SSL_PROTOCOL_ERROR on
+          # partners/bitrix/www.bober-ai.dev until ACME succeeds again.
           mkdir -p "$ROOT/deploy"
           cp -a "$COMPOSE_DIR/Caddyfile" "$ROOT/deploy/Caddyfile"
           docker rm -f deploy-caddy-1 2>/dev/null || true
-          if docker ps -a --format '{{.Names}}' | grep -qx 'bober-ai'; then
-            docker rm -f bober-ai
+          docker volume create caddy_data >/dev/null
+          docker volume create caddy_config >/dev/null
+
+          start_edge_caddy() {
+            docker rm -f bober-ai 2>/dev/null || true
+            docker run -d --name bober-ai --restart unless-stopped --network host \
+              -v "$ROOT/deploy/Caddyfile:/etc/caddy/Caddyfile:ro" \
+              -v caddy_data:/data \
+              -v caddy_config:/config \
+              caddy:2-alpine
+          }
+
+          if docker ps --format '{{.Names}}' | grep -qx 'bober-ai'; then
+            # Config is bind-mounted; reload keeps ACME state in caddy_data.
+            if docker exec bober-ai caddy validate --config /etc/caddy/Caddyfile \
+              && docker exec bober-ai caddy reload --config /etc/caddy/Caddyfile; then
+              echo "EDGE_CADDY_RELOADED"
+            else
+              echo "EDGE_CADDY_RELOAD_FAILED — recreating with persistent cert volumes"
+              start_edge_caddy
+            fi
+          else
+            # Recreate only if missing; always attach persistent cert volumes.
+            # If an old ephemeral container exists without volumes, replace it.
+            if docker ps -a --format '{{.Names}}' | grep -qx 'bober-ai'; then
+              mounts=$(docker inspect bober-ai --format '{{range .Mounts}}{{.Destination}} {{end}}' 2>/dev/null || true)
+              if echo "$mounts" | grep -q '/data'; then
+                docker start bober-ai || start_edge_caddy
+                docker exec bober-ai caddy reload --config /etc/caddy/Caddyfile || start_edge_caddy
+                echo "EDGE_CADDY_STARTED_EXISTING"
+              else
+                echo "EDGE_CADDY_NO_CERT_VOLUME — recreating onto caddy_data"
+                start_edge_caddy
+              fi
+            else
+              start_edge_caddy
+            fi
           fi
-          docker run -d --name bober-ai --restart unless-stopped --network host \
-            -v "$ROOT/deploy/Caddyfile:/etc/caddy/Caddyfile:ro" \
-            caddy:2-alpine
-          # Wait for TLS listener + first config load
+
+          # Wait for TLS on main + partners (SNI)
           sleep 5
-          for k in 1 2 3 4 5 6; do
+          tls_ok=0
+          for k in 1 2 3 4 5 6 7 8 9 10 11 12; do
+            sys_ok=0
+            partners_ok=0
             if curl -sk --connect-timeout 5 \
               --resolve www.bober-systems.ru:443:127.0.0.1 \
               "https://www.bober-systems.ru/api/health" | grep -q '"ok":true'; then
+              sys_ok=1
+            fi
+            if curl -sk --connect-timeout 5 \
+              --resolve partners.bober-ai.dev:443:127.0.0.1 \
+              "https://partners.bober-ai.dev/performers-feed.yml" | head -c 64 | grep -qi 'yml_catalog\|<?xml\|shop'; then
+              partners_ok=1
+            fi
+            echo "tls_wait=$k systems=$sys_ok partners=$partners_ok"
+            if [ "$sys_ok" = 1 ] && [ "$partners_ok" = 1 ]; then
+              tls_ok=1
               break
             fi
-            sleep 2
+            sleep 5
           done
+          if [ "$tls_ok" != 1 ]; then
+            echo "EDGE_TLS_NOT_READY — dumping caddy logs"
+            docker logs bober-ai --tail=80 || true
+            docker inspect bober-ai --format '{{json .Mounts}}' || true
+          fi
           docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}' || true
 
           web_ok=0
@@ -242,9 +294,9 @@ jobs:
             status=$("${dc[@]}" -f "$COMPOSE_FILE" ps --status running --services 2>/dev/null | tr -d '\r' || true)
             health=$(curl -sf --connect-timeout 5 "http://127.0.0.1:${APP_PORT}/api/health" || true)
             echo "attempt=$i status_services=$status health=$health"
-            if echo "$status" | grep -qx 'web' \
-              && echo "$health" | grep -q '"ok":true' \
-              && echo "$health" | grep -q "$GIT_SHA"; then
+            if [[ "$status" == *'web'* ]] \
+              && [[ "$health" == *'"ok":true'* ]] \
+              && [[ "$health" == *"$GIT_SHA"* ]]; then
               web_ok=1
               break
             fi
@@ -312,21 +364,24 @@ jobs:
           GIT_SHA: ${{ github.sha }}
         run: |
           set -euo pipefail
-          for i in 1 2 3 4 5 6 7 8; do
+          for i in 1 2 3 4 5 6 7 8 9 10 12; do
             health=$(curl -sf --connect-timeout 10 https://www.bober-systems.ru/api/health || true)
             html=$(curl -sf --connect-timeout 10 https://www.bober-systems.ru/ || true)
-            echo "attempt=$i health=$health"
+            partners=$(curl -sf --connect-timeout 10 https://partners.bober-ai.dev/performers-feed.yml || true)
+            echo "attempt=$i health=$health partners_bytes=${#partners}"
             # Avoid `echo | grep -q` under pipefail (SIGPIPE/141 on match).
             if [[ "$health" == *'"ok":true'* ]] \
               && [[ "$health" == *"$GIT_SHA"* ]] \
-              && [[ "$html" == *'0e71ef3fc54b6c3c'* ]]; then
-              echo "PUBLIC_HEALTH_OK + YANDEX_META_OK"
+              && [[ "$html" == *'0e71ef3fc54b6c3c'* ]] \
+              && [[ "$partners" == *'yml_catalog'* || "$partners" == *'<?xml'* ]]; then
+              echo "PUBLIC_HEALTH_OK + YANDEX_META_OK + PARTNERS_FEED_OK"
               exit 0
             fi
             echo "retry $i…"
             sleep 5
           done
-          echo "::error::Public health/sha/yandex-meta check failed after deploy"
+          echo "::error::Public health/sha/yandex-meta/partners-feed check failed after deploy"
           printf '%s' "$(curl -sL https://www.bober-systems.ru/ || true)" | tr '>' '>\n' | grep -i 'yandex\|0e71ef' | head || true
           curl -sL https://www.bober-systems.ru/api/health || true
+          curl -svI https://partners.bober-ai.dev/performers-feed.yml 2>&1 | tail -30 || true
           exit 1
