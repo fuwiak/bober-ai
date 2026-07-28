@@ -2,10 +2,12 @@
 
 import crypto from "node:crypto";
 import { writeFileSync } from "node:fs";
+import { CANONICAL_APEX, CANONICAL_ORIGIN } from "../config/domains.mjs";
 import fetch from "./lib/fetch.mjs";
 
 /**
  * Управление почтовыми ящиками Яндекс 360 для бизнеса.
+ * Почтовый домен = apex (bober-systems.ru) для сайта CANONICAL_ORIGIN.
  *
  * Документация:
  * - https://yandex.ru/dev/api360/doc/ru/access
@@ -20,6 +22,7 @@ const API_BASE = "https://api360.yandex.net";
 const SHARED_SCOPES = [
   "directory:read_organization",
   "directory:read_domains",
+  "directory:write_domains",
   "directory:read_users",
   "directory:write_users",
   "ya360_admin:mail_read_shared_mailbox_inventory",
@@ -30,7 +33,8 @@ const config = {
   token: process.env.YANDEX_360_OAUTH_TOKEN?.trim() || process.env.YANDEX_OAUTH_TOKEN?.trim(),
   clientId: process.env.YANDEX_360_CLIENT_ID?.trim(),
   orgId: process.env.YANDEX_360_ORG_ID?.trim(),
-  domain: process.env.YANDEX_360_DOMAIN?.trim() || "www.bober-systems.ru",
+  /** Mail apex — never www (contact@bober-systems.ru). */
+  domain: process.env.YANDEX_360_DOMAIN?.trim() || CANONICAL_APEX,
   nickname: process.env.YANDEX_360_MAILBOX_NICKNAME?.trim() || "contact",
   password: process.env.YANDEX_360_MAILBOX_PASSWORD?.trim(),
   aliasUserId: process.env.YANDEX_360_ALIAS_USER_ID?.trim(),
@@ -42,7 +46,7 @@ const config = {
   sharedName: process.env.YANDEX_360_SHARED_NAME?.trim() || "Contact",
   sharedDescription:
     process.env.YANDEX_360_SHARED_DESCRIPTION?.trim() ||
-    "Общий контактный ящик Bober AI",
+    `Общий контактный ящик Bober AI (${CANONICAL_ORIGIN})`,
   sharedRoles: (
     process.env.YANDEX_360_SHARED_ROLES?.trim() || "shared_mailbox_owner"
   )
@@ -121,7 +125,7 @@ function printHelp() {
   YANDEX_360_OAUTH_TOKEN      OAuth-токен
   YANDEX_360_CLIENT_ID        ClientID приложения (для oauth-url)
   YANDEX_360_ORG_ID           ID организации
-  YANDEX_360_DOMAIN           Домен (по умолчанию www.bober-systems.ru)
+  YANDEX_360_DOMAIN           Почтовый apex (по умолчанию bober-systems.ru)
   YANDEX_360_MAILBOX_NICKNAME Логин ящика (по умолчанию contact)
   YANDEX_360_MAILBOX_PASSWORD Пароль для create (если не задан — генерируется)
   YANDEX_360_ALIAS_USER_ID    ID сотрудника для команды alias
@@ -241,16 +245,52 @@ function findUserByNickname(users, nickname) {
   return users.find((user) => user.nickname?.toLowerCase() === target);
 }
 
+async function addDomain(orgId, name) {
+  return apiRequest(`/directory/v1/org/${orgId}/domains`, {
+    method: "POST",
+    json: true,
+    body: JSON.stringify({ name }),
+    throwHttp: false,
+  });
+}
+
+async function domainStatus(orgId, name) {
+  return apiRequest(
+    `/directory/v1/org/${orgId}/domains/${encodeURIComponent(name)}/status`,
+    { throwHttp: false },
+  );
+}
+
 async function ensureDomain(orgId) {
   const domains = await listDomains(orgId);
-  const domain = domains.find((item) => item.name?.toLowerCase() === config.domain.toLowerCase());
+  let domain = domains.find((item) => item.name?.toLowerCase() === config.domain.toLowerCase());
   if (!domain) {
-    console.log("Подключённые домены:");
-    for (const item of domains) console.log(`  ${item.name}`);
-    fail(`Домен ${config.domain} не подключён к организации ${orgId}`);
+    console.log(`Домен ${config.domain} не в org ${orgId} — добавляю…`);
+    const added = await addDomain(orgId, config.domain);
+    if (!added.ok) {
+      console.log("Подключённые домены:");
+      for (const item of domains) console.log(`  ${item.name}`);
+      fail(
+        `Не удалось добавить ${config.domain}: HTTP ${added.status}\n${
+          typeof added.body === "string" ? added.body : JSON.stringify(added.body, null, 2)
+        }\nНужен scope directory:write_domains. Сайт: ${CANONICAL_ORIGIN}`,
+      );
+    }
+    domain = added.body?.domain || added.body || { name: config.domain, verified: false };
+    console.log(`✓ Домен добавлен: ${config.domain}`);
   }
   const verified = domain.verified ?? domain.isVerified;
-  if (verified === false) fail(`Домен ${config.domain} ещё не подтверждён в Яндекс 360`);
+  if (verified === false) {
+    const status = await domainStatus(orgId, config.domain);
+    console.log(`\nДомен ${config.domain} ещё не подтверждён.`);
+    if (status.ok) {
+      console.log("Статус / DNS (добавьте записи у регистратора):");
+      console.log(JSON.stringify(status.body, null, 2));
+    }
+    fail(
+      `Подтвердите ${config.domain} в Яндекс 360 (DNS TXT/MX), затем повторите. Сайт: ${CANONICAL_ORIGIN}`,
+    );
+  }
   return domain;
 }
 
