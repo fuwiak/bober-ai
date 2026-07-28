@@ -47,8 +47,8 @@ const microItems = messages.microConversions.items as {
 }[];
 const title = page?.metaTitle || page?.title || messages.nav.services;
 const description = page?.metaDescription || page?.subtitle || messages.meta.description;
-const canonicalPath = locale === "en" ? "/en/services" : "/services";
-const crumbsName = locale === "en" ? "Services" : "Услуги";
+const canonicalPath = localizePath("/services", locale);
+const crumbsName = locale === "uz" ? "Xizmatlar" : "Услуги";
 ---
 
 <BaseLayout title={title} description={description} locale={locale} canonicalPath={canonicalPath}>

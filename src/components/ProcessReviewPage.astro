@@ -2,21 +2,21 @@
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import ProcessReviewForm from "@/components/ProcessReviewForm.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import type { Locale } from "@/lib/i18n";
+import { localizePath, type Locale } from "@/lib/i18n";
 
 interface Props {
   locale: Locale;
 }
 
 const { locale } = Astro.props;
-const ru = locale !== "en";
+const ru = locale !== "uz";
 const title = ru
   ? "Разбор одного процесса бесплатно | Bober AI"
   : "Free review of one process | Bober AI";
 const description = ru
   ? "Опишите один ручной процесс — покажем, где его можно автоматизировать, какие интеграции потребуются и есть ли смысл запускать пилот."
   : "Describe one manual process — we'll show where it can be automated, what integrations are needed and whether a pilot makes sense.";
-const canonicalPath = locale === "en" ? "/en/process-review" : "/process-review";
+const canonicalPath = localizePath("/process-review", locale);
 const bullets = ru
   ? [
       "Не более одного процесса за раз",

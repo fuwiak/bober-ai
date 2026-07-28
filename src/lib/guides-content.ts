@@ -9,7 +9,7 @@ export type GuideContent = {
   ctaText: string;
 };
 
-export type GuideLocale = "ru" | "en";
+export type GuideLocale = "ru" | "kz" | "uz";
 
 const GUIDES_RU: Record<string, GuideContent> = {
   automateSales: {
@@ -600,7 +600,7 @@ const GUIDES_EN: Record<string, GuideContent> = {
 };
 
 export function getGuideContent(contentKey: string, locale: GuideLocale): GuideContent | undefined {
-  const map = locale === "en" ? GUIDES_EN : GUIDES_RU;
+  const map = GUIDES_RU;
   return map[contentKey];
 }
 

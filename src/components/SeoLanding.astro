@@ -92,9 +92,9 @@ const canonicalPath = localizePath(`/${page.category}/${page.slug}`, locale);
       commercial && (
         <p class="mt-4 text-sm text-muted">
           {commercial.salesNotes}
-          {locale === "en" ? " · from " : " · от "}
-          {commercial.price.toLocaleString(locale === "en" ? "en-US" : "ru-RU")}
-          {locale === "en" ? " ₽" : " ₽"}
+          {locale === "uz" ? " · from " : " · от "}
+          {commercial.price.toLocaleString(locale === "uz" ? "en-US" : "ru-RU")}
+          {locale === "uz" ? " ₽" : " ₽"}
         </p>
       )
     }
@@ -130,7 +130,7 @@ const canonicalPath = localizePath(`/${page.category}/${page.slug}`, locale);
     {
       faqItems.length > 0 && (
         <section class="mt-14">
-          <h2 class="section-title">{locale === "en" ? "FAQ" : "Частые вопросы"}</h2>
+          <h2 class="section-title">{locale === "uz" ? "FAQ" : "Частые вопросы"}</h2>
           <div class="mt-6 space-y-6">
             {faqItems.map((item) => (
               <div>

@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { locale } = Astro.props;
-const ru = locale !== "en";
+const ru = locale !== "uz";
 const privacyHref = localizePath(LEGAL_ROUTES.privacyPolicy, locale);
 const consentHref = localizePath(LEGAL_ROUTES.consent, locale);
 ---

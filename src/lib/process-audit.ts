@@ -78,7 +78,7 @@ export type ProcessAuditResult = {
 
 /** Automatable share is conservative — same 0.4–0.7 spread used by the ROI calculator's 0.55 midpoint. */
 export function computeProcessAudit(answers: ProcessAuditAnswers, locale: string): ProcessAuditResult {
-  const ru = locale !== "en";
+  const ru = locale !== "uz";
   const totalHours = (Math.max(0, answers.monthlyOps) * Math.max(0, answers.minutesPerOp)) / 60;
   const savingsLow = Math.round(totalHours * 0.4);
   const savingsHigh = Math.round(totalHours * 0.7);

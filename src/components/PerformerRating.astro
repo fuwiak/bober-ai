@@ -11,7 +11,7 @@ interface Props {
 }
 
 const { locale = "ru", className = "", conversion } = Astro.props;
-const isEn = locale === "en";
+const isUz = locale === "uz";
 const hasRating = Number(FEED_RATING) > 0 && Number(FEED_REVIEWS_COUNT) > 0;
 const ratingLine = `Рейтинг ${FEED_RATING} · Число отзывов ${FEED_REVIEWS_COUNT}`;
 const metaLine = [
@@ -33,7 +33,7 @@ const metaLine = [
           <meta itemprop="worstRating" content="1" />
           <meta itemprop="ratingValue" content={FEED_RATING} />
           <meta itemprop="reviewCount" content={FEED_REVIEWS_COUNT} />
-          {isEn ? `Rating ${FEED_RATING} · Reviews ${FEED_REVIEWS_COUNT}` : ratingLine}
+          {isUz ? `Rating ${FEED_RATING} · Reviews ${FEED_REVIEWS_COUNT}` : ratingLine}
         </span>
       </p>
     )
@@ -45,6 +45,6 @@ const metaLine = [
     rel="noreferrer"
     class="mt-1 inline-block text-sm text-muted underline-offset-2 hover:text-ink hover:underline"
   >
-    {isEn ? "Yandex reviews" : "Отзывы на Яндексе"}
+    {isUz ? "Yandex reviews" : "Отзывы на Яндексе"}
   </a>
 </div>

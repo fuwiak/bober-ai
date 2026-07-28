@@ -1,7 +1,7 @@
 ---
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { loadMessages, type Locale } from "@/lib/i18n";
+import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
 import {
   YANDEX_PROOF_URL,
   credibilityGraphJsonLd,
@@ -18,7 +18,7 @@ const { locale } = Astro.props;
 const messages = loadMessages(locale);
 const media = messages.media;
 const page = messages.pages.media;
-const canonicalPath = locale === "en" ? "/en/media" : "/media";
+const canonicalPath = localizePath("/media", locale);
 const pageUrl = absoluteUrl(canonicalPath);
 const items = getCredibilityItems(locale);
 const byId = new Map(items.map((item) => [item.id, item]));
@@ -38,7 +38,7 @@ const proofItems = media.proofItems as string[];
     <div class="container-editorial max-w-3xl">
       <Breadcrumbs
         locale={locale}
-        items={[{ name: locale === "en" ? "Media" : "СМИ", path: "/media" }]}
+        items={[{ name: locale === "uz" ? "OAV" : "СМИ", path: "/media" }]}
       />
     </div>
   </section>
@@ -71,8 +71,8 @@ const proofItems = media.proofItems as string[];
           {section.id === "proof" ? (
             <div class="mt-8 max-w-2xl space-y-4">
               <p class="body-copy text-base">
-                {locale === "en"
-                  ? "Client feedback and presence on Yandex Services confirm ongoing commercial delivery — not anonymous contracting."
+                {locale === "uz"
+                  ? "Mijozlar fikri va Yandex Xizmatlardagi profil doimiy tijorat yetkazib berishni tasdiqlaydi — anonim pudrat emas."
                   : "Отзывы клиентов и профиль на Яндекс Услугах подтверждают коммерческую практику — не анонимный подряд."}
               </p>
               <a
@@ -81,7 +81,7 @@ const proofItems = media.proofItems as string[];
                 rel="noopener noreferrer"
                 class="text-link inline-flex items-center gap-2 text-sm"
               >
-                {locale === "en" ? "Open Yandex Services profile" : "Открыть профиль на Яндекс Услугах"}
+                {locale === "uz" ? "Yandex Xizmatlar profilini ochish" : "Открыть профиль на Яндекс Услугах"}
                 <span aria-hidden="true">→</span>
               </a>
             </div>

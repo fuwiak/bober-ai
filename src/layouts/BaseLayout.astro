@@ -4,13 +4,14 @@ import SiteFooter from "@/components/SiteFooter.astro";
 import CookieConsent from "@/components/CookieConsent.astro";
 import ContactModal from "@/components/ContactModal.astro";
 import ContactFab from "@/components/ContactFab.astro";
-import { loadMessages, type Locale } from "@/lib/i18n";
+import { loadMessages, localizePath, stripLocalePrefix, type Locale } from "@/lib/i18n";
+import { LOCALES, marketOf } from "@/lib/markets";
 import {
   BITRIX_YANDEX_METRIKA_ID,
   PARTNERS_YANDEX_METRIKA_ID,
   YANDEX_METRIKA_ID,
 } from "@/lib/legal";
-import { absoluteUrl, OG_IMAGE, SITE_GEO, SITE_NAME, SITE_REGION } from "@/lib/site";
+import { absoluteUrl, OG_IMAGE, SITE_NAME } from "@/lib/site";
 import "../styles/globals.css";
 
 interface Props {
@@ -20,14 +21,16 @@ interface Props {
   canonicalPath: string;
   keywords?: string[];
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
-  /** Temporary: unfinished locales stay out of the index. */
+  /** Opt-out of indexing when needed. */
   noIndex?: boolean;
 }
 
-const { title, description, locale, canonicalPath, keywords = [], jsonLd, noIndex = locale === "en" } = Astro.props;
-const geoPosition = `${SITE_GEO.latitude};${SITE_GEO.longitude}`;
-const geoIcbm = `${SITE_GEO.latitude}, ${SITE_GEO.longitude}`;
-const geoPlacename = locale === "en" ? "Moscow" : SITE_REGION;
+const { title, description, locale, canonicalPath, keywords = [], jsonLd, noIndex = false } = Astro.props;
+const market = marketOf(locale);
+const barePath = stripLocalePrefix(canonicalPath);
+const geoPosition = `${market.geo.latitude};${market.geo.longitude}`;
+const geoIcbm = `${market.geo.latitude}, ${market.geo.longitude}`;
+const geoPlacename = market.placename;
 const messages = loadMessages(locale);
 const canonical = absoluteUrl(canonicalPath);
 const ogImage = absoluteUrl(OG_IMAGE);
@@ -38,7 +41,7 @@ const metrikaBootstrap = `(function(){var host=(location.hostname||'').toLowerCa
 ---
 
 <!doctype html>
-<html lang={locale} class="dark">
+<html lang={market.htmlLang} class="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -46,15 +49,20 @@ const metrikaBootstrap = `(function(){var host=(location.hostname||'').toLowerCa
     <meta name="description" content={description} />
     {keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
     <meta name="robots" content={robotsContent} />
-    <meta name="geo.region" content="RU-MOW" />
+    <meta name="geo.region" content={market.geoRegion} />
     <meta name="geo.placename" content={geoPlacename} />
     <meta name="geo.position" content={geoPosition} />
     <meta name="ICBM" content={geoIcbm} />
     <meta name="yandex-verification" content="0e71ef3fc54b6c3c" />
     <meta name="yandex-verification" content="b5643e127be991c8" />
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="ru" href={locale === "ru" ? canonical : absoluteUrl(canonicalPath.replace(/^\/en(?=\/|$)/, "") || "/")} />
-    <link rel="alternate" hreflang="en" href={locale === "en" ? canonical : absoluteUrl(`/en${canonicalPath === "/" ? "" : canonicalPath}`)} />
+    {LOCALES.map((l) => (
+      <link
+        rel="alternate"
+        hreflang={marketOf(l).hreflang}
+        href={absoluteUrl(localizePath(barePath, l))}
+      />
+    ))}
     <link rel="alternate" hreflang="x-default" href={absoluteUrl("/")} />
     <link rel="alternate" type="application/rss+xml" title={`${SITE_NAME} RSS`} href={absoluteUrl("/rss.xml")} />
     <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -71,7 +79,7 @@ const metrikaBootstrap = `(function(){var host=(location.hostname||'').toLowerCa
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content={locale === "ru" ? "ru_RU" : "en_US"} />
+    <meta property="og:locale" content={market.ogLocale} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />

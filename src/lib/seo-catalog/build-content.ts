@@ -6,51 +6,67 @@ import type {
   LocaleCopy,
 } from "@/lib/seo-catalog/types";
 
-function buildMeta(locale: "ru" | "en", copy: LocaleCopy, keywords: string[]): CatalogLandingContent["metaTitle"] {
-  return locale === "ru"
-    ? `${copy.h1} — Bober AI Systems`
-    : `${copy.h1} — Bober AI Systems`;
+type CatalogLocale = "ru" | "kz" | "uz";
+
+function buildMeta(_locale: CatalogLocale, copy: LocaleCopy): CatalogLandingContent["metaTitle"] {
+  return `${copy.h1} — Bober AI Systems`;
 }
 
-function buildDescription(locale: "ru" | "en", copy: LocaleCopy): string {
+function buildDescription(_locale: CatalogLocale, copy: LocaleCopy): string {
   const base = copy.subtitle;
   if (base.length <= 155) return base;
   return `${base.slice(0, 152)}…`;
 }
 
 function buildLocaleContent(
-  locale: "ru" | "en",
+  locale: CatalogLocale,
   spec: LandingSpec,
   copy: LocaleCopy,
 ): CatalogLandingContent {
+  const uz = locale === "uz";
   return {
-    metaTitle: buildMeta(locale, copy, spec.keywords),
+    metaTitle: buildMeta(locale, copy),
     metaDescription: buildDescription(locale, copy),
     metaKeywords: spec.keywords,
-    eyebrow: locale === "ru" ? "Автоматизация для бизнеса" : "Business automation",
+    eyebrow: uz ? "Biznes uchun avtomatlashtirish" : "Автоматизация для бизнеса",
     h1: copy.h1,
     subtitle: copy.subtitle,
-    problemsTitle: locale === "ru" ? "Типичные проблемы" : "Typical problems",
+    problemsTitle: uz ? "Tipik muammolar" : "Типичные проблемы",
     problems: copy.problems,
-    deliverablesTitle: locale === "ru" ? "Что вы получаете" : "What you get",
+    deliverablesTitle: uz ? "Nima olasiz" : "Что вы получаете",
     deliverables: copy.deliverables,
-    relatedTitle: locale === "ru" ? "Связанные решения" : "Related solutions",
+    relatedTitle: uz ? "Bogʻliq yechimlar" : "Связанные решения",
     related: spec.related.map((item) => ({
       href: item.href,
-      label: locale === "ru" ? item.labelRu : item.labelEn,
+      label: uz ? item.labelEn : item.labelRu,
     })),
     faq: copy.faq,
   };
 }
 
-function buildExtended(locale: "ru" | "en", copy: LocaleCopy): LandingExtendedContent {
+function buildExtended(locale: CatalogLocale, copy: LocaleCopy): LandingExtendedContent {
+  const uz = locale === "uz";
   return {
     intro: copy.intro,
-    howWeSolveTitle: locale === "ru" ? "Как мы решаем задачу" : "How we solve it",
+    howWeSolveTitle: uz ? "Qanday yechamiz" : "Как мы решаем задачу",
     howWeSolve:
       copy.howWeSolve ??
-      (locale === "ru"
+      (uz
         ? [
+            {
+              title: "Audit va ROI",
+              text: "Joriy jarayon, yoʻqotish nuqtalari va ishlab chiqishdan oldin effektni hisoblaymiz.",
+            },
+            {
+              title: "Arxitektura va integratsiyalar",
+              text: "Workflow, CRM/1C/API bogʻlanishi va faqat oʻlchanadigan joyda AI-qatlam.",
+            },
+            {
+              title: "Joriy etish va topshirish",
+              text: "Production ishga tushirish, hujjatlar, jamoa oʻqitish va SLA qoʻllab-quvvatlash.",
+            },
+          ]
+        : [
             {
               title: "Аудит и ROI",
               text: "Разбираем текущий процесс, точки потерь и считаем эффект до старта разработки.",
@@ -63,40 +79,26 @@ function buildExtended(locale: "ru" | "en", copy: LocaleCopy): LandingExtendedCo
               title: "Внедрение и передача",
               text: "Production-запуск, документация, обучение команды и сопровождение по SLA.",
             },
-          ]
-        : [
-            {
-              title: "Audit & ROI",
-              text: "We map the current process, loss points, and calculate impact before development starts.",
-            },
-            {
-              title: "Architecture & integrations",
-              text: "We design workflow, CRM/ERP/API links, and an AI layer only where it delivers measurable value.",
-            },
-            {
-              title: "Delivery & handover",
-              text: "Production launch, documentation, team training, and optional SLA support.",
-            },
           ]),
-    roiTitle: locale === "ru" ? "Типичный эффект" : "Typical impact",
-    roi:
-      locale === "ru"
-        ? [
-            { value: "−40–80%", label: "ручного труда в целевом процессе" },
-            { value: "2–8 нед.", label: "до первого production-релиза" },
-            { value: "3–6 мес.", label: "окупаемость при среднем проекте" },
-          ]
-        : [
-            { value: "−40–80%", label: "manual work in the target process" },
-            { value: "2–8 wks", label: "to first production release" },
-            { value: "3–6 mo", label: "payback on a typical project" },
-          ],
-    faqTitle: locale === "ru" ? "Частые вопросы" : "FAQ",
+    roiTitle: uz ? "Tipik effekt" : "Типичный эффект",
+    roi: uz
+      ? [
+          { value: "−40–80%", label: "maqsadli jarayonda qoʻlda mehnat" },
+          { value: "2–8 hafta", label: "birinchi production-relizgacha" },
+          { value: "3–6 oy", label: "oʻrtacha loyihada qaytim" },
+        ]
+      : [
+          { value: "−40–80%", label: "ручного труда в целевом процессе" },
+          { value: "2–8 нед.", label: "до первого production-релиза" },
+          { value: "3–6 мес.", label: "окупаемость при среднем проекте" },
+        ],
+    faqTitle: uz ? "Koʻp soʻraladigan savollar" : "Частые вопросы",
     faq: copy.faq,
   };
 }
 
 export function buildLanding(spec: LandingSpec): BuiltLanding {
+  // KZ: Russian market copy (spec.ru). UZ: Russian body + Uzbek chrome labels for now.
   return {
     def: {
       category: spec.category,
@@ -108,11 +110,13 @@ export function buildLanding(spec: LandingSpec): BuiltLanding {
     },
     content: {
       ru: buildLocaleContent("ru", spec, spec.ru),
-      en: buildLocaleContent("en", spec, spec.en),
+      kz: buildLocaleContent("kz", spec, spec.ru),
+      uz: buildLocaleContent("uz", spec, spec.ru),
     },
     extended: {
       ru: buildExtended("ru", spec.ru),
-      en: buildExtended("en", spec.en),
+      kz: buildExtended("kz", spec.ru),
+      uz: buildExtended("uz", spec.ru),
     },
   };
 }

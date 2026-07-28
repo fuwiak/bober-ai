@@ -1031,10 +1031,29 @@ html.dark {
     white-space: nowrap;
     transition: background-color 220ms ease, border-color 220ms ease, color 220ms ease;
   }
+  .locale-switcher--multi {
+    gap: 2px;
+    padding: 2px;
+  }
+  .locale-switcher--multi a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    min-height: 30px;
+    padding: 0 8px;
+    border-radius: 9999px;
+    color: inherit;
+    text-decoration: none;
+    font: inherit;
+  }
   @media (hover: hover) and (pointer: fine) {
     .locale-switcher:hover {
       background: rgba(64, 66, 77, 0.12);
       border-color: rgba(64, 66, 77, 0.45);
+    }
+    .locale-switcher--multi a:hover {
+      background: rgba(64, 66, 77, 0.12);
     }
   }
   .mobile-menu__panel .locale-switcher {
@@ -3693,6 +3712,52 @@ html:not(.dark) .shell-code {
     color: var(--color-body);
     padding-left: 1rem;
     border-left: 1px solid var(--color-hairline-strong);
+  }
+
+  .home-partners-grid {
+    @apply grid gap-8 md:grid-cols-2;
+  }
+  .home-partners-card {
+    @apply border border-hairline bg-surface-card p-6 md:p-8;
+  }
+  .hero-founder-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    margin-top: 1rem;
+    max-width: 20rem;
+    border-top: 1px solid var(--color-hairline);
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  @media (min-width: 480px) {
+    .hero-founder-stats {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      max-width: none;
+    }
+  }
+  .hero-founder-stats__item {
+    padding: 0.85rem 0.65rem 0.85rem 0;
+    border-right: 1px solid var(--color-hairline);
+  }
+  .hero-founder-stats__item:last-child {
+    border-right: 0;
+  }
+  .hero-founder-stats__value {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+  }
+  .hero-founder-stats__label {
+    display: block;
+    margin-top: 0.3rem;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted);
   }
 
   /* Founder manifesto (Bodrov-style personal statement) */

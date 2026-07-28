@@ -1,10 +1,17 @@
-import ru from "../content/ru";
-import en from "../content/en";
+import type { Locale } from "./markets";
 
-export type Locale = "ru" | "en";
+export type { Locale } from "./markets";
+export { LOCALES, marketOf, contentLang, isPrefixedLocale } from "./markets";
+
+import ru from "../content/ru";
+import kz from "../content/kz";
+import uz from "../content/uz";
+
 export type Messages = typeof ru;
 
-const catalogs: Record<Locale, Messages> = { ru, en };
+const catalogs: Record<Locale, Messages> = { ru, kz, uz };
+
+const PREFIXES: Exclude<Locale, "ru">[] = ["kz", "uz"];
 
 export function loadMessages(locale: Locale): Messages {
   return catalogs[locale] ?? ru;
@@ -25,8 +32,13 @@ export function t(messages: Messages, path: string): string {
   return typeof current === "string" ? current : path;
 }
 
-/** Strip locale prefix from an internal path. */
-function stripLocalePrefix(path: string): string {
+/** Strip /kz or /uz prefix from an internal path. */
+export function stripLocalePrefix(path: string): string {
+  for (const p of PREFIXES) {
+    if (path === `/${p}`) return "/";
+    if (path.startsWith(`/${p}/`)) return path.slice(p.length + 1) || "/";
+  }
+  // Legacy EN → treat as bare path (redirects handle SEO).
   if (path === "/en") return "/";
   if (path.startsWith("/en/")) return path.slice(3) || "/";
   return path;
@@ -40,18 +52,27 @@ export function localizePath(path: string, locale: Locale): string {
   if (!base.startsWith("/")) base = `/${base}`;
   base = stripLocalePrefix(base);
 
-  if (locale === "en") {
-    if (base === "/") return `/en${hash}`;
-    return `/en${base}${hash}`;
+  if (locale === "kz" || locale === "uz") {
+    if (base === "/") return `/${locale}${hash}`;
+    return `/${locale}${base}${hash}`;
   }
 
   return `${base}${hash}`;
 }
 
+/** Alternate markets for hreflang / switcher (excludes current). */
+export function otherLocales(locale: Locale): Locale[] {
+  return (["ru", "kz", "uz"] as Locale[]).filter((l) => l !== locale);
+}
+
+/** @deprecated use otherLocales — kept for gradual migration */
 export function otherLocale(locale: Locale): Locale {
-  return locale === "ru" ? "en" : "ru";
+  if (locale === "ru") return "kz";
+  return "ru";
 }
 
 export function localeFromPath(pathname: string): Locale {
-  return pathname === "/en" || pathname.startsWith("/en/") ? "en" : "ru";
+  if (pathname === "/kz" || pathname.startsWith("/kz/")) return "kz";
+  if (pathname === "/uz" || pathname.startsWith("/uz/")) return "uz";
+  return "ru";
 }

@@ -1,0 +1,11 @@
+---
+/**
+ * Legacy /en → RU (permanent). EN locale removed in favor of /kz and /uz.
+ */
+export const prerender = false;
+
+const slug = Astro.params.path;
+const rest = Array.isArray(slug) ? slug.join("/") : slug || "";
+const dest = rest ? `/${rest}` : "/";
+return Astro.redirect(dest, 301);
+---

@@ -1,0 +1,98 @@
+---
+import { localizePath, type Locale } from "@/lib/i18n";
+import { PRIMARY_CTA_GOAL } from "@/lib/site";
+
+type HomeLanding = {
+  expertiseLabel: string;
+  expertiseTitle: string;
+  expertiseSources: string;
+  expertiseStats: string;
+  expertiseCta: string;
+  partnersHomeLabel: string;
+  partnersHomeTitle: string;
+  partnersHomeTechTitle: string;
+  partnersHomeTechText: string;
+  partnersHomeTechCta: string;
+  partnersHomeAgencyTitle: string;
+  partnersHomeAgencyText: string;
+  partnersHomeAgencyCta: string;
+  partnersHomePriceCta: string;
+};
+
+type Partners = {
+  badge: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  steps: { title: string; text: string }[];
+  cta: string;
+  priceCta?: string;
+};
+
+interface Props {
+  locale: Locale;
+  homeLanding: HomeLanding;
+  partners: Partners;
+}
+
+const { locale, homeLanding: hl, partners } = Astro.props;
+---
+
+<section id="expertise" class="section-band section--deep border-b border-hairline scroll-mt-16">
+  <div class="container-editorial">
+    <span class="section-label">{hl.expertiseLabel}</span>
+    <h2 class="section-title mt-4">{hl.expertiseTitle}</h2>
+    <p class="body-copy mt-4 max-w-2xl text-base">{hl.expertiseSources}</p>
+    <p class="meta-label mt-3">{hl.expertiseStats}</p>
+    <div class="mt-6">
+      <a href={localizePath("/media", locale)} class="link-more">{hl.expertiseCta}</a>
+    </div>
+  </div>
+</section>
+
+<section id="partners-home" class="section-band section--panel border-b border-hairline scroll-mt-16">
+  <div class="container-editorial">
+    <span class="section-label">{hl.partnersHomeLabel}</span>
+    <h2 class="section-title mt-4">{hl.partnersHomeTitle}</h2>
+    <p class="meta-label mt-3">{partners.badge}</p>
+
+    <div class="home-partners-grid mt-10">
+      <article class="home-partners-card">
+        <h3 class="card-title text-xl">{hl.partnersHomeTechTitle}</h3>
+        <p class="body-copy mt-3 text-base">{hl.partnersHomeTechText}</p>
+        <a href={localizePath("/certificates", locale)} class="link-more mt-6">
+          {hl.partnersHomeTechCta}
+        </a>
+      </article>
+      <article class="home-partners-card">
+        <h3 class="card-title text-xl">{hl.partnersHomeAgencyTitle}</h3>
+        <p class="body-copy mt-3 text-base">{hl.partnersHomeAgencyText}</p>
+        <p class="body-copy mt-3 text-sm text-muted">{partners.description}</p>
+        <ul class="mt-5 space-y-3">
+          {
+            partners.steps.map((step) => (
+              <li>
+                <p class="meta-label">{step.title}</p>
+                <p class="body-copy mt-1 text-sm">{step.text}</p>
+              </li>
+            ))
+          }
+        </ul>
+        <div class="mt-6 flex flex-wrap gap-4">
+          <button
+            type="button"
+            class="btn-primary"
+            data-contact-open
+            data-contact-goal={PRIMARY_CTA_GOAL}
+            data-contact-service={partners.title}
+          >
+            {hl.partnersHomeAgencyCta}
+          </button>
+          <a href={localizePath("/white-label", locale)} class="btn-secondary">
+            {hl.partnersHomePriceCta}
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

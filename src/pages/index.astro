@@ -8,6 +8,7 @@ import CaseStudyCard from "@/components/CaseStudyCard.astro";
 import PackagesShowcase from "@/components/PackagesShowcase.astro";
 import FaqSection from "@/components/FaqSection.astro";
 import RoiCalculatorSection from "@/components/RoiCalculatorSection.astro";
+import HomeAuthoritySections from "@/components/HomeAuthoritySections.astro";
 import { loadMessages, localizePath } from "@/lib/i18n";
 import { getEnterpriseServicesListing } from "@/lib/enterprise-services";
 import { getPortfolioListing, PROFILE } from "@/lib/profile";
@@ -37,10 +38,11 @@ const messages = loadMessages(locale);
 const meta = messages.meta;
 const hero = messages.hero;
 const founderAlt = hero.heroImageAlt || `${SITE_NAME} — Павел Стасиньски`;
+const founder = messages.founderManifesto;
 const trustStats = messages.trust.stats;
 const trustBenefits = messages.trust.benefits;
 const ba = messages.beforeAfterDemo;
-const packageItems = messages.packages.items.slice(0, 4).map((item) => ({
+const packageItems = messages.packages.items.map((item) => ({
   name: item.name,
   price: item.price,
   duration: item.duration,
@@ -142,6 +144,20 @@ const homeJsonLd = [
           />
         </div>
         <figcaption class="sr-only">{founderAlt}</figcaption>
+        <p class="meta-label mt-3">{founder.name} · {founder.role}</p>
+        <dl class="hero-founder-stats">
+          {
+            founder.stats.map((stat) => (
+              <div class="hero-founder-stats__item">
+                <dt class="sr-only">{stat.label}</dt>
+                <dd>
+                  <span class="hero-founder-stats__value">{stat.value}</span>
+                  <span class="hero-founder-stats__label">{stat.label}</span>
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
       </figure>
     </div>
   </section>
@@ -238,11 +254,11 @@ const homeJsonLd = [
 
   <section class="section-band section--panel border-b border-hairline">
     <div class="container-editorial flex flex-wrap gap-x-8 gap-y-3">
+      <a href={localizePath("/process-review", locale)} class="link-more">
+        Разбор одного процесса — бесплатно →
+      </a>
       <a href={localizePath("/audit", locale)} class="link-more">
         Пройти полный AI-аудит процесса за 5 минут →
-      </a>
-      <a href={localizePath("/process-review", locale)} class="link-more">
-        Разобрать один процесс бесплатно →
       </a>
     </div>
   </section>
@@ -258,6 +274,12 @@ const homeJsonLd = [
     cta={messages.cta.primary}
     moreHref="/pricing"
     moreLabel={messages.homeLanding.packagesMore}
+  />
+
+  <HomeAuthoritySections
+    locale={locale}
+    homeLanding={messages.homeLanding}
+    partners={messages.partners}
   />
 
   <FaqSection

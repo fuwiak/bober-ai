@@ -1529,9 +1529,10 @@ const ru = {
   },
   partnersPage: {
     title: "Партнёрам",
-    subtitle: "White-label delivery · Technology partnerships · Referral partnerships",
+    subtitle:
+      "Технологические партнёры · Интеграторам и агентствам — white-label AI",
     metaDescription:
-      "Партнёрство с Bober AI Systems: white-label внедрение автоматизации, технологические и реферальные партнёрства. Фиксированная смета, NDA.",
+      "Партнёрство с Bober AI Systems: white-label внедрение автоматизации для интеграторов и агентств; отдельно — технологические статусы Yandex / Kaspersky / 1С-Битрикс. Фиксированная смета, NDA.",
   },
   guides: {
     metaTitle: "Гайды по автоматизации и AI | Bober AI",

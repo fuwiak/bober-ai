@@ -13,14 +13,14 @@ interface Props {
 
 const { locale } = Astro.props;
 const messages = loadMessages(locale);
-const isEn = locale === "en";
+const isUz = locale === "uz";
 const page = messages.pages.about;
 const about = messages.about;
 const certificates = messages.certificates;
 const skills = about.skills as string[];
 const title = page.metaTitle;
 const description = page.metaDescription;
-const canonicalPath = locale === "en" ? "/en/about" : "/about";
+const canonicalPath = localizePath("/about", locale);
 const orgJsonLd = {
   "@context": "https://schema.org",
   ...organizationJsonLd(locale),
@@ -40,7 +40,7 @@ const aboutParagraphs = about.text.split("\n\n").filter(Boolean);
     <div class="container-editorial">
       <Breadcrumbs
         locale={locale}
-        items={[{ name: isEn ? "About" : "О компании", path: "/about" }]}
+        items={[{ name: isUz ? "About" : "О компании", path: "/about" }]}
       />
       <span class="section-label mt-8 inline-block">{certificates.label}</span>
       <h1 class="section-title mt-4 max-w-3xl">{page.pageTitle}</h1>
@@ -55,7 +55,7 @@ const aboutParagraphs = about.text.split("\n\n").filter(Boolean);
               <div class="partner-badge-frame">
                 <img
                   src={badge.src}
-                  alt={isEn ? badge.altEn : badge.altRu}
+                  alt={isUz ? badge.altEn : badge.altRu}
                   width={badge.width}
                   height={badge.height}
                   class="partner-badge-image"

@@ -10,14 +10,14 @@ interface Props {
 
 const { locale } = Astro.props;
 const copy =
-  locale === "en"
+  locale === "uz"
     ? {
-        title: "Cookies and analytics",
-        descBefore: "This site uses cookies and\u00a0Yandex.Metrica for visit analytics. Details in the\u00a0",
-        policy: "Privacy policy",
-        descAfter: ". By continuing to use the site, you confirm that you have read the policy.",
-        reject: "Essential only",
-        accept: "Accept",
+        title: "Cookie va analitika",
+        descBefore: "Sayt cookie va\u00a0Yandex.Metrica dan tashrif analitikasida foydalanadi. Batafsil —\u00a0",
+        policy: "Maxfiylik siyosati",
+        descAfter: ". Saytdan foydalanishni davom ettirib, siyosat bilan tanishganingizni tasdiqlaysiz.",
+        reject: "Faqat zaruriy",
+        accept: "Qabul qilish",
       }
     : {
         title: "Cookies и аналитика",
@@ -28,11 +28,8 @@ const copy =
         reject: "Только необходимые",
         accept: "Принять",
       };
-const privacyUrl = absoluteUrl(
-  locale === "en" ? `/en${LEGAL_ROUTES.privacyPolicy}` : LEGAL_ROUTES.privacyPolicy,
-);
+const privacyUrl = absoluteUrl(localizePath(LEGAL_ROUTES.privacyPolicy, locale));
 void COOKIE_CONSENT_KEY;
-void localizePath;
 ---
 
 <div

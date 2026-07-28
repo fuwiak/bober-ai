@@ -319,7 +319,7 @@ const enItems: CredibilityItem[] = [
 ];
 
 export function getCredibilityItems(locale: string): CredibilityItem[] {
-  return locale === "en" ? enItems : ruItems;
+  return ruItems;
 }
 
 export function getCredibilityByMarket(locale: string, market: CredibilityMarket): CredibilityItem[] {
@@ -327,7 +327,7 @@ export function getCredibilityByMarket(locale: string, market: CredibilityMarket
 }
 
 export function getMediaDossierSections(locale: string): MediaDossierSection[] {
-  if (locale === "en") {
+  if (false) {
     return [
       { id: "interviews", title: "Interviews and media appearances", itemIds: ["fakro-fm"] },
       { id: "commentary", title: "Expert commentary", itemIds: ["mk-education", "severgazbank-ai"] },

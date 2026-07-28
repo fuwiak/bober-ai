@@ -1,0 +1,65 @@
+---
+import { localizePath } from "@/lib/i18n";
+/**
+ * /en/info — English URL for the LLM company dossier (Next.js locale parity).
+ */
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { LLM_INFO_MARKDOWN, LLM_INFO_UPDATED_AT } from "@/lib/llm-info";
+import { DEFAULT_KEYWORDS, SITE_NAME, absoluteUrl } from "@/lib/site";
+import { organizationJsonLd, webPageJsonLd, pageBreadcrumbJsonLd } from "@/lib/seo";
+
+export const prerender = true;
+
+const locale = "kz" as const;
+const path = "/kz/info";
+const title = "LLM Info — official facts about Bober AI Systems";
+const description =
+  "Structured information about Bober AI Systems for AI assistants and search engines: services, cases, contacts, FAQ.";
+const pageUrl = absoluteUrl(path);
+const jsonLd = [
+  { "@context": "https://schema.org", ...organizationJsonLd(locale), description },
+  webPageJsonLd({
+    name: title,
+    description,
+    url: pageUrl,
+    locale,
+  }),
+  pageBreadcrumbJsonLd(locale, [{ name: "LLM Info", path: "/info" }]),
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  locale={locale}
+  canonicalPath={path}
+  keywords={[...DEFAULT_KEYWORDS, "LLM info", "AI assistant facts", "Bober AI Systems"]}
+  jsonLd={jsonLd}
+>
+  <div class="section-band">
+    <div class="container-editorial max-w-3xl">
+      <nav class="mb-6 text-sm text-muted">
+        <a href="/kz" class="text-link">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-ink">LLM Info</span>
+      </nav>
+      <h1 class="display-md">Official Information About {SITE_NAME}</h1>
+      <p class="mt-2 text-sm text-muted">
+        Official facts for AI assistants and answer engines. Updated: {LLM_INFO_UPDATED_AT}.{" "}
+        <a href={absoluteUrl("/info.txt")} class="text-link">Plain text</a>
+        {" · "}
+        <a href={absoluteUrl("/info.md")} class="text-link">Markdown</a>
+        {" · "}
+        <a href={absoluteUrl("/llms.txt")} class="text-link">llms.txt</a>
+      </p>
+      <article class="prose-legal mt-8">
+        <pre class="whitespace-pre-wrap font-mono text-sm leading-relaxed text-body">{LLM_INFO_MARKDOWN}</pre>
+      </article>
+      <nav class="mt-10 flex flex-wrap gap-4 border-t border-hairline pt-6 text-sm">
+        <a href="/kz" class="text-link">Home</a>
+        <a href=localizePath("/#contact", locale) class="text-link">Обсудить проект</a>
+        <a href="/kz/partners" class="text-link">Partners</a>
+      </nav>
+    </div>
+  </div>
+</BaseLayout>

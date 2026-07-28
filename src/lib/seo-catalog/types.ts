@@ -54,8 +54,8 @@ export type BuiltLanding = {
     coverImage: string;
     caseStudySlugs?: string[];
   };
-  content: { ru: CatalogLandingContent; en: CatalogLandingContent };
-  extended: { ru: LandingExtendedContent; en: LandingExtendedContent };
+  content: { ru: CatalogLandingContent; kz: CatalogLandingContent; uz: CatalogLandingContent };
+  extended: { ru: LandingExtendedContent; kz: LandingExtendedContent; uz: LandingExtendedContent };
 };
 
 export type ArticleChecklist = { title: string; items: string[] };

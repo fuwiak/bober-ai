@@ -11,7 +11,7 @@ interface Props {
 }
 
 const { locale } = Astro.props;
-const ru = locale !== "en";
+const ru = locale !== "uz";
 const total = SECURE_AI_CHECKLIST.reduce((sum, section) => sum + section.itemsRu.length, 0);
 ---
 
@@ -90,7 +90,7 @@ const total = SECURE_AI_CHECKLIST.reduce((sum, section) => sum + section.itemsRu
   }
 
   function bind(root) {
-    const ru = root.dataset.locale !== "en";
+    const ru = root.dataset.locale !== "uz";
     const total = Number(root.dataset.total) || 0;
     const scoreEl = root.querySelector("[data-checklist-score]");
     const bandEl = root.querySelector("[data-checklist-band]");

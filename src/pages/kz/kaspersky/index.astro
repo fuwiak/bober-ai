@@ -1,0 +1,126 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import ContactForm from "@/components/ContactForm.astro";
+import { KASPERSKY_PAGE, KASPERSKY_PRODUCTS } from "@/lib/kaspersky-page";
+import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
+import { TELEGRAM_URL } from "@/lib/site";
+
+export const prerender = true;
+
+const locale = "kz" as Locale;
+const messages = loadMessages(locale);
+const p = KASPERSKY_PAGE;
+---
+
+<BaseLayout
+  title={p.metaTitleEn}
+  description={p.metaDescEn}
+  locale={locale}
+  canonicalPath="/kz/kaspersky"
+>
+  <main>
+    <section class="container-editorial max-w-3xl py-12 md:py-16">
+      <Breadcrumbs
+        locale={locale}
+        items={[
+          { name: "Secure AI", path: "/secure-ai" },
+          { name: "Kaspersky", path: "/kaspersky" },
+        ]}
+      />
+      <span class="meta-label mt-2 inline-block text-primary">{p.statusEn}</span>
+      <h1 class="mt-4 display-title">{p.h1En}</h1>
+      <p class="mt-4 body-copy text-muted">{p.subtitleEn}</p>
+      <p class="mt-4 text-xs text-muted">{p.disclaimerEn}</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#contact" class="btn-primary">Discuss the project</a>
+        <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" class="btn-secondary">Telegram</a>
+        <a href={localizePath("/secure-ai", locale)} class="btn-secondary">Secure AI</a>
+      </div>
+    </section>
+
+    <section class="container-editorial max-w-3xl border-t border-hairline py-12">
+      <h2 class="section-title">{p.productsTitleEn}</h2>
+      <p class="mt-3 body-copy text-muted">{p.productsIntroEn}</p>
+      <ul class="mt-8 space-y-4">
+        {
+          KASPERSKY_PRODUCTS.map((product) => (
+            <li class="border border-hairline p-5">
+              <a href={`/kz/kaspersky/${product.slug}`} class="font-medium text-link">
+                {product.titleEn}
+              </a>
+              <p class="mt-2 text-sm text-muted">{product.summaryEn}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="container-editorial max-w-3xl border-t border-hairline py-12">
+      <h2 class="section-title">{p.matrixTitleEn}</h2>
+      <div class="mt-6 space-y-3 text-sm">
+        {
+          p.matrixEn.map((row) => (
+            <div class="grid gap-2 border-b border-hairline pb-3 md:grid-cols-2">
+              <div>
+                <span class="meta-label">Kaspersky</span>
+                <p class="mt-1">{row.k}</p>
+              </div>
+              <div>
+                <span class="meta-label">Bober AI</span>
+                <p class="mt-1 text-muted">{row.b}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="container-editorial max-w-3xl border-t border-hairline py-12">
+      <h2 class="section-title">Licenses & deployment</h2>
+      <ul class="mt-6 space-y-4">
+        {
+          p.offers.map((offer) => (
+            <li class="border border-hairline p-5">
+              <h3 class="font-medium">{offer.titleEn}</h3>
+              <p class="mt-2 text-sm text-muted">{offer.blurbEn}</p>
+              {offer.wordstatHint ? <p class="mt-2 text-xs text-muted">{offer.wordstatHint}</p> : null}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="container-editorial max-w-3xl border-t border-hairline py-12">
+      <h2 class="section-title">{p.processTitleEn}</h2>
+      <ol class="mt-6 space-y-3 text-sm text-muted">
+        {
+          p.processEn.map((step, i) => (
+            <li class="flex gap-3">
+              <span class="text-primary/50">{String(i + 1).padStart(2, "0")}</span>
+              <span>{step}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="container-editorial max-w-3xl border-t border-hairline py-12">
+      <h2 class="section-title">{p.attachTitleEn}</h2>
+      <ul class="mt-4 space-y-2 text-sm text-muted">
+        {p.attachEn.map((item) => <li>— {item}</li>)}
+      </ul>
+    </section>
+
+    <section id="contact" class="container-editorial max-w-3xl border-t border-hairline py-12 md:py-16">
+      <h2 class="section-title">Request</h2>
+      <div class="mt-6 max-w-xl">
+        <ContactForm
+          locale={locale}
+          messages={messages}
+          defaultService="Kaspersky — AI / licenses / deploy"
+        />
+      </div>
+    </section>
+  </main>
+</BaseLayout>

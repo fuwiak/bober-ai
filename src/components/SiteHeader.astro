@@ -1,5 +1,6 @@
 ---
-import { localizePath, type Locale, type Messages } from "@/lib/i18n";
+import { localizePath, stripLocalePrefix, type Locale, type Messages } from "@/lib/i18n";
+import { LOCALES, marketOf } from "@/lib/markets";
 import { buildNavGroups, navLabels, type NavGroup, type NavIconId, type NavLinkItem } from "@/lib/nav";
 import { CONTACT_PHONE, PRIMARY_CTA_GOAL, SITE_NAME, TELEGRAM_URL } from "@/lib/site";
 
@@ -12,7 +13,13 @@ const { locale, messages } = Astro.props;
 const groups = buildNavGroups(messages);
 const labels = navLabels(messages);
 const homeHref = localizePath("/", locale);
-const localeSwitchHref = locale === "ru" ? "/en" : "/";
+const barePath = stripLocalePrefix(Astro.url.pathname);
+const localeLinks = LOCALES.filter((l) => l !== locale).map((l) => ({
+  locale: l,
+  href: localizePath(barePath, l),
+  label: l === "ru" ? "RU" : l === "kz" ? "KZ" : "UZ",
+  title: marketOf(l).country,
+}));
 
 function hrefFor(item: { href: string; localeAgnostic?: boolean }) {
   return item.localeAgnostic ? item.href : localizePath(item.href, locale);
@@ -240,9 +247,13 @@ function megaCols(group: Extract<NavGroup, { type: "mega" }>) {
           </svg>
         </a>
         <div class="site-header__tools">
-          <a href={localeSwitchHref} class="locale-switcher" aria-label={labels.localeSwitchLabel}>
-            {labels.localeSwitchLabel}
-          </a>
+          <div class="locale-switcher locale-switcher--multi" role="navigation" aria-label={labels.localeSwitchLabel}>
+            {localeLinks.map((link) => (
+              <a href={link.href} title={link.title} hreflang={marketOf(link.locale).hreflang}>
+                {link.label}
+              </a>
+            ))}
+          </div>
           <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
             <svg class="theme-toggle__sun" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
               <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
@@ -374,7 +385,13 @@ function megaCols(group: Extract<NavGroup, { type: "mega" }>) {
       </div>
 
       <div class="mt-8 flex items-center gap-3 border-t border-hairline pt-6">
-        <a href={localeSwitchHref} class="locale-switcher">{labels.localeSwitchLabel}</a>
+        <div class="locale-switcher locale-switcher--multi" role="navigation" aria-label={labels.localeSwitchLabel}>
+          {localeLinks.map((link) => (
+            <a href={link.href} title={link.title} hreflang={marketOf(link.locale).hreflang}>
+              {link.label}
+            </a>
+          ))}
+        </div>
         <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
           <svg class="theme-toggle__sun" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
             <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"></circle>

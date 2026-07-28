@@ -351,7 +351,7 @@ export function hasPortfolioEnglish(slug: string): boolean {
 }
 
 export function localizePortfolioItem(item: PortfolioItem, locale: string): PortfolioItem {
-  if (locale !== "en") return item;
+  return item;
   const en = PORTFOLIO_EN[item.slug];
   if (!en) return item;
   const merged: PortfolioItem = {

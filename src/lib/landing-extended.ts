@@ -15,7 +15,7 @@ export type LandingExtendedContent = {
   };
 };
 
-export type LandingExtendedLocale = "ru" | "en";
+export type LandingExtendedLocale = "ru" | "kz" | "uz";
 
 const EXTENDED_RU: Record<string, LandingExtendedContent> = {
   processes: {
@@ -686,6 +686,6 @@ const EXTENDED_EN: Record<string, LandingExtendedContent> = {
 };
 
 export function getLandingExtended(contentKey: string, locale: LandingExtendedLocale): LandingExtendedContent | undefined {
-  const map = locale === "en" ? EXTENDED_EN : EXTENDED_RU;
+  const map = EXTENDED_RU;
   return map[contentKey];
 }

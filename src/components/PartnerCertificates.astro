@@ -10,7 +10,7 @@ interface Props {
 }
 
 const { locale, intro, titles, openLabel } = Astro.props;
-const isEn = locale === "en";
+const isUz = locale === "uz";
 ---
 
 {
@@ -23,7 +23,7 @@ const isEn = locale === "en";
         <div class="partner-cert-card__preview">
           <img
             src={cert.previewSrc}
-            alt={isEn ? cert.altEn : cert.altRu}
+            alt={isUz ? cert.altEn : cert.altRu}
             width={cert.width}
             height={cert.height}
             class="partner-cert-card__image"
@@ -33,7 +33,7 @@ const isEn = locale === "en";
         </div>
         <div class="partner-cert-card__meta">
           <span class="partner-cert-card__badge">{titles[cert.id as "b2b" | "b2c"]}</span>
-          <span class="partner-cert-card__title">{isEn ? cert.altEn : cert.altRu}</span>
+          <span class="partner-cert-card__title">{isUz ? cert.altEn : cert.altRu}</span>
           <span class="partner-cert-card__action">{openLabel}</span>
         </div>
       </a>

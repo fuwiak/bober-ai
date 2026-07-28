@@ -10,18 +10,26 @@ import { join, relative, dirname } from "node:path";
 
 const SITE = process.env.PUBLIC_SITE_URL || CANONICAL_ORIGIN;
 const ROOT = join(process.cwd(), "dist/client");
-const INCLUDE_EN = process.env.SITEMAP_INCLUDE_EN === "1";
+const INCLUDE_MARKETS = process.env.SITEMAP_INCLUDE_MARKETS !== "0";
 /** Soft cap — prefer quality over programmatic SEO volume on a new domain. */
 const MAX_URLS = Number(process.env.SITEMAP_MAX_URLS || 80);
 /** Cap blog/guides/academy share so commercial pages stay first. */
 const MAX_BLOG_URLS = Number(process.env.SITEMAP_MAX_BLOG || 20);
 
-/** Always-include commercial / trust URLs (RU). */
+/** Always-include commercial / trust URLs (RU + market hubs). */
 const PRIORITY_PATHS = [
   "/",
+  "/kz",
+  "/uz",
   "/about",
+  "/kz/about",
+  "/uz/about",
   "/pricing",
+  "/kz/pricing",
+  "/uz/pricing",
   "/services",
+  "/kz/services",
+  "/uz/services",
   "/portfolio",
   "/audit",
   "/ii-dlya-biznesa",
@@ -94,7 +102,11 @@ function pathFromFile(file) {
 }
 
 function isExcluded(path) {
-  if (!INCLUDE_EN && (path === "/en" || path.startsWith("/en/"))) return true;
+  // Legacy EN redirects — never index.
+  if (path === "/en" || path.startsWith("/en/")) return true;
+  if (!INCLUDE_MARKETS && (path === "/kz" || path.startsWith("/kz/") || path === "/uz" || path.startsWith("/uz/"))) {
+    return true;
+  }
   if (path.includes("/amocrm") || path.includes("/bitrix24") || path.includes("/cases/")) return true;
   if (path === "/ru" || path.startsWith("/ru/")) return true;
   if (path.startsWith("/api/")) return true;
@@ -220,5 +232,5 @@ await writeBoth("sitemap.xml", indexBody);
 
 const total = written.reduce((n, s) => n + s.count, 0);
 console.log(
-  `sitemap index: ${total} urls (max ${MAX_URLS}, en=${INCLUDE_EN ? "on" : "off"}) → ${written.map((s) => `${s.name}:${s.count}`).join(", ")}`,
+  `sitemap index: ${total} urls (max ${MAX_URLS}, markets=${INCLUDE_MARKETS ? "on" : "off"}) → ${written.map((s) => `${s.name}:${s.count}`).join(", ")}`,
 );

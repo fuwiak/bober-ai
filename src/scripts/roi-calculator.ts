@@ -6,7 +6,7 @@ function num(el: HTMLInputElement | null, fallback: number) {
 }
 
 function format(n: number, locale: string) {
-  return n.toLocaleString(locale === "en" ? "en-US" : "ru-RU");
+  return n.toLocaleString(locale === "uz" ? "en-US" : "ru-RU");
 }
 
 function initRoi(root: HTMLElement) {
@@ -32,7 +32,7 @@ function initRoi(root: HTMLElement) {
   function recalc() {
     const employees = num(employeesEl, 5);
     const hours = num(hoursEl, 12);
-    const salary = num(salaryEl, locale === "en" ? 3500 : 120000);
+    const salary = num(salaryEl, locale === "uz" ? 3500 : 120000);
     const hourlyRate = salary / 168;
     const automatableShare = 0.55;
     monthlySavings = Math.round(employees * hours * 4.33 * hourlyRate * automatableShare);
@@ -93,10 +93,10 @@ function initRoi(root: HTMLElement) {
 
     const employees = num(employeesEl, 5);
     const hours = num(hoursEl, 12);
-    const salary = num(salaryEl, locale === "en" ? 3500 : 120000);
+    const salary = num(salaryEl, locale === "uz" ? 3500 : 120000);
     const auditItems = JSON.parse(root.dataset.auditItems || "[]") as string[];
     const message = [
-      locale === "en" ? "ROI calculator inputs:" : "Ввод калькулятора ROI:",
+      locale === "uz" ? "ROI calculator inputs:" : "Ввод калькулятора ROI:",
       `${root.dataset.employeesLabel}: ${employees}`,
       `${root.dataset.hoursLabel}: ${hours}`,
       `${root.dataset.salaryLabel}: ${format(salary, locale)} ${currency}`,

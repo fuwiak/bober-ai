@@ -2854,18 +2854,18 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   },
 };
 
-export function getSeoServiceContent(slug: string, locale: "ru" | "en"): SeoServiceContent | null {
-  const map = locale === "en" ? CONTENT_EN : CONTENT_RU;
+export function getSeoServiceContent(slug: string, locale: "ru" | "kz" | "uz"): SeoServiceContent | null {
+  const map = CONTENT_RU;
   return map[slug] ?? null;
 }
 
-export function getSeoServiceSlugs(locale: "ru" | "en"): string[] {
-  const map = locale === "en" ? CONTENT_EN : CONTENT_RU;
+export function getSeoServiceSlugs(locale: "ru" | "kz" | "uz"): string[] {
+  const map = CONTENT_RU;
   return Object.keys(map);
 }
 
 export function getAllServiceSlugs(locale: string): string[] {
-  const loc = locale === "en" ? "en" : "ru";
+  const loc = "ru";
   const enterprise = getEnterpriseServices(loc)
     .filter((item) => item.inServicesCatalog !== false)
     .map((item) => item.slug);

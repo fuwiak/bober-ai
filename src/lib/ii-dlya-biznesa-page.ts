@@ -41,7 +41,7 @@ export const II_DLYA_BIZNESA_PAGE = {
     "A commercial landing and expert guide in one: what to buy, which processes to cover, how an assistant differs from an agent, how deployment works, architecture, security, cases and budget ranges — without five near-identical SEO pages.",
 } as const;
 
-export function getIiDlyaBiznesaSeoContent(locale: "ru" | "en"): SeoServiceContent {
+export function getIiDlyaBiznesaSeoContent(locale: "ru" | "kz" | "uz"): SeoServiceContent {
   const ru = locale === "ru";
 
   return {

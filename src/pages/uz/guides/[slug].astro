@@ -1,0 +1,69 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContactForm from "@/components/ContactForm.astro";
+import { loadMessages, type Locale } from "@/lib/i18n";
+import { GUIDES } from "@/lib/guides";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return GUIDES.map((g) => ({ params: { slug: g.slug } }));
+}
+
+const { slug } = Astro.params;
+const locale = "uz" as Locale;
+const messages = loadMessages(locale);
+const guide = GUIDES.find((g) => g.slug === slug)!;
+const copy =
+  (
+    messages.guides as Record<
+      string,
+      {
+        title?: string;
+        description?: string;
+        body?: string;
+        h1?: string;
+        intro?: string[];
+        sections?: { title: string; paragraphs: string[] }[];
+      }
+    >
+  )?.items?.[guide.contentKey] ||
+  ((messages.guides as Record<string, unknown>)?.[guide.contentKey] as
+    | {
+        title?: string;
+        description?: string;
+        h1?: string;
+        intro?: string[];
+        sections?: { title: string; paragraphs: string[] }[];
+      }
+    | undefined);
+const title = copy?.title || copy?.h1 || guide.slug;
+---
+
+<BaseLayout
+  title={String(title)}
+  description={copy?.description || messages.meta.description}
+  locale={locale}
+  canonicalPath={`/uz/guides/${slug}`}
+>
+  <article class="container-editorial py-12 md:py-20">
+    <p class="meta-label">{messages.nav.guides}</p>
+    <h1 class="mt-4 display-title">{title}</h1>
+    {copy?.description && <p class="mt-6 body-copy max-w-3xl">{copy.description}</p>}
+    {copy?.intro?.map((p) => <p class="mt-4 body-copy max-w-3xl">{p}</p>)}
+    {
+      copy?.sections?.map((s) => (
+        <section class="mt-10">
+          <h2 class="section-title">{s.title}</h2>
+          {s.paragraphs.map((p) => (
+            <p class="mt-4 body-copy max-w-3xl">{p}</p>
+          ))}
+        </section>
+      ))
+    }
+    <section id="contact" class="mt-16 border-t border-hairline pt-12">
+      <h2 class="section-title">{messages.nav.contact}</h2>
+      <div class="mt-8 max-w-xl"><ContactForm locale={locale} messages={messages} /></div>
+    </section>
+  </article>
+</BaseLayout>

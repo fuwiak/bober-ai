@@ -663,7 +663,7 @@ export const PORTFOLIO: PortfolioItem[] = [
 export function getPortfolioItem(slug: string, locale = "ru") {
   const item = PORTFOLIO.find((entry) => entry.slug === slug);
   if (!item) return undefined;
-  const localized = locale === "en" ? localizePortfolioItem(item, locale) : item;
+  const localized = false ? localizePortfolioItem(item, locale) : item;
   return withPortfolioSegment(localized);
 }
 
@@ -673,6 +673,6 @@ export function getPortfolioListing(locale = "ru"): PortfolioItem[] {
   const items = PORTFOLIO_LISTING_SLUGS.map((slug) => bySlug.get(slug)).filter(
     (item): item is PortfolioItem => Boolean(item),
   );
-  const localized = locale === "en" ? items.map((item) => localizePortfolioItem(item, locale)) : items;
+  const localized = items;
   return localized.map(withPortfolioSegment);
 }

@@ -6,10 +6,7 @@ import {
   LINKEDIN_URL,
   OG_IMAGE,
   SELECTEL_PARTNER_PROGRAM_URL,
-  SITE_COUNTRY,
-  SITE_GEO,
   SITE_NAME,
-  SITE_REGION,
   SITE_URL,
   TELEGRAM_URL,
   YANDEX_BUSINESS_URL,
@@ -21,6 +18,8 @@ import {
 import { FEED_RATING, FEED_REVIEWS_COUNT } from "@/lib/feed-rating";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { PROFILE } from "@/lib/profile";
+import { LOCALES, marketOf, type Locale } from "@/lib/markets";
+import { localizePath, stripLocalePrefix } from "@/lib/i18n";
 
 /** Default share / snippet image (not favicon — Yandex/social need a real preview). */
 export const DEFAULT_OG_IMAGE = OG_IMAGE;
@@ -30,7 +29,7 @@ type PageSeoInput = {
   description: string;
   keywords?: string[];
   path: string;
-  locale: string;
+  locale: Locale | string;
   /** Open Graph type for Metrika content analytics / social previews */
   ogType?: "website" | "article";
   image?: string;
@@ -58,21 +57,21 @@ export type PageMetadata = {
   [key: string]: unknown;
 };
 
-function localePath(path: string, locale: string): string {
-  if (locale === "en") {
-    return path === "/" ? "/en" : path.startsWith("/en") ? path : `/en${path}`;
-  }
-  return path.replace(/^\/en(?=\/|$)/, "") || "/";
+function asLocale(locale: string): Locale {
+  if (locale === "kz" || locale === "uz" || locale === "ru") return locale;
+  return "ru";
 }
 
-/** Absolute URL for a locale path (`/services` → …/services or …/en/services). */
+function localePath(path: string, locale: string): string {
+  return localizePath(stripLocalePrefix(path), asLocale(locale));
+}
+
+/** Absolute URL for a locale path (`/services` → …/services or …/kz/services). */
 export function localizedAbsolute(path: string, locale: string): string {
   const [pathname, hash] = path.split("#");
   const base = pathname?.startsWith("/") ? pathname : `/${pathname || ""}`;
-  const url =
-    locale === "en"
-      ? absoluteUrl(base === "/" ? "/en" : `/en${base}`)
-      : absoluteUrl(base || "/");
+  const localized = localizePath(base || "/", asLocale(locale));
+  const url = absoluteUrl(localized);
   return hash ? `${url}#${hash}` : url;
 }
 
@@ -86,13 +85,19 @@ export function buildPageMetadata({
   image = DEFAULT_OG_IMAGE,
   article,
 }: PageSeoInput): PageMetadata {
-  const canonicalPath = localePath(path, locale);
-  const ruPath = path.replace(/^\/en(?=\/|$)/, "") || "/";
-  const enPath = path.startsWith("/en") ? path : `/en${path === "/" ? "" : path}`;
+  const loc = asLocale(locale);
+  const market = marketOf(loc);
+  const bare = stripLocalePrefix(path);
+  const canonicalPath = localePath(bare, loc);
   const ogImageUrl = absoluteUrl(image);
 
-  // Titles that already include the brand must be absolute — otherwise the root
-  // template appends "| Bober AI Systems" and the SERP title doubles the brand.
+  const languages: Record<string, string> = {};
+  for (const l of LOCALES) {
+    const m = marketOf(l);
+    languages[m.hreflang] = absoluteUrl(localizePath(bare, l));
+  }
+  languages["x-default"] = absoluteUrl(localizePath(bare, "ru"));
+
   const resolvedTitle =
     /bober ai/i.test(title) || title.includes(SITE_NAME)
       ? { absolute: title }
@@ -104,16 +109,12 @@ export function buildPageMetadata({
     keywords,
     alternates: {
       canonical: absoluteUrl(canonicalPath),
-      languages: {
-        ru: absoluteUrl(ruPath),
-        en: absoluteUrl(enPath),
-        "x-default": absoluteUrl(ruPath),
-      },
+      languages,
     },
     openGraph: {
       type: ogType,
-      locale: locale === "en" ? "en_US" : "ru_RU",
-      alternateLocale: locale === "en" ? ["ru_RU"] : ["en_US"],
+      locale: market.ogLocale,
+      alternateLocale: LOCALES.filter((l) => l !== loc).map((l) => marketOf(l).ogLocale),
       url: absoluteUrl(canonicalPath),
       siteName: SITE_NAME,
       title,
@@ -174,46 +175,49 @@ export function pageBreadcrumbJsonLd(
   locale: string,
   crumbs: { name: string; path: string }[],
 ) {
+  const loc = asLocale(locale);
   const home = {
-    name: locale === "en" ? "Home" : "Главная",
-    url: localizedAbsolute("/", locale),
+    name: loc === "uz" ? "Bosh sahifa" : "Главная",
+    url: localizedAbsolute("/", loc),
   };
   return breadcrumbJsonLd([
     home,
     ...crumbs.map((c) => ({
       name: c.name,
-      url: localizedAbsolute(c.path, locale),
+      url: localizedAbsolute(c.path, loc),
     })),
   ]);
 }
 
 /** Main sections for Yandex sitelinks / SiteNavigationElement signals. */
 export function siteNavigationItems(locale: string) {
-  const isEn = locale === "en";
+  const loc = asLocale(locale);
+  const uz = loc === "uz";
   return [
-    { name: isEn ? "Automation" : "Автоматизация", path: "/automation" },
-    { name: isEn ? "Services" : "Услуги", path: "/services" },
-    { name: isEn ? "Portfolio" : "Портфолио", path: "/portfolio" },
-    { name: isEn ? "About" : "О компании", path: "/about" },
-    { name: isEn ? "Pricing" : "Цены", path: "/pricing" },
-    { name: isEn ? "Blog" : "Блог", path: "/blog" },
-    { name: isEn ? "Partners" : "Партнёрам", path: "/partners" },
-    { name: isEn ? "FAQ" : "FAQ", path: "/faq" },
-    { name: isEn ? "Guides" : "Гайды", path: "/guides" },
-    { name: isEn ? "Contact" : "Контакты", path: "/#contact" },
+    { name: uz ? "Avtomatlashtirish" : "Автоматизация", path: "/automation" },
+    { name: uz ? "Xizmatlar" : "Услуги", path: "/services" },
+    { name: uz ? "Portfolio" : "Портфолио", path: "/portfolio" },
+    { name: uz ? "Kompaniya haqida" : "О компании", path: "/about" },
+    { name: uz ? "Narxlar" : "Цены", path: "/pricing" },
+    { name: uz ? "Blog" : "Блог", path: "/blog" },
+    { name: uz ? "Hamkorlarga" : "Партнёрам", path: "/partners" },
+    { name: "FAQ", path: "/faq" },
+    { name: uz ? "Qoʻllanmalar" : "Гайды", path: "/guides" },
+    { name: uz ? "Aloqa" : "Контакты", path: "/#contact" },
   ].map((item) => ({
     name: item.name,
-    url: localizedAbsolute(item.path, locale),
+    url: localizedAbsolute(item.path, loc),
   }));
 }
 
 /** Standalone SiteNavigationElement list — сигнал для быстрых ссылок в выдаче. */
 export function siteNavigationJsonLd(locale: string) {
-  const nav = siteNavigationItems(locale);
+  const loc = asLocale(locale);
+  const nav = siteNavigationItems(loc);
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: locale === "en" ? "Site sections" : "Разделы сайта",
+    name: loc === "uz" ? "Sayt boʻlimlari" : "Разделы сайта",
     numberOfItems: nav.length,
     itemListElement: nav.map((item, index) => ({
       "@type": "SiteNavigationElement",
@@ -225,19 +229,21 @@ export function siteNavigationJsonLd(locale: string) {
 }
 
 export function websiteJsonLd(locale: string) {
-  const nav = siteNavigationItems(locale);
+  const loc = asLocale(locale);
+  const market = marketOf(loc);
+  const nav = siteNavigationItems(loc);
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
     name: SITE_NAME,
     url: SITE_URL,
-    inLanguage: locale === "en" ? "en-US" : "ru-RU",
+    inLanguage: market.htmlLang === "uz" ? "uz-UZ" : market.ogLocale.replace("_", "-"),
     publisher: { "@id": `${SITE_URL}/#organization` },
     potentialAction: {
       "@type": "ContactAction",
-      target: `${SITE_URL}/#contact`,
-      name: locale === "en" ? "Request a quote" : "Обсудить проект",
+      target: localizedAbsolute("/#contact", loc),
+      name: loc === "uz" ? "Loyihani muhokama qilish" : "Обсудить проект",
     },
     hasPart: nav.map((item) => ({
       "@type": "WebPage",
@@ -262,13 +268,15 @@ export function webPageJsonLd(input: {
   url: string;
   locale: string;
 }) {
+  const loc = asLocale(input.locale);
+  const market = marketOf(loc);
   return {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: input.name,
     description: input.description,
     url: input.url,
-    inLanguage: input.locale === "en" ? "en-US" : "ru-RU",
+    inLanguage: market.htmlLang === "uz" ? "uz-UZ" : market.ogLocale.replace("_", "-"),
     isPartOf: {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
@@ -313,9 +321,10 @@ export function serviceJsonLd(input: {
   priceCurrency?: string;
   priceLabel?: string;
 }) {
-  // Nested provider without forcing AggregateRating (omitted when rating is 0).
-  const provider = organizationJsonLd(input.locale);
-  const currency = input.priceCurrency ?? (input.locale === "en" ? "EUR" : "RUB");
+  const loc = asLocale(input.locale);
+  const market = marketOf(loc);
+  const provider = organizationJsonLd(loc);
+  const currency = input.priceCurrency ?? market.currency;
   const offers =
     typeof input.price === "number" && Number.isFinite(input.price) && input.price > 0
       ? {
@@ -341,13 +350,15 @@ export function serviceJsonLd(input: {
     description: input.description,
     url: input.url,
     provider,
-    areaServed: input.locale === "en" ? "Worldwide" : "Russia",
+    areaServed: market.areaServed,
     ...(offers ? { offers } : {}),
   };
 }
 
 export function organizationJsonLd(locale: string) {
-  const isEn = locale === "en";
+  const loc = asLocale(locale);
+  const market = marketOf(loc);
+  const isUz = loc === "uz";
   const sameAs = [
     LINKEDIN_URL,
     GITHUB_URL,
@@ -362,16 +373,14 @@ export function organizationJsonLd(locale: string) {
 
   const postalAddress = {
     "@type": "PostalAddress",
-    streetAddress: isEn ? LEGAL_ENTITY.streetAddressEn : LEGAL_ENTITY.streetAddress,
-    addressLocality: isEn ? LEGAL_ENTITY.addressLocalityEn : LEGAL_ENTITY.addressLocality,
-    addressRegion: isEn ? LEGAL_ENTITY.addressLocalityEn : SITE_REGION,
+    streetAddress: LEGAL_ENTITY.streetAddress,
+    addressLocality: LEGAL_ENTITY.addressLocality,
+    addressRegion: LEGAL_ENTITY.addressLocality,
     postalCode: LEGAL_ENTITY.postalCode,
     addressCountry: LEGAL_ENTITY.addressCountry,
   };
 
   return {
-    // Organization first — как в валидаторе Яндекса (schema.org/Organization).
-    // LocalBusiness + ProfessionalService — региональность и сниппеты услуг.
     "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
     "@id": `${SITE_URL}/#organization`,
     name: SITE_NAME,
@@ -386,8 +395,7 @@ export function organizationJsonLd(locale: string) {
     },
     telephone: CONTACT_PHONE,
     email: CONTACT_EMAIL,
-    // Строковый адрес — как в примере Яндекса (contacts); + PostalAddress для машин.
-    address: [isEn ? LEGAL_ENTITY.addressEn : LEGAL_ENTITY.address, postalAddress],
+    address: [LEGAL_ENTITY.address, postalAddress],
     taxID: LEGAL_ENTITY.inn,
     identifier: [
       { "@type": "PropertyValue", name: "INN", value: LEGAL_ENTITY.inn },
@@ -395,8 +403,8 @@ export function organizationJsonLd(locale: string) {
     ],
     geo: {
       "@type": "GeoCoordinates",
-      latitude: SITE_GEO.latitude,
-      longitude: SITE_GEO.longitude,
+      latitude: market.geo.latitude,
+      longitude: market.geo.longitude,
     },
     hasMap: YANDEX_MAPS_URL,
     openingHoursSpecification: [
@@ -413,8 +421,12 @@ export function organizationJsonLd(locale: string) {
         contactType: "sales",
         telephone: CONTACT_PHONE,
         email: CONTACT_EMAIL,
-        availableLanguage: ["Russian", "English", "Polish"],
-        areaServed: isEn ? "Worldwide" : "RU",
+        availableLanguage: isUz
+          ? ["Uzbek", "Russian"]
+          : loc === "kz"
+            ? ["Russian", "Kazakh"]
+            : ["Russian", "Polish"],
+        areaServed: market.areaServedCode,
         url: `${SITE_URL}/#contact`,
       },
       {
@@ -422,28 +434,26 @@ export function organizationJsonLd(locale: string) {
         contactType: "customer support",
         telephone: CONTACT_PHONE,
         url: TELEGRAM_URL,
-        availableLanguage: ["Russian", "English"],
+        availableLanguage: isUz ? ["Uzbek", "Russian"] : ["Russian"],
       },
     ],
-    areaServed: isEn
-      ? { "@type": "Country", name: "Worldwide" }
-      : [
-          { "@type": "City", name: SITE_REGION },
-          { "@type": "Country", name: SITE_COUNTRY },
-        ],
-    priceRange: "₽₽₽",
+    areaServed: [
+      { "@type": "City", name: market.region },
+      { "@type": "Country", name: market.country },
+    ],
+    priceRange: market.priceRange,
     ...((): Record<string, unknown> => {
       const rating = aggregateRatingJsonLd();
       return rating ? { aggregateRating: rating } : {};
     })(),
-    knowsAbout: isEn
+    knowsAbout: isUz
       ? [
-          "Business process automation",
-          "CRM integration",
-          "AI agents",
+          "Biznes jarayonlarini avtomatlashtirish",
+          "CRM integratsiyasi",
+          "AI agentlar",
           "Private LLM",
-          "Document processing",
-          "n8n automation",
+          "Hujjatlarni qayta ishlash",
+          "n8n avtomatlashtirish",
         ]
       : [
           "Автоматизация бизнес-процессов",

@@ -39,7 +39,7 @@ export function isCatalogContentKey(contentKey: string) {
 
 export function getCatalogLandingContent(
   contentKey: string,
-  locale: "ru" | "en",
+  locale: "ru" | "kz" | "uz",
 ): CatalogLandingContent | null {
   const item = BY_CONTENT_KEY.get(contentKey);
   return item ? item.content[locale] : null;
@@ -47,7 +47,7 @@ export function getCatalogLandingContent(
 
 export function getCatalogLandingExtended(
   contentKey: string,
-  locale: "ru" | "en",
+  locale: "ru" | "kz" | "uz",
 ): LandingExtendedContent | null {
   const item = BY_CONTENT_KEY.get(contentKey);
   return item ? item.extended[locale] : null;

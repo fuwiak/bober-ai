@@ -10,8 +10,8 @@ interface Props {
 }
 
 const { locale, items } = Astro.props;
-const homeLabel = locale === "en" ? "Home" : "Главная";
-const ariaLabel = locale === "en" ? "Breadcrumb" : "Навигационная цепочка";
+const homeLabel = locale === "uz" ? "Bosh sahifa" : "Главная";
+const ariaLabel = locale === "uz" ? "Navigatsiya zanjiri" : "Навигационная цепочка";
 const schema = pageBreadcrumbJsonLd(locale, items);
 ---
 

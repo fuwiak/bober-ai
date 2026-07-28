@@ -237,7 +237,7 @@ export const CLAUDE_PAGE = {
   ],
 } as const;
 
-export function getClaudeSeoContent(locale: "ru" | "en"): SeoServiceContent {
+export function getClaudeSeoContent(locale: "ru" | "kz" | "uz"): SeoServiceContent {
   const ru = locale === "ru";
   const p = CLAUDE_PAGE;
 

@@ -13,7 +13,7 @@ const form = messages.form;
 const privacyHref = localizePath(LEGAL_ROUTES.privacyPolicy, locale);
 const consentHref = localizePath(LEGAL_ROUTES.consent, locale);
 const floor = Number(r.implementationFloor) || 500000;
-const defaultSalary = locale === "en" ? 3500 : 120000;
+const defaultSalary = locale === "uz" ? 3500 : 120000;
 ---
 
 <section id="roi" class="section-band section--panel scroll-mt-16 border-b border-hairline">
@@ -33,9 +33,9 @@ const defaultSalary = locale === "en" ? 3500 : 120000;
       data-payback-label={r.paybackLabel}
       data-payback-suffix={r.paybackSuffix}
       data-audit-title={r.auditDataTitle}
-      data-error-email={locale === "en" ? "Enter your email" : "Укажите email"}
+      data-error-email={locale === "uz" ? "Enter your email" : "Укажите email"}
       data-error-consent={form.errorConsent}
-      data-error-send={locale === "en" ? "Failed to send request" : "Не удалось отправить заявку"}
+      data-error-send={locale === "uz" ? "Failed to send request" : "Не удалось отправить заявку"}
       data-audit-items={JSON.stringify(r.auditDataItems)}
     >
       <h3 class="card-title">{r.title}</h3>
@@ -61,8 +61,8 @@ const defaultSalary = locale === "en" ? 3500 : 120000;
           <span class="form-label">{r.salaryLabel}</span>
           <input
             type="number"
-            min={locale === "en" ? 1000 : 30000}
-            step={locale === "en" ? 100 : 5000}
+            min={locale === "uz" ? 1000 : 30000}
+            step={locale === "uz" ? 100 : 5000}
             value={defaultSalary}
             class="form-input mt-2 text-input"
             data-roi-salary
@@ -166,7 +166,7 @@ const defaultSalary = locale === "en" ? 3500 : 120000;
             class="btn-secondary"
             data-contact-open
             data-contact-goal="roi_calculator_audit_click"
-            data-contact-service={locale === "en" ? "AI audit" : "AI-аудит"}
+            data-contact-service={locale === "uz" ? "AI audit" : "AI-аудит"}
           >
             {r.nextCtaSecondary}
           </button>

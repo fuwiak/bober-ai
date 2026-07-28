@@ -14,7 +14,8 @@ const { category, locale } = Astro.props;
 const messages = loadMessages(locale);
 const hub = SEO_HUBS.find((h) => h.category === category);
 if (!hub) throw new Error(`Missing hub ${category}`);
-const copy = hub[locale];
+/** Market hubs share RU copy; UZ chrome comes from messages. */
+const copy = hub.ru;
 ---
 
 <BaseLayout
@@ -39,10 +40,10 @@ const copy = hub[locale];
         hub.children.map((child) => (
           <li class="border border-hairline p-5">
             <a class="font-medium text-link" href={localizePath(child.href, locale)}>
-              {locale === "en" ? child.labelEn : child.labelRu}
+              {child.labelRu}
             </a>
             <p class="mt-2 text-sm text-muted">
-              {locale === "en" ? child.blurbEn : child.blurbRu}
+              {child.blurbRu}
             </p>
           </li>
         ))

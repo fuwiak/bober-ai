@@ -88,12 +88,12 @@ export const POLICY_UPDATED_AT = "27.07.2026";
 
 /** Строка реквизитов для футера и кратких блоков */
 export function formatLegalRequisitesLine(locale: string = "ru"): string {
-  if (locale === "en") {
-    return `Tax ID (INN) ${LEGAL_ENTITY.inn} · Primary state reg. no. (OGRNIP) ${LEGAL_ENTITY.ogrnip}`;
+  if (locale === "uz") {
+    return `INN ${LEGAL_ENTITY.inn} · OGRNIP ${LEGAL_ENTITY.ogrnip}`;
   }
   return `ИНН ${LEGAL_ENTITY.inn} · ОГРНИП ${LEGAL_ENTITY.ogrnip}`;
 }
 
 export function legalAddressForLocale(locale: string = "ru"): string {
-  return locale === "en" ? LEGAL_ENTITY.addressEn : LEGAL_ENTITY.addressPublic;
+  return locale === "uz" ? LEGAL_ENTITY.addressEn : LEGAL_ENTITY.addressPublic;
 }

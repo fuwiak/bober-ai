@@ -1,7 +1,7 @@
 ---
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { loadMessages, type Locale } from "@/lib/i18n";
+import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
 import { absoluteUrl, CONTACT_EMAIL, SITE_NAME, TELEGRAM_URL } from "@/lib/site";
 
 interface Props {
@@ -22,15 +22,15 @@ type CareerRole = {
 const { locale } = Astro.props;
 const messages = loadMessages(locale);
 const career = messages.career;
-const isEn = locale === "en";
+const isUz = locale === "uz";
 const roles = career.roles as CareerRole[];
 const perks = career.perks as { title: string; description: string }[];
-const canonicalPath = isEn ? "/en/career" : "/career";
+const canonicalPath = localizePath("/career", locale);
 const breadcrumbJsonLd = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: SITE_NAME, item: absoluteUrl(isEn ? "/en" : "/") },
+    { "@type": "ListItem", position: 1, name: SITE_NAME, item: absoluteUrl(localizePath("/", locale)) },
     {
       "@type": "ListItem",
       position: 2,

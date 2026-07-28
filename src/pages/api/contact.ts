@@ -17,8 +17,8 @@ function htmlResponse(body: string, status = 200) {
 
 function successHtml(locale: string) {
   const msg =
-    locale === "en"
-      ? "Thanks — we will reply within 4 business hours."
+    locale === "uz"
+      ? "Rahmat — 4 ish soati ichida javob beramiz."
       : "Спасибо — ответим в течение 4 рабочих часов.";
   return `<div class="contact-form space-y-4 rounded-lg border border-hairline bg-surface-card p-6" role="status">
     <p class="body-copy text-success">${msg}</p>
@@ -64,7 +64,7 @@ export const POST: APIRoute = async ({ request }) => {
     consent = body.consent === true || body.consent === "true";
     policyAccepted = body.policyAccepted === true || body.policyAccepted === "true";
     attribution = body.attribution as Attribution | undefined;
-    locale = body.locale === "en" ? "en" : "ru";
+    locale = ["uz", "kz", "ru"].includes(String(body.locale)) ? String(body.locale) : "ru";
   } else {
     const form = await request.formData();
     website = requireString(form.get("website"));
@@ -91,7 +91,8 @@ export const POST: APIRoute = async ({ request }) => {
     consent = form.get("consent") === "true" || form.get("consent") === "on";
     policyAccepted =
       form.get("policyAccepted") === "true" || form.get("policyAccepted") === "on";
-    locale = form.get("locale") === "en" ? "en" : "ru";
+    const formLocale = requireString(form.get("locale"));
+    locale = ["uz", "kz", "ru"].includes(formLocale) ? formLocale : "ru";
     attribution = {
       utm_source: requireString(form.get("utm_source")) || undefined,
       utm_medium: requireString(form.get("utm_medium")) || undefined,
@@ -116,7 +117,8 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   if (!name || !contact) {
-    const messageText = locale === "en" ? "Fill required fields" : "Заполните обязательные поля";
+    const messageText =
+      locale === "uz" ? "Majburiy maydonlarni toʻldiring" : "Заполните обязательные поля";
     return wantsJson
       ? json({ ok: false, message: messageText }, 400)
       : htmlResponse(errorHtml(messageText), 400);
@@ -124,8 +126,8 @@ export const POST: APIRoute = async ({ request }) => {
 
   if (!policyAccepted || !consent) {
     const messageText =
-      locale === "en"
-        ? "Consent to personal data processing is required"
+      locale === "uz"
+        ? "Shaxsiy maʼlumotlarni qayta ishlashga rozilik kerak"
         : "Необходимо согласие на обработку персональных данных";
     return wantsJson
       ? json({ ok: false, message: messageText }, 400)

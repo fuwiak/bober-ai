@@ -345,7 +345,7 @@ export const ENTERPRISE_SERVICES_LISTING_SLUGS = [
 ] as const;
 
 export function getEnterpriseServices(locale: string): EnterpriseService[] {
-  return locale === "en" ? enServices : ruServices;
+  return ruServices;
 }
 
 /** Короткий листинг для /services (SEO long-tail остаётся в маршрутах). */

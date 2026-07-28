@@ -124,7 +124,7 @@ export function landingPath(page: LandingPageDef) {
 
 export function getAllLandingParams() {
   const params: { locale: string; category: string; slug: string }[] = [];
-  for (const locale of ["ru", "en"]) {
+  for (const locale of ["ru", "kz", "uz"]) {
     for (const page of LANDING_PAGES) {
       params.push({ locale, category: page.category, slug: page.slug });
     }
