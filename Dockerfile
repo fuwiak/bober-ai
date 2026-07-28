@@ -38,9 +38,11 @@ RUN npm run build
 
 FROM node:22-alpine AS runner
 WORKDIR /app
+ARG GIT_SHA=
 ENV NODE_ENV=production \
     HOST=0.0.0.0 \
-    PORT=3000
+    PORT=3000 \
+    GIT_SHA=$GIT_SHA
 
 RUN addgroup -S astro && adduser -S astro -G astro
 

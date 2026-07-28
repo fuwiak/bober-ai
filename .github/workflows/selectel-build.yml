@@ -190,27 +190,79 @@ jobs:
           resolve_compose
 
           cd "$COMPOSE_DIR"
-          "${dc[@]}" -f "$COMPOSE_FILE" up -d --build
-          sleep 8
-          "${dc[@]}" -f "$COMPOSE_FILE" ps
-          curl -sf --connect-timeout 10 http://127.0.0.1:3000/api/health | head -c 500
-          echo
+          export GIT_SHA
+
+          # Stale host/node on :3000 keeps old HTML alive while new web crash-loops
+          # (EADDRINUSE). Tear down compose + free the port before rebuild.
+          "${dc[@]}" -f "$COMPOSE_FILE" down --remove-orphans || true
+          if command -v fuser >/dev/null 2>&1; then
+            fuser -k 3000/tcp 2>/dev/null || true
+          else
+            pids=$(ss -lptn 'sport = :3000' 2>/dev/null | sed -n 's/.*pid=\([0-9]*\).*/\1/p' | sort -u || true)
+            for pid in $pids; do kill -9 "$pid" 2>/dev/null || true; done
+          fi
+          sleep 2
+
+          "${dc[@]}" -f "$COMPOSE_FILE" build --build-arg "GIT_SHA=$GIT_SHA" web
+          GIT_SHA="$GIT_SHA" "${dc[@]}" -f "$COMPOSE_FILE" up -d --force-recreate
+          sleep 5
+
+          web_ok=0
+          for i in 1 2 3 4 5 6 7 8 9 10 11 12; do
+            "${dc[@]}" -f "$COMPOSE_FILE" ps
+            status=$("${dc[@]}" -f "$COMPOSE_FILE" ps --status running --services 2>/dev/null | tr -d '\r' || true)
+            health=$(curl -sf --connect-timeout 5 http://127.0.0.1:3000/api/health || true)
+            echo "attempt=$i status_services=$status health=$health"
+            if echo "$status" | grep -qx 'web' \
+              && echo "$health" | grep -q '"ok":true' \
+              && echo "$health" | grep -q "$GIT_SHA"; then
+              web_ok=1
+              break
+            fi
+            # Fail fast if stuck restarting without matching sha
+            if "${dc[@]}" -f "$COMPOSE_FILE" ps | grep -q 'Restarting'; then
+              echo "web Restarting — dumping logs"
+              "${dc[@]}" -f "$COMPOSE_FILE" logs --tail=80 web || true
+            fi
+            sleep 5
+          done
+
+          if [ "$web_ok" != 1 ]; then
+            echo "DEPLOY_UNHEALTHY: web not Up with sha=$GIT_SHA"
+            "${dc[@]}" -f "$COMPOSE_FILE" ps || true
+            "${dc[@]}" -f "$COMPOSE_FILE" logs --tail=120 web || true
+            ss -lptn 'sport = :3000' || true
+            exit 1
+          fi
+
+          # Homepage must expose Yandex verification for bober-systems.ru
+          html=$(curl -sf --connect-timeout 10 http://127.0.0.1:3000/ || true)
+          echo "$html" | grep -q 'yandex-verification" content="0e71ef3fc54b6c3c"' \
+            || { echo "NO_YANDEX_META on homepage"; echo "$html" | tr '>' '>\n' | grep -i yandex | head; exit 1; }
+
           printf 'ok %s %s\n' "$GIT_SHA" "$(date -Is)" > "$READY"
           rm -f "$TGZ"
           echo "SELECTEL_DEPLOY_OK"
           EOS
 
       - name: Public health check
+        env:
+          GIT_SHA: ${{ github.sha }}
         run: |
           set -euo pipefail
-          for i in 1 2 3 4 5; do
-            if curl -sf --connect-timeout 10 https://www.bober-ai.dev/api/health; then
-              echo
-              echo "PUBLIC_HEALTH_OK"
+          for i in 1 2 3 4 5 6 7 8; do
+            health=$(curl -sf --connect-timeout 10 https://www.bober-ai.dev/api/health || true)
+            html=$(curl -sf --connect-timeout 10 https://www.bober-systems.ru/ || true)
+            echo "attempt=$i health=$health"
+            if echo "$health" | grep -q '"ok":true' \
+              && echo "$health" | grep -q "$GIT_SHA" \
+              && echo "$html" | grep -q 'yandex-verification" content="0e71ef3fc54b6c3c"'; then
+              echo "PUBLIC_HEALTH_OK + YANDEX_META_OK"
               exit 0
             fi
             echo "retry $i…"
             sleep 5
           done
-          echo "::error::Public /api/health failed after deploy"
+          echo "::error::Public health/sha/yandex-meta check failed after deploy"
+          curl -sL https://www.bober-systems.ru/ | tr '>' '>\n' | grep -i yandex | head || true
           exit 1

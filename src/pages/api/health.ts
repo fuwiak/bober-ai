@@ -9,8 +9,14 @@ export const GET: APIRoute = () => {
   } catch {
     /* ignore */
   }
-  return new Response(JSON.stringify({ ok: true }), {
-    status: 200,
-    headers: { "Content-Type": "application/json" },
-  });
+  return new Response(
+    JSON.stringify({
+      ok: true,
+      sha: process.env.GIT_SHA || process.env.DEPLOY_SHA || null,
+    }),
+    {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    },
+  );
 };

@@ -4,6 +4,7 @@ services:
       context: ..
       dockerfile: Dockerfile
       args:
+        GIT_SHA: ${GIT_SHA:-}
         PUBLIC_SITE_URL: ${PUBLIC_SITE_URL:-https://www.bober-ai.dev}
         PUBLIC_YANDEX_METRIKA_ID: ${PUBLIC_YANDEX_METRIKA_ID:-110635302}
         PUBLIC_PARTNERS_YANDEX_METRIKA_ID: ${PUBLIC_PARTNERS_YANDEX_METRIKA_ID:-110926696}
@@ -14,6 +15,7 @@ services:
     environment:
       HOST: "0.0.0.0"
       PORT: "3000"
+      GIT_SHA: ${GIT_SHA:-}
       SMTP_HOST: ${SMTP_HOST:-}
       SMTP_PORT: ${SMTP_PORT:-465}
       SMTP_SECURE: ${SMTP_SECURE:-1}
