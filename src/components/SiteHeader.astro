@@ -240,11 +240,17 @@ function megaCols(group: Extract<NavGroup, { type: "mega" }>) {
           </svg>
         </a>
         <div class="site-header__tools">
-          <a href={localeSwitchHref} class="text-sm text-muted" aria-label={labels.localeSwitchLabel}>
+          <a href={localeSwitchHref} class="locale-switcher" aria-label={labels.localeSwitchLabel}>
             {labels.localeSwitchLabel}
           </a>
           <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
-            Theme
+            <svg class="theme-toggle__sun" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+              <path d="M12 2v2.2M12 19.8V22M4.2 12H2M22 12h-2.2M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M5.6 18.4l1.6-1.6M16.8 7.2l1.6-1.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+            </svg>
+            <svg class="theme-toggle__moon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <path d="M20 13.5A7.5 7.5 0 1 1 10.5 4 6.2 6.2 0 0 0 20 13.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+            </svg>
           </button>
         </div>
         <button
@@ -368,9 +374,15 @@ function megaCols(group: Extract<NavGroup, { type: "mega" }>) {
       </div>
 
       <div class="mt-8 flex items-center gap-3 border-t border-hairline pt-6">
-        <a href={localeSwitchHref}>{labels.localeSwitchLabel}</a>
+        <a href={localeSwitchHref} class="locale-switcher">{labels.localeSwitchLabel}</a>
         <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
-          Theme
+          <svg class="theme-toggle__sun" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+            <path d="M12 2v2.2M12 19.8V22M4.2 12H2M22 12h-2.2M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M5.6 18.4l1.6-1.6M16.8 7.2l1.6-1.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+          </svg>
+          <svg class="theme-toggle__moon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <path d="M20 13.5A7.5 7.5 0 1 1 10.5 4 6.2 6.2 0 0 0 20 13.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+          </svg>
         </button>
       </div>
     </nav>
