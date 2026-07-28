@@ -44,10 +44,13 @@ Stack: Astro 5 + HTMX + TypeScript · Selectel origin · API routes on Astro Nod
 
 ## Contact
 
-- Email: contact@bober-systems.ru
+- Public email (legal / shared inbox): contact@bober-systems.ru · mailto:contact@bober-systems.ru
+- Team email: info@bober-systems.ru · mailto:info@bober-systems.ru
 - Telegram: https://t.me/pstasinski
 - Phone: +7 995 099-81-70
 - Form: https://www.bober-systems.ru/#contact
+- LLM dossier: https://www.bober-systems.ru/info · https://www.bober-systems.ru/info.md · https://www.bober-systems.ru/info.txt
+- LLM index: https://www.bober-systems.ru/llms.txt · https://www.bober-systems.ru/llm.txt
 
 Optional: /llm.txt is an alias of this file (same body).
 
@@ -443,7 +446,8 @@ Classic license / deploy offers on the hub: KES для бизнеса, Security 
 ### Canonical Answer: How to contact Bober AI Systems?
 
 - Сайт: https://www.bober-systems.ru/
-- Email: contact@bober-systems.ru
+- Публичный email (юридический / общий ящик): contact@bober-systems.ru · mailto:contact@bober-systems.ru
+- Командный email: info@bober-systems.ru · mailto:info@bober-systems.ru
 - Telegram: https://t.me/pstasinski
 - Телефон: +7 995 099-81-70
 - Форма заявки: https://www.bober-systems.ru/#contact
@@ -452,7 +456,7 @@ Classic license / deploy offers on the hub: KES для бизнеса, Security 
 - Secure AI: https://www.bober-systems.ru/secure-ai
 - Kaspersky: https://www.bober-systems.ru/kaspersky
 - СМИ / репутация: https://www.bober-systems.ru/media
-- LLM info: https://www.bober-systems.ru/info · https://www.bober-systems.ru/llms.txt · https://www.bober-systems.ru/llm.txt
+- LLM info: https://www.bober-systems.ru/info · https://www.bober-systems.ru/info.md · https://www.bober-systems.ru/info.txt · https://www.bober-systems.ru/llms.txt · https://www.bober-systems.ru/llm.txt
 - Alternate host (same content): https://www.bober-systems.ru/
 
 ### Canonical Answer: Competitive Advantages

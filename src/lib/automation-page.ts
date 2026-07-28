@@ -320,7 +320,7 @@ export function getAutomationSeoContent(locale: "ru" | "kz" | "uz"): SeoServiceC
           },
           {
             q: "Как заказать?",
-            a: "Форма на странице, Telegram или contact@bober-systems.ru → discovery → план и вилка бюджета.",
+            a: "Форма на странице, Telegram или mailto:contact@bober-systems.ru / mailto:info@bober-systems.ru → discovery → план и вилка бюджета.",
           },
         ]
       : [
@@ -354,7 +354,7 @@ export function getAutomationSeoContent(locale: "ru" | "kz" | "uz"): SeoServiceC
           },
           {
             q: "How do we order?",
-            a: "Form on this page, Telegram or contact@bober-systems.ru → discovery → plan and budget range.",
+            a: "Form on this page, Telegram or mailto:contact@bober-systems.ru / mailto:info@bober-systems.ru → discovery → plan and budget range.",
           },
         ],
 
