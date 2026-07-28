@@ -32,6 +32,7 @@ export const BITRIX_PARTNER_PROGRAM = {
   label: "Участие в партнерской программе 1С-Битрикс",
   id: "28909898",
   line: "Участие в партнерской программе 1С-Битрикс · ID 28909898",
+  url: "https://www.1c-bitrix.ru/partners/28909898.php",
 } as const;
 
 /**

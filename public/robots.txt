@@ -1,8 +1,10 @@
 # Bober AI — open for search engines and AI assistants (визитка).
-# Disallow only private API and a legacy static mirror page.
+# Disallow only private API, unfinished EN mirror, and a legacy static mirror page.
 User-Agent: *
 Allow: /
 Disallow: /api/
+Disallow: /en
+Disallow: /en/
 Disallow: /partners/ru.html
 
 User-agent: GPTBot
@@ -92,5 +94,7 @@ Sitemap: https://www.bober-systems.ru/sitemap.xml
 User-agent: Yandex
 Allow: /
 Disallow: /api/
+Disallow: /en
+Disallow: /en/
 Disallow: /partners/ru.html
 Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&fbclid&gclid&_openstat

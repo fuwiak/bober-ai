@@ -20,15 +20,20 @@ interface Props {
   canonicalPath: string;
   keywords?: string[];
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** Temporary: unfinished locales stay out of the index. */
+  noIndex?: boolean;
 }
 
-const { title, description, locale, canonicalPath, keywords = [], jsonLd } = Astro.props;
+const { title, description, locale, canonicalPath, keywords = [], jsonLd, noIndex = locale === "en" } = Astro.props;
 const geoPosition = `${SITE_GEO.latitude};${SITE_GEO.longitude}`;
 const geoIcbm = `${SITE_GEO.latitude}, ${SITE_GEO.longitude}`;
 const geoPlacename = locale === "en" ? "Moscow" : SITE_REGION;
 const messages = loadMessages(locale);
 const canonical = absoluteUrl(canonicalPath);
 const ogImage = absoluteUrl(OG_IMAGE);
+const robotsContent = noIndex
+  ? "noindex, nofollow"
+  : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
 const metrikaBootstrap = `(function(){var host=(location.hostname||'').toLowerCase();var path=location.pathname||'';var onSystems=host==='www.bober-systems.ru'||host==='bober-systems.ru'||host==='partners.bober-systems.ru'||host==='bitrix.bober-systems.ru'||/\\.bober-systems\\.ru$/.test(host);if(!onSystems){window.__boberYmId=null;return;}var mainId=${YANDEX_METRIKA_ID};var partnersId=${PARTNERS_YANDEX_METRIKA_ID};var bitrixId=${BITRIX_YANDEX_METRIKA_ID};var id=(host==='partners.bober-systems.ru'||path.indexOf('/white-label')===0)?partnersId:((host==='bitrix.bober-systems.ru'||path.indexOf('/bitrix')===0)?bitrixId:mainId);window.__boberYmId=id;(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return;}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id='+id,'ym');ym(id,'init',{ssr:true,webvisor:true,clickmap:true,trackLinks:true,accurateTrackBounce:true,trackHash:true,referrer:document.referrer,url:location.href});})();`;
 ---
 
@@ -40,7 +45,7 @@ const metrikaBootstrap = `(function(){var host=(location.hostname||'').toLowerCa
     <title>{title}</title>
     <meta name="description" content={description} />
     {keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="robots" content={robotsContent} />
     <meta name="geo.region" content="RU-MOW" />
     <meta name="geo.placename" content={geoPlacename} />
     <meta name="geo.position" content={geoPosition} />
@@ -76,12 +81,7 @@ const metrikaBootstrap = `(function(){var host=(location.hostname||'').toLowerCa
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://mc.yandex.ru" crossorigin />
 
     <script is:inline>
       (function () {
@@ -118,7 +118,7 @@ const metrikaBootstrap = `(function(){var host=(location.hostname||'').toLowerCa
     <ContactFab messages={messages} />
     <CookieConsent locale={locale} messages={messages} />
 
-    <script src="https://unpkg.com/htmx.org@2" is:inline></script>
+    <script src="/vendor/htmx.min.js" is:inline></script>
     <script>
       import "../scripts/theme.ts";
       import "../scripts/nav.ts";

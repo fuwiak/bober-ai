@@ -88,7 +88,30 @@ async function urlsFromSitemap() {
     console.warn(`  ${liveError.message}`);
     xml = readFileSync(LOCAL_SITEMAP, "utf8");
   }
-  return [...new Set(parseSitemapXml(xml).map(toSiteUrl).filter(Boolean))];
+
+  let locs = parseSitemapXml(xml);
+  if (/<sitemapindex[\s>]/i.test(xml)) {
+    const childXmls = [];
+    for (const childLoc of locs) {
+      try {
+        if (childLoc.startsWith(SITE_URL) || childLoc.includes("localhost")) {
+          const localName = childLoc.replace(/^https?:\/\/[^/]+\//, "");
+          const localPath = join(root, "public", localName);
+          if (existsSync(localPath)) {
+            childXmls.push(readFileSync(localPath, "utf8"));
+            continue;
+          }
+        }
+        const response = await safeFetch(childLoc);
+        if (response.ok) childXmls.push(await response.text());
+      } catch {
+        /* skip child */
+      }
+    }
+    locs = childXmls.flatMap(parseSitemapXml);
+  }
+
+  return [...new Set(locs.map(toSiteUrl).filter(Boolean))];
 }
 
 async function verifyKeyFile() {

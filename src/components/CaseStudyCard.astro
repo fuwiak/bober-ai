@@ -45,7 +45,9 @@ const bodyClamp = compact ? " line-clamp-3" : "";
     {segmentLabel && <p class={`meta-label ${compact ? "mt-3" : "mt-5"}`}>{segmentLabel}</p>}
     <h3 class={titleClass}>{item.title}</h3>
     {item.metric && <p class={`case-study__metric ${compact ? "mt-2 text-[clamp(18px,2vw,22px)]" : "mt-3"}`}>{item.metric}</p>}
-    {!compact && item.metricMethod && <p class="body-copy mt-2 text-sm text-muted">{item.metricMethod}</p>}
+    {item.metricMethod && (
+      <p class={`body-copy text-sm text-muted ${compact ? "mt-1 line-clamp-2" : "mt-2"}`}>{item.metricMethod}</p>
+    )}
   </a>
 
   {

@@ -2,7 +2,7 @@ const en = {
   meta: {
     title: "AI automation of proposals, CRM and documents — Bober AI",
     description:
-      "Corporate AI integrator: automation of proposals, CRM (Bitrix24/amoCRM) and documents for businesses of any size. Secure AI and LLM Security expertise. Pilot from €3,000, NDA.",
+      "Corporate AI integrator: automation of proposals, CRM (Bitrix24/amoCRM) and documents for sales, back-office and IT teams. Secure AI for sensitive-data projects. Pilot from €3,000, NDA.",
     keywords: [
       "proposal automation",
       "document automation",
@@ -91,26 +91,26 @@ const en = {
   },
   hero: {
     location: "Moscow · Remote · Russia & CIS",
-    eyebrow: "Corporate AI integrator · automation for business of any size · Moscow",
-    titleLine1: "We automate proposals, documents and CRM workflows with AI — no manual data copying",
+    eyebrow: "Corporate automation of CRM, documents and proposals",
+    titleLine1: "Corporate automation of CRM, documents and proposals",
     titleLine2: "",
     valueProposition:
-      "For companies where managers and operators lose hours on proposals, documents and copy-paste between CRM, email and ERP — from a small sales team to a corporate perimeter.\n\nWe deploy a production AI perimeter into your systems — with a fixed estimate, NDA and full code handover.\n\nCorporate AI integrator: automation and AI implementation is our core offer. For projects with sensitive data we deploy AI in a Russian cloud or a closed perimeter and add access control, logging and infrastructure protection.",
-    differentiator: "Fixed estimate · NDA · cloud / on-prem / secured contour",
+      "We remove manual data transfer between CRM, 1C, email and Excel.\n\nA working pilot in 2–4 weeks — fixed estimate, NDA and code handover.",
+    differentiator: "For sales, back-office and IT teams with repetitive operations.",
     specialization:
-      "We reply within 4 business hours. After a 30-minute call we send a preliminary plan and budget range within 24 hours.",
+      "We reply within 4 business hours. After a 30-minute call — plan and budget range within 24 hours.",
     heroImageAlt: "Pawel Stasinski — founder of Bober AI, AI architect",
     founderBadge: "Founder & Project Lead",
     teamLine: "Architecture, delivery and accountability for outcomes",
     officeGalleryLabel: "Corporate architecture and office spaces",
-    trustItems: ["NDA", "CLOUD / ON-PREMISE", "MOSCOW / REMOTE"],
-    title: "We automate proposals, documents and CRM workflows with AI — no manual data copying",
+    trustItems: ["12+ deployments", "Sole trader, contract, NDA", "Bitrix24 / Yandex Cloud / Kaspersky"],
+    title: "Corporate automation of CRM, documents and proposals",
     roles: ["Founder & Project Lead", "AI architect"],
     nameLine: "Pawel Stasinski",
     focus: "AI systems, automation and integration with Bitrix24, 1C, amoCRM, CRM and ERP.",
     trustLine: "★ {rating} · {reviewCount} reviews · {years}+ years of experience · NDA / ON-PREM",
     partnersLine: "Partners: Yandex Cloud, Cloud.ru and Selectel · 1C-Bitrix (ID 28909898) · Bitrix24 / amoCRM",
-    ctaPrimary: "Get an estimate",
+    ctaPrimary: "Get a plan and range in 24 hours",
     ctaSecondary: "View case studies",
     ctaTelegram: "Telegram",
     responseNote:
@@ -218,7 +218,23 @@ const en = {
     casesLabel: "Case studies",
     casesTitle: "Deployments with measurable impact",
     casesSubtitle:
-      "Before → after: SMB and enterprise cases with a measurement method — including Kaspersky RAG, ELIA Suite, CRM↔1C and an independent sales channel alongside Wildberries.",
+      "Before → after: SMB and enterprise cases with a measurement method — including Kwork → Bitrix24, Kaspersky RAG, ELIA Suite, CRM↔1C and an independent sales channel alongside Wildberries.",
+    expertiseLabel: "Expertise and publications",
+    expertiseTitle: "The expert history behind the brand",
+    expertiseSources: "Habr · SeverGazBank · FAKRO FM · Medium",
+    expertiseStats: "10+ years in development · 7 years with AI · 12+ deployments",
+    expertiseCta: "See publications and appearances",
+    partnersHomeLabel: "Partners",
+    partnersHomeTitle: "Two different doors — don’t mix them up",
+    partnersHomeTechTitle: "Technology partners",
+    partnersHomeTechText:
+      "Yandex Cloud, Kaspersky, 1C-Bitrix, Selectel — verified status and joint deployments.",
+    partnersHomeTechCta: "Certificates and status",
+    partnersHomeAgencyTitle: "For integrators and agencies",
+    partnersHomeAgencyText:
+      "White-label delivery of AI projects: NDA, non-circumvention, role split, wholesale estimate.",
+    partnersHomeAgencyCta: "Discuss partnership",
+    partnersHomePriceCta: "Get partner pricing",
     casesCta: "More details",
     caseBeforeLabel: "Before",
     caseAfterLabel: "After",
@@ -229,7 +245,7 @@ const en = {
     budgetLabel: "Budget and trust",
     budgetTitle: "A clear entry point — no hidden stages",
     budgetNote:
-      "Audit — from €1,500 · pilot — from €3,000 · production implementation — from €5,000. NDA and your own perimeter — on request before sharing data.",
+      "Audit — from €1,500 · pilot — from €3,000 · production implementation — from €5,000 · support — from €2,000/mo. NDA and your own perimeter — on request before sharing data.",
     budgetCta: "Get an estimate",
     roiEntryLabel: "ROI",
     roiEntryTitle: "Estimate savings before the call",
@@ -415,6 +431,27 @@ const en = {
           a: "https://www.bober-systems.ru/sitemap.xml and dossier https://www.bober-systems.ru/info.md",
         },
       ],
+    },
+    audit: {
+      metaTitle: "AI process audit — map, ROI, 30/60/90 plan | Bober AI",
+      metaDescription:
+        "Structured audit before build: bottlenecks, impact/complexity, pilot estimate from €1,500. Fixed estimate, NDA.",
+      h1: "AI process audit",
+      subtitle: "Structured audit before build: bottlenecks, impact/complexity, pilot estimate from €1,500.",
+    },
+    blog: {
+      metaTitle: "Blog — AI & automation implementation practice | Bober AI",
+      metaDescription: "Practice notes and implementation breakdowns for AI, CRM and document automation.",
+      h1: "Blog",
+      subtitle: "Practice notes and implementation breakdowns.",
+    },
+    iiDlyaBiznesa: {
+      metaTitle: "AI for business — audit, development and turnkey deployment | Bober AI",
+      metaDescription:
+        "AI for business: process audit, pilot and production deployment. CRM, documents, knowledge base, sales. Fixed estimate, NDA.",
+      h1: "AI for business: from process audit to a working deployment",
+      subtitle:
+        "A commercial landing and expert guide: what to buy, which processes to cover, how deployment works, architecture, security, cases and budget ranges.",
     },
   },
   certificates: {
@@ -1044,7 +1081,7 @@ const en = {
   },
   about: {
     title: "About the company",
-    tagline: "Corporate AI integrator for business of any size · Bober AI Systems",
+    tagline: "Corporate AI integrator for sales, back-office and IT teams · Bober AI Systems",
     imageAlt: "Team implementing business process automation",
     text: "Bober AI Systems is a corporate AI integrator: a team that designs and implements automation and AI systems for companies. Founder Pawel Stasinski leads architecture and is personally accountable for outcomes; vetted developers and infrastructure specialists join for specific workstreams.\n\nCRM, documents, sales, support — with fixed scope, milestones, and handover to your team. Not a freelance marketplace or a ChatGPT demo: an external automation department — audit → roadmap → production → support. Case studies: ELIA Suite, proposal and document automation, corporate RAG assistants.\n\nA dedicated line — Bober Secure AI: for projects with sensitive data we deploy AI in a Russian cloud or a closed perimeter and add access control, logging and infrastructure protection.\n\nAutomation and AI implementation is our core service: we work with small sales teams and corporate clients alike, sizing the format and estimate to the business.\n\nWe respond within 4 business hours. NDA before kickoff.",
     approach: "Approach",
@@ -1117,11 +1154,13 @@ const en = {
     segmentEnterprise: "Enterprise",
     segmentSmbTitle: "Small and mid-size business",
     segmentEnterpriseTitle: "Enterprise",
+    kindCase: "Case study",
+    kindSolution: "Packaged solution",
   },
   cta: {
     title: "Get an implementation estimate",
     subtitle: "Describe the task — we reply within 4 business hours. After a 30-minute call we send a preliminary plan and budget range within 24 hours.",
-    primary: "Get an estimate",
+    primary: "Get a plan and range in 24 hours",
     secondary: "Telegram",
     calendar: "Book a call",
   },
@@ -1416,6 +1455,8 @@ const en = {
       yandexMaps: "Yandex Maps",
       yandexBusiness: "Yandex Business",
       yandexCloud: "Yandex Cloud partner catalog",
+      bitrixPartner: "1C-Bitrix partner card",
+      kasperskyPartner: "Kaspersky certificates",
       selectel: "Selectel Partner Program",
       cloudru: "Cloud.ru partner directory",
     },
@@ -1457,6 +1498,10 @@ const en = {
       "Partner with Bober AI Systems: white-label automation delivery, technology and referral partnerships. Fixed scope, NDA.",
   },
   guides: {
+    metaTitle: "Automation & AI guides | Bober AI",
+    title: "Guides & practice",
+    h1: "Guides & practice",
+    subtitle: "How to automate, connect systems, when AI makes sense — no buzzwords.",
     badge: "Guides",
     cta: "Request audit",
     telegram: "Telegram",

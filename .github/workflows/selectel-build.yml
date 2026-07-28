@@ -199,31 +199,42 @@ jobs:
           pm2 list 2>/dev/null || true
           systemctl list-units --type=service --all 'bober*' 'astro*' 'next*' 2>/dev/null || true
 
-          "${dc[@]}" -f "$COMPOSE_FILE" down --remove-orphans || true
           # Legacy manual container used PORT=3000 while Caddy→3001 → sitewide 502.
           docker rm -f bober-web 2>/dev/null || true
-          # Free only our target port (legacy :3000 may stay occupied)
+
+          # Sync static client BEFORE recreating Node so Caddy keeps serving HTML
+          # during the brief upstream restart (static-first Caddyfile).
+          mkdir -p "$ROOT/deploy" "$ROOT/dist"
+          cp -a "$COMPOSE_DIR/Caddyfile" "$ROOT/deploy/Caddyfile"
+          if [ -d "$COMPOSE_DIR/../dist/client" ]; then
+            # Retain previous hashed /_astro assets so old HTML tabs don't 404.
+            if [ -d "$ROOT/dist/client/_astro" ]; then
+              rm -rf /tmp/bober-astro-prev
+              cp -a "$ROOT/dist/client/_astro" /tmp/bober-astro-prev
+            fi
+            rm -rf "$ROOT/dist/client"
+            cp -a "$COMPOSE_DIR/../dist/client" "$ROOT/dist/client"
+            if [ -d /tmp/bober-astro-prev ]; then
+              mkdir -p "$ROOT/dist/client/_astro"
+              cp -an /tmp/bober-astro-prev/. "$ROOT/dist/client/_astro/" 2>/dev/null || true
+              rm -rf /tmp/bober-astro-prev
+            fi
+          fi
+
+          # Rolling recreate: build first, then replace. Avoid `compose down` which
+          # opens a long 502 window while images rebuild.
+          "${dc[@]}" -f "$COMPOSE_FILE" build --build-arg "GIT_SHA=$GIT_SHA" web
+          # Free port only immediately before up (minimize downtime).
           if command -v fuser >/dev/null 2>&1; then fuser -k "${APP_PORT}/tcp" 2>/dev/null || true; fi
           for pid in $(ss -lptn "sport = :${APP_PORT}" 2>/dev/null | grep -oE 'pid=[0-9]+' | cut -d= -f2 | sort -u); do
             echo "kill :$APP_PORT pid=$pid"; kill -9 "$pid" 2>/dev/null || true
           done
-          sleep 1
-
-          "${dc[@]}" -f "$COMPOSE_FILE" build --build-arg "GIT_SHA=$GIT_SHA" web
-          GIT_SHA="$GIT_SHA" "${dc[@]}" -f "$COMPOSE_FILE" up -d --force-recreate --remove-orphans
-          sleep 5
+          GIT_SHA="$GIT_SHA" "${dc[@]}" -f "$COMPOSE_FILE" up -d --force-recreate --remove-orphans --no-deps web
+          sleep 3
 
           # Edge TLS: container `bober-ai`. NEVER recreate without caddy_data —
           # wiping /data drops Let's Encrypt certs → ERR_SSL_PROTOCOL_ERROR on
           # partners/bitrix/www.bober-systems.ru until ACME succeeds again.
-          mkdir -p "$ROOT/deploy"
-          cp -a "$COMPOSE_DIR/Caddyfile" "$ROOT/deploy/Caddyfile"
-          # Sync built client so Caddy can serve YML feeds without Node.
-          if [ -d "$COMPOSE_DIR/../dist/client" ]; then
-            mkdir -p "$ROOT/dist"
-            rm -rf "$ROOT/dist/client"
-            cp -a "$COMPOSE_DIR/../dist/client" "$ROOT/dist/client"
-          fi
           docker rm -f deploy-caddy-1 2>/dev/null || true
           docker volume create caddy_data >/dev/null
           docker volume create caddy_config >/dev/null

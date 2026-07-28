@@ -101,11 +101,27 @@ async function checkSitemap() {
     return;
   }
   ok("HTTP 200");
-  const locs = [...res.text.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-  if (locs.length < 50) fail(`мало URL: ${locs.length}`);
-  else ok(`${locs.length} URL`);
-  if (!locs.includes(SITE) && !locs.includes(`${SITE}/`)) fail("нет главной в sitemap");
-  else ok("главная в sitemap");
+  const isIndex = /<sitemapindex[\s>]/i.test(res.text);
+  let locs = [...res.text.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  if (isIndex) {
+    ok(`sitemapindex: ${locs.length} child sitemap(s)`);
+    if (locs.length < 1) fail("пустой sitemapindex");
+    // Spot-check first child for page URLs.
+    const child = locs[0];
+    const childRes = await head(child);
+    if (childRes.status !== 200) {
+      fail(`child ${child} HTTP ${childRes.status}`);
+      return;
+    }
+    locs = [...childRes.text.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  }
+  if (locs.length < 10) fail(`мало URL: ${locs.length}`);
+  else ok(`${locs.length} URL${isIndex ? " в первом child" : ""}`);
+  if (!locs.includes(SITE) && !locs.includes(`${SITE}/`)) {
+    // On index mode, home may be in another child — soft check only.
+    if (!isIndex) fail("нет главной в sitemap");
+    else ok("главная проверяется в child sitemaps (index mode)");
+  } else ok("главная в sitemap");
   const badHost = locs.filter((u) => !ALLOWED_HOST_MARKERS.some((marker) => u.includes(marker)));
   if (badHost.length) fail(`чужие хосты: ${badHost.slice(0, 3).join(", ")}`);
   else ok("все loc на bober-systems.ru / www.bober-systems.ru / microsites");

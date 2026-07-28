@@ -97,6 +97,10 @@ export const YANDEX_BUSINESS_URL = readPublicEnv(
   "https://yandex.ru/sprav/113092981562/",
 );
 export const YANDEX_CLOUD_PARTNERS_URL = "https://yandex.cloud/ru/partners/catalogue";
+/** Direct Bitrix partner card (program ID). */
+export const BITRIX_PARTNER_URL = "https://www.1c-bitrix.ru/partners/28909898.php";
+/** Own Kaspersky certificates hub — proof of Registered Partner status. */
+export const KASPERSKY_PARTNER_URL = "/certificates";
 export const SELECTEL_PARTNER_PROGRAM_URL = "https://selectel.ru/about/partners-programm/";
 export const CLOUD_RU_PARTNERS_URL = "https://cloud.ru/partners/find-partner";
 
@@ -106,6 +110,8 @@ export const HOMEPAGE_PRESENCE_LINKS = [
   { id: "yandexReviews", url: YANDEX_USLUGI_URL },
   { id: "yandexMaps", url: YANDEX_MAPS_URL },
   { id: "yandexCloud", url: YANDEX_CLOUD_PARTNERS_URL },
+  { id: "bitrixPartner", url: BITRIX_PARTNER_URL },
+  { id: "kasperskyPartner", url: KASPERSKY_PARTNER_URL },
   ...(YANDEX_BUSINESS_URL ? [{ id: "yandexBusiness" as const, url: YANDEX_BUSINESS_URL }] : []),
 ] as const;
 export const YOUTUBE_SHORTS_URL = "https://www.youtube.com/shorts/5DQzO5aPS5A";

@@ -1,4 +1,9 @@
-import { CLOUD_RU_PARTNERS_URL, SELECTEL_PARTNER_PROGRAM_URL, YANDEX_CLOUD_PARTNERS_URL } from "@/lib/site";
+import {
+  CLOUD_RU_PARTNERS_URL,
+  KASPERSKY_PARTNER_URL,
+  SELECTEL_PARTNER_PROGRAM_URL,
+  YANDEX_CLOUD_PARTNERS_URL,
+} from "@/lib/site";
 
 export type TrustPartner = {
   id: string;
@@ -44,6 +49,7 @@ export const TRUST_PARTNERS: TrustPartner[] = [
     logoSrc: "/partners/trust/kaspersky.svg",
     logoWidth: 160,
     logoHeight: 33,
+    href: KASPERSKY_PARTNER_URL,
   },
 ];
 
