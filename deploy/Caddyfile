@@ -34,7 +34,21 @@
 	handle /api/health {
 		reverse_proxy 127.0.0.1:3001
 	}
-	@siteHost host www.bober-ai.dev bober-ai.dev partners.bober-ai.dev bitrix.bober-ai.dev www.bober-systems.ru bober-systems.ru partners.bober-systems.ru bitrix.bober-systems.ru
+	# Apex systems: pages → https://www (one hop). robots → HTTPS apex
+	# (same host) where Caddy serves 200 — Yandex "полная проверка"
+	# fails if /robots.txt redirects to another hostname.
+	@systemsApex host bober-systems.ru
+	handle @systemsApex {
+		header Cache-Control "no-store"
+		@apexRobots path /robots.txt
+		handle @apexRobots {
+			redir https://bober-systems.ru{uri} permanent
+		}
+		handle {
+			redir https://www.bober-systems.ru{uri} permanent
+		}
+	}
+	@siteHost host www.bober-ai.dev bober-ai.dev partners.bober-ai.dev bitrix.bober-ai.dev www.bober-systems.ru partners.bober-systems.ru bitrix.bober-systems.ru
 	handle @siteHost {
 		header Cache-Control "no-store"
 		redir https://{host}{uri} permanent
@@ -50,8 +64,15 @@ https://bober-ai.dev {
 }
 
 https://bober-systems.ru {
-	header Cache-Control "no-store"
-	redir https://www.bober-systems.ru{uri} permanent
+	# Serve robots (+ Yandex verify) on apex — do not redirect to www.
+	@apexSeo path /robots.txt /yandex_*.html
+	handle @apexSeo {
+		import astro_proxy
+	}
+	handle {
+		header Cache-Control "no-store"
+		redir https://www.bober-systems.ru{uri} permanent
+	}
 }
 
 https://www.bober-ai.dev {

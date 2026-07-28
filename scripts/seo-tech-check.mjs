@@ -117,7 +117,7 @@ async function checkSitemap() {
 async function checkCanonicalHost() {
   section("канон и 301");
   const apex = await head(`${APEX}/`, { redirect: "manual" });
-  if (apex.status === 301 || apex.status === 302) {
+  if (apex.status === 301 || apex.status === 302 || apex.status === 308) {
     const loc = apex.location || "";
     const okLoc =
       new RegExp(`^${CANONICAL_ORIGIN.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}/?(\\?.*)?$`, 'i').test(loc) &&
@@ -129,6 +129,16 @@ async function checkCanonicalHost() {
     }
   } else {
     fail(`apex HTTP ${apex.status}, ожидали 301`);
+  }
+
+  // Yandex: apex /robots.txt must not redirect to www (другое имя хоста).
+  const apexRobots = await head(`${APEX}/robots.txt`, { redirect: "manual" });
+  if (apexRobots.status === 200 && /User-Agent:\s*\*/i.test(apexRobots.text || "")) {
+    ok("apex /robots.txt → 200 (без редиректа на www)");
+  } else if (apexRobots.status === 301 || apexRobots.status === 302 || apexRobots.status === 308) {
+    fail(`apex /robots.txt → ${apexRobots.status} ${apexRobots.location || ""} — нужен 200 на apex`);
+  } else {
+    fail(`apex /robots.txt → HTTP ${apexRobots.status}`);
   }
 
   const www = await head(`${SITE}/`);

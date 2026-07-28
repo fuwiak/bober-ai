@@ -32,6 +32,13 @@
 
 	@apex host bober-systems.ru bober-ai.dev
 	handle @apex {
+		# robots (+ Yandex verify) must 200 on apex — checkers fail if
+		# /robots.txt redirects to another hostname (www).
+		@apexSeo path /robots.txt /yandex_*.html
+		handle @apexSeo {
+			try_files {path} {path}.html
+			file_server
+		}
 		# Absolute www Location — never inherit listener :8080 from Railway $PORT.
 		header Cache-Control "no-store"
 		redir https://www.bober-systems.ru{uri} permanent
