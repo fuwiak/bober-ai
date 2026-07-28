@@ -105,8 +105,12 @@ jobs:
           cat > /mnt/root/opt/bober-ai/deploy/Caddyfile <<'CADDY'
           {
           	email contact@bober-ai.dev
-          	# Default ACME issuers (ZeroSSL + LE). Do not pin LE-only — rate limits
-          	# after cert-volume loss break partners/bitrix TLS for up to 7 days.
+          	# LE rate-limited until ~2026-07-30; ZeroSSL EAB geo-blocked from RU.
+          	# Prefer SSL.com ACME (no EAB); LE remains as fallback.
+          	cert_issuer acme {
+          		dir https://acme.ssl.com/sslcom-dv-rsa
+          	}
+          	cert_issuer acme
           	servers {
           		protocols h1 h2
           	}
