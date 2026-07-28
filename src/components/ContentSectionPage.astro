@@ -15,9 +15,11 @@ interface Props {
   path: string;
   namespace: string;
   showContact?: boolean;
+  keywords?: string[];
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { locale, path, namespace, showContact = true } = Astro.props;
+const { locale, path, namespace, showContact = true, keywords = [], jsonLd } = Astro.props;
 const messages = loadMessages(locale);
 
 function resolveNamespace(root: unknown, ns: string): Record<string, unknown> | null {
@@ -27,6 +29,14 @@ function resolveNamespace(root: unknown, ns: string): Record<string, unknown> | 
     cur = (cur as Record<string, unknown>)[part];
   }
   return cur && typeof cur === "object" ? (cur as Record<string, unknown>) : null;
+}
+
+/** Static public files and absolute URLs must not get /en prefix. */
+function hrefFor(href: string): string {
+  if (!href) return href;
+  if (/^https?:\/\//i.test(href)) return href;
+  if (/\.(md|txt|xml|yml|yaml|json)$/i.test(href)) return href;
+  return localizePath(href, locale);
 }
 
 const block = (resolveNamespace(messages, namespace) || {}) as {
@@ -79,6 +89,8 @@ const heroImage =
   description={description}
   locale={locale}
   canonicalPath={localizePath(path, locale)}
+  keywords={keywords}
+  jsonLd={jsonLd}
 >
   <article class="container-editorial py-12 md:py-20">
     {block?.eyebrow && <p class="meta-label">{block.eyebrow}</p>}
@@ -133,7 +145,7 @@ const heroImage =
           {block.items.map((item) => (
             <li class="border border-hairline p-5">
               {item.href ? (
-                <a class="font-medium text-ink text-link" href={localizePath(item.href, locale)}>
+                <a class="font-medium text-ink text-link" href={hrefFor(item.href)}>
                   {item.title}
                 </a>
               ) : (

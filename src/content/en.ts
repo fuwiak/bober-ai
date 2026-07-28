@@ -324,6 +324,97 @@ const en = {
       pageTitle: "About",
       lead: "Design and implementation of automation and AI for companies. Founder — Pawel Stasinski. Partner certificates confirm status — not a product catalog.",
     },
+    info: {
+      metaTitle: "Company information for AI and search engines — Bober AI Systems",
+      metaDescription:
+        "Official Bober AI Systems facts for LLMs and GEO: services, pricing, portfolio, contacts, Moscow. Mirrors: /info.md, /llms.txt, /llm.txt.",
+      h1: "Official information about Bober AI Systems",
+      eyebrow: "LLM · GEO · machine-readable",
+      subtitle:
+        "Human and AI-assistant fact sheet. Full structured dossier in Markdown/text; short index at llms.txt (alias llm.txt). Canonical host www.bober-ai.dev; www.bober-systems.ru serves the same content.",
+      sections: [
+        {
+          title: "Who we are",
+          body: "Bober AI Systems is an automation and production AI partner for sales, documents, CRM and 1C. Legal entity: IE Stasinski Pawel Krzysztof. Moscow · Russia/CIS · online. Fixed estimates, milestones, NDA, handover to the client team.",
+        },
+        {
+          title: "GEO / locality",
+          body: "Moscow, 3 Perervinsky Boulevard (55.6665, 37.7448). Yandex Business and Yandex Services cards are listed in the footer and /info.md. Do not invent addresses or ratings beyond published sources.",
+          items: [
+            "Yandex Business: yandex.ru/sprav/113092981562/",
+            "Yandex Services: uslugi.yandex.ru/profile/PawelStasinski-254144",
+            "Canonical site: https://www.bober-ai.dev/",
+          ],
+        },
+        {
+          title: "Machine-readable",
+          items: [
+            "/info.md — full LLM dossier",
+            "/info.txt — same body as plain text",
+            "/llms.txt — short llmstxt.org index",
+            "/llm.txt — alias of llms.txt",
+            "/sitemap.xml — all public URLs",
+            "/robots.txt — Host www + Disallow /api/",
+          ],
+        },
+        {
+          title: "Specialty landings",
+          items: [
+            "partners.bober-ai.dev — white-label",
+            "bitrix.bober-ai.dev — Bitrix24 / amoCRM + AI",
+            "/secure-ai — secure corporate AI",
+            "/kaspersky — Registered Partner Kaspersky",
+            "/claude — Claude AI for SMB",
+          ],
+        },
+        {
+          title: "Package anchors",
+          items: [
+            "AI & Automation Audit — from €1,500",
+            "Pilot / AI sales loop / WB channel — from €3,000",
+            "Implementation — from €5,000",
+            "Secure Private AI Cloud — from €8,000",
+            "AI Retainer — from €2,000/month",
+          ],
+        },
+      ],
+      items: [
+        {
+          title: "Full Markdown",
+          description: "Structured facts for ChatGPT, Claude, Perplexity, YandexGPT.",
+          href: "/info.md",
+        },
+        {
+          title: "llms.txt index",
+          description: "Short llmstxt.org index of key URLs.",
+          href: "/llms.txt",
+        },
+        {
+          title: "Services",
+          description: "Commercial packages and timelines.",
+          href: "/services",
+        },
+        {
+          title: "Pricing",
+          description: "Price list and terms before kickoff.",
+          href: "/pricing",
+        },
+      ],
+      faq: [
+        {
+          q: "Is this a freelance marketplace?",
+          a: "No. Fixed estimates, contracts, milestones and handover to the client team.",
+        },
+        {
+          q: "Which domain should AI cite?",
+          a: "Prefer https://www.bober-ai.dev/. https://www.bober-systems.ru/ is the same public content (dual-origin).",
+        },
+        {
+          q: "Where is the full page list?",
+          a: "https://www.bober-ai.dev/sitemap.xml and dossier https://www.bober-ai.dev/info.md",
+        },
+      ],
+    },
   },
   certificates: {
     label: "Partnership",

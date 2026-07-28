@@ -19,6 +19,7 @@ import {
   TELEGRAM_URL,
   WHATSAPP_URL,
 } from "@/lib/site";
+import { organizationJsonLd, websiteJsonLd, siteNavigationJsonLd } from "@/lib/seo";
 
 const locale = "ru" as const;
 const messages = loadMessages(locale);
@@ -45,6 +46,11 @@ const leadParagraphs = hero.valueProposition
   .split(/\n\n+/)
   .map((part) => part.trim())
   .filter(Boolean);
+const homeJsonLd = [
+  { "@context": "https://schema.org", ...organizationJsonLd(locale), description: meta.description },
+  websiteJsonLd(locale),
+  siteNavigationJsonLd(locale),
+];
 ---
 
 <BaseLayout
@@ -53,6 +59,7 @@ const leadParagraphs = hero.valueProposition
   locale={locale}
   canonicalPath="/"
   keywords={meta.keywords}
+  jsonLd={homeJsonLd}
 >
   <section class="hero-section section-band">
     <div class="container-editorial">

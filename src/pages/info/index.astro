@@ -1,5 +1,65 @@
 ---
-import ContentSectionPage from "@/components/ContentSectionPage.astro";
+/**
+ * /info — HTML mirror of the LLM company dossier (Next.js parity).
+ * Machine-readable: /info.md, /info.txt · short index: /llms.txt (alias /llm.txt).
+ */
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { LLM_INFO_MARKDOWN, LLM_INFO_UPDATED_AT } from "@/lib/llm-info";
+import { DEFAULT_KEYWORDS, SITE_NAME, absoluteUrl } from "@/lib/site";
+import { organizationJsonLd, webPageJsonLd, pageBreadcrumbJsonLd } from "@/lib/seo";
+
 export const prerender = true;
+
+const locale = "ru" as const;
+const path = "/info";
+const title = "LLM Info — официальный источник фактов о Bober AI Systems";
+const description =
+  "Структурированная информация о Bober AI Systems для AI-ассистентов и поисковых систем: услуги, кейсы, контакты, FAQ.";
+const pageUrl = absoluteUrl(path);
+const jsonLd = [
+  { "@context": "https://schema.org", ...organizationJsonLd(locale), description },
+  webPageJsonLd({
+    name: title,
+    description,
+    url: pageUrl,
+    locale,
+  }),
+  pageBreadcrumbJsonLd(locale, [{ name: "LLM Info", path }]),
+];
 ---
-<ContentSectionPage locale="ru" path="/info" namespace="pages.info" />
+
+<BaseLayout
+  title={title}
+  description={description}
+  locale={locale}
+  canonicalPath={path}
+  keywords={[...DEFAULT_KEYWORDS, "LLM info", "AI assistant facts", "Bober AI Systems"]}
+  jsonLd={jsonLd}
+>
+  <div class="section-band">
+    <div class="container-editorial max-w-3xl">
+      <nav class="mb-6 text-sm text-muted">
+        <a href="/" class="text-link">Главная</a>
+        <span class="mx-2">/</span>
+        <span class="text-ink">LLM Info</span>
+      </nav>
+      <h1 class="display-md">Official Information About {SITE_NAME}</h1>
+      <p class="mt-2 text-sm text-muted">
+        Официальный источник фактов для AI-ассистентов и answer engines. Обновлено: {LLM_INFO_UPDATED_AT}.{" "}
+        <a href={absoluteUrl("/info.txt")} class="text-link">Текстовая версия</a>
+        {" · "}
+        <a href={absoluteUrl("/info.md")} class="text-link">Markdown</a>
+        {" · "}
+        <a href={absoluteUrl("/llms.txt")} class="text-link">llms.txt</a>
+      </p>
+      <article class="prose-legal mt-8">
+        <pre class="whitespace-pre-wrap font-mono text-sm leading-relaxed text-body">{LLM_INFO_MARKDOWN}</pre>
+      </article>
+      <nav class="mt-10 flex flex-wrap gap-4 border-t border-hairline pt-6 text-sm">
+        <a href="/" class="text-link">На главную</a>
+        <a href="/#contact" class="text-link">Обсудить проект</a>
+        <a href="/partners" class="text-link">Партнёрам</a>
+      </nav>
+    </div>
+  </div>
+</BaseLayout>

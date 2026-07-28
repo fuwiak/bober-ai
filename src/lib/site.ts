@@ -122,6 +122,7 @@ export const DEFAULT_KEYWORDS = [
   "корпоративный RAG",
   "AI on-premise",
   "автоматизация бизнес процессов",
+  "AI Москва",
   "Yandex Cloud",
   "Selectel",
 ];

@@ -13,7 +13,7 @@
 
 import fetch from "./lib/fetch.mjs";
 
-const SITE = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev").replace(/\/$/, "");
+const SITE = (process.env.PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev").replace(/\/$/, "");
 const APEX = "https://bober-ai.dev";
 
 const LANDINGS = [
@@ -28,6 +28,9 @@ const LANDINGS = [
   "/integrations/bitrix24",
   "/info",
   "/llms.txt",
+  "/llm.txt",
+  "/info.md",
+  "/rss.xml",
   "/robots.txt",
   "/sitemap.xml",
 ];

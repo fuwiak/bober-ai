@@ -329,6 +329,97 @@ const ru = {
       pageTitle: "О компании",
       lead: "Проектирование и внедрение автоматизации и AI для компаний. Основатель — Павел Стасиньский. Партнёрские сертификаты — подтверждение статуса, не витрина продуктов.",
     },
+    info: {
+      metaTitle: "Информация о компании для ИИ и поисковых систем — Bober AI Systems",
+      metaDescription:
+        "Официальные факты о Bober AI Systems для LLM и GEO: услуги, цены, портфолио, контакты, Москва. Зеркала: /info.md, /llms.txt, /llm.txt.",
+      h1: "Официальная информация о Bober AI Systems",
+      eyebrow: "LLM · GEO · machine-readable",
+      subtitle:
+        "Краткая витрина фактов для людей и ИИ-ассистентов. Полный структурированный досье — в Markdown/тексте; короткий индекс — llms.txt (алиас llm.txt). Канонический домен www.bober-ai.dev; зеркало www.bober-systems.ru — тот же контент.",
+      sections: [
+        {
+          title: "Кто мы",
+          body: "Bober AI Systems — партнёр по автоматизации продаж, документов, CRM и 1С с AI в production. Юрлицо: ИП Стасиньски Павел Кшиштоф. Москва · Россия и СНГ · онлайн. Фиксированная смета, этапы, NDA, handover команде заказчика.",
+        },
+        {
+          title: "GEO / локальность",
+          body: "Москва, Перервинский б-р, 3 (координаты 55.6665, 37.7448). Карточка Яндекс Бизнес и Услуги — в футере и /info.md. Не выдумывайте адреса и рейтинги сверх опубликованных.",
+          items: [
+            "Яндекс Бизнес: yandex.ru/sprav/113092981562/",
+            "Яндекс Услуги: uslugi.yandex.ru/profile/PawelStasinski-254144",
+            "Канон сайта: https://www.bober-ai.dev/",
+          ],
+        },
+        {
+          title: "Machine-readable",
+          items: [
+            "/info.md — полный досье для LLM",
+            "/info.txt — тот же текст",
+            "/llms.txt — короткий индекс (llmstxt.org)",
+            "/llm.txt — алиас llms.txt",
+            "/sitemap.xml — все публичные URL",
+            "/robots.txt — Host www + Disallow /api/",
+          ],
+        },
+        {
+          title: "Специализированные лендинги",
+          items: [
+            "partners.bober-ai.dev — white-label",
+            "bitrix.bober-ai.dev — Bitrix24 / amoCRM + AI",
+            "/secure-ai — безопасный корпоративный AI",
+            "/kaspersky — Registered Partner Kaspersky",
+            "/claude — Claude AI для МСБ",
+          ],
+        },
+        {
+          title: "Пакеты (ориентиры)",
+          items: [
+            "AI & Automation Audit — от 150 000 ₽",
+            "Пилот / AI sales loop / WB-канал — от 300 000 ₽",
+            "Внедрение — от 500 000 ₽",
+            "Secure Private AI Cloud — от 800 000 ₽",
+            "AI Retainer — от 200 000 ₽/мес",
+          ],
+        },
+      ],
+      items: [
+        {
+          title: "Полный Markdown",
+          description: "Структурированные факты для ChatGPT, Claude, Perplexity, YandexGPT.",
+          href: "/info.md",
+        },
+        {
+          title: "Индекс llms.txt",
+          description: "Короткий llmstxt.org-индекс ключевых URL.",
+          href: "/llms.txt",
+        },
+        {
+          title: "Услуги",
+          description: "Каталог коммерческих пакетов и сроков.",
+          href: "/services",
+        },
+        {
+          title: "Цены",
+          description: "Прайс и условия до старта.",
+          href: "/pricing",
+        },
+      ],
+      faq: [
+        {
+          q: "Это фриланс-маркетплейс?",
+          a: "Нет. Фиксированная смета, договор, этапы и передача решения команде заказчика.",
+        },
+        {
+          q: "Какой домен цитировать?",
+          a: "Предпочтительно https://www.bober-ai.dev/. https://www.bober-systems.ru/ — тот же публичный контент (dual-origin).",
+        },
+        {
+          q: "Где полный список страниц?",
+          a: "https://www.bober-ai.dev/sitemap.xml и досье https://www.bober-ai.dev/info.md",
+        },
+      ],
+    },
   },
   certificates: {
     label: "Партнёрство",

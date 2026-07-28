@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/generate-sitemap.mjs",
+    "build": "npm run info:sync && astro build && node scripts/generate-sitemap.mjs",
     "start": "HOST=0.0.0.0 PORT=${PORT:-3000} node ./dist/server/entry.mjs",
     "lint": "astro check",
     "test:e2e": "playwright test",
@@ -38,6 +38,7 @@
     "seo:generate-catalog": "node scripts/generate-seo-catalog.mjs",
     "seo:indexnow": "node scripts/indexnow-submit.mjs",
     "seo:tech": "node scripts/seo-tech-check.mjs",
+    "info:sync": "node --experimental-strip-types scripts/sync-llm-info.mjs",
     "yandex:direct:oauth": "node scripts/yandex-direct-oauth.mjs",
     "yandex:direct:oauth:refresh": "node scripts/yandex-direct-oauth.mjs refresh --update-railway",
     "yandex:direct:oauth:ensure": "node scripts/yandex-direct-oauth.mjs ensure --update-railway",
