@@ -71,7 +71,7 @@ function readPublicEnv(publicKey: string, fallback = ""): string {
 }
 
 /** Публичный email на сайте. Меняется через PUBLIC_CONTACT_EMAIL / NEXT_PUBLIC_CONTACT_EMAIL. */
-export const CONTACT_EMAIL = readPublicEnv("PUBLIC_CONTACT_EMAIL", "contact@bober-ai.dev");
+export const CONTACT_EMAIL = readPublicEnv("PUBLIC_CONTACT_EMAIL", "contact@bober-systems.ru");
 /** Получатели заявок, если CONTACT_TO_EMAIL не задан. */
 export const CONTACT_NOTIFICATION_EMAILS = [CONTACT_EMAIL];
 export const CONTACT_PHONE = "+79950998170";

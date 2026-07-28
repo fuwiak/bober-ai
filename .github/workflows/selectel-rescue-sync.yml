@@ -104,13 +104,9 @@ jobs:
           mkdir -p /mnt/root/opt/bober-ai/deploy
           cat > /mnt/root/opt/bober-ai/deploy/Caddyfile <<'CADDY'
           {
-          	email contact@bober-ai.dev
-          	# Solo *.bober-ai.dev hit LE duplicate-cert limit after caddy_data wipe
-          	# (retry ~2026-07-30). ZeroSSL EAB is geo-blocked from RU VDS
-          	# ("Access Denied...restricted in your region" → Caddy JSON parse error).
+          	email contact@bober-systems.ru
           	# Prefer LE (certs may already exist in caddy_data); SSL.com as fallback.
-          	# Keep hosts in SEPARATE site blocks — multi-SAN pairing caused flaky SNI
-          	# while re-obtaining and hung TLS handshakes on .dev names.
+          	# Keep hosts in SEPARATE site blocks for stable SNI.
           	cert_issuer acme
           	cert_issuer acme {
           		dir https://acme.ssl.com/sslcom-dv-rsa
@@ -119,7 +115,7 @@ jobs:
           		protocols h1 h2
           	}
           }
-          
+
           (astro_proxy) {
           	reverse_proxy 127.0.0.1:3001 {
           		header_up Host {host}
@@ -128,18 +124,32 @@ jobs:
           		header_up X-Real-IP {remote_host}
           	}
           }
-          
+
           (yml_headers) {
           	# ">" replaces upstream text/yaml so clients see a single Content-Type.
           	header >Content-Type "application/xml; charset=utf-8"
           	header X-Content-Type-Options "nosniff"
           }
-          
+
           :80 {
           	handle /api/health {
           		reverse_proxy 127.0.0.1:3001
           	}
-          	@siteHost host www.bober-ai.dev bober-ai.dev partners.bober-ai.dev bitrix.bober-ai.dev www.bober-systems.ru bober-systems.ru partners.bober-systems.ru bitrix.bober-systems.ru
+          	# Apex systems: pages → https://www (one hop). robots → HTTPS apex
+          	# (same host) where Caddy serves 200 — Yandex "полная проверка"
+          	# fails if /robots.txt redirects to another hostname.
+          	@systemsApex host bober-systems.ru
+          	handle @systemsApex {
+          		header Cache-Control "no-store"
+          		@apexRobots path /robots.txt
+          		handle @apexRobots {
+          			redir https://bober-systems.ru{uri} permanent
+          		}
+          		handle {
+          			redir https://www.bober-systems.ru{uri} permanent
+          		}
+          	}
+          	@siteHost host www.bober-systems.ru partners.bober-systems.ru bitrix.bober-systems.ru
           	handle @siteHost {
           		header Cache-Control "no-store"
           		redir https://{host}{uri} permanent
@@ -148,30 +158,19 @@ jobs:
           		respond "ok" 200
           	}
           }
-          
-          https://bober-ai.dev {
-          	header Cache-Control "no-store"
-          	redir https://www.bober-ai.dev{uri} permanent
-          }
-          
+
           https://bober-systems.ru {
-          	header Cache-Control "no-store"
-          	redir https://www.bober-systems.ru{uri} permanent
-          }
-          
-          https://www.bober-ai.dev {
-          	handle /performers-feed.yml {
-          		import yml_headers
+          	# Serve robots (+ Yandex verify) on apex — do not redirect to www.
+          	@apexSeo path /robots.txt /yandex_*.html
+          	handle @apexSeo {
           		import astro_proxy
           	}
-          	@yml path /feeds/*.yml
-          	handle @yml {
-          		import yml_headers
-          		import astro_proxy
+          	handle {
+          		header Cache-Control "no-store"
+          		redir https://www.bober-systems.ru{uri} permanent
           	}
-          	import astro_proxy
           }
-          
+
           https://www.bober-systems.ru {
           	handle /performers-feed.yml {
           		import yml_headers
@@ -184,28 +183,7 @@ jobs:
           	}
           	import astro_proxy
           }
-          
-          https://partners.bober-ai.dev {
-          	# Pass through API, feeds, static assets (Next middleware parity)
-          	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
-          	handle @passthrough {
-          		handle /performers-feed.yml {
-          			rewrite * /feeds/partners.yml
-          			import yml_headers
-          			import astro_proxy
-          		}
-          		@yml path *.yml
-          		handle @yml {
-          			import yml_headers
-          		}
-          		import astro_proxy
-          	}
-          	handle {
-          		rewrite * /white-label
-          		import astro_proxy
-          	}
-          }
-          
+
           https://partners.bober-systems.ru {
           	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
           	handle @passthrough {
@@ -225,27 +203,7 @@ jobs:
           		import astro_proxy
           	}
           }
-          
-          https://bitrix.bober-ai.dev {
-          	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
-          	handle @passthrough {
-          		handle /performers-feed.yml {
-          			rewrite * /feeds/bitrix.yml
-          			import yml_headers
-          			import astro_proxy
-          		}
-          		@yml path *.yml
-          		handle @yml {
-          			import yml_headers
-          		}
-          		import astro_proxy
-          	}
-          	handle {
-          		rewrite * /bitrix
-          		import astro_proxy
-          	}
-          }
-          
+
           https://bitrix.bober-systems.ru {
           	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
           	handle @passthrough {
@@ -288,7 +246,7 @@ jobs:
           NEXT_PUBLIC_PARTNERS_SITE_URL: https://partners.bober-systems.ru
           NEXT_PUBLIC_BITRIX_SITE_URL: https://bitrix.bober-systems.ru
           NEXT_PUBLIC_YANDEX_METRIKA_ID: "110635302"
-          NEXT_PUBLIC_CONTACT_EMAIL: contact@bober-ai.dev
+          NEXT_PUBLIC_CONTACT_EMAIL: contact@bober-systems.ru
         run: |
           set -euo pipefail
           # Mirror Railway HTML by fetching key pages from Railway origin into out/

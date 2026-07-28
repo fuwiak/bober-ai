@@ -19,13 +19,6 @@ export const PARTNERS_HOST = `partners.${CANONICAL_APEX}`;
 /** Bitrix/CRM microsite host. */
 export const BITRIX_HOST = `bitrix.${CANONICAL_APEX}`;
 
-/** Legacy apex still used for dual-SAN TLS + redirects. */
-export const LEGACY_APEX = "bober-ai.dev";
-
-export const LEGACY_HOST = `www.${LEGACY_APEX}`;
-export const LEGACY_PARTNERS_HOST = `partners.${LEGACY_APEX}`;
-export const LEGACY_BITRIX_HOST = `bitrix.${LEGACY_APEX}`;
-
 function httpsOrigin(host) {
   return `https://${host}`;
 }
@@ -37,21 +30,15 @@ export const APEX_ORIGIN = httpsOrigin(CANONICAL_APEX);
 export const PARTNERS_ORIGIN = httpsOrigin(PARTNERS_HOST);
 export const BITRIX_ORIGIN = httpsOrigin(BITRIX_HOST);
 
-export const LEGACY_ORIGIN = httpsOrigin(LEGACY_HOST);
-export const LEGACY_APEX_ORIGIN = httpsOrigin(LEGACY_APEX);
-export const LEGACY_PARTNERS_ORIGIN = httpsOrigin(LEGACY_PARTNERS_HOST);
-export const LEGACY_BITRIX_ORIGIN = httpsOrigin(LEGACY_BITRIX_HOST);
+/** Default public contact mailbox. */
+export const CONTACT_EMAIL_DEFAULT = `contact@${CANONICAL_APEX}`;
 
-/** Hosts allowed for Astro CSRF / Origin checks (canonical + legacy). */
+/** Hosts allowed for Astro CSRF / Origin checks. */
 export const ALLOWED_HTTPS_HOSTS = [
   CANONICAL_HOST,
   CANONICAL_APEX,
   PARTNERS_HOST,
   BITRIX_HOST,
-  LEGACY_HOST,
-  LEGACY_APEX,
-  LEGACY_PARTNERS_HOST,
-  LEGACY_BITRIX_HOST,
 ];
 
 /** True when hostname is under the canonical apex (incl. www / partners / bitrix). */
@@ -71,18 +58,11 @@ export default {
   CANONICAL_HOST,
   PARTNERS_HOST,
   BITRIX_HOST,
-  LEGACY_APEX,
-  LEGACY_HOST,
-  LEGACY_PARTNERS_HOST,
-  LEGACY_BITRIX_HOST,
   CANONICAL_ORIGIN,
   APEX_ORIGIN,
   PARTNERS_ORIGIN,
   BITRIX_ORIGIN,
-  LEGACY_ORIGIN,
-  LEGACY_APEX_ORIGIN,
-  LEGACY_PARTNERS_ORIGIN,
-  LEGACY_BITRIX_ORIGIN,
+  CONTACT_EMAIL_DEFAULT,
   ALLOWED_HTTPS_HOSTS,
   isCanonicalFamilyHost,
 };

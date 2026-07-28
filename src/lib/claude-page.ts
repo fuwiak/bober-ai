@@ -57,14 +57,14 @@ export const CLAUDE_PAGE = {
     "Аудитория лендинга: малый и средний бизнес, команды продаж, поддержки и операций.",
     "Продукт: внедрение Claude (Anthropic) в CRM, документы, продажи и базу знаний — не розничная подписка Claude Pro.",
     "Старт: аудит от 150 000 ₽, пилот от 300 000 ₽, промышленное внедрение от 500 000 ₽. Фиксированная смета до старта.",
-    "Контакт: contact@bober-ai.dev · Telegram · ответ в течение 4 рабочих часов.",
+    "Контакт: contact@bober-systems.ru · Telegram · ответ в течение 4 рабочих часов.",
   ],
   geoFactsEn: [
     "Bober AI Systems is a corporate AI integrator based in Moscow (remote across Russia & CIS).",
     "Audience: small and mid-size businesses — sales, support and operations teams.",
     "Offer: deploy Claude (Anthropic) into CRM, documents, sales and knowledge bases — not retail Claude Pro subscriptions.",
     "Start: audit from ~€1,500, pilot from ~€3,000, production from ~€5,000. Fixed estimate before build.",
-    "Contact: contact@bober-ai.dev · Telegram · reply within 4 business hours.",
+    "Contact: contact@bober-systems.ru · Telegram · reply within 4 business hours.",
   ],
 
   popularLabelRu: "Популярные запросы про Claude",

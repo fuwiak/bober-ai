@@ -1,4 +1,4 @@
-Contact: mailto:contact@bober-ai.dev
+Contact: mailto:contact@bober-systems.ru
 Contact: https://www.bober-systems.ru/#contact
 Expires: 2027-07-20T00:00:00.000Z
 Preferred-Languages: ru, en

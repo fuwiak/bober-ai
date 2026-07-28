@@ -29,7 +29,7 @@ UI в портале не обязателен: воронка видна в CRM
   "name": "Kwork Bitrix by Bober AI",
   "description": "Агрегация лидов продавца (Kwork и др.) в воронку Bitrix24",
   "support": {
-    "email": "support@bober-ai.dev"
+    "email": "contact@bober-systems.ru"
   },
   "scopes": ["crm"]
 }

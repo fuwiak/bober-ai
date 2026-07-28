@@ -30,7 +30,7 @@ export const LEGAL_ENTITY = {
    * Зафиксирован явно — не зависит от NEXT_PUBLIC_CONTACT_EMAIL,
    * чтобы документы не разъезжались при смене env.
    */
-  email: "contact@bober-ai.dev" as const,
+  email: "contact@bober-systems.ru" as const,
   phone: CONTACT_PHONE,
   site: SITE_URL,
 } as const;
@@ -63,7 +63,7 @@ export function isBoberSystemsHost(hostname?: string): boolean {
 
 /**
  * Counter for the current host, or null when Metrika must stay off
- * (legacy *.bober-ai.dev — analytics only on canonical apex family).
+ * (only canonical *.bober-systems.ru family).
  */
 export function yandexMetrikaIdForLocation(hostname?: string, pathname?: string): string | null {
   const host = hostname?.toLowerCase() || "";

@@ -6,6 +6,7 @@
 import {
   BITRIX_ORIGIN,
   CANONICAL_ORIGIN,
+  CONTACT_EMAIL_DEFAULT,
   PARTNERS_ORIGIN,
 } from "../config/domains.mjs";
 
@@ -17,7 +18,7 @@ const pick = (key, fallback) => {
 const site = pick("PUBLIC_SITE_URL", CANONICAL_ORIGIN);
 const partners = pick("PUBLIC_PARTNERS_SITE_URL", PARTNERS_ORIGIN);
 const bitrix = pick("PUBLIC_BITRIX_SITE_URL", BITRIX_ORIGIN);
-const contact = pick("PUBLIC_CONTACT_EMAIL", "contact@bober-ai.dev");
+const contact = pick("PUBLIC_CONTACT_EMAIL", CONTACT_EMAIL_DEFAULT);
 const metrika = pick("PUBLIC_YANDEX_METRIKA_ID", "110635302");
 const partnersMetrika = pick("PUBLIC_PARTNERS_YANDEX_METRIKA_ID", "110926696");
 const bitrixMetrika = pick("PUBLIC_BITRIX_YANDEX_METRIKA_ID", "110926887");

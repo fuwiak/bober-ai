@@ -227,7 +227,7 @@ export function getIiDlyaBiznesaSeoContent(locale: "ru" | "en"): SeoServiceConte
           },
           {
             q: "Как заказать внедрение?",
-            a: "Форма на странице, Telegram или contact@bober-ai.dev → discovery → план и вилка бюджета. Без обязательства сразу покупать разработку.",
+            a: "Форма на странице, Telegram или contact@bober-systems.ru → discovery → план и вилка бюджета. Без обязательства сразу покупать разработку.",
           },
         ]
       : [
@@ -277,7 +277,7 @@ export function getIiDlyaBiznesaSeoContent(locale: "ru" | "en"): SeoServiceConte
           },
           {
             q: "How do we order deployment?",
-            a: "Form on this page, Telegram or contact@bober-ai.dev → discovery → plan and budget range. No obligation to buy a full build immediately.",
+            a: "Form on this page, Telegram or contact@bober-systems.ru → discovery → plan and budget range. No obligation to buy a full build immediately.",
           },
         ],
 

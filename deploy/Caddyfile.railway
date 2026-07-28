@@ -30,7 +30,7 @@
 		respond "ok" 200
 	}
 
-	@apex host bober-systems.ru bober-ai.dev
+	@apex host bober-systems.ru
 	handle @apex {
 		# robots (+ Yandex verify) must 200 on apex — checkers fail if
 		# /robots.txt redirects to another hostname (www).

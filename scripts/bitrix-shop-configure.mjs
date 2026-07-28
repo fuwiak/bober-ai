@@ -49,7 +49,7 @@ const SITE_DESCRIPTION =
 const MAIN_URL = CANONICAL_ORIGIN + "/";
 const BITRIX_URL = "https://bitrix.bober-systems.ru/";
 const CONTACT_PHONE = "+79950998170";
-const CONTACT_EMAIL = "contact@bober-ai.dev";
+const CONTACT_EMAIL = "contact@bober-systems.ru";
 const PARTNER_LINE = "Участие в партнерской программе 1С-Битрикс · ID 28909898";
 const CATALOG_ID = 24;
 

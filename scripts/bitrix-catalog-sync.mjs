@@ -373,7 +373,7 @@ const PRODUCTS = [
     sectionXmlId: "bober-channels",
     name: "Канал: Email",
     price: 0,
-    description: "Почта заявок: contact@bober-ai.dev",
+    description: "Почта заявок: contact@bober-systems.ru",
   },
   {
     xmlId: "ch-web-forms",

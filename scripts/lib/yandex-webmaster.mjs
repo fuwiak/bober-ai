@@ -1,9 +1,7 @@
 import fetch from "./fetch.mjs";
 import { applyYagaCredentials } from "./yaga-credentials.mjs";
 import {
-  CANONICAL_APEX,
   CANONICAL_ORIGIN,
-  LEGACY_APEX,
 } from "../../config/domains.mjs";
 
 applyYagaCredentials();
@@ -124,30 +122,8 @@ function hostHostname(host) {
   return match?.[1] || "";
 }
 
-/** Twin mirror host (legacy ↔ canonical) when only one is registered in Webmaster. */
-export function twinHostUrl(hostUrl) {
-  try {
-    const url = new URL(normalizeHostUrl(hostUrl));
-    const host = url.hostname.toLowerCase();
-    const legacySuffix = `.${LEGACY_APEX}`;
-    const canonicalSuffix = `.${CANONICAL_APEX}`;
-    if (host === LEGACY_APEX || host.endsWith(legacySuffix)) {
-      url.hostname =
-        host === LEGACY_APEX
-          ? CANONICAL_APEX
-          : host.slice(0, -legacySuffix.length) + canonicalSuffix;
-      return url.origin;
-    }
-    if (host === CANONICAL_APEX || host.endsWith(canonicalSuffix)) {
-      url.hostname =
-        host === CANONICAL_APEX
-          ? LEGACY_APEX
-          : host.slice(0, -canonicalSuffix.length) + legacySuffix;
-      return url.origin;
-    }
-  } catch {
-    /* ignore */
-  }
+/** Legacy twin mapping removed — only bober-systems.ru family. */
+export function twinHostUrl(_hostUrl) {
   return null;
 }
 export async function addHost(token, userId, hostUrl) {

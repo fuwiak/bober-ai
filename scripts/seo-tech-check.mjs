@@ -15,7 +15,6 @@ import {
   APEX_ORIGIN,
   CANONICAL_APEX,
   CANONICAL_ORIGIN,
-  LEGACY_APEX,
 } from "../config/domains.mjs";
 import fetch from "./lib/fetch.mjs";
 
@@ -26,7 +25,7 @@ const SITE = (
   CANONICAL_ORIGIN
 ).replace(/\/$/, "");
 const APEX = APEX_ORIGIN;
-const ALLOWED_HOST_MARKERS = [CANONICAL_APEX, LEGACY_APEX];
+const ALLOWED_HOST_MARKERS = [CANONICAL_APEX];
 
 const LANDINGS = [
   "/",

@@ -388,7 +388,7 @@ Classic license / deploy offers on the hub: KES для бизнеса, Security 
 ### Canonical Answer: How to contact Bober AI Systems?
 
 - Сайт: https://www.bober-systems.ru/
-- Email: contact@bober-ai.dev
+- Email: contact@bober-systems.ru
 - Telegram: https://t.me/pstasinski
 - Телефон: +7 995 099-81-70
 - Форма заявки: https://www.bober-systems.ru/#contact

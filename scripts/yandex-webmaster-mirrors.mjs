@@ -2,7 +2,7 @@
 
 /**
  * Статус зеркал в Яндекс Вебмастере + подсказка по «Переезду сайта».
- * Primary = config/domains.mjs CANONICAL_ORIGIN; legacy = LEGACY_ORIGIN.
+ * Primary = config/domains.mjs CANONICAL_ORIGIN (www).
  *
  *   railway run node scripts/yandex-webmaster-mirrors.mjs
  */
@@ -12,8 +12,6 @@ import {
   CANONICAL_APEX,
   CANONICAL_HOST,
   CANONICAL_ORIGIN,
-  LEGACY_APEX,
-  LEGACY_ORIGIN,
 } from "../config/domains.mjs";
 import {
   apiRequest,
@@ -24,7 +22,6 @@ import {
 } from "./lib/yandex-webmaster.mjs";
 
 const PREFERRED = CANONICAL_ORIGIN;
-const SECONDARY = LEGACY_ORIGIN;
 
 async function main() {
   const config = getConfig({ hostUrl: PREFERRED });
@@ -37,7 +34,7 @@ async function main() {
   const hosts = await getHosts(config.token, userId);
   const related = hosts.filter((h) => {
     const id = String(h.host_id || "");
-    return id.includes(CANONICAL_APEX) || id.includes(LEGACY_APEX);
+    return id.includes(CANONICAL_APEX);
   });
 
   console.log(`Яндекс Вебмастер — зеркала (${CANONICAL_APEX} primary)\n`);
@@ -66,10 +63,8 @@ async function main() {
 
   const pickedWww = pickHost(hosts, PREFERRED);
   const pickedApex = pickHost(hosts, APEX_ORIGIN);
-  const pickedSecondary = pickHost(hosts, SECONDARY);
   console.log(`pickHost(${PREFERRED}) → ${pickedWww?.host_id || "—"}`);
-  console.log(`pickHost(${APEX_ORIGIN}) → ${pickedApex?.host_id || "—"}`);
-  console.log(`pickHost(${SECONDARY}) → ${pickedSecondary?.host_id || "—"} (optional)\n`);
+  console.log(`pickHost(${APEX_ORIGIN}) → ${pickedApex?.host_id || "—"}\n`);
 
   const hasApex = related.some((h) => {
     const id = String(h.host_id || "");

@@ -67,11 +67,7 @@ function toSiteUrl(url) {
     const parsed = new URL(url);
     if (parsed.host === HOST) return url;
     // Accept twin / local hosts from sitemap and rewrite to SITE_URL.
-    if (
-      parsed.host.endsWith("bober-ai.dev") ||
-      parsed.host.endsWith("bober-systems.ru") ||
-      parsed.host === "localhost"
-    ) {
+    if (parsed.host.endsWith("bober-systems.ru") || parsed.host === "localhost") {
       return `${SITE_URL}${parsed.pathname}${parsed.search}`;
     }
   } catch {

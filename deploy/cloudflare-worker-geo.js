@@ -4,7 +4,7 @@
  * Setup:
  * 1. Cloudflare → Add site www.bober-systems.ru (free), сменить NS у Namecheap на Cloudflare.
  * 2. Workers → Create worker → вставить этот код.
- * 3. Triggers → Custom domains: www.bober-ai.dev, www.bober-systems.ru
+ * 3. Triggers → Custom domains: www.bober-systems.ru
  * 4. DNS A/CNAME в Cloudflare можно оставить placeholder — Worker перехватывает.
  */
 const SELECTEL_ORIGIN = "https://45.80.131.136";

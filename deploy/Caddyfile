@@ -1,11 +1,7 @@
 {
-	email contact@bober-ai.dev
-	# Solo *.bober-ai.dev hit LE duplicate-cert limit after caddy_data wipe
-	# (retry ~2026-07-30). ZeroSSL EAB is geo-blocked from RU VDS
-	# ("Access Denied...restricted in your region" → Caddy JSON parse error).
+	email contact@bober-systems.ru
 	# Prefer LE (certs may already exist in caddy_data); SSL.com as fallback.
-	# Keep hosts in SEPARATE site blocks — multi-SAN pairing caused flaky SNI
-	# while re-obtaining and hung TLS handshakes on .dev names.
+	# Keep hosts in SEPARATE site blocks for stable SNI.
 	cert_issuer acme
 	cert_issuer acme {
 		dir https://acme.ssl.com/sslcom-dv-rsa
@@ -34,7 +30,21 @@
 	handle /api/health {
 		reverse_proxy 127.0.0.1:3001
 	}
-	@siteHost host www.bober-ai.dev bober-ai.dev partners.bober-ai.dev bitrix.bober-ai.dev www.bober-systems.ru partners.bober-systems.ru bitrix.bober-systems.ru
+	# Apex systems: pages → https://www (one hop). robots → HTTPS apex
+	# (same host) where Caddy serves 200 — Yandex "полная проверка"
+	# fails if /robots.txt redirects to another hostname.
+	@systemsApex host bober-systems.ru
+	handle @systemsApex {
+		header Cache-Control "no-store"
+		@apexRobots path /robots.txt
+		handle @apexRobots {
+			redir https://bober-systems.ru{uri} permanent
+		}
+		handle {
+			redir https://www.bober-systems.ru{uri} permanent
+		}
+	}
+	@siteHost host www.bober-systems.ru partners.bober-systems.ru bitrix.bober-systems.ru
 	handle @siteHost {
 		header Cache-Control "no-store"
 		redir https://{host}{uri} permanent
@@ -42,25 +52,6 @@
 	handle {
 		respond "ok" 200
 	}
-}
-
-# Explicit http:// apex overrides Caddy auto_https 308→same-host.
-# Pages → https://www (one hop). robots → HTTPS apex (200 there —
-# Yandex fails if /robots.txt redirects to another hostname).
-http://bober-systems.ru {
-	header Cache-Control "no-store"
-	@apexRobots path /robots.txt
-	handle @apexRobots {
-		redir https://bober-systems.ru{uri} permanent
-	}
-	handle {
-		redir https://www.bober-systems.ru{uri} permanent
-	}
-}
-
-https://bober-ai.dev {
-	header Cache-Control "no-store"
-	redir https://www.bober-ai.dev{uri} permanent
 }
 
 https://bober-systems.ru {
@@ -75,19 +66,6 @@ https://bober-systems.ru {
 	}
 }
 
-https://www.bober-ai.dev {
-	handle /performers-feed.yml {
-		import yml_headers
-		import astro_proxy
-	}
-	@yml path /feeds/*.yml
-	handle @yml {
-		import yml_headers
-		import astro_proxy
-	}
-	import astro_proxy
-}
-
 https://www.bober-systems.ru {
 	handle /performers-feed.yml {
 		import yml_headers
@@ -99,27 +77,6 @@ https://www.bober-systems.ru {
 		import astro_proxy
 	}
 	import astro_proxy
-}
-
-https://partners.bober-ai.dev {
-	# Pass through API, feeds, static assets (Next middleware parity)
-	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
-	handle @passthrough {
-		handle /performers-feed.yml {
-			rewrite * /feeds/partners.yml
-			import yml_headers
-			import astro_proxy
-		}
-		@yml path *.yml
-		handle @yml {
-			import yml_headers
-		}
-		import astro_proxy
-	}
-	handle {
-		rewrite * /white-label
-		import astro_proxy
-	}
 }
 
 https://partners.bober-systems.ru {
@@ -138,26 +95,6 @@ https://partners.bober-systems.ru {
 	}
 	handle {
 		rewrite * /white-label
-		import astro_proxy
-	}
-}
-
-https://bitrix.bober-ai.dev {
-	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
-	handle @passthrough {
-		handle /performers-feed.yml {
-			rewrite * /feeds/bitrix.yml
-			import yml_headers
-			import astro_proxy
-		}
-		@yml path *.yml
-		handle @yml {
-			import yml_headers
-		}
-		import astro_proxy
-	}
-	handle {
-		rewrite * /bitrix
 		import astro_proxy
 	}
 }
