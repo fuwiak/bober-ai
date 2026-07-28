@@ -412,10 +412,17 @@ jobs:
               && [[ "$health" == *"$GIT_SHA"* ]] \
               && [[ "$html" == *'0e71ef3fc54b6c3c'* ]] \
               && [[ "$main_feed" == *'yml_catalog'* || "$main_feed" == *'<?xml'* ]] \
+              && [[ "$main_feed" == *'bober-systems.ru'* ]] \
+              && [[ "$main_feed" != *'bober-ai.dev'* ]] \
               && [[ "$partners_ru" == *'yml_catalog'* || "$partners_ru" == *'<?xml'* ]] \
-              && [[ "$bitrix" == *'yml_catalog'* || "$bitrix" == *'<?xml'* ]]; then
+              && [[ "$partners_ru" != *'bober-ai.dev'* ]] \
+              && [[ "$bitrix" == *'yml_catalog'* || "$bitrix" == *'<?xml'* ]] \
+              && [[ "$bitrix" != *'bober-ai.dev'* ]]; then
               echo "PUBLIC_HEALTH_OK + FEEDS_OK (bober-systems.ru)"
               exit 0
+            fi
+            if [[ "$main_feed" == *'bober-ai.dev'* ]]; then
+              echo "FEED_STILL_HAS_bober-ai.dev — reject"
             fi
             echo "retry $i…"
             sleep 5

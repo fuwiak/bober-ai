@@ -32,6 +32,12 @@ function generateWithTsx() {
       ["bitrix", getBitrixFeedXml()],
       ["partners", getPartnersFeedXml()],
     ]) {
+      if (xml.includes("bober-ai.dev")) {
+        throw new Error(\`\${label} feed still contains bober-ai.dev — check PUBLIC_SITE_URL / domains.mjs\`);
+      }
+      if (!xml.includes("bober-systems.ru")) {
+        throw new Error(\`\${label} feed missing bober-systems.ru\`);
+      }
       const notes = [...xml.matchAll(new RegExp("<sales_notes>([^<]*)</sales_notes>", "g"))].map((m) => m[1]);
       const bad = notes.filter((n) => n.length > 50);
       if (bad.length) {

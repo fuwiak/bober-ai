@@ -53,18 +53,20 @@ export const SITE_COUNTRY = "Россия";
 /** Координаты офиса (Перервинский б-р, 3) — сигнал региональности для Яндекса. */
 export const SITE_GEO = { latitude: 55.6665, longitude: 37.7448 } as const;
 
-/** Read PUBLIC_* (Astro) with NEXT_PUBLIC_* (Next) fallback during migration. */
+/** Read PUBLIC_* — runtime process.env wins over Vite-baked import.meta.env. */
 function readPublicEnv(publicKey: string, fallback = ""): string {
+  if (typeof process !== "undefined") {
+    const fromProcess = process.env?.[publicKey]?.trim();
+    if (fromProcess) return fromProcess;
+    const nextKey = publicKey.replace(/^PUBLIC_/, "NEXT_PUBLIC_");
+    if (process.env?.[nextKey]?.trim()) return process.env[nextKey]!.trim();
+  }
+
   try {
     const fromImport = import.meta.env?.[publicKey];
     if (typeof fromImport === "string" && fromImport.trim()) return fromImport.trim();
   } catch {
-    /* import.meta unavailable in some Next bundles */
-  }
-
-  const nextKey = publicKey.replace(/^PUBLIC_/, "NEXT_PUBLIC_");
-  if (typeof process !== "undefined" && process.env?.[nextKey]?.trim()) {
-    return process.env[nextKey]!.trim();
+    /* import.meta unavailable in some Node/tsx contexts */
   }
 
   return fallback;

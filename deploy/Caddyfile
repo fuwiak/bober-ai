@@ -79,9 +79,12 @@ https://bober-systems.ru {
 }
 
 https://www.bober-systems.ru {
+	# Live YML from Node (/api/feeds/performers) — always uses runtime SITE_URL.
+	# Static /srv/performers-feed.yml kept in sync as cold backup (see CI copy).
 	handle /performers-feed.yml {
 		import yml_headers
-		import yml_static
+		rewrite * /api/feeds/performers
+		import astro_proxy
 	}
 	@yml path /feeds/*.yml
 	handle @yml {

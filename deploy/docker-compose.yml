@@ -20,6 +20,11 @@ services:
       # Must match Caddy reverse_proxy 127.0.0.1:3001 — never 3000.
       PORT: "3001"
       GIT_SHA: ${GIT_SHA:-}
+      # Runtime wins over build-time Vite bake (feeds, absolute URLs).
+      PUBLIC_SITE_URL: ${PUBLIC_SITE_URL:-https://www.bober-systems.ru}
+      PUBLIC_PARTNERS_SITE_URL: ${PUBLIC_PARTNERS_SITE_URL:-https://partners.bober-systems.ru}
+      PUBLIC_BITRIX_SITE_URL: ${PUBLIC_BITRIX_SITE_URL:-https://bitrix.bober-systems.ru}
+      PUBLIC_CONTACT_EMAIL: ${PUBLIC_CONTACT_EMAIL:-contact@bober-systems.ru}
     healthcheck:
       test:
         [

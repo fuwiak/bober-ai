@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-27 14:48">
+<yml_catalog date="2026-07-28 21:35">
   <shop>
     <name>Bober AI Systems</name>
     <company>Bober AI Systems</company>
@@ -90,7 +90,7 @@
         <url>https://www.bober-systems.ru/services/ai-consulting</url>
       </set>
       <set id="crm-integration">
-        <name>Интеграции CRM</name>
+        <name>Bitrix24 · amoCRM</name>
         <url>https://www.bober-systems.ru/services/crm-integration</url>
       </set>
       <set id="ai-sales-loop">
@@ -604,7 +604,7 @@
       <categoryId>18</categoryId>
       <set-ids>crm-integration</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/crm-integration.jpg</picture>
-      <description>Интеграции CRM</description>
+      <description>Bitrix24 · amoCRM</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
