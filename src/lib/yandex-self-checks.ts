@@ -70,7 +70,8 @@ export const YANDEX_SELF_CHECKS: SelfCheckItem[] = [
     id: "submitted-to-bots",
     title: "Страницы сайта переданы индексирующим роботам",
     status: "done",
-    evidence: "sitemap.xml (absoluteUrl) · npm run seo:indexnow · yaga webmaster boost",
+    evidence:
+      "sitemap.xml · npm run seo:indexnow · yaga webmaster boost · RSS /rss.xml (Свежее и актуальное)",
   },
   {
     id: "content-in-index",

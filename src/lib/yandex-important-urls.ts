@@ -19,6 +19,7 @@ export const YANDEX_IMPORTANT_PATHS = [
   "/portfolio",
   "/about",
   "/blog",
+  "/rss.xml",
   "/faq",
   "/automation",
   "/integrations",

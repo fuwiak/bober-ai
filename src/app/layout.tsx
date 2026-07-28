@@ -42,6 +42,9 @@ export const metadata: Metadata = {
       en: absoluteUrl("/en"),
       "x-default": absoluteUrl("/"),
     },
+    types: {
+      "application/rss+xml": absoluteUrl("/rss.xml"),
+    },
   },
   icons: {
     // Yandex recommends 120×120 (or SVG) for clear snippet favicons.

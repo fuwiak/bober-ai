@@ -195,6 +195,13 @@ const nextConfig: NextConfig = {
         headers: immutable,
       },
       {
+        source: "/rss.xml",
+        headers: [
+          { key: "Content-Type", value: "application/rss+xml; charset=utf-8" },
+          ...html,
+        ],
+      },
+      {
         source: "/performers-feed.yml",
         headers: ymlFeed,
       },

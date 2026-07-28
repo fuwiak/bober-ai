@@ -180,6 +180,12 @@ async function main() {
   Локальный снимок + список URL: npm run webmaster:microtest
 `);
 
+  section("Свежее и актуальное (RSS)");
+  console.log(`Фид: https://www.bober-ai.dev/rss.xml
+  Вебмастер → Представление в поиске → Свежее и актуальное → загрузить RSS.
+  Docs: https://yandex.ru/support/webmaster/ru/search-appearance/fresh-content
+`);
+
   section("Переобход приоритетных URL");
   const quota = await getRecrawlQuota(config.token, userId, hostId);
   const remaining = Number(quota.quota_remainder ?? quota.daily_quota_remainder ?? 0);

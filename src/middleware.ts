@@ -106,6 +106,7 @@ function shouldSkipIntl(pathname: string): boolean {
   if (pathname.startsWith("/_next") || pathname.startsWith("/_vercel")) return true;
   if (pathname === "/tel" || pathname.startsWith("/tel/")) return true;
   if (pathname === "/performers-feed.yml") return true;
+  if (pathname === "/rss.xml") return true;
   if (pathname.startsWith("/feeds/")) return true;
 
   const bare = [
