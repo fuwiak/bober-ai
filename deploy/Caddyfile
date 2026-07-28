@@ -1,14 +1,13 @@
 {
 	email contact@bober-ai.dev
-	# LE duplicate-cert rate limit until ~2026-07-30 for *.bober-ai.dev
-	# (caddy_data wipe). Default ZeroSSL fallback is unusable from RU VDS:
-	# ZeroSSL EAB API returns "Access Denied...restricted in your region"
-	# (Caddy: invalid character 'A' looking for beginning of value).
-	# Prefer SSL.com ACME (no EAB); keep LE as second issuer for after Jul 30.
+	# Solo *.bober-ai.dev is LE rate-limited until ~2026-07-30 (caddy_data wipe).
+	# Pair each .dev host with its .ru twin so ACME requests a NEW identifier set
+	# (exact-set duplicate limit does not apply). ZeroSSL EAB is geo-blocked from RU
+	# ("Access Denied...restricted in your region"). SSL.com is fallback only.
+	cert_issuer acme
 	cert_issuer acme {
 		dir https://acme.ssl.com/sslcom-dv-rsa
 	}
-	cert_issuer acme
 	servers {
 		protocols h1 h2
 	}
@@ -43,17 +42,15 @@
 	}
 }
 
-https://bober-ai.dev {
+# Multi-SAN apex: new LE identifier set vs solo bober-ai.dev (rate-limited).
+https://bober-ai.dev, bober-systems.ru {
 	header Cache-Control "no-store"
-	redir https://www.bober-ai.dev{uri} permanent
-}
-
-https://bober-systems.ru {
-	header Cache-Control "no-store"
+	@ai host bober-ai.dev
+	redir @ai https://www.bober-ai.dev{uri} permanent
 	redir https://www.bober-systems.ru{uri} permanent
 }
 
-https://www.bober-ai.dev {
+https://www.bober-ai.dev, www.bober-systems.ru {
 	handle /performers-feed.yml {
 		import yml_headers
 		import astro_proxy
@@ -66,20 +63,7 @@ https://www.bober-ai.dev {
 	import astro_proxy
 }
 
-https://www.bober-systems.ru {
-	handle /performers-feed.yml {
-		import yml_headers
-		import astro_proxy
-	}
-	@yml path /feeds/*.yml
-	handle @yml {
-		import yml_headers
-		import astro_proxy
-	}
-	import astro_proxy
-}
-
-https://partners.bober-ai.dev {
+https://partners.bober-ai.dev, partners.bober-systems.ru {
 	# Pass through API, feeds, static assets (Next middleware parity)
 	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
 	handle @passthrough {
@@ -100,47 +84,7 @@ https://partners.bober-ai.dev {
 	}
 }
 
-https://partners.bober-systems.ru {
-	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
-	handle @passthrough {
-		handle /performers-feed.yml {
-			rewrite * /feeds/partners.yml
-			import yml_headers
-			import astro_proxy
-		}
-		@yml path *.yml
-		handle @yml {
-			import yml_headers
-		}
-		import astro_proxy
-	}
-	handle {
-		rewrite * /white-label
-		import astro_proxy
-	}
-}
-
-https://bitrix.bober-ai.dev {
-	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
-	handle @passthrough {
-		handle /performers-feed.yml {
-			rewrite * /feeds/bitrix.yml
-			import yml_headers
-			import astro_proxy
-		}
-		@yml path *.yml
-		handle @yml {
-			import yml_headers
-		}
-		import astro_proxy
-	}
-	handle {
-		rewrite * /bitrix
-		import astro_proxy
-	}
-}
-
-https://bitrix.bober-systems.ru {
+https://bitrix.bober-ai.dev, bitrix.bober-systems.ru {
 	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
 	handle @passthrough {
 		handle /performers-feed.yml {

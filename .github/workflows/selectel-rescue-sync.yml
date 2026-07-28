@@ -105,17 +105,19 @@ jobs:
           cat > /mnt/root/opt/bober-ai/deploy/Caddyfile <<'CADDY'
           {
           	email contact@bober-ai.dev
-          	# LE rate-limited until ~2026-07-30; ZeroSSL EAB geo-blocked from RU.
-          	# Prefer SSL.com ACME (no EAB); LE remains as fallback.
+          	# Solo *.bober-ai.dev is LE rate-limited until ~2026-07-30 (caddy_data wipe).
+          	# Pair each .dev host with its .ru twin so ACME requests a NEW identifier set
+          	# (exact-set duplicate limit does not apply). ZeroSSL EAB is geo-blocked from RU
+          	# ("Access Denied...restricted in your region"). SSL.com is fallback only.
+          	cert_issuer acme
           	cert_issuer acme {
           		dir https://acme.ssl.com/sslcom-dv-rsa
           	}
-          	cert_issuer acme
           	servers {
           		protocols h1 h2
           	}
           }
-
+          
           (astro_proxy) {
           	reverse_proxy 127.0.0.1:3001 {
           		header_up Host {host}
@@ -124,12 +126,13 @@ jobs:
           		header_up X-Real-IP {remote_host}
           	}
           }
-
+          
           (yml_headers) {
+          	# ">" replaces upstream text/yaml so clients see a single Content-Type.
           	header >Content-Type "application/xml; charset=utf-8"
           	header X-Content-Type-Options "nosniff"
           }
-
+          
           :80 {
           	handle /api/health {
           		reverse_proxy 127.0.0.1:3001
@@ -143,18 +146,16 @@ jobs:
           		respond "ok" 200
           	}
           }
-
-          https://bober-ai.dev {
+          
+          # Multi-SAN apex: new LE identifier set vs solo bober-ai.dev (rate-limited).
+          https://bober-ai.dev, bober-systems.ru {
           	header Cache-Control "no-store"
-          	redir https://www.bober-ai.dev{uri} permanent
-          }
-
-          https://bober-systems.ru {
-          	header Cache-Control "no-store"
+          	@ai host bober-ai.dev
+          	redir @ai https://www.bober-ai.dev{uri} permanent
           	redir https://www.bober-systems.ru{uri} permanent
           }
-
-          https://www.bober-ai.dev {
+          
+          https://www.bober-ai.dev, www.bober-systems.ru {
           	handle /performers-feed.yml {
           		import yml_headers
           		import astro_proxy
@@ -166,21 +167,9 @@ jobs:
           	}
           	import astro_proxy
           }
-
-          https://www.bober-systems.ru {
-          	handle /performers-feed.yml {
-          		import yml_headers
-          		import astro_proxy
-          	}
-          	@yml path /feeds/*.yml
-          	handle @yml {
-          		import yml_headers
-          		import astro_proxy
-          	}
-          	import astro_proxy
-          }
-
-          https://partners.bober-ai.dev {
+          
+          https://partners.bober-ai.dev, partners.bober-systems.ru {
+          	# Pass through API, feeds, static assets (Next middleware parity)
           	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
           	handle @passthrough {
           		handle /performers-feed.yml {
@@ -199,48 +188,8 @@ jobs:
           		import astro_proxy
           	}
           }
-
-          https://partners.bober-systems.ru {
-          	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
-          	handle @passthrough {
-          		handle /performers-feed.yml {
-          			rewrite * /feeds/partners.yml
-          			import yml_headers
-          			import astro_proxy
-          		}
-          		@yml path *.yml
-          		handle @yml {
-          			import yml_headers
-          		}
-          		import astro_proxy
-          	}
-          	handle {
-          		rewrite * /white-label
-          		import astro_proxy
-          	}
-          }
-
-          https://bitrix.bober-ai.dev {
-          	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
-          	handle @passthrough {
-          		handle /performers-feed.yml {
-          			rewrite * /feeds/bitrix.yml
-          			import yml_headers
-          			import astro_proxy
-          		}
-          		@yml path *.yml
-          		handle @yml {
-          			import yml_headers
-          		}
-          		import astro_proxy
-          	}
-          	handle {
-          		rewrite * /bitrix
-          		import astro_proxy
-          	}
-          }
-
-          https://bitrix.bober-systems.ru {
+          
+          https://bitrix.bober-ai.dev, bitrix.bober-systems.ru {
           	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
           	handle @passthrough {
           		handle /performers-feed.yml {
