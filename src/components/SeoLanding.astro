@@ -73,6 +73,22 @@ const canonicalPath = localizePath(`/${page.category}/${page.slug}`, locale);
     <p class="mt-6 body-copy max-w-3xl">{content.subtitle}</p>
 
     {
+      commercial?.serviceImage && (
+        <figure class="landing-hero-media mt-10 editorial-image editorial-image--hero overflow-hidden rounded">
+          <img
+            src={commercial.serviceImage}
+            alt={content.h1}
+            class="hero-media__image h-full w-full object-cover"
+            width="1400"
+            height="600"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </figure>
+      )
+    }
+
+    {
       commercial && (
         <p class="mt-4 text-sm text-muted">
           {commercial.salesNotes}

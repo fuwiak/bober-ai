@@ -31,6 +31,17 @@ if (!service) {
   <article class="container-editorial py-12 md:py-20">
     <p class="meta-label">{messages.nav.services}</p>
     <h1 class="mt-4 display-title">{service.title}</h1>
+    <figure class="landing-hero-media mt-10 editorial-image editorial-image--hero overflow-hidden rounded">
+      <img
+        src={service.serviceImage}
+        alt={service.title}
+        class="hero-media__image h-full w-full object-cover"
+        width="1400"
+        height="600"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </figure>
     <p class="mt-6 body-copy max-w-3xl">{service.description}</p>
     <p class="mt-4 body-copy max-w-3xl text-muted">{service.about}</p>
     <p class="mt-6 text-sm text-muted">{service.salesNotes} · {service.deliveryDays} days</p>

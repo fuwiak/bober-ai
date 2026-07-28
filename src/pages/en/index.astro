@@ -2,11 +2,13 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import ContactForm from "@/components/ContactForm.astro";
 import { loadMessages, localizePath } from "@/lib/i18n";
+import { FOUNDER_IMAGE, OFFICE_STOCK_IMAGES, SITE_NAME } from "@/lib/site";
 export const prerender = true;
 const locale = "en" as const;
 const messages = loadMessages(locale);
 const meta = messages.meta;
 const hero = messages.hero;
+const founderAlt = `${SITE_NAME} — Pavel Stasinski`;
 ---
 <BaseLayout title={meta.title} description={meta.description} locale={locale} canonicalPath="/en" keywords={meta.keywords}>
   <section class="container-editorial py-16 md:py-24">
@@ -19,6 +21,47 @@ const hero = messages.hero;
       <a href={localizePath("/#contact", locale)} class="btn-primary">{hero.ctaPrimary}</a>
       <a href={localizePath("/portfolio", locale)} class="btn-secondary">{hero.ctaSecondary}</a>
     </div>
+
+    <figure class="hero-media hero-media--compose">
+      <div class="hero-media__compose">
+        <div class="editorial-image editorial-image--hero hero-media__frame hero-media__portrait">
+          <img
+            src={FOUNDER_IMAGE}
+            alt={founderAlt}
+            class="hero-media__image"
+            width="1200"
+            height="900"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </div>
+        <div class="hero-media__accents" aria-hidden="true">
+          <div class="editorial-image editorial-image--card hero-media__accent">
+            <img
+              src={OFFICE_STOCK_IMAGES.tower}
+              alt=""
+              class="hero-media__image"
+              width="640"
+              height="800"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="editorial-image editorial-image--card hero-media__accent">
+            <img
+              src={OFFICE_STOCK_IMAGES.interior}
+              alt=""
+              class="hero-media__image"
+              width="640"
+              height="800"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+      <figcaption class="sr-only">{founderAlt}</figcaption>
+    </figure>
   </section>
   <section id="contact" class="container-editorial py-16 md:py-24 border-t border-hairline">
     <h2 class="section-title">{messages.nav.contact}</h2>

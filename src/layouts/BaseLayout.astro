@@ -72,7 +72,10 @@ const ogImage = absoluteUrl(OG_IMAGE);
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     )}
   </head>
-  <body style="--font-manrope: 'Manrope', system-ui, sans-serif; --font-ibm-plex-mono: 'IBM Plex Mono', ui-monospace, monospace;">
+  <body
+    hx-boost="true"
+    style="--font-manrope: 'Manrope', system-ui, sans-serif; --font-ibm-plex-mono: 'IBM Plex Mono', ui-monospace, monospace;"
+  >
     <SiteHeader locale={locale} messages={messages} />
     <main>
       <slot />

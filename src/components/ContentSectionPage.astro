@@ -1,10 +1,8 @@
 ---
-/**
- * Generic marketing page: title, lead, sections from messages namespace.
- */
 import ContactForm from "@/components/ContactForm.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
+import { FOUNDER_IMAGE, STOCK_IMAGES } from "@/lib/site";
 
 interface Section {
   title?: string;
@@ -67,6 +65,13 @@ const description =
 const h1 = block.h1 || block.pageTitle || block.title || title;
 const leadText =
   block.subtitle || block.lead || block.intro || block.text || block.body || block.description;
+
+const heroImage =
+  namespace.includes("about")
+    ? FOUNDER_IMAGE
+    : namespace === "media" || namespace.includes("media")
+      ? STOCK_IMAGES.team
+      : null;
 ---
 
 <BaseLayout
@@ -79,6 +84,29 @@ const leadText =
     {block?.eyebrow && <p class="meta-label">{block.eyebrow}</p>}
     <h1 class="mt-4 display-title">{h1}</h1>
     {leadText && <p class="mt-6 body-copy max-w-3xl whitespace-pre-line">{leadText}</p>}
+
+    {
+      heroImage && (
+        <figure
+          class:list={[
+            "mt-10 overflow-hidden rounded editorial-image",
+            namespace.includes("about")
+              ? "editorial-image--portrait max-w-md"
+              : "landing-hero-media editorial-image--hero",
+          ]}
+        >
+          <img
+            src={heroImage}
+            alt={h1}
+            class={namespace.includes("about") ? "about-portrait" : "hero-media__image h-full w-full object-cover"}
+            width="1200"
+            height={namespace.includes("about") ? 1500 : 600}
+            fetchpriority="high"
+            decoding="async"
+          />
+        </figure>
+      )
+    }
 
     {
       block?.sections?.map((section) => (

@@ -15,24 +15,35 @@ function applyTheme(dark: boolean) {
   document.documentElement.classList.toggle("dark", dark);
 }
 
-function initTheme() {
-  applyTheme(readPreferredDark());
+let wired = false;
 
-  document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const next = !document.documentElement.classList.contains("dark");
-      applyTheme(next);
-      try {
-        localStorage.setItem(STORAGE_KEY, next ? "dark" : "light");
-      } catch {
-        /* ignore */
-      }
-    });
+function wireTheme() {
+  if (wired) return;
+  wired = true;
+
+  document.addEventListener("click", (event) => {
+    const button = (event.target as Element | null)?.closest<HTMLButtonElement>("[data-theme-toggle]");
+    if (!button) return;
+    const next = !document.documentElement.classList.contains("dark");
+    applyTheme(next);
+    try {
+      localStorage.setItem(STORAGE_KEY, next ? "dark" : "light");
+    } catch {
+      /* ignore */
+    }
   });
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initTheme);
-} else {
-  initTheme();
+function boot() {
+  wireTheme();
+  applyTheme(readPreferredDark());
 }
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", boot);
+} else {
+  boot();
+}
+
+document.addEventListener("htmx:afterSwap", boot);
+document.addEventListener("htmx:historyRestore", boot);

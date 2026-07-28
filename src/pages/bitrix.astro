@@ -3,7 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import ContactForm from "@/components/ContactForm.astro";
 import { loadMessages } from "@/lib/i18n";
 import { BITRIX_PACKAGES, BITRIX_SALES_LOOP } from "@/lib/bitrix-landing";
-import { BITRIX_SITE_URL, TELEGRAM_URL } from "@/lib/site";
+import { BITRIX_SITE_URL, STOCK_IMAGES, TELEGRAM_URL } from "@/lib/site";
 export const prerender = true;
 const messages = loadMessages("ru");
 ---
@@ -16,6 +16,17 @@ const messages = loadMessages("ru");
   <article class="container-editorial py-12 md:py-20">
     <p class="meta-label">Битрикс24 · {BITRIX_SITE_URL}</p>
     <h1 class="mt-4 display-title">{BITRIX_SALES_LOOP.title}</h1>
+    <figure class="landing-hero-media mt-10 editorial-image editorial-image--hero overflow-hidden rounded">
+      <img
+        src={STOCK_IMAGES.sales}
+        alt={BITRIX_SALES_LOOP.title}
+        class="hero-media__image h-full w-full object-cover"
+        width="1400"
+        height="600"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </figure>
     <p class="mt-6 body-copy max-w-3xl">{BITRIX_SALES_LOOP.lead}</p>
     <ul class="mt-8 space-y-2">
       {BITRIX_SALES_LOOP.steps.map((step) => (

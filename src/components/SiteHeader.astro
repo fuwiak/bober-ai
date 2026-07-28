@@ -59,7 +59,7 @@ function hrefFor(item: { href: string; localeAgnostic?: boolean }) {
                   </button>
 
                   {group.type === "mega" ? (
-                    <div class="site-mega" role="menu" data-nav-panel={group.id} hidden>
+                    <div class="site-mega" role="menu" data-nav-panel={group.id} aria-hidden="true">
                       <div class="site-mega__grid">
                         {group.columns.map((col) => (
                           <div>
@@ -102,7 +102,7 @@ function hrefFor(item: { href: string; localeAgnostic?: boolean }) {
                       )}
                     </div>
                   ) : (
-                    <div class="site-drop" role="menu" data-nav-panel={group.id} hidden>
+                    <div class="site-drop" role="menu" data-nav-panel={group.id} aria-hidden="true">
                       {group.items.map((item) => (
                         <a href={hrefFor(item)} class="site-mega__card">
                           <span class="site-mega__tt">{item.label}</span>
@@ -188,7 +188,7 @@ function hrefFor(item: { href: string; localeAgnostic?: boolean }) {
               <button type="button" class="mobile-menu__acc-head" aria-expanded="false" data-nav-mobile-acc-trigger={group.id}>
                 {group.label}
               </button>
-              <div class="mobile-menu__acc-body" hidden data-nav-mobile-acc-panel={group.id}>
+              <div class="mobile-menu__acc-body" data-nav-mobile-acc-panel={group.id} aria-hidden="true">
                 <div class="mobile-menu__acc-inner">
                   <div class="mobile-menu__acc-pad">
                     {group.type === "mega"

@@ -30,6 +30,22 @@ if (!item) return Astro.redirect("/portfolio");
     <p class="meta-label">{messages.nav.portfolio}</p>
     <h1 class="mt-4 display-title">{item.title}</h1>
     {item.metric && <p class="mt-4 text-accent">{item.metric}</p>}
+    {
+      item.image && (
+        <figure class="landing-hero-media mt-10 editorial-image editorial-image--hero overflow-hidden rounded">
+          <img
+            src={item.image}
+            alt={item.imageAlt || item.title}
+            class="hero-media__image h-full w-full object-cover"
+            width="1400"
+            height="600"
+            fetchpriority="high"
+            decoding="async"
+          />
+          {item.imageCaption && <figcaption class="mt-3 text-sm text-muted">{item.imageCaption}</figcaption>}
+        </figure>
+      )
+    }
     {item.description && <p class="mt-6 body-copy max-w-3xl">{item.description}</p>}
     {item.solution && (
       <section class="mt-10">

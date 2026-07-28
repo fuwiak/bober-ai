@@ -21,11 +21,25 @@ const description = page?.metaDescription || page?.subtitle || messages.meta.des
     <ul class="mt-12 grid gap-6 md:grid-cols-2">
       {
         services.map((service) => (
-          <li class="border border-hairline p-5">
-            <a class="font-medium text-link" href={`/en/services/${service.slug}`}>
-              {service.title}
+          <li class="group border border-hairline overflow-hidden">
+            <a href={localizePath(`/services/${service.slug}`, locale)} class="block">
+              <div class="editorial-image editorial-image--card relative aspect-[16/10] bg-surface-soft">
+                <img
+                  src={service.serviceImage}
+                  alt=""
+                  class="case-study__image object-cover"
+                  width="800"
+                  height="500"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="p-5">
+                <p class="font-medium text-link">{service.title}</p>
+                <p class="mt-2 text-sm text-muted">{service.description}</p>
+                <p class="mt-3 text-xs text-muted-soft">{service.salesNotes}</p>
+              </div>
             </a>
-            <p class="mt-2 text-sm text-muted">{service.description}</p>
           </li>
         ))
       }
