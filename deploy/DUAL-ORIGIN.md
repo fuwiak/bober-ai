@@ -17,7 +17,7 @@ MX / TXT — не трогать.
 
 ## Стек на VDS
 
-- **Astro Node** (`:3000`) — prerender HTML + API leads/webhooks
+- **Astro Node** (`:3001`) — prerender HTML + API leads/webhooks (legacy host node may still occupy `:3000`)
 - **Caddy** — TLS, apex→www, host rewrite microsites → `/white-label` / `/bitrix`
 
 ```bash

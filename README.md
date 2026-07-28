@@ -28,7 +28,7 @@ docker build -t bober-ai:latest .
 cd deploy && docker compose up -d --build
 ```
 
-Caddy: TLS + reverse_proxy на `:3000`, host rewrite для `partners.*` → `/white-label`, `bitrix.*` → `/bitrix`.
+Caddy: TLS + reverse_proxy на `:3001`, host rewrite для `partners.*` → `/white-label`, `bitrix.*` → `/bitrix`.
 
 ### GitHub Actions
 

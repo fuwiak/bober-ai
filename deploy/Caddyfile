@@ -7,7 +7,7 @@
 }
 
 (astro_proxy) {
-	reverse_proxy 127.0.0.1:3000 {
+	reverse_proxy 127.0.0.1:3001 {
 		header_up Host {host}
 		header_up X-Forwarded-Host {host}
 		header_up X-Forwarded-Proto https
@@ -22,7 +22,7 @@
 
 :80 {
 	handle /api/health {
-		reverse_proxy 127.0.0.1:3000
+		reverse_proxy 127.0.0.1:3001
 	}
 	@siteHost host www.bober-ai.dev bober-ai.dev partners.bober-ai.dev bitrix.bober-ai.dev www.bober-systems.ru bober-systems.ru partners.bober-systems.ru bitrix.bober-systems.ru
 	handle @siteHost {

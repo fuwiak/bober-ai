@@ -14,7 +14,7 @@ services:
     network_mode: host
     environment:
       HOST: "0.0.0.0"
-      PORT: "3000"
+      PORT: "3001"
       GIT_SHA: ${GIT_SHA:-}
       SMTP_HOST: ${SMTP_HOST:-}
       SMTP_PORT: ${SMTP_PORT:-465}
