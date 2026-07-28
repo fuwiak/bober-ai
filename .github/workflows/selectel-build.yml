@@ -202,24 +202,50 @@ jobs:
           # Legacy manual container used PORT=3000 while Caddy→3001 → sitewide 502.
           docker rm -f bober-web 2>/dev/null || true
 
-          # Sync static client BEFORE recreating Node so Caddy keeps serving HTML
-          # during the brief upstream restart (static-first Caddyfile).
+          # Edge Caddy mounts $ROOT/dist/client → /srv. Source tarball excludes
+          # dist/, so host /srv is NOT updated from the repo tree. After `compose
+          # up`, copy client assets out of the web image so HTML and /_astro hashes
+          # match (missing CSS → unstyled nav / “weird characters” instead of menu).
           mkdir -p "$ROOT/deploy" "$ROOT/dist"
           cp -a "$COMPOSE_DIR/Caddyfile" "$ROOT/deploy/Caddyfile"
-          if [ -d "$COMPOSE_DIR/../dist/client" ]; then
-            # Retain previous hashed /_astro assets so old HTML tabs don't 404.
+
+          sync_client_from_web() {
+            local cid css_href css_path
+            cid=$("${dc[@]}" -f "$COMPOSE_FILE" ps -q web | head -n1 | tr -d '\r')
+            [ -n "$cid" ] || { echo "NO_WEB_CID for client sync"; return 1; }
+            rm -rf /tmp/bober-client-new
+            mkdir -p /tmp/bober-client-new
+            docker cp "$cid:/app/dist/client/." /tmp/bober-client-new/
+            if [ ! -d /tmp/bober-client-new/_astro ]; then
+              echo "NO__ASTRO in container /app/dist/client"
+              ls -la /tmp/bober-client-new | head -40 || true
+              return 1
+            fi
             if [ -d "$ROOT/dist/client/_astro" ]; then
               rm -rf /tmp/bober-astro-prev
               cp -a "$ROOT/dist/client/_astro" /tmp/bober-astro-prev
             fi
             rm -rf "$ROOT/dist/client"
-            cp -a "$COMPOSE_DIR/../dist/client" "$ROOT/dist/client"
+            mv /tmp/bober-client-new "$ROOT/dist/client"
             if [ -d /tmp/bober-astro-prev ]; then
               mkdir -p "$ROOT/dist/client/_astro"
+              # Keep previous hashed assets so old HTML tabs do not 404.
               cp -an /tmp/bober-astro-prev/. "$ROOT/dist/client/_astro/" 2>/dev/null || true
               rm -rf /tmp/bober-astro-prev
             fi
-          fi
+            css_href=$(grep -oE '/_astro/[^\" ]+\.css' "$ROOT/dist/client/index.html" 2>/dev/null | head -n1 || true)
+            if [ -z "$css_href" ]; then
+              echo "NO_CSS_HREF in synced index.html"
+              return 1
+            fi
+            css_path="$ROOT/dist/client${css_href}"
+            if [ ! -f "$css_path" ]; then
+              echo "MISSING_CSS_AFTER_SYNC $css_href"
+              ls -la "$ROOT/dist/client/_astro" | head -40 || true
+              return 1
+            fi
+            echo "CLIENT_SYNCED cid=$cid css=$css_href astro_files=$(find "$ROOT/dist/client/_astro" -type f | wc -l)"
+          }
 
           # Rolling recreate: build first, then replace. Avoid `compose down` which
           # opens a long 502 window while images rebuild.
@@ -231,6 +257,7 @@ jobs:
           done
           GIT_SHA="$GIT_SHA" "${dc[@]}" -f "$COMPOSE_FILE" up -d --force-recreate --remove-orphans --no-deps web
           sleep 3
+          sync_client_from_web
 
           # Edge TLS: container `bober-ai`. NEVER recreate without caddy_data —
           # wiping /data drops Let's Encrypt certs → ERR_SSL_PROTOCOL_ERROR on
@@ -415,13 +442,19 @@ jobs:
           for i in 1 2 3 4 5 6 7 8 9 10 12 14 16 18 20 24 30 36; do
             health=$(curl -sf --connect-timeout 10 https://www.bober-systems.ru/api/health || true)
             html=$(curl -sf --connect-timeout 10 https://www.bober-systems.ru/ || true)
+            css_href=$(printf '%s' "$html" | grep -oE '/_astro/[^\" ]+\.css' | head -n1 || true)
+            css_code=000
+            if [ -n "$css_href" ]; then
+              css_code=$(curl -s -o /dev/null -w '%{http_code}' --connect-timeout 10 "https://www.bober-systems.ru${css_href}" || true)
+            fi
             main_feed=$(curl -sf --connect-timeout 10 https://www.bober-systems.ru/performers-feed.yml || true)
             partners_ru=$(curl -sf --connect-timeout 10 https://partners.bober-systems.ru/performers-feed.yml || true)
             bitrix=$(curl -sf --connect-timeout 10 https://bitrix.bober-systems.ru/performers-feed.yml || true)
-            echo "attempt=$i health=$health main=${#main_feed} partners_ru=${#partners_ru} bitrix=${#bitrix}"
+            echo "attempt=$i health=$health css=$css_href code=$css_code main=${#main_feed} partners_ru=${#partners_ru} bitrix=${#bitrix}"
             if [[ "$health" == *'"ok":true'* ]] \
               && [[ "$health" == *"$GIT_SHA"* ]] \
               && [[ "$html" == *'0e71ef3fc54b6c3c'* ]] \
+              && [[ "$css_code" == "200" ]] \
               && [[ "$main_feed" == *'yml_catalog'* || "$main_feed" == *'<?xml'* ]] \
               && [[ "$main_feed" == *'bober-systems.ru'* ]] \
               && [[ "$main_feed" != *'bober-ai.dev'* ]] \
@@ -429,17 +462,20 @@ jobs:
               && [[ "$partners_ru" != *'bober-ai.dev'* ]] \
               && [[ "$bitrix" == *'yml_catalog'* || "$bitrix" == *'<?xml'* ]] \
               && [[ "$bitrix" != *'bober-ai.dev'* ]]; then
-              echo "PUBLIC_HEALTH_OK + FEEDS_OK (bober-systems.ru)"
+              echo "PUBLIC_HEALTH_OK + CSS_OK + FEEDS_OK (bober-systems.ru)"
               exit 0
             fi
             if [[ "$main_feed" == *'bober-ai.dev'* ]]; then
               echo "FEED_STILL_HAS_bober-ai.dev — reject"
             fi
+            if [[ "$css_code" != "200" ]]; then
+              echo "CSS_ASSET_NOT_OK href=$css_href code=$css_code"
+            fi
             echo "retry $i…"
             sleep 5
           done
-          echo "::error::Public health/sha/yandex-meta/feeds check failed after deploy"
-          printf '%s' "$(curl -sL https://www.bober-systems.ru/ || true)" | tr '>' '>\n' | grep -i 'yandex\|0e71ef' | head || true
+          echo "::error::Public health/sha/yandex-meta/css/feeds check failed after deploy"
+          printf '%s' "$(curl -sL https://www.bober-systems.ru/ || true)" | tr '>' '>\n' | grep -i 'yandex\|0e71ef\|_.css' | head || true
           curl -sL https://www.bober-systems.ru/api/health || true
           curl -svI https://partners.bober-systems.ru/performers-feed.yml 2>&1 | tail -20 || true
           curl -svI https://bitrix.bober-systems.ru/performers-feed.yml 2>&1 | tail -20 || true

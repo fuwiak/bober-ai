@@ -55,22 +55,33 @@
 		import astro_proxy
 	}
 
+	# Hashed Astro assets: prefer /srv, but fall through to Node if a deploy
+	# left HTML/CSS hashes out of sync (missing file → hard 404 kills CSS/menu).
 	@immutable path /_astro/*
 	handle @immutable {
 		header Cache-Control "public, max-age=31536000, immutable"
-		file_server
+		file_server {
+			pass_thru
+		}
+		import astro_proxy
 	}
 
 	@assets path /vendor/* /fonts/* *.js *.css *.woff2 *.woff *.ttf
 	handle @assets {
 		header Cache-Control "public, max-age=2592000, stale-while-revalidate=86400"
-		file_server
+		file_server {
+			pass_thru
+		}
+		import astro_proxy
 	}
 
 	@images path /stock/* /hero/* /partners/* /portfolio/* /media/* /cases/* /diagrams/* /yandex/* *.jpg *.jpeg *.webp *.png *.svg *.ico *.gif
 	handle @images {
 		header Cache-Control "public, max-age=2592000, stale-while-revalidate=86400"
-		file_server
+		file_server {
+			pass_thru
+		}
+		import astro_proxy
 	}
 
 	# Static HTML first; if missing (new SSR route), fall through to Node.
