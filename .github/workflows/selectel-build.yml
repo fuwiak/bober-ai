@@ -264,10 +264,11 @@ jobs:
           fi
 
           # Homepage must expose Yandex verification for bober-systems.ru
+          # Use [[ ]] — `echo | grep -q` under pipefail yields SIGPIPE/141 on match.
           meta_ok=0
           for j in 1 2 3 4 5; do
             html=$(curl -sf --connect-timeout 10 "http://127.0.0.1:${APP_PORT}/" || true)
-            if echo "$html" | grep -q '0e71ef3fc54b6c3c'; then
+            if [[ "$html" == *'0e71ef3fc54b6c3c'* ]]; then
               meta_ok=1
               break
             fi
@@ -275,7 +276,7 @@ jobs:
           done
           if [ "$meta_ok" != 1 ]; then
             echo "NO_YANDEX_META on homepage :$APP_PORT"
-            echo "$html" | tr '>' '>\n' | grep -i 'yandex\|verification\|0e71ef' | head -20
+            printf '%s' "$html" | tr '>' '>\n' | grep -i 'yandex\|verification\|0e71ef' | head -20 || true
             exit 1
           fi
 
@@ -285,7 +286,7 @@ jobs:
             edge=$(curl -sk --connect-timeout 10 \
               --resolve www.bober-systems.ru:443:127.0.0.1 \
               "https://www.bober-systems.ru/" || true)
-            if echo "$edge" | grep -q '0e71ef3fc54b6c3c'; then
+            if [[ "$edge" == *'0e71ef3fc54b6c3c'* ]]; then
               edge_ok=1
               break
             fi
@@ -294,8 +295,8 @@ jobs:
           if [ "$edge_ok" != 1 ]; then
             echo "NO_YANDEX_META on edge caddy"
             echo "edge_bytes=${#edge}"
-            echo "$edge" | head -c 400; echo
-            echo "$edge" | tr '>' '>\n' | grep -i 'yandex\|verification\|0e71ef\|title\|DOCTYPE' | head -20
+            printf '%s' "$edge" | head -c 400; echo
+            printf '%s' "$edge" | tr '>' '>\n' | grep -i 'yandex\|verification\|0e71ef\|title\|DOCTYPE' | head -20 || true
             docker logs bober-ai --tail 40 || true
             ss -lptn 'sport = :443 or sport = :3001' || true
             exit 1
@@ -315,9 +316,10 @@ jobs:
             health=$(curl -sf --connect-timeout 10 https://www.bober-systems.ru/api/health || true)
             html=$(curl -sf --connect-timeout 10 https://www.bober-systems.ru/ || true)
             echo "attempt=$i health=$health"
-            if echo "$health" | grep -q '"ok":true' \
-              && echo "$health" | grep -q "$GIT_SHA" \
-              && echo "$html" | grep -q '0e71ef3fc54b6c3c'; then
+            # Avoid `echo | grep -q` under pipefail (SIGPIPE/141 on match).
+            if [[ "$health" == *'"ok":true'* ]] \
+              && [[ "$health" == *"$GIT_SHA"* ]] \
+              && [[ "$html" == *'0e71ef3fc54b6c3c'* ]]; then
               echo "PUBLIC_HEALTH_OK + YANDEX_META_OK"
               exit 0
             fi
@@ -325,6 +327,6 @@ jobs:
             sleep 5
           done
           echo "::error::Public health/sha/yandex-meta check failed after deploy"
-          curl -sL https://www.bober-systems.ru/ | tr '>' '>\n' | grep -i 'yandex\|0e71ef' | head || true
+          printf '%s' "$(curl -sL https://www.bober-systems.ru/ || true)" | tr '>' '>\n' | grep -i 'yandex\|0e71ef' | head || true
           curl -sL https://www.bober-systems.ru/api/health || true
           exit 1
