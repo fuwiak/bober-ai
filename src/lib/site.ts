@@ -5,7 +5,8 @@ import {
 } from "../../config/domains.mjs";
 
 /** On-page hero / about portrait — WebP ~56 KB (PNG kept as source master). */
-export const FOUNDER_IMAGE = "/hero/pavel-main.webp";/** Social / OG share image — 1200×630 JPEG (LinkedIn/Telegram prefer raster OG). */
+export const FOUNDER_IMAGE = "/hero/pavel-main.webp";
+/** Social / OG share image — 1200×630 JPEG (LinkedIn/Telegram prefer raster OG). */
 export const OG_IMAGE = "/hero/pavel-og.jpg";
 export const HERO_STOCK_IMAGE = "/stock/office-tower.jpg";
 export const ABOUT_STOCK_IMAGE = FOUNDER_IMAGE;
