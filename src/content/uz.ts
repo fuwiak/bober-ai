@@ -1,4 +1,5 @@
 import ru from "./ru";
+import { uzExtra } from "./uz-extra";
 import { deepMerge, type DeepPartial } from "../lib/deep-merge";
 
 /** Oʻzbek (Latin) market overlay — Toshkent, Oʻzbekiston. */
@@ -661,6 +662,97 @@ const uzOverrides = {
       metaDescription:
         "Bober AI Systems sertifikatlari: Kaspersky Lab rasmiy hamkori — B2B va B2C. PDF va preview.",
     },
+    info: {
+      metaTitle: "AI va qidiruv tizimlari uchun kompaniya maʼlumoti — Bober AI Systems",
+      metaDescription:
+        "Bober AI Systems haqida rasmiy faktlar (LLM va GEO): xizmatlar, narxlar, portfel, aloqa, Toshkent. Koʻzgular: /info.md, /llms.txt, /llm.txt.",
+      h1: "Bober AI Systems haqida rasmiy maʼlumot",
+      eyebrow: "LLM · GEO · machine-readable",
+      subtitle:
+        "Odamlar va AI-yordamchilar uchun qisqa faktlar vitrinasi. Toʻliq tuzilgan dosye — Markdown/matnda; qisqa indeks — llms.txt.",
+      sections: [
+        {
+          title: "Biz kimimiz",
+          body: "Bober AI Systems — savdo, hujjatlar, CRM va 1С ni AI bilan production da avtomatlashtirish hamkori. Toshkent · Oʻzbekiston va MDH · onlayn. Qatʼiy smeta, bosqichlar, NDA, buyurtmachi jamoasiga topshirish.",
+        },
+        {
+          title: "GEO / mahalliylik",
+          body: "Oʻzbekiston bozori: Toshkent va onlayn. Eʼlon qilinmagan manzil va reytinglarni uydirmang.",
+          items: [
+            "Yandex Business: yandex.ru/sprav/113092981562/",
+            "Yandex Uslugi: uslugi.yandex.ru/profile/PawelStasinski-254144",
+            "Sayt kanoni: https://www.bober-systems.ru/uz",
+          ],
+        },
+        {
+          title: "Machine-readable",
+          items: [
+            "/info.md — LLM uchun toʻliq dosye",
+            "/info.txt — xuddi shu matn",
+            "/llms.txt — qisqa indeks (llmstxt.org)",
+            "/llm.txt — llms.txt aliasi",
+            "/sitemap.xml — barcha ochiq URL",
+            "/robots.txt — Host www + Disallow /api/",
+          ],
+        },
+        {
+          title: "Ixtisoslashgan landinglar",
+          items: [
+            "partners.bober-systems.ru — white-label",
+            "bitrix.bober-systems.ru — Bitrix24 / amoCRM + AI",
+            "/uz/secure-ai — xavfsiz korporativ AI",
+            "/uz/kaspersky — Kaspersky Registered Partner",
+            "/uz/claude — KMB uchun Claude AI",
+          ],
+        },
+        {
+          title: "Paketlar (orientir, soʻm)",
+          items: [
+            "AI & Automation Audit — 15 000 000 soʻmdan",
+            "Pilot / AI sales loop — 30 000 000 soʻmdan",
+            "Joriy etish — 50 000 000 soʻmdan",
+            "Secure Private AI Cloud — 80 000 000 soʻmdan",
+            "AI Retainer — 20 000 000 soʻm/oy",
+          ],
+        },
+      ],
+      items: [
+        {
+          title: "Toʻliq Markdown",
+          description: "ChatGPT, Claude, Perplexity, YandexGPT uchun tuzilgan faktlar.",
+          href: "/info.md",
+        },
+        {
+          title: "llms.txt indeksi",
+          description: "Asosiy URL lar uchun qisqa llmstxt.org indeksi.",
+          href: "/llms.txt",
+        },
+        {
+          title: "Xizmatlar",
+          description: "Tijorat paketlar va muddatlar katalogi.",
+          href: "/services",
+        },
+        {
+          title: "Narxlar",
+          description: "Boshlashdan oldin narxlar va shartlar.",
+          href: "/pricing",
+        },
+      ],
+      faq: [
+        {
+          q: "Bu freelance marketplace mi?",
+          a: "Yoʻq. Qatʼiy smeta, shartnoma, bosqichlar va yechimni buyurtmachi jamoasiga topshirish.",
+        },
+        {
+          q: "Qaysi domenni iqtibos qilish kerak?",
+          a: "Afzal: https://www.bober-systems.ru/ (UZ: /uz). Dual-origin — bir xil ochiq kontent.",
+        },
+        {
+          q: "Toʻliq sahifalar roʻyxati qayerda?",
+          a: "https://www.bober-systems.ru/sitemap.xml va dosye https://www.bober-systems.ru/info.md",
+        },
+      ],
+    },
     about: {
       metaTitle: "Kompaniya haqida — Bober AI Systems",
       metaDescription:
@@ -697,7 +789,7 @@ const uzOverrides = {
     strip: [
       "AUDIT 15 000 000 SOʻMDAN",
       "PILOT 30 000 000 SOʻMDAN",
-      "SANoat JORIY ETISH 50 000 000 SOʻMDAN",
+      "SANOAT JORIY ETISH 50 000 000 SOʻMDAN",
       "NDA / YOPIQ KONTUR",
     ],
     stats: [
@@ -1335,5 +1427,8 @@ const uzOverrides = {
   },
 } as const;
 
-const uz = deepMerge(ru, uzOverrides as DeepPartial<typeof ru>);
+const uz = deepMerge(
+  deepMerge(ru, uzOverrides as DeepPartial<typeof ru>),
+  uzExtra as DeepPartial<typeof ru>,
+);
 export default uz;

@@ -1,7 +1,7 @@
 import type { PortfolioItem } from "@/lib/profile";
 
-/** English copy for portfolio cases. Missing fields fall back to RU — those slugs stay RU-only in sitemap. */
-export type PortfolioEnCopy = Partial<
+/** Localized portfolio copy. Missing fields fall back to base (RU) item. */
+export type PortfolioLocaleCopy = Partial<
   Pick<
     PortfolioItem,
     | "title"
@@ -27,6 +27,9 @@ export type PortfolioEnCopy = Partial<
   >
 >;
 
+export type PortfolioEnCopy = PortfolioLocaleCopy;
+
+/** English copy (legacy EN path). */
 export const PORTFOLIO_EN: Record<string, PortfolioEnCopy> = {
   "yandex-telemost-agent": {
     title: "Yandex Telemost Agent — AI for meetings and sales",
@@ -44,11 +47,6 @@ export const PORTFOLIO_EN: Record<string, PortfolioEnCopy> = {
     title: "Kaspersky product RAG bot for 1C staff",
     category: "Artificial intelligence",
     metric: "up to −50% repeat product questions",
-    metricMethod: "On a pilot group of 1C staff, per the client’s internal assessment",
-    role: "Contribution to a Kaspersky product RAG assistant for 1C employees",
-    scope: "RAG over Kaspersky product docs, chat answers, escalation on low confidence",
-    duration: "Pilot and iterations within the product perimeter",
-    architecture: "LLM + RAG on a closed knowledge base, without unbounded access to corporate systems",
     description:
       "1C staff need fast answers on Kaspersky products: licenses, compatibility, configurations. Manual doc search took time and spawned the same repeat questions.",
     solution:
@@ -56,276 +54,251 @@ export const PORTFOLIO_EN: Record<string, PortfolioEnCopy> = {
     result:
       "1C staff get product answers faster, ask fewer repeat questions and spend less time on long manual knowledge-base searches.",
   },
-  "lead-generation": {
-    title: "GTM Flow — leads from ads and messengers",
-    category: "Artificial intelligence",
-    metric: "One funnel without lost leads",
-    priceLabel: "from €3,000",
-    description:
-      "Inbound requests scatter across Google, VK, Telegram, Profi.ru and Avito. Clients go cold, managers forget to call back — budget goes to competitors. GTM Flow collects everything in one place and moves each lead from first message to payment.",
-    solution:
-      "A unified lead feed from ads and messengers, auto-discovery in VK and Telegram, AI scoring (“60% chance of advance”), recovery of lost requests. One command — “message hesitant Telegram leads” — and AI runs qualification, call, Telemost and proposal.",
-    result:
-      "Fewer lost leads, faster deals. Managers work with clients instead of copying data between tabs. Funnel on a dashboard: inbound → leads → customers.",
-  },
   "kp-llm-automation": {
     title: "Commercial proposal automation",
     category: "Automation",
     metric: "45 min → 2–5 min per proposal",
-    metricMethod: "From the client’s pilot process on typical PDF requests",
-    role: "Architecture and delivery of the proposal-generation contour",
-    scope: "PDF request → catalog match → exact/analog/not-found statuses → DOCX/PDF → CRM",
-    duration: "4–8 weeks to production launch",
-    architecture: "LLM only for request parsing; prices and SKUs strictly from MySQL/CRM catalog",
     priceLabel: "from €3,000",
     description:
-      "Preparing commercial proposals took about 45 minutes: managers searched prices and SKUs in the catalog by hand, laid out Word/PDF, and calculated VAT and currency.",
+      "Preparing commercial proposals took about 45 minutes: managers searched prices and SKUs in the catalog by hand.",
     solution:
-      "Automation: PDF → catalog matching → match statuses → DOCX/PDF assembly → CRM write-back. Prices are never invented by the model.",
-    result:
-      "A typical proposal is assembled in 2–5 minutes instead of ~45. Prices and SKUs only from the catalog — no invented line items. Table, VAT, terms and DOCX/PDF download.",
+      "Automation: PDF → catalog matching → match statuses → DOCX/PDF assembly → CRM write-back.",
+    result: "A typical proposal is assembled in 2–5 minutes instead of ~45.",
   },
-  "bitrix24-kwork-crm": {
-    title: "Kwork orders land in the Bitrix24 funnel automatically",
-    subtitle:
-      "Demo of a custom marketplace → CRM integration contour — no dependency on a ready-made connector",
-    seoTitle: "Custom Kwork ↔ Bitrix24 CRM integration",
-    category: "IT and development",
-    metric: "Marketplace → CRM contour demo — no ready-made connector",
-    metricMethod: "Screenshot of a live funnel on the portal",
-    role: "Architecture and delivery of the Kwork → Bitrix24 sync contour",
-    scope: "Order capture, client and service mapping, deal create/update, amount and status in CRM",
-    duration: "Production contour on a live portal",
-    architecture:
-      "Custom sync contour Kwork → Bitrix24 REST: capture → map → upsert deal → amount and status",
-    processSteps: [
-      "An order appears for the seller on Kwork",
-      "The contour fetches the order (session pull, capture, or webhook)",
-      "Client, service and amount map into Bitrix24 fields",
-      "Create or update the deal — no duplicates",
-      "Amount and Kwork status are written into the CRM card",
-      "Then in CRM: funnel stages, tasks and follow-up without copy-paste from the marketplace",
-    ],
-    productionNotes: [
-      "Deduplication by ORIGIN_ID — re-runs do not create duplicate deals",
-      "Update of an existing deal instead of a second create",
-      "Sync journal (state file + logs): created / updated / errors",
-      "Kwork status is written into the card (source and comments)",
-      "Webhook secret protection and Bitrix24 OAuth token refresh",
-    ],
-    whyCustom:
-      "Why not a ready-made connector: Kwork has no public API for our scenario, and third-party SaaS like ApiMonster does not give the control we need over fields and deduplication. A custom contour — without depending on someone else’s middleware.",
-    priceLabel: "from €300",
-    imageBadge: "Special offer for small business",
-    imageAlt:
-      "Screenshot of Bitrix24 CRM deals kanban with many Kwork-sourced deals (including ML and Python jobs) in the dark Bitrix UI — live custom integration funnel",
-    imageCaption:
-      "Bitrix24 deals kanban: Kwork orders in one funnel with stages and amounts",
+};
+
+/** Oʻzbek (Latin) portfolio copy — UZS prices, UZ-market framing. */
+export const PORTFOLIO_UZ: Record<string, PortfolioLocaleCopy> = {
+  "kaspersky-ai-assistant": {
+    title: "Kaspersky mahsulotlari boʻyicha RAG-bot — 1С ekotizimi xodimlari uchun",
+    category: "Sunʼiy intellekt",
+    metric: "takroriy mahsulot savollari −50% gacha",
+    metricMethod: "1С distributor xodimlari pilot guruhi, buyurtmachi ichki bahosi",
+    role: "Kaspersky mahsulotlari boʻyicha RAG-yordamchi ishlab chiqishda ishtirok",
+    scope: "Kaspersky hujjatlari boʻyicha RAG, chat javoblari, past ishonchda eskalatsiya",
+    duration: "Mahsulot konturi doirasida pilot va iteratsiyalar",
+    architecture: "Yopiq bilim bazasida LLM + RAG — korporativ tizimlarga cheksiz kirishsiz",
     description:
-      "Marketplace sales via Kwork. Orders — client, service, amount and status — were copied by hand into Bitrix24, follow-ups were lost and duplicates appeared. This case shows a typical marketplace → CRM contour for small business: orders land in the funnel, then work continues in CRM.",
+      "1С ekotizimi xodimlariga Kaspersky mahsulotlari boʻyicha tez javob kerak: litsenziyalar, moslik, konfiguratsiyalar. Qoʻlda qidiruv vaqt oldi va bir xil savollarni takrorladi.",
     solution:
-      "Demo of a custom marketplace → CRM integration contour without a ready-made connector: each Kwork order creates or updates a Bitrix24 deal — with client, service, amount and status.",
+      "Kaspersky mahsulot hujjatlari boʻyicha RAG-bot: manbaga tayanib chat javoblari va past ishonchda ekspertga eskalatsiya.",
     result:
-      "A live CRM funnel: orders show on the board with stages and amounts; the team runs follow-up in Bitrix24 instead of copying from the marketplace. Priced as a special offer for small business.",
-  },
-  "wildberries-independent-sales-channel": {
-    title: "Independent sales channel alongside Wildberries",
-    subtitle: "Store/catalog + Bitrix24/amoCRM + 1C/MoySklad sync",
-    seoTitle:
-      "Owned sales channel for Wildberries sellers: store, CRM and order automation",
-    category: "Sales automation",
-    metric: "WB → owned channel: customer base and repeats stay with the seller",
-    metricMethod:
-      "Typical production pack contour: storefront, CRM, price/stock/order sync, catalog AI",
-    role: "Architecture and launch of an owned sales channel next to the marketplace",
-    scope:
-      "Checkout storefront, catalog import from WB/1C/MoySklad, Bitrix24 or amoCRM, payments and delivery, Telegram/VK/email, AI assistant, marketplace vs owned-channel analytics",
-    duration: "Working contour in 14–30 days",
-    architecture:
-      "Wildberries API ↔ middleware (products, prices, stock, orders) ↔ 1C/MoySklad ↔ store/catalog ↔ Bitrix24/amoCRM ↔ messengers and AI",
-    processSteps: [
-      "Audit assortment, ledger, CRM and FBO/FBS scheme",
-      "Launch storefront or catalog with checkout",
-      "Import products and sync prices and stock",
-      "Bitrix24 or amoCRM as the order and inbox hub",
-      "Payments, delivery, Telegram / VK / email and ads to the owned channel",
-      "Product AI assistant and dashboard: marketplace vs owned channel",
-    ],
-    productionNotes: [
-      "Wildberries stays an acquisition channel — no need to leave the marketplace",
-      "One source of prices and stock: 1C, MoySklad or WB export",
-      "Order deduplication on re-sync",
-      "Customer base and purchase history stay with the seller",
-      "Analytics for off-marketplace order share and repeats",
-    ],
-    whyCustom:
-      "A seller landing page alone does not close orders, stock or CRM. We assemble CRM, catalog automation and Sales AI so repeats run without marketplace fees.",
-    priceLabel: "from €3,000",
-    imageAlt:
-      "Seller at a laptop in an office-warehouse: e-commerce catalog and sales dashboard on screens, shipping boxes on shelves",
-    imageCaption:
-      "Owned sales channel: storefront, analytics and warehouse in one contour next to the marketplace",
-    description:
-      "Wildberries sellers: buyer base and repeats stay on the marketplace; prices and stock drift across WB, 1C/MoySklad and spreadsheets; ads send traffic to marketplace cards, not the seller.",
-    solution:
-      "Owned store or catalog with checkout + Bitrix24/amoCRM + product/price/stock sync + payments/delivery + Telegram/VK/email + catalog AI. WB stays traffic; orders and customers live in the seller’s contour.",
-    result:
-      "Working owned channel in 14–30 days: one CRM, automated order handling, repeats without marketplace fees, and a backup if the platform fails or restricts the account.",
-  },
-  "elia-suite": {
-    title: "ELIA Suite — isolated workspaces",
-    category: "Automation",
-    metric: "+32% quote→order conversion",
-    metricMethod: "Per client data for the first 4 months after launch",
-    role: "Workspace design and quote automation",
-    scope: "Isolated workspaces, CRM workflow, quote PDF/XLSX assembly, 2FA and audit",
-    duration: "Pilot and scale-out to 15 workspaces",
-    architecture: "Role-based workspaces + CRM workflow + AI document assembly without data crossover",
-    description:
-      "Preparing commercial proposals took about 45 minutes. Partners and suppliers worked through public tools — without data isolation or links to internal systems.",
-    solution:
-      "CRM automation → approval workflow → AI for quote PDF/XLSX assembly → minutes instead of tens of minutes. A separate workspace per role with 2FA and audit.",
-    result:
-      "15 workspaces with no data crossover. 87% of tech requests via automation, −40% SAV load; quote→order conversion +32% per client data for the first 4 months. Payback on a ~4-month horizon at recurring volume.",
-  },
-  "crm-telegram-sheets": {
-    title: "CRM + Telegram bot + Google Sheets for B2B",
-    category: "IT and development",
-    description:
-      "A B2B company tracked orders in scattered spreadsheets and Telegram chats: managers duplicated statuses, lost requests and had no single funnel view.",
-    solution:
-      "A Telegram bot for intake and notifications, Google Sheets as a lightweight CRM, and n8n workflows for lead routing, reminders and manager reports.",
-    result:
-      "All requests in one table with history, automatic manager reminders and a transparent funnel without a heavy CRM rollout.",
-  },
-  "interior-design-bot": {
-    title: "AI bot for interior designers in Telegram and MAX",
-    category: "Artificial intelligence",
-    description:
-      "An interior design studio got repetitive requests: style, palette, furniture and estimates. Designers spent time on first-line consults instead of project work.",
-    solution:
-      "An AI bot in Telegram and MAX: qualifies the request, suggests references and layout options, builds a brief and hands a hot lead to the designer with full chat context.",
-    result:
-      "Less routine at first contact, faster briefs and more team time for visualizations and site supervision.",
-  },
-  "social-media-analytics": {
-    title: "Real-time social media analytics",
-    category: "Artificial intelligence",
-    description:
-      "Marketing needed brand and competitor mention monitoring: posts and comments were collected manually, so reactions to news lagged by hours.",
-    solution:
-      "A real-time social data pipeline, NLP sentiment and topic classification, and a dashboard with alerts on negative spikes or viral mentions.",
-    result:
-      "The team sees trends and risks right after publication, responds faster and adjusts content strategy from real data instead of selective monitoring.",
-  },
-  "ocr-text-extraction": {
-    title: "OCR — text extraction from documents",
-    category: "IT and development",
-    description:
-      "Accounting and legal teams processed invoice, act and contract scans by hand: operators typed details into finance systems, errors and delays piled up.",
-    solution:
-      "An OCR service for print and handwriting, structured field extraction from PDF/images and export to a spreadsheet or accounting API.",
-    result:
-      "Documents process in batches in minutes instead of hours of typing, fewer transfer errors and faster period close.",
-  },
-  "amocrm-website-integration": {
-    title: "Website → amoCRM: leads without manual handling",
-    category: "IT and development",
-    description:
-      "Corporate website leads were handled manually: a manager got an email and entered amoCRM with up to a day’s delay. Some leads were lost.",
-    solution:
-      "Website webhook → deal and contact in amoCRM in seconds → auto-assign owner → Telegram alert.",
-    result:
-      "Lead in CRM instantly, first contact within an hour. Zero ownerless requests.",
-  },
-  "bitrix24-erp-sync": {
-    title: "Bitrix24 + 1C: deal and order sync",
-    category: "IT and development",
-    description:
-      "Managers created deals in Bitrix24; accounting created orders in 1C. Data diverged; payment statuses did not show in CRM.",
-    solution:
-      "An API gateway with a queue: won deal → 1C order; 1C payment → Bitrix24 stage. Operation log and retries.",
-    result:
-      "One picture per deal, −80% manual duplication, alerts on mismatches.",
-  },
-  "crm-1c-sync": {
-    title: "CRM ↔ 1C: single source of truth",
-    category: "IT and development",
-    description:
-      "Orders were created twice — in CRM and 1C by different people. Stock in CRM went stale; payments did not close the funnel.",
-    solution:
-      "Bidirectional exchange via a middle service: counterparties, orders, payments, stock. Idempotency and reconciliation.",
-    result:
-      "−80% manual entry, zero lost orders on failures thanks to retries and alerts.",
-  },
-  "contract-approval-workflow": {
-    title: "Contract approval: days → hours",
-    category: "Sales automation",
-    description:
-      "Contracts got lost between email, CRM and file storage. Legal and finance approval took 3–5 days.",
-    solution:
-      "An approval chain with notifications, deadlines and audit. Document linked to the CRM deal.",
-    result:
-      "−70% approval time, full history of versions and decisions.",
+      "Xodimlar tezroq javob oladi, kamroq takroriy savol beradi va bilim bazasida uzoq qoʻlda qidirishni kamaytiradi.",
+    priceLabel: "50 000 000 soʻmdan",
   },
   "support-knowledge-base": {
-    title: "Support knowledge base: −50% repeat questions",
-    category: "Artificial intelligence",
+    title: "Qoʻllab-quvvatlash bilim bazasi: takroriy savollar −50%",
+    category: "Sunʼiy intellekt",
+    metric: "takroriy savollar −50% gacha",
     description:
-      "L1 support answered the same questions on plans, setup and integrations. Docs were scattered across Confluence and PDFs.",
+      "Qoʻllab-quvvatlash bir xil savollarga javob berishga soatlar sarflardi. Reglamentlar papkalar va PDF larda tarqalgan.",
     solution:
-      "Document indexing, vector search, an AI assistant with source links. Escalation to an expert on low confidence.",
+      "Manba havolasi bilan RAG bilim bazasi, chat va eskalatsiya. CRM / portal integratsiya.",
+    result: "Birinchi liniya tezroq javob beradi, ekspertlar murakkab holatlarga eʼtibor beradi.",
+    priceLabel: "50 000 000 soʻmdan",
+  },
+  "elia-suite": {
+    title: "ELIA Suite — izolyatsiyalangan workspace lar",
+    category: "Avtomatlashtirish",
+    metric: "quote→buyurtma konversiyasi +32%",
+    metricMethod: "Ishga tushirishdan keyingi dastlabki 4 oy, buyurtmachi maʼlumotlari",
+    role: "Workspace va quote avtomatlashtirish loyihasi",
+    scope: "Izolyatsiyalangan workspace, CRM-workflow, quote PDF/XLSX, 2FA va audit",
+    duration: "Pilot va 15 workspace ga kengaytirish",
+    architecture: "Rolli workspace + CRM workflow + AI hujjat yigʻish — maʼlumotlar aralashmasdan",
+    description:
+      "KP tayyorlash ~45 daqiqa oldi. Hamkorlar ochiq servislar orqali ishlardi — maʼlumot izolyatsiyasisiz.",
+    solution:
+      "CRM → kelishuv workflow → AI bilan quote PDF/XLSX yigʻish. Har rol uchun alohida workspace, 2FA va audit.",
     result:
-      "−50% repeat tickets, faster onboarding for new agents.",
+      "15 workspace, maʼlumotlar aralashmasdan. Quote→buyurtma +32%. Takrorlanuvchi hajmda ~4 oyda oʻzini oqlash.",
+    priceLabel: "50 000 000 soʻmdan",
+  },
+  "kp-llm-automation": {
+    title: "Tijorat takliflarini avtomatlashtirish",
+    category: "Avtomatlashtirish",
+    metric: "KP uchun 45 daq → 2–5 daq",
+    metricMethod: "Buyurtmachi tipik PDF soʻrovlari boʻyicha pilot jarayoni",
+    role: "KP generatsiya konturi arxitekturasi va joriy etish",
+    scope: "PDF soʻrov → katalog moslashtirish → exact/analog/not found → DOCX/PDF → CRM",
+    duration: "Sanoat ishga tushirishgacha 4–8 hafta",
+    architecture: "LLM faqat soʻrov tahlili; narx va SKU — MySQL/CRM katalogidan",
+    description:
+      "KP tayyorlash ~45 daqiqa: menejerlar katalogda narx va SKU qidirardi, Word/PDF yigʻardi.",
+    solution:
+      "Avtomatlashtirish: PDF → katalog → moslik holatlari → DOCX/PDF → CRM. Narxlarni model uydirmaydi.",
+    result: "Tipik KP 2–5 daqiqada. Narx va artikullar faqat katalogdan.",
+    priceLabel: "30 000 000 soʻmdan",
   },
   "invoice-processing-pipeline": {
-    title: "Invoice processing pipeline: batches in minutes",
-    subtitle: "OCR pipeline for inbound invoices → validation → 1C document",
-    seoTitle: "Document processing into 1C: OCR invoices from email without manual entry",
-    category: "IT and development",
-    metric: "Batch of 50 invoices in ~10 minutes instead of ~4 hours",
-    metricMethod: "Measured on a pilot inbound-mail stream for accounting",
-    role: "Architecture and delivery of the OCR → 1C contour",
-    scope:
-      "Auto-intake from email, OCR, field extraction, validation, 1C document creation, error journal",
-    duration: "Pilot 2–4 weeks; production contour typically 4–8 weeks",
-    architecture:
-      "Mail/files → OCR → field extraction → validation rules → 1C API/exchange → retry and alerts",
+    title: "Hisob-fakturalarni tanish va 1С ga yuklash",
+    subtitle: "Kiruvchi hisoblar OCR pipeline → tekshiruv → 1С hujjat",
+    seoTitle: "Hujjatlarni 1С ga yuklash: pochtadan OCR — qoʻlda kiritishsiz",
+    category: "Avtomatlashtirish",
+    metric: "50 hisob ~10 daqiqada (oldingi ~4 soat)",
+    metricMethod: "Buxgalteriya kiruvchi pochta oqimi boʻyicha pilot oʻlchovi",
+    role: "OCR → 1С kontur arxitekturasi va joriy etish",
+    scope: "Pochta avtoqabul, OCR, maydon ajratish, tekshiruv, 1С hujjat, xato jurnali",
+    duration: "Pilot 2–4 hafta; sanoat kontur odatda 4–8 hafta",
+    architecture: "Pochta/fayllar → OCR → rekvizitlar → validatsiya → 1С API → retry va alertlar",
     processSteps: [
-      "An invoice arrives by email or in a scan folder",
-      "The contour picks up the attachment (PDF/image)",
-      "OCR and extraction of tax ID, amount, line items, date",
-      "Validation and match against counterparties/orders",
-      "Create or update the document in 1C",
-      "Log: success / manual review / error with alert",
+      "Hisob pochtaga yoki skan papkasiga keladi",
+      "Kontur ilovani oladi (PDF/rasm)",
+      "OCR va maydonlarni ajratish",
+      "Kontragent/buyurtma bilan tekshiruv",
+      "1С da hujjat yaratish yoki yangilash",
+      "Log: muvaffaqiyat / qoʻlda tekshiruv / xato + alert",
     ],
     productionNotes: [
-      "Idempotency: reprocessing the same file does not create duplicate documents",
-      "Queue and retry when 1C is unavailable",
-      "Manual review for low OCR confidence",
-      "Operation journal for accounting and audit",
-      "Accounting data does not go to public LLMs without approval",
+      "Idempotentlik: bir xil faylni qayta ishlash dublikat yaratmaydi",
+      "1С mavjud boʻlmasa navbat va retry",
+      "Past OCR ishonchida qoʻlda review",
+      "Buxgalteriya va audit uchun operatsiyalar jurnali",
+      "Hisob maʼlumotlari kelishuvsiz public LLM ga ketmaydi",
     ],
     whyCustom:
-      "Ready-made “OCR in the cloud” often cannot connect to the client’s 1C contour and security policy. We assemble the pipeline around your exchange and access rights.",
-    priceLabel: "from €3,000",
+      "Tayyor «OCR bulutda» koʻpincha buyurtmachi 1С konturi va xavfsizlik siyosatiga ulanmaydi. Pipeline ni sizning almashinuv va huquqlaringiz atrofida yigʻamiz.",
     description:
-      "Accounting received 50+ invoices a day by email. Operators typed details into 1C by hand — errors and period-close delays piled up.",
+      "Buxgalteriya kuni 50+ hisobni email orqali olardi. Operatorlar rekvizitlarni 1С ga qoʻlda kiritardi.",
     solution:
-      "Auto-intake from mail → OCR → field extraction → validation → 1C document creation. AI only where text parsing is needed; postings follow accounting rules.",
-    result:
-      "A batch of 50 invoices in ~10 minutes instead of ~4 hours, −90% entry errors on the pilot.",
+      "Pochta → OCR → maydonlar → tekshiruv → 1С hujjat. AI faqat matn tahlili kerak boʻlganda.",
+    result: "50 hisob ~10 daqiqada, kiritish xatolari −90% (pilot).",
+    priceLabel: "50 000 000 soʻmdan",
+  },
+  "crm-1c-sync": {
+    title: "CRM ↔ 1С: yagona haqiqat manbai",
+    category: "Avtomatlashtirish",
+    metric: "Qoʻlda nusxa koʻchirishsiz sinxron",
+    description:
+      "CRM va 1С da turli summalar va holatlar. Menejerlar kun boʻyi maʼlumot koʻchirardi.",
+    solution:
+      "Ikki tomonlama sync: bitimlar, buyurtmalar, kontragentlar. Retry, monitoring, konflikt qoidalari.",
+    result: "Yagona raqamlar, tezroq yopilish, kamroq xato.",
+    priceLabel: "50 000 000 soʻmdan",
+  },
+  "yandex-telemost-agent": {
+    title: "Yandex Telemost Agent — uchrashuv va savdo uchun AI",
+    category: "Sunʼiy intellekt",
+    metric: "Uchrashuv yakunlari avtomatik CRM da",
+    description:
+      "Uchrashuvdagi kelishuvlar yoʻqolardi. Menejerlar qoʻlda yozib, CRM ni kech yangilardi.",
+    solution:
+      "AI uchrashuvni qayd etadi, samari yozadi, CRM va vazifalarni yangilaydi — qoʻlda nusxa koʻchirmasiz.",
+    result: "Tezroq follow-up, unutilgan kelishuvlar kamayadi.",
+    priceLabel: "30 000 000 soʻmdan",
+  },
+  "lead-generation": {
+    title: "GTM Flow — reklama va messenjerlardan lidlar",
+    category: "Sunʼiy intellekt",
+    metric: "Yoʻqolgan lidsiz yagona voronka",
+    description:
+      "Arizalar Google, Telegram, sayt va mahalliy kanallarga tarqaladi. Mijozlar sovib ketadi, menejerlar qayta qoʻngʻiroqni unutadi.",
+    solution:
+      "Yagona lid lenti, AI scoring, yoʻqolgan arizalarni qaytarish. Bitta buyruq — kvalifikatsiya va follow-up.",
+    result: "Kamroq yoʻqolgan lid, tezroq bitim. Dashboard: kiruvchi → lid → mijoz.",
+    priceLabel: "30 000 000 soʻmdan",
+  },
+  "amocrm-website-integration": {
+    title: "Sayt → amoCRM: qoʻlda ishlovsiz lidlar",
+    category: "Avtomatlashtirish",
+    metric: "Formadan CRM gacha avto",
+    description: "Sayt formalari email ga tushardi — CRM ga qoʻlda koʻchirilardi.",
+    solution: "Forma → amoCRM bitim, maydonlar, vazifa va bildirishnoma.",
+    result: "Lidlar yoʻqolmaydi, reaksiya vaqti qisqaradi.",
+    priceLabel: "15 000 000 soʻmdan",
+  },
+  "bitrix24-erp-sync": {
+    title: "Bitrix24 + 1С: bitim va buyurtmalar sinxroni",
+    category: "Avtomatlashtirish",
+    metric: "Bitim ↔ buyurtma avto",
+    description: "Bitrix24 va 1С qoʻlda bogʻlangan — holatlar kechikardi.",
+    solution: "REST sync: bitimlar, tovarlar, holatlar, xato jurnali.",
+    result: "Operatsion kechikishlar kamayadi, hisobotlar ishonchli.",
+    priceLabel: "50 000 000 soʻmdan",
+  },
+  "contract-approval-workflow": {
+    title: "Shartnomalar kelishuvi: kunlar → soatlar",
+    category: "Avtomatlashtirish",
+    metric: "Kelishuv tsikli qisqaradi",
+    description: "Shartnomalar email da aylanardi — kimda ekanligi nomaʼlum.",
+    solution: "Raqamli marshrut, rollar, eslatmalar, yakuniy PDF arxiv.",
+    result: "Shaffof holat, tezroq imzo.",
+    priceLabel: "30 000 000 soʻmdan",
+  },
+  "ocr-text-extraction": {
+    title: "OCR — hujjatlardan matn ajratish",
+    category: "Avtomatlashtirish",
+    metric: "Skan → tuzilgan maydonlar",
+    description: "Skanlar qoʻlda qayta terilardi.",
+    solution: "OCR pipeline, maydon validatsiyasi, eksport.",
+    result: "Tezroq kiritish, kamroq xato.",
+    priceLabel: "30 000 000 soʻmdan",
   },
   "employee-onboarding-portal": {
-    title: "Employee onboarding: 2 weeks instead of 2 months",
-    category: "Artificial intelligence",
+    title: "Xodimlar onboarding: 2 hafta (oldingi 2 oy)",
+    category: "Sunʼiy intellekt",
     description:
-      "New hires spent months asking the same questions of HR and peers. Policies lived in Confluence, PDFs and email.",
-    solution:
-      "An onboarding portal with checklists, a knowledge base and an AI assistant over policies. HR system integration.",
-    result:
-      "Self-serve readiness in 2 weeks, −40% HR load.",
+      "Yangi xodimlar oylar davomida bir xil savollarni HR ga berardi. Reglamentlar tarqalgan edi.",
+    solution: "Chek-listlar, bilim bazasi va AI-yordamchi bilan onboarding portal.",
+    result: "2 haftada mustaqil ish, HR yuki −40%.",
+    priceLabel: "30 000 000 soʻmdan",
   },
+  "crm-telegram-sheets": {
+    title: "CRM + Telegram-bot + Google Sheets — B2B",
+    category: "Avtomatlashtirish",
+    metric: "Ariza → CRM avto",
+    description: "Lidlar Telegram va jadvallarda aralashib ketardi.",
+    solution: "Bot → jadval → CRM bitta oqimda.",
+    result: "Yagona voronka, kamroq yoʻqotish.",
+    priceLabel: "15 000 000 soʻmdan",
+  },
+  "interior-design-bot": {
+    title: "Interyer dizaynerlari uchun AI-bot",
+    category: "Sunʼiy intellekt",
+    description: "Mijoz soʻrovlari chatda tartibsiz kelardi.",
+    solution: "Brief yigʻish, katalog moslashtirish, CRM ga yozuv.",
+    result: "Tezroq javob, sifatli brief.",
+    priceLabel: "30 000 000 soʻmdan",
+  },
+  "social-media-analytics": {
+    title: "Ijtimoiy media tahlili real vaqtda",
+    category: "Sunʼiy intellekt",
+    description: "Eslatmalar va mentionalar kechikib yigʻilardi.",
+    solution: "Monitoring, klassifikatsiya, alertlar.",
+    result: "Tezroq reaksiya, bitta dashboard.",
+    priceLabel: "30 000 000 soʻmdan",
+  },
+  /** RU marketplaces — kept for direct URL, framed generically for UZ. */
+  "bitrix24-kwork-crm": {
+    title: "Marketplace buyurtmalari → Bitrix24 voronkasi",
+    subtitle: "Marketplace → CRM maxsus kontur — tayyor konnektorga bogʻliqsiz",
+    seoTitle: "Marketplace ↔ Bitrix24 CRM maxsus integratsiya",
+    category: "IT va ishlab chiqish",
+    metric: "Marketplace buyurtmalari CRM kanbanda",
+    description:
+      "Freelance/marketplace buyurtmalari CRM ga qoʻlda koʻchirilardi. Oʻzbekiston bozori uchun xuddi shu kontur mahalliy maydonchalarga moslashtiriladi.",
+    solution:
+      "Buyurtma ushlash → mijoz/xizmat map → Bitrix24 da bitim upsert → summa va holat.",
+    result: "Qoʻlda koʻchirishsiz voronka; kontur mahalliy marketplace larga moslanadi.",
+    priceLabel: "30 000 000 soʻmdan",
+  },
+  "wildberries-independent-sales-channel": {
+    title: "Marketplace dan mustaqil savdo kanali",
+    category: "Avtomatlashtirish",
+    metric: "Parallel kanal — bitta katalog",
+    description:
+      "Bitta marketplace ga bogʻlanish xavfi. Oʻzbekiston uchun — Uzum va boshqa kanallar bilan parallel kontur mantiqi.",
+    solution: "Katalog, buyurtmalar va CRM — mustaqil savdo kanali sifatida.",
+    result: "Kanal diversifikatsiyasi, operatsion nazorat.",
+    priceLabel: "50 000 000 soʻmdan",
+  },
+};
+
+const SKILL_UZ: Record<string, string> = {
+  Автоматизация: "Avtomatlashtirish",
+  "Интеграция модели ИИ": "AI model integratsiyasi",
+  "Искусственный интеллект": "Sunʼiy intellekt",
+  Интеграции: "Integratsiyalar",
 };
 
 const SKILL_EN: Record<string, string> = {
@@ -334,15 +307,22 @@ const SKILL_EN: Record<string, string> = {
   "Искусственный интеллект": "Artificial intelligence",
 };
 
-/** Strip RUB / Cyrillic price leftovers so EN cards never mix currencies. */
-function sanitizeEnPriceLabel(label: string | undefined): string | undefined {
+function sanitizePriceLabel(label: string | undefined, locale: string): string | undefined {
   if (!label) return undefined;
-  if (/[₽руб]/i.test(label) || /[А-Яа-яЁё]/.test(label)) return undefined;
+  if (locale === "uz") {
+    if (/[₽руб]/i.test(label)) return undefined;
+    return label;
+  }
+  if (locale === "en") {
+    if (/[₽руб]/i.test(label) || /[А-Яа-яЁё]/.test(label)) return undefined;
+  }
   return label;
 }
 
-function localizeSkills(skills: string[]): string[] {
-  return skills.map((skill) => SKILL_EN[skill] ?? skill);
+function localizeSkills(skills: string[], locale: string): string[] {
+  const map = locale === "uz" ? SKILL_UZ : locale === "en" ? SKILL_EN : null;
+  if (!map) return skills;
+  return skills.map((skill) => map[skill] ?? skill);
 }
 
 export function hasPortfolioEnglish(slug: string): boolean {
@@ -350,14 +330,25 @@ export function hasPortfolioEnglish(slug: string): boolean {
   return Boolean(copy?.title && copy.description && copy.solution && copy.result);
 }
 
+export function hasPortfolioUz(slug: string): boolean {
+  const copy = PORTFOLIO_UZ[slug];
+  return Boolean(copy?.title && copy.description && copy.solution && copy.result);
+}
+
+/** RU-centric marketplaces — hide from UZ marketing listings. */
+export const UZ_EXCLUDED_PORTFOLIO_SLUGS = new Set([
+  "bitrix24-kwork-crm",
+  "wildberries-independent-sales-channel",
+]);
+
 export function localizePortfolioItem(item: PortfolioItem, locale: string): PortfolioItem {
-  return item;
-  const en = PORTFOLIO_EN[item.slug];
-  if (!en) return item;
+  const copy =
+    locale === "uz" ? PORTFOLIO_UZ[item.slug] : locale === "en" ? PORTFOLIO_EN[item.slug] : undefined;
+  if (!copy) return item;
   const merged: PortfolioItem = {
     ...item,
-    ...en,
-    skills: localizeSkills(item.skills ?? []),
+    ...copy,
+    skills: localizeSkills(item.skills ?? [], locale),
     stack: item.stack,
     image: item.image,
     slug: item.slug,
@@ -365,6 +356,6 @@ export function localizePortfolioItem(item: PortfolioItem, locale: string): Port
     featured: item.featured,
     segment: item.segment,
   };
-  merged.priceLabel = sanitizeEnPriceLabel(merged.priceLabel);
+  merged.priceLabel = sanitizePriceLabel(merged.priceLabel, locale) ?? copy.priceLabel;
   return merged;
 }

@@ -1,5 +1,5 @@
 import { PORTFOLIO_IMAGES, STOCK_IMAGES } from "@/lib/site";
-import { localizePortfolioItem } from "@/lib/portfolio-i18n";
+import { localizePortfolioItem, UZ_EXCLUDED_PORTFOLIO_SLUGS } from "@/lib/portfolio-i18n";
 
 export const PROFILE = {
   name: "Павел Стасиньский",
@@ -663,16 +663,16 @@ export const PORTFOLIO: PortfolioItem[] = [
 export function getPortfolioItem(slug: string, locale = "ru") {
   const item = PORTFOLIO.find((entry) => entry.slug === slug);
   if (!item) return undefined;
-  const localized = false ? localizePortfolioItem(item, locale) : item;
-  return withPortfolioSegment(localized);
+  return withPortfolioSegment(localizePortfolioItem(item, locale));
 }
 
 /** Кейсы для сетки /portfolio и аналогичных листингов. */
 export function getPortfolioListing(locale = "ru"): PortfolioItem[] {
   const bySlug = new Map(PORTFOLIO.map((item) => [item.slug, item]));
-  const items = PORTFOLIO_LISTING_SLUGS.map((slug) => bySlug.get(slug)).filter(
-    (item): item is PortfolioItem => Boolean(item),
-  );
-  const localized = items;
-  return localized.map(withPortfolioSegment);
+  const slugs =
+    locale === "uz"
+      ? PORTFOLIO_LISTING_SLUGS.filter((slug) => !UZ_EXCLUDED_PORTFOLIO_SLUGS.has(slug))
+      : [...PORTFOLIO_LISTING_SLUGS];
+  const items = slugs.map((slug) => bySlug.get(slug)).filter((item): item is PortfolioItem => Boolean(item));
+  return items.map((item) => withPortfolioSegment(localizePortfolioItem(item, locale)));
 }

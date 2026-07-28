@@ -1,4 +1,5 @@
 import { getEnterpriseServices } from "@/lib/enterprise-services";
+import { CONTENT_UZ } from "@/lib/seo-services-uz";
 
 export type SeoServiceComparison = {
   label: string;
@@ -2855,20 +2856,22 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
 };
 
 export function getSeoServiceContent(slug: string, locale: "ru" | "kz" | "uz"): SeoServiceContent | null {
-  const map = CONTENT_RU;
-  return map[slug] ?? null;
+  if (locale === "uz") return CONTENT_UZ[slug] ?? null;
+  return CONTENT_RU[slug] ?? null;
 }
 
 export function getSeoServiceSlugs(locale: "ru" | "kz" | "uz"): string[] {
-  const map = CONTENT_RU;
-  return Object.keys(map);
+  if (locale === "uz") {
+    return Object.keys(CONTENT_UZ).filter((slug) => slug !== "wildberries-independent-sales-channel");
+  }
+  return Object.keys(CONTENT_RU);
 }
 
 export function getAllServiceSlugs(locale: string): string[] {
-  const loc = "ru";
+  const loc = locale === "uz" || locale === "kz" ? locale : "ru";
   const enterprise = getEnterpriseServices(loc)
     .filter((item) => item.inServicesCatalog !== false)
     .map((item) => item.slug);
-  const seo = getSeoServiceSlugs(loc);
+  const seo = getSeoServiceSlugs(loc === "kz" ? "ru" : (loc as "ru" | "uz"));
   return [...new Set([...enterprise, ...seo])];
 }

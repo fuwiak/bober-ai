@@ -391,16 +391,135 @@ export const ENTERPRISE_SERVICES_LISTING_SLUGS = [
   "ai-discovery-roadmap",
 ] as const;
 
+/** RU marketplace offer — hide from UZ /services grid. */
+const UZ_EXCLUDED_SERVICE_SLUGS = new Set(["wildberries-independent-sales-channel"]);
+
+/** Uzbek Latin overlays for enterprise catalog (prices: RUB×100 → UZS). */
+const UZ_SERVICE_COPY: Partial<
+  Record<string, Pick<EnterpriseService, "title" | "description" | "about">>
+> = {
+  "business-process-automation": {
+    title: "Biznes-jarayonlarni avtomatlashtirish",
+    description: "Audit, CRM/1С integratsiyalar, workflow — qoʻlda rutinasiz vazifa zanjirlari.",
+    about: "Jarayonlar auditi, avtomatlashtirish sozlash, CRM va hujjatlar integratsiyasi, jamoa oʻqitish.",
+  },
+  "sales-ai-agent": {
+    title: "Savdo boʻlimini avtomatlashtirish",
+    description: "Lidlar, CRM, tijorat takliflari, follow-up — PDF soatlar emas, daqiqalarda.",
+    about: "Shablonlar va CRM uchun avtomatlashtirish sozlaymiz, sinab, savdoda ishga tushiramiz.",
+  },
+  "ai-discovery-roadmap": {
+    title: "AI & Automation Advisor",
+    description: "Jarayonni tahlil qilamiz, ROI hisoblaymiz, texnologiya tanlaymiz, joriy qilamiz.",
+    about: "Biznes-audit, jarayonlar xaritasi, ROI, yoʻl xaritasi va ishlab chiqishdan oldin smeta.",
+  },
+  "enterprise-ai-assistant": {
+    title: "Biznesga AI joriy etish",
+    description: "LLM, agentlar, CRM integratsiyalari — ChatGPT demosi emas, production.",
+    about: "Arxitektura, LLM, CRM/messenjerlar, production deploy va jamoaga topshirish.",
+  },
+  "private-llm-gigachat": {
+    title: "Private LLM kontur",
+    description: "On-prem va izolyatsiyalangan bulut — tashqi servislarga maʼlumot oqimisiz.",
+    about: "Konturingizda LLM joylashtiramiz: API, guardrails, monitoring va integratsiyalar.",
+  },
+  "ai-sales-loop": {
+    title: "Savdo boʻlimi AI konturi",
+    description: "Telefoniya, yozishmalar, CRM va avtomatik keyingi harakatlar — alohida botlar emas, bitta mahsulot.",
+    about: "Bitrix24 / amoCRM + telefoniya + AI: lidlar, qoʻngʻiroq samarilari, vazifalar, follow-up.",
+  },
+  "crm-integration": {
+    title: "Bitrix24 · amoCRM",
+    description:
+      "CRM joriy etish va avtomatlashtirish: Bitrix24 va amoCRM — 1С, telefoniya, hujjatlar, voronkalar; portal sizda qoladi.",
+    about: "Ikki tomonlama integratsiyalar, webhooks, retry va monitoring.",
+  },
+  rag: {
+    title: "Biznes uchun RAG",
+    description: "Hujjatlar boʻyicha qidiruv va LLM javoblari — manba havolasi bilan.",
+    about: "Indeksatsiya, vektor qidiruv, guardrails va chat/CRM integratsiya.",
+  },
+  "secure-private-ai-cloud": {
+    title: "Secure private AI bulut",
+    description: "Yopiq konturda AI — kirish nazorati, jurnallar, infratuzilma himoyasi.",
+    about: "Secure AI: bulut yoki on-prem, NDA, rollar va monitoring.",
+  },
+  "ai-automation": {
+    title: "AI-avtomatlashtirish",
+    description: "Operatsiyalarni avtomatlashtirish uchun AI tizimlari — auditdan production gacha.",
+    about: "CRM, hujjatlar va workflow integratsiyalari bilan AI-avtomatlashtirish.",
+  },
+  "document-processing": {
+    title: "Hujjat aylanishini avtomatlashtirish",
+    description: "OCR, kelishuvlar, maʼlumot ajratish — CRM/ERP ga qoʻlda kiritishsiz.",
+    about: "Hujjat pipeline, workflow va hisob tizimlari integratsiyasi.",
+  },
+  "ai-agent": {
+    title: "Biznes uchun AI-agentlar",
+    description: "Harakatli agentlar: CRM, hujjatlar, workflow, odamga eskalatsiya.",
+    about: "Vositalar, monitoring va handover bilan koʻp bosqichli agentlar.",
+  },
+  "knowledge-base": {
+    title: "Korporativ bilim bazasi",
+    description: "Reglamentlar, FAQ va manba havolali AI javoblar uchun yagona joy.",
+    about: "Bilim bazasi, qidiruv, xodimlar va mijozlar uchun chatbot.",
+  },
+  "ai-consulting": {
+    title: "AI-konsalting",
+    description: "Strategiya, ROI, texnologiya tanlash va joriy etish yoʻl xaritasi.",
+    about: "Audit, tavsiyalar va ishlab chiqish xarididan oldin reja.",
+  },
+  bitrix: {
+    title: "Bitrix24 sozlash",
+    description: "Bitrix24 + AI: portal, avtomatlashtirish, 1С, telefoniya, hujjatlar va savdo AI konturi.",
+    about: "Bitta jarayonda pilot: voronka, REST/webhooks, integratsiyalar va AI qatlam.",
+  },
+  "claude-smb": {
+    title: "Kichik va oʻrta biznes uchun Claude AI",
+    description: "Claude AI, API, Code va MCP ni KMB jarayonlariga joriy etish — CRM, hujjatlar, savdo.",
+    about: "Claude API va MCP — Claude Pro obunasi emas. Qatʼiy smeta, NDA, Oʻzbekiston.",
+  },
+  "ii-dlya-biznesa": {
+    title: "Biznes uchun AI — audit, ishlab chiqish va joriy etish",
+    description: "Kalit topshirish: jarayonlar auditi, KPI li pilot va CRM/hujjatlar/savdoda production.",
+    about: "Stsenariylar, arxitektura, xavfsizlik, keyslar. Qatʼiy smeta, NDA.",
+  },
+};
+
+function formatUzsFrom(priceRub: number): string {
+  const uzs = priceRub * 100;
+  return `${uzs.toLocaleString("ru-RU").replace(/\u00a0/g, " ")} soʻmdan`;
+}
+
+function toUzService(item: EnterpriseService): EnterpriseService {
+  const copy = UZ_SERVICE_COPY[item.slug];
+  const price = item.price * 100;
+  return {
+    ...item,
+    title: copy?.title ?? item.title,
+    description: copy?.description ?? item.description,
+    about: copy?.about ?? item.about,
+    price,
+    salesNotes: `${formatUzsFrom(item.price)}`.replace(/^от /, "").replace(/^from /, "") ,
+  };
+}
+
+/** Build once — map all RU catalog entries to UZS + Uzbek copy where available. */
+const uzServices: EnterpriseService[] = ruServices.map(toUzService);
+
 export function getEnterpriseServices(locale: string): EnterpriseService[] {
+  if (locale === "uz") return uzServices;
   return ruServices;
 }
 
 /** Короткий листинг для /services (SEO long-tail остаётся в маршрутах). */
 export function getEnterpriseServicesListing(locale: string): EnterpriseService[] {
   const bySlug = new Map(getEnterpriseServices(locale).map((item) => [item.slug, item]));
-  return ENTERPRISE_SERVICES_LISTING_SLUGS.map((slug) => bySlug.get(slug)).filter(
-    (item): item is EnterpriseService => Boolean(item),
-  );
+  const slugs =
+    locale === "uz"
+      ? ENTERPRISE_SERVICES_LISTING_SLUGS.filter((slug) => !UZ_EXCLUDED_SERVICE_SLUGS.has(slug))
+      : ENTERPRISE_SERVICES_LISTING_SLUGS;
+  return slugs.map((slug) => bySlug.get(slug)).filter((item): item is EnterpriseService => Boolean(item));
 }
 
 export function getEnterpriseService(slug: string, locale: string) {
