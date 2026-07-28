@@ -1,0 +1,91 @@
+---
+interface ProcessStep {
+  label: string;
+  status: string;
+}
+
+interface Props {
+  label: string;
+  title: string;
+  subtitle: string;
+  demoNote: string;
+  beforeLabel: string;
+  afterLabel: string;
+  beforeMetric: string;
+  afterMetric: string;
+  beforeSteps: ProcessStep[];
+  afterSteps: ProcessStep[];
+  flow: string[];
+}
+
+const {
+  label,
+  title,
+  subtitle,
+  demoNote,
+  beforeLabel,
+  afterLabel,
+  beforeMetric,
+  afterMetric,
+  beforeSteps,
+  afterSteps,
+  flow,
+} = Astro.props;
+---
+
+<section class="section-band section--deep border-b border-hairline">
+  <div class="container-editorial">
+    <span class="section-label">{label}</span>
+    <h2 class="section-title mt-4">{title}</h2>
+    <p class="body-copy mt-4 max-w-2xl text-base">{subtitle}</p>
+    <p class="meta-label mt-4">{demoNote}</p>
+
+    <ol class="demo-flow mt-8" aria-label={title}>
+      {
+        flow.map((step, index) => (
+          <li class="demo-flow__item">
+            <span class="demo-flow__index">{String(index + 1).padStart(2, "0")}</span>
+            <span class="demo-flow__label">{step}</span>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="before-after-grid mt-10">
+      <article class="before-after-panel">
+        <div class="before-after-panel__head">
+          <h3 class="card-title text-xl">{beforeLabel}</h3>
+          <span class="status-chip status-chip--warn">{beforeMetric}</span>
+        </div>
+        <ol class="mt-6 space-y-3">
+          {
+            beforeSteps.map((step, index) => (
+              <li class="demo-step">
+                <span class="demo-step__num">{String(index + 1).padStart(2, "0")}</span>
+                <span class="body-copy text-base">{step.label}</span>
+                <span class="status-chip status-chip--muted">{step.status}</span>
+              </li>
+            ))
+          }
+        </ol>
+      </article>
+      <article class="before-after-panel before-after-panel--after">
+        <div class="before-after-panel__head">
+          <h3 class="card-title text-xl">{afterLabel}</h3>
+          <span class="status-chip status-chip--ok">{afterMetric}</span>
+        </div>
+        <ol class="mt-6 space-y-3">
+          {
+            afterSteps.map((step, index) => (
+              <li class="demo-step">
+                <span class="demo-step__num">{String(index + 1).padStart(2, "0")}</span>
+                <span class="body-copy text-base">{step.label}</span>
+                <span class="status-chip status-chip--ok">{step.status}</span>
+              </li>
+            ))
+          }
+        </ol>
+      </article>
+    </div>
+  </div>
+</section>

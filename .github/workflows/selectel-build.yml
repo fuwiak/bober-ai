@@ -224,7 +224,16 @@ jobs:
           docker run -d --name bober-ai --restart unless-stopped --network host \
             -v "$ROOT/deploy/Caddyfile:/etc/caddy/Caddyfile:ro" \
             caddy:2-alpine
-          sleep 3
+          # Wait for TLS listener + first config load
+          sleep 5
+          for k in 1 2 3 4 5 6; do
+            if curl -sk --connect-timeout 5 \
+              --resolve www.bober-systems.ru:443:127.0.0.1 \
+              "https://www.bober-systems.ru/api/health" | grep -q '"ok":true'; then
+              break
+            fi
+            sleep 2
+          done
           docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}' || true
 
           web_ok=0
@@ -270,10 +279,12 @@ jobs:
             exit 1
           fi
 
-          # Edge check via Host header (bober-ai caddy → :3001)
+          # Edge check: must set SNI via --resolve (Host header alone is not enough for TLS).
           edge_ok=0
           for j in 1 2 3 4 5 6 7 8; do
-            edge=$(curl -sk --connect-timeout 10 -H 'Host: www.bober-systems.ru' "https://127.0.0.1/" || true)
+            edge=$(curl -sk --connect-timeout 10 \
+              --resolve www.bober-systems.ru:443:127.0.0.1 \
+              "https://www.bober-systems.ru/" || true)
             if echo "$edge" | grep -q '0e71ef3fc54b6c3c'; then
               edge_ok=1
               break
@@ -282,8 +293,11 @@ jobs:
           done
           if [ "$edge_ok" != 1 ]; then
             echo "NO_YANDEX_META on edge caddy"
-            echo "$edge" | tr '>' '>\n' | grep -i 'yandex\|verification\|0e71ef' | head -20
+            echo "edge_bytes=${#edge}"
+            echo "$edge" | head -c 400; echo
+            echo "$edge" | tr '>' '>\n' | grep -i 'yandex\|verification\|0e71ef\|title\|DOCTYPE' | head -20
             docker logs bober-ai --tail 40 || true
+            ss -lptn 'sport = :443 or sport = :3001' || true
             exit 1
           fi
 

@@ -1,0 +1,362 @@
+---
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import ContactForm from "@/components/ContactForm.astro";
+import PerformerRating from "@/components/PerformerRating.astro";
+import ReviewsShowcase from "@/components/ReviewsShowcase.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { AI_KUBERNETES_PAGE } from "@/lib/ai-kubernetes-page";
+import { getEnterpriseReviews } from "@/lib/enterprise-reviews";
+import { getEnterpriseService } from "@/lib/enterprise-services";
+import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
+import { PROFILE } from "@/lib/profile";
+import { faqJsonLd, localizedAbsolute, webPageJsonLd } from "@/lib/seo";
+import { PRIMARY_CTA_GOAL, TELEGRAM_URL } from "@/lib/site";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const messages = loadMessages(locale);
+const t = messages.servicePage;
+const ru = locale !== "en";
+const isEn = !ru;
+const p = AI_KUBERNETES_PAGE;
+const pack = getEnterpriseService("secure-private-ai-cloud", ru ? "ru" : "en");
+const reviews = getEnterpriseReviews();
+const pageUrl = localizedAbsolute("/ai-kubernetes", locale);
+const h1 = ru ? p.h1Ru : p.h1En;
+const subtitle = ru ? p.subtitleRu : p.subtitleEn;
+const processSteps = ru ? p.processRu : p.processEn;
+const processTitles = ru
+  ? ["Аудит контура", "Архитектура", "Контейнеризация", "Передача"]
+  : ["Contour audit", "Architecture", "Containerization", "Handover"];
+const architecture = ru
+  ? [
+      "Kubernetes / OpenShift / DeckHouse + GPU-ноды",
+      "Namespace, сеть, RBAC и секреты под LLM/RAG",
+      "Инференс, оркестрация агентов, журналирование",
+      "Мониторинг нагрузки модели и стоимость GPU",
+      "Опционально: подготовка к Kaspersky Container Security",
+    ]
+  : [
+      "Kubernetes / OpenShift / DeckHouse + GPU nodes",
+      "Namespaces, network, RBAC and secrets for LLM/RAG",
+      "Inference, agent orchestration, logging",
+      "Model-load monitoring and GPU cost control",
+      "Optional: prep for Kaspersky Container Security",
+    ];
+const roi = ru
+  ? [
+      { value: "5 услуг", label: "от аудита K8s до Agent Runtime" },
+      { value: "on-prem", label: "закрытый контур без внешних API" },
+      { value: "от 28 дн.", label: "пакет Secure Private AI Cloud" },
+    ]
+  : [
+      { value: "5 services", label: "from K8s audit to Agent Runtime" },
+      { value: "on-prem", label: "closed contour without external APIs" },
+      { value: "from 28 days", label: "Secure Private AI Cloud pack" },
+    ];
+const services = ru ? p.servicesRu : p.servicesEn;
+const defaultService = "Bober AI on Kubernetes";
+const HERO_IMAGE = "/stock/private-llm.jpg";
+const related = [
+  { href: p.packHref, label: ru ? p.packLabelRu : p.packLabelEn },
+  { href: p.kasperskyHref, label: ru ? p.kasperskyLabelRu : p.kasperskyLabelEn },
+  { href: p.secureAiHref, label: ru ? p.secureAiLabelRu : p.secureAiLabelEn },
+  { href: "/services/rag", label: ru ? "Корпоративный RAG" : "Corporate RAG" },
+];
+const title = ru ? p.metaTitleRu : p.metaTitleEn;
+const description = ru ? p.metaDescRu : p.metaDescEn;
+const keywords = ru ? [...p.metaKeywordsRu] : [...p.metaKeywordsEn];
+const canonicalPath = locale === "en" ? "/en/ai-kubernetes" : "/ai-kubernetes";
+const jsonLd = [
+  webPageJsonLd({ name: title, description, url: pageUrl, locale }),
+  faqJsonLd(
+    (ru ? p.faqRu : p.faqEn).map((item) => ({ q: item.q, a: item.a })),
+    pageUrl,
+  ),
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  locale={locale}
+  canonicalPath={canonicalPath}
+  keywords={keywords}
+  jsonLd={jsonLd}
+>
+  <section class="section-band section--deep border-b border-hairline">
+    <div class="container-editorial">
+      <Breadcrumbs locale={locale} items={[{ name: "AI on Kubernetes", path: "/ai-kubernetes" }]} />
+      <div class="mt-8 grid gap-12 lg:grid-cols-[1fr_360px] lg:items-start">
+        <div class="max-w-4xl">
+          <span class="section-label">
+            {p.lineRu} · {ru ? "линия Bober AI Systems" : "line of Bober AI Systems"}
+          </span>
+          <h1 class="display-md mt-4">{h1}</h1>
+          <p class="mt-3 text-sm text-muted">
+            {ru ? "Исполнитель" : "Performer"}:{" "}
+            <span class="font-medium text-ink">{PROFILE.name}</span>
+          </p>
+          <PerformerRating locale={locale} className="mt-3" />
+          <p class="body-copy mt-5 max-w-3xl text-lg">{subtitle}</p>
+          <div class="mt-10 flex flex-wrap gap-4">
+            <button
+              type="button"
+              class="btn-primary"
+              data-contact-open
+              data-contact-service={defaultService}
+              data-contact-goal="audit_cta_click"
+            >
+              {ru ? "Обсудить архитектуру" : "Discuss the architecture"}
+            </button>
+            <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" class="btn-secondary" data-goal="telegram_click">
+              Telegram
+            </a>
+            <button
+              type="button"
+              class="btn-secondary"
+              data-contact-open
+              data-contact-service={defaultService}
+              data-contact-goal="service_estimate_cta_click"
+            >
+              {ru ? "Получить оценку" : "Get an estimate"}
+            </button>
+          </div>
+        </div>
+        <aside class="feature-card-bordered">
+          <p class="font-display text-2xl tracking-tight">
+            {pack?.salesNotes ?? (ru ? "от 800 000 ₽" : "from €8,000")}
+          </p>
+          <p class="mt-2 text-sm text-muted">
+            {t.timeline}: {pack?.deliveryDays ?? 28} {t.days}
+          </p>
+          <p class="mt-3 text-sm text-muted">
+            {isEn ? "Fixed estimate · remote" : "Фиксированная смета · удалённо"}
+          </p>
+          <div class="relative mt-6 aspect-[4/3] overflow-hidden rounded-lg border border-hairline bg-surface-soft">
+            <img
+              src={HERO_IMAGE}
+              alt={h1}
+              class="h-full w-full object-cover"
+              width="720"
+              height="540"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
+          <button
+            type="button"
+            class="btn-primary mt-6 w-full"
+            data-contact-open
+            data-contact-service={defaultService}
+            data-contact-goal={PRIMARY_CTA_GOAL}
+          >
+            {t.quote}
+          </button>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section--panel border-b border-hairline">
+    <div class="container-editorial max-w-3xl">
+      <p class="body-copy text-base">
+        {
+          ru
+            ? "Прототип в ноутбуке — не production. Переносим LLM, RAG и агентов в Kubernetes с контролем доступа, журналами и готовностью к ИБ."
+            : "A laptop prototype is not production. We move LLM, RAG and agents onto Kubernetes with access control, logs and security readiness."
+        }
+      </p>
+    </div>
+  </section>
+
+  <section class="section-band section--deep border-b border-hairline">
+    <div class="container-editorial grid gap-16 lg:grid-cols-2">
+      <div>
+        <h2 class="section-title">{ru ? p.problemsTitleRu : p.problemsTitleEn}</h2>
+        <ul class="mt-8 space-y-4">
+          {
+            (ru ? p.problemsRu : p.problemsEn).map((item) => (
+              <li class="body-copy flex gap-4 text-base">
+                <span class="meta-label shrink-0">—</span>
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div>
+        <h2 class="section-title">{ru ? p.servicesTitleRu : p.servicesTitleEn}</h2>
+        <ul class="mt-8 space-y-4">
+          {
+            services.map((service) => (
+              <li class="body-copy flex gap-4 text-base">
+                <span class="meta-label shrink-0">—</span>
+                <span>
+                  {"href" in service && service.href ? (
+                    <a href={localizePath(service.href, locale)} class="font-medium text-ink hover:text-primary">
+                      {service.title}
+                    </a>
+                  ) : (
+                    <span class="font-medium text-ink">{service.title}</span>
+                  )}
+                  <span class="mt-1 block text-muted">{service.summary}</span>
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section--panel border-b border-hairline">
+    <div class="container-editorial">
+      <h2 class="section-title">{ru ? p.processTitleRu : p.processTitleEn}</h2>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {
+          processSteps.map((step, index) => (
+            <article class="feature-card">
+              <span class="font-display text-3xl text-primary/40">{String(index + 1).padStart(2, "0")}</span>
+              <h3 class="card-title mt-3">{processTitles[index]}</h3>
+              <p class="body-copy mt-3 text-base">{step}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section--deep border-b border-hairline">
+    <div class="container-editorial max-w-3xl">
+      <h2 class="section-title">{ru ? "Типовая архитектура" : "Typical architecture"}</h2>
+      <ul class="mt-8 space-y-4">
+        {
+          architecture.map((item) => (
+            <li class="body-copy flex gap-4 text-base">
+              <span class="meta-label shrink-0">—</span>
+              <span>{item}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <h3 class="card-title mt-12">{ru ? p.kasperskyNoteTitleRu : p.kasperskyNoteTitleEn}</h3>
+      <p class="body-copy mt-3 text-base">{ru ? p.kasperskyNoteRu : p.kasperskyNoteEn}</p>
+    </div>
+  </section>
+
+  <section class="section-band section--panel border-b border-hairline">
+    <div class="container-editorial">
+      <h2 class="section-title">{ru ? "Эффект" : "Impact"}</h2>
+      <div class="mt-10 grid gap-6 sm:grid-cols-3">
+        {
+          roi.map((item) => (
+            <div class="feature-card-bordered text-center">
+              <p class="font-display text-3xl tracking-tight text-ink">{item.value}</p>
+              <p class="body-copy mt-2 text-sm">{item.label}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {
+    pack ? (
+      <section class="section-band section--deep border-b border-hairline">
+        <div class="container-editorial max-w-3xl">
+          <h2 class="section-title">{isEn ? "Price and conditions" : "Цена и условия"}</h2>
+          <div class="mt-8 overflow-x-auto">
+            <table class="w-full border-collapse text-left text-sm">
+              <caption class="sr-only">
+                {isEn ? "Commercial terms for this service" : "Коммерческие условия услуги"}
+              </caption>
+              <tbody>
+                <tr class="border-b border-hairline">
+                  <th scope="row" class="py-3 pr-6 font-medium text-ink">{isEn ? "Price" : "Цена"}</th>
+                  <td class="py-3 text-muted">{pack.salesNotes}</td>
+                </tr>
+                <tr class="border-b border-hairline">
+                  <th scope="row" class="py-3 pr-6 font-medium text-ink">{t.timeline}</th>
+                  <td class="py-3 text-muted">
+                    {pack.deliveryDays} {t.days}
+                  </td>
+                </tr>
+                <tr class="border-b border-hairline">
+                  <th scope="row" class="py-3 pr-6 font-medium text-ink">{isEn ? "Format" : "Формат"}</th>
+                  <td class="py-3 text-muted">
+                    {isEn ? "Fixed estimate · remote delivery" : "Фиксированная смета · удалённо"}
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" class="py-3 pr-6 font-medium text-ink">{isEn ? "Scope" : "Состав"}</th>
+                  <td class="py-3 text-muted">{pack.about}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    ) : null
+  }
+
+  {
+    reviews.length ? (
+      <ReviewsShowcase
+        sectionLabel={isEn ? "Trust" : "Доверие"}
+        title={isEn ? "Reviews from Yandex" : "Отзывы на Яндексе"}
+        subtitle={
+          isEn
+            ? "Public feedback from Yandex Services — same performer profile as the feed."
+            : "Публичные отзывы с Яндекс Услуг — тот же профиль исполнителя, что в фиде."
+        }
+        reviews={reviews}
+      />
+    ) : null
+  }
+
+  <section class="section-band section--panel border-b border-hairline">
+    <div class="container-editorial max-w-3xl">
+      <h2 class="section-title">{ru ? "Частые вопросы" : "FAQ"}</h2>
+      <dl class="mt-8 space-y-8">
+        {
+          (ru ? p.faqRu : p.faqEn).map((item) => (
+            <div>
+              <dt class="font-display text-xl tracking-tight">{item.q}</dt>
+              <dd class="body-copy mt-3 text-base">{item.a}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <section class="section-band section--deep border-b border-hairline">
+    <div class="container-editorial">
+      <h2 class="section-title">{ru ? "Связанные услуги" : "Related services"}</h2>
+      <div class="mt-6 flex flex-col gap-2">
+        {
+          related.map((item) => (
+            <a href={localizePath(item.href, locale)} class="link-more py-2">
+              {item.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section-band section--panel scroll-mt-16">
+    <div class="container-editorial grid gap-16 lg:grid-cols-2">
+      <div>
+        <span class="section-label">{ru ? "Контакт" : "Contact"}</span>
+        <h2 class="section-title mt-4">{t.formTitle}</h2>
+        <p class="body-copy mt-4 max-w-xl text-base">{subtitle}</p>
+      </div>
+      <ContactForm locale={locale} messages={messages} defaultService={defaultService} source="ai-kubernetes" />
+    </div>
+  </section>
+</BaseLayout>

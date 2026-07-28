@@ -1,0 +1,29 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  subtitle?: string;
+  items: string[];
+  tone?: "panel" | "deep";
+}
+
+const { label, title, subtitle, items, tone = "deep" } = Astro.props;
+---
+
+<section class={`section-band section--${tone} border-b border-hairline`}>
+  <div class="container-editorial">
+    <span class="section-label">{label}</span>
+    <h2 class="section-title mt-4">{title}</h2>
+    {subtitle ? <p class="body-copy mt-4 max-w-2xl text-base">{subtitle}</p> : null}
+    <ul class="mt-8 max-w-3xl space-y-3">
+      {
+        items.map((item) => (
+          <li class="body-copy flex gap-4 text-base">
+            <span class="meta-label shrink-0">—</span>
+            <span>{item}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

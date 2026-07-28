@@ -1,0 +1,50 @@
+---
+import { FEED_RATING, FEED_REVIEWS_COUNT } from "@/lib/feed-rating";
+import { PROFILE } from "@/lib/profile";
+import { SITE_REGION, YANDEX_USLUGI_URL } from "@/lib/site";
+import type { Locale } from "@/lib/i18n";
+
+interface Props {
+  locale?: Locale;
+  className?: string;
+  conversion?: number;
+}
+
+const { locale = "ru", className = "", conversion } = Astro.props;
+const isEn = locale === "en";
+const hasRating = Number(FEED_RATING) > 0 && Number(FEED_REVIEWS_COUNT) > 0;
+const ratingLine = `Рейтинг ${FEED_RATING} · Число отзывов ${FEED_REVIEWS_COUNT}`;
+const metaLine = [
+  `Годы опыта ${PROFILE.experienceYears}`,
+  `Регион ${SITE_REGION}`,
+  conversion != null ? `Конверсия ${conversion}` : null,
+]
+  .filter(Boolean)
+  .join(" · ");
+---
+
+<div class={`performer-rating ${className}`.trim()}>
+  <p class="sr-only">{`${ratingLine} · ${metaLine}`}</p>
+  {
+    hasRating && (
+      <p class="text-sm text-ink">
+        <span itemscope itemtype="https://schema.org/AggregateRating">
+          <meta itemprop="bestRating" content="5" />
+          <meta itemprop="worstRating" content="1" />
+          <meta itemprop="ratingValue" content={FEED_RATING} />
+          <meta itemprop="reviewCount" content={FEED_REVIEWS_COUNT} />
+          {isEn ? `Rating ${FEED_RATING} · Reviews ${FEED_REVIEWS_COUNT}` : ratingLine}
+        </span>
+      </p>
+    )
+  }
+  <p class="text-sm text-muted">{metaLine}</p>
+  <a
+    href={YANDEX_USLUGI_URL}
+    target="_blank"
+    rel="noreferrer"
+    class="mt-1 inline-block text-sm text-muted underline-offset-2 hover:text-ink hover:underline"
+  >
+    {isEn ? "Yandex reviews" : "Отзывы на Яндексе"}
+  </a>
+</div>

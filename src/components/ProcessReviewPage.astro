@@ -1,0 +1,59 @@
+---
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import ProcessReviewForm from "@/components/ProcessReviewForm.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import type { Locale } from "@/lib/i18n";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ru = locale !== "en";
+const title = ru
+  ? "Разбор одного процесса бесплатно | Bober AI"
+  : "Free review of one process | Bober AI";
+const description = ru
+  ? "Опишите один ручной процесс — покажем, где его можно автоматизировать, какие интеграции потребуются и есть ли смысл запускать пилот."
+  : "Describe one manual process — we'll show where it can be automated, what integrations are needed and whether a pilot makes sense.";
+const canonicalPath = locale === "en" ? "/en/process-review" : "/process-review";
+const bullets = ru
+  ? [
+      "Не более одного процесса за раз",
+      "Без проектирования полной архитектуры",
+      "Ответ в течение одного рабочего дня (24 часа)",
+    ]
+  : ["One process per request", "No full architecture design", "Reply within one business day (24 hours)"];
+---
+
+<BaseLayout title={title} description={description} locale={locale} canonicalPath={canonicalPath}>
+  <section class="section-band section--deep border-b border-hairline">
+    <div class="container-editorial max-w-3xl">
+      <Breadcrumbs
+        locale={locale}
+        items={[{ name: ru ? "Разбор процесса" : "Process review", path: "/process-review" }]}
+      />
+      <span class="section-label mt-4 inline-block">{ru ? "Бесплатно" : "Free"}</span>
+      <h1 class="display-md mt-4">
+        {ru ? "Разберём один ваш процесс бесплатно" : "We'll review one of your processes for free"}
+      </h1>
+      <p class="mt-4 max-w-2xl text-base leading-relaxed text-body">{description}</p>
+      <ul class="mt-6 space-y-2">
+        {
+          bullets.map((item) => (
+            <li class="body-copy flex gap-3 text-sm text-muted">
+              <span class="meta-label shrink-0">—</span>
+              <span>{item}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-band section--panel border-b border-hairline">
+    <div class="container-editorial max-w-3xl">
+      <ProcessReviewForm locale={locale} />
+    </div>
+  </section>
+</BaseLayout>

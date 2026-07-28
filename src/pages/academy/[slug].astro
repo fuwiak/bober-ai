@@ -1,18 +1,156 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import { ACADEMY_POSTS } from "@/lib/academy-posts";
 export const prerender = true;
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { ACADEMY_POSTS, getAcademyPost } from "@/lib/academy-posts";
+import { absoluteUrl, SITE_NAME } from "@/lib/site";
+
 export function getStaticPaths() {
   return ACADEMY_POSTS.map((p) => ({ params: { slug: p.slug } }));
 }
-const post = ACADEMY_POSTS.find((p) => p.slug === Astro.params.slug)!;
+
+const slug = Astro.params.slug!;
+const post = getAcademyPost(slug);
+if (!post) {
+  return Astro.redirect("/academy");
+}
+
+const dateFormatter = new Intl.DateTimeFormat("ru-RU", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+const pageUrl = absoluteUrl(`/academy/${post.slug}`);
+const index = ACADEMY_POSTS.findIndex((item) => item.slug === post.slug);
+const prev = index > 0 ? ACADEMY_POSTS[index - 1] : null;
+const next = index < ACADEMY_POSTS.length - 1 ? ACADEMY_POSTS[index + 1] : null;
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  headline: post.title,
+  description: post.summary,
+  url: pageUrl,
+  datePublished: post.publishedAt,
+  inLanguage: "ru-RU",
+  keywords: post.tags.join(", "),
+  image: absoluteUrl(post.coverImage),
+  author: { "@type": "Organization", name: SITE_NAME },
+  isPartOf: { "@type": "Blog", name: `Практикум Yaga · ${SITE_NAME}`, url: absoluteUrl("/academy") },
+};
+const howToJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: post.title,
+  description: post.summary,
+  url: pageUrl,
+  step: post.steps.map((text, stepIndex) => ({
+    "@type": "HowToStep",
+    position: stepIndex + 1,
+    name: `Шаг ${stepIndex + 1}`,
+    text,
+  })),
+};
 ---
-<BaseLayout title={post.title} description={post.summary} locale="ru" canonicalPath={`/academy/${post.slug}`}>
-  <article class="container-editorial py-12 md:py-20">
-    <p class="meta-label">Практикум</p>
-    <h1 class="mt-4 display-title">{post.title}</h1>
-    <p class="mt-4 text-sm text-muted">{post.publishedAt} · {post.readingTime}</p>
-    <p class="mt-6 body-copy max-w-3xl">{post.lead}</p>
-    <div class="mt-10 blog-article max-w-3xl" set:html={post.contentHtml} />
+
+<BaseLayout
+  title={post.title}
+  description={post.summary}
+  locale="ru"
+  canonicalPath={`/academy/${post.slug}`}
+  keywords={post.tags}
+  jsonLd={[articleJsonLd, howToJsonLd]}
+>
+  <article>
+    <header class="section-band section--deep border-b border-hairline">
+      <div class="container-editorial max-w-3xl">
+        <nav class="mb-8 text-sm text-muted">
+          <a href="/academy" class="link-more">← Блог практикума</a>
+        </nav>
+        <div class="meta-label flex flex-wrap items-center gap-x-3 gap-y-1 text-muted">
+          <time datetime={post.publishedAt}>{dateFormatter.format(new Date(post.publishedAt))}</time>
+          <span>·</span>
+          <span>{post.readingTime}</span>
+          <span>·</span>
+          <span>Практикум Yaga</span>
+        </div>
+        <h1 class="display-md mt-4">{post.title}</h1>
+        <p class="body-copy mt-5 text-lg text-body-strong">{post.lead}</p>
+        <div class="mt-5 flex flex-wrap gap-2">
+          {
+            post.tags.map((tag) => (
+              <span class="rounded-full border border-hairline px-2.5 py-1 text-[11px] font-bold uppercase tracking-widest text-muted">
+                {tag}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+    </header>
+
+    <div class="section-band section--panel">
+      <div class="container-editorial max-w-3xl">
+        <div class="relative mb-12 aspect-[16/9] overflow-hidden rounded-2xl bg-surface-soft">
+          <img
+            src={post.coverImage}
+            alt=""
+            class="h-full w-full object-cover"
+            width="1200"
+            height="675"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </div>
+
+        <div class="blog-article" set:html={post.contentHtml} />
+
+        <section class="mt-14">
+          <h2 class="section-title mb-4">Шпаргалка команд</h2>
+          <pre class="overflow-x-auto rounded-2xl border border-hairline bg-surface-soft p-4 text-sm"><code>{post.commands.join("\n")}</code></pre>
+          <p class="meta-label mt-2">bash · yaga</p>
+        </section>
+
+        {
+          post.note ? (
+            <aside class="mt-8 rounded-2xl border border-hairline bg-surface-soft px-5 py-4 text-sm text-muted">
+              <p class="meta-label mb-2 text-ink">Важно</p>
+              <p>{post.note}</p>
+            </aside>
+          ) : null
+        }
+
+        <footer class="mt-10 rounded-2xl border border-dashed border-hairline px-5 py-4 text-sm text-muted">
+          Не официальная программа Яндекса — внутренний практикум {SITE_NAME} по фактам из{" "}
+          <code class="rounded bg-canvas px-1.5 py-0.5 text-[0.85em]">cli/yaga</code>.
+        </footer>
+
+        <nav class="mt-14 grid gap-4 border-t border-hairline pt-8 sm:grid-cols-2">
+          {
+            prev ? (
+              <a
+                href={`/academy/${prev.slug}`}
+                class="rounded-2xl border border-hairline p-4 transition hover:border-primary/40"
+              >
+                <span class="meta-label text-muted">← Предыдущая</span>
+                <p class="mt-2 font-bold text-ink">{prev.title}</p>
+              </a>
+            ) : (
+              <div />
+            )
+          }
+          {
+            next ? (
+              <a
+                href={`/academy/${next.slug}`}
+                class="rounded-2xl border border-hairline p-4 text-right transition hover:border-primary/40"
+              >
+                <span class="meta-label text-muted">Следующая →</span>
+                <p class="mt-2 font-bold text-ink">{next.title}</p>
+              </a>
+            ) : null
+          }
+        </nav>
+      </div>
+    </div>
   </article>
 </BaseLayout>

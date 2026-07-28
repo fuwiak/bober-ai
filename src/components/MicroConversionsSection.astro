@@ -1,0 +1,37 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  subtitle: string;
+  items: { title: string; description: string; cta: string; service: string }[];
+}
+
+const { label, title, subtitle, items } = Astro.props;
+---
+
+<section class="section-band section--panel border-b border-hairline">
+  <div class="container-editorial">
+    <span class="section-label">{label}</span>
+    <h2 class="section-title mt-4">{title}</h2>
+    <p class="body-copy mt-4 max-w-2xl text-base">{subtitle}</p>
+    <div class="micro-conversions-grid mt-10">
+      {
+        items.map((item) => (
+          <article class="micro-conversion-card">
+            <h3 class="card-title text-xl">{item.title}</h3>
+            <p class="body-copy mt-3 text-base">{item.description}</p>
+            <button
+              type="button"
+              class="btn-secondary mt-6"
+              data-contact-open
+              data-contact-service={item.service}
+              data-contact-goal="micro_conversion_click"
+            >
+              {item.cta}
+            </button>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

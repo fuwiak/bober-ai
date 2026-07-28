@@ -1,28 +1,639 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
 import ContactForm from "@/components/ContactForm.astro";
+import PartnerCertificates from "@/components/PartnerCertificates.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { LEGAL_ROUTES } from "@/lib/legal";
+import { webPageJsonLd } from "@/lib/seo";
 import { loadMessages } from "@/lib/i18n";
-import { PARTNERS_SITE_URL, TELEGRAM_URL } from "@/lib/site";
+import { OFFICE_STOCK_IMAGES, PARTNERS_SITE_URL, STOCK_IMAGES, TELEGRAM_URL } from "@/lib/site";
+import { KASPERSKY_PARTNER_BADGES, TRUST_PARTNERS } from "@/lib/trust-partners";
+
 export const prerender = true;
+
 const messages = loadMessages("ru");
+const PARTNERS_URL = `${PARTNERS_SITE_URL.replace(/\/$/, "")}/`;
+const CLOUD_PARTNERS = TRUST_PARTNERS.filter((p) => Boolean(p.href));
+
+const AUDIENCE = [
+  "Digital-агентства",
+  "Software house",
+  "Интеграторы Bitrix24, amoCRM и 1С",
+  "Партнёры по телефонии и контакт-центрам",
+  "Консалтинговые и ИБ-компании",
+  "Зарубежные агентства без своей AI-команды",
+];
+
+const PARTNER_HIGHLIGHTS = [
+  { value: "Крупнее сделки", label: "AI в вашем каталоге услуг" },
+  { value: "Быстрее офферы", label: "архитектура и смета под бриф" },
+  { value: "Маржа у вас", label: "wholesale + ваш наценка" },
+  { value: "White-label", label: "silent или technical" },
+  { value: "Ответ за 4ч", label: "оценка ролей за 24ч" },
+];
+
+const WHATS_NEW = [
+  {
+    title: "Bober Secure AI",
+    text: "Приватный LLM/RAG, Agent Gateway и защита контура — в том числе с продуктами Kaspersky.",
+  },
+  {
+    title: "Телефония + CRM + AI",
+    text: "MANGO, UIS, Voximplant, Asterisk или штатная телефония Bitrix24 → факты в сделке и follow-up.",
+  },
+  {
+    title: "AI-контур отдела продаж",
+    text: "Заявка → квалификация → CRM → КП и задачи менеджеру — готовый продукт в вашем каталоге.",
+  },
+  {
+    title: "Ответ за 4 часа",
+    text: "Wholesale-оценка и распределение ролей — в течение 24 часов после брифа.",
+  },
+];
+
+const CLIENT_OFFERS = [
+  {
+    id: "bitrix24-ai-analytics",
+    title: "AI-аналитика для Bitrix24 и amoCRM",
+    text: "Вопросы о продажах, задачах и звонках на естественном языке — внутри CRM клиента.",
+  },
+  {
+    id: "telephony-crm-ai",
+    title: "Телефония + CRM + AI",
+    text: "Слой поверх BitrixGPT или Yandex SpeechKit: звонок → факты в карточке → задача и follow-up.",
+  },
+  {
+    id: "ai-sales-loop",
+    title: "AI-контур отдела продаж",
+    text: "Сквозной контур от лида до КП: квалификация, CRM, документы и контроль менеджеров.",
+  },
+  {
+    id: "kp-documents",
+    title: "Автоматизация КП и документов",
+    text: "OCR, договоры, счета, спецификации и генерация коммерческих предложений из каталога.",
+  },
+  {
+    id: "secure-private-ai",
+    title: "Secure Private AI Cloud",
+    text: "On-prem или выделенный контур: LLM/RAG без утечки данных + опционально Kaspersky.",
+  },
+  {
+    id: "first-line-ai",
+    title: "AI-оператор первой линии",
+    text: "Квалификация обращений, ответы по базе знаний, эскалация сложных кейсов менеджеру.",
+  },
+  {
+    id: "call-scoring",
+    title: "Анализ звонков и контроль менеджеров",
+    text: "Транскрипция, scoring диалогов, соблюдение скрипта и сигналы для руководителя.",
+  },
+  {
+    id: "corp-rag",
+    title: "Корпоративная база знаний",
+    text: "RAG по регламентам и внутренним документам со ссылками на источники.",
+  },
+  {
+    id: "crm-1c",
+    title: "Интеграция CRM с 1С и МойСклад",
+    text: "Синхронизация заказов, остатков, клиентов и документов между контурами учёта.",
+  },
+  {
+    id: "lead-reactivation",
+    title: "Реактивация старых лидов",
+    text: "Voice- и messaging-сценарии возврата в воронку с записью результата в CRM.",
+  },
+];
+
+const ECONOMICS_HEADERS = ["Модель", "Контакт с клиентом", "Оффер", "Delivery", "Биллинг"];
+
+const ECONOMICS_ROWS = [
+  ["Silent subcontractor", "Только партнёр", "Под брендом партнёра", "Bober AI", "Партнёр / wholesale"],
+  ["Technical partner", "Совместные встречи", "Партнёр", "Совместно", "Fixed / hourly"],
+  ["Delivery team", "По договорённости", "Партнёр", "Bober AI", "Проект"],
+  ["Expert on demand", "Партнёр", "Партнёр", "Консалтинг", "Почасовая"],
+];
+
+const WORKFLOW = [
+  { title: "Бриф", text: "Партнёр передаёт задачу и контекст клиента." },
+  { title: "Архитектура и себестоимость", text: "Собираем решение и wholesale-оценку — базу для вашей маржи." },
+  { title: "Оффер под вашим брендом", text: "Помогаем с КП и материалами; партнёр презентует клиенту." },
+  { title: "Delivery", text: "Реализуем архитектуру, backend, LLM, интеграции и deployment." },
+  { title: "Сдача и маржа", text: "Документация и доступы — вам; клиент и контракт остаются у партнёра." },
+];
+
+const PACKAGES = [
+  {
+    id: "presale-support",
+    title: "Presale support",
+    items: ["Анализ брифа", "Архитектура", "Оценка себестоимости", "Участие в технической встрече"],
+  },
+  {
+    id: "project-delivery",
+    title: "Project delivery",
+    items: ["Разработка", "Интеграции", "Тестирование", "Deployment", "Документация"],
+  },
+  {
+    id: "ongoing-ai-team",
+    title: "Ongoing AI team",
+    items: ["Ежемесячный пул часов", "Несколько проектов", "Приоритетная поддержка", "Быстрые оценки"],
+  },
+];
+
+const SCOPE = [
+  "Discovery и анализ требований",
+  "Архитектура решения",
+  "Backend и интеграции (Bitrix24, amoCRM, 1С, МойСклад)",
+  "RAG, AI-агенты, voice AI, OCR",
+  "Телефония + CRM + AI (MANGO, UIS, Voximplant, Asterisk)",
+  "Bober Secure AI: приватный LLM, Agent Gateway, Container Security",
+  "Лицензии и внедрение продуктов Kaspersky через дистрибуцию",
+  "Развёртывание в облаке или on-premise",
+  "DevOps и мониторинг",
+  "Техническая документация под вашим брендом",
+];
+
+const PARTNER_CASE = {
+  title: "Интегратор CRM закрыл запрос на AI-аналитику",
+  lead: "Клиент интегратора Битрикс24 попросил AI-аналитику по продажам и звонкам. У партнёра была сильная экспертиза в CRM, но не было своей LLM/backend-команды.",
+  partner: [
+    "Отношения и договор с клиентом",
+    "Контекст процессов и настройка Bitrix24",
+    "Оффер и коммерческое сопровождение",
+    "Обучение пользователей",
+  ],
+  boberAi: [
+    "Архитектура и слой данных",
+    "LLM-интеграция и RAG-запросы",
+    "Backend, доступы, deployment",
+    "Документация и материалы под брендом партнёра",
+  ],
+  result:
+    "Партнёр продал более крупный проект, сохранил клиента и маржу; Bober AI остался silent subcontractor.",
+};
+
+const FLOWER_WHITELABEL_BUILT = [
+  "Синхронизация клиентов и заказов",
+  "Единая клиентская база",
+  "AI-сегментация покупателей",
+  "Аналитика среднего чека и повторных заказов",
+  "Сценарии реактивации",
+  "Интеграция с Битрикс24, amoCRM или интерфейсом партнёра",
+];
+
+
+const webPage = webPageJsonLd({
+  name: "AI-разработка в ваши услуги без найма команды — Partner Program",
+  description:
+    "White-label AI для агентств и интеграторов: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и RAG под вашим брендом. Клиент и маржа остаются у вас.",
+  url: PARTNERS_URL,
+  locale: "ru",
+});
 ---
+
 <BaseLayout
   title="AI-разработка в ваши услуги без найма команды — Partner Program"
-  description="White-label AI для агентств и интеграторов: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и RAG под вашим брендом."
+  description="White-label AI для агентств и интеграторов: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и RAG под вашим брендом. Клиент и маржа остаются у вас. Ответ за 4 рабочих часа."
   locale="ru"
   canonicalPath="/white-label"
+  keywords={[
+    "white label ai разработка",
+    "субподряд ai разработка",
+    "партнёрская программа для агентств",
+    "аутсорс ai для software house",
+    "технический партнёр ии",
+    "secure ai white label",
+    "телефония crm ai для интеграторов",
+  ]}
+  jsonLd={webPage}
 >
-  <article class="container-editorial py-12 md:py-20">
-    <p class="meta-label">Partner Program · {PARTNERS_SITE_URL}</p>
-    <h1 class="mt-4 display-title">White-label AI под вашим брендом</h1>
-    <p class="mt-6 body-copy max-w-3xl">
-      Субподряд для агентств и интеграторов: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и RAG.
-      Клиент и маржа остаются у вас. Ответ за 4 рабочих часа.
-    </p>
-    <p class="mt-6"><a class="btn-primary" href={TELEGRAM_URL} target="_blank" rel="noreferrer">Написать в Telegram</a></p>
-    <section id="contact" class="mt-16 border-t border-hairline pt-12">
-      <h2 class="section-title">{messages.nav.contact}</h2>
-      <div class="mt-8 max-w-xl"><ContactForm locale="ru" messages={messages} /></div>
-    </section>
-  </article>
+
+<main>
+          <section class="section-band border-b border-hairline">
+            <div class="container-editorial max-w-4xl">
+              
+                <p class="hero-label">Bober AI Systems · Partner Program</p>
+                <h1 class="section-title mt-6 max-w-3xl text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05]">
+                  Добавьте AI-разработку в свои услуги без найма собственной команды
+                </h1>
+                <p class="body-copy mt-5 max-w-2xl text-lg">
+                  Закрываем архитектуру, backend, LLM, Secure AI, телефонию+CRM, интеграции и deployment под
+                  вашим брендом. Вы сохраняете клиента, управление проектом и свою маржу.
+                </p>
+                <div class="mt-8 flex flex-wrap gap-3">
+                  <a href="#contact" class="btn-primary" data-goal="partner_cta_click">
+                    Обсудить партнёрство
+                  </a>
+                  <a
+                    href={TELEGRAM_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="btn-secondary"
+                   data-goal="partner_telegram_click">
+                    Написать в Telegram
+                  </a>
+                </div>
+              
+
+              
+                <div class="editorial-image editorial-image--hero absolute inset-0">
+                  <img src={OFFICE_STOCK_IMAGES.tower} alt="" class="hero-media__image h-full w-full object-cover" width="1200" height="800" loading="lazy" decoding="async" />
+                <span class="editorial-image__overlay" aria-hidden="true"></span><span class="editorial-image__shine" aria-hidden="true"></span></div>
+              
+            </div>
+          </section>
+
+          <section class="section-band section--panel border-b border-hairline">
+            <div class="container-editorial max-w-4xl">
+              
+                <span class="section-label">Для кого</span>
+                <h2 class="section-title mt-4 max-w-2xl">С кем работаем в этом формате</h2>
+              
+              <ul class="mt-8 grid gap-3 sm:grid-cols-2">
+                {AUDIENCE.map((item) => (
+                  <li
+                    key={item}
+                    class="border border-hairline bg-surface-card px-5 py-4 text-sm text-body"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+
+          <section class="prestige-gallery border-b border-hairline" aria-label="Офис и атмосфера партнёрства">
+            <div class="prestige-gallery__grid">
+              
+                <div class="editorial-image editorial-image--hero prestige-gallery__frame">
+                  <img src={STOCK_IMAGES.team} alt="" class="hero-media__image h-full w-full object-cover" width="1200" height="800" loading="lazy" decoding="async" />
+                <span class="editorial-image__overlay" aria-hidden="true"></span><span class="editorial-image__shine" aria-hidden="true"></span></div>
+              
+              
+                <div class="editorial-image editorial-image--card prestige-gallery__frame">
+                  <img src={OFFICE_STOCK_IMAGES.interior} alt="" class="hero-media__image h-full w-full object-cover" width="1200" height="800" loading="lazy" decoding="async" />
+                <span class="editorial-image__overlay" aria-hidden="true"></span><span class="editorial-image__shine" aria-hidden="true"></span></div>
+              
+              
+                <div class="editorial-image editorial-image--card prestige-gallery__frame">
+                  <img src={OFFICE_STOCK_IMAGES.facade} alt="" class="hero-media__image h-full w-full object-cover" width="1200" height="800" loading="lazy" decoding="async" />
+                <span class="editorial-image__overlay" aria-hidden="true"></span><span class="editorial-image__shine" aria-hidden="true"></span></div>
+              
+            </div>
+          </section>
+
+          <section
+            class="partner-marquee-band border-b border-hairline"
+            aria-label="Преимущества партнёрства"
+          >
+            <div class="partner-marquee" aria-hidden="true">
+              <div class="partner-marquee__track">
+                {[0, 1].map((copy) => (
+                  <div key={copy} class="partner-marquee__group">
+                    {PARTNER_HIGHLIGHTS.map((item) => (
+                      <div key={`${copy}-${item.value}`} class="partner-marquee__item">
+                        <span class="partner-marquee__value">{item.value}</span>
+                        <span class="partner-marquee__label">{item.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <ul class="partner-marquee-static sr-only">
+              {PARTNER_HIGHLIGHTS.map((item) => (
+                <li key={item.value}>
+                  {item.value}: {item.label}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section class="section-band section--panel border-b border-hairline">
+            <div class="container-editorial max-w-4xl">
+              
+                <span class="section-label">Новое в каталоге</span>
+                <h2 class="section-title mt-4 max-w-2xl">Что появилось для партнёров</h2>
+                <p class="body-copy mt-4 max-w-2xl">
+                  Линейка расширилась: Secure AI, телефония и готовый AI-контур продаж — можно продавать без
+                  найма своей LLM-команды.
+                </p>
+              
+              <div class="mt-8 grid gap-4 sm:grid-cols-2">
+                {WHATS_NEW.map((item) => (
+                  
+                    <div class="home-hub-card">
+                      <h3 class="card-title text-lg">{item.title}</h3>
+                      <p class="body-copy mt-2 text-sm">{item.text}</p>
+                    </div>
+                  
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section class="section-band border-b border-hairline">
+            <div class="container-editorial max-w-4xl">
+              
+                <span class="section-label">Каталог для клиента</span>
+                <h2 class="section-title mt-4 max-w-2xl">Что вы сможете предложить своим клиентам</h2>
+                <p class="body-copy mt-4 max-w-2xl">
+                  Упаковываем RAG, агентов, Secure AI, voice, телефонию и OCR в продаваемые продукты — под
+                  вашим брендом и в вашей смете.
+                </p>
+              
+              <div class="mt-8 grid gap-4 sm:grid-cols-2">
+                {CLIENT_OFFERS.map((item) => (
+                  
+                    <div id={item.id} class="home-hub-card scroll-mt-24">
+                      <h3 class="card-title text-lg">{item.title}</h3>
+                      <p class="body-copy mt-2 text-sm">{item.text}</p>
+                    </div>
+                  
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section class="section-band border-b border-hairline">
+            <div class="container-editorial max-w-4xl">
+              
+                <span class="section-label">Экономика партнёрства</span>
+                <h2 class="section-title mt-4 max-w-2xl">Кто продаёт, кто делает, кто выставляет счёт</h2>
+                <p class="body-copy mt-4 max-w-2xl">
+                  Партнёр ставит цену для клиента и добавляет свою маржу. Мы даём wholesale-оценку технической
+                  реализации. Presale и account — на стороне партнёра; инвойс клиенту — обычно тоже. Клиентский
+                  пилот на рынке — от 300&nbsp;000&nbsp;₽; партнёрская цена обсуждается по проекту. Ответ на
+                  бриф — в течение 4 рабочих часов.
+                </p>
+              
+              <div class="mt-8 overflow-x-auto">
+                <table class="w-full min-w-[640px] border-collapse text-sm">
+                  <thead>
+                    <tr class="border-b border-hairline-strong text-left">
+                      {ECONOMICS_HEADERS.map((header) => (
+                        <th key={header} class="py-3 pr-4 font-display font-medium text-muted">
+                          {header}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {ECONOMICS_ROWS.map((row) => (
+                      <tr key={row[0]} class="border-b border-hairline">
+                        {row.map((cell, index) => (
+                          <td
+                            key={`${row[0]}-${ECONOMICS_HEADERS[index]}`}
+                            class={`py-4 pr-4 ${index === 0 ? "text-body-strong" : "text-body"}`}
+                          >
+                            {cell}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <section class="section-band section--panel border-b border-hairline">
+            <div class="container-editorial max-w-4xl">
+              
+                <span class="section-label">Гарантии</span>
+                <h2 class="section-title mt-4 max-w-2xl">Ваш клиент остаётся вашим</h2>
+                <p class="body-copy mt-4 max-w-2xl">
+                  NDA и non-circumvention — по запросу до старта. Материалы, демо и документация — под вашим
+                  брендом. Коммуникация с конечным клиентом — только через согласованный канал. Публичные кейсы
+                  и упоминания — только с вашего согласия.
+                </p>
+              
+            </div>
+          </section>
+
+          <section class="section-band border-b border-hairline">
+            <div class="container-editorial max-w-4xl">
+              <div class="grid items-center gap-10 md:grid-cols-2">
+                
+                  <span class="section-label">Кейс партнёра</span>
+                  <h2 class="section-title mt-4 max-w-2xl">{PARTNER_CASE.title}</h2>
+                  <p class="body-copy mt-4">{PARTNER_CASE.lead}</p>
+                
+                
+                  <div class="editorial-image editorial-image--card absolute inset-0">
+                    <img src={STOCK_IMAGES.sales} alt="" class="hero-media__image h-full w-full object-cover" width="1200" height="800" loading="lazy" decoding="async" />
+                  <span class="editorial-image__overlay" aria-hidden="true"></span><span class="editorial-image__shine" aria-hidden="true"></span></div>
+                
+              </div>
+              <div class="mt-8 grid gap-4 sm:grid-cols-2">
+                <div class="border border-hairline bg-surface-card p-5">
+                  <span class="meta-label text-muted-soft">Партнёр</span>
+                  <ul class="mt-3 space-y-2">
+                    {PARTNER_CASE.partner.map((item) => (
+                      <li key={item} class="flex items-start gap-3 text-sm text-body">
+                        <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-muted-soft" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div class="border border-hairline bg-surface-card p-5">
+                  <span class="meta-label text-muted-soft">Bober AI</span>
+                  <ul class="mt-3 space-y-2">
+                    {PARTNER_CASE.boberAi.map((item) => (
+                      <li key={item} class="flex items-start gap-3 text-sm text-body">
+                        <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <p class="mt-6 text-sm text-body-strong">{PARTNER_CASE.result}</p>
+              <p class="mt-2 text-sm text-muted">Анонимный кейс · white-label delivery</p>
+            </div>
+          </section>
+
+          <section class="section-band section--panel border-b border-hairline">
+            <div class="container-editorial max-w-4xl">
+              
+                <span class="section-label">Реализованный проект</span>
+                <h2 class="section-title mt-4 max-w-2xl">
+                  White-label: AI-сегментация и повторные продажи на МойСклад
+                </h2>
+                <p class="body-copy mt-4 max-w-2xl">
+                  Партнёр вёл клиента на МойСклад, сайте и в мессенджерах. Мы подключились как техническая
+                  AI-команда: архитектура, backend, сегментация и рекомендации — под брендом партнёра.
+                </p>
+              
+              <ul class="mt-8 grid gap-3 sm:grid-cols-2">
+                {FLOWER_WHITELABEL_BUILT.map((item) => (
+                  <li key={item} class="flex items-start gap-3 text-sm text-body">
+                    <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p class="body-copy mt-6 text-sm text-body-strong">
+                Партнёр продал систему роста повторных продаж без собственной AI-команды.
+              </p>
+              <p class="mt-3 text-sm text-muted">kinetic-ai.ru · МойСклад · AI-сегментация</p>
+            </div>
+          </section>
+
+          <section class="section-band border-b border-hairline">
+            <div class="container-editorial max-w-4xl">
+              
+                <span class="section-label">Как устроена работа</span>
+                <h2 class="section-title mt-4 max-w-2xl">От брифа до сдачи</h2>
+              
+              <div class="mt-8 grid gap-4">
+                {WORKFLOW.map((step, index) => (
+                  <div key={step.title} class="flex gap-5 border-b border-hairline pb-4">
+                    <span class="font-display text-2xl text-muted-soft">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <h3 class="card-title text-lg">{step.title}</h3>
+                      <p class="body-copy mt-1 text-sm">{step.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section class="section-band section--panel border-b border-hairline">
+            <div class="container-editorial max-w-4xl">
+              
+                <span class="section-label">Пакеты участия</span>
+                <h2 class="section-title mt-4 max-w-2xl">Три формата под разные проекты</h2>
+              
+              <div class="mt-8 grid gap-4 sm:grid-cols-3">
+                {PACKAGES.map((pkg) => (
+                  <div key={pkg.id} id={pkg.id} class="home-hub-card scroll-mt-24">
+                    <h3 class="card-title text-lg">{pkg.title}</h3>
+                    <ul class="mt-3 space-y-2">
+                      {pkg.items.map((item) => (
+                        <li key={item} class="text-sm text-body">
+                          — {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section class="section-band border-b border-hairline">
+            <div class="container-editorial max-w-4xl">
+              
+                <span class="section-label">Технический периметр</span>
+                <h2 class="section-title mt-4 max-w-2xl">Что закрываем под вашим проектом</h2>
+              
+              <ul class="mt-8 grid gap-3 sm:grid-cols-2">
+                {SCOPE.map((item) => (
+                  <li key={item} class="flex items-start gap-3 text-sm text-body">
+                    <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+
+          <section class="section-band section--panel border-b border-hairline">
+            <div class="container-editorial max-w-4xl">
+              
+                <span class="section-label">Облако и инфраструктура</span>
+                <h2 class="section-title mt-4 max-w-2xl">С кем уже работаем по инфраструктуре</h2>
+                <p class="body-copy mt-4 max-w-2xl">
+                  Авторизованный партнёр „Лаборатории Касперского“ (B2B и B2C) · партнёр Yandex Cloud ·
+                  партнёрская программа Selectel · технологический партнёр Cloud.ru · участие в партнерской
+                  программе 1С-Битрикс (ID 28909898). Деплой у клиента или в вашем контуре — без смены лица
+                  перед конечным заказчиком.
+                </p>
+              
+              <div class="mt-8 flex flex-wrap gap-4" aria-label="Облачные и технологические партнёры">
+                {CLOUD_PARTNERS.map((partner) => (
+                  <a
+                    key={partner.id}
+                    href={partner.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="trust-logo trust-logo--linked"
+                  >
+                    <div
+                      class={`trust-logo__mark${partner.markTone === "dark" ? " trust-logo__mark--dark" : ""}`}
+                    >
+                      <img src={partner.logoSrc} alt="" class="trust-logo__icon" width="1200" height="800" loading="lazy" decoding="async" />
+                    </div>
+                    <span class="trust-logo__name">{partner.name}</span>
+                  </a>
+                ))}
+                {TRUST_PARTNERS.filter((p) => !p.href).map((partner) => (
+                  <div key={partner.id} class="trust-logo">
+                    <div
+                      class={`trust-logo__mark${partner.markTone === "dark" ? " trust-logo__mark--dark" : ""}`}
+                    >
+                      <img src={partner.logoSrc} alt="" class="trust-logo__icon" width="1200" height="800" loading="lazy" decoding="async" />
+                    </div>
+                    <span class="trust-logo__name">{partner.name}</span>
+                  </div>
+                ))}
+              </div>
+
+              
+                {KASPERSKY_PARTNER_BADGES.map((badge) => (
+                  <div key={badge.id} class="partner-badge-frame">
+                    <img src={badge.src} alt={badge.altRu} class="partner-badge-image" width="1200" height="800" loading="lazy" decoding="async" />
+                  </div>
+                ))}
+              
+
+              <div class="mt-12">
+                <PartnerCertificates locale="ru" intro="Оригиналы сертификатов Registered Partner — для пресейла и согласования ИБ у клиента партнёра." titles={{ b2b: "B2B", b2c: "B2C" }} openLabel="Открыть PDF" />
+              </div>
+            </div>
+          </section>
+
+          <section id="contact" class="section-band">
+            <div class="container-editorial max-w-2xl">
+              
+                <span class="section-label">Контакт</span>
+                <h2 class="section-title mt-4">Обсудим партнёрство</h2>
+                <p class="body-copy mt-4">
+                  Пришлите бриф или тип сотрудничества — ответим в течение 4 рабочих часов. Wholesale-оценка и
+                  распределение ролей — в течение 24 часов после брифа.
+                </p>
+              
+              <div class="mt-8">
+                <ContactForm locale="ru" messages={messages} source="white-label-landing" defaultService="Партнёрство / White-label" />
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <footer class="border-t border-hairline py-10">
+          <div class="container-editorial flex flex-wrap items-center justify-between gap-4 text-sm text-muted-soft">
+            <span>© {new Date().getFullYear()} Bober AI Systems</span>
+            <div class="flex flex-wrap gap-4">
+              <a
+                href={`https://www.bober-ai.dev${LEGAL_ROUTES.privacyPolicy}`}
+                class="text-muted-soft hover:text-muted"
+              >
+                Политика конфиденциальности
+              </a>
+              <a
+                href={`https://www.bober-ai.dev${LEGAL_ROUTES.consent}`}
+                class="text-muted-soft hover:text-muted"
+              >
+                Согласие на обработку ПДн
+              </a>
+              <a href="https://www.bober-ai.dev" class="text-muted-soft hover:text-muted">
+                bober-ai.dev
+              </a>
+            </div>
+          </div>
+        </footer>
+      
 </BaseLayout>

@@ -1,25 +1,37 @@
 ---
 export const prerender = true;
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import BeforeAfterDemo from "@/components/BeforeAfterDemo.astro";
 import ContactForm from "@/components/ContactForm.astro";
 import TrustStrip from "@/components/TrustStrip.astro";
 import CaseStudyCard from "@/components/CaseStudyCard.astro";
 import PackagesShowcase from "@/components/PackagesShowcase.astro";
 import FaqSection from "@/components/FaqSection.astro";
+import RoiCalculatorSection from "@/components/RoiCalculatorSection.astro";
 import { loadMessages, localizePath } from "@/lib/i18n";
-import { getPortfolioListing } from "@/lib/profile";
+import { getEnterpriseServicesListing } from "@/lib/enterprise-services";
+import { getPortfolioListing, PROFILE } from "@/lib/profile";
 import { absoluteUrl } from "@/lib/site";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
   FOUNDER_IMAGE,
+  GITHUB_URL,
+  LINKEDIN_URL,
   OFFICE_STOCK_IMAGES,
   PRIMARY_CTA_GOAL,
   SITE_NAME,
   TELEGRAM_URL,
   WHATSAPP_URL,
+  YANDEX_USLUGI_URL,
 } from "@/lib/site";
-import { organizationJsonLd, websiteJsonLd, siteNavigationJsonLd } from "@/lib/seo";
+import {
+  localizedAbsolute,
+  organizationJsonLd,
+  personJsonLd,
+  websiteJsonLd,
+  siteNavigationJsonLd,
+} from "@/lib/seo";
 
 const locale = "ru" as const;
 const messages = loadMessages(locale);
@@ -28,6 +40,7 @@ const hero = messages.hero;
 const founderAlt = hero.heroImageAlt || `${SITE_NAME} — Павел Стасиньски`;
 const trustStats = messages.trust.stats;
 const trustBenefits = messages.trust.benefits;
+const ba = messages.beforeAfterDemo;
 const packageItems = messages.packages.items.slice(0, 4).map((item) => ({
   name: item.name,
   price: item.price,
@@ -46,8 +59,34 @@ const leadParagraphs = hero.valueProposition
   .split(/\n\n+/)
   .map((part) => part.trim())
   .filter(Boolean);
+const services = getEnterpriseServicesListing(locale);
+const offersJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: services.map((offer, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "Offer",
+      name: offer.title,
+      price: offer.price,
+      priceCurrency: "RUB",
+      url: absoluteUrl(`/services/${offer.slug}`),
+    },
+  })),
+};
+const founderJsonLd = personJsonLd({
+  name: PROFILE.name,
+  jobTitle: PROFILE.roles[0],
+  description: PROFILE.focus,
+  image: PROFILE.heroImage,
+  url: localizedAbsolute("/about", locale),
+  sameAs: [LINKEDIN_URL, GITHUB_URL, TELEGRAM_URL, YANDEX_USLUGI_URL],
+});
 const homeJsonLd = [
   { "@context": "https://schema.org", ...organizationJsonLd(locale), description: meta.description },
+  founderJsonLd,
+  offersJsonLd,
   websiteJsonLd(locale),
   siteNavigationJsonLd(locale),
 ];
@@ -143,18 +182,35 @@ const homeJsonLd = [
     </div>
   </section>
 
+  <BeforeAfterDemo
+    label={ba.label}
+    title={ba.title}
+    subtitle={ba.subtitle}
+    demoNote={ba.demoNote}
+    beforeLabel={ba.beforeLabel}
+    afterLabel={ba.afterLabel}
+    beforeMetric={ba.beforeMetric}
+    afterMetric={ba.afterMetric}
+    beforeSteps={ba.beforeSteps}
+    afterSteps={ba.afterSteps}
+    flow={ba.flow}
+  />
+
   <section id="cases" class="section-band section--panel scroll-mt-16 border-b border-hairline">
     <div class="container-editorial">
+      <div class="reveal">
       <span class="section-label">{messages.homeLanding.casesLabel}</span>
       <h2 class="section-title mt-4">{messages.homeLanding.casesTitle}</h2>
       <p class="body-copy mt-4 max-w-2xl text-base">{messages.homeLanding.casesSubtitle}</p>
+      </div>
 
       {
         smbCases.length > 0 && (
           <>
             <h3 class="mt-10 font-display text-2xl tracking-tight">{messages.portfolio.segmentSmbTitle}</h3>
-            <div class="mt-6 grid gap-6 md:grid-cols-2">
+            <div class="mt-6 grid gap-6 md:grid-cols-2 reveal-stagger">
               {smbCases.map((item) => (
+                <div class="reveal">
                 <CaseStudyCard
                   item={item}
                   locale={locale}
@@ -163,6 +219,7 @@ const homeJsonLd = [
                   beforeLabel={messages.homeLanding.caseBeforeLabel}
                   afterLabel={messages.homeLanding.caseAfterLabel}
                 />
+                </div>
               ))}
             </div>
           </>
@@ -198,6 +255,8 @@ const homeJsonLd = [
       </div>
     </div>
   </section>
+
+  <RoiCalculatorSection locale={locale} messages={messages} />
 
   <section class="section-band section--panel border-b border-hairline">
     <div class="container-editorial flex flex-wrap gap-x-8 gap-y-3">

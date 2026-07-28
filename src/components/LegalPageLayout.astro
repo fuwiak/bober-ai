@@ -1,0 +1,59 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { LEGAL_ROUTES } from "@/lib/legal";
+import { localizePath, type Locale } from "@/lib/i18n";
+
+interface Props {
+  locale: Locale;
+  title: string;
+  updatedAt: string;
+  metaTitle: string;
+  metaDescription: string;
+  path: string;
+}
+
+const { locale, title, updatedAt, metaTitle, metaDescription, path } = Astro.props;
+const isEn = locale === "en";
+const t = isEn
+  ? {
+      home: "Home",
+      published: "Published",
+      terms: "Terms of Service",
+      privacy: "Privacy Policy",
+      consent: "Personal Data Consent",
+      backHome: "Back to home",
+    }
+  : {
+      home: "Главная",
+      published: "Дата публикации",
+      terms: "Условия оказания услуг",
+      privacy: "Политика обработки ПДн",
+      consent: "Согласие на обработку ПДн",
+      backHome: "На главную",
+    };
+const homeHref = localizePath("/", locale);
+const canonicalPath = localizePath(path, locale);
+---
+
+<BaseLayout title={metaTitle} description={metaDescription} locale={locale} canonicalPath={canonicalPath}>
+  <div class="section-band">
+    <div class="container-editorial max-w-3xl">
+      <nav class="mb-6 text-sm text-muted">
+        <a href={homeHref} class="text-link">{t.home}</a>
+        <span class="mx-2">/</span>
+        <span class="text-ink">{title}</span>
+      </nav>
+      <h1 class="display-md">{title}</h1>
+      <p class="mt-2 text-sm text-muted">{t.published}: {updatedAt}</p>
+      <article class="prose-legal mt-8 space-y-6">
+        <slot />
+      </article>
+      <nav class="mt-10 flex flex-wrap gap-4 border-t border-hairline pt-6 text-sm">
+        <a href={localizePath(LEGAL_ROUTES.terms, locale)} class="text-link">{t.terms}</a>
+        <a href={localizePath(LEGAL_ROUTES.privacyPolicy, locale)} class="text-link">{t.privacy}</a>
+        <a href={localizePath(LEGAL_ROUTES.consent, locale)} class="text-link">{t.consent}</a>
+        <a href={homeHref} class="text-link">{t.backHome}</a>
+      </nav>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,30 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  subtitle: string;
+  acceptanceNote: string;
+  items: string[];
+}
+
+const { label, title, subtitle, acceptanceNote, items } = Astro.props;
+---
+
+<section class="section-band section--deep border-b border-hairline">
+  <div class="container-editorial">
+    <span class="section-label">{label}</span>
+    <h2 class="section-title mt-4">{title}</h2>
+    <p class="body-copy mt-4 max-w-2xl text-base">{subtitle}</p>
+    <ul class="prelaunch-list mt-10">
+      {
+        items.map((item) => (
+          <li class="prelaunch-item">
+            <span class="prelaunch-check" aria-hidden="true">✓</span>
+            <span class="body-copy text-base">{item}</span>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="body-copy mt-8 max-w-2xl text-sm text-muted">{acceptanceNote}</p>
+  </div>
+</section>

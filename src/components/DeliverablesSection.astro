@@ -1,0 +1,49 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  subtitle: string;
+  beforeTitle: string;
+  afterTitle: string;
+  before: string[];
+  after: string[];
+}
+
+const { label, title, subtitle, beforeTitle, afterTitle, before, after } = Astro.props;
+---
+
+<section class="section-band section--panel border-b border-hairline">
+  <div class="container-editorial">
+    <span class="section-label">{label}</span>
+    <h2 class="section-title mt-4">{title}</h2>
+    <p class="body-copy mt-4 max-w-2xl text-base">{subtitle}</p>
+    <div class="deliverables-grid mt-10">
+      <article class="deliverables-col">
+        <h3 class="card-title text-xl">{beforeTitle}</h3>
+        <ul class="mt-6 space-y-3">
+          {
+            before.map((item) => (
+              <li class="body-copy flex gap-3 text-base">
+                <span class="meta-label shrink-0">—</span>
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+      <article class="deliverables-col">
+        <h3 class="card-title text-xl">{afterTitle}</h3>
+        <ul class="mt-6 space-y-3">
+          {
+            after.map((item) => (
+              <li class="body-copy flex gap-3 text-base">
+                <span class="meta-label shrink-0">—</span>
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>

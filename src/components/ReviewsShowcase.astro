@@ -1,0 +1,34 @@
+---
+import type { CuratedReview } from "@/lib/enterprise-reviews";
+
+interface Props {
+  sectionLabel: string;
+  title: string;
+  subtitle: string;
+  reviews: CuratedReview[];
+}
+
+const { sectionLabel, title, subtitle, reviews } = Astro.props;
+---
+
+<section class="section-band section--deep border-b border-hairline">
+  <div class="container-editorial">
+    <span class="section-label">{sectionLabel}</span>
+    <h2 class="section-title mt-4">{title}</h2>
+    <p class="body-copy mt-4 max-w-2xl text-base">{subtitle}</p>
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      {
+        reviews.map((review) => (
+          <article class="feature-card-bordered">
+            <p class="body-copy text-base">“{review.text}”</p>
+            <p class="mt-4 text-sm font-medium text-ink">{review.author}</p>
+            <p class="mt-1 text-xs text-muted">
+              {review.source}
+              {review.date ? ` · ${review.date}` : ""}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

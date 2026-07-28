@@ -1,0 +1,42 @@
+---
+import { KASPERSKY_PARTNER_CERTIFICATES } from "@/lib/trust-partners";
+import type { Locale } from "@/lib/i18n";
+
+interface Props {
+  locale: Locale;
+  intro?: string;
+  titles: { b2b: string; b2c: string };
+  openLabel: string;
+}
+
+const { locale, intro, titles, openLabel } = Astro.props;
+const isEn = locale === "en";
+---
+
+{
+  intro ? <p class="body-copy max-w-2xl text-base">{intro}</p> : null
+}
+<div class={`partner-cert-row${intro ? " mt-10" : ""}`}>
+  {
+    KASPERSKY_PARTNER_CERTIFICATES.map((cert) => (
+      <a href={cert.pdfSrc} target="_blank" rel="noopener noreferrer" class="partner-cert-card">
+        <div class="partner-cert-card__preview">
+          <img
+            src={cert.previewSrc}
+            alt={isEn ? cert.altEn : cert.altRu}
+            width={cert.width}
+            height={cert.height}
+            class="partner-cert-card__image"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+        <div class="partner-cert-card__meta">
+          <span class="partner-cert-card__badge">{titles[cert.id as "b2b" | "b2c"]}</span>
+          <span class="partner-cert-card__title">{isEn ? cert.altEn : cert.altRu}</span>
+          <span class="partner-cert-card__action">{openLabel}</span>
+        </div>
+      </a>
+    ))
+  }
+</div>

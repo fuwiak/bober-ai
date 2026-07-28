@@ -1,0 +1,140 @@
+---
+import { localizePath, type Locale } from "@/lib/i18n";
+import { LEGAL_ROUTES } from "@/lib/legal";
+import { CONTACT_EMAIL } from "@/lib/site";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ru = locale !== "en";
+const privacyHref = localizePath(LEGAL_ROUTES.privacyPolicy, locale);
+const consentHref = localizePath(LEGAL_ROUTES.consent, locale);
+---
+
+<div
+  class="process-review"
+  data-process-review
+  data-locale={locale}
+  data-contact-email={CONTACT_EMAIL}
+  data-error-consent={ru ? "Подтвердите согласие на обработку персональных данных" : "Please confirm consent to data processing"}
+  data-error-description={ru ? "Опишите процесс" : "Describe the process"}
+  data-error-email={ru ? "Укажите email" : "Enter your email"}
+  data-error-send={ru ? "Не удалось отправить заявку" : "Failed to send request"}
+  data-sending={ru ? "Отправляем…" : "Sending…"}
+  data-submit={ru ? "Отправить процесс на разбор" : "Submit process for review"}
+  data-ok-title={ru ? "Заявка отправлена" : "Request sent"}
+  data-ok-body={
+    ru
+      ? "Мы разберём процесс и ответим в течение одного рабочего дня (24 часа)."
+      : "We'll review the process and reply within one business day (24 hours)."
+  }
+  data-msg-prefix={ru ? "Разбор одного процесса — заявка:" : "Single process review — request:"}
+  data-systems-label={ru ? "Системы" : "Systems"}
+  data-ref-label={ru ? "Пример / скриншот" : "Example / screenshot"}
+  data-mail-subject={ru ? "Разбор процесса — Bober AI" : "Process review — Bober AI"}
+>
+  <div class="roi-calculator__success" data-pr-success hidden role="status" aria-live="polite">
+    <p class="card-title text-xl" data-pr-ok-title></p>
+    <p class="body-copy mt-3 text-base" data-pr-ok-body></p>
+  </div>
+
+  <form class="roi-calculator space-y-6" data-pr-form>
+    <div>
+      <label for="process-description" class="form-label">
+        {ru ? "Опишите один ручной процесс" : "Describe one manual process"}
+      </label>
+      <textarea
+        id="process-description"
+        name="description"
+        rows="5"
+        required
+        class="textarea-input mt-2"
+        data-pr-description
+        placeholder={
+          ru
+            ? "Например: менеджер вручную собирает КП из прайса в Excel и шаблона Word"
+            : "e.g. a manager manually assembles a quote from an Excel price list and a Word template"
+        }
+      />
+    </div>
+    <div>
+      <label for="process-systems" class="form-label">
+        {ru ? "Какие системы задействованы" : "Which systems are involved"}{" "}
+        <span class="text-muted-soft">{ru ? "(необязательно)" : "(optional)"}</span>
+      </label>
+      <input
+        id="process-systems"
+        name="systems"
+        class="text-input mt-2"
+        data-pr-systems
+        placeholder={ru ? "Bitrix24, 1С, Excel…" : "Bitrix24, 1C, Excel…"}
+      />
+    </div>
+    <div>
+      <label for="process-reference" class="form-label">
+        {ru ? "Ссылка на скриншот или пример документа" : "Link to a screenshot or example document"}{" "}
+        <span class="text-muted-soft">{ru ? "(необязательно)" : "(optional)"}</span>
+      </label>
+      <input
+        id="process-reference"
+        name="reference"
+        class="text-input mt-2"
+        data-pr-reference
+        placeholder="https://…"
+      />
+    </div>
+    <div class="grid gap-5 sm:grid-cols-2">
+      <div>
+        <label for="process-email" class="form-label">Email</label>
+        <input
+          id="process-email"
+          name="email"
+          type="email"
+          required
+          autocomplete="email"
+          class="text-input mt-2"
+          data-pr-email
+          placeholder={ru ? "you@company.ru" : "you@company.com"}
+        />
+      </div>
+      <div>
+        <label for="process-telegram" class="form-label">
+          Telegram <span class="text-muted-soft">{ru ? "(необязательно)" : "(optional)"}</span>
+        </label>
+        <input
+          id="process-telegram"
+          name="telegram"
+          class="text-input mt-2"
+          data-pr-telegram
+          placeholder="@username"
+        />
+      </div>
+    </div>
+    <label for="process-consent" class="flex cursor-pointer items-start gap-3">
+      <input
+        id="process-consent"
+        type="checkbox"
+        required
+        class="mt-1 h-4 w-4 shrink-0 border-hairline-strong accent-ink"
+        data-pr-consent
+      />
+      <span class="text-sm leading-relaxed text-muted">
+        {ru ? "Я ознакомлен(а) с" : "I have read the"}{" "}
+        <a href={privacyHref} class="text-link" target="_blank" rel="noopener noreferrer">
+          {ru ? "политикой обработки персональных данных" : "privacy policy"}
+        </a>{" "}
+        {ru ? "и даю" : "and give"}{" "}
+        <a href={consentHref} class="text-link" target="_blank" rel="noopener noreferrer">
+          {ru ? "согласие на обработку персональных данных" : "consent to data processing"}
+        </a>
+        .
+      </span>
+    </label>
+    <button type="submit" class="btn-primary w-full" data-pr-submit>
+      {ru ? "Отправить процесс на разбор" : "Submit process for review"}
+    </button>
+    <p class="text-sm text-error" data-pr-error hidden></p>
+  </form>
+</div>

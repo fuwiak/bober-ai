@@ -1,0 +1,58 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  subtitle: string;
+  demoNote: string;
+  cards: { title: string; text: string }[];
+  tableTitle: string;
+  tableHeaders: string[];
+  tableRows: string[][];
+}
+
+const { label, title, subtitle, demoNote, cards, tableTitle, tableHeaders, tableRows } = Astro.props;
+---
+
+<section class="section-band section--panel border-b border-hairline">
+  <div class="container-editorial">
+    <span class="section-label">{label}</span>
+    <h2 class="section-title mt-4">{title}</h2>
+    <p class="body-copy mt-4 max-w-2xl text-base">{subtitle}</p>
+    <p class="meta-label mt-4">{demoNote}</p>
+
+    <div class="audit-cards mt-10">
+      {
+        cards.map((card) => (
+          <article class="audit-card">
+            <h3 class="card-title text-lg">{card.title}</h3>
+            <p class="body-copy mt-3 text-sm">{card.text}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="audit-table-wrap mt-10">
+      <h3 class="card-title text-lg">{tableTitle}</h3>
+      <div class="mt-4 overflow-x-auto">
+        <table class="audit-table">
+          <thead>
+            <tr>
+              {tableHeaders.map((header) => <th>{header}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {
+              tableRows.map((row) => (
+                <tr>
+                  {row.map((cell) => (
+                    <td>{cell}</td>
+                  ))}
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

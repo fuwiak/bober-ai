@@ -1,0 +1,135 @@
+---
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import PartnerCertificates from "@/components/PartnerCertificates.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
+import { organizationJsonLd } from "@/lib/seo";
+import { FOUNDER_IMAGE, PRIMARY_CTA_GOAL } from "@/lib/site";
+import { KASPERSKY_PARTNER_BADGES } from "@/lib/trust-partners";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const messages = loadMessages(locale);
+const isEn = locale === "en";
+const page = messages.pages.about;
+const about = messages.about;
+const certificates = messages.certificates;
+const skills = about.skills as string[];
+const title = page.metaTitle;
+const description = page.metaDescription;
+const canonicalPath = locale === "en" ? "/en/about" : "/about";
+const orgJsonLd = {
+  "@context": "https://schema.org",
+  ...organizationJsonLd(locale),
+  description: page.lead,
+};
+const aboutParagraphs = about.text.split("\n\n").filter(Boolean);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  locale={locale}
+  canonicalPath={canonicalPath}
+  jsonLd={orgJsonLd}
+>
+  <section id="certificates" class="section-band section--deep scroll-mt-16 border-b border-hairline">
+    <div class="container-editorial">
+      <Breadcrumbs
+        locale={locale}
+        items={[{ name: isEn ? "About" : "О компании", path: "/about" }]}
+      />
+      <span class="section-label mt-8 inline-block">{certificates.label}</span>
+      <h1 class="section-title mt-4 max-w-3xl">{page.pageTitle}</h1>
+      <p class="body-copy mt-5 max-w-2xl text-base">{page.lead}</p>
+
+      <div class="about-certs mt-14">
+        <h2 class="about-certs__heading">{certificates.title}</h2>
+        <p class="body-copy mt-4 max-w-2xl text-base">{certificates.intro}</p>
+        <div class="partner-badge-row mt-10">
+          {
+            KASPERSKY_PARTNER_BADGES.map((badge) => (
+              <div class="partner-badge-frame">
+                <img
+                  src={badge.src}
+                  alt={isEn ? badge.altEn : badge.altRu}
+                  width={badge.width}
+                  height={badge.height}
+                  class="partner-badge-image"
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
+            ))
+          }
+        </div>
+        <div class="mt-14">
+          <PartnerCertificates
+            locale={locale}
+            titles={certificates.titles as { b2b: string; b2c: string }}
+            openLabel={certificates.openPdf}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="company" class="section-band section--panel scroll-mt-16 border-b border-hairline">
+    <div class="container-editorial">
+      <div class="about-company">
+        <div class="about-company__portrait">
+          <div class="about-company__frame">
+            <img
+              src={FOUNDER_IMAGE}
+              alt={messages.hero.heroImageAlt}
+              class="about-company__image"
+              width="640"
+              height="800"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <div class="about-company__copy">
+          <span class="section-label">{about.title}</span>
+          <h2 class="section-title mt-4">{about.tagline}</h2>
+          {
+            aboutParagraphs.map((paragraph) => (
+              <p class="body-copy mt-5 max-w-2xl text-base">{paragraph}</p>
+            ))
+          }
+          <dl class="about-company__facts mt-10">
+            <div class="about-company__fact">
+              <dt class="meta-label">{about.approach}</dt>
+              <dd class="body-copy mt-2 text-base">{about.approachValue}</dd>
+            </div>
+            <div class="about-company__fact">
+              <dt class="meta-label">{about.schedule}</dt>
+              <dd class="body-copy mt-2 text-base">{about.scheduleValue}</dd>
+            </div>
+            <div class="about-company__fact">
+              <dt class="meta-label">{about.collaboration}</dt>
+              <dd class="body-copy mt-2 text-base">{about.collaborationSummary}</dd>
+              <dd class="body-copy mt-2 text-sm text-muted">{about.collaborationDetail}</dd>
+            </div>
+          </dl>
+          <p class="meta-label mt-10">{about.skillsTitle}</p>
+          <ul class="about-company__skills mt-4">
+            {skills.map((skill) => <li>{skill}</li>)}
+          </ul>
+          <p class="meta-label mt-8">{about.techStackTitle}</p>
+          <p class="body-copy mt-3 text-base">{about.techStack}</p>
+          <div class="mt-10 flex flex-wrap gap-4">
+            <button type="button" class="btn-primary" data-contact-open data-contact-goal={PRIMARY_CTA_GOAL}>
+              {about.cta}
+            </button>
+            <a href={localizePath("/media", locale)} class="btn-secondary">{messages.nav.media}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,5 +1,124 @@
 ---
-import ContentSectionPage from "@/components/ContentSectionPage.astro";
+import LegalPageLayout from "@/components/LegalPageLayout.astro";
+import {
+  LEGAL_ENTITY,
+  POLICY_UPDATED_AT,
+} from "@/lib/legal";
+
 export const prerender = true;
+
+const locale = "ru" as const;
 ---
-<ContentSectionPage locale="ru" path="/terms" namespace="pages.terms" />
+
+<LegalPageLayout
+  locale={locale}
+  title="Условия оказания услуг"
+  updatedAt={POLICY_UPDATED_AT}
+  metaTitle="Условия оказания услуг"
+  metaDescription="Условия заказа и оказания услуг Bober AI Systems: предмет, договор, смета, оплата, сроки и контакты."
+  path="/terms"
+>
+
+      <section>
+        <h2 class="card-title text-lg">1. Исполнитель</h2>
+        <ul class="mt-3 list-inside list-disc space-y-1">
+          <li>Наименование: {LEGAL_ENTITY.name}</li>
+          <li>ИНН: {LEGAL_ENTITY.inn}</li>
+          <li>ОГРНИП: {LEGAL_ENTITY.ogrnip}</li>
+          <li>Адрес: {LEGAL_ENTITY.address}</li>
+          <li>
+            Email:{" "}
+            <a href={`mailto:${LEGAL_ENTITY.email}`} class="text-link">
+              {LEGAL_ENTITY.email}
+            </a>
+          </li>
+          <li>
+            Телефон:{" "}
+            <a href={`tel:${LEGAL_ENTITY.phone}`} class="text-link">
+              {LEGAL_ENTITY.phone}
+            </a>
+          </li>
+          <li>
+            Сайт:{" "}
+            <a href={LEGAL_ENTITY.site} class="text-link">
+              {LEGAL_ENTITY.site}
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="card-title text-lg">2. Предмет услуг</h2>
+        <p class="mt-3">
+          Исполнитель оказывает коммерческие услуги по аудиту, проектированию, внедрению и сопровождению систем
+          автоматизации и искусственного интеллекта для бизнеса (включая интеграции с CRM, документами, продажами и
+          поддержкой).
+        </p>
+        <p class="mt-3">
+          Описание услуг и актуальный прайс-лист размещены на страницах{" "}
+          <a href="/services" class="text-link">
+            Услуги
+          </a>{" "}
+          и{" "}
+          <a href="/pricing" class="text-link">
+            Стоимость
+          </a>
+          .
+        </p>
+      </section>
+
+      <section>
+        <h2 class="card-title text-lg">3. Как заказать услугу</h2>
+        <ul class="mt-3 list-inside list-disc space-y-1">
+          <li>форма заявки на сайте (в том числе на главной в блоке «Контакт»);</li>
+          <li>телефон, Telegram, WhatsApp или email, указанные на сайте;</li>
+          <li>ответ на заявку — в рабочее время, ориентир до 4 часов;</li>
+          <li>предварительная смета — ориентир до 24 часов после уточнения задачи.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="card-title text-lg">4. Договор, NDA и смета</h2>
+        <p class="mt-3">
+          Настоящая страница описывает общие условия оказания услуг и <strong class="text-ink">не является
+          публичной офертой</strong> в смысле ст. 437 ГК РФ. Договорные отношения возникают после согласования сметы и
+          заключения договора (или акцепта счёта-оферты), выставленного Исполнителем.
+        </p>
+        <ul class="mt-3 list-inside list-disc space-y-1">
+          <li>работы выполняются по договору (или счёту-оферте) с фиксированной сметой до старта;</li>
+          <li>до обмена конфиденциальными данными может быть подписан NDA;</li>
+          <li>объём, сроки и стоимость фиксируются в смете / приложении к договору;</li>
+          <li>изменения объёма оформляются дополнительным соглашением.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="card-title text-lg">5. Оплата</h2>
+        <ul class="mt-3 list-inside list-disc space-y-1">
+          <li>безналичный расчёт по счёту на реквизиты ИП;</li>
+          <li>оплата по этапам или 100% предоплата — по согласованию в договоре;</li>
+          <li>цены на сайте указаны «от» и уточняются в смете под задачу заказчика.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="card-title text-lg">6. Срок и результат</h2>
+        <ul class="mt-3 list-inside list-disc space-y-1">
+          <li>срок оказания услуги указывается в смете (ориентиры — на странице стоимости);</li>
+          <li>результат передаётся заказчику с документацией и доступом к артефактам проекта;</li>
+          <li>приёмка — по акту или письменному подтверждению завершения этапа.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="card-title text-lg">7. Контакты для заказа</h2>
+        <p class="mt-3">
+          Заявку можно оставить на{" "}
+          <a href="/#contact" class="text-link">
+            странице контактов
+          </a>
+          , по телефону {LEGAL_ENTITY.phone} или на email {LEGAL_ENTITY.email}.
+        </p>
+      </section>
+    
+</LegalPageLayout>

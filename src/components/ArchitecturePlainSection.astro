@@ -1,0 +1,30 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  subtitle: string;
+  note: string;
+  steps: string[];
+}
+
+const { label, title, subtitle, note, steps } = Astro.props;
+---
+
+<section class="section-band section--panel border-b border-hairline">
+  <div class="container-editorial">
+    <span class="section-label">{label}</span>
+    <h2 class="section-title mt-4">{title}</h2>
+    <p class="body-copy mt-4 max-w-2xl text-base">{subtitle}</p>
+    <ol class="arch-flow mt-10">
+      {
+        steps.map((step, index) => (
+          <li class="arch-flow__step">
+            <span class="arch-flow__index">{String(index + 1).padStart(2, "0")}</span>
+            <span class="body-copy text-base">{step}</span>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="body-copy mt-6 max-w-2xl text-sm text-muted">{note}</p>
+  </div>
+</section>

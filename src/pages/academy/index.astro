@@ -1,18 +1,99 @@
 ---
+export const prerender = true;
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { ACADEMY_POSTS } from "@/lib/academy-posts";
-export const prerender = true;
+import { absoluteUrl, DEFAULT_KEYWORDS, SITE_NAME } from "@/lib/site";
+
+const dateFormatter = new Intl.DateTimeFormat("ru-RU", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
+const title = "Блог практикума Yaga";
+const description = `Практические статьи ${SITE_NAME} по Yandex API и CLI yaga: установка, OAuth, SEO Вебмастера, переобход, профили и Метрика.`;
+const blogJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  name: `Практикум Yaga · ${SITE_NAME}`,
+  url: absoluteUrl("/academy"),
+  description:
+    "Блог практикума по Yandex API и CLI yaga: установка, OAuth, SEO-чеклист, переобход, профили bricks и Метрика.",
+  inLanguage: "ru-RU",
+  blogPost: ACADEMY_POSTS.map((post) => ({
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.summary,
+    url: absoluteUrl(`/academy/${post.slug}`),
+    datePublished: post.publishedAt,
+    keywords: post.tags.join(", "),
+    image: absoluteUrl(post.coverImage),
+  })),
+};
 ---
-<BaseLayout title="Практикум — Bober AI" description="Практикум по AI для бизнеса" locale="ru" canonicalPath="/academy">
-  <section class="container-editorial py-12 md:py-20">
-    <h1 class="display-title">Практикум</h1>
-    <ul class="mt-10 space-y-6">
-      {ACADEMY_POSTS.map((p) => (
-        <li class="border border-hairline p-5">
-          <a class="font-medium text-link" href={`/academy/${p.slug}`}>{p.title}</a>
-          <p class="mt-2 text-sm text-muted">{p.summary}</p>
-        </li>
-      ))}
-    </ul>
+
+<BaseLayout
+  title={title}
+  description={description}
+  locale="ru"
+  canonicalPath="/academy"
+  keywords={[...DEFAULT_KEYWORDS, "yaga CLI", "Yandex Webmaster", "OAuth Яндекс", "переобход страниц", "Яндекс Метрика CLI"]}
+  jsonLd={blogJsonLd}
+>
+  <section class="section-band section--deep border-b border-hairline">
+    <div class="container-editorial max-w-5xl">
+      <span class="section-label">Блог практикума</span>
+      <h1 class="display-md mt-4">Yaga · Yandex CLI</h1>
+      <p class="body-copy mt-4 max-w-2xl text-lg">
+        Редакционные туториалы по фактам из{" "}
+        <code class="rounded bg-surface-soft px-1.5 py-0.5 text-sm">cli/yaga</code>
+        : установка, OAuth, SEO Вебмастера, переобход, профили и Метрика. Не официальная программа Яндекса — внутренний
+        практикум Bober AI.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-band section--panel">
+    <div class="container-editorial max-w-5xl grid gap-6">
+      {
+        ACADEMY_POSTS.map((post, index) => (
+          <a
+            href={`/academy/${post.slug}`}
+            class="group grid overflow-hidden rounded-2xl border border-hairline bg-canvas transition hover:border-primary/40 md:grid-cols-[220px_1fr]"
+          >
+            <div class="relative aspect-[16/10] bg-surface-soft md:aspect-auto md:min-h-full">
+              <img
+                src={post.coverImage}
+                alt=""
+                class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
+                width="440"
+                height="280"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="p-6 md:p-7">
+              <div class="meta-label flex flex-wrap items-center gap-x-3 gap-y-1 text-muted">
+                <span class="text-primary">{String(index + 1).padStart(2, "0")}</span>
+                <time datetime={post.publishedAt}>{dateFormatter.format(new Date(post.publishedAt))}</time>
+                <span>·</span>
+                <span>{post.readingTime}</span>
+              </div>
+              <h2 class="card-title mt-3 text-2xl transition group-hover:text-primary">{post.title}</h2>
+              <p class="body-copy mt-2 text-base">{post.summary}</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                {post.tags.map((tag) => (
+                  <span class="rounded-full border border-hairline px-2.5 py-1 text-[11px] font-bold uppercase tracking-widest text-muted">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <span class="link-more mt-5">Читать</span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
   </section>
 </BaseLayout>

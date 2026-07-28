@@ -1,0 +1,304 @@
+---
+import ArchitecturePlainSection from "@/components/ArchitecturePlainSection.astro";
+import AuditSampleSection from "@/components/AuditSampleSection.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import DeliverablesSection from "@/components/DeliverablesSection.astro";
+import MicroConversionsSection from "@/components/MicroConversionsSection.astro";
+import PreLaunchChecklistSection from "@/components/PreLaunchChecklistSection.astro";
+import SectionCtaBand from "@/components/SectionCtaBand.astro";
+import SimpleListSection from "@/components/SimpleListSection.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getEnterpriseServicesListing } from "@/lib/enterprise-services";
+import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const messages = loadMessages(locale);
+const page = messages.pages?.services ?? messages.services;
+const services = getEnterpriseServicesListing(locale);
+const implementationAreas = messages.services.implementationAreas as {
+  badge: string;
+  title: string;
+  description: string;
+  items: string[];
+  href?: string;
+}[];
+const audienceItems = messages.audiences.items as { title: string; text: string }[];
+const oneWindowItems = messages.oneWindow.items as { q: string; a: string }[];
+const whereAiItems = messages.whereAiNotNeeded.items as string[];
+const exclusionItems = messages.exclusions.items as string[];
+const deliverablesBefore = messages.deliverables.before as string[];
+const deliverablesAfter = messages.deliverables.after as string[];
+const auditCards = messages.auditSample.cards as { title: string; text: string }[];
+const auditHeaders = messages.auditSample.tableHeaders as string[];
+const auditRows = messages.auditSample.tableRows as string[][];
+const preLaunchItems = messages.preLaunch.items as string[];
+const architectureSteps = messages.architecturePlain.steps as string[];
+const timelineItems = messages.timeline.items as { period: string; text: string }[];
+const resultItems = messages.results.items as { stat: string; label: string }[];
+const microItems = messages.microConversions.items as {
+  title: string;
+  description: string;
+  cta: string;
+  service: string;
+}[];
+const title = page?.metaTitle || page?.title || messages.nav.services;
+const description = page?.metaDescription || page?.subtitle || messages.meta.description;
+const canonicalPath = locale === "en" ? "/en/services" : "/services";
+const crumbsName = locale === "en" ? "Services" : "Услуги";
+---
+
+<BaseLayout title={title} description={description} locale={locale} canonicalPath={canonicalPath}>
+  <section class="section-band section--deep border-b border-hairline">
+    <div class="container-editorial">
+      <Breadcrumbs locale={locale} items={[{ name: crumbsName, path: "/services" }]} />
+      <span class="section-label mt-2 block">{messages.sections.solutions}</span>
+      <h1 class="section-title mt-4">{messages.services.title}</h1>
+      <p class="body-copy mt-4 max-w-2xl text-base">{messages.services.subtitle}</p>
+      <div class="mt-10 space-y-4">
+        {
+          implementationAreas.map((area, index) => {
+            const number = String(index + 1).padStart(2, "0");
+            if (area.href) {
+              return (
+                <a href={localizePath(area.href, locale)} class="solution-row solution-row--linked group">
+                  <span class="solution-row__index">{number}</span>
+                  <div>
+                    <span class="solution-row__badge">{area.badge}</span>
+                    <h3 class="card-title mt-3">{area.title}</h3>
+                    <p class="body-copy mt-4 max-w-2xl text-base">{area.description}</p>
+                    <ul class="mt-4 space-y-1 text-base text-body">
+                      {area.items.map((item) => (
+                        <li>— {item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <span class="solution-row__cta link-more self-start whitespace-normal sm:whitespace-nowrap">
+                    {messages.services.discussCta}
+                  </span>
+                </a>
+              );
+            }
+            return (
+              <article class="solution-row">
+                <span class="solution-row__index">{number}</span>
+                <div>
+                  <span class="solution-row__badge">{area.badge}</span>
+                  <h3 class="card-title mt-3">{area.title}</h3>
+                  <p class="body-copy mt-4 max-w-2xl text-base">{area.description}</p>
+                  <ul class="mt-4 space-y-1 text-base text-body">
+                    {area.items.map((item) => (
+                      <li>— {item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <button
+                  type="button"
+                  class="solution-row__cta link-more self-start whitespace-normal sm:whitespace-nowrap"
+                  data-contact-open
+                  data-contact-service={area.title}
+                >
+                  {messages.services.discussCta}
+                </button>
+              </article>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <MicroConversionsSection
+    label={messages.microConversions.label}
+    title={messages.microConversions.title}
+    subtitle={messages.microConversions.subtitle}
+    items={microItems}
+  />
+
+  <section class="section-band section--panel border-b border-hairline">
+    <div class="container-editorial">
+      <span class="section-label">{messages.servicePage.listTitle}</span>
+      <h2 class="section-title mt-4">{messages.servicePage.listTitle}</h2>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          services.map((offer) => (
+            <article class="card-kts group overflow-hidden rounded-2xl border border-hairline bg-canvas">
+              {offer.serviceImage ? (
+                <div class="editorial-image editorial-image--card aspect-[4/3] bg-surface-card">
+                  <img
+                    src={offer.serviceImage}
+                    alt={offer.title}
+                    class="h-full w-full object-cover"
+                    width="800"
+                    height="600"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              ) : null}
+              <div class="card-kts-body flex flex-col p-6">
+                <h3 class="font-display text-lg tracking-tight text-ink">{offer.title}</h3>
+                <p class="mt-2 flex-1 text-sm leading-relaxed text-body">{offer.description}</p>
+                <div class="mt-6 flex items-end justify-between gap-3 border-t border-hairline pt-5">
+                  <div>
+                    <p class="font-display text-xl tracking-tight text-ink">{offer.salesNotes}</p>
+                    <p class="mt-0.5 text-xs text-muted">
+                      {offer.deliveryDays} {messages.services.days}
+                    </p>
+                  </div>
+                  <div class="flex flex-col gap-2 sm:flex-row">
+                    <a href={localizePath(`/services/${offer.slug}`, locale)} class="btn-secondary text-xs">
+                      {messages.services.details}
+                    </a>
+                    <button
+                      type="button"
+                      class="btn-primary text-xs"
+                      data-contact-open
+                      data-contact-service={offer.title}
+                    >
+                      {messages.services.quote}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section--deep border-b border-hairline">
+    <div class="container-editorial">
+      <span class="section-label">{messages.oneWindow.label}</span>
+      <h2 class="section-title mt-4">{messages.oneWindow.title}</h2>
+      <p class="body-copy mt-4 max-w-2xl text-base">{messages.oneWindow.subtitle}</p>
+      <div class="comparison-grid mt-10">
+        {
+          oneWindowItems.map((item) => (
+            <article class="comparison-card">
+              <h3 class="card-title text-xl">{item.q}</h3>
+              <p class="body-copy mt-4 text-base">{item.a}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section--panel border-b border-hairline">
+    <div class="container-editorial">
+      <span class="section-label">{messages.sections.audience}</span>
+      <h2 class="section-title mt-4">{messages.audiences.title}</h2>
+      <div class="comparison-grid mt-10">
+        {
+          audienceItems.map((item) => (
+            <article class="comparison-card">
+              <h3 class="card-title text-xl">{item.title}</h3>
+              <p class="body-copy mt-4 text-base">{item.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <SimpleListSection
+    label={messages.whereAiNotNeeded.label}
+    title={messages.whereAiNotNeeded.title}
+    subtitle={messages.whereAiNotNeeded.subtitle}
+    items={whereAiItems}
+    tone="deep"
+  />
+
+  <SimpleListSection
+    label={messages.exclusions.label}
+    title={messages.exclusions.title}
+    items={exclusionItems}
+    tone="panel"
+  />
+
+  <DeliverablesSection
+    label={messages.deliverables.label}
+    title={messages.deliverables.title}
+    subtitle={messages.deliverables.subtitle}
+    beforeTitle={messages.deliverables.beforeTitle}
+    afterTitle={messages.deliverables.afterTitle}
+    before={deliverablesBefore}
+    after={deliverablesAfter}
+  />
+
+  <AuditSampleSection
+    label={messages.auditSample.label}
+    title={messages.auditSample.title}
+    subtitle={messages.auditSample.subtitle}
+    demoNote={messages.auditSample.demoNote}
+    cards={auditCards}
+    tableTitle={messages.auditSample.tableTitle}
+    tableHeaders={auditHeaders}
+    tableRows={auditRows}
+  />
+
+  <PreLaunchChecklistSection
+    label={messages.preLaunch.label}
+    title={messages.preLaunch.title}
+    subtitle={messages.preLaunch.subtitle}
+    acceptanceNote={messages.preLaunch.acceptanceNote}
+    items={preLaunchItems}
+  />
+
+  <ArchitecturePlainSection
+    label={messages.architecturePlain.label}
+    title={messages.architecturePlain.title}
+    subtitle={messages.architecturePlain.subtitle}
+    note={messages.architecturePlain.note}
+    steps={architectureSteps}
+  />
+
+  <section class="section-band section--panel border-b border-hairline">
+    <div class="container-editorial">
+      <span class="section-label">{messages.results.label}</span>
+      <h2 class="section-title mt-4">{messages.results.title}</h2>
+      <div class="trust-specs mt-10">
+        {
+          resultItems.map((item) => (
+            <div class="spec-cell">
+              <span class="spec-value">{item.stat}</span>
+              <span class="spec-label">{item.label}</span>
+            </div>
+          ))
+        }
+      </div>
+      <p class="body-copy mt-6 max-w-2xl text-sm text-muted">{messages.results.note}</p>
+    </div>
+  </section>
+
+  <section class="section-band section--deep border-b border-hairline">
+    <div class="container-editorial">
+      <span class="section-label">{messages.timeline.label}</span>
+      <h2 class="section-title mt-4">{messages.timeline.title}</h2>
+      <div class="mt-10 space-y-4">
+        {
+          timelineItems.map((item) => (
+            <article class="editorial-row">
+              <span class="editorial-row__index">{item.period}</span>
+              <p class="body-copy text-base">{item.text}</p>
+            </article>
+          ))
+        }
+      </div>
+      <p class="body-copy mt-6 max-w-2xl text-sm text-muted">{messages.timeline.note}</p>
+    </div>
+  </section>
+
+  <SectionCtaBand
+    title={messages.sectionCta.title}
+    duration={messages.sectionCta.duration}
+    commitment={messages.sectionCta.commitment}
+    format={messages.sectionCta.format}
+    cta={messages.sectionCta.cta}
+  />
+</BaseLayout>
