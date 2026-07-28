@@ -201,7 +201,9 @@ export function syncPaidTrafficMarker() {
 
 function counterId(): number | null {
   if (typeof window === "undefined") return null;
-  const id = Number(yandexMetrikaIdForLocation(window.location.hostname, window.location.pathname));
+  const raw = yandexMetrikaIdForLocation(window.location.hostname, window.location.pathname);
+  if (!raw) return null;
+  const id = Number(raw);
   return Number.isFinite(id) ? id : null;
 }
 

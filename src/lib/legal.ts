@@ -51,22 +51,35 @@ export const BITRIX_YANDEX_METRIKA_ID =
   process.env.NEXT_PUBLIC_BITRIX_YANDEX_METRIKA_ID ||
   "110926887";
 
-/** Select the dedicated counter for each standalone landing domain. */
-export function yandexMetrikaIdForLocation(hostname?: string, pathname?: string): string {
+/** True for public bober-systems.ru hosts (canonical analytics surface). */
+export function isBoberSystemsHost(hostname?: string): boolean {
+  const host = hostname?.toLowerCase() || "";
+  return (
+    host === "www.bober-systems.ru" ||
+    host === "bober-systems.ru" ||
+    host === "partners.bober-systems.ru" ||
+    host === "bitrix.bober-systems.ru" ||
+    host.endsWith(".bober-systems.ru")
+  );
+}
+
+/**
+ * Counter for the current host, or null when Metrika must stay off
+ * (e.g. *.bober-ai.dev — analytics only on *.bober-systems.ru).
+ */
+export function yandexMetrikaIdForLocation(hostname?: string, pathname?: string): string | null {
   const host = hostname?.toLowerCase() || "";
   const path = pathname || "";
 
-  const isPartnersLanding =
-    host === "partners.bober-ai.dev" ||
-    host === "partners.bober-systems.ru" ||
-    path.startsWith("/white-label");
-  if (isPartnersLanding) return PARTNERS_YANDEX_METRIKA_ID;
+  if (!isBoberSystemsHost(host)) return null;
 
-  const isBitrixLanding =
-    host === "bitrix.bober-ai.dev" ||
-    host === "bitrix.bober-systems.ru" ||
-    path.startsWith("/bitrix");
-  if (isBitrixLanding) return BITRIX_YANDEX_METRIKA_ID;
+  if (host === "partners.bober-systems.ru" || path.startsWith("/white-label")) {
+    return PARTNERS_YANDEX_METRIKA_ID;
+  }
+
+  if (host === "bitrix.bober-systems.ru" || path.startsWith("/bitrix")) {
+    return BITRIX_YANDEX_METRIKA_ID;
+  }
 
   return YANDEX_METRIKA_ID;
 }
