@@ -9,8 +9,8 @@ import fetch from "./fetch.mjs";
 
 export const BITRIX_DEFAULT_PORTAL = "https://b24-tuh0lz.bitrix24.ru";
 /** HTTPS на проде — Bitrix отклоняет http:/localhost и опечатки http:/ */
-export const BITRIX_DEFAULT_REDIRECT_URI = "https://www.bober-ai.dev/api/bitrix/oauth/callback";
-export const BITRIX_DEFAULT_INSTALL_URI = "https://www.bober-ai.dev/api/bitrix/oauth/install";
+export const BITRIX_DEFAULT_REDIRECT_URI = "https://www.bober-systems.ru/api/bitrix/oauth/callback";
+export const BITRIX_DEFAULT_INSTALL_URI = "https://www.bober-systems.ru/api/bitrix/oauth/install";
 export const BITRIX_TOKEN_URL = "https://oauth.bitrix.info/oauth/token/";
 /**
  * Полный набор прав локального приложения:

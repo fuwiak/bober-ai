@@ -266,7 +266,7 @@ async function main() {
       `Квота переобхода: осталось ${quota.quota_remainder ?? quota.daily_quota_remainder ?? "?"} / день ${quota.daily_quota ?? "?"}`,
     );
   }
-  info("Отправить URL: yaga webmaster recrawl https://www.bober-ai.dev/…");
+  info("Отправить URL: yaga webmaster recrawl https://www.bober-systems.ru/…");
 
   // —— Итог ——
   section("Итог");

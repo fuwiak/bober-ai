@@ -17,8 +17,8 @@
  *   npm run bitrix:oauth -- test --landing
  *
  * В форме Битрикс (обязательно HTTPS, две косые в http://):
- *   Путь обработчика:     https://www.bober-ai.dev/api/bitrix/oauth/callback
- *   Путь установки:       https://www.bober-ai.dev/api/bitrix/oauth/install
+ *   Путь обработчика:     https://www.bober-systems.ru/api/bitrix/oauth/callback
+ *   Путь установки:       https://www.bober-systems.ru/api/bitrix/oauth/install
  *   Права: ☑ Сайты (landing), CRM, Пользователи, Чат, КЭДО/Sign
  *
  * Токены → ~/.config/yaga/credentials.env
@@ -175,7 +175,7 @@ async function cmdAuthorizeUrl() {
   log("Откройте в браузере (админ портала):\n");
   log(url);
   log(`\nScopes в URL: ${BITRIX_OAUTH_SCOPES.join(", ")}`);
-  log("После «Разрешить» откроется bober-ai.dev с командой exchange.");
+  log("После «Разрешить» откроется www.bober-systems.ru с командой exchange.");
   log("Код живёт ~30 сек — сразу выполните exchange.");
   log("Если landing не был отмечен в UI приложения — сначала Сохраните чекбокс «Сайты».");
   try {

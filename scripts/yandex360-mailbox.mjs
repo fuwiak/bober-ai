@@ -30,7 +30,7 @@ const config = {
   token: process.env.YANDEX_360_OAUTH_TOKEN?.trim() || process.env.YANDEX_OAUTH_TOKEN?.trim(),
   clientId: process.env.YANDEX_360_CLIENT_ID?.trim(),
   orgId: process.env.YANDEX_360_ORG_ID?.trim(),
-  domain: process.env.YANDEX_360_DOMAIN?.trim() || "bober-ai.dev",
+  domain: process.env.YANDEX_360_DOMAIN?.trim() || "www.bober-systems.ru",
   nickname: process.env.YANDEX_360_MAILBOX_NICKNAME?.trim() || "contact",
   password: process.env.YANDEX_360_MAILBOX_PASSWORD?.trim(),
   aliasUserId: process.env.YANDEX_360_ALIAS_USER_ID?.trim(),
@@ -121,7 +121,7 @@ function printHelp() {
   YANDEX_360_OAUTH_TOKEN      OAuth-токен
   YANDEX_360_CLIENT_ID        ClientID приложения (для oauth-url)
   YANDEX_360_ORG_ID           ID организации
-  YANDEX_360_DOMAIN           Домен (по умолчанию bober-ai.dev)
+  YANDEX_360_DOMAIN           Домен (по умолчанию www.bober-systems.ru)
   YANDEX_360_MAILBOX_NICKNAME Логин ящика (по умолчанию contact)
   YANDEX_360_MAILBOX_PASSWORD Пароль для create (если не задан — генерируется)
   YANDEX_360_ALIAS_USER_ID    ID сотрудника для команды alias

@@ -42,8 +42,8 @@ const PAGE_TITLE = "Bober AI · Битрикс24";
 const SITE_CODE = "bober-bitrix";
 /** Известный SITE_ID тизера на b24-tuh0lz (если CODE ещё старый). */
 const KNOWN_SITE_ID = 6;
-const MAIN_URL = "https://www.bober-ai.dev/";
-const BITRIX_URL = "https://bitrix.bober-ai.dev/";
+const MAIN_URL = "https://www.bober-systems.ru/";
+const BITRIX_URL = "https://bitrix.bober-systems.ru/";
 const PARTNER_LINE = "Участие в партнерской программе 1С-Битрикс · ID 28909898";
 
 /** Кастомный CSS сайта (Bitrix режет <style>/<link> в HTML-блоке и HEADBLOCK). */

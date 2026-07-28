@@ -13,8 +13,14 @@
 
 import fetch from "./lib/fetch.mjs";
 
-const SITE = (process.env.PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev").replace(/\/$/, "");
-const APEX = "https://bober-ai.dev";
+const SITE = (
+  process.env.YANDEX_WEBMASTER_HOST_URL ||
+  process.env.PUBLIC_SITE_URL ||
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  "https://www.bober-systems.ru"
+).replace(/\/$/, "");
+const APEX = "https://bober-systems.ru";
+const ALLOWED_HOST_MARKERS = ["bober-systems.ru", "bober-ai.dev"];
 
 const LANDINGS = [
   "/",
@@ -95,9 +101,9 @@ async function checkSitemap() {
   else ok(`${locs.length} URL`);
   if (!locs.includes(SITE) && !locs.includes(`${SITE}/`)) fail("нет главной в sitemap");
   else ok("главная в sitemap");
-  const badHost = locs.filter((u) => !u.includes("bober-ai.dev"));
+  const badHost = locs.filter((u) => !ALLOWED_HOST_MARKERS.some((marker) => u.includes(marker)));
   if (badHost.length) fail(`чужие хосты: ${badHost.slice(0, 3).join(", ")}`);
-  else ok("все loc на bober-ai.dev / microsites");
+  else ok("все loc на bober-systems.ru / www.bober-systems.ru / microsites");
   const trailingHome = locs.includes(`${SITE}/`) && !locs.includes(SITE);
   if (trailingHome) fail("главная в sitemap со слэшем — лучше без (как absoluteUrl)");
 }
@@ -108,12 +114,12 @@ async function checkCanonicalHost() {
   if (apex.status === 301 || apex.status === 302) {
     const loc = apex.location || "";
     const okLoc =
-      /^https:\/\/www\.bober-ai\.dev\/?(\?.*)?$/i.test(loc) &&
+      /^https:\/\/www\.bober-systems\.ru\/?(\?.*)?$/i.test(loc) &&
       !/:\d+/.test(loc);
     if (okLoc) {
       ok(`apex → ${loc} (${apex.status})`);
     } else {
-      fail(`плохой Location: ${loc || "(пусто)"} — нужен https://www.bober-ai.dev/ без порта`);
+      fail(`плохой Location: ${loc || "(пусто)"} — нужен https://www.bober-systems.ru/ без порта`);
     }
   } else {
     fail(`apex HTTP ${apex.status}, ожидали 301`);

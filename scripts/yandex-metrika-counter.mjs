@@ -10,7 +10,7 @@ const config = {
     process.env.YANDEX_METRIKA_OAUTH_TOKEN?.trim() ||
     process.env.YANDEX_WEBMASTER_OAUTH_TOKEN?.trim(),
   clientId: process.env.YANDEX_WEBMASTER_CLIENT_ID?.trim() || "f2e2f11ae7e3492886ad61a6e45a4c5c",
-  siteUrl: (process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev").replace(/\/$/, ""),
+  siteUrl: (process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-systems.ru").replace(/\/$/, ""),
   counterName: process.env.YANDEX_METRIKA_COUNTER_NAME?.trim() || "Bober AI Systems",
   counterId: process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID?.trim() || "",
 };

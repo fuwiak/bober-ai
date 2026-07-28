@@ -30,17 +30,17 @@ const registerMicrositesOnly = args.has("--microsites");
 const MICROSITE_FEEDS = [
   {
     label: "Bitrix24 + amoCRM",
-    hostUrl: process.env.YANDEX_WEBMASTER_BITRIX_HOST_URL?.trim() || "https://bitrix.bober-ai.dev",
+    hostUrl: process.env.YANDEX_WEBMASTER_BITRIX_HOST_URL?.trim() || "https://bitrix.bober-systems.ru",
     feedUrl:
       process.env.YANDEX_WEBMASTER_BITRIX_FEED_URL?.trim() ||
-      "https://bitrix.bober-ai.dev/performers-feed.yml",
+      "https://bitrix.bober-systems.ru/performers-feed.yml",
   },
   {
     label: "Partners / white-label",
-    hostUrl: process.env.YANDEX_WEBMASTER_PARTNERS_HOST_URL?.trim() || "https://partners.bober-ai.dev",
+    hostUrl: process.env.YANDEX_WEBMASTER_PARTNERS_HOST_URL?.trim() || "https://partners.bober-systems.ru",
     feedUrl:
       process.env.YANDEX_WEBMASTER_PARTNERS_FEED_URL?.trim() ||
-      "https://partners.bober-ai.dev/performers-feed.yml",
+      "https://partners.bober-systems.ru/performers-feed.yml",
   },
 ];
 
@@ -68,9 +68,9 @@ function printSetupHelp() {
   YANDEX_WEBMASTER_OAUTH_TOKEN          OAuth-токен (обязательно)
   YANDEX_WEBMASTER_HOST_URL             URL основного сайта
   YANDEX_WEBMASTER_FEED_URL             URL основного YML-фида
-  YANDEX_WEBMASTER_BITRIX_HOST_URL      https://bitrix.bober-ai.dev
+  YANDEX_WEBMASTER_BITRIX_HOST_URL      https://bitrix.bober-systems.ru
   YANDEX_WEBMASTER_BITRIX_FEED_URL      .../performers-feed.yml
-  YANDEX_WEBMASTER_PARTNERS_HOST_URL    https://partners.bober-ai.dev
+  YANDEX_WEBMASTER_PARTNERS_HOST_URL    https://partners.bober-systems.ru
   YANDEX_WEBMASTER_PARTNERS_FEED_URL    .../performers-feed.yml
   YANDEX_WEBMASTER_FEED_TYPE            Тип фида (по умолчанию SERVICES)
   YANDEX_WEBMASTER_REGION_IDS           Регионы через запятую (по умолчанию 225)

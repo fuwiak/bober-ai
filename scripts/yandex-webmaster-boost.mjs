@@ -24,6 +24,10 @@ import {
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
+function defaultHostBase() {
+  return (process.env.YANDEX_WEBMASTER_HOST_URL || "https://www.bober-systems.ru").replace(/\/$/, "");
+}
+
 function loadImportantUrls() {
   const result = spawnSync(
     "npx",
@@ -31,7 +35,9 @@ function loadImportantUrls() {
       "--yes",
       "tsx",
       "-e",
-      `import { yandexImportantUrls } from "./src/lib/yandex-important-urls.ts"; console.log(JSON.stringify(yandexImportantUrls()));`,
+      `import { yandexImportantUrls } from "./src/lib/yandex-important-urls.ts";
+       const base = process.env.YANDEX_WEBMASTER_HOST_URL || "https://www.bober-systems.ru";
+       console.log(JSON.stringify(yandexImportantUrls(base)));`,
     ],
     { cwd: root, encoding: "utf8", env: process.env },
   );
@@ -45,7 +51,7 @@ function loadImportantUrls() {
     }
   }
 
-  const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev").replace(/\/$/, "");
+  const base = defaultHostBase();
   const paths = [
     "/",
     "/services",
@@ -92,7 +98,7 @@ function loadStandaloneUrls() {
       /* fall through */
     }
   }
-  return ["https://partners.bober-ai.dev/", "https://bitrix.bober-ai.dev/"];
+  return ["https://partners.bober-systems.ru/", "https://bitrix.bober-systems.ru/"];
 }
 
 function section(title) {
@@ -127,7 +133,7 @@ async function main() {
   console.log(`
 Как добавить (UI, без deep-link с hostId — они 404):
   1. Откройте ${UI.sites}
-  2. Выберите https://www.bober-ai.dev
+  2. Выберите https://www.bober-systems.ru/
   3. Меню: Индексирование → Мониторинг важных страниц
      (или на ${UI.reindex} отметьте URL «Отслеживать»)
   Не добавляйте partners./bitrix. сюда — Вебмастер отклонит чужой хост.
@@ -148,14 +154,14 @@ async function main() {
 
   section("Региональность (только UI / Яндекс Бизнес)");
   console.log(`Москва задаётся так:
-  1. ${UI.sites} → выберите www.bober-ai.dev
+  1. ${UI.sites} → выберите www.bober-systems.ru
   2. Представление в поиске → Региональность → Москва
      ИЛИ привяжите организацию в Яндекс Бизнес (регион подтянется сам):
      ${UI.business}
 `);
 
   section("Яндекс Бизнес / Справочник (только UI)");
-  console.log("Карточка организации со сайтом https://www.bober-ai.dev");
+  console.log("Карточка организации со сайтом https://www.bober-systems.ru/");
   console.log(`  ${UI.business}`);
 
   section("Фид услуг");
@@ -181,7 +187,7 @@ async function main() {
 `);
 
   section("Свежее и актуальное (RSS)");
-  console.log(`Фид: https://www.bober-ai.dev/rss.xml
+  console.log(`Фид: https://www.bober-systems.ru/rss.xml
   Вебмастер → Представление в поиске → Свежее и актуальное → загрузить RSS.
   Docs: https://yandex.ru/support/webmaster/ru/search-appearance/fresh-content
 `);
@@ -191,10 +197,21 @@ async function main() {
   const remaining = Number(quota.quota_remainder ?? quota.daily_quota_remainder ?? 0);
   console.log(`Квота: осталось ${remaining} / день ${quota.daily_quota ?? "?"}`);
 
+  const primaryHostname = (() => {
+    try {
+      return new URL(hostUrl).hostname.toLowerCase();
+    } catch {
+      return "www.bober-systems.ru";
+    }
+  })();
   const wwwUrls = urls.filter((u) => {
     try {
-      const host = new URL(u).hostname;
-      return host === "www.bober-ai.dev" || host === "bober-ai.dev";
+      const host = new URL(u).hostname.toLowerCase();
+      return (
+        host === primaryHostname ||
+        host === primaryHostname.replace(/^www\./, "") ||
+        `www.${host}` === primaryHostname
+      );
     } catch {
       return false;
     }

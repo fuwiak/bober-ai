@@ -14,13 +14,12 @@ export function getConfig(overrides = {}) {
     hostUrl: (
       overrides.hostUrl ||
       process.env.YANDEX_WEBMASTER_HOST_URL ||
-      process.env.NEXT_PUBLIC_SITE_URL ||
-      "https://www.bober-ai.dev"
+      "https://www.bober-systems.ru"
     ).replace(/\/$/, ""),
     feedUrl: (
       overrides.feedUrl ||
       process.env.YANDEX_WEBMASTER_FEED_URL ||
-      `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev"}/performers-feed.yml`
+      `${process.env.YANDEX_WEBMASTER_HOST_URL || "https://www.bober-systems.ru"}/performers-feed.yml`
     ).replace(/\/$/, ""),
     feedType: overrides.feedType || process.env.YANDEX_WEBMASTER_FEED_TYPE || "SERVICES",
     regionIds: (overrides.regionIds || process.env.YANDEX_WEBMASTER_REGION_IDS || "225")
@@ -121,6 +120,50 @@ function hostHostname(host) {
   return match?.[1] || "";
 }
 
+/** Twin mirror host (.dev ↔ .ru) when only one is registered in Webmaster. */
+export function twinHostUrl(hostUrl) {
+  try {
+    const url = new URL(normalizeHostUrl(hostUrl));
+    const host = url.hostname.toLowerCase();
+    if (host.endsWith(".bober-ai.dev")) {
+      url.hostname = host.replace(/\.bober-ai\.dev$/, ".bober-systems.ru");
+      return url.origin;
+    }
+    if (host.endsWith(".bober-systems.ru")) {
+      url.hostname = host.replace(/\.bober-systems\.ru$/, ".bober-ai.dev");
+      return url.origin;
+    }
+  } catch {
+    /* ignore */
+  }
+  return null;
+}
+
+export async function addHost(token, userId, hostUrl) {
+  const { response, body } = await apiRequest(token, `/user/${userId}/hosts`, {
+    method: "POST",
+    body: { host_url: `${normalizeHostUrl(hostUrl)}/` },
+  });
+  if (!response.ok) {
+    const code = body?.error_code || body?.errorCode;
+    if (response.status === 409 || code === "HOST_ALREADY_ADDED") {
+      return { host_id: body?.host_id, already: true, body };
+    }
+    throw new Error(`POST /hosts → HTTP ${response.status}: ${JSON.stringify(body)}`);
+  }
+  return { host_id: body?.host_id, already: false, body };
+}
+
+function formatHostList(hosts) {
+  if (!hosts.length) return "(пусто)";
+  return hosts
+    .map((h) => {
+      const url = h.unicode_host_url || h.ascii_host_url || h.host_id;
+      return `  - ${url}${h.verified ? " ✓" : " (не подтверждён)"}`;
+    })
+    .join("\n");
+}
+
 export function pickHost(hosts, targetUrl) {
   const normalizedTarget = normalizeHostUrl(targetUrl).toLowerCase();
   let targetHostname = "";
@@ -131,7 +174,7 @@ export function pickHost(hosts, targetUrl) {
   }
   const preferHttps = normalizedTarget.startsWith("https://");
 
-  // Точное совпадение hostname: иначе bober-ai.dev матчился на www.bober-ai.dev.
+  // Точное совпадение hostname: иначе www.bober-systems.ru матчился на www.bober-systems.ru.
   const matches = hosts.filter((host) => hostHostname(host) === targetHostname);
   if (!matches.length) return undefined;
 
@@ -223,12 +266,51 @@ export async function resolveHostContext(overrides = {}) {
     );
   }
   const userId = await getUserId(config.token);
-  const hosts = await getHosts(config.token, userId);
-  const host = pickHost(hosts, config.hostUrl);
+  let hosts = await getHosts(config.token, userId);
+  let host = pickHost(hosts, config.hostUrl);
+  let usedTwin = false;
+
+  // Twin mirror (.dev ↔ .ru) — same content, often only one registered in Webmaster.
   if (!host) {
-    throw new Error(`Сайт ${config.hostUrl} не найден среди хостов Вебмастера`);
+    const twin = twinHostUrl(config.hostUrl);
+    if (twin) {
+      host = pickHost(hosts, twin);
+      if (host) {
+        usedTwin = true;
+        console.warn(
+          `⚠ Хост ${config.hostUrl} нет в Вебмастере → используем близнец ${twin}`,
+        );
+      }
+    }
   }
-  return { config, userId, host, hostId: host.host_id };
+
+  // Optional auto-add of the requested host (still needs UI/DNS verification).
+  const autoAdd =
+    overrides.autoAdd === true ||
+    process.env.YANDEX_WEBMASTER_AUTO_ADD === "1" ||
+    process.argv.includes("--add-host");
+  if (!host && autoAdd) {
+    console.warn(`+ Добавляю ${config.hostUrl} в Вебмастер…`);
+    await addHost(config.token, userId, config.hostUrl);
+    hosts = await getHosts(config.token, userId);
+    host = pickHost(hosts, config.hostUrl);
+    if (host && !host.verified) {
+      console.warn(
+        "⚠ Хост добавлен, но не подтверждён. Верификация: https://webmaster.yandex.ru/sites/",
+      );
+    }
+  }
+
+  if (!host) {
+    const twin = twinHostUrl(config.hostUrl);
+    throw new Error(
+      `Сайт ${config.hostUrl} не найден среди хостов Вебмастера.\n` +
+        `Доступные хосты:\n${formatHostList(hosts)}\n` +
+        `Задайте YANDEX_WEBMASTER_HOST_URL=${twin || "https://www.bober-systems.ru"} ` +
+        `или добавьте сайт: yaga webmaster boost --add-host`,
+    );
+  }
+  return { config, userId, host, hostId: host.host_id, usedTwin };
 }
 
 async function getJson(token, path, { allowStatuses = [200] } = {}) {

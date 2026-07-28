@@ -366,7 +366,7 @@ async function cmdCampaigns() {
     const body = {
       companyId: Number(readFlag("--company-id") || config.companyId),
       countryGeoId: config.countryGeoId,
-      url: readFlag("--url") || "https://www.bober-ai.dev",
+      url: readFlag("--url") || "https://www.bober-systems.ru",
       mapsOnly: flags.has("--maps-only"),
     };
     printJson("create-campaign payload:", body);

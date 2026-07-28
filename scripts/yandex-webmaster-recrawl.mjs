@@ -2,7 +2,7 @@
 /**
  * Отправить URL на переобход в Яндекс Вебмастере.
  *
- *   yaga webmaster recrawl https://www.bober-ai.dev/services
+ *   yaga webmaster recrawl https://www.bober-systems.ru/services
  *   yaga webmaster recrawl --quota
  */
 

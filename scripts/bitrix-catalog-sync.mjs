@@ -42,7 +42,7 @@ const DO_UPDATE = args.includes("--update");
 /** @type {SectionDef[]} */
 const SECTIONS = [
   { xmlId: "bober-formats", name: "Форматы работы", description: "Аудит, пилот, внедрение, сопровождение" },
-  { xmlId: "bober-bitrix-packages", name: "Пакеты Битрикс24", description: "Офферы bitrix.bober-ai.dev" },
+  { xmlId: "bober-bitrix-packages", name: "Пакеты Битрикс24", description: "Офферы bitrix.bober-systems.ru" },
   { xmlId: "bober-services", name: "Услуги Bober AI", description: "Enterprise и SEO-услуги" },
   { xmlId: "bober-booking", name: "Запись и консультации", description: "Микро-конверсии / booking" },
   { xmlId: "bober-channels", name: "Каналы лидов", description: "Каналы связи и источников CRM" },
@@ -381,7 +381,7 @@ const PRODUCTS = [
     name: "Канал: Формы сайта",
     price: 0,
     description:
-      "Контактные формы bober-ai.dev, bitrix.bober-ai.dev, partners.bober-ai.dev → лид в CRM.",
+      "Контактные формы www.bober-systems.ru, bitrix.bober-systems.ru, partners.bober-systems.ru → лид в CRM.",
   },
   {
     xmlId: "ch-bitrix-ol-web",

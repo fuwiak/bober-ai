@@ -237,7 +237,7 @@ async function cmdCreateUnified() {
   const dryRun = flags.has("--dry-run");
   const budgetRub = Number(readFlag("--budget-rub", "1500"));
   const name = readFlag("--name", "Bober AI — услуги (ЕПК)");
-  const siteUrl = (readFlag("--site", process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev")).replace(
+  const siteUrl = (readFlag("--site", process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-systems.ru")).replace(
     /\/$/,
     "",
   );

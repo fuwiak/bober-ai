@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Настраивает CRM Store (TYPE=STORE) под бренд Bober AI / bober-ai.dev.
+ * Настраивает CRM Store (TYPE=STORE) под бренд Bober AI / www.bober-systems.ru.
  * По умолчанию SITE_ID=8 на портале b24-tuh0lz («Продажи в чатах» → Bober shop).
  *
  *   npm run bitrix:shop:configure
@@ -45,8 +45,8 @@ const SITE_TITLE = "Bober AI Systems";
 const SITE_CODE = "bober-shop";
 const SITE_DESCRIPTION =
   "AI-автоматизация КП, CRM и документов · Bober AI · партнёр 1С-Битрикс";
-const MAIN_URL = "https://www.bober-ai.dev/";
-const BITRIX_URL = "https://bitrix.bober-ai.dev/";
+const MAIN_URL = "https://www.bober-systems.ru/";
+const BITRIX_URL = "https://bitrix.bober-systems.ru/";
 const CONTACT_PHONE = "+79950998170";
 const CONTACT_EMAIL = "contact@bober-ai.dev";
 const PARTNER_LINE = "Участие в партнерской программе 1С-Битрикс · ID 28909898";
@@ -430,7 +430,7 @@ async function configureHome(homeLid, pages, config) {
       </li>
       <li class="landing-block-node-list-item g-brd-bottom g-brd-1 g-py-12 landing-card g-brd-white-opacity-0_2 g-font-size-18 g-pt-18 g-pb-18">
         <a class="landing-block-node-link row no-gutters justify-content-between align-items-center g-text-decoration-none--hover g-color-white" href="${MAIN_URL}" target="_blank">
-          <span class="landing-block-node-link-text d-block">bober-ai.dev</span>
+          <span class="landing-block-node-link-text d-block">www.bober-systems.ru</span>
           <span class="landing-block-node-link-icon-container d-block g-valign-middle g-mr-5 g-font-size-12 g-opacity-0_5"><i class="landing-block-node-link-icon hs-icon hs-icon-arrow-right g-flex-centered"></i></span>
         </a>
       </li>
@@ -791,7 +791,7 @@ async function main() {
   log(`Редактор: ${config.portal}/shop/stores/site/${siteId}/`);
   log(`Каталог CRM: IBLOCK/CATALOG_ID=${CATALOG_ID} (npm run bitrix:catalog:sync)`);
   log(`Тизер (PAGE): npm run bitrix:site:teaser → обычно SITE_ID=6`);
-  log("\nСовпадает с bober-ai.dev: бренд, lime/slate, Manrope via CSS, пакеты, CTA, партнёрская строка.");
+  log("\nСовпадает с www.bober-systems.ru: бренд, lime/slate, Manrope via CSS, пакеты, CTA, партнёрская строка.");
   log("Не совпадает: layout Next.js, анимации, портфолио-галерея, pixel-perfect типографика STORE-шаблона.");
   if (!flags.has("--hide-kwork")) {
     log("Подсказка: npm run bitrix:shop:configure -- --hide-kwork — убрать kwork-категории из витрины.");

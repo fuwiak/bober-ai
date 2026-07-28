@@ -20,16 +20,16 @@ const DEFAULT = {
   validator: "https://webmaster.yandex.ru/tools/microtest/",
   docs: "https://yandex.ru/support/webmaster/ru/yandex-indexing/validator",
   urls: [
-    "https://www.bober-ai.dev/",
-    "https://www.bober-ai.dev/services",
-    "https://www.bober-ai.dev/services/business-process-automation",
-    "https://www.bober-ai.dev/faq",
-    "https://www.bober-ai.dev/pricing",
-    "https://www.bober-ai.dev/portfolio",
-    "https://www.bober-ai.dev/about",
-    "https://www.bober-ai.dev/blog",
-    "https://www.bober-ai.dev/secure-ai",
-    "https://www.bober-ai.dev/kaspersky",
+    "https://www.bober-systems.ru/",
+    "https://www.bober-systems.ru/services",
+    "https://www.bober-systems.ru/services/business-process-automation",
+    "https://www.bober-systems.ru/faq",
+    "https://www.bober-systems.ru/pricing",
+    "https://www.bober-systems.ru/portfolio",
+    "https://www.bober-systems.ru/about",
+    "https://www.bober-systems.ru/blog",
+    "https://www.bober-systems.ru/secure-ai",
+    "https://www.bober-systems.ru/kaspersky",
   ],
 };
 
@@ -160,7 +160,7 @@ function hasTwitterCard(html) {
 
 async function probe(url) {
   const res = await fetch(url, {
-    headers: { "user-agent": "BoberAI-Microtest/1.0 (+https://www.bober-ai.dev)" },
+    headers: { "user-agent": "BoberAI-Microtest/1.0 (+https://www.bober-systems.ru/)" },
     redirect: "follow",
   });
   const html = await res.text();

@@ -14,8 +14,11 @@ const config = {
     process.env.YANDEX_WEBMASTER_OAUTH_TOKEN?.trim() ||
     process.env.YANDEX_METRIKA_OAUTH_TOKEN?.trim(),
   clientId: process.env.YANDEX_WEBMASTER_CLIENT_ID?.trim() || "f2e2f11ae7e3492886ad61a6e45a4c5c",
-  siteUrl: (process.env.YANDEX_WEBMASTER_HOST_URL || process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev").replace(/\/$/, ""),
-  feedUrl: (process.env.YANDEX_WEBMASTER_FEED_URL || "https://www.bober-ai.dev/performers-feed.yml").replace(/\/$/, ""),
+  siteUrl: (process.env.YANDEX_WEBMASTER_HOST_URL || "https://www.bober-systems.ru").replace(/\/$/, ""),
+  feedUrl: (
+    process.env.YANDEX_WEBMASTER_FEED_URL ||
+    `${process.env.YANDEX_WEBMASTER_HOST_URL || "https://www.bober-systems.ru"}/performers-feed.yml`
+  ).replace(/\/$/, ""),
   metrikaId: process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID?.trim() || "110635302",
   verificationCode: process.env.YANDEX_WEBMASTER_VERIFICATION_CODE?.trim() || "0e71ef3fc54b6c3c",
 };
@@ -71,7 +74,7 @@ function normalizeHost(value) {
 }
 
 function pickHost(hosts, targetUrl) {
-  // Точное совпадение hostname, иначе www.bober-ai.dev матчился на bitrix.bober-ai.dev
+  // Точное совпадение hostname, иначе www.bober-systems.ru матчился на bitrix.bober-systems.ru
   // и статус показывал чужой хост.
   const target = new URL(targetUrl.startsWith("http") ? targetUrl : `https://${targetUrl}`);
   const targetHostname = target.hostname.toLowerCase();

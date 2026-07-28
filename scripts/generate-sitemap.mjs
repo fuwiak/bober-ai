@@ -6,7 +6,7 @@
 import { readdir, writeFile, stat } from "node:fs/promises";
 import { join, relative } from "node:path";
 
-const SITE = process.env.PUBLIC_SITE_URL || "https://www.bober-ai.dev";
+const SITE = process.env.PUBLIC_SITE_URL || "https://www.bober-systems.ru";
 const ROOT = join(process.cwd(), "dist/client");
 
 async function walk(dir, out = []) {

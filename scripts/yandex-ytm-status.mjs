@@ -150,7 +150,7 @@ async function main() {
   }
 
   const byId = new Map(gallery.map((item) => [Number(item.template_id), item]));
-  console.log("\nРекомендуется для bober-ai.dev:");
+  console.log("\nРекомендуется для www.bober-systems.ru:");
   for (const item of RECOMMENDED) {
     const live = byId.get(item.id);
     if (live) {

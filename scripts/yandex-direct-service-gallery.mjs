@@ -75,7 +75,7 @@ const PROFILE_URL =
 const SITE = (
   process.env.NEXT_PUBLIC_SITE_URL ||
   config.siteUrl ||
-  "https://www.bober-ai.dev"
+  "https://www.bober-systems.ru"
 ).replace(/\/$/, "");
 
 const DIRECT_UI = config.directUi || "https://direct.yandex.ru/dna/grid/campaigns";

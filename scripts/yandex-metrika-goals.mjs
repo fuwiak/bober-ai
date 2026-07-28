@@ -226,7 +226,7 @@ async function ensureGoals(label, counterId, desired) {
 }
 
 async function ensureMirrors(counterId) {
-  // apex без www — иначе визиты на bober-ai.dev не попадают в счётчик www
+  // apex без www — иначе визиты на www.bober-systems.ru не попадают в счётчик www
   try {
     const cur = (await api(`/counter/${counterId}`)).counter;
     const primary = String(cur.site2?.site || cur.site || "")
@@ -239,7 +239,7 @@ async function ensureMirrors(counterId) {
         .map((m) => String(m.site || m).replace(/^https?:\/\//, "").replace(/\/$/, "").toLowerCase())
         .filter(Boolean),
     );
-    const want = ["bober-ai.dev"];
+    const want = ["www.bober-systems.ru"];
     const toAdd = want.filter((s) => s !== primary && !mirrorSites.has(s));
     if (!toAdd.length) {
       console.log(`\n[mirrors] OK primary=${primary} mirrors=[${[...mirrorSites].join(", ") || "—"}]`);

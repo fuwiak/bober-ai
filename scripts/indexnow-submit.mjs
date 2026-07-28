@@ -12,40 +12,119 @@
  *   node scripts/indexnow-submit.mjs /pricing …  # только указанные пути
  */
 
+import { readFileSync, existsSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import fetch from "./lib/fetch.mjs";
 
-const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-ai.dev").replace(/\/$/, "");
+const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+// Webmaster/IndexNow host — not dual-origin branding SITE_URL.
+const SITE_URL = (
+  process.env.INDEXNOW_SITE_URL ||
+  process.env.YANDEX_WEBMASTER_HOST_URL ||
+  "https://www.bober-systems.ru"
+).replace(/\/$/, "");
 const HOST = new URL(SITE_URL).host;
 const KEY = process.env.INDEXNOW_KEY?.trim() || "e12776ff43264f8c1750c9e433a90357";
 const KEY_URL = `${SITE_URL}/${KEY}.txt`;
+const LOCAL_KEY = join(root, "public", `${KEY}.txt`);
+const LOCAL_SITEMAP = join(root, "public", "sitemap.xml");
 
 // Яндекс — отдельный endpoint; api.indexnow.org раздаёт остальным участникам (Bing и др.).
 const ENDPOINTS = ["https://yandex.com/indexnow", "https://api.indexnow.org/indexnow"];
 
+function fetchErrorHint(error, url) {
+  const cause = error?.cause;
+  const code = cause?.code || error?.code || "";
+  const detail = cause?.message || error?.message || String(error);
+  let hint = "";
+  if (code.includes("SSL") || /tlsv?1|SSL/i.test(detail)) {
+    hint =
+      "\n  → TLS к сайту сломан (часто LE rate-limit / Caddy без multi-SAN). " +
+      "Проверьте: curl -sI " +
+      url;
+  } else if (code === "ENOTFOUND" || code === "ECONNREFUSED") {
+    hint = "\n  → Хост недоступен с этой машины.";
+  }
+  return `fetch failed (${url}): ${code || detail}${hint}`;
+}
+
+async function safeFetch(url, options) {
+  try {
+    return await fetch(url, options);
+  } catch (error) {
+    throw new Error(fetchErrorHint(error, url));
+  }
+}
+
+function parseSitemapXml(xml) {
+  return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1].trim());
+}
+
 async function urlsFromSitemap() {
-  const response = await fetch(`${SITE_URL}/sitemap.xml`);
-  if (!response.ok) throw new Error(`sitemap.xml → HTTP ${response.status}`);
-  const xml = await response.text();
-  const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1].trim());
-  // IndexNow принимает только URL своего хоста — микросайты из sitemap отсекаем.
-  return [...new Set(urls)].filter((url) => new URL(url).host === HOST);
+  try {
+    const response = await safeFetch(`${SITE_URL}/sitemap.xml`);
+    if (!response.ok) throw new Error(`sitemap.xml → HTTP ${response.status}`);
+    const xml = await response.text();
+    const urls = parseSitemapXml(xml);
+    // IndexNow принимает только URL своего хоста — микросайты из sitemap отсекаем.
+    return [...new Set(urls)].filter((url) => {
+      try {
+        return new URL(url).host === HOST;
+      } catch {
+        return false;
+      }
+    });
+  } catch (liveError) {
+    if (!existsSync(LOCAL_SITEMAP)) throw liveError;
+    console.warn(`⚠ Live sitemap недоступен → ${LOCAL_SITEMAP}`);
+    console.warn(`  ${liveError.message}`);
+    const xml = readFileSync(LOCAL_SITEMAP, "utf8");
+    return [...new Set(parseSitemapXml(xml))]
+      .map((url) => {
+        try {
+          const parsed = new URL(url);
+          if (parsed.host === HOST) return url;
+          // Rewrite twin/local hosts to canonical SITE_URL host.
+          if (
+            parsed.host.endsWith("bober-ai.dev") ||
+            parsed.host.endsWith("bober-systems.ru") ||
+            parsed.host === "localhost"
+          ) {
+            return `${SITE_URL}${parsed.pathname}${parsed.search}`;
+          }
+        } catch {
+          /* skip */
+        }
+        return null;
+      })
+      .filter(Boolean);
+  }
 }
 
 async function verifyKeyFile() {
-  const response = await fetch(KEY_URL);
-  const text = response.ok ? (await response.text()).trim() : "";
-  if (text !== KEY) {
+  try {
+    const response = await safeFetch(KEY_URL);
+    const text = response.ok ? (await response.text()).trim() : "";
+    if (text === KEY) return;
     throw new Error(
       `Файл ключа ${KEY_URL} недоступен или не совпадает (HTTP ${response.status}). ` +
         "Задеплойте public/<key>.txt перед отправкой.",
     );
+  } catch (liveError) {
+    if (!existsSync(LOCAL_KEY)) throw liveError;
+    const local = readFileSync(LOCAL_KEY, "utf8").trim();
+    if (local !== KEY) throw liveError;
+    console.warn(`⚠ Live ключ недоступен, локальный public/${KEY}.txt совпадает.`);
+    console.warn(`  IndexNow всё равно проверит ${KEY_URL} на своей стороне.`);
+    console.warn(`  ${liveError.message}`);
   }
 }
 
 async function submit(urls) {
   const payload = JSON.stringify({ host: HOST, key: KEY, keyLocation: KEY_URL, urlList: urls });
   for (const endpoint of ENDPOINTS) {
-    const response = await fetch(endpoint, {
+    const response = await safeFetch(endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json; charset=utf-8" },
       body: payload,
@@ -60,12 +139,13 @@ async function submit(urls) {
 }
 
 async function main() {
-  const args = process.argv.slice(2);
+  const args = process.argv.slice(2).filter((a) => !a.startsWith("--"));
   const urls = args.length
     ? args.map((path) => (path.startsWith("http") ? path : `${SITE_URL}${path}`))
     : await urlsFromSitemap();
 
   console.log(`IndexNow: ${urls.length} URL для ${HOST}\n`);
+  if (!urls.length) throw new Error("Нет URL для отправки");
   await verifyKeyFile();
   console.log(`  ✓ Ключ подтверждён: ${KEY_URL}\n`);
 
