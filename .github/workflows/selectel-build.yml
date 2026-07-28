@@ -194,16 +194,47 @@ jobs:
 
           # Stale host/node on :3000 keeps old HTML alive while new web crash-loops
           # (EADDRINUSE). Tear down compose + free the port before rebuild.
+          free_port_3000() {
+            echo "=== free :3000 ==="
+            ss -lptn 'sport = :3000' || true
+            # Stop known host units that may respawn old Next/Astro on :3000
+            for unit in bober-ai bober-ai-web bober-web astro next; do
+              systemctl stop "$unit" 2>/dev/null || true
+              systemctl disable "$unit" 2>/dev/null || true
+            done
+            if command -v fuser >/dev/null 2>&1; then
+              fuser -v -k 3000/tcp 2>/dev/null || true
+            fi
+            if command -v lsof >/dev/null 2>&1; then
+              for pid in $(lsof -t -iTCP:3000 -sTCP:LISTEN 2>/dev/null || true); do
+                echo "kill lsof pid=$pid"
+                kill -9 "$pid" 2>/dev/null || true
+              done
+            fi
+            for pid in $(ss -lptn 'sport = :3000' 2>/dev/null | grep -oE 'pid=[0-9]+' | cut -d= -f2 | sort -u); do
+              echo "kill ss pid=$pid"
+              kill -9 "$pid" 2>/dev/null || true
+            done
+            # Last resort: node listeners only (not all node)
+            for pid in $(ps -eo pid=,args= | awk '/node .*entry\.mjs|node .*server\.js|node \/opt\/bober/{print $1}'); do
+              echo "kill bober node pid=$pid"
+              kill -9 "$pid" 2>/dev/null || true
+            done
+            sleep 2
+            if ss -lptn 'sport = :3000' 2>/dev/null | grep -q ':3000'; then
+              echo "PORT_3000_STILL_BUSY"
+              ss -lptn 'sport = :3000' || true
+              return 1
+            fi
+            echo "PORT_3000_FREE"
+            return 0
+          }
+
           "${dc[@]}" -f "$COMPOSE_FILE" down --remove-orphans || true
-          if command -v fuser >/dev/null 2>&1; then
-            fuser -k 3000/tcp 2>/dev/null || true
-          else
-            pids=$(ss -lptn 'sport = :3000' 2>/dev/null | sed -n 's/.*pid=\([0-9]*\).*/\1/p' | sort -u || true)
-            for pid in $pids; do kill -9 "$pid" 2>/dev/null || true; done
-          fi
-          sleep 2
+          free_port_3000 || free_port_3000 || { echo "CANNOT_FREE_3000"; exit 1; }
 
           "${dc[@]}" -f "$COMPOSE_FILE" build --build-arg "GIT_SHA=$GIT_SHA" web
+          free_port_3000 || { echo "PORT_RECLAIMED_DURING_BUILD"; exit 1; }
           GIT_SHA="$GIT_SHA" "${dc[@]}" -f "$COMPOSE_FILE" up -d --force-recreate
           sleep 5
 
