@@ -1,8 +1,7 @@
 ---
-import { localizePath, type Locale } from "@/lib/i18n";
-import { buildNavGroups, navLabels, type NavGroup } from "@/lib/nav";
+import { localizePath, type Locale, type Messages } from "@/lib/i18n";
+import { buildNavGroups, navLabels, type NavGroup, type NavIconId, type NavLinkItem } from "@/lib/nav";
 import { CONTACT_PHONE, PRIMARY_CTA_GOAL, SITE_NAME, TELEGRAM_URL } from "@/lib/site";
-import type { Messages } from "@/lib/i18n";
 
 interface Props {
   locale: Locale;
@@ -18,9 +17,87 @@ const localeSwitchHref = locale === "ru" ? "/en" : "/";
 function hrefFor(item: { href: string; localeAgnostic?: boolean }) {
   return item.localeAgnostic ? item.href : localizePath(item.href, locale);
 }
+
+function megaCols(group: Extract<NavGroup, { type: "mega" }>) {
+  return group.columns.length + (group.promo ? 1 : 0);
+}
 ---
 
 <header class="site-header" data-nav-root>
+  <!-- Icon sprite (same as Next SiteHeaderClient) -->
+  <svg width="0" height="0" class="site-mega__sprite" aria-hidden="true">
+    <defs>
+      <symbol id="bmd-i-grid" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+        <rect x="14" y="3" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+        <rect x="3" y="14" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+        <rect x="14" y="14" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+      </symbol>
+      <symbol id="bmd-i-shield" viewBox="0 0 24 24">
+        <path d="M12 3l7 3v6c0 4.2-3 7.6-7 9-4-1.4-7-4.8-7-9V6z" fill="none" stroke="currentColor" stroke-width="1.6"></path>
+        <path d="M9.2 12l2 2 3.6-3.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+      </symbol>
+      <symbol id="bmd-i-bolt" viewBox="0 0 24 24">
+        <path d="M13 2L4 13h6l-1 9 9-11h-6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path>
+      </symbol>
+      <symbol id="bmd-i-sales" viewBox="0 0 24 24">
+        <path d="M3 17l6-6 4 4 8-8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+        <path d="M16 7h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+      </symbol>
+      <symbol id="bmd-i-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+        <path d="M16.5 16.5L21 21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+      </symbol>
+      <symbol id="bmd-i-case" viewBox="0 0 24 24">
+        <path d="M3 7.5l9-4 9 4-9 4z" fill="none" stroke="currentColor" stroke-width="1.6"></path>
+        <path d="M3 7.5V14l9 4 9-4V7.5" fill="none" stroke="currentColor" stroke-width="1.6"></path>
+      </symbol>
+      <symbol id="bmd-i-process" viewBox="0 0 24 24">
+        <path d="M4 6h9M4 12h13M4 18h7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+        <path d="M15.5 16.5l2 2 3.5-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+      </symbol>
+      <symbol id="bmd-i-about" viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+        <path d="M3.5 19a5.5 5.5 0 0 1 11 0" fill="none" stroke="currentColor" stroke-width="1.6"></path>
+      </symbol>
+      <symbol id="bmd-i-career" viewBox="0 0 24 24">
+        <rect x="3" y="7" width="18" height="13" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+        <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" fill="none" stroke="currentColor" stroke-width="1.6"></path>
+      </symbol>
+      <symbol id="bmd-i-partner" viewBox="0 0 24 24">
+        <circle cx="8.5" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+        <circle cx="15.5" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+      </symbol>
+      <symbol id="bmd-i-news" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="13.5" height="15" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+        <path d="M16.5 8H20a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2" fill="none" stroke="currentColor" stroke-width="1.6"></path>
+        <path d="M6 9h7.5M6 13h7.5M6 17h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+      </symbol>
+      <symbol id="bmd-i-book" viewBox="0 0 24 24">
+        <path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H19v17H7.5A2.5 2.5 0 0 0 5 21.5z" fill="none" stroke="currentColor" stroke-width="1.6"></path>
+        <path d="M5 18.5A2.5 2.5 0 0 1 7.5 16H19" fill="none" stroke="currentColor" stroke-width="1.6"></path>
+      </symbol>
+      <symbol id="bmd-i-check" viewBox="0 0 24 24">
+        <path d="M4 6l1.6 1.6L9 4.4M4 12l1.6 1.6L9 10.4M4 18l1.6 1.6L9 16.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+        <path d="M12.5 6H20M12.5 12.5H20M12.5 19H20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+      </symbol>
+      <symbol id="bmd-i-media" viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="16" rx="2.6" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+        <circle cx="8.4" cy="9.4" r="1.8" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+        <path d="M5 18l4.6-4.6 3 3 3-3L20 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+      </symbol>
+      <symbol id="bmd-i-help" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+        <path d="M9.3 9.5a2.8 2.8 0 0 1 5.4 1c0 1.9-2.7 2.2-2.7 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+        <path d="M12 17h.01" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path>
+      </symbol>
+      <symbol id="bmd-i-arrow" viewBox="0 0 24 24">
+        <path d="M5 12h13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+        <path d="M12 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+      </symbol>
+    </defs>
+  </svg>
+
   <div class="container-editorial site-header__frame">
     <div class="site-header__bar">
       <div class="site-header__cont">
@@ -28,91 +105,118 @@ function hrefFor(item: { href: string; localeAgnostic?: boolean }) {
 
         <nav class="site-header__nav" aria-label="Main">
           <ul class="site-header__list">
-            {groups.map((group: NavGroup) => {
-              if (group.type === "link") {
+            {
+              groups.map((group: NavGroup) => {
+                if (group.type === "link") {
+                  return (
+                    <li class="site-header__item">
+                      <a href={hrefFor(group)} class="site-header__trigger">
+                        {group.label}
+                      </a>
+                    </li>
+                  );
+                }
+
                 return (
-                  <li class="site-header__item">
-                    <a href={hrefFor(group)} class="site-header__trigger">
-                      {group.label}
-                    </a>
-                  </li>
-                );
-              }
-
-              return (
-                <li
-                  class={`site-header__item site-header__pop${group.type === "mega" ? " site-header__pop--mega" : " site-header__pop--drop"}`}
-                  data-nav-pop={group.id}
-                >
-                  <button
-                    type="button"
-                    class="site-header__trigger"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    data-nav-trigger={group.id}
+                  <li
+                    class={`site-header__item site-header__pop${group.type === "mega" ? " site-header__pop--mega" : " site-header__pop--drop"}`}
+                    data-nav-pop={group.id}
                   >
-                    {group.label}
-                    <svg class="site-header__chev" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
-                    </svg>
-                  </button>
+                    <button
+                      type="button"
+                      class="site-header__trigger"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      data-nav-trigger={group.id}
+                    >
+                      {group.label}
+                      <svg class="site-header__chev" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                      </svg>
+                    </button>
 
-                  {group.type === "mega" ? (
-                    <div class="site-mega" role="menu" data-nav-panel={group.id} aria-hidden="true">
-                      <div class="site-mega__grid">
-                        {group.columns.map((col) => (
-                          <div>
-                            <div class="site-mega__collabel">{col.title}</div>
-                            {col.items.map((item) => (
-                              <a href={hrefFor(item)} class="site-mega__card">
-                                <span class="site-mega__tt">{item.label}</span>
-                                {item.description && <span class="site-mega__st">{item.description}</span>}
+                    {group.type === "mega" ? (
+                      <div class="site-mega" role="menu" data-nav-panel={group.id} aria-hidden="true">
+                        <div
+                          class="site-mega__grid"
+                          style={`grid-template-columns: repeat(${megaCols(group)}, minmax(0, 1fr));`}
+                        >
+                          {group.columns.map((col) => (
+                            <div>
+                              <div class="site-mega__collabel">{col.title}</div>
+                              {col.items.map((item: NavLinkItem) => (
+                                <a href={hrefFor(item)} class="site-mega__card">
+                                  <span class="site-mega__tile">
+                                    <svg class="site-mega__ic" aria-hidden="true">
+                                      <use href={`#bmd-i-${(item.icon ?? "grid") as NavIconId}`} />
+                                    </svg>
+                                  </span>
+                                  <span class="site-mega__ct">
+                                    <span class="site-mega__tt">{item.label}</span>
+                                    {item.description && <span class="site-mega__st">{item.description}</span>}
+                                  </span>
+                                </a>
+                              ))}
+                            </div>
+                          ))}
+                          {group.promo && (
+                            <div class="site-mega__promo">
+                              <h4>{group.promo.title}</h4>
+                              <p>{group.promo.text}</p>
+                              <button
+                                type="button"
+                                class="site-mega__promo-cta"
+                                data-contact-open
+                                data-contact-goal={PRIMARY_CTA_GOAL}
+                              >
+                                {group.promo.cta}
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                        {(group.footerTags?.length || group.footerLink) && (
+                          <div class="site-mega__foot">
+                            {group.footerTags?.length ? (
+                              <div class="site-mega__foot-tags">
+                                {group.footerTags.map((tag) => (
+                                  <span>{tag}</span>
+                                ))}
+                              </div>
+                            ) : (
+                              <span />
+                            )}
+                            {group.footerLink && (
+                              <a href={hrefFor(group.footerLink)} class="site-mega__foot-link">
+                                {group.footerLink.label}
+                                <svg class="site-mega__ic site-mega__ic--sm" aria-hidden="true">
+                                  <use href="#bmd-i-arrow" />
+                                </svg>
                               </a>
-                            ))}
-                          </div>
-                        ))}
-                        {group.promo && (
-                          <div class="site-mega__promo">
-                            <h4>{group.promo.title}</h4>
-                            <p>{group.promo.text}</p>
-                            <a href={localizePath(group.promo.href, locale)} class="site-mega__promo-cta">
-                              {group.promo.cta}
-                            </a>
+                            )}
                           </div>
                         )}
                       </div>
-                      {(group.footerTags?.length || group.footerLink) && (
-                        <div class="site-mega__foot">
-                          {group.footerTags?.length ? (
-                            <div class="site-mega__foot-tags">
-                              {group.footerTags.map((tag) => (
-                                <span>{tag}</span>
-                              ))}
-                            </div>
-                          ) : (
-                            <span />
-                          )}
-                          {group.footerLink && (
-                            <a href={hrefFor(group.footerLink)} class="site-mega__foot-link">
-                              {group.footerLink.label}
-                            </a>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <div class="site-drop" role="menu" data-nav-panel={group.id} aria-hidden="true">
-                      {group.items.map((item) => (
-                        <a href={hrefFor(item)} class="site-mega__card">
-                          <span class="site-mega__tt">{item.label}</span>
-                          {item.description && <span class="site-mega__st">{item.description}</span>}
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </li>
-              );
-            })}
+                    ) : (
+                      <div class="site-drop" role="menu" data-nav-panel={group.id} aria-hidden="true">
+                        {group.items.map((item: NavLinkItem) => (
+                          <a href={hrefFor(item)} class="site-mega__card">
+                            <span class="site-mega__tile">
+                              <svg class="site-mega__ic" aria-hidden="true">
+                                <use href={`#bmd-i-${(item.icon ?? "grid") as NavIconId}`} />
+                              </svg>
+                            </span>
+                            <span class="site-mega__ct">
+                              <span class="site-mega__tt">{item.label}</span>
+                              {item.description && <span class="site-mega__st">{item.description}</span>}
+                            </span>
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </li>
+                );
+              })
+            }
           </ul>
         </nav>
       </div>
@@ -121,8 +225,19 @@ function hrefFor(item: { href: string; localeAgnostic?: boolean }) {
         <a href={`tel:${CONTACT_PHONE}`} class="site-header__phone">
           {CONTACT_PHONE}
         </a>
-        <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" class="site-header__icon-link" aria-label={labels.telegramLabel}>
-          Telegram
+        <a
+          href={TELEGRAM_URL}
+          target="_blank"
+          rel="noreferrer"
+          class="site-header__icon-link"
+          aria-label={labels.telegramLabel}
+        >
+          <svg class="site-header__icon" width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M21.5 3.5 2.8 10.8c-1.3.5-1.3 1.2-.2 1.5l4.8 1.5 1.8 5.5c.2.7.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8L22.8 4.7c.3-1.2-.4-1.7-1.3-1.2ZM9.4 14.3l-.3 3.5 1.5-1.4 6.3-5.7c.3-.2.5-.4.2-.6-.2-.2-.5 0-.7.1l-7 4.1Z"
+              fill="currentColor"
+            />
+          </svg>
         </a>
         <div class="site-header__tools">
           <a href={localeSwitchHref} class="text-sm text-muted" aria-label={labels.localeSwitchLabel}>
@@ -181,47 +296,69 @@ function hrefFor(item: { href: string; localeAgnostic?: boolean }) {
       </div>
 
       <div class="mobile-menu__accs">
-        {groups.map((group) => {
-          if (group.type === "link") {
-            return (
-              <div class="mobile-menu__acc">
-                <a href={hrefFor(group)} class="mobile-menu__acc-link">
-                  {group.label}
-                </a>
-              </div>
-            );
-          }
+        {
+          groups.map((group) => {
+            if (group.type === "link") {
+              return (
+                <div class="mobile-menu__acc">
+                  <a href={hrefFor(group)} class="mobile-menu__acc-link">
+                    {group.label}
+                  </a>
+                </div>
+              );
+            }
 
-          return (
-            <div class="mobile-menu__acc" data-nav-mobile-acc={group.id}>
-              <button type="button" class="mobile-menu__acc-head" aria-expanded="false" data-nav-mobile-acc-trigger={group.id}>
-                {group.label}
-              </button>
-              <div class="mobile-menu__acc-body" data-nav-mobile-acc-panel={group.id} aria-hidden="true">
-                <div class="mobile-menu__acc-inner">
-                  <div class="mobile-menu__acc-pad">
-                    {group.type === "mega"
-                      ? group.columns.map((col) => (
-                          <div>
-                            <div class="mobile-menu__msub">{col.title}</div>
-                            {col.items.map((item) => (
-                              <a href={hrefFor(item)} class="mobile-menu__mrow">
-                                {item.label}
-                              </a>
-                            ))}
-                          </div>
-                        ))
-                      : group.items.map((item) => (
-                          <a href={hrefFor(item)} class="mobile-menu__mrow">
-                            {item.label}
-                          </a>
-                        ))}
+            return (
+              <div class="mobile-menu__acc" data-nav-mobile-acc={group.id}>
+                <button
+                  type="button"
+                  class="mobile-menu__acc-head"
+                  aria-expanded="false"
+                  data-nav-mobile-acc-trigger={group.id}
+                >
+                  {group.label}
+                </button>
+                <div class="mobile-menu__acc-body" data-nav-mobile-acc-panel={group.id} aria-hidden="true">
+                  <div class="mobile-menu__acc-inner">
+                    <div class="mobile-menu__acc-pad">
+                      {group.type === "mega"
+                        ? group.columns.map((col) => (
+                            <div>
+                              <div class="mobile-menu__msub">{col.title}</div>
+                              {col.items.map((item) => (
+                                <a href={hrefFor(item)} class="mobile-menu__mrow">
+                                  <span class="site-mega__tile site-mega__tile--sm">
+                                    <svg class="site-mega__ic" aria-hidden="true">
+                                      <use href={`#bmd-i-${item.icon ?? "grid"}`} />
+                                    </svg>
+                                  </span>
+                                  <span>{item.label}</span>
+                                </a>
+                              ))}
+                            </div>
+                          ))
+                        : group.items.map((item) => (
+                            <a href={hrefFor(item)} class="mobile-menu__mrow">
+                              <span class="site-mega__tile site-mega__tile--sm">
+                                <svg class="site-mega__ic" aria-hidden="true">
+                                  <use href={`#bmd-i-${item.icon ?? "grid"}`} />
+                                </svg>
+                              </span>
+                              <span>{item.label}</span>
+                            </a>
+                          ))}
+                      {group.type === "mega" && group.footerLink && (
+                        <a href={hrefFor(group.footerLink)} class="mobile-menu__mrow mobile-menu__mrow--all">
+                          {group.footerLink.label}
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })
+        }
       </div>
 
       <div class="mt-8 flex items-center gap-3 border-t border-hairline pt-6">
