@@ -37,7 +37,7 @@ Workflow [`.github/workflows/selectel-build.yml`](.github/workflows/selectel-bui
 | Когда | Что | Статус в UI |
 |-------|-----|-------------|
 | push/PR → `main` | `docker build` (тот же Dockerfile) | зелёная галка = образ собирается |
-| push → `main` или manual | tar+scp на VDS → `/opt/bober-ai/src` → `compose up -d --build` → `/api/health` | зелёная = Selectel deploy ок |
+| push → `main` или manual | tar+scp на VDS → `/opt/bober-ai/src` → Compose V2 `up -d --build` → `/api/health` | зелёная = Selectel deploy ок |
 
 Секрет: `SELECTEL_SSH_KEY` (тот же, что у `selectel-rescue-sync`). Смотреть: **Actions** → `selectel-build`, или галка у коммита на `main`.
 

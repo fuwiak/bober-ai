@@ -158,30 +158,34 @@ jobs:
           COMPOSE_FILE="$COMPOSE_DIR/docker-compose.yml"
           [ -f "$COMPOSE_FILE" ] || { echo "NO_COMPOSE under $COMPOSE_DIR"; exit 1; }
 
-          # VDS may have only plain docker (no compose plugin). Plain `docker … -d`
-          # then fails with: unknown shorthand flag: 'd' in -d
+          # VDS may have only plain docker (no compose plugin). Do NOT use apt
+          # docker-compose v1 — broken on Python 3.12 (no distutils). Prefer
+          # `docker compose`, else install Compose V2 CLI plugin from GitHub.
+          install_compose_v2() {
+            local ver="v2.29.7"
+            local url="https://github.com/docker/compose/releases/download/${ver}/docker-compose-linux-x86_64"
+            mkdir -p /usr/local/lib/docker/cli-plugins
+            curl -fsSL "$url" -o /usr/local/lib/docker/cli-plugins/docker-compose
+            chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+            ln -sfn /usr/local/lib/docker/cli-plugins/docker-compose /usr/local/bin/docker-compose
+          }
           resolve_compose() {
             if docker compose version >/dev/null 2>&1; then
               dc=(docker compose)
-            elif command -v docker-compose >/dev/null 2>&1; then
-              dc=(docker-compose)
             else
-              echo "compose missing — installing docker-compose-plugin"
-              export DEBIAN_FRONTEND=noninteractive
-              apt-get update -qq
-              apt-get install -y -qq docker-compose-plugin \
-                || apt-get install -y -qq docker-compose
+              echo "compose missing — installing Docker Compose V2 binary (v2.29.7)"
+              install_compose_v2
               if docker compose version >/dev/null 2>&1; then
                 dc=(docker compose)
-              elif command -v docker-compose >/dev/null 2>&1; then
-                dc=(docker-compose)
               else
-                echo "NO_DOCKER_COMPOSE after apt install"
+                echo "NO_DOCKER_COMPOSE after V2 binary install"
                 docker version || true
+                ls -la /usr/local/lib/docker/cli-plugins/ || true
                 exit 1
               fi
             fi
             echo "using: ${dc[*]}"
+            "${dc[@]}" version
           }
           resolve_compose
 
