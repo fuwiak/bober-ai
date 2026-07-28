@@ -12,11 +12,16 @@
 }
 
 (astro_proxy) {
+	# App must listen on :3001 (compose PORT). Wrong PORT → 502 for all pages.
 	reverse_proxy 127.0.0.1:3001 {
 		header_up Host {host}
 		header_up X-Forwarded-Host {host}
 		header_up X-Forwarded-Proto https
 		header_up X-Real-IP {remote_host}
+		transport http {
+			dial_timeout 3s
+			response_header_timeout 30s
+		}
 	}
 }
 
@@ -24,6 +29,13 @@
 	# ">" replaces upstream text/yaml so clients see a single Content-Type.
 	header >Content-Type "application/xml; charset=utf-8"
 	header X-Content-Type-Options "nosniff"
+	header Cache-Control "public, max-age=300"
+}
+
+# Static YML from dist/client mounted at /srv — survives Node/502 outages.
+(yml_static) {
+	root * /srv
+	file_server
 }
 
 :80 {
@@ -69,28 +81,29 @@ https://bober-systems.ru {
 https://www.bober-systems.ru {
 	handle /performers-feed.yml {
 		import yml_headers
-		import astro_proxy
+		import yml_static
 	}
 	@yml path /feeds/*.yml
 	handle @yml {
 		import yml_headers
-		import astro_proxy
+		import yml_static
 	}
 	import astro_proxy
 }
 
 https://partners.bober-systems.ru {
-	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
+	handle /performers-feed.yml {
+		rewrite * /feeds/partners.yml
+		import yml_headers
+		import yml_static
+	}
+	@yml path /feeds/*.yml *.yml
+	handle @yml {
+		import yml_headers
+		import yml_static
+	}
+	@passthrough path /api/* /_astro/* /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
 	handle @passthrough {
-		handle /performers-feed.yml {
-			rewrite * /feeds/partners.yml
-			import yml_headers
-			import astro_proxy
-		}
-		@yml path *.yml
-		handle @yml {
-			import yml_headers
-		}
 		import astro_proxy
 	}
 	handle {
@@ -100,17 +113,18 @@ https://partners.bober-systems.ru {
 }
 
 https://bitrix.bober-systems.ru {
-	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
+	handle /performers-feed.yml {
+		rewrite * /feeds/bitrix.yml
+		import yml_headers
+		import yml_static
+	}
+	@yml path /feeds/*.yml *.yml
+	handle @yml {
+		import yml_headers
+		import yml_static
+	}
+	@passthrough path /api/* /_astro/* /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
 	handle @passthrough {
-		handle /performers-feed.yml {
-			rewrite * /feeds/bitrix.yml
-			import yml_headers
-			import astro_proxy
-		}
-		@yml path *.yml
-		handle @yml {
-			import yml_headers
-		}
 		import astro_proxy
 	}
 	handle {
