@@ -1314,6 +1314,8 @@ const en = {
     sectionsTitle: "Site sections",
     sqiTitle: "Yandex Site Quality Index (SQI)",
     sqiAlt: "Yandex Site Quality Index",
+    sqiAltDark: "Yandex SQI — dark theme",
+    sqiAltLight: "Yandex SQI — light theme",
     presence: {
       linkedin: "LinkedIn",
       github: "GitHub",

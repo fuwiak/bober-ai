@@ -1342,6 +1342,8 @@ const ru = {
     sectionsTitle: "Разделы сайта",
     sqiTitle: "Индекс качества сайта (ИКС) в Яндексе",
     sqiAlt: "Индекс качества сайта Яндекса",
+    sqiAltDark: "ИКС Яндекса — тёмная тема",
+    sqiAltLight: "ИКС Яндекса — светлая тема",
     presence: {
       linkedin: "LinkedIn",
       github: "GitHub",

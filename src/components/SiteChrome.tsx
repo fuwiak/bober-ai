@@ -200,25 +200,47 @@ export async function SiteFooter() {
           ))}
         </div>
         <p className="mt-8 text-xs text-muted-soft">© {new Date().getFullYear()} {SITE_NAME}</p>
-        <a
-          href={`https://webmaster.yandex.ru/siteinfo/?site=${encodeURIComponent(SITE_URL)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-4 inline-block opacity-70 transition-opacity hover:opacity-100"
-          title={t("sqiTitle")}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element -- external Yandex SQI badge */}
-          <img
-            src={`https://yandex.ru/cycounter?${SITE_URL}&theme=light&lang=ru`}
-            width={88}
-            height={31}
-            alt={t("sqiAlt")}
-            className="rounded-lg"
-            loading="lazy"
-            decoding="async"
-            referrerPolicy="no-referrer"
-          />
-        </a>
+        {/* Yandex ИКС: dark for dark footer, light variant for light backgrounds (Webmaster embeds). */}
+        <div className="mt-4 flex flex-wrap items-center gap-3">
+          <a
+            href={`https://webmaster.yandex.ru/siteinfo/?site=${encodeURIComponent(SITE_URL)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block"
+            title={t("sqiTitle")}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element -- external Yandex SQI badge */}
+            <img
+              src={`https://yandex.ru/cycounter?${SITE_URL}&theme=dark&lang=ru`}
+              width={88}
+              height={31}
+              alt={t("sqiAltDark")}
+              className="rounded-lg"
+              loading="lazy"
+              decoding="async"
+              referrerPolicy="no-referrer"
+            />
+          </a>
+          <a
+            href={`https://webmaster.yandex.ru/siteinfo/?site=${encodeURIComponent(SITE_URL)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block"
+            title={t("sqiTitle")}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element -- external Yandex SQI badge */}
+            <img
+              src={`https://yandex.ru/cycounter?${SITE_URL}&theme=light&lang=ru`}
+              width={88}
+              height={31}
+              alt={t("sqiAltLight")}
+              className="rounded-lg"
+              loading="lazy"
+              decoding="async"
+              referrerPolicy="no-referrer"
+            />
+          </a>
+        </div>
       </div>
     </footer>
   );
