@@ -28,7 +28,7 @@ ssh -i ~/.ssh/bober_selectel -o IdentitiesOnly=yes root@45.80.131.136 'cd /opt/b
 ```
 
 CI: GitHub Actions `selectel-build` — на push в `main` собирает образ и деплоит на VDS (секрет `SELECTEL_SSH_KEY`).
-На VDS: clone-or-pull в `/opt/bober-ai` (или `/opt/bober-ai/src`, если там rescue-layout без `.git`), checkout SHA, затем `deploy/docker compose up -d --build`.
+На VDS git не нужен: runner делает `tar`+`scp` (как `selectel-rescue-sync`), atomic extract в `/opt/bober-ai/src`, затем `src/deploy` → `docker compose up -d --build`. Host `.env` из `/opt/bober-ai/deploy/.env` сохраняется.
 
 Проверка:
 

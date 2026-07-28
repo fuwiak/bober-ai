@@ -1,7 +1,8 @@
 # Selectel production image + optional VDS deploy status.
 # Green check on main = Docker image builds (same Dockerfile as VDS).
-# Job "deploy" (main / manual) = SSH → clone-or-pull SHA → compose --build → /api/health.
-# VDS path: /opt/bober-ai (or /opt/bober-ai/src if rescue layout has no .git).
+# Job "deploy" (main / manual) = tar+scp SHA → VDS extract → compose --build → /api/health.
+# No git on VDS (same transfer pattern as selectel-rescue-sync).
+# App tree on VDS: /opt/bober-ai/src (preserves rescue out/ + host deploy/.env at /opt/bober-ai).
 #
 # Secret: SELECTEL_SSH_KEY (same as selectel-rescue-sync)
 
@@ -67,6 +68,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Setup SSH
         env:
           SELECTEL_SSH_KEY: ${{ secrets.SELECTEL_SSH_KEY }}
@@ -81,76 +85,77 @@ jobs:
           chmod 600 ~/.ssh/bober_selectel
           ssh-keyscan -T 10 -H 45.80.131.136 >> ~/.ssh/known_hosts 2>/dev/null || true
 
+      - name: Pack and upload source to VDS
+        env:
+          GIT_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          # Same idea as selectel-rescue-sync: transfer via tar+scp (VDS has no git).
+          tar -czf /tmp/bober-src.tgz \
+            --exclude='.git' \
+            --exclude='node_modules' \
+            --exclude='.next' \
+            --exclude='.astro' \
+            --exclude='graphify-out' \
+            --exclude='dist' \
+            --exclude='build' \
+            --exclude='coverage' \
+            --exclude='.cursor' \
+            --exclude='.claude' \
+            --exclude='.codex' \
+            .
+          echo "tarball=$(du -h /tmp/bober-src.tgz | awk '{print $1}') sha=$GIT_SHA"
+          scp -i ~/.ssh/bober_selectel -o IdentitiesOnly=yes -o ConnectTimeout=20 \
+            -o StrictHostKeyChecking=accept-new \
+            /tmp/bober-src.tgz root@45.80.131.136:/tmp/bober-src.tgz
+
       - name: Build and restart on VDS
         env:
           GIT_SHA: ${{ github.sha }}
           GIT_REF: ${{ github.ref_name }}
-          GH_REPO: ${{ github.repository }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
           ssh -i ~/.ssh/bober_selectel -o IdentitiesOnly=yes -o ConnectTimeout=20 \
             -o StrictHostKeyChecking=accept-new root@45.80.131.136 \
-            "GIT_SHA=$(printf %q "$GIT_SHA") GIT_REF=$(printf %q "$GIT_REF") GH_REPO=$(printf %q "$GH_REPO") GH_TOKEN=$(printf %q "$GH_TOKEN") bash -s" <<'EOS'
+            "GIT_SHA=$(printf %q "$GIT_SHA") GIT_REF=$(printf %q "$GIT_REF") bash -s" <<'EOS'
           set -euo pipefail
           ROOT=/opt/bober-ai
+          REPO="$ROOT/src"
+          STAGE="$ROOT/src.new"
           LOG=/var/log/bober-deploy.log
           READY="$ROOT/READY"
+          TGZ=/tmp/bober-src.tgz
           mkdir -p "$ROOT"
           touch "$LOG" || true
           exec > >(tee -a "$LOG") 2>&1
           echo "=== selectel-build $(date -Is) sha=$GIT_SHA ref=$GIT_REF ==="
+          [ -f "$TGZ" ] || { echo "NO_TARBALL $TGZ"; exit 1; }
 
-          # Auth URL for private/public clone+fetch (token never written to disk remotes)
-          ORIGIN_URL="https://github.com/${GH_REPO}.git"
-          FETCH_URL="https://x-access-token:${GH_TOKEN}@github.com/${GH_REPO}.git"
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE"
+          tar -C "$STAGE" -xzf "$TGZ"
+          [ -f "$STAGE/Dockerfile" ] || { echo "NO_DOCKERFILE in tarball"; ls -la "$STAGE" | head; exit 1; }
+          [ -f "$STAGE/deploy/docker-compose.yml" ] || { echo "NO_COMPOSE in tarball"; exit 1; }
 
-          # Layout A: /opt/bober-ai = git root
-          # Layout B: /opt/bober-ai/src = git root (keeps rescue out/ + host deploy artifacts)
-          if [ -d "$ROOT/.git" ]; then
-            REPO="$ROOT"
-          elif [ -d "$ROOT/src/.git" ]; then
-            REPO="$ROOT/src"
-          elif [ -z "$(ls -A "$ROOT" 2>/dev/null || true)" ]; then
-            echo "CLONING into empty $ROOT"
-            git clone --depth 50 "$FETCH_URL" "$ROOT"
-            git -C "$ROOT" remote set-url origin "$ORIGIN_URL"
-            REPO="$ROOT"
-          else
-            # Non-git deploy dir (rescue-sync: out/, deploy/Caddyfile) — clone beside it
-            REPO="$ROOT/src"
-            if [ ! -d "$REPO/.git" ]; then
-              echo "CLONING into $REPO (preserve $ROOT contents)"
-              rm -rf "$REPO"
-              git clone --depth 50 "$FETCH_URL" "$REPO"
-              git -C "$REPO" remote set-url origin "$ORIGIN_URL"
-            fi
+          # Keep SMTP/leads env from previous tree or host deploy dir
+          if [ -f "$REPO/deploy/.env" ]; then
+            cp -a "$REPO/deploy/.env" "$STAGE/deploy/.env"
+          elif [ -f "$ROOT/deploy/.env" ]; then
+            cp -a "$ROOT/deploy/.env" "$STAGE/deploy/.env"
+          elif [ -f "$ROOT/.env" ]; then
+            cp -a "$ROOT/.env" "$STAGE/deploy/.env"
           fi
 
-          echo "REPO=$REPO"
-          git -C "$REPO" fetch --depth 50 "$FETCH_URL" "$GIT_REF" \
-            || git -C "$REPO" fetch --depth 50 "$FETCH_URL" "$GIT_SHA" \
-            || git -C "$REPO" fetch --depth 50 "$FETCH_URL"
-          if ! git -C "$REPO" checkout -f "$GIT_SHA"; then
-            git -C "$REPO" fetch --depth 50 "$FETCH_URL" "$GIT_SHA"
-            git -C "$REPO" checkout -f "$GIT_SHA"
+          rm -rf "$REPO.bak"
+          if [ -d "$REPO" ]; then
+            mv "$REPO" "$REPO.bak"
           fi
-          echo "GIT_HEAD=$(git -C "$REPO" rev-parse --short HEAD) $(git -C "$REPO" log -1 --pretty=%s)"
-
-          # Verify tree AFTER git update (was failing early when rescue dir had no Dockerfile)
-          [ -f "$REPO/Dockerfile" ] || { echo "NO_DOCKERFILE under $REPO after checkout"; ls -la "$REPO" | head; exit 1; }
+          mv "$STAGE" "$REPO"
+          printf '%s\n' "$GIT_SHA" > "$REPO/.deploy-sha"
+          echo "REPO=$REPO GIT_SHA=$GIT_SHA"
 
           COMPOSE_DIR="$REPO/deploy"
           [ -f "$COMPOSE_DIR/docker-compose.yml" ] || { echo "NO_COMPOSE under $COMPOSE_DIR"; exit 1; }
-
-          # Keep host SMTP/leads env + Caddy overrides if present outside REPO
-          if [ "$REPO" != "$ROOT" ]; then
-            if [ -f "$ROOT/deploy/.env" ] && [ ! -f "$COMPOSE_DIR/.env" ]; then
-              cp -a "$ROOT/deploy/.env" "$COMPOSE_DIR/.env"
-            elif [ -f "$ROOT/.env" ] && [ ! -f "$COMPOSE_DIR/.env" ]; then
-              cp -a "$ROOT/.env" "$COMPOSE_DIR/.env"
-            fi
-          fi
 
           cd "$COMPOSE_DIR"
           docker compose up -d --build
@@ -159,6 +164,7 @@ jobs:
           curl -sf --connect-timeout 10 http://127.0.0.1:3000/api/health | head -c 500
           echo
           printf 'ok %s %s\n' "$GIT_SHA" "$(date -Is)" > "$READY"
+          rm -f "$TGZ"
           echo "SELECTEL_DEPLOY_OK"
           EOS
 
