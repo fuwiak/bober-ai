@@ -313,12 +313,28 @@ jobs:
           mv /opt/bober-ai/out.new /opt/bober-ai/out
           # ensure microsite files
           ls -la /opt/bober-ai/out/index.html /opt/bober-ai/out/white-label.html /opt/bober-ai/out/bitrix.html || true
-          # Edge Caddy proxies to Astro on :3001 (Caddyfile from deploy/). out/ kept as fallback artifact only.
-          docker rm -f bober-next bober-ai deploy-caddy-1 2>/dev/null || true
-          docker run -d --name bober-ai --restart unless-stopped --network host \
-            -v /opt/bober-ai/deploy/Caddyfile:/etc/caddy/Caddyfile:ro \
-            -v caddy_data:/data -v caddy_config:/config \
-            caddy:2-alpine
+          # Edge Caddy proxies to Astro on :3001. Keep caddy_data for ACME certs.
+          docker rm -f bober-next deploy-caddy-1 2>/dev/null || true
+          docker volume create caddy_data >/dev/null
+          docker volume create caddy_config >/dev/null
+          if docker ps -a --format '{{.Names}}' | grep -qx 'bober-ai'; then
+            mounts=$(docker inspect bober-ai --format '{{range .Mounts}}{{.Destination}} {{end}}' 2>/dev/null || true)
+            if echo "$mounts" | grep -q '/data'; then
+              docker start bober-ai || true
+              docker exec bober-ai caddy reload --config /etc/caddy/Caddyfile || true
+            else
+              docker rm -f bober-ai
+              docker run -d --name bober-ai --restart unless-stopped --network host \
+                -v /opt/bober-ai/deploy/Caddyfile:/etc/caddy/Caddyfile:ro \
+                -v caddy_data:/data -v caddy_config:/config \
+                caddy:2-alpine
+            fi
+          else
+            docker run -d --name bober-ai --restart unless-stopped --network host \
+              -v /opt/bober-ai/deploy/Caddyfile:/etc/caddy/Caddyfile:ro \
+              -v caddy_data:/data -v caddy_config:/config \
+              caddy:2-alpine
+          fi
           sleep 3
           curl -skI -H 'Host: www.bober-ai.dev' https://127.0.0.1/ | head -12
           echo SYNC_OK
