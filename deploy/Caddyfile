@@ -11,6 +11,15 @@
 	}
 }
 
+(security_headers) {
+	header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+	header X-Content-Type-Options "nosniff"
+	header Referrer-Policy "strict-origin-when-cross-origin"
+	header Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+	header X-Frame-Options "SAMEORIGIN"
+	header Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; img-src 'self' data: https: blob:; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://yandex.ru; connect-src 'self' https://mc.yandex.ru https://mc.yandex.com https://yandex.ru wss://mc.yandex.ru; frame-src 'self' https://yandex.ru https://mc.yandex.ru; form-action 'self'"
+}
+
 (astro_proxy) {
 	# App must listen on :3001 (compose PORT). Wrong PORT → 502 for all pages.
 	reverse_proxy 127.0.0.1:3001 {
@@ -22,6 +31,56 @@
 			dial_timeout 3s
 			response_header_timeout 30s
 		}
+	}
+}
+
+# Prerendered Astro HTML + hashed assets from /srv — survives Node restart/502.
+# Only dynamic/API routes go to Node.
+(static_first) {
+	root * /srv
+	encode zstd gzip
+
+	import security_headers
+
+	handle /api/health {
+		reverse_proxy 127.0.0.1:3001
+	}
+	handle /health {
+		rewrite * /api/health
+		reverse_proxy 127.0.0.1:3001
+	}
+
+	@dynamic path /api/* /news /news/* /outages /outages/* /tel /tel/* /ru /ru/*
+	handle @dynamic {
+		import astro_proxy
+	}
+
+	@immutable path /_astro/*
+	handle @immutable {
+		header Cache-Control "public, max-age=31536000, immutable"
+		file_server
+	}
+
+	@assets path /vendor/* /fonts/* *.js *.css *.woff2 *.woff *.ttf
+	handle @assets {
+		header Cache-Control "public, max-age=2592000, stale-while-revalidate=86400"
+		file_server
+	}
+
+	@images path /stock/* /hero/* /partners/* /portfolio/* /media/* /cases/* /diagrams/* /yandex/* *.jpg *.jpeg *.webp *.png *.svg *.ico *.gif
+	handle @images {
+		header Cache-Control "public, max-age=2592000, stale-while-revalidate=86400"
+		file_server
+	}
+
+	# Static HTML first; if missing (new SSR route), fall through to Node.
+	handle {
+		header Cache-Control "public, max-age=60, stale-while-revalidate=300"
+		try_files {path} {path}/index.html {path}.html /index.html
+		file_server {
+			pass_thru
+		}
+		import astro_proxy
 	}
 }
 
@@ -40,6 +99,10 @@
 
 :80 {
 	handle /api/health {
+		reverse_proxy 127.0.0.1:3001
+	}
+	handle /health {
+		rewrite * /api/health
 		reverse_proxy 127.0.0.1:3001
 	}
 	# Apex systems: pages → https://www (one hop). robots → HTTPS apex
@@ -67,9 +130,15 @@
 }
 
 https://bober-systems.ru {
+	import security_headers
 	# Serve robots (+ Yandex verify) on apex — do not redirect to www.
-	@apexSeo path /robots.txt /yandex_*.html
+	@apexSeo path /robots.txt /yandex_*.html /sitemap*.xml
 	handle @apexSeo {
+		root * /srv
+		try_files {path} {path}/index.html
+		file_server {
+			pass_thru
+		}
 		import astro_proxy
 	}
 	handle {
@@ -91,22 +160,28 @@ https://www.bober-systems.ru {
 		import yml_headers
 		import yml_static
 	}
-	import astro_proxy
+	import static_first
 }
 
 https://partners.bober-systems.ru {
+	import security_headers
 	handle /performers-feed.yml {
-		rewrite * /feeds/partners.yml
 		import yml_headers
-		import yml_static
+		rewrite * /api/feeds/partners
+		import astro_proxy
 	}
 	@yml path /feeds/*.yml *.yml
 	handle @yml {
 		import yml_headers
 		import yml_static
 	}
-	@passthrough path /api/* /_astro/* /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
+	@passthrough path /api/* /_astro/* /vendor/* /fonts/* /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js *.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /sitemap-*.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
 	handle @passthrough {
+		root * /srv
+		try_files {path} {path}/index.html
+		file_server {
+			pass_thru
+		}
 		import astro_proxy
 	}
 	handle {
@@ -116,18 +191,24 @@ https://partners.bober-systems.ru {
 }
 
 https://bitrix.bober-systems.ru {
+	import security_headers
 	handle /performers-feed.yml {
-		rewrite * /feeds/bitrix.yml
 		import yml_headers
-		import yml_static
+		rewrite * /api/feeds/bitrix
+		import astro_proxy
 	}
 	@yml path /feeds/*.yml *.yml
 	handle @yml {
 		import yml_headers
 		import yml_static
 	}
-	@passthrough path /api/* /_astro/* /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
+	@passthrough path /api/* /_astro/* /vendor/* /fonts/* /*.xml /*.txt /*.md /*.ico /*.png /*.jpg *.jpeg *.webp *.svg *.js *.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /sitemap-*.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
 	handle @passthrough {
+		root * /srv
+		try_files {path} {path}/index.html
+		file_server {
+			pass_thru
+		}
 		import astro_proxy
 	}
 	handle {
