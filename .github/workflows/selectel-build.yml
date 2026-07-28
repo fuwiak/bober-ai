@@ -210,28 +210,22 @@ jobs:
           sleep 1
 
           "${dc[@]}" -f "$COMPOSE_FILE" build --build-arg "GIT_SHA=$GIT_SHA" web
-          GIT_SHA="$GIT_SHA" "${dc[@]}" -f "$COMPOSE_FILE" up -d --force-recreate
+          GIT_SHA="$GIT_SHA" "${dc[@]}" -f "$COMPOSE_FILE" up -d --force-recreate --remove-orphans
           sleep 5
 
-          # Keep host Caddy in sync if it (not compose caddy) owns :443
-          for caddyfile in \
-            "$COMPOSE_DIR/Caddyfile" \
-            "$ROOT/deploy/Caddyfile" \
-            /etc/caddy/Caddyfile \
-            /opt/bober-ai/Caddyfile; do
-            if [ -f "$caddyfile" ] && [ "$caddyfile" != "$COMPOSE_DIR/Caddyfile" ]; then
-              cp -a "$COMPOSE_DIR/Caddyfile" "$caddyfile" || true
-            fi
-          done
+          # Edge TLS is the host container named `bober-ai` (file_server on /out by default).
+          # Point it at Astro on :3001 via our proxy Caddyfile and recreate if needed.
           mkdir -p "$ROOT/deploy"
-          cp -a "$COMPOSE_DIR/Caddyfile" "$ROOT/deploy/Caddyfile" || true
-          if command -v caddy >/dev/null 2>&1; then
-            caddy validate --config "$COMPOSE_DIR/Caddyfile" 2>/dev/null \
-              && caddy reload --config "$COMPOSE_DIR/Caddyfile" 2>/dev/null \
-              || caddy reload --config "$ROOT/deploy/Caddyfile" 2>/dev/null \
-              || true
+          cp -a "$COMPOSE_DIR/Caddyfile" "$ROOT/deploy/Caddyfile"
+          docker rm -f deploy-caddy-1 2>/dev/null || true
+          if docker ps -a --format '{{.Names}}' | grep -qx 'bober-ai'; then
+            docker rm -f bober-ai
           fi
-          docker exec deploy-caddy-1 caddy reload --config /etc/caddy/Caddyfile 2>/dev/null || true
+          docker run -d --name bober-ai --restart unless-stopped --network host \
+            -v "$ROOT/deploy/Caddyfile:/etc/caddy/Caddyfile:ro" \
+            caddy:2-alpine
+          sleep 3
+          docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}' || true
 
           web_ok=0
           for i in 1 2 3 4 5 6 7 8 9 10 11 12; do
@@ -264,6 +258,11 @@ jobs:
           html=$(curl -sf --connect-timeout 10 "http://127.0.0.1:${APP_PORT}/" || true)
           echo "$html" | grep -q 'yandex-verification" content="0e71ef3fc54b6c3c"' \
             || { echo "NO_YANDEX_META on homepage"; echo "$html" | tr '>' '>\n' | grep -i yandex | head; exit 1; }
+
+          # Edge check via Host header (bober-ai caddy → :3001)
+          edge=$(curl -sk --connect-timeout 10 -H 'Host: www.bober-systems.ru' "https://127.0.0.1/" || true)
+          echo "$edge" | grep -q 'yandex-verification" content="0e71ef3fc54b6c3c"' \
+            || { echo "NO_YANDEX_META on edge caddy"; echo "$edge" | tr '>' '>\n' | grep -i yandex | head; docker logs bober-ai --tail 40 || true; exit 1; }
 
           printf 'ok %s %s\n' "$GIT_SHA" "$(date -Is)" > "$READY"
           rm -f "$TGZ"

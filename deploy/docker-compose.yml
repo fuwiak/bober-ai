@@ -16,32 +16,11 @@ services:
       HOST: "0.0.0.0"
       PORT: "3001"
       GIT_SHA: ${GIT_SHA:-}
-      SMTP_HOST: ${SMTP_HOST:-}
-      SMTP_PORT: ${SMTP_PORT:-465}
-      SMTP_SECURE: ${SMTP_SECURE:-1}
-      SMTP_USER: ${SMTP_USER:-}
-      SMTP_PASS: ${SMTP_PASS:-}
-      CONTACT_FROM_EMAIL: ${CONTACT_FROM_EMAIL:-}
-      CONTACT_TO_EMAIL: ${CONTACT_TO_EMAIL:-}
-      CONTACT_TELEGRAM_BOT_TOKEN: ${CONTACT_TELEGRAM_BOT_TOKEN:-}
-      CONTACT_TELEGRAM_CHAT_ID: ${CONTACT_TELEGRAM_CHAT_ID:-}
-      LEADS_LOG_PATH: ${LEADS_LOG_PATH:-/app/data/leads.jsonl}
-      KWORK_WEBHOOK_SECRET: ${KWORK_WEBHOOK_SECRET:-}
     volumes:
       - leads_data:/app/data
 
-  caddy:
-    image: caddy:2-alpine
-    restart: unless-stopped
-    network_mode: host
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy_data:/data
-      - caddy_config:/config
-    depends_on:
-      - web
+  # Public TLS terminates on host container `bober-ai` (see selectel-build.yml).
+  # Do not run a second Caddy here — it fights for :443 with the edge proxy.
 
 volumes:
   leads_data:
-  caddy_data:
-  caddy_config:

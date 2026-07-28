@@ -100,7 +100,7 @@ jobs:
           ln -sf /dev/null /mnt/root/etc/systemd/system/docker.socket
           echo "masked docker.service/socket on guest disk"
 
-          # Restore lightweight static Caddyfile (file_server, no Next)
+          # Restore edge Caddyfile (proxy to Astro on :3001 — not static file_server)
           mkdir -p /mnt/root/opt/bober-ai/deploy
           cat > /mnt/root/opt/bober-ai/deploy/Caddyfile <<'CADDY'
           {
@@ -111,7 +111,19 @@ jobs:
           	}
           }
 
+          (astro_proxy) {
+          	reverse_proxy 127.0.0.1:3001 {
+          		header_up Host {host}
+          		header_up X-Forwarded-Host {host}
+          		header_up X-Forwarded-Proto https
+          		header_up X-Real-IP {remote_host}
+          	}
+          }
+
           :80 {
+          	handle /api/health {
+          		reverse_proxy 127.0.0.1:3001
+          	}
           	@siteHost host www.bober-ai.dev bober-ai.dev partners.bober-ai.dev bitrix.bober-ai.dev www.bober-systems.ru bober-systems.ru partners.bober-systems.ru bitrix.bober-systems.ru
           	handle @siteHost {
           		header Cache-Control "no-store"
@@ -133,42 +145,31 @@ jobs:
           }
 
           https://www.bober-ai.dev {
-          	root * /srv
-          	encode gzip
-          	try_files {path} {path}.html {path}/index.html /index.html
-          	file_server
-          	header Cache-Control "public, max-age=300"
+          	import astro_proxy
           }
 
           https://www.bober-systems.ru {
-          	root * /srv
-          	encode gzip
-          	try_files {path} {path}.html {path}/index.html /index.html
-          	file_server
+          	import astro_proxy
           }
 
           https://partners.bober-ai.dev {
-          	root * /srv
-          	rewrite * /white-label.html
-          	file_server
+          	rewrite * /white-label
+          	import astro_proxy
           }
 
           https://partners.bober-systems.ru {
-          	root * /srv
-          	rewrite * /white-label.html
-          	file_server
+          	rewrite * /white-label
+          	import astro_proxy
           }
 
           https://bitrix.bober-ai.dev {
-          	root * /srv
-          	rewrite * /bitrix.html
-          	file_server
+          	rewrite * /bitrix
+          	import astro_proxy
           }
 
           https://bitrix.bober-systems.ru {
-          	root * /srv
-          	rewrite * /bitrix.html
-          	file_server
+          	rewrite * /bitrix
+          	import astro_proxy
           }
           CADDY
 
@@ -312,10 +313,9 @@ jobs:
           mv /opt/bober-ai/out.new /opt/bober-ai/out
           # ensure microsite files
           ls -la /opt/bober-ai/out/index.html /opt/bober-ai/out/white-label.html /opt/bober-ai/out/bitrix.html || true
-          # start only lightweight caddy
-          docker rm -f bober-next bober-ai 2>/dev/null || true
+          # Edge Caddy proxies to Astro on :3001 (Caddyfile from deploy/). out/ kept as fallback artifact only.
+          docker rm -f bober-next bober-ai deploy-caddy-1 2>/dev/null || true
           docker run -d --name bober-ai --restart unless-stopped --network host \
-            -v /opt/bober-ai/out:/srv:ro \
             -v /opt/bober-ai/deploy/Caddyfile:/etc/caddy/Caddyfile:ro \
             -v caddy_data:/data -v caddy_config:/config \
             caddy:2-alpine
