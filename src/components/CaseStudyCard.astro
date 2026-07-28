@@ -1,0 +1,81 @@
+---
+import { localizePath, type Locale } from "@/lib/i18n";
+import type { PortfolioItem } from "@/lib/profile";
+
+interface Props {
+  item: PortfolioItem;
+  locale: Locale;
+  viewLabel: string;
+  beforeLabel?: string;
+  afterLabel?: string;
+  segmentLabel?: string;
+}
+
+const { item, locale, viewLabel, beforeLabel, afterLabel, segmentLabel } = Astro.props;
+const href = localizePath(`/portfolio/${item.slug}`, locale);
+---
+
+<article class="feature-card-bordered">
+  <a href={href} class="block transition-opacity hover:opacity-90" data-goal="case_study_view" data-goal-slug={item.slug}>
+    <div class="relative aspect-[16/10] overflow-hidden rounded-lg bg-surface-soft">
+      <img
+        src={item.image}
+        alt={item.imageAlt ?? item.title}
+        class="h-full w-full object-cover"
+        width="840"
+        height="525"
+        loading="lazy"
+        decoding="async"
+      />
+      {
+        item.imageBadge && (
+          <span class="absolute left-3 top-3 rounded bg-ink/80 px-2 py-1 text-xs text-paper">
+            {item.imageBadge}
+          </span>
+        )
+      }
+    </div>
+    {item.imageCaption && <p class="mt-2 text-sm text-muted">{item.imageCaption}</p>}
+    {segmentLabel && <p class="meta-label mt-5">{segmentLabel}</p>}
+    <h3 class={`font-display text-2xl tracking-tight ${segmentLabel ? "mt-2" : "mt-5"}`}>
+      {item.title}
+    </h3>
+    {item.metric && <p class="case-study__metric mt-3">{item.metric}</p>}
+    {item.metricMethod && <p class="body-copy mt-2 text-sm text-muted">{item.metricMethod}</p>}
+  </a>
+
+  {
+    (item.description || item.result) && (
+      <div class="case-study__before-after mt-4 space-y-3">
+        {item.description && beforeLabel && (
+          <div>
+            <p class="meta-label">{beforeLabel}</p>
+            <p class="body-copy mt-1 text-sm">{item.description}</p>
+          </div>
+        )}
+        {item.result && afterLabel ? (
+          <div>
+            <p class="meta-label">{afterLabel}</p>
+            <p class="body-copy mt-1 text-sm text-ink">{item.result}</p>
+          </div>
+        ) : item.result ? (
+          <p class="body-copy mt-3 text-base">{item.result}</p>
+        ) : null}
+      </div>
+    )
+  }
+
+  {item.stack && <p class="meta-label mt-3">{item.stack}</p>}
+  {
+    item.priceLabel && (
+      <div class="mt-4">
+        <p class="meta-label">{item.priceLabel}</p>
+        {item.imageBadge && <p class="mt-1 text-sm text-muted">{item.imageBadge}</p>}
+      </div>
+    )
+  }
+
+  <div class="mt-5 flex flex-wrap items-center gap-4">
+    <a href={href} class="link-more" data-goal="case_study_view">{viewLabel}</a>
+  </div>
+</article>

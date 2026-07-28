@@ -1,0 +1,64 @@
+---
+import { localizePath, type Locale } from "@/lib/i18n";
+import { faqJsonLd } from "@/lib/seo";
+
+type FaqItem = { q: string; a: string };
+
+interface Props {
+  locale: Locale;
+  id?: string;
+  label?: string;
+  title: string;
+  subtitle?: string;
+  items: FaqItem[];
+  className?: string;
+  pageUrl?: string;
+  moreHref?: string;
+  moreLabel?: string;
+}
+
+const {
+  locale,
+  id,
+  label,
+  title,
+  subtitle,
+  items,
+  className = "",
+  pageUrl,
+  moreHref,
+  moreLabel,
+} = Astro.props;
+const faqSchema = faqJsonLd(items, pageUrl);
+---
+
+<section
+  id={id}
+  class={`section-band section--panel scroll-mt-16 border-b border-hairline ${className}`.trim()}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <div class="container-editorial max-w-3xl">
+    {label && <span class="section-label">{label}</span>}
+    <h2 class="section-title mt-4">{title}</h2>
+    {subtitle && <p class="body-copy mt-4 text-base">{subtitle}</p>}
+    <dl class="mt-10 space-y-8">
+      {
+        items.map((item, index) => (
+          <div id={pageUrl ? `faq-${index + 1}` : undefined}>
+            <dt class="font-display text-xl tracking-tight">{item.q}</dt>
+            <dd class="body-copy mt-3 text-base">{item.a}</dd>
+          </div>
+        ))
+      }
+    </dl>
+    {
+      moreHref && moreLabel && (
+        <div class="mt-8">
+          <a href={localizePath(moreHref, locale)} class="link-more">
+            {moreLabel}
+          </a>
+        </div>
+      )
+    }
+  </div>
+</section>

@@ -38,11 +38,18 @@ export const LEGAL_ROUTES = {
 
 export const COOKIE_CONSENT_KEY = "cookie-consent";
 
-export const YANDEX_METRIKA_ID = process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID || "110635302";
+export const YANDEX_METRIKA_ID =
+  process.env.PUBLIC_YANDEX_METRIKA_ID ||
+  process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID ||
+  "110635302";
 export const PARTNERS_YANDEX_METRIKA_ID =
-  process.env.NEXT_PUBLIC_PARTNERS_YANDEX_METRIKA_ID || "110926696";
+  process.env.PUBLIC_PARTNERS_YANDEX_METRIKA_ID ||
+  process.env.NEXT_PUBLIC_PARTNERS_YANDEX_METRIKA_ID ||
+  "110926696";
 export const BITRIX_YANDEX_METRIKA_ID =
-  process.env.NEXT_PUBLIC_BITRIX_YANDEX_METRIKA_ID || "110926887";
+  process.env.PUBLIC_BITRIX_YANDEX_METRIKA_ID ||
+  process.env.NEXT_PUBLIC_BITRIX_YANDEX_METRIKA_ID ||
+  "110926887";
 
 /** Select the dedicated counter for each standalone landing domain. */
 export function yandexMetrikaIdForLocation(hostname?: string, pathname?: string): string {

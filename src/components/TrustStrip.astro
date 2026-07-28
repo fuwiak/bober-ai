@@ -1,0 +1,34 @@
+---
+interface Props {
+  stats: { value: string; label: string }[];
+  benefits?: { title: string; text: string }[];
+  partnersAriaLabel?: string;
+}
+
+const { stats, benefits = [], partnersAriaLabel } = Astro.props;
+---
+
+<div class="trust-strip">
+  <div class="trust-specs">
+    {
+      stats.map((stat) => (
+        <div class="spec-cell">
+          <span class="spec-value">{stat.value}</span>
+          <span class="spec-label">{stat.label}</span>
+        </div>
+      ))
+    }
+  </div>
+  {
+    benefits.length > 0 && (
+      <div class="trust-benefits" aria-label={partnersAriaLabel}>
+        {benefits.map((item) => (
+          <div class="trust-benefit">
+            <p class="trust-benefit__title">{item.title}</p>
+            <p class="trust-benefit__text">{item.text}</p>
+          </div>
+        ))}
+      </div>
+    )
+  }
+</div>

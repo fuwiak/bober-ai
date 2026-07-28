@@ -1,0 +1,44 @@
+---
+import type { Messages } from "@/lib/i18n";
+import { CONTACT_PHONE, PRIMARY_CTA_GOAL, TELEGRAM_URL } from "@/lib/site";
+
+interface Props {
+  messages: Messages;
+}
+
+const { messages } = Astro.props;
+const label = messages.contact.fabLabel;
+---
+
+<button
+  type="button"
+  class="contact-fab"
+  data-contact-fab
+  data-contact-open
+  data-contact-goal={PRIMARY_CTA_GOAL}
+>
+  {label}
+</button>
+
+<div class="direct-sticky-bar" data-direct-sticky hidden>
+  <a href={`tel:${CONTACT_PHONE}`} class="direct-sticky-bar__link" data-goal="phone_click">
+    {CONTACT_PHONE}
+  </a>
+  <a
+    href={TELEGRAM_URL}
+    target="_blank"
+    rel="noreferrer"
+    class="direct-sticky-bar__link"
+    data-goal="telegram_click"
+  >
+    Telegram
+  </a>
+  <button
+    type="button"
+    class="direct-sticky-bar__cta"
+    data-contact-open
+    data-contact-goal={PRIMARY_CTA_GOAL}
+  >
+    {label}
+  </button>
+</div>

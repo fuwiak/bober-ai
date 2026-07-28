@@ -1,25 +1,37 @@
 ---
-import { localizePath, type Locale } from "@/lib/i18n";
+import { localizePath, type Locale, type Messages } from "@/lib/i18n";
 import { LEGAL_ROUTES } from "@/lib/legal";
-import type { Messages } from "@/lib/i18n";
 
 interface Props {
   locale: Locale;
   messages: Messages;
+  qualify?: boolean;
+  extended?: boolean;
+  source?: string;
+  defaultService?: string;
 }
 
-const { locale, messages } = Astro.props;
+const {
+  locale,
+  messages,
+  qualify = false,
+  extended = false,
+  source = "site-form",
+  defaultService = "",
+} = Astro.props;
 const form = messages.form;
 const privacyHref = localizePath(LEGAL_ROUTES.privacyPolicy, locale);
 const consentHref = localizePath(LEGAL_ROUTES.consent, locale);
+const uid = `cf-${Math.random().toString(36).slice(2, 8)}`;
 ---
 
 <form
   class="contact-form space-y-6"
   hx-post="/api/contact"
   hx-swap="outerHTML"
+  data-contact-form
 >
-  <p class="body-copy text-sm text-muted">{form.intro}</p>
+  <p class="body-copy text-sm text-muted">{extended ? form.introShort : form.intro}</p>
 
   <input
     type="text"
@@ -29,16 +41,38 @@ const consentHref = localizePath(LEGAL_ROUTES.consent, locale);
     aria-hidden="true"
     class="absolute -left-[9999px] h-0 w-0 opacity-0"
   />
+  <input type="hidden" name="locale" value={locale} />
+  <input type="hidden" name="source" value={source} />
+  <input type="hidden" name="service" value={defaultService} data-contact-default-service />
+  <input type="hidden" name="utm_source" value="" />
+  <input type="hidden" name="utm_medium" value="" />
+  <input type="hidden" name="utm_campaign" value="" />
+  <input type="hidden" name="utm_content" value="" />
+  <input type="hidden" name="utm_term" value="" />
+  <input type="hidden" name="yclid" value="" />
+  <input type="hidden" name="landing_page" value="" />
 
   <div>
-    <label for="name" class="form-label">{form.name}</label>
-    <input id="name" name="name" required autocomplete="name" class="text-input" />
+    <label for={`${uid}-name`} class="form-label">{form.name}</label>
+    <input id={`${uid}-name`} name="name" required autocomplete="name" class="text-input" />
   </div>
 
+  {
+    extended && (
+      <div>
+        <label for={`${uid}-company`} class="form-label">
+          {form.company}
+          <span class="text-muted-soft">{form.optional}</span>
+        </label>
+        <input id={`${uid}-company`} name="company" autocomplete="organization" class="text-input" />
+      </div>
+    )
+  }
+
   <div>
-    <label for="contact" class="form-label">{form.contact}</label>
+    <label for={`${uid}-contact`} class="form-label">{form.contact}</label>
     <input
-      id="contact"
+      id={`${uid}-contact`}
       name="contact"
       required
       autocomplete="email tel"
@@ -48,12 +82,12 @@ const consentHref = localizePath(LEGAL_ROUTES.consent, locale);
   </div>
 
   <div>
-    <label for="message" class="form-label">
+    <label for={`${uid}-message`} class="form-label">
       {form.message}
       <span class="text-muted-soft">{form.optional}</span>
     </label>
     <textarea
-      id="message"
+      id={`${uid}-message`}
       name="message"
       rows={3}
       class="textarea-input"
@@ -61,10 +95,55 @@ const consentHref = localizePath(LEGAL_ROUTES.consent, locale);
     />
   </div>
 
+  {
+    qualify && (
+      <fieldset class="space-y-4 border-t border-hairline pt-6">
+        <legend class="form-label">{form.qualifyLegend}</legend>
+        <p class="text-sm text-muted">{form.qualifyHint}</p>
+        <div>
+          <label for={`${uid}-process`} class="form-label">{form.processType}</label>
+          <select id={`${uid}-process`} name="processType" class="text-input">
+            <option value="">{form.selectPlaceholder}</option>
+            {form.processOptions.map((opt) => (
+              <option value={opt}>{opt}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label for={`${uid}-systems`} class="form-label">{form.systems}</label>
+          <select id={`${uid}-systems`} name="systems" class="text-input">
+            <option value="">{form.selectPlaceholder}</option>
+            {form.systemsOptions.map((opt) => (
+              <option value={opt}>{opt}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label for={`${uid}-budget`} class="form-label">{form.budget}</label>
+          <select id={`${uid}-budget`} name="budget" class="text-input">
+            <option value="">{form.selectPlaceholder}</option>
+            {form.budgetOptions.map((opt) => (
+              <option value={opt}>{opt}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label for={`${uid}-timeline`} class="form-label">{form.timeline}</label>
+          <select id={`${uid}-timeline`} name="timeline" class="text-input">
+            <option value="">{form.selectPlaceholder}</option>
+            {form.timelineOptions.map((opt) => (
+              <option value={opt}>{opt}</option>
+            ))}
+          </select>
+        </div>
+      </fieldset>
+    )
+  }
+
   <div class="border-t border-hairline pt-6">
-    <label for="pd-consent" class="flex cursor-pointer items-start gap-3">
+    <label for={`${uid}-pd-consent`} class="flex cursor-pointer items-start gap-3">
       <input
-        id="pd-consent"
+        id={`${uid}-pd-consent`}
         name="policyAccepted"
         type="checkbox"
         value="true"

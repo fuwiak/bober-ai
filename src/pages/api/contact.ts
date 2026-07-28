@@ -74,7 +74,17 @@ export const POST: APIRoute = async ({ request }) => {
     contact =
       requireString(form.get("contact")) ||
       [phone && `Телефон / Telegram: ${phone}`, email && `Email: ${email}`].filter(Boolean).join("\n");
-    message = requireString(form.get("message")) || "—";
+    const baseMessage = requireString(form.get("message")) || "—";
+    const qualifyBits = [
+      requireString(form.get("processType")) && `Процесс: ${requireString(form.get("processType"))}`,
+      requireString(form.get("systems")) && `Системы: ${requireString(form.get("systems"))}`,
+      requireString(form.get("budget")) && `Бюджет: ${requireString(form.get("budget"))}`,
+      requireString(form.get("timeline")) && `Сроки: ${requireString(form.get("timeline"))}`,
+    ].filter(Boolean);
+    message =
+      qualifyBits.length > 0
+        ? `${baseMessage}\n\nКвалификация:\n${qualifyBits.join("\n")}`
+        : baseMessage;
     service = requireString(form.get("service"));
     company = requireString(form.get("company"));
     source = requireString(form.get("source"));
@@ -82,6 +92,15 @@ export const POST: APIRoute = async ({ request }) => {
     policyAccepted =
       form.get("policyAccepted") === "true" || form.get("policyAccepted") === "on";
     locale = form.get("locale") === "en" ? "en" : "ru";
+    attribution = {
+      utm_source: requireString(form.get("utm_source")) || undefined,
+      utm_medium: requireString(form.get("utm_medium")) || undefined,
+      utm_campaign: requireString(form.get("utm_campaign")) || undefined,
+      utm_content: requireString(form.get("utm_content")) || undefined,
+      utm_term: requireString(form.get("utm_term")) || undefined,
+      yclid: requireString(form.get("yclid")) || undefined,
+      landing_page: requireString(form.get("landing_page")) || "/",
+    };
   }
 
   // Honeypot — silent success

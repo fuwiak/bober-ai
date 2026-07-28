@@ -1,70 +1,219 @@
 ---
+export const prerender = true;
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import ContactForm from "@/components/ContactForm.astro";
+import TrustStrip from "@/components/TrustStrip.astro";
+import CaseStudyCard from "@/components/CaseStudyCard.astro";
+import PackagesShowcase from "@/components/PackagesShowcase.astro";
+import FaqSection from "@/components/FaqSection.astro";
 import { loadMessages, localizePath } from "@/lib/i18n";
-import { FOUNDER_IMAGE, OFFICE_STOCK_IMAGES, SITE_NAME } from "@/lib/site";
-export const prerender = true;
+import { getPortfolioListing } from "@/lib/profile";
+import { absoluteUrl } from "@/lib/site";
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+  FOUNDER_IMAGE,
+  OFFICE_STOCK_IMAGES,
+  PRIMARY_CTA_GOAL,
+  SITE_NAME,
+  TELEGRAM_URL,
+  WHATSAPP_URL,
+} from "@/lib/site";
+
 const locale = "en" as const;
 const messages = loadMessages(locale);
 const meta = messages.meta;
 const hero = messages.hero;
-const founderAlt = `${SITE_NAME} — Pavel Stasinski`;
+const founderAlt = hero.heroImageAlt || `${SITE_NAME} — Pavel Stasinski`;
+const trustStats = messages.trust.stats;
+const trustBenefits = messages.trust.benefits;
+const packageItems = messages.packages.items.slice(0, 4).map((item) => ({
+  name: item.name,
+  price: item.price,
+  duration: item.duration,
+  forWhom: item.forWhom,
+  result: item.result,
+  badge: "badge" in item ? (item.badge as string | undefined) : undefined,
+  featured: "featured" in item ? Boolean(item.featured) : false,
+  detailsHref: "detailsHref" in item ? (item.detailsHref as string | undefined) : undefined,
+}));
+const faqItems = messages.faq.items.slice(0, 4);
+const caseStudies = getPortfolioListing(locale);
+const smbCases = caseStudies.filter((item) => (item.segment ?? "smb") === "smb");
+const enterpriseCases = caseStudies.filter((item) => item.segment === "enterprise");
+const leadParagraphs = hero.valueProposition
+  .split(/\n\n+/)
+  .map((part) => part.trim())
+  .filter(Boolean);
 ---
-<BaseLayout title={meta.title} description={meta.description} locale={locale} canonicalPath="/en" keywords={meta.keywords}>
-  <section class="container-editorial py-16 md:py-24">
-    <p class="meta-label">{hero.location}</p>
-    <p class="mt-4 meta-label">{hero.eyebrow}</p>
-    <h1 class="mt-6 display-title">{hero.titleLine1}</h1>
-    {hero.titleLine2 && <p class="mt-2 display-title text-muted">{hero.titleLine2}</p>}
-    <p class="mt-8 body-copy max-w-3xl whitespace-pre-line">{hero.valueProposition}</p>
-    <div class="mt-10 flex flex-wrap gap-4">
-      <a href={localizePath("/#contact", locale)} class="btn-primary">{hero.ctaPrimary}</a>
-      <a href={localizePath("/portfolio", locale)} class="btn-secondary">{hero.ctaSecondary}</a>
-    </div>
 
-    <figure class="hero-media hero-media--compose">
-      <div class="hero-media__compose">
-        <div class="editorial-image editorial-image--hero hero-media__frame hero-media__portrait">
-          <img
-            src={FOUNDER_IMAGE}
-            alt={founderAlt}
-            class="hero-media__image"
-            width="1200"
-            height="900"
-            fetchpriority="high"
-            decoding="async"
-          />
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  locale={locale}
+  canonicalPath="/en"
+  keywords={meta.keywords}
+>
+  <section class="hero-section section-band">
+    <div class="container-editorial">
+      <p class="meta-label">{hero.location}</p>
+      <p class="mt-4 meta-label">{hero.eyebrow}</p>
+      <h1 class="hero-title mt-6 hero-title--sentence">{hero.titleLine1}</h1>
+      {
+        leadParagraphs.map((p) => (
+          <p class="mt-6 body-copy max-w-3xl whitespace-pre-line">{p}</p>
+        ))
+      }
+      <p class="mt-4 text-sm text-muted">{hero.differentiator}</p>
+      {
+        hero.trustItems?.length ? (
+          <ul class="hero-trust mt-6 flex flex-wrap gap-2">
+            {hero.trustItems.map((item) => (
+              <li class="meta-label rounded border border-hairline px-3 py-1">{item}</li>
+            ))}
+          </ul>
+        ) : null
+      }
+      <div class="mt-10 flex flex-wrap gap-4">
+        <button type="button" class="btn-primary" data-contact-open data-contact-goal={PRIMARY_CTA_GOAL}>
+          {messages.cta.primary}
+        </button>
+        <a href={localizePath("/#cases", locale)} class="btn-secondary">
+          {hero.ctaSecondary}
+        </a>
+      </div>
+
+      <figure class="hero-media hero-media--compose">
+        <div class="hero-media__compose">
+          <div class="editorial-image editorial-image--hero hero-media__frame hero-media__portrait">
+            <img
+              src={FOUNDER_IMAGE}
+              alt={founderAlt}
+              class="hero-media__image"
+              width="1200"
+              height="900"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
+          <div class="hero-media__accents" aria-hidden="true">
+            <div class="editorial-image editorial-image--card hero-media__accent">
+              <img src={OFFICE_STOCK_IMAGES.tower} alt="" class="hero-media__image" width="640" height="800" loading="lazy" decoding="async" />
+            </div>
+            <div class="editorial-image editorial-image--card hero-media__accent">
+              <img src={OFFICE_STOCK_IMAGES.interior} alt="" class="hero-media__image" width="640" height="800" loading="lazy" decoding="async" />
+            </div>
+          </div>
         </div>
-        <div class="hero-media__accents" aria-hidden="true">
-          <div class="editorial-image editorial-image--card hero-media__accent">
-            <img
-              src={OFFICE_STOCK_IMAGES.tower}
-              alt=""
-              class="hero-media__image"
-              width="640"
-              height="800"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <div class="editorial-image editorial-image--card hero-media__accent">
-            <img
-              src={OFFICE_STOCK_IMAGES.interior}
-              alt=""
-              class="hero-media__image"
-              width="640"
-              height="800"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
+        <figcaption class="sr-only">{founderAlt}</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section-band section--deep border-b border-hairline">
+    <div class="container-editorial">
+      <TrustStrip stats={trustStats} benefits={trustBenefits} partnersAriaLabel={messages.trust.partnersAriaLabel} />
+    </div>
+  </section>
+
+  <section id="cases" class="section-band section--panel scroll-mt-16 border-b border-hairline">
+    <div class="container-editorial">
+      <span class="section-label">{messages.homeLanding.casesLabel}</span>
+      <h2 class="section-title mt-4">{messages.homeLanding.casesTitle}</h2>
+      <p class="body-copy mt-4 max-w-2xl text-base">{messages.homeLanding.casesSubtitle}</p>
+      {
+        smbCases.length > 0 && (
+          <>
+            <h3 class="mt-10 font-display text-2xl tracking-tight">{messages.portfolio.segmentSmbTitle}</h3>
+            <div class="mt-6 grid gap-6 md:grid-cols-2">
+              {smbCases.map((item) => (
+                <CaseStudyCard
+                  item={item}
+                  locale={locale}
+                  segmentLabel={messages.portfolio.segmentSmb}
+                  viewLabel={messages.common.viewCaseStudy}
+                  beforeLabel={messages.homeLanding.caseBeforeLabel}
+                  afterLabel={messages.homeLanding.caseAfterLabel}
+                />
+              ))}
+            </div>
+          </>
+        )
+      }
+      {
+        enterpriseCases.length > 0 && (
+          <>
+            <h3 class="mt-12 font-display text-2xl tracking-tight">{messages.portfolio.segmentEnterpriseTitle}</h3>
+            <div class="mt-6 grid gap-6 md:grid-cols-2">
+              {enterpriseCases.map((item) => (
+                <CaseStudyCard
+                  item={item}
+                  locale={locale}
+                  segmentLabel={messages.portfolio.segmentEnterprise}
+                  viewLabel={messages.common.viewCaseStudy}
+                  beforeLabel={messages.homeLanding.caseBeforeLabel}
+                  afterLabel={messages.homeLanding.caseAfterLabel}
+                />
+              ))}
+            </div>
+          </>
+        )
+      }
+      <div class="mt-8">
+        <a href={localizePath("/portfolio", locale)} class="link-more">{messages.homeLanding.casesCta}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section--panel border-b border-hairline">
+    <div class="container-editorial flex flex-wrap gap-x-8 gap-y-3">
+      <a href={localizePath("/audit", locale)} class="link-more">Take the full 5-minute AI process audit →</a>
+      <a href={localizePath("/process-review", locale)} class="link-more">Get one process reviewed for free →</a>
+    </div>
+  </section>
+
+  <PackagesShowcase
+    locale={locale}
+    label={messages.sections.engagement}
+    title={messages.packages.title}
+    subtitle={messages.packages.subtitle}
+    items={packageItems}
+    featuredLabel={messages.packages.featuredLabel}
+    detailsLabel={messages.packages.detailsLabel}
+    cta={messages.cta.primary}
+    moreHref="/pricing"
+    moreLabel={messages.homeLanding.packagesMore}
+  />
+
+  <FaqSection
+    locale={locale}
+    label={messages.faq.label}
+    title={messages.faq.title}
+    subtitle={messages.faq.subtitle}
+    items={faqItems}
+    moreHref="/faq"
+    moreLabel={messages.homeLanding.faqMore}
+    pageUrl={absoluteUrl("/en")}
+    className="section--deep"
+  />
+
+  <section id="contact" class="section-band section--panel scroll-mt-16 border-t border-hairline pb-24 md:pb-16">
+    <div class="container-editorial max-w-2xl">
+      <div class="text-center">
+        <span class="section-label">{messages.sections.contact}</span>
+        <h2 class="section-title mt-4">{messages.contact.title}</h2>
+        <p class="body-copy mt-4 text-base">{messages.contact.subtitle}</p>
+        <p class="body-copy mt-3 text-sm text-muted">{messages.contact.afterSubmit}</p>
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" class="btn-secondary">Telegram</a>
+          <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" class="btn-secondary">WhatsApp</a>
+          <a href={`mailto:${CONTACT_EMAIL}`} class="btn-secondary">Email</a>
+          <a href={`tel:${CONTACT_PHONE}`} class="btn-secondary">{CONTACT_PHONE}</a>
         </div>
       </div>
-      <figcaption class="sr-only">{founderAlt}</figcaption>
-    </figure>
-  </section>
-  <section id="contact" class="container-editorial py-16 md:py-24 border-t border-hairline">
-    <h2 class="section-title">{messages.nav.contact}</h2>
-    <div class="mt-8 max-w-xl"><ContactForm locale={locale} messages={messages} /></div>
+      <div class="mt-10 text-left">
+        <ContactForm locale={locale} messages={messages} qualify source="home-contact-en" />
+      </div>
+    </div>
   </section>
 </BaseLayout>

@@ -1,0 +1,58 @@
+---
+import { localizePath, type Locale, type Messages } from "@/lib/i18n";
+import { absoluteUrl } from "@/lib/site";
+import { COOKIE_CONSENT_KEY, LEGAL_ROUTES } from "@/lib/legal";
+
+interface Props {
+  locale: Locale;
+  messages: Messages;
+}
+
+const { locale } = Astro.props;
+const copy =
+  locale === "en"
+    ? {
+        title: "Cookies and analytics",
+        descBefore: "This site uses cookies and\u00a0Yandex.Metrica for visit analytics. Details in the\u00a0",
+        policy: "Privacy policy",
+        descAfter: ". By continuing to use the site, you confirm that you have read the policy.",
+        reject: "Essential only",
+        accept: "Accept",
+      }
+    : {
+        title: "Cookies и аналитика",
+        descBefore: "Этот сайт использует Cookies и\u00a0Яндекс.Метрику для аналитики посещений. Подробности — в\u00a0",
+        policy: "Политике конфиденциальности",
+        descAfter:
+          ". Продолжая пользоваться сайтом, вы\u00a0подтверждаете ознакомление с\u00a0политикой.",
+        reject: "Только необходимые",
+        accept: "Принять",
+      };
+const privacyUrl = absoluteUrl(
+  locale === "en" ? `/en${LEGAL_ROUTES.privacyPolicy}` : LEGAL_ROUTES.privacyPolicy,
+);
+void COOKIE_CONSENT_KEY;
+void localizePath;
+---
+
+<div
+  data-cookie-consent
+  hidden
+  role="dialog"
+  aria-labelledby="cookie-consent-title"
+  aria-describedby="cookie-consent-desc"
+  class="cookie-consent fixed inset-x-4 z-[100] md:inset-x-auto md:right-6"
+>
+  <div class="cookie-consent-card">
+    <p id="cookie-consent-title" class="cookie-consent-title">{copy.title}</p>
+    <p id="cookie-consent-desc" class="cookie-consent-desc">
+      {copy.descBefore}
+      <a href={privacyUrl} class="text-link">{copy.policy}</a>
+      {copy.descAfter}
+    </p>
+    <div class="cookie-consent-actions">
+      <button type="button" data-cookie-reject class="btn-secondary-on-dark text-xs">{copy.reject}</button>
+      <button type="button" data-cookie-accept class="btn-inverted text-xs">{copy.accept}</button>
+    </div>
+  </div>
+</div>

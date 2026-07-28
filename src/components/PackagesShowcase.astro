@@ -1,0 +1,95 @@
+---
+import { localizePath, type Locale } from "@/lib/i18n";
+import { PRIMARY_CTA_GOAL } from "@/lib/site";
+
+type PackageItem = {
+  name: string;
+  price: string;
+  duration: string;
+  forWhom: string;
+  result: string;
+  badge?: string;
+  featured?: boolean;
+  detailsHref?: string;
+};
+
+interface Props {
+  locale: Locale;
+  label: string;
+  title: string;
+  subtitle: string;
+  items: PackageItem[];
+  featuredLabel: string;
+  detailsLabel: string;
+  cta: string;
+  moreHref?: string;
+  moreLabel?: string;
+}
+
+const {
+  locale,
+  label,
+  title,
+  subtitle,
+  items,
+  featuredLabel,
+  detailsLabel,
+  cta,
+  moreHref,
+  moreLabel,
+} = Astro.props;
+---
+
+<section id="packages" class="section-band section--deep scroll-mt-16 border-b border-hairline">
+  <div class="container-editorial">
+    <span class="section-label">{label}</span>
+    <h2 class="section-title mt-4">{title}</h2>
+    <p class="body-copy mt-4 max-w-2xl text-base">{subtitle}</p>
+
+    <div class="packages-grid mt-10">
+      {
+        items.map((item) => {
+          const detailsHref = item.detailsHref
+            ? item.detailsHref.startsWith("http")
+              ? item.detailsHref
+              : localizePath(item.detailsHref, locale)
+            : null;
+          return (
+            <article class={`package-card${item.featured ? " package-card--featured" : ""}`}>
+              {item.featured && <span class="package-card__badge">{featuredLabel}</span>}
+              <h3 class="card-title text-xl">{item.name}</h3>
+              {item.badge && <p class="meta-label mt-2 text-muted">{item.badge}</p>}
+              <p class="package-card__price mt-3">{item.price}</p>
+              <p class="meta-label mt-2">{item.duration}</p>
+              <p class="body-copy mt-4 text-base">{item.forWhom}</p>
+              <p class="body-copy mt-3 text-base text-ink">{item.result}</p>
+              {detailsHref && (
+                <a
+                  href={detailsHref}
+                  class="link-more mt-6"
+                  target={detailsHref.startsWith("http") ? "_blank" : undefined}
+                  rel={detailsHref.startsWith("http") ? "noreferrer" : undefined}
+                >
+                  {detailsLabel}
+                </a>
+              )}
+            </article>
+          );
+        })
+      }
+    </div>
+
+    <div class="mt-10 flex flex-wrap items-center gap-4">
+      <button type="button" class="btn-primary" data-contact-open data-contact-goal={PRIMARY_CTA_GOAL}>
+        {cta}
+      </button>
+      {
+        moreHref && moreLabel && (
+          <a href={localizePath(moreHref, locale)} class="link-more">
+            {moreLabel}
+          </a>
+        )
+      }
+    </div>
+  </div>
+</section>

@@ -1,7 +1,15 @@
 ---
 import SiteHeader from "@/components/SiteHeader.astro";
 import SiteFooter from "@/components/SiteFooter.astro";
+import CookieConsent from "@/components/CookieConsent.astro";
+import ContactModal from "@/components/ContactModal.astro";
+import ContactFab from "@/components/ContactFab.astro";
 import { loadMessages, type Locale } from "@/lib/i18n";
+import {
+  BITRIX_YANDEX_METRIKA_ID,
+  PARTNERS_YANDEX_METRIKA_ID,
+  YANDEX_METRIKA_ID,
+} from "@/lib/legal";
 import { absoluteUrl, OG_IMAGE, SITE_NAME } from "@/lib/site";
 import "../styles/globals.css";
 
@@ -18,6 +26,7 @@ const { title, description, locale, canonicalPath, keywords = [], jsonLd } = Ast
 const messages = loadMessages(locale);
 const canonical = absoluteUrl(canonicalPath);
 const ogImage = absoluteUrl(OG_IMAGE);
+const metrikaBootstrap = `(function(){var mainId=${YANDEX_METRIKA_ID};var partnersId=${PARTNERS_YANDEX_METRIKA_ID};var bitrixId=${BITRIX_YANDEX_METRIKA_ID};var host=(location.hostname||'').toLowerCase();var path=location.pathname||'';var id=host==='partners.bober-ai.dev'||path.indexOf('/white-label')===0?partnersId:(host==='bitrix.bober-ai.dev'||path.indexOf('/bitrix')===0?bitrixId:mainId);window.__boberYmId=id;(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return;}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id='+id,'ym');ym(id,'init',{ssr:true,webvisor:true,clickmap:true,trackLinks:true,accurateTrackBounce:true,trackHash:true,referrer:document.referrer,url:location.href});})();`;
 ---
 
 <!doctype html>
@@ -67,6 +76,7 @@ const ogImage = absoluteUrl(OG_IMAGE);
         }
       })();
     </script>
+    <script is:inline set:html={metrikaBootstrap} />
 
     {jsonLd && (
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
@@ -76,16 +86,34 @@ const ogImage = absoluteUrl(OG_IMAGE);
     hx-boost="true"
     style="--font-manrope: 'Manrope', system-ui, sans-serif; --font-ibm-plex-mono: 'IBM Plex Mono', ui-monospace, monospace;"
   >
+    <noscript>
+      <div>
+        <img
+          src={`https://mc.yandex.ru/watch/${YANDEX_METRIKA_ID}`}
+          style="position:absolute; left:-9999px;"
+          alt=""
+        />
+      </div>
+    </noscript>
+
     <SiteHeader locale={locale} messages={messages} />
     <main>
       <slot />
     </main>
     <SiteFooter locale={locale} messages={messages} />
+    <ContactModal locale={locale} messages={messages} />
+    <ContactFab messages={messages} />
+    <CookieConsent locale={locale} messages={messages} />
 
     <script src="https://unpkg.com/htmx.org@2" is:inline></script>
     <script>
       import "../scripts/theme.ts";
       import "../scripts/nav.ts";
+      import "../scripts/attribution.ts";
+      import "../scripts/cookie-consent.ts";
+      import "../scripts/contact-modal.ts";
+      import "../scripts/form-attribution.ts";
+      import "../scripts/metrika-hits.ts";
     </script>
   </body>
 </html>
