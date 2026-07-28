@@ -1,0 +1,149 @@
+# Selectel production image + optional VDS deploy status.
+# Green check on main = Docker image builds (same Dockerfile as VDS).
+# Job "deploy" (main / manual) = SSH → git pull → compose --build → /api/health.
+#
+# Secret: SELECTEL_SSH_KEY (same as selectel-rescue-sync)
+
+name: selectel-build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      deploy:
+        description: "Also deploy on Selectel VDS (SSH + compose --build)"
+        required: true
+        default: true
+        type: boolean
+
+concurrency:
+  group: selectel-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  docker-build:
+    name: Docker build (Selectel image)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build production image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile
+          push: false
+          load: true
+          tags: bober-ai:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            PUBLIC_SITE_URL=https://www.bober-ai.dev
+            PUBLIC_PARTNERS_SITE_URL=https://partners.bober-ai.dev
+            PUBLIC_BITRIX_SITE_URL=https://bitrix.bober-ai.dev
+            PUBLIC_YANDEX_METRIKA_ID=110635302
+            PUBLIC_PARTNERS_YANDEX_METRIKA_ID=110926696
+            PUBLIC_BITRIX_YANDEX_METRIKA_ID=110926887
+            PUBLIC_CONTACT_EMAIL=contact@bober-ai.dev
+
+      - name: Confirm image exists
+        run: docker image inspect bober-ai:ci --format '{{.Id}} {{.Size}}'
+
+  deploy:
+    name: Deploy on Selectel VDS
+    needs: docker-build
+    if: >
+      github.event_name == 'workflow_dispatch' && inputs.deploy == true
+      || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Setup SSH
+        env:
+          SELECTEL_SSH_KEY: ${{ secrets.SELECTEL_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          if [ -z "${SELECTEL_SSH_KEY:-}" ]; then
+            echo "::error::Missing secret SELECTEL_SSH_KEY (same key as selectel-rescue-sync)"
+            exit 1
+          fi
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SELECTEL_SSH_KEY" > ~/.ssh/bober_selectel
+          chmod 600 ~/.ssh/bober_selectel
+          ssh-keyscan -T 10 -H 45.80.131.136 >> ~/.ssh/known_hosts 2>/dev/null || true
+
+      - name: Build and restart on VDS
+        env:
+          GIT_SHA: ${{ github.sha }}
+          GIT_REF: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/bober_selectel -o IdentitiesOnly=yes -o ConnectTimeout=20 \
+            -o StrictHostKeyChecking=accept-new root@45.80.131.136 \
+            "GIT_SHA=$(printf %q "$GIT_SHA") GIT_REF=$(printf %q "$GIT_REF") bash -s" <<'EOS'
+          set -euo pipefail
+          ROOT=/opt/bober-ai
+          LOG=/var/log/bober-deploy.log
+          READY="$ROOT/READY"
+          touch "$LOG" || true
+          exec > >(tee -a "$LOG") 2>&1
+          echo "=== selectel-build $(date -Is) sha=$GIT_SHA ref=$GIT_REF ==="
+
+          # Layout A: /opt/bober-ai = git root (Dockerfile + deploy/)
+          # Layout B: /opt/bober-ai/src = git root; compose from that tree
+          REPO="$ROOT"
+          if [ -d "$ROOT/.git" ] && [ -f "$ROOT/Dockerfile" ]; then
+            REPO="$ROOT"
+          elif [ -d "$ROOT/src/.git" ] && [ -f "$ROOT/src/Dockerfile" ]; then
+            REPO="$ROOT/src"
+          elif [ -f "$ROOT/Dockerfile" ]; then
+            REPO="$ROOT"
+          elif [ -f "$ROOT/src/Dockerfile" ]; then
+            REPO="$ROOT/src"
+          else
+            echo "NO_DOCKERFILE under $ROOT"; exit 1
+          fi
+          COMPOSE_DIR="$REPO/deploy"
+          [ -f "$COMPOSE_DIR/docker-compose.yml" ] || COMPOSE_DIR="$ROOT/deploy"
+          [ -f "$COMPOSE_DIR/docker-compose.yml" ] || { echo "NO_COMPOSE"; exit 1; }
+
+          if [ -d "$REPO/.git" ]; then
+            git -C "$REPO" fetch --depth 1 origin "$GIT_REF" || git -C "$REPO" fetch --depth 1 origin
+            git -C "$REPO" checkout -f "$GIT_SHA" || git -C "$REPO" pull --ff-only
+            echo "GIT_HEAD=$(git -C "$REPO" rev-parse --short HEAD) $(git -C "$REPO" log -1 --pretty=%s)"
+          else
+            echo "WARN: no .git in $REPO — building whatever is on disk"
+          fi
+
+          cd "$COMPOSE_DIR"
+          docker compose up -d --build
+          sleep 8
+          docker compose ps
+          curl -sf --connect-timeout 10 http://127.0.0.1:3000/api/health | head -c 500
+          echo
+          printf 'ok %s %s\n' "$GIT_SHA" "$(date -Is)" > "$READY"
+          echo "SELECTEL_DEPLOY_OK"
+          EOS
+
+      - name: Public health check
+        run: |
+          set -euo pipefail
+          for i in 1 2 3 4 5; do
+            if curl -sf --connect-timeout 10 https://www.bober-ai.dev/api/health; then
+              echo
+              echo "PUBLIC_HEALTH_OK"
+              exit 0
+            fi
+            echo "retry $i…"
+            sleep 5
+          done
+          echo "::error::Public /api/health failed after deploy"
+          exit 1

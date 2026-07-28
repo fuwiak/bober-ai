@@ -27,6 +27,8 @@ scp -i ~/.ssh/bober_selectel -o IdentitiesOnly=yes deploy/Caddyfile root@45.80.1
 ssh -i ~/.ssh/bober_selectel -o IdentitiesOnly=yes root@45.80.131.136 'cd /opt/bober-ai/deploy && docker compose up -d --build'
 ```
 
+CI: GitHub Actions `selectel-build` — на push в `main` собирает образ и деплоит на VDS (секрет `SELECTEL_SSH_KEY`).
+
 Проверка:
 
 ```bash

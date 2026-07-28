@@ -30,6 +30,17 @@ cd deploy && docker compose up -d --build
 
 Caddy: TLS + reverse_proxy на `:3000`, host rewrite для `partners.*` → `/white-label`, `bitrix.*` → `/bitrix`.
 
+### GitHub Actions
+
+Workflow [`.github/workflows/selectel-build.yml`](.github/workflows/selectel-build.yml):
+
+| Когда | Что | Статус в UI |
+|-------|-----|-------------|
+| push/PR → `main` | `docker build` (тот же Dockerfile) | зелёная галка = образ собирается |
+| push → `main` или manual | SSH на VDS → `compose up -d --build` → `/api/health` | зелёная = Selectel deploy ок |
+
+Секрет: `SELECTEL_SSH_KEY` (тот же, что у `selectel-rescue-sync`). Смотреть: **Actions** → `selectel-build`, или галка у коммита на `main`.
+
 ### Ops CLI
 
 ```bash
