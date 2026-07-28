@@ -5,7 +5,7 @@ import CookieConsent from "@/components/CookieConsent.astro";
 import ContactModal from "@/components/ContactModal.astro";
 import ContactFab from "@/components/ContactFab.astro";
 import { loadMessages, localizePath, stripLocalePrefix, type Locale } from "@/lib/i18n";
-import { LOCALES, marketOf } from "@/lib/markets";
+import { marketOf } from "@/lib/markets";
 import {
   BITRIX_YANDEX_METRIKA_ID,
   PARTNERS_YANDEX_METRIKA_ID,
@@ -28,6 +28,12 @@ interface Props {
 const { title, description, locale, canonicalPath, keywords = [], jsonLd, noIndex = false } = Astro.props;
 const market = marketOf(locale);
 const barePath = stripLocalePrefix(canonicalPath);
+/** Emit hreflang only for shipped markets (UZ held until content ready; KZ only hub+pricing). */
+const hreflangLocales: Locale[] = (() => {
+  const out: Locale[] = ["ru"];
+  if (barePath === "/" || barePath === "/pricing") out.push("kz");
+  return out;
+})();
 const geoPosition = `${market.geo.latitude};${market.geo.longitude}`;
 const geoIcbm = `${market.geo.latitude}, ${market.geo.longitude}`;
 const geoPlacename = market.placename;
@@ -56,14 +62,14 @@ const metrikaBootstrap = `(function(){var host=(location.hostname||'').toLowerCa
     <meta name="yandex-verification" content="0e71ef3fc54b6c3c" />
     <meta name="yandex-verification" content="b5643e127be991c8" />
     <link rel="canonical" href={canonical} />
-    {LOCALES.map((l) => (
+    {hreflangLocales.map((l) => (
       <link
         rel="alternate"
         hreflang={marketOf(l).hreflang}
         href={absoluteUrl(localizePath(barePath, l))}
       />
     ))}
-    <link rel="alternate" hreflang="x-default" href={absoluteUrl("/")} />
+    <link rel="alternate" hreflang="x-default" href={absoluteUrl(localizePath(barePath, "ru"))} />
     <link rel="alternate" type="application/rss+xml" title={`${SITE_NAME} RSS`} href={absoluteUrl("/rss.xml")} />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />

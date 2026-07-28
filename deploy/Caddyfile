@@ -35,7 +35,7 @@
 }
 
 # Prerendered Astro HTML + hashed assets from /srv — survives Node restart/502.
-# Only dynamic/API routes go to Node.
+# Marketing pages: Caddy file_server ONLY (no Node). Node = /api/* + live feeds + SSR hubs.
 (static_first) {
 	root * /srv
 	encode zstd gzip
@@ -43,22 +43,32 @@
 	import security_headers
 
 	handle /api/health {
-		reverse_proxy 127.0.0.1:3001
+		reverse_proxy 127.0.0.1:3001 {
+			header_up Host {host}
+			transport http {
+				dial_timeout 2s
+				response_header_timeout 5s
+			}
+		}
 	}
 	handle /health {
 		rewrite * /api/health
-		reverse_proxy 127.0.0.1:3001
+		reverse_proxy 127.0.0.1:3001 {
+			header_up Host {host}
+			transport http {
+				dial_timeout 2s
+				response_header_timeout 5s
+			}
+		}
 	}
 
-	@dynamic path /api/* /news /news/* /outages /outages/* /tel /tel/* /ru /ru/*
+	# Node only for APIs, live feeds rewrite targets, and intentional SSR hubs.
+	@dynamic path /api/* /news /news/* /outages /outages/* /tel /tel/* /ru /ru/* /en /en/*
 	handle @dynamic {
 		import astro_proxy
 	}
 
 	# Hashed Astro assets: serve from /srv only when the file exists.
-	# Never stamp Cache-Control: immutable onto a miss — browsers cache 404s
-	# for a year and the menu stays broken even after /srv is fixed.
-	# Missing hash → proxy Node (container has matching dist/client).
 	@astroFile {
 		path /_astro/*
 		file
@@ -68,6 +78,7 @@
 		file_server
 	}
 	handle /_astro/* {
+		# Missing hash after deploy — short no-store, then Node fallback once.
 		header Cache-Control "no-store"
 		import astro_proxy
 	}
@@ -80,40 +91,22 @@
 		header Cache-Control "public, max-age=2592000, stale-while-revalidate=86400"
 		file_server
 	}
-	@assets path /vendor/* /fonts/* *.js *.css *.woff2 *.woff *.ttf
-	handle @assets {
-		header Cache-Control "no-store"
-		file_server {
-			pass_thru
-		}
-		import astro_proxy
-	}
 
 	@imageFile {
-		path /stock/* /hero/* /partners/* /portfolio/* /media/* /cases/* /diagrams/* /yandex/* *.jpg *.jpeg *.webp *.png *.svg *.ico *.gif
+		path /stock/* /hero/* /partners/* /portfolio/* /media/* /cases/* /diagrams/* /yandex/* *.jpg *.jpeg *.webp *.png *.svg *.ico *.gif *.avif
 		file
 	}
 	handle @imageFile {
 		header Cache-Control "public, max-age=2592000, stale-while-revalidate=86400"
 		file_server
 	}
-	@images path /stock/* /hero/* /partners/* /portfolio/* /media/* /cases/* /diagrams/* /yandex/* *.jpg *.jpeg *.webp *.png *.svg *.ico *.gif
-	handle @images {
-		header Cache-Control "no-store"
-		file_server {
-			pass_thru
-		}
-		import astro_proxy
-	}
 
-	# Static HTML first; if missing (new SSR route), fall through to Node.
+	# Static HTML — single Cache-Control, no pass_thru to Node (avoids max-age=60 + max-age=0).
+	# Missing path → 404 from Caddy (fast), not homepage SSR.
 	handle {
-		header Cache-Control "public, max-age=60, stale-while-revalidate=300"
-		try_files {path} {path}/index.html {path}.html /index.html
-		file_server {
-			pass_thru
-		}
-		import astro_proxy
+		header Cache-Control "public, max-age=300, stale-while-revalidate=86400"
+		try_files {path} {path}/index.html {path}.html
+		file_server
 	}
 }
 
@@ -193,7 +186,19 @@ https://www.bober-systems.ru {
 		import yml_headers
 		import yml_static
 	}
+	# Ghost /contact URL (sitemap legacy) → home contact anchor.
+	handle /contact {
+		redir https://www.bober-systems.ru/#contact permanent
+	}
+	handle /contact/ {
+		redir https://www.bober-systems.ru/#contact permanent
+	}
 	import static_first
+}
+
+# Legacy host — path-preserving 301 to canonical brand domain (not homepage-only).
+http://bober-ai.dev, https://bober-ai.dev, http://www.bober-ai.dev, https://www.bober-ai.dev {
+	redir https://www.bober-systems.ru{uri} permanent
 }
 
 https://partners.bober-systems.ru {

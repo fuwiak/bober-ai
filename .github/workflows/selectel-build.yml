@@ -492,10 +492,29 @@ jobs:
             partners_ru=$(curl -sf --connect-timeout 10 https://partners.bober-systems.ru/performers-feed.yml || true)
             bitrix=$(curl -sf --connect-timeout 10 https://bitrix.bober-systems.ru/performers-feed.yml || true)
             echo "attempt=$i health=$health css=$css_href code=$css_code main=${#main_feed} partners_ru=${#partners_ru} bitrix=${#bitrix}"
+            # Performance / static edge: homepage must be Caddy file_server (one Cache-Control, no 502).
+            ttfb_ms=$(curl -s -o /dev/null -w '%{time_starttransfer}' --connect-timeout 10 https://www.bober-systems.ru/ | awk '{printf "%d", $1*1000}')
+            cache_hdr=$(curl -sI --connect-timeout 10 https://www.bober-systems.ru/ | tr -d '\r' | grep -i '^cache-control:' | head -n1 || true)
+            http_code=$(curl -s -o /dev/null -w '%{http_code}' --connect-timeout 10 https://www.bober-systems.ru/ || true)
+            echo "perf ttfb_ms=$ttfb_ms code=$http_code cache=$cache_hdr"
+            if [[ "$http_code" == "502" || "$http_code" == "503" ]]; then
+              echo "EDGE_502_OR_503 — reject"
+              sleep 5
+              continue
+            fi
+            if [[ "$cache_hdr" == *"max-age=0"* ]]; then
+              echo "CACHE_CONTROL_HAS_max-age=0 — marketing HTML must not mix no-store from Node"
+            fi
+            if [[ "$ttfb_ms" -gt 1500 ]]; then
+              echo "TTFB_SLOW ${ttfb_ms}ms (want <1500ms for static /srv)"
+            fi
             if [[ "$health" == *'"ok":true'* ]] \
               && [[ "$health" == *"$GIT_SHA"* ]] \
               && [[ "$html" == *'0e71ef3fc54b6c3c'* ]] \
               && [[ "$css_code" == "200" ]] \
+              && [[ "$http_code" == "200" ]] \
+              && [[ "$cache_hdr" != *"max-age=0"* ]] \
+              && [[ "$ttfb_ms" -le 1500 ]] \
               && [[ "$main_feed" == *'yml_catalog'* || "$main_feed" == *'<?xml'* ]] \
               && [[ "$main_feed" == *'bober-systems.ru'* ]] \
               && [[ "$main_feed" != *'bober-ai.dev'* ]] \
@@ -503,7 +522,7 @@ jobs:
               && [[ "$partners_ru" != *'bober-ai.dev'* ]] \
               && [[ "$bitrix" == *'yml_catalog'* || "$bitrix" == *'<?xml'* ]] \
               && [[ "$bitrix" != *'bober-ai.dev'* ]]; then
-              echo "PUBLIC_HEALTH_OK + CSS_OK + FEEDS_OK (bober-systems.ru)"
+              echo "PUBLIC_HEALTH_OK + CSS_OK + FEEDS_OK + PERF_OK (bober-systems.ru)"
               exit 0
             fi
             if [[ "$main_feed" == *'bober-ai.dev'* ]]; then

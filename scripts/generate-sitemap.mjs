@@ -16,20 +16,14 @@ const MAX_URLS = Number(process.env.SITEMAP_MAX_URLS || 80);
 /** Cap blog/guides/academy share so commercial pages stay first. */
 const MAX_BLOG_URLS = Number(process.env.SITEMAP_MAX_BLOG || 20);
 
-/** Always-include commercial / trust URLs (RU + market hubs). */
+/** Always-include commercial / trust URLs (RU + KZ hub only). */
 const PRIORITY_PATHS = [
   "/",
   "/kz",
-  "/uz",
-  "/about",
-  "/kz/about",
-  "/uz/about",
-  "/pricing",
   "/kz/pricing",
-  "/uz/pricing",
+  "/about",
+  "/pricing",
   "/services",
-  "/kz/services",
-  "/uz/services",
   "/portfolio",
   "/audit",
   "/ii-dlya-biznesa",
@@ -40,7 +34,6 @@ const PRIORITY_PATHS = [
   "/faq",
   "/guides",
   "/blog",
-  "/contact",
   "/process-review",
   "/white-label",
   "/bitrix",
@@ -104,9 +97,13 @@ function pathFromFile(file) {
 function isExcluded(path) {
   // Legacy EN redirects — never index.
   if (path === "/en" || path.startsWith("/en/")) return true;
-  if (!INCLUDE_MARKETS && (path === "/kz" || path.startsWith("/kz/") || path === "/uz" || path.startsWith("/uz/"))) {
-    return true;
-  }
+  // Ghost contact URL — redirects to /#contact.
+  if (path === "/contact" || path.startsWith("/contact/")) return true;
+  // KZ: only hub + pricing until deeper localization ships.
+  if (path.startsWith("/kz/") && path !== "/kz/pricing") return true;
+  // UZ: hold out of sitemap until Uzbek content is finished.
+  if (path === "/uz" || path.startsWith("/uz/")) return true;
+  if (!INCLUDE_MARKETS && (path === "/kz" || path.startsWith("/kz/"))) return true;
   if (path.includes("/amocrm") || path.includes("/bitrix24") || path.includes("/cases/")) return true;
   if (path === "/ru" || path.startsWith("/ru/")) return true;
   if (path.startsWith("/api/")) return true;

@@ -1547,6 +1547,15 @@ html.dark {
     object-fit: cover;
     object-position: center center;
   }
+  /* Hide baked-in captions/logos on founder plate — credit lives in HTML. */
+  .hero-media__portrait--photo {
+    overflow: hidden;
+  }
+  .hero-media__portrait--photo .hero-media__image {
+    object-position: center 18%;
+    transform: scale(1.12);
+    transform-origin: center 15%;
+  }
   @media (max-width: 768px) {
     .hero-media--compose .hero-media__compose {
       grid-template-columns: 1fr;
@@ -2876,6 +2885,8 @@ html.dark {
     padding-top: 0.25rem;
     color: var(--color-ink);
   }
+  .contact-qualify summary { cursor: pointer; list-style: none; }
+  .contact-qualify summary::-webkit-details-marker { display: none; }
   .contact-qualify {
     margin: 0;
     padding: 0;
@@ -3102,24 +3113,20 @@ html.dark {
   }
 
   .cookie-consent {
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    right: 0;
+    bottom: 0;
     opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 240ms ease, transform 240ms ease;
-    bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
-    left: 1rem;
-    right: auto;
-    max-width: 20rem;
-  }
-  @media (max-width: 640px) {
-    .cookie-consent {
-      left: 0.75rem;
-      right: 0.75rem;
-      max-width: none;
-    }
+    transform: translateY(100%);
+    transition: opacity 200ms ease, transform 200ms ease;
+    pointer-events: none;
   }
   .cookie-consent--open {
     opacity: 1;
     transform: translateY(0);
+    pointer-events: auto;
   }
   .partner-banner {
     bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
@@ -3130,8 +3137,17 @@ html.dark {
     }
   }
   .cookie-consent-card {
-    @apply border border-hairline bg-surface-soft p-3.5;
-    border-radius: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.25rem;
+    padding: 0.65rem 1rem;
+    padding-bottom: calc(0.65rem + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid var(--color-hairline);
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.35);
   }
   .cookie-consent-title {
     font-family: var(--font-mono);
@@ -3139,12 +3155,20 @@ html.dark {
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--color-ink);
+    margin: 0;
   }
   .cookie-consent-desc {
-    @apply mt-1.5 text-xs leading-snug text-muted;
+    margin: 0;
+    flex: 1 1 14rem;
+    font-size: 12px;
+    line-height: 1.35;
+    color: var(--color-muted);
   }
   .cookie-consent-actions {
-    @apply mt-3 flex flex-wrap gap-2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
   }
 
   .prose-legal h2 {

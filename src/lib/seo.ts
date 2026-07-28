@@ -92,7 +92,9 @@ export function buildPageMetadata({
   const ogImageUrl = absoluteUrl(image);
 
   const languages: Record<string, string> = {};
-  for (const l of LOCALES) {
+  const hreflangLocales =
+    bare === "/" || bare === "/pricing" ? (["ru", "kz"] as const) : (["ru"] as const);
+  for (const l of hreflangLocales) {
     const m = marketOf(l);
     languages[m.hreflang] = absoluteUrl(localizePath(bare, l));
   }
@@ -114,7 +116,7 @@ export function buildPageMetadata({
     openGraph: {
       type: ogType,
       locale: market.ogLocale,
-      alternateLocale: LOCALES.filter((l) => l !== loc).map((l) => marketOf(l).ogLocale),
+      alternateLocale: (bare === "/" || bare === "/pricing" ? (["ru","kz"] as Locale[]).filter((l) => l !== loc) : (["ru"] as Locale[]).filter((l) => l !== loc)).map((l) => marketOf(l).ogLocale),
       url: absoluteUrl(canonicalPath),
       siteName: SITE_NAME,
       title,

@@ -1,0 +1,12 @@
+---
+/**
+ * Thin KZ mirrors removed — only /kz and /kz/pricing ship.
+ * Other /kz/* → same path on RU (path-preserving 301).
+ */
+export const prerender = false;
+
+const slug = Astro.params.path;
+const rest = Array.isArray(slug) ? slug.join("/") : slug || "";
+const dest = rest ? `/${rest}` : "/kz";
+return Astro.redirect(dest, 301);
+---

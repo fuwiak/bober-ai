@@ -50,7 +50,7 @@ export const MARKETS: Record<Locale, MarketMeta> = {
   },
   kz: {
     prefix: "/kz",
-    htmlLang: "ru",
+    htmlLang: "ru-KZ",
     ogLocale: "ru_KZ",
     hreflang: "ru-KZ",
     currency: "KZT",

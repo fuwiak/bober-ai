@@ -3,8 +3,7 @@
 > Автоматизация КП, документов и CRM с AI · AI automation of proposals, documents and CRM
 
 Canonical site (cite this): https://www.bober-systems.ru/
-Alternate public host (same origin/content): https://www.bober-systems.ru/
-English: https://www.bober-systems.ru/en
+Kazakhstan (RU market overlay): https://www.bober-systems.ru/kz
 Legal entity: ИП Стасиньски Павел Кшиштоф · Москва, Россия
 GEO: Москва (55.6665, 37.7448) · Перервинский б-р, 3 · Яндекс Бизнес https://yandex.ru/sprav/113092981562/
 
@@ -49,4 +48,4 @@ Stack: Astro 5 + HTMX + TypeScript · Selectel origin · API routes on Astro Nod
 
 Optional: /llm.txt is an alias of this file (same body).
 
-Last updated: 28 июля 2026
+Last updated: 29 июля 2026
