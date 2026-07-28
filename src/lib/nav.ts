@@ -94,6 +94,13 @@ export function buildNavGroups(messages: Messages): NavGroup[] {
           title: nav.colAutomation,
           items: [
             {
+              href: "/bitrix",
+              label: "Bitrix24 · amoCRM",
+              description: nav.bitrixDesc,
+              icon: "sales",
+              localeAgnostic: true,
+            },
+            {
               href: "/services/ai-sales-loop",
               label: "AI Sales Loop",
               description: nav.salesLoopDesc,

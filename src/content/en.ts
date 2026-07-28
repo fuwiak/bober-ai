@@ -66,6 +66,7 @@ const en = {
     aiKubernetesDesc: "Inference and orchestration on K8s",
     automationDesc: "Processes, CRM and docs without copy-paste",
     salesLoopDesc: "Telephony, CRM and follow-up in one loop",
+    bitrixDesc: "CRM rollout, AI layer, 1C, telephony and pipelines",
     ragDesc: "Document search with source citations",
     portfolioDesc: "Deliveries with measurable impact",
     howWeWorkDesc: "Stages, timelines and fixed estimate",
@@ -732,8 +733,9 @@ const en = {
       },
       {
         badge: "CRM",
-        title: "CRM integrations",
-        description: "amoCRM, Bitrix24, 1C — data sync, pipeline automation, zero duplicate entry.",
+        title: "Bitrix24 · amoCRM",
+        description:
+          "CRM implementation and automation: Bitrix24 (AI layer on BitrixGPT) and amoCRM — 1C, telephony, documents, pipelines; the portal and integrations stay with you.",
         items: ["CRM implementation", "1C / ERP sync", "Messenger & webhooks"],
         layout: "large",
         slug: "business-process-automation",

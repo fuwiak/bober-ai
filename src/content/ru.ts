@@ -66,6 +66,7 @@ const ru = {
     aiKubernetesDesc: "Инференс и оркестрация в K8s",
     automationDesc: "Процессы, CRM и документы без копипаста",
     salesLoopDesc: "Телефония, CRM и follow-up в одном контуре",
+    bitrixDesc: "Внедрение CRM, AI-слой, 1С, телефония и воронки",
     ragDesc: "Поиск по документам со ссылкой на источник",
     portfolioDesc: "Внедрения с измеримым эффектом",
     howWeWorkDesc: "Этапы, сроки и фиксированная смета",
@@ -739,8 +740,9 @@ const ru = {
       },
       {
         badge: "CRM",
-        title: "Интеграции CRM",
-        description: "amoCRM, Bitrix24, 1С — синхронизация данных и автоматизация воронки без дублирования.",
+        title: "Bitrix24 · amoCRM",
+        description:
+          "Внедрение и автоматизация CRM: Bitrix24 (AI-слой поверх BitrixGPT) и amoCRM — 1С, телефония, документы, воронки; портал и интеграции остаются у вас.",
         items: ["Внедрение CRM", "Синхронизация 1С / ERP", "Мессенджеры и webhooks"],
         layout: "large",
         slug: "business-process-automation",
