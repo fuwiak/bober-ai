@@ -29,6 +29,9 @@ interface Props {
   pagePath?: string;
   breadcrumbItems?: { name: string; path: string }[];
   serviceSlug?: string;
+  keywords?: string[];
+  formSource?: string;
+  formDefaultService?: string;
 }
 
 const {
@@ -38,6 +41,9 @@ const {
   pagePath,
   breadcrumbItems,
   serviceSlug,
+  keywords = [],
+  formSource = "site-form",
+  formDefaultService,
 } = Astro.props;
 
 const messages = loadMessages(locale);
@@ -110,6 +116,7 @@ const jsonLd = [webPage, serviceSchema, organization, person, ...(faqSchema ? [f
   description={content.metaDescription}
   locale={locale}
   canonicalPath={canonicalPath}
+  keywords={keywords}
   jsonLd={jsonLd}
 >
   <main>
@@ -436,6 +443,8 @@ const jsonLd = [webPage, serviceSchema, organization, person, ...(faqSchema ? [f
       )
     }
 
+    <slot name="before-contact" />
+
     <section id="contact" class="section-band section--panel scroll-mt-16">
       <div class="container-editorial grid gap-16 lg:grid-cols-2">
         <div>
@@ -443,7 +452,12 @@ const jsonLd = [webPage, serviceSchema, organization, person, ...(faqSchema ? [f
           <h2 class="section-title mt-4">{sp.formTitle}</h2>
           <p class="body-copy mt-4 max-w-xl text-base">{content.subtitle}</p>
         </div>
-        <ContactForm locale={locale} messages={messages} defaultService={content.h1} />
+        <ContactForm
+          locale={locale}
+          messages={messages}
+          source={formSource}
+          defaultService={formDefaultService ?? content.h1}
+        />
       </div>
     </section>
   </main>

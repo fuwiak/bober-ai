@@ -162,13 +162,13 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       { q: "Бюджет?", a: "Пилот от 300 000 ₽. Полный контур с несколькими каналами — от 500 000 ₽." },
       {
         q: "Где лендинг Bitrix?",
-        a: "Отдельный лендинг bitrix.bober-systems.ru — пакеты внедрения и секция AI-контура продаж. Ссылка в блоке связанных услуг ниже.",
+        a: "Отдельный лендинг /bitrix — пакеты внедрения, Wordstat-услуги и секция AI-контура продаж. Ссылка в блоке связанных услуг ниже.",
       },
       { q: "Данные и NDA?", a: "Можно в вашем облаке или on-prem. NDA до обмена записями звонков." },
     ],
     related: [
       { href: "/integrations/telephony-ai", label: "Телефония + CRM + AI" },
-      { href: "https://bitrix.bober-systems.ru/#sales-loop", label: "Bitrix24 · AI-контур продаж" },
+      { href: "/bitrix", label: "Bitrix24 · внедрение и AI" },
       { href: "/services/sales-ai-agent", label: "Автоматизация отдела продаж" },
       { href: "/services/crm-integration", label: "Интеграции CRM" },
       { href: "/services/voice-ai", label: "Голосовой AI" },

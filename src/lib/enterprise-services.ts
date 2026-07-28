@@ -38,6 +38,7 @@ const IMAGES: Record<string, string> = {
   "knowledge-base": "/stock/rag-search.jpg",
   "ai-consulting": "/stock/ai-discovery-roadmap.jpg",
   "crm-integration": "/stock/crm-integration.jpg",
+  bitrix: "/stock/crm-integration.jpg",
   "ai-sales-loop": "/stock/crm-integration.jpg",
   "claude-smb": "/stock/enterprise-ai-assistant.jpg",
   "ii-dlya-biznesa": "/stock/enterprise-ai-assistant.jpg",
@@ -67,6 +68,21 @@ const ruExtra: EnterpriseService[] = [
   { id: "knowledge-base", slug: "knowledge-base", title: "Корпоративная база знаний", description: "Единое место для регламентов, FAQ и AI-ответов со ссылками.", about: "База знаний, поиск, чат-бот для сотрудников и клиентов.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["knowledge-base"] },
   { id: "ai-consulting", slug: "ai-consulting", title: "AI-консалтинг", description: "Стратегия, ROI, выбор технологий и дорожная карта внедрения.", about: "Аудит, рекомендации и план до закупки разработки.", salesNotes: "от 150 000 ₽", deliveryDays: 10, price: 150000, serviceImage: IMAGES["ai-consulting"] },
   { id: "crm-integration", slug: "crm-integration", title: "Bitrix24 · amoCRM", description: "Внедрение и автоматизация CRM: Bitrix24 (AI-слой поверх BitrixGPT) и amoCRM — 1С, телефония, документы, воронки; портал и интеграции остаются у вас.", about: "Двусторонние интеграции, webhooks, retry и мониторинг.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["crm-integration"] },
+  {
+    id: "bitrix",
+    slug: "bitrix",
+    title: "Настройка Bitrix24",
+    description:
+      "Внедрение Битрикс24 с AI: портал, автоматизация, 1С, телефония, документы, MCP и AI-контур продаж поверх BitrixGPT.",
+    about:
+      "Пилот на одном процессе: воронка, REST/webhooks, интеграции и AI-слой. Партнёр 1С-Битрикс · ID 28909898.",
+    salesNotes: "от 300 000 ₽",
+    deliveryDays: 21,
+    price: 300000,
+    serviceImage: IMAGES.bitrix,
+    feedPath: "/bitrix",
+    inServicesCatalog: false,
+  },
   { id: "ai-sales-loop", slug: "ai-sales-loop", title: "AI-контур отдела продаж", description: "Телефония, переписки, CRM и автоматические следующие действия — один продукт, не отдельные боты.", about: "Интеграция Bitrix24 / amoCRM с телефонией и AI — квалификация лидов, саммари звонков, задачи, follow-up и отчёт об упущенных сделках.", salesNotes: "от 300 000 ₽", deliveryDays: 21, price: 300000, serviceImage: IMAGES["ai-sales-loop"] },
   {
     id: "claude-smb",
