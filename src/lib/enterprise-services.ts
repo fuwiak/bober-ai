@@ -42,6 +42,7 @@ const IMAGES: Record<string, string> = {
   "ai-sales-loop": "/stock/crm-integration.jpg",
   "claude-smb": "/stock/enterprise-ai-assistant.jpg",
   "ii-dlya-biznesa": "/stock/enterprise-ai-assistant.jpg",
+  automation: "/stock/business-process-automation.jpg",
   "company-automation": "/stock/business-process-automation.jpg",
   "crm-automation": "/stock/crm-integration.jpg",
   "document-ai": "/stock/document-processing.jpg",
@@ -110,6 +111,21 @@ const ruExtra: EnterpriseService[] = [
     price: 150000,
     serviceImage: IMAGES["ii-dlya-biznesa"],
     feedPath: "/ii-dlya-biznesa",
+    inServicesCatalog: false,
+  },
+  {
+    id: "automation",
+    slug: "automation",
+    title: "Автоматизация бизнес-процессов",
+    description:
+      "Каталог направлений и внедрение: КП, документы, CRM/1С, OCR, RAG, продажи. Аудит, пилот и production с фиксированной сметой.",
+    about:
+      "Pillar /automation: Wordstat-направления + коммерческий оффер. AI только там, где снимает ручной труд. NDA, on-prem, Россия и СНГ.",
+    salesNotes: "от 150 000 ₽",
+    deliveryDays: 21,
+    price: 150000,
+    serviceImage: IMAGES.automation,
+    feedPath: "/automation",
     inServicesCatalog: false,
   },
   {
@@ -190,6 +206,21 @@ const enExtra: EnterpriseService[] = [
     price: 1500,
     serviceImage: IMAGES["ii-dlya-biznesa"],
     feedPath: "/ii-dlya-biznesa",
+    inServicesCatalog: false,
+  },
+  {
+    id: "automation",
+    slug: "automation",
+    title: "Business process automation",
+    description:
+      "Direction catalog and delivery: proposals, documents, CRM/ERP, OCR, RAG, sales. Audit, pilot and production with a fixed estimate.",
+    about:
+      "Pillar /automation: Wordstat directions + commercial offer. AI only where it removes manual work. NDA, on-prem, Russia & CIS.",
+    salesNotes: "from €1,500",
+    deliveryDays: 21,
+    price: 1500,
+    serviceImage: IMAGES.automation,
+    feedPath: "/automation",
     inServicesCatalog: false,
   },
   {
