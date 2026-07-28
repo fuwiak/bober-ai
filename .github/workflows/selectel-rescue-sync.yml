@@ -105,10 +105,12 @@ jobs:
           cat > /mnt/root/opt/bober-ai/deploy/Caddyfile <<'CADDY'
           {
           	email contact@bober-ai.dev
-          	# Solo *.bober-ai.dev is LE rate-limited until ~2026-07-30 (caddy_data wipe).
-          	# Pair each .dev host with its .ru twin so ACME requests a NEW identifier set
-          	# (exact-set duplicate limit does not apply). ZeroSSL EAB is geo-blocked from RU
-          	# ("Access Denied...restricted in your region"). SSL.com is fallback only.
+          	# Solo *.bober-ai.dev hit LE duplicate-cert limit after caddy_data wipe
+          	# (retry ~2026-07-30). ZeroSSL EAB is geo-blocked from RU VDS
+          	# ("Access Denied...restricted in your region" → Caddy JSON parse error).
+          	# Prefer LE (certs may already exist in caddy_data); SSL.com as fallback.
+          	# Keep hosts in SEPARATE site blocks — multi-SAN pairing caused flaky SNI
+          	# while re-obtaining and hung TLS handshakes on .dev names.
           	cert_issuer acme
           	cert_issuer acme {
           		dir https://acme.ssl.com/sslcom-dv-rsa
@@ -137,7 +139,7 @@ jobs:
           	handle /api/health {
           		reverse_proxy 127.0.0.1:3001
           	}
-          	@siteHost host www.bober-systems.ru www.bober-systems.ru partners.bober-systems.ru bitrix.bober-systems.ru www.bober-systems.ru bober-systems.ru partners.bober-systems.ru bitrix.bober-systems.ru
+          	@siteHost host www.bober-ai.dev bober-ai.dev partners.bober-ai.dev bitrix.bober-ai.dev www.bober-systems.ru bober-systems.ru partners.bober-systems.ru bitrix.bober-systems.ru
           	handle @siteHost {
           		header Cache-Control "no-store"
           		redir https://{host}{uri} permanent
@@ -147,15 +149,17 @@ jobs:
           	}
           }
           
-          # Multi-SAN apex: new LE identifier set vs solo www.bober-systems.ru (rate-limited).
-          https://www.bober-systems.ru, bober-systems.ru {
+          https://bober-ai.dev {
           	header Cache-Control "no-store"
-          	@ai host www.bober-systems.ru
-          	redir @ai https://www.bober-systems.ru{uri} permanent
+          	redir https://www.bober-ai.dev{uri} permanent
+          }
+          
+          https://bober-systems.ru {
+          	header Cache-Control "no-store"
           	redir https://www.bober-systems.ru{uri} permanent
           }
           
-          https://www.bober-systems.ru, www.bober-systems.ru {
+          https://www.bober-ai.dev {
           	handle /performers-feed.yml {
           		import yml_headers
           		import astro_proxy
@@ -168,7 +172,20 @@ jobs:
           	import astro_proxy
           }
           
-          https://partners.bober-systems.ru, partners.bober-systems.ru {
+          https://www.bober-systems.ru {
+          	handle /performers-feed.yml {
+          		import yml_headers
+          		import astro_proxy
+          	}
+          	@yml path /feeds/*.yml
+          	handle @yml {
+          		import yml_headers
+          		import astro_proxy
+          	}
+          	import astro_proxy
+          }
+          
+          https://partners.bober-ai.dev {
           	# Pass through API, feeds, static assets (Next middleware parity)
           	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
           	handle @passthrough {
@@ -189,7 +206,47 @@ jobs:
           	}
           }
           
-          https://bitrix.bober-systems.ru, bitrix.bober-systems.ru {
+          https://partners.bober-systems.ru {
+          	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
+          	handle @passthrough {
+          		handle /performers-feed.yml {
+          			rewrite * /feeds/partners.yml
+          			import yml_headers
+          			import astro_proxy
+          		}
+          		@yml path *.yml
+          		handle @yml {
+          			import yml_headers
+          		}
+          		import astro_proxy
+          	}
+          	handle {
+          		rewrite * /white-label
+          		import astro_proxy
+          	}
+          }
+          
+          https://bitrix.bober-ai.dev {
+          	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
+          	handle @passthrough {
+          		handle /performers-feed.yml {
+          			rewrite * /feeds/bitrix.yml
+          			import yml_headers
+          			import astro_proxy
+          		}
+          		@yml path *.yml
+          		handle @yml {
+          			import yml_headers
+          		}
+          		import astro_proxy
+          	}
+          	handle {
+          		rewrite * /bitrix
+          		import astro_proxy
+          	}
+          }
+          
+          https://bitrix.bober-systems.ru {
           	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
           	handle @passthrough {
           		handle /performers-feed.yml {
