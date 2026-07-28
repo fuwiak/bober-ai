@@ -13,6 +13,13 @@ export const LEGAL_ENTITY = {
   addressPublic: "109451, Россия, г. Москва",
   /** International footer: city/country only */
   addressEn: "Moscow, Russia",
+  /** Structured fields for Schema.org / Yandex microdata validator. */
+  streetAddress: "Перервинский б-р, д. 3",
+  streetAddressEn: "3 Perervinsky Boulevard",
+  postalCode: "109451",
+  addressLocality: "Москва",
+  addressLocalityEn: "Moscow",
+  addressCountry: "RU",
   /**
    * Публичный email в политике, согласии и футере legal-страниц.
    * Зафиксирован явно — не зависит от NEXT_PUBLIC_CONTACT_EMAIL,

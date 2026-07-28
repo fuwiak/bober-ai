@@ -8,7 +8,7 @@ import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { Reveal } from "@/components/motion/Reveal";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import { buildPageMetadata } from "@/lib/seo";
+import { buildPageMetadata, organizationJsonLd } from "@/lib/seo";
 import { FOUNDER_IMAGE } from "@/lib/site";
 import { KASPERSKY_PARTNER_BADGES } from "@/lib/trust-partners";
 
@@ -35,9 +35,18 @@ export default async function AboutPage({ params }: Props) {
   const t = await getTranslations();
   const isEn = locale === "en";
   const skills = t.raw("about.skills") as string[];
+  const orgJsonLd = {
+    "@context": "https://schema.org",
+    ...organizationJsonLd(locale),
+    description: t("pages.about.lead"),
+  };
 
   return (
     <div className="page-shell min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+      />
       <SiteHeader />
       <main>
         <section

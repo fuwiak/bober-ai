@@ -23,6 +23,7 @@
     "webmaster:mirrors": "node scripts/yandex-webmaster-mirrors.mjs",
     "webmaster:seo": "node scripts/yandex-webmaster-seo.mjs",
     "webmaster:selfcheck": "node scripts/yandex-webmaster-selfcheck.mjs",
+    "webmaster:microtest": "node scripts/yandex-webmaster-microtest.mjs",
     "webmaster:boost": "node scripts/yandex-webmaster-boost.mjs",
     "webmaster:recrawl": "node scripts/yandex-webmaster-recrawl.mjs",
     "webmaster:oauth": "node scripts/yandex-webmaster-oauth.mjs",

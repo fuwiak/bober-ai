@@ -124,6 +124,7 @@ export function buildPageMetadata({
     },
     twitter: {
       card: "summary_large_image",
+      site: SITE_NAME,
       title,
       description,
       images: [ogImageUrl],
@@ -345,9 +346,19 @@ export function organizationJsonLd(locale: string) {
     ...(YANDEX_BUSINESS_URL ? [YANDEX_BUSINESS_URL] : []),
   ];
 
+  const postalAddress = {
+    "@type": "PostalAddress",
+    streetAddress: isEn ? LEGAL_ENTITY.streetAddressEn : LEGAL_ENTITY.streetAddress,
+    addressLocality: isEn ? LEGAL_ENTITY.addressLocalityEn : LEGAL_ENTITY.addressLocality,
+    addressRegion: isEn ? LEGAL_ENTITY.addressLocalityEn : SITE_REGION,
+    postalCode: LEGAL_ENTITY.postalCode,
+    addressCountry: LEGAL_ENTITY.addressCountry,
+  };
+
   return {
-    // LocalBusiness + ProfessionalService — региональность и сниппеты Яндекса.
-    "@type": ["ProfessionalService", "LocalBusiness"],
+    // Organization first — как в валидаторе Яндекса (schema.org/Organization).
+    // LocalBusiness + ProfessionalService — региональность и сниппеты услуг.
+    "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
     "@id": `${SITE_URL}/#organization`,
     name: SITE_NAME,
     legalName: LEGAL_ENTITY.name,
@@ -361,18 +372,13 @@ export function organizationJsonLd(locale: string) {
     },
     telephone: CONTACT_PHONE,
     email: CONTACT_EMAIL,
+    // Строковый адрес — как в примере Яндекса (contacts); + PostalAddress для машин.
+    address: [isEn ? LEGAL_ENTITY.addressEn : LEGAL_ENTITY.address, postalAddress],
     taxID: LEGAL_ENTITY.inn,
     identifier: [
       { "@type": "PropertyValue", name: "INN", value: LEGAL_ENTITY.inn },
       { "@type": "PropertyValue", name: "OGRNIP", value: LEGAL_ENTITY.ogrnip },
     ],
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: SITE_REGION,
-      addressRegion: SITE_REGION,
-      postalCode: "109451",
-      addressCountry: "RU",
-    },
     geo: {
       "@type": "GeoCoordinates",
       latitude: SITE_GEO.latitude,

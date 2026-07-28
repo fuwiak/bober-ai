@@ -66,8 +66,10 @@ export const YANDEX_USLUGI_URL = "https://uslugi.yandex.ru/profile/PawelStasinsk
 export const YANDEX_MAPS_URL =
   process.env.NEXT_PUBLIC_YANDEX_MAPS_URL?.trim() ||
   "https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%9F%D0%B5%D1%80%D0%B5%D1%80%D0%B2%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9%20%D0%B1-%D1%80%2C%203";
-/** Яндекс Бизнес / Справочник — задайте после создания карточки организации. */
-export const YANDEX_BUSINESS_URL = process.env.NEXT_PUBLIC_YANDEX_BUSINESS_URL?.trim() || "";
+/** Яндекс Бизнес / Справочник — карточка организации. */
+export const YANDEX_BUSINESS_URL =
+  process.env.NEXT_PUBLIC_YANDEX_BUSINESS_URL?.trim() ||
+  "https://yandex.ru/sprav/113092981562/";
 export const YANDEX_CLOUD_PARTNERS_URL = "https://yandex.cloud/ru/partners/catalogue";
 export const SELECTEL_PARTNER_PROGRAM_URL = "https://selectel.ru/about/partners-programm/";
 export const CLOUD_RU_PARTNERS_URL = "https://cloud.ru/partners/find-partner";

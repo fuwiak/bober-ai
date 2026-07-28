@@ -302,6 +302,8 @@ func captureBrick(cfg Config, b Brick, args []string) (string, error) {
 			return runScriptCapture(cfg, "yandex-webmaster-seo.mjs", rest)
 		case "selfcheck", "checks", "checklist":
 			return runScriptCapture(cfg, "yandex-webmaster-selfcheck.mjs", rest)
+		case "microtest", "microdata", "validator":
+			return runScriptCapture(cfg, "yandex-webmaster-microtest.mjs", rest)
 		case "boost", "index":
 			return runScriptCapture(cfg, "yandex-webmaster-boost.mjs", rest)
 		case "feed":

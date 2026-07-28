@@ -174,6 +174,12 @@ async function main() {
   console.log(`UI переобход/фиды: ${UI.reindex} · ${UI.dashboard}`);
   console.log("После деплоя нажмите «Перепроверить» у фида.");
 
+  section("Валидатор микроразметки (только UI)");
+  console.log(`https://webmaster.yandex.ru/tools/microtest/
+  Schema.org / JSON-LD, Open Graph, microdata, микроформаты, RDFa.
+  Локальный снимок + список URL: npm run webmaster:microtest
+`);
+
   section("Переобход приоритетных URL");
   const quota = await getRecrawlQuota(config.token, userId, hostId);
   const remaining = Number(quota.quota_remainder ?? quota.daily_quota_remainder ?? 0);

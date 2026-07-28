@@ -133,7 +133,9 @@ export const YANDEX_SELF_CHECKS: SelfCheckItem[] = [
     title: "Настроена микроразметка сайта",
     status: "done",
     evidence:
-      "Organization/LocalBusiness · WebSite · Service · FAQPage · BreadcrumbList · Article · валидатор Вебмастера",
+      "Organization/LocalBusiness · WebSite · Service · FAQPage · BreadcrumbList · Article · JSON-LD + Open Graph",
+    action:
+      "Проверка: npm run webmaster:microtest · UI https://webmaster.yandex.ru/tools/microtest/",
   },
   {
     id: "sitelinks",

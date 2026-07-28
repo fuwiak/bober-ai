@@ -93,6 +93,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: SITE_NAME,
     title: "Автоматизация КП, документов и CRM с AI — Bober AI",
     description: SITE_DESCRIPTION,
     images: [absoluteUrl(OG_IMAGE)],

@@ -11,6 +11,8 @@ export default {
 
   yaga webmaster status     overall webmaster + metrika snapshot
   yaga webmaster seo        ranking checklist (SQI, diagnostics, index, queries)
+  yaga webmaster selfcheck  21 self-checks from Webmaster
+  yaga webmaster microtest  structured data validator checklist + JSON-LD probe
   yaga webmaster boost      recrawl important URLs + feed/region checklist
   yaga webmaster feed       upload performers feed (--all / --microsites)
   yaga webmaster mirrors    mirror settings
@@ -26,6 +28,14 @@ export default {
     }
     if (sub === "seo" || sub === "positions" || sub === "rank") {
       await ctx.runScript("yandex-webmaster-seo.mjs", rest);
+      return;
+    }
+    if (sub === "selfcheck" || sub === "checks" || sub === "checklist") {
+      await ctx.runScript("yandex-webmaster-selfcheck.mjs", rest);
+      return;
+    }
+    if (sub === "microtest" || sub === "microdata" || sub === "validator") {
+      await ctx.runScript("yandex-webmaster-microtest.mjs", rest);
       return;
     }
     if (sub === "boost" || sub === "index") {

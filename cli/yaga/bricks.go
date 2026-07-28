@@ -47,13 +47,14 @@ Profiles: owner (all) · public (public only) · custom (enable/disable)
 func brickWebmaster() Brick {
 	return Brick{
 		ID: "webmaster", Title: "Yandex Webmaster", Visibility: VisPublic,
-		Aliases: []string{"wm"}, Description: "status / seo / selfcheck / boost / feed / mirrors / recrawl / oauth",
+		Aliases: []string{"wm"}, Description: "status / seo / selfcheck / microtest / boost / feed / mirrors / recrawl / oauth",
 		DefaultArgs: []string{"status"},
-		Help: `yaga webmaster status|seo|selfcheck|boost|feed|mirrors|repair|recrawl|oauth
+		Help: `yaga webmaster status|seo|selfcheck|microtest|boost|feed|mirrors|repair|recrawl|oauth
 
   status     снимок Вебмастер + Метрика
   seo        чеклист позиций (ИКС, диагностика, индекс, запросы)
   selfcheck  21 «Самостоятельные проверки» + группы целевых запросов
+  microtest  валидатор микроразметки: список URL + JSON-LD/OG снимок
   boost      переобход важных URL + чеклист региона/фида
   feed       загрузка performers feed
   mirrors    зеркала
@@ -73,6 +74,8 @@ func brickWebmaster() Brick {
 				return runScript(cfg, "yandex-webmaster-seo.mjs", rest)
 			case "selfcheck", "checks", "checklist":
 				return runScript(cfg, "yandex-webmaster-selfcheck.mjs", rest)
+			case "microtest", "microdata", "validator":
+				return runScript(cfg, "yandex-webmaster-microtest.mjs", rest)
 			case "boost", "index":
 				return runScript(cfg, "yandex-webmaster-boost.mjs", rest)
 			case "feed":
