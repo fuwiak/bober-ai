@@ -1,5 +1,29 @@
 ---
-import ContentSectionPage from "@/components/ContentSectionPage.astro";
+/**
+ * «ИИ для бизнеса» — SeoServicePage hybrid commercial + expert guide.
+ * Content: src/lib/ii-dlya-biznesa-page.ts → getIiDlyaBiznesaSeoContent.
+ */
+import SeoServicePage from "@/components/SeoServicePage.astro";
+import { II_DLYA_BIZNESA_PAGE, getIiDlyaBiznesaSeoContent } from "@/lib/ii-dlya-biznesa-page";
+
 export const prerender = true;
+
+const locale = "ru" as const;
+const content = getIiDlyaBiznesaSeoContent(locale);
+const p = II_DLYA_BIZNESA_PAGE;
 ---
-<ContentSectionPage locale="ru" path="/ii-dlya-biznesa" namespace="pages.iiDlyaBiznesa" />
+
+<SeoServicePage
+  slug="ii-dlya-biznesa"
+  serviceSlug="ii-dlya-biznesa"
+  locale={locale}
+  content={content}
+  pagePath="/ii-dlya-biznesa"
+  keywords={[...p.metaKeywordsRu]}
+  formSource="ii-dlya-biznesa-landing"
+  formDefaultService="ИИ для бизнеса / внедрение"
+  breadcrumbItems={[
+    { name: "Услуги", path: "/services" },
+    { name: p.lineRu, path: "/ii-dlya-biznesa" },
+  ]}
+/>

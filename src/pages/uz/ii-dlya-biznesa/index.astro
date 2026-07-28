@@ -1,5 +1,28 @@
 ---
-import ContentSectionPage from "@/components/ContentSectionPage.astro";
+/**
+ * UZ «AI for business» — SeoServicePage + getIiDlyaBiznesaSeoContent.
+ */
+import SeoServicePage from "@/components/SeoServicePage.astro";
+import { II_DLYA_BIZNESA_PAGE, getIiDlyaBiznesaSeoContent } from "@/lib/ii-dlya-biznesa-page";
+
 export const prerender = true;
+
+const locale = "uz" as const;
+const content = getIiDlyaBiznesaSeoContent(locale);
+const p = II_DLYA_BIZNESA_PAGE;
 ---
-<ContentSectionPage locale="uz" path="/ii-dlya-biznesa" namespace="pages.iiDlyaBiznesa" />
+
+<SeoServicePage
+  slug="ii-dlya-biznesa"
+  serviceSlug="ii-dlya-biznesa"
+  locale={locale}
+  content={content}
+  pagePath="/ii-dlya-biznesa"
+  keywords={[...p.metaKeywordsEn]}
+  formSource="ii-dlya-biznesa-landing"
+  formDefaultService="AI for business / deployment"
+  breadcrumbItems={[
+    { name: "Xizmatlar", path: "/services" },
+    { name: p.lineEn, path: "/ii-dlya-biznesa" },
+  ]}
+/>
