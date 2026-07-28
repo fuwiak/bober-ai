@@ -1,6 +1,8 @@
 {
 	email contact@bober-ai.dev
-	acme_ca https://acme-v02.api.letsencrypt.org/directory
+	# Do NOT pin acme_ca to Let's Encrypt only — recreating Caddy without
+	# caddy_data burned the LE duplicate-cert limit (429 until ~2026-07-30).
+	# Default issuer chain (ZeroSSL + LE) recovers partners/bitrix/www.bober-ai.dev.
 	servers {
 		protocols h1 h2
 	}
