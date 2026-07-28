@@ -10,7 +10,7 @@ import {
   PARTNERS_YANDEX_METRIKA_ID,
   YANDEX_METRIKA_ID,
 } from "@/lib/legal";
-import { absoluteUrl, OG_IMAGE, SITE_NAME } from "@/lib/site";
+import { absoluteUrl, OG_IMAGE, SITE_GEO, SITE_NAME, SITE_REGION } from "@/lib/site";
 import "../styles/globals.css";
 
 interface Props {
@@ -23,10 +23,13 @@ interface Props {
 }
 
 const { title, description, locale, canonicalPath, keywords = [], jsonLd } = Astro.props;
+const geoPosition = `${SITE_GEO.latitude};${SITE_GEO.longitude}`;
+const geoIcbm = `${SITE_GEO.latitude}, ${SITE_GEO.longitude}`;
+const geoPlacename = locale === "en" ? "Moscow" : SITE_REGION;
 const messages = loadMessages(locale);
 const canonical = absoluteUrl(canonicalPath);
 const ogImage = absoluteUrl(OG_IMAGE);
-const metrikaBootstrap = `(function(){var mainId=${YANDEX_METRIKA_ID};var partnersId=${PARTNERS_YANDEX_METRIKA_ID};var bitrixId=${BITRIX_YANDEX_METRIKA_ID};var host=(location.hostname||'').toLowerCase();var path=location.pathname||'';var id=host==='partners.bober-ai.dev'||path.indexOf('/white-label')===0?partnersId:(host==='bitrix.bober-ai.dev'||path.indexOf('/bitrix')===0?bitrixId:mainId);window.__boberYmId=id;(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return;}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id='+id,'ym');ym(id,'init',{ssr:true,webvisor:true,clickmap:true,trackLinks:true,accurateTrackBounce:true,trackHash:true,referrer:document.referrer,url:location.href});})();`;
+const metrikaBootstrap = `(function(){var mainId=${YANDEX_METRIKA_ID};var partnersId=${PARTNERS_YANDEX_METRIKA_ID};var bitrixId=${BITRIX_YANDEX_METRIKA_ID};var host=(location.hostname||'').toLowerCase();var path=location.pathname||'';var id=(host==='partners.bober-ai.dev'||host==='partners.bober-systems.ru'||path.indexOf('/white-label')===0)?partnersId:((host==='bitrix.bober-ai.dev'||host==='bitrix.bober-systems.ru'||path.indexOf('/bitrix')===0)?bitrixId:mainId);window.__boberYmId=id;(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return;}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id='+id,'ym');ym(id,'init',{ssr:true,webvisor:true,clickmap:true,trackLinks:true,accurateTrackBounce:true,trackHash:true,referrer:document.referrer,url:location.href});})();`;
 ---
 
 <!doctype html>
@@ -37,10 +40,23 @@ const metrikaBootstrap = `(function(){var mainId=${YANDEX_METRIKA_ID};var partne
     <title>{title}</title>
     <meta name="description" content={description} />
     {keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="geo.region" content="RU-MOW" />
+    <meta name="geo.placename" content={geoPlacename} />
+    <meta name="geo.position" content={geoPosition} />
+    <meta name="ICBM" content={geoIcbm} />
+    <meta name="yandex-verification" content="b5643e127be991c8" />
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="ru" href={locale === "ru" ? canonical : absoluteUrl(canonicalPath.replace(/^\/en(?=\/|$)/, "") || "/")} />
     <link rel="alternate" hreflang="en" href={locale === "en" ? canonical : absoluteUrl(`/en${canonicalPath === "/" ? "" : canonicalPath}`)} />
     <link rel="alternate" hreflang="x-default" href={absoluteUrl("/")} />
+    <link rel="alternate" type="application/rss+xml" title={`${SITE_NAME} RSS`} href={absoluteUrl("/rss.xml")} />
+    <link rel="icon" href="/favicon-120x120.png" type="image/png" sizes="120x120" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="512x512" />
+    <link rel="apple-touch-icon" href="/favicon-120x120.png" sizes="120x120" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE_NAME} />
@@ -78,9 +94,13 @@ const metrikaBootstrap = `(function(){var mainId=${YANDEX_METRIKA_ID};var partne
     </script>
     <script is:inline set:html={metrikaBootstrap} />
 
-    {jsonLd && (
-      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-    )}
+    {Array.isArray(jsonLd)
+      ? jsonLd.map((block) => (
+          <script type="application/ld+json" set:html={JSON.stringify(block)} />
+        ))
+      : jsonLd && (
+          <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+        )}
   </head>
   <body
     hx-boost="true"

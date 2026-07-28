@@ -53,13 +53,19 @@ export const BITRIX_YANDEX_METRIKA_ID =
 
 /** Select the dedicated counter for each standalone landing domain. */
 export function yandexMetrikaIdForLocation(hostname?: string, pathname?: string): string {
-  const normalizedHostname = hostname?.toLowerCase();
+  const host = hostname?.toLowerCase() || "";
+  const path = pathname || "";
+
   const isPartnersLanding =
-    normalizedHostname === "partners.bober-ai.dev" || pathname?.startsWith("/white-label");
+    host === "partners.bober-ai.dev" ||
+    host === "partners.bober-systems.ru" ||
+    path.startsWith("/white-label");
   if (isPartnersLanding) return PARTNERS_YANDEX_METRIKA_ID;
 
   const isBitrixLanding =
-    normalizedHostname === "bitrix.bober-ai.dev" || pathname?.startsWith("/bitrix");
+    host === "bitrix.bober-ai.dev" ||
+    host === "bitrix.bober-systems.ru" ||
+    path.startsWith("/bitrix");
   if (isBitrixLanding) return BITRIX_YANDEX_METRIKA_ID;
 
   return YANDEX_METRIKA_ID;
