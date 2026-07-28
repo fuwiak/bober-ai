@@ -3,10 +3,11 @@
  * Generate public/sitemap.xml from Astro dist/client after build.
  * Usage: node scripts/generate-sitemap.mjs
  */
+import { CANONICAL_ORIGIN } from "../config/domains.mjs";
 import { readdir, writeFile, stat } from "node:fs/promises";
 import { join, relative } from "node:path";
 
-const SITE = process.env.PUBLIC_SITE_URL || "https://www.bober-systems.ru";
+const SITE = process.env.PUBLIC_SITE_URL || CANONICAL_ORIGIN;
 const ROOT = join(process.cwd(), "dist/client");
 
 async function walk(dir, out = []) {

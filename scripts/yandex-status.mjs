@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { CANONICAL_ORIGIN } from "../config/domains.mjs";
 import fetch from "./lib/fetch.mjs";
 import { applyYagaCredentials } from "./lib/yaga-credentials.mjs";
 
@@ -14,10 +15,10 @@ const config = {
     process.env.YANDEX_WEBMASTER_OAUTH_TOKEN?.trim() ||
     process.env.YANDEX_METRIKA_OAUTH_TOKEN?.trim(),
   clientId: process.env.YANDEX_WEBMASTER_CLIENT_ID?.trim() || "f2e2f11ae7e3492886ad61a6e45a4c5c",
-  siteUrl: (process.env.YANDEX_WEBMASTER_HOST_URL || "https://www.bober-systems.ru").replace(/\/$/, ""),
+  siteUrl: (process.env.YANDEX_WEBMASTER_HOST_URL || CANONICAL_ORIGIN).replace(/\/$/, ""),
   feedUrl: (
     process.env.YANDEX_WEBMASTER_FEED_URL ||
-    `${process.env.YANDEX_WEBMASTER_HOST_URL || "https://www.bober-systems.ru"}/performers-feed.yml`
+    `${process.env.YANDEX_WEBMASTER_HOST_URL || CANONICAL_ORIGIN}/performers-feed.yml`
   ).replace(/\/$/, ""),
   metrikaId: process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID?.trim() || "110635302",
   verificationCode: process.env.YANDEX_WEBMASTER_VERIFICATION_CODE?.trim() || "0e71ef3fc54b6c3c",

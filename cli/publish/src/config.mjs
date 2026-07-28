@@ -1,12 +1,14 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { CANONICAL_ORIGIN } from "../../../config/domains.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ||
+  process.env.PUBLIC_SITE_URL ||
   process.env.PUBLISH_SITE_URL ||
-  "https://www.bober-ai.dev"
+  CANONICAL_ORIGIN
 ).replace(/\/$/, "");
 
 export const MEDIUM_IMPORT_URL =

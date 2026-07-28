@@ -1,5 +1,5 @@
 ---
-title: "Site-first публикация: bober-ai.dev → Medium / Habr"
+title: "Site-first публикация: www.bober-systems.ru → Medium / Habr"
 description: "Как публиковать статьи сначала на своём домене, затем репостить через import/export без мёртвого Medium API."
 slug: example-site-first-publish
 publishedAt: 2026-07-22
@@ -12,7 +12,7 @@ status: draft
 
 # Site-first публикация
 
-Канонический URL статьи всегда на **bober-ai.dev**. Medium и Habr — каналы дистрибуции, а не источник правды.
+Канонический URL статьи всегда на **www.bober-systems.ru**. Medium и Habr — каналы дистрибуции, а не источник правды.
 
 ## Почему так
 
@@ -38,5 +38,5 @@ npm run publish -- habr open-draft
 
 ## Ссылки
 
-- Сайт: [https://www.bober-ai.dev/blog/example-site-first-publish](https://www.bober-ai.dev/blog/example-site-first-publish)
+- Сайт: [https://www.bober-systems.ru/blog/example-site-first-publish](https://www.bober-systems.ru/blog/example-site-first-publish)
 - CLI: `cli/publish/README.md`

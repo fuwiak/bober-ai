@@ -2,11 +2,19 @@
 
 /**
  * Статус зеркал в Яндекс Вебмастере + подсказка по «Переезду сайта».
- * Дефолт — www.bober-systems.ru (bober-ai.dev — опциональное зеркало).
+ * Primary = config/domains.mjs CANONICAL_ORIGIN; legacy = LEGACY_ORIGIN.
  *
  *   railway run node scripts/yandex-webmaster-mirrors.mjs
  */
 
+import {
+  APEX_ORIGIN,
+  CANONICAL_APEX,
+  CANONICAL_HOST,
+  CANONICAL_ORIGIN,
+  LEGACY_APEX,
+  LEGACY_ORIGIN,
+} from "../config/domains.mjs";
 import {
   apiRequest,
   getConfig,
@@ -15,8 +23,8 @@ import {
   pickHost,
 } from "./lib/yandex-webmaster.mjs";
 
-const PREFERRED = "https://www.bober-systems.ru";
-const SECONDARY = "https://www.bober-ai.dev";
+const PREFERRED = CANONICAL_ORIGIN;
+const SECONDARY = LEGACY_ORIGIN;
 
 async function main() {
   const config = getConfig({ hostUrl: PREFERRED });
@@ -29,10 +37,10 @@ async function main() {
   const hosts = await getHosts(config.token, userId);
   const related = hosts.filter((h) => {
     const id = String(h.host_id || "");
-    return id.includes("bober-systems") || id.includes("bober-ai");
+    return id.includes(CANONICAL_APEX) || id.includes(LEGACY_APEX);
   });
 
-  console.log("Яндекс Вебмастер — зеркала (systems.ru primary)\n");
+  console.log(`Яндекс Вебмастер — зеркала (${CANONICAL_APEX} primary)\n`);
 
   let preferredIsMain = false;
   let otherMain = null;
@@ -45,7 +53,7 @@ async function main() {
     const ascii = body.ascii_host_url || h.ascii_host_url;
     const main = body.main_mirror?.ascii_host_url || null;
     const isPreferred =
-      String(ascii || "").includes("www.bober-systems.ru") && String(ascii || "").startsWith("https");
+      String(ascii || "").includes(CANONICAL_HOST) && String(ascii || "").startsWith("https");
     const role = main ? `неглавный → главный ${main}` : "главный (или ещё не сгруппирован)";
     if (isPreferred && !main) preferredIsMain = true;
     if (isPreferred && main) otherMain = main;
@@ -57,38 +65,36 @@ async function main() {
   }
 
   const pickedWww = pickHost(hosts, PREFERRED);
-  const pickedApex = pickHost(hosts, "https://bober-systems.ru");
+  const pickedApex = pickHost(hosts, APEX_ORIGIN);
   const pickedSecondary = pickHost(hosts, SECONDARY);
   console.log(`pickHost(${PREFERRED}) → ${pickedWww?.host_id || "—"}`);
-  console.log(`pickHost(https://bober-systems.ru) → ${pickedApex?.host_id || "—"}`);
+  console.log(`pickHost(${APEX_ORIGIN}) → ${pickedApex?.host_id || "—"}`);
   console.log(`pickHost(${SECONDARY}) → ${pickedSecondary?.host_id || "—"} (optional)\n`);
 
   const hasApex = related.some((h) => {
     const id = String(h.host_id || "");
-    return id.includes(":bober-systems.ru:") && !id.includes(":www.");
+    return id.includes(`:${CANONICAL_APEX}:`) && !id.includes(":www.");
   });
   if (!hasApex) {
-    console.log("! Apex https://bober-systems.ru ещё не добавлен/не подтверждён в Вебмастере.");
-    console.log("  1. Добавьте сайт https://bober-systems.ru в Вебмастер и подтвердите права");
+    console.log(`! Apex ${APEX_ORIGIN} ещё не добавлен/не подтверждён в Вебмастере.`);
+    console.log(`  1. Добавьте сайт ${APEX_ORIGIN} в Вебмастер и подтвердите права`);
     console.log("  2. Затем: Индексирование → Переезд сайта → выберите www как главное зеркало");
     console.log("");
   }
 
   if (preferredIsMain) {
-    console.log("✓ https://www.bober-systems.ru/ выглядит главным в API Вебмастера.");
+    console.log(`✓ ${PREFERRED}/ выглядит главным в API Вебмастера.`);
     console.log("  Если в UI всё ещё баннер «неглавный адрес» — откройте главный из баннера");
     console.log("  и оставьте статистику/диагностику там, либо подождите склейки зеркал.");
+  } else if (otherMain) {
+    console.log(`! ${PREFERRED} сейчас неглавный → ${otherMain}`);
+    console.log("  В Вебмастере: Переезд сайта / главное зеркало → выберите www.");
   } else {
-    console.log("! Нужно сделать www главным через UI Вебмастера:");
-    console.log(`  1. Откройте ГЛАВНЫЙ адрес${otherMain ? ` (${otherMain})` : " (без www)"}`);
-    console.log("  2. Индексирование → Переезд сайта");
-    console.log("  3. Включите «Добавить WWW» → Сохранить");
-    console.log("  4. Убедитесь, что с bober-systems.ru идёт HTTP 301 на www (не 308)");
-    console.log("  https://webmaster.yandex.ru/site/indexing/mirrors/");
+    console.log("? Статус главного зеркала для www пока неясен — проверьте UI Вебмастера.");
   }
 }
 
-main().catch((error) => {
-  console.error(error);
+main().catch((err) => {
+  console.error(err.message || err);
   process.exit(1);
 });

@@ -55,7 +55,7 @@ export async function openMediumImport(slug, root, { copy = true } = {}) {
   console.log(`Import UI:   ${MEDIUM_IMPORT_URL}`);
   console.log("");
   console.log("Шаги:");
-  console.log("  1. Убедитесь, что страница на bober-ai.dev уже задеплоена.");
+  console.log("  1. Убедитесь, что страница на www.bober-systems.ru уже задеплоена.");
   console.log("  2. В Medium: profile → Stories → Import a story");
   console.log("     (или откроется вкладка Import UI).");
   console.log("  3. Вставьте URL выше → Import.");

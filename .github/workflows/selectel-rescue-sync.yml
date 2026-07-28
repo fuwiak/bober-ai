@@ -137,7 +137,7 @@ jobs:
           	handle /api/health {
           		reverse_proxy 127.0.0.1:3001
           	}
-          	@siteHost host www.bober-ai.dev bober-ai.dev partners.bober-ai.dev bitrix.bober-ai.dev www.bober-systems.ru bober-systems.ru partners.bober-systems.ru bitrix.bober-systems.ru
+          	@siteHost host www.bober-systems.ru www.bober-systems.ru partners.bober-systems.ru bitrix.bober-systems.ru www.bober-systems.ru bober-systems.ru partners.bober-systems.ru bitrix.bober-systems.ru
           	handle @siteHost {
           		header Cache-Control "no-store"
           		redir https://{host}{uri} permanent
@@ -147,15 +147,15 @@ jobs:
           	}
           }
           
-          # Multi-SAN apex: new LE identifier set vs solo bober-ai.dev (rate-limited).
-          https://bober-ai.dev, bober-systems.ru {
+          # Multi-SAN apex: new LE identifier set vs solo www.bober-systems.ru (rate-limited).
+          https://www.bober-systems.ru, bober-systems.ru {
           	header Cache-Control "no-store"
-          	@ai host bober-ai.dev
-          	redir @ai https://www.bober-ai.dev{uri} permanent
+          	@ai host www.bober-systems.ru
+          	redir @ai https://www.bober-systems.ru{uri} permanent
           	redir https://www.bober-systems.ru{uri} permanent
           }
           
-          https://www.bober-ai.dev, www.bober-systems.ru {
+          https://www.bober-systems.ru, www.bober-systems.ru {
           	handle /performers-feed.yml {
           		import yml_headers
           		import astro_proxy
@@ -168,7 +168,7 @@ jobs:
           	import astro_proxy
           }
           
-          https://partners.bober-ai.dev, partners.bober-systems.ru {
+          https://partners.bober-systems.ru, partners.bober-systems.ru {
           	# Pass through API, feeds, static assets (Next middleware parity)
           	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
           	handle @passthrough {
@@ -189,7 +189,7 @@ jobs:
           	}
           }
           
-          https://bitrix.bober-ai.dev, bitrix.bober-systems.ru {
+          https://bitrix.bober-systems.ru, bitrix.bober-systems.ru {
           	@passthrough path /api/* /feeds/* /performers-feed.yml /_astro/* /*.yml /*.xml /*.txt /*.md /*.ico /*.png /*.jpg /*.jpeg /*.webp /*.svg /*.js /*.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
           	handle @passthrough {
           		handle /performers-feed.yml {
@@ -227,9 +227,9 @@ jobs:
       - name: Sync static from main build
         if: inputs.phase == 'sync-static'
         env:
-          NEXT_PUBLIC_SITE_URL: https://www.bober-ai.dev
-          NEXT_PUBLIC_PARTNERS_SITE_URL: https://partners.bober-ai.dev
-          NEXT_PUBLIC_BITRIX_SITE_URL: https://bitrix.bober-ai.dev
+          NEXT_PUBLIC_SITE_URL: https://www.bober-systems.ru
+          NEXT_PUBLIC_PARTNERS_SITE_URL: https://partners.bober-systems.ru
+          NEXT_PUBLIC_BITRIX_SITE_URL: https://bitrix.bober-systems.ru
           NEXT_PUBLIC_YANDEX_METRIKA_ID: "110635302"
           NEXT_PUBLIC_CONTACT_EMAIL: contact@bober-ai.dev
         run: |
@@ -373,6 +373,6 @@ jobs:
               caddy:2-alpine
           fi
           sleep 3
-          curl -skI -H 'Host: www.bober-ai.dev' https://127.0.0.1/ | head -12
+          curl -skI -H 'Host: www.bober-systems.ru' https://127.0.0.1/ | head -12
           echo SYNC_OK
           EOS

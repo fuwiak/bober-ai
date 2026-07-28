@@ -283,16 +283,16 @@ yaga webmaster repair</code></pre>
       "Дождитесь обработки и проверьте статус в кабинете Вебмастера.",
     ],
     commands: [
-      "curl -I https://www.bober-ai.dev/academy",
+      "curl -I https://www.bober-systems.ru/academy",
       "yaga webmaster recrawl --quota",
-      "yaga webmaster recrawl https://www.bober-ai.dev/academy",
-      "yaga webmaster recrawl https://www.bober-ai.dev/academy https://www.bober-ai.dev/services",
+      "yaga webmaster recrawl https://www.bober-systems.ru/academy",
+      "yaga webmaster recrawl https://www.bober-systems.ru/academy https://www.bober-systems.ru/services",
     ],
     note: "Квота приходит из Webmaster API и может отличаться между сайтами. Успешный task_id ≠ страница уже в поиске.",
     contentHtml: `
       <p>Скрипт <code>scripts/yandex-webmaster-recrawl.mjs</code> принимает либо флаг квоты, либо один/несколько URL. Обёртка в yaga:</p>
       <pre><code>yaga webmaster recrawl --quota
-yaga webmaster recrawl https://www.bober-ai.dev/academy</code></pre>
+yaga webmaster recrawl https://www.bober-systems.ru/academy</code></pre>
       <p>Алиас подкоманды в Go: <code>crawl</code>. Внутри — <code>getRecrawlQuota</code> / <code>submitRecrawl</code> из <code>scripts/lib/yandex-webmaster.mjs</code>.</p>
 
       <h2>Перед отправкой в API</h2>
@@ -303,7 +303,7 @@ yaga webmaster recrawl https://www.bober-ai.dev/academy</code></pre>
         <li>Canonical указывает на тот URL, который вы хотите видеть в индексе.</li>
         <li>В sitemap — актуальная запись, если вы на него опираетесь.</li>
       </ul>
-      <pre><code>curl -I https://www.bober-ai.dev/academy</code></pre>
+      <pre><code>curl -I https://www.bober-systems.ru/academy</code></pre>
       <p>Смотрите статус, <code>location</code> при редиректах и заголовки кеша. Если отдаёте другую версию хоста (www / non-www) — сначала зеркала (<code>yaga webmaster mirrors</code>), потом recrawl.</p>
 
       <h2>Квота — обязательный шаг</h2>
@@ -311,8 +311,8 @@ yaga webmaster recrawl https://www.bober-ai.dev/academy</code></pre>
       <p>Скрипт печатает хост и что-то вроде «осталось N · суточная M». Флаг <code>--quota</code> (или аргумент <code>quota</code>) завершает работу без submit. Привычка практикума: не слать пачку URL «на всякий случай» в пятницу вечером.</p>
 
       <h2>Отправка одного или нескольких URL</h2>
-      <pre><code>yaga webmaster recrawl https://www.bober-ai.dev/academy
-yaga webmaster recrawl https://www.bober-ai.dev/academy https://www.bober-ai.dev/services</code></pre>
+      <pre><code>yaga webmaster recrawl https://www.bober-systems.ru/academy
+yaga webmaster recrawl https://www.bober-systems.ru/academy https://www.bober-systems.ru/services</code></pre>
       <p>При успехе в stdout будет <code>task_id</code> и остаток квоты. Ошибка по одному URL не должна удивлять: хост/токен/формат URL проверяются API, не «магией CLI».</p>
 
       <h2>Чего recrawl не делает</h2>

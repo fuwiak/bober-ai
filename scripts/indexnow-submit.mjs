@@ -12,6 +12,7 @@
  *   node scripts/indexnow-submit.mjs /pricing …  # только указанные пути
  */
 
+import { CANONICAL_ORIGIN } from "../config/domains.mjs";
 import { readFileSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -22,7 +23,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const SITE_URL = (
   process.env.INDEXNOW_SITE_URL ||
   process.env.YANDEX_WEBMASTER_HOST_URL ||
-  "https://www.bober-systems.ru"
+  CANONICAL_ORIGIN
 ).replace(/\/$/, "");
 const HOST = new URL(SITE_URL).host;
 const KEY = process.env.INDEXNOW_KEY?.trim() || "e12776ff43264f8c1750c9e433a90357";
@@ -61,45 +62,37 @@ function parseSitemapXml(xml) {
   return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1].trim());
 }
 
+function toSiteUrl(url) {
+  try {
+    const parsed = new URL(url);
+    if (parsed.host === HOST) return url;
+    // Accept twin / local hosts from sitemap and rewrite to SITE_URL.
+    if (
+      parsed.host.endsWith("bober-ai.dev") ||
+      parsed.host.endsWith("bober-systems.ru") ||
+      parsed.host === "localhost"
+    ) {
+      return `${SITE_URL}${parsed.pathname}${parsed.search}`;
+    }
+  } catch {
+    /* skip */
+  }
+  return null;
+}
+
 async function urlsFromSitemap() {
+  let xml;
   try {
     const response = await safeFetch(`${SITE_URL}/sitemap.xml`);
     if (!response.ok) throw new Error(`sitemap.xml → HTTP ${response.status}`);
-    const xml = await response.text();
-    const urls = parseSitemapXml(xml);
-    // IndexNow принимает только URL своего хоста — микросайты из sitemap отсекаем.
-    return [...new Set(urls)].filter((url) => {
-      try {
-        return new URL(url).host === HOST;
-      } catch {
-        return false;
-      }
-    });
+    xml = await response.text();
   } catch (liveError) {
     if (!existsSync(LOCAL_SITEMAP)) throw liveError;
     console.warn(`⚠ Live sitemap недоступен → ${LOCAL_SITEMAP}`);
     console.warn(`  ${liveError.message}`);
-    const xml = readFileSync(LOCAL_SITEMAP, "utf8");
-    return [...new Set(parseSitemapXml(xml))]
-      .map((url) => {
-        try {
-          const parsed = new URL(url);
-          if (parsed.host === HOST) return url;
-          // Rewrite twin/local hosts to canonical SITE_URL host.
-          if (
-            parsed.host.endsWith("bober-ai.dev") ||
-            parsed.host.endsWith("bober-systems.ru") ||
-            parsed.host === "localhost"
-          ) {
-            return `${SITE_URL}${parsed.pathname}${parsed.search}`;
-          }
-        } catch {
-          /* skip */
-        }
-        return null;
-      })
-      .filter(Boolean);
+    xml = readFileSync(LOCAL_SITEMAP, "utf8");
   }
+  return [...new Set(parseSitemapXml(xml).map(toSiteUrl).filter(Boolean))];
 }
 
 async function verifyKeyFile() {

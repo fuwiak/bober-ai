@@ -241,7 +241,7 @@ const PARTNERS_OFFERS: MicrositeOffer[] = [
   },
 ];
 
-/** YML для bitrix.bober-ai.dev (Битрикс24 + amoCRM). */
+/** YML для bitrix.bober-systems.ru (Битрикс24 + amoCRM). */
 export function getBitrixFeedXml(now = new Date()) {
   return buildYmlCatalog(
     {
@@ -256,7 +256,7 @@ export function getBitrixFeedXml(now = new Date()) {
   );
 }
 
-/** YML для partners.bober-ai.dev (white-label / partner program). */
+/** YML для partners.bober-systems.ru (white-label / partner program). */
 export function getPartnersFeedXml(now = new Date()) {
   return buildYmlCatalog(
     {

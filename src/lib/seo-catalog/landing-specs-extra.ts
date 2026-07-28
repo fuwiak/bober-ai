@@ -440,7 +440,7 @@ export const CATALOG_LANDING_SPECS_EXTRA: LandingSpec[] = [
       intro: [
         "Сначала замыкаем телефонию с CRM: каждый звонок в карточке, пропущенные не теряются. Это фундамент для AI-контура отдела продаж.",
         "Полный продукт «звонки + переписки + CRM + автоматические следующие действия» — на /integrations/telephony-ai и /services/ai-sales-loop.",
-        "Слой поверх BitrixGPT (1С, телефония, документы, своя логика) — на /integrations/bitrix24-ai и https://bitrix.bober-ai.dev/",
+        "Слой поверх BitrixGPT (1С, телефония, документы, своя логика) — на /integrations/bitrix24-ai и https://bitrix.bober-systems.ru/",
       ],
       faq: [
         {
@@ -453,7 +453,7 @@ export const CATALOG_LANDING_SPECS_EXTRA: LandingSpec[] = [
         },
         {
           q: "Бюджет?",
-          a: "Базовая настройка телефонии — от 18 000 ₽ (Wordstat-пакет на bitrix.bober-ai.dev). AI-контур — от 300 000 ₽.",
+          a: "Базовая настройка телефонии — от 18 000 ₽ (Wordstat-пакет на bitrix.bober-systems.ru). AI-контур — от 300 000 ₽.",
         },
       ],
     },
@@ -476,7 +476,7 @@ export const CATALOG_LANDING_SPECS_EXTRA: LandingSpec[] = [
       intro: [
         "First we close telephony to CRM: every call on the card, missed calls tracked. That foundation enables the AI sales loop.",
         "Full product “calls + chats + CRM + automatic next actions” — /integrations/telephony-ai and /services/ai-sales-loop.",
-        "Layer on top of BitrixGPT (1C, telephony, documents, custom logic) — /integrations/bitrix24-ai and https://bitrix.bober-ai.dev/",
+        "Layer on top of BitrixGPT (1C, telephony, documents, custom logic) — /integrations/bitrix24-ai and https://bitrix.bober-systems.ru/",
       ],
       faq: [
         {
@@ -489,7 +489,7 @@ export const CATALOG_LANDING_SPECS_EXTRA: LandingSpec[] = [
         },
         {
           q: "Budget?",
-          a: "Basic telephony setup from a fixed small package on bitrix.bober-ai.dev. AI sales loop from €3,000.",
+          a: "Basic telephony setup from a fixed small package on bitrix.bober-systems.ru. AI sales loop from €3,000.",
         },
       ],
     },

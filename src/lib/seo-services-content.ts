@@ -162,13 +162,13 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       { q: "Бюджет?", a: "Пилот от 300 000 ₽. Полный контур с несколькими каналами — от 500 000 ₽." },
       {
         q: "Где лендинг Bitrix?",
-        a: "Отдельный лендинг bitrix.bober-ai.dev — пакеты внедрения и секция AI-контура продаж. Ссылка в блоке связанных услуг ниже.",
+        a: "Отдельный лендинг bitrix.bober-systems.ru — пакеты внедрения и секция AI-контура продаж. Ссылка в блоке связанных услуг ниже.",
       },
       { q: "Данные и NDA?", a: "Можно в вашем облаке или on-prem. NDA до обмена записями звонков." },
     ],
     related: [
       { href: "/integrations/telephony-ai", label: "Телефония + CRM + AI" },
-      { href: "https://bitrix.bober-ai.dev/#sales-loop", label: "Bitrix24 · AI-контур продаж" },
+      { href: "https://bitrix.bober-systems.ru/#sales-loop", label: "Bitrix24 · AI-контур продаж" },
       { href: "/services/sales-ai-agent", label: "Автоматизация отдела продаж" },
       { href: "/services/crm-integration", label: "Интеграции CRM" },
       { href: "/services/voice-ai", label: "Голосовой AI" },
@@ -1808,13 +1808,13 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
       { q: "Budget?", a: "Pilot from €3,000. Full multi-channel loop from €5,000." },
       {
         q: "Bitrix landing?",
-        a: "Dedicated bitrix.bober-ai.dev landing — implementation packages and the AI sales loop section. Link is in the related services below.",
+        a: "Dedicated bitrix.bober-systems.ru landing — implementation packages and the AI sales loop section. Link is in the related services below.",
       },
       { q: "Data & NDA?", a: "Your cloud or on-prem. NDA before exchanging call recordings." },
     ],
     related: [
       { href: "/integrations/telephony-ai", label: "Telephony + CRM + AI" },
-      { href: "https://bitrix.bober-ai.dev/#sales-loop", label: "Bitrix24 · AI sales loop" },
+      { href: "https://bitrix.bober-systems.ru/#sales-loop", label: "Bitrix24 · AI sales loop" },
       { href: "/services/sales-ai-agent", label: "Sales automation" },
       { href: "/services/crm-integration", label: "CRM integrations" },
       { href: "/services/voice-ai", label: "Voice AI" },

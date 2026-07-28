@@ -186,19 +186,18 @@ const homeJsonLd = [
       {
         smbCases.length > 0 && (
           <>
-            <h3 class="mt-10 font-display text-2xl tracking-tight">{messages.portfolio.segmentSmbTitle}</h3>
-            <div class="mt-6 grid gap-6 md:grid-cols-2 reveal-stagger">
+            <h3 class="mt-8 font-display text-2xl tracking-tight">{messages.portfolio.segmentSmbTitle}</h3>
+            <div class="cases-grid cases-grid--smb mt-5">
               {smbCases.map((item) => (
-                <div class="reveal">
                 <CaseStudyCard
                   item={item}
                   locale={locale}
+                  compact
                   segmentLabel={messages.portfolio.segmentSmb}
                   viewLabel={messages.common.viewCaseStudy}
                   beforeLabel={messages.homeLanding.caseBeforeLabel}
                   afterLabel={messages.homeLanding.caseAfterLabel}
                 />
-                </div>
               ))}
             </div>
           </>
@@ -207,12 +206,13 @@ const homeJsonLd = [
       {
         enterpriseCases.length > 0 && (
           <>
-            <h3 class="mt-12 font-display text-2xl tracking-tight">{messages.portfolio.segmentEnterpriseTitle}</h3>
-            <div class="mt-6 grid gap-6 md:grid-cols-2">
+            <h3 class="mt-10 font-display text-2xl tracking-tight">{messages.portfolio.segmentEnterpriseTitle}</h3>
+            <div class="cases-grid mt-5">
               {enterpriseCases.map((item) => (
                 <CaseStudyCard
                   item={item}
                   locale={locale}
+                  compact
                   segmentLabel={messages.portfolio.segmentEnterprise}
                   viewLabel={messages.common.viewCaseStudy}
                   beforeLabel={messages.homeLanding.caseBeforeLabel}

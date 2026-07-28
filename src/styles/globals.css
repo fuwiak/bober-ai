@@ -2045,6 +2045,27 @@ html.dark {
     color: var(--color-ink);
   }
 
+  /* Homepage / listing case grids — avoid orphan empty cell with 3 SMB cards */
+  .cases-grid {
+    @apply grid items-start gap-5 md:grid-cols-2;
+  }
+  .cases-grid--smb {
+    @apply lg:grid-cols-3;
+  }
+
+  .feature-card,
+  .feature-card-bordered {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid var(--color-hairline);
+    background: var(--color-canvas);
+    padding: 1rem;
+  }
+  .feature-card-bordered--compact {
+    padding: 0.75rem;
+  }
+
   /* Case studies */
   .case-study {
     padding-block: 48px;
@@ -3496,7 +3517,7 @@ html:not(.dark) .shell-code {
     width: 100%;
   }
 
-  /* bitrix.bober-ai.dev — systems strip */
+  /* bitrix.bober-systems.ru — systems strip */
   .bitrix-systems-strip {
     display: flex;
     flex-wrap: wrap;

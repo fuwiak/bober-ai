@@ -9,21 +9,27 @@ interface Props {
   beforeLabel?: string;
   afterLabel?: string;
   segmentLabel?: string;
+  /** Tighter homepage listing: smaller media, clamped copy, no caption. */
+  compact?: boolean;
 }
 
-const { item, locale, viewLabel, beforeLabel, afterLabel, segmentLabel } = Astro.props;
+const { item, locale, viewLabel, beforeLabel, afterLabel, segmentLabel, compact = false } = Astro.props;
 const href = localizePath(`/portfolio/${item.slug}`, locale);
+const titleClass = compact
+  ? `font-display text-xl tracking-tight ${segmentLabel ? "mt-1.5" : "mt-3"}`
+  : `font-display text-2xl tracking-tight ${segmentLabel ? "mt-2" : "mt-5"}`;
+const bodyClamp = compact ? " line-clamp-3" : "";
 ---
 
-<article class="feature-card-bordered">
+<article class={`feature-card-bordered${compact ? " feature-card-bordered--compact" : ""}`}>
   <a href={href} class="block transition-opacity hover:opacity-90" data-goal="case_study_view" data-goal-slug={item.slug}>
-    <div class="relative aspect-[16/10] overflow-hidden rounded-lg bg-surface-soft">
+    <div class={`relative overflow-hidden rounded-lg bg-surface-soft ${compact ? "aspect-[16/9]" : "aspect-[16/10]"}`}>
       <img
         src={item.image}
         alt={item.imageAlt ?? item.title}
         class="h-full w-full object-cover"
         width="840"
-        height="525"
+        height={compact ? 473 : 525}
         loading="lazy"
         decoding="async"
       />
@@ -35,47 +41,45 @@ const href = localizePath(`/portfolio/${item.slug}`, locale);
         )
       }
     </div>
-    {item.imageCaption && <p class="mt-2 text-sm text-muted">{item.imageCaption}</p>}
-    {segmentLabel && <p class="meta-label mt-5">{segmentLabel}</p>}
-    <h3 class={`font-display text-2xl tracking-tight ${segmentLabel ? "mt-2" : "mt-5"}`}>
-      {item.title}
-    </h3>
-    {item.metric && <p class="case-study__metric mt-3">{item.metric}</p>}
-    {item.metricMethod && <p class="body-copy mt-2 text-sm text-muted">{item.metricMethod}</p>}
+    {!compact && item.imageCaption && <p class="mt-2 text-sm text-muted">{item.imageCaption}</p>}
+    {segmentLabel && <p class={`meta-label ${compact ? "mt-3" : "mt-5"}`}>{segmentLabel}</p>}
+    <h3 class={titleClass}>{item.title}</h3>
+    {item.metric && <p class={`case-study__metric ${compact ? "mt-2 text-[clamp(18px,2vw,22px)]" : "mt-3"}`}>{item.metric}</p>}
+    {!compact && item.metricMethod && <p class="body-copy mt-2 text-sm text-muted">{item.metricMethod}</p>}
   </a>
 
   {
     (item.description || item.result) && (
-      <div class="case-study__before-after mt-4 space-y-3">
+      <div class={`case-study__before-after ${compact ? "mt-3 space-y-2" : "mt-4 space-y-3"}`}>
         {item.description && beforeLabel && (
           <div>
             <p class="meta-label">{beforeLabel}</p>
-            <p class="body-copy mt-1 text-sm">{item.description}</p>
+            <p class={`body-copy mt-1 text-sm${bodyClamp}`}>{item.description}</p>
           </div>
         )}
         {item.result && afterLabel ? (
           <div>
             <p class="meta-label">{afterLabel}</p>
-            <p class="body-copy mt-1 text-sm text-ink">{item.result}</p>
+            <p class={`body-copy mt-1 text-sm text-ink${bodyClamp}`}>{item.result}</p>
           </div>
         ) : item.result ? (
-          <p class="body-copy mt-3 text-base">{item.result}</p>
+          <p class={`body-copy mt-3 text-base${bodyClamp}`}>{item.result}</p>
         ) : null}
       </div>
     )
   }
 
-  {item.stack && <p class="meta-label mt-3">{item.stack}</p>}
+  {item.stack && <p class={`meta-label ${compact ? "mt-2" : "mt-3"}`}>{item.stack}</p>}
   {
     item.priceLabel && (
-      <div class="mt-4">
+      <div class={compact ? "mt-2" : "mt-4"}>
         <p class="meta-label">{item.priceLabel}</p>
-        {item.imageBadge && <p class="mt-1 text-sm text-muted">{item.imageBadge}</p>}
+        {!compact && item.imageBadge && <p class="mt-1 text-sm text-muted">{item.imageBadge}</p>}
       </div>
     )
   }
 
-  <div class="mt-5 flex flex-wrap items-center gap-4">
+  <div class={`mt-auto flex flex-wrap items-center gap-4 ${compact ? "pt-3" : "pt-5"}`}>
     <a href={href} class="link-more" data-goal="case_study_view">{viewLabel}</a>
   </div>
 </article>

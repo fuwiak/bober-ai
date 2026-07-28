@@ -11,6 +11,12 @@
  * Important-urls нельзя добавить через API (только GET) — список печатается для UI.
  */
 
+import {
+  BITRIX_ORIGIN,
+  CANONICAL_HOST,
+  CANONICAL_ORIGIN,
+  PARTNERS_ORIGIN,
+} from "../config/domains.mjs";
 import { spawnSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -25,7 +31,7 @@ import {
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
 function defaultHostBase() {
-  return (process.env.YANDEX_WEBMASTER_HOST_URL || "https://www.bober-systems.ru").replace(/\/$/, "");
+  return (process.env.YANDEX_WEBMASTER_HOST_URL || CANONICAL_ORIGIN).replace(/\/$/, "");
 }
 
 function loadImportantUrls() {
@@ -36,7 +42,7 @@ function loadImportantUrls() {
       "tsx",
       "-e",
       `import { yandexImportantUrls } from "./src/lib/yandex-important-urls.ts";
-       const base = process.env.YANDEX_WEBMASTER_HOST_URL || "https://www.bober-systems.ru";
+       const base = process.env.YANDEX_WEBMASTER_HOST_URL || CANONICAL_ORIGIN;
        console.log(JSON.stringify(yandexImportantUrls(base)));`,
     ],
     { cwd: root, encoding: "utf8", env: process.env },
@@ -98,7 +104,7 @@ function loadStandaloneUrls() {
       /* fall through */
     }
   }
-  return ["https://partners.bober-systems.ru/", "https://bitrix.bober-systems.ru/"];
+  return [`${PARTNERS_ORIGIN}/`, `${BITRIX_ORIGIN}/`];
 }
 
 function section(title) {
@@ -133,7 +139,7 @@ async function main() {
   console.log(`
 Как добавить (UI, без deep-link с hostId — они 404):
   1. Откройте ${UI.sites}
-  2. Выберите https://www.bober-systems.ru/
+  2. Выберите ${CANONICAL_ORIGIN}/
   3. Меню: Индексирование → Мониторинг важных страниц
      (или на ${UI.reindex} отметьте URL «Отслеживать»)
   Не добавляйте partners./bitrix. сюда — Вебмастер отклонит чужой хост.
@@ -154,14 +160,14 @@ async function main() {
 
   section("Региональность (только UI / Яндекс Бизнес)");
   console.log(`Москва задаётся так:
-  1. ${UI.sites} → выберите www.bober-systems.ru
+  1. ${UI.sites} → выберите ${CANONICAL_HOST}
   2. Представление в поиске → Региональность → Москва
      ИЛИ привяжите организацию в Яндекс Бизнес (регион подтянется сам):
      ${UI.business}
 `);
 
   section("Яндекс Бизнес / Справочник (только UI)");
-  console.log("Карточка организации со сайтом https://www.bober-systems.ru/");
+  console.log(`Карточка организации со сайтом ${CANONICAL_ORIGIN}/`);
   console.log(`  ${UI.business}`);
 
   section("Фид услуг");
@@ -187,7 +193,7 @@ async function main() {
 `);
 
   section("Свежее и актуальное (RSS)");
-  console.log(`Фид: https://www.bober-systems.ru/rss.xml
+  console.log(`Фид: ${CANONICAL_ORIGIN}/rss.xml
   Вебмастер → Представление в поиске → Свежее и актуальное → загрузить RSS.
   Docs: https://yandex.ru/support/webmaster/ru/search-appearance/fresh-content
 `);
@@ -201,7 +207,7 @@ async function main() {
     try {
       return new URL(hostUrl).hostname.toLowerCase();
     } catch {
-      return "www.bober-systems.ru";
+      return CANONICAL_HOST;
     }
   })();
   const wwwUrls = urls.filter((u) => {

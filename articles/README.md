@@ -1,6 +1,6 @@
 # Articles (source of truth)
 
-Канонический источник статей для **bober-ai.dev**. Сначала публикуем на сайте, затем репостим на Medium / Habr.
+Канонический источник статей для **www.bober-systems.ru**. Сначала публикуем на сайте, затем репостим на Medium / Habr.
 
 ## Layout
 
@@ -43,9 +43,9 @@ status: draft   # draft | published
 ---
 ```
 
-- `slug` — URL `/blog/<slug>` на bober-ai.dev
+- `slug` — URL `/blog/<slug>` на www.bober-systems.ru
 - `status: published` — попадает в генерацию сайта; `draft` только в list/export
-- Canonical всегда `https://www.bober-ai.dev/blog/<slug>`
+- Canonical всегда `https://www.bober-systems.ru/blog/<slug>`
 
 ## Workflow
 

@@ -10,6 +10,7 @@
  *   npm run webmaster:microtest -- --skip-fetch
  */
 
+import { CANONICAL_ORIGIN } from "../config/domains.mjs";
 import { spawnSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -20,17 +21,17 @@ const DEFAULT = {
   validator: "https://webmaster.yandex.ru/tools/microtest/",
   docs: "https://yandex.ru/support/webmaster/ru/yandex-indexing/validator",
   urls: [
-    "https://www.bober-systems.ru/",
-    "https://www.bober-systems.ru/services",
-    "https://www.bober-systems.ru/services/business-process-automation",
-    "https://www.bober-systems.ru/faq",
-    "https://www.bober-systems.ru/pricing",
-    "https://www.bober-systems.ru/portfolio",
-    "https://www.bober-systems.ru/about",
-    "https://www.bober-systems.ru/blog",
-    "https://www.bober-systems.ru/secure-ai",
-    "https://www.bober-systems.ru/kaspersky",
-  ],
+    "/",
+    "/services",
+    "/services/business-process-automation",
+    "/faq",
+    "/pricing",
+    "/portfolio",
+    "/about",
+    "/blog",
+    "/secure-ai",
+    "/kaspersky",
+  ].map((path) => (path === "/" ? `${CANONICAL_ORIGIN}/` : `${CANONICAL_ORIGIN}${path}`)),
 };
 
 function loadConfig() {
@@ -160,7 +161,7 @@ function hasTwitterCard(html) {
 
 async function probe(url) {
   const res = await fetch(url, {
-    headers: { "user-agent": "BoberAI-Microtest/1.0 (+https://www.bober-systems.ru/)" },
+    headers: { "user-agent": `BoberAI-Microtest/1.0 (+${CANONICAL_ORIGIN}/)` },
     redirect: "follow",
   });
   const html = await res.text();

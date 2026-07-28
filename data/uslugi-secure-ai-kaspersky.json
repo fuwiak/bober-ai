@@ -10,9 +10,9 @@
   "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=187ddab3-5a27-4a55-8240-dd1baca3b87f",
   "publicProfile": "https://uslugi.yandex.ru/profile/PawelStasinski-254144",
   "siteRefs": [
-    "https://www.bober-ai.dev/secure-ai",
-    "https://www.bober-ai.dev/kaspersky",
-    "https://www.bober-ai.dev/services/secure-private-ai-cloud"
+    "https://www.bober-systems.ru/secure-ai",
+    "https://www.bober-systems.ru/kaspersky",
+    "https://www.bober-systems.ru/services/secure-private-ai-cloud"
   ],
   "publishHint": [
     "npm run yandex:uslugi:login",

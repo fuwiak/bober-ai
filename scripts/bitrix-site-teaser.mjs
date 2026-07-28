@@ -16,6 +16,7 @@
  * @see https://apidocs.bitrix24.com/api-reference/landing/index.html
  */
 
+import { CANONICAL_ORIGIN } from "../config/domains.mjs";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -42,7 +43,7 @@ const PAGE_TITLE = "Bober AI · Битрикс24";
 const SITE_CODE = "bober-bitrix";
 /** Известный SITE_ID тизера на b24-tuh0lz (если CODE ещё старый). */
 const KNOWN_SITE_ID = 6;
-const MAIN_URL = "https://www.bober-systems.ru/";
+const MAIN_URL = CANONICAL_ORIGIN + "/";
 const BITRIX_URL = "https://bitrix.bober-systems.ru/";
 const PARTNER_LINE = "Участие в партнерской программе 1С-Битрикс · ID 28909898";
 

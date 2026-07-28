@@ -1,5 +1,10 @@
+import {
+  BITRIX_HOST,
+  CANONICAL_APEX,
+  isCanonicalFamilyHost,
+  PARTNERS_HOST,
+} from "../../config/domains.mjs";
 import { CONTACT_PHONE, ORGANIZATION_NAME, SITE_NAME, SITE_URL } from "@/lib/site";
-
 export const LEGAL_ENTITY = {
   name: ORGANIZATION_NAME,
   inn: "772356334324",
@@ -51,21 +56,14 @@ export const BITRIX_YANDEX_METRIKA_ID =
   process.env.NEXT_PUBLIC_BITRIX_YANDEX_METRIKA_ID ||
   "110926887";
 
-/** True for public bober-systems.ru hosts (canonical analytics surface). */
+/** True for public canonical hosts (analytics surface from `config/domains.mjs`). */
 export function isBoberSystemsHost(hostname?: string): boolean {
-  const host = hostname?.toLowerCase() || "";
-  return (
-    host === "www.bober-systems.ru" ||
-    host === "bober-systems.ru" ||
-    host === "partners.bober-systems.ru" ||
-    host === "bitrix.bober-systems.ru" ||
-    host.endsWith(".bober-systems.ru")
-  );
+  return isCanonicalFamilyHost(hostname);
 }
 
 /**
  * Counter for the current host, or null when Metrika must stay off
- * (e.g. *.bober-ai.dev — analytics only on *.bober-systems.ru).
+ * (legacy *.bober-ai.dev — analytics only on canonical apex family).
  */
 export function yandexMetrikaIdForLocation(hostname?: string, pathname?: string): string | null {
   const host = hostname?.toLowerCase() || "";
@@ -73,17 +71,19 @@ export function yandexMetrikaIdForLocation(hostname?: string, pathname?: string)
 
   if (!isBoberSystemsHost(host)) return null;
 
-  if (host === "partners.bober-systems.ru" || path.startsWith("/white-label")) {
+  if (host === PARTNERS_HOST || path.startsWith("/white-label")) {
     return PARTNERS_YANDEX_METRIKA_ID;
   }
 
-  if (host === "bitrix.bober-systems.ru" || path.startsWith("/bitrix")) {
+  if (host === BITRIX_HOST || path.startsWith("/bitrix")) {
     return BITRIX_YANDEX_METRIKA_ID;
   }
 
   return YANDEX_METRIKA_ID;
 }
 
+/** Re-export apex for docs / callers that need the registrable domain string. */
+export { CANONICAL_APEX };
 export const POLICY_UPDATED_AT = "27.07.2026";
 
 /** Строка реквизитов для футера и кратких блоков */

@@ -11,16 +11,22 @@
  * Не заменяет Яндекс Вебмастер — для диагностики API: npm run webmaster:seo
  */
 
+import {
+  APEX_ORIGIN,
+  CANONICAL_APEX,
+  CANONICAL_ORIGIN,
+  LEGACY_APEX,
+} from "../config/domains.mjs";
 import fetch from "./lib/fetch.mjs";
 
 const SITE = (
   process.env.YANDEX_WEBMASTER_HOST_URL ||
   process.env.PUBLIC_SITE_URL ||
   process.env.NEXT_PUBLIC_SITE_URL ||
-  "https://www.bober-systems.ru"
+  CANONICAL_ORIGIN
 ).replace(/\/$/, "");
-const APEX = "https://bober-systems.ru";
-const ALLOWED_HOST_MARKERS = ["bober-systems.ru", "bober-ai.dev"];
+const APEX = APEX_ORIGIN;
+const ALLOWED_HOST_MARKERS = [CANONICAL_APEX, LEGACY_APEX];
 
 const LANDINGS = [
   "/",
@@ -114,12 +120,12 @@ async function checkCanonicalHost() {
   if (apex.status === 301 || apex.status === 302) {
     const loc = apex.location || "";
     const okLoc =
-      /^https:\/\/www\.bober-systems\.ru\/?(\?.*)?$/i.test(loc) &&
+      new RegExp(`^${CANONICAL_ORIGIN.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}/?(\\?.*)?$`, 'i').test(loc) &&
       !/:\d+/.test(loc);
     if (okLoc) {
       ok(`apex → ${loc} (${apex.status})`);
     } else {
-      fail(`плохой Location: ${loc || "(пусто)"} — нужен https://www.bober-systems.ru/ без порта`);
+      fail(`плохой Location: ${loc || "(пусто)"} — нужен ${CANONICAL_ORIGIN}/ без порта`);
     }
   } else {
     fail(`apex HTTP ${apex.status}, ожидали 301`);

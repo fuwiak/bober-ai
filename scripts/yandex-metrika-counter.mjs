@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { CANONICAL_ORIGIN } from "../config/domains.mjs";
 import fetch from "./lib/fetch.mjs";
 
 const METRIKA_API = "https://api-metrika.yandex.net/management/v1";
@@ -10,7 +11,7 @@ const config = {
     process.env.YANDEX_METRIKA_OAUTH_TOKEN?.trim() ||
     process.env.YANDEX_WEBMASTER_OAUTH_TOKEN?.trim(),
   clientId: process.env.YANDEX_WEBMASTER_CLIENT_ID?.trim() || "f2e2f11ae7e3492886ad61a6e45a4c5c",
-  siteUrl: (process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-systems.ru").replace(/\/$/, ""),
+  siteUrl: (process.env.NEXT_PUBLIC_SITE_URL || CANONICAL_ORIGIN).replace(/\/$/, ""),
   counterName: process.env.YANDEX_METRIKA_COUNTER_NAME?.trim() || "Bober AI Systems",
   counterId: process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID?.trim() || "",
 };

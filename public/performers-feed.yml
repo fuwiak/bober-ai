@@ -3,7 +3,7 @@
   <shop>
     <name>Bober AI Systems</name>
     <company>Bober AI Systems</company>
-    <url>https://www.bober-ai.dev</url>
+    <url>https://www.bober-systems.ru</url>
     <email>contact@bober-ai.dev</email>
     <currencies>
       <currency id="RUR" rate="1"/>
@@ -15,139 +15,139 @@
     <sets>
       <set id="business-process-automation">
         <name>Автоматизация бизнес-процессов</name>
-        <url>https://www.bober-ai.dev/services/business-process-automation</url>
+        <url>https://www.bober-systems.ru/services/business-process-automation</url>
       </set>
       <set id="sales-ai-agent">
         <name>Автоматизация отдела продаж</name>
-        <url>https://www.bober-ai.dev/services/sales-ai-agent</url>
+        <url>https://www.bober-systems.ru/services/sales-ai-agent</url>
       </set>
       <set id="ai-discovery-roadmap">
         <name>AI &amp; Automation Advisor</name>
-        <url>https://www.bober-ai.dev/services/ai-discovery-roadmap</url>
+        <url>https://www.bober-systems.ru/services/ai-discovery-roadmap</url>
       </set>
       <set id="enterprise-ai-assistant">
         <name>Внедрение ИИ в бизнес</name>
-        <url>https://www.bober-ai.dev/ai/ai-implementation</url>
+        <url>https://www.bober-systems.ru/ai/ai-implementation</url>
       </set>
       <set id="private-llm-gigachat">
         <name>Приватный LLM-контур</name>
-        <url>https://www.bober-ai.dev/services/private-llm-gigachat</url>
+        <url>https://www.bober-systems.ru/services/private-llm-gigachat</url>
       </set>
       <set id="ai-automation">
         <name>AI-автоматизация</name>
-        <url>https://www.bober-ai.dev/services/ai-automation</url>
+        <url>https://www.bober-systems.ru/services/ai-automation</url>
       </set>
       <set id="rag">
         <name>RAG для бизнеса</name>
-        <url>https://www.bober-ai.dev/solutions/rag-search</url>
+        <url>https://www.bober-systems.ru/solutions/rag-search</url>
       </set>
       <set id="llm-development">
         <name>Разработка LLM-решений</name>
-        <url>https://www.bober-ai.dev/services/llm-development</url>
+        <url>https://www.bober-systems.ru/services/llm-development</url>
       </set>
       <set id="n8n">
         <name>Автоматизация на n8n</name>
-        <url>https://www.bober-ai.dev/services/n8n</url>
+        <url>https://www.bober-systems.ru/services/n8n</url>
       </set>
       <set id="ai-agent">
         <name>AI-агенты для бизнеса</name>
-        <url>https://www.bober-ai.dev/services/ai-agent</url>
+        <url>https://www.bober-systems.ru/services/ai-agent</url>
       </set>
       <set id="document-processing">
         <name>Автоматизация документооборота</name>
-        <url>https://www.bober-ai.dev/automation/documents</url>
+        <url>https://www.bober-systems.ru/automation/documents</url>
       </set>
       <set id="voice-ai">
         <name>Голосовой AI</name>
-        <url>https://www.bober-ai.dev/services/voice-ai</url>
+        <url>https://www.bober-systems.ru/services/voice-ai</url>
       </set>
       <set id="ocr">
         <name>OCR и распознавание</name>
-        <url>https://www.bober-ai.dev/services/ocr</url>
+        <url>https://www.bober-systems.ru/services/ocr</url>
       </set>
       <set id="open-webui">
         <name>Open WebUI</name>
-        <url>https://www.bober-ai.dev/services/open-webui</url>
+        <url>https://www.bober-systems.ru/services/open-webui</url>
       </set>
       <set id="self-hosted-ai">
         <name>Self-hosted AI</name>
-        <url>https://www.bober-ai.dev/services/self-hosted-ai</url>
+        <url>https://www.bober-systems.ru/services/self-hosted-ai</url>
       </set>
       <set id="mcp">
         <name>MCP-интеграции</name>
-        <url>https://www.bober-ai.dev/services/mcp</url>
+        <url>https://www.bober-systems.ru/services/mcp</url>
       </set>
       <set id="langgraph">
         <name>LangGraph-агенты</name>
-        <url>https://www.bober-ai.dev/services/langgraph</url>
+        <url>https://www.bober-systems.ru/services/langgraph</url>
       </set>
       <set id="knowledge-base">
         <name>Корпоративная база знаний</name>
-        <url>https://www.bober-ai.dev/services/knowledge-base</url>
+        <url>https://www.bober-systems.ru/services/knowledge-base</url>
       </set>
       <set id="ai-consulting">
         <name>AI-консалтинг</name>
-        <url>https://www.bober-ai.dev/services/ai-consulting</url>
+        <url>https://www.bober-systems.ru/services/ai-consulting</url>
       </set>
       <set id="crm-integration">
         <name>Интеграции CRM</name>
-        <url>https://www.bober-ai.dev/services/crm-integration</url>
+        <url>https://www.bober-systems.ru/services/crm-integration</url>
       </set>
       <set id="ai-sales-loop">
         <name>AI-контур отдела продаж</name>
-        <url>https://www.bober-ai.dev/services/ai-sales-loop</url>
+        <url>https://www.bober-systems.ru/services/ai-sales-loop</url>
       </set>
       <set id="claude-smb">
         <name>Claude AI для малого и среднего бизнеса</name>
-        <url>https://www.bober-ai.dev/claude</url>
+        <url>https://www.bober-systems.ru/claude</url>
       </set>
       <set id="ii-dlya-biznesa">
         <name>ИИ для бизнеса — аудит, разработка и внедрение</name>
-        <url>https://www.bober-ai.dev/ii-dlya-biznesa</url>
+        <url>https://www.bober-systems.ru/ii-dlya-biznesa</url>
       </set>
       <set id="wildberries-independent-sales-channel">
         <name>Независимый канал продаж для продавцов Wildberries</name>
-        <url>https://www.bober-ai.dev/services/wildberries-independent-sales-channel</url>
+        <url>https://www.bober-systems.ru/services/wildberries-independent-sales-channel</url>
       </set>
       <set id="secure-private-ai-cloud">
         <name>Защищенная AI-инфраструктура на базе российских облаков и решений Kaspersky</name>
-        <url>https://www.bober-ai.dev/services/secure-private-ai-cloud</url>
+        <url>https://www.bober-systems.ru/services/secure-private-ai-cloud</url>
       </set>
       <set id="company-automation">
         <name>Автоматизация компании</name>
-        <url>https://www.bober-ai.dev/automation/company-automation</url>
+        <url>https://www.bober-systems.ru/automation/company-automation</url>
       </set>
       <set id="crm-automation">
         <name>Автоматизация CRM</name>
-        <url>https://www.bober-ai.dev/integrations/crm-automation</url>
+        <url>https://www.bober-systems.ru/integrations/crm-automation</url>
       </set>
       <set id="document-ai">
         <name>ИИ для обработки документов</name>
-        <url>https://www.bober-ai.dev/automation/document-ai</url>
+        <url>https://www.bober-systems.ru/automation/document-ai</url>
       </set>
       <set id="ai-for-crm">
         <name>ИИ для CRM</name>
-        <url>https://www.bober-ai.dev/integrations/ai-for-crm</url>
+        <url>https://www.bober-systems.ru/integrations/ai-for-crm</url>
       </set>
       <set id="corporate-ai-assistant">
         <name>Корпоративный ИИ-ассистент</name>
-        <url>https://www.bober-ai.dev/ai/corporate-neural-net</url>
+        <url>https://www.bober-systems.ru/ai/corporate-neural-net</url>
       </set>
       <set id="business-process-audit">
         <name>Аудит бизнес-процессов</name>
-        <url>https://www.bober-ai.dev/automation/business-process-audit</url>
+        <url>https://www.bober-systems.ru/automation/business-process-audit</url>
       </set>
     </sets>
     <offers>
     <offer id="business-process-automation">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/services/business-process-automation</url>
+      <url>https://www.bober-systems.ru/services/business-process-automation</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>business-process-automation</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/business-process-automation.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/business-process-automation.jpg</picture>
       <description>Автоматизация бизнес-процессов</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -156,22 +156,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/business-process-automation</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/business-process-automation</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Аудит процессов, настройка автоматизации, интеграция с CRM и документами, обучение команды.</param>
     </offer>
     <offer id="sales-ai-agent">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/services/sales-ai-agent</url>
+      <url>https://www.bober-systems.ru/services/sales-ai-agent</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>sales-ai-agent</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/sales-ai-agent.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/sales-ai-agent.jpg</picture>
       <description>Автоматизация отдела продаж</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -180,22 +180,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/sales-ai-agent</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/sales-ai-agent</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Настраиваем автоматизацию под шаблоны и CRM, тестируем и запускаем в отделе продаж.</param>
     </offer>
     <offer id="ai-discovery-roadmap">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/services/ai-discovery-roadmap</url>
+      <url>https://www.bober-systems.ru/services/ai-discovery-roadmap</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 150 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>ai-discovery-roadmap</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ai-discovery-roadmap.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ai-discovery-roadmap.jpg</picture>
       <description>AI &amp; Automation Advisor</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -204,22 +204,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">95</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/ai-discovery-roadmap</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/ai-discovery-roadmap</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Бизнес-аудит, карта процессов, расчёт ROI, дорожная карта и смета до старта разработки.</param>
     </offer>
     <offer id="enterprise-ai-assistant">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/ai/ai-implementation</url>
+      <url>https://www.bober-systems.ru/ai/ai-implementation</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>enterprise-ai-assistant</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/enterprise-ai-assistant.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/enterprise-ai-assistant.jpg</picture>
       <description>Внедрение ИИ в бизнес</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -228,22 +228,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/ai/ai-implementation</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/ai/ai-implementation</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Архитектура, LLM, интеграции CRM/мессенджеры, production-деплой и передача команде.</param>
     </offer>
     <offer id="private-llm-gigachat">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/services/private-llm-gigachat</url>
+      <url>https://www.bober-systems.ru/services/private-llm-gigachat</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>private-llm-gigachat</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/private-llm-gigachat.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/private-llm-gigachat.jpg</picture>
       <description>Приватный LLM-контур</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -252,22 +252,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/private-llm-gigachat</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/private-llm-gigachat</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Разворачиваем LLM в вашем контуре, настраиваем API, guardrails, мониторинг и интеграции.</param>
     </offer>
     <offer id="ai-automation">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/services/ai-automation</url>
+      <url>https://www.bober-systems.ru/services/ai-automation</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>ai-automation</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ai-automation.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ai-automation.jpg</picture>
       <description>AI-автоматизация</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -276,22 +276,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/ai-automation</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/ai-automation</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Проектируем и внедряем AI-автоматизацию с интеграциями CRM, документов и workflow.</param>
     </offer>
     <offer id="rag">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/solutions/rag-search</url>
+      <url>https://www.bober-systems.ru/solutions/rag-search</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>rag</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/rag.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/rag.jpg</picture>
       <description>RAG для бизнеса</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -300,22 +300,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/solutions/rag-search</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/solutions/rag-search</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Индексация, векторный поиск, guardrails и интеграция в чат/CRM.</param>
     </offer>
     <offer id="llm-development">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/services/llm-development</url>
+      <url>https://www.bober-systems.ru/services/llm-development</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>llm-development</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/llm-development.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/llm-development.jpg</picture>
       <description>Разработка LLM-решений</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -324,22 +324,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/llm-development</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/llm-development</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Архитектура, разработка, тестирование и передача команде.</param>
     </offer>
     <offer id="n8n">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/services/n8n</url>
+      <url>https://www.bober-systems.ru/services/n8n</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>n8n</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/n8n.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/n8n.jpg</picture>
       <description>Автоматизация на n8n</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -348,22 +348,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/n8n</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/n8n</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Проектируем, разворачиваем и сопровождаем n8n в production.</param>
     </offer>
     <offer id="ai-agent">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/services/ai-agent</url>
+      <url>https://www.bober-systems.ru/services/ai-agent</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>ai-agent</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ai-agent.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ai-agent.jpg</picture>
       <description>AI-агенты для бизнеса</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -372,22 +372,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/ai-agent</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/ai-agent</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Многошаговые агенты с инструментами, мониторингом и handover.</param>
     </offer>
     <offer id="document-processing">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/automation/documents</url>
+      <url>https://www.bober-systems.ru/automation/documents</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>document-processing</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/document-processing.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/document-processing.jpg</picture>
       <description>Автоматизация документооборота</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -396,22 +396,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/automation/documents</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/automation/documents</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Пайплайны документов, workflow и интеграции с учётными системами.</param>
     </offer>
     <offer id="voice-ai">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/services/voice-ai</url>
+      <url>https://www.bober-systems.ru/services/voice-ai</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>voice-ai</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/voice-ai.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/voice-ai.jpg</picture>
       <description>Голосовой AI</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -420,22 +420,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/voice-ai</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/voice-ai</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Голосовые сценарии для поддержки и продаж с интеграцией в CRM.</param>
     </offer>
     <offer id="ocr">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/services/ocr</url>
+      <url>https://www.bober-systems.ru/services/ocr</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>ocr</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ocr.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ocr.jpg</picture>
       <description>OCR и распознавание</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -444,22 +444,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/ocr</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/ocr</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">OCR-пайплайны с валидацией и выгрузкой в 1С, CRM или ERP.</param>
     </offer>
     <offer id="open-webui">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/services/open-webui</url>
+      <url>https://www.bober-systems.ru/services/open-webui</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>open-webui</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/open-webui.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/open-webui.jpg</picture>
       <description>Open WebUI</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -468,22 +468,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">89</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/open-webui</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/open-webui</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Развёртывание Open WebUI, подключение моделей и guardrails.</param>
     </offer>
     <offer id="self-hosted-ai">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/services/self-hosted-ai</url>
+      <url>https://www.bober-systems.ru/services/self-hosted-ai</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>self-hosted-ai</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/self-hosted-ai.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/self-hosted-ai.jpg</picture>
       <description>Self-hosted AI</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -492,22 +492,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/self-hosted-ai</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/self-hosted-ai</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">On-prem LLM, API, мониторинг и интеграции под NDA.</param>
     </offer>
     <offer id="mcp">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/services/mcp</url>
+      <url>https://www.bober-systems.ru/services/mcp</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>mcp</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/mcp.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/mcp.jpg</picture>
       <description>MCP-интеграции</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -516,22 +516,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/mcp</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/mcp</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">MCP-серверы для внутренних систем и инструментов агентов.</param>
     </offer>
     <offer id="langgraph">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/services/langgraph</url>
+      <url>https://www.bober-systems.ru/services/langgraph</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>langgraph</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/langgraph.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/langgraph.jpg</picture>
       <description>LangGraph-агенты</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -540,22 +540,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/langgraph</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/langgraph</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">LangGraph для сложных сценариев с контролем и аудитом.</param>
     </offer>
     <offer id="knowledge-base">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/services/knowledge-base</url>
+      <url>https://www.bober-systems.ru/services/knowledge-base</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>knowledge-base</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/knowledge-base.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/knowledge-base.jpg</picture>
       <description>Корпоративная база знаний</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -564,22 +564,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/knowledge-base</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/knowledge-base</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">База знаний, поиск, чат-бот для сотрудников и клиентов.</param>
     </offer>
     <offer id="ai-consulting">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/services/ai-consulting</url>
+      <url>https://www.bober-systems.ru/services/ai-consulting</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 150 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>ai-consulting</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ai-consulting.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ai-consulting.jpg</picture>
       <description>AI-консалтинг</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -588,22 +588,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/ai-consulting</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/ai-consulting</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Аудит, рекомендации и план до закупки разработки.</param>
     </offer>
     <offer id="crm-integration">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/services/crm-integration</url>
+      <url>https://www.bober-systems.ru/services/crm-integration</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>crm-integration</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/crm-integration.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/crm-integration.jpg</picture>
       <description>Интеграции CRM</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -612,22 +612,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/crm-integration</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/crm-integration</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Двусторонние интеграции, webhooks, retry и мониторинг.</param>
     </offer>
     <offer id="ai-sales-loop">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/services/ai-sales-loop</url>
+      <url>https://www.bober-systems.ru/services/ai-sales-loop</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>ai-sales-loop</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ai-sales-loop.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ai-sales-loop.jpg</picture>
       <description>AI-контур отдела продаж</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -636,22 +636,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/ai-sales-loop</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/ai-sales-loop</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Интеграция Bitrix24 / amoCRM с телефонией и AI — квалификация лидов, саммари звонков, задачи, follow-up и отчёт об упущенных сделках.</param>
     </offer>
     <offer id="claude-smb">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/claude</url>
+      <url>https://www.bober-systems.ru/claude</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>claude-smb</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/claude-smb.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/claude-smb.jpg</picture>
       <description>Claude AI для малого и среднего бизнеса</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -660,22 +660,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/claude</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/claude</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Claude API и MCP в CRM, документы, продажи и базу знаний — не подписка Claude Pro. Фиксированная смета, NDA, Россия и СНГ.</param>
     </offer>
     <offer id="ii-dlya-biznesa">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/ii-dlya-biznesa</url>
+      <url>https://www.bober-systems.ru/ii-dlya-biznesa</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 150 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>ii-dlya-biznesa</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ii-dlya-biznesa.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ii-dlya-biznesa.jpg</picture>
       <description>ИИ для бизнеса — аудит, разработка и внедрение</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -684,22 +684,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/ii-dlya-biznesa</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/ii-dlya-biznesa</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Гибрид коммерческого лендинга и гида: сценарии, ассистент vs агент, архитектура (Yandex Cloud / Selectel / on-prem), безопасность, кейсы. Фиксированная смета, NDA.</param>
     </offer>
     <offer id="wildberries-independent-sales-channel">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/services/wildberries-independent-sales-channel</url>
+      <url>https://www.bober-systems.ru/services/wildberries-independent-sales-channel</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>wildberries-independent-sales-channel</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/wildberries-independent-sales-channel.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/wildberries-independent-sales-channel.jpg</picture>
       <description>Независимый канал продаж для продавцов Wildberries</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -708,22 +708,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/wildberries-independent-sales-channel</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/wildberries-independent-sales-channel</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Запуск собственного канала продаж параллельно с Wildberries: витрина, Bitrix24/amoCRM, 1С/МойСклад, оплата, доставка, Telegram/VK/email, AI-ассистент по товарам, синхронизация цен и остатков. Срок от 14 дней.</param>
     </offer>
     <offer id="secure-private-ai-cloud">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/services/secure-private-ai-cloud</url>
+      <url>https://www.bober-systems.ru/services/secure-private-ai-cloud</url>
       <price from="true">800000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 800 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>secure-private-ai-cloud</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/secure-private-ai-cloud.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/secure-private-ai-cloud.jpg</picture>
       <description>Защищенная AI-инфраструктура на базе российских облаков и решений Kaspersky</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -732,22 +732,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/services/secure-private-ai-cloud</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/secure-private-ai-cloud</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Контур: слой AI (private LLM, RAG, база знаний, Bitrix24/1С), инфраструктура (российское облако, VPN, IAM, backup, логи) и Kaspersky (VM, Linux/Windows, контейнеры, Security Center). Внедрение, мониторинг, отчёт, реакция на события. Лицензии Kaspersky — через авторизованную дистрибуцию.</param>
     </offer>
     <offer id="company-automation">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/automation/company-automation</url>
+      <url>https://www.bober-systems.ru/automation/company-automation</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>company-automation</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/company-automation.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/company-automation.jpg</picture>
       <description>Автоматизация компании</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -756,22 +756,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/automation/company-automation</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/automation/company-automation</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Аудит узкого места, workflow и интеграции, production-запуск и обучение команды.</param>
     </offer>
     <offer id="crm-automation">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/integrations/crm-automation</url>
+      <url>https://www.bober-systems.ru/integrations/crm-automation</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>crm-automation</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/crm-automation.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/crm-automation.jpg</picture>
       <description>Автоматизация CRM</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -780,22 +780,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/integrations/crm-automation</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/integrations/crm-automation</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Автоматизация воронки CRM — триггеры, задачи, уведомления и контроль конверсии.</param>
     </offer>
     <offer id="document-ai">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/automation/document-ai</url>
+      <url>https://www.bober-systems.ru/automation/document-ai</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>document-ai</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/document-ai.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/document-ai.jpg</picture>
       <description>ИИ для обработки документов</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -804,22 +804,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/automation/document-ai</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/automation/document-ai</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">ИИ-пайплайн документов — OCR, классификация, валидация и выгрузка в учётные системы.</param>
     </offer>
     <offer id="ai-for-crm">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/integrations/ai-for-crm</url>
+      <url>https://www.bober-systems.ru/integrations/ai-for-crm</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>ai-for-crm</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ai-for-crm.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ai-for-crm.jpg</picture>
       <description>ИИ для CRM</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -828,22 +828,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/integrations/ai-for-crm</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/integrations/ai-for-crm</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">ИИ-слой поверх CRM — саммари, скоринг, follow-up без хаоса в воронке.</param>
     </offer>
     <offer id="corporate-ai-assistant">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/ai/corporate-neural-net</url>
+      <url>https://www.bober-systems.ru/ai/corporate-neural-net</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>corporate-ai-assistant</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/corporate-ai-assistant.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/corporate-ai-assistant.jpg</picture>
       <description>Корпоративный ИИ-ассистент</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -852,22 +852,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/ai/corporate-neural-net</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/ai/corporate-neural-net</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Приватный LLM-контур, политики доступа, интеграции с внутренними системами.</param>
     </offer>
     <offer id="business-process-audit">
       <name>Павел Стасиньский</name>
-      <url>https://www.bober-ai.dev/automation/business-process-audit</url>
+      <url>https://www.bober-systems.ru/automation/business-process-audit</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 150 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>business-process-audit</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/business-process-audit.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/business-process-audit.jpg</picture>
       <description>Аудит бизнес-процессов</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -876,10 +876,10 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">95</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-ai.dev/automation/business-process-audit</param>
-      <param name="Ссылка на профиль исполнителя">https://www.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/automation/business-process-audit</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Аудит процессов, ROI, дорожная карта на 90 дней и критерии приёмки пилота.</param>
     </offer>

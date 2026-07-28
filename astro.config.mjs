@@ -3,28 +3,23 @@ import node from "@astrojs/node";
 import tailwindcss from "@tailwindcss/vite";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { ALLOWED_HTTPS_HOSTS, CANONICAL_ORIGIN } from "./config/domains.mjs";
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('astro').AstroConfig} */
 export default defineConfig({
-  site: "https://www.bober-ai.dev",
+  site: CANONICAL_ORIGIN,
   // Hybrid: static prerender by default; API routes set prerender=false
   output: "static",
   adapter: node({ mode: "standalone" }),
   // Trust Caddy X-Forwarded-* so CSRF origin (https) matches Astro.url
   security: {
     checkOrigin: true,
-    allowedDomains: [
-      { hostname: "www.bober-ai.dev", protocol: "https" },
-      { hostname: "bober-ai.dev", protocol: "https" },
-      { hostname: "partners.bober-ai.dev", protocol: "https" },
-      { hostname: "bitrix.bober-ai.dev", protocol: "https" },
-      { hostname: "www.bober-systems.ru", protocol: "https" },
-      { hostname: "bober-systems.ru", protocol: "https" },
-      { hostname: "partners.bober-systems.ru", protocol: "https" },
-      { hostname: "bitrix.bober-systems.ru", protocol: "https" },
-    ],
+    allowedDomains: ALLOWED_HTTPS_HOSTS.map((hostname) => ({
+      hostname,
+      protocol: "https",
+    })),
   },
   integrations: [],
   vite: {

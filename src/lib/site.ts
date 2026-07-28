@@ -1,6 +1,11 @@
+import {
+  BITRIX_ORIGIN,
+  CANONICAL_ORIGIN,
+  PARTNERS_ORIGIN,
+} from "../../config/domains.mjs";
+
 /** On-page hero / about portrait — WebP ~56 KB (PNG kept as source master). */
-export const FOUNDER_IMAGE = "/hero/pavel-main.webp";
-/** Social / OG share image — 1200×630 JPEG (LinkedIn/Telegram prefer raster OG). */
+export const FOUNDER_IMAGE = "/hero/pavel-main.webp";/** Social / OG share image — 1200×630 JPEG (LinkedIn/Telegram prefer raster OG). */
 export const OG_IMAGE = "/hero/pavel-og.jpg";
 export const HERO_STOCK_IMAGE = "/stock/office-tower.jpg";
 export const ABOUT_STOCK_IMAGE = FOUNDER_IMAGE;
@@ -103,12 +108,12 @@ export const HOMEPAGE_PRESENCE_LINKS = [
 ] as const;
 export const YOUTUBE_SHORTS_URL = "https://www.youtube.com/shorts/5DQzO5aPS5A";
 export const ORGANIZATION_NAME = "ИП Стасиньски Павел Кшиштоф";
-export const SITE_URL = readPublicEnv("PUBLIC_SITE_URL", "https://www.bober-ai.dev");
+/** Canonical public origin — default from `config/domains.mjs` (override via PUBLIC_SITE_URL). */
+export const SITE_URL = readPublicEnv("PUBLIC_SITE_URL", CANONICAL_ORIGIN);
 /** Отдельный white-label лендинг на subdomain (Caddy host rewrite → /white-label.html). */
-export const PARTNERS_SITE_URL = readPublicEnv("PUBLIC_PARTNERS_SITE_URL", "https://partners.bober-ai.dev");
+export const PARTNERS_SITE_URL = readPublicEnv("PUBLIC_PARTNERS_SITE_URL", PARTNERS_ORIGIN);
 /** CRM landing: Bitrix24 + amoCRM (Caddy host rewrite → /bitrix.html). */
-export const BITRIX_SITE_URL = readPublicEnv("PUBLIC_BITRIX_SITE_URL", "https://bitrix.bober-ai.dev");
-
+export const BITRIX_SITE_URL = readPublicEnv("PUBLIC_BITRIX_SITE_URL", BITRIX_ORIGIN);
 export const DEFAULT_KEYWORDS = [
   "автоматизация КП",
   "автоматизация документов",

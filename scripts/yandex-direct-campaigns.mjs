@@ -18,6 +18,7 @@
  *   https://yandex.ru/dev/direct/doc/ru/campaigns/add-unified-campaign
  */
 
+import { CANONICAL_ORIGIN } from "../config/domains.mjs";
 import { getDirectOAuthConfig, getValidDirectToken } from "./lib/yandex-oauth.mjs";
 import fetch from "./lib/fetch.mjs";
 
@@ -237,7 +238,7 @@ async function cmdCreateUnified() {
   const dryRun = flags.has("--dry-run");
   const budgetRub = Number(readFlag("--budget-rub", "1500"));
   const name = readFlag("--name", "Bober AI — услуги (ЕПК)");
-  const siteUrl = (readFlag("--site", process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-systems.ru")).replace(
+  const siteUrl = (readFlag("--site", process.env.NEXT_PUBLIC_SITE_URL || CANONICAL_ORIGIN)).replace(
     /\/$/,
     "",
   );

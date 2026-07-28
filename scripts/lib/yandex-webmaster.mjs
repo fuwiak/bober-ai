@@ -1,5 +1,10 @@
 import fetch from "./fetch.mjs";
 import { applyYagaCredentials } from "./yaga-credentials.mjs";
+import {
+  CANONICAL_APEX,
+  CANONICAL_ORIGIN,
+  LEGACY_APEX,
+} from "../../config/domains.mjs";
 
 applyYagaCredentials();
 
@@ -14,12 +19,12 @@ export function getConfig(overrides = {}) {
     hostUrl: (
       overrides.hostUrl ||
       process.env.YANDEX_WEBMASTER_HOST_URL ||
-      "https://www.bober-systems.ru"
+      CANONICAL_ORIGIN
     ).replace(/\/$/, ""),
     feedUrl: (
       overrides.feedUrl ||
       process.env.YANDEX_WEBMASTER_FEED_URL ||
-      `${process.env.YANDEX_WEBMASTER_HOST_URL || "https://www.bober-systems.ru"}/performers-feed.yml`
+      `${process.env.YANDEX_WEBMASTER_HOST_URL || CANONICAL_ORIGIN}/performers-feed.yml`
     ).replace(/\/$/, ""),
     feedType: overrides.feedType || process.env.YANDEX_WEBMASTER_FEED_TYPE || "SERVICES",
     regionIds: (overrides.regionIds || process.env.YANDEX_WEBMASTER_REGION_IDS || "225")
@@ -30,7 +35,6 @@ export function getConfig(overrides = {}) {
     pollTimeoutMs: Number(overrides.pollTimeoutMs || process.env.YANDEX_WEBMASTER_POLL_TIMEOUT_MS || 180000),
   };
 }
-
 export function authHeaders(token, includeJsonContentType = false) {
   const headers = {
     Authorization: `OAuth ${token}`,
@@ -114,23 +118,31 @@ function hostHostname(host) {
       /* try next */
     }
   }
-  // host_id вида https:www.bober-ai.dev:443
+  // host_id вида https:www.bober-systems.ru:443
   const id = String(host.host_id || "").toLowerCase();
   const match = id.match(/^https?:([^:/]+)/);
   return match?.[1] || "";
 }
 
-/** Twin mirror host (.dev ↔ .ru) when only one is registered in Webmaster. */
+/** Twin mirror host (legacy ↔ canonical) when only one is registered in Webmaster. */
 export function twinHostUrl(hostUrl) {
   try {
     const url = new URL(normalizeHostUrl(hostUrl));
     const host = url.hostname.toLowerCase();
-    if (host.endsWith(".bober-ai.dev")) {
-      url.hostname = host.replace(/\.bober-ai\.dev$/, ".bober-systems.ru");
+    const legacySuffix = `.${LEGACY_APEX}`;
+    const canonicalSuffix = `.${CANONICAL_APEX}`;
+    if (host === LEGACY_APEX || host.endsWith(legacySuffix)) {
+      url.hostname =
+        host === LEGACY_APEX
+          ? CANONICAL_APEX
+          : host.slice(0, -legacySuffix.length) + canonicalSuffix;
       return url.origin;
     }
-    if (host.endsWith(".bober-systems.ru")) {
-      url.hostname = host.replace(/\.bober-systems\.ru$/, ".bober-ai.dev");
+    if (host === CANONICAL_APEX || host.endsWith(canonicalSuffix)) {
+      url.hostname =
+        host === CANONICAL_APEX
+          ? LEGACY_APEX
+          : host.slice(0, -canonicalSuffix.length) + legacySuffix;
       return url.origin;
     }
   } catch {
@@ -138,7 +150,6 @@ export function twinHostUrl(hostUrl) {
   }
   return null;
 }
-
 export async function addHost(token, userId, hostUrl) {
   const { response, body } = await apiRequest(token, `/user/${userId}/hosts`, {
     method: "POST",
@@ -270,17 +281,22 @@ export async function resolveHostContext(overrides = {}) {
   let host = pickHost(hosts, config.hostUrl);
   let usedTwin = false;
 
-  // Twin mirror (.dev ↔ .ru) — same content, often only one registered in Webmaster.
-  if (!host) {
-    const twin = twinHostUrl(config.hostUrl);
-    if (twin) {
-      host = pickHost(hosts, twin);
-      if (host) {
-        usedTwin = true;
+  // Prefer a verified twin if the exact host is missing or not yet verified.
+  const twin = twinHostUrl(config.hostUrl);
+  if ((!host || host.verified === false) && twin) {
+    const twinHost = pickHost(hosts, twin);
+    if (twinHost?.verified) {
+      if (host && host.verified === false) {
+        console.warn(
+          `⚠ ${config.hostUrl} в Вебмастере, но не подтверждён → используем ${twin}`,
+        );
+      } else if (!host) {
         console.warn(
           `⚠ Хост ${config.hostUrl} нет в Вебмастере → используем близнец ${twin}`,
         );
       }
+      host = twinHost;
+      usedTwin = true;
     }
   }
 
@@ -302,14 +318,12 @@ export async function resolveHostContext(overrides = {}) {
   }
 
   if (!host) {
-    const twin = twinHostUrl(config.hostUrl);
     throw new Error(
       `Сайт ${config.hostUrl} не найден среди хостов Вебмастера.\n` +
         `Доступные хосты:\n${formatHostList(hosts)}\n` +
-        `Задайте YANDEX_WEBMASTER_HOST_URL=${twin || "https://www.bober-systems.ru"} ` +
+        `Задайте YANDEX_WEBMASTER_HOST_URL=${twin || CANONICAL_ORIGIN} ` +
         `или добавьте сайт: yaga webmaster boost --add-host`,
-    );
-  }
+    );  }
   return { config, userId, host, hostId: host.host_id, usedTwin };
 }
 

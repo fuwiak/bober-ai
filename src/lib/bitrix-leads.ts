@@ -162,7 +162,7 @@ export async function createBitrixLead(
     TITLE: input.service ? `${input.service} — ${input.name}` : `Заявка с сайта — ${input.name}`,
     NAME: input.name,
     SOURCE_ID: sourceId,
-    SOURCE_DESCRIPTION: sourceId === "TELEGRAM" ? "Telegram" : "Сайт bober-ai.dev",
+    SOURCE_DESCRIPTION: sourceId === "TELEGRAM" ? "Telegram" : "Сайт www.bober-systems.ru",
     COMMENTS: comments.slice(0, 5000),
     OPENED: "Y",
   };

@@ -90,7 +90,7 @@ export const YANDEX_SELF_CHECKS: SelfCheckItem[] = [
     id: "main-mirror",
     title: "Определён основной адрес сайта в результатах поиска",
     status: "done",
-    evidence: "Host: www.bober-ai.dev · 301 apex→www без :8080 · absoluteUrl() без trailing slash",
+    evidence: "Host: www.bober-systems.ru · 301 apex→www без :8080 · absoluteUrl() без trailing slash",
   },
   {
     id: "duplicates",
@@ -156,7 +156,7 @@ export const YANDEX_SELF_CHECKS: SelfCheckItem[] = [
     title: "Партнёрская программа обогащённых ответов в выдаче",
     status: "partial",
     evidence:
-      "API фид: https://www.bober-ai.dev/performers-feed.yml (SERVICES, region 225) · Яндекс Услуги",
+      "API фид: https://www.bober-systems.ru/performers-feed.yml (SERVICES, region 225) · Яндекс Услуги",
     action:
       "Отдельная оферта «обогащённых ответов» — если доступна в UI Вебмастера, подключить; иначе фид уже подан",
   },

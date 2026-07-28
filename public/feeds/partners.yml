@@ -3,7 +3,7 @@
   <shop>
     <name>Bober AI Systems — Partner Program</name>
     <company>Bober AI Systems</company>
-    <url>https://partners.bober-ai.dev</url>
+    <url>https://partners.bober-systems.ru</url>
     <email>contact@bober-ai.dev</email>
     <currencies>
       <currency id="RUR" rate="1"/>
@@ -15,47 +15,47 @@
     <sets>
       <set id="presale-support">
         <name>Presale support для агентств</name>
-        <url>https://partners.bober-ai.dev/#presale-support</url>
+        <url>https://partners.bober-systems.ru/#presale-support</url>
       </set>
       <set id="project-delivery">
         <name>White-label project delivery</name>
-        <url>https://partners.bober-ai.dev/#project-delivery</url>
+        <url>https://partners.bober-systems.ru/#project-delivery</url>
       </set>
       <set id="ongoing-ai-team">
         <name>Ongoing AI team</name>
-        <url>https://partners.bober-ai.dev/#ongoing-ai-team</url>
+        <url>https://partners.bober-systems.ru/#ongoing-ai-team</url>
       </set>
       <set id="bitrix24-ai-analytics">
         <name>AI-аналитика для Bitrix24 и amoCRM</name>
-        <url>https://partners.bober-ai.dev/#bitrix24-ai-analytics</url>
+        <url>https://partners.bober-systems.ru/#bitrix24-ai-analytics</url>
       </set>
       <set id="telephony-crm-ai">
         <name>Телефония + CRM + AI (white-label)</name>
-        <url>https://partners.bober-ai.dev/#telephony-crm-ai</url>
+        <url>https://partners.bober-systems.ru/#telephony-crm-ai</url>
       </set>
       <set id="ai-sales-loop">
         <name>AI-контур отдела продаж</name>
-        <url>https://partners.bober-ai.dev/#ai-sales-loop</url>
+        <url>https://partners.bober-systems.ru/#ai-sales-loop</url>
       </set>
       <set id="secure-private-ai">
         <name>Secure Private AI Cloud</name>
-        <url>https://partners.bober-ai.dev/#secure-private-ai</url>
+        <url>https://partners.bober-systems.ru/#secure-private-ai</url>
       </set>
       <set id="kp-documents">
         <name>Автоматизация КП и документов</name>
-        <url>https://partners.bober-ai.dev/#kp-documents</url>
+        <url>https://partners.bober-systems.ru/#kp-documents</url>
       </set>
     </sets>
     <offers>
     <offer id="partners-presale">
       <name>Павел Стасиньский</name>
-      <url>https://partners.bober-ai.dev/#presale-support</url>
+      <url>https://partners.bober-systems.ru/#presale-support</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>Wholesale / fixed · база для вашей маржи</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>presale-support</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-partners-presale.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-partners-presale.jpg</picture>
       <description>Presale support для агентств</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -64,22 +64,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://partners.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://partners.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://partners.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://partners.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">White-label AI для агентств и software house: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
     </offer>
     <offer id="partners-delivery">
       <name>Павел Стасиньский</name>
-      <url>https://partners.bober-ai.dev/#project-delivery</url>
+      <url>https://partners.bober-systems.ru/#project-delivery</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>project-delivery</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-partners-delivery.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-partners-delivery.jpg</picture>
       <description>White-label project delivery</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -88,22 +88,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://partners.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://partners.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://partners.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://partners.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">White-label AI для агентств и software house: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
     </offer>
     <offer id="partners-ongoing">
       <name>Павел Стасиньский</name>
-      <url>https://partners.bober-ai.dev/#ongoing-ai-team</url>
+      <url>https://partners.bober-systems.ru/#ongoing-ai-team</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>Retainer / hourly · приоритет партнёра</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>ongoing-ai-team</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-partners-ongoing.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-partners-ongoing.jpg</picture>
       <description>Ongoing AI team</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -112,22 +112,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://partners.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://partners.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://partners.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://partners.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">White-label AI для агентств и software house: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
     </offer>
     <offer id="partners-bitrix-analytics">
       <name>Павел Стасиньский</name>
-      <url>https://partners.bober-ai.dev/#bitrix24-ai-analytics</url>
+      <url>https://partners.bober-systems.ru/#bitrix24-ai-analytics</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>Subcontract / technical partner</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>bitrix24-ai-analytics</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-partners-bitrix-analytics.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-partners-bitrix-analytics.jpg</picture>
       <description>AI-аналитика для Bitrix24 и amoCRM</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -136,22 +136,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://partners.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://partners.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://partners.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://partners.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">White-label AI для агентств и software house: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
     </offer>
     <offer id="partners-telephony">
       <name>Павел Стасиньский</name>
-      <url>https://partners.bober-ai.dev/#telephony-crm-ai</url>
+      <url>https://partners.bober-systems.ru/#telephony-crm-ai</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>Subcontract / technical partner</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>telephony-crm-ai</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-partners-telephony.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-partners-telephony.jpg</picture>
       <description>Телефония + CRM + AI (white-label)</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -160,22 +160,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://partners.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://partners.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://partners.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://partners.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">White-label AI для агентств и software house: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
     </offer>
     <offer id="partners-sales-loop">
       <name>Павел Стасиньский</name>
-      <url>https://partners.bober-ai.dev/#ai-sales-loop</url>
+      <url>https://partners.bober-systems.ru/#ai-sales-loop</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽ · white-label</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>ai-sales-loop</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-partners-sales-loop.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-partners-sales-loop.jpg</picture>
       <description>AI-контур отдела продаж</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -184,22 +184,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://partners.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://partners.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://partners.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://partners.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">White-label AI для агентств и software house: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
     </offer>
     <offer id="partners-secure-ai">
       <name>Павел Стасиньский</name>
-      <url>https://partners.bober-ai.dev/#secure-private-ai</url>
+      <url>https://partners.bober-systems.ru/#secure-private-ai</url>
       <price from="true">800000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 800 000 ₽ · Secure AI</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>secure-private-ai</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-partners-secure-ai.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-partners-secure-ai.jpg</picture>
       <description>Secure Private AI Cloud</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -208,22 +208,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://partners.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://partners.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://partners.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://partners.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">White-label AI для агентств и software house: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
     </offer>
     <offer id="partners-kp-docs">
       <name>Павел Стасиньский</name>
-      <url>https://partners.bober-ai.dev/#kp-documents</url>
+      <url>https://partners.bober-systems.ru/#kp-documents</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>Delivery под брендом партнёра</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>kp-documents</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-partners-kp-docs.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-partners-kp-docs.jpg</picture>
       <description>Автоматизация КП и документов</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -232,10 +232,10 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://partners.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://partners.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://partners.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://partners.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">White-label AI для агентств и software house: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
     </offer>

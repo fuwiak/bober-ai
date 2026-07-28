@@ -27,7 +27,7 @@ func loadConfig() Config {
 		Container:  envOr("BOBER_CONTAINER", "bober-ai"),
 		RemoteRoot: envOr("BOBER_REMOTE_ROOT", "/opt/bober-ai"),
 		HealthPath: envOr("BOBER_HEALTH_PATH", "/api/health"),
-		PublicURL:  envOr("BOBER_PUBLIC_URL", "https://www.bober-ai.dev"),
+		PublicURL:  envOr("BOBER_PUBLIC_URL", "https://www.bober-systems.ru"),
 		DeployLog:  envOr("BOBER_DEPLOY_LOG", "/var/log/bober-deploy.log"),
 		ReadyFile:  envOr("BOBER_READY_FILE", "/opt/bober-ai/READY"),
 	}

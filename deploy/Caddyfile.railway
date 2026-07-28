@@ -30,17 +30,17 @@
 		respond "ok" 200
 	}
 
-	@apex host bober-ai.dev
+	@apex host bober-systems.ru bober-ai.dev
 	handle @apex {
 		# Absolute www Location — never inherit listener :8080 from Railway $PORT.
 		header Cache-Control "no-store"
-		redir https://www.bober-ai.dev{uri} permanent
+		redir https://www.bober-systems.ru{uri} permanent
 	}
 
 	# Microsite landings — must stay before catch-all (never apex→www).
 	@micrositeShared path /_next/* /stock/* /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /privacy-policy /consent /terms /partners/trust/* /feeds/*
 
-	@partners host partners.bober-ai.dev
+	@partners host partners.bober-systems.ru
 	handle @partners {
 		handle /performers-feed.yml {
 			rewrite * /feeds/partners.yml
@@ -60,7 +60,7 @@
 		}
 	}
 
-	@bitrix host bitrix.bober-ai.dev
+	@bitrix host bitrix.bober-systems.ru
 	handle @bitrix {
 		handle /performers-feed.yml {
 			rewrite * /feeds/bitrix.yml

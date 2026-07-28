@@ -3,7 +3,7 @@
   <shop>
     <name>Bober AI Systems — Битрикс24</name>
     <company>Bober AI Systems</company>
-    <url>https://bitrix.bober-ai.dev</url>
+    <url>https://bitrix.bober-systems.ru</url>
     <email>contact@bober-ai.dev</email>
     <currencies>
       <currency id="RUR" rate="1"/>
@@ -15,83 +15,83 @@
     <sets>
       <set id="avtomatizaciya-dokumentov">
         <name>Автоматизация документов</name>
-        <url>https://bitrix.bober-ai.dev/#avtomatizaciya-dokumentov</url>
+        <url>https://bitrix.bober-systems.ru/#avtomatizaciya-dokumentov</url>
       </set>
       <set id="nastrojka-bitrix24">
         <name>Настройка Bitrix24</name>
-        <url>https://bitrix.bober-ai.dev/#nastrojka-bitrix24</url>
+        <url>https://bitrix.bober-systems.ru/#nastrojka-bitrix24</url>
       </set>
       <set id="avtomatizaciya-bitrix24">
         <name>Автоматизация Bitrix24</name>
-        <url>https://bitrix.bober-ai.dev/#avtomatizaciya-bitrix24</url>
+        <url>https://bitrix.bober-systems.ru/#avtomatizaciya-bitrix24</url>
       </set>
       <set id="integraciya-bitrix24-1c">
         <name>Интеграция Bitrix24 с 1С</name>
-        <url>https://bitrix.bober-ai.dev/#integraciya-bitrix24-1c</url>
+        <url>https://bitrix.bober-systems.ru/#integraciya-bitrix24-1c</url>
       </set>
       <set id="generaciya-kommercheskogo-predlozheniya">
         <name>Генерация коммерческого предложения</name>
-        <url>https://bitrix.bober-ai.dev/#generaciya-kommercheskogo-predlozheniya</url>
+        <url>https://bitrix.bober-systems.ru/#generaciya-kommercheskogo-predlozheniya</url>
       </set>
       <set id="bitrix24-ai">
         <name>Bitrix24 AI</name>
-        <url>https://bitrix.bober-ai.dev/#bitrix24-ai</url>
+        <url>https://bitrix.bober-systems.ru/#bitrix24-ai</url>
       </set>
       <set id="avtomatizaciya-kommercheskogo-predlozheniya">
         <name>Автоматизация коммерческого предложения</name>
-        <url>https://bitrix.bober-ai.dev/#avtomatizaciya-kommercheskogo-predlozheniya</url>
+        <url>https://bitrix.bober-systems.ru/#avtomatizaciya-kommercheskogo-predlozheniya</url>
       </set>
       <set id="nastrojka-telefonii-bitrix24">
         <name>Настройка телефонии Bitrix24</name>
-        <url>https://bitrix.bober-ai.dev/#nastrojka-telefonii-bitrix24</url>
+        <url>https://bitrix.bober-systems.ru/#nastrojka-telefonii-bitrix24</url>
       </set>
       <set id="vnedrenie-ai-assistenta">
         <name>Внедрение AI-ассистента</name>
-        <url>https://bitrix.bober-ai.dev/#vnedrenie-ai-assistenta</url>
+        <url>https://bitrix.bober-systems.ru/#vnedrenie-ai-assistenta</url>
       </set>
       <set id="razrabotka-rag-sistem">
         <name>Разработка RAG-систем</name>
-        <url>https://bitrix.bober-ai.dev/#razrabotka-rag-sistem</url>
+        <url>https://bitrix.bober-systems.ru/#razrabotka-rag-sistem</url>
       </set>
       <set id="bitrix-start">
         <name>Внедрение Битрикс24 с AI</name>
-        <url>https://bitrix.bober-ai.dev/#bitrix-start</url>
+        <url>https://bitrix.bober-systems.ru/#bitrix-start</url>
       </set>
       <set id="crm-automation">
         <name>AI-автоматизация Битрикс24</name>
-        <url>https://bitrix.bober-ai.dev/#crm-automation</url>
+        <url>https://bitrix.bober-systems.ru/#crm-automation</url>
       </set>
       <set id="ai-analytics">
         <name>AI-аналитика Битрикс24</name>
-        <url>https://bitrix.bober-ai.dev/#ai-analytics</url>
+        <url>https://bitrix.bober-systems.ru/#ai-analytics</url>
       </set>
       <set id="sales-loop">
         <name>AI-контур отдела продаж</name>
-        <url>https://bitrix.bober-ai.dev/#sales-loop</url>
+        <url>https://bitrix.bober-systems.ru/#sales-loop</url>
       </set>
       <set id="integrations-1c">
         <name>Интеграция Битрикс24 и AI для продаж</name>
-        <url>https://bitrix.bober-ai.dev/#integrations-1c</url>
+        <url>https://bitrix.bober-systems.ru/#integrations-1c</url>
       </set>
       <set id="mcp">
         <name>MCP для Битрикс24 и BitrixGPT</name>
-        <url>https://bitrix.bober-ai.dev/#mcp</url>
+        <url>https://bitrix.bober-systems.ru/#mcp</url>
       </set>
       <set id="private-llm">
         <name>Битрикс24 + локальный LLM</name>
-        <url>https://bitrix.bober-ai.dev/#private-llm</url>
+        <url>https://bitrix.bober-systems.ru/#private-llm</url>
       </set>
     </sets>
     <offers>
     <offer id="ws-doc-automation">
       <name>Павел Стасиньский</name>
-      <url>https://bitrix.bober-ai.dev/#avtomatizaciya-dokumentov</url>
+      <url>https://bitrix.bober-systems.ru/#avtomatizaciya-dokumentov</url>
       <price from="true">24000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 24 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>avtomatizaciya-dokumentov</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-ws-doc-automation.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-ws-doc-automation.jpg</picture>
       <description>Автоматизация документов</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -100,22 +100,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
     </offer>
     <offer id="ws-bitrix-setup">
       <name>Павел Стасиньский</name>
-      <url>https://bitrix.bober-ai.dev/#nastrojka-bitrix24</url>
+      <url>https://bitrix.bober-systems.ru/#nastrojka-bitrix24</url>
       <price from="true">18000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 18 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>nastrojka-bitrix24</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-ws-bitrix-setup.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-ws-bitrix-setup.jpg</picture>
       <description>Настройка Bitrix24</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -124,22 +124,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
     </offer>
     <offer id="ws-bitrix-automation">
       <name>Павел Стасиньский</name>
-      <url>https://bitrix.bober-ai.dev/#avtomatizaciya-bitrix24</url>
+      <url>https://bitrix.bober-systems.ru/#avtomatizaciya-bitrix24</url>
       <price from="true">20000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 20 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>avtomatizaciya-bitrix24</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-ws-bitrix-automation.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-ws-bitrix-automation.jpg</picture>
       <description>Автоматизация Bitrix24</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -148,22 +148,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
     </offer>
     <offer id="ws-bitrix-1c">
       <name>Павел Стасиньский</name>
-      <url>https://bitrix.bober-ai.dev/#integraciya-bitrix24-1c</url>
+      <url>https://bitrix.bober-systems.ru/#integraciya-bitrix24-1c</url>
       <price from="true">35000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 35 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>integraciya-bitrix24-1c</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-ws-bitrix-1c.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-ws-bitrix-1c.jpg</picture>
       <description>Интеграция Bitrix24 с 1С</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -172,22 +172,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
     </offer>
     <offer id="ws-kp-gen">
       <name>Павел Стасиньский</name>
-      <url>https://bitrix.bober-ai.dev/#generaciya-kommercheskogo-predlozheniya</url>
+      <url>https://bitrix.bober-systems.ru/#generaciya-kommercheskogo-predlozheniya</url>
       <price from="true">20000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 20 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>generaciya-kommercheskogo-predlozheniya</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-ws-kp-gen.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-ws-kp-gen.jpg</picture>
       <description>Генерация коммерческого предложения</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -196,22 +196,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
     </offer>
     <offer id="ws-bitrix-ai">
       <name>Павел Стасиньский</name>
-      <url>https://bitrix.bober-ai.dev/#bitrix24-ai</url>
+      <url>https://bitrix.bober-systems.ru/#bitrix24-ai</url>
       <price from="true">28000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 28 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>bitrix24-ai</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-ws-bitrix-ai.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-ws-bitrix-ai.jpg</picture>
       <description>Bitrix24 AI</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -220,22 +220,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
     </offer>
     <offer id="ws-kp-auto">
       <name>Павел Стасиньский</name>
-      <url>https://bitrix.bober-ai.dev/#avtomatizaciya-kommercheskogo-predlozheniya</url>
+      <url>https://bitrix.bober-systems.ru/#avtomatizaciya-kommercheskogo-predlozheniya</url>
       <price from="true">22000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 22 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>avtomatizaciya-kommercheskogo-predlozheniya</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-ws-kp-auto.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-ws-kp-auto.jpg</picture>
       <description>Автоматизация коммерческого предложения</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -244,22 +244,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
     </offer>
     <offer id="ws-telephony">
       <name>Павел Стасиньский</name>
-      <url>https://bitrix.bober-ai.dev/#nastrojka-telefonii-bitrix24</url>
+      <url>https://bitrix.bober-systems.ru/#nastrojka-telefonii-bitrix24</url>
       <price from="true">18000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 18 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>nastrojka-telefonii-bitrix24</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-ws-telephony.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-ws-telephony.jpg</picture>
       <description>Настройка телефонии Bitrix24</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -268,22 +268,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
     </offer>
     <offer id="ws-ai-assistant">
       <name>Павел Стасиньский</name>
-      <url>https://bitrix.bober-ai.dev/#vnedrenie-ai-assistenta</url>
+      <url>https://bitrix.bober-systems.ru/#vnedrenie-ai-assistenta</url>
       <price from="true">32000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 32 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>vnedrenie-ai-assistenta</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-ws-ai-assistant.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-ws-ai-assistant.jpg</picture>
       <description>Внедрение AI-ассистента</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -292,22 +292,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
     </offer>
     <offer id="ws-rag">
       <name>Павел Стасиньский</name>
-      <url>https://bitrix.bober-ai.dev/#razrabotka-rag-sistem</url>
+      <url>https://bitrix.bober-systems.ru/#razrabotka-rag-sistem</url>
       <price from="true">45000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 45 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>razrabotka-rag-sistem</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-ws-rag.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-ws-rag.jpg</picture>
       <description>Разработка RAG-систем</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -316,22 +316,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
     </offer>
     <offer id="bitrix-start">
       <name>Павел Стасиньский</name>
-      <url>https://bitrix.bober-ai.dev/#bitrix-start</url>
+      <url>https://bitrix.bober-systems.ru/#bitrix-start</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 150 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>bitrix-start</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-start.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-bitrix-start.jpg</picture>
       <description>Внедрение Битрикс24 с AI</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -340,22 +340,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
     </offer>
     <offer id="bitrix-crm-automation">
       <name>Павел Стасиньский</name>
-      <url>https://bitrix.bober-ai.dev/#crm-automation</url>
+      <url>https://bitrix.bober-systems.ru/#crm-automation</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>crm-automation</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-crm-automation.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-bitrix-crm-automation.jpg</picture>
       <description>AI-автоматизация Битрикс24</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -364,22 +364,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
     </offer>
     <offer id="bitrix-ai-analytics">
       <name>Павел Стасиньский</name>
-      <url>https://bitrix.bober-ai.dev/#ai-analytics</url>
+      <url>https://bitrix.bober-systems.ru/#ai-analytics</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>ai-analytics</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-ai-analytics.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-bitrix-ai-analytics.jpg</picture>
       <description>AI-аналитика Битрикс24</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -388,22 +388,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
     </offer>
     <offer id="bitrix-sales-loop">
       <name>Павел Стасиньский</name>
-      <url>https://bitrix.bober-ai.dev/#sales-loop</url>
+      <url>https://bitrix.bober-systems.ru/#sales-loop</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>sales-loop</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-sales-loop.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-bitrix-sales-loop.jpg</picture>
       <description>AI-контур отдела продаж</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -412,22 +412,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">95</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
     </offer>
     <offer id="bitrix-integrations">
       <name>Павел Стасиньский</name>
-      <url>https://bitrix.bober-ai.dev/#integrations-1c</url>
+      <url>https://bitrix.bober-systems.ru/#integrations-1c</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>integrations-1c</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-integrations.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-bitrix-integrations.jpg</picture>
       <description>Интеграция Битрикс24 и AI для продаж</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -436,22 +436,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
     </offer>
     <offer id="bitrix-mcp">
       <name>Павел Стасиньский</name>
-      <url>https://bitrix.bober-ai.dev/#mcp</url>
+      <url>https://bitrix.bober-systems.ru/#mcp</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>mcp</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-mcp.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-bitrix-mcp.jpg</picture>
       <description>MCP для Битрикс24 и BitrixGPT</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -460,22 +460,22 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
     </offer>
     <offer id="bitrix-private-llm">
       <name>Павел Стасиньский</name>
-      <url>https://bitrix.bober-ai.dev/#private-llm</url>
+      <url>https://bitrix.bober-systems.ru/#private-llm</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>private-llm</set-ids>
-      <picture>https://www.bober-ai.dev/stock/offers/ms-bitrix-private-llm.jpg</picture>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-bitrix-private-llm.jpg</picture>
       <description>Битрикс24 + локальный LLM</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -484,10 +484,10 @@
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
-      <param name="Ссылка на телефон">https://www.bober-ai.dev/tel</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://bitrix.bober-ai.dev/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-ai.dev</param>
+      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
     </offer>

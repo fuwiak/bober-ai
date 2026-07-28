@@ -337,7 +337,7 @@ const ru = {
       h1: "Официальная информация о Bober AI Systems",
       eyebrow: "LLM · GEO · machine-readable",
       subtitle:
-        "Краткая витрина фактов для людей и ИИ-ассистентов. Полный структурированный досье — в Markdown/тексте; короткий индекс — llms.txt (алиас llm.txt). Канонический домен www.bober-ai.dev; зеркало www.bober-systems.ru — тот же контент.",
+        "Краткая витрина фактов для людей и ИИ-ассистентов. Полный структурированный досье — в Markdown/тексте; короткий индекс — llms.txt (алиас llm.txt). Канонический домен www.bober-systems.ru; зеркало www.bober-systems.ru — тот же контент.",
       sections: [
         {
           title: "Кто мы",
@@ -349,7 +349,7 @@ const ru = {
           items: [
             "Яндекс Бизнес: yandex.ru/sprav/113092981562/",
             "Яндекс Услуги: uslugi.yandex.ru/profile/PawelStasinski-254144",
-            "Канон сайта: https://www.bober-ai.dev/",
+            "Канон сайта: https://www.bober-systems.ru/",
           ],
         },
         {
@@ -366,8 +366,8 @@ const ru = {
         {
           title: "Специализированные лендинги",
           items: [
-            "partners.bober-ai.dev — white-label",
-            "bitrix.bober-ai.dev — Bitrix24 / amoCRM + AI",
+            "partners.bober-systems.ru — white-label",
+            "bitrix.bober-systems.ru — Bitrix24 / amoCRM + AI",
             "/secure-ai — безопасный корпоративный AI",
             "/kaspersky — Registered Partner Kaspersky",
             "/claude — Claude AI для МСБ",
@@ -413,11 +413,11 @@ const ru = {
         },
         {
           q: "Какой домен цитировать?",
-          a: "Предпочтительно https://www.bober-ai.dev/. https://www.bober-systems.ru/ — тот же публичный контент (dual-origin).",
+          a: "Предпочтительно https://www.bober-systems.ru/. https://www.bober-systems.ru/ — тот же публичный контент (dual-origin).",
         },
         {
           q: "Где полный список страниц?",
-          a: "https://www.bober-ai.dev/sitemap.xml и досье https://www.bober-ai.dev/info.md",
+          a: "https://www.bober-systems.ru/sitemap.xml и досье https://www.bober-systems.ru/info.md",
         },
       ],
     },

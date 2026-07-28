@@ -1,20 +1,18 @@
 {
 	email contact@bober-ai.dev
-	# Solo *.bober-ai.dev is LE rate-limited until ~2026-07-30 (caddy_data wipe).
-	# Pair each .dev host with its .ru twin so ACME requests a NEW identifier set
-	# (exact-set duplicate limit does not apply). ZeroSSL EAB is geo-blocked from RU
-	# ("Access Denied...restricted in your region"). SSL.com is fallback only.
+	# Solo *.bober-ai.dev hits LE exact-set rate limit after caddy_data wipe.
+	# Pair each .dev host with .ru twin → NEW identifier set (see site blocks below).
+	# ZeroSSL EAB geo-blocked from RU. SSL.com ACME needs billing — leave disabled.
 	cert_issuer acme
-	cert_issuer acme {
-		dir https://acme.ssl.com/sslcom-dv-rsa
-	}
 	servers {
 		protocols h1 h2
 	}
 }
 
 (astro_proxy) {
-	reverse_proxy 127.0.0.1:3001 {
+	# Compose sets PORT=3001 (deploy-web). If only legacy bober-web on :3000 is up,
+	# point here to 3000 or start: docker compose up -d web
+	reverse_proxy 127.0.0.1:3000 {
 		header_up Host {host}
 		header_up X-Forwarded-Host {host}
 		header_up X-Forwarded-Proto https
@@ -30,7 +28,7 @@
 
 :80 {
 	handle /api/health {
-		reverse_proxy 127.0.0.1:3001
+		reverse_proxy 127.0.0.1:3000
 	}
 	@siteHost host www.bober-ai.dev bober-ai.dev partners.bober-ai.dev bitrix.bober-ai.dev www.bober-systems.ru bober-systems.ru partners.bober-systems.ru bitrix.bober-systems.ru
 	handle @siteHost {
@@ -46,11 +44,13 @@
 https://bober-ai.dev, bober-systems.ru {
 	header Cache-Control "no-store"
 	@ai host bober-ai.dev
-	redir @ai https://www.bober-ai.dev{uri} permanent
+	redir @ai https://www.bober-systems.ru{uri} permanent
 	redir https://www.bober-systems.ru{uri} permanent
 }
 
 https://www.bober-ai.dev, www.bober-systems.ru {
+	@legacyDev host www.bober-ai.dev
+	redir @legacyDev https://www.bober-systems.ru{uri} permanent
 	handle /performers-feed.yml {
 		import yml_headers
 		import astro_proxy

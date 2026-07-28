@@ -199,7 +199,7 @@ export function getIiDlyaBiznesaSeoContent(locale: "ru" | "en"): SeoServiceConte
           },
           {
             q: "Можно ли внедрить ИИ в Bitrix24 / amoCRM?",
-            a: "Да. Типичные сценарии: саммари звонков, квалификация лидов, черновики КП и писем, обновление карточек, follow-up. Отдельный хаб — bitrix.bober-ai.dev.",
+            a: "Да. Типичные сценарии: саммари звонков, квалификация лидов, черновики КП и писем, обновление карточек, follow-up. Отдельный хаб — bitrix.bober-systems.ru.",
           },
           {
             q: "Как защитить данные и соблюсти 152-ФЗ?",
@@ -249,7 +249,7 @@ export function getIiDlyaBiznesaSeoContent(locale: "ru" | "en"): SeoServiceConte
           },
           {
             q: "Can you deploy AI into Bitrix24 / amoCRM?",
-            a: "Yes. Typical scenarios: call summaries, lead scoring, proposal/email drafts, card updates, follow-up. Dedicated hub: bitrix.bober-ai.dev.",
+            a: "Yes. Typical scenarios: call summaries, lead scoring, proposal/email drafts, card updates, follow-up. Dedicated hub: bitrix.bober-systems.ru.",
           },
           {
             q: "How do you protect data and comply with privacy rules?",

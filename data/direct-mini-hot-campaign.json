@@ -37,7 +37,7 @@
   "adGroups": [
     {
       "name": "ИИ · заказать / под ключ",
-      "landing": "https://www.bober-ai.dev/services/ai-discovery-roadmap",
+      "landing": "https://www.bober-systems.ru/services/ai-discovery-roadmap",
       "phrases": [
         { "match": "phrase", "text": "заказать внедрение ии", "count": 10 },
         { "match": "phrase", "text": "внедрение ии под ключ", "count": 45 },
@@ -49,14 +49,14 @@
           "title": "Внедрение ИИ под ключ",
           "title2": "Discovery → пилот → продакшен",
           "text": "Закажите внедрение ИИ в бизнес. Созвон 30 мин, дорожная карта и оценка эффекта. Без курсов — только внедрение.",
-          "url": "https://www.bober-ai.dev/services/ai-discovery-roadmap?utm_source=yandex&utm_medium=cpc&utm_campaign=mini_hot_buy&utm_content=ai_key",
-          "displayUrl": "bober-ai.dev/ai"
+          "url": "https://www.bober-systems.ru/services/ai-discovery-roadmap?utm_source=yandex&utm_medium=cpc&utm_campaign=mini_hot_buy&utm_content=ai_key",
+          "displayUrl": "www.bober-systems.ru/ai"
         }
       ]
     },
     {
       "name": "Автоматизация · заказать",
-      "landing": "https://www.bober-ai.dev/services/business-process-automation",
+      "landing": "https://www.bober-systems.ru/services/business-process-automation",
       "phrases": [
         { "match": "phrase", "text": "автоматизация бизнеса заказать", "count": 11 }
       ],
@@ -65,14 +65,14 @@
           "title": "Автоматизация бизнеса под заказ",
           "title2": "Процессы → ИИ → результат",
           "text": "Закажите автоматизацию коммерческих и операционных процессов. Звонок или Telegram — ответим в рабочий день.",
-          "url": "https://www.bober-ai.dev/services/business-process-automation?utm_source=yandex&utm_medium=cpc&utm_campaign=mini_hot_buy&utm_content=automation",
-          "displayUrl": "bober-ai.dev/automation"
+          "url": "https://www.bober-systems.ru/services/business-process-automation?utm_source=yandex&utm_medium=cpc&utm_campaign=mini_hot_buy&utm_content=automation",
+          "displayUrl": "www.bober-systems.ru/automation"
         }
       ]
     },
     {
       "name": "Bitrix24 · цена",
-      "landing": "https://bitrix.bober-ai.dev/",
+      "landing": "https://bitrix.bober-systems.ru/",
       "phrases": [
         { "match": "phrase", "text": "внедрение битрикс24 цена", "count": 15 }
       ],
@@ -81,8 +81,8 @@
           "title": "Внедрение Битрикс24 — цена",
           "title2": "CRM + ИИ под ваш процесс",
           "text": "Оценка внедрения Bitrix24 с ИИ. Созвон, смета, сроки. Без «скачать бесплатно» — только внедрение.",
-          "url": "https://bitrix.bober-ai.dev/?utm_source=yandex&utm_medium=cpc&utm_campaign=mini_hot_buy&utm_content=bitrix_price",
-          "displayUrl": "bitrix.bober-ai.dev"
+          "url": "https://bitrix.bober-systems.ru/?utm_source=yandex&utm_medium=cpc&utm_campaign=mini_hot_buy&utm_content=bitrix_price",
+          "displayUrl": "bitrix.bober-systems.ru"
         }
       ]
     }
@@ -104,10 +104,10 @@
   },
   "extensions": {
     "sitelinks": [
-      { "title": "Позвонить", "url": "https://www.bober-ai.dev/#contact" },
-      { "title": "Telegram", "url": "https://www.bober-ai.dev/#contact" },
-      { "title": "Кейсы", "url": "https://www.bober-ai.dev/portfolio" },
-      { "title": "Цены / оценка", "url": "https://www.bober-ai.dev/pricing" }
+      { "title": "Позвонить", "url": "https://www.bober-systems.ru/#contact" },
+      { "title": "Telegram", "url": "https://www.bober-systems.ru/#contact" },
+      { "title": "Кейсы", "url": "https://www.bober-systems.ru/portfolio" },
+      { "title": "Цены / оценка", "url": "https://www.bober-systems.ru/pricing" }
     ],
     "callouts": ["Созвон 30 мин", "Смета до старта", "Под ключ", "B2B"]
   },

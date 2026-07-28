@@ -4,7 +4,7 @@ export const prerender = false;
 
 /**
  * Путь первоначальной установки локального приложения Битрикс24.
- * В форме: https://www.bober-ai.dev/api/bitrix/oauth/install
+ * В форме: https://www.bober-systems.ru/api/bitrix/oauth/install
  */
 export const GET: APIRoute = () => {
   return new Response("ok", {

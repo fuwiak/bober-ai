@@ -21,6 +21,7 @@
  * @see https://apidocs.bitrix24.com/api-reference/landing/index.html
  */
 
+import { CANONICAL_ORIGIN } from "../config/domains.mjs";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -45,7 +46,7 @@ const SITE_TITLE = "Bober AI Systems";
 const SITE_CODE = "bober-shop";
 const SITE_DESCRIPTION =
   "AI-автоматизация КП, CRM и документов · Bober AI · партнёр 1С-Битрикс";
-const MAIN_URL = "https://www.bober-systems.ru/";
+const MAIN_URL = CANONICAL_ORIGIN + "/";
 const BITRIX_URL = "https://bitrix.bober-systems.ru/";
 const CONTACT_PHONE = "+79950998170";
 const CONTACT_EMAIL = "contact@bober-ai.dev";

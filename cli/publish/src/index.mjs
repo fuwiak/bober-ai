@@ -6,7 +6,7 @@ import { HABR_CREATE_URL, MEDIUM_IMPORT_URL } from "./config.mjs";
 import { publishSite, publishSiteAll, rebuildIndex } from "./site.mjs";
 
 function printHelp() {
-  console.log(`publish — site-first CLI (bober-ai.dev → Medium / Habr)
+  console.log(`publish — site-first CLI (www.bober-systems.ru → Medium / Habr)
 
 Repo articles/: Markdown + YAML frontmatter
 Site URL:     ${SITE_URL}

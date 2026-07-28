@@ -5,7 +5,7 @@ export const prerender = false;
 /**
  * Bitrix24 OAuth redirect (локальное приложение).
  * В форме приложения укажите:
- *   https://www.bober-ai.dev/api/bitrix/oauth/callback
+ *   https://www.bober-systems.ru/api/bitrix/oauth/callback
  *
  * После «Разрешить» сюда придёт ?code=... — скопируйте code и выполните:
  *   npm run bitrix:oauth -- exchange --code <CODE>
@@ -34,7 +34,7 @@ export const GET: APIRoute = ({ url }) => {
 <h1>Bitrix24 OAuth callback</h1>
 <p>Ожидается параметр <code>code</code> после авторизации приложения.</p>
 <p>Redirect URI для формы локального приложения:</p>
-<pre>https://www.bober-ai.dev/api/bitrix/oauth/callback</pre>
+<pre>https://www.bober-systems.ru/api/bitrix/oauth/callback</pre>
 </body></html>`,
       {
         status: 200,

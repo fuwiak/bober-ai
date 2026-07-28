@@ -19,6 +19,7 @@
  * Stories (no API): https://yandex.ru/sprav/<id>/p/edit/stories/
  */
 
+import { CANONICAL_ORIGIN } from "../config/domains.mjs";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -366,7 +367,7 @@ async function cmdCampaigns() {
     const body = {
       companyId: Number(readFlag("--company-id") || config.companyId),
       countryGeoId: config.countryGeoId,
-      url: readFlag("--url") || "https://www.bober-systems.ru",
+      url: readFlag("--url") || CANONICAL_ORIGIN,
       mapsOnly: flags.has("--maps-only"),
     };
     printJson("create-campaign payload:", body);

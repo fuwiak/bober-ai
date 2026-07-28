@@ -1,5 +1,5 @@
 Contact: mailto:contact@bober-ai.dev
-Contact: https://www.bober-ai.dev/#contact
+Contact: https://www.bober-systems.ru/#contact
 Expires: 2027-07-20T00:00:00.000Z
 Preferred-Languages: ru, en
-Canonical: https://www.bober-ai.dev/.well-known/security.txt
+Canonical: https://www.bober-systems.ru/.well-known/security.txt

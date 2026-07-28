@@ -548,7 +548,7 @@ export const CATALOG_LANDING_SPECS_PRIORITY: LandingSpec[] = [
         labelEn: "Telephony and call logging in CRM",
       },
       {
-        href: "https://bitrix.bober-ai.dev/#sales-loop",
+        href: "https://bitrix.bober-systems.ru/#sales-loop",
         labelRu: "Bitrix-лендинг · AI-контур",
         labelEn: "Bitrix landing · AI sales loop",
       },

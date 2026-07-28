@@ -1,6 +1,6 @@
 # Selectel origin (единственный)
 
-Публичный DNS `www.bober-ai.dev` / `partners` / `bitrix` → **A `45.80.131.136`** (Selectel VDS).
+Публичный DNS `www.bober-systems.ru` / `partners` / `bitrix` → **A `45.80.131.136`** (Selectel VDS).
 
 Railway больше не используется как публичный origin.
 
@@ -34,12 +34,12 @@ CI: GitHub Actions `selectel-build` — на push в `main` собирает о�
 Проверка:
 
 ```bash
-dig +short A www.bober-ai.dev
+dig +short A www.bober-systems.ru
 # → 45.80.131.136
 
-curl -sI --connect-timeout 5 https://www.bober-ai.dev/ | head -8
-curl -sI https://www.bober-ai.dev/about | head -5
-curl -s https://www.bober-ai.dev/api/health
+curl -sI --connect-timeout 5 https://www.bober-systems.ru/ | head -8
+curl -sI https://www.bober-systems.ru/about | head -5
+curl -s https://www.bober-systems.ru/api/health
 ```
 
 ## `bober-systems.ru`
@@ -47,7 +47,7 @@ curl -s https://www.bober-ai.dev/api/health
 | Что | Статус |
 |-----|--------|
 | A на Selectel | `45.80.131.136` (apex, www, partners, bitrix) |
-| Caddy | публичный Let's Encrypt (как у `bober-ai.dev`); apex→www |
+| Caddy | публичный Let's Encrypt (как у `www.bober-systems.ru`); apex→www |
 
 После смены Caddyfile на VDS: `docker compose up -d` в `/opt/bober-ai/deploy` — Caddy сам получит LE-сертификаты (порты 80/443 открыты, DNS уже на Selectel).
 

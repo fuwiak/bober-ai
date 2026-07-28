@@ -1,6 +1,6 @@
 # publish — site-first CLI
 
-Публикация статей: сначала **bober-ai.dev**, затем репост на Medium / Habr.
+Публикация статей: сначала **www.bober-systems.ru**, затем репост на Medium / Habr.
 
 Стек как у соседних CLI: entry в `cli/publish/`, запуск через `run` / `npm run publish`. Тяжёлая логика на Node (Markdown), без зависимости от мёртвых Medium tokens.
 
@@ -44,7 +44,7 @@ npm run publish -- help
 articles/<slug>/article.md   →   publish site <slug>   →   commit + deploy
 ```
 
-Canonical: `https://www.bober-ai.dev/blog/<slug>`.
+Canonical: `https://www.bober-systems.ru/blog/<slug>`.
 
 В `index.generated.ts` попадают только статьи со `status: published`. Черновики (`draft`) можно генерировать файлы, но они не подмешиваются в блог, пока не смените статус и не пересоберёте.
 
@@ -54,7 +54,7 @@ Canonical: `https://www.bober-ai.dev/blog/<slug>`.
 
 **Путь:**
 
-1. Статья живёт на bober-ai.dev.
+1. Статья живёт на www.bober-systems.ru.
 2. `publish open-medium-import <slug>` — открывает [Import a story](https://medium.com/me/import) и копирует URL.
 3. Paste URL → Import → правки (часто code blocks) → Publish.
 4. Medium сам ставит canonical на исходный URL.

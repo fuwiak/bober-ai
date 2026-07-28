@@ -83,9 +83,9 @@ Allow: /
 User-agent: PetalBot
 Allow: /
 
-Host: www.bober-ai.dev
-Sitemap: https://www.bober-ai.dev/sitemap.xml
-# LLM summary: https://www.bober-ai.dev/llms.txt
+Host: www.bober-systems.ru
+Sitemap: https://www.bober-systems.ru/sitemap.xml
+# LLM summary: https://www.bober-systems.ru/llms.txt
 
 # Ignore tracking GET params (Yandex Clean-param; Webmaster UI has no API)
 # Explicit Allow: for User-agent: Yandex this section replaces User-Agent: *

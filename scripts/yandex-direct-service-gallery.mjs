@@ -19,6 +19,7 @@
  *   npm run yandex:direct:service-gallery -- create-epk --budget-rub=1500
  */
 
+import { CANONICAL_ORIGIN } from "../config/domains.mjs";
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -75,7 +76,7 @@ const PROFILE_URL =
 const SITE = (
   process.env.NEXT_PUBLIC_SITE_URL ||
   config.siteUrl ||
-  "https://www.bober-systems.ru"
+  CANONICAL_ORIGIN
 ).replace(/\/$/, "");
 
 const DIRECT_UI = config.directUi || "https://direct.yandex.ru/dna/grid/campaigns";
