@@ -210,10 +210,14 @@ jobs:
           cp -a "$COMPOSE_DIR/Caddyfile" "$ROOT/deploy/Caddyfile"
 
           sync_client_from_web() {
+            # CRITICAL: never `rm -rf` + replace `$ROOT/dist/client` while Caddy has
+            # it bind-mounted as /srv. Replacing the directory inode leaves the
+            # container on a stale/empty mount; `caddy reload` does not remount.
+            # Always sync *into* the existing directory (same inode).
             local cid css_href css_path
             cid=$("${dc[@]}" -f "$COMPOSE_FILE" ps -q web | head -n1 | tr -d '\r')
             [ -n "$cid" ] || { echo "NO_WEB_CID for client sync"; return 1; }
-            rm -rf /tmp/bober-client-new
+            rm -rf /tmp/bober-client-new /tmp/bober-astro-prev
             mkdir -p /tmp/bober-client-new
             docker cp "$cid:/app/dist/client/." /tmp/bober-client-new/
             if [ ! -d /tmp/bober-client-new/_astro ]; then
@@ -221,12 +225,14 @@ jobs:
               ls -la /tmp/bober-client-new | head -40 || true
               return 1
             fi
+            mkdir -p "$ROOT/dist/client"
             if [ -d "$ROOT/dist/client/_astro" ]; then
-              rm -rf /tmp/bober-astro-prev
               cp -a "$ROOT/dist/client/_astro" /tmp/bober-astro-prev
             fi
-            rm -rf "$ROOT/dist/client"
-            mv /tmp/bober-client-new "$ROOT/dist/client"
+            # Clear mount contents in-place (keep directory inode for Docker bind).
+            find "$ROOT/dist/client" -mindepth 1 -maxdepth 1 -exec rm -rf {} +
+            cp -a /tmp/bober-client-new/. "$ROOT/dist/client/"
+            rm -rf /tmp/bober-client-new
             if [ -d /tmp/bober-astro-prev ]; then
               mkdir -p "$ROOT/dist/client/_astro"
               # Keep previous hashed assets so old HTML tabs do not 404.
@@ -244,6 +250,13 @@ jobs:
               ls -la "$ROOT/dist/client/_astro" | head -40 || true
               return 1
             fi
+            # Prove the running edge Caddy can see the new file through /srv.
+            if docker ps --format '{{.Names}}' | grep -qx 'bober-ai'; then
+              if ! docker exec bober-ai test -f "/srv${css_href}"; then
+                echo "EDGE_/srv_STALE after in-place sync — recreating Caddy"
+                return 2
+              fi
+            fi
             echo "CLIENT_SYNCED cid=$cid css=$css_href astro_files=$(find "$ROOT/dist/client/_astro" -type f | wc -l)"
           }
 
@@ -257,7 +270,6 @@ jobs:
           done
           GIT_SHA="$GIT_SHA" "${dc[@]}" -f "$COMPOSE_FILE" up -d --force-recreate --remove-orphans --no-deps web
           sleep 3
-          sync_client_from_web
 
           # Edge TLS: container `bober-ai`. NEVER recreate without caddy_data —
           # wiping /data drops Let's Encrypt certs → ERR_SSL_PROTOCOL_ERROR on
@@ -276,14 +288,30 @@ jobs:
               caddy:2-alpine
           }
 
+          # Sync into existing /srv inode first. return 2 = Caddy mount stale → recreate.
+          sync_rc=0
+          sync_client_from_web || sync_rc=$?
+          if [ "$sync_rc" -eq 1 ]; then
+            echo "CLIENT_SYNC_FAILED"
+            exit 1
+          fi
+
           if docker ps --format '{{.Names}}' | grep -qx 'bober-ai'; then
             mounts=$(docker inspect bober-ai --format '{{range .Mounts}}{{.Destination}} {{end}}' 2>/dev/null || true)
             if ! echo "$mounts" | grep -q '/srv'; then
               echo "EDGE_CADDY_MISSING_/srv — recreating with static client mount"
               start_edge_caddy
+            elif [ "$sync_rc" -eq 2 ]; then
+              echo "EDGE_CADDY_/srv_STALE — recreating after client sync"
+              start_edge_caddy
             elif docker exec bober-ai caddy validate --config /etc/caddy/Caddyfile \
               && docker exec bober-ai caddy reload --config /etc/caddy/Caddyfile; then
               echo "EDGE_CADDY_RELOADED"
+              css_check=$(grep -oE '/_astro/[^\" ]+\.css' "$ROOT/dist/client/index.html" 2>/dev/null | head -n1 || true)
+              if [ -n "$css_check" ] && ! docker exec bober-ai test -f "/srv${css_check}"; then
+                echo "EDGE_/srv_STALE after reload — recreating Caddy"
+                start_edge_caddy
+              fi
             else
               echo "EDGE_CADDY_RELOAD_FAILED — recreating with persistent cert volumes"
               start_edge_caddy
@@ -309,6 +337,19 @@ jobs:
             else
               start_edge_caddy
             fi
+          fi
+
+          # Final visibility check: CSS must be readable inside edge /srv.
+          css_final=$(grep -oE '/_astro/[^\" ]+\.css' "$ROOT/dist/client/index.html" 2>/dev/null | head -n1 || true)
+          if [ -n "$css_final" ] && ! docker exec bober-ai test -f "/srv${css_final}"; then
+            echo "EDGE_/srv_CSS_MISSING after Caddy refresh — recreating once more"
+            start_edge_caddy
+            sleep 2
+            docker exec bober-ai test -f "/srv${css_final}" || {
+              echo "EDGE_/srv_CSS_STILL_MISSING $css_final"
+              docker exec bober-ai ls -la /srv/_astro 2>/dev/null | head -40 || true
+              exit 1
+            }
           fi
 
           # Wait for ACME on canonical systems.ru hosts.
