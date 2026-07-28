@@ -269,9 +269,10 @@ jobs:
               "https://www.bober-systems.ru/api/health" | grep -q '"ok":true'; then
               sys_ok=1
             fi
+            # Prefer systems.ru — partners.bober-ai.dev may still be LE-rate-limited.
             if curl -sk --connect-timeout 5 \
-              --resolve partners.bober-ai.dev:443:127.0.0.1 \
-              "https://partners.bober-ai.dev/performers-feed.yml" | head -c 64 | grep -qi 'yml_catalog\|<?xml\|shop'; then
+              --resolve partners.bober-systems.ru:443:127.0.0.1 \
+              "https://partners.bober-systems.ru/performers-feed.yml" | head -c 64 | grep -qi 'yml_catalog\|<?xml\|shop'; then
               partners_ok=1
             fi
             echo "tls_wait=$k systems=$sys_ok partners=$partners_ok"
@@ -367,21 +368,27 @@ jobs:
           for i in 1 2 3 4 5 6 7 8 9 10 12; do
             health=$(curl -sf --connect-timeout 10 https://www.bober-systems.ru/api/health || true)
             html=$(curl -sf --connect-timeout 10 https://www.bober-systems.ru/ || true)
-            partners=$(curl -sf --connect-timeout 10 https://partners.bober-ai.dev/performers-feed.yml || true)
-            echo "attempt=$i health=$health partners_bytes=${#partners}"
+            main_feed=$(curl -sf --connect-timeout 10 https://www.bober-systems.ru/performers-feed.yml || true)
+            partners=$(curl -sf --connect-timeout 10 https://partners.bober-systems.ru/performers-feed.yml || true)
+            bitrix=$(curl -sf --connect-timeout 10 https://bitrix.bober-systems.ru/performers-feed.yml || true)
+            echo "attempt=$i health=$health main_feed=${#main_feed} partners=${#partners} bitrix=${#bitrix}"
             # Avoid `echo | grep -q` under pipefail (SIGPIPE/141 on match).
             if [[ "$health" == *'"ok":true'* ]] \
               && [[ "$health" == *"$GIT_SHA"* ]] \
               && [[ "$html" == *'0e71ef3fc54b6c3c'* ]] \
-              && [[ "$partners" == *'yml_catalog'* || "$partners" == *'<?xml'* ]]; then
-              echo "PUBLIC_HEALTH_OK + YANDEX_META_OK + PARTNERS_FEED_OK"
+              && [[ "$main_feed" == *'yml_catalog'* || "$main_feed" == *'<?xml'* ]] \
+              && [[ "$partners" == *'yml_catalog'* || "$partners" == *'<?xml'* ]] \
+              && [[ "$bitrix" == *'yml_catalog'* || "$bitrix" == *'<?xml'* ]]; then
+              echo "PUBLIC_HEALTH_OK + YANDEX_META_OK + FEEDS_OK (www+partners+bitrix)"
               exit 0
             fi
             echo "retry $i…"
             sleep 5
           done
-          echo "::error::Public health/sha/yandex-meta/partners-feed check failed after deploy"
+          echo "::error::Public health/sha/yandex-meta/feeds check failed after deploy"
           printf '%s' "$(curl -sL https://www.bober-systems.ru/ || true)" | tr '>' '>\n' | grep -i 'yandex\|0e71ef' | head || true
           curl -sL https://www.bober-systems.ru/api/health || true
-          curl -svI https://partners.bober-ai.dev/performers-feed.yml 2>&1 | tail -30 || true
+          curl -svI https://www.bober-systems.ru/performers-feed.yml 2>&1 | tail -20 || true
+          curl -svI https://partners.bober-systems.ru/performers-feed.yml 2>&1 | tail -20 || true
+          curl -svI https://bitrix.bober-systems.ru/performers-feed.yml 2>&1 | tail -20 || true
           exit 1

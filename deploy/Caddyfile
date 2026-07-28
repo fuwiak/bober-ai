@@ -1,8 +1,14 @@
 {
 	email contact@bober-ai.dev
-	# Do NOT pin acme_ca to Let's Encrypt only — recreating Caddy without
-	# caddy_data burned the LE duplicate-cert limit (429 until ~2026-07-30).
-	# Default issuer chain (ZeroSSL + LE) recovers partners/bitrix/www.bober-ai.dev.
+	# LE duplicate-cert rate limit until ~2026-07-30 for *.bober-ai.dev
+	# (caddy_data wipe). Default ZeroSSL fallback is unusable from RU VDS:
+	# ZeroSSL EAB API returns "Access Denied...restricted in your region"
+	# (Caddy: invalid character 'A' looking for beginning of value).
+	# Prefer SSL.com ACME (no EAB); keep LE as second issuer for after Jul 30.
+	cert_issuer acme {
+		dir https://acme.ssl.com/sslcom-dv-rsa
+	}
+	cert_issuer acme
 	servers {
 		protocols h1 h2
 	}
@@ -18,7 +24,8 @@
 }
 
 (yml_headers) {
-	header Content-Type "application/xml; charset=utf-8"
+	# ">" replaces upstream text/yaml so clients see a single Content-Type.
+	header >Content-Type "application/xml; charset=utf-8"
 	header X-Content-Type-Options "nosniff"
 }
 
@@ -47,10 +54,28 @@ https://bober-systems.ru {
 }
 
 https://www.bober-ai.dev {
+	handle /performers-feed.yml {
+		import yml_headers
+		import astro_proxy
+	}
+	@yml path /feeds/*.yml
+	handle @yml {
+		import yml_headers
+		import astro_proxy
+	}
 	import astro_proxy
 }
 
 https://www.bober-systems.ru {
+	handle /performers-feed.yml {
+		import yml_headers
+		import astro_proxy
+	}
+	@yml path /feeds/*.yml
+	handle @yml {
+		import yml_headers
+		import astro_proxy
+	}
 	import astro_proxy
 }
 
