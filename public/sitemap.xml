@@ -351,15 +351,28 @@
   <url><loc>https://www.bober-ai.dev/en/process-review</loc></url>
   <url><loc>https://www.bober-ai.dev/en/secure-ai</loc></url>
   <url><loc>https://www.bober-ai.dev/en/services</loc></url>
+  <url><loc>https://www.bober-ai.dev/en/services/ai-agent</loc></url>
+  <url><loc>https://www.bober-ai.dev/en/services/ai-automation</loc></url>
+  <url><loc>https://www.bober-ai.dev/en/services/ai-consulting</loc></url>
   <url><loc>https://www.bober-ai.dev/en/services/ai-discovery-roadmap</loc></url>
   <url><loc>https://www.bober-ai.dev/en/services/ai-sales-loop</loc></url>
   <url><loc>https://www.bober-ai.dev/en/services/business-process-automation</loc></url>
   <url><loc>https://www.bober-ai.dev/en/services/crm-integration</loc></url>
+  <url><loc>https://www.bober-ai.dev/en/services/document-processing</loc></url>
   <url><loc>https://www.bober-ai.dev/en/services/enterprise-ai-assistant</loc></url>
+  <url><loc>https://www.bober-ai.dev/en/services/knowledge-base</loc></url>
+  <url><loc>https://www.bober-ai.dev/en/services/langgraph</loc></url>
+  <url><loc>https://www.bober-ai.dev/en/services/llm-development</loc></url>
+  <url><loc>https://www.bober-ai.dev/en/services/mcp</loc></url>
+  <url><loc>https://www.bober-ai.dev/en/services/n8n</loc></url>
+  <url><loc>https://www.bober-ai.dev/en/services/ocr</loc></url>
+  <url><loc>https://www.bober-ai.dev/en/services/open-webui</loc></url>
   <url><loc>https://www.bober-ai.dev/en/services/private-llm-gigachat</loc></url>
   <url><loc>https://www.bober-ai.dev/en/services/rag</loc></url>
   <url><loc>https://www.bober-ai.dev/en/services/sales-ai-agent</loc></url>
   <url><loc>https://www.bober-ai.dev/en/services/secure-private-ai-cloud</loc></url>
+  <url><loc>https://www.bober-ai.dev/en/services/self-hosted-ai</loc></url>
+  <url><loc>https://www.bober-ai.dev/en/services/voice-ai</loc></url>
   <url><loc>https://www.bober-ai.dev/en/services/wildberries-independent-sales-channel</loc></url>
   <url><loc>https://www.bober-ai.dev/en/solutions</loc></url>
   <url><loc>https://www.bober-ai.dev/en/solutions/assistant</loc></url>
@@ -451,15 +464,28 @@
   <url><loc>https://www.bober-ai.dev/process-review</loc></url>
   <url><loc>https://www.bober-ai.dev/secure-ai</loc></url>
   <url><loc>https://www.bober-ai.dev/services</loc></url>
+  <url><loc>https://www.bober-ai.dev/services/ai-agent</loc></url>
+  <url><loc>https://www.bober-ai.dev/services/ai-automation</loc></url>
+  <url><loc>https://www.bober-ai.dev/services/ai-consulting</loc></url>
   <url><loc>https://www.bober-ai.dev/services/ai-discovery-roadmap</loc></url>
   <url><loc>https://www.bober-ai.dev/services/ai-sales-loop</loc></url>
   <url><loc>https://www.bober-ai.dev/services/business-process-automation</loc></url>
   <url><loc>https://www.bober-ai.dev/services/crm-integration</loc></url>
+  <url><loc>https://www.bober-ai.dev/services/document-processing</loc></url>
   <url><loc>https://www.bober-ai.dev/services/enterprise-ai-assistant</loc></url>
+  <url><loc>https://www.bober-ai.dev/services/knowledge-base</loc></url>
+  <url><loc>https://www.bober-ai.dev/services/langgraph</loc></url>
+  <url><loc>https://www.bober-ai.dev/services/llm-development</loc></url>
+  <url><loc>https://www.bober-ai.dev/services/mcp</loc></url>
+  <url><loc>https://www.bober-ai.dev/services/n8n</loc></url>
+  <url><loc>https://www.bober-ai.dev/services/ocr</loc></url>
+  <url><loc>https://www.bober-ai.dev/services/open-webui</loc></url>
   <url><loc>https://www.bober-ai.dev/services/private-llm-gigachat</loc></url>
   <url><loc>https://www.bober-ai.dev/services/rag</loc></url>
   <url><loc>https://www.bober-ai.dev/services/sales-ai-agent</loc></url>
   <url><loc>https://www.bober-ai.dev/services/secure-private-ai-cloud</loc></url>
+  <url><loc>https://www.bober-ai.dev/services/self-hosted-ai</loc></url>
+  <url><loc>https://www.bober-ai.dev/services/voice-ai</loc></url>
   <url><loc>https://www.bober-ai.dev/services/wildberries-independent-sales-channel</loc></url>
   <url><loc>https://www.bober-ai.dev/solutions</loc></url>
   <url><loc>https://www.bober-ai.dev/solutions/assistant</loc></url>
