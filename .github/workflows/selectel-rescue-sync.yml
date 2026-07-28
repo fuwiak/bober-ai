@@ -1,0 +1,329 @@
+name: selectel-rescue-sync
+
+on:
+  workflow_dispatch:
+    inputs:
+      phase:
+        description: "rescue-fix | sync-static | status"
+        required: true
+        default: rescue-fix
+        type: choice
+        options:
+          - rescue-fix
+          - sync-static
+          - status
+
+jobs:
+  remote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        if: inputs.phase == 'sync-static'
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        env:
+          SELECTEL_SSH_KEY: ${{ secrets.SELECTEL_SSH_KEY }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SELECTEL_SSH_KEY" > ~/.ssh/bober_selectel
+          chmod 600 ~/.ssh/bober_selectel
+          ssh-keyscan -T 10 -H 45.80.131.136 >> ~/.ssh/known_hosts 2>/dev/null || true
+
+      - name: Probe SSH banner
+        run: |
+          python3 - <<'PY'
+          import socket
+          s = socket.create_connection(("45.80.131.136", 22), timeout=15)
+          s.settimeout(15)
+          try:
+              print("BANNER", s.recv(256))
+          except Exception as e:
+              print("NO_BANNER", e)
+              raise
+          finally:
+              s.close()
+          PY
+
+      - name: Rescue fix disk
+        if: inputs.phase == 'rescue-fix'
+        run: |
+          ssh -i ~/.ssh/bober_selectel -o IdentitiesOnly=yes -o ConnectTimeout=20 \
+            -o StrictHostKeyChecking=accept-new root@45.80.131.136 'bash -s' <<'EOS'
+          set -euo pipefail
+          echo "=== rescue host ==="
+          uname -a
+          lsblk
+          mkdir -p /mnt/root
+          # Find the original root filesystem (exclude rescue root)
+          ROOTDEV=""
+          for d in /dev/vdb1 /dev/vdb2 /dev/sda1 /dev/sda2 /dev/vda1 /dev/nvme0n1p1 /dev/nvme1n1p1; do
+            if [ -b "$d" ]; then
+              if mount "$d" /mnt/root 2>/dev/null; then
+                if [ -d /mnt/root/opt/bober-ai ] || [ -d /mnt/root/var/lib/docker ]; then
+                  ROOTDEV="$d"
+                  echo "mounted original root: $d"
+                  break
+                fi
+                umount /mnt/root || true
+              fi
+            fi
+          done
+          if [ -z "$ROOTDEV" ]; then
+            echo "scanning partitions..."
+            lsblk -f
+            # try all block devices with ext4/xfs
+            while read -r name fstype; do
+              [ -z "$name" ] && continue
+              dev="/dev/$name"
+              mount "$dev" /mnt/root 2>/dev/null || continue
+              if [ -d /mnt/root/opt/bober-ai ] || [ -d /mnt/root/etc ]; then
+                ROOTDEV="$dev"
+                echo "mounted $dev ($fstype)"
+                break
+              fi
+              umount /mnt/root || true
+            done < <(lsblk -ln -o NAME,FSTYPE | awk '$2 ~ /ext4|xfs/ {print $1,$2}')
+          fi
+          [ -n "$ROOTDEV" ] || { echo "NO_ROOT_DISK"; exit 1; }
+
+          echo "=== before ==="
+          ls /mnt/root/opt/bober-ai 2>/dev/null | head || true
+          ls /mnt/root/opt/bober-ai/out/index.html 2>/dev/null || true
+          docker_ps_hint=$(ls /mnt/root/var/lib/docker/containers 2>/dev/null | wc -l || echo 0)
+          echo "docker container dirs: $docker_ps_hint"
+
+          # Prevent docker from auto-starting heavy stack on boot
+          mkdir -p /mnt/root/etc/systemd/system
+          ln -sf /dev/null /mnt/root/etc/systemd/system/docker.service
+          ln -sf /dev/null /mnt/root/etc/systemd/system/docker.socket
+          echo "masked docker.service/socket on guest disk"
+
+          # Restore lightweight static Caddyfile (file_server, no Next)
+          mkdir -p /mnt/root/opt/bober-ai/deploy
+          cat > /mnt/root/opt/bober-ai/deploy/Caddyfile <<'CADDY'
+          {
+          	email contact@bober-ai.dev
+          	acme_ca https://acme-v02.api.letsencrypt.org/directory
+          	servers {
+          		protocols h1 h2
+          	}
+          }
+
+          :80 {
+          	@siteHost host www.bober-ai.dev bober-ai.dev partners.bober-ai.dev bitrix.bober-ai.dev www.bober-systems.ru bober-systems.ru partners.bober-systems.ru bitrix.bober-systems.ru
+          	handle @siteHost {
+          		header Cache-Control "no-store"
+          		redir https://{host}{uri} permanent
+          	}
+          	handle {
+          		respond "ok" 200
+          	}
+          }
+
+          https://bober-ai.dev {
+          	header Cache-Control "no-store"
+          	redir https://www.bober-ai.dev{uri} permanent
+          }
+
+          https://bober-systems.ru {
+          	tls internal
+          	header Cache-Control "no-store"
+          	redir https://www.bober-systems.ru{uri} permanent
+          }
+
+          https://www.bober-ai.dev {
+          	root * /srv
+          	encode gzip
+          	try_files {path} {path}.html {path}/index.html /index.html
+          	file_server
+          	header Cache-Control "public, max-age=300"
+          }
+
+          https://www.bober-systems.ru {
+          	tls internal
+          	root * /srv
+          	encode gzip
+          	try_files {path} {path}.html {path}/index.html /index.html
+          	file_server
+          }
+
+          https://partners.bober-ai.dev {
+          	root * /srv
+          	rewrite * /white-label.html
+          	file_server
+          }
+
+          https://partners.bober-systems.ru {
+          	tls internal
+          	root * /srv
+          	rewrite * /white-label.html
+          	file_server
+          }
+
+          https://bitrix.bober-ai.dev {
+          	root * /srv
+          	rewrite * /bitrix.html
+          	file_server
+          }
+
+          https://bitrix.bober-systems.ru {
+          	tls internal
+          	root * /srv
+          	rewrite * /bitrix.html
+          	file_server
+          }
+          CADDY
+
+          # Marker for post-boot
+          echo "rescue-fixed $(date -Is)" > /mnt/root/opt/bober-ai/RESCUE_FIXED
+          sync
+          umount /mnt/root
+          echo "RESCUE_FIX_OK"
+          EOS
+
+      - name: Status over SSH
+        if: inputs.phase == 'status'
+        run: |
+          ssh -i ~/.ssh/bober_selectel -o IdentitiesOnly=yes -o ConnectTimeout=20 \
+            -o StrictHostKeyChecking=accept-new root@45.80.131.136 \
+            'echo UP; uptime; free -m; swapon --show; docker ps -a; ls -la /opt/bober-ai/RESCUE_FIXED /opt/bober-ai/out/index.html 2>&1; head -5 /opt/bober-ai/deploy/Caddyfile'
+
+      - name: Sync static from main build
+        if: inputs.phase == 'sync-static'
+        env:
+          NEXT_PUBLIC_SITE_URL: https://www.bober-ai.dev
+          NEXT_PUBLIC_PARTNERS_SITE_URL: https://partners.bober-ai.dev
+          NEXT_PUBLIC_BITRIX_SITE_URL: https://bitrix.bober-ai.dev
+          NEXT_PUBLIC_YANDEX_METRIKA_ID: "110635302"
+          NEXT_PUBLIC_CONTACT_EMAIL: contact@bober-ai.dev
+        run: |
+          set -euo pipefail
+          # Mirror Railway HTML by fetching key pages from Railway origin into out/
+          mkdir -p /tmp/bober-mirror
+          BASE=https://bober-ai-production.up.railway.app
+          python3 - <<'PY'
+          import os, pathlib, urllib.request, re, urllib.parse
+          base = os.environ.get("BASE", "https://bober-ai-production.up.railway.app")
+          out = pathlib.Path("/tmp/bober-mirror")
+          out.mkdir(parents=True, exist_ok=True)
+          # Seed paths — homepage + common static assets discovered from HTML
+          queue = ["/", "/en", "/partners", "/white-label", "/bitrix", "/privacy-policy", "/consent", "/terms", "/info"]
+          seen = set()
+          asset_re = re.compile(r'(?:src|href)=["\'](/_next/[^"\']+|/(?:favicon|robots|sitemap)[^"\']*)')
+          while queue:
+              path = queue.pop(0)
+              if path in seen:
+                  continue
+              seen.add(path)
+              url = base.rstrip("/") + path
+              try:
+                  req = urllib.request.Request(url, headers={"User-Agent": "bober-sync/1.0"})
+                  with urllib.request.urlopen(req, timeout=60) as r:
+                      data = r.read()
+                      ctype = r.headers.get("content-type", "")
+              except Exception as e:
+                  print("fail", path, e)
+                  continue
+              # map path to file
+              if path.endswith("/") or path == "":
+                  rel = path.strip("/") + ("/index.html" if path != "/" else "index.html")
+                  if path == "/":
+                      rel = "index.html"
+                  else:
+                      rel = path.strip("/") + "/index.html"
+              elif "." not in pathlib.Path(path).name:
+                  # html page without extension
+                  if path in ("/white-label", "/bitrix"):
+                      rel = path.strip("/") + ".html"
+                  else:
+                      rel = path.strip("/") + "/index.html"
+                      # also flat for microsites
+              else:
+                  rel = path.lstrip("/")
+              dest = out / rel
+              dest.parent.mkdir(parents=True, exist_ok=True)
+              dest.write_bytes(data)
+              print("ok", path, "->", rel, len(data), ctype[:40])
+              if "text/html" in ctype:
+                  text = data.decode("utf-8", "ignore")
+                  for m in asset_re.findall(text):
+                      if m not in seen:
+                          queue.append(m)
+          # aliases expected by Caddy
+          for src, dst in [("white-label.html", "white-label.html"), ("bitrix.html", "bitrix.html")]:
+              p = out / src
+              if not p.exists():
+                  # try from folders
+                  alt = out / src.replace(".html", "") / "index.html"
+                  if alt.exists():
+                      p.write_bytes(alt.read_bytes())
+          print("files", sum(1 for _ in out.rglob("*") if _.is_file()))
+          PY
+          BASE="$BASE" python3 - <<'PY' || true
+          pass
+          PY
+          # Fix: rerun with BASE exported
+          BASE=https://bober-ai-production.up.railway.app python3 - <<'PY'
+          import os, pathlib, urllib.request, re
+          base = "https://bober-ai-production.up.railway.app"
+          out = pathlib.Path("/tmp/bober-mirror")
+          out.mkdir(parents=True, exist_ok=True)
+          queue = ["/", "/en", "/privacy-policy", "/consent", "/terms", "/info", "/white-label", "/bitrix", "/robots.txt", "/sitemap.xml", "/favicon.ico"]
+          seen=set(); asset_re=re.compile(r'(?:src|href)=["\'](/_next/[^"\']+|/(?:favicon|robots|sitemap)[^"\']*|[^"\']+\.(?:js|css|woff2|png|svg|webp|ico)[^"\']*)')
+          while queue:
+            path=queue.pop(0)
+            if path in seen: continue
+            seen.add(path)
+            if path.startswith("http"): continue
+            url=base.rstrip("/")+path
+            try:
+              req=urllib.request.Request(url, headers={"User-Agent":"bober-sync/1.0"})
+              with urllib.request.urlopen(req, timeout=60) as r:
+                data=r.read(); ctype=r.headers.get("content-type","")
+            except Exception as e:
+              print("fail", path, e); continue
+            if path.endswith("/") or path=="/":
+              rel = "index.html" if path=="/" else path.strip("/")+"/index.html"
+            elif path in ("/white-label","/bitrix"):
+              rel=path.strip("/")+".html"
+            elif "." not in pathlib.Path(path).name:
+              rel=path.strip("/")+"/index.html"
+            else:
+              rel=path.lstrip("/")
+            dest=out/rel; dest.parent.mkdir(parents=True, exist_ok=True); dest.write_bytes(data)
+            print("ok", rel, len(data))
+            if "text/html" in ctype or path.endswith((".js",".css",".xml",".txt")):
+              text=data.decode("utf-8","ignore")
+              for m in asset_re.findall(text):
+                if m.startswith("/") and m not in seen and len(seen)<500:
+                  queue.append(m.split("?")[0])
+          print("total", sum(1 for _ in out.rglob("*") if _.is_file()))
+          PY
+          tar -C /tmp/bober-mirror -czf /tmp/bober-out.tgz .
+          scp -i ~/.ssh/bober_selectel -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new \
+            /tmp/bober-out.tgz root@45.80.131.136:/tmp/bober-out.tgz
+          ssh -i ~/.ssh/bober_selectel -o IdentitiesOnly=yes root@45.80.131.136 'bash -s' <<'EOS'
+          set -euo pipefail
+          systemctl start docker || true
+          sleep 2
+          rm -rf /opt/bober-ai/out.new
+          mkdir -p /opt/bober-ai/out.new
+          tar -C /opt/bober-ai/out.new -xzf /tmp/bober-out.tgz
+          rm -rf /opt/bober-ai/out.bak
+          if [ -d /opt/bober-ai/out ]; then mv /opt/bober-ai/out /opt/bober-ai/out.bak; fi
+          mv /opt/bober-ai/out.new /opt/bober-ai/out
+          # ensure microsite files
+          ls -la /opt/bober-ai/out/index.html /opt/bober-ai/out/white-label.html /opt/bober-ai/out/bitrix.html || true
+          # start only lightweight caddy
+          docker rm -f bober-next bober-ai 2>/dev/null || true
+          docker run -d --name bober-ai --restart unless-stopped --network host \
+            -v /opt/bober-ai/out:/srv:ro \
+            -v /opt/bober-ai/deploy/Caddyfile:/etc/caddy/Caddyfile:ro \
+            -v caddy_data:/data -v caddy_config:/config \
+            caddy:2-alpine
+          sleep 3
+          curl -skI -H 'Host: www.bober-ai.dev' https://127.0.0.1/ | head -12
+          echo SYNC_OK
+          EOS

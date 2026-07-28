@@ -47,9 +47,26 @@ export const SITE_REGION = "Москва";
 export const SITE_COUNTRY = "Россия";
 /** Координаты офиса (Перервинский б-р, 3) — сигнал региональности для Яндекса. */
 export const SITE_GEO = { latitude: 55.6665, longitude: 37.7448 } as const;
-/** Публичный email на сайте. Меняется через NEXT_PUBLIC_CONTACT_EMAIL в Railway. */
-export const CONTACT_EMAIL =
-  process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "contact@bober-ai.dev";
+
+/** Read PUBLIC_* (Astro) with NEXT_PUBLIC_* (Next) fallback during migration. */
+function readPublicEnv(publicKey: string, fallback = ""): string {
+  try {
+    const fromImport = import.meta.env?.[publicKey];
+    if (typeof fromImport === "string" && fromImport.trim()) return fromImport.trim();
+  } catch {
+    /* import.meta unavailable in some Next bundles */
+  }
+
+  const nextKey = publicKey.replace(/^PUBLIC_/, "NEXT_PUBLIC_");
+  if (typeof process !== "undefined" && process.env?.[nextKey]?.trim()) {
+    return process.env[nextKey]!.trim();
+  }
+
+  return fallback;
+}
+
+/** Публичный email на сайте. Меняется через PUBLIC_CONTACT_EMAIL / NEXT_PUBLIC_CONTACT_EMAIL. */
+export const CONTACT_EMAIL = readPublicEnv("PUBLIC_CONTACT_EMAIL", "contact@bober-ai.dev");
 /** Получатели заявок, если CONTACT_TO_EMAIL не задан. */
 export const CONTACT_NOTIFICATION_EMAILS = [CONTACT_EMAIL];
 export const CONTACT_PHONE = "+79950998170";
@@ -58,18 +75,20 @@ export const TELEGRAM_URL = "https://t.me/pstasinski";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/fuwiak";
 export const GITHUB_URL = "https://github.com/fuwiak";
 /** Booking / calendar for A/B CTA → direct schedule. Empty → calendar variant falls back to form. */
-export const CALENDAR_URL = process.env.NEXT_PUBLIC_CALENDAR_URL?.trim() || "";
+export const CALENDAR_URL = readPublicEnv("PUBLIC_CALENDAR_URL");
 /** Unified primary conversion goal across header, hero, packages, FAB. */
 export const PRIMARY_CTA_GOAL = "primary_cta_click";
 export const YANDEX_USLUGI_URL = "https://uslugi.yandex.ru/profile/PawelStasinski-254144";
 /** Карточка на Картах — региональность и представление в поиске. */
-export const YANDEX_MAPS_URL =
-  process.env.NEXT_PUBLIC_YANDEX_MAPS_URL?.trim() ||
-  "https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%9F%D0%B5%D1%80%D0%B5%D1%80%D0%B2%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9%20%D0%B1-%D1%80%2C%203";
+export const YANDEX_MAPS_URL = readPublicEnv(
+  "PUBLIC_YANDEX_MAPS_URL",
+  "https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%9F%D0%B5%D1%80%D0%B5%D1%80%D0%B2%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9%20%D0%B1-%D1%80%2C%203",
+);
 /** Яндекс Бизнес / Справочник — карточка организации. */
-export const YANDEX_BUSINESS_URL =
-  process.env.NEXT_PUBLIC_YANDEX_BUSINESS_URL?.trim() ||
-  "https://yandex.ru/sprav/113092981562/";
+export const YANDEX_BUSINESS_URL = readPublicEnv(
+  "PUBLIC_YANDEX_BUSINESS_URL",
+  "https://yandex.ru/sprav/113092981562/",
+);
 export const YANDEX_CLOUD_PARTNERS_URL = "https://yandex.cloud/ru/partners/catalogue";
 export const SELECTEL_PARTNER_PROGRAM_URL = "https://selectel.ru/about/partners-programm/";
 export const CLOUD_RU_PARTNERS_URL = "https://cloud.ru/partners/find-partner";
@@ -84,13 +103,11 @@ export const HOMEPAGE_PRESENCE_LINKS = [
 ] as const;
 export const YOUTUBE_SHORTS_URL = "https://www.youtube.com/shorts/5DQzO5aPS5A";
 export const ORGANIZATION_NAME = "ИП Стасиньски Павел Кшиштоф";
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.bober-ai.dev";
+export const SITE_URL = readPublicEnv("PUBLIC_SITE_URL", "https://www.bober-ai.dev");
 /** Отдельный white-label лендинг на subdomain (Caddy host rewrite → /white-label.html). */
-export const PARTNERS_SITE_URL =
-  process.env.NEXT_PUBLIC_PARTNERS_SITE_URL?.trim() || "https://partners.bober-ai.dev";
+export const PARTNERS_SITE_URL = readPublicEnv("PUBLIC_PARTNERS_SITE_URL", "https://partners.bober-ai.dev");
 /** CRM landing: Bitrix24 + amoCRM (Caddy host rewrite → /bitrix.html). */
-export const BITRIX_SITE_URL =
-  process.env.NEXT_PUBLIC_BITRIX_SITE_URL?.trim() || "https://bitrix.bober-ai.dev";
+export const BITRIX_SITE_URL = readPublicEnv("PUBLIC_BITRIX_SITE_URL", "https://bitrix.bober-ai.dev");
 
 export const DEFAULT_KEYWORDS = [
   "автоматизация КП",

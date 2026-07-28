@@ -1,0 +1,21 @@
+{
+  "companyId": 113092981562,
+  "name": "ИП Стасиньски Павел Кшиштоф",
+  "phone": "+79950998170",
+  "website": "https://www.bober-ai.dev",
+  "type": "online",
+  "regions": [{ "id": 213, "name": "Москва" }],
+  "rubricQuery": "разработка программного обеспечения",
+  "rubricIds": [],
+  "photos": {
+    "pack": "data/yandex-business-photos",
+    "uploadUi": "https://yandex.ru/sprav/113092981562/p/edit/photos/",
+    "manifest": "data/yandex-business-photos/manifest.json"
+  },
+  "notes": {
+    "editCardFields": "Partner API не умеет PATCH полей существующей карточки — только create-company / search / ads.",
+    "stories": "Истории только через ЛК: https://yandex.ru/sprav/113092981562/p/edit/stories/",
+    "photos": "Фото только UI. Готовый пакет: data/yandex-business-photos/",
+    "campaigns": "create/launch кампаний — API агентства (RESOURCE_ACCESS_FORBIDDEN без партнёрского доступа)."
+  }
+}

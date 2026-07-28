@@ -16,6 +16,7 @@ func allBricks() []Brick {
 		brickDisk(),
 		brickWordstat(),
 		brickDirect(),
+		brickBusiness(),
 		brickMail(),
 		brickSearch(),
 		brickGPT(),
@@ -212,6 +213,40 @@ yaga direct oauth […]`,
 				return runScript(cfg, "yandex-direct-oauth.mjs", rest)
 			default:
 				return runScript(cfg, "yandex-direct-campaigns.mjs", args)
+			}
+		},
+	}
+}
+
+func brickBusiness() Brick {
+	return Brick{
+		ID: "business", Title: "Yandex Business", Visibility: VisOwner,
+		Aliases: []string{"biz", "sprav", "geoadv"}, Description: "Partner API: card search/create + ads",
+		DefaultArgs: []string{"status"},
+		Help: `yaga business status|search|card|campaigns|rubrics|regions|owner|limits|oauth
+
+  status              ping API + companyId
+  search <text>       поиск организации
+  card                локальный профиль + API search
+  card create         create-company из data/yandex-business-company.json
+  campaigns           список/create/price/launch РК (агентство)
+  rubrics|regions     подсказки
+  limits              что API не умеет (edit card / stories)
+  oauth               bootstrap токена
+
+Docs: https://yandex.ru/dev/business-api/doc/ref/index.html
+UI:   https://yandex.ru/sprav/companies
+`,
+		Run: func(cfg Config, args []string) error {
+			sub, rest := splitSub(args, "status")
+			switch sub {
+			case "help", "--help":
+				fmt.Println(brickBusiness().Help)
+				return nil
+			case "oauth":
+				return runScript(cfg, "yandex-business-oauth.mjs", rest)
+			default:
+				return runScript(cfg, "yandex-business.mjs", args)
 			}
 		},
 	}

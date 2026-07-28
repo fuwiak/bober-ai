@@ -98,6 +98,50 @@ export function getAudienceOAuthConfig(overrides = {}) {
   };
 }
 
+/** Yandex Business Partner API (geoadv). Falls back to shared / webmaster token. */
+export function getBusinessOAuthConfig(overrides = {}) {
+  return {
+    kind: "business",
+    clientId: (
+      overrides.clientId ||
+      process.env.YANDEX_BUSINESS_CLIENT_ID ||
+      process.env.YANDEX_WEBMASTER_CLIENT_ID ||
+      DEFAULT_WEBMASTER_CLIENT_ID
+    ).trim(),
+    clientSecret: (
+      overrides.clientSecret ||
+      process.env.YANDEX_BUSINESS_CLIENT_SECRET ||
+      process.env.YANDEX_WEBMASTER_CLIENT_SECRET ||
+      ""
+    ).trim(),
+    redirectUri: (
+      overrides.redirectUri ||
+      process.env.YANDEX_BUSINESS_REDIRECT_URI ||
+      process.env.YANDEX_WEBMASTER_REDIRECT_URI ||
+      DEFAULT_REDIRECT_URI
+    ).trim(),
+    accessToken: (
+      overrides.accessToken ||
+      process.env.YANDEX_BUSINESS_OAUTH_TOKEN ||
+      process.env.YANDEX_OAUTH_TOKEN ||
+      process.env.YANDEX_WEBMASTER_OAUTH_TOKEN ||
+      ""
+    ).trim(),
+    refreshToken: (
+      overrides.refreshToken ||
+      process.env.YANDEX_BUSINESS_REFRESH_TOKEN ||
+      process.env.YANDEX_WEBMASTER_REFRESH_TOKEN ||
+      ""
+    ).trim(),
+    expiresAt: Number(
+      overrides.expiresAt ||
+        process.env.YANDEX_BUSINESS_TOKEN_EXPIRES_AT ||
+        process.env.YANDEX_WEBMASTER_TOKEN_EXPIRES_AT ||
+        0,
+    ),
+  };
+}
+
 function clientIdEnvName(config) {
   if (config.kind === "webmaster") return "YANDEX_WEBMASTER_CLIENT_ID";
   if (config.kind === "audience") return "YANDEX_AUDIENCE_CLIENT_ID";
@@ -198,7 +242,9 @@ export async function refreshAccessToken(config) {
         ? "YANDEX_WEBMASTER_REFRESH_TOKEN не задан — один раз: yaga webmaster oauth"
         : config.kind === "audience"
           ? "YANDEX_AUDIENCE_REFRESH_TOKEN не задан — npm run yandex:audience:oauth -- exchange --code <CODE>"
-          : "YANDEX_DIRECT_REFRESH_TOKEN не задан — нужен одноразовый bootstrap через authorization code";
+          : config.kind === "business"
+            ? "YANDEX_BUSINESS_REFRESH_TOKEN не задан — yaga business oauth"
+            : "YANDEX_DIRECT_REFRESH_TOKEN не задан — нужен одноразовый bootstrap через authorization code";
     throw new Error(hint);
   }
 
@@ -340,4 +386,46 @@ export function audienceCredentialVarsFromBundle(bundle, { clientId, clientSecre
   if (clientId) vars.YANDEX_AUDIENCE_CLIENT_ID = clientId;
   if (clientSecret) vars.YANDEX_AUDIENCE_CLIENT_SECRET = clientSecret;
   return vars;
+}
+
+export async function getValidBusinessToken(config, { refreshSkewMs = 60_000, onRefresh } = {}) {
+  let current = { ...config };
+
+  if (current.refreshToken && (!current.accessToken || isTokenExpired(current, refreshSkewMs))) {
+    const refreshed = await refreshAccessToken(current);
+    current = {
+      ...current,
+      accessToken: refreshed.accessToken || current.accessToken,
+      refreshToken: refreshed.refreshToken || current.refreshToken,
+      expiresAt: Number(refreshed.expiresAt || 0),
+    };
+    if (onRefresh) await onRefresh(refreshed);
+  }
+
+  if (!current.accessToken) {
+    throw new Error(
+      "Нет OAuth-токена для Business API. Один раз: yaga business oauth",
+    );
+  }
+
+  await getTokenInfo(current.accessToken);
+  return current.accessToken;
+}
+
+export function businessCredentialVarsFromBundle(bundle, { clientId, clientSecret } = {}) {
+  const vars = {
+    YANDEX_BUSINESS_OAUTH_TOKEN: bundle.accessToken,
+  };
+  if (bundle.refreshToken) vars.YANDEX_BUSINESS_REFRESH_TOKEN = bundle.refreshToken;
+  if (bundle.expiresAt) vars.YANDEX_BUSINESS_TOKEN_EXPIRES_AT = bundle.expiresAt;
+  if (clientId) vars.YANDEX_BUSINESS_CLIENT_ID = clientId;
+  if (clientSecret) vars.YANDEX_BUSINESS_CLIENT_SECRET = clientSecret;
+  return vars;
+}
+
+/** Persist + apply business token bundle into credentials.env. */
+export function upsertBusinessCredentialsFromBundle(bundle, extras = {}) {
+  // Lazy import avoided: callers that need file write use yaga-credentials themselves.
+  // This helper only shapes env for onRefresh when credentials module is wired by CLI.
+  return businessCredentialVarsFromBundle(bundle, extras);
 }

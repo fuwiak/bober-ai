@@ -323,6 +323,12 @@ func captureBrick(cfg Config, b Brick, args []string) (string, error) {
 		}
 	case "direct":
 		return runScriptCapture(cfg, "yandex-direct-campaigns.mjs", []string{"status"})
+	case "business":
+		sub, rest := splitSub(args, "status")
+		if sub == "oauth" {
+			return runScriptCapture(cfg, "yandex-business-oauth.mjs", append([]string{"status"}, rest...))
+		}
+		return runScriptCapture(cfg, "yandex-business.mjs", args)
 	case "cloud":
 		return runBinCapture("yc", []string{"version"})
 	case "core":

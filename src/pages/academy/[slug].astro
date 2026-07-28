@@ -1,0 +1,18 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { ACADEMY_POSTS } from "@/lib/academy-posts";
+export const prerender = true;
+export function getStaticPaths() {
+  return ACADEMY_POSTS.map((p) => ({ params: { slug: p.slug } }));
+}
+const post = ACADEMY_POSTS.find((p) => p.slug === Astro.params.slug)!;
+---
+<BaseLayout title={post.title} description={post.summary} locale="ru" canonicalPath={`/academy/${post.slug}`}>
+  <article class="container-editorial py-12 md:py-20">
+    <p class="meta-label">Практикум</p>
+    <h1 class="mt-4 display-title">{post.title}</h1>
+    <p class="mt-4 text-sm text-muted">{post.publishedAt} · {post.readingTime}</p>
+    <p class="mt-6 body-copy max-w-3xl">{post.lead}</p>
+    <div class="mt-10 blog-article max-w-3xl" set:html={post.contentHtml} />
+  </article>
+</BaseLayout>

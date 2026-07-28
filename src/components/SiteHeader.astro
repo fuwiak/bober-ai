@@ -1,0 +1,226 @@
+---
+import { localizePath, type Locale } from "@/lib/i18n";
+import { buildNavGroups, navLabels, type NavGroup } from "@/lib/nav";
+import { CONTACT_PHONE, SITE_NAME, TELEGRAM_URL } from "@/lib/site";
+import type { Messages } from "@/lib/i18n";
+
+interface Props {
+  locale: Locale;
+  messages: Messages;
+}
+
+const { locale, messages } = Astro.props;
+const groups = buildNavGroups(messages);
+const labels = navLabels(messages);
+const homeHref = localizePath("/", locale);
+const contactHref = localizePath("/#contact", locale);
+const localeSwitchHref = locale === "ru" ? "/en" : "/";
+
+function hrefFor(item: { href: string; localeAgnostic?: boolean }) {
+  return item.localeAgnostic ? item.href : localizePath(item.href, locale);
+}
+---
+
+<header class="site-header" data-nav-root>
+  <div class="container-editorial site-header__frame">
+    <div class="site-header__bar">
+      <div class="site-header__cont">
+        <a href={homeHref} class="site-wordmark">{SITE_NAME}</a>
+
+        <nav class="site-header__nav" aria-label="Main">
+          <ul class="site-header__list">
+            {groups.map((group: NavGroup) => {
+              if (group.type === "link") {
+                return (
+                  <li class="site-header__item">
+                    <a href={hrefFor(group)} class="site-header__trigger">
+                      {group.label}
+                    </a>
+                  </li>
+                );
+              }
+
+              return (
+                <li
+                  class={`site-header__item site-header__pop${group.type === "mega" ? " site-header__pop--mega" : " site-header__pop--drop"}`}
+                  data-nav-pop={group.id}
+                >
+                  <button
+                    type="button"
+                    class="site-header__trigger"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    data-nav-trigger={group.id}
+                  >
+                    {group.label}
+                    <svg class="site-header__chev" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                    </svg>
+                  </button>
+
+                  {group.type === "mega" ? (
+                    <div class="site-mega" role="menu" data-nav-panel={group.id} hidden>
+                      <div class="site-mega__grid">
+                        {group.columns.map((col) => (
+                          <div>
+                            <div class="site-mega__collabel">{col.title}</div>
+                            {col.items.map((item) => (
+                              <a href={hrefFor(item)} class="site-mega__card">
+                                <span class="site-mega__tt">{item.label}</span>
+                                {item.description && <span class="site-mega__st">{item.description}</span>}
+                              </a>
+                            ))}
+                          </div>
+                        ))}
+                        {group.promo && (
+                          <div class="site-mega__promo">
+                            <h4>{group.promo.title}</h4>
+                            <p>{group.promo.text}</p>
+                            <a href={localizePath(group.promo.href, locale)} class="site-mega__promo-cta">
+                              {group.promo.cta}
+                            </a>
+                          </div>
+                        )}
+                      </div>
+                      {(group.footerTags?.length || group.footerLink) && (
+                        <div class="site-mega__foot">
+                          {group.footerTags?.length ? (
+                            <div class="site-mega__foot-tags">
+                              {group.footerTags.map((tag) => (
+                                <span>{tag}</span>
+                              ))}
+                            </div>
+                          ) : (
+                            <span />
+                          )}
+                          {group.footerLink && (
+                            <a href={hrefFor(group.footerLink)} class="site-mega__foot-link">
+                              {group.footerLink.label}
+                            </a>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div class="site-drop" role="menu" data-nav-panel={group.id} hidden>
+                      {group.items.map((item) => (
+                        <a href={hrefFor(item)} class="site-mega__card">
+                          <span class="site-mega__tt">{item.label}</span>
+                          {item.description && <span class="site-mega__st">{item.description}</span>}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </div>
+
+      <div class="site-header__cont site-header__cont--actions">
+        <a href={`tel:${CONTACT_PHONE}`} class="site-header__phone">
+          {CONTACT_PHONE}
+        </a>
+        <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" class="site-header__icon-link" aria-label={labels.telegramLabel}>
+          Telegram
+        </a>
+        <div class="site-header__tools">
+          <a href={localeSwitchHref} class="text-sm text-muted" aria-label={labels.localeSwitchLabel}>
+            {labels.localeSwitchLabel}
+          </a>
+          <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+            Theme
+          </button>
+        </div>
+        <a href={contactHref} class="header-cta contact-cta-header btn-primary">
+          <span class="hidden md:inline">{labels.writeLabel}</span>
+          <span class="md:hidden">{labels.writeShortLabel}</span>
+        </a>
+        <button
+          type="button"
+          class="mobile-menu-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-menu-panel"
+          aria-label={labels.menuOpenLabel}
+          data-nav-mobile-toggle
+        >
+          <span class="mobile-menu-toggle__bars" aria-hidden="true">
+            <span /><span /><span />
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-menu" aria-hidden="true" data-nav-mobile>
+    <button type="button" class="mobile-menu__backdrop" aria-label={labels.menuCloseLabel} data-nav-mobile-close />
+    <nav id="mobile-menu-panel" class="mobile-menu__panel">
+      <p class="meta-label">{labels.quickContactLabel}</p>
+      <div class="mt-4">
+        <a href={contactHref} class="header-cta w-full justify-center btn-primary">
+          {labels.writeLabel}
+        </a>
+      </div>
+      <div class="mt-3 grid grid-cols-2 gap-3">
+        <a href={`tel:${CONTACT_PHONE}`} class="btn-secondary w-full justify-center text-center">
+          {labels.callLabel}
+        </a>
+        <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" class="btn-secondary w-full justify-center text-center">
+          {labels.telegramLabel}
+        </a>
+      </div>
+
+      <div class="mobile-menu__accs">
+        {groups.map((group) => {
+          if (group.type === "link") {
+            return (
+              <div class="mobile-menu__acc">
+                <a href={hrefFor(group)} class="mobile-menu__acc-link">
+                  {group.label}
+                </a>
+              </div>
+            );
+          }
+
+          return (
+            <div class="mobile-menu__acc" data-nav-mobile-acc={group.id}>
+              <button type="button" class="mobile-menu__acc-head" aria-expanded="false" data-nav-mobile-acc-trigger={group.id}>
+                {group.label}
+              </button>
+              <div class="mobile-menu__acc-body" hidden data-nav-mobile-acc-panel={group.id}>
+                <div class="mobile-menu__acc-inner">
+                  <div class="mobile-menu__acc-pad">
+                    {group.type === "mega"
+                      ? group.columns.map((col) => (
+                          <div>
+                            <div class="mobile-menu__msub">{col.title}</div>
+                            {col.items.map((item) => (
+                              <a href={hrefFor(item)} class="mobile-menu__mrow">
+                                {item.label}
+                              </a>
+                            ))}
+                          </div>
+                        ))
+                      : group.items.map((item) => (
+                          <a href={hrefFor(item)} class="mobile-menu__mrow">
+                            {item.label}
+                          </a>
+                        ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div class="mt-8 flex items-center gap-3 border-t border-hairline pt-6">
+        <a href={localeSwitchHref}>{labels.localeSwitchLabel}</a>
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+          Theme
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>

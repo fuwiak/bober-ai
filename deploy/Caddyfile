@@ -1,47 +1,31 @@
 {
 	email contact@bober-ai.dev
 	acme_ca https://acme-v02.api.letsencrypt.org/directory
-	# HTTP/3 (QUIC/UDP) often breaks behind VPNs — keep TCP only (h1/h2).
 	servers {
 		protocols h1 h2
 	}
 }
 
-# HTTP — ACME HTTP-01 + apex/www redirect + health.
-:{$PORT:80} {
+(astro_proxy) {
+	reverse_proxy 127.0.0.1:3000 {
+		header_up Host {host}
+		header_up X-Forwarded-Host {host}
+		header_up X-Forwarded-Proto https
+		header_up X-Real-IP {remote_host}
+	}
+}
+
+:80 {
 	handle /api/health {
-		header Content-Type text/plain
-		respond "ok" 200
+		reverse_proxy 127.0.0.1:3000
 	}
-
-	@siteHost host www.bober-ai.dev bober-ai.dev
+	@siteHost host www.bober-ai.dev bober-ai.dev partners.bober-ai.dev bitrix.bober-ai.dev www.bober-systems.ru bober-systems.ru partners.bober-systems.ru bitrix.bober-systems.ru
 	handle @siteHost {
-		# Absolute www — no port from :{$PORT}. Bust stale :8080 Location caches.
 		header Cache-Control "no-store"
-		redir https://www.bober-ai.dev{uri} permanent
+		redir https://{host}{uri} permanent
 	}
-
-	@partnersHost host partners.bober-ai.dev
-	handle @partnersHost {
-		redir https://partners.bober-ai.dev{uri} permanent
-	}
-
-	@bitrixHost host bitrix.bober-ai.dev
-	handle @bitrixHost {
-		redir https://bitrix.bober-ai.dev{uri} permanent
-	}
-
 	handle {
-		encode gzip
-		root * /srv
-		try_files {path} {path}.html {path}/index.html =404
-		file_server
-	}
-
-	handle_errors {
-		root * /srv
-		rewrite * /404.html
-		file_server
+		respond "ok" 200
 	}
 }
 
@@ -50,117 +34,39 @@ https://bober-ai.dev {
 	redir https://www.bober-ai.dev{uri} permanent
 }
 
+https://bober-systems.ru {
+	tls internal
+	header Cache-Control "no-store"
+	redir https://www.bober-systems.ru{uri} permanent
+}
+
 https://www.bober-ai.dev {
-	encode gzip
-	root * /srv
-
-	@immutableAssets {
-		path /_next/static/*
-		path *.js *.css *.woff *.woff2 *.ttf *.otf *.eot
-		path *.png *.jpg *.jpeg *.gif *.webp *.avif *.svg *.ico
-	}
-	header @immutableAssets Cache-Control "public, max-age=31536000, immutable"
-
-	@htmlDocs {
-		not path /_next/static/*
-		not path *.js *.css *.woff *.woff2 *.ttf *.otf *.eot
-		not path *.png *.jpg *.jpeg *.gif *.webp *.avif *.svg *.ico
-		not path *.yml *.xml *.txt *.md *.webmanifest
-	}
-	header @htmlDocs Cache-Control "public, max-age=0, must-revalidate"
-
-	# Real 404 for unknown paths (no soft-404 via homepage rewrite).
-	try_files {path} {path}.html {path}/index.html =404
-	file_server
-
-	handle_errors {
-		rewrite * /404.html
-		file_server
-	}
-
-	header /performers-feed.yml Content-Type "application/xml; charset=utf-8"
-	header /feeds/*.yml Content-Type "application/xml; charset=utf-8"
-	header /info.md Content-Type "text/markdown; charset=utf-8"
-	header /info.txt Content-Type "text/plain; charset=utf-8"
-
-	header /partners/ru.html X-Robots-Tag "noindex, nofollow, noarchive, nosnippet"
-	header /tel* X-Robots-Tag "noindex, nofollow"
-	header /performers-feed.yml X-Robots-Tag "noindex"
-	header /performers-feed.yml Access-Control-Allow-Origin "*"
-	header /performers-feed.yml Cache-Control "public, max-age=300"
-	header /feeds/*.yml X-Robots-Tag "noindex"
-	header /feeds/*.yml Access-Control-Allow-Origin "*"
-	header /feeds/*.yml Cache-Control "public, max-age=300"
-
-	redir /ru / permanent
-	redir /ru/ / permanent
-	redir /ru.html / permanent
+	import astro_proxy
 }
 
-# White-label partner landing — separate offer/audience, not linked from main nav.
+https://www.bober-systems.ru {
+	tls internal
+	import astro_proxy
+}
+
 https://partners.bober-ai.dev {
-	encode gzip
-	root * /srv
-
-	handle /performers-feed.yml {
-		rewrite * /feeds/partners.yml
-		header Content-Type "application/xml; charset=utf-8"
-		header X-Robots-Tag "noindex"
-		header Access-Control-Allow-Origin "*"
-		header Cache-Control "public, max-age=300"
-		file_server
-	}
-
-	handle /feeds/partners.yml {
-		header Content-Type "application/xml; charset=utf-8"
-		header X-Robots-Tag "noindex"
-		header Access-Control-Allow-Origin "*"
-		header Cache-Control "public, max-age=300"
-		file_server
-	}
-
-	@shared path /_next/* /stock/* /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /privacy-policy /consent /terms /partners/trust/* /feeds/*
-	handle @shared {
-		try_files {path} {path}.html
-		file_server
-	}
-
-	handle {
-		rewrite * /white-label.html
-		file_server
-	}
+	rewrite * /white-label
+	import astro_proxy
 }
 
-# Bitrix24 + amoCRM landing
+https://partners.bober-systems.ru {
+	tls internal
+	rewrite * /white-label
+	import astro_proxy
+}
+
 https://bitrix.bober-ai.dev {
-	encode gzip
-	root * /srv
+	rewrite * /bitrix
+	import astro_proxy
+}
 
-	handle /performers-feed.yml {
-		rewrite * /feeds/bitrix.yml
-		header Content-Type "application/xml; charset=utf-8"
-		header X-Robots-Tag "noindex"
-		header Access-Control-Allow-Origin "*"
-		header Cache-Control "public, max-age=300"
-		file_server
-	}
-
-	handle /feeds/bitrix.yml {
-		header Content-Type "application/xml; charset=utf-8"
-		header X-Robots-Tag "noindex"
-		header Access-Control-Allow-Origin "*"
-		header Cache-Control "public, max-age=300"
-		file_server
-	}
-
-	@shared path /_next/* /stock/* /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /privacy-policy /consent /terms /partners/trust/* /feeds/*
-	handle @shared {
-		try_files {path} {path}.html
-		file_server
-	}
-
-	handle {
-		rewrite * /bitrix.html
-		file_server
-	}
+https://bitrix.bober-systems.ru {
+	tls internal
+	rewrite * /bitrix
+	import astro_proxy
 }

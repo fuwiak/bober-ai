@@ -1,100 +1,44 @@
-# Bober AI Systems (Next.js)
+# Bober AI Systems (Astro + HTMX)
 
-Проект переведён на чистый `Next.js` (App Router) без `Vite`.
+Сайт на **Astro 5** (HTML-компоненты + HTMX + TypeScript), деплой **только Selectel**.
 
 ## Локальный запуск
 
 Требования: `Node.js 20+` (рекомендуется `22`).
 
-1. Установить зависимости:
-   `npm install`
-2. Запустить dev-сервер:
-   `npm run dev`
-3. Открыть:
-   `http://localhost:3000`
+1. `npm install`
+2. `npm run dev` → `http://localhost:4321`
+3. Прод-режим локально: `npm run build && npm run start` → `:3000`
 
-## Продакшн-сборка
+## Стек
 
-1. Собрать проект:
-   `npm run build`
-2. Запустить в production:
-   `npm run start`
+- Astro pages/layouts (prerender) + `@astrojs/node` для `/api/contact`, `/api/health`, `/api/kwork/webhook`
+- Контент: `src/content/ru.ts`, `src/content/en.ts`, `src/lib/seo-catalog/`
+- Стили: Tailwind 4 (`src/styles/globals.css`)
+- Формы: HTMX → `POST /api/contact`
 
-## Деплой
+## Деплой (Selectel)
 
-Прод: **два origin** — Selectel (РФ / без VPN) и Railway (VPN / мир). См. [`deploy/DUAL-ORIGIN.md`](deploy/DUAL-ORIGIN.md).
+Единственный origin: VDS `45.80.131.136`. См. [`deploy/DUAL-ORIGIN.md`](deploy/DUAL-ORIGIN.md).
 
-- Railway: `railway up --detach` → `https://bober-ai-production.up.railway.app`
-- Selectel VDS: `deploy/` + Caddy (`45.80.131.136`)
+```bash
+# на машине с Docker (локально или CI)
+docker build -t bober-ai:latest .
+# на VDS: compose с Caddy + web
+cd deploy && docker compose up -d --build
+```
 
-`Dockerfile` / `railway.toml` — основной путь для Railway; Selectel использует тот же образ/статику через `/opt/bober-ai`.
+Caddy: TLS + reverse_proxy на `:3000`, host rewrite для `partners.*` → `/white-label`, `bitrix.*` → `/bitrix`.
 
-### Ops CLI (аналог Railway status / logs / healthcheck)
-
-Bubble Tea CLI в `cli/` — статус контейнера, логи и Network › Healthcheck.
-
-**Один раз установить** (глобальная команда `bober` + post-commit хук):
+### Ops CLI
 
 ```bash
 npm run ops:install
+bober          # TUI
+bober status
+bober health
 ```
 
-Потом из **любой** директории — **одно окно**, вкладки:
+## Yandex / Bitrix / feeds
 
-```bash
-bober              # TUI → Status
-bober status       # та же TUI, вкладка Status
-bober health       # вкладка Health
-bober logs         # вкладка Logs (live)
-bober build        # вкладка Build
-```
-
-Внутри: `Tab` / `←` `→` / `1`–`4` — переключение, `f` — live follow, `r` — refresh, `q` — выход.
-
-Для скриптов/хука (без TUI): `bober status --plain`.
-
-После каждого `git commit` хук запускает `bober status --plain`. Отключить: `BOBER_OPS_SKIP=1 git commit ...`.
-
-Без install:
-
-```bash
-npm run ops:status
-npm run ops
-```
-
-### Yaga — модульный Yandex CLI (Go + TUI)
-
-**yaga** на том же стеке, что `bober` (Go + Bubble Tea). Сервисы = bricks.
-
-```bash
-npm run yaga:install
-yaga                 # TUI
-yaga bricks
-yaga profile public  # спрятать owner-bricks
-yaga webmaster status
-yaga webmaster seo   # чеклист позиций (ИКС / диагностика / индекс)
-```
-
-Подробнее: [`cli/yaga/README.md`](cli/yaga/README.md).
-
-### Publish — статьи site-first (Medium / Habr)
-
-Источник: `articles/<slug>/article.md`. Сначала сайт, потом репост.
-
-```bash
-npm run publish -- list
-npm run publish -- site <slug>
-npm run publish -- open-medium-import <slug>   # Import from URL (без Medium API)
-npm run publish -- habr export <slug>
-npm run publish -- habr open-draft <slug>
-```
-
-Подробнее: [`cli/publish/README.md`](cli/publish/README.md) · конвенция: [`articles/README.md`](articles/README.md).
-
-### Docker локально
-
-```bash
-docker build -t bober-ai-dev .
-docker run --rm -p 8080:80 bober-ai-dev
-curl -sS http://localhost:8080/api/health
-```
+Скрипты `npm run webmaster:*`, `yandex:*`, `bitrix:*`, `feeds:generate` — без изменений по смыслу.

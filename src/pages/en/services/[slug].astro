@@ -1,0 +1,42 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContactForm from "@/components/ContactForm.astro";
+import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
+import { getEnterpriseService, getEnterpriseServicesListing } from "@/lib/enterprise-services";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return getEnterpriseServicesListing("en").map((service) => ({
+    params: { slug: service.slug },
+    props: { locale: "en" as Locale },
+  }));
+}
+
+const { slug } = Astro.params;
+const locale = "en" as const;
+const messages = loadMessages(locale);
+const service = getEnterpriseService(slug!, locale);
+if (!service) {
+  return Astro.redirect("/en/services");
+}
+---
+
+<BaseLayout
+  title={`${service.title} — Bober AI`}
+  description={service.description}
+  locale={locale}
+  canonicalPath={`/en/services/${service.slug}`}
+>
+  <article class="container-editorial py-12 md:py-20">
+    <p class="meta-label">{messages.nav.services}</p>
+    <h1 class="mt-4 display-title">{service.title}</h1>
+    <p class="mt-6 body-copy max-w-3xl">{service.description}</p>
+    <p class="mt-4 body-copy max-w-3xl text-muted">{service.about}</p>
+    <p class="mt-6 text-sm text-muted">{service.salesNotes} · {service.deliveryDays} days</p>
+    <section id="contact" class="mt-16 border-t border-hairline pt-12">
+      <h2 class="section-title">{messages.nav.contact}</h2>
+      <div class="mt-8 max-w-xl"><ContactForm locale={locale} messages={messages} /></div>
+    </section>
+  </article>
+</BaseLayout>

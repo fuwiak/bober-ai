@@ -1,0 +1,18 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { ACADEMY_POSTS } from "@/lib/academy-posts";
+export const prerender = true;
+---
+<BaseLayout title="Практикум — Bober AI" description="Практикум по AI для бизнеса" locale="ru" canonicalPath="/academy">
+  <section class="container-editorial py-12 md:py-20">
+    <h1 class="display-title">Практикум</h1>
+    <ul class="mt-10 space-y-6">
+      {ACADEMY_POSTS.map((p) => (
+        <li class="border border-hairline p-5">
+          <a class="font-medium text-link" href={`/academy/${p.slug}`}>{p.title}</a>
+          <p class="mt-2 text-sm text-muted">{p.summary}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>

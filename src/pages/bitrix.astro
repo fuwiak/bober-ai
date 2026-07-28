@@ -1,0 +1,45 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContactForm from "@/components/ContactForm.astro";
+import { loadMessages } from "@/lib/i18n";
+import { BITRIX_PACKAGES, BITRIX_SALES_LOOP } from "@/lib/bitrix-landing";
+import { BITRIX_SITE_URL, TELEGRAM_URL } from "@/lib/site";
+export const prerender = true;
+const messages = loadMessages("ru");
+---
+<BaseLayout
+  title="Битрикс24 + AI — внедрение и автоматизация продаж"
+  description="Внедрение Битрикс24 с AI-слоем: телефония, CRM, follow-up, отчёты об упущенных сделках."
+  locale="ru"
+  canonicalPath="/bitrix"
+>
+  <article class="container-editorial py-12 md:py-20">
+    <p class="meta-label">Битрикс24 · {BITRIX_SITE_URL}</p>
+    <h1 class="mt-4 display-title">{BITRIX_SALES_LOOP.title}</h1>
+    <p class="mt-6 body-copy max-w-3xl">{BITRIX_SALES_LOOP.lead}</p>
+    <ul class="mt-8 space-y-2">
+      {BITRIX_SALES_LOOP.steps.map((step) => (
+        <li class="body-copy flex gap-3">
+          <span class="text-accent">—</span>
+          <span>{step}</span>
+        </li>
+      ))}
+    </ul>
+    <ul class="mt-10 grid gap-4 md:grid-cols-2">
+      {BITRIX_PACKAGES.map((pkg) => (
+        <li class="border border-hairline p-5">
+          <p class="font-medium text-ink">{pkg.title}</p>
+          <p class="mt-2 text-sm text-muted">{pkg.priceLabel}</p>
+          <p class="mt-2 text-sm text-muted">{pkg.gets}</p>
+        </li>
+      ))}
+    </ul>
+    <p class="mt-8">
+      <a class="btn-primary" href={TELEGRAM_URL} target="_blank" rel="noreferrer">Обсудить внедрение</a>
+    </p>
+    <section id="contact" class="mt-16 border-t border-hairline pt-12">
+      <h2 class="section-title">{messages.nav.contact}</h2>
+      <div class="mt-8 max-w-xl"><ContactForm locale="ru" messages={messages} /></div>
+    </section>
+  </article>
+</BaseLayout>

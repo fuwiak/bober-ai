@@ -6,11 +6,10 @@
     "node": ">=20"
   },
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start -H 0.0.0.0 -p ${PORT:-3000}",
-    "postbuild:static": "node scripts/postbuild-static.mjs",
-    "lint": "next lint",
+    "dev": "astro dev",
+    "build": "astro build && node scripts/generate-sitemap.mjs",
+    "start": "HOST=0.0.0.0 PORT=${PORT:-3000} node ./dist/server/entry.mjs",
+    "lint": "astro check",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:live": "playwright test -c playwright.live.config.ts",
@@ -46,6 +45,8 @@
     "yandex:direct:micro": "node scripts/yandex-direct-micro.mjs",
     "yandex:direct:mini-hot": "node scripts/yandex-direct-mini-hot.mjs",
     "yandex:direct:service-gallery": "node scripts/yandex-direct-service-gallery.mjs",
+    "yandex:business": "node scripts/yandex-business.mjs",
+    "yandex:business:oauth": "node scripts/yandex-business-oauth.mjs",
     "yandex:audience:oauth": "node scripts/yandex-audience-oauth.mjs",
     "yandex:audience:oauth:refresh": "node scripts/yandex-audience-oauth.mjs refresh --update-railway",
     "yandex:audience:oauth:ensure": "node scripts/yandex-audience-oauth.mjs ensure --update-railway",
@@ -88,28 +89,21 @@
     "publish:site": "node cli/publish/bin/publish.js site",
     "publish:export-medium": "node cli/publish/bin/publish.js export-medium",
     "publish:open-medium-import": "node cli/publish/bin/publish.js open-medium-import",
-    "publish:habr": "node cli/publish/bin/publish.js habr"
+    "publish:habr": "node cli/publish/bin/publish.js habr",
+    "preview": "astro preview"
   },
   "dependencies": {
-    "lucide-react": "^0.546.0",
-    "motion": "^12.23.24",
-    "next": "^15.5.0",
-    "next-intl": "^4.13.2",
-    "nodemailer": "^9.0.3",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "@astrojs/node": "^9.5.5",
+    "astro": "^5.18.2",
+    "htmx.org": "^2.0.10",
+    "nodemailer": "^9.0.3"
   },
   "devDependencies": {
     "@playwright/test": "^1.51.1",
-    "@tailwindcss/postcss": "^4.1.14",
+    "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^22.14.0",
     "@types/nodemailer": "^8.0.1",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "eslint": "^9.0.0",
-    "eslint-config-next": "^15.5.0",
-    "postcss": "^8.5.0",
-    "tailwindcss": "^4.1.14",
+    "tailwindcss": "^4.3.3",
     "typescript": "~5.8.2"
   }
 }

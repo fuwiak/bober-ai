@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import {
   CLOUD_RU_PARTNERS_URL,
   CONTACT_EMAIL,
@@ -44,6 +43,21 @@ type PageSeoInput = {
   };
 };
 
+/** Framework-agnostic page metadata (was Next.js Metadata). */
+export type PageMetadata = {
+  title: string | { absolute: string };
+  description: string;
+  keywords?: string[];
+  alternates?: {
+    canonical?: string;
+    languages?: Record<string, string>;
+  };
+  openGraph?: Record<string, unknown>;
+  twitter?: Record<string, unknown>;
+  robots?: Record<string, unknown> | string;
+  [key: string]: unknown;
+};
+
 function localePath(path: string, locale: string): string {
   if (locale === "en") {
     return path === "/" ? "/en" : path.startsWith("/en") ? path : `/en${path}`;
@@ -71,7 +85,7 @@ export function buildPageMetadata({
   ogType = "website",
   image = DEFAULT_OG_IMAGE,
   article,
-}: PageSeoInput): Metadata {
+}: PageSeoInput): PageMetadata {
   const canonicalPath = localePath(path, locale);
   const ruPath = path.replace(/^\/en(?=\/|$)/, "") || "/";
   const enPath = path.startsWith("/en") ? path : `/en${path === "/" ? "" : path}`;

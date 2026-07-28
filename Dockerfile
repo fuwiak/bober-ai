@@ -1,4 +1,4 @@
-# Next.js standalone (API routes: /api/contact, /api/health).
+# Astro + Node standalone (API: /api/contact, /api/health, /api/kwork/webhook).
 FROM node:22-alpine AS deps
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
@@ -11,20 +11,26 @@ WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1 \
     NODE_ENV=production
 
-ARG NEXT_PUBLIC_SITE_URL=https://www.bober-ai.dev
-ARG NEXT_PUBLIC_PARTNERS_SITE_URL=https://partners.bober-ai.dev
-ARG NEXT_PUBLIC_BITRIX_SITE_URL=https://bitrix.bober-ai.dev
-ARG NEXT_PUBLIC_YANDEX_METRIKA_ID=110635302
-ARG NEXT_PUBLIC_PARTNERS_YANDEX_METRIKA_ID=110926696
-ARG NEXT_PUBLIC_BITRIX_YANDEX_METRIKA_ID=110926887
-ARG NEXT_PUBLIC_CONTACT_EMAIL=contact@bober-ai.dev
-ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL \
-    NEXT_PUBLIC_PARTNERS_SITE_URL=$NEXT_PUBLIC_PARTNERS_SITE_URL \
-    NEXT_PUBLIC_BITRIX_SITE_URL=$NEXT_PUBLIC_BITRIX_SITE_URL \
-    NEXT_PUBLIC_YANDEX_METRIKA_ID=$NEXT_PUBLIC_YANDEX_METRIKA_ID \
-    NEXT_PUBLIC_PARTNERS_YANDEX_METRIKA_ID=$NEXT_PUBLIC_PARTNERS_YANDEX_METRIKA_ID \
-    NEXT_PUBLIC_BITRIX_YANDEX_METRIKA_ID=$NEXT_PUBLIC_BITRIX_YANDEX_METRIKA_ID \
-    NEXT_PUBLIC_CONTACT_EMAIL=$NEXT_PUBLIC_CONTACT_EMAIL
+ARG PUBLIC_SITE_URL=https://www.bober-ai.dev
+ARG PUBLIC_PARTNERS_SITE_URL=https://partners.bober-ai.dev
+ARG PUBLIC_BITRIX_SITE_URL=https://bitrix.bober-ai.dev
+ARG PUBLIC_YANDEX_METRIKA_ID=110635302
+ARG PUBLIC_PARTNERS_YANDEX_METRIKA_ID=110926696
+ARG PUBLIC_BITRIX_YANDEX_METRIKA_ID=110926887
+ARG PUBLIC_CONTACT_EMAIL=contact@bober-ai.dev
+# Keep NEXT_PUBLIC_* aliases for shared lib fallbacks during migration
+ENV PUBLIC_SITE_URL=$PUBLIC_SITE_URL \
+    PUBLIC_PARTNERS_SITE_URL=$PUBLIC_PARTNERS_SITE_URL \
+    PUBLIC_BITRIX_SITE_URL=$PUBLIC_BITRIX_SITE_URL \
+    PUBLIC_YANDEX_METRIKA_ID=$PUBLIC_YANDEX_METRIKA_ID \
+    PUBLIC_PARTNERS_YANDEX_METRIKA_ID=$PUBLIC_PARTNERS_YANDEX_METRIKA_ID \
+    PUBLIC_BITRIX_YANDEX_METRIKA_ID=$PUBLIC_BITRIX_YANDEX_METRIKA_ID \
+    PUBLIC_CONTACT_EMAIL=$PUBLIC_CONTACT_EMAIL \
+    NEXT_PUBLIC_SITE_URL=$PUBLIC_SITE_URL \
+    NEXT_PUBLIC_PARTNERS_SITE_URL=$PUBLIC_PARTNERS_SITE_URL \
+    NEXT_PUBLIC_BITRIX_SITE_URL=$PUBLIC_BITRIX_SITE_URL \
+    NEXT_PUBLIC_YANDEX_METRIKA_ID=$PUBLIC_YANDEX_METRIKA_ID \
+    NEXT_PUBLIC_CONTACT_EMAIL=$PUBLIC_CONTACT_EMAIL
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -33,20 +39,17 @@ RUN npm run build
 FROM node:22-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production \
-    NEXT_TELEMETRY_DISABLED=1 \
-    PORT=3000 \
-    HOSTNAME=0.0.0.0
+    HOST=0.0.0.0 \
+    PORT=3000
 
-RUN addgroup -S nextjs && adduser -S nextjs -G nextjs
+RUN addgroup -S astro && adduser -S astro -G astro
 
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
-COPY --from=builder /app/public ./public
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
 
-RUN mkdir -p /app/.next/cache \
-    && chown -R nextjs:nextjs /app
-
-USER nextjs
+RUN chown -R astro:astro /app
+USER astro
 EXPOSE 3000
 
-CMD ["node", "server.js"]
+CMD ["node", "./dist/server/entry.mjs"]

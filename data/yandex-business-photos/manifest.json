@@ -1,0 +1,51 @@
+{
+  "companyId": 113092981562,
+  "uploadUi": "https://yandex.ru/sprav/113092981562/p/edit/photos/",
+  "requirements": {
+    "format": ["JPG", "PNG"],
+    "maxMb": 10,
+    "resolution": "320x240 … 5000x5000",
+    "docs": "https://yandex.ru/support/business-priority/ru/manage/photos"
+  },
+  "packDir": "data/yandex-business-photos",
+  "priorityUpload": [
+    {
+      "category": "Интерьер",
+      "mapsName": "Внутри",
+      "files": [
+        "interior/01-office-interior.jpg",
+        "interior/02-team-collab.jpg"
+      ],
+      "note": "Реальное/офисное пространство. Без контактов на кадре."
+    },
+    {
+      "category": "Вход",
+      "mapsName": "Вход",
+      "files": ["entrance/01-office-facade.jpg"],
+      "note": "Фасад / входная группа — клиент быстрее найдёт."
+    },
+    {
+      "category": "Услуги",
+      "mapsName": "Услуги",
+      "files": [
+        "services/01-enterprise-ai.jpg",
+        "services/02-document-processing.jpg",
+        "services/03-crm-integration.jpg",
+        "services/04-private-llm.jpg",
+        "services/06-sales-ai-agent.jpg"
+      ],
+      "note": "Сток/иллюстрации услуг — риск отклонения, если слишком «рекламные». Лучше реальные скрины/кейсы."
+    }
+  ],
+  "optional": [
+    {
+      "category": "Экстерьер",
+      "files": ["exterior/01-office-tower.jpg"]
+    }
+  ],
+  "video": {
+    "status": "нет файла в репо",
+    "hint": "Короткое видео офиса/входа поднимает карточку. Снять на телефон 15–60 сек, загрузить в ЛК → Видео."
+  },
+  "api": "загрузка фото через Partner API недоступна (403) — только UI"
+}

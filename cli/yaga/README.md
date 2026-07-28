@@ -20,6 +20,9 @@ yaga webmaster oauth         # ClientID/secret → access token (один раз
 yaga webmaster seo           # ИКС, диагностика, индекс, важные URL, запросы
 yaga webmaster recrawl URL   # переобход страницы
 yaga metrika status
+yaga business status         # Яндекс Бизнес Partner API
+yaga business card
+yaga business campaigns
 yaga direct campaigns status
 yaga bricks
 yaga profile public          # только public bricks
@@ -32,6 +35,7 @@ yaga credentials open YANDEX_WEBMASTER_OAUTH_TOKEN
 
 > **OAuth:** ClientID + Client secret ≠ access token. После сохранения secret:
 > `yaga webmaster oauth` → браузер → code → token в `~/.config/yaga/credentials.env`.
+> Business: `yaga business oauth` (токен для `geoadv-api.yandex.ru`).
 
 ### TUI
 

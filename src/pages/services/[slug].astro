@@ -1,0 +1,52 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContactForm from "@/components/ContactForm.astro";
+import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
+import { getEnterpriseService, getEnterpriseServicesListing } from "@/lib/enterprise-services";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  const locales: Locale[] = ["ru", "en"];
+  const paths: { params: { slug: string }; props: { locale: Locale } }[] = [];
+  for (const locale of locales) {
+    for (const service of getEnterpriseServicesListing(locale)) {
+      // RU at /services/[slug]; EN handled under /en/services/[slug]
+      if (locale === "ru") {
+        paths.push({ params: { slug: service.slug }, props: { locale } });
+      }
+    }
+  }
+  return paths;
+}
+
+const { slug } = Astro.params;
+const { locale } = Astro.props;
+const messages = loadMessages(locale);
+const service = getEnterpriseService(slug!, locale);
+if (!service) {
+  return Astro.redirect(localizePath("/services", locale));
+}
+---
+
+<BaseLayout
+  title={`${service.title} — Bober AI`}
+  description={service.description}
+  locale={locale}
+  canonicalPath={localizePath(`/services/${service.slug}`, locale)}
+>
+  <article class="container-editorial py-12 md:py-20">
+    <p class="meta-label">{messages.nav.services}</p>
+    <h1 class="mt-4 display-title">{service.title}</h1>
+    <p class="mt-6 body-copy max-w-3xl">{service.description}</p>
+    <p class="mt-4 body-copy max-w-3xl text-muted">{service.about}</p>
+    <p class="mt-6 text-sm text-muted">
+      {service.salesNotes} · {service.deliveryDays}
+      {locale === "en" ? " days" : " дн."}
+    </p>
+    <section id="contact" class="mt-16 border-t border-hairline pt-12">
+      <h2 class="section-title">{messages.nav.contact}</h2>
+      <div class="mt-8 max-w-xl"><ContactForm locale={locale} messages={messages} /></div>
+    </section>
+  </article>
+</BaseLayout>

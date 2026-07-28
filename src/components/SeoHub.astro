@@ -1,0 +1,56 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContactForm from "@/components/ContactForm.astro";
+import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
+import { SEO_HUBS } from "@/lib/seo-catalog/hubs";
+import type { CatalogCategory } from "@/lib/seo-catalog/types";
+
+interface Props {
+  category: CatalogCategory;
+  locale: Locale;
+}
+
+const { category, locale } = Astro.props;
+const messages = loadMessages(locale);
+const hub = SEO_HUBS.find((h) => h.category === category);
+if (!hub) throw new Error(`Missing hub ${category}`);
+const copy = hub[locale];
+---
+
+<BaseLayout
+  title={copy.metaTitle}
+  description={copy.metaDescription}
+  locale={locale}
+  canonicalPath={localizePath(`/${category}`, locale)}
+>
+  <article class="container-editorial py-12 md:py-20">
+    <h1 class="display-title">{copy.h1}</h1>
+    <p class="mt-6 body-copy max-w-3xl">{copy.subtitle}</p>
+    <ul class="mt-6 space-y-3">
+      {copy.intro.map((line) => (
+        <li class="body-copy flex gap-3">
+          <span class="text-accent">—</span>
+          <span>{line}</span>
+        </li>
+      ))}
+    </ul>
+    <ul class="mt-12 grid gap-6 md:grid-cols-2">
+      {
+        hub.children.map((child) => (
+          <li class="border border-hairline p-5">
+            <a class="font-medium text-link" href={localizePath(child.href, locale)}>
+              {locale === "en" ? child.labelEn : child.labelRu}
+            </a>
+            <p class="mt-2 text-sm text-muted">
+              {locale === "en" ? child.blurbEn : child.blurbRu}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+    <section id="contact" class="mt-16 border-t border-hairline pt-12">
+      <h2 class="section-title">{messages.nav.contact}</h2>
+      <div class="mt-8 max-w-xl"><ContactForm locale={locale} messages={messages} /></div>
+    </section>
+  </article>
+</BaseLayout>

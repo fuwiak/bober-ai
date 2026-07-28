@@ -1,0 +1,148 @@
+---
+/**
+ * Generic marketing page: title, lead, sections from messages namespace.
+ */
+import ContactForm from "@/components/ContactForm.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
+
+interface Section {
+  title?: string;
+  body?: string;
+  items?: string[];
+}
+
+interface Props {
+  locale: Locale;
+  path: string;
+  namespace: string;
+  showContact?: boolean;
+}
+
+const { locale, path, namespace, showContact = true } = Astro.props;
+const messages = loadMessages(locale);
+
+function resolveNamespace(root: unknown, ns: string): Record<string, unknown> | null {
+  let cur: unknown = root;
+  for (const part of ns.split(".")) {
+    if (!cur || typeof cur !== "object") return null;
+    cur = (cur as Record<string, unknown>)[part];
+  }
+  return cur && typeof cur === "object" ? (cur as Record<string, unknown>) : null;
+}
+
+const block = (resolveNamespace(messages, namespace) || {}) as {
+  metaTitle?: string;
+  metaDescription?: string;
+  pageTitle?: string;
+  title?: string;
+  h1?: string;
+  eyebrow?: string;
+  subtitle?: string;
+  lead?: string;
+  intro?: string;
+  text?: string;
+  description?: string;
+  body?: string;
+  tagline?: string;
+  sections?: Section[];
+  faq?: { q: string; a: string }[];
+  items?: { title: string; description?: string; href?: string }[];
+} & Record<string, unknown>;
+
+const title =
+  block.metaTitle ||
+  block.pageTitle ||
+  block.title ||
+  block.h1 ||
+  String(namespace);
+const description =
+  block.metaDescription ||
+  block.subtitle ||
+  block.lead ||
+  block.intro ||
+  block.tagline ||
+  block.description ||
+  messages.meta.description;
+const h1 = block.h1 || block.pageTitle || block.title || title;
+const leadText =
+  block.subtitle || block.lead || block.intro || block.text || block.body || block.description;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  locale={locale}
+  canonicalPath={localizePath(path, locale)}
+>
+  <article class="container-editorial py-12 md:py-20">
+    {block?.eyebrow && <p class="meta-label">{block.eyebrow}</p>}
+    <h1 class="mt-4 display-title">{h1}</h1>
+    {leadText && <p class="mt-6 body-copy max-w-3xl whitespace-pre-line">{leadText}</p>}
+
+    {
+      block?.sections?.map((section) => (
+        <section class="mt-12">
+          {section.title && <h2 class="section-title">{section.title}</h2>}
+          {section.body && <p class="mt-4 body-copy max-w-3xl whitespace-pre-line">{section.body}</p>}
+          {section.items && (
+            <ul class="mt-4 space-y-2">
+              {section.items.map((item) => (
+                <li class="body-copy flex gap-3">
+                  <span class="text-accent">—</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+      ))
+    }
+
+    {
+      block?.items && (
+        <ul class="mt-10 grid gap-6 md:grid-cols-2">
+          {block.items.map((item) => (
+            <li class="border border-hairline p-5">
+              {item.href ? (
+                <a class="font-medium text-ink text-link" href={localizePath(item.href, locale)}>
+                  {item.title}
+                </a>
+              ) : (
+                <p class="font-medium text-ink">{item.title}</p>
+              )}
+              {item.description && <p class="mt-2 text-sm text-muted">{item.description}</p>}
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    {
+      block?.faq && (
+        <section class="mt-14">
+          <h2 class="section-title">FAQ</h2>
+          <div class="mt-6 space-y-6">
+            {block.faq.map((item) => (
+              <div>
+                <h3 class="font-medium text-ink">{item.q}</h3>
+                <p class="mt-2 body-copy text-muted">{item.a}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      showContact && (
+        <section id="contact" class="mt-16 border-t border-hairline pt-12">
+          <h2 class="section-title">{messages.nav.contact}</h2>
+          <div class="mt-8 max-w-xl">
+            <ContactForm locale={locale} messages={messages} />
+          </div>
+        </section>
+      )
+    }
+  </article>
+</BaseLayout>

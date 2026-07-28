@@ -1,0 +1,28 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContactForm from "@/components/ContactForm.astro";
+import { loadMessages } from "@/lib/i18n";
+import { PARTNERS_SITE_URL, TELEGRAM_URL } from "@/lib/site";
+export const prerender = true;
+const messages = loadMessages("ru");
+---
+<BaseLayout
+  title="AI-разработка в ваши услуги без найма команды — Partner Program"
+  description="White-label AI для агентств и интеграторов: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и RAG под вашим брендом."
+  locale="ru"
+  canonicalPath="/white-label"
+>
+  <article class="container-editorial py-12 md:py-20">
+    <p class="meta-label">Partner Program · {PARTNERS_SITE_URL}</p>
+    <h1 class="mt-4 display-title">White-label AI под вашим брендом</h1>
+    <p class="mt-6 body-copy max-w-3xl">
+      Субподряд для агентств и интеграторов: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и RAG.
+      Клиент и маржа остаются у вас. Ответ за 4 рабочих часа.
+    </p>
+    <p class="mt-6"><a class="btn-primary" href={TELEGRAM_URL} target="_blank" rel="noreferrer">Написать в Telegram</a></p>
+    <section id="contact" class="mt-16 border-t border-hairline pt-12">
+      <h2 class="section-title">{messages.nav.contact}</h2>
+      <div class="mt-8 max-w-xl"><ContactForm locale="ru" messages={messages} /></div>
+    </section>
+  </article>
+</BaseLayout>

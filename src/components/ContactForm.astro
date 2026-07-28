@@ -1,0 +1,92 @@
+---
+import { localizePath, type Locale } from "@/lib/i18n";
+import { LEGAL_ROUTES } from "@/lib/legal";
+import type { Messages } from "@/lib/i18n";
+
+interface Props {
+  locale: Locale;
+  messages: Messages;
+}
+
+const { locale, messages } = Astro.props;
+const form = messages.form;
+const privacyHref = localizePath(LEGAL_ROUTES.privacyPolicy, locale);
+const consentHref = localizePath(LEGAL_ROUTES.consent, locale);
+---
+
+<form
+  class="contact-form space-y-6"
+  hx-post="/api/contact"
+  hx-swap="outerHTML"
+>
+  <p class="body-copy text-sm text-muted">{form.intro}</p>
+
+  <input
+    type="text"
+    name="website"
+    tabindex="-1"
+    autocomplete="off"
+    aria-hidden="true"
+    class="absolute -left-[9999px] h-0 w-0 opacity-0"
+  />
+
+  <div>
+    <label for="name" class="form-label">{form.name}</label>
+    <input id="name" name="name" required autocomplete="name" class="text-input" />
+  </div>
+
+  <div>
+    <label for="contact" class="form-label">{form.contact}</label>
+    <input
+      id="contact"
+      name="contact"
+      required
+      autocomplete="email tel"
+      class="text-input"
+      placeholder={form.contactPlaceholder}
+    />
+  </div>
+
+  <div>
+    <label for="message" class="form-label">
+      {form.message}
+      <span class="text-muted-soft">{form.optional}</span>
+    </label>
+    <textarea
+      id="message"
+      name="message"
+      rows={3}
+      class="textarea-input"
+      placeholder={form.messagePlaceholder}
+    />
+  </div>
+
+  <div class="border-t border-hairline pt-6">
+    <label for="pd-consent" class="flex cursor-pointer items-start gap-3">
+      <input
+        id="pd-consent"
+        name="policyAccepted"
+        type="checkbox"
+        value="true"
+        required
+        class="mt-1 h-4 w-4 shrink-0 border-hairline-strong accent-ink"
+      />
+      <span class="text-sm leading-relaxed text-muted">
+        {form.consentCombined}
+        <a href={privacyHref} class="text-link" target="_blank" rel="noopener noreferrer">
+          {form.policyLink}
+        </a>
+        {form.consentAnd}
+        <a href={consentHref} class="text-link" target="_blank" rel="noopener noreferrer">
+          {form.consentLink}
+        </a>
+        .
+      </span>
+    </label>
+    <input type="hidden" name="consent" value="true" />
+  </div>
+
+  <button type="submit" class="contact-submit btn-primary w-full">
+    <span class="contact-submit__label">{form.submit}</span>
+  </button>
+</form>

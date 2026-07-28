@@ -4,13 +4,15 @@ services:
       context: ..
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://www.bober-ai.dev}
-        NEXT_PUBLIC_YANDEX_METRIKA_ID: ${NEXT_PUBLIC_YANDEX_METRIKA_ID:-110635302}
-        NEXT_PUBLIC_PARTNERS_YANDEX_METRIKA_ID: ${NEXT_PUBLIC_PARTNERS_YANDEX_METRIKA_ID:-110926696}
-        NEXT_PUBLIC_BITRIX_YANDEX_METRIKA_ID: ${NEXT_PUBLIC_BITRIX_YANDEX_METRIKA_ID:-110926887}
-        NEXT_PUBLIC_CONTACT_EMAIL: ${NEXT_PUBLIC_CONTACT_EMAIL:-contact@bober-ai.dev}
+        PUBLIC_SITE_URL: ${PUBLIC_SITE_URL:-https://www.bober-ai.dev}
+        PUBLIC_YANDEX_METRIKA_ID: ${PUBLIC_YANDEX_METRIKA_ID:-110635302}
+        PUBLIC_PARTNERS_YANDEX_METRIKA_ID: ${PUBLIC_PARTNERS_YANDEX_METRIKA_ID:-110926696}
+        PUBLIC_BITRIX_YANDEX_METRIKA_ID: ${PUBLIC_BITRIX_YANDEX_METRIKA_ID:-110926887}
+        PUBLIC_CONTACT_EMAIL: ${PUBLIC_CONTACT_EMAIL:-contact@bober-ai.dev}
     restart: unless-stopped
+    network_mode: host
     environment:
+      HOST: "0.0.0.0"
       PORT: "3000"
       SMTP_HOST: ${SMTP_HOST:-}
       SMTP_PORT: ${SMTP_PORT:-465}
@@ -22,10 +24,22 @@ services:
       CONTACT_TELEGRAM_BOT_TOKEN: ${CONTACT_TELEGRAM_BOT_TOKEN:-}
       CONTACT_TELEGRAM_CHAT_ID: ${CONTACT_TELEGRAM_CHAT_ID:-}
       LEADS_LOG_PATH: ${LEADS_LOG_PATH:-/app/data/leads.jsonl}
-    ports:
-      - "3000:3000"
+      KWORK_WEBHOOK_SECRET: ${KWORK_WEBHOOK_SECRET:-}
     volumes:
       - leads_data:/app/data
 
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - web
+
 volumes:
   leads_data:
+  caddy_data:
+  caddy_config:

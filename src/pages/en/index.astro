@@ -1,0 +1,27 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContactForm from "@/components/ContactForm.astro";
+import { loadMessages, localizePath } from "@/lib/i18n";
+export const prerender = true;
+const locale = "en" as const;
+const messages = loadMessages(locale);
+const meta = messages.meta;
+const hero = messages.hero;
+---
+<BaseLayout title={meta.title} description={meta.description} locale={locale} canonicalPath="/en" keywords={meta.keywords}>
+  <section class="container-editorial py-16 md:py-24">
+    <p class="meta-label">{hero.location}</p>
+    <p class="mt-4 meta-label">{hero.eyebrow}</p>
+    <h1 class="mt-6 display-title">{hero.titleLine1}</h1>
+    {hero.titleLine2 && <p class="mt-2 display-title text-muted">{hero.titleLine2}</p>}
+    <p class="mt-8 body-copy max-w-3xl whitespace-pre-line">{hero.valueProposition}</p>
+    <div class="mt-10 flex flex-wrap gap-4">
+      <a href={localizePath("/#contact", locale)} class="btn-primary">{hero.ctaPrimary}</a>
+      <a href={localizePath("/portfolio", locale)} class="btn-secondary">{hero.ctaSecondary}</a>
+    </div>
+  </section>
+  <section id="contact" class="container-editorial py-16 md:py-24 border-t border-hairline">
+    <h2 class="section-title">{messages.nav.contact}</h2>
+    <div class="mt-8 max-w-xl"><ContactForm locale={locale} messages={messages} /></div>
+  </section>
+</BaseLayout>

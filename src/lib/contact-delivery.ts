@@ -134,6 +134,54 @@ async function notifyTelegram(subject: string, text: string) {
   }
 }
 
+async function sendSmtpMail(params: {
+  to: string[];
+  subject: string;
+  text: string;
+  html: string;
+  replyTo?: string;
+}): Promise<{ ok: true } | { ok: false; error: string }> {
+  const smtpHost = process.env.SMTP_HOST?.trim();
+  const smtpPort = Number(process.env.SMTP_PORT || "465");
+  const smtpSecure = (process.env.SMTP_SECURE || "1") === "1";
+  const smtpUser = process.env.SMTP_USER?.trim();
+  const smtpPass = process.env.SMTP_PASS?.trim();
+  const from = process.env.CONTACT_FROM_EMAIL?.trim();
+
+  if (!smtpHost || !smtpUser || !smtpPass || !from) {
+    return { ok: false, error: "email_not_configured" };
+  }
+
+  try {
+    const transporter = nodemailer.createTransport({
+      host: smtpHost,
+      port: smtpPort,
+      secure: smtpSecure,
+      connectionTimeout: 8_000,
+      greetingTimeout: 8_000,
+      socketTimeout: 15_000,
+      auth: {
+        user: smtpUser,
+        pass: smtpPass,
+      },
+    });
+
+    await transporter.sendMail({
+      from,
+      to: params.to,
+      subject: params.subject,
+      text: params.text,
+      html: params.html,
+      replyTo: params.replyTo,
+    });
+    return { ok: true };
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "SMTP error";
+    console.error("[contact] smtp failed", message);
+    return { ok: false, error: message };
+  }
+}
+
 export async function deliverContactLead(lead: ContactLead): Promise<ContactDeliveryResult> {
   const { to, subject, text, html } = buildBodies(lead);
   const leadId = `lead_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
@@ -143,79 +191,58 @@ export async function deliverContactLead(lead: ContactLead): Promise<ContactDeli
     return { ok: true, dryRun: true, preview: { to, subject, text } };
   }
 
-  const smtpHost = process.env.SMTP_HOST?.trim();
-  const smtpPort = Number(process.env.SMTP_PORT || "465");
-  const smtpSecure = (process.env.SMTP_SECURE || "1") === "1";
-  const smtpUser = process.env.SMTP_USER?.trim();
-  const smtpPass = process.env.SMTP_PASS?.trim();
-  const from = process.env.CONTACT_FROM_EMAIL?.trim();
+  const replyTo =
+    lead.email?.includes("@") ? lead.email : lead.contact.includes("@") ? lead.contact : undefined;
 
-  if (!smtpHost || !smtpUser || !smtpPass || !from) {
-    return {
-      ok: false,
-      error: "email_not_configured",
-      message:
-        "Не настроена отправка почты: задайте SMTP_HOST/SMTP_PORT/SMTP_SECURE/SMTP_USER/SMTP_PASS/CONTACT_FROM_EMAIL",
-      status: 500,
-    };
+  // Selectel (and many VDS) block outbound SMTP — skip instead of hanging the form.
+  const mail =
+    process.env.CONTACT_SKIP_SMTP === "1"
+      ? ({ ok: false, error: "smtp_skipped" } as const)
+      : await sendSmtpMail({ to, subject, text, html, replyTo });
+
+  await persistLead(lead, leadId, text).catch(() => undefined);
+  await notifyTelegram(subject, text).catch((error) => {
+    console.error("[contact] telegram notify failed", error);
+  });
+
+  const bitrixResult = await createBitrixLead({
+    name: lead.name,
+    contact: lead.contact,
+    message: lead.message,
+    service: lead.service,
+    company: lead.company,
+    phone: lead.phone,
+    email: lead.email,
+    source: lead.source,
+    utmSource: lead.attribution?.utm_source,
+    utmMedium: lead.attribution?.utm_medium,
+    utmCampaign: lead.attribution?.utm_campaign,
+    landingPage: lead.attribution?.landing_page,
+  }).catch((error) => {
+    console.error("[contact] bitrix lead failed", error);
+    return null;
+  });
+  if (bitrixResult && !bitrixResult.ok && bitrixResult.error !== "disabled" && bitrixResult.error !== "no_token") {
+    console.error("[contact] bitrix lead error", bitrixResult.error);
   }
 
-  try {
-    const transporter = nodemailer.createTransport({
-      host: smtpHost,
-      port: smtpPort,
-      secure: smtpSecure,
-      auth: {
-        user: smtpUser,
-        pass: smtpPass,
-      },
-    });
+  const bitrixOk = Boolean(bitrixResult?.ok);
+  const hasTelegram =
+    Boolean(process.env.CONTACT_TELEGRAM_BOT_TOKEN?.trim() || process.env.TELEGRAM_BOT_KEY?.trim()) &&
+    Boolean(process.env.CONTACT_TELEGRAM_CHAT_ID?.trim());
 
-    const replyTo =
-      lead.email?.includes("@") ? lead.email : lead.contact.includes("@") ? lead.contact : undefined;
-
-    await transporter.sendMail({
-      from,
-      to,
-      subject,
-      text,
-      html,
-      replyTo,
-    });
-
-    await persistLead(lead, leadId, text).catch(() => undefined);
-    await notifyTelegram(subject, text).catch((error) => {
-      console.error("[contact] telegram notify failed", error);
-    });
-    const bitrixResult = await createBitrixLead({
-      name: lead.name,
-      contact: lead.contact,
-      message: lead.message,
-      service: lead.service,
-      company: lead.company,
-      phone: lead.phone,
-      email: lead.email,
-      source: lead.source,
-      utmSource: lead.attribution?.utm_source,
-      utmMedium: lead.attribution?.utm_medium,
-      utmCampaign: lead.attribution?.utm_campaign,
-      landingPage: lead.attribution?.landing_page,
-    }).catch((error) => {
-      console.error("[contact] bitrix lead failed", error);
-      return null;
-    });
-    if (bitrixResult && !bitrixResult.ok && bitrixResult.error !== "disabled" && bitrixResult.error !== "no_token") {
-      console.error("[contact] bitrix lead error", bitrixResult.error);
+  // Selectel VDS often blocks outbound SMTP — accept Bitrix/Telegram/log as delivery.
+  if (mail.ok || bitrixOk || process.env.LEADS_LOG_PATH?.trim() || hasTelegram) {
+    if (!mail.ok) {
+      console.warn("[contact] delivered without SMTP", { leadId, bitrixOk, mailError: mail.error });
     }
-
     return { ok: true, leadId };
-  } catch (error) {
-    const message = error instanceof Error ? error.message : "SMTP error";
-    return {
-      ok: false,
-      error: "email_failed",
-      message: `Не удалось отправить письмо: ${message}`,
-      status: 502,
-    };
   }
+
+  return {
+    ok: false,
+    error: "delivery_failed",
+    message: `Не удалось доставить заявку: ${mail.error}`,
+    status: 502,
+  };
 }
