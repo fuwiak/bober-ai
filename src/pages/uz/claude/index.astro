@@ -1,5 +1,50 @@
 ---
-import ContentSectionPage from "@/components/ContentSectionPage.astro";
+/**
+ * UZ Claude AI landing — SeoServicePage + getClaudeSeoContent.
+ */
+import SeoServicePage from "@/components/SeoServicePage.astro";
+import { CLAUDE_PAGE, getClaudeSeoContent } from "@/lib/claude-page";
+import { localizePath } from "@/lib/i18n";
+
 export const prerender = true;
+
+const locale = "uz" as const;
+const content = getClaudeSeoContent(locale);
+const p = CLAUDE_PAGE;
+const glossaryHref = localizePath(p.glossaryHref, locale);
 ---
-<ContentSectionPage locale="uz" path="/claude" namespace="claude" />
+
+<SeoServicePage
+  slug="claude-smb"
+  serviceSlug="claude-smb"
+  locale={locale}
+  content={content}
+  pagePath="/claude"
+  keywords={[...p.metaKeywordsEn]}
+  formSource="claude-landing"
+  formDefaultService="Claude AI / deployment"
+  breadcrumbItems={[
+    { name: "Xizmatlar", path: "/services" },
+    { name: p.lineEn, path: "/claude" },
+  ]}
+>
+  <div slot="before-contact">
+    <section class="section-band section--deep border-b border-hairline">
+      <div class="container-editorial max-w-3xl">
+        <span class="section-label">{p.popularLabelEn}</span>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {
+            p.terms.map((term) => (
+              <li class="rounded border border-hairline bg-surface-card px-3 py-1.5 text-sm text-body">
+                {term}
+              </li>
+            ))
+          }
+        </ul>
+        <p class="mt-6">
+          <a href={glossaryHref} class="link-more">{p.glossaryLabelEn}</a>
+        </p>
+      </div>
+    </section>
+  </div>
+</SeoServicePage>

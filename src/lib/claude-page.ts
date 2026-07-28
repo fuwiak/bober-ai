@@ -5,12 +5,12 @@ export const CLAUDE_PAGE = {
   lineRu: "Claude AI для МСБ",
   lineEn: "Claude AI for SMB",
 
-  metaTitleRu: "Claude AI для малого и среднего бизнеса — внедрение и автоматизация | Bober AI",
-  metaTitleEn: "Claude AI for small and mid-size business — deployment & automation | Bober AI",
+  metaTitleRu: "Claude AI для бизнеса — внедрение и автоматизация | Bober AI",
+  metaTitleEn: "Claude AI for business — deployment & automation | Bober AI",
   metaDescRu:
-    "Внедряем Claude AI, Claude API, Claude Code и Claude MCP в процессы МСБ: CRM, документы, продажи, поддержка. Фиксированная смета, NDA, Россия и СНГ — без продажи подписки.",
+    "Внедряем Claude AI, Claude API, Claude Code и Claude MCP в процессы компании: CRM, документы, продажи, поддержка. Фиксированная смета, NDA, Россия и СНГ — без продажи подписки.",
   metaDescEn:
-    "We deploy Claude AI, Claude API, Claude Code and Claude MCP into SMB workflows: CRM, documents, sales, support. Fixed estimate, NDA, Russia & CIS — we don't sell subscriptions.",
+    "We deploy Claude AI, Claude API, Claude Code and Claude MCP into company workflows: CRM, documents, sales, support. Fixed estimate, NDA, Russia & CIS — we don't sell subscriptions.",
   metaKeywordsRu: [
     "claude ai",
     "claude для бизнеса",
@@ -42,12 +42,12 @@ export const CLAUDE_PAGE = {
     "deploy claude for business",
   ],
 
-  h1Ru: "Claude AI для малого и среднего бизнеса",
-  h1En: "Claude AI for small and mid-size business",
+  h1Ru: "Claude AI для бизнеса — внедрение и автоматизация",
+  h1En: "Claude AI for business — deployment and automation",
   subtitleRu:
-    "Claude AI, Claude API, Claude Code и Claude MCP — самые частые запросы в поиске. Мы не продаём подписку Anthropic и не настраиваем личный аккаунт: внедряем Claude в процессы компании — CRM, документы, продажи, поддержку и базу знаний. Для МСБ в России и СНГ — с фиксированной сметой и NDA.",
+    "Claude AI, Claude API, Claude Code и Claude MCP — самые частые запросы в поиске. Мы не продаём подписку и не настраиваем личный аккаунт: внедряем Claude в процессы компании — CRM, документы, продажи, поддержку и базу знаний. Для МСБ в России и СНГ — с фиксированной сметой и NDA.",
   subtitleEn:
-    "Claude AI, Claude API, Claude Code and Claude MCP are top search intents. We don't sell Anthropic subscriptions or set up personal accounts: we deploy Claude into company workflows — CRM, documents, sales, support and knowledge base. For SMB in Russia & CIS — fixed estimate and NDA.",
+    "Claude AI, Claude API, Claude Code and Claude MCP are top search intents. We don't sell subscriptions or set up personal accounts: we deploy Claude into company workflows — CRM, documents, sales, support and knowledge base. For SMB in Russia & CIS — fixed estimate and NDA.",
 
   /** GEO: short entity card for LLM answer engines */
   geoTitleRu: "Кто внедряет Claude и для кого",
