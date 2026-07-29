@@ -76,28 +76,42 @@ if (!content && !service) {
             {sp.timeline}: {service!.deliveryDays} {sp.days}
           </p>
           <div class="mt-5 flex flex-col gap-2">
-            <a href="#contact" class="btn-primary text-center">
-              Оформить заказ
+            <a href={localizePath(`/order/${service!.slug}`, locale)} class="btn-primary text-center">
+              {messages.order.title}
             </a>
-            <a href={localizePath(`/order/${service!.slug}`, locale)} class="btn-secondary text-center">
-              Форма заказа
-            </a>
+            <button type="button" class="btn-secondary text-center" data-contact-open data-contact-goal="primary_cta_click">
+              {messages.contact.fabLabel}
+            </button>
             <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" class="btn-secondary text-center">
               {sp.telegram}
             </a>
           </div>
         </aside>
-        <section id="contact" class="mt-16 border-t border-hairline pt-12">
-          <h2 class="section-title">Оформить заказ</h2>
-          <p class="mt-3 body-copy text-sm text-muted">
-            Заполните форму ниже — это оформление заказа. После отправки появится подтверждение.
-          </p>
+        <section id="order" class="mt-16 border-t border-hairline pt-12">
+          <p class="meta-label">{messages.order.metaLabel}</p>
+          <h2 class="section-title mt-2">{messages.order.title}</h2>
+          <p class="mt-3 body-copy text-sm text-muted">{messages.order.sectionHint}</p>
           <div class="mt-8 max-w-xl">
             <ContactForm
               locale={locale}
               messages={messages}
+              intent="order"
               defaultService={service!.title}
-              source={`service-${service!.slug}`}
+              source={`service-order-${service!.slug}`}
+              qualify
+            />
+          </div>
+        </section>
+        <section id="estimate" class="mt-16 border-t border-hairline pt-12">
+          <h2 class="section-title">{messages.contact.title}</h2>
+          <p class="mt-3 body-copy text-sm text-muted">{messages.contact.subtitle}</p>
+          <div class="mt-8 max-w-xl">
+            <ContactForm
+              locale={locale}
+              messages={messages}
+              intent="estimate"
+              defaultService={service!.title}
+              source={`service-estimate-${service!.slug}`}
               qualify
             />
           </div>

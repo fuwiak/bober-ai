@@ -64,6 +64,13 @@ const c = messages.contact;
     <div class="contact-modal__divider" aria-hidden="true">
       <span>{c.modalFormDivider}</span>
     </div>
-    <ContactForm locale={locale} messages={messages} qualify extended source="contact-modal" />
+    <ContactForm
+      locale={locale}
+      messages={messages}
+      intent="estimate"
+      qualify
+      extended
+      source="contact-modal"
+    />
   </div>
 </div>

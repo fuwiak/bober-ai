@@ -84,6 +84,7 @@ export const POST: APIRoute = async ({ request }) => {
   let policyAccepted = false;
   let attribution: Attribution | undefined;
   let locale = "ru";
+  let intent = "estimate";
 
   if (contentType.includes("application/json")) {
     const body = (await request.json().catch(() => ({}))) as Record<string, unknown>;
@@ -98,6 +99,7 @@ export const POST: APIRoute = async ({ request }) => {
     service = requireString(body.service as string);
     company = requireString(body.company as string);
     source = requireString(body.source as string);
+    intent = requireString(body.intent as string) === "order" ? "order" : "estimate";
     consent = body.consent === true || body.consent === "true";
     policyAccepted = body.policyAccepted === true || body.policyAccepted === "true";
     attribution = body.attribution as Attribution | undefined;
@@ -112,6 +114,7 @@ export const POST: APIRoute = async ({ request }) => {
       requireString(form.get("contact")) ||
       [phone && `Телефон / Telegram: ${phone}`, email && `Email: ${email}`].filter(Boolean).join("\n");
     const baseMessage = requireString(form.get("message")) || "—";
+    intent = requireString(form.get("intent")) === "order" ? "order" : "estimate";
     const qualifyBits = [
       requireString(form.get("processType")) && `Процесс: ${requireString(form.get("processType"))}`,
       requireString(form.get("systems")) && `Системы: ${requireString(form.get("systems"))}`,
@@ -141,6 +144,12 @@ export const POST: APIRoute = async ({ request }) => {
     };
   }
 
+  const intentLabel = intent === "order" ? "ЗАКАЗ" : "ОЦЕНКА";
+  message = `[${intentLabel}]\n${message}`;
+  if (!source) source = intent === "order" ? "order-form" : "site-form";
+  else if (!source.includes("order") && !source.includes("estimate") && !source.includes("modal")) {
+    source = `${intent}-${source}`;
+  }
   const wantsJson = contentType.includes("application/json");
   const isHtmx = Boolean(request.headers.get("HX-Request"));
   const fullPage = !wantsJson && !isHtmx;

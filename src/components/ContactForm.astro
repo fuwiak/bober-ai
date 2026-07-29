@@ -2,9 +2,13 @@
 import { localizePath, type Locale, type Messages } from "@/lib/i18n";
 import { LEGAL_ROUTES } from "@/lib/legal";
 
+export type ContactFormIntent = "estimate" | "order";
+
 interface Props {
   locale: Locale;
   messages: Messages;
+  /** estimate = «Получить оценку»; order = «Оформить заказ». Default estimate. */
+  intent?: ContactFormIntent;
   qualify?: boolean;
   extended?: boolean;
   source?: string;
@@ -16,6 +20,7 @@ interface Props {
 const {
   locale,
   messages,
+  intent = "estimate",
   qualify = false,
   extended = false,
   source = "site-form",
@@ -24,23 +29,31 @@ const {
   trackingPrefix = "",
 } = Astro.props;
 const form = messages.form;
+const isOrder = intent === "order";
+const intro = isOrder ? form.orderIntro : form.intro;
+const introShort = isOrder ? form.orderIntroShort : form.introShort;
+const messageLabel = isOrder ? form.orderMessage : form.message;
+const messagePlaceholder = isOrder ? form.orderMessagePlaceholder : form.messagePlaceholder;
+const submitLabel = isOrder ? form.orderSubmit : form.submit;
+const resolvedSource = source || (isOrder ? "order-form" : "site-form");
 const privacyHref = localizePath(LEGAL_ROUTES.privacyPolicy, locale);
 const consentHref = localizePath(LEGAL_ROUTES.consent, locale);
 const uid = `cf-${Math.random().toString(36).slice(2, 8)}`;
 ---
 
 <form
-  class="contact-form space-y-6"
+  class:list={["contact-form", "space-y-6", isOrder ? "contact-form--order" : "contact-form--estimate"]}
   action="/api/contact"
   method="post"
   hx-post="/api/contact"
   hx-swap="outerHTML"
   data-contact-form
+  data-form-intent={intent}
   data-ab-length={abTestLength ? "true" : undefined}
   data-tracking-prefix={trackingPrefix || undefined}
-  data-intro-short={form.introShort}
+  data-intro-short={introShort}
 >
-  <p class="body-copy text-sm text-muted" data-contact-intro>{form.intro}</p>
+  <p class="body-copy text-sm text-muted" data-contact-intro>{intro}</p>
 
   <input
     type="text"
@@ -51,7 +64,8 @@ const uid = `cf-${Math.random().toString(36).slice(2, 8)}`;
     class="absolute -left-[9999px] h-0 w-0 opacity-0"
   />
   <input type="hidden" name="locale" value={locale} />
-  <input type="hidden" name="source" value={source} />
+  <input type="hidden" name="source" value={resolvedSource} />
+  <input type="hidden" name="intent" value={intent} />
   <input type="hidden" name="service" value={defaultService} data-contact-default-service />
   <input type="hidden" name="utm_source" value="" />
   <input type="hidden" name="utm_medium" value="" />
@@ -94,7 +108,7 @@ const uid = `cf-${Math.random().toString(36).slice(2, 8)}`;
 
   <div>
     <label for={`${uid}-message`} class="form-label">
-      {form.message}
+      {messageLabel}
       <span class="text-muted-soft">{form.optional}</span>
     </label>
     <textarea
@@ -102,7 +116,7 @@ const uid = `cf-${Math.random().toString(36).slice(2, 8)}`;
       name="message"
       rows={3}
       class="textarea-input"
-      placeholder={form.messagePlaceholder}
+      placeholder={messagePlaceholder}
     />
   </div>
 
@@ -179,6 +193,6 @@ const uid = `cf-${Math.random().toString(36).slice(2, 8)}`;
   </div>
 
   <button type="submit" class="contact-submit btn-primary w-full">
-    <span class="contact-submit__label">{form.submit}</span>
+    <span class="contact-submit__label">{submitLabel}</span>
   </button>
 </form>

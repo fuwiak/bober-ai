@@ -967,17 +967,31 @@ const uzOverrides = {
     modalClose: "Yopish",
     fabLabel: "Baholash olish",
     modalChannels: "Yoki to'g'ridan-to'g'ri yozing",
-    modalFormDivider: "Yoki ariza qoldiring",
+    modalFormDivider: "Yoki baholash arizasi",
     intentTitle: "Loyiha baholashini olish",
     intentSubtitle:
       "4 ish soati ichida javob beramiz. 30 daqiqalik qo'ng'iroqdan keyin 24 soat ichida dastlabki reja va byudjet oralig'ini yuboramiz.",
     intentOffer: "Majburiyatsiz · ROI yo'nalishi · NDA so'rov bo'yicha",
     intentDefaultService: "30 daqiqalik loyiha baholash",
   },
+  order: {
+    title: "Buyurtma berish",
+    subtitle:
+      "Bu xizmat buyurtmasi formasi. Kontaktlarni qoldiring — ishlar tarkibi va muddatlarni tasdiqlaymiz.",
+    sectionHint:
+      "Buyurtma uchun maydonlarni toʻldiring. Bu baholash emas — baholash uchun «Baholash olish» tugmasidan foydalaning.",
+    estimateCta: "Buyurtma emas, loyiha baholashi kerakmi?",
+    estimateLink: "Baholash olish",
+    metaLabel: "Xizmat buyurtmasi",
+  },
   form: {
     intro: "Ism va aloqa — birinchi qadam uchun yetarli. Vazifa tavsifi ixtiyoriy.",
     introShort:
       "4 ish soati ichida javob beramiz. 30 daqiqalik qo'ng'iroqdan keyin 24 soat ichida dastlabki reja va byudjet oralig'ini yuboramiz.",
+    orderIntro:
+      "Buyurtma: ism va aloqa majburiy. Nima joriy qilish kerakligini qisqacha yozing.",
+    orderIntroShort:
+      "Xizmat buyurtmasi arizasi. 4 ish soati ichida javob beramiz va keyingi qadamni tasdiqlaymiz.",
     name: "Ism",
     company: "Kompaniya",
     phone: "Telefon yoki Telegram",
@@ -988,6 +1002,8 @@ const uzOverrides = {
     contactPlaceholder: "you@company.uz yoki +998…",
     message: "Vazifaning qisqa tavsifi",
     messagePlaceholder: "Masalan: PDF dan KP CRM ga, Bitrix24 va 1С sinxronizatsiyasi",
+    orderMessage: "Nima buyurtma qilasiz",
+    orderMessagePlaceholder: "Masalan: AI-yordamchi joriy etish, hujjatlar avtomatlashtirish",
     deployment: "Tizim qayerda ishlashi kerak",
     deploymentOptions: ["Bulut", "On-premise", "Gibrid"],
     kasperskyNeed: "Infratuzilma ixtiyoriy himoyasi kerakmi (Kaspersky)",
@@ -1022,10 +1038,13 @@ const uzOverrides = {
     consentAnd: "va beraman",
     consentLink: "shaxsiy ma'lumotlarni qayta ishlashga rozilik",
     submit: "Baholash olish",
+    orderSubmit: "Buyurtmani yuborish",
     submitting: "Yuborilmoqda…",
     successTitle: "Ariza yuborildi",
     success:
       "Arizani oldik va 4 ish soati ichida javob beramiz — keyingi qadam rejasi va byudjet yo'nalishi bilan.",
+    orderSuccess:
+      "Buyurtma qabul qilindi. 4 ish soati ichida javob beramiz va ishlar tarkibi, muddatlar va keyingi qadamni tasdiqlaymiz.",
     errorConsent: "Shaxsiy ma'lumotlarni qayta ishlashga rozilikni tasdiqlang",
     errorSend: "Arizani yuborib bo'lmadi",
     errorGeneric: "Yuborish xatosi",
