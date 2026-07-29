@@ -98,18 +98,23 @@ function buildBodies(lead: ContactLead) {
   return { to: recipients(), subject, text, html, attributionLines };
 }
 
-async function persistLead(lead: ContactLead, leadId: string, text: string) {
-  const logPath = process.env.LEADS_LOG_PATH?.trim();
-  if (!logPath) return;
+async function persistLead(lead: ContactLead, leadId: string, text: string): Promise<boolean> {
+  const logPath = process.env.LEADS_LOG_PATH?.trim() || "/app/data/leads.jsonl";
 
-  await mkdir(dirname(logPath), { recursive: true });
-  const row = JSON.stringify({
-    id: leadId,
-    at: new Date().toISOString(),
-    ...lead,
-    text,
-  });
-  await appendFile(logPath, `${row}\n`, "utf8");
+  try {
+    await mkdir(dirname(logPath), { recursive: true });
+    const row = JSON.stringify({
+      id: leadId,
+      at: new Date().toISOString(),
+      ...lead,
+      text,
+    });
+    await appendFile(logPath, `${row}\n`, "utf8");
+    return true;
+  } catch (error) {
+    console.error("[contact] persist lead failed", error);
+    return false;
+  }
 }
 
 async function notifyTelegram(subject: string, text: string) {
@@ -187,7 +192,7 @@ export async function deliverContactLead(lead: ContactLead): Promise<ContactDeli
   const leadId = `lead_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
 
   if (process.env.CONTACT_DRY_RUN === "1") {
-    await persistLead(lead, leadId, text).catch(() => undefined);
+    await persistLead(lead, leadId, text);
     return { ok: true, dryRun: true, preview: { to, subject, text } };
   }
 
@@ -195,12 +200,17 @@ export async function deliverContactLead(lead: ContactLead): Promise<ContactDeli
     lead.email?.includes("@") ? lead.email : lead.contact.includes("@") ? lead.contact : undefined;
 
   // Selectel (and many VDS) block outbound SMTP — skip instead of hanging the form.
-  const mail =
-    process.env.CONTACT_SKIP_SMTP === "1"
-      ? ({ ok: false, error: "smtp_skipped" } as const)
-      : await sendSmtpMail({ to, subject, text, html, replyTo });
+  const skipSmtp =
+    process.env.CONTACT_SKIP_SMTP === "1" ||
+    !process.env.SMTP_HOST?.trim() ||
+    !process.env.SMTP_USER?.trim() ||
+    !process.env.SMTP_PASS?.trim() ||
+    !process.env.CONTACT_FROM_EMAIL?.trim();
+  const mail = skipSmtp
+    ? ({ ok: false, error: "smtp_skipped" } as const)
+    : await sendSmtpMail({ to, subject, text, html, replyTo });
 
-  await persistLead(lead, leadId, text).catch(() => undefined);
+  const logged = await persistLead(lead, leadId, text);
   await notifyTelegram(subject, text).catch((error) => {
     console.error("[contact] telegram notify failed", error);
   });
@@ -231,10 +241,16 @@ export async function deliverContactLead(lead: ContactLead): Promise<ContactDeli
     Boolean(process.env.CONTACT_TELEGRAM_BOT_TOKEN?.trim() || process.env.TELEGRAM_BOT_KEY?.trim()) &&
     Boolean(process.env.CONTACT_TELEGRAM_CHAT_ID?.trim());
 
-  // Selectel VDS often blocks outbound SMTP — accept Bitrix/Telegram/log as delivery.
-  if (mail.ok || bitrixOk || process.env.LEADS_LOG_PATH?.trim() || hasTelegram) {
+  // Accept Bitrix / Telegram / on-disk log as delivery — SMTP is optional on VDS.
+  if (mail.ok || bitrixOk || logged || hasTelegram) {
     if (!mail.ok) {
-      console.warn("[contact] delivered without SMTP", { leadId, bitrixOk, mailError: mail.error });
+      console.warn("[contact] delivered without SMTP", {
+        leadId,
+        bitrixOk,
+        logged,
+        hasTelegram,
+        mailError: mail.error,
+      });
     }
     return { ok: true, leadId };
   }
