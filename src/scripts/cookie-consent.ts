@@ -19,7 +19,10 @@ function initCookieConsent() {
   if (!root || getConsent() !== null) return;
 
   root.hidden = false;
-  requestAnimationFrame(() => root.classList.add("cookie-consent--open"));
+  requestAnimationFrame(() => {
+    root.classList.add("cookie-consent--open");
+    window.dispatchEvent(new CustomEvent("cookie-consent-open"));
+  });
 
   const hide = () => {
     root.classList.remove("cookie-consent--open");

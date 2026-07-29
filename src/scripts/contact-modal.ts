@@ -4,6 +4,9 @@ import { PRIMARY_CTA_GOAL } from "@/lib/site";
 const INTENT_STORAGE_KEY = "bober_contact_intent_dismissed";
 const EXIT_MS = 240;
 
+let wired = false;
+let contactObserver: IntersectionObserver | null = null;
+
 function modalRoot() {
   return document.querySelector<HTMLElement>("[data-contact-modal]");
 }
@@ -55,44 +58,53 @@ export function closeContactModal() {
   }, EXIT_MS);
 }
 
-function initContactModal() {
-  document.querySelectorAll<HTMLElement>("[data-contact-open]").forEach((el) => {
-    el.addEventListener("click", (event) => {
-      event.preventDefault();
-      const service = el.getAttribute("data-contact-service") || "";
-      const soft = el.getAttribute("data-contact-soft") === "1";
-      const goal = el.getAttribute("data-contact-goal") || undefined;
-      openContactModal(service, { softOffer: soft, goal });
-      // close mobile nav if open
-      document.querySelector<HTMLElement>("[data-nav-mobile-close]")?.click();
-    });
-  });
+function openTriggerFromEvent(target: EventTarget | null): HTMLElement | null {
+  if (!(target instanceof Element)) return null;
+  return target.closest<HTMLElement>("[data-contact-open]");
+}
 
-  document.querySelectorAll<HTMLElement>("[data-contact-close]").forEach((el) => {
-    el.addEventListener("click", () => closeContactModal());
-  });
+function closeTriggerFromEvent(target: EventTarget | null): HTMLElement | null {
+  if (!(target instanceof Element)) return null;
+  return target.closest<HTMLElement>("[data-contact-close]");
+}
 
-  window.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeContactModal();
-  });
-
-  // Hide FAB when #contact is in view
-  const contact = document.getElementById("contact");
-  const fab = document.querySelector<HTMLElement>("[data-contact-fab]");
-  const sticky = document.querySelector<HTMLElement>("[data-direct-sticky]");
-  if (contact && (fab || sticky)) {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        const hide = entry.isIntersecting;
-        fab?.classList.toggle("contact-fab--hidden", hide);
-        sticky?.classList.toggle("direct-sticky-bar--hidden", hide);
-      },
-      { threshold: 0.15, rootMargin: "-80px 0px 0px 0px" },
-    );
-    observer.observe(contact);
+function onDocumentClick(event: MouseEvent) {
+  const openEl = openTriggerFromEvent(event.target);
+  if (openEl) {
+    event.preventDefault();
+    const service = openEl.getAttribute("data-contact-service") || "";
+    const soft = openEl.getAttribute("data-contact-soft") === "1";
+    const goal = openEl.getAttribute("data-contact-goal") || undefined;
+    openContactModal(service, { softOffer: soft, goal });
+    document.querySelector<HTMLElement>("[data-nav-mobile-close]")?.click();
+    return;
   }
 
-  // Paid traffic sticky bar vs FAB (marker set by attribution.ts)
+  if (closeTriggerFromEvent(event.target)) {
+    closeContactModal();
+  }
+}
+
+function onKeydown(event: KeyboardEvent) {
+  if (event.key === "Escape") closeContactModal();
+}
+
+function cookieBannerOpen() {
+  const root = document.querySelector<HTMLElement>("[data-cookie-consent]");
+  return Boolean(root && !root.hidden && root.classList.contains("cookie-consent--open"));
+}
+
+function syncFabCookieOffset() {
+  const fab = document.querySelector<HTMLElement>("[data-contact-fab]");
+  const sticky = document.querySelector<HTMLElement>("[data-direct-sticky]");
+  const blocked = cookieBannerOpen();
+  fab?.classList.toggle("contact-fab--cookie-blocked", blocked);
+  sticky?.classList.toggle("direct-sticky-bar--cookie-blocked", blocked);
+}
+
+function syncPaidTrafficChrome() {
+  const fab = document.querySelector<HTMLElement>("[data-contact-fab]");
+  const sticky = document.querySelector<HTMLElement>("[data-direct-sticky]");
   const paid = document.documentElement.hasAttribute("data-paid-traffic");
   if (paid) {
     fab?.setAttribute("hidden", "");
@@ -101,6 +113,45 @@ function initContactModal() {
     sticky?.setAttribute("hidden", "");
     fab?.removeAttribute("hidden");
   }
+}
+
+function syncContactIntersection() {
+  contactObserver?.disconnect();
+  contactObserver = null;
+
+  const contact = document.getElementById("contact");
+  const fab = document.querySelector<HTMLElement>("[data-contact-fab]");
+  const sticky = document.querySelector<HTMLElement>("[data-direct-sticky]");
+  if (!contact || !(fab || sticky)) return;
+
+  contactObserver = new IntersectionObserver(
+    ([entry]) => {
+      const hide = entry.isIntersecting;
+      fab?.classList.toggle("contact-fab--hidden", hide);
+      sticky?.classList.toggle("direct-sticky-bar--hidden", hide);
+    },
+    { threshold: 0.15, rootMargin: "-80px 0px 0px 0px" },
+  );
+  contactObserver.observe(contact);
+}
+
+function refreshContactChrome() {
+  syncPaidTrafficChrome();
+  syncContactIntersection();
+  syncFabCookieOffset();
+}
+
+function initContactModal() {
+  if (!wired) {
+    document.addEventListener("click", onDocumentClick);
+    window.addEventListener("keydown", onKeydown);
+    window.addEventListener("cookie-consent-change", syncFabCookieOffset);
+    window.addEventListener("cookie-consent-open", syncFabCookieOffset);
+    document.addEventListener("htmx:afterSwap", refreshContactChrome);
+    document.addEventListener("htmx:historyRestore", refreshContactChrome);
+    wired = true;
+  }
+  refreshContactChrome();
 }
 
 if (document.readyState === "loading") {

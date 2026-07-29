@@ -2999,6 +2999,15 @@ html.dark {
     pointer-events: none;
     transform: translateY(8px);
   }
+  /* Cookie bar covers bottom FAB — park FAB above it until consent is chosen. */
+  .contact-fab--cookie-blocked {
+    bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  }
+  @media (max-width: 639px) {
+    .contact-fab--cookie-blocked {
+      bottom: calc(12rem + env(safe-area-inset-bottom, 0px));
+    }
+  }
   @media (max-width: 639px) {
     .contact-fab {
       left: max(16px, env(safe-area-inset-left, 0px));
@@ -3057,6 +3066,14 @@ html.dark {
     opacity: 0;
     pointer-events: none;
     transform: translateY(10px);
+  }
+  .direct-sticky-bar--cookie-blocked {
+    bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  }
+  @media (max-width: 639px) {
+    .direct-sticky-bar--cookie-blocked {
+      bottom: calc(12rem + env(safe-area-inset-bottom, 0px));
+    }
   }
   .direct-sticky-bar__link {
     flex: 0 1 auto;
