@@ -21,6 +21,7 @@ import { spawnSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
+  ensureUserSitemap,
   getImportantUrls,
   getRecrawlQuota,
   listFeeds,
@@ -130,6 +131,17 @@ async function main() {
   console.log("Яндекс Вебмастер · boost индексации\n");
   console.log(`Сайт:    ${hostUrl}`);
   console.log(`host_id: ${hostId}`);
+
+  section("Sitemap");
+  const sitemapUrl = `${defaultHostBase()}/sitemap.xml`;
+  try {
+    const sm = await ensureUserSitemap(config.token, userId, hostId, sitemapUrl);
+    if (sm.already) console.log(`✓ ${sitemapUrl} уже в очереди Вебмастера`);
+    else console.log(`✓ ${sitemapUrl} добавлен (id: ${sm.sitemap_id || sm.match?.sitemap_id || "?"})`);
+  } catch (error) {
+    console.log(`! Sitemap: ${error.message}`);
+    console.log(`  Добавьте вручную: npm run webmaster:sitemap · UI: ${UI.sitemap}`);
+  }
 
   const urls = loadImportantUrls();
   const standalone = loadStandaloneUrls();

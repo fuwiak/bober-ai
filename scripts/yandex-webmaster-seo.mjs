@@ -11,6 +11,7 @@
 
 import {
   daysAgoIso,
+  ensureUserSitemap,
   getHostDiagnostics,
   getHostSummary,
   getImportantUrls,
@@ -20,6 +21,7 @@ import {
   getSearchUrlsInSearchHistory,
   getSitemaps,
   getSqiHistory,
+  getUserAddedSitemaps,
   latestSeriesValue,
   resolveHostContext,
 } from "./lib/yandex-webmaster.mjs";
@@ -174,15 +176,31 @@ async function main() {
 
   // —— Индексация ——
   section("Индексация · обход");
+  const userSitemaps = await safe("user-added-sitemaps", () =>
+    getUserAddedSitemaps(config.token, userId, hostId),
+  );
+  if (userSitemaps) {
+    if (userSitemaps.length) {
+      ok(`Sitemap в очереди Вебмастера: ${userSitemaps.length}`);
+      for (const sm of userSitemaps.slice(0, 5)) {
+        info(`${sm.sitemap_url || sm.url || sm.sitemap_id}${sm.added_date ? ` · added ${sm.added_date}` : ""}`);
+      }
+    } else {
+      warn("Sitemap не добавлен в Вебмастер — npm run webmaster:sitemap");
+    }
+  }
+
   const sitemaps = await safe("sitemaps", () => getSitemaps(config.token, userId, hostId));
   if (sitemaps) {
     if (sitemaps.length) {
-      ok(`Sitemap в Вебмастере: ${sitemaps.length}`);
+      ok(`Sitemap в обходе робота: ${sitemaps.length}`);
       for (const sm of sitemaps.slice(0, 5)) {
         info(`${sm.sitemap_url || sm.url || sm.sitemap_id} · errors=${sm.errors_count ?? "?"} · urls=${sm.urls_count ?? "?"}`);
       }
+    } else if (!userSitemaps?.length) {
+      warn("Робот ещё не использует Sitemap — добавьте: npm run webmaster:sitemap");
     } else {
-      warn("Список Sitemap пуст — проверьте отдачу /sitemap.xml");
+      info("Робот пока не подхватил Sitemap — ждите обработки очереди");
     }
   }
 

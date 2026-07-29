@@ -337,6 +337,67 @@ export async function getSitemaps(token, userId, hostId) {
   return body?.sitemaps || [];
 }
 
+/** Sitemaps explicitly added in Webmaster UI/API (user-added-sitemaps). */
+export async function getUserAddedSitemaps(token, userId, hostId) {
+  const { body } = await getJson(
+    token,
+    `/user/${userId}/hosts/${encodeURIComponent(hostId)}/user-added-sitemaps`,
+  );
+  return body?.sitemaps || [];
+}
+
+function normalizeSitemapUrl(value) {
+  try {
+    const url = new URL(String(value).trim());
+    url.hash = "";
+    url.search = "";
+    let path = url.pathname.replace(/\/+$/, "");
+    if (!path) path = "";
+    return `${url.protocol}//${url.hostname.toLowerCase()}${path}`;
+  } catch {
+    return String(value || "")
+      .trim()
+      .replace(/\/+$/, "")
+      .toLowerCase();
+  }
+}
+
+/** Register sitemap in Webmaster (POST user-added-sitemaps). Idempotent on duplicate URL. */
+export async function addUserSitemap(token, userId, hostId, sitemapUrl) {
+  const url = normalizeSitemapUrl(sitemapUrl);
+  const { response, body } = await apiRequest(
+    token,
+    `/user/${userId}/hosts/${encodeURIComponent(hostId)}/user-added-sitemaps`,
+    {
+      method: "POST",
+      body: { url },
+    },
+  );
+  if (response.ok) {
+    return { added: true, already: false, sitemap_id: body?.sitemap_id, body };
+  }
+  const code = body?.error_code || body?.errorCode;
+  if (response.status === 409 || code === "SITEMAP_ALREADY_ADDED") {
+    return { added: false, already: true, body };
+  }
+  throw new Error(`POST user-added-sitemaps → HTTP ${response.status}: ${JSON.stringify(body)}`);
+}
+
+/**
+ * Ensure canonical sitemap is in Webmaster queue. Returns user-added + robot-discovered lists.
+ */
+export async function ensureUserSitemap(token, userId, hostId, sitemapUrl) {
+  const target = normalizeSitemapUrl(sitemapUrl);
+  const existing = await getUserAddedSitemaps(token, userId, hostId);
+  const match = existing.find((row) => normalizeSitemapUrl(row.sitemap_url || row.url) === target);
+  if (match) {
+    return { added: false, already: true, userAdded: existing, match };
+  }
+  const result = await addUserSitemap(token, userId, hostId, target);
+  const userAdded = await getUserAddedSitemaps(token, userId, hostId);
+  return { ...result, userAdded, match: userAdded.find((row) => normalizeSitemapUrl(row.sitemap_url || row.url) === target) };
+}
+
 export async function getSearchUrlsInSearchHistory(token, userId, hostId, { dateFrom, dateTo } = {}) {
   const qs = new URLSearchParams();
   if (dateFrom) qs.set("date_from", dateFrom);
