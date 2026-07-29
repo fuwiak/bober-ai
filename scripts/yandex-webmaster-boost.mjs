@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 /**
  * Boost индексации / сниппетов в Яндекс Вебмастере:
- * 1) переобход важных URL (API)
- * 2) статус фида услуг
- * 3) чеклист UI: важные страницы, регион, Яндекс Бизнес
+ * 1) sitemap в очередь Вебмастера
+ * 2) IndexNow — уведомить Яндекс/Bing обо всех URL из sitemap
+ * 3) переобход важных URL (API квота)
+ * 4) статус фида услуг
+ * 5) чеклист UI: важные страницы, регион, Яндекс Бизнес
  *
  *   npm run webmaster:boost
  *   yaga webmaster boost
@@ -143,6 +145,24 @@ async function main() {
     console.log(`  Добавьте вручную: npm run webmaster:sitemap · UI: ${UI.sitemap}`);
   }
 
+  section("IndexNow");
+  if (skipRecrawl) {
+    console.log("--checklist: пропускаю IndexNow");
+  } else {
+    const indexnow = spawnSync(process.execPath, [join(root, "scripts", "indexnow-submit.mjs")], {
+      cwd: root,
+      encoding: "utf8",
+      env: process.env,
+      stdio: ["ignore", "pipe", "pipe"],
+    });
+    const out = `${indexnow.stdout || ""}${indexnow.stderr || ""}`.trim();
+    if (out) console.log(out);
+    if (indexnow.status !== 0) {
+      console.log(`! IndexNow завершился с кодом ${indexnow.status}`);
+      console.log("  Повтор: yaga webmaster indexnow · npm run seo:indexnow");
+    }
+  }
+
   const urls = loadImportantUrls();
   const standalone = loadStandaloneUrls();
   section("Важные URL для www (добавить в UI — только этот хост)");
@@ -257,11 +277,12 @@ async function main() {
   }
 
   section("Итог");
-  console.log("1. Добавьте важные URL в UI (список выше).");
-  console.log("2. Зафиксируйте регион Москва/Россия.");
-  console.log("3. Привяжите Яндекс Бизнес к сайту.");
-  console.log("4. Перепроверьте фид после деплоя с Рейтинг 5.0 / 28.");
-  console.log("5. Коммерческие позиции = контент + ссылки + время; Вебмастер ускоряет обход.\n");
+  console.log("1. Sitemap в Вебмастере + IndexNow уже отправлены (см. выше).");
+  console.log("2. Добавьте важные URL в UI (список выше).");
+  console.log("3. Зафиксируйте регион Москва/Россия.");
+  console.log("4. Привяжите Яндекс Бизнес к сайту.");
+  console.log("5. Перепроверьте фид после деплоя.");
+  console.log("6. Метрика на сайте ускоряет обход популярных страниц.\n");
 }
 
 main().catch((error) => {

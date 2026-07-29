@@ -13,8 +13,9 @@ export default {
   yaga webmaster seo        ranking checklist (SQI, diagnostics, index, queries)
   yaga webmaster selfcheck  21 self-checks from Webmaster
   yaga webmaster microtest  structured data validator checklist + JSON-LD probe
-  yaga webmaster boost      recrawl important URLs + feed/region checklist
+  yaga webmaster boost      sitemap + IndexNow + recrawl + feed/region checklist
   yaga webmaster sitemap    add /sitemap.xml to Webmaster queue
+  yaga webmaster indexnow   notify Yandex/Bing of sitemap URLs (or paths)
   yaga webmaster feed       upload performers feed (--all / --microsites)
   yaga webmaster mirrors    mirror settings
   yaga webmaster repair     feed repair helper
@@ -45,6 +46,10 @@ export default {
     }
     if (sub === "sitemap" || sub === "sitemaps") {
       await ctx.runScript("yandex-webmaster-sitemap.mjs", rest);
+      return;
+    }
+    if (sub === "indexnow" || sub === "index-now") {
+      await ctx.runScript("indexnow-submit.mjs", rest);
       return;
     }
     if (sub === "feed") {

@@ -48,16 +48,17 @@ Profiles: owner (all) · public (public only) · custom (enable/disable)
 func brickWebmaster() Brick {
 	return Brick{
 		ID: "webmaster", Title: "Yandex Webmaster", Visibility: VisPublic,
-		Aliases: []string{"wm"}, Description: "status / seo / selfcheck / microtest / boost / sitemap / feed / mirrors / recrawl / oauth",
+		Aliases: []string{"wm"}, Description: "status / seo / selfcheck / microtest / boost / sitemap / indexnow / feed / mirrors / recrawl / oauth",
 		DefaultArgs: []string{"status"},
-		Help: `yaga webmaster status|seo|selfcheck|microtest|boost|sitemap|feed|mirrors|repair|recrawl|oauth
+		Help: `yaga webmaster status|seo|selfcheck|microtest|boost|sitemap|indexnow|feed|mirrors|repair|recrawl|oauth
 
   status     снимок Вебмастер + Метрика
   seo        чеклист позиций (ИКС, диагностика, индекс, запросы)
   selfcheck  21 «Самостоятельные проверки» + группы целевых запросов
   microtest  валидатор микроразметки: список URL + JSON-LD/OG снимок
-  boost      переобход важных URL + чеклист региона/фида
+  boost      sitemap + IndexNow + переобход важных URL + чеклист
   sitemap    добавить /sitemap.xml в очередь Вебмастера
+  indexnow   уведомить Яндекс/Bing об URL из sitemap (или переданных путях)
   feed       загрузка performers feed
   mirrors    зеркала
   repair     перезагрузка фида
@@ -82,6 +83,8 @@ func brickWebmaster() Brick {
 				return runScript(cfg, "yandex-webmaster-boost.mjs", rest)
 			case "sitemap", "sitemaps":
 				return runScript(cfg, "yandex-webmaster-sitemap.mjs", rest)
+			case "indexnow", "index-now":
+				return runScript(cfg, "indexnow-submit.mjs", rest)
 			case "feed":
 				return runScript(cfg, "yandex-webmaster-feed.mjs", rest)
 			case "mirrors":

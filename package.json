@@ -25,6 +25,7 @@
     "webmaster:microtest": "node scripts/yandex-webmaster-microtest.mjs",
     "webmaster:boost": "node scripts/yandex-webmaster-boost.mjs",
     "webmaster:sitemap": "node scripts/yandex-webmaster-sitemap.mjs",
+    "webmaster:indexnow": "node scripts/indexnow-submit.mjs",
     "webmaster:recrawl": "node scripts/yandex-webmaster-recrawl.mjs",
     "webmaster:oauth": "node scripts/yandex-webmaster-oauth.mjs",
     "yandex:status": "node scripts/yandex-status.mjs",
