@@ -1,0 +1,75 @@
+---
+/**
+ * Explicit order page for Yandex performers feed «Ссылка на создание заказа».
+ * Classic HTML form (action=/api/contact) works without JS / modal.
+ */
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContactForm from "@/components/ContactForm.astro";
+import { getEnterpriseService, getEnterpriseServices } from "@/lib/enterprise-services";
+import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
+import { getServiceOfferUrl } from "@/lib/services-feed";
+import { TELEGRAM_URL } from "@/lib/site";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return getEnterpriseServices("ru").map((service) => ({
+    params: { slug: service.slug },
+    props: { locale: "ru" as Locale },
+  }));
+}
+
+const { slug } = Astro.params;
+const { locale } = Astro.props;
+const messages = loadMessages(locale);
+const service = getEnterpriseService(slug!, locale);
+
+if (!service) {
+  return Astro.redirect(localizePath("/order", locale));
+}
+
+const offerUrl = getServiceOfferUrl(service);
+const offerPath = offerUrl.replace(/^https?:\/\/[^/]+/, "") || `/services/${service.slug}`;
+---
+
+<BaseLayout
+  title={`Оформить заказ: ${service.title} — Bober AI`}
+  description={`Отправьте заявку на «${service.title}». Ответим в течение 4 рабочих часов с планом и вилкой бюджета.`}
+  locale={locale}
+  canonicalPath={localizePath(`/order/${service.slug}`, locale)}
+>
+  <article class="container-editorial py-12 md:py-20">
+    <p class="meta-label">Заказ услуги</p>
+    <h1 class="mt-4 display-title">Оформить заказ</h1>
+    <p class="mt-4 body-copy max-w-2xl">
+      Услуга: <strong class="text-ink">{service.title}</strong>
+      {" · "}
+      {service.salesNotes}
+      {" · от "}
+      {service.price.toLocaleString("ru-RU")} ₽
+    </p>
+    <p class="mt-3 text-sm text-muted max-w-2xl">{service.description}</p>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a href={localizePath(offerPath, locale)} class="btn-secondary">Описание услуги</a>
+      <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" class="btn-secondary">Telegram</a>
+    </div>
+
+    <section id="contact" class="mt-12 max-w-xl border-t border-hairline pt-10">
+      <h2 class="section-title">Заявка на заказ</h2>
+      <p class="mt-3 body-copy text-sm text-muted">
+        Заполните форму — это и есть оформление заказа. После отправки увидите подтверждение на
+        экране.
+      </p>
+      <div class="mt-8">
+        <ContactForm
+          locale={locale}
+          messages={messages}
+          defaultService={service.title}
+          source={`order-${service.slug}`}
+          qualify
+        />
+      </div>
+    </section>
+  </article>
+</BaseLayout>

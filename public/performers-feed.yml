@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-28 21:35">
+<yml_catalog date="2026-07-29 20:23">
   <shop>
     <name>Bober AI Systems</name>
     <company>Bober AI Systems</company>
@@ -93,6 +93,10 @@
         <name>Bitrix24 · amoCRM</name>
         <url>https://www.bober-systems.ru/services/crm-integration</url>
       </set>
+      <set id="bitrix">
+        <name>Настройка Bitrix24</name>
+        <url>https://www.bober-systems.ru/bitrix</url>
+      </set>
       <set id="ai-sales-loop">
         <name>AI-контур отдела продаж</name>
         <url>https://www.bober-systems.ru/services/ai-sales-loop</url>
@@ -104,6 +108,10 @@
       <set id="ii-dlya-biznesa">
         <name>ИИ для бизнеса — аудит, разработка и внедрение</name>
         <url>https://www.bober-systems.ru/ii-dlya-biznesa</url>
+      </set>
+      <set id="automation">
+        <name>Автоматизация бизнес-процессов</name>
+        <url>https://www.bober-systems.ru/automation</url>
       </set>
       <set id="wildberries-independent-sales-channel">
         <name>Независимый канал продаж для продавцов Wildberries</name>
@@ -158,7 +166,7 @@
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/business-process-automation</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/business-process-automation</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Аудит процессов, настройка автоматизации, интеграция с CRM и документами, обучение команды.</param>
@@ -182,7 +190,7 @@
       <param name="Конверсия">94</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/sales-ai-agent</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/sales-ai-agent</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Настраиваем автоматизацию под шаблоны и CRM, тестируем и запускаем в отделе продаж.</param>
@@ -206,7 +214,7 @@
       <param name="Конверсия">95</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/ai-discovery-roadmap</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ai-discovery-roadmap</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Бизнес-аудит, карта процессов, расчёт ROI, дорожная карта и смета до старта разработки.</param>
@@ -230,7 +238,7 @@
       <param name="Конверсия">92</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/ai/ai-implementation</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/enterprise-ai-assistant</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Архитектура, LLM, интеграции CRM/мессенджеры, production-деплой и передача команде.</param>
@@ -254,7 +262,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/private-llm-gigachat</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/private-llm-gigachat</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Разворачиваем LLM в вашем контуре, настраиваем API, guardrails, мониторинг и интеграции.</param>
@@ -278,7 +286,7 @@
       <param name="Конверсия">92</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/ai-automation</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ai-automation</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Проектируем и внедряем AI-автоматизацию с интеграциями CRM, документов и workflow.</param>
@@ -302,7 +310,7 @@
       <param name="Конверсия">91</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/solutions/rag-search</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/rag</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Индексация, векторный поиск, guardrails и интеграция в чат/CRM.</param>
@@ -326,7 +334,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/llm-development</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/llm-development</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Архитектура, разработка, тестирование и передача команде.</param>
@@ -350,7 +358,7 @@
       <param name="Конверсия">91</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/n8n</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/n8n</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Проектируем, разворачиваем и сопровождаем n8n в production.</param>
@@ -374,7 +382,7 @@
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/ai-agent</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ai-agent</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Многошаговые агенты с инструментами, мониторингом и handover.</param>
@@ -398,7 +406,7 @@
       <param name="Конверсия">92</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/automation/documents</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/document-processing</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Пайплайны документов, workflow и интеграции с учётными системами.</param>
@@ -422,7 +430,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/voice-ai</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/voice-ai</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Голосовые сценарии для поддержки и продаж с интеграцией в CRM.</param>
@@ -446,7 +454,7 @@
       <param name="Конверсия">91</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/ocr</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ocr</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">OCR-пайплайны с валидацией и выгрузкой в 1С, CRM или ERP.</param>
@@ -470,7 +478,7 @@
       <param name="Конверсия">89</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/open-webui</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/open-webui</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Развёртывание Open WebUI, подключение моделей и guardrails.</param>
@@ -494,7 +502,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/self-hosted-ai</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/self-hosted-ai</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">On-prem LLM, API, мониторинг и интеграции под NDA.</param>
@@ -518,7 +526,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/mcp</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/mcp</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">MCP-серверы для внутренних систем и инструментов агентов.</param>
@@ -542,7 +550,7 @@
       <param name="Конверсия">91</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/langgraph</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/langgraph</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">LangGraph для сложных сценариев с контролем и аудитом.</param>
@@ -566,7 +574,7 @@
       <param name="Конверсия">92</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/knowledge-base</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/knowledge-base</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">База знаний, поиск, чат-бот для сотрудников и клиентов.</param>
@@ -590,7 +598,7 @@
       <param name="Конверсия">94</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/ai-consulting</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ai-consulting</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Аудит, рекомендации и план до закупки разработки.</param>
@@ -614,10 +622,34 @@
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/crm-integration</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/crm-integration</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Двусторонние интеграции, webhooks, retry и мониторинг.</param>
+    </offer>
+    <offer id="bitrix">
+      <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/bitrix</url>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>bitrix</set-ids>
+      <picture>https://www.bober-systems.ru/stock/offers/bitrix.jpg</picture>
+      <description>Настройка Bitrix24</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/bitrix</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Пилот на одном процессе: воронка, REST/webhooks, интеграции и AI-слой. Партнёр 1С-Битрикс · ID 28909898.</param>
     </offer>
     <offer id="ai-sales-loop">
       <name>Павел Стасиньский</name>
@@ -638,7 +670,7 @@
       <param name="Конверсия">94</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/ai-sales-loop</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ai-sales-loop</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Интеграция Bitrix24 / amoCRM с телефонией и AI — квалификация лидов, саммари звонков, задачи, follow-up и отчёт об упущенных сделках.</param>
@@ -662,7 +694,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/claude</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/claude-smb</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Claude API и MCP в CRM, документы, продажи и базу знаний — не подписка Claude Pro. Фиксированная смета, NDA, Россия и СНГ.</param>
@@ -686,10 +718,34 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/ii-dlya-biznesa</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ii-dlya-biznesa</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Гибрид коммерческого лендинга и гида: сценарии, ассистент vs агент, архитектура (Yandex Cloud / Selectel / on-prem), безопасность, кейсы. Фиксированная смета, NDA.</param>
+    </offer>
+    <offer id="automation">
+      <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/automation</url>
+      <price from="true">150000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 150 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>automation</set-ids>
+      <picture>https://www.bober-systems.ru/stock/offers/automation.jpg</picture>
+      <description>Автоматизация бизнес-процессов</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/automation</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Pillar /automation: Wordstat-направления + коммерческий оффер. AI только там, где снимает ручной труд. NDA, on-prem, Россия и СНГ.</param>
     </offer>
     <offer id="wildberries-independent-sales-channel">
       <name>Павел Стасиньский</name>
@@ -710,7 +766,7 @@
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/wildberries-independent-sales-channel</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/wildberries-independent-sales-channel</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Запуск собственного канала продаж параллельно с Wildberries: витрина, Bitrix24/amoCRM, 1С/МойСклад, оплата, доставка, Telegram/VK/email, AI-ассистент по товарам, синхронизация цен и остатков. Срок от 14 дней.</param>
@@ -734,7 +790,7 @@
       <param name="Конверсия">94</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/services/secure-private-ai-cloud</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/secure-private-ai-cloud</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Контур: слой AI (private LLM, RAG, база знаний, Bitrix24/1С), инфраструктура (российское облако, VPN, IAM, backup, логи) и Kaspersky (VM, Linux/Windows, контейнеры, Security Center). Внедрение, мониторинг, отчёт, реакция на события. Лицензии Kaspersky — через авторизованную дистрибуцию.</param>
@@ -758,7 +814,7 @@
       <param name="Конверсия">94</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/automation/company-automation</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/company-automation</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Аудит узкого места, workflow и интеграции, production-запуск и обучение команды.</param>
@@ -782,7 +838,7 @@
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/integrations/crm-automation</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/crm-automation</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Автоматизация воронки CRM — триггеры, задачи, уведомления и контроль конверсии.</param>
@@ -806,7 +862,7 @@
       <param name="Конверсия">92</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/automation/document-ai</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/document-ai</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">ИИ-пайплайн документов — OCR, классификация, валидация и выгрузка в учётные системы.</param>
@@ -830,7 +886,7 @@
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/integrations/ai-for-crm</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ai-for-crm</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">ИИ-слой поверх CRM — саммари, скоринг, follow-up без хаоса в воронке.</param>
@@ -854,7 +910,7 @@
       <param name="Конверсия">92</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/ai/corporate-neural-net</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/corporate-ai-assistant</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Приватный LLM-контур, политики доступа, интеграции с внутренними системами.</param>
@@ -878,7 +934,7 @@
       <param name="Конверсия">95</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/automation/business-process-audit</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/business-process-audit</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Аудит процессов, ROI, дорожная карта на 90 дней и критерии приёмки пилота.</param>

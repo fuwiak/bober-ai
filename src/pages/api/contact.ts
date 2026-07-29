@@ -15,7 +15,7 @@ function htmlResponse(body: string, status = 200) {
   });
 }
 
-function successHtml(locale: string) {
+function successFragment(locale: string) {
   const msg =
     locale === "uz"
       ? "Rahmat — 4 ish soati ichida javob beramiz."
@@ -25,54 +25,52 @@ function successHtml(locale: string) {
   </div>`;
 }
 
-function errorHtml(message: string) {
+function errorFragment(message: string) {
   return `<div class="contact-form space-y-4" role="alert">
     <p class="body-copy text-error">${message}</p>
     <p class="text-sm text-muted">Попробуйте ещё раз или напишите в Telegram.</p>
   </div>`;
 }
 
-/** Full document for native form POST (no HTMX) — Yandex / no-JS browsers. */
-function fullPageHtml(title: string, bodyInner: string, backHref: string) {
-  const safeBack = backHref.startsWith("/") ? backHref : "/";
+/** Native (no htmx) POST — full page so Yandex / no-JS clients see a clear result. */
+function fullPageHtml(inner: string, locale: string) {
+  const title = locale === "uz" ? "Buyurtma" : "Заявка отправлена";
+  const back = locale === "uz" ? "Bosh sahifa" : "На главную";
+  const again = locale === "uz" ? "Yana ariza" : "Оформить ещё заказ";
   return `<!DOCTYPE html>
-<html lang="ru">
+<html lang="${locale === "uz" ? "uz" : "ru"}">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>${title}</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>${title} — Bober AI Systems</title>
   <style>
-    body{font-family:system-ui,sans-serif;max-width:40rem;margin:3rem auto;padding:0 1.25rem;line-height:1.5;color:#111}
-    .ok{color:#0a7a3e}.err{color:#b00020} a{color:#0b57d0}
+    body{font-family:system-ui,-apple-system,sans-serif;max-width:36rem;margin:3rem auto;padding:0 1.25rem;line-height:1.5;color:#111}
+    a{color:#0b57d0} .ok{color:#0a7a32} .err{color:#b00020}
+    .actions{margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:1rem}
   </style>
 </head>
 <body>
-  ${bodyInner}
-  <p style="margin-top:1.5rem"><a href="${safeBack}">← Вернуться</a></p>
+  ${inner}
+  <div class="actions">
+    <a href="/order">${again}</a>
+    <a href="/">${back}</a>
+  </div>
 </body>
 </html>`;
 }
 
+function successHtml(locale: string, fullPage: boolean) {
+  const frag = successFragment(locale);
+  return fullPage ? fullPageHtml(frag, locale) : frag;
+}
+
+function errorHtml(message: string, locale: string, fullPage: boolean) {
+  const frag = errorFragment(message);
+  return fullPage ? fullPageHtml(frag, locale) : frag;
+}
+
 export const POST: APIRoute = async ({ request }) => {
   const contentType = request.headers.get("content-type") || "";
-  const isHtmx = request.headers.get("HX-Request") === "true";
-  const referer = request.headers.get("referer") || "";
-  let backPath = "/";
-  try {
-    if (referer) backPath = new URL(referer).pathname || "/";
-  } catch {
-    backPath = "/";
-  }
-
-  const respondHtml = (fragment: string, status = 200, title = "Заявка") => {
-    if (isHtmx) return htmlResponse(fragment, status);
-    const isError = status >= 400;
-    const wrapped = isError
-      ? `<h1 class="err">${title}</h1>${fragment}`
-      : `<h1 class="ok">${title}</h1>${fragment}`;
-    return htmlResponse(fullPageHtml(title, wrapped, backPath), status);
-  };
-
   let name = "";
   let contact = "";
   let message = "—";
@@ -144,6 +142,8 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const wantsJson = contentType.includes("application/json");
+  const isHtmx = Boolean(request.headers.get("HX-Request"));
+  const fullPage = !wantsJson && !isHtmx;
   const json = (body: Record<string, unknown>, status = 200) =>
     new Response(JSON.stringify(body), {
       status,
@@ -152,9 +152,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   // Honeypot — silent success
   if (website) {
-    return wantsJson
-      ? json({ ok: true, dryRun: true })
-      : respondHtml(successHtml(locale), 200, locale === "uz" ? "Buyurtma qabul qilindi" : "Заявка принята");
+    return wantsJson ? json({ ok: true, dryRun: true }) : htmlResponse(successHtml(locale, fullPage));
   }
 
   if (!name || !contact) {
@@ -162,7 +160,7 @@ export const POST: APIRoute = async ({ request }) => {
       locale === "uz" ? "Majburiy maydonlarni toʻldiring" : "Заполните обязательные поля";
     return wantsJson
       ? json({ ok: false, message: messageText }, 400)
-      : respondHtml(errorHtml(messageText), 400, locale === "uz" ? "Xato" : "Ошибка");
+      : htmlResponse(errorHtml(messageText, locale, fullPage), 400);
   }
 
   if (!policyAccepted || !consent) {
@@ -172,7 +170,7 @@ export const POST: APIRoute = async ({ request }) => {
         : "Необходимо согласие на обработку персональных данных";
     return wantsJson
       ? json({ ok: false, message: messageText }, 400)
-      : respondHtml(errorHtml(messageText), 400, locale === "uz" ? "Xato" : "Ошибка");
+      : htmlResponse(errorHtml(messageText, locale, fullPage), 400);
   }
 
   const result = await deliverContactLead({
@@ -190,7 +188,7 @@ export const POST: APIRoute = async ({ request }) => {
   if (!result.ok) {
     return wantsJson
       ? json({ ok: false, message: result.message, error: result.error }, result.status)
-      : respondHtml(errorHtml(result.message), result.status, locale === "uz" ? "Xato" : "Ошибка");
+      : htmlResponse(errorHtml(result.message, locale, fullPage), result.status);
   }
 
   if (wantsJson) {
@@ -201,9 +199,5 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
-  return respondHtml(
-    successHtml(locale),
-    200,
-    locale === "uz" ? "Buyurtma qabul qilindi" : "Заявка принята",
-  );
+  return htmlResponse(successHtml(locale, fullPage));
 };

@@ -1,0 +1,49 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContactForm from "@/components/ContactForm.astro";
+import { getEnterpriseServices } from "@/lib/enterprise-services";
+import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
+
+export const prerender = true;
+
+const locale: Locale = "ru";
+const messages = loadMessages(locale);
+const services = getEnterpriseServices(locale);
+---
+
+<BaseLayout
+  title="Оформить заказ — Bober AI"
+  description="Отправьте заявку на внедрение ИИ или автоматизацию. Ответим в течение 4 рабочих часов."
+  locale={locale}
+  canonicalPath={localizePath("/order", locale)}
+>
+  <article class="container-editorial py-12 md:py-20">
+    <p class="meta-label">Заказ</p>
+    <h1 class="mt-4 display-title">Оформить заказ</h1>
+    <p class="mt-4 body-copy max-w-2xl">
+      Выберите услугу ниже или сразу заполните заявку — ответим с планом и вилкой бюджета.
+    </p>
+
+    <section class="mt-10">
+      <h2 class="section-title">Услуги</h2>
+      <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+        {
+          services.slice(0, 24).map((s) => (
+            <li>
+              <a class="text-link" href={localizePath(`/order/${s.slug}`, locale)}>
+                {s.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section id="contact" class="mt-14 max-w-xl border-t border-hairline pt-10">
+      <h2 class="section-title">Общая заявка</h2>
+      <div class="mt-8">
+        <ContactForm locale={locale} messages={messages} source="order-index" qualify />
+      </div>
+    </section>
+  </article>
+</BaseLayout>

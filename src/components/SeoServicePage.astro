@@ -133,16 +133,28 @@ const jsonLd = [webPage, serviceSchema, organization, person, ...(faqSchema ? [f
             </p>
             <p class="body-copy mt-5 max-w-3xl text-lg">{content.subtitle}</p>
             <div class="mt-10 flex flex-wrap gap-4">
-              <a href="#contact" class="btn-primary" data-goal="primary_cta_click">{sp.quote}</a>
+              <a href="#contact" class="btn-primary" data-goal="primary_cta_click">
+                {isUz ? "Place order" : "Оформить заказ"}
+              </a>
+              {
+                service && (
+                  <a
+                    href={localizePath(`/order/${service.slug}`, locale)}
+                    class="btn-secondary"
+                    data-goal="primary_cta_click"
+                  >
+                    {isUz ? "Order form" : "Форма заказа"}
+                  </a>
+                )
+              }
               <a
                 href={TELEGRAM_URL}
                 target="_blank"
                 rel="noreferrer"
                 class="btn-secondary"
-                data-goal="telegram_click">{sp.telegram}</a
+                data-goal="telegram_click"
               >
-              <a href="#contact" class="btn-secondary" data-goal="primary_cta_click">
-                {isUz ? "Get an estimate" : "Получить оценку"}
+                {sp.telegram}
               </a>
             </div>
           </div>
@@ -168,7 +180,14 @@ const jsonLd = [webPage, serviceSchema, organization, person, ...(faqSchema ? [f
                   />
                 </div>
                 <a href="#contact" class="btn-primary mt-6 w-full text-center" data-goal="primary_cta_click">
-                  {sp.quote}
+                  {isUz ? "Place order" : "Оформить заказ"}
+                </a>
+                <a
+                  href={localizePath(`/order/${service.slug}`, locale)}
+                  class="btn-secondary mt-3 w-full text-center"
+                  data-goal="primary_cta_click"
+                >
+                  {isUz ? "Order form" : "Форма заказа"}
                 </a>
               </aside>
             )
@@ -449,12 +468,14 @@ const jsonLd = [webPage, serviceSchema, organization, person, ...(faqSchema ? [f
       <div class="container-editorial grid gap-16 lg:grid-cols-2">
         <div>
           <span class="section-label">{isUz ? "Order" : "Заказ"}</span>
-          <h2 class="section-title mt-4">{isUz ? "Buyurtma berish" : "Оформить заказ"}</h2>
+          <h2 class="section-title mt-4">{isUz ? "Place an order" : "Оформить заказ"}</h2>
           <p class="body-copy mt-4 max-w-xl text-base">{content.subtitle}</p>
-          <p class="mt-4 text-sm text-muted">
-            {isUz
-              ? "Forma oddiy POST orqali ishlaydi — JS shart emas."
-              : "Форма работает обычным POST — JavaScript не обязателен."}
+          <p class="mt-3 text-sm text-muted">
+            {
+              isUz
+                ? "Submit the form to place an order. Confirmation appears on this page."
+                : "Заполните форму — это оформление заказа. После отправки появится подтверждение."
+            }
           </p>
         </div>
         <ContactForm
@@ -462,6 +483,7 @@ const jsonLd = [webPage, serviceSchema, organization, person, ...(faqSchema ? [f
           messages={messages}
           source={formSource}
           defaultService={formDefaultService ?? content.h1}
+          qualify
         />
       </div>
     </section>

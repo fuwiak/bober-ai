@@ -78,6 +78,12 @@ export function getServiceOfferUrl(offer: Pick<EnterpriseService, "slug" | "feed
   return `${FEED_SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
+/** Dedicated order form page — Yandex «создание заказа» must land on a working form, not only a modal CTA. */
+export function getServiceOrderUrl(offer: Pick<EnterpriseService, "slug"> | string) {
+  const slug = typeof offer === "string" ? offer : offer.slug;
+  return `${FEED_SITE_URL}/order/${encodeURIComponent(slug)}`;
+}
+
 export function getOrderTelegramUrl(serviceTitle: string) {
   const text = `Здравствуйте! Хочу обсудить проект: ${serviceTitle}`;
   return `${TELEGRAM_URL}?text=${encodeURIComponent(text)}`;
@@ -173,7 +179,7 @@ export function getServiceFeedXml(now = new Date()) {
       <param name="Конверсия">${conversion}</param>
       <param name="Ссылка на телефон">${escapeXml(CONTACT_PHONE_URL)}</param>
       <param name="Ссылка на чат">${escapeXml(TELEGRAM_URL)}</param>
-      <param name="Ссылка на создание заказа">${escapeXml(url)}</param>
+      <param name="Ссылка на создание заказа">${escapeXml(getServiceOrderUrl(offer))}</param>
       <param name="Ссылка на профиль исполнителя">${escapeXml(FEED_SITE_URL)}</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">${escapeXml(offer.about)}</param>
