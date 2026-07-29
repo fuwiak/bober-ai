@@ -1,20 +1,18 @@
 #!/usr/bin/env node
 
 /**
- * Синхронизация JavaScript-целей Яндекс.Метрики с reachGoal() в коде.
+ * Sync Яндекс.Метрика goals — contact funnel only.
  *
- *   npm run metrika:goals
+ * Business order (optimize Direct / reports on these):
+ *   1. lead_delivered     — заявка реально доставлена (API OK)
+ *   2. form_submit        — форма отправлена
+ *   3. phone / telegram / whatsapp / email clicks
+ *   4. primary_cta_click / contact_intent_open / form_start — intent
  *
- * Создаёт недостающие цели type=action / condition exact:<ident>.
- * Не удаляет существующие. Работает для main / partners / bitrix.
+ *   npm run metrika:goals           # ensure + prune junk
+ *   npm run metrika:goals -- --keep # only create/rename, no delete
  *
- * Классификация (не путать источники с конверсиями):
- * - source_diag — organic_visit / direct_visit: диагностика источника,
- *   НЕ ставить главной целью Direct и НЕ оптимизировать кампании по ним.
- *   SEO: отчёт «Источники → Поисковые системы» надёжнее organic_visit.
- * - micro — клики/интент (CTA, form_start, case_study_view…).
- * - conversion — form_submit, lead_delivered, phone/telegram, ROI lead.
- *   Главная бизнес-конверсия на сайте: lead_delivered (после ответа API).
+ * Не ставить целью оптимизации: auto CRM-заказы, source_diag, CTA-шум.
  */
 
 import fetch from "./lib/fetch.mjs";
@@ -23,6 +21,8 @@ import { applyYagaCredentials } from "./lib/yaga-credentials.mjs";
 applyYagaCredentials();
 
 const MANAGEMENT_API = "https://api-metrika.yandex.net/management/v1";
+const args = new Set(process.argv.slice(2));
+const prune = !args.has("--keep") && !args.has("--no-prune");
 
 const config = {
   token:
@@ -32,80 +32,70 @@ const config = {
   clientId: process.env.YANDEX_WEBMASTER_CLIENT_ID?.trim() || "f2e2f11ae7e3492886ad61a6e45a4c5c",
 };
 
-/** @type {Record<string, { id: string, goals: { name: string, ident: string, tier?: string }[] }>} */
+/**
+ * Contact-only goals. tier:
+ * - conversion — человек связался / лид доставлен
+ * - channel    — клик в канал связи
+ * - intent     — открыл форму / CTA «связаться»
+ */
 const COUNTERS = {
   main: {
     id: process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID?.trim() || "110635302",
     goals: [
-      // —— conversions (бизнес) ——
-      { name: "WWW: lead delivered", ident: "lead_delivered", tier: "conversion" },
-      { name: "WWW: form submit", ident: "form_submit", tier: "conversion" },
-      { name: "WWW: phone click", ident: "phone_click", tier: "conversion" },
-      { name: "WWW: Telegram click", ident: "telegram_click", tier: "conversion" },
-      { name: "WWW: modal Telegram", ident: "modal_telegram_click", tier: "conversion" },
-      { name: "WWW: ROI lead submit", ident: "roi_calculator_lead_submit", tier: "conversion" },
-      // —— micro ——
-      { name: "WWW: primary CTA", ident: "primary_cta_click", tier: "micro" },
-      { name: "WWW: form start", ident: "form_start", tier: "micro" },
-      { name: "WWW: calendar CTA", ident: "calendar_cta_click", tier: "micro" },
-      { name: "WWW: hero secondary CTA", ident: "hero_secondary_cta_click", tier: "micro" },
-      { name: "WWW: header consult CTA", ident: "header_consult_cta_click", tier: "micro" },
-      { name: "WWW: mobile consult CTA", ident: "mobile_consult_cta_click", tier: "micro" },
-      { name: "WWW: budget gate CTA", ident: "budget_gate_cta_click", tier: "micro" },
-      { name: "WWW: audit CTA", ident: "audit_cta_click", tier: "micro" },
-      { name: "WWW: service estimate CTA", ident: "service_estimate_cta_click", tier: "micro" },
-      { name: "WWW: guide CTA", ident: "guide_cta_click", tier: "micro" },
-      { name: "WWW: guide bottom CTA", ident: "guide_bottom_cta", tier: "micro" },
-      { name: "WWW: lead magnet CTA", ident: "lead_magnet_cta_click", tier: "micro" },
-      { name: "WWW: micro conversion CTA", ident: "micro_conversion_click", tier: "micro" },
-      { name: "WWW: ROI gate open", ident: "roi_calculator_gate_open", tier: "micro" },
-      { name: "WWW: ROI discuss CTA", ident: "roi_calculator_discuss_click", tier: "micro" },
-      { name: "WWW: ROI audit CTA", ident: "roi_calculator_audit_click", tier: "micro" },
-      { name: "WWW: case study view", ident: "case_study_view", tier: "micro" },
-      { name: "WWW: case study discuss", ident: "case_study_discuss_click", tier: "micro" },
-      { name: "WWW: contact intent open", ident: "contact_intent_open", tier: "micro" },
-      { name: "WWW: diagnostic step", ident: "diagnostic_step", tier: "micro" },
-      { name: "WWW: A/B assign", ident: "ab_assign", tier: "micro" },
-      { name: "WWW: career Telegram", ident: "career_telegram_click", tier: "micro" },
-      { name: "WWW: career email", ident: "career_email_click", tier: "micro" },
-      // —— source_diag (НЕ конверсии / НЕ цели оптимизации Direct) ——
-      {
-        name: "WWW: [diag] Direct/paid visit — NOT a conversion",
-        ident: "direct_visit",
-        tier: "source_diag",
-      },
-      {
-        name: "WWW: [diag] Organic visit — NOT a conversion; use Search engines report",
-        ident: "organic_visit",
-        tier: "source_diag",
-      },
+      // —— conversions ——
+      { name: "★ CONTACT: Lead delivered", ident: "lead_delivered", tier: "conversion" },
+      { name: "CONTACT: Form submit", ident: "form_submit", tier: "conversion" },
+      { name: "CONTACT: ROI lead submit", ident: "roi_calculator_lead_submit", tier: "conversion" },
+      { name: "CONTACT: Process-review lead", ident: "process_review_lead_submit", tier: "conversion" },
+      // —— channels ——
+      { name: "CONTACT: Phone click", ident: "phone_click", tier: "channel" },
+      { name: "CONTACT: Telegram click", ident: "telegram_click", tier: "channel" },
+      { name: "CONTACT: Modal Telegram", ident: "modal_telegram_click", tier: "channel" },
+      { name: "CONTACT: WhatsApp", ident: "modal_whatsapp_click", tier: "channel" },
+      { name: "CONTACT: Email click", ident: "email_click", tier: "channel" },
+      { name: "CONTACT: Modal email", ident: "modal_email_click", tier: "channel" },
+      { name: "CONTACT: Career Telegram", ident: "career_telegram_click", tier: "channel" },
+      { name: "CONTACT: Career email", ident: "career_email_click", tier: "channel" },
+      // —— intent ——
+      { name: "CONTACT: Primary CTA (open form)", ident: "primary_cta_click", tier: "intent" },
+      { name: "CONTACT: Intent open", ident: "contact_intent_open", tier: "intent" },
+      { name: "CONTACT: Form start", ident: "form_start", tier: "intent" },
     ],
   },
   partners: {
     id: process.env.NEXT_PUBLIC_PARTNERS_YANDEX_METRIKA_ID?.trim() || "110926696",
     goals: [
-      { name: "Partner: CTA kontakt", ident: "partner_cta_click", tier: "micro" },
-      { name: "Partner: Telegram", ident: "partner_telegram_click", tier: "conversion" },
-      { name: "Partner: start formularza", ident: "partner_form_start", tier: "micro" },
-      { name: "Partner: wysłanie formularza", ident: "partner_form_submit", tier: "conversion" },
-      { name: "Partner: lead delivered", ident: "partner_lead_delivered", tier: "conversion" },
+      { name: "★ Partner CONTACT: Lead delivered", ident: "partner_lead_delivered", tier: "conversion" },
+      { name: "Partner CONTACT: Form submit", ident: "partner_form_submit", tier: "conversion" },
+      { name: "Partner CONTACT: Telegram", ident: "partner_telegram_click", tier: "channel" },
+      { name: "Partner CONTACT: CTA", ident: "partner_cta_click", tier: "intent" },
+      { name: "Partner CONTACT: Form start", ident: "partner_form_start", tier: "intent" },
     ],
   },
   bitrix: {
     id: process.env.NEXT_PUBLIC_BITRIX_YANDEX_METRIKA_ID?.trim() || "110926887",
     goals: [
-      { name: "Bitrix: CTA kontakt", ident: "bitrix_cta_click", tier: "micro" },
-      { name: "Bitrix: Telegram", ident: "bitrix_telegram_click", tier: "conversion" },
-      { name: "Bitrix: WhatsApp", ident: "bitrix_whatsapp_click", tier: "conversion" },
-      { name: "Bitrix: email", ident: "bitrix_email_click", tier: "conversion" },
-      { name: "Bitrix: phone", ident: "bitrix_phone_click", tier: "conversion" },
-      { name: "Bitrix: packages", ident: "bitrix_packages_click", tier: "micro" },
-      { name: "Bitrix: start formularza", ident: "bitrix_form_start", tier: "micro" },
-      { name: "Bitrix: wysłanie formularza", ident: "bitrix_form_submit", tier: "conversion" },
-      { name: "Bitrix: lead delivered", ident: "bitrix_lead_delivered", tier: "conversion" },
+      { name: "★ Bitrix CONTACT: Lead delivered", ident: "bitrix_lead_delivered", tier: "conversion" },
+      { name: "Bitrix CONTACT: Form submit", ident: "bitrix_form_submit", tier: "conversion" },
+      { name: "Bitrix CONTACT: Telegram", ident: "bitrix_telegram_click", tier: "channel" },
+      { name: "Bitrix CONTACT: WhatsApp", ident: "bitrix_whatsapp_click", tier: "channel" },
+      { name: "Bitrix CONTACT: Email", ident: "bitrix_email_click", tier: "channel" },
+      { name: "Bitrix CONTACT: Phone", ident: "bitrix_phone_click", tier: "channel" },
+      { name: "Bitrix CONTACT: CTA", ident: "bitrix_cta_click", tier: "intent" },
+      { name: "Bitrix CONTACT: Form start", ident: "bitrix_form_start", tier: "intent" },
     ],
   },
 };
+
+/** Auto-goals that help contact (keep). CRM order autos — prune. */
+const KEEP_AUTO_TYPES = new Set([
+  "contact_data",
+  "contact_data_sent",
+  "form",
+  "messenger",
+  "email",
+  "phone",
+]);
 
 function fail(msg) {
   console.error(`\nОшибка: ${msg}`);
@@ -155,6 +145,13 @@ function existingByIdent(goals) {
     }
   }
   return map;
+}
+
+function goalIdent(g) {
+  for (const c of g.conditions || []) {
+    if (c?.type === "exact" && c.url) return String(c.url);
+  }
+  return null;
 }
 
 async function ensureGoals(label, counterId, desired) {
@@ -222,11 +219,55 @@ async function ensureGoals(label, counterId, desired) {
   }
 
   console.log(`  → создано ${created}, обновлено ${updated}, без изменений ${skipped}`);
-  return { created, updated, skipped };
+  return { created, updated, skipped, goals: (await api(`/counter/${counterId}/goals`)).goals || [] };
+}
+
+async function pruneGoals(label, counterId, desired, goals) {
+  const keepIdents = new Set(desired.map((g) => g.ident));
+  let deleted = 0;
+
+  for (const g of goals) {
+    const source = g.goal_source || "user";
+    const ident = goalIdent(g);
+    const type = g.type;
+
+    let drop = false;
+    let reason = "";
+
+    if (source === "auto" || source === "system") {
+      if (String(type).startsWith("cdp_order") || String(g.name || "").startsWith("CRM:")) {
+        drop = true;
+        reason = "CRM auto (не контакт)";
+      } else if (!KEEP_AUTO_TYPES.has(type) && !KEEP_AUTO_TYPES.has(String(g.conditions?.[0]?.url || ""))) {
+        // keep contact autos; drop unknown autos only if clearly order-related
+        if (/order|cdp_/i.test(type) || /order|cdp_/i.test(g.name || "")) {
+          drop = true;
+          reason = "auto non-contact";
+        }
+      }
+    } else if (ident && !keepIdents.has(ident)) {
+      drop = true;
+      reason = "не в contact-funnel";
+    } else if (!ident && source === "user") {
+      // user goal without exact ident — leave
+    }
+
+    if (!drop) continue;
+
+    try {
+      await api(`/counter/${counterId}/goal/${g.id}`, { method: "DELETE" });
+      console.log(`  − #${g.id} ${ident || type} (${reason}) «${g.name}»`);
+      deleted += 1;
+    } catch (err) {
+      console.error(`  ! delete #${g.id}: ${err.message.slice(0, 200)}`);
+    }
+  }
+
+  console.log(`  → удалено ${deleted}`);
+  return deleted;
 }
 
 async function ensureMirrors(counterId) {
-  // apex без www — иначе визиты на www.bober-systems.ru не попадают в счётчик www
   try {
     const cur = (await api(`/counter/${counterId}`)).counter;
     const primary = String(cur.site2?.site || cur.site || "")
@@ -239,7 +280,7 @@ async function ensureMirrors(counterId) {
         .map((m) => String(m.site || m).replace(/^https?:\/\//, "").replace(/\/$/, "").toLowerCase())
         .filter(Boolean),
     );
-    const want = ["www.bober-systems.ru"];
+    const want = ["www.bober-systems.ru", "bober-systems.ru"];
     const toAdd = want.filter((s) => s !== primary && !mirrorSites.has(s));
     if (!toAdd.length) {
       console.log(`\n[mirrors] OK primary=${primary} mirrors=[${[...mirrorSites].join(", ") || "—"}]`);
@@ -261,7 +302,7 @@ async function ensureMirrors(counterId) {
 
 function printOAuthHelp() {
   console.log(`
-Нужен OAuth-токен с правом metrika:write (или metrika:read+write).
+Нужен OAuth-токен с правом metrika:write.
 
 1. https://oauth.yandex.ru/authorize?response_type=token&client_id=${config.clientId}
 2. export YANDEX_OAUTH_TOKEN="y0_..."
@@ -274,26 +315,28 @@ async function main() {
     fail("Не задан YANDEX_OAUTH_TOKEN");
   }
 
-  console.log("Яндекс.Метрика — sync action-целей");
+  console.log("Яндекс.Метрика — contact-funnel goals");
   console.log(
-    "Напоминание: organic_visit / direct_visit = source_diag (не конверсии Direct).\n" +
-      "SEO: Источники → Поисковые системы. Бизнес: lead_delivered > form_submit.",
+    "Главная конверсия: lead_delivered. Дальше form_submit → каналы (phone/telegram/…) → intent.\n" +
+      (prune ? "Prune: ON (удаляем шум и CRM auto)" : "Prune: OFF (--keep)"),
   );
   await ensureMirrors(COUNTERS.main.id);
 
   let totalCreated = 0;
   let totalUpdated = 0;
+  let totalDeleted = 0;
   for (const [label, cfg] of Object.entries(COUNTERS)) {
     const res = await ensureGoals(label, cfg.id, cfg.goals);
     totalCreated += res.created;
     totalUpdated += res.updated;
+    if (prune) {
+      totalDeleted += await pruneGoals(label, cfg.id, cfg.goals, res.goals);
+    }
   }
 
-  console.log(`\nГотово. Новых: ${totalCreated}, переименовано: ${totalUpdated}`);
+  console.log(`\nГотово. +${totalCreated} ~${totalUpdated} −${totalDeleted}`);
   console.log("UI: https://metrika.yandex.ru/goals?id=" + COUNTERS.main.id);
-  console.log(
-    "source_diag (organic_visit / direct_visit) — не ставить целью оптимизации Direct.",
-  );
+  console.log("В Direct / отчётах целью ставь ★ CONTACT: Lead delivered.");
 }
 
 main().catch((err) => {

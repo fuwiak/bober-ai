@@ -176,12 +176,17 @@ async function main() {
     warn("Не удалось получить цели");
   }
 
-  console.log(`Цели (${goals.length})`);
+  console.log(`Цели (${goals.length}) — contact funnel`);
   if (!goals.length) {
     warn("Целей нет");
   } else {
-    for (const goal of goals) {
+    const contact = goals.filter((g) => /CONTACT|contact_data|form|messenger|email|phone/i.test(g.name || g.type || ""));
+    const other = goals.filter((g) => !contact.includes(g));
+    for (const goal of contact) {
       ok(`${goal.name} · ${goal.type} · ${goal.status}${goal.goal_source === "auto" ? " · auto" : ""}`);
+    }
+    if (other.length) {
+      warn(`Прочее (не contact): ${other.length} — npm run metrika:goals`);
     }
   }
   console.log("");

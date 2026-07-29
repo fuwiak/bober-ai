@@ -28,7 +28,7 @@ function initFormAttribution() {
     const detail = event.detail as { successful?: boolean; xhr?: XMLHttpRequest };
     const form = (event.target as HTMLElement | null)?.closest?.("form.contact-form");
     if (!form || !detail?.successful) return;
-    reachGoal("contact_form_submit", { status: detail.xhr?.status ?? 200 });
+    reachGoal("form_submit", { status: detail.xhr?.status ?? 200 });
     if (form.closest("[data-contact-modal]")) {
       closeFromModal();
     }

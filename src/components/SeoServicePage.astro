@@ -133,7 +133,7 @@ const jsonLd = [webPage, serviceSchema, organization, person, ...(faqSchema ? [f
             </p>
             <p class="body-copy mt-5 max-w-3xl text-lg">{content.subtitle}</p>
             <div class="mt-10 flex flex-wrap gap-4">
-              <a href="#contact" class="btn-primary" data-goal="audit_cta_click">{sp.quote}</a>
+              <a href="#contact" class="btn-primary" data-goal="primary_cta_click">{sp.quote}</a>
               <a
                 href={TELEGRAM_URL}
                 target="_blank"
@@ -141,7 +141,7 @@ const jsonLd = [webPage, serviceSchema, organization, person, ...(faqSchema ? [f
                 class="btn-secondary"
                 data-goal="telegram_click">{sp.telegram}</a
               >
-              <a href="#contact" class="btn-secondary" data-goal="service_estimate_cta_click">
+              <a href="#contact" class="btn-secondary" data-goal="primary_cta_click">
                 {isUz ? "Get an estimate" : "Получить оценку"}
               </a>
             </div>
@@ -167,7 +167,7 @@ const jsonLd = [webPage, serviceSchema, organization, person, ...(faqSchema ? [f
                     decoding="async"
                   />
                 </div>
-                <a href="#contact" class="btn-primary mt-6 w-full text-center" data-goal="audit_cta_click">
+                <a href="#contact" class="btn-primary mt-6 w-full text-center" data-goal="primary_cta_click">
                   {sp.quote}
                 </a>
               </aside>
