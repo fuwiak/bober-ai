@@ -217,6 +217,32 @@ async function main() {
     warn(`Статистика недоступна: ${error.message}`);
   }
 
+  try {
+    const organic = await apiRequest(
+      STAT_API,
+      `/data?ids=${id}&metrics=ym:s:visits,ym:s:users,ym:s:pageviews&filters=${encodeURIComponent("ym:s:trafficSource=='organic' AND ym:s:isRobot=='No'")}&date1=30daysAgo&date2=today&accuracy=full`,
+    );
+    const [ov, ou, op] = organic.totals || [0, 0, 0];
+    console.log("");
+    console.log("Органика (30 дней, без роботов)");
+    ok(`Визиты: ${ov} · посетители: ${ou} · просмотры: ${op}`);
+    ok(`Подробнее / фильтры: npm run metrika:filters`);
+  } catch (error) {
+    warn(`Органика недоступна: ${error.message}`);
+  }
+
+  try {
+    const filtersData = await apiRequest(MANAGEMENT_API, `/counter/${id}/filters`);
+    const filters = filtersData.filters || [];
+    const me = filters.find((f) => f.attr === "uniq_id" && f.type === "me" && f.status === "active");
+    console.log("");
+    console.log(`Фильтры (${filters.length})`);
+    if (me) ok(`Не учитывать мои визиты: вкл (#${me.id})`);
+    else warn("Не учитывать мои визиты: выкл — npm run metrika:filters");
+  } catch {
+    warn("Не удалось прочитать фильтры");
+  }
+
   console.log(`\nUI: https://metrika.yandex.ru/settings?id=${id}&tab=common`);
   console.log(`Контент: https://metrika.yandex.ru/stat/content_analytics?id=${id}`);
 }
