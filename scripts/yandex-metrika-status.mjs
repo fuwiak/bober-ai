@@ -152,7 +152,7 @@ async function main() {
   ok(`Вебвизор: ${flag(code.visor)} (v${webvisor.wv_version || "?"})`);
   ok(`Карта кликов: ${flag(code.clickmap)}`);
   ok(`SSR: ${flag(code.ssr)}`);
-  ok(`Ecommerce: ${flag(code.ecommerce)}`);
+  ok(`Ecommerce: ${flag(code.ecommerce)}${code.ecommerce ? ` · контейнер ${code.ecommerce_object || "dataLayer"}` : ""}`);
   ok(`Track hash: ${flag(code.track_hash)}`);
   ok(`Фильтр роботов: ${flag(counter.filter_robots)}`);
   ok(`Автоцели: ${flag(counter.autogoals_enabled)}`);

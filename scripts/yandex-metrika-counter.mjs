@@ -96,7 +96,10 @@ function buildCounterPayload(host) {
         track_links: 1,
         accurate_track_bounce: 1,
         visor: 1,
+        ecommerce: 1,
+        ecommerce_object: "dataLayer",
       },
+      currency: 643,
     },
   };
 }
