@@ -448,9 +448,14 @@ const jsonLd = [webPage, serviceSchema, organization, person, ...(faqSchema ? [f
     <section id="contact" class="section-band section--panel scroll-mt-16">
       <div class="container-editorial grid gap-16 lg:grid-cols-2">
         <div>
-          <span class="section-label">{isUz ? "Contact" : "Контакт"}</span>
-          <h2 class="section-title mt-4">{sp.formTitle}</h2>
+          <span class="section-label">{isUz ? "Order" : "Заказ"}</span>
+          <h2 class="section-title mt-4">{isUz ? "Buyurtma berish" : "Оформить заказ"}</h2>
           <p class="body-copy mt-4 max-w-xl text-base">{content.subtitle}</p>
+          <p class="mt-4 text-sm text-muted">
+            {isUz
+              ? "Forma oddiy POST orqali ishlaydi — JS shart emas."
+              : "Форма работает обычным POST — JavaScript не обязателен."}
+          </p>
         </div>
         <ContactForm
           locale={locale}

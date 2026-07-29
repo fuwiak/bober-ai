@@ -27,10 +27,15 @@ const form = messages.form;
 const privacyHref = localizePath(LEGAL_ROUTES.privacyPolicy, locale);
 const consentHref = localizePath(LEGAL_ROUTES.consent, locale);
 const uid = `cf-${Math.random().toString(36).slice(2, 8)}`;
+/** Server-rendered path so order works without JS (Yandex feed moderation). */
+const landingPage = Astro.url.pathname || "/";
 ---
 
 <form
   class="contact-form space-y-6"
+  action="/api/contact"
+  method="post"
+  enctype="application/x-www-form-urlencoded"
   hx-post="/api/contact"
   hx-swap="outerHTML"
   data-contact-form
@@ -57,7 +62,7 @@ const uid = `cf-${Math.random().toString(36).slice(2, 8)}`;
   <input type="hidden" name="utm_content" value="" />
   <input type="hidden" name="utm_term" value="" />
   <input type="hidden" name="yclid" value="" />
-  <input type="hidden" name="landing_page" value="" />
+  <input type="hidden" name="landing_page" value={landingPage} />
 
   <div>
     <label for={`${uid}-name`} class="form-label">{form.name}</label>

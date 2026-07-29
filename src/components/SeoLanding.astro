@@ -59,6 +59,14 @@ const feedOffer = getEnterpriseServiceByFeedPath(`/${page.category}/${page.slug}
 const commercial = feedOffer ?? catalogService;
 const faqItems = extended?.faq ?? content.faq ?? [];
 const canonicalPath = localizePath(`/${page.category}/${page.slug}`, locale);
+const orderTitle = locale === "uz" ? "Buyurtma berish" : "Оформить заказ";
+const orderCta = locale === "uz" ? "Oʻrnatish / buyurtma" : "Оформить заказ";
+const orderLead =
+  locale === "uz"
+    ? "Formani toʻldiring — 4 ish soati ichida javob beramiz. Buyurtma uchun JS shart emas."
+    : "Заполните форму ниже — ответим в течение 4 рабочих часов. Заявка уходит обычным POST без скриптов.";
+const formService = commercial?.title ?? content.h1;
+const formSource = `feed-order:${page.category}/${page.slug}`;
 ---
 
 <BaseLayout
@@ -71,6 +79,9 @@ const canonicalPath = localizePath(`/${page.category}/${page.slug}`, locale);
     <p class="meta-label">{content.eyebrow}</p>
     <h1 class="mt-4 display-title">{content.h1}</h1>
     <p class="mt-6 body-copy max-w-3xl">{content.subtitle}</p>
+    <p class="mt-8">
+      <a href="#order" class="btn-primary" data-goal="feed_order_cta">{orderCta}</a>
+    </p>
 
     {
       commercial?.serviceImage && (
@@ -158,10 +169,16 @@ const canonicalPath = localizePath(`/${page.category}/${page.slug}`, locale);
       )
     }
 
-    <section id="contact" class="mt-16 border-t border-hairline pt-12">
-      <h2 class="section-title">{messages.nav.contact}</h2>
+    <section id="order" class="mt-16 scroll-mt-16 border-t border-hairline pt-12">
+      <h2 class="section-title" id="contact">{orderTitle}</h2>
+      <p class="mt-4 body-copy max-w-xl text-muted">{orderLead}</p>
       <div class="mt-8 max-w-xl">
-        <ContactForm locale={locale} messages={messages} />
+        <ContactForm
+          locale={locale}
+          messages={messages}
+          source={formSource}
+          defaultService={formService}
+        />
       </div>
     </section>
   </article>

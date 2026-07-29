@@ -76,18 +76,24 @@ if (!content && !service) {
             {sp.timeline}: {service!.deliveryDays} {sp.days}
           </p>
           <div class="mt-5 flex flex-col gap-2">
-            <a href="#contact" class="btn-primary text-center">
-              {sp.quote}
+            <a href="#order" class="btn-primary text-center">
+              Оформить заказ
             </a>
             <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" class="btn-secondary text-center">
               {sp.telegram}
             </a>
           </div>
         </aside>
-        <section id="contact" class="mt-16 border-t border-hairline pt-12">
-          <h2 class="section-title">{sp.formTitle}</h2>
+        <section id="order" class="mt-16 scroll-mt-16 border-t border-hairline pt-12">
+          <h2 class="section-title" id="contact">Оформить заказ</h2>
+          <p class="mt-4 text-sm text-muted">Форма работает обычным POST — JavaScript не обязателен.</p>
           <div class="mt-8 max-w-xl">
-            <ContactForm locale={locale} messages={messages} defaultService={service!.title} />
+            <ContactForm
+              locale={locale}
+              messages={messages}
+              source={`feed-order:services/${service!.slug}`}
+              defaultService={service!.title}
+            />
           </div>
         </section>
       </article>

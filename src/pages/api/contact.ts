@@ -32,8 +32,47 @@ function errorHtml(message: string) {
   </div>`;
 }
 
+/** Full document for native form POST (no HTMX) — Yandex / no-JS browsers. */
+function fullPageHtml(title: string, bodyInner: string, backHref: string) {
+  const safeBack = backHref.startsWith("/") ? backHref : "/";
+  return `<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>${title}</title>
+  <style>
+    body{font-family:system-ui,sans-serif;max-width:40rem;margin:3rem auto;padding:0 1.25rem;line-height:1.5;color:#111}
+    .ok{color:#0a7a3e}.err{color:#b00020} a{color:#0b57d0}
+  </style>
+</head>
+<body>
+  ${bodyInner}
+  <p style="margin-top:1.5rem"><a href="${safeBack}">← Вернуться</a></p>
+</body>
+</html>`;
+}
+
 export const POST: APIRoute = async ({ request }) => {
   const contentType = request.headers.get("content-type") || "";
+  const isHtmx = request.headers.get("HX-Request") === "true";
+  const referer = request.headers.get("referer") || "";
+  let backPath = "/";
+  try {
+    if (referer) backPath = new URL(referer).pathname || "/";
+  } catch {
+    backPath = "/";
+  }
+
+  const respondHtml = (fragment: string, status = 200, title = "Заявка") => {
+    if (isHtmx) return htmlResponse(fragment, status);
+    const isError = status >= 400;
+    const wrapped = isError
+      ? `<h1 class="err">${title}</h1>${fragment}`
+      : `<h1 class="ok">${title}</h1>${fragment}`;
+    return htmlResponse(fullPageHtml(title, wrapped, backPath), status);
+  };
+
   let name = "";
   let contact = "";
   let message = "—";
@@ -113,7 +152,9 @@ export const POST: APIRoute = async ({ request }) => {
 
   // Honeypot — silent success
   if (website) {
-    return wantsJson ? json({ ok: true, dryRun: true }) : htmlResponse(successHtml(locale));
+    return wantsJson
+      ? json({ ok: true, dryRun: true })
+      : respondHtml(successHtml(locale), 200, locale === "uz" ? "Buyurtma qabul qilindi" : "Заявка принята");
   }
 
   if (!name || !contact) {
@@ -121,7 +162,7 @@ export const POST: APIRoute = async ({ request }) => {
       locale === "uz" ? "Majburiy maydonlarni toʻldiring" : "Заполните обязательные поля";
     return wantsJson
       ? json({ ok: false, message: messageText }, 400)
-      : htmlResponse(errorHtml(messageText), 400);
+      : respondHtml(errorHtml(messageText), 400, locale === "uz" ? "Xato" : "Ошибка");
   }
 
   if (!policyAccepted || !consent) {
@@ -131,7 +172,7 @@ export const POST: APIRoute = async ({ request }) => {
         : "Необходимо согласие на обработку персональных данных";
     return wantsJson
       ? json({ ok: false, message: messageText }, 400)
-      : htmlResponse(errorHtml(messageText), 400);
+      : respondHtml(errorHtml(messageText), 400, locale === "uz" ? "Xato" : "Ошибка");
   }
 
   const result = await deliverContactLead({
@@ -149,7 +190,7 @@ export const POST: APIRoute = async ({ request }) => {
   if (!result.ok) {
     return wantsJson
       ? json({ ok: false, message: result.message, error: result.error }, result.status)
-      : htmlResponse(errorHtml(result.message), result.status);
+      : respondHtml(errorHtml(result.message), result.status, locale === "uz" ? "Xato" : "Ошибка");
   }
 
   if (wantsJson) {
@@ -160,5 +201,9 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
-  return htmlResponse(successHtml(locale));
+  return respondHtml(
+    successHtml(locale),
+    200,
+    locale === "uz" ? "Buyurtma qabul qilindi" : "Заявка принята",
+  );
 };
