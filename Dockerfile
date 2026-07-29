@@ -40,14 +40,21 @@ ENV NODE_ENV=production \
     PORT=3001 \
     GIT_SHA=$GIT_SHA
 
-RUN addgroup -S astro && adduser -S astro -G astro
+RUN addgroup -S astro && adduser -S astro -G astro \
+  && apk add --no-cache su-exec \
+  && mkdir -p /app/data \
+  && chown -R astro:astro /app/data
 
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
+COPY deploy/web-entrypoint.sh /usr/local/bin/web-entrypoint.sh
 
-RUN chown -R astro:astro /app
-USER astro
+RUN chmod +x /usr/local/bin/web-entrypoint.sh \
+  && chown -R astro:astro /app
+
+# Entrypoint runs as root only to chown the leads volume, then drops to astro.
+USER root
 EXPOSE 3001
-
+ENTRYPOINT ["/usr/local/bin/web-entrypoint.sh"]
 CMD ["node", "./dist/server/entry.mjs"]
