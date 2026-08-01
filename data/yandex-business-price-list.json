@@ -8,6 +8,10 @@
   "uploadUi": "https://yandex.ru/sprav/113092981562/p/edit/price-lists/",
   "docs": "https://yandex.ru/support/business-priority/ru/manage/price-list",
   "note": "Прайс для Яндекс Бизнес / Карт. Точные цены пакетов (не «от»). Без телефонов и ссылок в тексте. performers-feed.yml — другой формат, сюда не подходит. Новый файл заменяет старый прайс целиком.",
+  "publishedAt": "2026-08-01",
+  "publishedStatus": "in_cabinet_awaiting_maps",
+  "publicProfile": "https://yandex.ru/profile/113092981562",
+  "mapsNote": "В кабинете 7/7. На публичном профиле/Картах — до суток после модерации. Фото категории «Услуги» тоже проходят модерацию.",
   "outputs": {
     "yml": "public/feeds/yandex-business-price.yml",
     "xlsx": "data/yandex-business-price-list.xlsx"
