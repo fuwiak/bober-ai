@@ -1,0 +1,136 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "specializationId": "187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "specializationNote": "Компьютеры и IT → Другое — Wordstat commercial_high «под ключ»",
+  "note": "2 кластера × 5 вариантов. Сиды из Wordstat commercial_high / keepAndShip: «внедрение ии под ключ» (44) и «автоматизация бизнеса под ключ» (68). В titles без «под ключ» (модерация) — фраза в description. Не дублирует uslugi-ai-vnedrenie-biznes (там «в бизнес под ключ»).",
+  "wordstatSource": [
+    "data/wordstat-ai-process-automation.csv",
+    "data/wordstat-bober-intent-decisions.json"
+  ],
+  "seeds": [
+    { "phrase": "внедрение ии под ключ", "count": 44, "intent": "commercial_high" },
+    { "phrase": "автоматизация бизнеса под ключ", "count": 68, "intent": "commercial_high" }
+  ],
+  "publishedAt": "2026-08-01",
+  "publishedStatus": "created_in_cabinet",
+  "publishedCount": 10,
+  "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "publishHint": [
+    "npm run yandex:uslugi:login",
+    "npm run yandex:uslugi:add -- --file=data/uslugi-ai-pod-kluch-clusters.json --headless --fast",
+    "npm run yandex:uslugi:list -- --spec=187ddab3-5a27-4a55-8240-dd1baca3b87f"
+  ],
+  "services": [
+    {
+      "id": "pk-vnedrenie-ii",
+      "cluster": "внедрение ии под ключ",
+      "name": "Внедрение ИИ: комплексный проект",
+      "price": 500000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/ai-discovery-roadmap.jpg",
+      "description": "Внедрение ИИ под ключ: аудит → пилот с KPI → production. Интеграции CRM и документов, обучение, передача. Фиксированная смета до старта, NDA. Москва и удалённо. От 500 000 ₽."
+    },
+    {
+      "id": "pk-vnedrenie-ii-zakaz",
+      "cluster": "внедрение ии под ключ",
+      "name": "Заказать внедрение ИИ",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/enterprise-ai-assistant.jpg",
+      "description": "Заказать внедрение ИИ под ключ: один процесс или несколько контуров. Смета и критерии приёмки до разработки. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "id": "pk-vnedrenie-ii-uslugi",
+      "cluster": "внедрение ии под ключ",
+      "name": "Внедрение ИИ для компании",
+      "price": 500000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/team-collab.jpg",
+      "description": "Внедрение ИИ под ключ для компании: заявки, документы, продажи, поддержка. Пилот 2–4 недели, затем масштабирование. Москва и удалённо. От 500 000 ₽."
+    },
+    {
+      "id": "pk-vnedrenie-ii-proizvodstvo",
+      "cluster": "внедрение ии под ключ",
+      "name": "Внедрение ИИ с нуля до запуска",
+      "price": 500000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/automation-code.jpg",
+      "description": "Внедрение ИИ под ключ: с нуля до запуска — сценарий, интеграции, логи, документация и передача команде. Не демо-чат. Москва и удалённо. От 500 000 ₽."
+    },
+    {
+      "id": "pk-vnedrenie-ii-smeta",
+      "cluster": "внедрение ии под ключ",
+      "name": "Внедрение ИИ с фиксированной сметой",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/sales-proposal.jpg",
+      "description": "Внедрение ИИ под ключ с фиксированной сметой: объём, сроки и критерии приёмки до старта. NDA, поддержка после запуска. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "id": "pk-avto-biznes",
+      "cluster": "автоматизация бизнеса под ключ",
+      "name": "Автоматизация бизнеса: комплексный проект",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/business-process-automation.jpg",
+      "description": "Автоматизация бизнеса под ключ: процессы, CRM, документы и отчёты без ручного копирования. Аудит → пилот → production. Фиксированная смета. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "id": "pk-avto-biznes-zakaz",
+      "cluster": "автоматизация бизнеса под ключ",
+      "name": "Заказать автоматизацию бизнеса",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/crm-integration.jpg",
+      "description": "Заказать автоматизацию бизнеса под ключ: workflow, интеграции, уведомления и статусы. Смета до старта, передача схеме команде. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "id": "pk-avto-biznes-processy",
+      "cluster": "автоматизация бизнеса под ключ",
+      "name": "Автоматизация бизнес-процессов: полный цикл",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/roadmap-sticky-notes.jpg",
+      "description": "Автоматизация бизнеса под ключ — полный цикл: карта процессов, правила, интеграции CRM/почты/1С. Пилот с KPI, затем масштабирование. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "id": "pk-avto-biznes-ii",
+      "cluster": "автоматизация бизнеса под ключ",
+      "name": "Автоматизация бизнеса с ИИ",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/document-processing.jpg",
+      "description": "Автоматизация бизнеса под ключ с ИИ: заявки, документы, продажи и поддержка. Меньше ручного ввода, измеримый эффект. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "id": "pk-avto-biznes-kompaniya",
+      "cluster": "автоматизация бизнеса под ключ",
+      "name": "Автоматизация компании с нуля до запуска",
+      "price": 500000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/private-llm.jpg",
+      "description": "Автоматизация бизнеса под ключ: с нуля до запуска — аудит, пилот, интеграции, обучение сотрудников. Фиксированная смета и NDA. Москва и удалённо. От 500 000 ₽."
+    }
+  ]
+}
