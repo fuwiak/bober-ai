@@ -1,7 +1,13 @@
 ---
+/**
+ * AI landings: rich SeoServicePage when content exists (e.g. corporate-neural-net),
+ * otherwise compact SeoLanding from catalog.
+ */
 import SeoLanding from "@/components/SeoLanding.astro";
+import SeoServicePage from "@/components/SeoServicePage.astro";
 import { LANDING_PAGES } from "@/lib/landing-pages";
 import type { Locale } from "@/lib/i18n";
+import { getSeoServiceContent } from "@/lib/seo-services-content";
 
 export const prerender = true;
 
@@ -13,6 +19,27 @@ export function getStaticPaths() {
 }
 
 const { page, locale } = Astro.props;
+const content = getSeoServiceContent(page.slug, locale === "uz" ? "uz" : "ru");
+const path = `/ai/${page.slug}`;
+const hubLabel = locale === "uz" ? "AI" : "ИИ";
 ---
 
-<SeoLanding page={page} locale={locale} />
+{
+  content ? (
+    <SeoServicePage
+      slug={page.slug}
+      locale={locale}
+      content={content}
+      pagePath={path}
+      serviceSlug={page.serviceSlug}
+      formSource={`ai-${page.slug}`}
+      formDefaultService={content.h1}
+      breadcrumbItems={[
+        { name: hubLabel, path: "/ai" },
+        { name: content.h1, path },
+      ]}
+    />
+  ) : (
+    <SeoLanding page={page} locale={locale} />
+  )
+}
