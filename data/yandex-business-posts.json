@@ -1,0 +1,39 @@
+{
+  "companyId": 113092981562,
+  "uploadUi": "https://yandex.ru/sprav/113092981562/p/edit/posts/",
+  "docs": "https://yandex.ru/support/business-priority/ru/manage/publications",
+  "limitNote": "В кабинете слоты 0/4 — публикуем до 4 публикаций. Текст ≤3000, фото ≤4, JPG/PNG, лучше ~400×160. Без телефонов, ALL CAPS, чужих ссылок.",
+  "posts": [
+    {
+      "id": "ai-implementation-news",
+      "text": "Запустили пакет внедрения ИИ в бизнес: от аудита процесса до production-контура.\n\nЧто входит:\n— выбор одного сценария с KPI;\n— пилот 2–6 недель;\n— интеграции с CRM и документами;\n— передача команде и документация.\n\nФиксированная смета пакета — 500 000 ₽. Подходит компаниям, которым нужен рабочий контур, а не демо-чат.\n\nПодробнее: https://www.bober-systems.ru/ai/ai-implementation",
+      "photos": [
+        "data/yandex-business-posts/images/enterprise-ai.jpg"
+      ]
+    },
+    {
+      "id": "ai-audit-promo",
+      "text": "AI-аудит и дорожная карта внедрения — быстрый старт до разработки.\n\nЗа 1–2 недели:\n— карта процессов и узких мест;\n— приоритетный сценарий;\n— оценка архитектуры и ROI;\n— смета пилота.\n\nЦена пакета — 150 000 ₽. Удобно, если ещё не решили, с какого процесса начинать автоматизацию.\n\nСтраница услуги: https://www.bober-systems.ru/services/ai-discovery-roadmap",
+      "photos": [
+        "data/yandex-business-posts/images/ai-discovery-roadmap.jpg"
+      ]
+    },
+    {
+      "id": "document-ai-news",
+      "text": "ИИ для обработки документов: меньше ручного ввода из PDF и сканов.\n\nПакет включает:\n— извлечение полей и классификацию файлов;\n— валидацию данных;\n— выгрузку в CRM или 1С;\n— маршруты согласования.\n\nФиксированная цена — 400 000 ₽. Москва и удалённо.\n\nПодробнее: https://www.bober-systems.ru/automation/document-ai",
+      "photos": [
+        "data/yandex-business-posts/images/document-ai.jpg"
+      ]
+    },
+    {
+      "id": "rag-assistant-news",
+      "text": "Корпоративный RAG-поиск и ИИ-ассистент по базе знаний компании.\n\nЧто получаете:\n— ответы со ссылкой на источник;\n— права доступа и guardrails;\n— связку с чатом или CRM;\n— индекс ваших регламентов и документов.\n\nПакет RAG — 400 000 ₽. Корпоративный ИИ-ассистент — отдельный пакет на той же базе.\n\nRAG: https://www.bober-systems.ru/solutions/rag-search\nАссистент: https://www.bober-systems.ru/ai/corporate-neural-net",
+      "photos": [
+        "data/yandex-business-posts/images/rag.jpg"
+      ]
+    }
+  ],
+  "publishedAt": "2026-08-01",
+  "publishedStatus": "on_moderation",
+  "publishedCount": 4
+}

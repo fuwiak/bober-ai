@@ -12,6 +12,12 @@
     "uploadUi": "https://yandex.ru/sprav/113092981562/p/edit/photos/",
     "manifest": "data/yandex-business-photos/manifest.json"
   },
+  "posts": {
+    "source": "data/yandex-business-posts.json",
+    "uploadUi": "https://yandex.ru/sprav/113092981562/p/edit/posts/",
+    "upload": "npm run yandex:business:posts",
+    "docs": "https://yandex.ru/support/business-priority/ru/manage/publications"
+  },
   "priceList": {
     "source": "data/yandex-business-price-list.json",
     "yml": "public/feeds/yandex-business-price.yml",
