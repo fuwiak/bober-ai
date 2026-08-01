@@ -89,6 +89,7 @@ function regeneratePerformersFeed() {
   copyFeedIfPresent("performers-feed.yml", "performers-feed.yml");
   copyFeedIfPresent("feeds/bitrix.yml", "feeds/bitrix.yml");
   copyFeedIfPresent("feeds/partners.yml", "feeds/partners.yml");
+  copyFeedIfPresent("feeds/yandex-business-price.yml", "feeds/yandex-business-price.yml");
 }
 
 if (!existsSync(join(out, "ru.html"))) {

@@ -53,6 +53,8 @@
     "yandex:direct:service-gallery": "node scripts/yandex-direct-service-gallery.mjs",
     "yandex:business": "node scripts/yandex-business.mjs",
     "yandex:business:oauth": "node scripts/yandex-business-oauth.mjs",
+    "yandex:business:price": "node scripts/generate-yandex-business-price.mjs",
+    "yandex:business:price:upload": "node scripts/yandex-business-price-upload.mjs",
     "yandex:audience:oauth": "node scripts/yandex-audience-oauth.mjs",
     "yandex:audience:oauth:refresh": "node scripts/yandex-audience-oauth.mjs refresh --update-railway",
     "yandex:audience:oauth:ensure": "node scripts/yandex-audience-oauth.mjs ensure --update-railway",

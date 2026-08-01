@@ -12,10 +12,20 @@
     "uploadUi": "https://yandex.ru/sprav/113092981562/p/edit/photos/",
     "manifest": "data/yandex-business-photos/manifest.json"
   },
+  "priceList": {
+    "source": "data/yandex-business-price-list.json",
+    "yml": "public/feeds/yandex-business-price.yml",
+    "xlsx": "data/yandex-business-price-list.xlsx",
+    "uploadUi": "https://yandex.ru/sprav/113092981562/p/edit/price-lists/",
+    "generate": "npm run yandex:business:price",
+    "upload": "npm run yandex:business:price:upload",
+    "publicFeed": "https://www.bober-systems.ru/feeds/yandex-business-price.yml"
+  },
   "notes": {
     "editCardFields": "Partner API не умеет PATCH полей существующей карточки — только create-company / search / ads.",
     "stories": "Истории только через ЛК: https://yandex.ru/sprav/113092981562/p/edit/stories/",
     "photos": "Фото только UI. Готовый пакет: data/yandex-business-photos/",
+    "priceList": "Прайс XLSX/YML через UI или YML-фид. Генерация: npm run yandex:business:price. performers-feed.yml — другой формат.",
     "campaigns": "create/launch кампаний — API агентства (RESOURCE_ACCESS_FORBIDDEN без партнёрского доступа)."
   }
 }

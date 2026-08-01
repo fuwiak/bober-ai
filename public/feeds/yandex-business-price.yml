@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog date="2026-08-01 23:05">
+  <shop>
+    <name>Bober AI Systems</name>
+    <company>Bober AI Systems</company>
+    <url>https://www.bober-systems.ru</url>
+    <currencies>
+      <currency id="RUB" rate="1"/>
+    </currencies>
+    <categories>
+      <category id="1">Внедрение ИИ</category>
+      <category id="2">Автоматизация</category>
+      <category id="3">Корпоративный ИИ</category>
+    </categories>
+    <offers>
+      <offer id="ai-audit-roadmap" available="true">
+        <name>AI-аудит и дорожная карта</name>
+        <vendor>Bober AI</vendor>
+        <price>150000</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>1</categoryId>
+        <picture>https://www.bober-systems.ru/stock/offers/ai-discovery-roadmap.jpg</picture>
+        <url>https://www.bober-systems.ru/services/ai-discovery-roadmap</url>
+        <description>AI-аудит и дорожная карта: карта процессов, узкие места, приоритетный сценарий, архитектура и фиксированная смета пилота. Пакет подходит до закупки разработки. Срок: 1–2 недели. Москва и удалённо.</description>
+        <shortDescription>Аудит процессов и дорожная карта внедрения ИИ: приоритеты, смета пилота, ROI до разработки.</shortDescription>
+      </offer>
+      <offer id="ai-implementation" available="true">
+        <name>Внедрение ИИ в бизнес</name>
+        <vendor>Bober AI</vendor>
+        <price>500000</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>1</categoryId>
+        <picture>https://www.bober-systems.ru/stock/offers/enterprise-ai-assistant.jpg</picture>
+        <url>https://www.bober-systems.ru/ai/ai-implementation</url>
+        <description>Пакет внедрения ИИ в бизнес: аудит выбранного контура, пилот 2–6 недель с метриками, интеграции с CRM и документами, запуск в production, документация и handover. Фиксированная цена пакета. Москва и удалённо.</description>
+        <shortDescription>Внедрение ИИ в бизнес: пилот с KPI, интеграции CRM и документов, production и передача команде.</shortDescription>
+      </offer>
+      <offer id="business-process-automation" available="true">
+        <name>Автоматизация бизнес-процессов</name>
+        <vendor>Bober AI</vendor>
+        <price>500000</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>2</categoryId>
+        <picture>https://www.bober-systems.ru/stock/offers/business-process-automation.jpg</picture>
+        <url>https://www.bober-systems.ru/services/business-process-automation</url>
+        <description>Пакет автоматизации бизнес-процессов: карта шагов, правила, интеграции CRM, почты и документов, пилот с KPI и передача схеме команде. Фиксированная цена пакета. Москва и удалённо.</description>
+        <shortDescription>Автоматизация бизнес-процессов: workflow, интеграции CRM и документов, пилот с KPI до production.</shortDescription>
+      </offer>
+      <offer id="corporate-rag" available="true">
+        <name>Корпоративный RAG-поиск</name>
+        <vendor>Bober AI</vendor>
+        <price>400000</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>3</categoryId>
+        <picture>https://www.bober-systems.ru/stock/offers/knowledge-base.jpg</picture>
+        <url>https://www.bober-systems.ru/solutions/rag-search</url>
+        <description>Пакет корпоративного RAG-поиска: индексация документов, ответы со ссылкой на источник, guardrails, права доступа, связка с чатом или CRM. Фиксированная цена пакета. Москва и удалённо.</description>
+        <shortDescription>Корпоративный RAG-поиск по базе знаний со ссылкой на источник, правами доступа и интеграцией в чат или CRM.</shortDescription>
+      </offer>
+      <offer id="document-ai" available="true">
+        <name>ИИ для обработки документов</name>
+        <vendor>Bober AI</vendor>
+        <price>400000</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>2</categoryId>
+        <picture>https://www.bober-systems.ru/stock/offers/document-ai.jpg</picture>
+        <url>https://www.bober-systems.ru/automation/document-ai</url>
+        <description>Пакет ИИ для обработки документов: OCR и LLM под ваши типы файлов, валидация полей, маршруты согласования, выгрузка в CRM или 1С. Фиксированная цена пакета. Москва и удалённо.</description>
+        <shortDescription>ИИ для обработки документов: извлечение полей, классификация PDF и сканов, выгрузка в CRM или 1С.</shortDescription>
+      </offer>
+      <offer id="crm-automation" available="true">
+        <name>Автоматизация CRM</name>
+        <vendor>Bober AI</vendor>
+        <price>400000</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>2</categoryId>
+        <picture>https://www.bober-systems.ru/stock/offers/crm-automation.jpg</picture>
+        <url>https://www.bober-systems.ru/integrations/crm-automation</url>
+        <description>Пакет автоматизации CRM: маршруты заявок, статусы, уведомления, сценарии продаж и поддержки, интеграции с почтой и мессенджерами. Фиксированная цена пакета. Москва и удалённо.</description>
+        <shortDescription>Автоматизация CRM: заявки, статусы, сценарии продаж и поддержка без ручного копирования данных.</shortDescription>
+      </offer>
+      <offer id="corporate-ai-assistant" available="true">
+        <name>Корпоративный ИИ-ассистент</name>
+        <vendor>Bober AI</vendor>
+        <price>400000</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>3</categoryId>
+        <picture>https://www.bober-systems.ru/stock/offers/corporate-ai-assistant.jpg</picture>
+        <url>https://www.bober-systems.ru/ai/corporate-neural-net</url>
+        <description>Пакет корпоративного ИИ-ассистента: база знаний и регламенты, ответы со ссылкой на источник, права доступа, интеграция в чат или CRM. Фиксированная цена пакета. Москва и удалённо.</description>
+        <shortDescription>Корпоративный ИИ-ассистент по регламентам и базе знаний: ответы со ссылкой на источник и контроль доступа.</shortDescription>
+      </offer>
+    </offers>
+  </shop>
+</yml_catalog>
