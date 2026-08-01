@@ -11,9 +11,14 @@ const messages = loadMessages(locale);
 const services = getEnterpriseServices(locale);
 ---
 
+const pageTitle = "Каталог заказов AI и автоматизации — Bober AI";
+const pageDescription =
+  "Онлайн-заказ услуг Bober AI: автоматизация процессов, CRM, документы, RAG и LLM. Выберите услугу, оставьте контакты — подтвердим состав работ и сроки.";
+---
+
 <BaseLayout
-  title={`${messages.order.title} — Bober AI`}
-  description={messages.order.subtitle}
+  title={pageTitle}
+  description={pageDescription}
   locale={locale}
   canonicalPath={localizePath("/order", locale)}
 >

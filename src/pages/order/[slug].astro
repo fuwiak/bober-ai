@@ -31,11 +31,20 @@ if (!service) {
 const offerUrl = getServiceOfferUrl(service);
 const offerPath = offerUrl.replace(/^https?:\/\/[^/]+/, "") || `/services/${service.slug}`;
 const estimateHref = `${localizePath(offerPath, locale)}#estimate`;
+const priceLabel = `от ${service.price.toLocaleString("ru-RU")} ₽`;
+const pageTitle = `Заказ «${service.title}» (${priceLabel}) — онлайн-форма | Bober AI`;
+const pageDescription = [
+  `Оформление заказа услуги «${service.title}».`,
+  service.description.replace(/\s+/g, " ").trim(),
+  `Срок от ${service.deliveryDays} дн., ${priceLabel}.`,
+]
+  .join(" ")
+  .slice(0, 160);
 ---
 
 <BaseLayout
-  title={`${messages.order.title}: ${service.title} — Bober AI`}
-  description={messages.order.subtitle}
+  title={pageTitle}
+  description={pageDescription}
   locale={locale}
   canonicalPath={localizePath(`/order/${service.slug}`, locale)}
 >
