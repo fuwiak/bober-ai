@@ -110,6 +110,15 @@ const metrikaBootstrap = `(function(){var host=(location.hostname||'').toLowerCa
       })();
     </script>
     <script is:inline set:html={metrikaBootstrap} />
+    <noscript>
+      <div>
+        <img
+          src={`https://mc.yandex.ru/watch/${YANDEX_METRIKA_ID}`}
+          style="position:absolute;left:-9999px;"
+          alt=""
+        />
+      </div>
+    </noscript>
 
     {Array.isArray(jsonLd)
       ? jsonLd.map((block) => (
