@@ -307,9 +307,11 @@ const ruServices: EnterpriseService[] = [
   {
     id: "private-llm-gigachat",
     slug: "private-llm-gigachat",
-    title: "Приватный LLM-контур",
-    description: "GigaChat, on-prem и изолированное облако — без утечки данных во внешние сервисы.",
-    about: "Разворачиваем LLM в вашем контуре, настраиваем API, guardrails, мониторинг и интеграции.",
+    title: "Приватный контур языковых моделей",
+    description:
+      "GigaChat, свой сервер и изолированное облако — без утечки данных во внешние сервисы.",
+    about:
+      "Разворачиваем языковые модели в вашем контуре, настраиваем интерфейс, ограничения безопасности, мониторинг и интеграции.",
     salesNotes: "от 500 000 ₽",
     deliveryDays: 28,
     price: 500000,
