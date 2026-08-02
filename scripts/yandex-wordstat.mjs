@@ -15,11 +15,15 @@ const BUYER_MODIFIERS = [
   "настройка",
   "разработка",
   "интегратор",
+  "подрядчик",
   "консультант",
   "компания",
   "москва",
   "для бизнеса",
   "для компании",
+  "срочно",
+  "on premise",
+  "в закрытом контуре",
 ];
 
 /**
@@ -64,6 +68,19 @@ const IMPLEMENTATION_TOKENS = [
   "компани",
   "агентств",
   "москва",
+  "подрядчик",
+  "сколько стоит",
+  "бюджет",
+  "смет",
+  "кп на",
+  "пилот",
+  "срочн",
+  "срок внедр",
+  "срок разраб",
+  "развертыван",
+  "доработ",
+  "поддержк существующ",
+  "сменить подрядчик",
 ];
 
 const INTEGRATION_TOKENS = [
@@ -73,6 +90,28 @@ const INTEGRATION_TOKENS = [
   "обмен данн",
   "связк",
   "связать",
+  "подключить к",
+  "подключить ии",
+];
+
+/** Enterprise / security / compliance — buy-ready (large ticket). */
+const ENTERPRISE_TOKENS = [
+  "on premise",
+  "on-premise",
+  "онпрем",
+  "закрыт",
+  "защищен",
+  "в контуре",
+  "без передачи",
+  "локальн",
+  "частная llm",
+  "частн",
+  "152-фз",
+  "152 фз",
+  "фстэк",
+  "кии",
+  "импортозамещ",
+  "nda",
 ];
 
 const PROBLEM_TOKENS = [
@@ -81,15 +120,24 @@ const PROBLEM_TOKENS = [
   "как настро",
   "как связ",
   "как интегрир",
+  "как повыс",
+  "как сократ",
   "теря",
   "хаос",
   "вручную",
   "ручн",
   "не попада",
   "не ведут",
+  "не работает",
+  "неправильно",
+  "плохо отвеча",
   "разрознен",
   "двойной ввод",
   "потеря лид",
+  "долго обрабатыв",
+  "исправить",
+  "ускорить",
+  "кто может",
 ];
 
 const TECHNOLOGY_TOKENS = [
@@ -574,9 +622,16 @@ function classifyIntent(phrase, source = "popular") {
   const isConsulting = hasAny(p, CONSULTING_TOKENS);
   const isIntegration = hasAny(p, INTEGRATION_TOKENS);
   const isImplementation = hasAny(p, IMPLEMENTATION_TOKENS);
+  const isEnterprise = hasAny(p, ENTERPRISE_TOKENS);
   const isProblem = hasAny(p, PROBLEM_TOKENS);
   const isTech = hasAny(p, TECHNOLOGY_TOKENS);
   const isSolution = hasAny(p, SOLUTION_TOKENS);
+
+  // Enterprise/security markers = buy-ready (large ticket) even without «заказать»
+  if (isEnterprise && (isTech || isSolution || isImplementation || isIntegration)) {
+    if (isIntegration) return "integration_high";
+    return "implementation_high";
+  }
 
   // Prefer внедрение/интеграция over bare консалтинг when both present
   if (isIntegration && (isImplementation || isTech || isSolution)) {
@@ -848,6 +903,8 @@ async function main() {
   const deduped = new Map();
   let seedsUsed = [];
 
+  const seedTotals = [];
+
   if (fromJsonArg) {
     const cached = await loadFromJson(fromJsonArg.slice("--from-json=".length));
     for (const entry of cached) ingestCachedSeed(deduped, entry, minCount);
@@ -865,6 +922,17 @@ async function main() {
       const cluster = SEED_TO_CLUSTER[seed] || inferCluster(seed);
       const data = await topRequests(config, seed, numPhrases);
       const seedTotal = Number(data.totalCount || 0);
+      const top = (data.results || []).slice(0, 5).map((item) => ({
+        phrase: item.phrase,
+        count: Number(item.count || 0),
+      }));
+      const exact = top.find((item) => item.phrase?.toLowerCase() === seed.toLowerCase());
+      seedTotals.push({
+        phrase: seed,
+        totalCount: seedTotal,
+        exactCount: exact?.count ?? 0,
+        top1: top[0] || null,
+      });
 
       const push = (item, source) => {
         const phrase = item.phrase?.trim();
@@ -903,6 +971,24 @@ async function main() {
     await mkdir(dirname(outPath), { recursive: true });
     await writeFile(outPath, toCsv(rows), "utf8");
     console.log(`CSV: ${outPath} (${rows.length} rows, ${actionable.length} actionable)`);
+
+    if (seedTotals.length) {
+      const totalsPath = outPath.replace(/\.csv$/i, "-seed-totals.json");
+      await writeFile(
+        totalsPath,
+        JSON.stringify(
+          {
+            date: new Date().toISOString().slice(0, 10),
+            source: "Yandex Wordstat topRequests totalCount",
+            seeds: [...seedTotals].sort((a, b) => (b.totalCount || 0) - (a.totalCount || 0)),
+          },
+          null,
+          2,
+        ),
+        "utf8",
+      );
+      console.log(`Seed totals: ${totalsPath} (${seedTotals.length} seeds)`);
+    }
   }
 
   if (json) {

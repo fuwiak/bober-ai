@@ -1,7 +1,22 @@
 group,match_type,phrase,count,intent,landing,note
-ИИ · заказать,phrase,заказать внедрение ии,10,commercial_high,https://www.bober-systems.ru/services/ai-discovery-roadmap,max buy intent
-ИИ · заказать,phrase,внедрение ии под ключ,45,commercial_high,https://www.bober-systems.ru/services/ai-discovery-roadmap,turnkey
-ИИ · заказать,phrase,внедрение ии в бизнес под ключ,45,commercial_high,https://www.bober-systems.ru/services/ai-discovery-roadmap,turnkey+biz
-ИИ · заказать,phrase,услуги внедрение ии в бизнес,25,commercial_high,https://www.bober-systems.ru/services/ai-discovery-roadmap,services buy
-Автоматизация,phrase,автоматизация бизнеса заказать,11,commercial_high,https://www.bober-systems.ru/services/business-process-automation,order intent
-Bitrix24 · цена,phrase,внедрение битрикс24 цена,15,commercial_high,https://bitrix.bober-systems.ru/,price intent only — not broad bitrix
+ИИ · вендор,phrase,компания по внедрению ии,111,implementation_high,https://www.bober-systems.ru/ai/ai-implementation,exact #1 live 2026-08-02
+ИИ · цена,phrase,стоимость внедрения ии,108,implementation_high,https://www.bober-systems.ru/ai/ai-implementation,exact #2 price intent
+ИИ · вендор,phrase,компании по разработке ии,106,implementation_high,https://www.bober-systems.ru/ai/ai-implementation,exact #3 vendor
+ИИ · гео,phrase,внедрение ии москва,76,implementation_high,https://www.bober-systems.ru/ai/ai-implementation,geo buy
+ИИ · 1С,phrase,llm для 1с,58,technology_specific,https://www.bober-systems.ru/integrations/ai-for-crm,stack+1C demand
+ИИ · 1С,phrase,интеграция ии с 1с,49,integration_high,https://www.bober-systems.ru/integrations/ai-for-crm,exact integration
+ИИ · заказать,phrase,внедрение ии под ключ,41,implementation_high,https://www.bober-systems.ru/ai/ai-implementation,turnkey
+ИИ · заказать,phrase,внедрение ии в бизнес под ключ,31,implementation_high,https://www.bober-systems.ru/ai/ai-implementation,turnkey+biz
+ИИ · бюджет,phrase,бюджет внедрения ии,61,implementation_high,https://www.bober-systems.ru/ai/ai-implementation,totalCount synonym цены
+ИИ · CRM,phrase,интеграция ии с crm,43,integration_high,https://www.bober-systems.ru/integrations/ai-for-crm,totalCount cluster
+ИИ · сроки,phrase,сроки внедрения ии,28,implementation_high,https://www.bober-systems.ru/ai/ai-implementation,project readiness
+ИИ · процесс,phrase,внедрение ии в отдел продаж,17,implementation_high,https://www.bober-systems.ru/automation/sales-department,process+AI
+ИИ · вендор,phrase,интегратор искусственного интеллекта,16,integration_high,https://www.bober-systems.ru/ai/ai-implementation,exact integrator
+ИИ · цена,phrase,сколько стоит внедрить ии,15,implementation_high,https://www.bober-systems.ru/ai/ai-implementation,price question
+ИИ · 1С,phrase,локальная llm для 1с,15,implementation_high,https://www.bober-systems.ru/services/secure-private-ai-cloud,local+1C
+ИИ · RAG,phrase,стоимость разработки rag,12,implementation_high,https://www.bober-systems.ru/solutions/rag-search,RAG budget
+ИИ · заказать,phrase,заказать внедрение ии,10,implementation_high,https://www.bober-systems.ru/services/ai-discovery-roadmap,max buy intent low vol
+ИИ · enterprise,phrase,локальная нейросеть для компании,11,implementation_high,https://www.bober-systems.ru/ai/corporate-neural-net,enterprise local
+ИИ · enterprise,phrase,внедрение корпоративной llm,7,implementation_high,https://www.bober-systems.ru/ai/corporate-neural-net,corp LLM
+Автоматизация,phrase,автоматизация бизнеса заказать,11,implementation_high,https://www.bober-systems.ru/services/business-process-automation,order intent
+Bitrix24 · цена,phrase,внедрение битрикс24 цена,15,implementation_high,https://bitrix.bober-systems.ru/,price intent only — not broad bitrix

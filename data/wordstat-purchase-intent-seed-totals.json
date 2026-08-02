@@ -1,0 +1,541 @@
+{
+  "date": "2026-08-02",
+  "source": "Yandex Wordstat topRequests totalCount",
+  "seeds": [
+    {
+      "phrase": "компания по внедрению ии",
+      "totalCount": 111,
+      "exactCount": "111",
+      "top1": {
+        "phrase": "компания по внедрению ии",
+        "count": "111"
+      },
+      "top": [
+        {
+          "phrase": "компания по внедрению ии",
+          "count": "111"
+        },
+        {
+          "phrase": "компании по внедрению ии в бизнес",
+          "count": "18"
+        }
+      ]
+    },
+    {
+      "phrase": "стоимость внедрения ии",
+      "totalCount": 108,
+      "exactCount": "108",
+      "top1": {
+        "phrase": "стоимость внедрения ии",
+        "count": "108"
+      },
+      "top": [
+        {
+          "phrase": "стоимость внедрения ии",
+          "count": "108"
+        }
+      ]
+    },
+    {
+      "phrase": "внедрение ии москва",
+      "totalCount": 76,
+      "top": [],
+      "exactCount": 76,
+      "from": "csv-popular-fallback"
+    },
+    {
+      "phrase": "бюджет внедрения ии",
+      "totalCount": 61,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "llm для 1с",
+      "totalCount": 58,
+      "top": [],
+      "exactCount": 58,
+      "from": "csv-popular-fallback"
+    },
+    {
+      "phrase": "интеграция ии с 1с",
+      "totalCount": 49,
+      "exactCount": "49",
+      "top1": {
+        "phrase": "интеграция ии с 1с",
+        "count": "49"
+      },
+      "top": [
+        {
+          "phrase": "интеграция ии с 1с",
+          "count": "49"
+        }
+      ]
+    },
+    {
+      "phrase": "интеграция ии с crm",
+      "totalCount": 43,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "ии менеджер интеграция с crm",
+        "count": "11"
+      },
+      "top": [
+        {
+          "phrase": "ии менеджер интеграция с crm",
+          "count": "11"
+        }
+      ]
+    },
+    {
+      "phrase": "внедрение ии под ключ",
+      "totalCount": 41,
+      "exactCount": "41",
+      "top1": {
+        "phrase": "внедрение ии под ключ",
+        "count": "41"
+      },
+      "top": [
+        {
+          "phrase": "внедрение ии под ключ",
+          "count": "41"
+        },
+        {
+          "phrase": "внедрение ии в бизнес под ключ",
+          "count": "31"
+        }
+      ]
+    },
+    {
+      "phrase": "сроки внедрения ии",
+      "totalCount": 28,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "внедрение ии в отдел продаж",
+      "totalCount": 17,
+      "exactCount": "17",
+      "top1": {
+        "phrase": "внедрение ии в отдел продаж",
+        "count": "17"
+      },
+      "top": [
+        {
+          "phrase": "внедрение ии в отдел продаж",
+          "count": "17"
+        }
+      ]
+    },
+    {
+      "phrase": "интегратор искусственного интеллекта",
+      "totalCount": 16,
+      "exactCount": "16",
+      "top1": {
+        "phrase": "интегратор искусственного интеллекта",
+        "count": "16"
+      },
+      "top": [
+        {
+          "phrase": "интегратор искусственного интеллекта",
+          "count": "16"
+        }
+      ]
+    },
+    {
+      "phrase": "сколько стоит внедрить ии",
+      "totalCount": 15,
+      "exactCount": "15",
+      "top1": {
+        "phrase": "сколько стоит внедрить ии",
+        "count": "15"
+      },
+      "top": [
+        {
+          "phrase": "сколько стоит внедрить ии",
+          "count": "15"
+        }
+      ]
+    },
+    {
+      "phrase": "стоимость разработки rag",
+      "totalCount": 12,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "локальная нейросеть для компании",
+      "totalCount": 11,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "заказать внедрение ии",
+      "totalCount": 10,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "внедрение корпоративной llm",
+      "totalCount": 7,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "заказать rag систему",
+      "totalCount": 2,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "интеграция ии с битрикс24",
+      "totalCount": 2,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "кп на внедрение ии",
+      "totalCount": 2,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "аудит процессов для внедрения ии",
+      "totalCount": 2,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "корпоративная llm on premise",
+      "totalCount": 2,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "стоимость корпоративного чат-бота",
+      "totalCount": 1,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "пилотный проект ии для бизнеса",
+      "totalCount": 1,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "подрядчик по внедрению ии",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "разработка ии решения на заказ",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "разработка rag под ключ",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "автоматизация бизнеса с ии под ключ",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "цена внедрения ии для бизнеса",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "рассчитать стоимость автоматизации бизнеса",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "внедрение llm в закрытом контуре",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "ии без передачи данных в облако",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "rag в защищенном контуре",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "частная llm для бизнеса",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "внедрение ии 152-фз",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "безопасное внедрение генеративного ии",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "интеграция llm с корпоративными системами",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "развертывание llm на серверах компании",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "подрядчик по внедрению ии для крупного бизнеса",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "доработка ии чат-бота",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "аудит rag системы",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "rag плохо отвечает",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "чат-бот дает неправильные ответы",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "как повысить точность rag",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "оптимизация корпоративной llm",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "ускорить работу локальной llm",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "исправить интеграцию ии с crm",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "сменить подрядчика по внедрению ии",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "доработка проекта на n8n",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "поддержка существующей ии системы",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "заказать rag",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "заказать корпоративный чат-бот",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "ии для бизнеса под ключ",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "разработать ии для бизнеса",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "внедрить ии в компанию",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "интегратор ии для бизнеса",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "подрядчик rag",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "компания по разработке ии",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "интеграция ии с amocrm",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "подключить ии к битрикс24",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "связать ии с crm",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "заменить зарубежный ии",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "миграция на российскую llm",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "аналог chatgpt для бизнеса on premise",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "импортозамещение ии",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "срочно внедрить ии",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "срок разработки корпоративного чат-бота",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "интегратор ии москва",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "кто может автоматизировать обработку заявок",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "заказать решение для анализа звонков",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "менеджеры долго обрабатывают заявки",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "как сократить ручную обработку документов",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    },
+    {
+      "phrase": "crm не анализирует переписку",
+      "totalCount": null,
+      "error": 429,
+      "top": []
+    }
+  ],
+  "note": "Partial seed totals: first 28 before 429 quota; some filled from CSV popular exact."
+}

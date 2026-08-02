@@ -1,0 +1,120 @@
+{
+  "date": "2026-08-02",
+  "source": [
+    "data/wordstat-purchase-intent.csv",
+    "data/wordstat-purchase-intent-seed-totals.json"
+  ],
+  "apiNote": "Yandex Wordstat topRequests. Quota 100 req/h — seed totals partial after first CSV pass. Re-run deferred seeds next hour.",
+  "rule": "Prefer exact/totalCount over similar-noise. Buy markers: заказать/под ключ/подрядчик/интегратор/компания/стоимость/сроки/on-premise/152-ФЗ. Score: +3 action +2 vendor +2 system +1 price/deadline +1 process +1 enterprise; −2 что такое −1 как −2 free/course.",
+  "liveDemand": {
+    "tier1_vendor": [
+      { "phrase": "компания по внедрению ии", "exact": 111, "action": "H1/title + Usługi + Direct; primary vendor phrase" },
+      { "phrase": "компании по разработке ии", "exact": 106, "action": "keywords /ai/ai-implementation + Usługi alt" },
+      { "phrase": "внедрение ии москва", "exact": 76, "action": "geo landing keywords + Direct geo" },
+      { "phrase": "внедрение ии под ключ", "exact": 41, "action": "description/Usługi (no H1 «под ключ» if moderation)" },
+      { "phrase": "внедрение ии в бизнес под ключ", "exact": 31, "action": "keep Usługi cluster uslugi-ai-vnedrenie-biznes" },
+      { "phrase": "интегратор искусственного интеллекта", "exact": 16, "action": "keywords + About/services copy" },
+      { "phrase": "заказать внедрение ии", "total": 10, "exact": 0, "action": "Direct phrase match (low volume, max intent)" }
+    ],
+    "tier2_budget": [
+      { "phrase": "стоимость внедрения ии", "exact": 108, "action": "FAQ + pricing block /ai/ai-implementation; Direct" },
+      { "phrase": "бюджет внедрения ии", "total": 61, "exact": 0, "action": "FAQ synonym of стоимость" },
+      { "phrase": "сроки внедрения ии", "total": 28, "exact": 0, "action": "FAQ сроки на /ai/ai-implementation" },
+      { "phrase": "сколько стоит внедрить ии", "exact": 15, "action": "FAQ + Direct" },
+      { "phrase": "стоимость разработки rag", "total": 12, "exact": 0, "action": "FAQ /solutions/rag-search" }
+    ],
+    "tier_integration": [
+      { "phrase": "интеграция ии с 1с", "exact": 49, "action": "keywords /integrations + landing emphasis" },
+      { "phrase": "llm для 1с", "exact": 58, "action": "NEW/boost 1С×LLM content; hot Direct" },
+      { "phrase": "локальная llm для 1с", "exact": 15, "action": "pair with secure/private AI" },
+      { "phrase": "интеграция ии с crm", "total": 43, "exact": 0, "action": "keywords /integrations/ai-for-crm" },
+      { "phrase": "внедрение ии в отдел продаж", "exact": 17, "action": "keywords /automation/sales-department" }
+    ],
+    "tier3_enterprise_partial": [
+      { "phrase": "локальная нейросеть для компании", "total": 11, "exact": 0, "action": "keywords /ai/corporate-neural-net + secure cloud" },
+      { "phrase": "внедрение корпоративной llm", "total": 7, "exact": 0, "action": "keywords enterprise LLM" },
+      { "phrase": "корпоративная llm on premise", "total": 2, "exact": 0, "action": "keep /services/secure-private-ai-cloud (low volume, high ticket)" }
+    ],
+    "zeroOrNearZero_keepForAds": [
+      "подрядчик по внедрению ии",
+      "разработка rag под ключ",
+      "внедрение llm в закрытом контуре",
+      "срочно внедрить ии",
+      "интеграция ии с битрикс24"
+    ]
+  },
+  "skipOrDeprioritize": [
+    {
+      "phrase": "интегратор искусственного интеллекта → similar noise",
+      "reason": "associations pull consumer «нейросеть что это» — use exact match only in ads"
+    },
+    {
+      "phrase": "llm для 1с → similar 1c product noise",
+      "reason": "filter releases/edt; keep exact llm+1с commercial"
+    }
+  ],
+  "deferredSeeds": [
+    "ии без передачи данных в облако",
+    "rag в защищенном контуре",
+    "частная llm для бизнеса",
+    "внедрение ии 152-фз",
+    "безопасное внедрение генеративного ии",
+    "интеграция llm с корпоративными системами",
+    "развертывание llm на серверах компании",
+    "подрядчик по внедрению ии для крупного бизнеса",
+    "доработка ии чат-бота",
+    "аудит rag системы",
+    "rag плохо отвечает",
+    "чат-бот дает неправильные ответы",
+    "как повысить точность rag",
+    "оптимизация корпоративной llm",
+    "ускорить работу локальной llm",
+    "исправить интеграцию ии с crm",
+    "сменить подрядчика по внедрению ии",
+    "доработка проекта на n8n",
+    "поддержка существующей ии системы",
+    "заказать rag",
+    "заказать корпоративный чат-бот",
+    "ии для бизнеса под ключ",
+    "разработать ии для бизнеса",
+    "внедрить ии в компанию",
+    "интегратор ии для бизнеса",
+    "подрядчик rag",
+    "компания по разработке ии",
+    "интеграция ии с amocrm",
+    "подключить ии к битрикс24",
+    "связать ии с crm",
+    "заменить зарубежный ии",
+    "миграция на российскую llm",
+    "аналог chatgpt для бизнеса on premise",
+    "импортозамещение ии",
+    "срочно внедрить ии",
+    "срок разработки корпоративного чат-бота",
+    "интегратор ии москва",
+    "внедрение ии москва",
+    "кто может автоматизировать обработку заявок",
+    "заказать решение для анализа звонков",
+    "менеджеры долго обрабатывают заявки",
+    "как сократить ручную обработку документов",
+    "crm не анализирует переписку"
+  ],
+  "shipNow": {
+    "directHotPhrases": "data/direct-mini-hot-phrases.csv",
+    "seeds": "data/wordstat-seeds-purchase-intent.txt",
+    "priorityCopy": [
+      "компания по внедрению ИИ",
+      "стоимость внедрения ИИ",
+      "внедрение ИИ под ключ",
+      "внедрение ИИ Москва",
+      "интеграция ИИ с 1С",
+      "LLM для 1С",
+      "интегратор искусственного интеллекта"
+    ]
+  },
+  "vsJuly26": {
+    "стоимость внедрения ии": { "was": 153, "now": 108, "delta": -45 },
+    "внедрение ии под ключ": { "was": 44, "now": 41, "delta": -3 },
+    "интеграция ии с 1с": { "was": 45, "now": 49, "delta": 4 },
+    "note": "Vendor phrases (компания по внедрению/разработке) now dominate buy-intent cluster; price still #2"
+  }
+}

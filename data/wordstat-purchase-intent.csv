@@ -1,0 +1,192 @@
+phrase,count,source,seed,cluster,intent,intent_label,intent_legacy,service_fit,priority
+москва сейчас,864071,similar,внедрение ии москва,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+кто создал,341487,similar,компания по разработке ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+моя москва,177279,similar,внедрение ии москва,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+расчет стоимости,132425,similar,сколько стоит внедрить ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+сделано в москве,102391,similar,внедрение ии москва,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+инструкция по установке,90764,similar,внедрение ии под ключ,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+отписаться от платных услуг,77669,similar,сколько стоит внедрить ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+что происходит в москве,75423,similar,внедрение ии москва,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+что случилось в москве,63927,similar,внедрение ии москва,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+я услуги,59221,similar,внедрить ии в компанию,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+повышение цен,56406,similar,сколько стоит внедрить ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+прейскурант цен,40680,similar,сколько стоит внедрить ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+дизайн завод,37240,similar,компания по разработке ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+импортер,35613,similar,импортозамещение ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+индустрия сервис,31758,similar,внедрить ии в компанию,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+made in china,29458,similar,импортозамещение ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+монтаж это,25675,similar,компания по внедрению ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+что горит в москве сейчас,25235,similar,внедрение ии москва,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+кто создал тебя такой,24870,similar,компания по разработке ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+интеграция это,24436,similar,интегратор искусственного интеллекта,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+импорт это,19288,similar,импортозамещение ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+куплю продам нея,19196,similar,внедрение ии в отдел продаж,automation-sales,negative,Негатив / шум,irrelevant,skip,P0-skip
+мирена цена,18287,similar,стоимость внедрения ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+агентство свои,12831,similar,компания по внедрению ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+сколько стоит поставить машину на учет,12001,similar,стоимость внедрения ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+маркетплейс тарифов,10742,similar,стоимость внедрения ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+давление в москве сейчас,10203,similar,внедрение ии москва,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+себестоимость продаж,8420,similar,стоимость внедрения ии,automation-processes,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P1-landing
+центр реализации,7962,similar,внедрение ии в отдел продаж,automation-sales,implementation_high,Внедрение / заказ (высокий),commercial_high,sales-ai-agent,P1-landing
+мой создатель,9055,similar,компания по разработке ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+нейросеть что это,8244,similar,интегратор искусственного интеллекта,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+цена признания,8467,similar,стоимость внедрения ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+контора это,8282,similar,компания по внедрению ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+я покажу тебе москву,7189,similar,внедрение ии москва,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+ооо современные технологии,6325,similar,компания по внедрению ии,automation-processes,informational,Информационный,informational,blog,P4-blog
+сколько стоит поставить имплант,6286,similar,стоимость внедрения ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+releases 1c,5449,similar,llm для 1с,1c,technology_specific,Технология / стек,commercial_medium,business-process-automation,P2-landing/ads
+ооо интеграция,4740,similar,внедрение ии под ключ,automation-processes,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P1-landing
+portal 1c,5766,similar,llm для 1с,1c,negative,Негатив / шум,irrelevant,skip,P0-skip
+интеграция что это,5491,similar,интегратор искусственного интеллекта,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+поменять регион на соединенные штаты,5324,similar,внедрение ии под ключ,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+1c это,4713,similar,llm для 1с,1c,technology_specific,Технология / стек,commercial_medium,business-process-automation,P2-landing/ads
+срм это,5180,similar,интеграция ии с crm,integration,negative,Негатив / шум,irrelevant,skip,P0-skip
+сколько стоит поставить коронку,5128,similar,стоимость внедрения ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+кто создал мир,5060,similar,компания по разработке ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+сколько стоит поставить пломбу,4799,similar,стоимость внедрения ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+сколько стоит поменять фамилию,4767,similar,стоимость внедрения ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+группа фабрика состав,4744,similar,компания по разработке ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+под система купить,4548,similar,внедрение ии в отдел продаж,automation-sales,negative,Негатив / шум,irrelevant,skip,P0-skip
+сколько стоит поменять права,3962,similar,стоимость внедрения ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+этапы реализации проекта,3396,similar,внедрение ии в отдел продаж,automation-sales,solution_aware,Решение / автоматизация,commercial_medium,sales-ai-agent,P2-landing/ads
+its 1c ru,3946,similar,llm для 1с,1c,negative,Негатив / шум,irrelevant,skip,P0-skip
+агрегатор нейросетей,3905,similar,интегратор искусственного интеллекта,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+как поменять регион в настройках,3898,similar,внедрение ии под ключ,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+моя москва личный кабинет,3742,similar,внедрение ии москва,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+мск что это,3662,similar,внедрение ии москва,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+users 1c v8,2816,similar,llm для 1с,1c,technology_specific,Технология / стек,commercial_medium,business-process-automation,P2-landing/ads
+made in prc какая страна,3128,similar,импортозамещение ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+какими ценниками оформляются стеллажи промо распродажа,1981,similar,внедрение ии в отдел продаж,automation-sales,implementation_high,Внедрение / заказ (высокий),commercial_high,sales-ai-agent,P1-landing
+добавленная стоимость это,2999,similar,сколько стоит внедрить ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+когда основана москва,2969,similar,внедрение ии москва,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+1c edt,2288,similar,llm для 1с,1c,technology_specific,Технология / стек,commercial_medium,business-process-automation,P2-landing/ads
+zapret как установить,2705,similar,внедрение ии под ключ,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+сколько стоит поставить виниры,2407,similar,стоимость внедрения ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+токио хотел слушать,2370,similar,импортозамещение ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+made in china com,2094,similar,импортозамещение ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+агентство свои опрос что это,2059,similar,компания по внедрению ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+сколько стоит поставить спираль,2008,similar,стоимость внедрения ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+ооо мое дело,1993,similar,внедрить ии в компанию,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+интегратор это,1907,similar,компания по внедрению ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+кто создал яндекс,1855,similar,компания по разработке ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+самая умная нейросеть,1285,similar,интегратор искусственного интеллекта,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+users v8 1c ru,1748,similar,llm для 1с,1c,negative,Негатив / шум,irrelevant,skip,P0-skip
+made in p r c какая страна,1745,similar,импортозамещение ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+этрн внедрение,588,similar,интеграция ии с 1с,1c,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P1-landing
+как подключить родительский контроль,1664,similar,внедрение ии под ключ,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+срм система это,1660,similar,интеграция ии с crm,integration,negative,Негатив / шум,irrelevant,skip,P0-skip
+allow third party software,1628,similar,интеграция ии с crm,integration,negative,Негатив / шум,irrelevant,skip,P0-skip
+пко кэф что это за организация,1622,similar,внедрить ии в компанию,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+ооо новосистем,1615,similar,компания по внедрению ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+создание систем искусственного интеллекта взаимодействие с разработчиками,472,similar,интеграция ии с crm,integration,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P1-landing
+телеком интеграция,519,similar,интегратор искусственного интеллекта,automation-processes,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P1-landing
+amocrm что это,1044,similar,интеграция ии с crm,integration,technology_specific,Технология / стек,commercial_medium,business-process-automation,P2-landing/ads
+признаки фирмы,1525,similar,внедрить ии в компанию,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+инфинити страна производитель,1513,similar,импортозамещение ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+неаполь какая страна,1491,similar,импортозамещение ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+импортфлора,1472,similar,импортозамещение ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+создать трек с помощью нейросети,865,similar,интегратор искусственного интеллекта,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+црм это,1387,similar,интеграция ии с crm,integration,negative,Негатив / шум,irrelevant,skip,P0-skip
+либерализация цен,1370,similar,стоимость внедрения ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+проводки по реализации товаров и услуг,253,similar,внедрение ии в отдел продаж,automation-sales,implementation_high,Внедрение / заказ (высокий),commercial_high,sales-ai-agent,P1-landing
+пекин какая страна,1254,similar,импортозамещение ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+каир столица какой страны,1250,similar,импортозамещение ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+этапы продаж менеджера по продажам,697,similar,сколько стоит внедрить ии,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+пко интеграл,1240,similar,интеграция ии с 1с,1c,negative,Негатив / шум,irrelevant,skip,P0-skip
+сколько стоит поставить элайнеры,1237,similar,стоимость внедрения ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+токио какая страна,1224,similar,импортозамещение ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+компания по внедрению ии,111,popular,компания по внедрению ии,automation-processes,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P1-landing
+стоимость внедрения ии,108,popular,стоимость внедрения ии,automation-processes,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P1-landing
+компании по разработке ии,106,popular,компания по разработке ии,automation-processes,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P1-landing
+внедрение ии москва,76,popular,внедрение ии москва,automation-processes,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P2-landing/ads
+срм система для бизнеса,1059,similar,интеграция ии с crm,integration,informational,Информационный,informational,blog,P4-blog
+внедрение ии под ключ,41,popular,внедрение ии под ключ,automation-processes,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P2-landing/ads
+внедрение ии в бизнес под ключ,31,popular,внедрение ии под ключ,automation-processes,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P2-landing/ads
+розничная цена это,1139,similar,внедрение ии в отдел продаж,automation-sales,negative,Негатив / шум,irrelevant,skip,P0-skip
+компания внедряющая ии в бизнес,22,popular,внедрить ии в компанию,automation-processes,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P2-landing/ads
+компании по внедрению ии в бизнес,18,popular,компания по внедрению ии,automation-processes,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P2-landing/ads
+внедрение ии в отдел продаж,17,popular,внедрение ии в отдел продаж,automation-sales,implementation_high,Внедрение / заказ (высокий),commercial_high,sales-ai-agent,P2-landing/ads
+сколько стоит внедрить ии,15,popular,сколько стоит внедрить ии,automation-processes,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P2-landing/ads
+российские компании по разработке ии,15,popular,компания по разработке ии,automation-processes,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P2-landing/ads
+локальная llm для 1с,15,popular,llm для 1с,1c,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P2-landing/ads
+компания помогает внедрить ии в 1с розница,5,popular,внедрить ии в компанию,automation-processes,implementation_high,Внедрение / заказ (высокий),commercial_high,business-process-automation,P2-landing/ads
+интеграция ии с 1с,49,popular,интеграция ии с 1с,1c,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+мой класс срм,1077,similar,интеграция ии с crm,integration,negative,Негатив / шум,irrelevant,skip,P0-skip
+интегратор искусственного интеллекта,16,popular,интегратор искусственного интеллекта,automation-processes,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+ии менеджер интеграция с crm,11,popular,интеграция ии с crm,integration,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+кто создал вселенную,1056,similar,компания по разработке ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+1c erp что это,553,similar,интеграция ии с 1с,1c,technology_specific,Технология / стек,commercial_medium,business-process-automation,P2-landing/ads
+кто придумал самолет,998,similar,компания по разработке ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+как поменять роутер на другой и подключить,985,similar,внедрение ии под ключ,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+срм система что это,954,similar,интеграция ии с crm,integration,negative,Негатив / шум,irrelevant,skip,P0-skip
+na msk,927,similar,внедрение ии москва,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+кто придумал роллы,888,similar,компания по разработке ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+мду 1c r3,358,similar,llm для 1с,1c,technology_specific,Технология / стек,commercial_medium,business-process-automation,P2-landing/ads
+лучшие нейросети для кодинга,289,similar,интегратор искусственного интеллекта,automation-processes,solution_aware,Решение / автоматизация,commercial_medium,business-process-automation,P2-landing/ads
+ооо продамус что это за организация,835,similar,внедрение ии в отдел продаж,automation-sales,negative,Негатив / шум,irrelevant,skip,P0-skip
+1c erp что это такое,324,similar,интеграция ии с 1с,1c,technology_specific,Технология / стек,commercial_medium,business-process-automation,P2-landing/ads
+цена деления это,789,similar,стоимость внедрения ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+сколько стоит поставить спираль от беременности,788,similar,стоимость внедрения ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+amocrm что это такое,270,similar,интеграция ии с crm,integration,technology_specific,Технология / стек,commercial_medium,business-process-automation,P2-landing/ads
+импортер это кто,756,similar,импортозамещение ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+дистрибьюция это,737,similar,компания по внедрению ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+кто придумал пиццу,723,similar,компания по разработке ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+ритейл срм,707,similar,интеграция ии с crm,integration,negative,Негатив / шум,irrelevant,skip,P0-skip
+прочие элементы тюнинга купить,660,similar,внедрение ии в отдел продаж,automation-sales,negative,Негатив / шум,irrelevant,skip,P0-skip
+1c интерес,150,similar,интеграция ии с 1с,1c,technology_specific,Технология / стек,commercial_medium,business-process-automation,P3-seo
+portal 1c ru личный кабинет,638,similar,llm для 1с,1c,negative,Негатив / шум,irrelevant,skip,P0-skip
+rvi 1ns16f 1t 1c,119,similar,llm для 1с,1c,technology_specific,Технология / стек,commercial_medium,business-process-automation,P3-seo
+создать трек с помощью нейросети бесплатно,518,similar,интегратор искусственного интеллекта,automation-processes,informational,Информационный,informational,blog,P4-blog
+данные для смены региона на соединенные штаты,610,similar,внедрение ии под ключ,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+как поменять страну на айфоне в настройках,606,similar,внедрение ии под ключ,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+амо срм войти,597,similar,интеграция ии с crm,integration,negative,Негатив / шум,irrelevant,skip,P0-skip
+llm для 1с,58,popular,llm для 1с,1c,technology_specific,Технология / стек,commercial_medium,business-process-automation,P3-seo
+прочие комплектующие купить,527,similar,внедрение ии в отдел продаж,automation-sales,negative,Негатив / шум,irrelevant,skip,P0-skip
+ооо мое дело что это,526,similar,компания по внедрению ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+developer 1c ru,511,similar,llm для 1с,1c,negative,Негатив / шум,irrelevant,skip,P0-skip
+организационная структура предприятия это,497,similar,компания по разработке ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+made in prc какая страна производитель,483,similar,импортозамещение ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+ооо медиа технолоджи ит зачем звонят,476,similar,интеграция ии с crm,integration,negative,Негатив / шум,irrelevant,skip,P0-skip
+мск что это такое,464,similar,внедрение ии москва,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+its 1c ru личный кабинет,460,similar,llm для 1с,1c,negative,Негатив / шум,irrelevant,skip,P0-skip
+вставлен носитель с другим уникальным номером,421,similar,внедрение ии под ключ,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+здание министерства иностранных дел россии,321,similar,импортозамещение ии,automation-processes,informational,Информационный,informational,blog,P4-blog
+скачать песню больше не цепляет dm studio,257,similar,интеграция ии с crm,integration,informational,Информационный,informational,blog,P4-blog
+integrated api,343,similar,интеграция ии с 1с,1c,negative,Негатив / шум,irrelevant,skip,P0-skip
+expensive 3.1 src,341,similar,llm для 1с,1c,negative,Негатив / шум,irrelevant,skip,P0-skip
+интрум срм для агентства недвижимости,332,similar,интеграция ии с crm,integration,negative,Негатив / шум,irrelevant,skip,P0-skip
+киберзайм отписаться от платных услуг,330,similar,стоимость внедрения ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+zarublik отписаться от платных услуг,316,similar,сколько стоит внедрить ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+сенсорная интеграция что это такое,310,similar,интегратор искусственного интеллекта,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+litemon ru отписаться от платных услуг,292,similar,сколько стоит внедрить ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+ооо мое дело что это за организация,280,similar,компания по внедрению ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+ооо интеллин что это за организация,278,similar,внедрить ии в компанию,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+роскомнадзор это что за организация,269,similar,компания по внедрению ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+allow third party software cs2,268,similar,интеграция ии с crm,integration,negative,Негатив / шум,irrelevant,skip,P0-skip
+прейскурант цен лексическая ошибка,260,similar,стоимость внедрения ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+qrget отписаться от платных услуг,260,similar,сколько стоит внедрить ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+непал где находится в какой стране,256,similar,импортозамещение ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+импорт это ввоз или вывоз,245,similar,импортозамещение ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+каир это какая страна,240,similar,импортозамещение ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+ксир что это за организация,238,similar,компания по внедрению ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+бэлл интегратор,209,similar,интеграция ии с 1с,1c,negative,Негатив / шум,irrelevant,skip,P0-skip
+данная установка запрещена политикой заданной системным администратором,204,similar,внедрение ии под ключ,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+яндекс фабрика что это такое,203,similar,компания по разработке ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+idm integration module,197,similar,интеграция ии с 1с,1c,negative,Негатив / шум,irrelevant,skip,P0-skip
+ао пко цду что это за организация,195,similar,компания по внедрению ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+как внедрить ии в компанию,69,popular,внедрить ии в компанию,automation-processes,informational,Информационный,informational,blog,P4-blog
+как зарабатывать с помощью ии и нейросети,72,similar,интегратор искусственного интеллекта,automation-processes,informational,Информационный,informational,blog,P4-blog
+озеро комо где находится в какой стране,168,similar,импортозамещение ии,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+установка визуального расписания это адаптация,162,similar,внедрение ии под ключ,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+moskow или moscow как правильно,154,similar,внедрение ии москва,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+импортозамещение и ии,29,popular,импортозамещение ии,automation-processes,informational,Информационный,informational,blog,P4-blog
+интегратор на оу,137,similar,интеграция ии с 1с,1c,negative,Негатив / шум,irrelevant,skip,P0-skip
+либерализация цен это,136,similar,внедрение ии в отдел продаж,automation-sales,negative,Негатив / шум,irrelevant,skip,P0-skip
+fda что это за организация,133,similar,внедрить ии в компанию,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+artificial intelligence что это,120,similar,интегратор искусственного интеллекта,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+eks moscow rus что это,105,similar,внедрение ии москва,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+ym t moscow rus что это,84,similar,внедрение ии москва,automation-processes,negative,Негатив / шум,irrelevant,skip,P0-skip
+амо црм войти,82,similar,интеграция ии с crm,integration,negative,Негатив / шум,irrelevant,skip,P0-skip
+integrated api 1.20 1,81,similar,интеграция ии с 1с,1c,negative,Негатив / шум,irrelevant,skip,P0-skip
+сервисный интегратор инсайт,74,similar,интеграция ии с 1с,1c,negative,Негатив / шум,irrelevant,skip,P0-skip

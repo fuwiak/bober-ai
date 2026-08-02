@@ -3,11 +3,15 @@
   "geo": "Москва",
   "specializationId": "187ddab3-5a27-4a55-8240-dd1baca3b87f",
   "specializationNote": "Компьютеры и IT → Другое — внедрение ИИ в бизнес",
-  "note": "10 объявлений: 5× «внедрение искусственного интеллекта в бизнес» + 5× «внедрение ии в бизнес под ключ». В titles без «под ключ» (модерация) — фраза в description. Отдельно от uslugi-ai-process-automation / uslugi-wordstat-intent-drugoe.",
+  "note": "10 объявлений под live Wordstat 2026-08-02: vendor/price winners — компания по внедрению ии (111), стоимость внедрения ии (108), внедрение ии москва (76), под ключ (41). В titles без «под ключ» (модерация) — фраза в description. Отдельно от uslugi-ai-process-automation.",
   "seeds": [
+    "компания по внедрению ии",
+    "стоимость внедрения ии",
     "внедрение искусственного интеллекта в бизнес",
-    "внедрение ии в бизнес под ключ"
+    "внедрение ии в бизнес под ключ",
+    "внедрение ии москва"
   ],
+  "wordstatDecisions": "data/wordstat-purchase-intent-decisions.json",
   "publishHint": [
     "npm run yandex:uslugi:login",
     "npm run yandex:uslugi:add -- --file=data/uslugi-ai-vnedrenie-biznes.json --headless --fast",
@@ -22,7 +26,7 @@
       "isMinimalPrice": true,
       "geo": "Москва",
       "photo": "public/stock/ai-discovery-roadmap.jpg",
-      "description": "Внедрение искусственного интеллекта в бизнес: аудит процессов, пилот с KPI, интеграции CRM и документов, запуск в production. Фиксированная смета до старта, NDA. Москва и удалённо. От 400 000 ₽."
+      "description": "Компания по внедрению ИИ в бизнес: аудит процессов, пилот с KPI, интеграция ИИ с CRM и 1С, запуск в production. Стоимость внедрения ИИ — фиксированная смета до старта, NDA. Москва и удалённо. От 400 000 ₽."
     },
     {
       "id": "ai-full-dlya-biznesa",
@@ -72,7 +76,7 @@
       "isMinimalPrice": true,
       "geo": "Москва",
       "photo": "public/stock/team-collab.jpg",
-      "description": "Внедрение ИИ в бизнес под ключ: от аудита и ТЗ до запуска, обучения и передачи документации. Фиксированная смета, NDA, поддержка после запуска. Москва и удалённо. От 500 000 ₽."
+      "description": "Внедрение ИИ в бизнес под ключ и стоимость внедрения ИИ заранее: от аудита и ТЗ до запуска, обучения и передачи документации. Фиксированная смета, NDA. Внедрение ИИ Москва и удалённо. От 500 000 ₽."
     },
     {
       "id": "ai-pk-polnyy-cikl",

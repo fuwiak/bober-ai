@@ -7,7 +7,11 @@
 # 2) Hot shortlist (next budget)
 # npm run yandex:wordstat -- --file=data/wordstat-seeds-hot-shortlist.txt --csv --out=data/wordstat-hot-shortlist.csv
 
-# 3) Buyer intent (or expand Top 20 carefully)
+# 3) Purchase intent (Yandex transactional B2B — order/vendor/price/enterprise/rescue)
+# npm run yandex:wordstat -- --file=data/wordstat-seeds-purchase-intent.txt --csv --min=1 --out=data/wordstat-purchase-intent.csv
+#    → data/wordstat-purchase-intent-decisions.json
+
+# 3b) Buyer intent CRM/automation (or expand Top 20 carefully)
 # npm run yandex:wordstat -- --file=data/wordstat-seeds-buyer-intent.txt --csv --out=data/wordstat-buyer-intent.csv
 # Optional expensive: --with-modifiers (× ~15 API calls per seed)
 
