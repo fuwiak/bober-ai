@@ -129,7 +129,7 @@ export const CATALOG_LANDING_SPECS_CRM_WORDSTAT: LandingSpec[] = [
         "KPI и дашборд",
       ],
       intro: [
-        "Кластер Wordstat: «CRM автоматизация процессов / бизнеса / бизнес-процессов».",
+        "Автоматизация процессов и бизнес-процессов внутри CRM — отдельный коммерческий сценарий.",
         "Цель — процесс в CRM, а не «ещё поля для заполнения».",
       ],
       faq: [
@@ -164,7 +164,7 @@ export const CATALOG_LANDING_SPECS_CRM_WORDSTAT: LandingSpec[] = [
         "KPI dashboard",
       ],
       intro: [
-        "Wordstat cluster: CRM process / business / business-process automation.",
+        "CRM process and business-process automation is a distinct commercial scenario.",
         "Goal is the process in CRM — not more empty fields.",
       ],
       faq: [

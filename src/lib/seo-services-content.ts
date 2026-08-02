@@ -163,7 +163,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       { q: "Бюджет?", a: "Пилот от 300 000 ₽. Полный контур с несколькими каналами — от 500 000 ₽." },
       {
         q: "Где лендинг Bitrix?",
-        a: "Отдельный лендинг /bitrix — пакеты внедрения, Wordstat-услуги и секция AI-контура продаж. Ссылка в блоке связанных услуг ниже.",
+        a: "Отдельный лендинг /bitrix — пакеты внедрения и секция AI-контура продаж. Ссылка в блоке связанных услуг ниже.",
       },
       { q: "Данные и NDA?", a: "Можно в вашем облаке или on-prem. NDA до обмена записями звонков." },
     ],
@@ -972,10 +972,10 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   "ai-automation": {
     metaTitle: "AI + workflow: автоматизация с LLM-слоем",
     metaDescription:
-      "AI + workflow: документы, продажи, поддержка. LLM точечно там, где ROI измерим. Pillar-каталог — /automation.",
+      "AI + workflow: документы, продажи, поддержка. LLM точечно там, где ROI измерим. Каталог направлений — /automation.",
     eyebrow: "AI + Workflow",
     h1: "AI + workflow: автоматизация с LLM-слоем",
-    subtitle: "Workflow и интеграции — основа. LLM — точечно. Не конкурируем с pillar «Автоматизация бизнес-процессов».",
+    subtitle: "Workflow и интеграции — основа. LLM — точечно. Общий каталог сценариев — /automation.",
     problemsTitle: "Когда «просто AI» не работает",
     problems: [
       "ChatGPT-бот не подключён к CRM — менеджеры дублируют работу",
@@ -1043,7 +1043,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Корпоративный RAG: индексация документов, векторный поиск, цитаты источников. Production для баз знаний и ассистентов. От 500 000 ₽.",
     eyebrow: "Корпоративный RAG",
     h1: "Корпоративный RAG",
-    subtitle: "Кластер pillar-архитектуры: ответы LLM с опорой на ваши документы — цитаты, актуальность, контроль галлюцинаций.",
+    subtitle: "Ответы LLM с опорой на ваши документы — цитаты, актуальность, контроль галлюцинаций.",
     problemsTitle: "Проблемы «голого» LLM",
     problems: [
       "Модель не знает ваших продуктов, регламентов и цен",
@@ -1879,7 +1879,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     intro: [
       "Это не «антивирус для офиса». Это защищённая AI-инфраструктура: модели и RAG рядом с российским облаком и продуктами Kaspersky.",
       "Два режима: интеграционный проект (лицензии клиент закупает через дистрибуцию, мы внедряем) или управляемый контур с мониторингом — ближе к модели MSSP при полной техподдержке на Subscription Services.",
-      "Wordstat: прямой EN-запрос «Secure Private AI Cloud» почти не ищут. Спрос идёт через «внедрение LLM», «корпоративный ИИ», «частное/приватное облако», «Kaspersky для виртуальных сред», «база знаний с ИИ».",
+      "Клиенты формулируют задачу как внедрение LLM, корпоративный ИИ, частное облако, защита виртуальных сред Kaspersky или база знаний с ИИ — не как англоязычный бренд-термин.",
       "Бюджет пилота/контура — от 800 000 ₽. Объём лицензий Kaspersky зависит от числа VM, серверов и рабочих мест — в инфраструктурных проектах это путь к объёму для Silver.",
     ],
     howWeSolveTitle: "Как собираем контур",
@@ -3487,7 +3487,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
     intro: [
       "Not “office antivirus”. A secured AI infrastructure: models and RAG next to Russian cloud and Kaspersky products.",
       "Two modes: integration project (client buys licenses via distribution, we deploy) or managed contour with monitoring — closer to MSSP when full technical support runs on Subscription Services.",
-      "Wordstat: English “Secure Private AI Cloud” has near-zero search. Demand comes via “LLM implementation”, “corporate AI”, “private cloud”, “Kaspersky for virtual environments”, “AI knowledge base”.",
+      "Buyers describe the need as LLM implementation, corporate AI, private cloud, Kaspersky for virtual environments, or an AI knowledge base — not an English brand phrase.",
       "Pilot/contour from €8,000. Kaspersky license volume depends on VMs, servers and seats — infrastructure deals are the path to Silver volume.",
     ],
     howWeSolveTitle: "How we build it",

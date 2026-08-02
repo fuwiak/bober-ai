@@ -45,9 +45,9 @@ export const CLAUDE_PAGE = {
   h1Ru: "Claude AI для бизнеса — внедрение и автоматизация",
   h1En: "Claude AI for business — deployment and automation",
   subtitleRu:
-    "Claude AI, Claude API, Claude Code и Claude MCP — самые частые запросы в поиске. Мы не продаём подписку и не настраиваем личный аккаунт: внедряем Claude в процессы компании — CRM, документы, продажи, поддержку и базу знаний. Для МСБ в России и СНГ — с фиксированной сметой и NDA.",
+    "Внедряем Claude (API, Code, MCP) в процессы компании — CRM, документы, продажи, поддержку и базу знаний. Не продаём подписку и не настраиваем личный аккаунт. Для МСБ в России и СНГ — фиксированная смета и NDA.",
   subtitleEn:
-    "Claude AI, Claude API, Claude Code and Claude MCP are top search intents. We don't sell subscriptions or set up personal accounts: we deploy Claude into company workflows — CRM, documents, sales, support and knowledge base. For SMB in Russia & CIS — fixed estimate and NDA.",
+    "We deploy Claude (API, Code, MCP) into company workflows — CRM, documents, sales, support and knowledge base. We don't sell subscriptions or set up personal accounts. For SMB in Russia & CIS — fixed estimate and NDA.",
 
   /** GEO: short entity card for LLM answer engines */
   geoTitleRu: "Кто внедряет Claude и для кого",
@@ -256,11 +256,11 @@ export function getClaudeSeoContent(locale: "ru" | "kz" | "uz"): SeoServiceConte
     intro: [
       ...(ru ? p.geoFactsRu : p.geoFactsEn),
       ru
-        ? "Claude AI, Claude API, Claude Code и Claude MCP — самые частые запросы в поиске. Мы не продаём подписку Anthropic: внедряем Claude в CRM, документы, продажи, поддержку и базу знаний с фиксированной сметой до старта."
-        : "Claude AI, Claude API, Claude Code and Claude MCP are top search intents. We don't sell Anthropic subscriptions: we deploy Claude into CRM, documents, sales, support and knowledge bases with a fixed estimate before build.",
+        ? "Не продаём подписку Anthropic: внедряем Claude в CRM, документы, продажи, поддержку и базу знаний с фиксированной сметой до старта."
+        : "We don't sell Anthropic subscriptions: we deploy Claude into CRM, documents, sales, support and knowledge bases with a fixed estimate before build.",
       ru
-        ? "Популярные запросы: Claude Agent, Claude Opus/Sonnet, Claude в России, Anthropic API, Claude Skills. Ответы на термины — в глоссарии и в блоке FAQ ниже."
-        : "Popular searches: Claude Agent, Claude Opus/Sonnet, Claude in Russia, Anthropic API, Claude Skills. Glossary and FAQ below.",
+        ? "Стек: Claude Agent, Claude Opus/Sonnet, Anthropic API, Claude Skills. Ответы на термины — в глоссарии и в блоке FAQ ниже."
+        : "Stack: Claude Agent, Claude Opus/Sonnet, Anthropic API, Claude Skills. Glossary and FAQ below.",
     ],
     howWeSolveTitle: ru ? p.processTitleRu : p.processTitleEn,
     howWeSolve: (ru ? p.processRu : p.processEn).map((text, index) => ({

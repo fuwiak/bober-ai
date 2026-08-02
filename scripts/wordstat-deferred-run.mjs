@@ -123,6 +123,7 @@ function runWordstatOnce() {
         "--min=1",
         "--num=30",
         `--out=${CSV_OUT}`,
+        "--allow-fetch",
       ],
       { cwd: ROOT, env: process.env, stdio: ["ignore", "pipe", "pipe"] },
     );
@@ -252,12 +253,23 @@ function unloadLaunchd() {
 async function main() {
   await loadEnvFile();
   const force = process.argv.includes("--force");
+  const allowFetch =
+    process.argv.includes("--allow-fetch") || process.env.WORDSTAT_ALLOW_FETCH === "1";
+
+  unloadLaunchd();
+
+  if (!allowFetch) {
+    await log(
+      "FROZEN — Wordstat deferred publish stopped (data/wordstat-publish-frozen.json). Use WORDSTAT_ALLOW_FETCH=1 or --allow-fetch only for data fetch; never auto-edit src/.",
+    );
+    process.exitCode = 0;
+    return;
+  }
 
   try {
     const done = JSON.parse(await readFile(MARKER, "utf8"));
     if (done?.doneAt && done.failed === 0 && !force) {
       await log(`Skip — already complete ${done.doneAt} (use --force to re-run)`);
-      unloadLaunchd();
       return;
     }
   } catch {

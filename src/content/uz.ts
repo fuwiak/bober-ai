@@ -528,8 +528,8 @@ const uzOverrides = {
     label: "Claude · Anthropic",
     title: "Biznes uchun Claude AI — joriy etish va avtomatlashtirish",
     subtitle:
-      "Claude AI, Claude API, Claude Code va Claude MCP — qidiruvdagi eng ko'p so'rovlar. Obuna sotmaymiz va shaxsiy akkauntni sozlamaymiz: Claude ni kompaniya jarayonlariga joriy qilamiz — CRM, hujjatlar, savdo, qo'llab-quvvatlash va bilim bazasi.",
-    popularLabel: "Claude haqida mashhur so'rovlar",
+      "Claude (API, Code, MCP) ni kompaniya jarayonlariga joriy qilamiz — CRM, hujjatlar, savdo, qo'llab-quvvatlash va bilim bazasi. Obuna sotmaymiz va shaxsiy akkauntni sozlamaymiz.",
+    popularLabel: "Claude atrofida nima joriy qilamiz",
     terms: [
       "Claude AI",
       "Claude API",

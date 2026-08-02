@@ -1,4 +1,9 @@
 # Index: prioritized Wordstat seed files for Bober AI
+#
+# FROZEN PUBLISH (2026-08-02): fetch needs WORDSTAT_ALLOW_FETCH=1 or --allow-fetch.
+# Output = data CSV/decisions only. Never auto-edit homepage, H1, prices, cases, src/.
+# See data/wordstat-publish-frozen.json
+#
 # Run order (do NOT blast all at once):
 
 # 1) Top 20 starter

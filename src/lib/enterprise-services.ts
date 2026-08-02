@@ -176,7 +176,7 @@ const ruExtra: EnterpriseService[] = [
     description:
       "Каталог направлений и внедрение: КП, документы, CRM/1С, OCR, RAG, продажи. Аудит, пилот и production с фиксированной сметой.",
     about:
-      "Pillar /automation: Wordstat-направления + коммерческий оффер. AI только там, где снимает ручной труд. NDA, on-prem, Россия и СНГ.",
+      "Каталог /automation + коммерческий оффер. AI только там, где снимает ручной труд. NDA, on-prem, Россия и СНГ.",
     salesNotes: "от 150 000 ₽",
     deliveryDays: 21,
     price: 150000,
@@ -323,7 +323,7 @@ const enExtra: EnterpriseService[] = [
     description:
       "Direction catalog and delivery: proposals, documents, CRM/ERP, OCR, RAG, sales. Audit, pilot and production with a fixed estimate.",
     about:
-      "Pillar /automation: Wordstat directions + commercial offer. AI only where it removes manual work. NDA, on-prem, Russia & CIS.",
+      "/automation catalog + commercial offer. AI only where it removes manual work. NDA, on-prem, Russia & CIS.",
     salesNotes: "from €1,500",
     deliveryDays: 21,
     price: 1500,

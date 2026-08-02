@@ -1,8 +1,8 @@
 import type { SeoServiceContent } from "@/lib/seo-services-content";
 
 /**
- * Pillar landing /automation — SeoServicePage hybrid:
- * Wordstat-каталог направлений + коммерческий оффер (аудит → пилот → production).
+ * Landing /automation — SeoServicePage hybrid:
+ * каталог направлений + коммерческий оффер (аудит → пилот → production).
  * Отдельно от /services/business-process-automation (заказ: смета и SLA).
  */
 
@@ -52,9 +52,9 @@ export const AUTOMATION_PAGE = {
   h1Ru: "Автоматизация бизнес-процессов",
   h1En: "Business process automation",
   subtitleRu:
-    "Направления с коммерческим спросом Wordstat: компания, документы, CRM/1С, внедрение ИИ, RAG, OCR, продажи — план, смета и production.",
+    "Компания, документы, CRM/1С, внедрение ИИ, RAG, OCR, продажи — план, смета и production.",
   subtitleEn:
-    "Directions with commercial search demand: company, documents, CRM/1C, AI implementation, RAG, OCR, sales — plan, estimate and production.",
+    "Company, documents, CRM/1C, AI implementation, RAG, OCR, sales — plan, estimate and production.",
 
   directionsLabelRu: "Направления",
   directionsLabelEn: "Directions",
@@ -68,7 +68,7 @@ export const AUTOMATION_PAGE = {
   orderCtaEn: "Order automation — estimate & SLA",
 } as const;
 
-/** Hub children from live /automation catalog (Wordstat commercial demand). */
+/** Hub children for /automation catalog. */
 export const AUTOMATION_DIRECTIONS: AutomationDirection[] = [
   {
     href: "/automation/proposal-generation",
@@ -204,14 +204,14 @@ export function getAutomationSeoContent(locale: "ru" | "kz" | "uz"): SeoServiceC
       ? [
           "AI не является продуктом. Продукт — автоматизация бизнес-процесса с KPI.",
           "Клиенты ищут внедрение и автоматизацию конкретного процесса — не абстрактный консалтинг.",
-          "Эта страница — pillar-каталог направлений Wordstat и коммерческий вход: что автоматизировать, как выглядит внедрение, вилки бюджета и кейсы. Заказ со сметой и SLA — на /services/business-process-automation.",
+          "Здесь — каталог направлений и коммерческий вход: что автоматизировать, как выглядит внедрение, вилки бюджета и кейсы. Заказ со сметой и SLA — на /services/business-process-automation.",
           "Частый случай: продажи тратят почти половину времени на рутину — собрать документ, перекинуть данные между системами, напомнить вручную. Берём одно узкое место с наибольшим эффектом и автоматизируем его первым.",
           "AI подключаем только там, где он реально снимает ручной труд. В большинстве проектов основной выигрыш дают интеграции, workflow и правила — без LLM.",
         ]
       : [
           "AI is not the product. The product is a business process with KPIs.",
           "Buyers look for implementation and process automation — not abstract consulting.",
-          "This page is a Wordstat pillar catalog and commercial entry: what to automate, how delivery works, budget ranges and cases. Order with estimate and SLA — /services/business-process-automation.",
+          "This page is a direction catalog and commercial entry: what to automate, how delivery works, budget ranges and cases. Order with estimate and SLA — /services/business-process-automation.",
           "Common case: sales burn almost half their time on routine — assemble docs, move data between systems, chase follow-ups. We pick one high-ROI bottleneck first.",
           "We add AI only where it removes real manual work. Most projects win from integrations, workflows and rules — without an LLM.",
         ],
@@ -292,7 +292,7 @@ export function getAutomationSeoContent(locale: "ru" | "kz" | "uz"): SeoServiceC
       ? [
           {
             q: "Чем /automation отличается от страницы услуги?",
-            a: "Здесь — каталог направлений и коммерческий вход по кластеру Wordstat. Заказ со сметой, этапами и SLA — на /services/business-process-automation.",
+            a: "Здесь — каталог направлений и коммерческий вход. Заказ со сметой, этапами и SLA — на /services/business-process-automation.",
           },
           {
             q: "С чего начать автоматизацию?",
@@ -326,7 +326,7 @@ export function getAutomationSeoContent(locale: "ru" | "kz" | "uz"): SeoServiceC
       : [
           {
             q: "How is /automation different from the service page?",
-            a: "This is the Wordstat pillar catalog and commercial entry. Order with estimate, stages and SLA lives on /services/business-process-automation.",
+            a: "This is the direction catalog and commercial entry. Order with estimate, stages and SLA lives on /services/business-process-automation.",
           },
           {
             q: "Where should we start automation?",

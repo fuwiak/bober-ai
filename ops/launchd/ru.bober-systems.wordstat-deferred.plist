@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <!--
-  ONE calendar fire after Wordstat hourly quota reset (2026-08-02 05:20 MSK).
-  Script waits for 429 to clear (probe), runs Tier 3–4 once, then bootout itself.
-  No recurring daytime slots.
+  DISABLED 2026-08-02 — Wordstat publish frozen (data/wordstat-publish-frozen.json).
+  Do NOT bootstrap until scoring + human-approve pipeline ships.
+  Script exits immediately without WORDSTAT_ALLOW_FETCH=1.
 
-  Install:
-    cp ops/launchd/ru.bober-systems.wordstat-deferred.plist ~/Library/LaunchAgents/
-    launchctl bootout gui/$(id -u)/ru.bober-systems.wordstat-deferred 2>/dev/null || true
-    launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/ru.bober-systems.wordstat-deferred.plist
+  Was: one calendar fire after hourly quota reset; probe → Tier 3–4 → bootout.
 -->
 <plist version="1.0">
   <dict>

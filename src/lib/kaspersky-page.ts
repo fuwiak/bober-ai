@@ -1,6 +1,6 @@
 import { KASPERSKY_PARTNER_BADGES } from "@/lib/trust-partners";
 
-/** License / classic offers on /kaspersky hub (Wordstat). */
+/** License / classic offers on /kaspersky hub. */
 export type KasperskyOffer = {
   id: string;
   titleRu: string;
@@ -479,8 +479,8 @@ export const KASPERSKY_PAGE = {
       titleRu: "Kaspersky Endpoint Security для бизнеса",
       titleEn: "Kaspersky Endpoint Security for Business",
       blurbRu:
-        "Подбор редакции, поставка и продление. Wordstat: «KES купить», «лицензия для бизнеса».",
-      blurbEn: "Edition selection, supply and renewals. Wordstat: buy / business license.",
+        "Подбор редакции, поставка и продление лицензий для бизнеса.",
+      blurbEn: "Edition selection, supply and renewals for business licenses.",
       wordstatHint: "KES купить ~454 · лицензия для бизнеса ~420",
     },
     {

@@ -1,0 +1,16 @@
+{
+  "frozenAt": "2026-08-02",
+  "reason": "Wordstat may detect demand only. No auto-publish to homepage, H1, offer, prices, or case facts. Proposals require human approval.",
+  "rules": {
+    "mayWrite": ["data/*.csv", "data/*-decisions.json", "data/*-seed-totals.json", "data/*.log"],
+    "mustNotWrite": ["src/**", "public/**", "content/**"],
+    "mustNotChange": ["homepage", "H1", "main offer", "prices", "case study facts"],
+    "scoreGate": {
+      "75-100": "commercial landing candidate — manual approve only",
+      "60-74": "FAQ / fragment / article candidate",
+      "40-59": "monitor, no publish",
+      "0-39": "reject"
+    }
+  },
+  "fetch": "npm run yandex:wordstat requires WORDSTAT_ALLOW_FETCH=1 (or --allow-fetch). Deferred launchd disabled."
+}

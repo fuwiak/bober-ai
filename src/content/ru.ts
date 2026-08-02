@@ -1346,8 +1346,8 @@ const ru = {
     label: "Claude · Anthropic",
     title: "Claude AI для бизнеса — внедрение и автоматизация",
     subtitle:
-      "Claude AI, Claude API, Claude Code и Claude MCP — самые частые запросы в поиске. Мы не продаём подписку и не настраиваем личный аккаунт: внедряем Claude в процессы компании — CRM, документы, продажи, поддержку и базу знаний.",
-    popularLabel: "Популярные запросы про Claude",
+      "Внедряем Claude (API, Code, MCP) в процессы компании — CRM, документы, продажи, поддержку и базу знаний. Не продаём подписку и не настраиваем личный аккаунт.",
+    popularLabel: "Что внедряем вокруг Claude",
     terms: [
       "Claude AI",
       "Claude API",

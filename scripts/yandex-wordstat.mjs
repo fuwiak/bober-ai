@@ -889,10 +889,28 @@ function ingestCachedSeed(deduped, entry, minCount) {
   for (const item of entry.assoc || entry.associations || []) push(item, "similar");
 }
 
+function assertFetchAllowed(args) {
+  const allow =
+    args.includes("--allow-fetch") ||
+    process.env.WORDSTAT_ALLOW_FETCH === "1" ||
+    args.some((a) => a.startsWith("--from-json="));
+  if (allow) return;
+  console.error(
+    [
+      "Wordstat fetch frozen (data/wordstat-publish-frozen.json).",
+      "Scripts may only write data/*.csv and *-decisions.json — never src/ or live copy.",
+      "Re-run with WORDSTAT_ALLOW_FETCH=1 or --allow-fetch after human approval.",
+      "Cached replay: --from-json=… still allowed without the flag.",
+    ].join("\n"),
+  );
+  process.exit(2);
+}
+
 async function main() {
   await loadEnvFile();
 
   const args = process.argv.slice(2);
+  assertFetchAllowed(args);
   const json = args.includes("--json");
   const csv = args.includes("--csv");
   const minCount = Number(args.find((arg) => arg.startsWith("--min="))?.slice(6) || 15);
