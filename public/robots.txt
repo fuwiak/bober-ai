@@ -1,5 +1,5 @@
 # Bober AI — open for search engines and AI assistants (визитка).
-# /uz and /order are NOT Disallow: crawlers must see 301 / noindex.
+# /uz/* → 301 to RU (parked). /order → noindex. Do NOT Disallow: crawlers must see 301/meta.
 User-Agent: *
 Allow: /
 Disallow: /api/

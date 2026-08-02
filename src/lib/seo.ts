@@ -18,7 +18,7 @@ import {
 import { FEED_RATING, FEED_REVIEWS_COUNT } from "@/lib/feed-rating";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { PROFILE } from "@/lib/profile";
-import { LOCALES, marketOf, type Locale } from "@/lib/markets";
+import { marketOf, type Locale } from "@/lib/markets";
 import { localizePath, stripLocalePrefix } from "@/lib/i18n";
 
 /** Default share / snippet image (not favicon — Yandex/social need a real preview). */

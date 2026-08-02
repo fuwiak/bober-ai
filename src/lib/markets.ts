@@ -87,7 +87,8 @@ export const MARKETS: Record<Locale, MarketMeta> = {
   },
 };
 
-export const LOCALES: Locale[] = ["ru", "kz", "uz"];
+/** Active build locales. UZ parked in src/_parked/uz — edge 301 to RU. */
+export const LOCALES: Locale[] = ["ru", "kz"];
 /** Locale switcher + hreflang UI — UZ removed (301 to RU). */
 export const SWITCHER_LOCALES: Locale[] = ["ru", "kz"];
 
