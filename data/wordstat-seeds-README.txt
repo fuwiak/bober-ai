@@ -10,6 +10,13 @@
 # 3) Purchase intent (Yandex transactional B2B — order/vendor/price/enterprise/rescue)
 # npm run yandex:wordstat -- --file=data/wordstat-seeds-purchase-intent.txt --csv --min=1 --out=data/wordstat-purchase-intent.csv
 #    → data/wordstat-purchase-intent-decisions.json
+#
+# 3a) Deferred Tier 3–4 + problem — ONE-SHOT after 100/h quota reset
+# npm run yandex:wordstat:deferred
+#    probe until 429 clears → one pass → marker + unload launchd
+#    seeds: data/wordstat-seeds-purchase-deferred.txt
+#    launchd (single calendar): ops/launchd/ru.bober-systems.wordstat-deferred.plist
+
 
 # 3b) Buyer intent CRM/automation (or expand Top 20 carefully)
 # npm run yandex:wordstat -- --file=data/wordstat-seeds-buyer-intent.txt --csv --out=data/wordstat-buyer-intent.csv

@@ -266,7 +266,7 @@ export const SEO_HUBS: HubDef[] = [
     contentKey: "hubAi",
     coverImage: DIAGRAM_IMAGES.architecture,
     children: [
-      { href: "/ai/ai-implementation", labelRu: "Внедрение ИИ в бизнес", labelEn: "AI implementation", blurbRu: "Пилот и production", blurbEn: "Pilot and production" },
+      { href: "/ai/ai-implementation", labelRu: "Компания по внедрению ИИ", labelEn: "AI implementation company", blurbRu: "Стоимость, сроки, под ключ", blurbEn: "Price, timeline, turnkey" },
       { href: "/ai/corporate", labelRu: "Корпоративный ИИ", labelEn: "Enterprise AI", blurbRu: "Стратегия и контур", blurbEn: "Strategy and contour" },
       { href: "/ai/corporate-neural-net", labelRu: "Корпоративная нейросеть", labelEn: "Corporate neural net", blurbRu: "Закрытый контур", blurbEn: "Private contour" },
       { href: "/ai/private-llm", labelRu: "Приватный LLM", labelEn: "Private LLM", blurbRu: "On-prem и контур", blurbEn: "On-prem and private" },
@@ -274,13 +274,13 @@ export const SEO_HUBS: HubDef[] = [
       { href: "/ai/ai-agents", labelRu: "AI-агенты", labelEn: "AI agents", blurbRu: "Агенты в процессах", blurbEn: "Agents in processes" },
     ],
     ru: {
-      metaTitle: "Внедрение ИИ в бизнес | Bober AI Systems",
-      metaDescription: "Внедрение ИИ в бизнес, корпоративная нейросеть, приватный LLM, AI-аудит и агенты. Фиксированная смета.",
+      metaTitle: "Компания по внедрению ИИ | Bober AI Systems",
+      metaDescription: "Компания по внедрению ИИ: стоимость, сроки, под ключ. Корпоративная нейросеть, приватный LLM, AI-аудит. Москва.",
       h1: "Корпоративный ИИ",
-      subtitle: "Внедряем ИИ туда, где он ускоряет процесс и окупается — не абстрактный консалтинг.",
+      subtitle: "Компания по внедрению ИИ с фиксированной стоимостью и сроками — production в CRM и 1С, не консалтинг ради слайдов.",
       intro: [
-        "Запросы «внедрение ИИ» сильнее, чем «AI-консалтинг»: клиент хочет работающий контур.",
-        "Ниже — входные страницы: от аудита до приватного LLM и агентов.",
+        "В Wordstat лидируют «компания по внедрению ИИ» и «стоимость внедрения ИИ» — клиент ищет исполнителя и бюджет.",
+        "Ниже — входные страницы: от сметы до приватного LLM и агентов.",
       ],
     },
     en: {

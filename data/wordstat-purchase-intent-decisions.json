@@ -4,7 +4,7 @@
     "data/wordstat-purchase-intent.csv",
     "data/wordstat-purchase-intent-seed-totals.json"
   ],
-  "apiNote": "Yandex Wordstat topRequests. Quota 100 req/h — seed totals partial after first CSV pass. Re-run deferred seeds next hour.",
+  "apiNote": "Yandex Wordstat topRequests. Quota 100 req/h — Tier1/2 done. Tier3/4 one-shot: npm run yandex:wordstat:deferred (probe until 429 clears, run once, unload). launchd single fire 2026-08-02 05:20 + at 05:22.",
   "rule": "Prefer exact/totalCount over similar-noise. Buy markers: заказать/под ключ/подрядчик/интегратор/компания/стоимость/сроки/on-premise/152-ФЗ. Score: +3 action +2 vendor +2 system +1 price/deadline +1 process +1 enterprise; −2 что такое −1 как −2 free/course.",
   "liveDemand": {
     "tier1_vendor": [

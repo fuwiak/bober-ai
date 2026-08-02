@@ -1,10 +1,9 @@
 import type { LandingSpec } from "@/lib/seo-catalog/types";
 
 /**
- * High buyer-intent landings from Wordstat (2026-07-26).
- * Prefer внедрение / автоматизация / интеграция over «консалтинг»
- * (consulting seeds: 0 exact hits for «консалтинг по внедрению ии»).
- * Source: data/wordstat-bober-intent.csv
+ * High buyer-intent landings from Wordstat.
+ * Live purchase-intent refresh 2026-08-02: data/wordstat-purchase-intent-decisions.json
+ * Tier 1 vendor + Tier 2 budget lead; prefer компания/стоимость/под ключ/Москва over bare «ИИ для бизнеса».
  */
 export const CATALOG_LANDING_SPECS_INTENT: LandingSpec[] = [
   {
@@ -12,95 +11,147 @@ export const CATALOG_LANDING_SPECS_INTENT: LandingSpec[] = [
     slug: "ai-implementation",
     contentKey: "intent_ai_implementation",
     cluster: "ai-corporate",
-    serviceSlug: "ai-discovery-roadmap",
+    serviceSlug: "enterprise-ai-assistant",
     coverImage: "/diagrams/system-architecture.svg",
     keywords: [
-      "внедрение ии в бизнес",
-      "внедрение ии в бизнес процессы",
-      "услуги по внедрению ии",
-      "внедрение ии под ключ",
+      "компания по внедрению ии",
       "стоимость внедрения ии",
+      "компании по разработке ии",
+      "внедрение ии москва",
+      "внедрение ии под ключ",
+      "внедрение ии в бизнес под ключ",
+      "сколько стоит внедрить ии",
+      "бюджет внедрения ии",
+      "сроки внедрения ии",
       "заказать внедрение ии",
-      "разработка и внедрение ии",
-      "интеграция ии в бизнес",
+      "интегратор искусственного интеллекта",
+      "внедрение ии в бизнес",
+      "услуги по внедрению ии",
+      "интеграция ии с 1с",
+      "интеграция ии с crm",
     ],
     caseStudySlugs: ["kaspersky-ai-assistant", "yandex-telemost-agent"],
     related: [
       { href: "/ii-dlya-biznesa", labelRu: "ИИ для бизнеса", labelEn: "AI for business" },
-      { href: "/ai/ai-audit", labelRu: "AI-аудит", labelEn: "AI audit" },
-      { href: "/ai/corporate", labelRu: "Корпоративный ИИ", labelEn: "Enterprise AI" },
-      { href: "/automation/company-automation", labelRu: "Автоматизация компании", labelEn: "Company automation" },
-      { href: "/services/ai-consulting", labelRu: "AI-консалтинг", labelEn: "AI consulting" },
+      { href: "/services/ai-discovery-roadmap", labelRu: "AI-аудит и смета", labelEn: "AI audit & estimate" },
+      { href: "/ai/corporate-neural-net", labelRu: "Корпоративная нейросеть", labelEn: "Corporate neural net" },
+      { href: "/integrations/ai-for-crm", labelRu: "ИИ для CRM / 1С", labelEn: "AI for CRM / 1C" },
+      { href: "/automation/sales-department", labelRu: "ИИ в отдел продаж", labelEn: "AI for sales" },
+      { href: "/solutions/rag-search", labelRu: "RAG под ключ", labelEn: "RAG turnkey" },
     ],
     ru: {
-      h1: "Внедрение ИИ в бизнес",
+      h1: "Компания по внедрению ИИ",
       subtitle:
-        "Внедрение ИИ в бизнес: пилот с KPI, production-контур и передача команде. Фиксированная смета — от аудита до запуска.",
+        "Заказать внедрение ИИ под ключ: фиксированная стоимость, сроки и production-контур. Москва и удалённо — от аудита до запуска в CRM и 1С.",
       problems: [
-        "Нужен рабочий контур, а не презентация про нейросети",
-        "Пилоты ChatGPT не доходят до CRM и документов",
-        "Неясна стоимость внедрения ИИ и окупаемость",
-        "Риски по данным и 152-ФЗ блокируют старт",
+        "Нужна компания по внедрению ИИ, а не курс и не демо-чат",
+        "Неясны стоимость внедрения ИИ, бюджет и сроки до production",
+        "Пилоты не доходят до CRM, 1С и реальных заявок",
+        "Нужен интегратор искусственного интеллекта с критериями приёмки",
       ],
       deliverables: [
-        "Карта процессов и приоритетный сценарий",
-        "Архитектура, интеграции, оценка стоимости",
-        "Production-пилот 2–6 недель с метриками",
-        "Документация, обучение, handover",
+        "Смета и сроки внедрения ИИ до старта разработки",
+        "Один приоритетный процесс: продажи, заявки или документы",
+        "Интеграция ИИ с CRM / 1С и production-пилот 2–6 недель",
+        "Документация, обучение, передача команде — внедрение под ключ",
+      ],
+      howWeSolve: [
+        {
+          title: "Смета и бюджет",
+          text: "Считаем стоимость внедрения ИИ и окупаемость до кода. Аудит — от 150 000 ₽; пакет внедрения — от 500 000 ₽.",
+        },
+        {
+          title: "Интеграции в процессы",
+          text: "Связываем ИИ с CRM, 1С, почтой и заявками — не «чат ради чата», а шаг в воронке с KPI.",
+        },
+        {
+          title: "Запуск под ключ",
+          text: "Production, сроки внедрения, обучение и поддержка. Москва или удалённо — одна команда-интегратор.",
+        },
       ],
       intro: [
-        "Клиенты ищут не «консалтинг», а внедрение ИИ в бизнес: работающую автоматизацию в процессах.",
-        "Начинаем с одного узкого сценария — продажи, документы или поддержка — и считаем ROI до разработки.",
-        "Услуги по внедрению ИИ: фиксированная смета, критерии приёмки, без размытого «подписки на чат».",
+        "В поиске лидируют запросы «компания по внедрению ИИ» и «стоимость внедрения ИИ» — вы ищете исполнителя и бюджет, не теорию.",
+        "Bober AI Systems — интегратор: заказать внедрение ИИ под ключ с фиксированной сметой, сроками и приёмкой.",
+        "Стартуем с одного сценария (часто отдел продаж или документы), подключаем CRM/1С, выводим в production за 2–6 недель.",
       ],
       faq: [
         {
-          q: "Сколько стоит внедрение ИИ?",
-          a: "Аудит и дорожная карта — от 150 000 ₽. Пилот одного процесса — обычно от 300–500 000 ₽ в зависимости от интеграций.",
+          q: "Сколько стоит внедрить ИИ?",
+          a: "Стоимость внедрения ИИ: аудит и дорожная карта — от 150 000 ₽. Внедрение одного процесса под ключ — обычно от 500 000 ₽ (интеграции, пилот, передача). Бюджет внедрения ИИ фиксируем в смете до старта.",
         },
         {
-          q: "Это консалтинг или разработка?",
-          a: "И то и другое по цепочке: аудит → архитектура → внедрение. Клиент получает работающий контур, не только отчёт.",
+          q: "Какие сроки внедрения ИИ?",
+          a: "Аудит — 1–2 недели. Production-пилот одного контура — обычно 2–6 недель. Сроки внедрения ИИ пишем в договоре вместе с критериями приёмки.",
         },
         {
-          q: "Облако или свой контур?",
-          a: "Зависит от данных. Чувствительное — on-prem / VPC; остальное — гибрид.",
+          q: "Вы компания по внедрению или только консалтинг?",
+          a: "Компания по внедрению и разработке ИИ: аудит → архитектура → production. Клиент получает работающий контур в CRM/1С, не только презентацию.",
+        },
+        {
+          q: "Делаете внедрение ИИ в Москве?",
+          a: "Да — внедрение ИИ Москва и удалённо по РФ. Выезд по согласованию; основная поставка — удалённый production с доступом к вашим системам.",
+        },
+        {
+          q: "Можно заказать внедрение ИИ под ключ сразу?",
+          a: "Да. Пакет «под ключ»: сценарий, интеграции, запуск, обучение. Если бюджет ещё не ясен — начнём с аудита и сметы за 1–2 недели.",
         },
       ],
     },
     en: {
-      h1: "AI implementation for business",
+      h1: "AI implementation company",
       subtitle:
-        "AI implementation for business: KPI pilot, production delivery, team handover. Fixed scope from audit to launch.",
+        "Order turnkey AI implementation: fixed price, timeline, production contour. Moscow and remote — audit to CRM/1C launch.",
       problems: [
-        "You need a working system, not an AI slide deck",
-        "ChatGPT pilots never reach CRM and documents",
-        "Implementation cost and payback are unclear",
-        "Data and compliance risks block the start",
+        "You need an AI implementation vendor, not a course or demo chat",
+        "AI implementation cost, budget and go-live dates are unclear",
+        "Pilots never reach CRM, 1C and real intake",
+        "You need an AI integrator with acceptance criteria",
       ],
       deliverables: [
-        "Process map and priority scenario",
-        "Architecture, integrations, cost estimate",
-        "2–6 week production pilot with metrics",
-        "Docs, training, handover",
+        "Price and timeline before build starts",
+        "One priority process: sales, intake or documents",
+        "AI × CRM / 1C integration and 2–6 week production pilot",
+        "Docs, training, handover — turnkey delivery",
+      ],
+      howWeSolve: [
+        {
+          title: "Budget first",
+          text: "We lock AI implementation cost and ROI before code. Audit from a fixed entry package; turnkey delivery from the full package.",
+        },
+        {
+          title: "Process integrations",
+          text: "Wire AI into CRM, 1C, mail and intake — a funnel step with KPI, not chat for chat’s sake.",
+        },
+        {
+          title: "Turnkey launch",
+          text: "Production, timeline, training and support. Moscow or remote — one integrator team.",
+        },
       ],
       intro: [
-        "Buyers search for AI implementation — not abstract consulting.",
-        "We start with one narrow scenario and calculate ROI before build.",
-        "Fixed estimate, acceptance criteria, production handover.",
+        "Buyers search for an AI implementation company and price — not theory.",
+        "We are the integrator: turnkey AI with fixed estimate, dates and acceptance.",
+        "One scenario first (often sales or documents), CRM/1C wired, production in 2–6 weeks.",
       ],
       faq: [
         {
           q: "What does AI implementation cost?",
-          a: "Audit/roadmap from a fixed entry package; process pilots typically mid five figures depending on integrations.",
+          a: "Audit/roadmap from a fixed entry package; turnkey process delivery typically from the full package depending on integrations. Budget is locked before build.",
         },
         {
-          q: "Consulting or build?",
-          a: "Both in sequence: audit → architecture → delivery. You get a working contour, not only a report.",
+          q: "How long does it take?",
+          a: "Audit 1–2 weeks. Production pilot of one contour usually 2–6 weeks, written into the contract with acceptance criteria.",
         },
         {
-          q: "Cloud or private?",
-          a: "Depends on data. Sensitive workloads stay in your perimeter; the rest can be hybrid.",
+          q: "Vendor or consulting only?",
+          a: "Implementation and build: audit → architecture → production. You get a working CRM/1C contour, not only slides.",
+        },
+        {
+          q: "Moscow delivery?",
+          a: "Yes — Moscow and remote across Russia. On-site by agreement; default is remote production with access to your systems.",
+        },
+        {
+          q: "Can we order turnkey AI immediately?",
+          a: "Yes. Turnkey package: scenario, integrations, launch, training. If budget is unclear — start with a 1–2 week audit and estimate.",
         },
       ],
     },

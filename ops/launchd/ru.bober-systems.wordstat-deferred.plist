@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  ONE calendar fire after Wordstat hourly quota reset (2026-08-02 05:20 MSK).
+  Script waits for 429 to clear (probe), runs Tier 3–4 once, then bootout itself.
+  No recurring daytime slots.
+
+  Install:
+    cp ops/launchd/ru.bober-systems.wordstat-deferred.plist ~/Library/LaunchAgents/
+    launchctl bootout gui/$(id -u)/ru.bober-systems.wordstat-deferred 2>/dev/null || true
+    launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/ru.bober-systems.wordstat-deferred.plist
+-->
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>ru.bober-systems.wordstat-deferred</string>
+    <key>WorkingDirectory</key>
+    <string>/Users/user/bober-ai</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/Users/user/.local/bin/node</string>
+      <string>/Users/user/bober-ai/scripts/wordstat-deferred-run.mjs</string>
+    </array>
+    <key>EnvironmentVariables</key>
+    <dict>
+      <key>PATH</key>
+      <string>/Users/user/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+      <key>HOME</key>
+      <string>/Users/user</string>
+    </dict>
+    <!-- Single slot: 2026-08-02 05:20 local -->
+    <key>StartCalendarInterval</key>
+    <dict>
+      <key>Month</key>
+      <integer>8</integer>
+      <key>Day</key>
+      <integer>2</integer>
+      <key>Hour</key>
+      <integer>5</integer>
+      <key>Minute</key>
+      <integer>20</integer>
+    </dict>
+    <key>StandardOutPath</key>
+    <string>/Users/user/bober-ai/data/wordstat-deferred-launchd.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/user/bober-ai/data/wordstat-deferred-launchd.err.log</string>
+    <key>RunAtLoad</key>
+    <false/>
+  </dict>
+</plist>
