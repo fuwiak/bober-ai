@@ -259,13 +259,13 @@ function withPortfolioSegment(item: PortfolioItem): PortfolioItem {
 }
 
 /** Кейсы в маркетинговых листингах (главная /portfolio). Остальные остаются как detail-страницы. */
+/** Homepage /portfolio grid — enterprise B2B proofs only (no low-ticket Kwork offer). */
 export const PORTFOLIO_LISTING_SLUGS = [
   "yandex-telemost-agent",
   "ai-sales-loop",
   "kaspersky-ai-assistant",
   "support-knowledge-base",
   "elia-suite",
-  "bitrix24-kwork-crm",
   "kp-llm-automation",
   "wildberries-independent-sales-channel",
   "invoice-processing-pipeline",
@@ -323,7 +323,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     solution:
       "AI-контур отдела продаж: телефония + переписки + Bitrix24/amoCRM + AI. Классификация обращений, саммари разговоров, факты в карточке, автозадачи, follow-up и отчёт об упущенных сделках — один продукт.",
     result:
-      "Меньше ручного ввода после звонка, системный follow-up, видимость упущенных сделок для руководителя. Пилот за 2–4 недели; полный контур — от 300 000 ₽.",
+      "Меньше ручного ввода после звонка, системный follow-up, видимость упущенных сделок для руководителя. Пилот за 2–4 недели; AI-контур — от 500 000 ₽.",
   },
   {
     id: "telemost",
@@ -499,16 +499,16 @@ export const PORTFOLIO: PortfolioItem[] = [
     imageCaption:
       "Канбан сделок Bitrix24: заказы с Kwork в единой воронке со стадиями и суммами",
     category: "ИТ и разработка",
-    featured: true,
+    featured: false,
     priceLabel: "30 000 ₽",
-    imageBadge: "Спецпредложение для малого бизнеса",
+    imageBadge: "Спецпредложение · Yandex Услуги",
     skills: ["Bitrix24", "Kwork", "REST API", "CRM", "Интеграции"],
     description:
-      "Отрасль: продажи через маркетплейс (Kwork). Поток заказов переносили вручную — клиент, услуга, сумма и статус копировали в Bitrix24, теряли follow-up и плодили дубли. Кейс показывает типовой контур marketplace → CRM для малого бизнеса: заказы сразу в воронке, дальше работа в CRM.",
+      "Отрасль: продажи через маркетплейс (Kwork). Поток заказов переносили вручную — клиент, услуга, сумма и статус копировали в Bitrix24, теряли follow-up и плодили дубли. Кейс показывает типовой контур marketplace → CRM для малого бизнеса: заказы сразу в воронке, дальше работа в CRM. Не в основной enterprise-линейке на главной — отдельный лендинг /portfolio/bitrix24-kwork-crm.",
     solution:
       "Демонстрация собственного интеграционного контура marketplace → CRM без зависимости от готового конектора: заказ с Kwork автоматически создаёт или обновляет сделку — с клиентом, услугой, суммой и статусом.",
     result:
-      "Живая воронка в CRM: заказы видны на канбане со стадиями и суммами; команда ведёт follow-up в Bitrix24, а не копирует из маркетплейса. Формат — спецпредложение для малого бизнеса.",
+      "Живая воронка в CRM: заказы видны на канбане со стадиями и суммами; команда ведёт follow-up в Bitrix24, а не копирует из маркетплейса. Формат — спецпредложение для малого бизнеса (Yandex Услуги), не proof для enterprise-аудита.",
   },
   {
     id: "wildberries-channel",

@@ -11,6 +11,7 @@ import {
   PARTNERS_YANDEX_METRIKA_ID,
   YANDEX_METRIKA_ID,
 } from "@/lib/legal";
+import { getSeoIndexPolicy } from "@/lib/seo-index-policy";
 import { absoluteUrl, OG_IMAGE, SITE_NAME } from "@/lib/site";
 import "../styles/globals.css";
 
@@ -31,10 +32,17 @@ const barePath = stripLocalePrefix(canonicalPath);
 /**
  * UZ held until real Uzbek content ships: pages often still render RU body with lang=uz.
  * noindex + canonical → RU equivalent (never self-canonical on unfinished locale).
+ * Cannibalizing commercial URLs: noindex + canonical → primary (seo-index-policy).
  * KZ hreflang only for hub + pricing.
  */
 const uzHold = locale === "uz";
-const effectiveNoIndex = noIndex || uzHold;
+const indexPolicy = uzHold ? null : getSeoIndexPolicy(barePath);
+const effectiveNoIndex = noIndex || uzHold || Boolean(indexPolicy?.noIndex);
+const preferredCanonicalPath = uzHold
+  ? barePath
+  : indexPolicy?.canonicalPath
+    ? indexPolicy.canonicalPath
+    : canonicalPath;
 const hreflangLocales: Locale[] = (() => {
   const out: Locale[] = ["ru"];
   if (barePath === "/" || barePath === "/pricing") out.push("kz");
@@ -44,7 +52,7 @@ const geoPosition = `${market.geo.latitude};${market.geo.longitude}`;
 const geoIcbm = `${market.geo.latitude}, ${market.geo.longitude}`;
 const geoPlacename = market.placename;
 const messages = loadMessages(locale);
-const canonical = absoluteUrl(uzHold ? barePath : canonicalPath);
+const canonical = absoluteUrl(preferredCanonicalPath);
 const ogImage = absoluteUrl(OG_IMAGE);
 const robotsContent = effectiveNoIndex
   ? "noindex, nofollow"

@@ -94,6 +94,69 @@ function pathFromFile(file) {
   return path.replace(/\/$/, "") || "/";
 }
 
+/** Keep in sync with src/lib/seo-index-policy.ts (Node sitemap cannot import TS aliases). */
+const NOINDEX_PREFIXES = [
+  "/integrations/bitrix24",
+  "/integrations/bitrix24-ai",
+  "/integrations/bitrix24-sales-automation",
+  "/integrations/crm",
+  "/integrations/crm-automation",
+  "/integrations/ai-for-crm",
+  "/services/corporate-ai-agent-1c-crm",
+  "/services/rag-search",
+  "/solutions/rag-search",
+  "/services/knowledge-base",
+  "/solutions/knowledge-base",
+  "/solutions/knowledge-chatbot",
+  "/services/enterprise-ai-assistant",
+  "/solutions/assistant",
+  "/services/self-hosted-ai",
+  "/services/private-llm-gigachat",
+  "/services/corporate-neural-net",
+  "/services/secure-private-ai-cloud",
+  "/ai/corporate-neural-net",
+  "/ai/private-llm",
+  "/ai/corporate",
+  "/services/ai-agent",
+  "/services/sales-ai-agent",
+  "/services/ai-automation",
+  "/ai/ai-agents",
+  "/services/langgraph",
+  "/services/mcp",
+  "/services/n8n",
+  "/services/open-webui",
+];
+
+const NOINDEX_AUTOMATION_EXTRA = new Set([
+  "order-processing",
+  "payment-control",
+  "inventory-requests",
+  "meeting-notes",
+  "email-triage",
+  "contract-registry",
+  "access-requests",
+  "partner-leads",
+  "field-reports",
+  "quality-checklists",
+  "whatsapp-crm",
+  "avito-leads",
+  "google-sheets-sync",
+  "yandex-metrica-crm",
+  "telephony-crm",
+  "messengers-hub",
+  "employee-assistant",
+  "manager-copilot",
+  "document-qa",
+  "onboarding-bot",
+]);
+
+function isNoIndexCommercial(path) {
+  if (NOINDEX_PREFIXES.some((p) => path === p || path.startsWith(`${p}/`))) return true;
+  const m = path.match(/^\/automation\/([^/]+)$/);
+  if (m && NOINDEX_AUTOMATION_EXTRA.has(m[1])) return true;
+  return false;
+}
+
 function isExcluded(path) {
   // Legacy EN redirects — never index.
   if (path === "/en" || path.startsWith("/en/")) return true;
@@ -107,6 +170,8 @@ function isExcluded(path) {
   if (path.includes("/amocrm") || path.includes("/bitrix24") || path.includes("/cases/")) return true;
   if (path === "/ru" || path.startsWith("/ru/")) return true;
   if (path.startsWith("/api/")) return true;
+  // Cannibalizing / thin Wordstat landings — see seo-index-policy.ts
+  if (isNoIndexCommercial(path)) return true;
   return false;
 }
 
