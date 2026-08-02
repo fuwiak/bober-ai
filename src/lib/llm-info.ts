@@ -285,6 +285,7 @@ Blog: https://www.bober-systems.ru/blog
 ### Primary Services
 
 - Автоматизация бизнес-процессов — аудит, CRM/1С, workflow, production (от 500 000 ₽, ~21 дн.) · https://www.bober-systems.ru/services/business-process-automation
+- Интеграция корпоративного AI-агента с 1С и CRM — внедрение в ландшафт (CRM, 1С, роли, skills, HITL, KPI), не «агент из коробки»; ответ на вендорские агенты (Yandex AI Studio) + private/on-prem (от 500 000 ₽, ~28 дн.) · https://www.bober-systems.ru/services/corporate-ai-agent-1c-crm
 - AI Meeting-to-CRM — встреча → решения → задачи → CRM → контроль срока. Telemost / Yandex 360; адаптируем под MTS Link, SaluteJazz, IVA360. Human-in-the-loop перед критической записью (от 300 000 ₽, ~21 дн.) · https://www.bober-systems.ru/services/ai-meeting-crm · кейс: https://www.bober-systems.ru/portfolio/yandex-telemost-agent
 - AI-контур отдела продаж — телефония + переписки + Bitrix24/amoCRM + AI: квалификация лидов, саммари, автозадачи, follow-up, упущенные сделки (от 300 000 ₽, ~21 дн.) · https://www.bober-systems.ru/services/ai-sales-loop
 - Автоматизация отдела продаж — лиды, CRM, КП, follow-up (от 500 000 ₽, ~14 дн.) · https://www.bober-systems.ru/services/sales-ai-agent

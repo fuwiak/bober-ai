@@ -254,6 +254,97 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     caseStudySlugs: ["yandex-telemost-agent"],
   },
 
+  "corporate-ai-agent-1c-crm": {
+    metaTitle: "Интеграция корпоративного AI-агента с 1С и CRM",
+    metaDescription:
+      "Внедрение AI-агента в ландшафт компании: Bitrix24/amoCRM, 1С, роли, skills, HITL и KPI. Не «агент из коробки». Пилот от 500 000 ₽.",
+    eyebrow: "Услуга · Агенты · 1С · CRM",
+    h1: "Интеграция корпоративного AI-агента с 1С и CRM",
+    subtitle:
+      "Готовое окно вендора перестанет быть отличием. Ценность интегратора — агент в вашем CRM, 1С, ролях, исключениях, безопасности и KPI.",
+    problemsTitle: "Что меняется на рынке",
+    problems: [
+      "Крупный вендор (Yandex B2B Tech / AI Studio) анонсирует универсального бизнес-агента с конекторами к CRM и документам — «соберём агента» само по себе слабеет как УТП",
+      "Готовые skills и базовое governance закрывают типовые сценарии, но не ваш процесс закупок, исключений и legacy",
+      "1С, внутренние базы и старое ПО остаются вне стандартных конекторов",
+      "Нет карты прав, тестов качества/безопасности и понятной ответственности человека на критических шагах",
+    ],
+    deliverablesTitle: "Что остаётся за интегратором",
+    deliverables: [
+      "Карта процесса и прав доступа под роли сотрудников",
+      "Фирменные skills и конекторы к нестандартным системам",
+      "Тесты качества и безопасности, аудит пути решений",
+      "HITL на важных действиях; связка с 1С, внутренними БД и legacy; сравнение Yandex vs private/on-prem",
+    ],
+    intro: [
+      "Yandex B2B Tech анонсировал на конец сентября универсального бизнес-агента на Yandex AI Studio: связка с amoCRM и внешними сервисами, права пользователя, многошаговые закупочные и документные процессы, подтверждение человека на важных действиях, аудит пути решений. Оценка «−30–50% рутины» — декларация поставщика, не публичные результаты внедрений.",
+      "Следствие для Bober AI Systems: сдвиг с «построим агента, связанного с CRM и документами» на внедрение агента в конкретном ландшафте компании — CRM, 1С, роли, процессы, исключения, безопасность и KPI.",
+      "Универсальное окно, конекторы и расписание вендор даст сам. Наш продукт — сделать агента рабочим на ваших данных и ответственности: кто что может менять в сделке и документе, как откатить ошибку, как измерить эффект.",
+      "Пилот — один процесс (закупки, продажи или документы) с чёткими KPI. Бюджет от 500 000 ₽. NDA до доступа к 1С и CRM.",
+    ],
+    howWeSolveTitle: "Как внедряем",
+    howWeSolve: [
+      {
+        title: "Ландшафт и права",
+        text: "CRM, 1С, роли, исключения, чувствительные поля. Что агент читает / пишет / только предлагает.",
+      },
+      {
+        title: "Skills и конекторы",
+        text: "Фирменные навыки под процесс; REST/MCP к нестандартным системам и legacy — не только штатные конекторы вендора.",
+      },
+      {
+        title: "Качество и безопасность",
+        text: "Сценарные тесты, allowlist действий, аудит решений, HITL на деньгах и юридически значимых шагах.",
+      },
+      {
+        title: "Контур и KPI",
+        text: "Yandex AI Studio vs private/on-prem — выбор по данным и политике ИБ. Метрики до/после на пилотном процессе.",
+      },
+    ],
+    architectureTitle: "Типовая архитектура",
+    architecture: [
+      "Канал: чат / CRM sidebar / портал",
+      "Оркестратор агента + state и audit trail",
+      "Skills: закупки, документы, сделки — под ваш регламент",
+      "Конекторы: Bitrix24 / amoCRM · 1С · внутренние БД · legacy API",
+      "HITL-очередь на критических действиях",
+      "Опционально: Yandex AI Studio или private LLM в вашем контуре",
+    ],
+    roiTitle: "Типичный эффект",
+    roi: [
+      { value: "1 процесс", label: "пилот с KPI до масштаба" },
+      { value: "HITL", label: "критические действия — после человека" },
+      { value: "4–8 нед.", label: "до рабочего пилота в ландшафте" },
+    ],
+    faqTitle: "Частые вопросы",
+    faq: [
+      {
+        q: "Чем это отличается от «разработки AI-агента»?",
+        a: "Общая страница /services/ai-agent — про построение агента с tools. Эта услуга — внедрение в ваш CRM+1С ландшафт: права, skills, исключения, KPI и выбор контура (Yandex / private).",
+      },
+      {
+        q: "Вы конкурируете с Yandex AI Studio?",
+        a: "Нет. Вендор даёт окно и базовые конекторы. Мы встраиваем агента в процессы, 1С и ответственность — или сравниваем Studio с on-prem, если данные нельзя выносить.",
+      },
+      { q: "Какая CRM и 1С?", a: "Bitrix24, amoCRM; 1С УТ/ERP/КА и аналоги через REST/OData/обмен. Legacy — по аудиту." },
+      {
+        q: "Обязателен ли human-in-the-loop?",
+        a: "Да на финансовых, юридических и необратимых действиях. Черновики и низкорисковые поля — по политике ролей.",
+      },
+      { q: "Бюджет?", a: "Пилот от 500 000 ₽. Несколько процессов и кастомные конекторы — по смете после карты ландшафта." },
+      { q: "Данные и NDA?", a: "NDA до доступа. Можно private/on-prem, если политика ИБ запрещает облачный Studio." },
+    ],
+    related: [
+      { href: "/services/ai-agent", label: "Разработка AI-агентов" },
+      { href: "/services/mcp", label: "MCP-интеграции" },
+      { href: "/services/crm-integration", label: "Интеграции CRM" },
+      { href: "/services/private-llm-gigachat", label: "Private LLM" },
+      { href: "/integrations/1c", label: "Интеграция 1С" },
+      { href: "/bitrix", label: "Bitrix24 · внедрение и AI" },
+    ],
+    caseStudySlugs: ["crm-1c-sync", "elia-suite", "yandex-telemost-agent"],
+  },
+
   "sales-ai-agent": {
     metaTitle: "AI-агент для продаж и автоматизация отдела продаж",
     metaDescription:
@@ -1230,6 +1321,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       { q: "Поддержка prompts?", a: "Versioned prompts, eval CI, SLA на tuning." },
     ],
     related: [
+      { href: "/services/corporate-ai-agent-1c-crm", label: "Агент × 1С и CRM" },
       { href: "/services/sales-ai-agent", label: "Sales AI agent" },
       { href: "/services/langgraph", label: "LangGraph" },
       { href: "/services/mcp", label: "MCP" },
@@ -2236,6 +2328,81 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
     caseStudySlugs: ["yandex-telemost-agent"],
   },
 
+  "corporate-ai-agent-1c-crm": {
+    metaTitle: "Corporate AI agent integration with 1C and CRM",
+    metaDescription:
+      "Deploy an AI agent into your landscape: Bitrix24/amoCRM, 1C, roles, skills, HITL and KPIs — not an off-the-shelf agent. Pilot from €5,000.",
+    eyebrow: "Service · Agents · 1C · CRM",
+    h1: "Corporate AI agent integration with 1C and CRM",
+    subtitle:
+      "A vendor’s ready-made agent window will stop being a differentiator. Integrator value is the agent inside your CRM, 1C, roles, exceptions, security and KPIs.",
+    problemsTitle: "What is changing",
+    problems: [
+      "Large vendors (e.g. Yandex B2B Tech / AI Studio) announce universal business agents with CRM and document connectors — “we’ll build an agent” weakens as a USP",
+      "Stock skills and basic governance cover typical flows, not your procurement exceptions and legacy",
+      "1C, internal DBs and old software sit outside standard connectors",
+      "No access map, quality/security tests or clear human accountability on critical steps",
+    ],
+    deliverablesTitle: "What stays with the integrator",
+    deliverables: [
+      "Process and access-rights map by employee roles",
+      "Company skills and connectors to non-standard systems",
+      "Quality and security tests, decision-path audit",
+      "HITL on important actions; 1C / internal DB / legacy glue; Yandex vs private/on-prem comparison",
+    ],
+    intro: [
+      "Yandex B2B Tech announced a universal business agent on Yandex AI Studio for late September: CRM connectors, user permissions, multi-step procurement and document flows, human confirmation on important actions, decision-path audit. The “−30–50% routine” claim is a vendor estimate, not public deployment results.",
+      "For Bober AI Systems: shift from “build an agent linked to CRM and documents” to deploying the agent in a concrete company landscape — CRM, 1C, roles, processes, exceptions, security and KPIs.",
+      "The vendor will ship the window, connectors and schedule. Our product is making the agent work on your data and accountability: who may change a deal or document, how to roll back errors, how to measure effect.",
+      "Pilot: one process (procurement, sales or documents) with clear KPIs. Budget from €5,000. NDA before 1C/CRM access.",
+    ],
+    howWeSolveTitle: "How we deliver",
+    howWeSolve: [
+      { title: "Landscape & rights", text: "CRM, 1C, roles, exceptions, sensitive fields — what the agent may read / write / only propose." },
+      { title: "Skills & connectors", text: "Company skills per process; REST/MCP to non-standard and legacy systems — not only vendor stock connectors." },
+      { title: "Quality & security", text: "Scenario tests, action allowlist, decision audit, HITL on money and legally significant steps." },
+      { title: "Contour & KPIs", text: "Yandex AI Studio vs private/on-prem by data and security policy. Before/after metrics on the pilot process." },
+    ],
+    architectureTitle: "Typical architecture",
+    architecture: [
+      "Channel: chat / CRM sidebar / portal",
+      "Agent orchestrator + state and audit trail",
+      "Skills: procurement, documents, deals — per your policy",
+      "Connectors: Bitrix24 / amoCRM · 1C · internal DBs · legacy API",
+      "HITL queue on critical actions",
+      "Optional: Yandex AI Studio or private LLM in your perimeter",
+    ],
+    roiTitle: "Typical impact",
+    roi: [
+      { value: "1 process", label: "KPI pilot before scale" },
+      { value: "HITL", label: "critical actions after a human" },
+      { value: "4–8 wks", label: "to a working landscape pilot" },
+    ],
+    faqTitle: "FAQ",
+    faq: [
+      {
+        q: "Vs generic AI agent development?",
+        a: "/services/ai-agent covers building agents with tools. This offer is landscape deployment: rights, skills, exceptions, KPIs and contour choice (Yandex / private).",
+      },
+      {
+        q: "Compete with Yandex AI Studio?",
+        a: "No. The vendor ships the window and base connectors. We embed the agent into processes, 1C and accountability — or compare Studio with on-prem when data cannot leave.",
+      },
+      { q: "Which CRM and 1C?", a: "Bitrix24, amoCRM; 1C UT/ERP/KA and peers via REST/OData/exchange. Legacy after audit." },
+      { q: "Is HITL mandatory?", a: "Yes for financial, legal and irreversible actions. Drafts and low-risk fields follow role policy." },
+      { q: "Budget?", a: "Pilot from €5,000. Multi-process and custom connectors after landscape map." },
+      { q: "Data & NDA?", a: "NDA before access. Private/on-prem if security policy blocks cloud Studio." },
+    ],
+    related: [
+      { href: "/services/ai-agent", label: "AI agent development" },
+      { href: "/services/mcp", label: "MCP integrations" },
+      { href: "/services/crm-integration", label: "CRM integrations" },
+      { href: "/services/private-llm-gigachat", label: "Private LLM" },
+      { href: "/integrations/1c", label: "1C integration" },
+    ],
+    caseStudySlugs: ["crm-1c-sync", "elia-suite", "yandex-telemost-agent"],
+  },
+
   "sales-ai-agent": {
     metaTitle: "Sales AI Agent & Sales Automation",
     metaDescription:
@@ -2743,7 +2910,13 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
       { q: "Budget?", a: "From €5,000 depending on tools and channels." },
       { q: "Prompt support?", a: "Versioned prompts, eval CI, optional tuning SLA." },
     ],
-    related: [{ href: "/services/sales-ai-agent", label: "Sales AI agent" }, { href: "/services/langgraph", label: "LangGraph" }, { href: "/services/mcp", label: "MCP" }, { href: "/services/llm-development", label: "LLM development" }],
+    related: [
+      { href: "/services/corporate-ai-agent-1c-crm", label: "Agent × 1C & CRM" },
+      { href: "/services/sales-ai-agent", label: "Sales AI agent" },
+      { href: "/services/langgraph", label: "LangGraph" },
+      { href: "/services/mcp", label: "MCP" },
+      { href: "/services/llm-development", label: "LLM development" },
+    ],
     caseStudySlugs: ["yandex-telemost-agent", "kp-llm-automation"],
   },
 

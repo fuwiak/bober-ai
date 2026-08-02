@@ -113,6 +113,64 @@ export const CONTENT_UZ: Record<string, SeoServiceContent> = {
       "invoice-processing-pipeline"
     ]
   },
+  "corporate-ai-agent-1c-crm": {
+    problemsTitle: "Tipik muammolar",
+    deliverablesTitle: "Nima olasiz",
+    howWeSolveTitle: "Qanday ishlaymiz",
+    architectureTitle: "Tipik arxitektura",
+    roiTitle: "Orientir effekt",
+    faqTitle: "Tez-tez beriladigan savollar",
+    eyebrow: "Xizmat · Agent · 1С · CRM",
+    metaTitle: "Korporativ AI-agent: 1С va CRM integratsiya | Bober AI",
+    metaDescription:
+      "Agentni kompaniya landshaftiga joriy etish: CRM, 1С, rollar, skills, HITL va KPI. 50 000 000 soʻmdan.",
+    h1: "Korporativ AI-agentni 1С va CRM bilan integratsiya",
+    subtitle:
+      "Tayyor vendor oynasi yetarli emas. Qiymat — sizning CRM, 1С, huquqlar, istisnolar va KPI da.",
+    problems: [
+      "Universal agent tipik stsenariylarni yopadi — sizning jarayoningizni emas",
+      "1С va legacy standart konektorlardan tashqarida",
+      "Huquqlar xaritasi va HITL yoʻq",
+    ],
+    deliverables: [
+      "Jarayon va huquqlar xaritasi",
+      "Firma skills va nostandart konektorlar",
+      "Sifat/xavfsizlik testlari va HITL",
+      "Yandex AI Studio vs private/on-prem solishtirish",
+    ],
+    intro: [
+      "Vendor oyna va baza konektorlarini beradi. Biz agentni sizning 1С/CRM landshaftingizga joylashtiramiz.",
+      "Pilot — bitta jarayon, aniq KPI. 50 000 000 soʻmdan.",
+    ],
+    howWeSolve: [
+      { title: "Landshaft", text: "CRM, 1С, rollar, sezgir maydonlar." },
+      { title: "Skills", text: "Firma jarayoniga skills va konektorlar." },
+      { title: "Xavfsizlik", text: "Testlar, allowlist, HITL." },
+      { title: "Kontur", text: "Cloud Studio yoki private — IB siyosatiga qarab." },
+    ],
+    architecture: [
+      "Kanal: chat / CRM",
+      "Orchestrator + audit",
+      "CRM · 1С · legacy konektorlar",
+      "HITL navbati",
+    ],
+    roi: [
+      { value: "1 jarayon", label: "KPI pilot" },
+      { value: "4–8 hafta", label: "ishchi pilot" },
+    ],
+    faq: [
+      { q: "Yandex bilan raqobatmi?", a: "Yoʻq — vendor oynasi; biz landshaft va 1С/huquqlarni yopamiz." },
+      { q: "Narx?", a: "Pilot 50 000 000 soʻmdan." },
+      { q: "Qaysi CRM?", a: "Bitrix24, amoCRM + 1С." },
+    ],
+    related: [
+      { href: "/services/ai-agent", label: "AI-agentlar" },
+      { href: "/services/mcp", label: "MCP" },
+      { href: "/services/crm-integration", label: "CRM integratsiya" },
+    ],
+    caseStudySlugs: ["crm-1c-sync", "elia-suite"],
+  },
+
   "ai-meeting-crm": {
     problemsTitle: "Tipik muammolar",
     deliverablesTitle: "Nima olasiz",

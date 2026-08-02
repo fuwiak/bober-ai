@@ -592,6 +592,23 @@ const ru = {
         detailsHref: "/services/business-process-automation",
       },
       {
+        name: "AI-агент × 1С и CRM",
+        price: "от 500 000 ₽",
+        duration: "4–8 недель",
+        forWhom: "Нужен корпоративный AI-агент не «из коробки», а в вашем ландшафте: CRM, 1С, роли, исключения, KPI",
+        result:
+          "Карта процессов и прав, фирменные skills, конекторы к 1С/legacy, HITL, тесты безопасности; сравнение Yandex AI Studio с private/on-prem.",
+        badge: "Ответ на вендорский агент",
+        includes: [
+          "Внедрение агента в Bitrix24/amoCRM и 1С",
+          "Skills, права доступа и human-in-the-loop",
+          "Качество, аудит решений и KPI пилота",
+        ],
+        featured: true,
+        tier: "implementation",
+        detailsHref: "/services/corporate-ai-agent-1c-crm",
+      },
+      {
         name: "AI Meeting-to-CRM",
         price: "от 300 000 ₽",
         duration: "2–4 недели",
@@ -851,6 +868,21 @@ const ru = {
         layout: "default",
         slug: "sales-ai-agent",
         href: "/services/sales-ai-agent",
+      },
+      {
+        badge: "Агент · 1С · CRM",
+        title: "Интеграция корпоративного AI-агента с 1С и CRM",
+        description:
+          "Вендор даст окно и конекторы. Мы встраиваем агента в ваш ландшафт: роли, 1С, исключения, HITL и KPI — не «агент из коробки».",
+        items: [
+          "Карта процессов и прав доступа",
+          "Фирменные skills и конекторы к legacy",
+          "Yandex AI Studio vs private/on-prem",
+        ],
+        layout: "large",
+        featured: true,
+        slug: "corporate-ai-agent-1c-crm",
+        href: "/services/corporate-ai-agent-1c-crm",
       },
       {
         badge: "Встречи · CRM",

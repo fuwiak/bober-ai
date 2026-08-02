@@ -96,6 +96,23 @@ const kzOverrides = {
         detailsHref: "/services/business-process-automation",
       },
       {
+        name: "AI-агент × 1С и CRM",
+        price: "от 5 000 000 ₸",
+        duration: "4–8 недель",
+        forWhom: "Нужен корпоративный AI-агент не «из коробки», а в вашем ландшафте: CRM, 1С, роли, исключения, KPI",
+        result:
+          "Карта процессов и прав, фирменные skills, конекторы к 1С/legacy, HITL, тесты безопасности; сравнение Yandex AI Studio с private/on-prem.",
+        badge: "Ответ на вендорский агент",
+        includes: [
+          "Внедрение агента в Bitrix24/amoCRM и 1С",
+          "Skills, права доступа и human-in-the-loop",
+          "Качество, аудит решений и KPI пилота",
+        ],
+        featured: true,
+        tier: "implementation",
+        detailsHref: "/services/corporate-ai-agent-1c-crm",
+      },
+      {
         name: "AI Meeting-to-CRM",
         price: "от 2 500 000 ₸",
         duration: "2–4 недели",

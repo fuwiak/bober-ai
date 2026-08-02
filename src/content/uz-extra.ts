@@ -82,6 +82,21 @@ export const uzExtra = {
         href: "/services/ai-sales-loop",
       },
       {
+        badge: "Agent · 1С · CRM",
+        title: "Korporativ AI-agent: 1С va CRM",
+        description:
+          "Vendor oyna beradi. Biz agentni landshaftga joylashtiramiz: rollar, 1С, istisnolar, HITL va KPI.",
+        items: [
+          "Jarayon va huquqlar xaritasi",
+          "Firma skills va legacy konektorlar",
+          "Yandex AI Studio vs private/on-prem",
+        ],
+        layout: "large",
+        featured: true,
+        slug: "corporate-ai-agent-1c-crm",
+        href: "/services/corporate-ai-agent-1c-crm",
+      },
+      {
         badge: "Uchrashuv · CRM",
         title: "AI Meeting-to-CRM",
         description:

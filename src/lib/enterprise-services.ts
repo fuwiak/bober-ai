@@ -41,6 +41,7 @@ const IMAGES: Record<string, string> = {
   bitrix: "/stock/crm-integration.jpg",
   "ai-sales-loop": "/stock/crm-integration.jpg",
   "ai-meeting-crm": "/stock/offers/ai-meeting-crm.jpg",
+  "corporate-ai-agent-1c-crm": "/stock/offers/ai-agent.jpg",
   "claude-smb": "/stock/enterprise-ai-assistant.jpg",
   "ii-dlya-biznesa": "/stock/enterprise-ai-assistant.jpg",
   automation: "/stock/business-process-automation.jpg",
@@ -98,6 +99,19 @@ const ruExtra: EnterpriseService[] = [
     deliveryDays: 21,
     price: 300000,
     serviceImage: IMAGES["ai-meeting-crm"],
+  },
+  {
+    id: "corporate-ai-agent-1c-crm",
+    slug: "corporate-ai-agent-1c-crm",
+    title: "Интеграция корпоративного AI-агента с 1С и CRM",
+    description:
+      "Не «агент из коробки» — внедрение в ваш ландшафт: CRM, 1С, роли, процессы, исключения, безопасность и KPI.",
+    about:
+      "Карта процессов и прав, фирменные skills и конекторы к нестандартным системам, тесты качества и безопасности, HITL, связка с 1С/legacy; сравнение Yandex AI Studio с private/on-prem.",
+    salesNotes: "от 500 000 ₽",
+    deliveryDays: 28,
+    price: 500000,
+    serviceImage: IMAGES["corporate-ai-agent-1c-crm"],
   },
   {
     id: "claude-smb",
@@ -206,6 +220,19 @@ const enExtra: EnterpriseService[] = [
     deliveryDays: 21,
     price: 3000,
     serviceImage: IMAGES["ai-meeting-crm"],
+  },
+  {
+    id: "corporate-ai-agent-1c-crm",
+    slug: "corporate-ai-agent-1c-crm",
+    title: "Corporate AI agent integration with 1C and CRM",
+    description:
+      "Not an off-the-shelf agent — deployment into your landscape: CRM, 1C, roles, processes, exceptions, security and KPIs.",
+    about:
+      "Process and access mapping, company skills and connectors to non-standard systems, quality/security tests, HITL, 1C/legacy glue; Yandex AI Studio vs private/on-prem comparison.",
+    salesNotes: "from €5,000",
+    deliveryDays: 28,
+    price: 5000,
+    serviceImage: IMAGES["corporate-ai-agent-1c-crm"],
   },
   {
     id: "claude-smb",
@@ -410,6 +437,7 @@ const enServices: EnterpriseService[] = [
 /** Курируемый набор для маркетинговой сетки «Решения по задачам бизнеса» на /services. */
 export const ENTERPRISE_SERVICES_LISTING_SLUGS = [
   "business-process-automation",
+  "corporate-ai-agent-1c-crm",
   "ai-meeting-crm",
   "ai-sales-loop",
   "sales-ai-agent",
@@ -465,6 +493,13 @@ const UZ_SERVICE_COPY: Partial<
       "Uchrashuv → qarorlar → vazifalar → CRM → hujjatlar → muddat nazorati. Faqat samari emas — ijro.",
     about:
       "Yandex Telemost / Yandex 360, MTS Link, SaluteJazz yoki IVA360 transkripti → kelishuvlar, masʼullar, muddatlar → Bitrix24/amoCRM va follow-up (odam tasdiqlaydi).",
+  },
+  "corporate-ai-agent-1c-crm": {
+    title: "Korporativ AI-agentni 1С va CRM bilan integratsiya",
+    description:
+      "Tayyor agent emas — sizning landshaftingiz: CRM, 1С, rollar, jarayonlar, istisnolar, xavfsizlik va KPI.",
+    about:
+      "Jarayon va huquqlar xaritasi, firma skills va nostandart konektorlar, sifat/xavfsizlik testlari, HITL, 1С/legacy; Yandex AI Studio vs private/on-prem.",
   },
   "crm-integration": {
     title: "Bitrix24 · amoCRM",

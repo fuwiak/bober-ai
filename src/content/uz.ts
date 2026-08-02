@@ -585,6 +585,23 @@ const uzOverrides = {
         detailsHref: "/services/business-process-automation",
       },
       {
+        name: "AI-agent × 1С va CRM",
+        price: "50 000 000 soʻmdan",
+        duration: "4–8 hafta",
+        forWhom: "Korporativ AI-agent tayyor emas — CRM, 1С, rollar, istisnolar va KPI landshaftida kerak",
+        result:
+          "Jarayon va huquqlar xaritasi, firma skills, 1С/legacy konektorlar, HITL; Yandex AI Studio vs private/on-prem.",
+        badge: "Vendor agentiga javob",
+        includes: [
+          "Bitrix24/amoCRM va 1С da agent joriy etish",
+          "Skills, huquqlar va human-in-the-loop",
+          "Sifat, qarorlar auditi va KPI pilot",
+        ],
+        featured: true,
+        tier: "implementation",
+        detailsHref: "/services/corporate-ai-agent-1c-crm",
+      },
+      {
         name: "AI Meeting-to-CRM",
         price: "30 000 000 soʻmdan",
         duration: "2–4 hafta",
