@@ -82,6 +82,21 @@ export const uzExtra = {
         href: "/services/ai-sales-loop",
       },
       {
+        badge: "Koll-markaz · Voice",
+        title: "Kiruvchi qoʻngʻiroqlar uchun AI",
+        description:
+          "Qoʻngʻiroq qabul, STT, niyat, FAQ, handoff, analitika. Pilot — bitta liniya.",
+        items: [
+          "Tipik murojaatlar operatorsiz",
+          "Operatorga kontekst bilan uzatish",
+          "Containment va intent hisobotlari",
+        ],
+        layout: "large",
+        featured: true,
+        slug: "ai-inbound-calls",
+        href: "/services/ai-inbound-calls",
+      },
+      {
         badge: "Agent · 1С · CRM",
         title: "Korporativ AI-agent: 1С va CRM",
         description:

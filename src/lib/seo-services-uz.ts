@@ -113,6 +113,64 @@ export const CONTENT_UZ: Record<string, SeoServiceContent> = {
       "invoice-processing-pipeline"
     ]
   },
+  "ai-inbound-calls": {
+    problemsTitle: "Tipik muammolar",
+    deliverablesTitle: "Nima olasiz",
+    howWeSolveTitle: "Qanday ishlaymiz",
+    architectureTitle: "Tipik stack",
+    roiTitle: "Pilot metrikalar",
+    faqTitle: "Tez-tez beriladigan savollar",
+    eyebrow: "Xizmat · Telefoniya · Koll-markaz",
+    metaTitle: "Kiruvchi qoʻngʻiroqlar va koll-markaz uchun AI | Bober AI",
+    metaDescription:
+      "Qoʻngʻiroq qabul, real vaqtda STT, niyat, tipik javoblar, operatorga uzatish, analitika. Pilot — bitta liniya, 50 000 000 soʻmdan.",
+    h1: "Kiruvchi qoʻngʻiroqlar va koll-markaz uchun AI",
+    subtitle:
+      "Tipik murojaatlarda operatorlarni almashtirish: qabul → STT → niyat → javob yoki handoff → CRM tarix. Bir kunda butun markazni oʻchirmaymiz.",
+    problems: [
+      "Operatorlar soatlab FAQ javob beradi",
+      "Pik soatlarda navbat va yoʻqolgan lidlar",
+      "IVR erkin nutqni tushunmaydi",
+      "Yagona tarix va analitika yoʻq",
+    ],
+    deliverables: [
+      "Kiruvchi qoʻngʻiroqlarni qayta ishlash",
+      "Real vaqtda nutqni tanish",
+      "Niyat va tipik FAQ javoblari",
+      "Operatorga uzatish + tarix va analitika",
+    ],
+    intro: [
+      "Kirish: bitta stsenariy va bitta telefon liniyasi boʻyicha pullik pilot.",
+      "Stack: telefoniya + SpeechKit/STT + LLM + CRM. 4–6 hafta, 50 000 000 soʻmdan.",
+    ],
+    howWeSolve: [
+      { title: "Stsenariy va KPI", text: "Qaysi intentlar AI da, qachon escalate." },
+      { title: "Telefoniya va STT", text: "Liniya, lugʻat, latency, yozuv siyosati." },
+      { title: "Dialog va handoff", text: "FAQ + warm transfer + CRM." },
+      { title: "Pilot", text: "Containment, xatolar, sabablar dashbordi." },
+    ],
+    architecture: [
+      "Telefoniya → STT → AI → TTS",
+      "Handoff + CRM",
+      "Analitika: containment, intents",
+    ],
+    roi: [
+      { value: "1 liniya", label: "pilot" },
+      { value: "4–6 hafta", label: "ishchi stsenariy" },
+    ],
+    faq: [
+      { q: "Butun koll-markazmi?", a: "Yoʻq — avval bitta stsenariy va liniya." },
+      { q: "Narx?", a: "Pilot 50 000 000 soʻmdan." },
+      { q: "Qaysi telefoniya?", a: "Mavjud SIP/Voximplant/MANGO va boshqalar." },
+    ],
+    related: [
+      { href: "/services/voice-ai", label: "Voice AI" },
+      { href: "/services/ai-sales-loop", label: "Savdo AI konturi" },
+      { href: "/services/crm-integration", label: "CRM" },
+    ],
+    caseStudySlugs: ["yandex-telemost-agent"],
+  },
+
   "corporate-ai-agent-1c-crm": {
     problemsTitle: "Tipik muammolar",
     deliverablesTitle: "Nima olasiz",

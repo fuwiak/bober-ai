@@ -42,6 +42,7 @@ const IMAGES: Record<string, string> = {
   "ai-sales-loop": "/stock/crm-integration.jpg",
   "ai-meeting-crm": "/stock/offers/ai-meeting-crm.jpg",
   "corporate-ai-agent-1c-crm": "/stock/offers/ai-agent.jpg",
+  "ai-inbound-calls": "/stock/offers/voice-ai.jpg",
   "claude-smb": "/stock/enterprise-ai-assistant.jpg",
   "ii-dlya-biznesa": "/stock/enterprise-ai-assistant.jpg",
   automation: "/stock/business-process-automation.jpg",
@@ -112,6 +113,19 @@ const ruExtra: EnterpriseService[] = [
     deliveryDays: 28,
     price: 500000,
     serviceImage: IMAGES["corporate-ai-agent-1c-crm"],
+  },
+  {
+    id: "ai-inbound-calls",
+    slug: "ai-inbound-calls",
+    title: "AI для входящих звонков и колл-центра",
+    description:
+      "Приём звонков, STT в реальном времени, намерение, ответы на типовые вопросы, перевод на оператора, история и аналитика.",
+    about:
+      "Пилот: один сценарий и одна линия — не полная замена колл-центра сразу. SpeechKit/SpeechSense, телефония, LLM, CRM, containment и handoff.",
+    salesNotes: "от 500 000 ₽",
+    deliveryDays: 28,
+    price: 500000,
+    serviceImage: IMAGES["ai-inbound-calls"],
   },
   {
     id: "claude-smb",
@@ -233,6 +247,19 @@ const enExtra: EnterpriseService[] = [
     deliveryDays: 28,
     price: 5000,
     serviceImage: IMAGES["corporate-ai-agent-1c-crm"],
+  },
+  {
+    id: "ai-inbound-calls",
+    slug: "ai-inbound-calls",
+    title: "AI for inbound calls and call center",
+    description:
+      "Answer calls, real-time STT, intent, FAQ replies, warm transfer to an agent, history and analytics.",
+    about:
+      "Pilot: one scenario and one phone line — not a full call-center swap on day one. SpeechKit/SpeechSense, telephony, LLM, CRM, containment and handoff.",
+    salesNotes: "from €5,000",
+    deliveryDays: 28,
+    price: 5000,
+    serviceImage: IMAGES["ai-inbound-calls"],
   },
   {
     id: "claude-smb",
@@ -437,6 +464,7 @@ const enServices: EnterpriseService[] = [
 /** Курируемый набор для маркетинговой сетки «Решения по задачам бизнеса» на /services. */
 export const ENTERPRISE_SERVICES_LISTING_SLUGS = [
   "business-process-automation",
+  "ai-inbound-calls",
   "corporate-ai-agent-1c-crm",
   "ai-meeting-crm",
   "ai-sales-loop",
@@ -500,6 +528,13 @@ const UZ_SERVICE_COPY: Partial<
       "Tayyor agent emas — sizning landshaftingiz: CRM, 1С, rollar, jarayonlar, istisnolar, xavfsizlik va KPI.",
     about:
       "Jarayon va huquqlar xaritasi, firma skills va nostandart konektorlar, sifat/xavfsizlik testlari, HITL, 1С/legacy; Yandex AI Studio vs private/on-prem.",
+  },
+  "ai-inbound-calls": {
+    title: "Kiruvchi qoʻngʻiroqlar va koll-markaz uchun AI",
+    description:
+      "Qoʻngʻiroq qabul, real vaqtda STT, niyat, tipik savollarga javob, operatorga uzatish, tarix va analitika.",
+    about:
+      "Pilot: bitta stsenariy va bitta liniya — toʻliq koll-markazni bir kunda almashtirmaymiz. Telefoniya, SpeechKit, LLM, CRM.",
   },
   "crm-integration": {
     title: "Bitrix24 · amoCRM",

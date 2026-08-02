@@ -345,6 +345,95 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     caseStudySlugs: ["crm-1c-sync", "elia-suite", "yandex-telemost-agent"],
   },
 
+  "ai-inbound-calls": {
+    metaTitle: "AI для входящих звонков и колл-центра",
+    metaDescription:
+      "Приём звонков, распознавание речи в реальном времени, намерение, ответы на типовые вопросы, перевод на оператора, история и аналитика. Пилот — одна линия, от 500 000 ₽.",
+    eyebrow: "Услуга · Телефония · Колл-центр",
+    h1: "AI для входящих звонков и колл-центра",
+    subtitle:
+      "Замена операторов на типовых обращениях: приём → STT → намерение → ответ или warm handoff → история в CRM и аналитика. Полную замену колл-центра не обещаем в день один.",
+    problemsTitle: "Типичные потери на входящей линии",
+    problems: [
+      "Операторы тратят смены на меню, акции, режим работы, бронь и статус заказа",
+      "Пиковые часы — очередь, пропущенные звонки и потерянные лиды",
+      "IVR «нажмите 1» не понимает свободную речь и бесит клиента",
+      "Нет единой истории и аналитики: кто звонил, с каким намерением, чем закончилось",
+    ],
+    deliverablesTitle: "Что входит в контур",
+    deliverables: [
+      "Обработка входящих звонков на вашей телефонии",
+      "Распознавание речи в реальном времени (SpeechKit / SpeechSense / private STT)",
+      "Определение намерения и ответы на типовые FAQ без оператора",
+      "Перевод на сотрудника с контекстом; история диалогов, статистика и аналитика",
+    ],
+    intro: [
+      "Цель проекта — снять с колл-центра типовые обращения, а не выключить людей завтра. Система принимает звонок, слушает речь, классифицирует намерение, отвечает на частые вопросы (меню, акции, режим, бронирование и т.п.) и при необходимости передаёт разговор человеку.",
+      "Стек подбираем под РФ и вашу телефонию: SIP/Voximplant/MANGO/UIS/Asterisk → streaming STT (Yandex SpeechKit, SaluteSpeech или Whisper в контуре) → LLM/агент с базой FAQ и tools → TTS → CRM (Bitrix24/amoCRM) для карточки, саммари и follow-up. SpeechSense и speech-аналитика — для качества и отчётов.",
+      "Рекомендуемый вход: платный пилот на одном сценарии и одной телефонной линии — containment rate, AHT, доля handoff, CSAT. После метрик — масштабирование на остальные intents и линии.",
+      "Ориентир пилота: 4–6 недель, от 500 000 ₽ (телефония + сценарий + CRM). Полная замена многолинейного колл-центра — отдельная смета после пилота.",
+    ],
+    howWeSolveTitle: "Как внедряем",
+    howWeSolve: [
+      {
+        title: "Сценарий и KPI",
+        text: "Какие intents закрывает AI, когда escalate, baseline: объём звонков, AHT, cost per call.",
+      },
+      {
+        title: "Телефония и STT",
+        text: "Подключение линии, словари домена, latency, barge-in, запись по 152-ФЗ.",
+      },
+      {
+        title: "Диалог и handoff",
+        text: "FAQ + tools (бронь, статус), warm transfer с транскриптом и карточкой CRM.",
+      },
+      {
+        title: "Пилот и аналитика",
+        text: "Одна линия в проде: containment, ошибки ASR, причины перевода на человека, дашборд.",
+      },
+    ],
+    architectureTitle: "Типовой стек",
+    architecture: [
+      "Телефония: SIP / Voximplant / MANGO / UIS / Asterisk",
+      "STT streaming → AI: намерение, слоты, FAQ / tools",
+      "TTS streaming → абонент",
+      "Handoff: оператор + transcript + CRM pop-up",
+      "CRM и аналитика: история, intents, containment, качество",
+    ],
+    roiTitle: "Метрики пилота",
+    roi: [
+      { value: "1 линия", label: "пилот, не весь колл-центр сразу" },
+      { value: "4–6 нед.", label: "до рабочего сценария" },
+      { value: "containment", label: "% звонков без оператора" },
+    ],
+    faqTitle: "Частые вопросы",
+    faq: [
+      {
+        q: "Сразу замените весь колл-центр?",
+        a: "Нет. Стартуем с одного сценария и одной линии. Полная замена — после метрик пилота.",
+      },
+      {
+        q: "Чем это отличается от «Голосовой AI»?",
+        a: "/services/voice-ai — общий Voice stack. Эта услуга — продукт под входящий колл-центр: intents, FAQ, handoff, аналитика нагрузки.",
+      },
+      {
+        q: "Какой стек?",
+        a: "Телефония клиента + SpeechKit/SaluteSpeech/Whisper + LLM-агент + Bitrix24/amoCRM. Конкретный состав — в КП после карты сценариев.",
+      },
+      { q: "Перевод на человека?", a: "Warm transfer: оператор видит транскрипт, намерение и карточку CRM." },
+      { q: "Сроки и бюджет?", a: "Пилот 4–6 недель, от 500 000 ₽. Мультилинейный rollout — по смете." },
+      { q: "Данные?", a: "Запись и транскрипты — по политике клиента и 152-ФЗ. Возможен private STT." },
+    ],
+    related: [
+      { href: "/services/voice-ai", label: "Голосовой AI" },
+      { href: "/services/ai-sales-loop", label: "AI-контур отдела продаж" },
+      { href: "/integrations/telephony-ai", label: "Телефония + CRM + AI" },
+      { href: "/services/ai-agent", label: "AI-агенты" },
+      { href: "/services/crm-integration", label: "Интеграции CRM" },
+    ],
+    caseStudySlugs: ["yandex-telemost-agent", "ai-sales-loop"],
+  },
+
   "sales-ai-agent": {
     metaTitle: "AI-агент для продаж и автоматизация отдела продаж",
     metaDescription:
@@ -1460,6 +1549,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       { q: "Бюджет?", a: "От 500 000 ₽ pilot line." },
     ],
     related: [
+      { href: "/services/ai-inbound-calls", label: "AI для входящих звонков" },
       { href: "/services/ai-sales-loop", label: "AI-контур отдела продаж" },
       { href: "/services/ai-agent", label: "AI-агенты" },
       { href: "/services/enterprise-ai-assistant", label: "Enterprise AI" },
@@ -2403,6 +2493,77 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
     caseStudySlugs: ["crm-1c-sync", "elia-suite", "yandex-telemost-agent"],
   },
 
+  "ai-inbound-calls": {
+    metaTitle: "AI for inbound calls and call center",
+    metaDescription:
+      "Answer calls, real-time speech recognition, intent, FAQ replies, warm transfer, history and analytics. Pilot — one line, from €5,000.",
+    eyebrow: "Service · Telephony · Call center",
+    h1: "AI for inbound calls and call center",
+    subtitle:
+      "Replace operators on routine inbound: answer → STT → intent → reply or warm handoff → CRM history and analytics. Not a full call-center swap on day one.",
+    problemsTitle: "Typical inbound leakage",
+    problems: [
+      "Agents spend shifts on hours, promos, booking and order status",
+      "Peak hours mean queues, missed calls and lost leads",
+      "Press-1 IVR fails on free speech and frustrates callers",
+      "No shared history or analytics: who called, with which intent, how it ended",
+    ],
+    deliverablesTitle: "What the loop includes",
+    deliverables: [
+      "Inbound call handling on your telephony",
+      "Real-time speech recognition (SpeechKit / SpeechSense / private STT)",
+      "Intent detection and FAQ answers without an agent",
+      "Warm transfer with context; dialogue history, stats and analytics",
+    ],
+    intro: [
+      "Goal: take routine volume off the call center — not switch people off tomorrow. The system answers, listens, classifies intent, handles common questions and hands off to a human when needed.",
+      "Stack for RU telephony: SIP/Voximplant/MANGO/UIS/Asterisk → streaming STT → LLM/agent with FAQ and tools → TTS → CRM for card, summary and follow-up.",
+      "Entry: paid pilot on one scenario and one phone line — containment, AHT, handoff share, CSAT. Then scale intents and lines.",
+      "Pilot guide: 4–6 weeks, from €5,000. Full multi-line replacement — separate estimate after the pilot.",
+    ],
+    howWeSolveTitle: "How we deliver",
+    howWeSolve: [
+      { title: "Scenario & KPIs", text: "Which intents AI owns, when to escalate, baseline volume/AHT/cost." },
+      { title: "Telephony & STT", text: "Line connect, domain lexicon, latency, barge-in, recording policy." },
+      { title: "Dialog & handoff", text: "FAQ + tools, warm transfer with transcript and CRM card." },
+      { title: "Pilot & analytics", text: "One live line: containment, ASR errors, handoff reasons, dashboard." },
+    ],
+    architectureTitle: "Typical stack",
+    architecture: [
+      "Telephony: SIP / Voximplant / MANGO / UIS / Asterisk",
+      "STT streaming → AI: intent, slots, FAQ / tools",
+      "TTS streaming → caller",
+      "Handoff: agent + transcript + CRM pop-up",
+      "CRM & analytics: history, intents, containment, quality",
+    ],
+    roiTitle: "Pilot metrics",
+    roi: [
+      { value: "1 line", label: "pilot, not the whole center" },
+      { value: "4–6 wks", label: "to a working scenario" },
+      { value: "containment", label: "% calls without an agent" },
+    ],
+    faqTitle: "FAQ",
+    faq: [
+      { q: "Replace the whole call center at once?", a: "No. One scenario and one line first. Full swap after pilot metrics." },
+      {
+        q: "Vs Voice AI service?",
+        a: "/services/voice-ai is the general voice stack. This offer is the inbound call-center product: intents, FAQ, handoff, load analytics.",
+      },
+      { q: "Stack?", a: "Your telephony + SpeechKit/SaluteSpeech/Whisper + LLM agent + Bitrix24/amoCRM — detailed in the quote after scenario map." },
+      { q: "Human transfer?", a: "Warm transfer: agent sees transcript, intent and CRM card." },
+      { q: "Timeline & budget?", a: "Pilot 4–6 weeks, from €5,000. Multi-line rollout by estimate." },
+      { q: "Data?", a: "Recording/transcripts per your policy. Private STT available." },
+    ],
+    related: [
+      { href: "/services/voice-ai", label: "Voice AI" },
+      { href: "/services/ai-sales-loop", label: "AI sales loop" },
+      { href: "/integrations/telephony-ai", label: "Telephony + CRM + AI" },
+      { href: "/services/ai-agent", label: "AI agents" },
+      { href: "/services/crm-integration", label: "CRM integrations" },
+    ],
+    caseStudySlugs: ["yandex-telemost-agent", "ai-sales-loop"],
+  },
+
   "sales-ai-agent": {
     metaTitle: "Sales AI Agent & Sales Automation",
     metaDescription:
@@ -3002,7 +3163,13 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
       { q: "Telephony?", a: "Voximplant, Mango, Asterisk — we integrate yours." },
       { q: "Budget?", a: "From €5,000 pilot line." },
     ],
-    related: [{ href: "/services/ai-sales-loop", label: "AI sales loop" }, { href: "/services/ai-agent", label: "AI agents" }, { href: "/services/enterprise-ai-assistant", label: "Enterprise AI" }, { href: "/services/self-hosted-ai", label: "Self-hosted AI" }],
+    related: [
+      { href: "/services/ai-inbound-calls", label: "AI inbound calls" },
+      { href: "/services/ai-sales-loop", label: "AI sales loop" },
+      { href: "/services/ai-agent", label: "AI agents" },
+      { href: "/services/enterprise-ai-assistant", label: "Enterprise AI" },
+      { href: "/services/self-hosted-ai", label: "Self-hosted AI" },
+    ],
     caseStudySlugs: ["yandex-telemost-agent"],
   },
 

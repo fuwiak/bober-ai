@@ -96,6 +96,23 @@ const kzOverrides = {
         detailsHref: "/services/business-process-automation",
       },
       {
+        name: "AI для входящих звонков",
+        price: "от 5 000 000 ₸",
+        duration: "4–6 недель",
+        forWhom: "Нужно снять с колл-центра типовые входящие — FAQ, бронь, режим — без полной замены операторов сразу",
+        result:
+          "Пилот: один сценарий и одна линия. STT → намерение → ответ или warm handoff → история в CRM и аналитика.",
+        badge: "Колл-центр · пилот",
+        includes: [
+          "Приём звонков и распознавание речи в реальном времени",
+          "Ответы на типовые вопросы и перевод на сотрудника",
+          "История диалогов и аналитика обращений",
+        ],
+        featured: true,
+        tier: "implementation",
+        detailsHref: "/services/ai-inbound-calls",
+      },
+      {
         name: "AI-агент × 1С и CRM",
         price: "от 5 000 000 ₸",
         duration: "4–8 недель",

@@ -35,6 +35,7 @@ const FEED_CONVERSION: Record<string, number> = {
   "ai-sales-loop": 94,
   "ai-meeting-crm": 95,
   "corporate-ai-agent-1c-crm": 95,
+  "ai-inbound-calls": 95,
   "wildberries-independent-sales-channel": 93,
   "secure-private-ai-cloud": 94,
   "company-automation": 94,

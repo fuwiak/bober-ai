@@ -585,6 +585,23 @@ const uzOverrides = {
         detailsHref: "/services/business-process-automation",
       },
       {
+        name: "Kiruvchi qoʻngʻiroqlar uchun AI",
+        price: "50 000 000 soʻmdan",
+        duration: "4–6 hafta",
+        forWhom: "Koll-markazdan tipik kiruvchi murojaatlarni olish kerak — toʻliq almashtirishsiz",
+        result:
+          "Pilot: bitta stsenariy va bitta liniya. STT → niyat → javob yoki handoff → CRM tarix va analitika.",
+        badge: "Koll-markaz · pilot",
+        includes: [
+          "Qoʻngʻiroq qabul va real vaqtda nutqni tanish",
+          "Tipik savollarga javob va operatorga uzatish",
+          "Dialog tarixi va murojaatlar analitikasi",
+        ],
+        featured: true,
+        tier: "implementation",
+        detailsHref: "/services/ai-inbound-calls",
+      },
+      {
         name: "AI-agent × 1С va CRM",
         price: "50 000 000 soʻmdan",
         duration: "4–8 hafta",
