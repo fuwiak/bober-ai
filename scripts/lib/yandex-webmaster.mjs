@@ -383,19 +383,48 @@ export async function addUserSitemap(token, userId, hostId, sitemapUrl) {
   throw new Error(`POST user-added-sitemaps → HTTP ${response.status}: ${JSON.stringify(body)}`);
 }
 
+/** Remove user-added sitemap so a re-POST triggers a fresh crawl (stale urls=4 after urlset expand). */
+export async function deleteUserSitemap(token, userId, hostId, sitemapId) {
+  const { response, body } = await apiRequest(
+    token,
+    `/user/${userId}/hosts/${encodeURIComponent(hostId)}/user-added-sitemaps/${encodeURIComponent(sitemapId)}`,
+    { method: "DELETE" },
+  );
+  if (!response.ok && response.status !== 404) {
+    throw new Error(
+      `DELETE user-added-sitemaps/${sitemapId} → HTTP ${response.status}: ${JSON.stringify(body)}`,
+    );
+  }
+  return { deleted: response.ok, status: response.status, body };
+}
+
 /**
  * Ensure canonical sitemap is in Webmaster queue. Returns user-added + robot-discovered lists.
+ * @param {{ force?: boolean }} [opts] force=true deletes then re-adds to refresh stale crawl stats.
  */
-export async function ensureUserSitemap(token, userId, hostId, sitemapUrl) {
+export async function ensureUserSitemap(token, userId, hostId, sitemapUrl, opts = {}) {
   const target = normalizeSitemapUrl(sitemapUrl);
-  const existing = await getUserAddedSitemaps(token, userId, hostId);
-  const match = existing.find((row) => normalizeSitemapUrl(row.sitemap_url || row.url) === target);
-  if (match) {
-    return { added: false, already: true, userAdded: existing, match };
+  let existing = await getUserAddedSitemaps(token, userId, hostId);
+  let match = existing.find((row) => normalizeSitemapUrl(row.sitemap_url || row.url) === target);
+
+  if (opts.force && match?.sitemap_id) {
+    await deleteUserSitemap(token, userId, hostId, match.sitemap_id);
+    existing = await getUserAddedSitemaps(token, userId, hostId);
+    match = existing.find((row) => normalizeSitemapUrl(row.sitemap_url || row.url) === target);
   }
+
+  if (match && !opts.force) {
+    return { added: false, already: true, forced: false, userAdded: existing, match };
+  }
+
   const result = await addUserSitemap(token, userId, hostId, target);
   const userAdded = await getUserAddedSitemaps(token, userId, hostId);
-  return { ...result, userAdded, match: userAdded.find((row) => normalizeSitemapUrl(row.sitemap_url || row.url) === target) };
+  return {
+    ...result,
+    forced: Boolean(opts.force),
+    userAdded,
+    match: userAdded.find((row) => normalizeSitemapUrl(row.sitemap_url || row.url) === target),
+  };
 }
 
 export async function getSearchUrlsInSearchHistory(token, userId, hostId, { dateFrom, dateTo } = {}) {

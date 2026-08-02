@@ -19,6 +19,8 @@ import {
 
 const args = new Set(process.argv.slice(2));
 const statusOnly = args.has("--status") || args.has("-s");
+/** Delete + re-add so Webmaster re-fetches after sitemap.xml grew past stale urls=4. */
+const forceRefresh = args.has("--force") || args.has("-f") || args.has("--refresh");
 
 const SITEMAP_URL = (
   process.env.YANDEX_WEBMASTER_SITEMAP_URL ||
@@ -81,9 +83,15 @@ async function main() {
     return;
   }
 
-  const result = await ensureUserSitemap(config.token, userId, hostId, SITEMAP_URL);
-  if (result.already) {
-    console.log("\n✓ Sitemap уже в очереди Вебмастера");
+  const result = await ensureUserSitemap(config.token, userId, hostId, SITEMAP_URL, {
+    force: forceRefresh,
+  });
+  if (result.forced) {
+    console.log(
+      `\n✓ Sitemap передобавлен (force) — id: ${result.sitemap_id || result.match?.sitemap_id || "?"}`,
+    );
+  } else if (result.already) {
+    console.log("\n✓ Sitemap уже в очереди Вебмастера (без --force не трогаем)");
   } else {
     console.log(`\n✓ Sitemap добавлен (id: ${result.sitemap_id || result.match?.sitemap_id || "?"})`);
   }

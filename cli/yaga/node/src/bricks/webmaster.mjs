@@ -14,7 +14,7 @@ export default {
   yaga webmaster selfcheck  21 self-checks from Webmaster
   yaga webmaster microtest  structured data validator checklist + JSON-LD probe
   yaga webmaster boost      sitemap + IndexNow + recrawl + feed/region checklist
-  yaga webmaster sitemap    add /sitemap.xml to Webmaster queue
+  yaga webmaster sitemap    add /sitemap.xml (--force = delete+re-add refresh)
   yaga webmaster indexnow   notify Yandex/Bing of sitemap URLs (or paths)
   yaga webmaster feed       upload performers feed (--all / --microsites)
   yaga webmaster mirrors    mirror settings
