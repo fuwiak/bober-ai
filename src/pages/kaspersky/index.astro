@@ -1,19 +1,37 @@
 ---
 /**
- * RU Kaspersky hub — content from KASPERSKY_PAGE (Next parity).
+ * RU Kaspersky hub — same rich band layout as SeoServicePage / Secure AI.
+ * Content unchanged: KASPERSKY_PAGE + KASPERSKY_PRODUCTS.
  */
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import ContactForm from "@/components/ContactForm.astro";
+import { getEnterpriseReviews } from "@/lib/enterprise-reviews";
 import { KASPERSKY_PAGE, KASPERSKY_PRODUCTS } from "@/lib/kaspersky-page";
 import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
-import { TELEGRAM_URL } from "@/lib/site";
+import { PROFILE } from "@/lib/profile";
+import { webPageJsonLd } from "@/lib/seo";
+import { absoluteUrl, TELEGRAM_URL } from "@/lib/site";
+import { KASPERSKY_PARTNER_CERTIFICATES } from "@/lib/trust-partners";
 
 export const prerender = true;
 
 const locale = "ru" as Locale;
 const messages = loadMessages(locale);
+const sp = messages.servicePage;
 const p = KASPERSKY_PAGE;
+const reviews = getEnterpriseReviews();
+const pageUrl = absoluteUrl("/kaspersky");
+const HERO_IMAGE = "/stock/cyber-padlock.jpg";
+const processTitles = ["Выбор линии", "Аудит и смета", "Внедрение", "Мониторинг"] as const;
+const jsonLd = [
+  webPageJsonLd({
+    name: p.metaTitleRu,
+    description: p.metaDescRu,
+    url: pageUrl,
+    locale,
+  }),
+];
 ---
 
 <BaseLayout
@@ -21,108 +39,239 @@ const p = KASPERSKY_PAGE;
   description={p.metaDescRu}
   locale={locale}
   canonicalPath="/kaspersky"
+  jsonLd={jsonLd}
 >
   <main>
-    <section class="container-editorial max-w-3xl py-12 md:py-16">
-      <Breadcrumbs
-        locale={locale}
-        items={[
-          { name: "Secure AI", path: "/secure-ai" },
-          { name: "Kaspersky", path: "/kaspersky" },
-        ]}
-      />
-      <span class="meta-label mt-2 inline-block text-primary">{p.statusRu}</span>
-      <h1 class="mt-4 display-title">{p.h1Ru}</h1>
-      <p class="mt-4 body-copy text-muted">{p.subtitleRu}</p>
-      <p class="mt-4 text-xs text-muted">{p.disclaimerRu}</p>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a href="#contact" class="btn-primary">Обсудить проект</a>
-        <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" class="btn-secondary">Telegram</a>
-        <a href={localizePath("/secure-ai", locale)} class="btn-secondary">Secure AI</a>
+    <section class="section-band section--deep border-b border-hairline">
+      <div class="container-editorial">
+        <Breadcrumbs
+          locale={locale}
+          items={[
+            { name: "Secure AI", path: "/secure-ai" },
+            { name: "Kaspersky", path: "/kaspersky" },
+          ]}
+        />
+        <div class="mt-8 grid gap-12 lg:grid-cols-[1fr_360px] lg:items-start">
+          <div class="max-w-4xl">
+            <span class="section-label">{p.statusRu}</span>
+            <h1 class="display-md mt-4">{p.h1Ru}</h1>
+            <p class="mt-3 text-sm text-muted">
+              Исполнитель: <span class="font-medium text-ink">{PROFILE.name}</span>
+            </p>
+            <p class="body-copy mt-5 max-w-3xl text-lg">{p.subtitleRu}</p>
+            <p class="mt-4 text-sm text-muted max-w-3xl">{p.disclaimerRu}</p>
+            <div class="mt-10 flex flex-wrap gap-4">
+              <a href="#contact" class="btn-primary" data-goal="primary_cta_click">Обсудить проект</a>
+              <a
+                href={TELEGRAM_URL}
+                target="_blank"
+                rel="noreferrer"
+                class="btn-secondary"
+                data-goal="telegram_click">Telegram</a
+              >
+              <a href={localizePath("/secure-ai", locale)} class="btn-secondary">Secure AI</a>
+            </div>
+          </div>
+          <aside class="feature-card-bordered">
+            <p class="font-display text-2xl tracking-tight">Registered Partner</p>
+            <p class="mt-2 text-sm text-muted">Лаборатория Касперского · B2B / B2C</p>
+            <p class="mt-3 text-sm text-muted">Лицензии · внедрение · AI × безопасность</p>
+            <div
+              class="relative mt-6 aspect-[4/3] overflow-hidden rounded-lg border border-hairline bg-surface-soft"
+            >
+              <img
+                src={HERO_IMAGE}
+                alt={p.h1Ru}
+                class="h-full w-full object-cover"
+                width="360"
+                height="270"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </div>
+            <a href="#contact" class="btn-primary mt-6 w-full text-center" data-goal="primary_cta_click"
+              >{sp.quote}</a
+            >
+            <a
+              href={TELEGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              class="btn-secondary mt-3 w-full text-center">Telegram</a
+            >
+          </aside>
+        </div>
       </div>
     </section>
 
-    <section class="container-editorial max-w-3xl border-t border-hairline py-12">
-      <h2 class="section-title">{p.productsTitleRu}</h2>
-      <p class="mt-3 body-copy text-muted">{p.productsIntroRu}</p>
-      <ul class="mt-8 space-y-4">
-        {
-          KASPERSKY_PRODUCTS.map((product) => (
-            <li class="border border-hairline p-5">
-              <a href={`/kaspersky/${product.slug}`} class="font-medium text-link">
-                {product.titleRu}
-              </a>
-              <p class="mt-2 text-sm text-muted">{product.summaryRu}</p>
-            </li>
-          ))
-        }
-      </ul>
+    <section class="section-band section--panel border-b border-hairline">
+      <div class="container-editorial">
+        <h2 class="section-title">{p.productsTitleRu}</h2>
+        <p class="body-copy mt-4 max-w-2xl text-base">{p.productsIntroRu}</p>
+        <div class="mt-10 grid gap-6 md:grid-cols-2">
+          {
+            KASPERSKY_PRODUCTS.map((product) => (
+              <article class="feature-card h-full">
+                <span class="meta-label">{product.badgeRu}</span>
+                <h3 class="card-title mt-3">
+                  <a href={`/kaspersky/${product.slug}`} class="hover:text-primary">
+                    {product.titleRu}
+                  </a>
+                </h3>
+                <p class="body-copy mt-3 text-base">{product.summaryRu}</p>
+                <a href={`/kaspersky/${product.slug}`} class="link-more mt-4">
+                  Подробнее
+                </a>
+              </article>
+            ))
+          }
+        </div>
+      </div>
     </section>
 
-    <section class="container-editorial max-w-3xl border-t border-hairline py-12">
-      <h2 class="section-title">{p.matrixTitleRu}</h2>
-      <div class="mt-6 space-y-3 text-sm">
-        {
-          p.matrixRu.map((row) => (
-            <div class="grid gap-2 border-b border-hairline pb-3 md:grid-cols-2">
-              <div>
-                <span class="meta-label">Kaspersky</span>
-                <p class="mt-1">{row.k}</p>
+    <section class="section-band section--deep border-b border-hairline">
+      <div class="container-editorial">
+        <h2 class="section-title">{p.matrixTitleRu}</h2>
+        <div class="mt-10 space-y-4">
+          {
+            p.matrixRu.map((row) => (
+              <div class="grid gap-4 border border-hairline p-5 md:grid-cols-2">
+                <div>
+                  <span class="meta-label">Kaspersky</span>
+                  <p class="body-copy mt-2 text-base">{row.k}</p>
+                </div>
+                <div>
+                  <span class="meta-label">Bober AI</span>
+                  <p class="body-copy mt-2 text-base text-muted">{row.b}</p>
+                </div>
               </div>
-              <div>
-                <span class="meta-label">Bober AI</span>
-                <p class="mt-1 text-muted">{row.b}</p>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section-band section--panel border-b border-hairline">
+      <div class="container-editorial">
+        <h2 class="section-title">Лицензии и внедрение</h2>
+        <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {
+            p.offers.map((offer) => (
+              <article class="feature-card h-full">
+                <h3 class="card-title">{offer.titleRu}</h3>
+                <p class="body-copy mt-3 text-base">{offer.blurbRu}</p>
+                {offer.wordstatHint ? (
+                  <p class="mt-3 text-xs text-muted">{offer.wordstatHint}</p>
+                ) : null}
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section-band section--deep border-b border-hairline">
+      <div class="container-editorial">
+        <h2 class="section-title">{p.processTitleRu}</h2>
+        <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {
+            p.processRu.map((step, index) => (
+              <article class="feature-card">
+                <span class="font-display text-3xl text-primary/40">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 class="card-title mt-3">{processTitles[index]}</h3>
+                <p class="body-copy mt-3 text-base">{step}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section-band section--panel border-b border-hairline">
+      <div class="container-editorial grid gap-16 lg:grid-cols-2">
+        <div>
+          <h2 class="section-title">{p.attachTitleRu}</h2>
+          <ul class="mt-8 space-y-4">
+            {
+              p.attachRu.map((item) => (
+                <li class="body-copy flex gap-4 text-base">
+                  <span class="meta-label shrink-0">—</span>
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        {
+          KASPERSKY_PARTNER_CERTIFICATES.length > 0 && (
+            <div>
+              <h2 class="section-title">Сертификаты партнёра</h2>
+              <div class="mt-8 grid gap-4 sm:grid-cols-2">
+                {KASPERSKY_PARTNER_CERTIFICATES.map((cert) => (
+                  <a
+                    href={cert.pdfSrc}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="feature-card block transition hover:border-primary/40"
+                  >
+                    <div class="bg-white p-3">
+                      <img
+                        src={cert.previewSrc}
+                        alt={cert.altRu}
+                        width="400"
+                        height="283"
+                        class="w-full rounded-sm"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <span class="mt-2 inline-block text-xs text-link">PDF</span>
+                  </a>
+                ))}
               </div>
             </div>
-          ))
+          )
         }
       </div>
     </section>
 
-    <section class="container-editorial max-w-3xl border-t border-hairline py-12">
-      <h2 class="section-title">Лицензии и внедрение</h2>
-      <ul class="mt-6 space-y-4">
-        {
-          p.offers.map((offer) => (
-            <li class="border border-hairline p-5">
-              <h3 class="font-medium">{offer.titleRu}</h3>
-              <p class="mt-2 text-sm text-muted">{offer.blurbRu}</p>
-              {offer.wordstatHint ? <p class="mt-2 text-xs text-muted">{offer.wordstatHint}</p> : null}
-            </li>
-          ))
-        }
-      </ul>
-    </section>
+    {
+      reviews.length > 0 && (
+        <section class="section-band section--deep border-b border-hairline">
+          <div class="container-editorial">
+            <span class="section-label">Доверие</span>
+            <h2 class="section-title mt-4">Отзывы на Яндексе</h2>
+            <div class="mt-10 grid gap-6 md:grid-cols-2">
+              {reviews.slice(0, 4).map((review) => (
+                <blockquote class="feature-card">
+                  <p class="body-copy text-base">“{review.text}”</p>
+                  <footer class="mt-4 text-sm text-muted">
+                    — {review.author}
+                    {review.date ? ` · ${review.date}` : ""} · {review.source}
+                  </footer>
+                </blockquote>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
 
-    <section class="container-editorial max-w-3xl border-t border-hairline py-12">
-      <h2 class="section-title">{p.processTitleRu}</h2>
-      <ol class="mt-6 space-y-3 text-sm text-muted">
-        {
-          p.processRu.map((step, i) => (
-            <li class="flex gap-3">
-              <span class="text-primary/50">{String(i + 1).padStart(2, "0")}</span>
-              <span>{step}</span>
-            </li>
-          ))
-        }
-      </ol>
-    </section>
-
-    <section class="container-editorial max-w-3xl border-t border-hairline py-12">
-      <h2 class="section-title">{p.attachTitleRu}</h2>
-      <ul class="mt-4 space-y-2 text-sm text-muted">
-        {p.attachRu.map((item) => <li>— {item}</li>)}
-      </ul>
-    </section>
-
-    <section id="contact" class="container-editorial max-w-3xl border-t border-hairline py-12 md:py-16">
-      <h2 class="section-title">Запрос</h2>
-      <div class="mt-6 max-w-xl">
-        <ContactForm
-          locale={locale}
-          messages={messages}
-          defaultService="Kaspersky — AI / лицензии / внедрение"
-        />
+    <section id="contact" class="section-band section--panel border-b border-hairline">
+      <div class="container-editorial max-w-xl">
+        <h2 class="section-title">Запрос</h2>
+        <p class="body-copy mt-3 text-base text-muted">
+          Имя и контакт — этого достаточно для первого шага. Описание задачи необязательно.
+        </p>
+        <div class="mt-8">
+          <ContactForm
+            locale={locale}
+            messages={messages}
+            defaultService="Kaspersky — AI / лицензии / внедрение"
+            source="kaspersky-hub"
+          />
+        </div>
       </div>
     </section>
   </main>
