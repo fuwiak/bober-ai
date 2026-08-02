@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "npm run info:sync && astro build && node scripts/generate-sitemap.mjs",
+    "build": "npm run info:sync && astro build && node scripts/generate-sitemap.mjs && node scripts/precompress-static.mjs",
     "start": "HOST=0.0.0.0 PORT=${PORT:-3000} node ./dist/server/entry.mjs",
     "lint": "astro check",
     "test:e2e": "playwright test",

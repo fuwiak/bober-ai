@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.bober-systems.ru/media</loc>
+    <lastmod>2026-07-28</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/guides</loc>
+    <lastmod>2026-07-28</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/blog</loc>
+    <lastmod>2026-07-28</lastmod>
+  </url>
+  <url>
     <loc>https://www.bober-systems.ru/academy/install-yaga</loc>
     <lastmod>2026-07-28</lastmod>
   </url>
@@ -61,6 +73,14 @@
     <lastmod>2026-07-28</lastmod>
   </url>
   <url>
+    <loc>https://www.bober-systems.ru/blog/amocrm-avtomatizaciya</loc>
+    <lastmod>2026-07-28</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/blog/amocrm-ili-bitrix24</loc>
+    <lastmod>2026-07-28</lastmod>
+  </url>
+  <url>
     <loc>https://www.bober-systems.ru/blog/avtomatizaciya-kp</loc>
     <lastmod>2026-07-28</lastmod>
   </url>
@@ -70,14 +90,6 @@
   </url>
   <url>
     <loc>https://www.bober-systems.ru/blog/avtomatizaciya-podderzhki</loc>
-    <lastmod>2026-07-28</lastmod>
-  </url>
-  <url>
-    <loc>https://www.bober-systems.ru/blog/avtomatizaciya-soglasovaniy</loc>
-    <lastmod>2026-07-28</lastmod>
-  </url>
-  <url>
-    <loc>https://www.bober-systems.ru/blog/bezopasnost-ai</loc>
     <lastmod>2026-07-28</lastmod>
   </url>
 </urlset>

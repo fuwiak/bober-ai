@@ -31,7 +31,6 @@ import {
   organizationJsonLd,
   personJsonLd,
   websiteJsonLd,
-  siteNavigationJsonLd,
 } from "@/lib/seo";
 
 const locale = "ru" as const;
@@ -53,14 +52,24 @@ const packageItems = messages.packages.items.map((item) => ({
   detailsHref: "detailsHref" in item ? (item.detailsHref as string | undefined) : undefined,
 }));
 const faqItems = messages.faq.items.slice(0, 4);
+/** Cap homepage case grid — full list lives on /portfolio (TTFB / HTML weight). */
 const caseStudies = getPortfolioListing(locale);
-const smbCases = caseStudies.filter((item) => (item.segment ?? "smb") === "smb");
-const enterpriseCases = caseStudies.filter((item) => item.segment === "enterprise");
+const smbCases = caseStudies.filter((item) => (item.segment ?? "smb") === "smb").slice(0, 3);
+const enterpriseCases = caseStudies.filter((item) => item.segment === "enterprise").slice(0, 2);
 const leadParagraphs = hero.valueProposition
   .split(/\n\n+/)
   .map((part) => part.trim())
   .filter(Boolean);
-const services = getEnterpriseServicesListing(locale);
+/** Top commercial offers only in homepage JSON-LD (catalog is on /services). */
+const HOME_OFFER_SLUGS = new Set([
+  "crm-integration",
+  "ai-sales-loop",
+  "rag",
+  "document-processing",
+  "ai-consulting",
+  "llm-development",
+]);
+const services = getEnterpriseServicesListing(locale).filter((offer) => HOME_OFFER_SLUGS.has(offer.slug));
 const offersJsonLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -84,12 +93,12 @@ const founderJsonLd = personJsonLd({
   url: localizedAbsolute("/about", locale),
   sameAs: [LINKEDIN_URL, GITHUB_URL, TELEGRAM_URL, YANDEX_USLUGI_URL],
 });
+/** websiteJsonLd already embeds SiteNavigationElement — no duplicate nav block. */
 const homeJsonLd = [
   { "@context": "https://schema.org", ...organizationJsonLd(locale), description: meta.description },
   founderJsonLd,
   offersJsonLd,
   websiteJsonLd(locale),
-  siteNavigationJsonLd(locale),
 ];
 ---
 

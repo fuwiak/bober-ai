@@ -54,27 +54,47 @@ const PRIORITY_PATHS = [
 /** Blog / academy slugs worth indexing early (extend later). */
 const PRIORITY_BLOG_PREFIXES = ["/blog/", "/academy/", "/portfolio/"];
 
+/** Path belongs in services / portfolio / blog slices (not core hubs). */
+function isServicesPath(p) {
+  return (
+    p.startsWith("/services/") ||
+    p.startsWith("/automation/") ||
+    p.startsWith("/integrations/") ||
+    p.startsWith("/solutions/") ||
+    p.startsWith("/industries/") ||
+    p.startsWith("/secure-ai") ||
+    p.startsWith("/kaspersky")
+  );
+}
+function isPortfolioPath(p) {
+  return p.startsWith("/portfolio");
+}
+function isBlogPath(p) {
+  return p.startsWith("/blog") || p.startsWith("/guides") || p.startsWith("/academy") || p.startsWith("/media");
+}
+
 /** Sections for sitemap split. */
 const SECTIONS = {
-  core: { name: "sitemap-core.xml", test: (p) => PRIORITY_PATHS.includes(p) || p === "/" },
+  // Core = hubs only. Commercial landings stay in sitemap-services.xml even if PRIORITY.
+  core: {
+    name: "sitemap-core.xml",
+    test: (p) =>
+      (PRIORITY_PATHS.includes(p) || p === "/") &&
+      !isServicesPath(p) &&
+      !isPortfolioPath(p) &&
+      !isBlogPath(p),
+  },
   services: {
     name: "sitemap-services.xml",
-    test: (p) =>
-      p.startsWith("/services/") ||
-      p.startsWith("/automation/") ||
-      p.startsWith("/integrations/") ||
-      p.startsWith("/solutions/") ||
-      p.startsWith("/industries/") ||
-      p.startsWith("/secure-ai") ||
-      p.startsWith("/kaspersky"),
+    test: isServicesPath,
   },
   portfolio: {
     name: "sitemap-portfolio.xml",
-    test: (p) => p.startsWith("/portfolio"),
+    test: isPortfolioPath,
   },
   blog: {
     name: "sitemap-blog.xml",
-    test: (p) => p.startsWith("/blog") || p.startsWith("/guides") || p.startsWith("/academy") || p.startsWith("/media"),
+    test: isBlogPath,
   },
 };
 
@@ -263,8 +283,9 @@ function priorityScore(path) {
 }
 
 function sectionFor(path) {
-  for (const [key, section] of Object.entries(SECTIONS)) {
-    if (section.test(path)) return key;
+  // Prefer topical slices over core so PRIORITY commercial URLs land in services/*.
+  for (const key of ["services", "portfolio", "blog", "core"]) {
+    if (SECTIONS[key].test(path)) return key;
   }
   return "core";
 }
