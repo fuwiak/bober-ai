@@ -66,6 +66,7 @@ export const MARKETS: Record<Locale, MarketMeta> = {
     areaServedCode: "KZ",
     contentLang: "ru",
   },
+  /** UI chrome may be Uzbek; body often still RU — BaseLayout noindexes until real uz content. */
   uz: {
     prefix: "/uz",
     htmlLang: "uz",
