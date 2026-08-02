@@ -585,6 +585,23 @@ const uzOverrides = {
         detailsHref: "/services/business-process-automation",
       },
       {
+        name: "Savdo boʻlimi AI konturi",
+        price: "30 000 000 soʻmdan",
+        duration: "2–4 hafta",
+        forWhom: "Telefoniya, yozishmalar, CRM va avtomatik follow-up bitta konturda kerak — alohida botlar emas",
+        result:
+          "Aloqa → suhbat tahlili → CRM yangilash → keyingi harakat → menejer hisoboti. Lid kvalifikatsiyasi, bazani qayta ishga tushirish, sifat nazorati, yoʻqotilgan bitimlar.",
+        badge: "MSB top soʻrov",
+        includes: [
+          "Telefoniya + chatlar + Bitrix24/amoCRM + AI",
+          "Qoʻngʻiroq samarilari va kartochkalarni avto toʻldirish",
+          "Avtovazifalar, follow-up va yoʻqotilgan bitimlar hisoboti",
+        ],
+        featured: true,
+        tier: "implementation",
+        detailsHref: "/services/ai-sales-loop",
+      },
+      {
         name: "Bitrix24 + AI",
         price: "15 000 000 soʻmdan",
         duration: "2–8 hafta",
@@ -598,7 +615,7 @@ const uzOverrides = {
           "Integratsiyalar: 1С, telefoniya, hujjatlar, KP",
         ],
         tier: "implementation",
-        detailsHref: "/services/ai-sales-loop",
+        detailsHref: "/bitrix",
       },
       {
         name: "Sanoat joriy etish",

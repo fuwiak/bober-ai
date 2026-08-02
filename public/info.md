@@ -312,6 +312,7 @@ Classic license / deploy offers on the hub: KES для бизнеса, Security 
 
 ### Featured Projects
 
+- AI-контур отдела продаж — телефония + переписки + Bitrix24/amoCRM + AI: квалификация лидов, саммари звонков, автозадачи, follow-up, упущенные сделки (от 300 000 ₽) · https://www.bober-systems.ru/portfolio/ai-sales-loop · услуга: https://www.bober-systems.ru/services/ai-sales-loop
 - Kaspersky — RAG-бот по продуктам для сотрудников 1С (product knowledge assistant)
 - Независимый канал продаж параллельно с Wildberries — витрина, Bitrix24/amoCRM, 1С/МойСклад, AI по каталогу (от 300 000 ₽) · https://www.bober-systems.ru/portfolio/wildberries-independent-sales-channel
 - Yandex Telemost Agent — ИИ-помощник для встреч и продаж: расшифровка, CRM, задачи после созвона (300 000 ₽)

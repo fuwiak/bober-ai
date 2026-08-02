@@ -96,6 +96,23 @@ const kzOverrides = {
         detailsHref: "/services/business-process-automation",
       },
       {
+        name: "AI-контур отдела продаж",
+        price: "от 2 500 000 ₸",
+        duration: "2–4 недели",
+        forWhom: "Нужны телефония, переписки, CRM и автоматические follow-up в одном контуре — не отдельные боты",
+        result:
+          "Контакт → анализ разговора → обновление CRM → следующее действие → отчёт менеджеру. Квалификация лидов, реактивация базы, контроль качества, упущенные сделки.",
+        badge: "Топ-запрос МСП",
+        includes: [
+          "Телефония + чаты + Bitrix24/amoCRM + AI",
+          "Саммари звонков и автозаполнение карточек",
+          "Автозадачи, follow-up и отчёт об упущенных сделках",
+        ],
+        featured: true,
+        tier: "implementation",
+        detailsHref: "/services/ai-sales-loop",
+      },
+      {
         name: "Битрикс24 + AI",
         price: "от 1 500 000 ₸",
         duration: "2–8 недель",
@@ -109,7 +126,7 @@ const kzOverrides = {
           "Интеграции: 1С, телефония, документы, КП",
         ],
         tier: "implementation",
-        detailsHref: "/services/ai-sales-loop",
+        detailsHref: "/bitrix",
       },
       {
         name: "Промышленное внедрение",

@@ -31,6 +31,23 @@ export type PortfolioEnCopy = PortfolioLocaleCopy;
 
 /** English copy (legacy EN path). */
 export const PORTFOLIO_EN: Record<string, PortfolioEnCopy> = {
+  "ai-sales-loop": {
+    title: "AI sales loop: calls, chats, CRM",
+    subtitle: "Telephony + chats + Bitrix24/amoCRM + automatic next actions",
+    seoTitle: "AI sales loop: telephony, CRM, call summaries and follow-up",
+    category: "Sales automation",
+    metric: "Contact → CRM → action → report — one loop",
+    metricMethod:
+      "Typical production contour: telephony and chats → AI analysis → CRM fields → tasks and follow-up → lost-deal report. Not tied to one named client.",
+    imageBadge: "Packaged solution",
+    priceLabel: "from €3,000",
+    description:
+      "The market is moving from single bots to full sales-cycle automation. Calls and chats never reach CRM, follow-up is forgotten, QA is spot-check listening, the old base is not reactivated.",
+    solution:
+      "AI sales loop: telephony + chats + Bitrix24/amoCRM + AI. Intent classification, call summaries, facts into the card, auto-tasks, follow-up and lost-deal reports — one product.",
+    result:
+      "Less manual CRM entry after calls, systematic follow-up, visibility of lost deals for the manager. Pilot in 2–4 weeks; full loop from €3,000.",
+  },
   "yandex-telemost-agent": {
     title: "Yandex Telemost Agent — AI for meetings and sales",
     category: "Artificial intelligence",
@@ -69,6 +86,23 @@ export const PORTFOLIO_EN: Record<string, PortfolioEnCopy> = {
 
 /** Oʻzbek (Latin) portfolio copy — UZS prices, UZ-market framing. */
 export const PORTFOLIO_UZ: Record<string, PortfolioLocaleCopy> = {
+  "ai-sales-loop": {
+    title: "Savdo boʻlimi AI konturi: qoʻngʻiroqlar, yozishmalar, CRM",
+    subtitle: "Telefoniya + chatlar + Bitrix24/amoCRM + avtomatik keyingi harakatlar",
+    seoTitle: "Savdo AI konturi: telefoniya, CRM, qoʻngʻiroq samarilari va follow-up",
+    category: "Savdo avtomatlashtirish",
+    metric: "Aloqa → CRM → harakat → hisobot — bitta kontur",
+    metricMethod:
+      "Tipik production kontur: telefoniya va chatlar → AI tahlil → CRM maydonlari → vazifalar va follow-up → yoʻqotilgan bitimlar hisobot. Bitta nomli mijozga bogʻlanmagan.",
+    imageBadge: "Tipik yechim",
+    priceLabel: "30 000 000 soʻmdan",
+    description:
+      "Bozor alohida botlardan butun savdo siklini avtomatlashtirishga oʻtmoqda. Qoʻngʻiroq va chatlar CRM ga tushmaydi, follow-up unutiladi, sifat nazorati tanlama tinglash, eski baza qayta ishga tushmaydi.",
+    solution:
+      "Savdo AI konturi: telefoniya + yozishmalar + Bitrix24/amoCRM + AI. Murojaatlarni tasniflash, suhbat samarilari, faktlar kartochkaga, avtovazifalar, follow-up va yoʻqotilgan bitimlar hisobot — bitta mahsulot.",
+    result:
+      "Qoʻngʻiroqdan keyin kamroq qoʻlda kiritish, tizimli follow-up, rahbar uchun yoʻqotilgan bitimlar koʻrinadi. Pilot 2–4 hafta; toʻliq kontur — 30 000 000 soʻmdan.",
+  },
   "kaspersky-ai-assistant": {
     title: "Kaspersky mahsulotlari boʻyicha RAG-bot — 1С ekotizimi xodimlari uchun",
     category: "Sunʼiy intellekt",
