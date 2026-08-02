@@ -1,12 +1,22 @@
 import { defineMiddleware } from "astro:middleware";
+import { resolveSeoRedirect } from "@/lib/seo-redirects";
 
 /**
- * Belt-and-suspenders trailing-slash canonicalization.
- * Astro trailingSlash:"never" handles most static routes; this catches
- * edge SSR/adapter cases so /path/ and /path never both return 200.
+ * Trailing-slash canonicalization + SEO permanent redirects.
+ * Edge Caddy also applies the same map (static HTML would otherwise bypass Node).
  */
 export const onRequest = defineMiddleware(async (context, next) => {
   const { pathname, search } = context.url;
+
+  const seoTarget = resolveSeoRedirect(pathname);
+  if (seoTarget !== null) {
+    if (seoTarget.includes("#")) {
+      const [pathPart, hash] = seoTarget.split("#");
+      return context.redirect(`${pathPart || "/"}${search}#${hash}`, 301);
+    }
+    return context.redirect(`${seoTarget}${search}`, 301);
+  }
+
   if (
     pathname.length > 1 &&
     pathname.endsWith("/") &&
@@ -16,5 +26,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
     const target = pathname.replace(/\/+$/, "") || "/";
     return context.redirect(`${target}${search}`, 301);
   }
+
   return next();
 });

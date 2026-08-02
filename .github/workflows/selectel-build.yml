@@ -208,6 +208,8 @@ jobs:
           # match (missing CSS → unstyled nav / “weird characters” instead of menu).
           mkdir -p "$ROOT/deploy" "$ROOT/dist"
           cp -a "$COMPOSE_DIR/Caddyfile" "$ROOT/deploy/Caddyfile"
+          cp -a "$COMPOSE_DIR/seo-redirects.caddy" "$ROOT/deploy/seo-redirects.caddy"
+          [ -f "$ROOT/deploy/seo-redirects.caddy" ] || { echo "NO_SEO_REDIRECTS_CADDY"; exit 1; }
 
           sync_client_from_web() {
             # CRITICAL: never `rm -rf` + replace `$ROOT/dist/client` while Caddy has
@@ -282,6 +284,7 @@ jobs:
             docker rm -f bober-ai 2>/dev/null || true
             docker run -d --name bober-ai --restart unless-stopped --network host \
               -v "$ROOT/deploy/Caddyfile:/etc/caddy/Caddyfile:ro" \
+              -v "$ROOT/deploy/seo-redirects.caddy:/etc/caddy/seo-redirects.caddy:ro" \
               -v "$ROOT/dist/client:/srv:ro" \
               -v caddy_data:/data \
               -v caddy_config:/config \
@@ -300,6 +303,9 @@ jobs:
             mounts=$(docker inspect bober-ai --format '{{range .Mounts}}{{.Destination}} {{end}}' 2>/dev/null || true)
             if ! echo "$mounts" | grep -q '/srv'; then
               echo "EDGE_CADDY_MISSING_/srv — recreating with static client mount"
+              start_edge_caddy
+            elif ! docker exec bober-ai test -f /etc/caddy/seo-redirects.caddy; then
+              echo "EDGE_CADDY_MISSING_seo-redirects — recreating"
               start_edge_caddy
             elif [ "$sync_rc" -eq 2 ]; then
               echo "EDGE_CADDY_/srv_STALE — recreating after client sync"

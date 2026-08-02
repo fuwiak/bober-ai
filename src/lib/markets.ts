@@ -34,7 +34,7 @@ export const MARKETS: Record<Locale, MarketMeta> = {
     prefix: "",
     htmlLang: "ru",
     ogLocale: "ru_RU",
-    hreflang: "ru",
+    hreflang: "ru-RU",
     currency: "RUB",
     priceRange: "₽₽₽",
     region: "Москва",
@@ -66,7 +66,7 @@ export const MARKETS: Record<Locale, MarketMeta> = {
     areaServedCode: "KZ",
     contentLang: "ru",
   },
-  /** UI chrome may be Uzbek; body often still RU — BaseLayout noindexes until real uz content. */
+  /** Legacy — all /uz/* permanently redirect to RU (seo-redirects). Not in locale switcher. */
   uz: {
     prefix: "/uz",
     htmlLang: "uz",
@@ -88,6 +88,8 @@ export const MARKETS: Record<Locale, MarketMeta> = {
 };
 
 export const LOCALES: Locale[] = ["ru", "kz", "uz"];
+/** Locale switcher + hreflang UI — UZ removed (301 to RU). */
+export const SWITCHER_LOCALES: Locale[] = ["ru", "kz"];
 
 export function marketOf(locale: Locale): MarketMeta {
   return MARKETS[locale] ?? MARKETS.ru;

@@ -30,19 +30,13 @@ const { title, description, locale, canonicalPath, keywords = [], jsonLd, noInde
 const market = marketOf(locale);
 const barePath = stripLocalePrefix(canonicalPath);
 /**
- * UZ held until real Uzbek content ships: pages often still render RU body with lang=uz.
- * noindex + canonical → RU equivalent (never self-canonical on unfinished locale).
- * Cannibalizing commercial URLs: noindex + canonical → primary (seo-index-policy).
- * KZ hreflang only for hub + pricing.
+ * Self-canonical only. Hard duplicates → 301 (seo-redirects), not cross-canonical.
+ * /order/* and explicit noIndex → noindex,follow.
+ * Hreflang: ru-RU + kz hub/pricing only (UZ redirected away).
  */
-const uzHold = locale === "uz";
-const indexPolicy = uzHold ? null : getSeoIndexPolicy(barePath);
-const effectiveNoIndex = noIndex || uzHold || Boolean(indexPolicy?.noIndex);
-const preferredCanonicalPath = uzHold
-  ? barePath
-  : indexPolicy?.canonicalPath
-    ? indexPolicy.canonicalPath
-    : canonicalPath;
+const indexPolicy = getSeoIndexPolicy(barePath);
+const effectiveNoIndex = noIndex || Boolean(indexPolicy?.noIndex);
+const preferredCanonicalPath = canonicalPath;
 const hreflangLocales: Locale[] = (() => {
   const out: Locale[] = ["ru"];
   if (barePath === "/" || barePath === "/pricing") out.push("kz");
@@ -55,7 +49,7 @@ const messages = loadMessages(locale);
 const canonical = absoluteUrl(preferredCanonicalPath);
 const ogImage = absoluteUrl(OG_IMAGE);
 const robotsContent = effectiveNoIndex
-  ? "noindex, nofollow"
+  ? "noindex, follow"
   : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
 const metrikaBootstrap = `(function(){var host=(location.hostname||'').toLowerCase();var path=location.pathname||'';var onSystems=host==='www.bober-systems.ru'||host==='bober-systems.ru'||host==='partners.bober-systems.ru'||host==='bitrix.bober-systems.ru'||/\\.bober-systems\\.ru$/.test(host);if(!onSystems){window.__boberYmId=null;return;}var mainId=${YANDEX_METRIKA_ID};var partnersId=${PARTNERS_YANDEX_METRIKA_ID};var bitrixId=${BITRIX_YANDEX_METRIKA_ID};var id=(host==='partners.bober-systems.ru'||path.indexOf('/white-label')===0)?partnersId:((host==='bitrix.bober-systems.ru'||path.indexOf('/bitrix')===0)?bitrixId:mainId);window.__boberYmId=id;window.dataLayer=window.dataLayer||[];(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return;}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id='+id,'ym');ym(id,'init',{ssr:true,webvisor:true,clickmap:true,trackLinks:true,accurateTrackBounce:true,trackHash:true,ecommerce:'dataLayer',referrer:document.referrer,url:location.href});})();`;
 ---
@@ -99,7 +93,7 @@ const metrikaBootstrap = `(function(){var host=(location.hostname||'').toLowerCa
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content={uzHold ? marketOf("ru").ogLocale : market.ogLocale} />
+    <meta property="og:locale" content={market.ogLocale} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />

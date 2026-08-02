@@ -13,10 +13,9 @@ import { join, relative, dirname } from "node:path";
 const SITE = process.env.PUBLIC_SITE_URL || CANONICAL_ORIGIN;
 const ROOT = join(process.cwd(), "dist/client");
 const INCLUDE_MARKETS = process.env.SITEMAP_INCLUDE_MARKETS !== "0";
-/** Soft cap — prefer quality over programmatic SEO volume on a new domain. */
-const MAX_URLS = Number(process.env.SITEMAP_MAX_URLS || 80);
-/** Cap blog/guides/academy share so commercial pages stay first. */
-const MAX_BLOG_URLS = Number(process.env.SITEMAP_MAX_BLOG || 20);
+/** Full indexable set — Yandex needs real URL count in sitemap.xml (not only 4 index refs). */
+const MAX_URLS = Number(process.env.SITEMAP_MAX_URLS || 5000);
+const MAX_BLOG_URLS = Number(process.env.SITEMAP_MAX_BLOG || 500);
 
 /** Always-include commercial / trust URLs (RU + KZ hub only). */
 const PRIORITY_PATHS = [
@@ -33,6 +32,8 @@ const PRIORITY_PATHS = [
   "/services/voice-ai",
   "/services/rag",
   "/automation/ocr-data-extraction",
+  "/automation/documents",
+  "/automation/sales",
   "/integrations/1c",
   "/integrations/bitrix24-1c",
   "/integrations/amocrm",
@@ -40,6 +41,7 @@ const PRIORITY_PATHS = [
   "/audit",
   "/ii-dlya-biznesa",
   "/secure-ai",
+  "/ai-kubernetes",
   "/claude",
   "/partners",
   "/certificates",
@@ -127,8 +129,8 @@ function pathFromFile(file) {
   return path.replace(/\/$/, "") || "/";
 }
 
-/** Keep in sync with src/lib/seo-index-policy.ts (Node sitemap cannot import TS aliases). */
-const NOINDEX_PREFIXES = [
+/** Keep in sync with src/lib/seo-redirects.ts (Node sitemap cannot import TS aliases). */
+const REDIRECT_EXACT = new Set([
   "/integrations/bitrix24",
   "/integrations/bitrix24-ai",
   "/integrations/bitrix24-sales-automation",
@@ -158,9 +160,10 @@ const NOINDEX_PREFIXES = [
   "/services/mcp",
   "/services/n8n",
   "/services/open-webui",
-];
+  "/contact",
+]);
 
-const NOINDEX_AUTOMATION_EXTRA = new Set([
+const REDIRECT_AUTOMATION_EXTRA = new Set([
   "order-processing",
   "payment-control",
   "inventory-requests",
@@ -183,29 +186,28 @@ const NOINDEX_AUTOMATION_EXTRA = new Set([
   "onboarding-bot",
 ]);
 
-function isNoIndexCommercial(path) {
-  if (NOINDEX_PREFIXES.some((p) => path === p || path.startsWith(`${p}/`))) return true;
+function isRedirectSource(path) {
+  if (REDIRECT_EXACT.has(path)) return true;
   const m = path.match(/^\/automation\/([^/]+)$/);
-  if (m && NOINDEX_AUTOMATION_EXTRA.has(m[1])) return true;
+  if (m && REDIRECT_AUTOMATION_EXTRA.has(m[1])) return true;
   return false;
 }
 
 function isExcluded(path) {
-  // Legacy EN redirects — never index.
+  // Locale mirrors / legacy — 301 away, never sitemap.
+  if (path === "/uz" || path.startsWith("/uz/")) return true;
   if (path === "/en" || path.startsWith("/en/")) return true;
-  // Ghost contact URL — redirects to /#contact.
-  if (path === "/contact" || path.startsWith("/contact/")) return true;
+  if (path === "/ru" || path.startsWith("/ru/")) return true;
+  // Conversion forms — noindex,follow, not landings.
+  if (path === "/order" || path.startsWith("/order/")) return true;
+  if (path.startsWith("/api/")) return true;
+  if (path.includes("/cases/")) return true;
   // KZ: only hub + pricing until deeper localization ships.
   if (path.startsWith("/kz/") && path !== "/kz/pricing") return true;
-  // UZ: hold out of sitemap until Uzbek content is finished.
-  if (path === "/uz" || path.startsWith("/uz/")) return true;
   if (!INCLUDE_MARKETS && (path === "/kz" || path.startsWith("/kz/"))) return true;
-  // bitrix24* landings consolidated (noindex); keep /integrations/amocrm + /integrations/1c
-  if (path.includes("/bitrix24") || path.includes("/cases/")) return true;
-  if (path === "/ru" || path.startsWith("/ru/")) return true;
-  if (path.startsWith("/api/")) return true;
-  // Cannibalizing / thin Wordstat landings — see seo-index-policy.ts
-  if (isNoIndexCommercial(path)) return true;
+  // Keep indexable Bitrix24↔1C; exclude only redirecting bitrix24 URLs.
+  if (path.includes("/bitrix24") && isRedirectSource(path)) return true;
+  if (isRedirectSource(path)) return true;
   return false;
 }
 
@@ -368,22 +370,16 @@ ${urls.map((u) => urlXml(u.loc, u.lastmod)).join("\n")}
   written.push({ name: section.name, count: urls.length });
 }
 
-const indexBody = `<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${written
-  .map(
-    (s) => `  <sitemap>
-    <loc>${SITE}/${s.name}</loc>
-    <lastmod>${today}</lastmod>
-  </sitemap>`,
-  )
-  .join("\n")}
-</sitemapindex>
+/** Primary sitemap.xml = full urlset (Yandex was counting only 4 index entries). */
+const allSorted = [...limited].sort((a, b) => a.path.localeCompare(b.path));
+const fullBody = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${allSorted.map((u) => urlXml(u.loc, u.lastmod)).join("\n")}
+</urlset>
 `;
+await writeBoth("sitemap.xml", fullBody);
 
-await writeBoth("sitemap.xml", indexBody);
-
-const total = written.reduce((n, s) => n + s.count, 0);
+const total = allSorted.length;
 console.log(
-  `sitemap index: ${total} urls (max ${MAX_URLS}, markets=${INCLUDE_MARKETS ? "on" : "off"}) → ${written.map((s) => `${s.name}:${s.count}`).join(", ")}`,
+  `sitemap.xml: ${total} urls (max ${MAX_URLS}, markets=${INCLUDE_MARKETS ? "on" : "off"}) → ${written.map((s) => `${s.name}:${s.count}`).join(", ")}`,
 );

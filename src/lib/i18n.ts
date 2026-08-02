@@ -60,9 +60,9 @@ export function localizePath(path: string, locale: Locale): string {
   return `${base}${hash}`;
 }
 
-/** Alternate markets for hreflang / switcher (excludes current). */
+/** Alternate markets for hreflang / switcher (excludes current). UZ omitted — 301 to RU. */
 export function otherLocales(locale: Locale): Locale[] {
-  return (["ru", "kz", "uz"] as Locale[]).filter((l) => l !== locale);
+  return (["ru", "kz"] as Locale[]).filter((l) => l !== locale);
 }
 
 /** @deprecated use otherLocales — kept for gradual migration */

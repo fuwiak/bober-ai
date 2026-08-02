@@ -1,6 +1,6 @@
 ---
 import { localizePath, stripLocalePrefix, type Locale, type Messages } from "@/lib/i18n";
-import { LOCALES, marketOf } from "@/lib/markets";
+import { SWITCHER_LOCALES, marketOf } from "@/lib/markets";
 import { buildNavGroups, navLabels, type NavGroup, type NavIconId, type NavLinkItem } from "@/lib/nav";
 import { CONTACT_PHONE, PRIMARY_CTA_GOAL, SITE_NAME, TELEGRAM_URL } from "@/lib/site";
 
@@ -14,10 +14,10 @@ const groups = buildNavGroups(messages);
 const labels = navLabels(messages);
 const homeHref = localizePath("/", locale);
 const barePath = stripLocalePrefix(Astro.url.pathname);
-const localeLinks = LOCALES.filter((l) => l !== locale).map((l) => ({
+const localeLinks = SWITCHER_LOCALES.filter((l) => l !== locale).map((l) => ({
   locale: l,
   href: localizePath(barePath, l),
-  label: l === "ru" ? "RU" : l === "kz" ? "KZ" : "UZ",
+  label: l === "ru" ? "RU" : "KZ",
   title: marketOf(l).country,
 }));
 
