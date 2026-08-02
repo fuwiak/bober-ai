@@ -72,10 +72,24 @@ export const SEO_HUBS: HubDef[] = [
       },
       {
         href: "/automation/ocr-data-extraction",
-        labelRu: "Распознавание документов",
-        labelEn: "Document recognition",
-        blurbRu: "OCR и извлечение полей из сканов и PDF в CRM/1С.",
-        blurbEn: "OCR and field extraction from scans and PDF into CRM/ERP.",
+        labelRu: "Распознавание первичных документов в 1С",
+        labelEn: "Primary document recognition into 1C",
+        blurbRu: "OCR → проверка → поля в 1С. Пилот от 300 000 ₽.",
+        blurbEn: "OCR → check → 1C fields. Pilot from €3,000.",
+      },
+      {
+        href: "/automation/speech-analytics-sales",
+        labelRu: "Речевая аналитика отдела продаж",
+        labelEn: "Sales speech analytics",
+        blurbRu: "Звонки → скоринг → факты в CRM.",
+        blurbEn: "Calls → scoring → CRM facts.",
+      },
+      {
+        href: "/automation/meeting-to-crm",
+        labelRu: "Встречи → задачи в CRM",
+        labelEn: "Meetings → CRM tasks",
+        blurbRu: "Договорённости со встречи сразу в сделку.",
+        blurbEn: "Meeting decisions straight into the deal.",
       },
       {
         href: "/automation/ai-for-sales",
@@ -122,6 +136,13 @@ export const SEO_HUBS: HubDef[] = [
     contentKey: "hubIntegrations",
     coverImage: DIAGRAM_IMAGES.crm,
     children: [
+      {
+        href: "/integrations/bitrix24-implementation",
+        labelRu: "Внедрение и интеграция Битрикс24",
+        labelEn: "Bitrix24 implementation",
+        blurbRu: "Пилот от 300 000 ₽ · портал + интеграции",
+        blurbEn: "Pilot from €3,000 · portal + integrations",
+      },
       {
         href: "/integrations/bitrix24-sales-automation",
         labelRu: "Автоматизация продаж в Битрикс24",

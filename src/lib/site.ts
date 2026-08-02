@@ -81,6 +81,8 @@ export const CONTACT_NOTIFICATION_EMAILS = [CONTACT_EMAIL];
 export const CONTACT_PHONE = "+79950998170";
 export const WHATSAPP_URL = "https://wa.me/79950998170";
 export const TELEGRAM_URL = "https://t.me/pstasinski";
+/** MAX messenger profile — empty until PUBLIC_MAX_URL is set (channel shown only when set). */
+export const MAX_URL = readPublicEnv("PUBLIC_MAX_URL");
 export const LINKEDIN_URL = "https://www.linkedin.com/in/fuwiak";
 export const GITHUB_URL = "https://github.com/fuwiak";
 /** Booking / calendar for A/B CTA → direct schedule. Empty → calendar variant falls back to form. */

@@ -1,0 +1,315 @@
+{
+  "generatedAt": "2026-08-02T04:27:55.242Z",
+  "freeze": {
+    "mayWrite": [
+      "data/*.csv",
+      "data/*-decisions.json",
+      "data/*-seed-totals.json",
+      "data/*.log",
+      "data/wordstat-landing-route-report.json"
+    ],
+    "mustNotWrite": [
+      "src/**",
+      "public/**",
+      "content/**"
+    ],
+    "mustNotChange": [
+      "homepage",
+      "H1",
+      "main offer",
+      "prices",
+      "case study facts"
+    ],
+    "flow": [
+      "detect growing phrase",
+      "score purchase intent (npm run yandex:wordstat:route)",
+      "assign existing landing OR propose new",
+      "human approve",
+      "monitor positions + qualified leads"
+    ],
+    "scoreGate": {
+      "75-100": "commercial landing candidate — manual approve only",
+      "60-74": "FAQ / fragment / article candidate",
+      "40-59": "monitor, no publish",
+      "0-39": "reject"
+    }
+  },
+  "summary": {
+    "assignExisting": 1,
+    "proposeNew": 9,
+    "monitor": 15,
+    "reject": 0
+  },
+  "offerLibrary": [
+    {
+      "id": "docs-1c",
+      "url": "/automation/ocr-data-extraction",
+      "service": "/services/ocr"
+    },
+    {
+      "id": "bitrix24",
+      "url": "/integrations/bitrix24-implementation",
+      "service": "/bitrix"
+    },
+    {
+      "id": "kp",
+      "url": "/automation/proposal-generation",
+      "service": "/automation/sales"
+    },
+    {
+      "id": "speech",
+      "url": "/automation/speech-analytics-sales",
+      "service": "/services/voice-ai"
+    },
+    {
+      "id": "meeting-crm",
+      "url": "/automation/meeting-to-crm",
+      "service": "/services/ai-meeting-crm"
+    }
+  ],
+  "assignExisting": [
+    {
+      "phrase": "интеграция ии с битрикс24",
+      "score": 5,
+      "exact": 0,
+      "total": 0,
+      "bucket": "zeroOrNearZero_keepForAds",
+      "verdict": "assign_existing",
+      "landing": "/integrations/bitrix24-implementation",
+      "service": "/bitrix",
+      "offerId": "bitrix24",
+      "publish": "manual_only — keep URL + H1 stable"
+    }
+  ],
+  "proposeNew": [
+    {
+      "phrase": "интеграция ии с crm",
+      "score": 5,
+      "exact": 0,
+      "total": 43,
+      "bucket": "tier_integration",
+      "verdict": "propose_new_landing",
+      "publish": "manual approve required",
+      "hint": "Create LandingSpec only after human OK; never auto-edit homepage"
+    },
+    {
+      "phrase": "компания по внедрению ии",
+      "score": 3,
+      "exact": 111,
+      "total": 0,
+      "bucket": "tier1_vendor",
+      "verdict": "propose_new_landing",
+      "publish": "manual approve required",
+      "hint": "Create LandingSpec only after human OK; never auto-edit homepage"
+    },
+    {
+      "phrase": "внедрение ии москва",
+      "score": 3,
+      "exact": 76,
+      "total": 0,
+      "bucket": "tier1_vendor",
+      "verdict": "propose_new_landing",
+      "publish": "manual approve required",
+      "hint": "Create LandingSpec only after human OK; never auto-edit homepage"
+    },
+    {
+      "phrase": "внедрение ии под ключ",
+      "score": 3,
+      "exact": 41,
+      "total": 0,
+      "bucket": "tier1_vendor",
+      "verdict": "propose_new_landing",
+      "publish": "manual approve required",
+      "hint": "Create LandingSpec only after human OK; never auto-edit homepage"
+    },
+    {
+      "phrase": "внедрение ии в бизнес под ключ",
+      "score": 3,
+      "exact": 31,
+      "total": 0,
+      "bucket": "tier1_vendor",
+      "verdict": "propose_new_landing",
+      "publish": "manual approve required",
+      "hint": "Create LandingSpec only after human OK; never auto-edit homepage"
+    },
+    {
+      "phrase": "интегратор искусственного интеллекта",
+      "score": 3,
+      "exact": 16,
+      "total": 0,
+      "bucket": "tier1_vendor",
+      "verdict": "propose_new_landing",
+      "publish": "manual approve required",
+      "hint": "Create LandingSpec only after human OK; never auto-edit homepage"
+    },
+    {
+      "phrase": "стоимость внедрения ии",
+      "score": 4,
+      "exact": 108,
+      "total": 0,
+      "bucket": "tier2_budget",
+      "verdict": "propose_new_landing",
+      "publish": "manual approve required",
+      "hint": "Create LandingSpec only after human OK; never auto-edit homepage"
+    },
+    {
+      "phrase": "интеграция ии с 1с",
+      "score": 5,
+      "exact": 49,
+      "total": 0,
+      "bucket": "tier_integration",
+      "verdict": "propose_new_landing",
+      "publish": "manual approve required",
+      "hint": "Create LandingSpec only after human OK; never auto-edit homepage"
+    },
+    {
+      "phrase": "внедрение ии в отдел продаж",
+      "score": 3,
+      "exact": 17,
+      "total": 0,
+      "bucket": "tier_integration",
+      "verdict": "propose_new_landing",
+      "publish": "manual approve required",
+      "hint": "Create LandingSpec only after human OK; never auto-edit homepage"
+    }
+  ],
+  "monitor": [
+    {
+      "phrase": "компании по разработке ии",
+      "score": 0,
+      "exact": 106,
+      "total": 0,
+      "bucket": "tier1_vendor",
+      "verdict": "monitor"
+    },
+    {
+      "phrase": "заказать внедрение ии",
+      "score": 3,
+      "exact": 0,
+      "total": 10,
+      "bucket": "tier1_vendor",
+      "verdict": "monitor"
+    },
+    {
+      "phrase": "бюджет внедрения ии",
+      "score": 1,
+      "exact": 0,
+      "total": 61,
+      "bucket": "tier2_budget",
+      "verdict": "monitor"
+    },
+    {
+      "phrase": "сроки внедрения ии",
+      "score": 1,
+      "exact": 0,
+      "total": 28,
+      "bucket": "tier2_budget",
+      "verdict": "monitor"
+    },
+    {
+      "phrase": "сколько стоит внедрить ии",
+      "score": 0,
+      "exact": 15,
+      "total": 0,
+      "bucket": "tier2_budget",
+      "verdict": "monitor"
+    },
+    {
+      "phrase": "стоимость разработки rag",
+      "score": 4,
+      "exact": 0,
+      "total": 12,
+      "bucket": "tier2_budget",
+      "verdict": "monitor"
+    },
+    {
+      "phrase": "llm для 1с",
+      "score": 2,
+      "exact": 58,
+      "total": 0,
+      "bucket": "tier_integration",
+      "verdict": "monitor"
+    },
+    {
+      "phrase": "локальная llm для 1с",
+      "score": 2,
+      "exact": 15,
+      "total": 0,
+      "bucket": "tier_integration",
+      "verdict": "monitor"
+    },
+    {
+      "phrase": "локальная нейросеть для компании",
+      "score": 0,
+      "exact": 0,
+      "total": 11,
+      "bucket": "tier3_enterprise_partial",
+      "verdict": "monitor"
+    },
+    {
+      "phrase": "внедрение корпоративной llm",
+      "score": 3,
+      "exact": 0,
+      "total": 7,
+      "bucket": "tier3_enterprise_partial",
+      "verdict": "monitor"
+    },
+    {
+      "phrase": "корпоративная llm on premise",
+      "score": 0,
+      "exact": 0,
+      "total": 2,
+      "bucket": "tier3_enterprise_partial",
+      "verdict": "monitor"
+    },
+    {
+      "phrase": "подрядчик по внедрению ии",
+      "score": 3,
+      "exact": 0,
+      "total": 0,
+      "bucket": "zeroOrNearZero_keepForAds",
+      "verdict": "monitor"
+    },
+    {
+      "phrase": "разработка rag под ключ",
+      "score": 3,
+      "exact": 0,
+      "total": 0,
+      "bucket": "zeroOrNearZero_keepForAds",
+      "verdict": "monitor"
+    },
+    {
+      "phrase": "внедрение llm в закрытом контуре",
+      "score": 3,
+      "exact": 0,
+      "total": 0,
+      "bucket": "zeroOrNearZero_keepForAds",
+      "verdict": "monitor"
+    },
+    {
+      "phrase": "срочно внедрить ии",
+      "score": 0,
+      "exact": 0,
+      "total": 0,
+      "bucket": "zeroOrNearZero_keepForAds",
+      "verdict": "monitor"
+    }
+  ],
+  "reject": [],
+  "policy": {
+    "autoPublish": false,
+    "mustNotWrite": [
+      "src/**",
+      "homepage",
+      "H1",
+      "prices"
+    ],
+    "flow": [
+      "detect growing phrase",
+      "score purchase intent",
+      "assign existing landing OR propose new",
+      "human approve",
+      "monitor positions + leads"
+    ]
+  }
+}

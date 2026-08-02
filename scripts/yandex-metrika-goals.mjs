@@ -1,18 +1,20 @@
 #!/usr/bin/env node
 
 /**
- * Sync Яндекс.Метрика goals — contact funnel only.
+ * Sync Яндекс.Метрика goals — contact + CRM quality funnel.
  *
  * Business order (optimize Direct / reports on these):
- *   1. lead_delivered     — заявка реально доставлена (API OK)
- *   2. form_submit        — форма отправлена
- *   3. phone / telegram / whatsapp / email clicks
- *   4. primary_cta_click / contact_intent_open / form_start — intent
+ *   1. lead_qualified / kp_sent / deal_won — ценность (CRM → /api/crm/goal)
+ *   2. lead_delivered / consultation_request — заявка доставлена
+ *   3. form_submit — форма отправлена (не единственная цель оптимизации)
+ *   4. phone / telegram / whatsapp / max / email clicks
+ *   5. primary_cta_click / contact_intent_open / form_start — intent
  *
  *   npm run metrika:goals           # ensure + prune junk
  *   npm run metrika:goals -- --keep # only create/rename, no delete
  *
- * Не ставить целью оптимизации: auto CRM-заказы, source_diag, CTA-шум.
+ * Не ставить целью оптимизации: organic_visit, primary_cta alone, CTA-шум.
+ * Direct: prefer lead_qualified / kp_sent when enough data; until then lead_delivered.
  */
 
 import fetch from "./lib/fetch.mjs";
@@ -42,9 +44,15 @@ const COUNTERS = {
   main: {
     id: process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID?.trim() || "110635302",
     goals: [
+      // —— CRM quality (optimize Direct here when volume allows) ——
+      { name: "★ CRM: Lead qualified", ident: "lead_qualified", tier: "crm" },
+      { name: "★ CRM: KP sent", ident: "kp_sent", tier: "crm" },
+      { name: "★ CRM: Deal won", ident: "deal_won", tier: "crm" },
       // —— conversions ——
       { name: "★ CONTACT: Lead delivered", ident: "lead_delivered", tier: "conversion" },
+      { name: "★ CONTACT: Consultation request", ident: "consultation_request", tier: "conversion" },
       { name: "CONTACT: Form submit", ident: "form_submit", tier: "conversion" },
+      { name: "CONTACT: Order CTA", ident: "order_cta_click", tier: "conversion" },
       { name: "CONTACT: ROI lead submit", ident: "roi_calculator_lead_submit", tier: "conversion" },
       { name: "CONTACT: Process-review lead", ident: "process_review_lead_submit", tier: "conversion" },
       // —— channels ——
@@ -52,6 +60,7 @@ const COUNTERS = {
       { name: "CONTACT: Telegram click", ident: "telegram_click", tier: "channel" },
       { name: "CONTACT: Modal Telegram", ident: "modal_telegram_click", tier: "channel" },
       { name: "CONTACT: WhatsApp", ident: "modal_whatsapp_click", tier: "channel" },
+      { name: "CONTACT: MAX click", ident: "max_click", tier: "channel" },
       { name: "CONTACT: Email click", ident: "email_click", tier: "channel" },
       { name: "CONTACT: Modal email", ident: "modal_email_click", tier: "channel" },
       { name: "CONTACT: Career Telegram", ident: "career_telegram_click", tier: "channel" },

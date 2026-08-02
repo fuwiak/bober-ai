@@ -8,6 +8,137 @@ import type { LandingSpec } from "@/lib/seo-catalog/types";
 export const CATALOG_LANDING_SPECS_PRIORITY: LandingSpec[] = [
   {
     category: "integrations",
+    slug: "bitrix24-implementation",
+    contentKey: "prio_bitrix24_implementation",
+    cluster: "bitrix24",
+    serviceSlug: "crm-integration",
+    coverImage: "/diagrams/crm-integration.svg",
+    keywords: [
+      "внедрение битрикс24",
+      "внедрение и интеграция битрикс24",
+      "внедрение crm битрикс24",
+      "интеграция битрикс24",
+      "битрикс24 под ключ",
+      "настройка битрикс24",
+      "внедрение bitrix24 цена",
+      "стоимость внедрения битрикс24",
+    ],
+    caseStudySlugs: ["bitrix24-kwork-crm", "bitrix24-erp-sync", "yandex-telemost-agent"],
+    related: [
+      {
+        href: "/bitrix",
+        labelRu: "лендинг Bitrix24 · пакеты и AI",
+        labelEn: "Bitrix24 landing · packages and AI",
+      },
+      {
+        href: "/integrations/bitrix24",
+        labelRu: "автоматизация внутри портала",
+        labelEn: "in-portal automation",
+      },
+      {
+        href: "/integrations/bitrix24-sales-automation",
+        labelRu: "автоматизация отдела продаж",
+        labelEn: "sales automation",
+      },
+      {
+        href: "/integrations/bitrix24-1c",
+        labelRu: "Bitrix24 ↔ 1С",
+        labelEn: "Bitrix24 ↔ 1C",
+      },
+      {
+        href: "/automation/ocr-data-extraction",
+        labelRu: "документы → 1С",
+        labelEn: "documents → 1C",
+      },
+      {
+        href: "/pricing",
+        labelRu: "цены и форматы",
+        labelEn: "pricing",
+      },
+    ],
+    ru: {
+      h1: "Внедрение и интеграция Битрикс24",
+      subtitle:
+        "Портал, воронки, телефония, 1С и мессенджеры — рабочий контур, а не «коробка». Пилот от 300 000 ₽, 2–4 недели; промышленное внедрение — от 500 000 ₽.",
+      problems: [
+        "Bitrix24 куплен, но заявки не доходят до ответственного и дублируются",
+        "Телефония, сайт и мессенджеры живут отдельно от CRM",
+        "1С и склад не связаны со сделками — ручной копипаст",
+        "Руководитель не видит, где сделки зависают и сколько часов уходит на рутину",
+      ],
+      deliverables: [
+        "Аудит процессов и карта воронки под ваш отдел продаж",
+        "Настройка портала: права, роботы, открытые линии, задачи",
+        "Интеграции: сайт, 1С, телефония, Telegram / WhatsApp / MAX",
+        "Пилот одного сценария за 2–4 недели + смета полного контура",
+      ],
+      intro: [
+        "Рынок ищет «внедрение Битрикс24» и «интеграция CRM» — закрываем как внедрение под ключ с фиксированной сметой, без курсов и «скачать бесплатно».",
+        "Базовый портал — здесь. AI-слой продаж и КП — на /integrations/bitrix24-sales-automation. Документы в 1С — отдельный оффер.",
+        "Цель: 2–3 квалифицированных проекта в месяц с бюджетом пилота от 300 000 ₽ до ~1 млн ₽ за контур.",
+      ],
+      faq: [
+        {
+          q: "Сколько стоит внедрение?",
+          a: "Пилот одного сценария — от 300 000 ₽ (2–4 недели). Полный контур с интеграциями — от 500 000 ₽. После брифа — фиксированная смета.",
+        },
+        {
+          q: "Чем отличается от /bitrix и /integrations/bitrix24?",
+          a: "Эта страница — коммерческий оффер «внедрение и интеграция» под Direct/SEO. /bitrix — пакетный лендинг; /integrations/bitrix24 — сценарий автоматизации внутри портала.",
+        },
+        {
+          q: "Нужен ли ИИ сразу?",
+          a: "Нет. Часто хватает роботов, вебхуков и открытых линий. ИИ подключаем там, где текст, звонки или КП реально экономят часы.",
+        },
+        {
+          q: "Бесплатная консультация?",
+          a: "Да — 30 минут: боль, стек, вилка бюджета. Без обязательств, NDA по запросу.",
+        },
+      ],
+    },
+    en: {
+      h1: "Bitrix24 implementation and integration",
+      subtitle:
+        "Portal, pipelines, telephony, 1C and messengers — a working contour, not a box. Pilot from €3,000, 2–4 weeks; production from €5,000.",
+      problems: [
+        "Bitrix24 is bought but leads never reach an owner and get duplicated",
+        "Telephony, site and messengers live outside CRM",
+        "1C and warehouse are not linked to deals — manual copy-paste",
+        "Leadership cannot see where deals stall",
+      ],
+      deliverables: [
+        "Process audit and pipeline map",
+        "Portal setup: rights, robots, open lines, tasks",
+        "Integrations: site, 1C, telephony, Telegram / WhatsApp / MAX",
+        "One-scenario pilot in 2–4 weeks + full-contour estimate",
+      ],
+      intro: [
+        "We sell Bitrix24 implementation with a fixed estimate — not courses or free downloads.",
+        "AI sales layer lives on /integrations/bitrix24-sales-automation; documents→1C is a separate offer.",
+        "Target: a few qualified mid-ticket projects per month.",
+      ],
+      faq: [
+        {
+          q: "Price?",
+          a: "One-scenario pilot from €3,000 (2–4 weeks). Full contour from €5,000. Fixed estimate after a short brief.",
+        },
+        {
+          q: "Different from /bitrix?",
+          a: "This page is the commercial SEO/Direct offer. /bitrix is the package landing.",
+        },
+        {
+          q: "Is AI mandatory?",
+          a: "No. Robots and webhooks often suffice; AI where text/calls/proposals save hours.",
+        },
+        {
+          q: "Free consult?",
+          a: "Yes — 30 minutes: pain, stack, budget range. NDA on request.",
+        },
+      ],
+    },
+  },
+  {
+    category: "integrations",
     slug: "bitrix24-sales-automation",
     contentKey: "prio_bitrix24_sales_automation",
     cluster: "bitrix24",
@@ -679,6 +810,266 @@ export const CATALOG_LANDING_SPECS_PRIORITY: LandingSpec[] = [
         {
           q: "Where is the commercial package?",
           a: "AI sales loop from €3,000. You can start with call logging into CRM without the AI layer. Package and Bitrix24 landing links are in the related section below.",
+        },
+      ],
+    },
+  },
+  {
+    category: "automation",
+    slug: "speech-analytics-sales",
+    contentKey: "prio_speech_analytics_sales",
+    cluster: "automation-sales",
+    serviceSlug: "ai-sales-loop",
+    coverImage: "/diagrams/sales-pipeline.svg",
+    keywords: [
+      "речевая аналитика",
+      "речевая аналитика отдела продаж",
+      "анализ звонков crm",
+      "контроль качества звонков",
+      "распознавание речи продажи",
+      "speech analytics bitrix24",
+      "анализ разговоров менеджеров",
+    ],
+    caseStudySlugs: ["yandex-telemost-agent", "bitrix24-kwork-crm"],
+    related: [
+      {
+        href: "/services/voice-ai",
+        labelRu: "услуга · речевая аналитика",
+        labelEn: "service · speech analytics",
+      },
+      {
+        href: "/integrations/telephony-ai",
+        labelRu: "телефония + CRM + AI",
+        labelEn: "telephony + CRM + AI",
+      },
+      {
+        href: "/services/ai-sales-loop",
+        labelRu: "AI-контур отдела продаж",
+        labelEn: "AI sales loop",
+      },
+      {
+        href: "/automation/meeting-to-crm",
+        labelRu: "встречи → задачи в CRM",
+        labelEn: "meetings → CRM tasks",
+      },
+      {
+        href: "/integrations/bitrix24-implementation",
+        labelRu: "внедрение Битрикс24",
+        labelEn: "Bitrix24 implementation",
+      },
+      {
+        href: "/pricing",
+        labelRu: "цены",
+        labelEn: "pricing",
+      },
+    ],
+    ru: {
+      h1: "Речевая аналитика отдела продаж",
+      subtitle:
+        "Все звонки → транскрипт, скоринг, факты в CRM и задачи follow-up. Не выборочная прослушка. Пилот от 300 000 ₽; полный контур — от 500 000 ₽.",
+      problems: [
+        "Руководитель слушает 5% звонков — остальные возражения и упущенные сделки невидимы",
+        "Менеджер закончил разговор — в CRM пустой комментарий или ничего",
+        "Нет единых критериев качества: скрипт, запрещённые обещания, эскалация",
+        "Follow-up забывается, старая база не реактивируется",
+      ],
+      deliverables: [
+        "Связка телефонии (MANGO, UIS, Bitrix24, Asterisk) → STT → анализ",
+        "Скоринг разговора, факты и итог в карточке сделки",
+        "Автозадачи и алерты по упущенным сделкам",
+        "Дашборд по менеджерам: качество, возражения, конверсия",
+      ],
+      intro: [
+        "Речевая аналитика — не «ещё один бот». Цель: контроль качества и заполнение CRM без ручной прослушки каждого звонка.",
+        "Коммерческий пакет — /services/voice-ai. Полный контур телефония+CRM+AI — /integrations/telephony-ai.",
+        "Пилот на одной линии 2–4 недели. Бюджет от 300 000 ₽; промышленный контур с дашбордами — от 500 000 ₽.",
+      ],
+      faq: [
+        {
+          q: "Чем отличается от voice-бота?",
+          a: "Бот ведёт диалог. Здесь — разбор уже состоявшихся звонков менеджеров: качество, факты в CRM, follow-up.",
+        },
+        {
+          q: "Какая телефония?",
+          a: "MANGO, UIS, Voximplant, Asterisk, штатная Bitrix24 — подключаем то, что есть. STT: SpeechKit / SaluteSpeech / on-prem.",
+        },
+        {
+          q: "Цена?",
+          a: "Пилот от 300 000 ₽. Полный контур с отчётами и правилами эскалации — от 500 000 ₽.",
+        },
+        {
+          q: "152-ФЗ / NDA?",
+          a: "Да. On-prem или российское облако, NDA до обмена записями.",
+        },
+      ],
+    },
+    en: {
+      h1: "Sales speech analytics",
+      subtitle:
+        "Every call → transcript, scoring, CRM facts and follow-up tasks. Not sample listening. Pilot from €3,000; full contour from €5,000.",
+      problems: [
+        "Managers hear 5% of calls — lost objections stay invisible",
+        "After the call CRM gets an empty comment or nothing",
+        "No shared quality criteria",
+        "Follow-ups slip; old base stays cold",
+      ],
+      deliverables: [
+        "Telephony → STT → analysis pipeline",
+        "Call scoring and facts in the deal card",
+        "Auto tasks and lost-deal alerts",
+        "Rep dashboard: quality, objections, conversion",
+      ],
+      intro: [
+        "Speech analytics fills CRM and surfaces quality — not another chatbot.",
+        "Commercial package: /services/voice-ai. Full telephony loop: /integrations/telephony-ai.",
+        "One-line pilot 2–4 weeks from €3,000.",
+      ],
+      faq: [
+        {
+          q: "Different from a voice bot?",
+          a: "Bots talk. This product analyzes human sales calls into CRM and tasks.",
+        },
+        {
+          q: "Which telephony?",
+          a: "MANGO, UIS, Voximplant, Asterisk, native Bitrix24 — we wire what you have.",
+        },
+        {
+          q: "Price?",
+          a: "Pilot from €3,000; full contour from €5,000.",
+        },
+        {
+          q: "Compliance?",
+          a: "On-prem or RU cloud; NDA before call recordings.",
+        },
+      ],
+    },
+  },
+  {
+    category: "automation",
+    slug: "meeting-to-crm",
+    contentKey: "prio_meeting_to_crm",
+    cluster: "automation-sales",
+    serviceSlug: "ai-meeting-crm",
+    coverImage: "/diagrams/workflow-automation.svg",
+    keywords: [
+      "встречи в crm",
+      "протоколы встреч в crm",
+      "meeting to crm",
+      "задачи из созвонов",
+      "транскрипт встречи bitrix24",
+      "ai meeting crm",
+      "саммари встречи в сделку",
+    ],
+    caseStudySlugs: ["yandex-telemost-agent"],
+    related: [
+      {
+        href: "/services/ai-meeting-crm",
+        labelRu: "услуга · AI Meeting-to-CRM",
+        labelEn: "service · AI Meeting-to-CRM",
+      },
+      {
+        href: "/automation/speech-analytics-sales",
+        labelRu: "речевая аналитика звонков",
+        labelEn: "call speech analytics",
+      },
+      {
+        href: "/portfolio/yandex-telemost-agent",
+        labelRu: "кейс Telemost Agent",
+        labelEn: "Telemost Agent case",
+      },
+      {
+        href: "/integrations/bitrix24-implementation",
+        labelRu: "внедрение Битрикс24",
+        labelEn: "Bitrix24 implementation",
+      },
+      {
+        href: "/automation/proposal-generation",
+        labelRu: "автоматизация КП",
+        labelEn: "proposal automation",
+      },
+      {
+        href: "/pricing",
+        labelRu: "цены",
+        labelEn: "pricing",
+      },
+    ],
+    ru: {
+      h1: "Встречи и звонки → задачи в CRM",
+      subtitle:
+        "Договорённости со встречи сразу в Bitrix24/amoCRM: задачи, сроки, follow-up. Не «ещё одно саммари». Пилот от 300 000 ₽, 2–4 недели.",
+      problems: [
+        "После созвона решения остаются в чате или PDF — CRM пустая",
+        "Ответственные и сроки не фиксируются — follow-up забывается",
+        "ВКС уже умеет саммари, но не пишет в сделку и не ставит задачи",
+        "Критические изменения статуса пишут без проверки человеком",
+      ],
+      deliverables: [
+        "Забор транскрипта из Telemost / MTS Link / SaluteJazz / IVA360",
+        "Распознавание договорённостей, ответственных и сроков",
+        "Обновление сделки + задачи + follow-up в CRM",
+        "Human-in-the-loop перед критической записью",
+      ],
+      intro: [
+        "Саммари встречи — вход. Продукт — исполнение: задачи, поля CRM, контроль срока.",
+        "Коммерческий оффер — /services/ai-meeting-crm. Референс — кейс Yandex Telemost Agent.",
+        "Инновационный оффер: на старте Direct — малый тест; основной бюджет — документы/Bitrix/КП.",
+      ],
+      faq: [
+        {
+          q: "Это то же, что встроенное саммари ВКС?",
+          a: "Нет. Саммари — вход. Мы делаем задачи, CRM и контроль сроков после встречи.",
+        },
+        {
+          q: "Какая CRM?",
+          a: "Bitrix24 и amoCRM. Другие — через REST.",
+        },
+        {
+          q: "Цена и срок?",
+          a: "Пилот от 300 000 ₽ за 2–4 недели на одной ВКС и одной CRM.",
+        },
+        {
+          q: "Можно без автозаписи в сделку?",
+          a: "Да. Критические поля — только после утверждения человеком.",
+        },
+      ],
+    },
+    en: {
+      h1: "Meetings and calls → CRM tasks",
+      subtitle:
+        "Meeting decisions land in Bitrix24/amoCRM: tasks, deadlines, follow-up. Not another summary. Pilot from €3,000, 2–4 weeks.",
+      problems: [
+        "After the call decisions stay in chat or PDF — CRM is empty",
+        "Owners and deadlines are not captured — follow-up slips",
+        "VCS already summarizes but does not write the deal or create tasks",
+        "Critical status changes get written without human review",
+      ],
+      deliverables: [
+        "Transcript intake from Telemost / MTS Link / SaluteJazz / IVA360",
+        "Decisions, owners and deadlines extraction",
+        "Deal update + tasks + follow-up in CRM",
+        "Human-in-the-loop before critical writes",
+      ],
+      intro: [
+        "Summary is the input. The product is execution: tasks, CRM fields, deadline control.",
+        "Commercial offer: /services/ai-meeting-crm. Reference: Yandex Telemost Agent.",
+        "Innovative offer — small Direct test; main budget stays on docs/Bitrix/proposals.",
+      ],
+      faq: [
+        {
+          q: "Same as built-in VCS summary?",
+          a: "No. Summary is input; we deliver tasks, CRM and deadline control.",
+        },
+        {
+          q: "Which CRM?",
+          a: "Bitrix24 and amoCRM; others via REST.",
+        },
+        {
+          q: "Price and timeline?",
+          a: "Pilot from €3,000 in 2–4 weeks on one VCS and one CRM.",
+        },
+        {
+          q: "Can we require human approval?",
+          a: "Yes — critical fields only after human confirm.",
         },
       ],
     },

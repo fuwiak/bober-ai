@@ -26,9 +26,20 @@ function initFormAttribution() {
 
   document.body.addEventListener("htmx:afterRequest", ((event: CustomEvent) => {
     const detail = event.detail as { successful?: boolean; xhr?: XMLHttpRequest };
-    const form = (event.target as HTMLElement | null)?.closest?.("form.contact-form");
+    const form = (event.target as HTMLElement | null)?.closest?.(
+      "form.contact-form",
+    ) as HTMLFormElement | null;
     if (!form || !detail?.successful) return;
-    reachGoal("form_submit", { status: detail.xhr?.status ?? 200 });
+    const status = detail.xhr?.status ?? 200;
+    const intent = form.dataset.formIntent || form.querySelector<HTMLInputElement>('input[name="intent"]')?.value;
+    const source = form.querySelector<HTMLInputElement>('input[name="source"]')?.value;
+    const params = getAttribution();
+    reachGoal("form_submit", { status, intent, source, ...params });
+    // Lead delivered = API accepted the form (optimize Direct on this, not bare form_submit alone).
+    reachGoal("lead_delivered", { status, intent, source, landing_page: params.landing_page });
+    if (intent === "estimate" || intent === "order" || form.closest("[data-contact-modal]")) {
+      reachGoal("consultation_request", { intent: intent || "estimate", source });
+    }
     if (form.closest("[data-contact-modal]")) {
       closeFromModal();
     }

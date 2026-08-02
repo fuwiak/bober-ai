@@ -1,0 +1,140 @@
+{
+  "status": "DRAFT_NO_SPEND",
+  "doNotLaunchUntil": "explicit user OK after Metrika goals sync",
+  "goalCapacity": {
+    "clientsPerMonth": "2–3",
+    "ticketRub": "300k–1M",
+    "pipelineTargetRub": "≈900k+"
+  },
+  "dailyBudgetRub": {
+    "documents1c": 500,
+    "bitrix24": 400,
+    "proposalsSales": 200,
+    "remarketing": 100,
+    "meetingToCrmTest": 0,
+    "totalCap": 1200
+  },
+  "rules": {
+    "network": "Search only — no РСЯ on launch",
+    "autotargeting": "separate limited test only — never share main budget",
+    "autoRecommendations": "OFF on launch (phrases/goals/budget drift)",
+    "optimizeGoals": ["lead_qualified", "kp_sent", "lead_delivered", "consultation_request"],
+    "doNotOptimizeOn": [
+      "organic_visit",
+      "direct_visit",
+      "primary_cta_click",
+      "form_start",
+      "case_study_view"
+    ],
+    "phraseMarkers": ["внедрение", "интеграция", "автоматизация", "под ключ", "цена", "стоимость", "заказать"],
+    "minusFiles": ["data/direct-minus.txt", "data/direct-micro-minus.txt"],
+    "extraMinus": [
+      "бесплатно",
+      "скачать",
+      "вакансия",
+      "обучение",
+      "курсы",
+      "реферат",
+      "что такое",
+      "своими руками",
+      "демо",
+      "вход",
+      "логин"
+    ]
+  },
+  "campaigns": [
+    {
+      "id": "docs-1c",
+      "name": "Bober · Search · Документы→1С",
+      "dailyBudgetRub": 500,
+      "landing": "https://www.bober-systems.ru/automation/ocr-data-extraction",
+      "altLanding": "https://www.bober-systems.ru/services/ocr",
+      "phrases": [
+        { "match": "phrase", "text": "распознавание первичных документов", "count": 2260 },
+        { "match": "phrase", "text": "распознавание документов в 1с" },
+        { "match": "phrase", "text": "распознавание первичных документов в 1с" },
+        { "match": "phrase", "text": "ocr документов 1с" },
+        { "match": "phrase", "text": "автоматизация первички 1с" },
+        { "match": "phrase", "text": "заказать распознавание документов" },
+        { "match": "phrase", "text": "стоимость ocr 1с" },
+        { "match": "phrase", "text": "внедрение ocr в 1с под ключ" }
+      ],
+      "ads": [
+        {
+          "title": "Первичка → поля в 1С",
+          "title2": "Пилот от 300 000 ₽",
+          "text": "Счета, акты, УПД без ручного ввода. Пилот 2–4 недели. Консультация бесплатно — без курсов и «скачать».",
+          "url": "https://www.bober-systems.ru/automation/ocr-data-extraction?utm_source=yandex&utm_medium=cpc&utm_campaign=docs_1c&utm_content=ocr"
+        }
+      ]
+    },
+    {
+      "id": "bitrix24",
+      "name": "Bober · Search · Bitrix24/CRM",
+      "dailyBudgetRub": 400,
+      "landing": "https://www.bober-systems.ru/integrations/bitrix24-implementation",
+      "altLanding": "https://www.bober-systems.ru/bitrix",
+      "phrases": [
+        { "match": "phrase", "text": "внедрение битрикс24", "count": 3839 },
+        { "match": "phrase", "text": "внедрение crm битрикс24" },
+        { "match": "phrase", "text": "внедрение и интеграция битрикс24" },
+        { "match": "phrase", "text": "интеграция битрикс24" },
+        { "match": "phrase", "text": "битрикс24 под ключ" },
+        { "match": "phrase", "text": "внедрение битрикс24 цена" },
+        { "match": "phrase", "text": "стоимость внедрения битрикс24" },
+        { "match": "phrase", "text": "заказать внедрение битрикс24" }
+      ],
+      "ads": [
+        {
+          "title": "Внедрение Битрикс24",
+          "title2": "Пилот от 300 000 ₽",
+          "text": "Портал, воронки, 1С и мессенджеры — рабочий контур. 2–4 недели пилот. Созвон 30 мин, смета до старта.",
+          "url": "https://www.bober-systems.ru/integrations/bitrix24-implementation?utm_source=yandex&utm_medium=cpc&utm_campaign=bitrix24&utm_content=impl"
+        }
+      ]
+    },
+    {
+      "id": "kp-sales",
+      "name": "Bober · Search · КП и продажи",
+      "dailyBudgetRub": 200,
+      "landing": "https://www.bober-systems.ru/automation/proposal-generation",
+      "altLanding": "https://www.bober-systems.ru/automation/sales",
+      "phrases": [
+        { "match": "phrase", "text": "автоматизация коммерческих предложений" },
+        { "match": "phrase", "text": "автоматизация кп" },
+        { "match": "phrase", "text": "генерация кп из crm" },
+        { "match": "phrase", "text": "заказать автоматизацию кп" },
+        { "match": "phrase", "text": "стоимость автоматизации коммерческих предложений" },
+        { "match": "phrase", "text": "кп из bitrix24" },
+        { "match": "phrase", "text": "автоматизация отдела продаж под ключ" }
+      ],
+      "ads": [
+        {
+          "title": "КП за 2–5 минут",
+          "title2": "Вместо 45 минут вручную",
+          "text": "КП из CRM и прайса, цены только из каталога. Пилот от 300 000 ₽. Кейс и смета на созвоне.",
+          "url": "https://www.bober-systems.ru/automation/proposal-generation?utm_source=yandex&utm_medium=cpc&utm_campaign=kp_sales&utm_content=proposal"
+        }
+      ]
+    }
+  ],
+  "remarketing": {
+    "name": "Bober · RTG · Warm",
+    "dailyBudgetRub": 100,
+    "network": "РСЯ via Audience segments only — after ≥100 IDs",
+    "when": "segments processed; do not launch with Search day-1"
+  },
+  "deferredTest": {
+    "id": "meeting-crm",
+    "name": "Bober · Search · Meeting-to-CRM (test)",
+    "dailyBudgetRub": 0,
+    "landing": "https://www.bober-systems.ru/automation/meeting-to-crm",
+    "note": "Small experiment after top-3 campaigns produce qualified leads"
+  },
+  "weeklyOps": [
+    "Report → Search queries → add junk to minus",
+    "Check Metrika: lead_delivered vs lead_qualified ratio",
+    "Pause phrases with clicks and zero form/consult",
+    "Keep homepage H1 stable — no Wordstat auto-rewrite"
+  ]
+}
