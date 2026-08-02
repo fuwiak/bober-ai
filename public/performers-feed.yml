@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-29 20:23">
+<yml_catalog date="2026-08-02 03:23">
   <shop>
     <name>Bober AI Systems</name>
     <company>Bober AI Systems</company>
@@ -22,15 +22,15 @@
         <url>https://www.bober-systems.ru/services/sales-ai-agent</url>
       </set>
       <set id="ai-discovery-roadmap">
-        <name>AI &amp; Automation Advisor</name>
+        <name>Аудит процессов и дорожная карта ИИ</name>
         <url>https://www.bober-systems.ru/services/ai-discovery-roadmap</url>
       </set>
       <set id="enterprise-ai-assistant">
-        <name>Внедрение ИИ в бизнес</name>
+        <name>Внедрение ИИ под ключ</name>
         <url>https://www.bober-systems.ru/ai/ai-implementation</url>
       </set>
       <set id="private-llm-gigachat">
-        <name>Приватный LLM-контур</name>
+        <name>Приватный контур языковых моделей</name>
         <url>https://www.bober-systems.ru/services/private-llm-gigachat</url>
       </set>
       <set id="ai-automation">
@@ -58,11 +58,11 @@
         <url>https://www.bober-systems.ru/automation/documents</url>
       </set>
       <set id="voice-ai">
-        <name>Голосовой AI</name>
+        <name>Речевая аналитика звонков</name>
         <url>https://www.bober-systems.ru/services/voice-ai</url>
       </set>
       <set id="ocr">
-        <name>OCR и распознавание</name>
+        <name>Распознавание первичных документов в 1С</name>
         <url>https://www.bober-systems.ru/services/ocr</url>
       </set>
       <set id="open-webui">
@@ -90,7 +90,7 @@
         <url>https://www.bober-systems.ru/services/ai-consulting</url>
       </set>
       <set id="crm-integration">
-        <name>Bitrix24 · amoCRM</name>
+        <name>Внедрение и настройка Битрикс24 / amoCRM</name>
         <url>https://www.bober-systems.ru/services/crm-integration</url>
       </set>
       <set id="bitrix">
@@ -98,8 +98,24 @@
         <url>https://www.bober-systems.ru/bitrix</url>
       </set>
       <set id="ai-sales-loop">
-        <name>AI-контур отдела продаж</name>
+        <name>ИИ для отдела продаж: звонки, CRM и контроль</name>
         <url>https://www.bober-systems.ru/services/ai-sales-loop</url>
+      </set>
+      <set id="ai-meeting-crm">
+        <name>AI Meeting-to-CRM</name>
+        <url>https://www.bober-systems.ru/services/ai-meeting-crm</url>
+      </set>
+      <set id="corporate-ai-agent-1c-crm">
+        <name>Интеграция корпоративного AI-агента с 1С и CRM</name>
+        <url>https://www.bober-systems.ru/services/corporate-ai-agent-1c-crm</url>
+      </set>
+      <set id="ai-inbound-calls">
+        <name>AI для входящих звонков и колл-центра</name>
+        <url>https://www.bober-systems.ru/services/ai-inbound-calls</url>
+      </set>
+      <set id="crm-quote-offers">
+        <name>Автоматизация смет и КП в CRM</name>
+        <url>https://www.bober-systems.ru/services/crm-quote-offers</url>
       </set>
       <set id="claude-smb">
         <name>Claude AI для малого и среднего бизнеса</name>
@@ -159,8 +175,8 @@
       <description>Автоматизация бизнес-процессов</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -168,8 +184,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/business-process-automation</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Аудит процессов, настройка автоматизации, интеграция с CRM и документами, обучение команды.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="sales-ai-agent">
       <name>Павел Стасиньский</name>
@@ -183,8 +206,8 @@
       <description>Автоматизация отдела продаж</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -192,8 +215,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/sales-ai-agent</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Настраиваем автоматизацию под шаблоны и CRM, тестируем и запускаем в отделе продаж.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="ai-discovery-roadmap">
       <name>Павел Стасиньский</name>
@@ -204,11 +234,11 @@
       <categoryId>18</categoryId>
       <set-ids>ai-discovery-roadmap</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/ai-discovery-roadmap.jpg</picture>
-      <description>AI &amp; Automation Advisor</description>
+      <description>Аудит процессов и дорожная карта ИИ</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">95</param>
@@ -216,23 +246,30 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ai-discovery-roadmap</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Бизнес-аудит, карта процессов, расчёт ROI, дорожная карта и смета до старта разработки.</param>
+      <param name="Об исполнителе">Бизнес-аудит, карта процессов, расчёт окупаемости, дорожная карта и смета до старта разработки.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="enterprise-ai-assistant">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-systems.ru/ai/ai-implementation</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 500 000 ₽</sales_notes>
+      <sales_notes>стоимость внедрения ИИ — от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>enterprise-ai-assistant</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/enterprise-ai-assistant.jpg</picture>
-      <description>Внедрение ИИ в бизнес</description>
+      <description>Внедрение ИИ под ключ</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
@@ -240,8 +277,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/enterprise-ai-assistant</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Архитектура, LLM, интеграции CRM/мессенджеры, production-деплой и передача команде.</param>
+      <param name="Об исполнителе">Смета и сроки до старта, LLM и агенты, интеграции CRM/1С, production-деплой и передача команде. Москва и удалённо.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="private-llm-gigachat">
       <name>Павел Стасиньский</name>
@@ -252,11 +296,11 @@
       <categoryId>18</categoryId>
       <set-ids>private-llm-gigachat</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/private-llm-gigachat.jpg</picture>
-      <description>Приватный LLM-контур</description>
+      <description>Приватный контур языковых моделей</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
@@ -264,8 +308,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/private-llm-gigachat</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Разворачиваем LLM в вашем контуре, настраиваем API, guardrails, мониторинг и интеграции.</param>
+      <param name="Об исполнителе">Разворачиваем языковые модели в вашем контуре, настраиваем интерфейс, ограничения безопасности, мониторинг и интеграции.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="ai-automation">
       <name>Павел Стасиньский</name>
@@ -279,8 +330,8 @@
       <description>AI-автоматизация</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
@@ -288,8 +339,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ai-automation</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Проектируем и внедряем AI-автоматизацию с интеграциями CRM, документов и workflow.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="rag">
       <name>Павел Стасиньский</name>
@@ -303,8 +361,8 @@
       <description>RAG для бизнеса</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
@@ -312,8 +370,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/rag</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Индексация, векторный поиск, guardrails и интеграция в чат/CRM.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="llm-development">
       <name>Павел Стасиньский</name>
@@ -327,8 +392,8 @@
       <description>Разработка LLM-решений</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
@@ -336,8 +401,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/llm-development</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Архитектура, разработка, тестирование и передача команде.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="n8n">
       <name>Павел Стасиньский</name>
@@ -351,8 +423,8 @@
       <description>Автоматизация на n8n</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
@@ -360,8 +432,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/n8n</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Проектируем, разворачиваем и сопровождаем n8n в production.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="ai-agent">
       <name>Павел Стасиньский</name>
@@ -375,8 +454,8 @@
       <description>AI-агенты для бизнеса</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -384,8 +463,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ai-agent</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Многошаговые агенты с инструментами, мониторингом и handover.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="document-processing">
       <name>Павел Стасиньский</name>
@@ -399,8 +485,8 @@
       <description>Автоматизация документооборота</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
@@ -408,8 +494,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/document-processing</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Пайплайны документов, workflow и интеграции с учётными системами.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="voice-ai">
       <name>Павел Стасиньский</name>
@@ -420,11 +513,11 @@
       <categoryId>18</categoryId>
       <set-ids>voice-ai</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/voice-ai.jpg</picture>
-      <description>Голосовой AI</description>
+      <description>Речевая аналитика звонков</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
@@ -432,8 +525,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/voice-ai</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Голосовые сценарии для поддержки и продаж с интеграцией в CRM.</param>
+      <param name="Об исполнителе">Речевая аналитика и голосовые сценарии для продаж с интеграцией в CRM.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="ocr">
       <name>Павел Стасиньский</name>
@@ -444,11 +544,11 @@
       <categoryId>18</categoryId>
       <set-ids>ocr</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/ocr.jpg</picture>
-      <description>OCR и распознавание</description>
+      <description>Распознавание первичных документов в 1С</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
@@ -456,8 +556,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ocr</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">OCR-пайплайны с валидацией и выгрузкой в 1С, CRM или ERP.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="open-webui">
       <name>Павел Стасиньский</name>
@@ -471,8 +578,8 @@
       <description>Open WebUI</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">89</param>
@@ -480,8 +587,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/open-webui</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Развёртывание Open WebUI, подключение моделей и guardrails.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="self-hosted-ai">
       <name>Павел Стасиньский</name>
@@ -495,8 +609,8 @@
       <description>Self-hosted AI</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
@@ -504,8 +618,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/self-hosted-ai</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">On-prem LLM, API, мониторинг и интеграции под NDA.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="mcp">
       <name>Павел Стасиньский</name>
@@ -519,8 +640,8 @@
       <description>MCP-интеграции</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
@@ -528,8 +649,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/mcp</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">MCP-серверы для внутренних систем и инструментов агентов.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="langgraph">
       <name>Павел Стасиньский</name>
@@ -543,8 +671,8 @@
       <description>LangGraph-агенты</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
@@ -552,8 +680,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/langgraph</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">LangGraph для сложных сценариев с контролем и аудитом.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="knowledge-base">
       <name>Павел Стасиньский</name>
@@ -567,8 +702,8 @@
       <description>Корпоративная база знаний</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
@@ -576,8 +711,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/knowledge-base</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">База знаний, поиск, чат-бот для сотрудников и клиентов.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="ai-consulting">
       <name>Павел Стасиньский</name>
@@ -591,8 +733,8 @@
       <description>AI-консалтинг</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -600,23 +742,30 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ai-consulting</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Аудит, рекомендации и план до закупки разработки.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="crm-integration">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-systems.ru/services/crm-integration</url>
-      <price from="true">500000</price>
+      <price from="true">150000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 500 000 ₽</sales_notes>
+      <sales_notes>от 150 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>crm-integration</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/crm-integration.jpg</picture>
-      <description>Bitrix24 · amoCRM</description>
+      <description>Внедрение и настройка Битрикс24 / amoCRM</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -624,23 +773,30 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/crm-integration</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Двусторонние интеграции, webhooks, retry и мониторинг.</param>
+      <param name="Об исполнителе">Двусторонние интеграции, webhooks, retry и мониторинг. Портал и данные остаются у вас.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="bitrix">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-systems.ru/bitrix</url>
-      <price from="true">300000</price>
+      <price from="true">150000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 300 000 ₽</sales_notes>
+      <sales_notes>от 150 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>bitrix</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/bitrix.jpg</picture>
       <description>Настройка Bitrix24</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
@@ -648,23 +804,30 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/bitrix</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Пилот на одном процессе: воронка, REST/webhooks, интеграции и AI-слой. Партнёр 1С-Битрикс · ID 28909898.</param>
+      <param name="Об исполнителе">Партнёр 1С-Битрикс · ID 28909898. Стартуем с воронки и роботов; AI добавляем отдельным пакетом.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="ai-sales-loop">
       <name>Павел Стасиньский</name>
       <url>https://www.bober-systems.ru/services/ai-sales-loop</url>
-      <price from="true">300000</price>
+      <price from="true">500000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 300 000 ₽</sales_notes>
+      <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>ai-sales-loop</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/ai-sales-loop.jpg</picture>
-      <description>AI-контур отдела продаж</description>
+      <description>ИИ для отдела продаж: звонки, CRM и контроль</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -672,8 +835,139 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ai-sales-loop</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Интеграция Bitrix24 / amoCRM с телефонией и AI — квалификация лидов, саммари звонков, задачи, follow-up и отчёт об упущенных сделках.</param>
+      <param name="Об исполнителе">Квалификация лидов, саммари звонков, задачи, follow-up и отчёт об упущенных сделках. От 500 000 ₽.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
+    </offer>
+    <offer id="ai-meeting-crm">
+      <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/services/ai-meeting-crm</url>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>ai-meeting-crm</set-ids>
+      <picture>https://www.bober-systems.ru/stock/offers/ai-meeting-crm.jpg</picture>
+      <description>AI Meeting-to-CRM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">95</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ai-meeting-crm</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Транскрипт из Yandex Telemost / Yandex 360, MTS Link, SaluteJazz или IVA360 → договорённости, ответственные, сроки → Bitrix24/amoCRM, задачи и follow-up с human-in-the-loop.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
+    </offer>
+    <offer id="corporate-ai-agent-1c-crm">
+      <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/services/corporate-ai-agent-1c-crm</url>
+      <price from="true">500000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 500 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>corporate-ai-agent-1c-crm</set-ids>
+      <picture>https://www.bober-systems.ru/stock/offers/corporate-ai-agent-1c-crm.jpg</picture>
+      <description>Интеграция корпоративного AI-агента с 1С и CRM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">95</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/corporate-ai-agent-1c-crm</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Карта процессов и прав, фирменные skills и конекторы к нестандартным системам, тесты качества и безопасности, HITL, связка с 1С/legacy; сравнение Yandex AI Studio с private/on-prem.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
+    </offer>
+    <offer id="ai-inbound-calls">
+      <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/services/ai-inbound-calls</url>
+      <price from="true">500000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 500 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>ai-inbound-calls</set-ids>
+      <picture>https://www.bober-systems.ru/stock/offers/ai-inbound-calls.jpg</picture>
+      <description>AI для входящих звонков и колл-центра</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">95</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ai-inbound-calls</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Пилот: один сценарий и одна линия — не полная замена колл-центра сразу. SpeechKit/SpeechSense, телефония, LLM, CRM, containment и handoff.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
+    </offer>
+    <offer id="crm-quote-offers">
+      <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/services/crm-quote-offers</url>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>crm-quote-offers</set-ids>
+      <picture>https://www.bober-systems.ru/stock/offers/crm-quote-offers.jpg</picture>
+      <description>Автоматизация смет и КП в CRM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">94</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/crm-quote-offers</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Восстановление сломанной автоматизации или новый контур: прайс/Sheets, шаблоны КП, лендинг/PDF, доставка. Дальше — развитие, гарантия и сопровождение. Кейсы: KP-LLM, ELIA Suite.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="claude-smb">
       <name>Павел Стасиньский</name>
@@ -687,8 +981,8 @@
       <description>Claude AI для малого и среднего бизнеса</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
@@ -696,8 +990,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/claude-smb</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Claude API и MCP в CRM, документы, продажи и базу знаний — не подписка Claude Pro. Фиксированная смета, NDA, Россия и СНГ.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="ii-dlya-biznesa">
       <name>Павел Стасиньский</name>
@@ -711,8 +1012,8 @@
       <description>ИИ для бизнеса — аудит, разработка и внедрение</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
@@ -720,8 +1021,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ii-dlya-biznesa</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Гибрид коммерческого лендинга и гида: сценарии, ассистент vs агент, архитектура (Yandex Cloud / Selectel / on-prem), безопасность, кейсы. Фиксированная смета, NDA.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="automation">
       <name>Павел Стасиньский</name>
@@ -735,8 +1043,8 @@
       <description>Автоматизация бизнес-процессов</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
@@ -744,8 +1052,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/automation</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Pillar /automation: Wordstat-направления + коммерческий оффер. AI только там, где снимает ручной труд. NDA, on-prem, Россия и СНГ.</param>
+      <param name="Об исполнителе">Каталог /automation + коммерческий оффер. AI только там, где снимает ручной труд. NDA, on-prem, Россия и СНГ.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="wildberries-independent-sales-channel">
       <name>Павел Стасиньский</name>
@@ -759,8 +1074,8 @@
       <description>Независимый канал продаж для продавцов Wildberries</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -768,8 +1083,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/wildberries-independent-sales-channel</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Запуск собственного канала продаж параллельно с Wildberries: витрина, Bitrix24/amoCRM, 1С/МойСклад, оплата, доставка, Telegram/VK/email, AI-ассистент по товарам, синхронизация цен и остатков. Срок от 14 дней.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="secure-private-ai-cloud">
       <name>Павел Стасиньский</name>
@@ -783,8 +1105,8 @@
       <description>Защищенная AI-инфраструктура на базе российских облаков и решений Kaspersky</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -792,8 +1114,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/secure-private-ai-cloud</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Контур: слой AI (private LLM, RAG, база знаний, Bitrix24/1С), инфраструктура (российское облако, VPN, IAM, backup, логи) и Kaspersky (VM, Linux/Windows, контейнеры, Security Center). Внедрение, мониторинг, отчёт, реакция на события. Лицензии Kaspersky — через авторизованную дистрибуцию.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="company-automation">
       <name>Павел Стасиньский</name>
@@ -807,8 +1136,8 @@
       <description>Автоматизация компании</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -816,8 +1145,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/company-automation</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Аудит узкого места, workflow и интеграции, production-запуск и обучение команды.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="crm-automation">
       <name>Павел Стасиньский</name>
@@ -831,8 +1167,8 @@
       <description>Автоматизация CRM</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -840,8 +1176,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/crm-automation</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Автоматизация воронки CRM — триггеры, задачи, уведомления и контроль конверсии.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="document-ai">
       <name>Павел Стасиньский</name>
@@ -855,8 +1198,8 @@
       <description>ИИ для обработки документов</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
@@ -864,8 +1207,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/document-ai</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">ИИ-пайплайн документов — OCR, классификация, валидация и выгрузка в учётные системы.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="ai-for-crm">
       <name>Павел Стасиньский</name>
@@ -879,8 +1229,8 @@
       <description>ИИ для CRM</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -888,8 +1238,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ai-for-crm</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">ИИ-слой поверх CRM — саммари, скоринг, follow-up без хаоса в воронке.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="corporate-ai-assistant">
       <name>Павел Стасиньский</name>
@@ -903,8 +1260,8 @@
       <description>Корпоративный ИИ-ассистент</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
@@ -912,8 +1269,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/corporate-ai-assistant</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Приватный LLM-контур, политики доступа, интеграции с внутренними системами.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="business-process-audit">
       <name>Павел Стасиньский</name>
@@ -927,8 +1291,8 @@
       <description>Аудит бизнес-процессов</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">95</param>
@@ -936,8 +1300,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/business-process-audit</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Аудит процессов, ROI, дорожная карта на 90 дней и критерии приёмки пилота.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     </offers>
   </shop>

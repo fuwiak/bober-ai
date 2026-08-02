@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-07-29 20:23">
+<yml_catalog date="2026-08-02 03:23">
   <shop>
     <name>Bober AI Systems — Битрикс24</name>
     <company>Bober AI Systems</company>
@@ -54,24 +54,24 @@
         <url>https://bitrix.bober-systems.ru/#razrabotka-rag-sistem</url>
       </set>
       <set id="bitrix-start">
-        <name>Внедрение Битрикс24 с AI</name>
+        <name>Настройка и автоматизация Bitrix24</name>
         <url>https://bitrix.bober-systems.ru/#bitrix-start</url>
       </set>
+      <set id="integrations-1c">
+        <name>Bitrix24 + 1С / документы / телефония</name>
+        <url>https://bitrix.bober-systems.ru/#integrations-1c</url>
+      </set>
+      <set id="sales-loop">
+        <name>AI-контур поверх Bitrix24</name>
+        <url>https://bitrix.bober-systems.ru/#sales-loop</url>
+      </set>
       <set id="crm-automation">
-        <name>AI-автоматизация Битрикс24</name>
+        <name>Автоматизация воронки Bitrix24</name>
         <url>https://bitrix.bober-systems.ru/#crm-automation</url>
       </set>
       <set id="ai-analytics">
-        <name>AI-аналитика Битрикс24</name>
+        <name>AI-аналитика Bitrix24</name>
         <url>https://bitrix.bober-systems.ru/#ai-analytics</url>
-      </set>
-      <set id="sales-loop">
-        <name>AI-контур отдела продаж</name>
-        <url>https://bitrix.bober-systems.ru/#sales-loop</url>
-      </set>
-      <set id="integrations-1c">
-        <name>Интеграция Битрикс24 и AI для продаж</name>
-        <url>https://bitrix.bober-systems.ru/#integrations-1c</url>
       </set>
       <set id="mcp">
         <name>MCP для Битрикс24 и BitrixGPT</name>
@@ -95,8 +95,8 @@
       <description>Автоматизация документов</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -104,8 +104,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
       <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
+      <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="ws-bitrix-setup">
       <name>Павел Стасиньский</name>
@@ -119,8 +126,8 @@
       <description>Настройка Bitrix24</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -128,8 +135,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
       <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
+      <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="ws-bitrix-automation">
       <name>Павел Стасиньский</name>
@@ -143,8 +157,8 @@
       <description>Автоматизация Bitrix24</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -152,8 +166,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
       <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
+      <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="ws-bitrix-1c">
       <name>Павел Стасиньский</name>
@@ -167,8 +188,8 @@
       <description>Интеграция Bitrix24 с 1С</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -176,8 +197,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
       <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
+      <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="ws-kp-gen">
       <name>Павел Стасиньский</name>
@@ -191,8 +219,8 @@
       <description>Генерация коммерческого предложения</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -200,8 +228,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
       <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
+      <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="ws-bitrix-ai">
       <name>Павел Стасиньский</name>
@@ -215,8 +250,8 @@
       <description>Bitrix24 AI</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -224,8 +259,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
       <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
+      <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="ws-kp-auto">
       <name>Павел Стасиньский</name>
@@ -239,8 +281,8 @@
       <description>Автоматизация коммерческого предложения</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -248,8 +290,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
       <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
+      <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="ws-telephony">
       <name>Павел Стасиньский</name>
@@ -263,8 +312,8 @@
       <description>Настройка телефонии Bitrix24</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -272,8 +321,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
       <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
+      <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="ws-ai-assistant">
       <name>Павел Стасиньский</name>
@@ -287,8 +343,8 @@
       <description>Внедрение AI-ассистента</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -296,8 +352,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
       <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
+      <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="ws-rag">
       <name>Павел Стасиньский</name>
@@ -311,8 +374,8 @@
       <description>Разработка RAG-систем</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -320,8 +383,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
       <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
+      <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="bitrix-start">
       <name>Павел Стасиньский</name>
@@ -332,11 +402,11 @@
       <categoryId>18</categoryId>
       <set-ids>bitrix-start</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/ms-bitrix-start.jpg</picture>
-      <description>Внедрение Битрикс24 с AI</description>
+      <description>Настройка и автоматизация Bitrix24</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
@@ -344,8 +414,77 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
       <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
+      <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
+    </offer>
+    <offer id="bitrix-integrations">
+      <name>Павел Стасиньский</name>
+      <url>https://bitrix.bober-systems.ru/#integrations-1c</url>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>integrations-1c</set-ids>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-bitrix-integrations.jpg</picture>
+      <description>Bitrix24 + 1С / документы / телефония</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">94</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
+    </offer>
+    <offer id="bitrix-sales-loop">
+      <name>Павел Стасиньский</name>
+      <url>https://bitrix.bober-systems.ru/#sales-loop</url>
+      <price from="true">500000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 500 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>sales-loop</set-ids>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-bitrix-sales-loop.jpg</picture>
+      <description>AI-контур поверх Bitrix24</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">95</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="bitrix-crm-automation">
       <name>Павел Стасиньский</name>
@@ -356,35 +495,11 @@
       <categoryId>18</categoryId>
       <set-ids>crm-automation</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/ms-bitrix-crm-automation.jpg</picture>
-      <description>AI-автоматизация Битрикс24</description>
+      <description>Автоматизация воронки Bitrix24</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
-      <param name="Годы опыта">10</param>
-      <param name="Регион">Москва</param>
-      <param name="Конверсия">94</param>
-      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
-      <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
-      <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
-    </offer>
-    <offer id="bitrix-ai-analytics">
-      <name>Павел Стасиньский</name>
-      <url>https://bitrix.bober-systems.ru/#ai-analytics</url>
-      <price from="true">300000</price>
-      <currencyId>RUR</currencyId>
-      <sales_notes>от 300 000 ₽</sales_notes>
-      <categoryId>18</categoryId>
-      <set-ids>ai-analytics</set-ids>
-      <picture>https://www.bober-systems.ru/stock/offers/ms-bitrix-ai-analytics.jpg</picture>
-      <description>AI-аналитика Битрикс24</description>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -392,71 +507,61 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
       <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
+      <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
-    <offer id="bitrix-sales-loop">
+    <offer id="bitrix-ai-analytics">
       <name>Павел Стасиньский</name>
-      <url>https://bitrix.bober-systems.ru/#sales-loop</url>
-      <price from="true">300000</price>
-      <currencyId>RUR</currencyId>
-      <sales_notes>от 300 000 ₽</sales_notes>
-      <categoryId>18</categoryId>
-      <set-ids>sales-loop</set-ids>
-      <picture>https://www.bober-systems.ru/stock/offers/ms-bitrix-sales-loop.jpg</picture>
-      <description>AI-контур отдела продаж</description>
-      <adult>false</adult>
-      <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
-      <param name="Годы опыта">10</param>
-      <param name="Регион">Москва</param>
-      <param name="Конверсия">95</param>
-      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
-      <param name="Ссылка на чат">https://t.me/pstasinski</param>
-      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
-      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
-      <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
-    </offer>
-    <offer id="bitrix-integrations">
-      <name>Павел Стасиньский</name>
-      <url>https://bitrix.bober-systems.ru/#integrations-1c</url>
+      <url>https://bitrix.bober-systems.ru/#ai-analytics</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
-      <set-ids>integrations-1c</set-ids>
-      <picture>https://www.bober-systems.ru/stock/offers/ms-bitrix-integrations.jpg</picture>
-      <description>Интеграция Битрикс24 и AI для продаж</description>
+      <set-ids>ai-analytics</set-ids>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-bitrix-ai-analytics.jpg</picture>
+      <description>AI-аналитика Bitrix24</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
-      <param name="Конверсия">92</param>
+      <param name="Конверсия">93</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
       <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
+      <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="bitrix-mcp">
       <name>Павел Стасиньский</name>
       <url>https://bitrix.bober-systems.ru/#mcp</url>
-      <price from="true">300000</price>
+      <price from="true">500000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 300 000 ₽</sales_notes>
+      <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>mcp</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/ms-bitrix-mcp.jpg</picture>
       <description>MCP для Битрикс24 и BitrixGPT</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -464,8 +569,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
       <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
+      <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     <offer id="bitrix-private-llm">
       <name>Павел Стасиньский</name>
@@ -479,8 +591,8 @@
       <description>Битрикс24 + локальный LLM</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">0</param>
-      <param name="Число отзывов">0</param>
+      <param name="Рейтинг">5.0</param>
+      <param name="Число отзывов">28</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">90</param>
@@ -488,8 +600,15 @@
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
       <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
       <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Внедряем Битрикс24 и AI-автоматизацию под ключ: CRM, продажи, аналитика, интеграции с 1С/телефонией и локальный LLM. Пилот от 300 000 ₽.</param>
+      <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
+      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
+      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
+      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
+      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
+      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
     </offer>
     </offers>
   </shop>

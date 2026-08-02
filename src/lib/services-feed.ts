@@ -1,7 +1,7 @@
 import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 import { CONTACT_EMAIL, SITE_NAME, SITE_REGION, SITE_URL, TELEGRAM_URL } from "@/lib/site";
-import { PROFILE } from "@/lib/profile";
+import { PROFILE, REVIEWS } from "@/lib/profile";
 import { getEnterpriseServices, type EnterpriseService } from "@/lib/enterprise-services";
 import { FEED_RATING, FEED_REVIEWS_COUNT } from "@/lib/feed-rating";
 
@@ -157,7 +157,15 @@ export function getServiceFeedXml(now = new Date()) {
     .join("\n");
 
   // Official sample: description → adult → expiry → required params block.
+  // https://yandex.ru/support/webmaster/ru/search-appearance/services
   // https://edu.s3.yandex.net/sample/services.yml
+  const reviewParams = REVIEWS.slice(0, 5)
+    .map(
+      (review, index) =>
+        `      <param name="Отзыв на исполнителя - ${index + 1}" unit="5">${escapeXml(review.text)}</param>`,
+    )
+    .join("\n");
+
   const offerBlocks = offers
     .map((offer) => {
       const url = getServiceOfferUrl(offer);
@@ -185,8 +193,11 @@ export function getServiceFeedXml(now = new Date()) {
       <param name="Ссылка на чат">${escapeXml(TELEGRAM_URL)}</param>
       <param name="Ссылка на создание заказа">${escapeXml(getServiceOrderUrl(offer))}</param>
       <param name="Ссылка на профиль исполнителя">${escapeXml(FEED_SITE_URL)}</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">${escapeXml(offer.about)}</param>
+${reviewParams}
     </offer>`;
     })
     .join("\n");

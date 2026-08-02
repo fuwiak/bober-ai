@@ -8,7 +8,7 @@ import {
   SITE_URL,
   TELEGRAM_URL,
 } from "@/lib/site";
-import { PROFILE } from "@/lib/profile";
+import { PROFILE, REVIEWS } from "@/lib/profile";
 import { FEED_RATING, FEED_REVIEWS_COUNT } from "@/lib/feed-rating";
 
 const FEED_CATEGORY_ID = "18";
@@ -66,6 +66,13 @@ function buildYmlCatalog(config: MicrositeFeedConfig, now = new Date()) {
     )
     .join("\n");
 
+  const reviewParams = REVIEWS.slice(0, 5)
+    .map(
+      (review, index) =>
+        `      <param name="Отзыв на исполнителя - ${index + 1}" unit="5">${escapeXml(review.text)}</param>`,
+    )
+    .join("\n");
+
   const offerBlocks = config.offers
     .map((offer) => {
       const url = `${feedSiteUrl}/#${offer.slug}`;
@@ -92,8 +99,11 @@ function buildYmlCatalog(config: MicrositeFeedConfig, now = new Date()) {
       <param name="Ссылка на чат">${escapeXml(TELEGRAM_URL)}</param>
       <param name="Ссылка на создание заказа">${escapeXml(orderUrl)}</param>
       <param name="Ссылка на профиль исполнителя">${escapeXml(feedSiteUrl)}</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">${escapeXml(offer.about)}</param>
+${reviewParams}
     </offer>`;
     })
     .join("\n");
