@@ -43,6 +43,7 @@ const IMAGES: Record<string, string> = {
   "ai-meeting-crm": "/stock/offers/ai-meeting-crm.jpg",
   "corporate-ai-agent-1c-crm": "/stock/offers/ai-agent.jpg",
   "ai-inbound-calls": "/stock/offers/voice-ai.jpg",
+  "crm-quote-offers": "/stock/offers/sales-ai-agent.jpg",
   "claude-smb": "/stock/enterprise-ai-assistant.jpg",
   "ii-dlya-biznesa": "/stock/enterprise-ai-assistant.jpg",
   automation: "/stock/business-process-automation.jpg",
@@ -126,6 +127,19 @@ const ruExtra: EnterpriseService[] = [
     deliveryDays: 28,
     price: 500000,
     serviceImage: IMAGES["ai-inbound-calls"],
+  },
+  {
+    id: "crm-quote-offers",
+    slug: "crm-quote-offers",
+    title: "Автоматизация смет и КП в CRM",
+    description:
+      "Аудит, ремонт или пересборка контура: смета → коммерческое предложение → отправка клиенту (email/Telegram). CRM любая — Megaplan, Bitrix24, amoCRM и др.",
+    about:
+      "Восстановление сломанной автоматизации или новый контур: прайс/Sheets, шаблоны КП, лендинг/PDF, доставка. Дальше — развитие, гарантия и сопровождение. Кейсы: KP-LLM, ELIA Suite.",
+    salesNotes: "от 300 000 ₽",
+    deliveryDays: 21,
+    price: 300000,
+    serviceImage: IMAGES["crm-quote-offers"],
   },
   {
     id: "claude-smb",
@@ -260,6 +274,19 @@ const enExtra: EnterpriseService[] = [
     deliveryDays: 28,
     price: 5000,
     serviceImage: IMAGES["ai-inbound-calls"],
+  },
+  {
+    id: "crm-quote-offers",
+    slug: "crm-quote-offers",
+    title: "Quote and proposal automation in CRM",
+    description:
+      "Audit, repair or rebuild: estimate → commercial offer → send to client (email/Telegram). Any CRM — Megaplan, Bitrix24, amoCRM and others.",
+    about:
+      "Restore broken automation or build a new loop: price lists/Sheets, proposal templates, landing/PDF, delivery. Then development, warranty and support. Cases: KP-LLM, ELIA Suite.",
+    salesNotes: "from €3,000",
+    deliveryDays: 21,
+    price: 3000,
+    serviceImage: IMAGES["crm-quote-offers"],
   },
   {
     id: "claude-smb",
@@ -464,6 +491,7 @@ const enServices: EnterpriseService[] = [
 /** Курируемый набор для маркетинговой сетки «Решения по задачам бизнеса» на /services. */
 export const ENTERPRISE_SERVICES_LISTING_SLUGS = [
   "business-process-automation",
+  "crm-quote-offers",
   "ai-inbound-calls",
   "corporate-ai-agent-1c-crm",
   "ai-meeting-crm",
@@ -535,6 +563,13 @@ const UZ_SERVICE_COPY: Partial<
       "Qoʻngʻiroq qabul, real vaqtda STT, niyat, tipik savollarga javob, operatorga uzatish, tarix va analitika.",
     about:
       "Pilot: bitta stsenariy va bitta liniya — toʻliq koll-markazni bir kunda almashtirmaymiz. Telefoniya, SpeechKit, LLM, CRM.",
+  },
+  "crm-quote-offers": {
+    title: "CRM da smeta va KP avtomatlashtirish",
+    description:
+      "Audit, taʼmir yoki qayta yigʻish: smeta → tijorat taklifi → mijozga yuborish. Har qanday CRM — Megaplan, Bitrix24, amoCRM.",
+    about:
+      "Buzilgan avtomatlashtirishni tiklash yoki yangi kontur: narxlar, shablonlar, PDF/landing, email/Telegram. Keyin rivojlantirish va qoʻllab-quvvatlash. Keyslar: KP-LLM, ELIA.",
   },
   "crm-integration": {
     title: "Bitrix24 · amoCRM",

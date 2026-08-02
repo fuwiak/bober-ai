@@ -434,6 +434,96 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     caseStudySlugs: ["yandex-telemost-agent", "ai-sales-loop"],
   },
 
+  "crm-quote-offers": {
+    metaTitle: "Автоматизация смет и КП в CRM — аудит, ремонт, пересборка",
+    metaDescription:
+      "Сломалась автоматизация КП? Аудит, ремонт или новая сборка: смета → предложение → email/Telegram. Megaplan, Bitrix24, amoCRM и любая CRM. От 300 000 ₽.",
+    eyebrow: "Услуга · КП · CRM",
+    h1: "Автоматизация смет и коммерческих предложений в CRM",
+    subtitle:
+      "Контур «данные → смета → КП → отправка клиенту» снова работает — или собираем заново. CRM не важна: Megaplan, Bitrix24, amoCRM, своя система.",
+    problemsTitle: "Когда нужен аудит и восстановление",
+    problems: [
+      "Раньше смета и КП уходили клиенту сами — поддержка закончилась, скрипты и интеграции отвалились",
+      "Менеджеры снова считают в Sheets и копируют в Word / лендинг вручную",
+      "Google Drive, таблицы, конструктор лендинга и CRM больше не синхронизируются",
+      "Нет гарантии, мониторинга и понятного владельца контура после подрядчика",
+    ],
+    deliverablesTitle: "Что делаем",
+    deliverables: [
+      "Аудит текущего контура: CRM, прайс/Sheets, шаблоны, отправка (email/Telegram)",
+      "Ремонт работающего контура или пересборка на устойчивом стеке",
+      "Смета → КП (PDF/DOCX/лендинг) → доставка клиенту; запись в сделку CRM",
+      "Развитие сценариев, гарантия и сопровождение после запуска",
+    ],
+    intro: [
+      "Типичный запрос: был рабочий контур «CRM + таблицы + генерация оферты + отправка», поддержка закончилась — система перестала считать сметы и слать КП. Нужен исполнитель на аудит, ремонт или пересборку, дальше развитие и SLA.",
+      "CRM не фиксируем: Megaplan, Bitrix24, amoCRM, другие REST/API. Внешние куски — Google Sheets/Drive, прайс в 1С, конструкторы лендингов, Telegram-бот, почта — подключаем то, что уже есть, или заменяем хрупкие звенья.",
+      "Примеры наших контуров: KP-LLM — PDF-запрос → матчинг каталога → DOCX/PDF → CRM (цены только из каталога); ELIA Suite — quote за минуты вместо десятков, workflow согласования. Логика та же: единый источник цен, шаблон, автоотправка, статус в сделке.",
+      "Путь: аудит (что сломано) → решение «чинить / пересобрать» → пилот на одном типе КП → гарантия и сопровождение. Бюджет пилота — от 300 000 ₽; полный контур с несколькими шаблонами — по смете.",
+    ],
+    howWeSolveTitle: "Этапы",
+    howWeSolve: [
+      {
+        title: "Аудит",
+        text: "Карта: CRM → прайс → шаблон КП → канал отправки. Где падает: API, квоты, устаревшие скрипты, права.",
+      },
+      {
+        title: "Ремонт или пересборка",
+        text: "Чиним стабильные части; хрупкие (ручные Sheets, мёртвый конструктор) заменяем на контролируемый pipeline.",
+      },
+      {
+        title: "Пилот",
+        text: "Один тип сметы/КП end-to-end: расчёт → документ/лендинг → email или Telegram → статус в CRM.",
+      },
+      {
+        title: "Гарантия и развитие",
+        text: "Мониторинг ошибок, SLA, новые шаблоны и правила скидок после приёмки.",
+      },
+    ],
+    architectureTitle: "Типовой контур",
+    architecture: [
+      "CRM: сделка, поля сметы, статус КП (Megaplan / Bitrix24 / amoCRM / …)",
+      "Источник цен: каталог, Sheets или 1С — единый, без «ручного Excel менеджера»",
+      "Генерация: шаблон PDF/DOCX или персональный лендинг оферты",
+      "Доставка: email, Telegram; лог в карточке сделки",
+      "Наблюдаемость: ошибки синка, retry, алерты",
+    ],
+    roiTitle: "Ориентир",
+    roi: [
+      { value: "аудит", label: "сначала — что чинить vs пересобрать" },
+      { value: "2–4 нед.", label: "пилот одного типа КП" },
+      { value: "кейсы", label: "KP-LLM · ELIA Suite" },
+    ],
+    faqTitle: "Частые вопросы",
+    faq: [
+      {
+        q: "Только Megaplan?",
+        a: "Нет. Megaplan — частый кейс «сломалось после подрядчика». Работаем с Bitrix24, amoCRM и другими CRM по API.",
+      },
+      {
+        q: "Чем отличается от «AI-агента для продаж»?",
+        a: "/services/sales-ai-agent — широкий контур продаж. Эта услуга — сметы/КП: аудит, ремонт или пересборка именно генерации оферты и доставки.",
+      },
+      {
+        q: "Можно только починить, без пересборки?",
+        a: "Да, если корень в API/правах/квотах. Если архитектура хрупкая — предлагаем пересборку с фиксированной сметой.",
+      },
+      { q: "Google Sheets обязательны?", a: "Нет. Можно оставить как прайс или уйти в каталог CRM/1С — решаем на аудите." },
+      { q: "Гарантия?", a: "После приёмки пилота — период гарантии и опциональное сопровождение (мониторинг, правки шаблонов)." },
+      { q: "Бюджет?", a: "Аудит и пилот от 300 000 ₽. Полный контур с несколькими шаблонами и каналами — от 500 000 ₽." },
+    ],
+    related: [
+      { href: "/services/sales-ai-agent", label: "Автоматизация отдела продаж" },
+      { href: "/automation/proposal-generation", label: "Автоматизация КП" },
+      { href: "/portfolio/kp-llm-automation", label: "Кейс · KP-LLM" },
+      { href: "/portfolio/elia-suite", label: "Кейс · ELIA Suite" },
+      { href: "/services/crm-integration", label: "Интеграции CRM" },
+      { href: "/services/document-processing", label: "Документооборот" },
+    ],
+    caseStudySlugs: ["kp-llm-automation", "elia-suite"],
+  },
+
   "sales-ai-agent": {
     metaTitle: "AI-агент для продаж и автоматизация отдела продаж",
     metaDescription:
@@ -495,6 +585,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       { q: "Какой бюджет?", a: "От 500 000 ₽ в зависимости от числа шаблонов, интеграций и AI-сценариев." },
     ],
     related: [
+      { href: "/services/crm-quote-offers", label: "Сметы и КП в CRM" },
       { href: "/services/crm-integration", label: "Интеграция CRM" },
       { href: "/services/ai-agent", label: "Разработка AI-агентов" },
       { href: "/services/document-processing", label: "Обработка документов" },
@@ -2562,6 +2653,77 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
       { href: "/services/crm-integration", label: "CRM integrations" },
     ],
     caseStudySlugs: ["yandex-telemost-agent", "ai-sales-loop"],
+  },
+
+  "crm-quote-offers": {
+    metaTitle: "Quote and proposal automation in CRM — audit, repair, rebuild",
+    metaDescription:
+      "Broken KP automation? Audit, repair or rebuild: estimate → offer → email/Telegram. Megaplan, Bitrix24, amoCRM or any CRM. From €3,000.",
+    eyebrow: "Service · Proposals · CRM",
+    h1: "Quote and commercial proposal automation in CRM",
+    subtitle:
+      "Make the “data → estimate → offer → send” loop work again — or rebuild it. CRM-agnostic: Megaplan, Bitrix24, amoCRM, custom.",
+    problemsTitle: "When you need audit and recovery",
+    problems: [
+      "Estimates and offers used to go out automatically — support ended, scripts and integrations broke",
+      "Reps are back in Sheets and Word / landing builders by hand",
+      "Drive, tables, landing builders and CRM no longer sync",
+      "No warranty, monitoring or clear owner after the previous vendor",
+    ],
+    deliverablesTitle: "What we deliver",
+    deliverables: [
+      "Audit of the current loop: CRM, price list/Sheets, templates, delivery (email/Telegram)",
+      "Repair a viable loop or rebuild on a stable stack",
+      "Estimate → offer (PDF/DOCX/landing) → client delivery; write-back to the CRM deal",
+      "Further development, warranty and support after go-live",
+    ],
+    intro: [
+      "Typical ask: a working “CRM + sheets + offer generation + send” loop died after support ended. You need audit, repair or rebuild, then development and SLA.",
+      "CRM is not fixed: Megaplan, Bitrix24, amoCRM, other REST APIs. Sheets/Drive, 1C catalogs, landing builders, Telegram, email — keep what works, replace fragile links.",
+      "Our reference loops: KP-LLM (PDF → catalog match → DOCX/PDF → CRM); ELIA Suite (quotes in minutes with approval workflow). Same discipline: single price source, template, auto-send, deal status.",
+      "Path: audit → fix vs rebuild → pilot on one proposal type → warranty and support. Pilot from €3,000.",
+    ],
+    howWeSolveTitle: "Stages",
+    howWeSolve: [
+      { title: "Audit", text: "Map CRM → prices → template → channel. Find breaks: API, quotas, dead scripts, permissions." },
+      { title: "Repair or rebuild", text: "Keep stable parts; replace fragile Sheets/landing glue with a controlled pipeline." },
+      { title: "Pilot", text: "One estimate/offer type end-to-end: calc → document/landing → email or Telegram → CRM status." },
+      { title: "Warranty & growth", text: "Error monitoring, SLA, new templates and discount rules after acceptance." },
+    ],
+    architectureTitle: "Typical loop",
+    architecture: [
+      "CRM: deal, estimate fields, offer status (Megaplan / Bitrix24 / amoCRM / …)",
+      "Price source: catalog, Sheets or 1C — single source of truth",
+      "Generation: PDF/DOCX template or personal offer landing",
+      "Delivery: email, Telegram; log on the deal card",
+      "Observability: sync errors, retry, alerts",
+    ],
+    roiTitle: "Guide",
+    roi: [
+      { value: "audit", label: "fix vs rebuild decision first" },
+      { value: "2–4 wks", label: "pilot of one offer type" },
+      { value: "cases", label: "KP-LLM · ELIA Suite" },
+    ],
+    faqTitle: "FAQ",
+    faq: [
+      { q: "Megaplan only?", a: "No. Megaplan is a common “broke after vendor left” case. We also do Bitrix24, amoCRM and other CRMs via API." },
+      {
+        q: "Vs sales AI agent?",
+        a: "/services/sales-ai-agent is the broad sales loop. This offer is estimates/offers: audit, repair or rebuild of generation and delivery.",
+      },
+      { q: "Repair only?", a: "Yes if the root is API/permissions/quotas. Fragile architecture → rebuild with a fixed estimate." },
+      { q: "Must keep Google Sheets?", a: "No. Keep as price source or move to CRM/1C catalog — decided in the audit." },
+      { q: "Warranty?", a: "Warranty period after pilot acceptance; optional support for monitoring and template changes." },
+      { q: "Budget?", a: "Audit and pilot from €3,000. Full multi-template loop from €5,000." },
+    ],
+    related: [
+      { href: "/services/sales-ai-agent", label: "Sales automation" },
+      { href: "/automation/proposal-generation", label: "Proposal automation" },
+      { href: "/portfolio/kp-llm-automation", label: "Case · KP-LLM" },
+      { href: "/portfolio/elia-suite", label: "Case · ELIA Suite" },
+      { href: "/services/crm-integration", label: "CRM integrations" },
+    ],
+    caseStudySlugs: ["kp-llm-automation", "elia-suite"],
   },
 
   "sales-ai-agent": {

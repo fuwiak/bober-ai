@@ -113,6 +113,65 @@ export const CONTENT_UZ: Record<string, SeoServiceContent> = {
       "invoice-processing-pipeline"
     ]
   },
+  "crm-quote-offers": {
+    problemsTitle: "Tipik muammolar",
+    deliverablesTitle: "Nima qilamiz",
+    howWeSolveTitle: "Bosqichlar",
+    architectureTitle: "Tipik kontur",
+    roiTitle: "Orientir",
+    faqTitle: "Tez-tez beriladigan savollar",
+    eyebrow: "Xizmat · KP · CRM",
+    metaTitle: "CRM da smeta va KP avtomatlashtirish | Bober AI",
+    metaDescription:
+      "Buzilgan KP avtomatlashtirish: audit, taʼmir yoki qayta yigʻish. Megaplan, Bitrix24, amoCRM. 30 000 000 soʻmdan.",
+    h1: "CRM da smeta va tijorat takliflarini avtomatlashtirish",
+    subtitle:
+      "Maʼlumot → smeta → KP → mijozga yuborish. Har qanday CRM. Audit, taʼmir yoki yangi kontur + kafolat.",
+    problems: [
+      "Avtomatlashtirish ishlamay qoldi — qoʻllab-quvvatlash tugadi",
+      "Menejerlar yana Sheets va Word da hisoblaydi",
+      "CRM, jadvallar va landing sinxron emas",
+      "Kafolat va monitoring yoʻq",
+    ],
+    deliverables: [
+      "Mavjud kontur auditi",
+      "Taʼmir yoki barqaror stack da qayta yigʻish",
+      "Smeta → KP → email/Telegram → CRM",
+      "Rivojlantirish va qoʻllab-quvvatlash",
+    ],
+    intro: [
+      "CRM muhim emas: Megaplan, Bitrix24, amoCRM. Keyslar: KP-LLM, ELIA Suite.",
+      "Yoʻl: audit → tuzatish/yigʻish → bitta KP turi boʻyicha pilot → kafolat.",
+    ],
+    howWeSolve: [
+      { title: "Audit", text: "CRM → narx → shablon → kanal. Qayerda uzilgan." },
+      { title: "Taʼmir / yigʻish", text: "Barqaror qismlar — saqlaymiz; moʻrt — almashtiramiz." },
+      { title: "Pilot", text: "Bitta KP turi end-to-end." },
+      { title: "Kafolat", text: "Monitoring, SLA, yangi shablonlar." },
+    ],
+    architecture: [
+      "CRM bitim va KP holati",
+      "Narx manbai: katalog / Sheets / 1С",
+      "PDF/DOCX yoki landing",
+      "Email / Telegram + log",
+    ],
+    roi: [
+      { value: "audit", label: "avval" },
+      { value: "2–4 hafta", label: "pilot" },
+    ],
+    faq: [
+      { q: "Faqat Megaplanmi?", a: "Yoʻq — har qanday CRM API bilan." },
+      { q: "Narx?", a: "Pilot 30 000 000 soʻmdan." },
+      { q: "Faqat taʼmir?", a: "Ha, agar ildiz API/huquqlarda boʻlsa." },
+    ],
+    related: [
+      { href: "/services/sales-ai-agent", label: "Savdo avtomatlashtirish" },
+      { href: "/portfolio/kp-llm-automation", label: "Keys · KP-LLM" },
+      { href: "/services/crm-integration", label: "CRM" },
+    ],
+    caseStudySlugs: ["kp-llm-automation", "elia-suite"],
+  },
+
   "ai-inbound-calls": {
     problemsTitle: "Tipik muammolar",
     deliverablesTitle: "Nima olasiz",

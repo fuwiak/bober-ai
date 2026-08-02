@@ -82,6 +82,21 @@ export const uzExtra = {
         href: "/services/ai-sales-loop",
       },
       {
+        badge: "KP · CRM",
+        title: "CRM da smeta va KP avtomatlashtirish",
+        description:
+          "Audit, taʼmir yoki qayta yigʻish: smeta → KP → email/Telegram. Har qanday CRM. Keyslar: KP-LLM, ELIA.",
+        items: [
+          "Buzilgan konturni tiklash yoki yangi yigʻish",
+          "Yagona narx → shablon → yuborish",
+          "Kafolat va qoʻllab-quvvatlash",
+        ],
+        layout: "large",
+        featured: true,
+        slug: "crm-quote-offers",
+        href: "/services/crm-quote-offers",
+      },
+      {
         badge: "Koll-markaz · Voice",
         title: "Kiruvchi qoʻngʻiroqlar uchun AI",
         description:

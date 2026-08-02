@@ -96,6 +96,23 @@ const kzOverrides = {
         detailsHref: "/services/business-process-automation",
       },
       {
+        name: "Сметы и КП в CRM",
+        price: "от 2 500 000 ₸",
+        duration: "2–4 недели",
+        forWhom: "Сломалась автоматизация КП — или нужен контур смета → предложение → email/Telegram в любой CRM",
+        result:
+          "Аудит → ремонт или пересборка. Megaplan, Bitrix24, amoCRM и др. Примеры: KP-LLM, ELIA Suite.",
+        badge: "КП · любая CRM",
+        includes: [
+          "Аудит и восстановление / новая сборка",
+          "Смета → КП → отправка клиенту",
+          "Запись в сделку, мониторинг и гарантия",
+        ],
+        featured: true,
+        tier: "implementation",
+        detailsHref: "/services/crm-quote-offers",
+      },
+      {
         name: "AI для входящих звонков",
         price: "от 5 000 000 ₸",
         duration: "4–6 недель",

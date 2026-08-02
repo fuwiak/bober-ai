@@ -592,6 +592,23 @@ const ru = {
         detailsHref: "/services/business-process-automation",
       },
       {
+        name: "Сметы и КП в CRM",
+        price: "от 300 000 ₽",
+        duration: "2–4 недели",
+        forWhom: "Сломалась автоматизация КП — или нужен контур смета → предложение → email/Telegram в любой CRM",
+        result:
+          "Аудит → ремонт или пересборка. Megaplan, Bitrix24, amoCRM и др. Примеры: KP-LLM, ELIA Suite. Гарантия и сопровождение.",
+        badge: "КП · любая CRM",
+        includes: [
+          "Аудит и восстановление / новая сборка",
+          "Смета → КП (PDF/лендинг) → отправка клиенту",
+          "Запись в сделку, мониторинг и гарантия",
+        ],
+        featured: true,
+        tier: "implementation",
+        detailsHref: "/services/crm-quote-offers",
+      },
+      {
         name: "AI для входящих звонков",
         price: "от 500 000 ₽",
         duration: "4–6 недель",
@@ -885,6 +902,21 @@ const ru = {
         layout: "default",
         slug: "sales-ai-agent",
         href: "/services/sales-ai-agent",
+      },
+      {
+        badge: "КП · CRM",
+        title: "Автоматизация смет и КП в CRM",
+        description:
+          "Аудит, ремонт или пересборка: смета → коммерческое предложение → email/Telegram. Любая CRM — Megaplan, Bitrix24, amoCRM. Кейсы KP-LLM и ELIA.",
+        items: [
+          "Восстановление сломанного контура или новая сборка",
+          "Единый прайс → шаблон КП → отправка",
+          "Гарантия и сопровождение после запуска",
+        ],
+        layout: "large",
+        featured: true,
+        slug: "crm-quote-offers",
+        href: "/services/crm-quote-offers",
       },
       {
         badge: "Колл-центр · Voice",

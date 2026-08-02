@@ -585,6 +585,23 @@ const uzOverrides = {
         detailsHref: "/services/business-process-automation",
       },
       {
+        name: "CRM da smeta va KP",
+        price: "30 000 000 soʻmdan",
+        duration: "2–4 hafta",
+        forWhom: "KP avtomatlashtirish buzilgan yoki smeta → taklif → email/Telegram konturi kerak — har qanday CRM",
+        result:
+          "Audit → taʼmir yoki qayta yigʻish. Megaplan, Bitrix24, amoCRM. Keyslar: KP-LLM, ELIA.",
+        badge: "KP · har qanday CRM",
+        includes: [
+          "Audit va tiklash / yangi yigʻish",
+          "Smeta → KP → mijozga yuborish",
+          "Bitimga yozuv, monitoring va kafolat",
+        ],
+        featured: true,
+        tier: "implementation",
+        detailsHref: "/services/crm-quote-offers",
+      },
+      {
         name: "Kiruvchi qoʻngʻiroqlar uchun AI",
         price: "50 000 000 soʻmdan",
         duration: "4–6 hafta",

@@ -312,6 +312,7 @@ Classic license / deploy offers on the hub: KES для бизнеса, Security 
 
 ### Featured Projects
 
+- Автоматизация смет и КП в CRM — аудит, ремонт или пересборка (Megaplan / Bitrix24 / amoCRM и любая CRM); кейсы KP-LLM, ELIA (от 300 000 ₽) · https://www.bober-systems.ru/services/crm-quote-offers
 - AI для входящих звонков и колл-центра — приём, STT, намерение, FAQ, warm handoff, аналитика; пилот одна линия (от 500 000 ₽) · https://www.bober-systems.ru/services/ai-inbound-calls
 - Интеграция корпоративного AI-агента с 1С и CRM — внедрение в ландшафт компании (роли, skills, HITL, legacy), не «агент из коробки»; сравнение Yandex AI Studio vs private/on-prem (от 500 000 ₽) · https://www.bober-systems.ru/services/corporate-ai-agent-1c-crm
 - AI Meeting-to-CRM — встреча → решения → задачи → CRM → контроль срока. Референс Telemost / Yandex 360; адаптируем под MTS Link, SaluteJazz, IVA360 (от 300 000 ₽) · https://www.bober-systems.ru/portfolio/yandex-telemost-agent · услуга: https://www.bober-systems.ru/services/ai-meeting-crm
