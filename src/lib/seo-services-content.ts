@@ -107,7 +107,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   "ai-sales-loop": {
     metaTitle: "AI-контур отдела продаж: телефония, CRM и follow-up",
     metaDescription:
-      "Телефония + переписки + Bitrix24/amoCRM + AI — один продукт. Квалификация лидов, саммари звонков, автозадачи и отчёт об упущенных сделках. Пилот от 300 000 ₽.",
+      "Телефония + переписки + Bitrix24/amoCRM + AI — один продукт. Квалификация лидов, саммари звонков, автозадачи и отчёт об упущенных сделках. От 500 000 ₽.",
     eyebrow: "Услуга · Продажи",
     h1: "AI-контур отдела продаж",
     subtitle:
@@ -131,7 +131,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "AI классифицирует обращения, суммирует разговоры, вытягивает факты и пишет их в CRM. Дальше — задача, напоминание, эскалация и отчёт руководителю. Анализ звонков — только компонент, не весь продукт.",
       "Сценарии для МСП: квалификация новых лидов, реактивация старой базы, контроль качества разговоров, автосоздание задач и follow-up, выявление упущенных сделок.",
       "Не конкурируем со штатным BitrixGPT: расширяем его телефонией, правилами квалификации, действиями вне портала и отчётами по дисциплине продаж.",
-      "Пилот — 2–4 недели на одном канале (входящие звонки или чаты). Бюджет — от 300 000 ₽. NDA и размещение в вашем контуре — по запросу.",
+      "Пилот — 2–4 недели на одном канале (входящие звонки или чаты). Бюджет AI-контура — от 500 000 ₽. Настройка CRM без AI — от 150 000 ₽ на /bitrix. NDA и свой контур — по запросу.",
     ],
     howWeSolveTitle: "Как внедряем",
     howWeSolve: [
@@ -152,7 +152,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     roi: [
       { value: "−30–50%", label: "ручного ввода в CRM после звонка" },
       { value: "2–4 нед.", label: "до пилота на одном канале" },
-      { value: "1 контур", label: "вместо трёх отдельных продуктов" },
+      { value: "от 500 000 ₽", label: "AI-контур поверх CRM" },
     ],
     faqTitle: "Частые вопросы",
     faq: [
@@ -160,10 +160,13 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       { q: "Какая CRM?", a: "Bitrix24 (партнёр 1С-Битрикс · ID 28909898) и amoCRM. Другие CRM — через REST." },
       { q: "Какая телефония?", a: "MANGO Office, UIS, Voximplant, Asterisk и штатная телефония Bitrix24 — подключаем существующую." },
       { q: "Нужен ли отдельный чат-бот?", a: "Нет как отдельный продукт. Чаты входят в тот же контур: классификация → CRM → действие." },
-      { q: "Бюджет?", a: "Пилот от 300 000 ₽. Полный контур с несколькими каналами — от 500 000 ₽." },
+      {
+        q: "Бюджет?",
+        a: "AI-контур — от 500 000 ₽. Настройка Bitrix24 без AI — от 150 000 ₽; связка с 1С/документами/телефонией — от 300 000 ₽ (см. /bitrix).",
+      },
       {
         q: "Где лендинг Bitrix?",
-        a: "Отдельный лендинг /bitrix — пакеты внедрения и секция AI-контура продаж. Ссылка в блоке связанных услуг ниже.",
+        a: "Отдельный лендинг /bitrix — три ступени цен и секция AI-контура. Ссылка в блоке связанных услуг ниже.",
       },
       { q: "Данные и NDA?", a: "Можно в вашем облаке или on-prem. NDA до обмена записями звонков." },
     ],
@@ -2285,12 +2288,15 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       { q: "Кто поддерживает 1С?", a: "Ваш 1С-партнёр. Мы — middleware и CRM." },
       { q: "Дубли контактов?", a: "Сопоставление по ИНН/email + политика merge." },
       { q: "Хватит ли n8n?", a: "Простые потоки — да. Enterprise двусторонний обмен — отдельный сервис." },
-      { q: "Бюджет?", a: "От 300 000 ₽ после аудита." },
+      {
+        q: "Бюджет?",
+        a: "Настройка CRM — от 150 000 ₽. Связка с 1С/документами/телефонией — от 300 000 ₽. AI-контур поверх CRM — от 500 000 ₽. Подробнее — /bitrix.",
+      },
     ],
     related: [
       { href: "/services/business-process-automation", label: "Автоматизация процессов" },
       { href: "/services/sales-ai-agent", label: "Автоматизация продаж" },
-      { href: "/services/n8n", label: "n8n" },
+      { href: "/bitrix", label: "Bitrix24 · пакеты и цены" },
       { href: "/services/document-processing", label: "Обработка документов" },
     ],
     caseStudySlugs: ["crm-1c-sync", "amocrm-website-integration", "lead-generation"],
@@ -2370,7 +2376,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
   "ai-sales-loop": {
     metaTitle: "AI sales loop: telephony, CRM and follow-up",
     metaDescription:
-      "Telephony + chats + Bitrix24/amoCRM + AI as one product. Lead qualification, call summaries, auto-tasks and lost-deal reports. Pilot from €3,000.",
+      "Telephony + chats + Bitrix24/amoCRM + AI as one product. Lead qualification, call summaries, auto-tasks and lost-deal reports. From €5,000.",
     eyebrow: "Service · Sales",
     h1: "AI sales loop",
     subtitle:
@@ -2394,7 +2400,7 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
       "AI classifies requests, summarizes conversations, extracts facts and writes them to CRM. Then: task, reminder, escalation and a manager report. Call analysis is only an input, not the product.",
       "SMB scenarios: qualify new leads, reactivate the old base, call quality control, auto tasks and follow-up, detect lost deals.",
       "We do not compete with native BitrixGPT: we extend it with telephony, qualification rules, actions outside the portal and sales-discipline reporting.",
-      "Pilot: 2–4 weeks on one channel (inbound calls or chats). Budget from €3,000. NDA and your own perimeter on request.",
+      "Pilot: 2–4 weeks on one channel (inbound calls or chats). AI contour from €5,000. CRM setup without AI from €1,500 on /bitrix. NDA and your own perimeter on request.",
     ],
     howWeSolveTitle: "How we deliver",
     howWeSolve: [
@@ -2423,16 +2429,19 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
       { q: "Which CRM?", a: "Bitrix24 (1C-Bitrix partner · ID 28909898) and amoCRM. Other CRMs via REST." },
       { q: "Which telephony?", a: "MANGO Office, UIS, Voximplant, Asterisk and native Bitrix24 telephony — we connect what you already use." },
       { q: "Do we need a separate chatbot?", a: "Not as a standalone product. Chats join the same loop: classify → CRM → action." },
-      { q: "Budget?", a: "Pilot from €3,000. Full multi-channel loop from €5,000." },
+      {
+        q: "Budget?",
+        a: "AI contour from €5,000. CRM setup without AI from €1,500; 1C/docs/telephony from €3,000 — see /bitrix.",
+      },
       {
         q: "Bitrix landing?",
-        a: "Dedicated bitrix.bober-systems.ru landing — implementation packages and the AI sales loop section. Link is in the related services below.",
+        a: "Dedicated /bitrix landing — three price tiers and the AI sales loop section. Link is in related services below.",
       },
       { q: "Data & NDA?", a: "Your cloud or on-prem. NDA before exchanging call recordings." },
     ],
     related: [
       { href: "/integrations/telephony-ai", label: "Telephony + CRM + AI" },
-      { href: "https://bitrix.bober-systems.ru/#sales-loop", label: "Bitrix24 · AI sales loop" },
+      { href: "/bitrix", label: "Bitrix24 · packages and prices" },
       { href: "/services/sales-ai-agent", label: "Sales automation" },
       { href: "/services/crm-integration", label: "CRM integrations" },
       { href: "/services/voice-ai", label: "Voice AI" },
