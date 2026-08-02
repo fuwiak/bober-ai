@@ -10,6 +10,8 @@ const root = path.dirname(fileURLToPath(import.meta.url));
 /** @type {import('astro').AstroConfig} */
 export default defineConfig({
   site: CANONICAL_ORIGIN,
+  // One URL variant: /about not /about/ (both 200 → SEO duplicate).
+  trailingSlash: "never",
   // Hybrid: static prerender by default; API routes set prerender=false
   output: "static",
   adapter: node({ mode: "standalone" }),

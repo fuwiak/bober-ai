@@ -840,7 +840,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     architecture: [
       "Private LLM API (GigaChat / self-hosted) — без утечки во внешние сервисы",
       "RAG: ingestion → embedding → vector DB → retrieval + citation",
-      "Orchestration: LangGraph / agents для многошаговых сценариев",
+      "Оркестрация: LangGraph / агенты для многошаговых сценариев",
       "Gateway: auth, rate limit, logging, PII redaction",
       "Channels: Telegram, Open WebUI, CRM widget, voice — по задаче",
     ],
@@ -1054,7 +1054,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Документы разбросаны по Confluence, SharePoint, PDF и CRM",
       "Нет процесса обновления знаний после изменения регламентов",
     ],
-    deliverablesTitle: "Deliverables",
+    deliverablesTitle: "Что вы получаете",
     deliverables: [
       "Pipeline ingestion: PDF, DOCX, HTML, CRM → chunks → embeddings",
       "Vector store и retrieval с reranking",
@@ -1399,14 +1399,14 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     intro: [
       "n8n — open-source платформа автоматизации с self-hosting. Для enterprise в России это альтернатива Zapier: данные остаются в вашем контуре, есть HTTP, webhook, cron, JavaScript code nodes и интеграции с amoCRM, Bitrix24, PostgreSQL, Telegram.",
       "Bober AI Systems разворачивает n8n в Yandex Cloud, Selectel или on-prem, проектирует workflows и подключает AI-шаги через private LLM API. Типовой сценарий: лид с сайта → CRM → Telegram менеджеру → задача follow-up через 3 дня.",
-      "n8n не заменяет тяжёлую ERP-логику, но закрывает 80% интegration glue быстро. Сложные транзакции с 1С — через очередь и idempotent API, не прямой call из ноды без retry.",
+      "n8n не заменяет тяжёлую ERP-логику, но закрывает 80% интеграционного клея быстро. Сложные транзакции с 1С — через очередь и idempotent API, не прямой call из ноды без retry.",
       "Мы комбинируем n8n с custom Python microservices там, где нужны SLA, eval LLM или сложная бизнес-логика. n8n — оркестратор, не монолит.",
       "Развёртывание и первые 3–5 workflows — 2–3 недели. Бюджет — от 300 000 ₽.",
       "Credentials хранятся encrypted, доступ по VPN. Compliance-friendly для 152-ФЗ при правильной топологии.",
     ],
     howWeSolveTitle: "Этапы",
     howWeSolve: [
-      { title: "Аудит интegrations", text: "Какие системы, какие события, частота, error handling." },
+      { title: "Аудит интеграций", text: "Какие системы, какие события, частота, error handling." },
       { title: "Deploy n8n", text: "Docker/K8s, PostgreSQL, backups, HTTPS, auth." },
       { title: "Workflows", text: "Разработка, тесты на staging, logging в Telegram/email." },
       { title: "Handover", text: "Экспорт workflows, обучение, SLA поддержки." },
@@ -1427,10 +1427,10 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     ],
     faqTitle: "FAQ по n8n",
     faq: [
-      { q: "n8n vs custom Python?", a: "n8n быстрее для интegrations. Custom — для strict SLA и complex domain logic." },
+      { q: "n8n vs custom Python?", a: "n8n быстрее для интеграций. Custom — для strict SLA и complex domain logic." },
       { q: "Масштабирование?", a: "Queue mode, workers, horizontal scaling при росте executions." },
       { q: "Безопасность?", a: "VPN, SSO, encrypted credentials, no public admin without auth." },
-      { q: "1С интegration?", a: "Через REST/OData и очередь. Не blocking sync в peak hours." },
+      { q: "1С интеграция?", a: "Через REST/OData и очередь. Не blocking sync в peak hours." },
       { q: "LLM в n8n?", a: "HTTP Request к private API. Prompts versioned externally." },
       { q: "Стоимость лицензии?", a: "Community edition — бесплатно. Enterprise features — по необходимости." },
       { q: "Поддержка?", a: "SLA на workflows и мониторинг failed executions." },
@@ -1446,7 +1446,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
   "ai-agent": {
     metaTitle: "Разработка AI-агентов для бизнеса",
     metaDescription:
-      "AI-агенты с tool calling: CRM, документы, поиск. LangGraph, MCP, production agents для enterprise.",
+      "AI-агенты с tool calling: CRM, документы, поиск. LangGraph, MCP, production агентов для enterprise.",
     eyebrow: "AI Agents",
     h1: "Разработка AI-агентов",
     subtitle: "Агенты, которые делают дела: вызывают CRM, генерируют документы, эскалируют человеку — не просто болтают.",
@@ -1457,7 +1457,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Нет памяти контекста между сессиями и каналами",
       "Ошибки агента не логируются и не откатываются",
     ],
-    deliverablesTitle: "Deliverables",
+    deliverablesTitle: "Что вы получаете",
     deliverables: [
       "Agent с tool registry: CRM, search, documents, calculators",
       "State machine на LangGraph с human-in-the-loop",
@@ -1465,17 +1465,17 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Monitoring, eval и runbook",
     ],
     intro: [
-      "AI-агент — LLM с возможностью вызывать инструменты: создать лид, найти цену в каталоге, сгенерировать PDF, запросить остаток в 1С. Bober AI Systems строит agents для продаж, поддержки и внутренних операций.",
-      "Кейс Yandex Telemost Agent: голосовой/чат ассистент с интegrations. Sales agent ELIA/KP-LLM: подбор SKU и сборка КП. Архитектура единая: LangGraph + tools + guardrails.",
+      "AI-агент — LLM с возможностью вызывать инструменты: создать лид, найти цену в каталоге, сгенерировать PDF, запросить остаток в 1С. Bober AI Systems строит агентов для продаж, поддержки и внутренних операций.",
+      "Кейс Yandex Telemost Agent: голосовой/чат ассистент с интеграций. Sales agent ELIA/KP-LLM: подбор SKU и сборка КП. Архитектура единая: LangGraph + tools + guardrails.",
       "MCP (Model Context Protocol) стандартизирует доступ агента к CRM, файлам и API — меньше custom glue, проще audit. Мы разворачиваем MCP servers в private контуре.",
       "Human-in-the-loop обязателен для финансовых и юридических действий: агент готовит черновик → человек подтверждает → commit в систему.",
       "Production за 4–8 недель. Eval на сценариях «happy path» и edge cases. Бюджет — от 500 000 ₽.",
-      "Не продаём «autonomous AGI» — продаём измеримую автomation конкретных шагов процесса.",
+      "Не продаём «autonomous AGI» — продаём измеримую автоматизацию конкретных шагов процесса.",
     ],
     howWeSolveTitle: "Как строим агентов",
     howWeSolve: [
       { title: "Tool design", text: "Minimal API surface, idempotent writes, clear error messages для LLM." },
-      { title: "Graph workflow", text: "Nodes: plan → act → verify → escalate. Checkpoints для resume." },
+      { title: "Граф workflow", text: "Узлы: план → действие → проверка → эскалация. Чекпоинты для возобновления." },
       { title: "Safety", text: "Allowlist tools, PII filters, spend limits, audit trail." },
       { title: "Eval", text: "Scenario tests, tool call assertions, regression suite." },
     ],
@@ -1497,7 +1497,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     faq: [
       { q: "Agent vs RAG chatbot?", a: "RAG отвечает из документов. Agent ещё выполняет действия в системах." },
       { q: "LangGraph обязателен?", a: "Для multi-step — да. Simple tool loop — можно легче." },
-      { q: "Безопасность CRM write?", a: "RBAC на tools, confirm для critical actions, full audit log." },
+      { q: "Безопасно ли писать в CRM?", a: "RBAC на инструментах, подтверждение критичных действий, полный журнал аудита." },
       { q: "MCP?", a: "Используем для стандартизации tools. Подробнее — услуга MCP." },
       { q: "Голос?", a: "STT/TTS + agent backend — услуга Voice AI." },
       { q: "Бюджет?", a: "От 500 000 ₽ в зависимости от числа tools и каналов." },
@@ -1538,7 +1538,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Обработка документов в enterprise — цепочка: получить файл → распознать → извлечь поля → проверить → согласовать → привязать к сделке или заказу. Bober AI Systems автоматизирует каждый шаг с audit trail.",
       "AI не всегда нужен: для счетов и актов часто хватает OCR + regex + validation. LLM подключаем для нестандартных договоров, классификации типов документов и сверки условий.",
       "Кейс OCR pipeline: пакетная обработка сканов для бухгалтерии — минуты вместо часов. ELIA: генерация КП из CRM — другой конец спectrum, та же дисциплина workflow.",
-      "Маршруты согласования: parallel/serial approvers, SLA, эскалация CEO/CFO, интegration с Bitrix24 tasks. Документ не «висит» в почте.",
+      "Маршруты согласования: parallel/serial approvers, SLA, эскалация CEO/CFO, интеграция с задачами Bitrix24. Документ не «висит» в почте.",
       "152-ФЗ и on-prem: хранение в РФ, шифрование, ACL. NDA — стандарт.",
       "Срок — 4–8 недель. Бюджет — от 500 000 ₽.",
     ],
@@ -1604,10 +1604,10 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Monitoring latency, ASR accuracy, containment rate",
     ],
     intro: [
-      "Voice AI объединяет распознавание речи, языковую модель и синтез голоса в ассистента, который ведёт диалог, выполняет сценарии и передаёт звонок человеку с полным контекстом. Bober AI Systems строит voice agents для продаж, поддержки и внутренних helpdesk.",
+      "Voice AI объединяет распознавание речи, языковую модель и синтез голоса в ассистента, который ведёт диалог, выполняет сценарии и передаёт звонок человеку с полным контекстом. Bober AI Systems строит voice агентов для продаж, поддержки и внутренних helpdesk.",
       "Кейс Yandex Telemost Agent демонстрирует multi-modal подход: голос + чат + actions. Для call-center типовой сценарий: квалификация лида, статус заказа из 1С, запись на callback.",
       "STT/TTS выбираем с учётом русского языка и размещения данных: Yandex SpeechKit, SaluteSpeech, open-source Whisper in private cloud. Latency budget — критичен для UX.",
-      "Agent backend — тот же LangGraph stack, что и текстовые агенты: tools, RAG, CRM writes с подтверждением. Единая логика across channels.",
+      "Agent backend — тот же LangGraph stack, что и текстовые агенты: tools, RAG, CRM writes с подтверждением. Единая логика по всем каналам.",
       "Pilot на одной линии — 4–6 недель. Бюджет — от 500 000 ₽ с telephony integration.",
       "ROI: containment rate (% без оператора), среднее время обработки, CSAT. Без метрик voice проект не масштабируем.",
     ],
@@ -1639,7 +1639,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       { q: "Handoff оператору?", a: "Warm transfer с transcript и CRM card pop." },
       { q: "Outbound calls?", a: "Возможно для reminder и qualification — compliance обязателен." },
       { q: "Multilingual?", a: "RU primary. EN — по модели STT." },
-      { q: "Telephony vendor?", a: "Voximplant, Mango, Asterisk — интegrируем существующий." },
+      { q: "Telephony vendor?", a: "Voximplant, Mango, Asterisk — интегрируем существующий." },
       { q: "Бюджет?", a: "От 500 000 ₽ pilot line." },
     ],
     related: [
@@ -1666,7 +1666,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Облачный OCR отправляет документы за рубеж",
       "Нет validation против справочника контрагентов",
     ],
-    deliverablesTitle: "Deliverables",
+    deliverablesTitle: "Что вы получаете",
     deliverables: [
       "OCR pipeline: upload/email → recognize → extract fields",
       "Validation rules и match с 1С контрагентами",
@@ -1971,7 +1971,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Security review каждого script заново",
       "Сложно переиспользовать tools между агентами",
     ],
-    deliverablesTitle: "Deliverables",
+    deliverablesTitle: "Что вы получаете",
     deliverables: [
       "MCP servers для CRM, 1C, files, internal APIs",
       "Auth, rate limits, allowlisted operations",
@@ -2003,7 +2003,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     ],
     roiTitle: "Эффект",
     roi: [
-      { value: "−50%", label: "время интegration на 2-й agent" },
+      { value: "−50%", label: "время интеграции на 2-й агент" },
       { value: "2–4 нед.", label: "MCP server per system" },
       { value: "audit", label: "полный trail tool calls" },
     ],
@@ -2038,7 +2038,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
       "Нет explicit human approval nodes",
       "Debugging multi-step LLM — black box",
     ],
-    deliverablesTitle: "Deliverables",
+    deliverablesTitle: "Что вы получаете",
     deliverables: [
       "LangGraph graph design и implementation",
       "PostgreSQL checkpoints для durable state",
@@ -2278,7 +2278,7 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     roi: [
       { value: "100%", label: "лидов в CRM автоматически" },
       { value: "−80%", label: "ручного переноса CRM↔1C" },
-      { value: "2–4 нед.", label: "базовая интegration" },
+      { value: "2–4 нед.", label: "базовая интеграция" },
     ],
     faqTitle: "FAQ по CRM-интеграции",
     faq: [
