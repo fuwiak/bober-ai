@@ -5,16 +5,17 @@ export const II_DLYA_BIZNESA_PAGE = {
   lineRu: "ИИ для бизнеса",
   lineEn: "AI for business",
 
-  metaTitleRu: "ИИ для бизнеса — аудит, разработка и внедрение под ключ | Bober AI",
+  metaTitleRu: "Внедрение ИИ в бизнес-процессы под ключ — цена и услуги | Bober AI",
   metaTitleEn: "AI for business — audit, development and turnkey deployment | Bober AI",
   metaDescRu:
-    "ИИ для бизнеса: аудит процессов, пилот и production-внедрение. CRM, документы, база знаний, продажи. Фиксированная смета, NDA, Yandex Cloud / Selectel / on-prem.",
+    "Внедрение ИИ в бизнес-процессы под ключ: аудит, пилот и production. CRM, 1С, документы, звонки. Фиксированная смета, NDA, Yandex Cloud / Selectel / on-prem.",
   metaDescEn:
     "AI for business: process audit, pilot and production deployment. CRM, documents, knowledge base, sales. Fixed estimate, NDA, Yandex Cloud / Selectel / on-prem.",
   metaKeywordsRu: [
+    "внедрение ии в бизнес",
+    "внедрение ии в бизнес процессы",
     "ии для бизнеса",
     "ии решения для бизнеса",
-    "внедрение ии в бизнес",
     "интеграция ии в бизнес",
     "разработка ии для бизнеса",
     "купить ии для бизнеса",
@@ -33,10 +34,10 @@ export const II_DLYA_BIZNESA_PAGE = {
     "ai deployment russia",
   ],
 
-  h1Ru: "ИИ для бизнеса: от аудита процессов до работающего внедрения",
+  h1Ru: "Внедрение ИИ в бизнес-процессы под ключ",
   h1En: "AI for business: from process audit to a working deployment",
   subtitleRu:
-    "Коммерческий лендинг и экспертный гид в одном: что купить, какие процессы закрыть, чем ассистент отличается от агента, как выглядит внедрение, архитектура, безопасность, кейсы и вилки бюджета — без пяти почти одинаковых SEO-страниц.",
+    "CRM, 1С, документы, звонки и знания компании — от аудита до production. Фиксированная смета, NDA, передача команде. Без абстрактного «AI-контура» в рекламе: конкретные услуги и цены.",
   subtitleEn:
     "A commercial landing and expert guide in one: what to buy, which processes to cover, how an assistant differs from an agent, how deployment works, architecture, security, cases and budget ranges — without five near-identical SEO pages.",
 } as const;

@@ -9,6 +9,7 @@ import PackagesShowcase from "@/components/PackagesShowcase.astro";
 import FaqSection from "@/components/FaqSection.astro";
 import RoiCalculatorSection from "@/components/RoiCalculatorSection.astro";
 import HomeAuthoritySections from "@/components/HomeAuthoritySections.astro";
+import HomeMarketOffers from "@/components/HomeMarketOffers.astro";
 import { loadMessages, localizePath } from "@/lib/i18n";
 import { getEnterpriseServicesListing } from "@/lib/enterprise-services";
 import { getPortfolioListing, PROFILE } from "@/lib/profile";
@@ -41,16 +42,19 @@ const founderAlt = hero.heroImageAlt || `${SITE_NAME} — Павел Стаси�
 const trustStats = messages.trust.stats;
 const trustBenefits = messages.trust.benefits;
 const ba = messages.beforeAfterDemo;
-const packageItems = messages.packages.items.map((item) => ({
-  name: item.name,
-  price: item.price,
-  duration: item.duration,
-  forWhom: item.forWhom,
-  result: item.result,
-  badge: "badge" in item ? (item.badge as string | undefined) : undefined,
-  featured: "featured" in item ? Boolean(item.featured) : false,
-  detailsHref: "detailsHref" in item ? (item.detailsHref as string | undefined) : undefined,
-}));
+/** Homepage: market-priority packages only (full list on /pricing). */
+const packageItems = messages.packages.items
+  .filter((item) => Boolean("featured" in item && item.featured))
+  .map((item) => ({
+    name: item.name,
+    price: item.price,
+    duration: item.duration,
+    forWhom: item.forWhom,
+    result: item.result,
+    badge: "badge" in item ? (item.badge as string | undefined) : undefined,
+    featured: true,
+    detailsHref: "detailsHref" in item ? (item.detailsHref as string | undefined) : undefined,
+  }));
 const faqItems = messages.faq.items.slice(0, 4);
 /** Cap homepage case grid — full list lives on /portfolio (TTFB / HTML weight). */
 const caseStudies = getPortfolioListing(locale);
@@ -64,10 +68,10 @@ const leadParagraphs = hero.valueProposition
 const HOME_OFFER_SLUGS = new Set([
   "crm-integration",
   "ai-sales-loop",
-  "rag",
   "document-processing",
-  "ai-consulting",
-  "llm-development",
+  "voice-ai",
+  "business-process-automation",
+  "ocr",
 ]);
 const services = getEnterpriseServicesListing(locale).filter((offer) => HOME_OFFER_SLUGS.has(offer.slug));
 const offersJsonLd = {
@@ -192,6 +196,14 @@ const homeJsonLd = [
       />
     </div>
   </section>
+
+  <HomeMarketOffers
+    locale={locale}
+    label={messages.homeLanding.marketOffersLabel}
+    title={messages.homeLanding.marketOffersTitle}
+    subtitle={messages.homeLanding.marketOffersSubtitle}
+    ctaLabel={messages.homeLanding.marketOffersCta}
+  />
 
   <BeforeAfterDemo
     label={ba.label}

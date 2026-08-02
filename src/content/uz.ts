@@ -219,6 +219,11 @@ const uzOverrides = {
     ],
   },
   homeLanding: {
+    marketOffersLabel: "Yuqori talab xizmatlari",
+    marketOffersTitle: "Kompaniyalar nima qidiradi — va nima joriy qilamiz",
+    marketOffersSubtitle:
+      "Bozor tili: joriy etish, sozlash, integratsiya, narx. Har bir yoʻnalish uchun alohida landing.",
+    marketOffersCta: "Xizmatni koʻrish →",
     proofLabel: "Natijalar",
     proofTitle: "Pilotlarda allaqachon o'lchaganlarimiz",
     casesLabel: "Keyslar",

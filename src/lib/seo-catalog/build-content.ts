@@ -8,14 +8,15 @@ import type {
 
 type CatalogLocale = "ru" | "kz" | "uz";
 
+/** Unique titles: Webmaster flagged many identical title/description pairs from catalog templates. */
 function buildMeta(_locale: CatalogLocale, copy: LocaleCopy): CatalogLandingContent["metaTitle"] {
-  return `${copy.h1} — Bober AI Systems`;
+  return `${copy.h1} — услуги, цена, внедрение | Bober AI`;
 }
 
 function buildDescription(_locale: CatalogLocale, copy: LocaleCopy): string {
-  const base = copy.subtitle;
-  if (base.length <= 155) return base;
-  return `${base.slice(0, 152)}…`;
+  const base = `${copy.h1}. ${copy.subtitle}`.replace(/\s+/g, " ").trim();
+  if (base.length <= 160) return base;
+  return `${base.slice(0, 157)}…`;
 }
 
 function buildLocaleContent(

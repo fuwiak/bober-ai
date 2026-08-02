@@ -3761,6 +3761,21 @@ html:not(.dark) .shell-code {
   .home-partners-card {
     @apply border border-hairline bg-surface-card p-6 md:p-8;
   }
+  .market-offers-grid {
+    @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-3;
+  }
+  .market-offer-card {
+    @apply flex flex-col border border-hairline bg-surface-card p-5 md:p-6 transition-colors;
+    text-decoration: none;
+    color: inherit;
+  }
+  .market-offer-card:hover {
+    border-color: var(--color-hairline-strong);
+    background: var(--color-surface-elevated, var(--color-surface-card));
+  }
+  .market-offer-card .link-more {
+    margin-top: auto;
+  }
   .hero-founder-stats {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));

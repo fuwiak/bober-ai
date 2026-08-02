@@ -1,0 +1,40 @@
+---
+import { localizePath, type Locale } from "@/lib/i18n";
+import { MARKET_HOME_OFFERS } from "@/lib/market-offers";
+
+interface Props {
+  locale: Locale;
+  label: string;
+  title: string;
+  subtitle: string;
+  ctaLabel: string;
+}
+
+const { locale, label, title, subtitle, ctaLabel } = Astro.props;
+---
+
+<section id="market-offers" class="section-band section--panel scroll-mt-16 border-b border-hairline">
+  <div class="container-editorial">
+    <span class="section-label">{label}</span>
+    <h2 class="section-title mt-4">{title}</h2>
+    <p class="body-copy mt-4 max-w-2xl text-base">{subtitle}</p>
+
+    <div class="market-offers-grid mt-10">
+      {
+        MARKET_HOME_OFFERS.map((offer) => (
+          <a
+            href={localizePath(offer.href, locale)}
+            class="market-offer-card"
+            data-goal="market_offer_click"
+            data-offer={offer.id}
+          >
+            <p class="meta-label">{offer.priceLabel}</p>
+            <h3 class="card-title mt-3 text-xl">{offer.title}</h3>
+            <p class="body-copy mt-3 text-base">{offer.description}</p>
+            <span class="link-more mt-6">{ctaLabel}</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

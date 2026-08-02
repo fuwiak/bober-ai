@@ -64,8 +64,8 @@ const ruExtra: EnterpriseService[] = [
   { id: "n8n", slug: "n8n", title: "Автоматизация на n8n", description: "n8n-воркфлоу с AI-слоем и интеграциями CRM, мессенджеров, API.", about: "Проектируем, разворачиваем и сопровождаем n8n в production.", salesNotes: "от 300 000 ₽", deliveryDays: 14, price: 300000, serviceImage: IMAGES.n8n },
   { id: "ai-agent", slug: "ai-agent", title: "AI-агенты для бизнеса", description: "Агенты с действиями: CRM, документы, workflow, эскалация к человеку.", about: "Многошаговые агенты с инструментами, мониторингом и handover.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["ai-agent"] },
   { id: "document-processing", slug: "document-processing", title: "Автоматизация документооборота", description: "OCR, согласования, извлечение данных — в CRM/ERP без ручного ввода.", about: "Пайплайны документов, workflow и интеграции с учётными системами.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["document-processing"], feedPath: "/automation/documents" },
-  { id: "voice-ai", slug: "voice-ai", title: "Голосовой AI", description: "Speech-to-text, голосовые боты, логирование звонков в CRM.", about: "Голосовые сценарии для поддержки и продаж с интеграцией в CRM.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["voice-ai"] },
-  { id: "ocr", slug: "ocr", title: "OCR и распознавание", description: "Извлечение текста и полей из PDF, сканов и фото.", about: "OCR-пайплайны с валидацией и выгрузкой в 1С, CRM или ERP.", salesNotes: "от 300 000 ₽", deliveryDays: 14, price: 300000, serviceImage: IMAGES.ocr },
+  { id: "voice-ai", slug: "voice-ai", title: "Речевая аналитика звонков", description: "Транскрипты, качество разговоров, факты в CRM и контроль менеджеров.", about: "Речевая аналитика и голосовые сценарии для продаж с интеграцией в CRM.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["voice-ai"] },
+  { id: "ocr", slug: "ocr", title: "Распознавание первичных документов в 1С", description: "Счета, акты, УПД → поля в 1С без ручного ввода.", about: "OCR-пайплайны с валидацией и выгрузкой в 1С, CRM или ERP.", salesNotes: "от 300 000 ₽", deliveryDays: 14, price: 300000, serviceImage: IMAGES.ocr },
   { id: "open-webui", slug: "open-webui", title: "Open WebUI", description: "Корпоративный чат с LLM, SSO и политиками доступа.", about: "Развёртывание Open WebUI, подключение моделей и guardrails.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["open-webui"] },
   { id: "self-hosted-ai", slug: "self-hosted-ai", title: "Self-hosted AI", description: "Приватный AI-стек в вашем контуре — без утечки данных.", about: "On-prem LLM, API, мониторинг и интеграции под NDA.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["self-hosted-ai"] },
   { id: "mcp", slug: "mcp", title: "MCP-интеграции", description: "Model Context Protocol — подключение LLM к CRM, БД и API.", about: "MCP-серверы для внутренних систем и инструментов агентов.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES.mcp },
@@ -75,9 +75,9 @@ const ruExtra: EnterpriseService[] = [
   {
     id: "crm-integration",
     slug: "crm-integration",
-    title: "Bitrix24 · amoCRM",
+    title: "Внедрение и настройка Битрикс24 / amoCRM",
     description:
-      "Внедрение и автоматизация CRM. Лестница Bitrix24: настройка от 150 000 ₽, 1С/документы/телефония от 300 000 ₽, AI-контур от 500 000 ₽.",
+      "Внедрение CRM под ключ. Битрикс24: настройка от 150 000 ₽, 1С/документы/телефония от 300 000 ₽, ИИ для продаж от 500 000 ₽.",
     about: "Двусторонние интеграции, webhooks, retry и мониторинг. Портал и данные остаются у вас.",
     salesNotes: "от 150 000 ₽",
     deliveryDays: 21,
@@ -102,9 +102,9 @@ const ruExtra: EnterpriseService[] = [
   {
     id: "ai-sales-loop",
     slug: "ai-sales-loop",
-    title: "AI-контур отдела продаж",
+    title: "ИИ для отдела продаж: звонки, CRM и контроль",
     description:
-      "Телефония, переписки, CRM и автоматические следующие действия — AI-контур поверх Bitrix24/amoCRM.",
+      "Анализ звонков, автозаполнение CRM, задачи и follow-up — поверх Bitrix24/amoCRM.",
     about:
       "Квалификация лидов, саммари звонков, задачи, follow-up и отчёт об упущенных сделках. От 500 000 ₽.",
     salesNotes: "от 500 000 ₽",
@@ -536,20 +536,18 @@ const enServices: EnterpriseService[] = [
 
 /** Курируемый набор для маркетинговой сетки «Решения по задачам бизнеса» на /services. */
 export const ENTERPRISE_SERVICES_LISTING_SLUGS = [
+  "crm-integration",
+  "ocr",
+  "voice-ai",
+  "ai-sales-loop",
   "business-process-automation",
+  "document-processing",
+  "ai-discovery-roadmap",
   "crm-quote-offers",
   "ai-inbound-calls",
-  "corporate-ai-agent-1c-crm",
-  "ai-meeting-crm",
-  "ai-sales-loop",
-  "sales-ai-agent",
+  "rag",
   "wildberries-independent-sales-channel",
   "secure-private-ai-cloud",
-  "enterprise-ai-assistant",
-  "private-llm-gigachat",
-  "crm-integration",
-  "rag",
-  "ai-discovery-roadmap",
 ] as const;
 
 /** RU marketplace offer — hide from UZ /services grid. */
