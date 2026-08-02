@@ -82,6 +82,21 @@ export const uzExtra = {
         href: "/services/ai-sales-loop",
       },
       {
+        badge: "Uchrashuv · CRM",
+        title: "AI Meeting-to-CRM",
+        description:
+          "VKS samarisi standart. Qiymat — uchrashuvdan keyin: qarorlar → vazifalar → CRM. Telemost; MTS Link, SaluteJazz, IVA360 ga moslashadi.",
+        items: [
+          "Telemost / MTS Link / SaluteJazz / IVA360 transkripti",
+          "Kelishuvlar va vazifalar Bitrix24 / amoCRM da",
+          "Kritik yozuvdan oldin odam tasdiqi",
+        ],
+        layout: "large",
+        featured: true,
+        slug: "ai-meeting-crm",
+        href: "/services/ai-meeting-crm",
+      },
+      {
         badge: "HR",
         title: "HR va onboarding",
         description: "AI xodimlarga reglamentlar va imtiyozlar boʻyicha javob beradi — HR yukini kamaytiradi.",

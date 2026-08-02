@@ -40,6 +40,7 @@ const IMAGES: Record<string, string> = {
   "crm-integration": "/stock/crm-integration.jpg",
   bitrix: "/stock/crm-integration.jpg",
   "ai-sales-loop": "/stock/crm-integration.jpg",
+  "ai-meeting-crm": "/stock/offers/ai-meeting-crm.jpg",
   "claude-smb": "/stock/enterprise-ai-assistant.jpg",
   "ii-dlya-biznesa": "/stock/enterprise-ai-assistant.jpg",
   automation: "/stock/business-process-automation.jpg",
@@ -85,6 +86,19 @@ const ruExtra: EnterpriseService[] = [
     inServicesCatalog: false,
   },
   { id: "ai-sales-loop", slug: "ai-sales-loop", title: "AI-контур отдела продаж", description: "Телефония, переписки, CRM и автоматические следующие действия — один продукт, не отдельные боты.", about: "Интеграция Bitrix24 / amoCRM с телефонией и AI — квалификация лидов, саммари звонков, задачи, follow-up и отчёт об упущенных сделках.", salesNotes: "от 300 000 ₽", deliveryDays: 21, price: 300000, serviceImage: IMAGES["ai-sales-loop"] },
+  {
+    id: "ai-meeting-crm",
+    slug: "ai-meeting-crm",
+    title: "AI Meeting-to-CRM",
+    description:
+      "Встреча → решения → задачи → CRM → документы → контроль срока. Не «саммари ради саммари» — исполнение после созвона.",
+    about:
+      "Транскрипт из Yandex Telemost / Yandex 360, MTS Link, SaluteJazz или IVA360 → договорённости, ответственные, сроки → Bitrix24/amoCRM, задачи и follow-up с human-in-the-loop.",
+    salesNotes: "от 300 000 ₽",
+    deliveryDays: 21,
+    price: 300000,
+    serviceImage: IMAGES["ai-meeting-crm"],
+  },
   {
     id: "claude-smb",
     slug: "claude-smb",
@@ -180,6 +194,19 @@ const enExtra: EnterpriseService[] = [
   { id: "ai-consulting", slug: "ai-consulting", title: "AI consulting", description: "Strategy, ROI, technology selection and implementation roadmap.", about: "Audit, recommendations and plan before procurement.", salesNotes: "from €1,500", deliveryDays: 10, price: 1500, serviceImage: IMAGES["ai-consulting"] },
   { id: "crm-integration", slug: "crm-integration", title: "Bitrix24 · amoCRM", description: "CRM implementation and automation: Bitrix24 (AI layer on BitrixGPT) and amoCRM — 1C, telephony, documents, pipelines; the portal and integrations stay with you.", about: "Bidirectional integrations, webhooks, retry and monitoring.", salesNotes: "from €4,000", deliveryDays: 21, price: 4000, serviceImage: IMAGES["crm-integration"] },
   { id: "ai-sales-loop", slug: "ai-sales-loop", title: "AI sales loop", description: "Telephony, chats, CRM and automatic next actions — one product, not separate bots.", about: "Bitrix24 / amoCRM with telephony and AI — lead qualification, call summaries, tasks, follow-up and lost-deal reports.", salesNotes: "from €3,000", deliveryDays: 21, price: 3000, serviceImage: IMAGES["ai-sales-loop"] },
+  {
+    id: "ai-meeting-crm",
+    slug: "ai-meeting-crm",
+    title: "AI Meeting-to-CRM",
+    description:
+      "Meeting → decisions → tasks → CRM → documents → deadline control. Not summary-for-summary — execution after the call.",
+    about:
+      "Transcript from Yandex Telemost / Yandex 360, MTS Link, SaluteJazz or IVA360 → agreements, owners, due dates → Bitrix24/amoCRM, tasks and follow-up with human-in-the-loop.",
+    salesNotes: "from €3,000",
+    deliveryDays: 21,
+    price: 3000,
+    serviceImage: IMAGES["ai-meeting-crm"],
+  },
   {
     id: "claude-smb",
     slug: "claude-smb",
@@ -383,6 +410,7 @@ const enServices: EnterpriseService[] = [
 /** Курируемый набор для маркетинговой сетки «Решения по задачам бизнеса» на /services. */
 export const ENTERPRISE_SERVICES_LISTING_SLUGS = [
   "business-process-automation",
+  "ai-meeting-crm",
   "ai-sales-loop",
   "sales-ai-agent",
   "wildberries-independent-sales-channel",
@@ -430,6 +458,13 @@ const UZ_SERVICE_COPY: Partial<
     title: "Savdo boʻlimi AI konturi",
     description: "Telefoniya, yozishmalar, CRM va avtomatik keyingi harakatlar — alohida botlar emas, bitta mahsulot.",
     about: "Bitrix24 / amoCRM + telefoniya + AI: lidlar, qoʻngʻiroq samarilari, vazifalar, follow-up.",
+  },
+  "ai-meeting-crm": {
+    title: "AI Meeting-to-CRM",
+    description:
+      "Uchrashuv → qarorlar → vazifalar → CRM → hujjatlar → muddat nazorati. Faqat samari emas — ijro.",
+    about:
+      "Yandex Telemost / Yandex 360, MTS Link, SaluteJazz yoki IVA360 transkripti → kelishuvlar, masʼullar, muddatlar → Bitrix24/amoCRM va follow-up (odam tasdiqlaydi).",
   },
   "crm-integration": {
     title: "Bitrix24 · amoCRM",

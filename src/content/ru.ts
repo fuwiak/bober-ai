@@ -592,6 +592,23 @@ const ru = {
         detailsHref: "/services/business-process-automation",
       },
       {
+        name: "AI Meeting-to-CRM",
+        price: "от 300 000 ₽",
+        duration: "2–4 недели",
+        forWhom: "ВКС уже умеет саммари — нужны задачи, CRM и контроль сроков после встречи",
+        result:
+          "Встреча → решения → задачи → Bitrix24/amoCRM → документы → контроль срока. Telemost / Yandex 360; адаптируем под MTS Link, SaluteJazz, IVA360.",
+        badge: "Вход в корпорации",
+        includes: [
+          "Транскрипт из Telemost, MTS Link, SaluteJazz или IVA360",
+          "Договорённости, ответственные, сроки → CRM",
+          "Задачи и follow-up с утверждением человеком",
+        ],
+        featured: true,
+        tier: "implementation",
+        detailsHref: "/services/ai-meeting-crm",
+      },
+      {
         name: "AI-контур отдела продаж",
         price: "от 300 000 ₽",
         duration: "2–4 недели",
@@ -834,6 +851,21 @@ const ru = {
         layout: "default",
         slug: "sales-ai-agent",
         href: "/services/sales-ai-agent",
+      },
+      {
+        badge: "Встречи · CRM",
+        title: "AI Meeting-to-CRM",
+        description:
+          "Саммари ВКС уже стандарт. Ценность — после встречи: решения → задачи → CRM → контроль срока. Telemost; адаптируем под MTS Link, SaluteJazz, IVA360.",
+        items: [
+          "Транскрипт из Telemost / MTS Link / SaluteJazz / IVA360",
+          "Договорённости и задачи в Bitrix24 / amoCRM",
+          "Утверждение человеком перед критической записью",
+        ],
+        layout: "large",
+        featured: true,
+        slug: "ai-meeting-crm",
+        href: "/services/ai-meeting-crm",
       },
       {
         badge: "Телефония · CRM",

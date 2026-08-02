@@ -312,10 +312,10 @@ Classic license / deploy offers on the hub: KES для бизнеса, Security 
 
 ### Featured Projects
 
+- AI Meeting-to-CRM — встреча → решения → задачи → CRM → контроль срока. Референс Telemost / Yandex 360; адаптируем под MTS Link, SaluteJazz, IVA360 (от 300 000 ₽) · https://www.bober-systems.ru/portfolio/yandex-telemost-agent · услуга: https://www.bober-systems.ru/services/ai-meeting-crm
 - AI-контур отдела продаж — телефония + переписки + Bitrix24/amoCRM + AI: квалификация лидов, саммари звонков, автозадачи, follow-up, упущенные сделки (от 300 000 ₽) · https://www.bober-systems.ru/portfolio/ai-sales-loop · услуга: https://www.bober-systems.ru/services/ai-sales-loop
 - Kaspersky — RAG-бот по продуктам для сотрудников 1С (product knowledge assistant)
 - Независимый канал продаж параллельно с Wildberries — витрина, Bitrix24/amoCRM, 1С/МойСклад, AI по каталогу (от 300 000 ₽) · https://www.bober-systems.ru/portfolio/wildberries-independent-sales-channel
-- Yandex Telemost Agent — ИИ-помощник для встреч и продаж: расшифровка, CRM, задачи после созвона (300 000 ₽)
 - ELIA Suite — изолированные воркспейсы; КП за 2 мин вместо 45; +32% конверсия quote→заказ
 - Автоматизация КП на LLM — генерация DOCX/PDF из каталога для B2B e-commerce (300 000 ₽)
 - GTM Flow — сбор лидов из рекламы и мессенджеров, AI-квалификация, единая воронка (300 000 ₽)

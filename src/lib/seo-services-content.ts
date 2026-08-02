@@ -176,6 +176,84 @@ const CONTENT_RU: Record<string, SeoServiceContent> = {
     ],
   },
 
+  "ai-meeting-crm": {
+    metaTitle: "AI Meeting-to-CRM: встречи → задачи и CRM",
+    metaDescription:
+      "Транскрипт из Telemost, MTS Link, SaluteJazz или IVA360 → договорённости, Bitrix24/amoCRM, задачи и follow-up с утверждением человеком. Пилот от 300 000 ₽.",
+    eyebrow: "Услуга · Встречи · CRM",
+    h1: "AI Meeting-to-CRM",
+    subtitle:
+      "Транскрипция и саммари уже стандарт ВКС. Ценность — после встречи: решения → задачи → CRM → документы → контроль срока → отчёт исполнения.",
+    problemsTitle: "Почему «саммари встречи» больше не продаётся отдельно",
+    problems: [
+      "ВКС уже умеют расшифровку и краткое резюме — отдельное внедрение «AI пишет саммари» теряет смысл",
+      "Договорённости остаются в чате или PDF — CRM и задачи не обновляются",
+      "Ответственные и сроки не фиксируются — follow-up забывается",
+      "Критические изменения пишутся в сделку без проверки человеком",
+    ],
+    deliverablesTitle: "Что вы получаете",
+    deliverables: [
+      "Забор транскрипта из Yandex Telemost / Yandex 360, MTS Link, SaluteJazz или IVA360",
+      "Распознавание договорённостей, ответственных и сроков",
+      "Обновление сделки в Bitrix24 или amoCRM",
+      "Задачи, follow-up и вложения; human-in-the-loop перед критической записью",
+    ],
+    intro: [
+      "Исследования корпоративных коммуникаций показывают: транскрипция, саммари и базовые AI-функции уже стандарт российских платформ ВКС/UC (MTS Link, SaluteJazz, IVA360 и др.). Экономика вендоров — оценки поставщиков, не независимый аудит ROI.",
+      "Следствие для интегратора: продавать «AI делает саммари» как отдельный продукт всё сложнее. Ценность начинается после встречи — когда решения превращаются в задачи, поля CRM, документы и контроль сроков.",
+      "AI Meeting-to-CRM — входной продукт для корпораций: используем платформу, которая уже есть у клиента (Telemost / Yandex 360, MTS Link, SaluteJazz, IVA360), без замены всего контура коммуникаций. Референсная реализация — Yandex Telemost Agent; контур адаптируем под выбранную ВКС.",
+      "ИИ-помощник для встреч и продаж фиксирует ключевые договорённости, делает расшифровку и помогает не терять детали общения с клиентом. Дальше — письма, обновление CRM и задачи без ручной рутины.",
+      "Пилот — 2–4 недели на одном источнике транскриптов и одной CRM. Бюджет от 300 000 ₽. NDA до обмена записями встреч.",
+    ],
+    howWeSolveTitle: "Как внедряем",
+    howWeSolve: [
+      { title: "Источник встреч", text: "Какая ВКС уже в компании: Telemost / Yandex 360, MTS Link, SaluteJazz, IVA360 — API, экспорт, права доступа." },
+      { title: "Модель фактов", text: "Договорённости, ответственные, сроки, связанные сделки и документы — что писать в CRM." },
+      { title: "Контур исполнения", text: "Bitrix24 / amoCRM: поля сделки, задачи, follow-up; утверждение человеком перед критическими изменениями." },
+      { title: "Пилот и контроль", text: "% встреч с задачами в срок, полнота CRM, эскалации просрочек." },
+    ],
+    architectureTitle: "Типовая архитектура",
+    architecture: [
+      "ВКС (Telemost / MTS Link / SaluteJazz / IVA360) → транскрипт",
+      "AI-слой: договорённости, ответственные, сроки, саммари",
+      "Очередь утверждения (human-in-the-loop)",
+      "Bitrix24 / amoCRM: сделка, задачи, история",
+      "Документы и follow-up → контроль срока → отчёт исполнения",
+    ],
+    roiTitle: "Типичный эффект",
+    roi: [
+      { value: "после встречи", label: "решения сразу в CRM и задачах" },
+      { value: "2–4 нед.", label: "пилот на одной ВКС и CRM" },
+      { value: "HITL", label: "критические записи — только после человека" },
+    ],
+    faqTitle: "Частые вопросы",
+    faq: [
+      {
+        q: "Это то же, что встроенное саммари ВКС?",
+        a: "Нет. Саммари — вход. Продукт — задачи, CRM, документы и контроль сроков после встречи.",
+      },
+      {
+        q: "Только Yandex Telemost?",
+        a: "Референс — Telemost / Yandex 360. Контур адаптируем под MTS Link, SaluteJazz и IVA360 — подключаем платформу, которая уже есть у клиента.",
+      },
+      { q: "Какая CRM?", a: "Bitrix24 и amoCRM. Другие — через REST." },
+      {
+        q: "Можно ли писать в CRM без подтверждения?",
+        a: "Черновики и низкорисковые поля — по правилам. Критические изменения статуса сделки и суммы — только после утверждения человеком.",
+      },
+      { q: "Бюджет?", a: "Пилот от 300 000 ₽. Несколько источников ВКС и полный контур контроля — от 500 000 ₽." },
+      { q: "Данные и NDA?", a: "Можно в вашем облаке или on-prem. NDA до обмена записями и транскриптами." },
+    ],
+    related: [
+      { href: "/portfolio/yandex-telemost-agent", label: "Кейс · Telemost Agent" },
+      { href: "/services/ai-sales-loop", label: "AI-контур отдела продаж" },
+      { href: "/services/crm-integration", label: "Интеграции CRM" },
+      { href: "/services/voice-ai", label: "Голосовой AI" },
+      { href: "/bitrix", label: "Bitrix24 · внедрение и AI" },
+    ],
+    caseStudySlugs: ["yandex-telemost-agent"],
+  },
+
   "sales-ai-agent": {
     metaTitle: "AI-агент для продаж и автоматизация отдела продаж",
     metaDescription:
@@ -2086,6 +2164,76 @@ const CONTENT_EN: Record<string, SeoServiceContent> = {
       { href: "/services/crm-integration", label: "CRM integrations" },
       { href: "/services/voice-ai", label: "Voice AI" },
     ],
+  },
+
+  "ai-meeting-crm": {
+    metaTitle: "AI Meeting-to-CRM: meetings → tasks and CRM",
+    metaDescription:
+      "Transcript from Telemost, MTS Link, SaluteJazz or IVA360 → agreements, Bitrix24/amoCRM, tasks and follow-up with human approval. Pilot from €3,000.",
+    eyebrow: "Service · Meetings · CRM",
+    h1: "AI Meeting-to-CRM",
+    subtitle:
+      "Transcription and summaries are already UC standard. Value starts after the meeting: decisions → tasks → CRM → documents → deadline control → execution report.",
+    problemsTitle: "Why “AI meeting summary” is hard to sell alone",
+    problems: [
+      "UC platforms already ship transcription and short summaries",
+      "Agreements stay in chat or PDF — CRM and tasks are not updated",
+      "Owners and due dates are not captured — follow-up is forgotten",
+      "Critical deal changes are written without human review",
+    ],
+    deliverablesTitle: "What you get",
+    deliverables: [
+      "Transcript ingest from Yandex Telemost / Yandex 360, MTS Link, SaluteJazz or IVA360",
+      "Extraction of agreements, owners and due dates",
+      "Deal updates in Bitrix24 or amoCRM",
+      "Tasks, follow-up and attachments; human-in-the-loop before critical writes",
+    ],
+    intro: [
+      "Corporate communications research shows transcription and basic AI features are already standard on Russian UC platforms (MTS Link, SaluteJazz, IVA360, etc.). Vendor ROI numbers are supplier estimates, not independent audits.",
+      "Consequence: selling “AI writes a meeting summary” as a standalone product gets harder. Integrator value starts after the meeting — when decisions become tasks, CRM fields, documents and deadline control.",
+      "AI Meeting-to-CRM is a corporate entry product: we use the platform the client already has (Telemost / Yandex 360, MTS Link, SaluteJazz, IVA360) without replacing the whole UC stack. Reference implementation — Yandex Telemost Agent; we adapt the loop to the chosen UC.",
+      "Pilot: 2–4 weeks on one transcript source and one CRM. Budget from €3,000. NDA before exchanging recordings.",
+    ],
+    howWeSolveTitle: "How we deliver",
+    howWeSolve: [
+      { title: "Meeting source", text: "Which UC is already in place: Telemost / Yandex 360, MTS Link, SaluteJazz, IVA360 — API, export, access." },
+      { title: "Fact model", text: "Agreements, owners, due dates, related deals and documents — what to write to CRM." },
+      { title: "Execution loop", text: "Bitrix24 / amoCRM: deal fields, tasks, follow-up; human approval before critical changes." },
+      { title: "Pilot & control", text: "% of meetings with on-time tasks, CRM completeness, overdue escalations." },
+    ],
+    architectureTitle: "Typical architecture",
+    architecture: [
+      "UC (Telemost / MTS Link / SaluteJazz / IVA360) → transcript",
+      "AI layer: agreements, owners, due dates, summary",
+      "Approval queue (human-in-the-loop)",
+      "Bitrix24 / amoCRM: deal, tasks, history",
+      "Documents and follow-up → deadline control → execution report",
+    ],
+    roiTitle: "Typical impact",
+    roi: [
+      { value: "post-meeting", label: "decisions into CRM and tasks" },
+      { value: "2–4 wks", label: "pilot on one UC and CRM" },
+      { value: "HITL", label: "critical writes only after a human" },
+    ],
+    faqTitle: "FAQ",
+    faq: [
+      { q: "Is this the built-in UC summary?", a: "No. Summary is the input. The product is tasks, CRM, documents and deadline control after the meeting." },
+      {
+        q: "Telemost only?",
+        a: "Reference is Telemost / Yandex 360. We adapt the loop for MTS Link, SaluteJazz and IVA360 — we connect what the client already uses.",
+      },
+      { q: "Which CRM?", a: "Bitrix24 and amoCRM. Others via REST." },
+      { q: "Write to CRM without approval?", a: "Drafts and low-risk fields by policy. Critical deal status and amount changes only after human approval." },
+      { q: "Budget?", a: "Pilot from €3,000. Multiple UC sources and full control loop from €5,000." },
+      { q: "Data & NDA?", a: "Your cloud or on-prem. NDA before exchanging recordings and transcripts." },
+    ],
+    related: [
+      { href: "/portfolio/yandex-telemost-agent", label: "Case · Telemost Agent" },
+      { href: "/services/ai-sales-loop", label: "AI sales loop" },
+      { href: "/services/crm-integration", label: "CRM integrations" },
+      { href: "/services/voice-ai", label: "Voice AI" },
+    ],
+    caseStudySlugs: ["yandex-telemost-agent"],
   },
 
   "sales-ai-agent": {

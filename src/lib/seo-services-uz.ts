@@ -113,6 +113,65 @@ export const CONTENT_UZ: Record<string, SeoServiceContent> = {
       "invoice-processing-pipeline"
     ]
   },
+  "ai-meeting-crm": {
+    problemsTitle: "Tipik muammolar",
+    deliverablesTitle: "Nima olasiz",
+    howWeSolveTitle: "Qanday ishlaymiz",
+    architectureTitle: "Tipik arxitektura",
+    roiTitle: "Orientir effekt",
+    faqTitle: "Tez-tez beriladigan savollar",
+    eyebrow: "Xizmat · Uchrashuv · CRM",
+    metaTitle: "AI Meeting-to-CRM: uchrashuv → vazifa va CRM | Bober AI",
+    metaDescription:
+      "Telemost, MTS Link, SaluteJazz yoki IVA360 transkripti → Bitrix24/amoCRM, vazifalar va follow-up. 30 000 000 soʻmdan.",
+    h1: "AI Meeting-to-CRM",
+    subtitle:
+      "VKS samarisi allaqachon standart. Qiymat — uchrashuvdan keyin: qarorlar → vazifalar → CRM → muddat nazorati.",
+    problems: [
+      "VKS samari qiladi, lekin CRM yangilanmaydi",
+      "Kelishuvlar PDF da qoladi — vazifa yoʻq",
+      "Muddatlar nazoratsiz — follow-up unutiladi",
+    ],
+    deliverables: [
+      "Telemost / MTS Link / SaluteJazz / IVA360 transkripti",
+      "Kelishuvlar, masʼullar, muddatlar → CRM",
+      "Vazifalar va follow-up — odam tasdiqlaydi",
+    ],
+    intro: [
+      "Referens — Yandex Telemost Agent. Kontur MTS Link, SaluteJazz va IVA360 ga moslashadi.",
+      "Mahsulot: uchrashuvdan keyingi ijro, nafaqat samari.",
+    ],
+    howWeSolve: [
+      { title: "VKS manbai", text: "Mavjud platforma: Telemost, MTS Link, SaluteJazz yoki IVA360." },
+      { title: "Fakt modeli", text: "Kelishuvlar, masʼullar, muddatlar — CRM ga nima yoziladi." },
+      { title: "Ijro", text: "Bitrix24/amoCRM + HITL kritik yozuvlardan oldin." },
+      { title: "Pilot", text: "2–4 hafta — bitta VKS va bitta CRM." },
+    ],
+    architecture: [
+      "VKS → transkript",
+      "AI: kelishuvlar va muddatlar",
+      "Odam tasdiqi → CRM va vazifalar",
+    ],
+    roi: [
+      { value: "2–4 hafta", label: "pilot" },
+      { value: "HITL", label: "kritik yozuvlar" },
+    ],
+    faq: [
+      {
+        q: "Faqat Telemostmi?",
+        a: "Yoʻq. Referens Telemost; MTS Link, SaluteJazz va IVA360 ga moslaymiz.",
+      },
+      { q: "Narx?", a: "Pilot 30 000 000 soʻmdan." },
+      { q: "Qaysi CRM?", a: "Bitrix24 va amoCRM." },
+    ],
+    related: [
+      { href: "/portfolio/yandex-telemost-agent", label: "Keys · Telemost Agent" },
+      { href: "/services/ai-sales-loop", label: "Savdo AI konturi" },
+      { href: "/services/crm-integration", label: "CRM integratsiya" },
+    ],
+    caseStudySlugs: ["yandex-telemost-agent"],
+  },
+
   "ai-sales-loop": {
     "problemsTitle": "Tipik muammolar",
     "deliverablesTitle": "Nima olasiz",

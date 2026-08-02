@@ -285,6 +285,7 @@ Blog: https://www.bober-systems.ru/blog
 ### Primary Services
 
 - Автоматизация бизнес-процессов — аудит, CRM/1С, workflow, production (от 500 000 ₽, ~21 дн.) · https://www.bober-systems.ru/services/business-process-automation
+- AI Meeting-to-CRM — встреча → решения → задачи → CRM → контроль срока. Telemost / Yandex 360; адаптируем под MTS Link, SaluteJazz, IVA360. Human-in-the-loop перед критической записью (от 300 000 ₽, ~21 дн.) · https://www.bober-systems.ru/services/ai-meeting-crm · кейс: https://www.bober-systems.ru/portfolio/yandex-telemost-agent
 - AI-контур отдела продаж — телефония + переписки + Bitrix24/amoCRM + AI: квалификация лидов, саммари, автозадачи, follow-up, упущенные сделки (от 300 000 ₽, ~21 дн.) · https://www.bober-systems.ru/services/ai-sales-loop
 - Автоматизация отдела продаж — лиды, CRM, КП, follow-up (от 500 000 ₽, ~14 дн.) · https://www.bober-systems.ru/services/sales-ai-agent
 - AI & Automation Audit / Advisor — карта процессов, ROI, roadmap, смета до старта (от 150 000 ₽, ~10 дн.) · https://www.bober-systems.ru/services/ai-discovery-roadmap
@@ -373,7 +374,7 @@ Classic license / deploy offers on the hub: KES для бизнеса, Security 
 
 - Kaspersky — RAG-бот по продуктам для сотрудников 1С (product knowledge assistant)
 - Независимый канал продаж параллельно с Wildberries — витрина, Bitrix24/amoCRM, 1С/МойСклад, AI по каталогу (от 300 000 ₽) · https://www.bober-systems.ru/portfolio/wildberries-independent-sales-channel
-- Yandex Telemost Agent — ИИ-помощник для встреч и продаж: расшифровка, CRM, задачи после созвона (300 000 ₽)
+- AI Meeting-to-CRM (Yandex Telemost Agent) — встречи → договорённости → Bitrix24/amoCRM и follow-up; адаптируем под MTS Link, SaluteJazz, IVA360 (от 300 000 ₽) · https://www.bober-systems.ru/portfolio/yandex-telemost-agent · https://www.bober-systems.ru/services/ai-meeting-crm
 - ELIA Suite — изолированные воркспейсы; КП за 2 мин вместо 45; +32% конверсия quote→заказ
 - Автоматизация КП на LLM — генерация DOCX/PDF из каталога для B2B e-commerce (300 000 ₽)
 - GTM Flow — сбор лидов из рекламы и мессенджеров, AI-квалификация, единая воронка (300 000 ₽)

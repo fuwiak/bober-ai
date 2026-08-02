@@ -49,16 +49,19 @@ export const PORTFOLIO_EN: Record<string, PortfolioEnCopy> = {
       "Less manual CRM entry after calls, systematic follow-up, visibility of lost deals for the manager. Pilot in 2–4 weeks; full loop from €3,000.",
   },
   "yandex-telemost-agent": {
-    title: "Yandex Telemost Agent — AI for meetings and sales",
-    category: "Artificial intelligence",
-    metric: "Automatic meeting summaries in CRM",
+    title: "AI Meeting-to-CRM — meetings into tasks and CRM",
+    subtitle: "Telemost / Yandex 360 · adaptable to MTS Link, SaluteJazz, IVA360",
+    seoTitle: "AI Meeting-to-CRM: meeting transcript → Bitrix24/amoCRM and follow-up",
+    category: "Sales automation",
+    metric: "Meeting → decisions → tasks → CRM → deadline control",
+    imageBadge: "Enterprise entry",
     priceLabel: "from €3,000",
     description:
-      "An AI assistant for meetings and sales that captures key agreements during the call, transcribes the conversation and helps teams keep important client details.",
+      "An AI assistant for meetings and sales that captures key agreements during the call, transcribes the conversation and helps teams keep important client details. Transcription alone is already UC standard — value is post-meeting execution.",
     solution:
-      "The system connects to working tools, drafts follow-up emails, updates CRM and creates tasks after the meeting without manual copy-paste.",
+      "Connects to working tools (reference: Yandex Telemost / Yandex 360; adaptable to MTS Link, SaluteJazz, IVA360), drafts follow-up emails, updates CRM and creates tasks after the meeting. Critical writes require human approval.",
     result:
-      "Teams save time, process meeting outcomes faster, retain agreements and improve client follow-through and sales quality.",
+      "Teams save time, process meeting outcomes faster, retain agreements and improve follow-through. Pilot from €3,000.",
   },
   "kaspersky-ai-assistant": {
     title: "Kaspersky product RAG bot for 1C staff",
@@ -211,14 +214,17 @@ export const PORTFOLIO_UZ: Record<string, PortfolioLocaleCopy> = {
     priceLabel: "50 000 000 soʻmdan",
   },
   "yandex-telemost-agent": {
-    title: "Yandex Telemost Agent — uchrashuv va savdo uchun AI",
-    category: "Sunʼiy intellekt",
-    metric: "Uchrashuv yakunlari avtomatik CRM da",
+    title: "AI Meeting-to-CRM — uchrashuvdan vazifa va CRM",
+    subtitle: "Telemost / Yandex 360 · MTS Link, SaluteJazz, IVA360 ga moslashadi",
+    seoTitle: "AI Meeting-to-CRM: uchrashuv transkripti → Bitrix24/amoCRM",
+    category: "Savdo avtomatlashtirish",
+    metric: "Uchrashuv → qarorlar → vazifalar → CRM → muddat nazorati",
+    imageBadge: "Korporativ kirish",
     description:
-      "Uchrashuvdagi kelishuvlar yoʻqolardi. Menejerlar qoʻlda yozib, CRM ni kech yangilardi.",
+      "Uchrashuv va savdo uchun AI: kelishuvlarni qayd etadi, transkript yozadi. Oddiy samari VKS da allaqachon bor — qiymat uchrashuvdan keyingi ijroda.",
     solution:
-      "AI uchrashuvni qayd etadi, samari yozadi, CRM va vazifalarni yangilaydi — qoʻlda nusxa koʻchirmasiz.",
-    result: "Tezroq follow-up, unutilgan kelishuvlar kamayadi.",
+      "Ishchi servislarga ulanadi (referens — Yandex Telemost; MTS Link, SaluteJazz, IVA360 ga moslashadi), xatlar, CRM yangilash va vazifalar. Muhim yozuvlar — odam tasdiqlagach.",
+    result: "Tezroq follow-up, unutilgan kelishuvlar kamayadi. Pilot 30 000 000 soʻmdan.",
     priceLabel: "30 000 000 soʻmdan",
   },
   "lead-generation": {

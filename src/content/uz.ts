@@ -585,6 +585,23 @@ const uzOverrides = {
         detailsHref: "/services/business-process-automation",
       },
       {
+        name: "AI Meeting-to-CRM",
+        price: "30 000 000 soʻmdan",
+        duration: "2–4 hafta",
+        forWhom: "VKS allaqachon samari qiladi — uchrashuvdan keyin vazifa, CRM va muddat nazorati kerak",
+        result:
+          "Uchrashuv → qarorlar → vazifalar → Bitrix24/amoCRM → hujjatlar → muddat. Telemost / Yandex 360; MTS Link, SaluteJazz, IVA360 ga moslashadi.",
+        badge: "Korporativ kirish",
+        includes: [
+          "Telemost, MTS Link, SaluteJazz yoki IVA360 transkripti",
+          "Kelishuvlar, masʼullar, muddatlar → CRM",
+          "Vazifalar va follow-up — odam tasdiqlaydi",
+        ],
+        featured: true,
+        tier: "implementation",
+        detailsHref: "/services/ai-meeting-crm",
+      },
+      {
         name: "Savdo boʻlimi AI konturi",
         price: "30 000 000 soʻmdan",
         duration: "2–4 hafta",
