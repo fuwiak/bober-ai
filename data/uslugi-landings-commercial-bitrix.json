@@ -1,0 +1,27 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "specializationId": "14621107-8394-44af-96e5-331a0f9dafed",
+  "specializationNote": "Настройка Битрикс — лендинги bitrix24-implementation и bitrix24-1c (без фото)",
+  "landings": [
+    "/integrations/bitrix24-implementation",
+    "/integrations/bitrix24-1c"
+  ],
+  "publicProfile": "https://uslugi.yandex.ru/profile/PawelStasinski-254144",
+  "services": [
+    {
+      "name": "Внедрение и интеграция Битрикс24",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Внедрение и интеграция Битрикс24 под ключ: портал, воронки, телефония, 1С и мессенджеры. Пилот от 300 000 ₽, 2–4 недели. Москва и удалённо. bober-systems.ru/integrations/bitrix24-implementation"
+    },
+    {
+      "name": "Интеграция Битрикс24 с 1С ЗУП и УНФ",
+      "price": 35000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Интеграция Битрикс24 с 1С, ЗУП и УНФ: сделки, заказы, контрагенты и статусы без ручного переноса. Москва и удалённо. От 35 000 ₽. bober-systems.ru/integrations/bitrix24-1c"
+    }
+  ]
+}

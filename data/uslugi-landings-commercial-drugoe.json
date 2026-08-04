@@ -1,0 +1,77 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "specializationId": "187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "specializationNote": "Компьютеры и IT → Другое — коммерческие лендинги Wordstat (без фото)",
+  "note": "Add-only titles aligned with buy-intent landings. No photo fields. Skip duplicates already in cabinet.",
+  "landings": [
+    "/automation",
+    "/automation/documents",
+    "/automation/ocr-data-extraction",
+    "/automation/kp-from-crm",
+    "/automation/proposal-generation",
+    "/automation/sales-department",
+    "/ai/ai-implementation",
+    "/ii-dlya-biznesa",
+    "/solutions/rag-search"
+  ],
+  "publicProfile": "https://uslugi.yandex.ru/profile/PawelStasinski-254144",
+  "services": [
+    {
+      "name": "Автоматизация документов, CRM и бизнес-процессов",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Автоматизация документов, CRM и бизнес-процессов: воронка, КП, OCR и согласования без ручного копирования. Пилот 2–4 недели, фиксированная смета. Москва и удалённо. От 400 000 ₽. Подробнее: bober-systems.ru/automation"
+    },
+    {
+      "name": "Распознавание первичных документов в 1С",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Распознавание первичных документов в 1С: счета, акты, УПД и накладные → поля в учёт без ручного ввода. Пилот на одном типе документа, 2–4 недели. Москва и удалённо. От 300 000 ₽. bober-systems.ru/automation/ocr-data-extraction"
+    },
+    {
+      "name": "Автоматизация КП из CRM",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Автоматизация КП из CRM: генерация коммерческих предложений из сделки и прайса в DOCX/PDF за минуты. Связка с Bitrix24 / amoCRM. Москва и удалённо. От 300 000 ₽. bober-systems.ru/automation/kp-from-crm"
+    },
+    {
+      "name": "Автоматизация коммерческих предложений",
+      "price": 500000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Автоматизация коммерческих предложений из CRM и прайса: шаблоны, версии, follow-up и метрики quote→заказ. Пилот 2–4 недели. Москва и удалённо. От 500 000 ₽. bober-systems.ru/automation/proposal-generation"
+    },
+    {
+      "name": "Автоматизация отдела продаж",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Автоматизация отдела продаж: квалификация лидов, КП, follow-up и дашборд воронки CRM. Меньше рутины — быстрее реакция на лид. Москва и удалённо. От 300 000 ₽. bober-systems.ru/automation/sales-department"
+    },
+    {
+      "name": "Компания по внедрению ИИ",
+      "price": 500000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Компания по внедрению ИИ: фиксированная стоимость, сроки и production-контур. От аудита до запуска в CRM и 1С. Москва и удалённо. От 500 000 ₽. bober-systems.ru/ai/ai-implementation"
+    },
+    {
+      "name": "Компания по внедрению ИИ в бизнес-процессы",
+      "price": 500000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "ИИ для бизнеса: от аудита процесса до рабочего контура. Интеграции CRM/документы, пилот с KPI, передача команде. Москва и удалённо. От 500 000 ₽. bober-systems.ru/ii-dlya-biznesa"
+    },
+    {
+      "name": "Корпоративный RAG поиск по документам",
+      "price": 500000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Корпоративный RAG — поиск по документам компании: ответы со ссылками на источник. Аудит от 150 000 ₽; внедрение обычно от 500 000 ₽. Москва и удалённо. bober-systems.ru/solutions/rag-search"
+    }
+  ]
+}

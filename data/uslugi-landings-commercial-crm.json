@@ -1,0 +1,27 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "specializationId": "2673db51-904b-429a-8871-35eeb8b5f4e2",
+  "specializationNote": "CRM/ERP — лендинги crm-automation и amocrm (без фото)",
+  "landings": [
+    "/integrations/crm-automation",
+    "/integrations/amocrm-automation"
+  ],
+  "publicProfile": "https://uslugi.yandex.ru/profile/PawelStasinski-254144",
+  "services": [
+    {
+      "name": "Автоматизация и внедрение CRM",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Автоматизация и внедрение CRM: стадии, роботы, заявки с сайта, отчёты. Пилот 2–4 недели. Москва и удалённо. От 300 000 ₽. bober-systems.ru/integrations/crm-automation"
+    },
+    {
+      "name": "Автоматизация amoCRM",
+      "price": 500000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Автоматизация amoCRM: воронка, заявки с сайта и рекламы, роботы, КП и follow-up без ручного ввода. Пилот 2–4 недели. Москва и удалённо. От 500 000 ₽. bober-systems.ru/integrations/amocrm-automation"
+    }
+  ]
+}
