@@ -54,7 +54,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   try {
-    const bot = getBusinessBot(token);
+    const bot = await getBusinessBot(token);
     // Manual feed keeps Astro adapter thin; Grammy handles Business + DM.
     // Await full handler (LLM up to ~45s) — Railway webhook timeout is generous.
     await bot.handleUpdate(update as Parameters<typeof bot.handleUpdate>[0]);

@@ -21,7 +21,12 @@ export const HISTORY_LIMIT = (() => {
 let schemaReady: Promise<void> | null = null;
 
 async function ready() {
-  if (!schemaReady) schemaReady = ensureSchema();
+  if (!schemaReady) {
+    schemaReady = ensureSchema().catch((err) => {
+      schemaReady = null;
+      throw err;
+    });
+  }
   await schemaReady;
 }
 

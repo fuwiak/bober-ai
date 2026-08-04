@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS tg_customers (
   preferred_lang TEXT
 );
 CREATE INDEX IF NOT EXISTS tg_customers_tg_uid_idx ON tg_customers(telegram_user_id);
-CREATE INDEX IF NOT EXISTS tg_customers_next_reminder_idx ON tg_customers(next_reminder_at);
+-- next_reminder index created in SQLITE_MIGRATE after ADD COLUMN (old DBs lack the col)
 
 CREATE TABLE IF NOT EXISTS tg_conversations (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -63,6 +63,7 @@ ALTER TABLE tg_customers ADD COLUMN next_reminder_at INTEGER;
 ALTER TABLE tg_customers ADD COLUMN reminder_liked_count INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE tg_customers ADD COLUMN reminder_opted_out_at INTEGER;
 ALTER TABLE tg_customers ADD COLUMN preferred_lang TEXT;
+CREATE INDEX IF NOT EXISTS tg_customers_next_reminder_idx ON tg_customers(next_reminder_at);
 `;
 
 const PG_DDL = `
@@ -81,7 +82,7 @@ CREATE TABLE IF NOT EXISTS tg_customers (
   preferred_lang TEXT
 );
 CREATE INDEX IF NOT EXISTS tg_customers_tg_uid_idx ON tg_customers(telegram_user_id);
-CREATE INDEX IF NOT EXISTS tg_customers_next_reminder_idx ON tg_customers(next_reminder_at);
+-- next_reminder index created in PG_MIGRATE after ADD COLUMN (old DBs lack the col)
 
 CREATE TABLE IF NOT EXISTS tg_conversations (
   id SERIAL PRIMARY KEY,

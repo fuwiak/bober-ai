@@ -139,11 +139,15 @@ export function ensureReminderScheduler(): void {
   const interval = Number.isFinite(ms) && ms >= 60_000 ? ms : 15 * 60_000;
 
   const tick = () => {
-    void runReminderTick().then((r) => {
-      if (r.checked > 0 || r.errors.length) {
-        console.info("[telegram-reminders] tick", r);
-      }
-    });
+    void runReminderTick()
+      .then((r) => {
+        if (r.checked > 0 || r.errors.length) {
+          console.info("[telegram-reminders] tick", r);
+        }
+      })
+      .catch((err) => {
+        console.error("[telegram-reminders] tick failed", err);
+      });
   };
 
   intervalHandle = setInterval(tick, interval);

@@ -14,6 +14,7 @@ import { ensureReminderScheduler } from "@/lib/telegram-business/reminders/tick"
 export type BusinessBot = Bot;
 
 let botSingleton: BusinessBot | null = null;
+let botInitPromise: Promise<BusinessBot> | null = null;
 
 export function createBusinessBot(token: string): BusinessBot {
   ensureReminderScheduler();
@@ -97,11 +98,21 @@ export function createBusinessBot(token: string): BusinessBot {
   return bot;
 }
 
-export function getBusinessBot(token: string): BusinessBot {
-  if (!botSingleton) {
-    botSingleton = createBusinessBot(token);
+/** Grammy requires init() before handleUpdate in webhook mode. */
+export async function getBusinessBot(token: string): Promise<BusinessBot> {
+  if (botSingleton && botInitPromise) {
+    return botInitPromise;
   }
-  return botSingleton;
+  botSingleton = createBusinessBot(token);
+  botInitPromise = botSingleton
+    .init()
+    .then(() => botSingleton!)
+    .catch((err) => {
+      botSingleton = null;
+      botInitPromise = null;
+      throw err;
+    });
+  return botInitPromise;
 }
 
 export type ReplyCtx = Context;
