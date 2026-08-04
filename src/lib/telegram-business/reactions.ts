@@ -6,12 +6,12 @@ export type ReactionLabel = "joke" | "neutral" | "troll" | "thanks" | "other";
 
 /**
  * Bot API allowed reactions (no 😂/😆) — map tone → one emoji.
- * joke→🤣 · troll→👎 · thanks→👍 · neutral/other→skip
+ * joke→🤣 · troll→😡 · thanks→👍 · neutral/other→skip
  */
 const EMOJI_BY_LABEL: Record<ReactionLabel, string | null> = {
   joke: "🤣",
   neutral: null,
-  troll: "👎",
+  troll: "😡",
   thanks: "👍",
   other: null,
 };
