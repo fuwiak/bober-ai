@@ -9,6 +9,7 @@ import {
   replyAboutBober,
   withTypingKeepAlive,
 } from "@/lib/telegram-business/engine";
+import { reactToInboundMessage } from "@/lib/telegram-business/reactions";
 import { parseReminderCallback } from "@/lib/telegram-business/reminders/schedule";
 import { ensureReminderScheduler } from "@/lib/telegram-business/reminders/tick";
 
@@ -35,6 +36,7 @@ export function createBusinessBot(token: string): BusinessBot {
     if (!msg) return;
     const businessConnectionId = msg.business_connection_id;
     if (!businessConnectionId) return;
+    const isEdit = Boolean(ctx.editedBusinessMessage);
 
     // Typing keep-alive from first byte — before getBusinessConnection / DB / LLM.
     await withTypingKeepAlive(
@@ -47,6 +49,11 @@ export function createBusinessBot(token: string): BusinessBot {
           }
         } catch (err) {
           console.error("[telegram-business] getBusinessConnection", err);
+        }
+
+        // Smart reaction async — after owner skip; never blocks reply. Skip edits.
+        if (!isEdit) {
+          void reactToInboundMessage(ctx, msg.text ?? msg.caption);
         }
 
         await replyAboutBober({
@@ -65,6 +72,10 @@ export function createBusinessBot(token: string): BusinessBot {
   bot.on("message", async (ctx) => {
     const msg = ctx.message;
     if (!msg || msg.chat.type !== "private") return;
+
+    // Smart reaction async — parallel with typing/reply; no always-🎉.
+    void reactToInboundMessage(ctx, msg.text ?? msg.caption);
+
     // Typing keep-alive ASAP — before replyAboutBober DB/LLM
     await withTypingKeepAlive(
       ctx,
