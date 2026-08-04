@@ -968,6 +968,7 @@ export function echoesRecentReplies(
 /**
  * Last N assistant texts in a thread (newest first), prefixes stripped.
  * Includes reminders/news-alerts so live replies don't rehash them.
+ * Strips legal-docs greeting so anti-echo compares conversational content only.
  */
 export function recentAssistantTexts(
   history: { role: string; text: string }[],
@@ -982,6 +983,7 @@ export function recentAssistantTexts(
     // Keep original casing-ish slice for prompts; use raw trimmed without tag.
     const raw = (m.text || "")
       .replace(/^\[(reminder|news-alert)\]\s*/i, "")
+      .replace(/\n*Правовые документы Bober AI[\s\S]*$/u, "")
       .trim();
     if (raw) out.push(raw);
   }

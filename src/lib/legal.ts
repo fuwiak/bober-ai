@@ -41,6 +41,13 @@ export const LEGAL_ROUTES = {
   terms: "/terms",
 } as const;
 
+/** Public aliases (Telegram / marketing). Canonical bodies live at LEGAL_ROUTES. */
+export const LEGAL_ALIAS_ROUTES = {
+  terms: "/legal/terms",
+  privacy: "/legal/privacy",
+  consent: "/legal/consent",
+} as const;
+
 export const COOKIE_CONSENT_KEY = "cookie-consent";
 
 export const YANDEX_METRIKA_ID =

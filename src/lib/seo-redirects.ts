@@ -44,6 +44,11 @@ export const SEO_EXACT_REDIRECTS: Record<string, string> = {
 
   // Ghost contact
   "/contact": "/#contact",
+
+  // Legal aliases (Telegram / marketing) → canonical documents
+  "/legal/terms": "/terms",
+  "/legal/privacy": "/privacy-policy",
+  "/legal/consent": "/consent",
 };
 
 /** Thin Wordstat automation extras → /automation hub. */

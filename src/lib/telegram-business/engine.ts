@@ -24,6 +24,10 @@ import {
   upsertCustomer,
 } from "@/lib/telegram-business/db/store";
 import type { StoredCustomer } from "@/lib/telegram-business/db/schema";
+import {
+  isFirstContact,
+  withLegalDocsGreeting,
+} from "@/lib/telegram-business/legal-greeting";
 import { detectLangFromText } from "@/lib/telegram-business/reminders/schedule";
 import { ensureReminderScheduler } from "@/lib/telegram-business/reminders/tick";
 
@@ -216,10 +220,12 @@ export async function replyAboutBober(params: {
     });
 
     if (text.startsWith("/start")) {
-      const hello = [
-        "Здравствуйте! Я ассистент Павла (Bober AI Systems).",
-        "Напишите, какую задачу хотите закрыть — уточню и предложу следующий шаг.",
-      ].join("\n");
+      const hello = withLegalDocsGreeting(
+        [
+          "Здравствуйте! Я ассистент Павла (Bober AI Systems).",
+          "Напишите, какую задачу хотите закрыть — уточню и предложу следующий шаг.",
+        ].join("\n"),
+      );
 
       await appendMessage({
         conversationId: conversation.id,
@@ -265,6 +271,7 @@ export async function replyAboutBober(params: {
     });
 
     const history = await getRecentMessages(conversation.id, HISTORY_LIMIT);
+    const needsLegalDocs = isFirstContact(history);
 
     let reply;
     try {
@@ -280,6 +287,14 @@ export async function replyAboutBober(params: {
           ...generated,
           booking: true,
           text: ensureBookingConfirmInReply(generated.text, lang),
+        };
+      }
+
+      // First contact without /start — attach legal docs once.
+      if (needsLegalDocs) {
+        generated = {
+          ...generated,
+          text: withLegalDocsGreeting(generated.text),
         };
       }
 
