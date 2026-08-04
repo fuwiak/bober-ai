@@ -1,13 +1,18 @@
 ---
 /**
- * Solutions landings: rich SeoServicePage when content exists (e.g. rag-search),
+ * Solutions landings: rich SeoServicePage when content resolves (catalog / curated),
  * otherwise compact SeoLanding from catalog.
  */
 import SeoLanding from "@/components/SeoLanding.astro";
 import SeoServicePage from "@/components/SeoServicePage.astro";
 import { LANDING_PAGES } from "@/lib/landing-pages";
 import type { Locale } from "@/lib/i18n";
-import { getSeoServiceContent } from "@/lib/seo-services-content";
+import {
+  getLandingKeywords,
+  getLandingSeoServiceContent,
+  landingHubLabel,
+  landingOfferSlug,
+} from "@/lib/landing-seo-service";
 
 export const prerender = true;
 
@@ -19,11 +24,10 @@ export function getStaticPaths() {
 }
 
 const { page, locale } = Astro.props;
-const content = getSeoServiceContent(page.slug, locale === "uz" ? "uz" : "ru");
+const content = getLandingSeoServiceContent(page, locale);
 const path = `/solutions/${page.slug}`;
-const solutionsLabel = locale === "uz" ? "Yechimlar" : "Решения";
-/** Prefer commercial offer tied to feed path (e.g. rag for /solutions/rag-search). */
-const offerSlug = page.slug === "rag-search" ? "rag" : page.serviceSlug;
+const hubLabel = landingHubLabel("solutions", locale);
+const keywords = getLandingKeywords(page, locale);
 ---
 
 {
@@ -33,11 +37,12 @@ const offerSlug = page.slug === "rag-search" ? "rag" : page.serviceSlug;
       locale={locale}
       content={content}
       pagePath={path}
-      serviceSlug={offerSlug}
+      serviceSlug={landingOfferSlug(page)}
+      keywords={keywords}
       formSource={`solutions-${page.slug}`}
       formDefaultService={content.h1}
       breadcrumbItems={[
-        { name: solutionsLabel, path: "/solutions" },
+        { name: hubLabel, path: "/solutions" },
         { name: content.h1, path },
       ]}
     />

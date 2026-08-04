@@ -1,7 +1,17 @@
 ---
+/**
+ * Integrations landings (UZ parked): SeoServicePage when content resolves.
+ */
 import SeoLanding from "@/components/SeoLanding.astro";
+import SeoServicePage from "@/components/SeoServicePage.astro";
 import { LANDING_PAGES } from "@/lib/landing-pages";
 import type { Locale } from "@/lib/i18n";
+import {
+  getLandingKeywords,
+  getLandingSeoServiceContent,
+  landingHubLabel,
+  landingOfferSlug,
+} from "@/lib/landing-seo-service";
 
 export const prerender = true;
 
@@ -13,6 +23,29 @@ export function getStaticPaths() {
 }
 
 const { page, locale } = Astro.props;
+const content = getLandingSeoServiceContent(page, locale);
+const path = `/integrations/${page.slug}`;
+const hubLabel = landingHubLabel("integrations", locale);
+const keywords = getLandingKeywords(page, locale);
 ---
 
-<SeoLanding page={page} locale={locale} />
+{
+  content ? (
+    <SeoServicePage
+      slug={page.slug}
+      locale={locale}
+      content={content}
+      pagePath={path}
+      serviceSlug={landingOfferSlug(page)}
+      keywords={keywords}
+      formSource={`integrations-${page.slug}`}
+      formDefaultService={content.h1}
+      breadcrumbItems={[
+        { name: hubLabel, path: "/integrations" },
+        { name: content.h1, path },
+      ]}
+    />
+  ) : (
+    <SeoLanding page={page} locale={locale} />
+  )
+}
