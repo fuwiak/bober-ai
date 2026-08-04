@@ -86,6 +86,15 @@ async function main() {
 
   const me = await api(tok, "getMe");
   console.log(`Bot: @${me.username} (${me.first_name}) id=${me.id}`);
+  if (me.can_connect_to_business === false) {
+    console.log(`
+⚠  can_connect_to_business=false
+   В @BotFather: /mybots → @${me.username} → Bot Settings → Business Mode → Turn on
+   Без этого бот НЕ ответит от твоего личного аккаунта (только в чате с самим ботом).
+`);
+  } else {
+    console.log("✓ can_connect_to_business=true");
+  }
 
   if (flags.has("--delete-webhook")) {
     await api(tok, "deleteWebhook", { drop_pending_updates: true });
@@ -107,6 +116,7 @@ async function main() {
     url: site,
     secret_token: secret,
     allowed_updates: [
+      "message",
       "business_connection",
       "business_message",
       "edited_business_message",
@@ -115,31 +125,41 @@ async function main() {
     drop_pending_updates: true,
   });
 
+  try {
+    await api(tok, "setMyCommands", {
+      commands: [
+        { command: "start", description: "Приветствие и чем помочь" },
+      ],
+    });
+  } catch {
+    /* optional */
+  }
+
   const info = await api(tok, "getWebhookInfo");
   console.log("\nWebhook:");
   console.log(`  url: ${info.url}`);
   console.log(`  pending: ${info.pending_update_count}`);
+  console.log(`  allowed: ${(info.allowed_updates || []).join(", ") || "(default)"}`);
   if (info.last_error_message) console.log(`  last error: ${info.last_error_message}`);
 
   console.log(`
-══ Как подключить к личному аккаунту ══
+══ Два режима ══
 
-1. Telegram (свежая версия) → Настройки → Telegram Business → Чат-боты / Chat Automation
-   (иногда: Настройки → Изменить профиль → Chat Automation)
-2. Добавь бота: @${me.username}
-3. Доступ: только новые личные чаты (на старт)
-4. Права: читать сообщения + отвечать
-5. Сохрани
+A) Прямой чат с ботом @${me.username}
+   Напиши «hello» / вопрос про услуги — должен ответить сам бот.
 
-Клиент пишет тебе лично (@pstasinski) — бот отвечает от твоего имени.
-Сложные лиды → HANDOFF в CONTACT_TELEGRAM_CHAT_ID.
+B) От твоего личного аккаунта (Telegram Business)
+   1. @BotFather → /mybots → @${me.username} → Bot Settings → Business Mode → Turn on
+   2. Telegram → Настройки → Telegram Business → Чат-боты → добавь @${me.username}
+   3. Доступ: только новые личные чаты · права: читать + отвечать
+   Клиент пишет тебе (@pstasinski) — бот отвечает от твоего имени.
 
 Env на VDS:
   TELEGRAM_BUSINESS_BOT_TOKEN=...
   TELEGRAM_BUSINESS_WEBHOOK_SECRET=${secret}
-  OPENROUTER_API_KEY=...          # иначе keyword-fallback без LLM
-  CONTACT_TELEGRAM_CHAT_ID=...    # уведомления owner/handoff
-  TELEGRAM_BUSINESS_LLM_MODEL=deepseek/deepseek-v4-flash-0731   # опционально
+  OPENROUTER_API_KEY=...
+  CONTACT_TELEGRAM_CHAT_ID=...
+  TELEGRAM_BUSINESS_LLM_MODEL=deepseek/deepseek-v4-flash-0731
 
 Проверка: GET ${site}
 `);

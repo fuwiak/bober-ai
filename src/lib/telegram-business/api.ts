@@ -30,6 +30,36 @@ async function callTelegram(token: string, method: string, body: Record<string, 
   return json.result;
 }
 
+export async function sendDirectMessage(params: {
+  token: string;
+  chatId: number | string;
+  text: string;
+  replyToMessageId?: number;
+}) {
+  return callTelegram(params.token, "sendMessage", {
+    chat_id: params.chatId,
+    text: params.text.slice(0, 4000),
+    disable_web_page_preview: true,
+    ...(params.replyToMessageId
+      ? { reply_parameters: { message_id: params.replyToMessageId } }
+      : {}),
+  });
+}
+
+export async function sendDirectChatAction(params: {
+  token: string;
+  chatId: number | string;
+}) {
+  try {
+    await callTelegram(params.token, "sendChatAction", {
+      chat_id: params.chatId,
+      action: "typing",
+    });
+  } catch {
+    /* optional */
+  }
+}
+
 export async function sendBusinessMessage(params: {
   token: string;
   chatId: number | string;
