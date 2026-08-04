@@ -39,16 +39,22 @@ jobs:
             -o StrictHostKeyChecking=accept-new root@45.80.131.136 \
             "TOKEN=$(printf %q "$TELEGRAM_BUSINESS_BOT_TOKEN") SECRET=$(printf %q "$TELEGRAM_BUSINESS_WEBHOOK_SECRET") bash -s" <<'EOS'
           set -euo pipefail
-          echo "=== host curl api.telegram.org ==="
-          curl -sS -m 15 -o /tmp/tg-root.html -w "http=%{http_code} time=%{time_total}\n" https://api.telegram.org || echo "HOST_CURL_FAIL:$?"
-          echo "=== host getMe (token redacted) ==="
+          echo "=== host curl api.telegram.org (default/4/6) ==="
+          curl -sS -m 10 -o /dev/null -w "default http=%{http_code} time=%{time_total}\n" https://api.telegram.org || echo "HOST_CURL_FAIL:$?"
+          curl -4 -sS -m 10 -o /dev/null -w "ipv4 http=%{http_code} time=%{time_total}\n" https://api.telegram.org || echo "HOST_CURL4_FAIL:$?"
+          curl -6 -sS -m 10 -o /dev/null -w "ipv6 http=%{http_code} time=%{time_total}\n" https://api.telegram.org || echo "HOST_CURL6_FAIL:$?"
+          curl -4 -sS -m 10 -o /dev/null -w "ip_direct http=%{http_code} time=%{time_total}\n" --resolve api.telegram.org:443:149.154.166.110 https://api.telegram.org || echo "HOST_RESOLVE4_FAIL:$?"
+          echo "=== openrouter reachability ==="
+          curl -4 -sS -m 10 -o /dev/null -w "openrouter4 http=%{http_code} time=%{time_total}\n" https://openrouter.ai || echo "OR_FAIL:$?"
+          echo "=== host getMe ipv4 ==="
           if [ -n "${TOKEN:-}" ]; then
-            curl -sS -m 15 "https://api.telegram.org/bot${TOKEN}/getMe" | sed -E 's/"first_name":"[^"]*"/"first_name":"***"/' || echo "HOST_GETME_FAIL:$?"
+            curl -4 -sS -m 15 "https://api.telegram.org/bot${TOKEN}/getMe" | sed -E 's/"first_name":"[^"]*"/"first_name":"***"/' || echo "HOST_GETME_FAIL:$?"
           else
             echo "NO_TOKEN"
           fi
           echo "=== dns ==="
-          getent hosts api.telegram.org || true
+          getent ahostsv4 api.telegram.org || true
+          getent ahostsv6 api.telegram.org || true
           dig +short api.telegram.org A 2>/dev/null | head -5 || true
           dig +short api.telegram.org AAAA 2>/dev/null | head -5 || true
           echo "=== docker ps ==="
