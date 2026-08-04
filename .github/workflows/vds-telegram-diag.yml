@@ -1,4 +1,4 @@
-# One-shot: diagnose Telegram Business bot outbound from Selectel VDS.
+# One-shot: diagnose + pin Telegram API DNS on Selectel VDS.
 # Needs secrets: SELECTEL_SSH_KEY, TELEGRAM_BUSINESS_BOT_TOKEN, TELEGRAM_BUSINESS_WEBHOOK_SECRET
 name: vds-telegram-diag
 
@@ -39,54 +39,62 @@ jobs:
             -o StrictHostKeyChecking=accept-new root@45.80.131.136 \
             "TOKEN=$(printf %q "$TELEGRAM_BUSINESS_BOT_TOKEN") SECRET=$(printf %q "$TELEGRAM_BUSINESS_WEBHOOK_SECRET") bash -s" <<'EOS'
           set -euo pipefail
-          echo "=== host curl api.telegram.org (default/4/6) ==="
-          curl -sS -m 10 -o /dev/null -w "default http=%{http_code} time=%{time_total}\n" https://api.telegram.org || echo "HOST_CURL_FAIL:$?"
-          curl -4 -sS -m 10 -o /dev/null -w "ipv4 http=%{http_code} time=%{time_total}\n" https://api.telegram.org || echo "HOST_CURL4_FAIL:$?"
-          curl -6 -sS -m 10 -o /dev/null -w "ipv6 http=%{http_code} time=%{time_total}\n" https://api.telegram.org || echo "HOST_CURL6_FAIL:$?"
-          curl -4 -sS -m 10 -o /dev/null -w "ip_direct http=%{http_code} time=%{time_total}\n" --resolve api.telegram.org:443:149.154.166.110 https://api.telegram.org || echo "HOST_RESOLVE4_FAIL:$?"
-          echo "=== openrouter reachability ==="
-          curl -4 -sS -m 10 -o /dev/null -w "openrouter4 http=%{http_code} time=%{time_total}\n" https://openrouter.ai || echo "OR_FAIL:$?"
-          echo "=== host getMe ipv4 ==="
-          if [ -n "${TOKEN:-}" ]; then
-            curl -4 -sS -m 15 "https://api.telegram.org/bot${TOKEN}/getMe" | sed -E 's/"first_name":"[^"]*"/"first_name":"***"/' || echo "HOST_GETME_FAIL:$?"
-          else
-            echo "NO_TOKEN"
-          fi
+
+          echo "=== before: curl hostname / resolve / verbose ==="
+          curl -sS -m 8 -o /dev/null -w "default http=%{http_code} time=%{time_total}\n" https://api.telegram.org || echo "HOST_CURL_FAIL:$?"
+          curl -4 -v -sS -m 8 -o /dev/null https://api.telegram.org 2>&1 | grep -E 'Trying|Connected|Could not|resolve|error|timeout|curl:' | head -20 || true
+          curl -4 -sS -m 8 -o /dev/null -w "ipv4 http=%{http_code} time=%{time_total}\n" https://api.telegram.org || echo "HOST_CURL4_FAIL:$?"
+          curl -6 -sS -m 5 -o /dev/null -w "ipv6 http=%{http_code} time=%{time_total}\n" https://api.telegram.org || echo "HOST_CURL6_FAIL:$?"
+          curl -4 -sS -m 8 -o /dev/null -w "resolve http=%{http_code} time=%{time_total}\n" --resolve api.telegram.org:443:149.154.166.110 https://api.telegram.org || echo "HOST_RESOLVE4_FAIL:$?"
+
           echo "=== dns ==="
           getent ahostsv4 api.telegram.org || true
-          getent ahostsv6 api.telegram.org || true
           dig +short api.telegram.org A 2>/dev/null | head -5 || true
           dig +short api.telegram.org AAAA 2>/dev/null | head -5 || true
-          echo "=== docker ps ==="
-          docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' | head -20
-          WEB=$(docker ps -qf name=deploy-web --format '{{.ID}}' | head -1)
-          if [ -z "$WEB" ]; then
-            WEB=$(docker ps -qf name=web --format '{{.ID}}' | head -1)
+          grep -i telegram /etc/hosts || echo "hosts:(none)"
+
+          echo "=== pin /etc/hosts ==="
+          if grep -qE '[[:space:]]api\.telegram\.org([[:space:]]|$)' /etc/hosts 2>/dev/null; then
+            sed -i -E '/[[:space:]]api\.telegram\.org([[:space:]]|$)/d' /etc/hosts
           fi
+          echo '149.154.166.110 api.telegram.org' >> /etc/hosts
+          grep api.telegram.org /etc/hosts
+
+          echo "=== after hosts pin ==="
+          getent ahostsv4 api.telegram.org || true
+          curl -4 -sS -m 8 -o /dev/null -w "after_hosts http=%{http_code} time=%{time_total}\n" https://api.telegram.org || echo "AFTER_HOSTS_FAIL:$?"
+
+          if [ -n "${TOKEN:-}" ]; then
+            echo "=== getMe after hosts ==="
+            curl -4 -sS -m 15 "https://api.telegram.org/bot${TOKEN}/getMe" \
+              | sed -E 's/"first_name":"[^"]*"/"first_name":"***"/' || echo "AFTER_HOSTS_GETME_FAIL:$?"
+          fi
+
+          WEB=$(docker ps --format '{{.Names}} {{.ID}}' | awk '/deploy-web|web/{print $2; exit}')
           echo "WEB_CID=${WEB:-none}"
           if [ -n "${WEB:-}" ]; then
             echo "=== container env keys (masked) ==="
             docker exec "$WEB" sh -c 'env | grep -E "^(TELEGRAM_BUSINESS_|OPENROUTER_API_KEY|CONTACT_TELEGRAM)" | sed -E "s/=.*/=***/" | sort' || true
-            echo "=== container node fetch telegram ==="
+            echo "=== container node fetch after hosts ==="
             docker exec "$WEB" node -e '
+              const dns=require("dns");
+              try { dns.setDefaultResultOrder("ipv4first"); } catch {}
               const t=process.env.TELEGRAM_BUSINESS_BOT_TOKEN||"";
               console.log("token_len", t.length);
-              fetch("https://api.telegram.org").then(r=>console.log("root", r.status)).catch(e=>console.log("root_err", e.name, e.message, e.cause&&e.cause.message));
-              if(t) fetch("https://api.telegram.org/bot"+t+"/getMe").then(r=>r.json()).then(j=>console.log("getMe", j.ok, j.result&&j.result.username, j.description||null)).catch(e=>console.log("getMe_err", e.name, e.message, e.cause&&String(e.cause)));
+              fetch("https://api.telegram.org").then(r=>console.log("root", r.status)).catch(e=>console.log("root_err", e.message, e.cause&&String(e.cause)));
+              if(t) fetch("https://api.telegram.org/bot"+t+"/getMe").then(r=>r.json()).then(j=>console.log("getMe", j.ok, j.result&&j.result.username, j.description||null)).catch(e=>console.log("getMe_err", e.message, e.cause&&String(e.cause)));
             ' || echo "DOCKER_EXEC_FAIL:$?"
-            echo "=== recent web logs ==="
-            docker logs --tail 120 "$WEB" 2>&1 | grep -E 'telegram-business|fetch|Error|error' | tail -60 || docker logs --tail 40 "$WEB" 2>&1
-          fi
-          echo "=== local health ==="
-          curl -sS -m 10 http://127.0.0.1:3001/api/telegram/business || true
-          echo
-          if [ -n "${SECRET:-}" ]; then
-            echo "=== loopback POST /start (chat_id=1 expect TG error or ok) ==="
-            curl -sS -m 30 -X POST http://127.0.0.1:3001/api/telegram/business \
-              -H "Content-Type: application/json" \
-              -H "X-Telegram-Bot-Api-Secret-Token: ${SECRET}" \
-              -d '{"update_id":999999010,"message":{"message_id":1,"date":1,"chat":{"id":1,"type":"private"},"from":{"id":1,"first_name":"Diag"},"text":"/start"}}' || echo "LOOP_POST_FAIL:$?"
-            echo
+
+            if [ -n "${SECRET:-}" ]; then
+              echo "=== loopback POST /start ==="
+              curl -sS -m 30 -X POST http://127.0.0.1:3001/api/telegram/business \
+                -H "Content-Type: application/json" \
+                -H "X-Telegram-Bot-Api-Secret-Token: ${SECRET}" \
+                -d '{"update_id":999999011,"message":{"message_id":1,"date":1,"chat":{"id":1,"type":"private"},"from":{"id":1,"first_name":"Diag"},"text":"/start"}}' || echo "LOOP_POST_FAIL:$?"
+              echo
+            fi
+            echo "=== recent logs ==="
+            docker logs --tail 40 "$WEB" 2>&1 | grep -E 'telegram-business|fetch|Error' | tail -20 || true
           fi
           echo DONE
           EOS
