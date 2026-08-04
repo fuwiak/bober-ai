@@ -22,7 +22,7 @@
  * Message history (Grammy bot):
  *   Prefer DATABASE_URL=postgresql://... on Railway (durable).
  *   Else TELEGRAM_DB_PATH=/app/data/telegram-bot.sqlite (file; ephemeral without volume).
- *   TELEGRAM_HISTORY_LIMIT=16  — last N messages fed into the LLM.
+ *   TELEGRAM_HISTORY_LIMIT=20  — last N messages fed into the LLM.
  */
 
 import { readFileSync, existsSync } from "node:fs";

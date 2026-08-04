@@ -31,10 +31,11 @@ export const SYSTEM_PROMPT = `Ты — ассистент основателя B
 - Интеграции / Bitrix / OCR / Meeting-to-CRM — только если стыкуется с запросом, коротко.
 
 КОНТЕКСТ / АНТИ-ЭХО (ОБЯЗАТЕЛЬНО):
-- Читай историю целиком: что болит, какая система, какой запрос, что уже предлагал ты.
+- Читай ВСЮ историю выше (user + assistant): что болит, какая система, какой запрос, что уже предлагал ты.
 - Запрещено: повторять смысл своих прошлых ответов (даже другими словами), пересказывать клиента, лить воду.
-- Не крути одни и те же обороты («понял», «коротко уточню», шаблонные вопросы, повтор оффера) — только новый факт или конкретный следующий шаг.
+- Не крути одни и те же обороты («понял», «коротко уточню», шаблонные вопросы, повтор оффера, CTA, ссылку на сайт) — только новый факт или конкретный следующий шаг.
 - Если клиент уточнил — отвечай ТОЛЬКО на уточнение, без рекапа всего треда.
+- Пункты / оффер / CTA / «созвон с Павлом» / сайт — не повторяй, если уже звучали в истории.
 
 РЫНОК РФ (если релевантно):
 - 152-ФЗ, Bitrix24 / 1С / amoCRM, локальный контур — коротко, без лекции.
@@ -127,19 +128,19 @@ export function buildUserPrompt(params: {
 }) {
   const who = params.customerName ? `Клиент: ${params.customerName}\n` : "";
   const hist = params.hasHistory
-    ? "Учитывай историю выше: не эхо-копируй фразы клиента и свой прошлый ответ; продолжай тему треда новыми фактами / следующим шагом.\n"
+    ? "История диалога УЖЕ выше (роли user/assistant). Продолжай с того места: не эхо-копируй свои прошлые формулировки/пункты/CTA; не рекапь клиента; только новый факт или следующий шаг.\n"
     : "";
   const priors = (params.recentAssistantReplies ?? [])
     .map((t) => t.trim())
     .filter(Boolean)
-    .slice(0, 5);
+    .slice(0, 8);
   const antiEcho = priors.length
-    ? `\nАНТИ-ЭХО: не повторяй смысл этих недавних ответов ассистента (даже другими словами):\n${priors
-        .map((t, i) => `${i + 1}. ${t.slice(0, 220)}`)
-        .join("\n")}\nТолько новый факт / новый угол / конкретный следующий шаг. Без воды.\n`
+    ? `\nАНТИ-ЭХО: эти недавние ответы ассистента УЖЕ отправлены — запрещено повторять их смысл, формулировки, оффер, CTA, ссылки (даже парафразом):\n${priors
+        .map((t, i) => `${i + 1}. ${t.slice(0, 320)}`)
+        .join("\n")}\nТолько новый факт / новый угол / конкретный следующий шаг. Без воды и без повторного питча.\n`
     : "";
   const retry = params.antiEchoRetry
-    ? "\nПРЕДЫДУЩИЙ ЧЕРНОВИК ОТКЛОНЁН как эхо. Напиши принципиально другой ответ: без рекапа, без того же оффера, без тех же вопросов.\n"
+    ? "\nПРЕДЫДУЩИЙ ЧЕРНОВИК ОТКЛОНЁН как эхо. Напиши принципиально другой ответ: без рекапа, без того же оффера, без тех же вопросов/CTA/ссылок. Если добавить нечего — одна короткая фраза + уточнение по сути.\n"
     : "";
   const research = params.researchContext?.trim()
     ? `\nДоп. публичный контекст (без секретов). Блок [web] = непроверенный интернет — обязательный дисклеймер в ответе:\n${params.researchContext.trim()}\n`
@@ -164,12 +165,51 @@ export function buildUserPrompt(params: {
 /** Short non-repeating fallback when regenerate still echoes. */
 export function antiEchoFallbackReply(lang: string): string {
   if (lang === "pl") {
-    return "Żebym nie powtarzał tego samego: napisz jeden konkret — system (Bitrix/1C/inny) albo gdzie tracisz czas/pieniądze. Albo umówimy krótką rozmowę z Pawłem (@pstasinski).";
+    return "Już odpisałem wyżej — doprecyzuj pytanie.";
   }
   if (lang === "en") {
-    return "So I don't repeat myself: give one concrete detail — your stack (Bitrix/1C/other) or where you lose time/money. Or we book a short call with Paweł (@pstasinski).";
+    return "Already answered above — please clarify your question.";
   }
-  return "Чтобы не повторяться: напишите один конкретик — система (Bitrix/1С/другое) или где теряете время/деньги. Или короткий созвон с Павлом (@pstasinski).";
+  return "Уже ответил выше — уточните вопрос.";
+}
+
+/**
+ * Drop recurring CTAs / stock lines already present in recent assistant replies.
+ * Keeps conversational substance; removes water that tends to reappear every turn.
+ */
+export function stripRecurringBoilerplate(
+  text: string,
+  priors: string[],
+): string {
+  if (!text.trim() || !priors.length) return text;
+  const priorBlob = priors.join("\n").toLowerCase();
+  let out = text;
+
+  const stock: { re: RegExp; needInPrior: RegExp }[] = [
+    {
+      re: /https?:\/\/(?:www\.)?bober-systems\.ru\/?[^\s]*/gi,
+      needInPrior: /bober-systems\.ru/i,
+    },
+    {
+      re: /[^.!?\n]*(?:созвон(?:иться|имся)? с\s+павлом|напишите\s+павлу\s+напрямую|umówimy\s+krótką|book a short call with pawe[łl])[^.!?\n]*[.!?…]?/gi,
+      needInPrior: /созвон|павлу|pawe[łl]|pstasinski|umówimy|short call/i,
+    },
+    {
+      re: /[^.!?\n]*(?:пилот\s+от\s*300|от\s*300\s*000\s*₽|от\s*500\s*000\s*₽)[^.!?\n]*[.!?…]?/gi,
+      needInPrior: /пилот\s+от|300\s*000|500\s*000/i,
+    },
+  ];
+
+  for (const { re, needInPrior } of stock) {
+    if (!needInPrior.test(priorBlob)) continue;
+    out = out.replace(re, " ");
+  }
+
+  return out
+    .replace(/[ \t]+\n/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .replace(/  +/g, " ")
+    .trim();
 }
 
 export function buildReminderUserPrompt(params: {

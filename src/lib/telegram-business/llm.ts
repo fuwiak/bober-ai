@@ -9,6 +9,7 @@ import {
   clarifyingLimitReply,
   countClarifyingQuestions,
   stripHandoff,
+  stripRecurringBoilerplate,
 } from "@/lib/telegram-business/prompt";
 import { fallbackReply, loadKnowledge } from "@/lib/telegram-business/knowledge";
 import { queryGraphKnowledge } from "@/lib/telegram-business/graph-knowledge";
@@ -31,6 +32,11 @@ import {
   recentAssistantTexts,
 } from "@/lib/telegram-business/db/store";
 import type { StoredMessage } from "@/lib/telegram-business/db/schema";
+
+/** How many prior assistant turns to feed into anti-echo + prompt blacklist. */
+const ANTI_ECHO_PRIOR_LIMIT = 8;
+/** Cap knowledge dump after first reply — full dossier fuels repeated pitch. */
+const KNOWLEDGE_WITH_HISTORY_CHARS = 4_500;
 
 /** Client lang from thread user messages + current turn (same heuristic as reminders). */
 function detectClientLang(
@@ -58,7 +64,10 @@ function modelName() {
   );
 }
 
-async function chatOpenRouter(messages: ChatTurn[]): Promise<string> {
+async function chatOpenRouter(
+  messages: ChatTurn[],
+  opts?: { temperature?: number },
+): Promise<string> {
   const apiKey = process.env.OPENROUTER_API_KEY?.trim();
   if (!apiKey) throw new Error("OPENROUTER_API_KEY missing");
 
@@ -78,7 +87,7 @@ async function chatOpenRouter(messages: ChatTurn[]): Promise<string> {
       },
       body: JSON.stringify({
         model: modelName(),
-        temperature: 0.3,
+        temperature: opts?.temperature ?? 0.35,
         max_tokens: 700,
         messages,
       }),
@@ -167,12 +176,17 @@ export async function generateBusinessReply(params: {
   /** Recent messages including the current user turn (oldest → newest). */
   history?: StoredMessage[];
 }): Promise<GenerateResult> {
-  const knowledge = await loadKnowledge();
+  const fullKnowledge = await loadKnowledge();
   const history = params.history ?? [];
   const clientLang = detectClientLang(params.message, history);
   const clarifyingSoFar = countClarifyingQuestions(history);
   const wantsBooking = detectBookingIntent(params.message, false);
-  const priorAssistants = recentAssistantTexts(history, 5);
+  const priorAssistants = recentAssistantTexts(history, ANTI_ECHO_PRIOR_LIMIT);
+  // After first assistant turn, shrink knowledge dump — full dossier → repeated pitch.
+  const knowledge =
+    priorAssistants.length > 0
+      ? fullKnowledge.slice(0, KNOWLEDGE_WITH_HISTORY_CHARS)
+      : fullKnowledge;
 
   // Soft cap: after ~5 clarifying Qs without booking — stop grilling, hand off to Paweł.
   if (clarifyingSoFar >= MAX_CLARIFYING_QUESTIONS && !wantsBooking) {
@@ -194,10 +208,17 @@ export async function generateBusinessReply(params: {
   }
 
   try {
+    // Drop current user turn — it is re-injected via buildUserPrompt.
     const prior = history.slice(0, -1);
     const turns = historyToTurns(prior);
     const research = await gatherResearchContext(params.message);
     const disclaimer = research.usedWeb ? webDisclaimer(clientLang) : undefined;
+
+    const polish = (text: string) => {
+      let t = stripRecurringBoilerplate(text, priorAssistants);
+      if (research.usedWeb) t = ensureWebDisclaimer(t, clientLang);
+      return t.trim() || text.trim();
+    };
 
     const runOnce = async (antiEchoRetry: boolean) => {
       const messages: ChatTurn[] = [
@@ -219,12 +240,11 @@ export async function generateBusinessReply(params: {
           }),
         },
       ];
-      const raw = await chatOpenRouter(messages);
+      const raw = await chatOpenRouter(messages, {
+        temperature: antiEchoRetry ? 0.55 : 0.35,
+      });
       const stripped = stripHandoff(raw);
-      let text = stripped.text || fallbackReply(params.message);
-      if (research.usedWeb) {
-        text = ensureWebDisclaimer(text, clientLang);
-      }
+      let text = polish(stripped.text || fallbackReply(params.message));
       return {
         text,
         handoff: stripped.handoff,
@@ -329,15 +349,16 @@ export async function generateReminderAdvice(params: {
     }
 
     // Anti-echo vs recent assistant turns (incl. prior reminders/news).
-    const priors = recentAssistantTexts(params.history, 5);
-    if (priors.length && echoesRecentReplies(text, priors)) {
+    const priors = recentAssistantTexts(params.history, ANTI_ECHO_PRIOR_LIMIT);
+    const cleaned = stripRecurringBoilerplate(text, priors);
+    if (priors.length && echoesRecentReplies(cleaned || text, priors)) {
       console.info("[telegram-business] reminder anti-echo skip");
       if (params.requireConcrete) return { text: "", source: "fallback" };
-      // Regular reminder: one retry with stronger note, else skip send (empty).
+      // Regular reminder: skip send rather than echo.
       return { text: "", source: "fallback" };
     }
 
-    return { text, source: "llm" };
+    return { text: cleaned || text, source: "llm" };
   } catch (err) {
     console.error("[telegram-business] reminder LLM failed", err);
     if (params.requireConcrete) return { text: "", source: "fallback" };

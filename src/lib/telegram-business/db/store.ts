@@ -18,8 +18,8 @@ import { ensureSchema, getDbBackend } from "@/lib/telegram-business/db/client";
 import { computeNextReminderAt } from "@/lib/telegram-business/reminders/schedule";
 
 export const HISTORY_LIMIT = (() => {
-  const n = Number(process.env.TELEGRAM_HISTORY_LIMIT || "16");
-  return Number.isFinite(n) && n > 0 ? Math.min(40, Math.floor(n)) : 16;
+  const n = Number(process.env.TELEGRAM_HISTORY_LIMIT || "20");
+  return Number.isFinite(n) && n > 0 ? Math.min(40, Math.floor(n)) : 20;
 })();
 
 let schemaReady: Promise<void> | null = null;
@@ -878,26 +878,33 @@ export async function markNewsSent(params: {
   );
 }
 
-/** Jaccard / containment thresholds for anti-echo. */
-const ECHO_SIM_THRESHOLD = 0.48;
-const ECHO_CONTAINMENT = 0.68;
-const ECHO_SUBSTRING_RATIO = 0.65;
+/** Multi-signal anti-echo thresholds (lower = catch more paraphrases). */
+const ECHO_SIM_THRESHOLD = 0.32;
+const ECHO_BIGRAM_THRESHOLD = 0.42;
+const ECHO_SUBSTRING_RATIO = 0.55;
+/** Shared distinctive n-gram (≥3 tokens) count that marks an echo. */
+const ECHO_SHARED_NGRAM_HITS = 2;
 
 export function normalizeForCompare(s: string): string {
   return s
     .toLowerCase()
     .replace(/^\[(reminder|news-alert)\]\s*/i, "")
+    .replace(/\n*правовые документы bober ai[\s\S]*$/u, "")
     .replace(/\s+/g, " ")
     .replace(/[«»"""']/g, "")
     .trim();
 }
 
-function tokenizeForEcho(s: string): Set<string> {
-  const out = new Set<string>();
+function tokenizeForEcho(s: string): string[] {
+  const out: string[] = [];
   for (const t of normalizeForCompare(s).split(/[^a-zа-яё0-9+]+/i)) {
-    if (t.length > 2) out.add(t);
+    if (t.length > 2) out.push(t);
   }
   return out;
+}
+
+function tokenSet(tokens: string[]): Set<string> {
+  return new Set(tokens);
 }
 
 function jaccard(a: Set<string>, b: Set<string>): number {
@@ -916,7 +923,25 @@ function containment(a: Set<string>, b: Set<string>): number {
   return inter / smaller.size;
 }
 
-/** Similarity 0..1 (max of Jaccard + token containment). */
+function ngrams(tokens: string[], n: number): Set<string> {
+  const out = new Set<string>();
+  if (tokens.length < n) return out;
+  for (let i = 0; i <= tokens.length - n; i++) {
+    out.add(tokens.slice(i, i + n).join(" "));
+  }
+  return out;
+}
+
+function ngramOverlap(a: string[], b: string[], n: number): number {
+  const ga = ngrams(a, n);
+  const gb = ngrams(b, n);
+  if (!ga.size || !gb.size) return 0;
+  let inter = 0;
+  for (const g of ga) if (gb.has(g)) inter += 1;
+  return inter / Math.min(ga.size, gb.size);
+}
+
+/** Similarity 0..1 (max of Jaccard, token containment, bigram overlap). */
 export function replySimilarity(a: string, b: string): number {
   const na = normalizeForCompare(a);
   const nb = normalizeForCompare(b);
@@ -924,12 +949,33 @@ export function replySimilarity(a: string, b: string): number {
   if (na === nb) return 1;
   const ta = tokenizeForEcho(na);
   const tb = tokenizeForEcho(nb);
-  return Math.max(jaccard(ta, tb), containment(ta, tb));
+  const sa = tokenSet(ta);
+  const sb = tokenSet(tb);
+  return Math.max(
+    jaccard(sa, sb),
+    containment(sa, sb),
+    ngramOverlap(ta, tb, 2),
+  );
+}
+
+/** Count shared 3+ token phrases (catches recycled CTAs / stock lines). */
+function sharedPhraseHits(candidateTokens: string[], priorTokens: string[]): number {
+  const priorTri = ngrams(priorTokens, 3);
+  const priorQuad = ngrams(priorTokens, 4);
+  if (!priorTri.size) return 0;
+  let hits = 0;
+  for (const g of ngrams(candidateTokens, 4)) {
+    if (priorQuad.has(g)) hits += 1;
+  }
+  for (const g of ngrams(candidateTokens, 3)) {
+    if (priorTri.has(g)) hits += 1;
+  }
+  return hits;
 }
 
 /**
- * True if candidate ≈ prior reply (exact, substring, Jaccard, or high containment).
- * Catches paraphrased echoes that old substring-only check missed.
+ * True if candidate ≈ prior reply (exact, substring, Jaccard/containment/bigrams,
+ * or recycled multi-word phrases).
  */
 export function isNearDuplicate(
   candidate: string,
@@ -941,9 +987,17 @@ export function isNearDuplicate(
   if (!a || !b) return false;
   if (a === b) return true;
 
-  const sim = replySimilarity(a, b);
+  const ta = tokenizeForEcho(a);
+  const tb = tokenizeForEcho(b);
+  const sa = tokenSet(ta);
+  const sb = tokenSet(tb);
+  const sim = Math.max(jaccard(sa, sb), containment(sa, sb));
   if (sim >= ECHO_SIM_THRESHOLD) return true;
-  if (sim >= ECHO_CONTAINMENT) return true;
+
+  const bigram = ngramOverlap(ta, tb, 2);
+  if (bigram >= ECHO_BIGRAM_THRESHOLD) return true;
+
+  if (sharedPhraseHits(ta, tb) >= ECHO_SHARED_NGRAM_HITS) return true;
 
   if (a.length < 40 || b.length < 40) return false;
   const shorter = a.length <= b.length ? a : b;
@@ -962,6 +1016,19 @@ export function echoesRecentReplies(
   for (const p of priors) {
     if (isNearDuplicate(candidate, p)) return true;
   }
+  // Cross-prior blacklist: distinctive 4-grams already used in any prior.
+  const candTokens = tokenizeForEcho(candidate);
+  const priorQuad = new Set<string>();
+  for (const p of priors) {
+    for (const g of ngrams(tokenizeForEcho(p), 4)) priorQuad.add(g);
+  }
+  if (priorQuad.size) {
+    let hits = 0;
+    for (const g of ngrams(candTokens, 4)) {
+      if (priorQuad.has(g)) hits += 1;
+    }
+    if (hits >= ECHO_SHARED_NGRAM_HITS) return true;
+  }
   return false;
 }
 
@@ -972,7 +1039,7 @@ export function echoesRecentReplies(
  */
 export function recentAssistantTexts(
   history: { role: string; text: string }[],
-  limit = 5,
+  limit = 8,
 ): string[] {
   const out: string[] = [];
   for (let i = history.length - 1; i >= 0 && out.length < limit; i--) {
