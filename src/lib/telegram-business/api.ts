@@ -1,4 +1,10 @@
-const API = "https://api.telegram.org";
+/** Bot API root. Override when host cannot reach api.telegram.org (e.g. Selectel RU). */
+export function telegramApiBase(): string {
+  return (
+    process.env.TELEGRAM_API_BASE?.trim().replace(/\/$/, "") ||
+    "https://api.telegram.org"
+  );
+}
 
 export function businessBotToken(): string | null {
   return (
@@ -14,11 +20,32 @@ export function webhookSecret(): string | null {
 }
 
 async function callTelegram(token: string, method: string, body: Record<string, unknown>) {
-  const res = await fetch(`${API}/bot${token}/${method}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
+  const url = `${telegramApiBase()}/bot${token}/${method}`;
+  let res: Response;
+  try {
+    res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+  } catch (err) {
+    const cause =
+      err instanceof Error
+        ? (err as Error & { cause?: unknown }).cause
+        : undefined;
+    const detail =
+      cause instanceof Error
+        ? cause.message
+        : cause
+          ? String(cause)
+          : err instanceof Error
+            ? err.message
+            : String(err);
+    throw new Error(
+      `Telegram ${method} unreachable (${telegramApiBase()}): ${detail}. ` +
+        `If host blocks api.telegram.org, set webhook to Railway EU or TELEGRAM_API_BASE proxy.`,
+    );
+  }
   const json = (await res.json().catch(() => ({}))) as {
     ok?: boolean;
     description?: string;

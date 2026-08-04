@@ -13,7 +13,11 @@
  *
  *   npm run telegram:business:setup
  *   npm run telegram:business:setup -- --delete-webhook
- *   npm run telegram:business:setup -- --url=https://www.bober-systems.ru/api/telegram/business
+ *   npm run telegram:business:setup -- --url=https://bober-ai-production.up.railway.app/api/telegram/business
+ *
+ * Note: Selectel VDS (45.80.131.136) currently cannot reach api.telegram.org
+ * outbound (TCP timeout). Webhook must land on a host that can call Telegram
+ * (Railway EU). Inbound webhooks to Selectel still arrive, but replies fail.
  */
 
 import { readFileSync, existsSync } from "node:fs";
@@ -102,9 +106,12 @@ async function main() {
     return;
   }
 
+  // Prefer explicit webhook URL. Selectel VDS often cannot *outbound* to
+  // api.telegram.org (inbound webhooks still work) — use Railway EU in that case.
   const site =
     readFlag("--url", "").replace(/\/$/, "") ||
-    `${(process.env.PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || "https://www.bober-systems.ru").replace(/\/$/, "")}/api/telegram/business`;
+    process.env.TELEGRAM_BUSINESS_WEBHOOK_URL?.trim().replace(/\/$/, "") ||
+    "https://bober-ai-production.up.railway.app/api/telegram/business";
 
   let secret = process.env.TELEGRAM_BUSINESS_WEBHOOK_SECRET?.trim();
   if (!secret) {

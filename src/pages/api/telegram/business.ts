@@ -18,6 +18,7 @@ export const GET: APIRoute = async () => {
     service: "telegram-business",
     configured: Boolean(token),
     llm: Boolean(process.env.OPENROUTER_API_KEY?.trim()),
+    apiBase: process.env.TELEGRAM_API_BASE?.trim() || "https://api.telegram.org",
     hint: "POST Telegram updates here. Setup: npm run telegram:business:setup",
   });
 };
