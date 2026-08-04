@@ -1,0 +1,86 @@
+# One-shot: diagnose Telegram Business bot outbound from Selectel VDS.
+# Needs secrets: SELECTEL_SSH_KEY, TELEGRAM_BUSINESS_BOT_TOKEN, TELEGRAM_BUSINESS_WEBHOOK_SECRET
+name: vds-telegram-diag
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: vds-telegram-diag
+  cancel-in-progress: false
+
+jobs:
+  diag:
+    name: Diagnose Telegram outbound
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Setup SSH
+        env:
+          SELECTEL_SSH_KEY: ${{ secrets.SELECTEL_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          if [ -z "${SELECTEL_SSH_KEY:-}" ]; then
+            echo "::error::Missing SELECTEL_SSH_KEY"
+            exit 1
+          fi
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SELECTEL_SSH_KEY" > ~/.ssh/bober_selectel
+          chmod 600 ~/.ssh/bober_selectel
+          ssh-keyscan -T 10 -H 45.80.131.136 >> ~/.ssh/known_hosts 2>/dev/null || true
+
+      - name: Remote diagnose
+        env:
+          TELEGRAM_BUSINESS_BOT_TOKEN: ${{ secrets.TELEGRAM_BUSINESS_BOT_TOKEN }}
+          TELEGRAM_BUSINESS_WEBHOOK_SECRET: ${{ secrets.TELEGRAM_BUSINESS_WEBHOOK_SECRET }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/bober_selectel -o IdentitiesOnly=yes -o ConnectTimeout=30 \
+            -o StrictHostKeyChecking=accept-new root@45.80.131.136 \
+            "TOKEN=$(printf %q "$TELEGRAM_BUSINESS_BOT_TOKEN") SECRET=$(printf %q "$TELEGRAM_BUSINESS_WEBHOOK_SECRET") bash -s" <<'EOS'
+          set -euo pipefail
+          echo "=== host curl api.telegram.org ==="
+          curl -sS -m 15 -o /tmp/tg-root.html -w "http=%{http_code} time=%{time_total}\n" https://api.telegram.org || echo "HOST_CURL_FAIL:$?"
+          echo "=== host getMe (token redacted) ==="
+          if [ -n "${TOKEN:-}" ]; then
+            curl -sS -m 15 "https://api.telegram.org/bot${TOKEN}/getMe" | sed -E 's/"first_name":"[^"]*"/"first_name":"***"/' || echo "HOST_GETME_FAIL:$?"
+          else
+            echo "NO_TOKEN"
+          fi
+          echo "=== dns ==="
+          getent hosts api.telegram.org || true
+          dig +short api.telegram.org A 2>/dev/null | head -5 || true
+          dig +short api.telegram.org AAAA 2>/dev/null | head -5 || true
+          echo "=== docker ps ==="
+          docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' | head -20
+          WEB=$(docker ps -qf name=deploy-web --format '{{.ID}}' | head -1)
+          if [ -z "$WEB" ]; then
+            WEB=$(docker ps -qf name=web --format '{{.ID}}' | head -1)
+          fi
+          echo "WEB_CID=${WEB:-none}"
+          if [ -n "${WEB:-}" ]; then
+            echo "=== container env keys (masked) ==="
+            docker exec "$WEB" sh -c 'env | grep -E "^(TELEGRAM_BUSINESS_|OPENROUTER_API_KEY|CONTACT_TELEGRAM)" | sed -E "s/=.*/=***/" | sort' || true
+            echo "=== container node fetch telegram ==="
+            docker exec "$WEB" node -e '
+              const t=process.env.TELEGRAM_BUSINESS_BOT_TOKEN||"";
+              console.log("token_len", t.length);
+              fetch("https://api.telegram.org").then(r=>console.log("root", r.status)).catch(e=>console.log("root_err", e.name, e.message, e.cause&&e.cause.message));
+              if(t) fetch("https://api.telegram.org/bot"+t+"/getMe").then(r=>r.json()).then(j=>console.log("getMe", j.ok, j.result&&j.result.username, j.description||null)).catch(e=>console.log("getMe_err", e.name, e.message, e.cause&&String(e.cause)));
+            ' || echo "DOCKER_EXEC_FAIL:$?"
+            echo "=== recent web logs ==="
+            docker logs --tail 120 "$WEB" 2>&1 | grep -E 'telegram-business|fetch|Error|error' | tail -60 || docker logs --tail 40 "$WEB" 2>&1
+          fi
+          echo "=== local health ==="
+          curl -sS -m 10 http://127.0.0.1:3001/api/telegram/business || true
+          echo
+          if [ -n "${SECRET:-}" ]; then
+            echo "=== loopback POST /start (chat_id=1 expect TG error or ok) ==="
+            curl -sS -m 30 -X POST http://127.0.0.1:3001/api/telegram/business \
+              -H "Content-Type: application/json" \
+              -H "X-Telegram-Bot-Api-Secret-Token: ${SECRET}" \
+              -d '{"update_id":999999010,"message":{"message_id":1,"date":1,"chat":{"id":1,"type":"private"},"from":{"id":1,"first_name":"Diag"},"text":"/start"}}' || echo "LOOP_POST_FAIL:$?"
+            echo
+          fi
+          echo DONE
+          EOS
