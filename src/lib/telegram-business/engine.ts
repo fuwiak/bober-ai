@@ -219,7 +219,7 @@ export async function replyAboutBober(params: {
     if (text.startsWith("/start")) {
       const hello = [
         "Здравствуйте! Я ассистент Павла (Bober AI Systems).",
-        "Напишите задачу одной фразой — уточню и отвечу по делу.",
+        "Напишите, какую задачу хотите закрыть — уточню и предложу следующий шаг.",
       ].join("\n");
 
       await appendMessage({

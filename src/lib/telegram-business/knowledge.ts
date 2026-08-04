@@ -110,7 +110,7 @@ export function fallbackReply(userText: string): string {
   if (/привет|здравств|добр|hello|hi\b|cześć|dzien\s*dobry/.test(t)) {
     return [
       "Здравствуйте! Я ассистент Павла (Bober AI Systems).",
-      "Какую задачу нужно закрыть — одной фразой?",
+      "Какую задачу хотите закрыть в первую очередь?",
     ].join("\n");
   }
 
