@@ -51,6 +51,7 @@
     "yandex:direct:oauth:ensure": "node scripts/yandex-direct-oauth.mjs ensure --update-railway",
     "yandex:direct:campaigns": "node scripts/yandex-direct-campaigns.mjs",
     "yandex:direct:offer-drafts": "node scripts/yandex-direct-offer-drafts.mjs",
+    "telegram:business:setup": "node scripts/telegram-business-setup.mjs",
     "yandex:direct:micro": "node scripts/yandex-direct-micro.mjs",
     "yandex:direct:mini-hot": "node scripts/yandex-direct-mini-hot.mjs",
     "yandex:direct:service-gallery": "node scripts/yandex-direct-service-gallery.mjs",

@@ -1,4 +1,4 @@
-# Astro + Node standalone (API: /api/contact, /api/health, /api/kwork/webhook).
+# Astro + Node standalone (API: /api/contact, /api/health, /api/telegram/business, /api/kwork/webhook).
 # Domain defaults: config/domains.mjs (override with build-args / env).
 FROM node:22-alpine AS deps
 WORKDIR /app
@@ -48,6 +48,7 @@ RUN addgroup -S astro && adduser -S astro -G astro \
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/public/info.md ./public/info.md
 COPY deploy/web-entrypoint.sh /usr/local/bin/web-entrypoint.sh
 
 RUN chmod +x /usr/local/bin/web-entrypoint.sh \
