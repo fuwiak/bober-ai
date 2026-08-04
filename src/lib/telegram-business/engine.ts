@@ -83,13 +83,15 @@ const TYPING_REFRESH_MS = 3_000;
 
 /**
  * Free Bot API 🎉 party-popper effect (private 1:1).
+ * Default OFF — opt-in via TELEGRAM_CELEBRATION=1.
  * @see https://gist.github.com/wiz0u/2a6d40c8f635687be363d72251a264da
  */
 export const CELEBRATION_EFFECT_ID =
   process.env.TELEGRAM_CELEBRATION_EFFECT_ID?.trim() || "5046509860389126442";
 
+/** Default OFF. Set TELEGRAM_CELEBRATION=1 to attach party-popper on bot replies. */
 export function celebrationEnabled(): boolean {
-  return process.env.TELEGRAM_CELEBRATION_DISABLED !== "1";
+  return process.env.TELEGRAM_CELEBRATION === "1";
 }
 
 function replyOpts(replyToMessageId: number): {

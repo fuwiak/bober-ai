@@ -53,7 +53,11 @@ export function createBusinessBot(token: string): BusinessBot {
 
         // Smart reaction async — after owner skip; never blocks reply. Skip edits.
         if (!isEdit) {
-          void reactToInboundMessage(ctx, msg.text ?? msg.caption);
+          void reactToInboundMessage(ctx, msg.text ?? msg.caption, {
+            chatId: msg.chat.id,
+            mode: "business",
+            businessConnectionId,
+          });
         }
 
         await replyAboutBober({
@@ -73,8 +77,11 @@ export function createBusinessBot(token: string): BusinessBot {
     const msg = ctx.message;
     if (!msg || msg.chat.type !== "private") return;
 
-    // Smart reaction async — parallel with typing/reply; no always-🎉.
-    void reactToInboundMessage(ctx, msg.text ?? msg.caption);
+    // Smart reaction async — parallel with typing/reply; LLM uses recent history.
+    void reactToInboundMessage(ctx, msg.text ?? msg.caption, {
+      chatId: msg.chat.id,
+      mode: "direct",
+    });
 
     // Typing keep-alive ASAP — before replyAboutBober DB/LLM
     await withTypingKeepAlive(
