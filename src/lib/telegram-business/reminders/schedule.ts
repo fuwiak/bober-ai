@@ -45,13 +45,33 @@ export function detectLangFromText(text: string, fallback = "ru"): string {
   const lat = (t.match(/[A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż]/g) || []).join("").length;
   const plMarks = (t.match(/[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/g) || []).length;
   if (cyr >= lat && cyr > 0) return "ru";
-  if (plMarks >= 2 || /\b(nie|tak|proszę|dzień|dobry|ile|koszt)\b/i.test(t)) {
+  // PL often typed without diacritics — catch both forms before EN fallback.
+  if (
+    plMarks >= 2 ||
+    /\b(nie|tak|proszę|prosze|dzień|dzien|dobry|ile|koszt|jest|chcę|chce|można|mozna|dziękuję|dziekuje|bardzo|potrzebuję|potrzebuje|umów|umow|cześć|czesc|witam|prosimy|państwa|panstwa|ile\s+kosztuje)\b/i.test(
+      t,
+    )
+  ) {
     return "pl";
   }
   if (lat > cyr && lat > 8) return "en";
   return fallback;
 }
 
+/**
+ * History text wins over stale preferredLang (same rule as tips / disclaimer).
+ */
+export function resolveClientLang(
+  userTexts: string[],
+  preferredLang?: string | null,
+): string {
+  return detectLangFromText(
+    userTexts.filter(Boolean).join("\n"),
+    preferredLang || "ru",
+  );
+}
+
+/** Single-language pair only — never concatenate RU/PL/EN on one button. */
 export function reminderButtonLabels(lang: string): {
   like: string;
   stop: string;
@@ -60,12 +80,12 @@ export function reminderButtonLabels(lang: string): {
     case "pl":
       return {
         like: "Lubię to",
-        stop: "Przestań wysyłać powiadomienia",
+        stop: "Wyłącz powiadomienia",
       };
     case "en":
       return {
         like: "Like",
-        stop: "Stop reminders",
+        stop: "Stop notifications",
       };
     case "ru":
     default:
@@ -82,6 +102,32 @@ export function reminderCallbackData(
   customerId: number,
 ): string {
   return `tgrem:${action}:${customerId}`;
+}
+
+/** Inline keyboard for reminder / news tip — callback_data unchanged. */
+export function buildReminderKeyboard(
+  lang: string,
+  customerId: number,
+): {
+  inline_keyboard: { text: string; callback_data: string }[][];
+} {
+  const labels = reminderButtonLabels(lang);
+  return {
+    inline_keyboard: [
+      [
+        {
+          text: labels.like,
+          callback_data: reminderCallbackData("like", customerId),
+        },
+      ],
+      [
+        {
+          text: labels.stop,
+          callback_data: reminderCallbackData("stop", customerId),
+        },
+      ],
+    ],
+  };
 }
 
 export function parseReminderCallback(

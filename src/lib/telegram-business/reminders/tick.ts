@@ -11,9 +11,8 @@ import {
   sendMessageWithKeyboard,
 } from "@/lib/telegram-business/api";
 import {
-  detectLangFromText,
-  reminderButtonLabels,
-  reminderCallbackData,
+  buildReminderKeyboard,
+  resolveClientLang,
 } from "@/lib/telegram-business/reminders/schedule";
 import { runNewsAlertTick } from "@/lib/telegram-business/news-alerts";
 
@@ -54,13 +53,9 @@ export async function runReminderTick(limit = 20): Promise<TickResult> {
 
     try {
       const history = await getRecentMessages(conversation.id, HISTORY_LIMIT);
-      const userBlob = history
-        .filter((m) => m.role === "user")
-        .map((m) => m.text)
-        .join("\n");
-      const lang = detectLangFromText(
-        userBlob,
-        customer.preferredLang || "ru",
+      const lang = resolveClientLang(
+        history.filter((m) => m.role === "user").map((m) => m.text),
+        customer.preferredLang,
       );
 
       const advice = await generateReminderAdvice({
@@ -71,30 +66,12 @@ export async function runReminderTick(limit = 20): Promise<TickResult> {
         lang,
       });
 
-      const labels = reminderButtonLabels(lang);
-      const keyboard = {
-        inline_keyboard: [
-          [
-            {
-              text: labels.like,
-              callback_data: reminderCallbackData("like", customer.id),
-            },
-          ],
-          [
-            {
-              text: labels.stop,
-              callback_data: reminderCallbackData("stop", customer.id),
-            },
-          ],
-        ],
-      };
-
       await sendMessageWithKeyboard({
         token,
         chatId: conversation.chatId,
         businessConnectionId: conversation.businessConnectionId,
         text: advice.text,
-        replyMarkup: keyboard,
+        replyMarkup: buildReminderKeyboard(lang, customer.id),
       });
 
       await appendMessage({

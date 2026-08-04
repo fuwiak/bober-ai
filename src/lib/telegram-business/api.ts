@@ -170,13 +170,16 @@ export async function getBusinessConnection(token: string, businessConnectionId:
 export async function sendChatAction(params: {
   token: string;
   chatId: number | string;
-  businessConnectionId: string;
+  /** Required for Business chats; omit for private DM. */
+  businessConnectionId?: string;
 }) {
   try {
     await callTelegram(params.token, "sendChatAction", {
       chat_id: params.chatId,
-      business_connection_id: params.businessConnectionId,
       action: "typing",
+      ...(params.businessConnectionId
+        ? { business_connection_id: params.businessConnectionId }
+        : {}),
     });
   } catch {
     /* optional */

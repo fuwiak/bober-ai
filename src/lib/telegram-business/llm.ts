@@ -2,8 +2,11 @@ import { SITE_NAME, SITE_URL } from "@/lib/site";
 import {
   SYSTEM_PROMPT,
   REMINDER_SYSTEM_PROMPT,
+  MAX_CLARIFYING_QUESTIONS,
   buildUserPrompt,
   buildReminderUserPrompt,
+  clarifyingLimitReply,
+  countClarifyingQuestions,
   stripHandoff,
 } from "@/lib/telegram-business/prompt";
 import { fallbackReply, loadKnowledge } from "@/lib/telegram-business/knowledge";
@@ -20,6 +23,7 @@ import {
   formatSearxHitsForPrompt,
   searchSearxng,
 } from "@/lib/telegram-business/research/searxng";
+import { detectBookingIntent } from "@/lib/telegram-business/booking";
 import { detectLangFromText } from "@/lib/telegram-business/reminders/schedule";
 import type { StoredMessage } from "@/lib/telegram-business/db/schema";
 
@@ -159,6 +163,20 @@ export async function generateBusinessReply(params: {
   history?: StoredMessage[];
 }): Promise<GenerateResult> {
   const knowledge = await loadKnowledge();
+  const history = params.history ?? [];
+  const clientLang = detectClientLang(params.message, history);
+  const clarifyingSoFar = countClarifyingQuestions(history);
+  const wantsBooking = detectBookingIntent(params.message, false);
+
+  // Soft cap: after ~5 clarifying Qs without booking — stop grilling, hand off to Paweł.
+  if (clarifyingSoFar >= MAX_CLARIFYING_QUESTIONS && !wantsBooking) {
+    return {
+      text: clarifyingLimitReply(clientLang),
+      handoff: true,
+      booking: false,
+      source: "fallback",
+    };
+  }
 
   if (!process.env.OPENROUTER_API_KEY?.trim()) {
     return {
@@ -170,11 +188,9 @@ export async function generateBusinessReply(params: {
   }
 
   try {
-    const history = params.history ?? [];
     const prior = history.slice(0, -1);
     const turns = historyToTurns(prior);
     const research = await gatherResearchContext(params.message);
-    const clientLang = detectClientLang(params.message, history);
     const disclaimer = research.usedWeb ? webDisclaimer(clientLang) : undefined;
 
     const messages: ChatTurn[] = [
@@ -190,6 +206,7 @@ export async function generateBusinessReply(params: {
           researchContext: research.text,
           usedWeb: research.usedWeb,
           webDisclaimerText: disclaimer,
+          clarifyingQuestionsSoFar: clarifyingSoFar,
         }),
       },
     ];

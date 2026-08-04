@@ -4,9 +4,11 @@ import {
   telegramApiBase,
 } from "@/lib/telegram-business/api";
 import {
+  celebrateInboundMessage,
   handleBusinessConnection,
   handleReminderCallback,
   replyAboutBober,
+  withTypingKeepAlive,
 } from "@/lib/telegram-business/engine";
 import { parseReminderCallback } from "@/lib/telegram-business/reminders/schedule";
 import { ensureReminderScheduler } from "@/lib/telegram-business/reminders/tick";
@@ -34,39 +36,57 @@ export function createBusinessBot(token: string): BusinessBot {
     if (!msg) return;
     const businessConnectionId = msg.business_connection_id;
     if (!businessConnectionId) return;
+    const isEdit = Boolean(ctx.editedBusinessMessage);
 
-    // Typing ASAP — before getBusinessConnection / DB / LLM
-    void ctx.replyWithChatAction("typing").catch(() => undefined);
-
-    try {
-      const conn = await ctx.getBusinessConnection();
-      if (ctx.from?.id === conn.user.id) {
-        return; // owner message — skip
-      }
-    } catch (err) {
-      console.error("[telegram-business] getBusinessConnection", err);
-    }
-
-    await replyAboutBober({
-      token,
+    // Typing keep-alive from first byte — before getBusinessConnection / DB / LLM.
+    await withTypingKeepAlive(
       ctx,
-      msg,
-      mode: "business",
-      businessConnectionId,
-    });
+      async () => {
+        try {
+          const conn = await ctx.getBusinessConnection();
+          if (ctx.from?.id === conn.user.id) {
+            return; // owner message — skip
+          }
+        } catch (err) {
+          console.error("[telegram-business] getBusinessConnection", err);
+        }
+
+        // Celebration only on new inbound (not edits) — 🎉 reaction, no text spam.
+        if (!isEdit) {
+          await celebrateInboundMessage(ctx);
+        }
+
+        await replyAboutBober({
+          token,
+          ctx,
+          msg,
+          mode: "business",
+          businessConnectionId,
+          skipTyping: true,
+        });
+      },
+      { token, chatId: msg.chat.id, businessConnectionId },
+    );
   });
 
   bot.on("message", async (ctx) => {
     const msg = ctx.message;
     if (!msg || msg.chat.type !== "private") return;
-    // Typing ASAP — before replyAboutBober DB/LLM
-    void ctx.replyWithChatAction("typing").catch(() => undefined);
-    await replyAboutBober({
-      token,
+    // Typing keep-alive ASAP — before replyAboutBober DB/LLM
+    await withTypingKeepAlive(
       ctx,
-      msg,
-      mode: "direct",
-    });
+      async () => {
+        await celebrateInboundMessage(ctx);
+        await replyAboutBober({
+          token,
+          ctx,
+          msg,
+          mode: "direct",
+          skipTyping: true,
+        });
+      },
+      { token, chatId: msg.chat.id },
+    );
   });
 
   bot.on("callback_query:data", async (ctx) => {

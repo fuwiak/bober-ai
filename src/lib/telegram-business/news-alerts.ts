@@ -18,9 +18,8 @@ import {
   sendMessageWithKeyboard,
 } from "@/lib/telegram-business/api";
 import {
-  detectLangFromText,
-  reminderButtonLabels,
-  reminderCallbackData,
+  buildReminderKeyboard,
+  resolveClientLang,
 } from "@/lib/telegram-business/reminders/schedule";
 import {
   fetchAllRssItems,
@@ -311,10 +310,7 @@ export async function runNewsAlertTick(limitCustomers = 15): Promise<NewsTickRes
       matched += 1;
 
       // History wins over stale preferredLang (e.g. one EN paste locked "en").
-      const lang = detectLangFromText(
-        userTexts.join("\n"),
-        customer.preferredLang || "ru",
-      );
+      const lang = resolveClientLang(userTexts, customer.preferredLang);
 
       const newsHint = sanitizePublicText(
         `${best.item.title}\n${best.item.summary}\n${best.item.link}`,
@@ -342,30 +338,12 @@ export async function runNewsAlertTick(limitCustomers = 15): Promise<NewsTickRes
         3500,
       );
 
-      const labels = reminderButtonLabels(lang);
-      const keyboard = {
-        inline_keyboard: [
-          [
-            {
-              text: labels.like,
-              callback_data: reminderCallbackData("like", customer.id),
-            },
-          ],
-          [
-            {
-              text: labels.stop,
-              callback_data: reminderCallbackData("stop", customer.id),
-            },
-          ],
-        ],
-      };
-
       await sendMessageWithKeyboard({
         token,
         chatId: conversation.chatId,
         businessConnectionId: conversation.businessConnectionId,
         text,
-        replyMarkup: keyboard,
+        replyMarkup: buildReminderKeyboard(lang, customer.id),
       });
 
       await appendMessage({

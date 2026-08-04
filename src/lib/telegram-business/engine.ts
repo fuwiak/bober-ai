@@ -4,6 +4,7 @@ import { generateBusinessReply } from "@/lib/telegram-business/llm";
 import {
   type BusinessConnection,
   notifyOwner,
+  sendChatAction,
 } from "@/lib/telegram-business/api";
 import {
   detectBookingIntent,
@@ -77,28 +78,84 @@ async function persistCustomer(
   }
 }
 
-/** Telegram typing expires ~5s — refresh every ~3.5s (DM + Business via ctx). */
-const TYPING_REFRESH_MS = 3_500;
+/** Telegram typing expires ~5s — refresh every ~3s (DM + Business). */
+const TYPING_REFRESH_MS = 3_000;
 
-async function sendTyping(ctx: Context): Promise<void> {
+/**
+ * Free Bot API 🎉 party-popper effect (private 1:1).
+ * @see https://gist.github.com/wiz0u/2a6d40c8f635687be363d72251a264da
+ */
+export const CELEBRATION_EFFECT_ID =
+  process.env.TELEGRAM_CELEBRATION_EFFECT_ID?.trim() || "5046509860389126442";
+
+export function celebrationEnabled(): boolean {
+  return process.env.TELEGRAM_CELEBRATION_DISABLED !== "1";
+}
+
+/**
+ * Subtle “hurra” when client confirms a message: big 🎉 reaction on their msg.
+ * No text spam. Fails soft (Business / limited chats may reject).
+ */
+export async function celebrateInboundMessage(ctx: Context): Promise<void> {
+  if (!celebrationEnabled()) return;
+  try {
+    await ctx.react("🎉", { is_big: true });
+  } catch {
+    /* optional */
+  }
+}
+
+function replyOpts(replyToMessageId: number): {
+  reply_parameters: { message_id: number };
+  link_preview_options: { is_disabled: true };
+  message_effect_id?: string;
+} {
+  return {
+    reply_parameters: { message_id: replyToMessageId },
+    link_preview_options: { is_disabled: true },
+    ...(celebrationEnabled()
+      ? { message_effect_id: CELEBRATION_EFFECT_ID }
+      : {}),
+  };
+}
+
+export type TypingPulseOpts = {
+  token?: string;
+  chatId?: number | string;
+  businessConnectionId?: string;
+};
+
+async function pulseTyping(
+  ctx: Context,
+  opts?: TypingPulseOpts,
+): Promise<void> {
   try {
     await ctx.replyWithChatAction("typing");
   } catch {
     /* optional — network blips should not kill the reply path */
   }
+  // Belt-and-suspenders for Business: explicit business_connection_id.
+  if (opts?.token && opts.chatId != null) {
+    await sendChatAction({
+      token: opts.token,
+      chatId: opts.chatId,
+      businessConnectionId: opts.businessConnectionId,
+    });
+  }
 }
 
 /**
  * Keep the “typing…” / hand animation alive until `work` settles.
- * Grammy attaches business_connection_id when present on the update.
+ * Call ASAP on inbound message (before DB/LLM). Grammy + raw sendChatAction.
  */
-async function withTypingKeepAlive<T>(
+export async function withTypingKeepAlive<T>(
   ctx: Context,
   work: () => Promise<T>,
+  opts?: TypingPulseOpts,
 ): Promise<T> {
-  await sendTyping(ctx);
+  await pulseTyping(ctx, opts);
   const timer = setInterval(() => {
-    void sendTyping(ctx);
+    void pulseTyping(ctx, opts);
   }, TYPING_REFRESH_MS);
   try {
     return await work();
@@ -152,14 +209,15 @@ export async function replyAboutBober(params: {
   msg: Message;
   mode: "direct" | "business";
   businessConnectionId?: string;
+  /** When true, caller already runs withTypingKeepAlive. */
+  skipTyping?: boolean;
 }) {
   ensureReminderScheduler();
 
   const text = (params.msg.text || params.msg.caption || "").trim();
   if (!text) return { ok: true, handled: "non_text" as const };
 
-  // Typing immediately — before DB / LLM heavy work (DM + Business).
-  return withTypingKeepAlive(params.ctx, async () => {
+  const run = async () => {
     const lang = detectLangFromText(text, "ru");
     const customer = await persistCustomer(params.msg, lang);
     const conversation = await getOrCreateConversation({
@@ -171,10 +229,8 @@ export async function replyAboutBober(params: {
 
     if (text.startsWith("/start")) {
       const hello = [
-        "Здравствуйте! Я ассистент Bober AI Systems.",
-        "Могу рассказать про услуги: AI-ассистенты (ChatGPT-like UX), документы→1С, Битрикс24, КП, речевая аналитика, Meeting-to-CRM, интеграции.",
-        "Напишите задачу одной фразой — или вопрос про цены / сроки.",
-        "Сайт: https://www.bober-systems.ru/",
+        "Здравствуйте! Я ассистент Павла (Bober AI Systems).",
+        "Напишите задачу одной фразой — уточню и отвечу по делу.",
       ].join("\n");
 
       await appendMessage({
@@ -184,10 +240,7 @@ export async function replyAboutBober(params: {
         telegramMessageId: params.msg.message_id,
       });
 
-      await params.ctx.reply(hello, {
-        reply_parameters: { message_id: params.msg.message_id },
-        link_preview_options: { is_disabled: true },
-      });
+      await params.ctx.reply(hello, replyOpts(params.msg.message_id));
 
       const out = await appendMessage({
         conversationId: conversation.id,
@@ -253,10 +306,10 @@ export async function replyAboutBober(params: {
         };
       }
 
-      await params.ctx.reply(generated.text.slice(0, 4000), {
-        reply_parameters: { message_id: params.msg.message_id },
-        link_preview_options: { is_disabled: true },
-      });
+      await params.ctx.reply(
+        generated.text.slice(0, 4000),
+        replyOpts(params.msg.message_id),
+      );
       reply = generated;
     } catch (err) {
       console.error("[telegram-business] reply failed", err);
@@ -365,6 +418,13 @@ export async function replyAboutBober(params: {
       handoff: reply.handoff,
       booking: reply.booking,
     };
+  };
+
+  if (params.skipTyping) return run();
+  return withTypingKeepAlive(params.ctx, run, {
+    token: params.token,
+    chatId: params.msg.chat.id,
+    businessConnectionId: params.businessConnectionId,
   });
 }
 
