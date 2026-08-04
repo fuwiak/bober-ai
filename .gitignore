@@ -33,3 +33,7 @@ data/*.har
 
 # Kwork→Bitrix local dedup cache (order ids)
 data/.kwork-bitrix-sync-state.json
+
+# Telegram Business bot local SQLite (use DATABASE_URL on Railway for durable prod)
+data/telegram-bot.sqlite
+data/telegram-bot.sqlite-*

@@ -18,6 +18,11 @@
  * Note: Selectel VDS (45.80.131.136) currently cannot reach api.telegram.org
  * outbound (TCP timeout). Webhook must land on a host that can call Telegram
  * (Railway EU). Inbound webhooks to Selectel still arrive, but replies fail.
+ *
+ * Message history (Grammy bot):
+ *   Prefer DATABASE_URL=postgresql://... on Railway (durable).
+ *   Else TELEGRAM_DB_PATH=/app/data/telegram-bot.sqlite (file; ephemeral without volume).
+ *   TELEGRAM_HISTORY_LIMIT=16  — last N messages fed into the LLM.
  */
 
 import { readFileSync, existsSync } from "node:fs";
@@ -161,12 +166,14 @@ B) От твоего личного аккаунта (Telegram Business)
    3. Доступ: только новые личные чаты · права: читать + отвечать
    Клиент пишет тебе (@pstasinski) — бот отвечает от твоего имени.
 
-Env на VDS:
+Env (Railway — основной хост бота):
   TELEGRAM_BUSINESS_BOT_TOKEN=...
   TELEGRAM_BUSINESS_WEBHOOK_SECRET=${secret}
   OPENROUTER_API_KEY=...
   CONTACT_TELEGRAM_CHAT_ID=...
   TELEGRAM_BUSINESS_LLM_MODEL=deepseek/deepseek-v4-flash-0731
+  DATABASE_URL=postgresql://...   # рекомендуется для истории диалогов
+  # или TELEGRAM_DB_PATH=data/telegram-bot.sqlite  # SQLite fallback
 
 Проверка: GET ${site}
 `);

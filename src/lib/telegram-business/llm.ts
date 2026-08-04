@@ -1,8 +1,11 @@
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { SYSTEM_PROMPT, buildUserPrompt, stripHandoff } from "@/lib/telegram-business/prompt";
 import { fallbackReply, loadKnowledge } from "@/lib/telegram-business/knowledge";
+import type { StoredMessage } from "@/lib/telegram-business/db/schema";
 
 const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
+
+type ChatTurn = { role: "system" | "user" | "assistant"; content: string };
 
 function modelName() {
   return (
@@ -12,7 +15,7 @@ function modelName() {
   );
 }
 
-async function chatOpenRouter(system: string, user: string): Promise<string> {
+async function chatOpenRouter(messages: ChatTurn[]): Promise<string> {
   const apiKey = process.env.OPENROUTER_API_KEY?.trim();
   if (!apiKey) throw new Error("OPENROUTER_API_KEY missing");
 
@@ -34,10 +37,7 @@ async function chatOpenRouter(system: string, user: string): Promise<string> {
         model: modelName(),
         temperature: 0.3,
         max_tokens: 700,
-        messages: [
-          { role: "system", content: system },
-          { role: "user", content: user },
-        ],
+        messages,
       }),
       signal: ctrl.signal,
     });
@@ -62,9 +62,23 @@ export type GenerateResult = {
   source: "llm" | "fallback";
 };
 
+function historyToTurns(history: StoredMessage[]): ChatTurn[] {
+  const turns: ChatTurn[] = [];
+  for (const m of history) {
+    if (m.role === "system") continue;
+    if (m.role !== "user" && m.role !== "assistant") continue;
+    const content = m.text.trim();
+    if (!content) continue;
+    turns.push({ role: m.role, content });
+  }
+  return turns;
+}
+
 export async function generateBusinessReply(params: {
   message: string;
   customerName?: string;
+  /** Recent messages including the current user turn (oldest → newest). */
+  history?: StoredMessage[];
 }): Promise<GenerateResult> {
   const knowledge = await loadKnowledge();
 
@@ -73,14 +87,25 @@ export async function generateBusinessReply(params: {
   }
 
   try {
-    const raw = await chatOpenRouter(
-      SYSTEM_PROMPT,
-      buildUserPrompt({
-        knowledge,
-        customerName: params.customerName,
-        message: params.message,
-      }),
-    );
+    const history = params.history ?? [];
+    const prior = history.slice(0, -1); // drop current user msg — re-add via buildUserPrompt
+    const turns = historyToTurns(prior);
+
+    const messages: ChatTurn[] = [
+      { role: "system", content: SYSTEM_PROMPT },
+      ...turns,
+      {
+        role: "user",
+        content: buildUserPrompt({
+          knowledge,
+          customerName: params.customerName,
+          message: params.message,
+          hasHistory: turns.length > 0,
+        }),
+      },
+    ];
+
+    const raw = await chatOpenRouter(messages);
     const { text, handoff } = stripHandoff(raw);
     return {
       text: text || fallbackReply(params.message),

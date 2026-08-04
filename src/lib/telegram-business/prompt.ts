@@ -14,6 +14,11 @@ HANDOFF: yes
 Иначе:
 HANDOFF: no
 
+ПАМЯТЬ ДИАЛОГА:
+- У тебя есть история переписки. Не повторяй предыдущие ответы дословно.
+- Развивай разговор: опирайся на уже сказанное, не пересказывай тот же питч.
+- Если клиент уточняет — отвечай на уточнение, а не заново копируй общий оффер.
+
 СТИЛЬ:
 - 4–8 коротких предложений или компактный список.
 - 1–2 ссылки на www.bober-systems.ru (конкретная страница оффера).
@@ -30,9 +35,13 @@ export function buildUserPrompt(params: {
   knowledge: string;
   customerName?: string;
   message: string;
+  hasHistory?: boolean;
 }) {
   const who = params.customerName ? `Клиент: ${params.customerName}\n` : "";
-  return `${who}База знаний Bober AI Systems:\n${params.knowledge}\n\n---\nСообщение клиента:\n${params.message}\n\nОтветь по правилам. В конце обязательно HANDOFF: yes|no`;
+  const hist = params.hasHistory
+    ? "Учитывай историю выше: не повторяйся, продолжай диалог.\n"
+    : "";
+  return `${who}База знаний Bober AI Systems:\n${params.knowledge}\n\n---\n${hist}Сообщение клиента:\n${params.message}\n\nОтветь по правилам. В конце обязательно HANDOFF: yes|no`;
 }
 
 export function stripHandoff(reply: string): { text: string; handoff: boolean } {

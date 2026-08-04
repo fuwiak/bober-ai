@@ -34,6 +34,10 @@ services:
       TELEGRAM_BUSINESS_LLM_MODEL: ${TELEGRAM_BUSINESS_LLM_MODEL:-deepseek/deepseek-v4-flash-0731}
       CONTACT_TELEGRAM_CHAT_ID: ${CONTACT_TELEGRAM_CHAT_ID:-}
       CONTACT_TELEGRAM_BOT_TOKEN: ${CONTACT_TELEGRAM_BOT_TOKEN:-}
+      # Prefer Postgres on Railway: set DATABASE_URL. Else SQLite under /app/data (volume).
+      DATABASE_URL: ${DATABASE_URL:-}
+      TELEGRAM_DB_PATH: ${TELEGRAM_DB_PATH:-/app/data/telegram-bot.sqlite}
+      TELEGRAM_HISTORY_LIMIT: ${TELEGRAM_HISTORY_LIMIT:-16}
     healthcheck:
       test:
         [

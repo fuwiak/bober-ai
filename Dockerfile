@@ -5,7 +5,10 @@ WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 
 COPY package.json package-lock.json ./
-RUN npm ci
+# better-sqlite3 needs native toolchain on Alpine (Telegram bot message store).
+RUN apk add --no-cache python3 make g++ \
+  && npm ci \
+  && apk del python3 make g++
 
 FROM node:22-alpine AS builder
 WORKDIR /app

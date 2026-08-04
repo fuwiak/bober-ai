@@ -1,8 +1,10 @@
 export const prerender = false;
 
 import type { APIRoute } from "astro";
-import { businessBotToken, webhookSecret, type TgUpdate } from "@/lib/telegram-business/api";
-import { handleUpdate } from "@/lib/telegram-business/engine";
+import { businessBotToken, webhookSecret } from "@/lib/telegram-business/api";
+import { getBusinessBot } from "@/lib/telegram-business/bot";
+import { dbHealth } from "@/lib/telegram-business/db/store";
+import { dbBackendLabel } from "@/lib/telegram-business/db/client";
 
 function json(body: Record<string, unknown>, status = 200) {
   return new Response(JSON.stringify(body), {
@@ -13,11 +15,15 @@ function json(body: Record<string, unknown>, status = 200) {
 
 export const GET: APIRoute = async () => {
   const token = businessBotToken();
+  const db = await dbHealth();
   return json({
     ok: true,
     service: "telegram-business",
+    framework: "grammy",
     configured: Boolean(token),
     llm: Boolean(process.env.OPENROUTER_API_KEY?.trim()),
+    db: db.backend,
+    dbOk: db.ok,
     apiBase: process.env.TELEGRAM_API_BASE?.trim() || "https://api.telegram.org",
     hint: "POST Telegram updates here. Setup: npm run telegram:business:setup",
   });
@@ -37,16 +43,19 @@ export const POST: APIRoute = async ({ request }) => {
     }
   }
 
-  let update: TgUpdate;
+  let update: unknown;
   try {
-    update = (await request.json()) as TgUpdate;
+    update = await request.json();
   } catch {
     return json({ ok: false, error: "invalid_json" }, 400);
   }
 
   try {
-    const result = await handleUpdate(token, update);
-    return json(result);
+    const bot = getBusinessBot(token);
+    // Manual feed keeps Astro adapter thin; Grammy handles Business + DM.
+    // Await full handler (LLM up to ~45s) — Railway webhook timeout is generous.
+    await bot.handleUpdate(update as Parameters<typeof bot.handleUpdate>[0]);
+    return json({ ok: true, framework: "grammy", db: dbBackendLabel() });
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     console.error("[telegram-business] webhook", message);
