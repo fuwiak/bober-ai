@@ -11,6 +11,8 @@ import {
   HISTORY_LIMIT,
   listReminderEligibleCustomers,
   markNewsSent,
+  normalizeForCompare,
+  recentAssistantTexts,
 } from "@/lib/telegram-business/db/store";
 import { generateReminderAdvice } from "@/lib/telegram-business/llm";
 import {
@@ -283,11 +285,24 @@ export async function runNewsAlertTick(limitCustomers = 15): Promise<NewsTickRes
         continue;
       }
 
+      // Title already mentioned in recent bot tips — skip (URL store + soft text dedupe).
+      const recentNorm = recentAssistantTexts(history, 8).map((t) =>
+        normalizeForCompare(t),
+      );
+
       let best: { item: RssItem; score: number } | null = null;
       for (const item of items) {
         const score = scoreItem(item, topics);
         if (score < MIN_NEWS_SCORE) continue;
         if (await hasNewsBeenSent(customer.id, item.link)) continue;
+        const titleNorm = normalizeForCompare(item.title);
+        const titleKey = titleNorm.slice(0, Math.min(72, titleNorm.length));
+        if (
+          titleKey.length >= 12 &&
+          recentNorm.some((t) => t.includes(titleKey) || t.includes(item.link.toLowerCase()))
+        ) {
+          continue;
+        }
         if (!best || score > best.score) best = { item, score };
       }
 

@@ -19,7 +19,6 @@ import {
   getOrCreateConversation,
   getRecentMessages,
   HISTORY_LIMIT,
-  isNearDuplicate,
   likeReminder,
   optOutReminders,
   upsertCustomer,
@@ -266,9 +265,6 @@ export async function replyAboutBober(params: {
     });
 
     const history = await getRecentMessages(conversation.id, HISTORY_LIMIT);
-    const priorAssistant = [...history]
-      .reverse()
-      .find((m) => m.role === "assistant")?.text;
 
     let reply;
     try {
@@ -277,14 +273,6 @@ export async function replyAboutBober(params: {
         customerName: displayName(params.msg),
         history,
       });
-
-      if (isNearDuplicate(generated.text, priorAssistant)) {
-        const shorter =
-          generated.text.length > 280
-            ? `${generated.text.slice(0, 260).trim()}…\n\nУточните, пожалуйста, что важнее сейчас — или предложу созвон.`
-            : `${generated.text}\n\nЕсли нужно — уточню другой аспект или предложу короткий созвон.`;
-        generated = { ...generated, text: shorter };
-      }
 
       const wantsBooking = detectBookingIntent(text, generated.booking);
       if (wantsBooking) {

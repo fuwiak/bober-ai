@@ -32,9 +32,9 @@ export const SYSTEM_PROMPT = `Ты — ассистент основателя B
 
 КОНТЕКСТ / АНТИ-ЭХО (ОБЯЗАТЕЛЬНО):
 - Читай историю целиком: что болит, какая система, какой запрос, что уже предлагал ты.
-- Не повторяй дословно фразы клиента и не копируй свой предыдущий ответ verbatim.
-- Не крути одни и те же обороты («понял», «коротко уточню», шаблонные вопросы) — двигай тред вперёд новыми фактами и следующим шагом.
-- Бери факты из сообщений клиента; слушай, не пересказывай оффер и не пересказывай клиента его же словами.
+- Запрещено: повторять смысл своих прошлых ответов (даже другими словами), пересказывать клиента, лить воду.
+- Не крути одни и те же обороты («понял», «коротко уточню», шаблонные вопросы, повтор оффера) — только новый факт или конкретный следующий шаг.
+- Если клиент уточнил — отвечай ТОЛЬКО на уточнение, без рекапа всего треда.
 
 РЫНОК РФ (если релевантно):
 - 152-ФЗ, Bitrix24 / 1С / amoCRM, локальный контур — коротко, без лекции.
@@ -62,8 +62,8 @@ BOOKING: no
 При BOOKING: yes коротко подтверди заявку.
 
 ПАМЯТЬ / АНТИ-ПОВТОР:
-- Не повторяй предыдущие ответы. Не копируй общий питч.
-- Уточнение клиента → отвечай на уточнение, продвигай диалог.
+- Не повторяй предыдущие ответы и общий питч. Дубликат = провал.
+- Уточнение клиента → только новое; без воды и без рекапа.
 
 ССЫЛКИ: 0–1 на www.bober-systems.ru, и только если клиент просил ссылку/страницу или это прямой ответ на вопрос.
 `.trim();
@@ -74,6 +74,7 @@ export const REMINDER_SYSTEM_PROMPT = `Ты пишешь короткое пол
 Язык = язык клиента (поле lang). 2–4 предложения. Без HANDOFF/BOOKING. Без эмодзи-спама.
 Не повторяй прошлые ответы бота и не копируй дословно фразы клиента. Можно 1 ссылку на www.bober-systems.ru если уместно.
 Никогда не пиши «одной фразой» / «в одной фразе» и близкие варианты.
+Если совет получится тем же смыслом, что уже писал — лучше короткий новый угол, не рекап.
 
 Если дан свежий источник — свяжи совет с ним И с реальной болью/запросом клиента из истории.
 Запрещено: шаблон «назовите узкое место процесса» / «name one process bottleneck» / проповедь без привязки к их словам.
@@ -119,10 +120,26 @@ export function buildUserPrompt(params: {
   webDisclaimerText?: string;
   /** How many assistant clarifying questions already in the thread. */
   clarifyingQuestionsSoFar?: number;
+  /** Recent assistant replies — must not be echoed (even paraphrased). */
+  recentAssistantReplies?: string[];
+  /** Extra hard anti-echo note on regenerate pass. */
+  antiEchoRetry?: boolean;
 }) {
   const who = params.customerName ? `Клиент: ${params.customerName}\n` : "";
   const hist = params.hasHistory
     ? "Учитывай историю выше: не эхо-копируй фразы клиента и свой прошлый ответ; продолжай тему треда новыми фактами / следующим шагом.\n"
+    : "";
+  const priors = (params.recentAssistantReplies ?? [])
+    .map((t) => t.trim())
+    .filter(Boolean)
+    .slice(0, 5);
+  const antiEcho = priors.length
+    ? `\nАНТИ-ЭХО: не повторяй смысл этих недавних ответов ассистента (даже другими словами):\n${priors
+        .map((t, i) => `${i + 1}. ${t.slice(0, 220)}`)
+        .join("\n")}\nТолько новый факт / новый угол / конкретный следующий шаг. Без воды.\n`
+    : "";
+  const retry = params.antiEchoRetry
+    ? "\nПРЕДЫДУЩИЙ ЧЕРНОВИК ОТКЛОНЁН как эхо. Напиши принципиально другой ответ: без рекапа, без того же оффера, без тех же вопросов.\n"
     : "";
   const research = params.researchContext?.trim()
     ? `\nДоп. публичный контекст (без секретов). Блок [web] = непроверенный интернет — обязательный дисклеймер в ответе:\n${params.researchContext.trim()}\n`
@@ -141,7 +158,18 @@ export function buildUserPrompt(params: {
       : qCount >= MAX_CLARIFYING_QUESTIONS - 1
         ? `\nУже ${qCount} уточняющих вопросов ассистента в треде (лимит ${MAX_CLARIFYING_QUESTIONS}). Можно один короткий ответ; новый вопрос — только если критично, иначе веди к Павлу / созвону.\n`
         : `\nУточняющих вопросов ассистента в треде: ${qCount}/${MAX_CLARIFYING_QUESTIONS}. Максимум один новый вопрос в этом ответе. Без рекламного монолога.\n`;
-  return `${who}База знаний Bober AI Systems (справка — не копируй в чат целиком):\n${params.knowledge}\n${research}${webRule}${qRule}\n---\n${hist}Сообщение клиента:\n${params.message}\n\nОтветь по делу: солдатски + продажнее (2–4 предложения ок), без «одной фразой», без эха истории, без шапки-питча. В конце обязательно HANDOFF: yes|no и BOOKING: yes|no`;
+  return `${who}База знаний Bober AI Systems (справка — не копируй в чат целиком):\n${params.knowledge}\n${research}${webRule}${qRule}${antiEcho}${retry}\n---\n${hist}Сообщение клиента:\n${params.message}\n\nОтветь по делу: солдатски + продажнее (2–4 предложения ок), без «одной фразой», без эха истории, без шапки-питча. В конце обязательно HANDOFF: yes|no и BOOKING: yes|no`;
+}
+
+/** Short non-repeating fallback when regenerate still echoes. */
+export function antiEchoFallbackReply(lang: string): string {
+  if (lang === "pl") {
+    return "Żebym nie powtarzał tego samego: napisz jeden konkret — system (Bitrix/1C/inny) albo gdzie tracisz czas/pieniądze. Albo umówimy krótką rozmowę z Pawłem (@pstasinski).";
+  }
+  if (lang === "en") {
+    return "So I don't repeat myself: give one concrete detail — your stack (Bitrix/1C/other) or where you lose time/money. Or we book a short call with Paweł (@pstasinski).";
+  }
+  return "Чтобы не повторяться: напишите один конкретик — система (Bitrix/1С/другое) или где теряете время/деньги. Или короткий созвон с Павлом (@pstasinski).";
 }
 
 export function buildReminderUserPrompt(params: {

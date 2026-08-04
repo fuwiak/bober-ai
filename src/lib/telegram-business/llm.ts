@@ -3,6 +3,7 @@ import {
   SYSTEM_PROMPT,
   REMINDER_SYSTEM_PROMPT,
   MAX_CLARIFYING_QUESTIONS,
+  antiEchoFallbackReply,
   buildUserPrompt,
   buildReminderUserPrompt,
   clarifyingLimitReply,
@@ -25,6 +26,10 @@ import {
 } from "@/lib/telegram-business/research/searxng";
 import { detectBookingIntent } from "@/lib/telegram-business/booking";
 import { detectLangFromText } from "@/lib/telegram-business/reminders/schedule";
+import {
+  echoesRecentReplies,
+  recentAssistantTexts,
+} from "@/lib/telegram-business/db/store";
 import type { StoredMessage } from "@/lib/telegram-business/db/schema";
 
 /** Client lang from thread user messages + current turn (same heuristic as reminders). */
@@ -167,6 +172,7 @@ export async function generateBusinessReply(params: {
   const clientLang = detectClientLang(params.message, history);
   const clarifyingSoFar = countClarifyingQuestions(history);
   const wantsBooking = detectBookingIntent(params.message, false);
+  const priorAssistants = recentAssistantTexts(history, 5);
 
   // Soft cap: after ~5 clarifying Qs without booking — stop grilling, hand off to Paweł.
   if (clarifyingSoFar >= MAX_CLARIFYING_QUESTIONS && !wantsBooking) {
@@ -193,39 +199,58 @@ export async function generateBusinessReply(params: {
     const research = await gatherResearchContext(params.message);
     const disclaimer = research.usedWeb ? webDisclaimer(clientLang) : undefined;
 
-    const messages: ChatTurn[] = [
-      { role: "system", content: SYSTEM_PROMPT },
-      ...turns,
-      {
-        role: "user",
-        content: buildUserPrompt({
-          knowledge,
-          customerName: params.customerName,
-          message: params.message,
-          hasHistory: turns.length > 0,
-          researchContext: research.text,
-          usedWeb: research.usedWeb,
-          webDisclaimerText: disclaimer,
-          clarifyingQuestionsSoFar: clarifyingSoFar,
-        }),
-      },
-    ];
+    const runOnce = async (antiEchoRetry: boolean) => {
+      const messages: ChatTurn[] = [
+        { role: "system", content: SYSTEM_PROMPT },
+        ...turns,
+        {
+          role: "user",
+          content: buildUserPrompt({
+            knowledge,
+            customerName: params.customerName,
+            message: params.message,
+            hasHistory: turns.length > 0,
+            researchContext: research.text,
+            usedWeb: research.usedWeb,
+            webDisclaimerText: disclaimer,
+            clarifyingQuestionsSoFar: clarifyingSoFar,
+            recentAssistantReplies: priorAssistants,
+            antiEchoRetry,
+          }),
+        },
+      ];
+      const raw = await chatOpenRouter(messages);
+      const stripped = stripHandoff(raw);
+      let text = stripped.text || fallbackReply(params.message);
+      if (research.usedWeb) {
+        text = ensureWebDisclaimer(text, clientLang);
+      }
+      return {
+        text,
+        handoff: stripped.handoff,
+        booking: stripped.booking,
+        source: "llm" as const,
+      };
+    };
 
-    const raw = await chatOpenRouter(messages);
-    const stripped = stripHandoff(raw);
-    let text = stripped.text || fallbackReply(params.message);
+    let result = await runOnce(false);
 
-    // Hard guarantee: correct-language disclaimer (replace EN/wrong-lang LLM invents).
-    if (research.usedWeb) {
-      text = ensureWebDisclaimer(text, clientLang);
+    // Deterministic gate: reject paraphrased echo of last N assistant replies.
+    if (priorAssistants.length && echoesRecentReplies(result.text, priorAssistants)) {
+      console.info("[telegram-business] anti-echo: regenerating");
+      result = await runOnce(true);
+      if (echoesRecentReplies(result.text, priorAssistants)) {
+        console.info("[telegram-business] anti-echo: fallback after retry");
+        return {
+          text: antiEchoFallbackReply(clientLang),
+          handoff: false,
+          booking: false,
+          source: "fallback",
+        };
+      }
     }
 
-    return {
-      text,
-      handoff: stripped.handoff,
-      booking: stripped.booking,
-      source: "llm",
-    };
+    return result;
   } catch (err) {
     console.error("[telegram-business] LLM failed", err);
     return {
@@ -300,6 +325,15 @@ export async function generateReminderAdvice(params: {
 
     // Reject preachy generic when news tip must stay concrete.
     if (params.requireConcrete && GENERIC_BOTTLENECK.test(text)) {
+      return { text: "", source: "fallback" };
+    }
+
+    // Anti-echo vs recent assistant turns (incl. prior reminders/news).
+    const priors = recentAssistantTexts(params.history, 5);
+    if (priors.length && echoesRecentReplies(text, priors)) {
+      console.info("[telegram-business] reminder anti-echo skip");
+      if (params.requireConcrete) return { text: "", source: "fallback" };
+      // Regular reminder: one retry with stronger note, else skip send (empty).
       return { text: "", source: "fallback" };
     }
 

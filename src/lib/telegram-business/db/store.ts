@@ -878,25 +878,114 @@ export async function markNewsSent(params: {
   );
 }
 
-/** Light anti-repeat: true if candidate ≈ last assistant reply. */
-export function isNearDuplicate(candidate: string, lastAssistant?: string | null): boolean {
+/** Jaccard / containment thresholds for anti-echo. */
+const ECHO_SIM_THRESHOLD = 0.48;
+const ECHO_CONTAINMENT = 0.68;
+const ECHO_SUBSTRING_RATIO = 0.65;
+
+export function normalizeForCompare(s: string): string {
+  return s
+    .toLowerCase()
+    .replace(/^\[(reminder|news-alert)\]\s*/i, "")
+    .replace(/\s+/g, " ")
+    .replace(/[«»"""']/g, "")
+    .trim();
+}
+
+function tokenizeForEcho(s: string): Set<string> {
+  const out = new Set<string>();
+  for (const t of normalizeForCompare(s).split(/[^a-zа-яё0-9+]+/i)) {
+    if (t.length > 2) out.add(t);
+  }
+  return out;
+}
+
+function jaccard(a: Set<string>, b: Set<string>): number {
+  if (!a.size || !b.size) return 0;
+  let inter = 0;
+  for (const t of a) if (b.has(t)) inter += 1;
+  return inter / (a.size + b.size - inter);
+}
+
+function containment(a: Set<string>, b: Set<string>): number {
+  const smaller = a.size <= b.size ? a : b;
+  const larger = a.size <= b.size ? b : a;
+  if (!smaller.size) return 0;
+  let inter = 0;
+  for (const t of smaller) if (larger.has(t)) inter += 1;
+  return inter / smaller.size;
+}
+
+/** Similarity 0..1 (max of Jaccard + token containment). */
+export function replySimilarity(a: string, b: string): number {
+  const na = normalizeForCompare(a);
+  const nb = normalizeForCompare(b);
+  if (!na || !nb) return 0;
+  if (na === nb) return 1;
+  const ta = tokenizeForEcho(na);
+  const tb = tokenizeForEcho(nb);
+  return Math.max(jaccard(ta, tb), containment(ta, tb));
+}
+
+/**
+ * True if candidate ≈ prior reply (exact, substring, Jaccard, or high containment).
+ * Catches paraphrased echoes that old substring-only check missed.
+ */
+export function isNearDuplicate(
+  candidate: string,
+  lastAssistant?: string | null,
+): boolean {
   if (!lastAssistant) return false;
   const a = normalizeForCompare(candidate);
   const b = normalizeForCompare(lastAssistant);
   if (!a || !b) return false;
   if (a === b) return true;
-  if (a.length < 40 || b.length < 40) return a === b;
+
+  const sim = replySimilarity(a, b);
+  if (sim >= ECHO_SIM_THRESHOLD) return true;
+  if (sim >= ECHO_CONTAINMENT) return true;
+
+  if (a.length < 40 || b.length < 40) return false;
   const shorter = a.length <= b.length ? a : b;
   const longer = a.length <= b.length ? b : a;
-  return longer.includes(shorter) && shorter.length / longer.length > 0.85;
+  return (
+    longer.includes(shorter) &&
+    shorter.length / longer.length > ECHO_SUBSTRING_RATIO
+  );
 }
 
-function normalizeForCompare(s: string): string {
-  return s
-    .toLowerCase()
-    .replace(/\s+/g, " ")
-    .replace(/[«»"""']/g, "")
-    .trim();
+/** True if candidate echoes any of the recent assistant replies. */
+export function echoesRecentReplies(
+  candidate: string,
+  priors: string[],
+): boolean {
+  for (const p of priors) {
+    if (isNearDuplicate(candidate, p)) return true;
+  }
+  return false;
+}
+
+/**
+ * Last N assistant texts in a thread (newest first), prefixes stripped.
+ * Includes reminders/news-alerts so live replies don't rehash them.
+ */
+export function recentAssistantTexts(
+  history: { role: string; text: string }[],
+  limit = 5,
+): string[] {
+  const out: string[] = [];
+  for (let i = history.length - 1; i >= 0 && out.length < limit; i--) {
+    const m = history[i];
+    if (m.role !== "assistant") continue;
+    const t = normalizeForCompare(m.text || "");
+    if (!t) continue;
+    // Keep original casing-ish slice for prompts; use raw trimmed without tag.
+    const raw = (m.text || "")
+      .replace(/^\[(reminder|news-alert)\]\s*/i, "")
+      .trim();
+    if (raw) out.push(raw);
+  }
+  return out;
 }
 
 /** Health / diagnostics helper. */

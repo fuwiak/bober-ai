@@ -66,6 +66,13 @@ export async function runReminderTick(limit = 20): Promise<TickResult> {
         lang,
       });
 
+      // Empty = anti-echo / LLM fail — reschedule without spamming same tip.
+      if (!advice.text.trim()) {
+        await markReminderSent(customer.id);
+        skipped += 1;
+        continue;
+      }
+
       await sendMessageWithKeyboard({
         token,
         chatId: conversation.chatId,
