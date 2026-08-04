@@ -11,8 +11,9 @@ export const PROFILE = {
   city: "Москва и Московская область",
   experienceYears: 10,
   hourlyRate: 3000,
-  rating: 5.0,
-  reviewsCount: 28,
+  /** Public Yandex Services rating — 0 until real reviews exist (do not invent). */
+  rating: 0,
+  reviewsCount: 0,
   education: "University of Warsaw — Physics and Neuroscience",
   workDays: "любой день недели",
   workHours: "0:00–23:00",

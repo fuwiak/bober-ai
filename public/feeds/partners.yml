@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-08-02 03:23">
+<yml_catalog date="2026-08-04 22:20">
   <shop>
     <name>Bober AI Systems — Partner Program</name>
     <company>Bober AI Systems</company>
@@ -59,8 +59,8 @@
       <description>Presale support для агентств</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">91</param>
@@ -72,11 +72,11 @@
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">White-label AI для агентств и software house: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
-      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
-      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
-      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
-      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
-      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
+      <param name="Другая услуга исполнителя - 1">White-label project delivery</param>
+      <param name="Другая услуга исполнителя - 2">Ongoing AI team</param>
+      <param name="Другая услуга исполнителя - 3">AI-аналитика для Bitrix24 и amoCRM</param>
+      <param name="Другая услуга исполнителя - 4">Телефония + CRM + AI (white-label)</param>
+      <param name="Другая услуга исполнителя - 5">AI-контур отдела продаж</param>
     </offer>
     <offer id="partners-delivery">
       <name>Павел Стасиньский</name>
@@ -90,8 +90,8 @@
       <description>White-label project delivery</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -103,11 +103,11 @@
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">White-label AI для агентств и software house: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
-      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
-      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
-      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
-      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
-      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
+      <param name="Другая услуга исполнителя - 1">Presale support для агентств</param>
+      <param name="Другая услуга исполнителя - 2">Ongoing AI team</param>
+      <param name="Другая услуга исполнителя - 3">AI-аналитика для Bitrix24 и amoCRM</param>
+      <param name="Другая услуга исполнителя - 4">Телефония + CRM + AI (white-label)</param>
+      <param name="Другая услуга исполнителя - 5">AI-контур отдела продаж</param>
     </offer>
     <offer id="partners-ongoing">
       <name>Павел Стасиньский</name>
@@ -121,8 +121,8 @@
       <description>Ongoing AI team</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
@@ -134,11 +134,11 @@
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">White-label AI для агентств и software house: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
-      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
-      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
-      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
-      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
-      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
+      <param name="Другая услуга исполнителя - 1">Presale support для агентств</param>
+      <param name="Другая услуга исполнителя - 2">White-label project delivery</param>
+      <param name="Другая услуга исполнителя - 3">AI-аналитика для Bitrix24 и amoCRM</param>
+      <param name="Другая услуга исполнителя - 4">Телефония + CRM + AI (white-label)</param>
+      <param name="Другая услуга исполнителя - 5">AI-контур отдела продаж</param>
     </offer>
     <offer id="partners-bitrix-analytics">
       <name>Павел Стасиньский</name>
@@ -152,8 +152,8 @@
       <description>AI-аналитика для Bitrix24 и amoCRM</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -165,11 +165,11 @@
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">White-label AI для агентств и software house: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
-      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
-      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
-      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
-      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
-      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
+      <param name="Другая услуга исполнителя - 1">Presale support для агентств</param>
+      <param name="Другая услуга исполнителя - 2">White-label project delivery</param>
+      <param name="Другая услуга исполнителя - 3">Ongoing AI team</param>
+      <param name="Другая услуга исполнителя - 4">Телефония + CRM + AI (white-label)</param>
+      <param name="Другая услуга исполнителя - 5">AI-контур отдела продаж</param>
     </offer>
     <offer id="partners-telephony">
       <name>Павел Стасиньский</name>
@@ -183,8 +183,8 @@
       <description>Телефония + CRM + AI (white-label)</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -196,11 +196,11 @@
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">White-label AI для агентств и software house: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
-      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
-      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
-      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
-      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
-      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
+      <param name="Другая услуга исполнителя - 1">Presale support для агентств</param>
+      <param name="Другая услуга исполнителя - 2">White-label project delivery</param>
+      <param name="Другая услуга исполнителя - 3">Ongoing AI team</param>
+      <param name="Другая услуга исполнителя - 4">AI-аналитика для Bitrix24 и amoCRM</param>
+      <param name="Другая услуга исполнителя - 5">AI-контур отдела продаж</param>
     </offer>
     <offer id="partners-sales-loop">
       <name>Павел Стасиньский</name>
@@ -214,8 +214,8 @@
       <description>AI-контур отдела продаж</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">94</param>
@@ -227,11 +227,11 @@
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">White-label AI для агентств и software house: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
-      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
-      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
-      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
-      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
-      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
+      <param name="Другая услуга исполнителя - 1">Presale support для агентств</param>
+      <param name="Другая услуга исполнителя - 2">White-label project delivery</param>
+      <param name="Другая услуга исполнителя - 3">Ongoing AI team</param>
+      <param name="Другая услуга исполнителя - 4">AI-аналитика для Bitrix24 и amoCRM</param>
+      <param name="Другая услуга исполнителя - 5">Телефония + CRM + AI (white-label)</param>
     </offer>
     <offer id="partners-secure-ai">
       <name>Павел Стасиньский</name>
@@ -245,8 +245,8 @@
       <description>Secure Private AI Cloud</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">92</param>
@@ -258,11 +258,11 @@
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">White-label AI для агентств и software house: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
-      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
-      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
-      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
-      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
-      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
+      <param name="Другая услуга исполнителя - 1">Presale support для агентств</param>
+      <param name="Другая услуга исполнителя - 2">White-label project delivery</param>
+      <param name="Другая услуга исполнителя - 3">Ongoing AI team</param>
+      <param name="Другая услуга исполнителя - 4">AI-аналитика для Bitrix24 и amoCRM</param>
+      <param name="Другая услуга исполнителя - 5">Телефония + CRM + AI (white-label)</param>
     </offer>
     <offer id="partners-kp-docs">
       <name>Павел Стасиньский</name>
@@ -276,8 +276,8 @@
       <description>Автоматизация КП и документов</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
-      <param name="Рейтинг">5.0</param>
-      <param name="Число отзывов">28</param>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
       <param name="Годы опыта">10</param>
       <param name="Регион">Москва</param>
       <param name="Конверсия">93</param>
@@ -289,11 +289,11 @@
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">White-label AI для агентств и software house: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и deployment под вашим брендом. Клиент и маржа остаются у партнёра.</param>
-      <param name="Отзыв на исполнителя - 1" unit="5">Павел — ас своего дела! Всё на высшем уровне, всегда на связи, оперативно отвечал на вопросы. Чувствовалось, что ему важен результат.</param>
-      <param name="Отзыв на исполнителя - 2" unit="5">Невероятный специалист. Откликнулся сразу, на протяжении всего процесса был на связи, работа выполнена качественно в минимальные сроки.</param>
-      <param name="Отзыв на исполнителя - 3" unit="5">Всегда на связи, оперативно отвечал на письма и звонки, вносил правки. Работа выполнена качественно и в срок. Рекомендую!</param>
-      <param name="Отзыв на исполнителя - 4" unit="5">Очень хороший преподаватель, оперативно решил проблему, пошёл на встречу — успешно сдал работу.</param>
-      <param name="Отзыв на исполнителя - 5" unit="5">Быстро и понятно разъяснял сложности проекта, даже в выходные и вечером был на связи.</param>
+      <param name="Другая услуга исполнителя - 1">Presale support для агентств</param>
+      <param name="Другая услуга исполнителя - 2">White-label project delivery</param>
+      <param name="Другая услуга исполнителя - 3">Ongoing AI team</param>
+      <param name="Другая услуга исполнителя - 4">AI-аналитика для Bitrix24 и amoCRM</param>
+      <param name="Другая услуга исполнителя - 5">Телефония + CRM + AI (white-label)</param>
     </offer>
     </offers>
   </shop>

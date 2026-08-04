@@ -66,17 +66,30 @@ function buildYmlCatalog(config: MicrositeFeedConfig, now = new Date()) {
     )
     .join("\n");
 
-  const reviewParams = REVIEWS.slice(0, 5)
-    .map(
-      (review, index) =>
-        `      <param name="Отзыв на исполнителя - ${index + 1}" unit="5">${escapeXml(review.text)}</param>`,
-    )
-    .join("\n");
+  const hasPublicReviews = Number(FEED_REVIEWS_COUNT) > 0 && Number(FEED_RATING) > 0;
+  const reviewParams = hasPublicReviews
+    ? REVIEWS.slice(0, 5)
+        .map(
+          (review, index) =>
+            `      <param name="Отзыв на исполнителя - ${index + 1}" unit="5">${escapeXml(review.text)}</param>`,
+        )
+        .join("\n")
+    : "";
 
   const offerBlocks = config.offers
     .map((offer) => {
       const url = `${feedSiteUrl}/#${offer.slug}`;
       const pictureUrl = `${SITE_URL.replace(/\/$/, "")}/stock/offers/ms-${offer.id}.jpg`;
+      const otherServices = config.offers
+        .filter((item) => item.slug !== offer.slug)
+        .slice(0, 5)
+        .map(
+          (item, index) =>
+            `      <param name="Другая услуга исполнителя - ${index + 1}">${escapeXml(item.title)}</param>`,
+        )
+        .join("\n");
+      const optionalReviewBlock = reviewParams ? `\n${reviewParams}` : "";
+      const optionalOtherBlock = otherServices ? `\n${otherServices}` : "";
 
       return `    <offer id="${escapeXml(offer.id)}">
       <name>${escapeXml(PROFILE.name)}</name>
@@ -102,8 +115,7 @@ function buildYmlCatalog(config: MicrositeFeedConfig, now = new Date()) {
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">${escapeXml(offer.about)}</param>
-${reviewParams}
+      <param name="Об исполнителе">${escapeXml(offer.about)}</param>${optionalReviewBlock}${optionalOtherBlock}
     </offer>`;
     })
     .join("\n");

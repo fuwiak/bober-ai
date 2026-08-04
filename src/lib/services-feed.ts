@@ -158,19 +158,32 @@ export function getServiceFeedXml(now = new Date()) {
 
   // Official sample: description → adult → expiry → required params block.
   // https://yandex.ru/support/webmaster/ru/search-appearance/services
-  // https://edu.s3.yandex.net/sample/services.yml
-  const reviewParams = REVIEWS.slice(0, 5)
-    .map(
-      (review, index) =>
-        `      <param name="Отзыв на исполнителя - ${index + 1}" unit="5">${escapeXml(review.text)}</param>`,
-    )
-    .join("\n");
+  // No public reviews → Рейтинг/Число отзывов = 0; omit review text params.
+  const hasPublicReviews = Number(FEED_REVIEWS_COUNT) > 0 && Number(FEED_RATING) > 0;
+  const reviewParams = hasPublicReviews
+    ? REVIEWS.slice(0, 5)
+        .map(
+          (review, index) =>
+            `      <param name="Отзыв на исполнителя - ${index + 1}" unit="5">${escapeXml(review.text)}</param>`,
+        )
+        .join("\n")
+    : "";
 
   const offerBlocks = offers
     .map((offer) => {
       const url = getServiceOfferUrl(offer);
       const picture = `${FEED_SITE_URL}${feedPicturePath(offer.id)}`;
       const conversion = getFeedConversion(offer.slug);
+      const otherServices = offers
+        .filter((item) => item.slug !== offer.slug)
+        .slice(0, 5)
+        .map(
+          (item, index) =>
+            `      <param name="Другая услуга исполнителя - ${index + 1}">${escapeXml(item.title)}</param>`,
+        )
+        .join("\n");
+      const optionalReviewBlock = reviewParams ? `\n${reviewParams}` : "";
+      const optionalOtherBlock = otherServices ? `\n${otherServices}` : "";
 
       return `    <offer id="${escapeXml(offer.id)}">
       <name>${escapeXml(PROFILE.name)}</name>
@@ -196,8 +209,7 @@ export function getServiceFeedXml(now = new Date()) {
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">${escapeXml(offer.about)}</param>
-${reviewParams}
+      <param name="Об исполнителе">${escapeXml(offer.about)}</param>${optionalReviewBlock}${optionalOtherBlock}
     </offer>`;
     })
     .join("\n");

@@ -21,10 +21,11 @@ const metaLine = [
 ]
   .filter(Boolean)
   .join(" · ");
+const srOnly = hasRating ? `${ratingLine} · ${metaLine}` : metaLine;
 ---
 
 <div class={`performer-rating ${className}`.trim()}>
-  <p class="sr-only">{`${ratingLine} · ${metaLine}`}</p>
+  <p class="sr-only">{srOnly}</p>
   {
     hasRating && (
       <p class="text-sm text-ink">
