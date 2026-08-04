@@ -16,15 +16,22 @@ Email: contact@bober-systems.ru
 
 Позиционирование: внедрение AI-автоматизации продаж, документов, CRM и 1С. Не курсы, не «скачать бесплатно».
 
+ChatGPT-like UX для бизнеса (продаваемый продукт):
+- Кастомные AI-ассистенты с вашей базой знаний, инструментами (tools) и интеграциями — тот же «живой» диалог, что у ChatGPT, но под процессы компании.
+- Каналы: Telegram Business / боты, WhatsApp, виджет на сайте, внутри Bitrix24 / CRM.
+- Сценарии: квалификация лидов, ответы по прайсу/докам, маршрутизация к менеджеру, handoff человеку.
+
 Типовые пилоты от 300 000 ₽, 2–4 недели. Промышленный контур часто от 500 000 ₽. Бюджеты до ~1 млн ₽ — норма; миллионные проекты возможны после брифа.
 Фиксированная смета после 30-мин созвона. NDA по запросу.
 
 Топ-офферы (Direct/SEO):
-1) Распознавание первичных документов в 1С — /automation/ocr-data-extraction · /services/ocr
-2) Внедрение и интеграция Битрикс24 — /integrations/bitrix24-implementation · https://bitrix.bober-systems.ru/
-3) Автоматизация коммерческих предложений — /automation/proposal-generation (кейс 45 мин → 2–5 мин)
-4) Речевая аналитика отдела продаж — /automation/speech-analytics-sales · /services/voice-ai
-5) Meeting-to-CRM (встречи → задачи в CRM) — /automation/meeting-to-crm · /services/ai-meeting-crm
+1) AI-ассистенты / ChatGPT-like UX + knowledge + tools — /services (уточнять на брифе)
+2) Распознавание первичных документов в 1С — /automation/ocr-data-extraction · /services/ocr
+3) Внедрение и интеграция Битрикс24 — /integrations/bitrix24-implementation · https://bitrix.bober-systems.ru/
+4) Автоматизация коммерческих предложений — /automation/proposal-generation (кейс 45 мин → 2–5 мин)
+5) Речевая аналитика отдела продаж — /automation/speech-analytics-sales · /services/voice-ai
+6) Meeting-to-CRM (встречи → задачи в CRM) — /automation/meeting-to-crm · /services/ai-meeting-crm
+7) Интеграции: Bitrix24, 1С, amoCRM, Telegram, WhatsApp, телефония, OCR, речь.
 
 Партнёры: Yandex Cloud, Selectel, Cloud.ru, 1С-Битрикс (ID 28909898), Kaspersky Registered Partner.
 `.trim();
@@ -117,16 +124,42 @@ export function fallbackReply(userText: string): string {
     ].join("\n");
   }
 
-  if (/привет|здравств|добр|hello|hi\b/.test(t)) {
+  if (/привет|здравств|добр|hello|hi\b|cześć|dzien\s*dobry/.test(t)) {
     return [
       "Здравствуйте! Я ассистент Bober AI Systems.",
-      "Могу коротко рассказать про услуги и ориентиры по бюджету: документы→1С, Битрикс24, КП, речевая аналитика, Meeting-to-CRM.",
+      "Могу коротко рассказать про AI-ассистенты (ChatGPT-like UX для бизнеса), документы→1С, Битрикс24, КП, речевую аналитику, Meeting-to-CRM и интеграции.",
       "Напишите задачу одной фразой — подскажу направление и ссылку.",
+    ].join("\n");
+  }
+
+  if (
+    /chatgpt|gpt|ассистент|бот\s+для\s+бизнес|чат[- ]?бот|ai[- ]?assistant|knowledge\s*base|база\s+знан/i.test(
+      t,
+    )
+  ) {
+    return [
+      "Делаем AI-ассистентов с UX как у ChatGPT, но под ваш бизнес: своя база знаний, tools/интеграции, handoff менеджеру.",
+      "Каналы: Telegram, WhatsApp, сайт, Bitrix24/CRM.",
+      "Пилот от 300 000 ₽, 2–4 недели.",
+      "Сайт: https://www.bober-systems.ru/",
+      "",
+      "Где сейчас «теряются» вопросы клиентов — в чате, на сайте или внутри CRM?",
+    ].join("\n");
+  }
+
+  if (/интеграц|whatsapp|telegram\s+bot|амоcrm|amocrm|телефони/i.test(t)) {
+    return [
+      "Интегрируем стек: Bitrix24 / amoCRM / 1С, Telegram, WhatsApp, телефонию, OCR и речь — под один процесс с ROI.",
+      "Пилот от 300 000 ₽.",
+      "https://www.bober-systems.ru/integrations/bitrix24-implementation",
+      "",
+      "Какие системы уже стоят и что нужно связать первым?",
     ].join("\n");
   }
 
   return [
     "Bober AI Systems — внедрение AI-автоматизации продаж, документов, CRM и 1С в Москве и СНГ.",
+    "Также: AI-ассистенты (ChatGPT-like UX), интеграции мессенджеров и CRM.",
     "Пилоты от 300 000 ₽. Сайт: https://www.bober-systems.ru/",
     "",
     "Напишите, что нужно автоматизировать (или «хочу созвон») — уточню детали и передам Павлу, если нужна смета/сроки под ваш scope.",

@@ -1,11 +1,15 @@
-import { and, asc, desc, eq, isNull, lte, sql } from "drizzle-orm";
+import { and, asc, desc, eq, gte, isNull, lte, sql } from "drizzle-orm";
 import {
+  bookings,
   conversations,
   customers,
   messages,
+  newsSent,
+  type BookingStatus,
   type ConversationMode,
   type MessageRole,
   type ReminderDueRow,
+  type StoredBooking,
   type StoredConversation,
   type StoredCustomer,
   type StoredMessage,
@@ -622,6 +626,256 @@ export async function getCustomerById(id: number): Promise<StoredCustomer | null
     [id],
   );
   return res.rows[0] ? mapPgCustomer(res.rows[0]) : null;
+}
+
+function mapBooking(row: typeof bookings.$inferSelect): StoredBooking {
+  return {
+    id: row.id,
+    customerId: row.customerId ?? null,
+    conversationId: row.conversationId ?? null,
+    telegramUserId: row.telegramUserId ?? null,
+    rawText: row.rawText,
+    preferredTime: row.preferredTime ?? null,
+    status: (row.status || "pending") as BookingStatus,
+    createdAt:
+      row.createdAt instanceof Date
+        ? row.createdAt
+        : new Date(Number(row.createdAt)),
+  };
+}
+
+function mapPgBooking(r: Record<string, unknown>): StoredBooking {
+  return {
+    id: Number(r.id),
+    customerId: r.customer_id != null ? Number(r.customer_id) : null,
+    conversationId: r.conversation_id != null ? Number(r.conversation_id) : null,
+    telegramUserId: r.telegram_user_id != null ? Number(r.telegram_user_id) : null,
+    rawText: String(r.raw_text ?? ""),
+    preferredTime: (r.preferred_time as string) ?? null,
+    status: (String(r.status || "pending") as BookingStatus),
+    createdAt: new Date(r.created_at as string | Date),
+  };
+}
+
+/** Persist meeting/call request from Telegram Business chat. */
+export async function createBooking(params: {
+  customerId?: number | null;
+  conversationId?: number | null;
+  telegramUserId?: number | null;
+  rawText: string;
+  preferredTime?: string | null;
+  status?: BookingStatus;
+}): Promise<StoredBooking> {
+  await ready();
+  const backend = getDbBackend();
+  const status = params.status || "pending";
+  const preferredTime = params.preferredTime?.trim() || null;
+  const rawText = params.rawText.slice(0, 4000);
+
+  if (backend.kind === "sqlite") {
+    const inserted = backend.db
+      .insert(bookings)
+      .values({
+        customerId: params.customerId ?? null,
+        conversationId: params.conversationId ?? null,
+        telegramUserId: params.telegramUserId ?? null,
+        rawText,
+        preferredTime,
+        status,
+      })
+      .returning()
+      .get();
+    if (!inserted) throw new Error("createBooking: missing row");
+    return mapBooking(inserted);
+  }
+
+  const res = await backend.pool.query(
+    `INSERT INTO tg_bookings (
+       customer_id, conversation_id, telegram_user_id, raw_text, preferred_time, status, created_at
+     ) VALUES ($1, $2, $3, $4, $5, $6, NOW())
+     RETURNING id, customer_id, conversation_id, telegram_user_id, raw_text, preferred_time, status, created_at`,
+    [
+      params.customerId ?? null,
+      params.conversationId ?? null,
+      params.telegramUserId ?? null,
+      rawText,
+      preferredTime,
+      status,
+    ],
+  );
+  return mapPgBooking(res.rows[0]);
+}
+
+/**
+ * Reminder-enabled customers with a conversation (for news tips).
+ * Not gated on next_reminder_at — separate from 3-day schedule.
+ */
+export async function listReminderEligibleCustomers(
+  limit = 15,
+): Promise<ReminderDueRow[]> {
+  await ready();
+  const backend = getDbBackend();
+  const since = new Date(Date.now() - 45 * 24 * 3600_000);
+
+  if (backend.kind === "sqlite") {
+    const rows = backend.db
+      .select()
+      .from(customers)
+      .where(eq(customers.remindersEnabled, true))
+      .orderBy(desc(customers.lastSeenAt))
+      .limit(limit * 3)
+      .all()
+      .filter((c) => {
+        const seen =
+          c.lastSeenAt instanceof Date
+            ? c.lastSeenAt
+            : new Date(Number(c.lastSeenAt));
+        return seen.getTime() >= since.getTime();
+      })
+      .slice(0, limit);
+
+    const out: ReminderDueRow[] = [];
+    for (const c of rows) {
+      const conv = backend.db
+        .select()
+        .from(conversations)
+        .where(eq(conversations.peerUserId, c.telegramUserId))
+        .orderBy(desc(conversations.updatedAt))
+        .limit(1)
+        .get();
+      if (!conv) continue;
+      out.push({ customer: mapCustomer(c), conversation: mapConversation(conv) });
+    }
+    return out;
+  }
+
+  const res = await backend.pool.query(
+    `SELECT
+       cu.id AS cu_id, cu.telegram_user_id, cu.first_name, cu.last_name, cu.username,
+       cu.last_seen_at, cu.reminders_enabled, cu.last_reminder_at, cu.next_reminder_at,
+       cu.reminder_liked_count, cu.reminder_opted_out_at, cu.preferred_lang,
+       co.id AS co_id, co.chat_id, co.business_connection_id, co.peer_user_id,
+       co.mode, co.updated_at
+     FROM tg_customers cu
+     INNER JOIN LATERAL (
+       SELECT id, chat_id, business_connection_id, peer_user_id, mode, updated_at
+       FROM tg_conversations
+       WHERE peer_user_id = cu.telegram_user_id
+       ORDER BY updated_at DESC
+       LIMIT 1
+     ) co ON TRUE
+     WHERE cu.reminders_enabled = TRUE
+       AND cu.last_seen_at >= $2
+     ORDER BY cu.last_seen_at DESC
+     LIMIT $1`,
+    [limit, since.toISOString()],
+  );
+
+  return res.rows.map((r) => ({
+    customer: mapPgCustomer({
+      id: r.cu_id,
+      telegram_user_id: r.telegram_user_id,
+      first_name: r.first_name,
+      last_name: r.last_name,
+      username: r.username,
+      last_seen_at: r.last_seen_at,
+      reminders_enabled: r.reminders_enabled,
+      last_reminder_at: r.last_reminder_at,
+      next_reminder_at: r.next_reminder_at,
+      reminder_liked_count: r.reminder_liked_count,
+      reminder_opted_out_at: r.reminder_opted_out_at,
+      preferred_lang: r.preferred_lang,
+    }),
+    conversation: mapPgConversation({
+      id: r.co_id,
+      chat_id: r.chat_id,
+      business_connection_id: r.business_connection_id,
+      peer_user_id: r.peer_user_id,
+      mode: r.mode,
+      updated_at: r.updated_at,
+    }),
+  }));
+}
+
+export async function hasNewsBeenSent(
+  customerId: number,
+  articleUrl: string,
+): Promise<boolean> {
+  await ready();
+  const backend = getDbBackend();
+  const url = articleUrl.slice(0, 500);
+
+  if (backend.kind === "sqlite") {
+    const row = backend.db
+      .select()
+      .from(newsSent)
+      .where(
+        and(eq(newsSent.customerId, customerId), eq(newsSent.articleUrl, url)),
+      )
+      .get();
+    return Boolean(row);
+  }
+
+  const res = await backend.pool.query(
+    `SELECT 1 FROM tg_news_sent WHERE customer_id = $1 AND article_url = $2 LIMIT 1`,
+    [customerId, url],
+  );
+  return Boolean(res.rows[0]);
+}
+
+export async function countNewsAlertsToday(customerId: number): Promise<number> {
+  await ready();
+  const backend = getDbBackend();
+  const start = new Date();
+  start.setHours(0, 0, 0, 0);
+
+  if (backend.kind === "sqlite") {
+    const rows = backend.db
+      .select()
+      .from(newsSent)
+      .where(
+        and(eq(newsSent.customerId, customerId), gte(newsSent.sentAt, start)),
+      )
+      .all();
+    return rows.length;
+  }
+
+  const res = await backend.pool.query(
+    `SELECT COUNT(*)::int AS n FROM tg_news_sent
+     WHERE customer_id = $1 AND sent_at >= $2`,
+    [customerId, start.toISOString()],
+  );
+  return Number(res.rows[0]?.n ?? 0);
+}
+
+export async function markNewsSent(params: {
+  customerId: number;
+  articleUrl: string;
+  articleTitle?: string | null;
+}): Promise<void> {
+  await ready();
+  const backend = getDbBackend();
+  const url = params.articleUrl.slice(0, 500);
+  const title = params.articleTitle?.slice(0, 400) ?? null;
+
+  if (backend.kind === "sqlite") {
+    backend.db
+      .insert(newsSent)
+      .values({
+        customerId: params.customerId,
+        articleUrl: url,
+        articleTitle: title,
+      })
+      .run();
+    return;
+  }
+
+  await backend.pool.query(
+    `INSERT INTO tg_news_sent (customer_id, article_url, article_title, sent_at)
+     VALUES ($1, $2, $3, NOW())
+     ON CONFLICT DO NOTHING`,
+    [params.customerId, url, title],
+  );
 }
 
 /** Light anti-repeat: true if candidate ≈ last assistant reply. */

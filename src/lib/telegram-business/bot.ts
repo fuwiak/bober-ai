@@ -35,6 +35,9 @@ export function createBusinessBot(token: string): BusinessBot {
     const businessConnectionId = msg.business_connection_id;
     if (!businessConnectionId) return;
 
+    // Typing ASAP — before getBusinessConnection / DB / LLM
+    void ctx.replyWithChatAction("typing").catch(() => undefined);
+
     try {
       const conn = await ctx.getBusinessConnection();
       if (ctx.from?.id === conn.user.id) {
@@ -56,6 +59,8 @@ export function createBusinessBot(token: string): BusinessBot {
   bot.on("message", async (ctx) => {
     const msg = ctx.message;
     if (!msg || msg.chat.type !== "private") return;
+    // Typing ASAP — before replyAboutBober DB/LLM
+    void ctx.replyWithChatAction("typing").catch(() => undefined);
     await replyAboutBober({
       token,
       ctx,

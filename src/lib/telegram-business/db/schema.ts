@@ -65,6 +65,47 @@ export const messages = sqliteTable(
   (t) => [index("tg_messages_conv_created_idx").on(t.conversationId, t.createdAt)],
 );
 
+/** Client asked for a call / meeting / consultation. */
+export const bookings = sqliteTable(
+  "tg_bookings",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    customerId: integer("customer_id").references(() => customers.id),
+    conversationId: integer("conversation_id").references(() => conversations.id),
+    telegramUserId: integer("telegram_user_id"),
+    rawText: text("raw_text").notNull(),
+    preferredTime: text("preferred_time"),
+    status: text("status").notNull().default("pending"),
+    createdAt: integer("created_at", { mode: "timestamp_ms" })
+      .notNull()
+      .default(sql`(cast(unixepoch('subsecond') * 1000 as integer))`),
+  },
+  (t) => [
+    index("tg_bookings_status_created_idx").on(t.status, t.createdAt),
+    index("tg_bookings_customer_idx").on(t.customerId),
+  ],
+);
+
+/** Dedup store for instant news / tip alerts per customer. */
+export const newsSent = sqliteTable(
+  "tg_news_sent",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    customerId: integer("customer_id")
+      .notNull()
+      .references(() => customers.id),
+    articleUrl: text("article_url").notNull(),
+    articleTitle: text("article_title"),
+    sentAt: integer("sent_at", { mode: "timestamp_ms" })
+      .notNull()
+      .default(sql`(cast(unixepoch('subsecond') * 1000 as integer))`),
+  },
+  (t) => [
+    index("tg_news_sent_customer_url_idx").on(t.customerId, t.articleUrl),
+    index("tg_news_sent_customer_sent_idx").on(t.customerId, t.sentAt),
+  ],
+);
+
 export type ConversationMode = "direct" | "business";
 export type MessageRole = "user" | "assistant" | "system";
 
@@ -104,4 +145,17 @@ export type StoredCustomer = {
 export type ReminderDueRow = {
   customer: StoredCustomer;
   conversation: StoredConversation;
+};
+
+export type BookingStatus = "pending" | "contacted" | "done" | "cancelled";
+
+export type StoredBooking = {
+  id: number;
+  customerId: number | null;
+  conversationId: number | null;
+  telegramUserId: number | null;
+  rawText: string;
+  preferredTime: string | null;
+  status: BookingStatus;
+  createdAt: Date;
 };

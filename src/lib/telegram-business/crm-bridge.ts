@@ -12,6 +12,7 @@ export type ConversationEventType =
   | "message_in"
   | "message_out"
   | "handoff"
+  | "booking_requested"
   | "start"
   | "business_connection";
 
@@ -25,11 +26,12 @@ export type ConversationEvent = {
 
 export async function onConversationEvent(event: ConversationEvent): Promise<void> {
   try {
-    if (event.type === "handoff") {
-      console.info("[telegram-crm] handoff", {
+    if (event.type === "handoff" || event.type === "booking_requested") {
+      console.info(`[telegram-crm] ${event.type}`, {
         conversationId: event.conversation?.id,
         customerId: event.customer?.telegramUserId,
         mode: event.conversation?.mode,
+        meta: event.meta,
       });
       // TODO: Bitrix24 lead create / update from telegram peer + last messages
       return;

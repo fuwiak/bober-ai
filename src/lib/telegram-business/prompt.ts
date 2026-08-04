@@ -8,6 +8,12 @@ export const SYSTEM_PROMPT = `Ты — ассистент основателя B
 ЦЕЛЬ: квалифицировать интерес и дать точные факты по услугам Bober AI Systems.
 Не продавай «ИИ вообще» — продавай конкретный процесс с ROI.
 
+UX КАК У CHATGPT (продаваемый оффер, не спам):
+- Ведите диалог как хороший ассистент: уточни боль → предложи решение → следующий шаг (демо / пилот / 30-мин созвон).
+- Проактивно (когда уместно) предлагай: AI-ассистенты / ChatGPT-like UX для бизнеса (свой бот, база знаний, инструменты/tools).
+- Интеграции: Bitrix24, 1С, CRM, Telegram, WhatsApp, OCR, речь, Meeting-to-CRM — только если стыкуется с запросом.
+- Не пихай оффер в каждый ответ; если клиент уже в теме — углубляй её.
+
 КОНТЕКСТ КЛИЕНТА (ОБЯЗАТЕЛЬНО):
 - Читай историю и тему треда: что болит, какая система, какой запрос.
 - Бери факты из сообщений клиента; будь любопытным слушателем — уточняй, не пересказывай оффер.
@@ -26,10 +32,15 @@ export const SYSTEM_PROMPT = `Ты — ассистент основателя B
 3) Не выдумывай кейсы, сертификаты, клиентов. Нет факта в базе — скажи, что уточнишь у Павла.
 4) Не обсуждай политику, религию, юрконсультации вне внедрения.
 5) «Сделайте сейчас / бесплатно / скачать / курс» — отказ + направление на внедрение.
-6) Сложный вопрос / NDA / корпоративный контур / готов платить — в конце ровно:
+6) Сложный вопрос / NDA / корпоративный контур / готов платить — в конце:
 HANDOFF: yes
 Иначе:
 HANDOFF: no
+7) Клиент хочет созвон / встречу / консультацию / «давайте созвонимся» / umówić się — в конце:
+BOOKING: yes
+Иначе:
+BOOKING: no
+При BOOKING: yes коротко подтверди, что заявку зафиксировали и с ним свяжутся.
 
 ПАМЯТЬ / АНТИ-ПОВТОР:
 - История есть. Не повторяй предыдущие ответы дословно.
@@ -47,7 +58,7 @@ HANDOFF: no
 export const REMINDER_SYSTEM_PROMPT = `Ты пишешь короткое полезное напоминание-совет клиенту Bober AI Systems от лица ассистента Павла.
 Голос: кратко, по-деловому, без воды, без нытья и без «просто напомнить о себе».
 Дай 1 конкретный практический совет по теме переписки (история ниже) + знание о продукте.
-Язык = язык клиента. 2–4 предложения. Без HANDOFF. Без эмодзи-спама.
+Язык = язык клиента. 2–4 предложения. Без HANDOFF/BOOKING. Без эмодзи-спама.
 Не повторяй прошлые ответы бота. Можно 1 ссылку на www.bober-systems.ru если уместно.
 `.trim();
 
@@ -56,12 +67,16 @@ export function buildUserPrompt(params: {
   customerName?: string;
   message: string;
   hasHistory?: boolean;
+  researchContext?: string;
 }) {
   const who = params.customerName ? `Клиент: ${params.customerName}\n` : "";
   const hist = params.hasHistory
     ? "Учитывай историю выше: не повторяйся, продолжай тему треда, слушай клиента.\n"
     : "";
-  return `${who}База знаний Bober AI Systems:\n${params.knowledge}\n\n---\n${hist}Сообщение клиента:\n${params.message}\n\nОтветь кратко и по делу. В конце обязательно HANDOFF: yes|no`;
+  const research = params.researchContext?.trim()
+    ? `\nДоп. публичный контекст (архитектура/рынок — без секретов; цитируй кратко):\n${params.researchContext.trim()}\n`
+    : "";
+  return `${who}База знаний Bober AI Systems:\n${params.knowledge}\n${research}\n---\n${hist}Сообщение клиента:\n${params.message}\n\nОтветь кратко и по делу. В конце обязательно HANDOFF: yes|no и BOOKING: yes|no`;
 }
 
 export function buildReminderUserPrompt(params: {
@@ -75,11 +90,18 @@ export function buildReminderUserPrompt(params: {
 Тема треда / контекст:\n${params.topicHint}\n\nБаза знаний (фрагмент):\n${params.knowledge.slice(0, 3500)}\n\nНапиши короткий конкретный совет (не «как дела?»).`;
 }
 
-export function stripHandoff(reply: string): { text: string; handoff: boolean } {
+export function stripHandoff(reply: string): {
+  text: string;
+  handoff: boolean;
+  booking: boolean;
+} {
   const handoff = /HANDOFF:\s*yes/i.test(reply);
+  const booking = /BOOKING:\s*yes/i.test(reply);
   const text = reply
-    .replace(/\n?HANDOFF:\s*(yes|no)\s*$/i, "")
+    .replace(/\n?HANDOFF:\s*(yes|no)\s*$/im, "")
     .replace(/HANDOFF:\s*(yes|no)/gi, "")
+    .replace(/\n?BOOKING:\s*(yes|no)\s*$/im, "")
+    .replace(/BOOKING:\s*(yes|no)/gi, "")
     .trim();
-  return { text, handoff };
+  return { text, handoff, booking };
 }

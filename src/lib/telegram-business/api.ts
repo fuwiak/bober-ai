@@ -145,8 +145,15 @@ export async function notifyOwner(params: {
   token: string;
   text: string;
 }) {
-  const chatId = process.env.CONTACT_TELEGRAM_CHAT_ID?.trim();
-  if (!chatId) return;
+  const chatId =
+    process.env.CONTACT_TELEGRAM_CHAT_ID?.trim() ||
+    process.env.TELEGRAM_OWNER_CHAT_ID?.trim();
+  if (!chatId) {
+    console.warn(
+      "[telegram-business] notifyOwner skipped: set CONTACT_TELEGRAM_CHAT_ID or TELEGRAM_OWNER_CHAT_ID",
+    );
+    return;
+  }
   return callTelegram(params.token, "sendMessage", {
     chat_id: chatId,
     text: params.text.slice(0, 3900),

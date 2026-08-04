@@ -3,18 +3,20 @@ export const prerender = false;
 import type { APIRoute } from "astro";
 import { webhookSecret } from "@/lib/telegram-business/api";
 import { runReminderTick } from "@/lib/telegram-business/reminders/tick";
+import { runNewsAlertTick } from "@/lib/telegram-business/news-alerts";
 import { dbBackendLabel } from "@/lib/telegram-business/db/client";
 
 /**
- * Reminder cron endpoint.
+ * Reminder + news-alert cron endpoint.
  *
  * How it runs:
  * 1) In-process setInterval (~15 min) when Astro node stays warm on Railway
- *    (armed on first webhook / bot create).
+ *    (armed on first webhook / bot create) — reminders + RSS news tips.
  * 2) External/GitHub cron POST here every hour as backup.
  * 3) Manual: curl -X POST -H "Authorization: Bearer $SECRET" .../tick
  *
- * Schedule logic: every 3 days, random 20:00–22:00 Europe/Moscow.
+ * Reminders: every 3 days, random 20:00–22:00 Europe/Moscow.
+ * News tips: match fresh RSS to thread topics (dedup + daily cap).
  * Auth: TELEGRAM_REMINDER_CRON_SECRET or TELEGRAM_BUSINESS_WEBHOOK_SECRET.
  */
 function json(body: Record<string, unknown>, status = 200) {
@@ -68,8 +70,10 @@ export const POST: APIRoute = async ({ request }) => {
 
   try {
     const result = await runReminderTick(limit);
+    const news = await runNewsAlertTick(Math.min(15, limit));
     return json({
       ...result,
+      news,
       db: dbBackendLabel(),
       tz: "Europe/Moscow",
     });

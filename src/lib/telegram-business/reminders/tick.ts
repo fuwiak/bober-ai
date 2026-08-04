@@ -15,6 +15,7 @@ import {
   reminderButtonLabels,
   reminderCallbackData,
 } from "@/lib/telegram-business/reminders/schedule";
+import { runNewsAlertTick } from "@/lib/telegram-business/news-alerts";
 
 export type TickResult = {
   ok: boolean;
@@ -109,7 +110,6 @@ export async function runReminderTick(limit = 20): Promise<TickResult> {
         error: msg,
       });
       errors.push(`customer=${customer.id}: ${msg.slice(0, 160)}`);
-      // Still advance schedule to avoid hot-loop on permanent failures
       try {
         await markReminderSent(customer.id);
       } catch {
@@ -148,13 +148,23 @@ export function ensureReminderScheduler(): void {
       .catch((err) => {
         console.error("[telegram-reminders] tick failed", err);
       });
+
+    void runNewsAlertTick()
+      .then((r) => {
+        if (r.sent > 0 || r.matched > 0 || r.errors.length) {
+          console.info("[telegram-news] tick", r);
+        }
+      })
+      .catch((err) => {
+        console.error("[telegram-news] tick failed", err);
+      });
   };
 
   intervalHandle = setInterval(tick, interval);
-  // Soft first pass after boot (don't block webhook)
   setTimeout(tick, 45_000);
   console.info("[telegram-reminders] in-process scheduler armed", {
     intervalMs: interval,
     tz: "Europe/Moscow",
+    newsAlerts: process.env.TELEGRAM_NEWS_ALERTS_DISABLED !== "1",
   });
 }

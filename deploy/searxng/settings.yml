@@ -1,0 +1,40 @@
+# Minimal SearXNG settings — JSON API for bot research.
+# Docs: https://docs.searxng.org/
+
+use_default_settings: true
+
+general:
+  instance_name: "Bober SearXNG"
+  enable_metrics: false
+
+search:
+  safe_search: 1
+  autocomplete: ""
+  default_lang: "ru-RU"
+  formats:
+    - html
+    - json
+
+server:
+  secret_key: "change-me-via-SEARXNG_SECRET"
+  limiter: false
+  image_proxy: false
+  method: "GET"
+  default_http_headers:
+    X-Content-Type-Options: nosniff
+
+ui:
+  static_use_hash: true
+
+# Keep engines light; bot only needs general + news style results
+engines:
+  - name: duckduckgo
+    disabled: false
+  - name: wikipedia
+    disabled: false
+  - name: wikidata
+    disabled: false
+  - name: brave
+    disabled: false
+  - name: google
+    disabled: true

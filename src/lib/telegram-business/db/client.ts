@@ -54,6 +54,30 @@ CREATE TABLE IF NOT EXISTS tg_messages (
 );
 CREATE INDEX IF NOT EXISTS tg_messages_conv_created_idx
   ON tg_messages(conversation_id, created_at);
+
+CREATE TABLE IF NOT EXISTS tg_bookings (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  customer_id INTEGER REFERENCES tg_customers(id),
+  conversation_id INTEGER REFERENCES tg_conversations(id),
+  telegram_user_id INTEGER,
+  raw_text TEXT NOT NULL,
+  preferred_time TEXT,
+  status TEXT NOT NULL DEFAULT 'pending',
+  created_at INTEGER NOT NULL DEFAULT (cast(unixepoch('subsecond') * 1000 as integer))
+);
+CREATE INDEX IF NOT EXISTS tg_bookings_status_created_idx ON tg_bookings(status, created_at);
+CREATE INDEX IF NOT EXISTS tg_bookings_customer_idx ON tg_bookings(customer_id);
+
+CREATE TABLE IF NOT EXISTS tg_news_sent (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  customer_id INTEGER NOT NULL REFERENCES tg_customers(id),
+  article_url TEXT NOT NULL,
+  article_title TEXT,
+  sent_at INTEGER NOT NULL DEFAULT (cast(unixepoch('subsecond') * 1000 as integer))
+);
+CREATE INDEX IF NOT EXISTS tg_news_sent_customer_url_idx ON tg_news_sent(customer_id, article_url);
+CREATE INDEX IF NOT EXISTS tg_news_sent_customer_sent_idx ON tg_news_sent(customer_id, sent_at);
+CREATE UNIQUE INDEX IF NOT EXISTS tg_news_sent_customer_url_uidx ON tg_news_sent(customer_id, article_url);
 `;
 
 const SQLITE_MIGRATE = `
@@ -64,6 +88,28 @@ ALTER TABLE tg_customers ADD COLUMN reminder_liked_count INTEGER NOT NULL DEFAUL
 ALTER TABLE tg_customers ADD COLUMN reminder_opted_out_at INTEGER;
 ALTER TABLE tg_customers ADD COLUMN preferred_lang TEXT;
 CREATE INDEX IF NOT EXISTS tg_customers_next_reminder_idx ON tg_customers(next_reminder_at);
+CREATE TABLE IF NOT EXISTS tg_bookings (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  customer_id INTEGER REFERENCES tg_customers(id),
+  conversation_id INTEGER REFERENCES tg_conversations(id),
+  telegram_user_id INTEGER,
+  raw_text TEXT NOT NULL,
+  preferred_time TEXT,
+  status TEXT NOT NULL DEFAULT 'pending',
+  created_at INTEGER NOT NULL DEFAULT (cast(unixepoch('subsecond') * 1000 as integer))
+);
+CREATE INDEX IF NOT EXISTS tg_bookings_status_created_idx ON tg_bookings(status, created_at);
+CREATE INDEX IF NOT EXISTS tg_bookings_customer_idx ON tg_bookings(customer_id);
+CREATE TABLE IF NOT EXISTS tg_news_sent (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  customer_id INTEGER NOT NULL REFERENCES tg_customers(id),
+  article_url TEXT NOT NULL,
+  article_title TEXT,
+  sent_at INTEGER NOT NULL DEFAULT (cast(unixepoch('subsecond') * 1000 as integer))
+);
+CREATE INDEX IF NOT EXISTS tg_news_sent_customer_url_idx ON tg_news_sent(customer_id, article_url);
+CREATE INDEX IF NOT EXISTS tg_news_sent_customer_sent_idx ON tg_news_sent(customer_id, sent_at);
+CREATE UNIQUE INDEX IF NOT EXISTS tg_news_sent_customer_url_uidx ON tg_news_sent(customer_id, article_url);
 `;
 
 const PG_DDL = `
@@ -82,7 +128,6 @@ CREATE TABLE IF NOT EXISTS tg_customers (
   preferred_lang TEXT
 );
 CREATE INDEX IF NOT EXISTS tg_customers_tg_uid_idx ON tg_customers(telegram_user_id);
--- next_reminder index created in PG_MIGRATE after ADD COLUMN (old DBs lack the col)
 
 CREATE TABLE IF NOT EXISTS tg_conversations (
   id SERIAL PRIMARY KEY,
@@ -105,6 +150,30 @@ CREATE TABLE IF NOT EXISTS tg_messages (
 );
 CREATE INDEX IF NOT EXISTS tg_messages_conv_created_idx
   ON tg_messages(conversation_id, created_at);
+
+CREATE TABLE IF NOT EXISTS tg_bookings (
+  id SERIAL PRIMARY KEY,
+  customer_id INTEGER REFERENCES tg_customers(id),
+  conversation_id INTEGER REFERENCES tg_conversations(id),
+  telegram_user_id BIGINT,
+  raw_text TEXT NOT NULL,
+  preferred_time TEXT,
+  status TEXT NOT NULL DEFAULT 'pending',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS tg_bookings_status_created_idx ON tg_bookings(status, created_at);
+CREATE INDEX IF NOT EXISTS tg_bookings_customer_idx ON tg_bookings(customer_id);
+
+CREATE TABLE IF NOT EXISTS tg_news_sent (
+  id SERIAL PRIMARY KEY,
+  customer_id INTEGER NOT NULL REFERENCES tg_customers(id),
+  article_url TEXT NOT NULL,
+  article_title TEXT,
+  sent_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS tg_news_sent_customer_url_idx ON tg_news_sent(customer_id, article_url);
+CREATE INDEX IF NOT EXISTS tg_news_sent_customer_sent_idx ON tg_news_sent(customer_id, sent_at);
+CREATE UNIQUE INDEX IF NOT EXISTS tg_news_sent_customer_url_uidx ON tg_news_sent(customer_id, article_url);
 `;
 
 const PG_MIGRATE = `
@@ -115,6 +184,28 @@ ALTER TABLE tg_customers ADD COLUMN IF NOT EXISTS reminder_liked_count INTEGER N
 ALTER TABLE tg_customers ADD COLUMN IF NOT EXISTS reminder_opted_out_at TIMESTAMPTZ;
 ALTER TABLE tg_customers ADD COLUMN IF NOT EXISTS preferred_lang TEXT;
 CREATE INDEX IF NOT EXISTS tg_customers_next_reminder_idx ON tg_customers(next_reminder_at);
+CREATE TABLE IF NOT EXISTS tg_bookings (
+  id SERIAL PRIMARY KEY,
+  customer_id INTEGER REFERENCES tg_customers(id),
+  conversation_id INTEGER REFERENCES tg_conversations(id),
+  telegram_user_id BIGINT,
+  raw_text TEXT NOT NULL,
+  preferred_time TEXT,
+  status TEXT NOT NULL DEFAULT 'pending',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS tg_bookings_status_created_idx ON tg_bookings(status, created_at);
+CREATE INDEX IF NOT EXISTS tg_bookings_customer_idx ON tg_bookings(customer_id);
+CREATE TABLE IF NOT EXISTS tg_news_sent (
+  id SERIAL PRIMARY KEY,
+  customer_id INTEGER NOT NULL REFERENCES tg_customers(id),
+  article_url TEXT NOT NULL,
+  article_title TEXT,
+  sent_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS tg_news_sent_customer_url_idx ON tg_news_sent(customer_id, article_url);
+CREATE INDEX IF NOT EXISTS tg_news_sent_customer_sent_idx ON tg_news_sent(customer_id, sent_at);
+CREATE UNIQUE INDEX IF NOT EXISTS tg_news_sent_customer_url_uidx ON tg_news_sent(customer_id, article_url);
 `;
 
 function sqlitePath(): string {

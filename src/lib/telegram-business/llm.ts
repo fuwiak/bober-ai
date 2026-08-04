@@ -7,6 +7,16 @@ import {
   stripHandoff,
 } from "@/lib/telegram-business/prompt";
 import { fallbackReply, loadKnowledge } from "@/lib/telegram-business/knowledge";
+import { queryGraphKnowledge } from "@/lib/telegram-business/graph-knowledge";
+import {
+  needsArchitectureContext,
+  needsMarketResearch,
+  sanitizePublicText,
+} from "@/lib/telegram-business/research/sanitize";
+import {
+  formatSearxHitsForPrompt,
+  searchSearxng,
+} from "@/lib/telegram-business/research/searxng";
 import type { StoredMessage } from "@/lib/telegram-business/db/schema";
 
 const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
@@ -65,6 +75,7 @@ async function chatOpenRouter(messages: ChatTurn[]): Promise<string> {
 export type GenerateResult = {
   text: string;
   handoff: boolean;
+  booking: boolean;
   source: "llm" | "fallback";
 };
 
@@ -80,6 +91,29 @@ function historyToTurns(history: StoredMessage[]): ChatTurn[] {
   return turns;
 }
 
+async function gatherResearchContext(message: string): Promise<string> {
+  const parts: string[] = [];
+  try {
+    if (needsArchitectureContext(message) || needsMarketResearch(message)) {
+      const graph = await queryGraphKnowledge(message);
+      if (graph.text) {
+        parts.push(`[graph:${graph.source}]\n${graph.text}`);
+      }
+    }
+    if (needsMarketResearch(message) && process.env.SEARXNG_URL?.trim()) {
+      const { hits, error } = await searchSearxng(message, { limit: 4 });
+      if (error) {
+        console.info("[telegram-business] searx", error);
+      }
+      const formatted = formatSearxHitsForPrompt(hits);
+      if (formatted) parts.push(`[web]\n${formatted}`);
+    }
+  } catch (err) {
+    console.error("[telegram-business] research context", err);
+  }
+  return sanitizePublicText(parts.join("\n\n"), 2800);
+}
+
 export async function generateBusinessReply(params: {
   message: string;
   customerName?: string;
@@ -89,13 +123,19 @@ export async function generateBusinessReply(params: {
   const knowledge = await loadKnowledge();
 
   if (!process.env.OPENROUTER_API_KEY?.trim()) {
-    return { text: fallbackReply(params.message), handoff: false, source: "fallback" };
+    return {
+      text: fallbackReply(params.message),
+      handoff: false,
+      booking: false,
+      source: "fallback",
+    };
   }
 
   try {
     const history = params.history ?? [];
-    const prior = history.slice(0, -1); // drop current user msg — re-add via buildUserPrompt
+    const prior = history.slice(0, -1);
     const turns = historyToTurns(prior);
+    const researchContext = await gatherResearchContext(params.message);
 
     const messages: ChatTurn[] = [
       { role: "system", content: SYSTEM_PROMPT },
@@ -107,20 +147,27 @@ export async function generateBusinessReply(params: {
           customerName: params.customerName,
           message: params.message,
           hasHistory: turns.length > 0,
+          researchContext,
         }),
       },
     ];
 
     const raw = await chatOpenRouter(messages);
-    const { text, handoff } = stripHandoff(raw);
+    const { text, handoff, booking } = stripHandoff(raw);
     return {
       text: text || fallbackReply(params.message),
       handoff,
+      booking,
       source: "llm",
     };
   } catch (err) {
     console.error("[telegram-business] LLM failed", err);
-    return { text: fallbackReply(params.message), handoff: false, source: "fallback" };
+    return {
+      text: fallbackReply(params.message),
+      handoff: false,
+      booking: false,
+      source: "fallback",
+    };
   }
 }
 
@@ -166,7 +213,10 @@ export async function generateReminderAdvice(params: {
       },
     ];
     const raw = await chatOpenRouter(messages);
-    const text = raw.replace(/HANDOFF:\s*(yes|no)/gi, "").trim();
+    const text = raw
+      .replace(/HANDOFF:\s*(yes|no)/gi, "")
+      .replace(/BOOKING:\s*(yes|no)/gi, "")
+      .trim();
     return { text: (text || fallback).slice(0, 900), source: "llm" };
   } catch (err) {
     console.error("[telegram-business] reminder LLM failed", err);
