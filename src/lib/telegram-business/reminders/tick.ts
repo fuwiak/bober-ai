@@ -58,9 +58,10 @@ export async function runReminderTick(limit = 20): Promise<TickResult> {
         .filter((m) => m.role === "user")
         .map((m) => m.text)
         .join("\n");
-      const lang =
-        customer.preferredLang ||
-        detectLangFromText(userBlob, "ru");
+      const lang = detectLangFromText(
+        userBlob,
+        customer.preferredLang || "ru",
+      );
 
       const advice = await generateReminderAdvice({
         history,

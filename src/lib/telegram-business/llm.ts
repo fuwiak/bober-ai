@@ -234,18 +234,24 @@ const REMINDER_FALLBACK: Record<string, string> = {
   en: "On your topic: name one process bottleneck (where you lose time/money) — a 2–4 week pilot usually closes that first. Reply with your stack (Bitrix/1C/other) if useful.",
 };
 
+const GENERIC_BOTTLENECK =
+  /name one process bottleneck|узкое место процесса|wąskie gardło procesu/i;
+
 /** Short concrete reminder/news advice from thread + knowledge (+ optional news hit). */
 export async function generateReminderAdvice(params: {
   history: StoredMessage[];
   customerName?: string;
   lang: string;
   newsHint?: string;
+  /** News tips: skip generic bottleneck fallback — caller should stay silent. */
+  requireConcrete?: boolean;
 }): Promise<{ text: string; source: "llm" | "fallback" }> {
   const knowledge = await loadKnowledge();
   const fallback =
     REMINDER_FALLBACK[params.lang] || REMINDER_FALLBACK.ru;
 
   if (!process.env.OPENROUTER_API_KEY?.trim()) {
+    if (params.requireConcrete) return { text: "", source: "fallback" };
     return { text: fallback, source: "fallback" };
   }
 
@@ -267,10 +273,23 @@ export async function generateReminderAdvice(params: {
     const text = raw
       .replace(/HANDOFF:\s*(yes|no)/gi, "")
       .replace(/BOOKING:\s*(yes|no)/gi, "")
-      .trim();
-    return { text: (text || fallback).slice(0, 900), source: "llm" };
+      .trim()
+      .slice(0, 900);
+
+    if (!text) {
+      if (params.requireConcrete) return { text: "", source: "fallback" };
+      return { text: fallback, source: "fallback" };
+    }
+
+    // Reject preachy generic when news tip must stay concrete.
+    if (params.requireConcrete && GENERIC_BOTTLENECK.test(text)) {
+      return { text: "", source: "fallback" };
+    }
+
+    return { text, source: "llm" };
   } catch (err) {
     console.error("[telegram-business] reminder LLM failed", err);
+    if (params.requireConcrete) return { text: "", source: "fallback" };
     return { text: fallback, source: "fallback" };
   }
 }

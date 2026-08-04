@@ -93,6 +93,12 @@ const DOMAIN_BOOSTS = [
 /** Max SearX queries per news tick (all clients combined). */
 const SEARX_TICK_BUDGET = 12;
 
+/**
+ * Min relevance to send a tip. Weak single-token / summary-only matches stay silent.
+ * Title must hit ≥1 real client topic; total score usually needs ≥4.
+ */
+export const MIN_NEWS_SCORE = 4;
+
 function maxAlertsPerDay(): number {
   const n = Number(process.env.TELEGRAM_NEWS_ALERTS_PER_DAY || "2");
   return Number.isFinite(n) && n > 0 ? Math.min(5, Math.floor(n)) : 2;
@@ -131,15 +137,24 @@ export function extractTopics(texts: string[]): string[] {
 
 export function scoreItem(item: RssItem, topics: string[]): number {
   if (!topics.length) return 0;
-  const hay = `${item.title} ${item.summary}`.toLowerCase();
+  const title = item.title.toLowerCase();
+  const hay = `${title} ${item.summary}`.toLowerCase();
   let score = 0;
+  let hits = 0;
+  let titleHits = 0;
   for (const t of topics) {
     if (!hay.includes(t)) continue;
+    hits += 1;
     score += t.length >= 6 ? 2 : 1;
-    // Title hits matter more than summary-only
-    if (item.title.toLowerCase().includes(t)) score += 1;
+    if (title.includes(t)) {
+      titleHits += 1;
+      score += 2;
+    }
   }
-  // Prefer fresher items slightly when dated
+  // Summary-only / zero title overlap → reject (stops random Habr dumps).
+  if (titleHits === 0) return 0;
+  // Single short-token title hit is weak unless score already strong.
+  if (hits === 1 && score < MIN_NEWS_SCORE) return score;
   if (item.publishedAt) {
     const ageH = (Date.now() - item.publishedAt.getTime()) / 3600_000;
     if (ageH <= 24) score += 1;
@@ -147,7 +162,8 @@ export function scoreItem(item: RssItem, topics: string[]): number {
   return score;
 }
 
-function tipPrefix(lang: string, item: RssItem): string {
+/** Localized tip header — always match conversation language, never force EN. */
+export function tipPrefix(lang: string, item: RssItem): string {
   const cite = sanitizePublicText(`${item.title}\n${item.link}`, 320);
   if (lang === "pl") {
     return `Krótka aktualność pod Wasz temat:\n${cite}\n\n`;
@@ -174,7 +190,7 @@ type SearxBudget = { used: number; max: number };
 async function enrichWithSearx(
   topics: string[],
   budget: SearxBudget,
-): Promise<RssItem | null> {
+): Promise<{ item: RssItem; score: number } | null> {
   if (!isNewsSearxEnabled()) return null;
   if (!topics.length) return null;
   if (budget.used >= budget.max) return null;
@@ -196,15 +212,14 @@ async function enrichWithSearx(
         source: "searxng",
       };
       const score = scoreItem(item, topics);
-      // Accept weak title match from focused query (min 1)
-      const effective = Math.max(score, hit.title ? 1 : 0);
-      if (!best || effective > best.score) {
-        best = { item, score: effective };
+      if (score < MIN_NEWS_SCORE) continue;
+      if (!best || score > best.score) {
+        best = { item, score };
       }
     }
   }
 
-  return best && best.score >= 1 ? best.item : null;
+  return best;
 }
 
 /**
@@ -258,16 +273,12 @@ export async function runNewsAlertTick(limitCustomers = 15): Promise<NewsTickRes
 
       const history = await getRecentMessages(conversation.id, HISTORY_LIMIT);
       const userTexts = history.filter((m) => m.role === "user").map((m) => m.text);
-      const assistantTexts = history
-        .filter((m) => m.role === "assistant")
-        .map((m) => m.text)
-        .slice(-4);
       if (userTexts.length === 0) {
         skipped += 1;
         continue;
       }
-      // Prefer client words; light boost from recent bot replies (product terms).
-      const topics = extractTopics([...userTexts, ...assistantTexts]);
+      // Topics from CLIENT messages only — bot product jargon was matching random Habr.
+      const topics = extractTopics(userTexts);
       if (!topics.length) {
         skipped += 1;
         continue;
@@ -276,31 +287,34 @@ export async function runNewsAlertTick(limitCustomers = 15): Promise<NewsTickRes
       let best: { item: RssItem; score: number } | null = null;
       for (const item of items) {
         const score = scoreItem(item, topics);
-        if (score < 2) continue;
+        if (score < MIN_NEWS_SCORE) continue;
         if (await hasNewsBeenSent(customer.id, item.link)) continue;
         if (!best || score > best.score) best = { item, score };
       }
 
-      // Prefer strong RSS match; if weak/none — query SearX for this client's topics.
-      if (!best || best.score < 3) {
+      // Prefer strong RSS; SearX only when nothing passed the bar — no fake score inflation.
+      if (!best) {
         const sx = await enrichWithSearx(topics, searxBudget);
-        if (sx && !(await hasNewsBeenSent(customer.id, sx.link))) {
-          const sxScore = Math.max(scoreItem(sx, topics), 2);
-          if (!best || sxScore > best.score) {
-            best = { item: sx, score: sxScore };
-          }
+        if (
+          sx &&
+          sx.score >= MIN_NEWS_SCORE &&
+          !(await hasNewsBeenSent(customer.id, sx.item.link))
+        ) {
+          best = { item: sx.item, score: sx.score };
         }
       }
 
-      if (!best) {
+      if (!best || best.score < MIN_NEWS_SCORE) {
         skipped += 1;
         continue;
       }
       matched += 1;
 
-      const lang =
-        customer.preferredLang ||
-        detectLangFromText(userTexts.join("\n"), "ru");
+      // History wins over stale preferredLang (e.g. one EN paste locked "en").
+      const lang = detectLangFromText(
+        userTexts.join("\n"),
+        customer.preferredLang || "ru",
+      );
 
       const newsHint = sanitizePublicText(
         `${best.item.title}\n${best.item.summary}\n${best.item.link}`,
@@ -314,7 +328,14 @@ export async function runNewsAlertTick(limitCustomers = 15): Promise<NewsTickRes
           undefined,
         lang,
         newsHint,
+        requireConcrete: true,
       });
+
+      // Better silence than generic «name one bottleneck» preach.
+      if (advice.source === "fallback" || !advice.text.trim()) {
+        skipped += 1;
+        continue;
+      }
 
       const text = sanitizePublicText(
         `${tipPrefix(lang, best.item)}${advice.text}`.slice(0, 3500),
