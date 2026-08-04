@@ -92,19 +92,6 @@ export function celebrationEnabled(): boolean {
   return process.env.TELEGRAM_CELEBRATION_DISABLED !== "1";
 }
 
-/**
- * Subtle “hurra” when client confirms a message: big 🎉 reaction on their msg.
- * No text spam. Fails soft (Business / limited chats may reject).
- */
-export async function celebrateInboundMessage(ctx: Context): Promise<void> {
-  if (!celebrationEnabled()) return;
-  try {
-    await ctx.react("🎉", { is_big: true });
-  } catch {
-    /* optional */
-  }
-}
-
 function replyOpts(replyToMessageId: number): {
   reply_parameters: { message_id: number };
   link_preview_options: { is_disabled: true };

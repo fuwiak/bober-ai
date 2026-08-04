@@ -4,7 +4,6 @@ import {
   telegramApiBase,
 } from "@/lib/telegram-business/api";
 import {
-  celebrateInboundMessage,
   handleBusinessConnection,
   handleReminderCallback,
   replyAboutBober,
@@ -36,7 +35,6 @@ export function createBusinessBot(token: string): BusinessBot {
     if (!msg) return;
     const businessConnectionId = msg.business_connection_id;
     if (!businessConnectionId) return;
-    const isEdit = Boolean(ctx.editedBusinessMessage);
 
     // Typing keep-alive from first byte — before getBusinessConnection / DB / LLM.
     await withTypingKeepAlive(
@@ -49,11 +47,6 @@ export function createBusinessBot(token: string): BusinessBot {
           }
         } catch (err) {
           console.error("[telegram-business] getBusinessConnection", err);
-        }
-
-        // Celebration only on new inbound (not edits) — 🎉 reaction, no text spam.
-        if (!isEdit) {
-          await celebrateInboundMessage(ctx);
         }
 
         await replyAboutBober({
@@ -76,7 +69,6 @@ export function createBusinessBot(token: string): BusinessBot {
     await withTypingKeepAlive(
       ctx,
       async () => {
-        await celebrateInboundMessage(ctx);
         await replyAboutBober({
           token,
           ctx,
