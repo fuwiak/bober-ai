@@ -1,0 +1,88 @@
+# One-shot: sync Telegram Business env onto Selectel VDS and recreate web.
+# Needs secrets: SELECTEL_SSH_KEY, TELEGRAM_BUSINESS_BOT_TOKEN, TELEGRAM_BUSINESS_WEBHOOK_SECRET
+name: vds-telegram-env
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: vds-telegram-env
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Sync Telegram env + restart web
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Setup SSH
+        env:
+          SELECTEL_SSH_KEY: ${{ secrets.SELECTEL_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          if [ -z "${SELECTEL_SSH_KEY:-}" ]; then
+            echo "::error::Missing SELECTEL_SSH_KEY"
+            exit 1
+          fi
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SELECTEL_SSH_KEY" > ~/.ssh/bober_selectel
+          chmod 600 ~/.ssh/bober_selectel
+          ssh-keyscan -T 10 -H 45.80.131.136 >> ~/.ssh/known_hosts 2>/dev/null || true
+
+      - name: Upsert env and recreate web
+        env:
+          TELEGRAM_BUSINESS_BOT_TOKEN: ${{ secrets.TELEGRAM_BUSINESS_BOT_TOKEN }}
+          TELEGRAM_BUSINESS_WEBHOOK_SECRET: ${{ secrets.TELEGRAM_BUSINESS_WEBHOOK_SECRET }}
+        run: |
+          set -euo pipefail
+          if [ -z "${TELEGRAM_BUSINESS_BOT_TOKEN:-}" ] || [ -z "${TELEGRAM_BUSINESS_WEBHOOK_SECRET:-}" ]; then
+            echo "::error::Missing TELEGRAM_BUSINESS_* secrets"
+            exit 1
+          fi
+          ssh -i ~/.ssh/bober_selectel -o IdentitiesOnly=yes -o ConnectTimeout=30 \
+            -o StrictHostKeyChecking=accept-new root@45.80.131.136 \
+            "TOKEN=$(printf %q "$TELEGRAM_BUSINESS_BOT_TOKEN") SECRET=$(printf %q "$TELEGRAM_BUSINESS_WEBHOOK_SECRET") bash -s" <<'EOS'
+          set -euo pipefail
+          ROOT=/opt/bober-ai
+          upsert() {
+            local file="$1"
+            mkdir -p "$(dirname "$file")"
+            touch "$file"
+            chmod 600 "$file"
+            set_kv() {
+              local k="$1" v="$2"
+              if grep -q "^${k}=" "$file" 2>/dev/null; then
+                grep -v "^${k}=" "$file" > "${file}.tmp" || true
+                mv "${file}.tmp" "$file"
+              fi
+              printf '%s=%s\n' "$k" "$v" >> "$file"
+            }
+            set_kv TELEGRAM_BUSINESS_BOT_TOKEN "$TOKEN"
+            set_kv TELEGRAM_BUSINESS_WEBHOOK_SECRET "$SECRET"
+            echo "updated $file"
+            grep -E '^TELEGRAM_BUSINESS_' "$file" | sed -E 's/=.*/=***/'
+          }
+          upsert "$ROOT/deploy/.env"
+          [ -d "$ROOT/src/deploy" ] && upsert "$ROOT/src/deploy/.env"
+          # also keep host copy in sync for next selectel-build preserve step
+          mkdir -p "$ROOT/deploy"
+          cp -a "$ROOT/src/deploy/.env" "$ROOT/deploy/.env" 2>/dev/null || cp -a "$ROOT/deploy/.env" "$ROOT/src/deploy/.env" 2>/dev/null || true
+
+          COMPOSE_DIR="$ROOT/src/deploy"
+          COMPOSE_FILE="$COMPOSE_DIR/docker-compose.yml"
+          if [ ! -f "$COMPOSE_FILE" ]; then
+            echo "NO_COMPOSE yet — env written; wait for selectel-build deploy"
+            exit 0
+          fi
+          cd "$COMPOSE_DIR"
+          if docker compose version >/dev/null 2>&1; then
+            dc=(docker compose)
+          else
+            dc=(docker-compose)
+          fi
+          echo "recreate web with new env"
+          "${dc[@]}" -f "$COMPOSE_FILE" up -d --force-recreate --no-build web
+          sleep 8
+          curl -fsS -m 15 http://127.0.0.1:3001/api/telegram/business || curl -fsS -m 15 http://127.0.0.1:3001/api/health || true
+          echo DONE
+          EOS
