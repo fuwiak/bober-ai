@@ -8,7 +8,7 @@ function modelName() {
   return (
     process.env.TELEGRAM_BUSINESS_LLM_MODEL?.trim() ||
     process.env.NEWS_AGENT_MODEL?.trim() ||
-    "qwen/qwen-plus"
+    "deepseek/deepseek-v4-flash-0731"
   );
 }
 

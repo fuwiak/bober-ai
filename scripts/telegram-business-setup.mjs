@@ -139,7 +139,7 @@ Env на VDS:
   TELEGRAM_BUSINESS_WEBHOOK_SECRET=${secret}
   OPENROUTER_API_KEY=...          # иначе keyword-fallback без LLM
   CONTACT_TELEGRAM_CHAT_ID=...    # уведомления owner/handoff
-  TELEGRAM_BUSINESS_LLM_MODEL=qwen/qwen-plus   # опционально
+  TELEGRAM_BUSINESS_LLM_MODEL=deepseek/deepseek-v4-flash-0731   # опционально
 
 Проверка: GET ${site}
 `);
