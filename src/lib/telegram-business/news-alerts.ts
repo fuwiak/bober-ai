@@ -1,6 +1,6 @@
 /**
- * Instant news/tips from RSS (and optional SearXNG) matched to client thread topics.
- * Dedup per customer+URL; rate-limit per day; same Like/Stop buttons as reminders.
+ * Client-tailored news/tips: poll RSS + SearXNG, match to each client's
+ * conversation topics, send short tip+advice (dedup, daily cap, reminders_enabled).
  */
 
 import {
@@ -47,46 +47,80 @@ const TOPIC_STOP = new Set([
   "или",
   "the",
   "and",
-  "для",
+  "for",
+  "with",
   "есть",
   "нужно",
   "можно",
   "просто",
   "очень",
   "также",
+  "будет",
+  "который",
+  "которая",
+  "которые",
+  "please",
+  "hello",
+  "привет",
+  "спасибо",
+  "добрый",
+  "день",
 ]);
+
+const DOMAIN_BOOSTS = [
+  "bitrix",
+  "битрикс",
+  "1с",
+  "1c",
+  "ocr",
+  "crm",
+  "whatsapp",
+  "telegram",
+  "речев",
+  "meeting",
+  "chatgpt",
+  "ассистент",
+  "интеграц",
+  "152",
+  "импортозамещ",
+  "вордстат",
+  "wordstat",
+  "яндекс",
+  "автоматиз",
+  "пилот",
+];
+
+/** Max SearX queries per news tick (all clients combined). */
+const SEARX_TICK_BUDGET = 12;
 
 function maxAlertsPerDay(): number {
   const n = Number(process.env.TELEGRAM_NEWS_ALERTS_PER_DAY || "2");
   return Number.isFinite(n) && n > 0 ? Math.min(5, Math.floor(n)) : 2;
 }
 
-function extractTopics(texts: string[]): string[] {
+/**
+ * SearX for news tips: ON by default when SEARXNG_URL is set.
+ * Explicit TELEGRAM_NEWS_SEARX=0|false|off disables; =1 forces on.
+ */
+export function isNewsSearxEnabled(): boolean {
+  const flag = (process.env.TELEGRAM_NEWS_SEARX || "").trim().toLowerCase();
+  if (flag === "0" || flag === "false" || flag === "off" || flag === "no") {
+    return false;
+  }
+  if (flag === "1" || flag === "true" || flag === "on" || flag === "yes") {
+    return true;
+  }
+  return Boolean(process.env.SEARXNG_URL?.trim());
+}
+
+export function extractTopics(texts: string[]): string[] {
   const blob = texts.join("\n").toLowerCase();
   const tokens = blob
     .split(/[^\p{L}\p{N}+]+/u)
     .filter((t) => t.length >= 4 && !TOPIC_STOP.has(t));
   const freq = new Map<string, number>();
   for (const t of tokens) freq.set(t, (freq.get(t) || 0) + 1);
-  // Boost known product domains
-  const boosts = [
-    "bitrix",
-    "битрикс",
-    "1с",
-    "1c",
-    "ocr",
-    "crm",
-    "whatsapp",
-    "telegram",
-    "речев",
-    "meeting",
-    "chatgpt",
-    "ассистент",
-    "интеграц",
-    "152",
-    "импортозамещ",
-  ];
-  for (const b of boosts) {
+  for (const b of DOMAIN_BOOSTS) {
     if (blob.includes(b)) freq.set(b, (freq.get(b) || 0) + 5);
   }
   return [...freq.entries()]
@@ -95,12 +129,20 @@ function extractTopics(texts: string[]): string[] {
     .map(([t]) => t);
 }
 
-function scoreItem(item: RssItem, topics: string[]): number {
+export function scoreItem(item: RssItem, topics: string[]): number {
   if (!topics.length) return 0;
   const hay = `${item.title} ${item.summary}`.toLowerCase();
   let score = 0;
   for (const t of topics) {
-    if (hay.includes(t)) score += t.length >= 6 ? 2 : 1;
+    if (!hay.includes(t)) continue;
+    score += t.length >= 6 ? 2 : 1;
+    // Title hits matter more than summary-only
+    if (item.title.toLowerCase().includes(t)) score += 1;
+  }
+  // Prefer fresher items slightly when dated
+  if (item.publishedAt) {
+    const ageH = (Date.now() - item.publishedAt.getTime()) / 3600_000;
+    if (ageH <= 24) score += 1;
   }
   return score;
 }
@@ -116,27 +158,57 @@ function tipPrefix(lang: string, item: RssItem): string {
   return `Короткий сигнал по вашей теме:\n${cite}\n\n`;
 }
 
+function buildSearxQueries(topics: string[]): string[] {
+  const top = topics.slice(0, 6);
+  if (!top.length) return [];
+  const q1 = `${top.slice(0, 3).join(" ")} бизнес Россия`;
+  const q2 =
+    top.length > 3
+      ? `${top.slice(3, 6).join(" ")} интеграция CRM`
+      : `${top[0]} новости автоматизация`;
+  return [q1, q2].filter((q, i, arr) => arr.indexOf(q) === i);
+}
+
+type SearxBudget = { used: number; max: number };
+
 async function enrichWithSearx(
   topics: string[],
+  budget: SearxBudget,
 ): Promise<RssItem | null> {
-  if (process.env.TELEGRAM_NEWS_SEARX !== "1") return null;
+  if (!isNewsSearxEnabled()) return null;
   if (!topics.length) return null;
-  const q = `${topics.slice(0, 4).join(" ")} бизнес Россия`;
-  const { hits } = await searchSearxng(q, { limit: 3, language: "ru-RU" });
-  const hit = hits[0];
-  if (!hit) return null;
-  return {
-    id: hit.url,
-    title: hit.title,
-    link: hit.url,
-    summary: hit.content,
-    publishedAt: new Date(),
-    source: "searxng",
-  };
+  if (budget.used >= budget.max) return null;
+
+  const queries = buildSearxQueries(topics);
+  let best: { item: RssItem; score: number } | null = null;
+
+  for (const q of queries) {
+    if (budget.used >= budget.max) break;
+    budget.used += 1;
+    const { hits } = await searchSearxng(q, { limit: 4, language: "ru-RU" });
+    for (const hit of hits) {
+      const item: RssItem = {
+        id: hit.url,
+        title: hit.title,
+        link: hit.url,
+        summary: hit.content,
+        publishedAt: new Date(),
+        source: "searxng",
+      };
+      const score = scoreItem(item, topics);
+      // Accept weak title match from focused query (min 1)
+      const effective = Math.max(score, hit.title ? 1 : 0);
+      if (!best || effective > best.score) {
+        best = { item, score: effective };
+      }
+    }
+  }
+
+  return best && best.score >= 1 ? best.item : null;
 }
 
 /**
- * Match fresh RSS (optional SearX) to reminder-eligible clients and send tips.
+ * Match fresh RSS (+ SearX when available) to reminder-eligible clients and send tips.
  */
 export async function runNewsAlertTick(limitCustomers = 15): Promise<NewsTickResult> {
   if (process.env.TELEGRAM_NEWS_ALERTS_DISABLED === "1") {
@@ -159,6 +231,7 @@ export async function runNewsAlertTick(limitCustomers = 15): Promise<NewsTickRes
   let sent = 0;
   let skipped = 0;
   let matched = 0;
+  const searxBudget: SearxBudget = { used: 0, max: SEARX_TICK_BUDGET };
 
   let items: RssItem[] = [];
   try {
@@ -185,11 +258,16 @@ export async function runNewsAlertTick(limitCustomers = 15): Promise<NewsTickRes
 
       const history = await getRecentMessages(conversation.id, HISTORY_LIMIT);
       const userTexts = history.filter((m) => m.role === "user").map((m) => m.text);
+      const assistantTexts = history
+        .filter((m) => m.role === "assistant")
+        .map((m) => m.text)
+        .slice(-4);
       if (userTexts.length === 0) {
         skipped += 1;
         continue;
       }
-      const topics = extractTopics(userTexts);
+      // Prefer client words; light boost from recent bot replies (product terms).
+      const topics = extractTopics([...userTexts, ...assistantTexts]);
       if (!topics.length) {
         skipped += 1;
         continue;
@@ -203,10 +281,14 @@ export async function runNewsAlertTick(limitCustomers = 15): Promise<NewsTickRes
         if (!best || score > best.score) best = { item, score };
       }
 
-      if (!best) {
-        const sx = await enrichWithSearx(topics);
+      // Prefer strong RSS match; if weak/none — query SearX for this client's topics.
+      if (!best || best.score < 3) {
+        const sx = await enrichWithSearx(topics, searxBudget);
         if (sx && !(await hasNewsBeenSent(customer.id, sx.link))) {
-          best = { item: sx, score: 2 };
+          const sxScore = Math.max(scoreItem(sx, topics), 2);
+          if (!best || sxScore > best.score) {
+            best = { item: sx, score: sxScore };
+          }
         }
       }
 
@@ -220,12 +302,18 @@ export async function runNewsAlertTick(limitCustomers = 15): Promise<NewsTickRes
         customer.preferredLang ||
         detectLangFromText(userTexts.join("\n"), "ru");
 
+      const newsHint = sanitizePublicText(
+        `${best.item.title}\n${best.item.summary}\n${best.item.link}`,
+        500,
+      );
+
       const advice = await generateReminderAdvice({
         history,
         customerName:
           [customer.firstName, customer.lastName].filter(Boolean).join(" ") ||
           undefined,
         lang,
+        newsHint,
       });
 
       const text = sanitizePublicText(

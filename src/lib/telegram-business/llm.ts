@@ -9,14 +9,18 @@ import {
 import { fallbackReply, loadKnowledge } from "@/lib/telegram-business/knowledge";
 import { queryGraphKnowledge } from "@/lib/telegram-business/graph-knowledge";
 import {
+  hasWebDisclaimer,
+  knowledgeLikelyInsufficient,
   needsArchitectureContext,
   needsMarketResearch,
   sanitizePublicText,
+  webDisclaimer,
 } from "@/lib/telegram-business/research/sanitize";
 import {
   formatSearxHitsForPrompt,
   searchSearxng,
 } from "@/lib/telegram-business/research/searxng";
+import { detectLangFromText } from "@/lib/telegram-business/reminders/schedule";
 import type { StoredMessage } from "@/lib/telegram-business/db/schema";
 
 const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
@@ -91,27 +95,47 @@ function historyToTurns(history: StoredMessage[]): ChatTurn[] {
   return turns;
 }
 
-async function gatherResearchContext(message: string): Promise<string> {
+async function gatherResearchContext(
+  message: string,
+): Promise<{ text: string; usedWeb: boolean }> {
   const parts: string[] = [];
+  let usedWeb = false;
   try {
-    if (needsArchitectureContext(message) || needsMarketResearch(message)) {
+    const wantGraph =
+      needsArchitectureContext(message) ||
+      needsMarketResearch(message) ||
+      knowledgeLikelyInsufficient(message);
+    if (wantGraph) {
       const graph = await queryGraphKnowledge(message);
       if (graph.text) {
         parts.push(`[graph:${graph.source}]\n${graph.text}`);
       }
     }
-    if (needsMarketResearch(message) && process.env.SEARXNG_URL?.trim()) {
+
+    // Live chat: knowledge first; SearX when market research OR knowledge likely thin.
+    const wantWeb =
+      Boolean(process.env.SEARXNG_URL?.trim()) &&
+      (needsMarketResearch(message) || knowledgeLikelyInsufficient(message));
+    if (wantWeb) {
       const { hits, error } = await searchSearxng(message, { limit: 4 });
       if (error) {
         console.info("[telegram-business] searx", error);
       }
       const formatted = formatSearxHitsForPrompt(hits);
-      if (formatted) parts.push(`[web]\n${formatted}`);
+      if (formatted) {
+        parts.push(
+          `[web] UNVERIFIED public web hits (must disclose to client; not company guarantees):\n${formatted}`,
+        );
+        usedWeb = true;
+      }
     }
   } catch (err) {
     console.error("[telegram-business] research context", err);
   }
-  return sanitizePublicText(parts.join("\n\n"), 2800);
+  return {
+    text: sanitizePublicText(parts.join("\n\n"), 2800),
+    usedWeb,
+  };
 }
 
 export async function generateBusinessReply(params: {
@@ -135,7 +159,7 @@ export async function generateBusinessReply(params: {
     const history = params.history ?? [];
     const prior = history.slice(0, -1);
     const turns = historyToTurns(prior);
-    const researchContext = await gatherResearchContext(params.message);
+    const research = await gatherResearchContext(params.message);
 
     const messages: ChatTurn[] = [
       { role: "system", content: SYSTEM_PROMPT },
@@ -147,17 +171,26 @@ export async function generateBusinessReply(params: {
           customerName: params.customerName,
           message: params.message,
           hasHistory: turns.length > 0,
-          researchContext,
+          researchContext: research.text,
+          usedWeb: research.usedWeb,
         }),
       },
     ];
 
     const raw = await chatOpenRouter(messages);
-    const { text, handoff, booking } = stripHandoff(raw);
+    const stripped = stripHandoff(raw);
+    let text = stripped.text || fallbackReply(params.message);
+
+    // Hard guarantee: web-backed replies always carry unverified-internet disclaimer.
+    if (research.usedWeb && !hasWebDisclaimer(text)) {
+      const lang = detectLangFromText(params.message, "ru");
+      text = `${webDisclaimer(lang)}\n\n${text}`;
+    }
+
     return {
-      text: text || fallbackReply(params.message),
-      handoff,
-      booking,
+      text,
+      handoff: stripped.handoff,
+      booking: stripped.booking,
       source: "llm",
     };
   } catch (err) {
@@ -185,11 +218,12 @@ const REMINDER_FALLBACK: Record<string, string> = {
   en: "On your topic: name one process bottleneck (where you lose time/money) — a 2–4 week pilot usually closes that first. Reply with your stack (Bitrix/1C/other) if useful.",
 };
 
-/** Short concrete reminder advice from thread + knowledge. */
+/** Short concrete reminder/news advice from thread + knowledge (+ optional news hit). */
 export async function generateReminderAdvice(params: {
   history: StoredMessage[];
   customerName?: string;
   lang: string;
+  newsHint?: string;
 }): Promise<{ text: string; source: "llm" | "fallback" }> {
   const knowledge = await loadKnowledge();
   const fallback =
@@ -209,6 +243,7 @@ export async function generateReminderAdvice(params: {
           customerName: params.customerName,
           lang: params.lang,
           topicHint: topicHintFromHistory(params.history),
+          newsHint: params.newsHint,
         }),
       },
     ];

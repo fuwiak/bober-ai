@@ -26,6 +26,12 @@ UX КАК У CHATGPT (продаваемый оффер, не спам):
 - Не выдумывай «свежие новости»; если нужны свежие рыночные нюансы — формулируй осторожно
   («на практике в РФ чаще…») и предлагай уточнить у Павла на созвоне.
 
+ВЕБ / SearX (блок [web] в контексте):
+- Сначала факты из базы знаний Bober AI Systems. Сеть — только если базы не хватает.
+- Если используешь [web]: в начале ответа ЯВНО скажи на языке клиента, что это
+  неподтверждённая информация из сети (PL: niepotwierdzona info z netu; EN: unverified from the internet).
+- Не выдавай веб-факты за гарантии компании. Можно 1 лёгкую ссылку на источник.
+
 ЖЁСТКИЕ ПРАВИЛА:
 1) Не подтверждай финальную цену, точный срок и полный scope. Вилки «от … ₽», пилот 2–4 недели → 30-мин созвон.
 2) Не обещай результат «гарантированно за N дней» без брифа.
@@ -68,15 +74,20 @@ export function buildUserPrompt(params: {
   message: string;
   hasHistory?: boolean;
   researchContext?: string;
+  /** True when SearX / web hits were injected — require unverified-web disclaimer. */
+  usedWeb?: boolean;
 }) {
   const who = params.customerName ? `Клиент: ${params.customerName}\n` : "";
   const hist = params.hasHistory
     ? "Учитывай историю выше: не повторяйся, продолжай тему треда, слушай клиента.\n"
     : "";
   const research = params.researchContext?.trim()
-    ? `\nДоп. публичный контекст (архитектура/рынок — без секретов; цитируй кратко):\n${params.researchContext.trim()}\n`
+    ? `\nДоп. публичный контекст (без секретов). Блок [web] = непроверенный интернет — обязательный дисклеймер в ответе:\n${params.researchContext.trim()}\n`
     : "";
-  return `${who}База знаний Bober AI Systems:\n${params.knowledge}\n${research}\n---\n${hist}Сообщение клиента:\n${params.message}\n\nОтветь кратко и по делу. В конце обязательно HANDOFF: yes|no и BOOKING: yes|no`;
+  const webRule = params.usedWeb
+    ? "\nВ контексте есть [web]: начни с дисклеймера (неподтверждённая информация из сети / niepotwierdzona z netu / unverified from the internet). Не гарантия компании.\n"
+    : "";
+  return `${who}База знаний Bober AI Systems:\n${params.knowledge}\n${research}${webRule}\n---\n${hist}Сообщение клиента:\n${params.message}\n\nОтветь кратко и по делу. В конце обязательно HANDOFF: yes|no и BOOKING: yes|no`;
 }
 
 export function buildReminderUserPrompt(params: {
@@ -84,10 +95,14 @@ export function buildReminderUserPrompt(params: {
   customerName?: string;
   lang: string;
   topicHint: string;
+  newsHint?: string;
 }) {
   const who = params.customerName ? `Клиент: ${params.customerName}\n` : "";
+  const news = params.newsHint?.trim()
+    ? `\nСвежий источник по теме клиента (опирайся на него в совете, не копируй дословно):\n${params.newsHint.trim()}\n`
+    : "";
   return `${who}Язык ответа: ${params.lang}
-Тема треда / контекст:\n${params.topicHint}\n\nБаза знаний (фрагмент):\n${params.knowledge.slice(0, 3500)}\n\nНапиши короткий конкретный совет (не «как дела?»).`;
+Тема треда / контекст:\n${params.topicHint}\n${news}\nБаза знаний (фрагмент):\n${params.knowledge.slice(0, 3500)}\n\nНапиши короткий конкретный совет (не «как дела?»).`;
 }
 
 export function stripHandoff(reply: string): {

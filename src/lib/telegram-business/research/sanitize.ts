@@ -55,3 +55,43 @@ export function needsMarketResearch(message: string): boolean {
     message,
   );
 }
+
+const OFFER_SCOPE =
+  /bober|цен|стоим|бюджет|пилот|созвон|встреч|демо|bitrix|битрикс|1с|1c|ocr|crm|ассистент|chatgpt|whatsapp|telegram|внедр|интеграц|услуг|оффер|прайс|nda|речев|meeting|кп\b|коммерческ/i;
+
+/**
+ * Knowledge (info.md / OFFER_FACTS) likely insufficient → use SearXNG.
+ * Market/news/law/competitor questions always qualify; plain offer/booking do not.
+ */
+export function knowledgeLikelyInsufficient(message: string): boolean {
+  if (needsMarketResearch(message)) return true;
+  const t = message.trim();
+  if (!t || t.length < 8) return false;
+  const questionLike =
+    /\?|^(что|как|где|когда|почему|who|what|how|why|czy|jak)\b|расскаж|объясн|подскаж|узнать|актуальн|сравн|конкурент|альтернатив|что\s+такое/i.test(
+      t,
+    );
+  if (!questionLike) return false;
+  // Offer-scoped Q&A stays on knowledge unless market keywords already matched.
+  if (OFFER_SCOPE.test(t) && !/конкурент|альтернатив|сравн|что\s+нового|трен|рынк/i.test(t)) {
+    return false;
+  }
+  return true;
+}
+
+/** Disclaimer when reply used unverified web hits (client language). */
+export function webDisclaimer(lang: string): string {
+  if (lang === "pl") {
+    return "Uwaga: to niepotwierdzona informacja z internetu — nie gwarancja Bober AI Systems.";
+  }
+  if (lang === "en") {
+    return "Note: unverified information from the internet — not a Bober AI Systems guarantee.";
+  }
+  return "Важно: это неподтверждённая информация из сети — не гарантия Bober AI Systems.";
+}
+
+export function hasWebDisclaimer(text: string): boolean {
+  return /неподтвержд|из сети|из интернета|niepotwierdzon|z internetu|z netu|unverified|from the internet/i.test(
+    text,
+  );
+}

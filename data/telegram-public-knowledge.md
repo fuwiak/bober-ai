@@ -66,7 +66,7 @@ Align with RU market: 152-FZ / personal data, import substitution, local clouds.
 - Marketing site: Astro (SSR) on Railway EU (Telegram Bot API reachable; Selectel RU often blocked outbound to Telegram).
 - Telegram Business bot: Grammy webhook `/api/telegram/business`, Postgres history (`tg_customers`, `tg_conversations`, `tg_messages`), reminders + news tips.
 - Knowledge: `public/info.md` + packaged graph extract (this file). Live `graphify` only on developer machines.
-- Research: optional SearXNG (`SEARXNG_URL`) + public RSS for RU market tips.
+- Research: SearXNG (`SEARXNG_URL`) + public RSS — client-tailored news tips; live chat falls back to SearX when knowledge is thin (always disclosed as unverified web).
 - CRM bridge stub: `onConversationEvent` (handoff / booking_requested) → future Bitrix24 lead push.
 - Contact leads: site forms → email/Telegram notify owner via `CONTACT_TELEGRAM_CHAT_ID`.
 
