@@ -14,8 +14,21 @@ export const customers = sqliteTable(
     lastSeenAt: integer("last_seen_at", { mode: "timestamp_ms" })
       .notNull()
       .default(sql`(cast(unixepoch('subsecond') * 1000 as integer))`),
+    /** Default ON for anyone who chatted — scheduler respects this. */
+    remindersEnabled: integer("reminders_enabled", { mode: "boolean" })
+      .notNull()
+      .default(true),
+    lastReminderAt: integer("last_reminder_at", { mode: "timestamp_ms" }),
+    nextReminderAt: integer("next_reminder_at", { mode: "timestamp_ms" }),
+    reminderLikedCount: integer("reminder_liked_count").notNull().default(0),
+    reminderOptedOutAt: integer("reminder_opted_out_at", { mode: "timestamp_ms" }),
+    /** ISO language hint: ru | pl | en | … — from messages if detectable. */
+    preferredLang: text("preferred_lang"),
   },
-  (t) => [index("tg_customers_tg_uid_idx").on(t.telegramUserId)],
+  (t) => [
+    index("tg_customers_tg_uid_idx").on(t.telegramUserId),
+    index("tg_customers_next_reminder_idx").on(t.nextReminderAt),
+  ],
 );
 
 export const conversations = sqliteTable(
@@ -80,4 +93,15 @@ export type StoredCustomer = {
   lastName: string | null;
   username: string | null;
   lastSeenAt: Date;
+  remindersEnabled: boolean;
+  lastReminderAt: Date | null;
+  nextReminderAt: Date | null;
+  reminderLikedCount: number;
+  reminderOptedOutAt: Date | null;
+  preferredLang: string | null;
+};
+
+export type ReminderDueRow = {
+  customer: StoredCustomer;
+  conversation: StoredConversation;
 };

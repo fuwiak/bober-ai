@@ -1,0 +1,50 @@
+# Hourly backup cron for Telegram Business reminders.
+# Primary scheduler: in-process setInterval on Railway (Europe/Moscow, every 3 days 20–22).
+# This workflow hits /api/telegram/reminders/tick so cold instances still process due rows.
+name: telegram-reminders-tick
+
+on:
+  schedule:
+    - cron: "20 * * * *" # hourly at :20 UTC
+  workflow_dispatch:
+
+concurrency:
+  group: telegram-reminders-tick
+  cancel-in-progress: true
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Reminder tick
+        env:
+          REMINDER_URL: ${{ secrets.TELEGRAM_REMINDER_TICK_URL }}
+          REMINDER_SECRET: ${{ secrets.TELEGRAM_REMINDER_CRON_SECRET }}
+          FALLBACK_URL: https://bober-ai-production.up.railway.app/api/telegram/reminders/tick
+        run: |
+          set -euo pipefail
+          URL="${REMINDER_URL:-$FALLBACK_URL}"
+          if [ -z "${REMINDER_SECRET:-}" ]; then
+            echo "TELEGRAM_REMINDER_CRON_SECRET secret missing — skip"
+            exit 0
+          fi
+          code=$(curl -sS -o /tmp/rem-tick.json -w "%{http_code}" \
+            -X POST \
+            -H "Authorization: Bearer ${REMINDER_SECRET}" \
+            -H "Content-Type: application/json" \
+            "${URL}?limit=20")
+          echo "HTTP ${code}"
+          # Do not dump full body if it ever contains secrets — only summary fields
+          python3 - <<'PY'
+          import json
+          try:
+            d=json.load(open("/tmp/rem-tick.json"))
+          except Exception as e:
+            print("parse_error", e)
+            raise SystemExit(1)
+          print({k:d.get(k) for k in ("ok","checked","sent","skipped","db","tz","error") if k in d or k=="error"})
+          if d.get("errors"):
+            print("errors_count", len(d["errors"]))
+          PY
+          test "$code" = "200"

@@ -8,13 +8,18 @@ import {
 import { onConversationEvent } from "@/lib/telegram-business/crm-bridge";
 import {
   appendMessage,
+  getCustomerById,
   getOrCreateConversation,
   getRecentMessages,
   HISTORY_LIMIT,
   isNearDuplicate,
+  likeReminder,
+  optOutReminders,
   upsertCustomer,
 } from "@/lib/telegram-business/db/store";
 import type { StoredCustomer } from "@/lib/telegram-business/db/schema";
+import { detectLangFromText } from "@/lib/telegram-business/reminders/schedule";
+import { ensureReminderScheduler } from "@/lib/telegram-business/reminders/tick";
 
 /** In-memory map connection_id → owner user id (survives warm process). */
 const connections = new Map<string, { ownerId: number; enabled: boolean }>();
@@ -38,7 +43,10 @@ function displayName(msg: Message): string | undefined {
   return [u.first_name, u.last_name].filter(Boolean).join(" ") || u.username;
 }
 
-async function persistCustomer(msg: Message): Promise<StoredCustomer | null> {
+async function persistCustomer(
+  msg: Message,
+  preferredLang?: string | null,
+): Promise<StoredCustomer | null> {
   if (!msg.from) return null;
   try {
     return await upsertCustomer({
@@ -46,6 +54,7 @@ async function persistCustomer(msg: Message): Promise<StoredCustomer | null> {
       firstName: msg.from.first_name,
       lastName: msg.from.last_name,
       username: msg.from.username,
+      preferredLang,
     });
   } catch (err) {
     console.error("[telegram-business] upsertCustomer", err);
@@ -129,10 +138,13 @@ export async function replyAboutBober(params: {
   mode: "direct" | "business";
   businessConnectionId?: string;
 }) {
+  ensureReminderScheduler();
+
   const text = (params.msg.text || params.msg.caption || "").trim();
   if (!text) return { ok: true, handled: "non_text" as const };
 
-  const customer = await persistCustomer(params.msg);
+  const lang = detectLangFromText(text, "ru");
+  const customer = await persistCustomer(params.msg, lang);
   const conversation = await getOrCreateConversation({
     chatId: params.msg.chat.id,
     mode: params.mode,
@@ -278,4 +290,48 @@ export async function replyAboutBober(params: {
     source: reply.source,
     handoff: reply.handoff,
   };
+}
+
+export async function handleReminderCallback(params: {
+  token: string;
+  customerId: number;
+  action: "like" | "stop";
+  fromUserId?: number;
+}): Promise<{ toast: string; alert: boolean }> {
+  ensureReminderScheduler();
+
+  const existing = await getCustomerById(params.customerId);
+  if (!existing) {
+    return { toast: "OK", alert: false };
+  }
+  if (
+    params.fromUserId &&
+    existing.telegramUserId !== params.fromUserId
+  ) {
+    return { toast: "OK", alert: false };
+  }
+
+  if (params.action === "like") {
+    const cust = await likeReminder(params.customerId);
+    const lang = cust?.preferredLang || existing.preferredLang || "ru";
+    const toast =
+      lang === "pl"
+        ? "Dzięki — zapisane."
+        : lang === "en"
+          ? "Thanks — saved."
+          : "Спасибо — учли.";
+    console.info("[telegram-reminders] like", { customerId: params.customerId });
+    return { toast, alert: false };
+  }
+
+  const cust = await optOutReminders(params.customerId);
+  const lang = cust?.preferredLang || existing.preferredLang || "ru";
+  const toast =
+    lang === "pl"
+      ? "Powiadomienia wyłączone."
+      : lang === "en"
+        ? "Reminders disabled."
+        : "Уведомления отключены.";
+  console.info("[telegram-reminders] opt-out", { customerId: params.customerId });
+  return { toast, alert: false };
 }

@@ -5,6 +5,7 @@ import { businessBotToken, webhookSecret } from "@/lib/telegram-business/api";
 import { getBusinessBot } from "@/lib/telegram-business/bot";
 import { dbHealth } from "@/lib/telegram-business/db/store";
 import { dbBackendLabel } from "@/lib/telegram-business/db/client";
+import { ensureReminderScheduler } from "@/lib/telegram-business/reminders/tick";
 
 function json(body: Record<string, unknown>, status = 200) {
   return new Response(JSON.stringify(body), {
@@ -14,6 +15,7 @@ function json(body: Record<string, unknown>, status = 200) {
 }
 
 export const GET: APIRoute = async () => {
+  ensureReminderScheduler();
   const token = businessBotToken();
   const db = await dbHealth();
   return json({
@@ -24,6 +26,7 @@ export const GET: APIRoute = async () => {
     llm: Boolean(process.env.OPENROUTER_API_KEY?.trim()),
     db: db.backend,
     dbOk: db.ok,
+    reminders: "in-process + /api/telegram/reminders/tick",
     apiBase: process.env.TELEGRAM_API_BASE?.trim() || "https://api.telegram.org",
     hint: "POST Telegram updates here. Setup: npm run telegram:business:setup",
   });

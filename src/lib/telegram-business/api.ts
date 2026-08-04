@@ -73,6 +73,42 @@ export async function sendDirectMessage(params: {
   });
 }
 
+export type InlineKeyboard = {
+  inline_keyboard: { text: string; callback_data: string }[][];
+};
+
+/** DM or Business message with optional inline keyboard. */
+export async function sendMessageWithKeyboard(params: {
+  token: string;
+  chatId: number | string;
+  text: string;
+  businessConnectionId?: string | null;
+  replyMarkup?: InlineKeyboard;
+}) {
+  return callTelegram(params.token, "sendMessage", {
+    chat_id: params.chatId,
+    text: params.text.slice(0, 4000),
+    disable_web_page_preview: true,
+    ...(params.businessConnectionId
+      ? { business_connection_id: params.businessConnectionId }
+      : {}),
+    ...(params.replyMarkup ? { reply_markup: params.replyMarkup } : {}),
+  });
+}
+
+export async function answerCallbackQuery(params: {
+  token: string;
+  callbackQueryId: string;
+  text?: string;
+  showAlert?: boolean;
+}) {
+  return callTelegram(params.token, "answerCallbackQuery", {
+    callback_query_id: params.callbackQueryId,
+    ...(params.text ? { text: params.text.slice(0, 200) } : {}),
+    ...(params.showAlert ? { show_alert: true } : {}),
+  });
+}
+
 export async function sendDirectChatAction(params: {
   token: string;
   chatId: number | string;

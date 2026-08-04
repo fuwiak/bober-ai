@@ -1,5 +1,11 @@
 import { SITE_NAME, SITE_URL } from "@/lib/site";
-import { SYSTEM_PROMPT, buildUserPrompt, stripHandoff } from "@/lib/telegram-business/prompt";
+import {
+  SYSTEM_PROMPT,
+  REMINDER_SYSTEM_PROMPT,
+  buildUserPrompt,
+  buildReminderUserPrompt,
+  stripHandoff,
+} from "@/lib/telegram-business/prompt";
 import { fallbackReply, loadKnowledge } from "@/lib/telegram-business/knowledge";
 import type { StoredMessage } from "@/lib/telegram-business/db/schema";
 
@@ -115,5 +121,55 @@ export async function generateBusinessReply(params: {
   } catch (err) {
     console.error("[telegram-business] LLM failed", err);
     return { text: fallbackReply(params.message), handoff: false, source: "fallback" };
+  }
+}
+
+function topicHintFromHistory(history: StoredMessage[]): string {
+  const lines = history
+    .filter((m) => m.role === "user" || m.role === "assistant")
+    .slice(-10)
+    .map((m) => `${m.role}: ${m.text.slice(0, 280)}`);
+  return lines.join("\n") || "(нет истории)";
+}
+
+const REMINDER_FALLBACK: Record<string, string> = {
+  ru: "По вашей теме: зафиксируйте 1 узкое место процесса (где теряете время/деньги) — на пилоте 2–4 недели обычно закрываем именно его. Если удобно — напишите систему (Bitrix/1С/другое).",
+  pl: "W Waszym temacie: wypiszcie 1 wąskie gardło procesu (gdzie tracicie czas/pieniądze) — pilotaż 2–4 tyg. zwykle zamyka właśnie to. Napiszcie system (Bitrix/1C/inny), jeśli wygodnie.",
+  en: "On your topic: name one process bottleneck (where you lose time/money) — a 2–4 week pilot usually closes that first. Reply with your stack (Bitrix/1C/other) if useful.",
+};
+
+/** Short concrete reminder advice from thread + knowledge. */
+export async function generateReminderAdvice(params: {
+  history: StoredMessage[];
+  customerName?: string;
+  lang: string;
+}): Promise<{ text: string; source: "llm" | "fallback" }> {
+  const knowledge = await loadKnowledge();
+  const fallback =
+    REMINDER_FALLBACK[params.lang] || REMINDER_FALLBACK.ru;
+
+  if (!process.env.OPENROUTER_API_KEY?.trim()) {
+    return { text: fallback, source: "fallback" };
+  }
+
+  try {
+    const messages: ChatTurn[] = [
+      { role: "system", content: REMINDER_SYSTEM_PROMPT },
+      {
+        role: "user",
+        content: buildReminderUserPrompt({
+          knowledge,
+          customerName: params.customerName,
+          lang: params.lang,
+          topicHint: topicHintFromHistory(params.history),
+        }),
+      },
+    ];
+    const raw = await chatOpenRouter(messages);
+    const text = raw.replace(/HANDOFF:\s*(yes|no)/gi, "").trim();
+    return { text: (text || fallback).slice(0, 900), source: "llm" };
+  } catch (err) {
+    console.error("[telegram-business] reminder LLM failed", err);
+    return { text: fallback, source: "fallback" };
   }
 }

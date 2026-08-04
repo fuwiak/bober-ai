@@ -22,9 +22,16 @@ CREATE TABLE IF NOT EXISTS tg_customers (
   first_name TEXT,
   last_name TEXT,
   username TEXT,
-  last_seen_at INTEGER NOT NULL DEFAULT (cast(unixepoch('subsecond') * 1000 as integer))
+  last_seen_at INTEGER NOT NULL DEFAULT (cast(unixepoch('subsecond') * 1000 as integer)),
+  reminders_enabled INTEGER NOT NULL DEFAULT 1,
+  last_reminder_at INTEGER,
+  next_reminder_at INTEGER,
+  reminder_liked_count INTEGER NOT NULL DEFAULT 0,
+  reminder_opted_out_at INTEGER,
+  preferred_lang TEXT
 );
 CREATE INDEX IF NOT EXISTS tg_customers_tg_uid_idx ON tg_customers(telegram_user_id);
+CREATE INDEX IF NOT EXISTS tg_customers_next_reminder_idx ON tg_customers(next_reminder_at);
 
 CREATE TABLE IF NOT EXISTS tg_conversations (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -49,6 +56,15 @@ CREATE INDEX IF NOT EXISTS tg_messages_conv_created_idx
   ON tg_messages(conversation_id, created_at);
 `;
 
+const SQLITE_MIGRATE = `
+ALTER TABLE tg_customers ADD COLUMN reminders_enabled INTEGER NOT NULL DEFAULT 1;
+ALTER TABLE tg_customers ADD COLUMN last_reminder_at INTEGER;
+ALTER TABLE tg_customers ADD COLUMN next_reminder_at INTEGER;
+ALTER TABLE tg_customers ADD COLUMN reminder_liked_count INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE tg_customers ADD COLUMN reminder_opted_out_at INTEGER;
+ALTER TABLE tg_customers ADD COLUMN preferred_lang TEXT;
+`;
+
 const PG_DDL = `
 CREATE TABLE IF NOT EXISTS tg_customers (
   id SERIAL PRIMARY KEY,
@@ -56,9 +72,16 @@ CREATE TABLE IF NOT EXISTS tg_customers (
   first_name TEXT,
   last_name TEXT,
   username TEXT,
-  last_seen_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  last_seen_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  reminders_enabled BOOLEAN NOT NULL DEFAULT TRUE,
+  last_reminder_at TIMESTAMPTZ,
+  next_reminder_at TIMESTAMPTZ,
+  reminder_liked_count INTEGER NOT NULL DEFAULT 0,
+  reminder_opted_out_at TIMESTAMPTZ,
+  preferred_lang TEXT
 );
 CREATE INDEX IF NOT EXISTS tg_customers_tg_uid_idx ON tg_customers(telegram_user_id);
+CREATE INDEX IF NOT EXISTS tg_customers_next_reminder_idx ON tg_customers(next_reminder_at);
 
 CREATE TABLE IF NOT EXISTS tg_conversations (
   id SERIAL PRIMARY KEY,
@@ -81,6 +104,16 @@ CREATE TABLE IF NOT EXISTS tg_messages (
 );
 CREATE INDEX IF NOT EXISTS tg_messages_conv_created_idx
   ON tg_messages(conversation_id, created_at);
+`;
+
+const PG_MIGRATE = `
+ALTER TABLE tg_customers ADD COLUMN IF NOT EXISTS reminders_enabled BOOLEAN NOT NULL DEFAULT TRUE;
+ALTER TABLE tg_customers ADD COLUMN IF NOT EXISTS last_reminder_at TIMESTAMPTZ;
+ALTER TABLE tg_customers ADD COLUMN IF NOT EXISTS next_reminder_at TIMESTAMPTZ;
+ALTER TABLE tg_customers ADD COLUMN IF NOT EXISTS reminder_liked_count INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE tg_customers ADD COLUMN IF NOT EXISTS reminder_opted_out_at TIMESTAMPTZ;
+ALTER TABLE tg_customers ADD COLUMN IF NOT EXISTS preferred_lang TEXT;
+CREATE INDEX IF NOT EXISTS tg_customers_next_reminder_idx ON tg_customers(next_reminder_at);
 `;
 
 function sqlitePath(): string {
@@ -110,6 +143,13 @@ export function getDbBackend(): DbBackend {
   const sqlite = new Database(path);
   sqlite.pragma("journal_mode = WAL");
   sqlite.exec(SQLITE_DDL);
+  for (const stmt of SQLITE_MIGRATE.trim().split(";").map((s) => s.trim()).filter(Boolean)) {
+    try {
+      sqlite.exec(stmt);
+    } catch {
+      /* column already exists */
+    }
+  }
   const db = drizzleSqlite(sqlite, { schema });
   cached = { kind: "sqlite", db, sqlite };
   return cached;
@@ -120,5 +160,6 @@ export async function ensureSchema(): Promise<void> {
   const backend = getDbBackend();
   if (backend.kind === "postgres") {
     await backend.pool.query(PG_DDL);
+    await backend.pool.query(PG_MIGRATE);
   }
 }
