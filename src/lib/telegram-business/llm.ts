@@ -9,7 +9,7 @@ import {
 import { fallbackReply, loadKnowledge } from "@/lib/telegram-business/knowledge";
 import { queryGraphKnowledge } from "@/lib/telegram-business/graph-knowledge";
 import {
-  hasWebDisclaimer,
+  ensureWebDisclaimer,
   knowledgeLikelyInsufficient,
   needsArchitectureContext,
   needsMarketResearch,
@@ -22,6 +22,20 @@ import {
 } from "@/lib/telegram-business/research/searxng";
 import { detectLangFromText } from "@/lib/telegram-business/reminders/schedule";
 import type { StoredMessage } from "@/lib/telegram-business/db/schema";
+
+/** Client lang from thread user messages + current turn (same heuristic as reminders). */
+function detectClientLang(
+  message: string,
+  history: StoredMessage[] = [],
+): string {
+  const userBlob = [
+    ...history.filter((m) => m.role === "user").map((m) => m.text),
+    message,
+  ]
+    .filter(Boolean)
+    .join("\n");
+  return detectLangFromText(userBlob || message, "ru");
+}
 
 const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
 
@@ -160,6 +174,8 @@ export async function generateBusinessReply(params: {
     const prior = history.slice(0, -1);
     const turns = historyToTurns(prior);
     const research = await gatherResearchContext(params.message);
+    const clientLang = detectClientLang(params.message, history);
+    const disclaimer = research.usedWeb ? webDisclaimer(clientLang) : undefined;
 
     const messages: ChatTurn[] = [
       { role: "system", content: SYSTEM_PROMPT },
@@ -173,6 +189,7 @@ export async function generateBusinessReply(params: {
           hasHistory: turns.length > 0,
           researchContext: research.text,
           usedWeb: research.usedWeb,
+          webDisclaimerText: disclaimer,
         }),
       },
     ];
@@ -181,10 +198,9 @@ export async function generateBusinessReply(params: {
     const stripped = stripHandoff(raw);
     let text = stripped.text || fallbackReply(params.message);
 
-    // Hard guarantee: web-backed replies always carry unverified-internet disclaimer.
-    if (research.usedWeb && !hasWebDisclaimer(text)) {
-      const lang = detectLangFromText(params.message, "ru");
-      text = `${webDisclaimer(lang)}\n\n${text}`;
+    // Hard guarantee: correct-language disclaimer (replace EN/wrong-lang LLM invents).
+    if (research.usedWeb) {
+      text = ensureWebDisclaimer(text, clientLang);
     }
 
     return {

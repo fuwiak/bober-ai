@@ -87,11 +87,32 @@ export function webDisclaimer(lang: string): string {
   if (lang === "en") {
     return "Note: unverified information from the internet — not a Bober AI Systems guarantee.";
   }
+  // Default RU — main market; unknown langs fall back here (not EN).
   return "Важно: это неподтверждённая информация из сети — не гарантия Bober AI Systems.";
 }
+
+const WEB_DISCLAIMER_LINE =
+  /^(?:Важно:\s*это\s*неподтверждённая\s+информация\s+из\s+сети\s*[—\-]\s*не\s+гарантия\s+Bober AI Systems\.|Uwaga:\s*to\s*niepotwierdzona\s+informacja\s+z\s+internetu\s*[—\-]\s*nie\s+gwarancja\s+Bober AI Systems\.|Note:\s*unverified\s+information\s+from\s+the\s+internet\s*[—\-]\s*not\s+a\s+Bober AI Systems\s+guarantee\.)\s*(?:\n+|$)/i;
 
 export function hasWebDisclaimer(text: string): boolean {
   return /неподтвержд|из сети|из интернета|niepotwierdzon|z internetu|z netu|unverified|from the internet/i.test(
     text,
   );
+}
+
+/** Drop leading RU/PL/EN web disclaimer so we can re-attach the correct lang. */
+export function stripLeadingWebDisclaimer(text: string): string {
+  return String(text || "").replace(WEB_DISCLAIMER_LINE, "").trimStart();
+}
+
+/**
+ * Hard guarantee: web-backed reply starts with the localized disclaimer.
+ * Replaces wrong-language (often EN) disclaimers the LLM invented.
+ */
+export function ensureWebDisclaimer(text: string, lang: string): string {
+  const disc = webDisclaimer(lang);
+  const body = stripLeadingWebDisclaimer(text).trim();
+  if (!body) return disc;
+  if (body.startsWith(disc)) return body;
+  return `${disc}\n\n${body}`;
 }

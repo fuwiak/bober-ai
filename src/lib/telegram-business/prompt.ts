@@ -28,8 +28,8 @@ UX КАК У CHATGPT (продаваемый оффер, не спам):
 
 ВЕБ / SearX (блок [web] в контексте):
 - Сначала факты из базы знаний Bober AI Systems. Сеть — только если базы не хватает.
-- Если используешь [web]: в начале ответа ЯВНО скажи на языке клиента, что это
-  неподтверждённая информация из сети (PL: niepotwierdzona info z netu; EN: unverified from the internet).
+- Если в user-промпте дан точный дисклеймер — начни ответ ИМЕННО этой фразой (язык уже выбран).
+- Не пиши английский Note/unverified, если клиент не на EN.
 - Не выдавай веб-факты за гарантии компании. Можно 1 лёгкую ссылку на источник.
 
 ЖЁСТКИЕ ПРАВИЛА:
@@ -76,6 +76,8 @@ export function buildUserPrompt(params: {
   researchContext?: string;
   /** True when SearX / web hits were injected — require unverified-web disclaimer. */
   usedWeb?: boolean;
+  /** Exact localized disclaimer line — must open the reply when usedWeb. */
+  webDisclaimerText?: string;
 }) {
   const who = params.customerName ? `Клиент: ${params.customerName}\n` : "";
   const hist = params.hasHistory
@@ -84,9 +86,13 @@ export function buildUserPrompt(params: {
   const research = params.researchContext?.trim()
     ? `\nДоп. публичный контекст (без секретов). Блок [web] = непроверенный интернет — обязательный дисклеймер в ответе:\n${params.researchContext.trim()}\n`
     : "";
-  const webRule = params.usedWeb
-    ? "\nВ контексте есть [web]: начни с дисклеймера (неподтверждённая информация из сети / niepotwierdzona z netu / unverified from the internet). Не гарантия компании.\n"
-    : "";
+  const disc = params.webDisclaimerText?.trim();
+  const webRule =
+    params.usedWeb && disc
+      ? `\nВ контексте есть [web]: начни ответ ТОЧНО этой фразой (язык клиента уже определён):\n«${disc}»\nНе гарантия компании. Не переводи и не заменяй на другой язык.\n`
+      : params.usedWeb
+        ? "\nВ контексте есть [web]: начни с дисклеймера на языке клиента (не EN, если клиент не на EN). Не гарантия компании.\n"
+        : "";
   return `${who}База знаний Bober AI Systems:\n${params.knowledge}\n${research}${webRule}\n---\n${hist}Сообщение клиента:\n${params.message}\n\nОтветь кратко и по делу. В конце обязательно HANDOFF: yes|no и BOOKING: yes|no`;
 }
 
