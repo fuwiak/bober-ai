@@ -5,22 +5,22 @@ export const II_DLYA_BIZNESA_PAGE = {
   lineRu: "ИИ для бизнеса",
   lineEn: "AI for business",
 
-  metaTitleRu: "Внедрение ИИ в бизнес-процессы под ключ — цена и услуги | Bober AI",
+  metaTitleRu: "Внедрение ИИ в бизнес под ключ — компания, цена, Москва | Bober AI",
   metaTitleEn: "AI for business — audit, development and turnkey deployment | Bober AI",
   metaDescRu:
-    "Внедрение ИИ в бизнес-процессы под ключ: аудит, пилот и production. CRM, 1С, документы, звонки. Фиксированная смета, NDA, Yandex Cloud / Selectel / on-prem.",
+    "Компания по внедрению ИИ: стоимость внедрения ИИ, под ключ, Москва и удалённо. CRM, 1С, документы, звонки. Фиксированная смета от 150 000 ₽.",
   metaDescEn:
     "AI for business: process audit, pilot and production deployment. CRM, documents, knowledge base, sales. Fixed estimate, NDA, Yandex Cloud / Selectel / on-prem.",
   metaKeywordsRu: [
+    "компания по внедрению ии",
+    "стоимость внедрения ии",
+    "внедрение ии под ключ",
+    "внедрение ии москва",
     "внедрение ии в бизнес",
     "внедрение ии в бизнес процессы",
     "ии для бизнеса",
-    "ии решения для бизнеса",
-    "интеграция ии в бизнес",
-    "разработка ии для бизнеса",
-    "купить ии для бизнеса",
-    "искусственный интеллект для бизнеса",
-    "ai для бизнеса",
+    "заказать внедрение ии",
+    "интегратор искусственного интеллекта",
     "внедрение искусственного интеллекта",
     "корпоративный ии",
   ],
@@ -34,10 +34,10 @@ export const II_DLYA_BIZNESA_PAGE = {
     "ai deployment russia",
   ],
 
-  h1Ru: "Внедрение ИИ в бизнес-процессы под ключ",
+  h1Ru: "Компания по внедрению ИИ в бизнес-процессы",
   h1En: "AI for business: from process audit to a working deployment",
   subtitleRu:
-    "CRM, 1С, документы, звонки и знания компании — от аудита до production. Фиксированная смета, NDA, передача команде. Без абстрактного «AI-контура» в рекламе: конкретные услуги и цены.",
+    "Заказать внедрение ИИ под ключ: фиксированная стоимость, сроки и production. Москва и удалённо — CRM, 1С, документы, звонки. Аудит от 150 000 ₽.",
   subtitleEn:
     "A commercial landing and expert guide in one: what to buy, which processes to cover, how an assistant differs from an agent, how deployment works, architecture, security, cases and budget ranges — without five near-identical SEO pages.",
 } as const;

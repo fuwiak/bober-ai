@@ -1,0 +1,201 @@
+{
+  "date": "2026-08-04",
+  "source": "Yandex Wordstat topRequests totalCount",
+  "seeds": [
+    {
+      "phrase": "автоматизация документов",
+      "totalCount": 4087,
+      "exactCount": 4087,
+      "top1": {
+        "phrase": "автоматизация документов",
+        "count": 4087
+      }
+    },
+    {
+      "phrase": "распознавание документов 1с",
+      "totalCount": 2902,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "1с распознавание документов",
+        "count": 2902
+      }
+    },
+    {
+      "phrase": "интеграция битрикс24",
+      "totalCount": 1818,
+      "exactCount": 1818,
+      "top1": {
+        "phrase": "интеграция битрикс24",
+        "count": 1818
+      }
+    },
+    {
+      "phrase": "внедрение crm",
+      "totalCount": 1226,
+      "exactCount": 1226,
+      "top1": {
+        "phrase": "внедрение crm",
+        "count": 1226
+      }
+    },
+    {
+      "phrase": "автоматизация документооборота",
+      "totalCount": 1041,
+      "exactCount": 1041,
+      "top1": {
+        "phrase": "автоматизация документооборота",
+        "count": 1041
+      }
+    },
+    {
+      "phrase": "внедрение битрикс24",
+      "totalCount": 658,
+      "exactCount": 658,
+      "top1": {
+        "phrase": "внедрение битрикс24",
+        "count": 658
+      }
+    },
+    {
+      "phrase": "автоматизация crm",
+      "totalCount": 547,
+      "exactCount": 547,
+      "top1": {
+        "phrase": "автоматизация crm",
+        "count": 547
+      }
+    },
+    {
+      "phrase": "интеграция битрикс24 1с",
+      "totalCount": 369,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "интеграция битрикс24 и 1с",
+        "count": 176
+      }
+    },
+    {
+      "phrase": "автоматизация эдо",
+      "totalCount": 263,
+      "exactCount": 263,
+      "top1": {
+        "phrase": "автоматизация эдо",
+        "count": 263
+      }
+    },
+    {
+      "phrase": "автоматизация битрикс24",
+      "totalCount": 259,
+      "exactCount": 259,
+      "top1": {
+        "phrase": "автоматизация битрикс24",
+        "count": 259
+      }
+    },
+    {
+      "phrase": "автоматизация отдела продаж",
+      "totalCount": 117,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "отдел продаж автоматизация",
+        "count": 117
+      }
+    },
+    {
+      "phrase": "компания по внедрению ии",
+      "totalCount": 106,
+      "exactCount": 106,
+      "top1": {
+        "phrase": "компания по внедрению ии",
+        "count": 106
+      }
+    },
+    {
+      "phrase": "стоимость внедрения ии",
+      "totalCount": 104,
+      "exactCount": 104,
+      "top1": {
+        "phrase": "стоимость внедрения ии",
+        "count": 104
+      }
+    },
+    {
+      "phrase": "корпоративный rag",
+      "totalCount": 99,
+      "exactCount": 99,
+      "top1": {
+        "phrase": "корпоративный rag",
+        "count": 99
+      }
+    },
+    {
+      "phrase": "генерация коммерческих предложений",
+      "totalCount": 85,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "генерация коммерческого предложения",
+        "count": 85
+      }
+    },
+    {
+      "phrase": "внедрение ии москва",
+      "totalCount": 71,
+      "exactCount": 71,
+      "top1": {
+        "phrase": "внедрение ии москва",
+        "count": 71
+      }
+    },
+    {
+      "phrase": "автоматизация коммерческих предложений",
+      "totalCount": 66,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "автоматизация коммерческие предложения",
+        "count": 66
+      }
+    },
+    {
+      "phrase": "автоматизация кп",
+      "totalCount": 43,
+      "exactCount": 43,
+      "top1": {
+        "phrase": "автоматизация кп",
+        "count": 43
+      }
+    },
+    {
+      "phrase": "внедрение ии под ключ",
+      "totalCount": 35,
+      "exactCount": 35,
+      "top1": {
+        "phrase": "внедрение ии под ключ",
+        "count": 35
+      }
+    },
+    {
+      "phrase": "автоматизация amocrm",
+      "totalCount": 22,
+      "exactCount": 22,
+      "top1": {
+        "phrase": "автоматизация amocrm",
+        "count": 22
+      }
+    },
+    {
+      "phrase": "стоимость внедрения rag",
+      "totalCount": 12,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "приватный llm",
+      "totalCount": 8,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "приватная llm от яндекса",
+        "count": 5
+      }
+    }
+  ]
+}

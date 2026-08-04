@@ -1,0 +1,923 @@
+{
+  "date": "2026-08-04",
+  "source": "cached Wordstat CSVs + seed-totals (live API invalid query/key check)",
+  "byTopic": {
+    "kp": [
+      {
+        "phrase": "деловое предложение",
+        "count": 74979,
+        "buyish": false
+      },
+      {
+        "phrase": "система кадры вип версия для коммерческих организаций",
+        "count": 251,
+        "buyish": false
+      },
+      {
+        "phrase": "генерация коммерческого предложения",
+        "count": 87,
+        "buyish": false
+      },
+      {
+        "phrase": "автоматизация коммерческих предложений",
+        "count": 77,
+        "buyish": true
+      },
+      {
+        "phrase": "автоматизация кп",
+        "count": 62,
+        "buyish": true
+      }
+    ],
+    "docs": [
+      {
+        "phrase": "мфц мои документы",
+        "count": 89790,
+        "buyish": false
+      },
+      {
+        "phrase": "документы на паспорт",
+        "count": 68495,
+        "buyish": false
+      },
+      {
+        "phrase": "сфера документы",
+        "count": 20721,
+        "buyish": false
+      },
+      {
+        "phrase": "технологическая документация",
+        "count": 19067,
+        "buyish": false
+      },
+      {
+        "phrase": "ксерокопия документов",
+        "count": 16375,
+        "buyish": false
+      },
+      {
+        "phrase": "где можно распечатать документы",
+        "count": 16159,
+        "buyish": false
+      },
+      {
+        "phrase": "файлы для документов",
+        "count": 13205,
+        "buyish": false
+      },
+      {
+        "phrase": "система эдо",
+        "count": 7906,
+        "buyish": false
+      },
+      {
+        "phrase": "разработка рабочей документации",
+        "count": 6649,
+        "buyish": true
+      },
+      {
+        "phrase": "ии для документов",
+        "count": 5950,
+        "buyish": false
+      },
+      {
+        "phrase": "разделы рабочей документации",
+        "count": 5138,
+        "buyish": false
+      },
+      {
+        "phrase": "кадровый документооборот",
+        "count": 4860,
+        "buyish": false
+      },
+      {
+        "phrase": "как выглядит инн документ",
+        "count": 4124,
+        "buyish": false
+      },
+      {
+        "phrase": "дп документ",
+        "count": 3643,
+        "buyish": false
+      },
+      {
+        "phrase": "как поставить электронную подпись на документ",
+        "count": 2155,
+        "buyish": false
+      }
+    ],
+    "bitrix": [
+      {
+        "phrase": "битрикс 24",
+        "count": 299167,
+        "buyish": false
+      },
+      {
+        "phrase": "битрикс 24 вход",
+        "count": 130076,
+        "buyish": false
+      },
+      {
+        "phrase": "битрикс24",
+        "count": 110036,
+        "buyish": false
+      },
+      {
+        "phrase": "bitrix24",
+        "count": 56665,
+        "buyish": false
+      },
+      {
+        "phrase": "битрикс24 вход",
+        "count": 27613,
+        "buyish": false
+      },
+      {
+        "phrase": "bitrix24 ru",
+        "count": 21491,
+        "buyish": false
+      },
+      {
+        "phrase": "bitrix24 вход",
+        "count": 9195,
+        "buyish": false
+      },
+      {
+        "phrase": "bitrix24 ru вход",
+        "count": 8697,
+        "buyish": false
+      },
+      {
+        "phrase": "bitrix24 ru вход в личный кабинет",
+        "count": 8297,
+        "buyish": false
+      },
+      {
+        "phrase": "битрикс 24 что",
+        "count": 7141,
+        "buyish": false
+      },
+      {
+        "phrase": "битрикс войти",
+        "count": 5359,
+        "buyish": false
+      },
+      {
+        "phrase": "программа битрикс",
+        "count": 3917,
+        "buyish": false
+      },
+      {
+        "phrase": "bitrix 24",
+        "count": 3892,
+        "buyish": false
+      },
+      {
+        "phrase": "crm bitrix24",
+        "count": 3489,
+        "buyish": false
+      },
+      {
+        "phrase": "войти в битрикс",
+        "count": 3368,
+        "buyish": false
+      }
+    ],
+    "amocrm": [
+      {
+        "phrase": "amocrm вход",
+        "count": 917,
+        "buyish": false
+      },
+      {
+        "phrase": "амо crm",
+        "count": 781,
+        "buyish": false
+      },
+      {
+        "phrase": "amocrm интеграции",
+        "count": 735,
+        "buyish": false
+      },
+      {
+        "phrase": "amocrm api",
+        "count": 456,
+        "buyish": false
+      },
+      {
+        "phrase": "интеграция сайта amocrm",
+        "count": 29,
+        "buyish": true
+      },
+      {
+        "phrase": "amocrm приватная интеграция",
+        "count": 28,
+        "buyish": true
+      },
+      {
+        "phrase": "интеграция сайта с amocrm",
+        "count": 25,
+        "buyish": true
+      },
+      {
+        "phrase": "настройка интеграции amocrm",
+        "count": 24,
+        "buyish": true
+      },
+      {
+        "phrase": "автоматизация amocrm",
+        "count": 23,
+        "buyish": true
+      },
+      {
+        "phrase": "интеграция salebot и amocrm",
+        "count": 23,
+        "buyish": true
+      },
+      {
+        "phrase": "интеграция авито и amocrm",
+        "count": 22,
+        "buyish": true
+      },
+      {
+        "phrase": "amocrm telegram интеграция",
+        "count": 21,
+        "buyish": true
+      },
+      {
+        "phrase": "amocrm whatsapp интеграция",
+        "count": 20,
+        "buyish": true
+      },
+      {
+        "phrase": "интеграция max amocrm",
+        "count": 19,
+        "buyish": true
+      },
+      {
+        "phrase": "amocrm интеграция api",
+        "count": 18,
+        "buyish": true
+      }
+    ],
+    "crm_auto": [
+      {
+        "phrase": "внедрение crm",
+        "count": 1376,
+        "buyish": true
+      },
+      {
+        "phrase": "интеграция с crm",
+        "count": 1138,
+        "buyish": true
+      },
+      {
+        "phrase": "автоматизация crm",
+        "count": 762,
+        "buyish": true
+      },
+      {
+        "phrase": "внедрение crm системы",
+        "count": 693,
+        "buyish": true
+      },
+      {
+        "phrase": "автоматизация crm системы",
+        "count": 381,
+        "buyish": true
+      },
+      {
+        "phrase": "интеграция crm систем",
+        "count": 375,
+        "buyish": true
+      },
+      {
+        "phrase": "система автоматизации crm",
+        "count": 267,
+        "buyish": false
+      },
+      {
+        "phrase": "crm автоматизация процессов",
+        "count": 195,
+        "buyish": true
+      },
+      {
+        "phrase": "интеграция сайта crm",
+        "count": 147,
+        "buyish": true
+      },
+      {
+        "phrase": "crm автоматизация бизнеса",
+        "count": 140,
+        "buyish": true
+      },
+      {
+        "phrase": "бизнес внедрение crm",
+        "count": 126,
+        "buyish": true
+      },
+      {
+        "phrase": "внедрение crm компании",
+        "count": 124,
+        "buyish": true
+      },
+      {
+        "phrase": "автоматизация продаж crm",
+        "count": 114,
+        "buyish": true
+      },
+      {
+        "phrase": "интеграция erp crm",
+        "count": 98,
+        "buyish": true
+      },
+      {
+        "phrase": "crm автоматизации бизнес процессов",
+        "count": 90,
+        "buyish": false
+      }
+    ],
+    "ai_impl": [
+      {
+        "phrase": "внедрение искусственного интеллекта",
+        "count": 6254,
+        "buyish": true
+      },
+      {
+        "phrase": "внедрение технологий искусственного интеллекта",
+        "count": 2045,
+        "buyish": true
+      },
+      {
+        "phrase": "внедрение систем искусственного интеллекта",
+        "count": 1145,
+        "buyish": true
+      },
+      {
+        "phrase": "внедрение ии в бизнес",
+        "count": 783,
+        "buyish": true
+      },
+      {
+        "phrase": "разработка и внедрение искусственного интеллекта",
+        "count": 664,
+        "buyish": true
+      },
+      {
+        "phrase": "создание и внедрение в искусственный интеллект",
+        "count": 573,
+        "buyish": true
+      },
+      {
+        "phrase": "внедрение автоматизации в компании",
+        "count": 522,
+        "buyish": true
+      },
+      {
+        "phrase": "автоматизация и внедрение искусственного интеллекта",
+        "count": 501,
+        "buyish": true
+      },
+      {
+        "phrase": "внедрение искусственного интеллекта в образование",
+        "count": 470,
+        "buyish": true
+      },
+      {
+        "phrase": "автоматизация внедрение технологии компания",
+        "count": 439,
+        "buyish": true
+      },
+      {
+        "phrase": "внедрение оптимизации бизнес процессов",
+        "count": 351,
+        "buyish": true
+      },
+      {
+        "phrase": "внедрение искусственного интеллекта сферы",
+        "count": 349,
+        "buyish": true
+      },
+      {
+        "phrase": "программа внедрения искусственного интеллекта",
+        "count": 335,
+        "buyish": false
+      },
+      {
+        "phrase": "цель внедрения искусственного интеллекта",
+        "count": 326,
+        "buyish": false
+      },
+      {
+        "phrase": "внедрение искусственного интеллекта в производство",
+        "count": 319,
+        "buyish": true
+      }
+    ],
+    "rag_llm": [
+      {
+        "phrase": "локальные нейросети",
+        "count": 5926,
+        "buyish": false
+      },
+      {
+        "phrase": "rag система",
+        "count": 1897,
+        "buyish": false
+      },
+      {
+        "phrase": "локальные нейросети для генерации",
+        "count": 543,
+        "buyish": false
+      },
+      {
+        "phrase": "локальная нейросеть на пк",
+        "count": 474,
+        "buyish": false
+      },
+      {
+        "phrase": "локальные нейросети для изображений",
+        "count": 343,
+        "buyish": false
+      },
+      {
+        "phrase": "лучшие локальные нейросети",
+        "count": 333,
+        "buyish": false
+      },
+      {
+        "phrase": "локальная модель нейросети",
+        "count": 282,
+        "buyish": false
+      },
+      {
+        "phrase": "локальная нейросеть для генерации изображений",
+        "count": 271,
+        "buyish": false
+      },
+      {
+        "phrase": "локальная нейросеть для видео",
+        "count": 228,
+        "buyish": false
+      },
+      {
+        "phrase": "бесплатная локальная нейросеть",
+        "count": 163,
+        "buyish": false
+      },
+      {
+        "phrase": "топ локальных нейросетей",
+        "count": 162,
+        "buyish": false
+      },
+      {
+        "phrase": "создание локальных нейросетей",
+        "count": 158,
+        "buyish": false
+      },
+      {
+        "phrase": "как запустить локальную нейросеть",
+        "count": 141,
+        "buyish": false
+      },
+      {
+        "phrase": "локальные нейросети без цензуры",
+        "count": 137,
+        "buyish": false
+      },
+      {
+        "phrase": "локальная нейросеть на телефон",
+        "count": 134,
+        "buyish": false
+      }
+    ],
+    "sales": [
+      {
+        "phrase": "автоматизация продаж",
+        "count": 1863,
+        "buyish": true
+      },
+      {
+        "phrase": "комплексная автоматизация продажи",
+        "count": 517,
+        "buyish": true
+      },
+      {
+        "phrase": "автоматизация продаж 1с",
+        "count": 414,
+        "buyish": true
+      },
+      {
+        "phrase": "автоматизация процессов продаж",
+        "count": 305,
+        "buyish": true
+      },
+      {
+        "phrase": "автоматизация продажи товаров",
+        "count": 240,
+        "buyish": true
+      },
+      {
+        "phrase": "автоматизация системы продаж",
+        "count": 226,
+        "buyish": true
+      },
+      {
+        "phrase": "автоматизация розничными продажами",
+        "count": 193,
+        "buyish": true
+      },
+      {
+        "phrase": "автоматизация управления продажами",
+        "count": 172,
+        "buyish": true
+      },
+      {
+        "phrase": "автоматизация продаж предприятия",
+        "count": 149,
+        "buyish": true
+      },
+      {
+        "phrase": "автоматизация учета продаж",
+        "count": 149,
+        "buyish": true
+      },
+      {
+        "phrase": "автоматизация бизнеса продажи",
+        "count": 148,
+        "buyish": true
+      },
+      {
+        "phrase": "автоматизация продаж и клиентов",
+        "count": 132,
+        "buyish": true
+      },
+      {
+        "phrase": "автоматизация отдела продаж",
+        "count": 132,
+        "buyish": true
+      },
+      {
+        "phrase": "программа автоматизации продаж",
+        "count": 128,
+        "buyish": false
+      },
+      {
+        "phrase": "автоматизация продаж crm",
+        "count": 114,
+        "buyish": true
+      }
+    ],
+    "1c_ai": [
+      {
+        "phrase": "1с автоматизация документов",
+        "count": 1154,
+        "buyish": true
+      },
+      {
+        "phrase": "1c документооборот",
+        "count": 921,
+        "buyish": false
+      },
+      {
+        "phrase": "программы автоматизации 1с",
+        "count": 751,
+        "buyish": false
+      },
+      {
+        "phrase": "управление автоматизации 1с",
+        "count": 673,
+        "buyish": false
+      },
+      {
+        "phrase": "системы автоматизации 1с",
+        "count": 566,
+        "buyish": false
+      },
+      {
+        "phrase": "средства автоматизации 1с",
+        "count": 407,
+        "buyish": false
+      },
+      {
+        "phrase": "автоматизация реализации в 1с",
+        "count": 283,
+        "buyish": true
+      },
+      {
+        "phrase": "ai для 1с",
+        "count": 280,
+        "buyish": false
+      },
+      {
+        "phrase": "1с crm интеграции",
+        "count": 249,
+        "buyish": false
+      },
+      {
+        "phrase": "интеграция ии с 1с",
+        "count": 49,
+        "buyish": true
+      },
+      {
+        "phrase": "1с документооборот комплексная автоматизация",
+        "count": 28,
+        "buyish": true
+      },
+      {
+        "phrase": "настройка интеграции 1с и битрикс24",
+        "count": 17,
+        "buyish": true
+      },
+      {
+        "phrase": "amocrm интеграция с 1с",
+        "count": 14,
+        "buyish": true
+      }
+    ]
+  },
+  "seedTotals": [
+    {
+      "phrase": "компания по внедрению ии",
+      "totalCount": 111,
+      "exactCount": "111",
+      "top1": {
+        "phrase": "компания по внедрению ии",
+        "count": "111"
+      },
+      "top": [
+        {
+          "phrase": "компания по внедрению ии",
+          "count": "111"
+        },
+        {
+          "phrase": "компании по внедрению ии в бизнес",
+          "count": "18"
+        }
+      ]
+    },
+    {
+      "phrase": "стоимость внедрения ии",
+      "totalCount": 108,
+      "exactCount": "108",
+      "top1": {
+        "phrase": "стоимость внедрения ии",
+        "count": "108"
+      },
+      "top": [
+        {
+          "phrase": "стоимость внедрения ии",
+          "count": "108"
+        }
+      ]
+    },
+    {
+      "phrase": "внедрение ии москва",
+      "totalCount": 76,
+      "top": [],
+      "exactCount": 76,
+      "from": "csv-popular-fallback"
+    },
+    {
+      "phrase": "бюджет внедрения ии",
+      "totalCount": 61,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "llm для 1с",
+      "totalCount": 58,
+      "top": [],
+      "exactCount": 58,
+      "from": "csv-popular-fallback"
+    },
+    {
+      "phrase": "интеграция ии с 1с",
+      "totalCount": 49,
+      "exactCount": "49",
+      "top1": {
+        "phrase": "интеграция ии с 1с",
+        "count": "49"
+      },
+      "top": [
+        {
+          "phrase": "интеграция ии с 1с",
+          "count": "49"
+        }
+      ]
+    },
+    {
+      "phrase": "интеграция ии с crm",
+      "totalCount": 43,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "ии менеджер интеграция с crm",
+        "count": "11"
+      },
+      "top": [
+        {
+          "phrase": "ии менеджер интеграция с crm",
+          "count": "11"
+        }
+      ]
+    },
+    {
+      "phrase": "внедрение ии под ключ",
+      "totalCount": 41,
+      "exactCount": "41",
+      "top1": {
+        "phrase": "внедрение ии под ключ",
+        "count": "41"
+      },
+      "top": [
+        {
+          "phrase": "внедрение ии под ключ",
+          "count": "41"
+        },
+        {
+          "phrase": "внедрение ии в бизнес под ключ",
+          "count": "31"
+        }
+      ]
+    },
+    {
+      "phrase": "сроки внедрения ии",
+      "totalCount": 28,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "внедрение ии в отдел продаж",
+      "totalCount": 17,
+      "exactCount": "17",
+      "top1": {
+        "phrase": "внедрение ии в отдел продаж",
+        "count": "17"
+      },
+      "top": [
+        {
+          "phrase": "внедрение ии в отдел продаж",
+          "count": "17"
+        }
+      ]
+    },
+    {
+      "phrase": "интегратор искусственного интеллекта",
+      "totalCount": 16,
+      "exactCount": "16",
+      "top1": {
+        "phrase": "интегратор искусственного интеллекта",
+        "count": "16"
+      },
+      "top": [
+        {
+          "phrase": "интегратор искусственного интеллекта",
+          "count": "16"
+        }
+      ]
+    },
+    {
+      "phrase": "сколько стоит внедрить ии",
+      "totalCount": 15,
+      "exactCount": "15",
+      "top1": {
+        "phrase": "сколько стоит внедрить ии",
+        "count": "15"
+      },
+      "top": [
+        {
+          "phrase": "сколько стоит внедрить ии",
+          "count": "15"
+        }
+      ]
+    },
+    {
+      "phrase": "стоимость разработки rag",
+      "totalCount": 12,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "локальная нейросеть для компании",
+      "totalCount": 11,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "заказать внедрение ии",
+      "totalCount": 10,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "внедрение корпоративной llm",
+      "totalCount": 7,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "заказать rag систему",
+      "totalCount": 2,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "интеграция ии с битрикс24",
+      "totalCount": 2,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "кп на внедрение ии",
+      "totalCount": 2,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "аудит процессов для внедрения ии",
+      "totalCount": 2,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "корпоративная llm on premise",
+      "totalCount": 2,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "стоимость корпоративного чат-бота",
+      "totalCount": 1,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "пилотный проект ии для бизнеса",
+      "totalCount": 1,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "подрядчик по внедрению ии",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "разработка ии решения на заказ",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "разработка rag под ключ",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "автоматизация бизнеса с ии под ключ",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "цена внедрения ии для бизнеса",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "рассчитать стоимость автоматизации бизнеса",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    },
+    {
+      "phrase": "внедрение llm в закрытом контуре",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null,
+      "top": []
+    }
+  ]
+}

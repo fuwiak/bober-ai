@@ -1,151 +1,110 @@
 {
-  "updated": "2026-07-26",
-  "note": "Целевые запросы для мониторинга в Яндекс Вебмастере (Поисковые запросы) и посадочные на www.bober-systems.ru.",
+  "updated": "2026-08-04",
+  "note": "Целевые коммерческие запросы Wordstat (live 2026-08-04) → посадочные www.bober-systems.ru. Фокус: buy-intent, не brand-exact homepage.",
   "groups": [
     {
-      "id": "automation-core",
-      "title": "Автоматизация КП / документов / CRM",
+      "id": "documents",
+      "title": "Автоматизация документов / ЭДО / OCR→1С",
       "queries": [
-        "автоматизация КП",
-        "автоматизация коммерческих предложений",
         "автоматизация документов",
-        "автоматизация CRM Москва",
-        "автоматизация бизнес процессов",
-        "внедрение AI в бизнес"
+        "автоматизация документооборота",
+        "внедрение автоматизации документооборота",
+        "автоматизация эдо",
+        "1с распознавание документов",
+        "распознавание документов в 1с стоимость"
       ],
-      "landings": ["/", "/automation", "/services/business-process-automation", "/services/document-processing"]
+      "landings": [
+        "/automation/documents",
+        "/automation/ocr-data-extraction",
+        "/services/ocr"
+      ]
     },
     {
-      "id": "crm-integrations",
-      "title": "Интеграции Bitrix24 / amoCRM / 1С / CRM-автоматизация",
+      "id": "kp-proposals",
+      "title": "Автоматизация КП / коммерческих предложений",
       "queries": [
+        "генерация коммерческих предложений",
+        "автоматизация коммерческих предложений",
+        "автоматизация кп",
+        "генерация кп из crm"
+      ],
+      "landings": [
+        "/automation/proposal-generation",
+        "/automation/kp-from-crm"
+      ]
+    },
+    {
+      "id": "crm-bitrix",
+      "title": "CRM / Bitrix24 / amoCRM / 1С",
+      "queries": [
+        "интеграция битрикс24",
+        "внедрение crm",
+        "внедрение битрикс24",
         "автоматизация crm",
-        "система автоматизации crm",
-        "crm автоматизация процессов",
-        "crm автоматизация бизнеса",
-        "автоматизация продаж crm",
-        "автоматизация crm маркетинг",
-        "1с crm автоматизация",
-        "ai crm и автоматизации",
-        "интеграция Bitrix24 AI",
-        "интеграция amoCRM",
-        "интеграция 1С",
-        "автоматизация Bitrix24",
-        "CRM автоматизация продаж"
+        "интеграция битрикс24 и 1с",
+        "автоматизация битрикс24",
+        "автоматизация amocrm"
       ],
       "landings": [
+        "/integrations/bitrix24-implementation",
         "/integrations/crm-automation",
-        "/integrations/crm-automation-system",
-        "/integrations/crm-process-automation",
-        "/integrations/crm-sales-automation",
-        "/integrations/crm-marketing-automation",
-        "/integrations/crm-1c-automation",
-        "/integrations/ai-for-crm",
-        "/integrations/bitrix24",
-        "/integrations/amocrm",
-        "/services/crm-integration"
+        "/integrations/bitrix24-1c",
+        "/integrations/amocrm-automation"
       ]
     },
     {
-      "id": "sales-ai",
-      "title": "AI в продажах",
+      "id": "sales",
+      "title": "Автоматизация отдела продаж",
       "queries": [
-        "AI агент для продаж",
         "автоматизация отдела продаж",
-        "ai для продаж",
-        "генерация коммерческих предложений"
-      ],
-      "landings": ["/services/sales-ai-agent", "/services/ai-automation"]
-    },
-    {
-      "id": "wildberries-channel",
-      "title": "Независимый канал продаж / Wildberries",
-      "queries": [
-        "альтернатива wildberries для продавца",
-        "интеграция wildberries с 1с",
-        "интеграция wildberries с битрикс24",
-        "создание интернет-магазина для селлера",
-        "интернет магазин для селлера wildberries",
-        "синхронизация wildberries с 1с",
-        "выгрузка товаров с wildberries",
-        "свой магазин для продавца wildberries",
-        "независимый канал продаж для продавца"
-      ],
-      "landings": ["/services/wildberries-independent-sales-channel"]
-    },
-    {
-      "id": "private-llm-rag",
-      "title": "Приватный LLM / RAG / on-premise",
-      "queries": [
-        "приватный LLM",
-        "корпоративный RAG",
-        "AI on-premise",
-        "корпоративная база знаний",
-        "GigaChat корпоративный"
+        "автоматизация продаж",
+        "автоматизация продаж crm"
       ],
       "landings": [
-        "/services/private-llm-gigachat",
-        "/services/rag",
-        "/services/knowledge-base",
-        "/services/self-hosted-ai"
+        "/automation/sales-department",
+        "/automation/sales"
       ]
     },
     {
-      "id": "n8n-stack",
-      "title": "n8n / оркестрация",
-      "queries": ["n8n автоматизация", "n8n для бизнеса", "внедрение n8n"],
-      "landings": ["/services/n8n", "/services/langgraph", "/services/mcp"]
-    },
-    {
-      "id": "consulting",
-      "title": "Консалтинг / аудит / roadmap",
+      "id": "ai-implementation",
+      "title": "Внедрение ИИ / стоимость / Москва",
       "queries": [
-        "AI консалтинг",
-        "аудит автоматизации",
+        "компания по внедрению ии",
+        "стоимость внедрения ии",
+        "внедрение ии москва",
         "внедрение ии под ключ",
-        "стоимость внедрения AI"
+        "заказать внедрение ии"
       ],
-      "landings": ["/services/ai-consulting", "/services/ai-discovery-roadmap", "/pricing", "/faq"]
+      "landings": [
+        "/ai/ai-implementation",
+        "/ii-dlya-biznesa",
+        "/pricing"
+      ]
     },
     {
-      "id": "secure-ai-cloud",
-      "title": "Secure Private AI Cloud / защищённая AI-инфраструктура",
+      "id": "rag",
+      "title": "Корпоративный RAG",
       "queries": [
-        "внедрение llm",
-        "корпоративный ии",
-        "частное облако",
-        "приватное облако",
-        "база знаний с ии",
         "корпоративный rag",
-        "kaspersky для виртуальных сред",
-        "защита виртуальных машин",
-        "безопасность облачной инфраструктуры",
-        "kaspersky hybrid cloud security"
+        "стоимость разработки rag",
+        "стоимость внедрения rag"
       ],
-      "landings": ["/services/secure-private-ai-cloud", "/kaspersky", "/services/self-hosted-ai"]
+      "landings": [
+        "/solutions/rag-search",
+        "/services/rag"
+      ]
     },
     {
-      "id": "kaspersky",
-      "title": "Kaspersky B2B / Silver path",
+      "id": "private-llm-skip",
+      "title": "Приватный LLM (низкий объём — монитор)",
       "queries": [
-        "kaspersky endpoint security купить",
-        "лицензия kaspersky endpoint security для бизнеса",
-        "настройка kaspersky security center",
-        "купить kaspersky для бизнеса",
-        "защита терминальных серверов",
-        "защита сервера 1с",
-        "kaspersky security for mail server",
-        "защита почтового сервера",
-        "аудит информационной безопасности компания",
-        "kaspersky endpoint security стоимость"
+        "приватный llm"
       ],
-      "landings": ["/kaspersky", "/about", "/portfolio/kaspersky-ai-assistant"]
-    },
-    {
-      "id": "brand",
-      "title": "Бренд / люди",
-      "queries": ["bober ai", "павел стасиньский", "bober ai systems"],
-      "landings": ["/", "/about", "/portfolio"]
+      "landings": [
+        "/services/self-hosted-ai",
+        "/ai/private-llm"
+      ],
+      "note": "totalCount≈8 — не приоритет для H1"
     }
   ]
 }

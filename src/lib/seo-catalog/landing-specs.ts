@@ -424,11 +424,15 @@ export const CATALOG_LANDING_SPECS: LandingSpec[] = [
     keywords: [
       "распознавание первичных документов",
       "распознавание документов в 1с",
+      "1с распознавание документов",
       "распознавание первичных документов в 1с",
       "ocr документов 1с",
       "автоматизация первички 1с",
+      "1с автоматизация документов",
       "заказать распознавание документов",
       "стоимость ocr 1с",
+      "распознавание документов в 1с стоимость",
+      "1с распознавание документов цена",
     ],
     caseStudySlugs: ["kp-llm-automation"],
     related: [
@@ -587,28 +591,93 @@ export const CATALOG_LANDING_SPECS: LandingSpec[] = [
     cluster: "automation-documents",
     serviceSlug: "document-processing",
     coverImage: "/diagrams/document-flow.svg",
-    keywords: ["коммерческие предложения","генерация кп","автоматизация документооборота"],
+    keywords: [
+      "автоматизация кп",
+      "автоматизация коммерческих предложений",
+      "генерация коммерческих предложений",
+      "генерация кп из crm",
+      "кп из crm",
+      "заказать автоматизацию кп",
+      "стоимость автоматизации кп",
+    ],
     caseStudySlugs: ["kp-llm-automation"],
     related: [
-      { href: "/automation/documents", labelRu: "Документооборот", labelEn: "Document automation" },
+      { href: "/automation/proposal-generation", labelRu: "Автоматизация коммерческих предложений", labelEn: "Proposal automation" },
+      { href: "/automation/documents", labelRu: "Автоматизация документов", labelEn: "Document automation" },
       { href: "/automation/sales", labelRu: "Автоматизация продаж", labelEn: "Sales automation" },
-      { href: "/integrations/1c", labelRu: "Интеграция 1С", labelEn: "1C integration" }
+      { href: "/integrations/1c", labelRu: "Интеграция 1С", labelEn: "1C integration" },
     ],
     ru: {
-      h1: "КП и документы прямо из CRM",
-      subtitle: "КП и документы прямо из CRM для компаний: меньше ручной обработки, быстрее согласование, данные сразу в CRM/1С.",
-      problems: ["Документы зависают в почте и мессенджерах","Реквизиты переносят вручную с ошибками","Нет статуса: кто согласовал и на каком этапе","Шаблоны разъехались по папкам сотрудников"],
-      deliverables: ["Маршрут согласования с дедлайнами","Извлечение полей / генерация по шаблону","Связка документа со сделкой в CRM","Журнал версий и аудит действий"],
-      intro: ["КП и документы прямо из CRM строится вокруг цепочки: вход → проверка → согласование → учётная система.","AI и OCR подключаем к извлечению и черновикам; юридически значимые шаги остаются за людьми и ЭДО.","Цель — часы, а не «красивый чат с PDF»."],
-      faq: [{"q":"Нужен ли ЭДО обязательно?","a":"Не всегда. Для внутреннего согласования достаточно workflow. ЭДО — когда нужен юридический обмен."},{"q":"Работаете со сканами?","a":"Да. OCR + проверка полей + подтверждение оператором при низкой уверенности."},{"q":"Связка с 1С?","a":"Да. Типовые сценарии: счета, акты, контрагенты, статусы оплаты."}],
+      h1: "Автоматизация КП из CRM",
+      subtitle:
+        "Генерация коммерческих предложений из сделки и прайса: DOCX/PDF за минуты. От 300 000 ₽, пилот 2–4 недели.",
+      problems: [
+        "Менеджеры собирают КП часами в Word вне карточки сделки",
+        "Цены и условия разъехались по файлам — ошибки в КП",
+        "Нет статуса: какое КП ушло клиенту и какая версия актуальна",
+        "Лиды остывают, пока готовят коммерческое предложение",
+      ],
+      deliverables: [
+        "Генерация КП из CRM и каталога цен",
+        "Маршрут согласования и версий документа",
+        "Связка КП со сделкой в Bitrix24 / amoCRM",
+        "Метрики: время до КП, quote→заказ",
+      ],
+      intro: [
+        "Wordstat-спрос: «автоматизация КП» и «генерация коммерческих предложений» — закрываем как внедрение контура из CRM, не как чат с PDF.",
+        "Соседний оффер полного sales-пакета — /automation/proposal-generation. Документооборот и ЭДО — /automation/documents.",
+        "Цены только из каталога; юридически значимые шаги — за людьми.",
+      ],
+      faq: [
+        {
+          q: "Сколько стоит автоматизация КП?",
+          a: "От 300 000 ₽ за контур генерации КП из CRM. Полный sales-пакет с follow-up — обычно от 500 000 ₽.",
+        },
+        {
+          q: "Чем отличается от /automation/proposal-generation?",
+          a: "Здесь акцент — КП прямо из карточки CRM. proposal-generation — расширенный оффер с воронкой и метриками продаж.",
+        },
+        {
+          q: "Какие CRM?",
+          a: "Bitrix24 и amoCRM. При необходимости — выгрузка условий из 1С.",
+        },
+      ],
     },
     en: {
-      h1: "Proposals and docs from CRM",
-      subtitle: "Proposals and docs from CRM for companies: less manual processing, faster approvals, data straight into CRM/ERP.",
-      problems: ["Documents stall in email and chats","Fields are copied manually with errors","No status of who approved what","Templates live in personal folders"],
-      deliverables: ["Approval route with deadlines","Field extraction / template generation","Document linked to the CRM deal","Version log and action audit"],
-      intro: ["Proposals and docs from CRM follows intake → check → approval → system of record.","AI/OCR help with extraction and drafts; legal steps stay with people and e-doc flows.","The goal is hours saved — not a pretty chat over a PDF."],
-      faq: [{"q":"Is e-doc mandatory?","a":"Not always. Internal approval can be workflow-only. E-doc when legal exchange is required."},{"q":"Do you handle scans?","a":"Yes. OCR + field checks + human confirm on low confidence."},{"q":"ERP/1C link?","a":"Yes — invoices, acts, counterparties, payment status."}],
+      h1: "Proposal automation from CRM",
+      subtitle:
+        "Commercial proposals from the deal and price list: DOCX/PDF in minutes. From €3,000; pilot 2–4 weeks.",
+      problems: [
+        "Reps build proposals for hours in Word outside the deal",
+        "Prices and terms drift across files",
+        "No status of which proposal version went to the client",
+        "Leads go cold while quotes are prepared",
+      ],
+      deliverables: [
+        "Proposal generation from CRM and catalog",
+        "Approval route and document versions",
+        "Proposal linked to the Bitrix24 / amoCRM deal",
+        "Metrics: time-to-quote, quote-to-order",
+      ],
+      intro: [
+        "We automate proposals from CRM — not a chat over a PDF.",
+        "Full sales package: /automation/proposal-generation. Documents/e-doc: /automation/documents.",
+        "Catalog prices only; legal steps stay with people.",
+      ],
+      faq: [
+        {
+          q: "Price?",
+          a: "From €3,000 for CRM→proposal. Full sales package usually from €5,000.",
+        },
+        {
+          q: "vs /automation/proposal-generation?",
+          a: "This page focuses on proposals from the CRM card. proposal-generation is the broader sales offer.",
+        },
+        {
+          q: "Which CRMs?",
+          a: "Bitrix24 and amoCRM. 1C price sync on request.",
+        },
+      ],
     },
   },
   {
@@ -689,11 +758,39 @@ export const CATALOG_LANDING_SPECS: LandingSpec[] = [
     ],
     ru: {
       h1: "Автоматизация отдела продаж",
-      subtitle: "Автоматизация отдела продаж: быстрее реакция на лид, меньше рутины у менеджеров, воронка под контролем.",
-      problems: ["Менеджеры готовят КП часами","Лиды остывают без follow-up","Руководитель не видит реальное состояние воронки","Данные сделки размазаны по чатам и таблицам"],
-      deliverables: ["Правила квалификации и маршрутизации","Шаблоны КП / писем / задач в CRM","Автоматические напоминания и дожим","Дашборд конверсий по этапам"],
-      intro: ["Автоматизация отдела продаж окупается, когда убираем рутину вокруг сделки, а не «внедряем AI ради AI».","Связываем рекламу, CRM и документы: лид → квалификация → КП → follow-up → заказ.","AI помогает в текстах и квалификации; дисциплина процесса остаётся в CRM."],
-      faq: [{"q":"Подойдёт ли для SMB?","a":"Да. Часто начинаем с КП и follow-up — эффект виден за 2–3 недели."},{"q":"Нужна ли замена CRM?","a":"Редко. Настраиваем то, что уже есть: amoCRM или Bitrix24."},{"q":"Как не сломать мотивацию менеджеров?","a":"Автоматизируем рутину, а не продажи. Менеджер остаётся владельцем сделки."}],
+      subtitle:
+        "Автоматизация отдела продаж и воронки CRM: быстрее реакция на лид, меньше рутины, КП и follow-up под контролем. От 300 000 ₽.",
+      problems: [
+        "Менеджеры готовят КП часами",
+        "Лиды остывают без follow-up",
+        "Руководитель не видит реальное состояние воронки",
+        "Данные сделки размазаны по чатам и таблицам",
+      ],
+      deliverables: [
+        "Правила квалификации и маршрутизации",
+        "Шаблоны КП / писем / задач в CRM",
+        "Автоматические напоминания и дожим",
+        "Дашборд конверсий по этапам",
+      ],
+      intro: [
+        "Wordstat: «автоматизация отдела продаж» — окупается, когда убираем рутину вокруг сделки, а не «внедряем AI ради AI».",
+        "Связываем рекламу, CRM и документы: лид → квалификация → КП → follow-up → заказ.",
+        "AI помогает в текстах и квалификации; дисциплина процесса остаётся в CRM.",
+      ],
+      faq: [
+        {
+          q: "Сколько стоит автоматизация отдела продаж?",
+          a: "Пилот одного сценария (часто КП или follow-up) — от 300 000 ₽. Полный контур воронки — обычно от 500 000 ₽.",
+        },
+        {
+          q: "Подойдёт ли для SMB?",
+          a: "Да. Часто начинаем с КП и follow-up — эффект виден за 2–3 недели.",
+        },
+        {
+          q: "Нужна ли замена CRM?",
+          a: "Редко. Настраиваем то, что уже есть: amoCRM или Bitrix24.",
+        },
+      ],
     },
     en: {
       h1: "Sales department automation",
@@ -775,6 +872,7 @@ export const CATALOG_LANDING_SPECS: LandingSpec[] = [
     coverImage: "/diagrams/sales-pipeline.svg",
     keywords: [
       "автоматизация коммерческих предложений",
+      "генерация коммерческих предложений",
       "автоматизация кп",
       "генерация кп из crm",
       "заказать автоматизацию кп",
@@ -818,7 +916,7 @@ export const CATALOG_LANDING_SPECS: LandingSpec[] = [
     ru: {
       h1: "Автоматизация коммерческих предложений из CRM и прайса",
       subtitle:
-        "КП в DOCX/PDF за минуты: цены только из каталога, без копипаста в Word. От 300 000 ₽, типичный пилот 4–8 недель.",
+        "Генерация коммерческих предложений и автоматизация КП: DOCX/PDF за минуты, цены только из каталога. От 300 000 ₽, пилот 4–8 недель.",
       problems: [
         "Менеджеры готовят КП часами",
         "Лиды остывают без follow-up",
@@ -832,8 +930,8 @@ export const CATALOG_LANDING_SPECS: LandingSpec[] = [
         "Метрики: время до КП, конверсия quote→заказ",
       ],
       intro: [
-        "Автоматизация КП — коммерческий сценарий с быстрым ROI: минуты вместо десятков минут на типовом запросе.",
-        "Воронка CRM — /automation/sales; AI-помощник менеджера — /automation/ai-for-sales.",
+        "Спрос Wordstat: «генерация коммерческих предложений» и «автоматизация КП» — быстрый ROI на типовых запросах.",
+        "Узкий сценарий КП из карточки — /automation/kp-from-crm. Воронка CRM — /automation/sales.",
         "Цены только из каталога — без «галлюцинаций» модели.",
       ],
       faq: [
@@ -846,7 +944,7 @@ export const CATALOG_LANDING_SPECS: LandingSpec[] = [
           a: "Редко. Настраиваем amoCRM или Bitrix24.",
         },
         {
-          q: "Сколько стоит?",
+          q: "Сколько стоит автоматизация коммерческих предложений?",
           a: "От 300 000 ₽ за контур генерации КП; полный sales-пакет — от 500 000 ₽.",
         },
       ],
@@ -2551,20 +2649,58 @@ export const CATALOG_LANDING_SPECS: LandingSpec[] = [
     cluster: "ai-corporate",
     serviceSlug: "rag",
     coverImage: "/diagrams/system-architecture.svg",
-    keywords: ["rag система","поиск по документам","rag для бизнеса","внедрение rag","rag система для компании","rag система для компании цена"],
+    keywords: [
+      "корпоративный rag",
+      "rag система",
+      "внедрение rag",
+      "стоимость разработки rag",
+      "стоимость внедрения rag",
+      "rag для бизнеса",
+      "поиск по документам компании",
+      "заказать rag систему",
+    ],
     
     related: [
-      { href: "/services/rag", labelRu: "Корпоративный поиск под ключ", labelEn: "Corporate RAG" },
-      { href: "/automation", labelRu: "Автоматизация бизнес-процессов", labelEn: "Business process automation" },
+      { href: "/services/rag", labelRu: "Корпоративный RAG под ключ", labelEn: "Corporate RAG" },
+      { href: "/ai/ai-implementation", labelRu: "Компания по внедрению ИИ", labelEn: "AI implementation company" },
+      { href: "/automation/documents", labelRu: "Автоматизация документов", labelEn: "Document automation" },
       { href: "/automation/ocr-data-extraction", labelRu: "Распознавание документов", labelEn: "Document recognition" },
     ],
     ru: {
-      h1: "Поиск по документам компании",
-      subtitle: "Ответы со ссылками на источник. Полное внедрение — /services/rag.",
-      problems: ["Документы разбросаны по папкам и системам","Повторные вопросы съедают время экспертов","Обычный поиск не понимает смысл запроса","Чат-боты отвечают без опоры на ваши файлы"],
-      deliverables: ["Сценарий поиска и метрики","Индексация документов","Ответы с цитатами","Обновление базы и контроль качества"],
-      intro: ["Сценарий поиска по документам для сотрудников. Услуга под ключ — /services/rag.","Начинаем с процесса и данных, затем выбираем контур и интеграции.","ИИ — способ ускорить поиск, не самоцель."],
-      faq: [{"q":"Чем отличается от /services/rag?","a":"Там — внедрение под ключ. Здесь — сценарий поиска по документам."},{"q":"Облако или свой сервер?","a":"Зависит от данных и 152-ФЗ. Часто гибрид."},{"q":"Срок?","a":"Аудит 1–2 недели, запуск 4–6 недель."}],
+      h1: "Корпоративный RAG — поиск по документам компании",
+      subtitle:
+        "Корпоративный RAG под ключ: ответы со ссылками на источник. Аудит от 150 000 ₽; внедрение обычно от 500 000 ₽.",
+      problems: [
+        "Документы разбросаны по папкам и системам",
+        "Повторные вопросы съедают время экспертов",
+        "Обычный поиск не понимает смысл запроса",
+        "Чат-боты отвечают без опоры на ваши файлы",
+      ],
+      deliverables: [
+        "Сценарий поиска и метрики качества",
+        "Индексация и версионирование документов",
+        "Ответы с цитатами источников",
+        "Обновление базы и контроль качества",
+      ],
+      intro: [
+        "Wordstat: «корпоративный RAG» — коммерческий спрос на внедрение, не на обзор технологии.",
+        "Сценарий поиска — здесь; услуга под ключ со сметой — /services/rag.",
+        "Начинаем с процесса и данных, затем выбираем контур (облако / on-prem).",
+      ],
+      faq: [
+        {
+          q: "Сколько стоит внедрение RAG?",
+          a: "Аудит и дизайн — от 150 000 ₽. Внедрение корпоративного RAG — обычно от 500 000 ₽ (индекс, интеграции, приёмка). Точную смету даём после аудита данных.",
+        },
+        {
+          q: "Чем отличается от /services/rag?",
+          a: "Там — коммерческий оффер внедрения под ключ. Здесь — сценарий корпоративного поиска по документам.",
+        },
+        {
+          q: "Облако или свой сервер?",
+          a: "Зависит от данных и 152-ФЗ. Часто гибрид.",
+        },
+      ],
     },
     en: {
       h1: "RAG search over company documents",
