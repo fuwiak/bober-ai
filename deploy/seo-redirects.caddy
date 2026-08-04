@@ -82,6 +82,12 @@ redir /services/open-webui /automation permanent
 redir /services/open-webui/ /automation permanent
 redir /contact /#contact permanent
 redir /contact/ /#contact permanent
+redir /legal/terms /terms permanent
+redir /legal/terms/ /terms permanent
+redir /legal/privacy /privacy-policy permanent
+redir /legal/privacy/ /privacy-policy permanent
+redir /legal/consent /consent permanent
+redir /legal/consent/ /consent permanent
 
 # Thin Wordstat automation extras → /automation
 redir /automation/order-processing /automation permanent

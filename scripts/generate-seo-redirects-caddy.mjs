@@ -37,6 +37,11 @@ const EXACT = {
   "/services/n8n": "/automation",
   "/services/open-webui": "/automation",
   "/contact": "/#contact",
+
+  // Legal aliases (Telegram / marketing) → canonical documents
+  "/legal/terms": "/terms",
+  "/legal/privacy": "/privacy-policy",
+  "/legal/consent": "/consent",
 };
 
 const AUTOMATION_EXTRA = [
