@@ -88,14 +88,12 @@ export function getIiDlyaBiznesaSeoContent(locale: "ru" | "kz" | "uz"): SeoServi
 
     intro: ru
       ? [
-          "Запрос «ии для бизнеса» в Яндексе смешанный: кто-то ищет обзор, кто-то — инструмент, кто-то — интегратора. Поэтому эта страница — гибрид: коммерческое предложение + экспертный гид + кейсы с цифрами.",
-          "Bober AI Systems внедряет ИИ в процессы компании: CRM, документы, база знаний, продажи и аналитика. Не продаём «коробку нейросети» и не плодим пять почти одинаковых лендингов под синонимы — одна сильная страница на кластер + отдельные URL только для другой интенции.",
+          "Bober AI Systems внедряет ИИ в процессы компании: CRM, документы, база знаний, продажи и аналитика. Не продаём «коробку нейросети» — собираем рабочий контур под вашу задачу со сметой до старта.",
           "Шесть рабочих сценариев ниже — с техническим результатом, а не лозунгом. Дальше: чем ассистент отличается от агента и от обычной автоматизации, этапы внедрения, архитектура (Yandex Cloud, Selectel, on-prem, Kubernetes), безопасность и вилки бюджета.",
           "Безопасность по умолчанию в проекте: роли и доступы, журналы действий, работа с ПДн (152-ФЗ), защита от prompt injection, закрытый контур по запросу. NDA до старта — стандарт.",
         ]
       : [
-          "The query “AI for business” is mixed intent: some want a guide, some a tool, some an integrator. This page is a hybrid: commercial offer + expert guide + numbered case studies.",
-          "Bober AI Systems deploys AI into company workflows: CRM, documents, knowledge base, sales and analytics. We don’t sell a “neural net box” and we don’t spawn five near-identical landings for synonyms — one strong page per cluster, separate URLs only for distinct intent.",
+          "Bober AI Systems deploys AI into company workflows: CRM, documents, knowledge base, sales and analytics. We don’t sell a “neural net box” — we build a working contour for your process with a fixed estimate before kickoff.",
           "The six scenarios below end in a technical outcome, not a slogan. Next: assistant vs agent vs plain automation, deployment stages, architecture (Yandex Cloud, Selectel, on-prem, Kubernetes), security and budget ranges.",
           "Security is default: roles and access, audit logs, personal-data handling, prompt-injection defenses, private contour on request. NDA before kickoff is standard.",
         ],
@@ -219,10 +217,6 @@ export function getIiDlyaBiznesaSeoContent(locale: "ru" | "kz" | "uz"): SeoServi
             a: "Да. База — Москва, поставка удалённо. Ответ на новую заявку — в течение 4 рабочих часов.",
           },
           {
-            q: "Почему нет отдельных страниц «AI для бизнеса» и «искусственный интеллект для бизнеса»?",
-            a: "Это один поисковый кластер. Несколько почти одинаковых URL дают каннибализацию. Синонимы закрываем на этой странице; отдельные URL — только для другой интенции (агенты, Bitrix24, документы, RAG).",
-          },
-          {
             q: "Какие кейсы можно посмотреть?",
             a: "Ниже — Kaspersky AI-ассистент, Elia Suite, автоматизация КП и другие. В портфолио — измеримые метрики: время цикла, конверсия, снижение нагрузки.",
           },
@@ -267,10 +261,6 @@ export function getIiDlyaBiznesaSeoContent(locale: "ru" | "kz" | "uz"): SeoServi
           {
             q: "Do you work remotely across Russia and CIS?",
             a: "Yes. Based in Moscow, delivery remote. New inquiries get a reply within 4 business hours.",
-          },
-          {
-            q: "Why aren’t there separate pages for every synonym?",
-            a: "They share one search cluster. Near-duplicate URLs cannibalize rankings. Synonyms live here; separate URLs only for distinct intent (agents, Bitrix24, documents, RAG).",
           },
           {
             q: "Which case studies can we see?",

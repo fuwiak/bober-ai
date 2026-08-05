@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-08-05 00:43">
+<yml_catalog date="2026-08-05 01:13">
   <shop>
     <name>Bober AI Systems</name>
     <company>Bober AI Systems</company>
@@ -34,7 +34,7 @@
         <url>https://www.bober-systems.ru/services/private-llm-gigachat</url>
       </set>
       <set id="ai-automation">
-        <name>AI-автоматизация</name>
+        <name>ИИ-автоматизация</name>
         <url>https://www.bober-systems.ru/services/ai-automation</url>
       </set>
       <set id="rag">
@@ -50,7 +50,7 @@
         <url>https://www.bober-systems.ru/services/n8n</url>
       </set>
       <set id="ai-agent">
-        <name>AI-агенты для бизнеса</name>
+        <name>ИИ-агенты для бизнеса</name>
         <url>https://www.bober-systems.ru/services/ai-agent</url>
       </set>
       <set id="document-processing">
@@ -86,7 +86,7 @@
         <url>https://www.bober-systems.ru/services/knowledge-base</url>
       </set>
       <set id="ai-consulting">
-        <name>AI-консалтинг</name>
+        <name>ИИ-консалтинг</name>
         <url>https://www.bober-systems.ru/services/ai-consulting</url>
       </set>
       <set id="crm-integration">
@@ -106,11 +106,11 @@
         <url>https://www.bober-systems.ru/services/ai-meeting-crm</url>
       </set>
       <set id="corporate-ai-agent-1c-crm">
-        <name>Интеграция корпоративного AI-агента с 1С и CRM</name>
+        <name>Интеграция корпоративного ИИ-агента с 1С и CRM</name>
         <url>https://www.bober-systems.ru/services/corporate-ai-agent-1c-crm</url>
       </set>
       <set id="ai-inbound-calls">
-        <name>AI для входящих звонков и колл-центра</name>
+        <name>ИИ для входящих звонков и колл-центра</name>
         <url>https://www.bober-systems.ru/services/ai-inbound-calls</url>
       </set>
       <set id="crm-quote-offers">
@@ -174,7 +174,7 @@
         <name>Сколько стоит внедрение amoCRM</name>
       </set>
       <set id="amocrm-ai-agent">
-        <name>AI-агент для amoCRM</name>
+        <name>ИИ-агент для amoCRM</name>
       </set>
       <set id="crm-erp-development">
         <name>Разработка CRM и ERP</name>
@@ -239,6 +239,36 @@
       <set id="moysklad-warehouse">
         <name>Внедрение склада МойСклад</name>
       </set>
+      <set id="yclients-amocrm-bitrix-moysklad-setup">
+        <name>Настройка YClients, amoCRM, Bitrix24, МойСклад</name>
+      </set>
+      <set id="yclients-setup">
+        <name>Настройка YClients</name>
+      </set>
+      <set id="yclients-amocrm-setup">
+        <name>Настройка YClients и amoCRM</name>
+      </set>
+      <set id="yclients-bitrix-setup">
+        <name>Настройка YClients и Bitrix24</name>
+      </set>
+      <set id="yclients-moysklad-setup">
+        <name>Настройка YClients и МойСклад</name>
+      </set>
+      <set id="bitrix-amocrm-moysklad-setup">
+        <name>Настройка Bitrix24, amoCRM и МойСклад</name>
+      </set>
+      <set id="yclients-online-booking-setup">
+        <name>Настройка онлайн-записи YClients</name>
+      </set>
+      <set id="complex-crm-moysklad-setup">
+        <name>Комплексная настройка CRM и МойСклад</name>
+      </set>
+      <set id="yclients-crm-setup-pod-klyuch">
+        <name>Настройка YClients и CRM под ключ</name>
+      </set>
+      <set id="multi-crm-systems-setup">
+        <name>Настройка CRM-систем YClients Bitrix24 amoCRM</name>
+      </set>
     </sets>
     <offers>
     <offer id="business-process-automation">
@@ -270,7 +300,7 @@
       <param name="Другая услуга исполнителя - 2">Аудит процессов и дорожная карта ИИ</param>
       <param name="Другая услуга исполнителя - 3">Внедрение ИИ под ключ</param>
       <param name="Другая услуга исполнителя - 4">Приватный контур языковых моделей</param>
-      <param name="Другая услуга исполнителя - 5">AI-автоматизация</param>
+      <param name="Другая услуга исполнителя - 5">ИИ-автоматизация</param>
     </offer>
     <offer id="sales-ai-agent">
       <name>Павел Стасиньский</name>
@@ -301,7 +331,7 @@
       <param name="Другая услуга исполнителя - 2">Аудит процессов и дорожная карта ИИ</param>
       <param name="Другая услуга исполнителя - 3">Внедрение ИИ под ключ</param>
       <param name="Другая услуга исполнителя - 4">Приватный контур языковых моделей</param>
-      <param name="Другая услуга исполнителя - 5">AI-автоматизация</param>
+      <param name="Другая услуга исполнителя - 5">ИИ-автоматизация</param>
     </offer>
     <offer id="ai-discovery-roadmap">
       <name>Павел Стасиньский</name>
@@ -332,7 +362,7 @@
       <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Внедрение ИИ под ключ</param>
       <param name="Другая услуга исполнителя - 4">Приватный контур языковых моделей</param>
-      <param name="Другая услуга исполнителя - 5">AI-автоматизация</param>
+      <param name="Другая услуга исполнителя - 5">ИИ-автоматизация</param>
     </offer>
     <offer id="enterprise-ai-assistant">
       <name>Павел Стасиньский</name>
@@ -358,12 +388,12 @@
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Смета и сроки до старта, LLM и агенты, интеграции CRM/1С, production-деплой и передача команде. Москва и удалённо.</param>
+      <param name="Об исполнителе">Смета и сроки до старта, LLM и агенты, интеграции CRM/1С, промышленный запуск и передача команде. Москва и удалённо.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
       <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
       <param name="Другая услуга исполнителя - 4">Приватный контур языковых моделей</param>
-      <param name="Другая услуга исполнителя - 5">AI-автоматизация</param>
+      <param name="Другая услуга исполнителя - 5">ИИ-автоматизация</param>
     </offer>
     <offer id="private-llm-gigachat">
       <name>Павел Стасиньский</name>
@@ -394,7 +424,7 @@
       <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
       <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
-      <param name="Другая услуга исполнителя - 5">AI-автоматизация</param>
+      <param name="Другая услуга исполнителя - 5">ИИ-автоматизация</param>
     </offer>
     <offer id="ai-automation">
       <name>Павел Стасиньский</name>
@@ -405,7 +435,7 @@
       <categoryId>18</categoryId>
       <set-ids>ai-automation</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/ai-automation.jpg</picture>
-      <description>AI-автоматизация</description>
+      <description>ИИ-автоматизация</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
@@ -420,7 +450,7 @@
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Проектируем и внедряем AI-автоматизацию с интеграциями CRM, документов и workflow.</param>
+      <param name="Об исполнителе">Проектируем и внедряем ИИ-автоматизацию с интеграциями CRM, документов и workflow.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
       <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
@@ -513,7 +543,7 @@
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Проектируем, разворачиваем и сопровождаем n8n в production.</param>
+      <param name="Об исполнителе">Проектируем, разворачиваем и сопровождаем n8n в промышленной эксплуатации.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
       <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
@@ -529,7 +559,7 @@
       <categoryId>18</categoryId>
       <set-ids>ai-agent</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/ai-agent.jpg</picture>
-      <description>AI-агенты для бизнеса</description>
+      <description>ИИ-агенты для бизнеса</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
@@ -808,7 +838,7 @@
       <categoryId>18</categoryId>
       <set-ids>ai-consulting</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/ai-consulting.jpg</picture>
-      <description>AI-консалтинг</description>
+      <description>ИИ-консалтинг</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
@@ -885,7 +915,7 @@
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Партнёр 1С-Битрикс · ID 28909898. Стартуем с воронки и роботов; AI добавляем отдельным пакетом.</param>
+      <param name="Об исполнителе">Партнёр 1С-Битрикс · ID 28909898. Стартуем с воронки и роботов; ИИ добавляем отдельным пакетом.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
       <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
@@ -916,7 +946,7 @@
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Квалификация лидов, саммари звонков, задачи, follow-up и отчёт об упущенных сделках. От 500 000 ₽.</param>
+      <param name="Об исполнителе">Квалификация лидов, саммари звонков, задачи, дожим и отчёт об упущенных сделках. От 500 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
       <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
@@ -947,7 +977,7 @@
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Транскрипт из Yandex Telemost / Yandex 360, MTS Link, SaluteJazz или IVA360 → договорённости, ответственные, сроки → Bitrix24/amoCRM, задачи и follow-up с human-in-the-loop.</param>
+      <param name="Об исполнителе">Транскрипт из Yandex Telemost / Yandex 360, MTS Link, SaluteJazz или IVA360 → договорённости, ответственные, сроки → Bitrix24/amoCRM, задачи и дожим с human-in-the-loop.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
       <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
@@ -963,7 +993,7 @@
       <categoryId>18</categoryId>
       <set-ids>corporate-ai-agent-1c-crm</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/corporate-ai-agent-1c-crm.jpg</picture>
-      <description>Интеграция корпоративного AI-агента с 1С и CRM</description>
+      <description>Интеграция корпоративного ИИ-агента с 1С и CRM</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
@@ -978,7 +1008,7 @@
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Карта процессов и прав, фирменные skills и конекторы к нестандартным системам, тесты качества и безопасности, HITL, связка с 1С/legacy; сравнение Yandex AI Studio с private/on-prem.</param>
+      <param name="Об исполнителе">Карта процессов и прав, фирменные skills и конекторы к нестандартным системам, тесты качества и безопасности, HITL, связка с 1С/legacy; сравнение Yandex AI Studio с private/on-premise.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
       <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
@@ -994,7 +1024,7 @@
       <categoryId>18</categoryId>
       <set-ids>ai-inbound-calls</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/ai-inbound-calls.jpg</picture>
-      <description>AI для входящих звонков и колл-центра</description>
+      <description>ИИ для входящих звонков и колл-центра</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
@@ -1102,7 +1132,7 @@
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Гибрид коммерческого лендинга и гида: сценарии, ассистент vs агент, архитектура (Yandex Cloud / Selectel / on-prem), безопасность, кейсы. Фиксированная смета, NDA.</param>
+      <param name="Об исполнителе">Гибрид коммерческого лендинга и гида: сценарии, ассистент vs агент, архитектура (Yandex Cloud / Selectel / on-premise), безопасность, кейсы. Фиксированная смета, NDA.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
       <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
@@ -1133,7 +1163,7 @@
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Каталог /automation + коммерческий оффер. AI только там, где снимает ручной труд. NDA, on-prem, Россия и СНГ.</param>
+      <param name="Об исполнителе">Каталог /automation + коммерческий оффер. ИИ только там, где снимает ручной труд. NDA, on-premise, Россия и СНГ.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
       <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
@@ -1164,7 +1194,7 @@
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Запуск собственного канала продаж параллельно с Wildberries: витрина, Bitrix24/amoCRM, 1С/МойСклад, оплата, доставка, Telegram/VK/email, AI-ассистент по товарам, синхронизация цен и остатков. Срок от 14 дней.</param>
+      <param name="Об исполнителе">Запуск собственного канала продаж параллельно с Wildberries: витрина, Bitrix24/amoCRM, 1С/МойСклад, оплата, доставка, Telegram/VK/email, ИИ-ассистент по товарам, синхронизация цен и остатков. Срок от 14 дней.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
       <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
@@ -1195,7 +1225,7 @@
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Контур: слой AI (private LLM, RAG, база знаний, Bitrix24/1С), инфраструктура (российское облако, VPN, IAM, backup, логи) и Kaspersky (VM, Linux/Windows, контейнеры, Security Center). Внедрение, мониторинг, отчёт, реакция на события. Лицензии Kaspersky — через авторизованную дистрибуцию.</param>
+      <param name="Об исполнителе">Контур: слой ИИ (private LLM, RAG, база знаний, Bitrix24/1С), инфраструктура (российское облако, VPN, IAM, backup, логи) и Kaspersky (VM, Linux/Windows, контейнеры, Security Center). Внедрение, мониторинг, отчёт, реакция на события. Лицензии Kaspersky — через авторизованную дистрибуцию.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
       <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
@@ -1226,7 +1256,7 @@
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Аудит узкого места, workflow и интеграции, production-запуск и обучение команды.</param>
+      <param name="Об исполнителе">Аудит узкого места, workflow и интеграции, промышленный запуск и обучение команды.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
       <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
@@ -1319,7 +1349,7 @@
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">ИИ-слой поверх CRM — саммари, скоринг, follow-up без хаоса в воронке.</param>
+      <param name="Об исполнителе">ИИ-слой поверх CRM — саммари, скоринг, дожим без хаоса в воронке.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
       <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
@@ -1437,7 +1467,7 @@
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Внедрение amoCRM с сметой, сроками и production-контуром.</param>
+      <param name="Об исполнителе">Внедрение amoCRM с сметой, сроками и промышленный контуром.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
       <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
@@ -1493,7 +1523,7 @@
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">Ориентиры бюджета на настройку, внедрение и AI-слой для amoCRM.</param>
+      <param name="Об исполнителе">Ориентиры бюджета на настройку, внедрение и ИИ-слой для amoCRM.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
       <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
@@ -1507,7 +1537,7 @@
       <sales_notes>от 500 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>amocrm-ai-agent</set-ids>
-      <description>AI-агент для amoCRM</description>
+      <description>ИИ-агент для amoCRM</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
       <param name="Рейтинг">0</param>
@@ -1633,7 +1663,7 @@
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
-      <param name="Об исполнителе">От аудита до production LLM/агентов в вашем контуре.</param>
+      <param name="Об исполнителе">От аудита до промышленного запуска LLM/агентов в вашем контуре.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
       <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
@@ -2110,6 +2140,286 @@
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Складской контур МойСклад под ваш процесс — смета и приёмка.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="yclients-amocrm-bitrix-moysklad-setup">
+      <name>Павел Стасиньский</name>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>yclients-amocrm-bitrix-moysklad-setup</set-ids>
+      <description>Настройка YClients, amoCRM, Bitrix24, МойСклад</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Онлайн-запись, CRM и склад в одном контуре — фиксированная смета.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="yclients-setup">
+      <name>Павел Стасиньский</name>
+      <price from="true">150000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 150 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>yclients-setup</set-ids>
+      <description>Настройка YClients</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Настройка YClients под запись клиентов — фиксированная смета.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="yclients-amocrm-setup">
+      <name>Павел Стасиньский</name>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>yclients-amocrm-setup</set-ids>
+      <description>Настройка YClients и amoCRM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Связка онлайн-записи и воронки amoCRM со сметой до старта.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="yclients-bitrix-setup">
+      <name>Павел Стасиньский</name>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>yclients-bitrix-setup</set-ids>
+      <description>Настройка YClients и Bitrix24</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Онлайн-запись ↔ Bitrix24 без копипаста между окнами.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="yclients-moysklad-setup">
+      <name>Павел Стасиньский</name>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>yclients-moysklad-setup</set-ids>
+      <description>Настройка YClients и МойСклад</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Связка онлайн-записи со складом МойСклад — смета до старта.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="bitrix-amocrm-moysklad-setup">
+      <name>Павел Стасиньский</name>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>bitrix-amocrm-moysklad-setup</set-ids>
+      <description>Настройка Bitrix24, amoCRM и МойСклад</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">CRM ↔ склад без ручного переноса статусов и резервов.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="yclients-online-booking-setup">
+      <name>Павел Стасиньский</name>
+      <price from="true">150000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 150 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>yclients-online-booking-setup</set-ids>
+      <description>Настройка онлайн-записи YClients</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Рабочая онлайн-запись в YClients под ваш график и команду.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="complex-crm-moysklad-setup">
+      <name>Павел Стасиньский</name>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>complex-crm-moysklad-setup</set-ids>
+      <description>Комплексная настройка CRM и МойСклад</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Единый контур продаж и склада со сметой и приёмкой.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="yclients-crm-setup-pod-klyuch">
+      <name>Павел Стасиньский</name>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>yclients-crm-setup-pod-klyuch</set-ids>
+      <description>Настройка YClients и CRM под ключ</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Полный контур онлайн-записи и CRM со сметой до старта.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="multi-crm-systems-setup">
+      <name>Павел Стасиньский</name>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>multi-crm-systems-setup</set-ids>
+      <description>Настройка CRM-систем YClients Bitrix24 amoCRM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Мультисистемная настройка записи и CRM без лишних модулей.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
       <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>

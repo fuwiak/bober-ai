@@ -182,6 +182,7 @@ export const SEO_HUBS: HubDef[] = [
       { href: "/integrations/1c-ai-layer", labelRu: "ИИ для 1С", labelEn: "AI for 1C", blurbRu: "ИИ-слой поверх учёта", blurbEn: "AI layer on top of ERP" },
       { href: "/integrations/crm-sales-automation", labelRu: "Продажи в CRM", labelEn: "CRM sales", blurbRu: "Дожим и КП", blurbEn: "Дожим and proposals" },
       { href: "/integrations/crm-1c-automation", labelRu: "1С и CRM", labelEn: "1C and CRM", blurbRu: "Обмен без копипаста", blurbEn: "Sync without copy-paste" },
+      { href: "/integrations/crm-setup", labelRu: "Настройка CRM и МойСклад", labelEn: "CRM & MoySklad setup", blurbRu: "YClients, amoCRM, Bitrix24, МойСклад", blurbEn: "YClients, amoCRM, Bitrix24, MoySklad" },
       { href: "/integrations/crm", labelRu: "CRM", labelEn: "CRM", blurbRu: "Внедрение и синхронизация", blurbEn: "Implementation and sync" },
       { href: "/integrations/amocrm", labelRu: "amoCRM", labelEn: "amoCRM", blurbRu: "Воронки, виджеты, API", blurbEn: "Pipelines, widgets, API" },
       { href: "/integrations/bitrix24", labelRu: "Bitrix24", labelEn: "Bitrix24", blurbRu: "Боты, задачи, линии", blurbEn: "Bots, tasks, open lines" },
