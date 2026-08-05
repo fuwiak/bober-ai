@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-08-05 01:13">
+<yml_catalog date="2026-08-05 01:55">
   <shop>
     <name>Bober AI Systems</name>
     <company>Bober AI Systems</company>
@@ -175,6 +175,36 @@
       </set>
       <set id="amocrm-ai-agent">
         <name>ИИ-агент для amoCRM</name>
+      </set>
+      <set id="amocrm-nastroit">
+        <name>Настроить amoCRM</name>
+      </set>
+      <set id="amocrm-dorabotka">
+        <name>Доработка amoCRM</name>
+      </set>
+      <set id="amocrm-vnedrit">
+        <name>Внедрить amoCRM</name>
+      </set>
+      <set id="amocrm-integraciya">
+        <name>Интеграция amoCRM</name>
+      </set>
+      <set id="amocrm-konsultaciya">
+        <name>Консультация amoCRM</name>
+      </set>
+      <set id="amocrm-pod-klyuch">
+        <name>amoCRM под ключ</name>
+      </set>
+      <set id="amocrm-integrator">
+        <name>Интегратор amoCRM</name>
+      </set>
+      <set id="amocrm-avtomatizaciya">
+        <name>Автоматизация amoCRM</name>
+      </set>
+      <set id="amocrm-voronka-setup">
+        <name>Настройка воронки amoCRM</name>
+      </set>
+      <set id="amocrm-audit">
+        <name>Аудит amoCRM</name>
       </set>
       <set id="crm-erp-development">
         <name>Разработка CRM и ERP</name>
@@ -1552,6 +1582,286 @@
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Агент с действиями в amoCRM и human-in-the-loop.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="amocrm-nastroit">
+      <name>Павел Стасиньский</name>
+      <price from="true">150000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 150 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>amocrm-nastroit</set-ids>
+      <description>Настроить amoCRM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Настройка amoCRM под ваш процесс продаж — фиксированная смета.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="amocrm-dorabotka">
+      <name>Павел Стасиньский</name>
+      <price from="true">150000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 150 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>amocrm-dorabotka</set-ids>
+      <description>Доработка amoCRM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Точечная доработка портала amoCRM со сметой до старта.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="amocrm-vnedrit">
+      <name>Павел Стасиньский</name>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>amocrm-vnedrit</set-ids>
+      <description>Внедрить amoCRM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Внедрение amoCRM с сметой, сроками и промышленным контуром.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="amocrm-integraciya">
+      <name>Павел Стасиньский</name>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>amocrm-integraciya</set-ids>
+      <description>Интеграция amoCRM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Двусторонний обмен и вебхуки — логирование и retry.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="amocrm-konsultaciya">
+      <name>Павел Стасиньский</name>
+      <price from="true">50000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 50 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>amocrm-konsultaciya</set-ids>
+      <description>Консультация amoCRM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Разбор текущего портала и дорожная карта до внедрения.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="amocrm-pod-klyuch">
+      <name>Павел Стасиньский</name>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>amocrm-pod-klyuch</set-ids>
+      <description>amoCRM под ключ</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Полный контур amoCRM со сметой и приёмкой.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="amocrm-integrator">
+      <name>Павел Стасиньский</name>
+      <price from="true">150000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 150 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>amocrm-integrator</set-ids>
+      <description>Интегратор amoCRM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Партнёрский контур amoCRM — смета до старта работ.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="amocrm-avtomatizaciya">
+      <name>Павел Стасиньский</name>
+      <price from="true">150000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 150 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>amocrm-avtomatizaciya</set-ids>
+      <description>Автоматизация amoCRM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Автоматизация воронки amoCRM — фиксированная смета.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="amocrm-voronka-setup">
+      <name>Павел Стасиньский</name>
+      <price from="true">150000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 150 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>amocrm-voronka-setup</set-ids>
+      <description>Настройка воронки amoCRM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Рабочая воронка продаж в amoCRM под ваш регламент.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="amocrm-audit">
+      <name>Павел Стасиньский</name>
+      <price from="true">50000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 50 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>amocrm-audit</set-ids>
+      <description>Аудит amoCRM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Аудит портала amoCRM с ROI и планом на 90 дней.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
       <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
