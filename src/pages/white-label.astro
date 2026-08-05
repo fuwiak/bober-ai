@@ -24,9 +24,9 @@ const AUDIENCE = [
 ];
 
 const PARTNER_HIGHLIGHTS = [
-  { value: "Крупнее сделки", label: "AI в вашем каталоге услуг" },
+  { value: "Крупнее сделки", label: "ИИ в вашем каталоге услуг" },
   { value: "Быстрее офферы", label: "архитектура и смета под бриф" },
-  { value: "Маржа у вас", label: "wholesale + ваш наценка" },
+  { value: "Маржа у вас", label: "опт + ваша наценка" },
   { value: "White-label", label: "silent или technical" },
   { value: "Ответ за 4ч", label: "оценка ролей за 24ч" },
 ];
@@ -38,10 +38,10 @@ const WHATS_NEW = [
   },
   {
     title: "Телефония + CRM + AI",
-    text: "MANGO, UIS, Voximplant, Asterisk или штатная телефония Bitrix24 → факты в сделке и follow-up.",
+    text: "MANGO, UIS, Voximplant, Asterisk или штатная телефония Bitrix24 → факты в сделке и дожим.",
   },
   {
-    title: "AI-контур отдела продаж",
+    title: "ИИ-контур отдела продаж",
     text: "Заявка → квалификация → CRM → КП и задачи менеджеру — готовый продукт в вашем каталоге.",
   },
   {
@@ -59,11 +59,11 @@ const CLIENT_OFFERS = [
   {
     id: "telephony-crm-ai",
     title: "Телефония + CRM + AI",
-    text: "Слой поверх BitrixGPT или Yandex SpeechKit: звонок → факты в карточке → задача и follow-up.",
+    text: "Слой поверх BitrixGPT или Yandex SpeechKit: звонок → факты в карточке → задача и дожим.",
   },
   {
     id: "ai-sales-loop",
-    title: "AI-контур отдела продаж",
+    title: "ИИ-контур отдела продаж",
     text: "Сквозной контур от лида до КП: квалификация, CRM, документы и контроль менеджеров.",
   },
   {
@@ -106,7 +106,7 @@ const CLIENT_OFFERS = [
 const ECONOMICS_HEADERS = ["Модель", "Контакт с клиентом", "Оффер", "Delivery", "Биллинг"];
 
 const ECONOMICS_ROWS = [
-  ["Silent subcontractor", "Только партнёр", "Под брендом партнёра", "Bober AI", "Партнёр / wholesale"],
+  ["Silent subcontractor", "Только партнёр", "Под брендом партнёра", "Bober AI", "Партнёр / опт"],
   ["Technical partner", "Совместные встречи", "Партнёр", "Совместно", "Fixed / hourly"],
   ["Delivery team", "По договорённости", "Партнёр", "Bober AI", "Проект"],
   ["Expert on demand", "Партнёр", "Партнёр", "Консалтинг", "Почасовая"],
@@ -114,7 +114,7 @@ const ECONOMICS_ROWS = [
 
 const WORKFLOW = [
   { title: "Бриф", text: "Партнёр передаёт задачу и контекст клиента." },
-  { title: "Архитектура и себестоимость", text: "Собираем решение и wholesale-оценку — базу для вашей маржи." },
+  { title: "Архитектура и себестоимость", text: "Собираем решение и оптовую оценку — базу для вашей маржи." },
   { title: "Оффер под вашим брендом", text: "Помогаем с КП и материалами; партнёр презентует клиенту." },
   { title: "Delivery", text: "Реализуем архитектуру, backend, LLM, интеграции и deployment." },
   { title: "Сдача и маржа", text: "Документация и доступы — вам; клиент и контракт остаются у партнёра." },
@@ -142,8 +142,8 @@ const SCOPE = [
   "Discovery и анализ требований",
   "Архитектура решения",
   "Backend и интеграции (Bitrix24, amoCRM, 1С, МойСклад)",
-  "RAG, AI-агенты, voice AI, OCR",
-  "Телефония + CRM + AI (MANGO, UIS, Voximplant, Asterisk)",
+  "RAG, ИИ-агенты, voice ИИ, OCR",
+  "Телефония + CRM + ИИ (MANGO, UIS, Voximplant, Asterisk)",
   "Bober Secure AI: приватный LLM, Agent Gateway, Container Security",
   "Лицензии и внедрение продуктов Kaspersky через дистрибуцию",
   "Развёртывание в облаке или on-premise",
@@ -183,7 +183,7 @@ const FLOWER_WHITELABEL_BUILT = [
 const webPage = webPageJsonLd({
   name: "AI-разработка в ваши услуги без найма команды — Partner Program",
   description:
-    "White-label AI для агентств и интеграторов: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и RAG под вашим брендом. Клиент и маржа остаются у вас.",
+    "ИИ под вашим брендом для агентств и интеграторов: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и RAG. Клиент и маржа остаются у вас.",
   url: PARTNERS_URL,
   locale: "ru",
 });
@@ -191,7 +191,7 @@ const webPage = webPageJsonLd({
 
 <BaseLayout
   title="AI-разработка в ваши услуги без найма команды — Partner Program"
-  description="White-label AI для агентств и интеграторов: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и RAG под вашим брендом. Клиент и маржа остаются у вас. Ответ за 4 рабочих часа."
+  description="ИИ под вашим брендом для агентств и интеграторов: Secure AI, телефония+CRM, Bitrix24/amoCRM, документы и RAG. Клиент и маржа остаются у вас. Ответ за 4 рабочих часа."
   locale="ru"
   canonicalPath="/white-label"
   keywords={[
@@ -313,7 +313,7 @@ const webPage = webPageJsonLd({
                 <span class="section-label">Новое в каталоге</span>
                 <h2 class="section-title mt-4 max-w-2xl">Что появилось для партнёров</h2>
                 <p class="body-copy mt-4 max-w-2xl">
-                  Линейка расширилась: Secure AI, телефония и готовый AI-контур продаж — можно продавать без
+                  Линейка расширилась: Secure AI, телефония и готовый ИИ-контур продаж — можно продавать без
                   найма своей LLM-команды.
                 </p>
               
@@ -359,7 +359,7 @@ const webPage = webPageJsonLd({
                 <span class="section-label">Экономика партнёрства</span>
                 <h2 class="section-title mt-4 max-w-2xl">Кто продаёт, кто делает, кто выставляет счёт</h2>
                 <p class="body-copy mt-4 max-w-2xl">
-                  Партнёр ставит цену для клиента и добавляет свою маржу. Мы даём wholesale-оценку технической
+                  Партнёр ставит цену для клиента и добавляет свою маржу. Мы даём оптовую оценку технической
                   реализации. Presale и account — на стороне партнёра; инвойс клиенту — обычно тоже. Клиентский
                   пилот на рынке — от 300&nbsp;000&nbsp;₽; партнёрская цена обсуждается по проекту. Ответ на
                   бриф — в течение 4 рабочих часов.
@@ -448,7 +448,7 @@ const webPage = webPageJsonLd({
                 </div>
               </div>
               <p class="mt-6 text-sm text-body-strong">{PARTNER_CASE.result}</p>
-              <p class="mt-2 text-sm text-muted">Анонимный кейс · white-label delivery</p>
+              <p class="mt-2 text-sm text-muted">Анонимный кейс · поставка под вашим брендом</p>
             </div>
           </section>
 

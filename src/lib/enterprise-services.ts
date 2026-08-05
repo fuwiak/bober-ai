@@ -69,11 +69,11 @@ const IMAGES: Record<string, string> = {
 };
 
 const ruExtra: EnterpriseService[] = [
-  { id: "ai-automation", slug: "ai-automation", title: "AI-автоматизация", description: "Системы AI для автоматизации операций — от аудита до production.", about: "Проектируем и внедряем AI-автоматизацию с интеграциями CRM, документов и workflow.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["ai-automation"] },
+  { id: "ai-automation", slug: "ai-automation", title: "ИИ-автоматизация", description: "Системы ИИ для автоматизации операций — от аудита до промышленного запуска.", about: "Проектируем и внедряем ИИ-автоматизацию с интеграциями CRM, документов и workflow.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["ai-automation"] },
   { id: "rag", slug: "rag", title: "RAG для бизнеса", description: "Поиск по документам и ответы LLM со ссылкой на источник.", about: "Индексация, векторный поиск, guardrails и интеграция в чат/CRM.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES.rag, feedPath: "/solutions/rag-search" },
-  { id: "llm-development", slug: "llm-development", title: "Разработка LLM-решений", description: "Кастомные LLM-приложения, API, промпт-инженерия и production-деплой.", about: "Архитектура, разработка, тестирование и передача команде.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["llm-development"] },
-  { id: "n8n", slug: "n8n", title: "Автоматизация на n8n", description: "n8n-воркфлоу с AI-слоем и интеграциями CRM, мессенджеров, API.", about: "Проектируем, разворачиваем и сопровождаем n8n в production.", salesNotes: "от 300 000 ₽", deliveryDays: 14, price: 300000, serviceImage: IMAGES.n8n },
-  { id: "ai-agent", slug: "ai-agent", title: "AI-агенты для бизнеса", description: "Агенты с действиями: CRM, документы, workflow, эскалация к человеку.", about: "Многошаговые агенты с инструментами, мониторингом и handover.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["ai-agent"] },
+  { id: "llm-development", slug: "llm-development", title: "Разработка LLM-решений", description: "Кастомные LLM-приложения, API, промпт-инженерия и промышленный запуск.", about: "Архитектура, разработка, тестирование и передача команде.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["llm-development"] },
+  { id: "n8n", slug: "n8n", title: "Автоматизация на n8n", description: "n8n-воркфлоу с AI-слоем и интеграциями CRM, мессенджеров, API.", about: "Проектируем, разворачиваем и сопровождаем n8n в промышленной эксплуатации.", salesNotes: "от 300 000 ₽", deliveryDays: 14, price: 300000, serviceImage: IMAGES.n8n },
+  { id: "ai-agent", slug: "ai-agent", title: "ИИ-агенты для бизнеса", description: "Агенты с действиями: CRM, документы, workflow, эскалация к человеку.", about: "Многошаговые агенты с инструментами, мониторингом и handover.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["ai-agent"] },
   { id: "document-processing", slug: "document-processing", title: "Автоматизация документооборота", description: "OCR, согласования, извлечение данных — в CRM/ERP без ручного ввода.", about: "Пайплайны документов, workflow и интеграции с учётными системами.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["document-processing"], feedPath: "/automation/documents" },
   { id: "voice-ai", slug: "voice-ai", title: "Речевая аналитика звонков", description: "Транскрипты, качество разговоров, факты в CRM и контроль менеджеров.", about: "Речевая аналитика и голосовые сценарии для продаж с интеграцией в CRM.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["voice-ai"] },
   { id: "ocr", slug: "ocr", title: "Распознавание первичных документов в 1С", description: "Счета, акты, УПД → поля в 1С без ручного ввода.", about: "OCR-пайплайны с валидацией и выгрузкой в 1С, CRM или ERP.", salesNotes: "от 300 000 ₽", deliveryDays: 14, price: 300000, serviceImage: IMAGES.ocr },
@@ -82,7 +82,7 @@ const ruExtra: EnterpriseService[] = [
   { id: "mcp", slug: "mcp", title: "MCP-интеграции", description: "Model Context Protocol — подключение LLM к CRM, БД и API.", about: "MCP-серверы для внутренних систем и инструментов агентов.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES.mcp },
   { id: "langgraph", slug: "langgraph", title: "LangGraph-агенты", description: "Многошаговые агенты со state, HITL и observability.", about: "LangGraph для сложных сценариев с контролем и аудитом.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES.langgraph },
   { id: "knowledge-base", slug: "knowledge-base", title: "Корпоративная база знаний", description: "Единое место для регламентов, FAQ и AI-ответов со ссылками.", about: "База знаний, поиск, чат-бот для сотрудников и клиентов.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["knowledge-base"] },
-  { id: "ai-consulting", slug: "ai-consulting", title: "AI-консалтинг", description: "Стратегия, ROI, выбор технологий и дорожная карта внедрения.", about: "Аудит, рекомендации и план до закупки разработки.", salesNotes: "от 150 000 ₽", deliveryDays: 10, price: 150000, serviceImage: IMAGES["ai-consulting"] },
+  { id: "ai-consulting", slug: "ai-consulting", title: "ИИ-консалтинг", description: "Стратегия, ROI, выбор технологий и дорожная карта внедрения.", about: "Аудит, рекомендации и план до закупки разработки.", salesNotes: "от 150 000 ₽", deliveryDays: 10, price: 150000, serviceImage: IMAGES["ai-consulting"] },
   {
     id: "crm-integration",
     slug: "crm-integration",
@@ -100,9 +100,9 @@ const ruExtra: EnterpriseService[] = [
     slug: "bitrix",
     title: "Настройка Bitrix24",
     description:
-      "Настройка и автоматизация Bitrix24 от 150 000 ₽; связка с 1С/документами/телефонией от 300 000 ₽; AI-контур поверх CRM от 500 000 ₽.",
+      "Настройка и автоматизация Bitrix24 от 150 000 ₽; связка с 1С/документами/телефонией от 300 000 ₽; ИИ-контур поверх CRM от 500 000 ₽.",
     about:
-      "Партнёр 1С-Битрикс · ID 28909898. Стартуем с воронки и роботов; AI добавляем отдельным пакетом.",
+      "Партнёр 1С-Битрикс · ID 28909898. Стартуем с воронки и роботов; ИИ добавляем отдельным пакетом.",
     salesNotes: "от 150 000 ₽",
     deliveryDays: 21,
     price: 150000,
@@ -115,9 +115,9 @@ const ruExtra: EnterpriseService[] = [
     slug: "ai-sales-loop",
     title: "ИИ для отдела продаж: звонки, CRM и контроль",
     description:
-      "Анализ звонков, автозаполнение CRM, задачи и follow-up — поверх Bitrix24/amoCRM.",
+      "Анализ звонков, автозаполнение CRM, задачи и дожим — поверх Bitrix24/amoCRM.",
     about:
-      "Квалификация лидов, саммари звонков, задачи, follow-up и отчёт об упущенных сделках. От 500 000 ₽.",
+      "Квалификация лидов, саммари звонков, задачи, дожим и отчёт об упущенных сделках. От 500 000 ₽.",
     salesNotes: "от 500 000 ₽",
     deliveryDays: 21,
     price: 500000,
@@ -130,7 +130,7 @@ const ruExtra: EnterpriseService[] = [
     description:
       "Встреча → решения → задачи → CRM → документы → контроль срока. Не «саммари ради саммари» — исполнение после созвона.",
     about:
-      "Транскрипт из Yandex Telemost / Yandex 360, MTS Link, SaluteJazz или IVA360 → договорённости, ответственные, сроки → Bitrix24/amoCRM, задачи и follow-up с human-in-the-loop.",
+      "Транскрипт из Yandex Telemost / Yandex 360, MTS Link, SaluteJazz или IVA360 → договорённости, ответственные, сроки → Bitrix24/amoCRM, задачи и дожим с human-in-the-loop.",
     salesNotes: "от 300 000 ₽",
     deliveryDays: 21,
     price: 300000,
@@ -139,11 +139,11 @@ const ruExtra: EnterpriseService[] = [
   {
     id: "corporate-ai-agent-1c-crm",
     slug: "corporate-ai-agent-1c-crm",
-    title: "Интеграция корпоративного AI-агента с 1С и CRM",
+    title: "Интеграция корпоративного ИИ-агента с 1С и CRM",
     description:
       "Не «агент из коробки» — внедрение в ваш ландшафт: CRM, 1С, роли, процессы, исключения, безопасность и KPI.",
     about:
-      "Карта процессов и прав, фирменные skills и конекторы к нестандартным системам, тесты качества и безопасности, HITL, связка с 1С/legacy; сравнение Yandex AI Studio с private/on-prem.",
+      "Карта процессов и прав, фирменные skills и конекторы к нестандартным системам, тесты качества и безопасности, HITL, связка с 1С/legacy; сравнение Yandex AI Studio с private/on-premise.",
     salesNotes: "от 500 000 ₽",
     deliveryDays: 28,
     price: 500000,
@@ -152,7 +152,7 @@ const ruExtra: EnterpriseService[] = [
   {
     id: "ai-inbound-calls",
     slug: "ai-inbound-calls",
-    title: "AI для входящих звонков и колл-центра",
+    title: "ИИ для входящих звонков и колл-центра",
     description:
       "Приём звонков, STT в реальном времени, намерение, ответы на типовые вопросы, перевод на оператора, история и аналитика.",
     about:
@@ -193,9 +193,9 @@ const ruExtra: EnterpriseService[] = [
     slug: "ii-dlya-biznesa",
     title: "ИИ для бизнеса — аудит, разработка и внедрение",
     description:
-      "ИИ для бизнеса под ключ: аудит процессов, пилот с KPI и production-внедрение в CRM, документы, базу знаний и продажи.",
+      "ИИ для бизнеса под ключ: аудит процессов, пилот с KPI и промышленное внедрение в CRM, документы, базу знаний и продажи.",
     about:
-      "Гибрид коммерческого лендинга и гида: сценарии, ассистент vs агент, архитектура (Yandex Cloud / Selectel / on-prem), безопасность, кейсы. Фиксированная смета, NDA.",
+      "Гибрид коммерческого лендинга и гида: сценарии, ассистент vs агент, архитектура (Yandex Cloud / Selectel / on-premise), безопасность, кейсы. Фиксированная смета, NDA.",
     salesNotes: "от 150 000 ₽",
     deliveryDays: 28,
     price: 150000,
@@ -208,9 +208,9 @@ const ruExtra: EnterpriseService[] = [
     slug: "automation",
     title: "Автоматизация бизнес-процессов",
     description:
-      "Каталог направлений и внедрение: КП, документы, CRM/1С, OCR, RAG, продажи. Аудит, пилот и production с фиксированной сметой.",
+      "Каталог направлений и внедрение: КП, документы, CRM/1С, OCR, RAG, продажи. Аудит, пилот и промышленный запуск с фиксированной сметой.",
     about:
-      "Каталог /automation + коммерческий оффер. AI только там, где снимает ручной труд. NDA, on-prem, Россия и СНГ.",
+      "Каталог /automation + коммерческий оффер. ИИ только там, где снимает ручной труд. NDA, on-premise, Россия и СНГ.",
     salesNotes: "от 150 000 ₽",
     deliveryDays: 21,
     price: 150000,
@@ -225,7 +225,7 @@ const ruExtra: EnterpriseService[] = [
     description:
       "Собственный магазин/каталог, CRM и автоматизация заказов параллельно с Wildberries — база клиентов остаётся у вас.",
     about:
-      "Запуск собственного канала продаж параллельно с Wildberries: витрина, Bitrix24/amoCRM, 1С/МойСклад, оплата, доставка, Telegram/VK/email, AI-ассистент по товарам, синхронизация цен и остатков. Срок от 14 дней.",
+      "Запуск собственного канала продаж параллельно с Wildberries: витрина, Bitrix24/amoCRM, 1С/МойСклад, оплата, доставка, Telegram/VK/email, ИИ-ассистент по товарам, синхронизация цен и остатков. Срок от 14 дней.",
     salesNotes: "от 300 000 ₽",
     deliveryDays: 14,
     price: 300000,
@@ -236,32 +236,32 @@ const ruExtra: EnterpriseService[] = [
     slug: "secure-private-ai-cloud",
     title: "Защищенная AI-инфраструктура на базе российских облаков и решений Kaspersky",
     description:
-      "Приватный AI (RAG, ассистент, модели) + Yandex Cloud / Selectel / Cloud.ru + защита Kaspersky для VM, серверов и контейнеров.",
+      "Приватный ИИ (RAG, ассистент, модели) + Yandex Cloud / Selectel / Cloud.ru + защита Kaspersky для VM, серверов и контейнеров.",
     about:
-      "Контур: слой AI (private LLM, RAG, база знаний, Bitrix24/1С), инфраструктура (российское облако, VPN, IAM, backup, логи) и Kaspersky (VM, Linux/Windows, контейнеры, Security Center). Внедрение, мониторинг, отчёт, реакция на события. Лицензии Kaspersky — через авторизованную дистрибуцию.",
+      "Контур: слой ИИ (private LLM, RAG, база знаний, Bitrix24/1С), инфраструктура (российское облако, VPN, IAM, backup, логи) и Kaspersky (VM, Linux/Windows, контейнеры, Security Center). Внедрение, мониторинг, отчёт, реакция на события. Лицензии Kaspersky — через авторизованную дистрибуцию.",
     salesNotes: "от 800 000 ₽",
     deliveryDays: 28,
     price: 800000,
     serviceImage: IMAGES["secure-private-ai-cloud"],
   },
   // Wordstat niche offers (exact titles) → SEO landings; feed-only (no thin /services pages).
-  { id: "company-automation", slug: "company-automation", title: "Автоматизация компании", description: "Процессы, CRM, документы и отчёты без ручного копирования — фиксированная смета и ROI.", about: "Аудит узкого места, workflow и интеграции, production-запуск и обучение команды.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["company-automation"], feedPath: "/automation/company-automation", inServicesCatalog: false },
+  { id: "company-automation", slug: "company-automation", title: "Автоматизация компании", description: "Процессы, CRM, документы и отчёты без ручного копирования — фиксированная смета и ROI.", about: "Аудит узкого места, workflow и интеграции, промышленный запуск и обучение команды.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["company-automation"], feedPath: "/automation/company-automation", inServicesCatalog: false },
   { id: "crm-automation", slug: "crm-automation", title: "Автоматизация CRM", description: "Стадии, роботы, заявки с сайта и мессенджеров, отчёты без ручного ввода.", about: "Автоматизация воронки CRM — триггеры, задачи, уведомления и контроль конверсии.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["crm-automation"], feedPath: "/integrations/crm-automation", inServicesCatalog: false },
   { id: "document-ai", slug: "document-ai", title: "ИИ для обработки документов", description: "Извлечение полей, классификация, маршруты в CRM/1С — меньше ручного ввода.", about: "ИИ-пайплайн документов — OCR, классификация, валидация и выгрузка в учётные системы.", salesNotes: "от 500 000 ₽", deliveryDays: 21, price: 500000, serviceImage: IMAGES["document-ai"], feedPath: "/automation/document-ai", inServicesCatalog: false },
-  { id: "ai-for-crm", slug: "ai-for-crm", title: "ИИ для CRM", description: "Ассистент в карточке сделки, квалификация лидов, черновики писем и КП.", about: "ИИ-слой поверх CRM — саммари, скоринг, follow-up без хаоса в воронке.", salesNotes: "от 300 000 ₽", deliveryDays: 21, price: 300000, serviceImage: IMAGES["ai-for-crm"], feedPath: "/integrations/ai-for-crm", inServicesCatalog: false },
+  { id: "ai-for-crm", slug: "ai-for-crm", title: "ИИ для CRM", description: "Ассистент в карточке сделки, квалификация лидов, черновики писем и КП.", about: "ИИ-слой поверх CRM — саммари, скоринг, дожим без хаоса в воронке.", salesNotes: "от 300 000 ₽", deliveryDays: 21, price: 300000, serviceImage: IMAGES["ai-for-crm"], feedPath: "/integrations/ai-for-crm", inServicesCatalog: false },
   { id: "corporate-ai-assistant", slug: "corporate-ai-assistant", title: "Корпоративный ИИ-ассистент", description: "Корпоративная нейросеть и ассистент в закрытом контуре — без утечки данных.", about: "Приватный LLM-контур, политики доступа, интеграции с внутренними системами.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["corporate-ai-assistant"], feedPath: "/ai/corporate-neural-net", inServicesCatalog: false },
   { id: "business-process-audit", slug: "business-process-audit", title: "Аудит бизнес-процессов", description: "Карта потерь, приоритеты и смета пилота — до закупки разработки.", about: "Аудит процессов, ROI, дорожная карта на 90 дней и критерии приёмки пилота.", salesNotes: "от 150 000 ₽", deliveryDays: 10, price: 150000, serviceImage: IMAGES["business-process-audit"], feedPath: "/automation/business-process-audit", inServicesCatalog: false },
   // amoCRM Wordstat 2026-08-05 — landings exist; YML: no picture, no page URL (omit fields).
   { id: "amocrm-setup", slug: "amocrm-setup", title: "Настройка amoCRM", description: "Настроить amoCRM: воронка, поля, роботы и заявки с сайта.", about: "Настройка портала amoCRM под процесс продаж — фиксированная смета.", salesNotes: "от 150 000 ₽", deliveryDays: 21, price: 150000, serviceImage: IMAGES["crm-integration"], feedPath: "/integrations/amocrm-setup", inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
-  { id: "amocrm-implementation", slug: "amocrm-implementation", title: "Внедрение amoCRM", description: "Внедрить amoCRM под ключ: воронка, интеграции, регламенты и приёмка.", about: "Внедрение amoCRM с сметой, сроками и production-контуром.", salesNotes: "от 300 000 ₽", deliveryDays: 28, price: 300000, serviceImage: IMAGES["crm-integration"], feedPath: "/integrations/amocrm-implementation", inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
-  { id: "amocrm-services", slug: "amocrm-services", title: "Услуги amoCRM под ключ", description: "Интегратор amoCRM: настройка, внедрение, интеграции и AI.", about: "Пакеты услуг amoCRM со сметой до старта.", salesNotes: "от 150 000 ₽", deliveryDays: 21, price: 150000, serviceImage: IMAGES["crm-integration"], feedPath: "/integrations/amocrm-services", inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
-  { id: "amocrm-pricing", slug: "amocrm-pricing", title: "Сколько стоит внедрение amoCRM", description: "Цена настройки и внедрения amoCRM — понятные пакеты и смета до старта.", about: "Ориентиры бюджета на настройку, внедрение и AI-слой для amoCRM.", salesNotes: "от 150 000 ₽", deliveryDays: 14, price: 150000, serviceImage: IMAGES["crm-integration"], feedPath: "/integrations/amocrm-pricing", inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
-  { id: "amocrm-ai-agent", slug: "amocrm-ai-agent", title: "AI-агент для amoCRM", description: "ИИ-агент в amoCRM: квалификация, задачи и follow-up в карточке сделки.", about: "Агент с действиями в amoCRM и human-in-the-loop.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["ai-agent"], feedPath: "/integrations/amocrm-ai-agent", inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
+  { id: "amocrm-implementation", slug: "amocrm-implementation", title: "Внедрение amoCRM", description: "Внедрить amoCRM под ключ: воронка, интеграции, регламенты и приёмка.", about: "Внедрение amoCRM с сметой, сроками и промышленный контуром.", salesNotes: "от 300 000 ₽", deliveryDays: 28, price: 300000, serviceImage: IMAGES["crm-integration"], feedPath: "/integrations/amocrm-implementation", inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
+  { id: "amocrm-services", slug: "amocrm-services", title: "Услуги amoCRM под ключ", description: "Интегратор amoCRM: настройка, внедрение, интеграции и ИИ.", about: "Пакеты услуг amoCRM со сметой до старта.", salesNotes: "от 150 000 ₽", deliveryDays: 21, price: 150000, serviceImage: IMAGES["crm-integration"], feedPath: "/integrations/amocrm-services", inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
+  { id: "amocrm-pricing", slug: "amocrm-pricing", title: "Сколько стоит внедрение amoCRM", description: "Цена настройки и внедрения amoCRM — понятные пакеты и смета до старта.", about: "Ориентиры бюджета на настройку, внедрение и ИИ-слой для amoCRM.", salesNotes: "от 150 000 ₽", deliveryDays: 14, price: 150000, serviceImage: IMAGES["crm-integration"], feedPath: "/integrations/amocrm-pricing", inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
+  { id: "amocrm-ai-agent", slug: "amocrm-ai-agent", title: "ИИ-агент для amoCRM", description: "ИИ-агент в amoCRM: квалификация, задачи и дожим в карточке сделки.", about: "Агент с действиями в amoCRM и human-in-the-loop.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["ai-agent"], feedPath: "/integrations/amocrm-ai-agent", inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
   { id: "crm-erp-development", slug: "crm-erp-development", title: "Разработка CRM и ERP", description: "Разработка CRM и ERP под процесс: доработка Bitrix24/amoCRM/1С или кастом.", about: "Архитектура и разработка контура CRM ↔ ERP со сметой до кода.", salesNotes: "от 500 000 ₽", deliveryDays: 42, price: 500000, serviceImage: IMAGES["crm-integration"], feedPath: "/solutions/crm-erp-development", inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
   // Yandex Услуги «ИИ» visibility 2026-08-05 — competitor-style titles; YML: no picture, no page URL.
-  { id: "ii-vnedrenie-v-biznes", slug: "ii-vnedrenie-v-biznes", title: "Внедрение ИИ в бизнес", description: "Внедрение ИИ в бизнес: аудит процессов, пилот и production со сметой.", about: "ИИ в CRM, документах и продажах — фиксированная смета и ROI до старта.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["ai-consulting"], inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
-  { id: "ii-prodavets", slug: "ii-prodavets", title: "ИИ-продавец", description: "ИИ-продавец: квалификация лидов, follow-up и черновики КП в CRM.", about: "Агент продаж с действиями в CRM и эскалацией к менеджеру.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["sales-ai-agent"], inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
-  { id: "ii-vnedrenie-iskusstvennogo-intellekta", slug: "ii-vnedrenie-iskusstvennogo-intellekta", title: "Внедрение искусственного интеллекта", description: "Внедрение искусственного интеллекта под ключ: roadmap, пилот, интеграции.", about: "От аудита до production LLM/агентов в вашем контуре.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["ai-discovery-roadmap"], inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
+  { id: "ii-vnedrenie-v-biznes", slug: "ii-vnedrenie-v-biznes", title: "Внедрение ИИ в бизнес", description: "Внедрение ИИ в бизнес: аудит процессов, пилот и промышленный запуск со сметой.", about: "ИИ в CRM, документах и продажах — фиксированная смета и ROI до старта.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["ai-consulting"], inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
+  { id: "ii-prodavets", slug: "ii-prodavets", title: "ИИ-продавец", description: "ИИ-продавец: квалификация лидов, дожим и черновики КП в CRM.", about: "Агент продаж с действиями в CRM и эскалацией к менеджеру.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["sales-ai-agent"], inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
+  { id: "ii-vnedrenie-iskusstvennogo-intellekta", slug: "ii-vnedrenie-iskusstvennogo-intellekta", title: "Внедрение искусственного интеллекта", description: "Внедрение искусственного интеллекта под ключ: roadmap, пилот, интеграции.", about: "От аудита до промышленного запуска LLM/агентов в вашем контуре.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["ai-discovery-roadmap"], inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
   { id: "ii-vnedrenie-v-vash-biznes", slug: "ii-vnedrenie-v-vash-biznes", title: "Внедрение искусственного интеллекта в ваш бизнес", description: "Внедрение искусственного интеллекта в ваш бизнес — смета, сроки, приёмка.", about: "Пилот на узком месте, затем масштабирование в CRM и операции.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["enterprise-ai-assistant"], inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
   { id: "ii-neyro-sotrudnik", slug: "ii-neyro-sotrudnik", title: "Разработка нейро-сотрудника", description: "Разработка нейро-сотрудника: ассистент с доступом к CRM, базе знаний и задачам.", about: "Цифровой сотрудник с инструментами, мониторингом и human-in-the-loop.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["ai-agent"], inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
   { id: "ii-sozdanie-botov", slug: "ii-sozdanie-botov", title: "Создание ИИ-ботов", description: "Создание ИИ-ботов для сайта, Telegram и мессенджеров с передачей в CRM.", about: "Боты с LLM, сценариями эскалации и интеграцией в воронку продаж.", salesNotes: "от 300 000 ₽", deliveryDays: 21, price: 300000, serviceImage: IMAGES["enterprise-ai-assistant"], inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
@@ -467,7 +467,7 @@ const ruServices: EnterpriseService[] = [
     id: "sales-ai-agent",
     slug: "sales-ai-agent",
     title: "Автоматизация отдела продаж",
-    description: "Лиды, CRM, коммерческие предложения, follow-up — PDF за минуты, не за часы.",
+    description: "Лиды, CRM, коммерческие предложения, дожим — PDF за минуты, не за часы.",
     about: "Настраиваем автоматизацию под шаблоны и CRM, тестируем и запускаем в отделе продаж.",
     salesNotes: "от 500 000 ₽",
     deliveryDays: 14,
@@ -490,8 +490,8 @@ const ruServices: EnterpriseService[] = [
     id: "enterprise-ai-assistant",
     slug: "enterprise-ai-assistant",
     title: "Внедрение ИИ под ключ",
-    description: "Компания по внедрению ИИ: фиксированная стоимость, сроки, интеграция с CRM и 1С — production, не демо-чат.",
-    about: "Смета и сроки до старта, LLM и агенты, интеграции CRM/1С, production-деплой и передача команде. Москва и удалённо.",
+    description: "Компания по внедрению ИИ: фиксированная стоимость, сроки, интеграция с CRM и 1С — промышленный запуск, не демо-чат.",
+    about: "Смета и сроки до старта, LLM и агенты, интеграции CRM/1С, промышленный запуск и передача команде. Москва и удалённо.",
     salesNotes: "стоимость внедрения ИИ — от 500 000 ₽",
     deliveryDays: 28,
     price: 500000,
@@ -639,7 +639,7 @@ const UZ_SERVICE_COPY: Partial<
     description:
       "Tayyor agent emas — sizning landshaftingiz: CRM, 1С, rollar, jarayonlar, istisnolar, xavfsizlik va KPI.",
     about:
-      "Jarayon va huquqlar xaritasi, firma skills va nostandart konektorlar, sifat/xavfsizlik testlari, HITL, 1С/legacy; Yandex AI Studio vs private/on-prem.",
+      "Jarayon va huquqlar xaritasi, firma skills va nostandart konektorlar, sifat/xavfsizlik testlari, HITL, 1С/legacy; Yandex AI Studio vs private/on-premise.",
   },
   "ai-inbound-calls": {
     title: "Kiruvchi qoʻngʻiroqlar va koll-markaz uchun AI",
@@ -698,7 +698,7 @@ const UZ_SERVICE_COPY: Partial<
   },
   bitrix: {
     title: "Bitrix24 sozlash",
-    description: "Bitrix24 + AI: portal, avtomatlashtirish, 1С, telefoniya, hujjatlar va savdo AI konturi.",
+    description: "Bitrix24 + ИИ: portal, avtomatlashtirish, 1С, telefoniya, hujjatlar va savdo ИИ konturi.",
     about: "Bitta jarayonda pilot: voronka, REST/webhooks, integratsiyalar va AI qatlam.",
   },
   "claude-smb": {

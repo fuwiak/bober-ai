@@ -387,7 +387,7 @@ export function getAutomationSeoContent(locale: "ru" | "kz" | "uz"): SeoServiceC
       },
       {
         href: "/bitrix",
-        label: ru ? "Bitrix24 · внедрение и AI" : "Bitrix24 · implementation & AI",
+        label: ru ? "Bitrix24 · внедрение и ИИ" : "Bitrix24 · implementation & AI",
       },
       {
         href: "/services/ai-sales-loop",

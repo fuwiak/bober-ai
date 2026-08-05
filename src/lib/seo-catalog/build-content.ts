@@ -74,7 +74,7 @@ function buildExtended(locale: CatalogLocale, copy: LocaleCopy): LandingExtended
             },
             {
               title: "Архитектура и интеграции",
-              text: "Проектируем workflow, связку с CRM/1С/API и AI-слой только там, где он даёт измеримый результат.",
+              text: "Проектируем workflow, связку с CRM/1С/API и ИИ-слой только там, где он даёт измеримый результат.",
             },
             {
               title: "Внедрение и передача",
@@ -90,7 +90,7 @@ function buildExtended(locale: CatalogLocale, copy: LocaleCopy): LandingExtended
         ]
       : [
           { value: "−40–80%", label: "ручного труда в целевом процессе" },
-          { value: "2–8 нед.", label: "до первого production-релиза" },
+          { value: "2–8 нед.", label: "до первого промышленного релиза" },
           { value: "3–6 мес.", label: "окупаемость при среднем проекте" },
         ],
     faqTitle: uz ? "Koʻp soʻraladigan savollar" : "Частые вопросы",

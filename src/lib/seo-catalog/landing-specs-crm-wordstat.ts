@@ -198,12 +198,12 @@ export const CATALOG_LANDING_SPECS_CRM_WORDSTAT: LandingSpec[] = [
     related: [
       { href: "/automation/sales-department", labelRu: "Отдел продаж", labelEn: "Sales department" },
       { href: "/integrations/crm-automation", labelRu: "Автоматизация CRM", labelEn: "CRM automation" },
-      { href: "/automation/ai-for-sales", labelRu: "AI для продаж", labelEn: "AI for sales" },
+      { href: "/automation/ai-for-sales", labelRu: "ИИ для продаж", labelEn: "AI for sales" },
     ],
     ru: {
       h1: "Автоматизация продаж в CRM",
       subtitle:
-        "Автоматизация продаж CRM: лиды, follow-up, КП и контроль воронки. Меньше ручной дисциплины менеджеров.",
+        "Автоматизация продаж CRM: лиды, дожим, КП и контроль воронки. Меньше ручной дисциплины менеджеров.",
       problems: [
         "Лиды зависают без следующего шага",
         "КП собирают вручную",
@@ -211,7 +211,7 @@ export const CATALOG_LANDING_SPECS_CRM_WORDSTAT: LandingSpec[] = [
         "Отчёт по воронке собирают к понедельнику",
       ],
       deliverables: [
-        "Воронка и роботы follow-up",
+        "Воронка и роботы дожимаа",
         "Шаблоны и генерация КП из CRM",
         "Напоминания и эскалации",
         "Дашборд конверсии",
@@ -226,7 +226,7 @@ export const CATALOG_LANDING_SPECS_CRM_WORDSTAT: LandingSpec[] = [
           a: "Оба. Выбор по текущей системе и команде.",
         },
         {
-          q: "Нужен ли AI для КП?",
+          q: "Нужен ли ИИ для КП?",
           a: "Опционально: шаблоны + прайс часто хватает; AI — для черновиков.",
         },
         {
@@ -287,7 +287,7 @@ export const CATALOG_LANDING_SPECS_CRM_WORDSTAT: LandingSpec[] = [
     ru: {
       h1: "Автоматизация CRM и маркетинга",
       subtitle:
-        "Автоматизация CRM-маркетинга: лиды с рекламы и сайта в воронку, UTM, сегменты и follow-up без таблиц.",
+        "Автоматизация CRM-маркетинга: лиды с рекламы и сайта в воронку, UTM, сегменты и дожим без таблиц.",
       problems: [
         "Лиды с рекламы не доходят до CRM",
         "UTM теряются",
@@ -297,7 +297,7 @@ export const CATALOG_LANDING_SPECS_CRM_WORDSTAT: LandingSpec[] = [
       deliverables: [
         "Связка рекламы / сайта с CRM",
         "UTM и источники в карточке",
-        "Сценарии nurture / follow-up",
+        "Сценарии прогрева / дожима",
         "Отчёт по каналам",
       ],
       intro: [

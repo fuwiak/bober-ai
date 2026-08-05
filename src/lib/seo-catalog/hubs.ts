@@ -39,7 +39,7 @@ export const SEO_HUBS: HubDef[] = [
         href: "/automation/sales-department",
         labelRu: "Автоматизация отдела продаж",
         labelEn: "Sales department automation",
-        blurbRu: "Заявка → CRM → КП → follow-up.",
+        blurbRu: "Заявка → CRM → КП → дожим.",
         blurbEn: "Lead → CRM → proposal → follow-up.",
       },
       {
@@ -67,14 +67,14 @@ export const SEO_HUBS: HubDef[] = [
         href: "/integrations/amocrm-automation",
         labelRu: "Автоматизация amoCRM",
         labelEn: "amoCRM automation",
-        blurbRu: "Роботы, заявки и follow-up.",
+        blurbRu: "Роботы, заявки  и дожим.",
         blurbEn: "Robots, intake and follow-up.",
       },
       {
         href: "/integrations/1c-ai-layer",
-        labelRu: "AI для 1С",
+        labelRu: "ИИ для 1С",
         labelEn: "AI for 1C",
-        blurbRu: "AI-слой поверх 1С: документы, остатки, статусы.",
+        blurbRu: "ИИ-слой поверх 1С: документы, остатки, статусы.",
         blurbEn: "AI layer on 1C: documents, stock, statuses.",
       },
       {
@@ -112,9 +112,9 @@ export const SEO_HUBS: HubDef[] = [
         "Автоматизация документов и документооборота, внедрение CRM и Битрикс24, генерация КП, OCR в 1С и корпоративный RAG. Фиксированная смета.",
       h1: "Автоматизация документов, CRM и внедрение ИИ",
       subtitle:
-        "Документы, ЭДО, Битрикс24, amoCRM, КП из CRM и RAG — от аудита до production с фиксированной сметой.",
+        "Документы, ЭДО, Битрикс24, amoCRM, КП из CRM и RAG — от аудита до промышленного запуска с фиксированной сметой.",
       intro: [
-        "Клиенты ищут внедрение, цену и под ключ по процессу: документы, CRM, 1С, продажи — не абстрактный «AI-контур».",
+        "Клиенты ищут внедрение, цену и под ключ по процессу: документы, CRM, 1С, продажи — не абстрактный «ИИ-контур».",
         "Ниже — сценарии с коммерческим спросом Wordstat; заказ со сметой — на страницах услуг.",
       ],
     },
@@ -147,14 +147,14 @@ export const SEO_HUBS: HubDef[] = [
         href: "/integrations/bitrix24-sales-automation",
         labelRu: "Автоматизация продаж в Битрикс24",
         labelEn: "Bitrix24 sales automation",
-        blurbRu: "Заявка → квалификация → КП → follow-up",
+        blurbRu: "Заявка → квалификация → КП → дожим",
         blurbEn: "Lead → qualification → proposal → follow-up",
       },
       {
         href: "/integrations/bitrix24-ai",
         labelRu: "Внедрение ИИ в Битрикс24",
         labelEn: "AI in Bitrix24",
-        blurbRu: "AI-слой: сделки, документы, линии",
+        blurbRu: "ИИ-слой: сделки, документы, линии",
         blurbEn: "AI layer: deals, documents, lines",
       },
       {
@@ -178,9 +178,9 @@ export const SEO_HUBS: HubDef[] = [
         blurbRu: "Заказы и оплаты в одном контуре",
         blurbEn: "Orders and payments in one loop",
       },
-      { href: "/integrations/amocrm-ai", labelRu: "AI для amoCRM", labelEn: "AI for amoCRM", blurbRu: "AI-слой и автоматизация воронки", blurbEn: "AI layer and pipeline automation" },
-      { href: "/integrations/1c-ai-layer", labelRu: "AI для 1С", labelEn: "AI for 1C", blurbRu: "AI-слой поверх учёта", blurbEn: "AI layer on top of ERP" },
-      { href: "/integrations/crm-sales-automation", labelRu: "Продажи в CRM", labelEn: "CRM sales", blurbRu: "Follow-up и КП", blurbEn: "Follow-up and proposals" },
+      { href: "/integrations/amocrm-ai", labelRu: "ИИ для amoCRM", labelEn: "AI for amoCRM", blurbRu: "ИИ-слой и автоматизация воронки", blurbEn: "AI layer and pipeline automation" },
+      { href: "/integrations/1c-ai-layer", labelRu: "ИИ для 1С", labelEn: "AI for 1C", blurbRu: "ИИ-слой поверх учёта", blurbEn: "AI layer on top of ERP" },
+      { href: "/integrations/crm-sales-automation", labelRu: "Продажи в CRM", labelEn: "CRM sales", blurbRu: "Дожим и КП", blurbEn: "Дожим and proposals" },
       { href: "/integrations/crm-1c-automation", labelRu: "1С и CRM", labelEn: "1C and CRM", blurbRu: "Обмен без копипаста", blurbEn: "Sync without copy-paste" },
       { href: "/integrations/crm", labelRu: "CRM", labelEn: "CRM", blurbRu: "Внедрение и синхронизация", blurbEn: "Implementation and sync" },
       { href: "/integrations/amocrm", labelRu: "amoCRM", labelEn: "amoCRM", blurbRu: "Воронки, виджеты, API", blurbEn: "Pipelines, widgets, API" },
@@ -191,12 +191,12 @@ export const SEO_HUBS: HubDef[] = [
     ru: {
       metaTitle: "Интеграции CRM, 1С, Bitrix24, amoCRM | Bober AI",
       metaDescription:
-        "Интеграции и AI-слои для amoCRM, Bitrix24 и 1С. AI для CRM и синхронизация данных.",
+        "Интеграции и AI-слои для amoCRM, Bitrix24 и 1С. ИИ для CRM и синхронизация данных.",
       h1: "Интеграции для бизнеса",
-      subtitle: "Связываем CRM, учёт, сайт и мессенджеры — AI-слой и синхронизация данных как отдельные сценарии.",
+      subtitle: "Связываем CRM, учёт, сайт и мессенджеры — ИИ-слой и синхронизация данных как отдельные сценарии.",
       intro: [
         "Интеграция — часто самый быстрый ROI: убрать ручной мост между системами.",
-        "AI для amoCRM / Bitrix24 / 1С — отдельные направления; синхронизация данных — отдельный сценарий.",
+        "ИИ для amoCRM / Bitrix24 / 1С — отдельные направления; синхронизация данных — отдельный сценарий.",
       ],
     },
     en: {
@@ -226,14 +226,14 @@ export const SEO_HUBS: HubDef[] = [
       { href: "/industries/banks", labelRu: "Финансы", labelEn: "Finance", blurbRu: "Заявки и документы", blurbEn: "Applications and docs" },
     ],
     ru: {
-      metaTitle: "AI и автоматизация по отраслям | Bober AI",
+      metaTitle: "ИИ и автоматизация по отраслям | Bober AI",
       metaDescription:
-        "Автоматизация и AI для строительства, производства, логистики, медицины, e-commerce и других отраслей.",
+        "Автоматизация и ИИ для строительства, производства, логистики, медицины, e-commerce и других отраслей.",
       h1: "Отраслевые решения",
       subtitle: "Одинаковые технологии — разные процессы. Входные страницы по отраслям.",
       intro: [
-        "Отраслевая страница помогает понять ваш контекст быстрее, чем общий «AI для бизнеса».",
-        "Внутри каждого направления — те же принципы: процесс, ROI, затем AI.",
+        "Отраслевая страница помогает понять ваш контекст быстрее, чем общий «ИИ для бизнеса».",
+        "Внутри каждого направления — те же принципы: процесс, ROI, затем ИИ.",
       ],
     },
     en: {
@@ -262,10 +262,10 @@ export const SEO_HUBS: HubDef[] = [
       { href: "/solutions/manager-copilot", labelRu: "Копилот продаж", labelEn: "Sales copilot", blurbRu: "Помощник менеджера", blurbEn: "Rep assistant" },
     ],
     ru: {
-      metaTitle: "AI-решения для бизнеса | Bober AI Systems",
-      metaDescription: "База знаний, ассистенты, RAG, OCR и копилоты для продаж — с ROI и production-внедрением.",
-      h1: "AI-решения",
-      subtitle: "Готовые продуктовые сценарии на стыке автоматизации и AI.",
+      metaTitle: "ИИ-решения для бизнеса | Bober AI Systems",
+      metaDescription: "База знаний, ассистенты, RAG, OCR и копилоты для продаж — с ROI и промышленное внедрением.",
+      h1: "ИИ-решения",
+      subtitle: "Готовые продуктовые сценарии на стыке автоматизации и ИИ.",
       intro: [
         "Решения ниже — не «коробочный AI», а сценарии под конкретную работу команды.",
         "Каждый сценарий можно встроить в CRM, портал или мессенджер.",
@@ -292,13 +292,13 @@ export const SEO_HUBS: HubDef[] = [
       { href: "/ai/corporate-neural-net", labelRu: "Корпоративная нейросеть", labelEn: "Corporate neural net", blurbRu: "Закрытый контур", blurbEn: "Private contour" },
       { href: "/ai/private-llm", labelRu: "Приватный LLM", labelEn: "Private LLM", blurbRu: "On-prem и контур", blurbEn: "On-prem and private" },
       { href: "/ai/ai-audit", labelRu: "AI-аудит", labelEn: "AI audit", blurbRu: "Дорожная карта", blurbEn: "Roadmap" },
-      { href: "/ai/ai-agents", labelRu: "AI-агенты", labelEn: "AI agents", blurbRu: "Агенты в процессах", blurbEn: "Agents in processes" },
+      { href: "/ai/ai-agents", labelRu: "ИИ-агенты", labelEn: "AI agents", blurbRu: "Агенты в процессах", blurbEn: "Agents in processes" },
     ],
     ru: {
       metaTitle: "Компания по внедрению ИИ | Bober AI Systems",
-      metaDescription: "Компания по внедрению ИИ: стоимость, сроки, под ключ. Корпоративная нейросеть, приватный LLM, AI-аудит. Москва.",
+      metaDescription: "Компания по внедрению ИИ: стоимость, сроки, под ключ. Корпоративная нейросеть, приватный LLM, ИИ-аудит. Москва.",
       h1: "Корпоративный ИИ",
-      subtitle: "Компания по внедрению ИИ с фиксированной стоимостью и сроками — production в CRM и 1С, не консалтинг ради слайдов.",
+      subtitle: "Компания по внедрению ИИ с фиксированной стоимостью и сроками — промышленный запуск в CRM и 1С, не консалтинг ради слайдов.",
       intro: [
         "Клиент ищет исполнителя и бюджет: кто внедрит ИИ, сколько стоит, какие сроки.",
         "Ниже — входные страницы: от сметы до приватного LLM и агентов.",

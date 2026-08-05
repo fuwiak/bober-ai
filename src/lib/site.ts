@@ -46,10 +46,10 @@ export const PORTFOLIO_IMAGES = {
   erpMoysklad: "/diagrams/erp-sync.svg",
 } as const;
 export const SITE_NAME = "Bober AI Systems";
-export const SITE_TAGLINE_RU = "Автоматизация КП, документов и CRM с AI";
+export const SITE_TAGLINE_RU = "Автоматизация КП, документов и CRM с ИИ";
 export const SITE_TAGLINE_EN = "AI automation of proposals, documents and CRM";
 export const SITE_DESCRIPTION =
-  "Внедрение AI в продажи и операции в Москве: КП, документы, Bitrix24/amoCRM и 1С. Пилот от 300 000 ₽, фиксированная смета, NDA, облако или on-premise.";
+  "Внедрение ИИ в продажи и операции в Москве: КП, документы, Bitrix24/amoCRM и 1С. Пилот от 300 000 ₽, фиксированная смета, NDA, облако или on-premise.";
 /** Регион для Вебмастера / schema (город важнее страны для локальной выдачи). */
 export const SITE_REGION = "Москва";
 export const SITE_COUNTRY = "Россия";
@@ -140,7 +140,7 @@ export const DEFAULT_KEYWORDS = [
   "внедрение битрикс24 цена",
   "интеграция 1С",
   "bitrix24 интеграция",
-  "AI Москва",
+  "ИИ Москва",
   "Yandex Cloud",
   "Selectel",
 ];

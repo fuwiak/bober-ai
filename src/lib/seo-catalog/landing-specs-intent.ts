@@ -42,17 +42,17 @@ export const CATALOG_LANDING_SPECS_INTENT: LandingSpec[] = [
     ru: {
       h1: "Компания по внедрению ИИ",
       subtitle:
-        "Заказать внедрение ИИ под ключ: фиксированная стоимость, сроки и production-контур. Москва и удалённо — от аудита до запуска в CRM и 1С.",
+        "Заказать внедрение ИИ под ключ: фиксированная стоимость, сроки и промышленный контур. Москва и удалённо — от аудита до запуска в CRM и 1С.",
       problems: [
         "Нужна компания по внедрению ИИ, а не курс и не демо-чат",
-        "Неясны стоимость внедрения ИИ, бюджет и сроки до production",
+        "Неясны стоимость внедрения ИИ, бюджет и сроки до промышленного запуска",
         "Пилоты не доходят до CRM, 1С и реальных заявок",
         "Нужен интегратор искусственного интеллекта с критериями приёмки",
       ],
       deliverables: [
         "Смета и сроки внедрения ИИ до старта разработки",
         "Один приоритетный процесс: продажи, заявки или документы",
-        "Интеграция ИИ с CRM / 1С и production-пилот 2–6 недель",
+        "Интеграция ИИ с CRM / 1С и промышленный пилот 2–6 недель",
         "Документация, обучение, передача команде — внедрение под ключ",
       ],
       howWeSolve: [
@@ -72,7 +72,7 @@ export const CATALOG_LANDING_SPECS_INTENT: LandingSpec[] = [
       intro: [
         "В поиске лидируют запросы «компания по внедрению ИИ» и «стоимость внедрения ИИ» — вы ищете исполнителя и бюджет, не теорию.",
         "Bober AI Systems — интегратор: заказать внедрение ИИ под ключ с фиксированной сметой, сроками и приёмкой.",
-        "Стартуем с одного сценария (часто отдел продаж или документы), подключаем CRM/1С, выводим в production за 2–6 недель.",
+        "Стартуем с одного сценария (часто отдел продаж или документы), подключаем CRM/1С, выводим в промышленной эксплуатации за 2–6 недель.",
       ],
       faq: [
         {
@@ -85,11 +85,11 @@ export const CATALOG_LANDING_SPECS_INTENT: LandingSpec[] = [
         },
         {
           q: "Вы компания по внедрению или только консалтинг?",
-          a: "Компания по внедрению и разработке ИИ: аудит → архитектура → production. Клиент получает работающий контур в CRM/1С, не только презентацию.",
+          a: "Компания по внедрению и разработке ИИ: аудит → архитектура → промышленный запуск. Клиент получает работающий контур в CRM/1С, не только презентацию.",
         },
         {
           q: "Делаете внедрение ИИ в Москве?",
-          a: "Да — внедрение ИИ Москва и удалённо по РФ. Выезд по согласованию; основная поставка — удалённый production с доступом к вашим системам.",
+          a: "Да — внедрение ИИ Москва и удалённо по РФ. Выезд по согласованию; основная поставка — удалённый промышленный запуск с доступом к вашим системам.",
         },
         {
           q: "Можно заказать внедрение ИИ под ключ сразу?",
@@ -199,7 +199,7 @@ export const CATALOG_LANDING_SPECS_INTENT: LandingSpec[] = [
       intro: [
         "«Автоматизация компании» в поиске — запрос на работающую систему, не на курс по Python.",
         "Берём узкое место (продажи, заявки, документы) и закрываем его end-to-end.",
-        "AI подключаем только там, где ускоряет конкретный шаг.",
+        "ИИ подключаем только там, где ускоряет конкретный шаг.",
       ],
       faq: [
         {
@@ -270,7 +270,7 @@ export const CATALOG_LANDING_SPECS_INTENT: LandingSpec[] = [
     related: [
       { href: "/ai/ai-implementation", labelRu: "Внедрение ИИ", labelEn: "AI implementation" },
       { href: "/automation/company-automation", labelRu: "Автоматизация компании", labelEn: "Company automation" },
-      { href: "/automation/ai-for-sales", labelRu: "AI для продаж", labelEn: "AI for sales" },
+      { href: "/automation/ai-for-sales", labelRu: "ИИ для продаж", labelEn: "AI for sales" },
     ],
     ru: {
       h1: "Автоматизация бизнеса с помощью ИИ",
@@ -284,8 +284,8 @@ export const CATALOG_LANDING_SPECS_INTENT: LandingSpec[] = [
       ],
       deliverables: [
         "Выбор 1 процесса с измеримым эффектом",
-        "Интеграции + AI-слой там, где нужно",
-        "Пилот в production",
+        "Интеграции + ИИ-слой там, где нужно",
+        "Пилот в промышленной эксплуатации",
         "Контроль качества и handover",
       ],
       intro: [
@@ -465,7 +465,7 @@ export const CATALOG_LANDING_SPECS_INTENT: LandingSpec[] = [
       deliverables: [
         "Список рутинных задач с оценкой часов",
         "Workflow / n8n / CRM-роботы",
-        "AI только на текстовую рутину",
+        "ИИ только на текстовую рутину",
         "Алерты и регламент поддержки",
       ],
       intro: [
@@ -570,7 +570,7 @@ export const CATALOG_LANDING_SPECS_INTENT: LandingSpec[] = [
       ],
       intro: [
         "Wordstat: «внедрение CRM» и «автоматизация CRM» — коммерческий спрос на контур, не на обзор систем.",
-        "Сначала дисциплина данных и роботы; AI-слой — на квалификацию, саммари и КП.",
+        "Сначала дисциплина данных и роботы; ИИ-слой — на квалификацию, саммари и КП.",
         "Bitrix24 — /integrations/bitrix24-implementation; amoCRM — /integrations/amocrm-automation.",
       ],
       faq: [
@@ -641,8 +641,8 @@ export const CATALOG_LANDING_SPECS_INTENT: LandingSpec[] = [
     related: [
       { href: "/integrations/crm-automation", labelRu: "Автоматизация CRM", labelEn: "CRM automation" },
       { href: "/integrations/crm-sales-automation", labelRu: "Продажи в CRM", labelEn: "CRM sales" },
-      { href: "/integrations/bitrix24-ai", labelRu: "AI для Bitrix24", labelEn: "AI for Bitrix24" },
-      { href: "/solutions/assistant", labelRu: "AI-ассистент", labelEn: "AI assistant" },
+      { href: "/integrations/bitrix24-ai", labelRu: "ИИ для Bitrix24", labelEn: "AI for Bitrix24" },
+      { href: "/solutions/assistant", labelRu: "ИИ-ассистент", labelEn: "AI assistant" },
     ],
     ru: {
       h1: "ИИ для CRM",
@@ -655,14 +655,14 @@ export const CATALOG_LANDING_SPECS_INTENT: LandingSpec[] = [
         "Нет контроля качества AI-ответов",
       ],
       deliverables: [
-        "Сценарии AI внутри CRM",
+        "Сценарии ИИ внутри CRM",
         "Интеграция с почтой / телефонией / мессенджерами",
         "Правила эскалации к человеку",
         "Логи и метрики качества",
       ],
       intro: [
         "Отдельный intent: «ИИ для CRM» и «интеграция ИИ в CRM» — не общая автоматизация.",
-        "AI пишет черновики и классифицирует; решение и ответственность остаются у менеджера.",
+        "ИИ пишет черновики и классифицирует; решение и ответственность остаются у менеджера.",
       ],
       faq: [
         {
@@ -734,7 +734,7 @@ export const CATALOG_LANDING_SPECS_INTENT: LandingSpec[] = [
     related: [
       { href: "/ai/private-llm", labelRu: "Приватный LLM", labelEn: "Private LLM" },
       { href: "/ai/corporate", labelRu: "Корпоративный ИИ", labelEn: "Enterprise AI" },
-      { href: "/solutions/assistant", labelRu: "AI-ассистент", labelEn: "AI assistant" },
+      { href: "/solutions/assistant", labelRu: "ИИ-ассистент", labelEn: "AI assistant" },
       { href: "/solutions/knowledge-chatbot", labelRu: "Чат-бот по базе знаний", labelEn: "Knowledge chatbot" },
     ],
     ru: {
@@ -846,7 +846,7 @@ export const CATALOG_LANDING_SPECS_INTENT: LandingSpec[] = [
       ],
       intro: [
         "Связка «чат-бот + база знаний + RAG» — типовой B2B-запрос с высоким чеком.",
-        "Ответ без источника не принимаем в production.",
+        "Ответ без источника не принимаем в промышленной эксплуатации.",
       ],
       faq: [
         {

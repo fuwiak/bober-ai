@@ -46,7 +46,7 @@ export const CATALOG_LANDING_SPECS_AMOCRM_WORDSTAT: LandingSpec[] = [
       ],
       intro: [
         "Запросы «настройка amoCRM» и «настроить amoCRM» — про рабочий портал, а не про лицензию.",
-        "Собираем воронку, поля и роботов под ваш процесс; интеграции и AI — отдельными пакетами.",
+        "Собираем воронку, поля и роботов под ваш процесс; интеграции и ИИ — отдельными пакетами.",
         "Базовая интеграция — /integrations/amocrm; полное внедрение — /integrations/amocrm-implementation.",
       ],
       faq: [
@@ -60,7 +60,7 @@ export const CATALOG_LANDING_SPECS_AMOCRM_WORDSTAT: LandingSpec[] = [
         },
         {
           q: "Можно заказать только настройку?",
-          a: "Да. Сначала фиксируем воронку и роботов, потом при необходимости добавляем сайт, 1С или AI.",
+          a: "Да. Сначала фиксируем воронку и роботов, потом при необходимости добавляем сайт, 1С или ИИ.",
         },
       ],
     },
@@ -121,7 +121,7 @@ export const CATALOG_LANDING_SPECS_AMOCRM_WORDSTAT: LandingSpec[] = [
       { href: "/integrations/amocrm-services", labelRu: "Услуги amoCRM", labelEn: "amoCRM services" },
       { href: "/integrations/amocrm-automation", labelRu: "Автоматизация amoCRM", labelEn: "amoCRM automation" },
       { href: "/integrations/amocrm-pricing", labelRu: "Стоимость внедрения", labelEn: "Implementation pricing" },
-      { href: "/integrations/amocrm-ai", labelRu: "AI для amoCRM", labelEn: "AI for amoCRM" },
+      { href: "/integrations/amocrm-ai", labelRu: "ИИ для amoCRM", labelEn: "AI for amoCRM" },
       { href: "/pricing", labelRu: "Цены", labelEn: "Pricing" },
     ],
     ru: {
@@ -142,7 +142,7 @@ export const CATALOG_LANDING_SPECS_AMOCRM_WORDSTAT: LandingSpec[] = [
       ],
       intro: [
         "Wordstat: «внедрение amoCRM» и «внедрить amoCRM» — коммерческий спрос на исполнителя и результат, не на обзор CRM.",
-        "Bober AI Systems — интегратор: фиксированная смета, сроки и production-контур в amoCRM.",
+        "Bober AI Systems — интегратор: фиксированная смета, сроки и промышленный контур в amoCRM.",
         "Узкая настройка — /integrations/amocrm-setup; услуги и пакеты — /integrations/amocrm-services.",
       ],
       faq: [
@@ -156,7 +156,7 @@ export const CATALOG_LANDING_SPECS_AMOCRM_WORDSTAT: LandingSpec[] = [
         },
         {
           q: "Что входит в «под ключ»?",
-          a: "Воронка, интеграции по смете, обучение, критерии приёмки. AI-слой — отдельным пакетом при необходимости.",
+          a: "Воронка, интеграции по смете, обучение, критерии приёмки. ИИ-слой — отдельным пакетом при необходимости.",
         },
       ],
     },
@@ -216,7 +216,7 @@ export const CATALOG_LANDING_SPECS_AMOCRM_WORDSTAT: LandingSpec[] = [
     related: [
       { href: "/integrations/amocrm-implementation", labelRu: "Внедрение amoCRM", labelEn: "amoCRM implementation" },
       { href: "/integrations/amocrm-setup", labelRu: "Настройка amoCRM", labelEn: "amoCRM setup" },
-      { href: "/integrations/amocrm-ai", labelRu: "AI для amoCRM", labelEn: "AI for amoCRM" },
+      { href: "/integrations/amocrm-ai", labelRu: "ИИ для amoCRM", labelEn: "AI for amoCRM" },
       { href: "/integrations/amocrm-1c", labelRu: "amoCRM ↔ 1С", labelEn: "amoCRM ↔ 1C" },
       { href: "/integrations/amocrm-pricing", labelRu: "Цены на услуги", labelEn: "Service pricing" },
       { href: "/pricing", labelRu: "Форматы работ", labelEn: "Engagement formats" },
@@ -224,7 +224,7 @@ export const CATALOG_LANDING_SPECS_AMOCRM_WORDSTAT: LandingSpec[] = [
     ru: {
       h1: "Услуги amoCRM под ключ",
       subtitle:
-        "Интегратор amoCRM: настройка, внедрение, интеграции и AI. Пакеты под ключ со сметой до старта.",
+        "Интегратор amoCRM: настройка, внедрение, интеграции и ИИ. Пакеты под ключ со сметой до старта.",
       problems: [
         "Ищете интегратора amoCRM, а не курс и не «настройщика полей»",
         "Нужны услуги amoCRM: воронка, сайт, 1С, документы",
@@ -245,11 +245,11 @@ export const CATALOG_LANDING_SPECS_AMOCRM_WORDSTAT: LandingSpec[] = [
       faq: [
         {
           q: "Вы интегратор или партнёр amoCRM?",
-          a: "Интегратор-внедренец: API, воронки, 1С, AI. Лицензии amoCRM оформляете у вендора или своего партнёра.",
+          a: "Интегратор-внедренец: API, воронки, 1С, ИИ. Лицензии amoCRM оформляете у вендора или своего партнёра.",
         },
         {
           q: "Какие услуги входят?",
-          a: "Настройка воронки, внедрение под ключ, сайт/телефония/1С, автоматизация КП, AI-слой поверх CRM.",
+          a: "Настройка воронки, внедрение под ключ, сайт/телефония/1С, автоматизация КП, ИИ-слой поверх CRM.",
         },
         {
           q: "Работаете удалённо?",
@@ -323,7 +323,7 @@ export const CATALOG_LANDING_SPECS_AMOCRM_WORDSTAT: LandingSpec[] = [
         "Неясна цена внедрения amoCRM до разговора с подрядчиком",
         "Смета «от 50 тыс.» без состава работ",
         "Путают лицензию amoCRM и работу интегратора",
-        "Нужен бюджет настройки отдельно от AI и 1С",
+        "Нужен бюджет настройки отдельно от ИИ и 1С",
       ],
       deliverables: [
         "Вилка пакетов: настройка / внедрение / AI",
@@ -341,7 +341,7 @@ export const CATALOG_LANDING_SPECS_AMOCRM_WORDSTAT: LandingSpec[] = [
           text: "Контур с интеграциями сайта/мессенджеров — обычно от 300 000 ₽. Полный контур с 1С/документами — от 500 000 ₽.",
         },
         {
-          title: "AI-слой",
+          title: "ИИ-слой",
           text: "Квалификация, саммари, агент поверх amoCRM — от 500 000 ₽ отдельным пакетом.",
         },
       ],
@@ -438,19 +438,19 @@ export const CATALOG_LANDING_SPECS_AMOCRM_WORDSTAT: LandingSpec[] = [
     ],
     caseStudySlugs: ["kp-llm-automation", "amocrm-website-integration"],
     related: [
-      { href: "/integrations/amocrm-ai", labelRu: "AI для amoCRM", labelEn: "AI for amoCRM" },
-      { href: "/services/ai-agent", labelRu: "AI-агенты", labelEn: "AI agents" },
-      { href: "/services/sales-ai-agent", labelRu: "AI для продаж", labelEn: "Sales AI agent" },
+      { href: "/integrations/amocrm-ai", labelRu: "ИИ для amoCRM", labelEn: "AI for amoCRM" },
+      { href: "/services/ai-agent", labelRu: "ИИ-агенты", labelEn: "AI agents" },
+      { href: "/services/sales-ai-agent", labelRu: "ИИ для продаж", labelEn: "Sales AI agent" },
       { href: "/integrations/amocrm-automation", labelRu: "Автоматизация amoCRM", labelEn: "amoCRM automation" },
       { href: "/pricing", labelRu: "Стоимость", labelEn: "Pricing" },
     ],
     ru: {
-      h1: "AI-агент для amoCRM",
+      h1: "ИИ-агент для amoCRM",
       subtitle:
-        "ИИ-агент в amoCRM: квалификация, ответы, задачи и follow-up в карточке сделки. Пилот от 500 000 ₽, 2–4 недели.",
+        "ИИ-агент в amoCRM: квалификация, ответы, задачи и дожим в карточке сделки. Пилот от 500 000 ₽, 2–4 недели.",
       problems: [
-        "Нужен AI-агент amoCRM, а не чат «для галочки»",
-        "Лиды квалифицируют вручную, follow-up забывается",
+        "Нужен ИИ-агент amoCRM, а не чат «для галочки»",
+        "Лиды квалифицируют вручную, дожим забывается",
         "Бот не пишет факты в сделку и не ставит задачи",
         "Нет human-in-the-loop и контроля качества",
       ],
@@ -461,20 +461,20 @@ export const CATALOG_LANDING_SPECS_AMOCRM_WORDSTAT: LandingSpec[] = [
         "Пилот на одном сценарии с KPI",
       ],
       intro: [
-        "Запросы «amoCRM AI агент» и «ИИ агент amoCRM» — про агента с действиями в CRM, не про виджет чата.",
-        "AI-слой без агента — /integrations/amocrm-ai; автоматизация роботов — /integrations/amocrm-automation.",
+        "Запросы «amoCRM ИИ агент» и «ИИ агент amoCRM» — про агента с действиями в CRM, не про виджет чата.",
+        "ИИ-слой без агента — /integrations/amocrm-ai; автоматизация роботов — /integrations/amocrm-automation.",
       ],
       faq: [
         {
-          q: "Чем агент отличается от AI для amoCRM?",
-          a: "AI для amoCRM — скоринг и черновики. Агент сам выполняет шаги в CRM (поля, задачи, follow-up) с контролем.",
+          q: "Чем агент отличается от ИИ для amoCRM?",
+          a: "ИИ для amoCRM — скоринг и черновики. Агент сам выполняет шаги в CRM (поля, задачи, дожим) с контролем.",
         },
         {
           q: "Срок и цена?",
           a: "Пилот одного сценария 2–4 недели, от 500 000 ₽.",
         },
         {
-          q: "Можно on-prem LLM?",
+          q: "Можно on-premise LLM?",
           a: "Да — если политика данных требует закрытый контур.",
         },
       ],
