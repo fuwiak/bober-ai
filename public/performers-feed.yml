@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-08-05 00:29">
+<yml_catalog date="2026-08-05 00:36">
   <shop>
     <name>Bober AI Systems</name>
     <company>Bober AI Systems</company>
@@ -178,6 +178,36 @@
       </set>
       <set id="crm-erp-development">
         <name>Разработка CRM и ERP</name>
+      </set>
+      <set id="ii-vnedrenie-v-biznes">
+        <name>Внедрение ИИ в бизнес</name>
+      </set>
+      <set id="ii-prodavets">
+        <name>ИИ-продавец</name>
+      </set>
+      <set id="ii-vnedrenie-iskusstvennogo-intellekta">
+        <name>Внедрение искусственного интеллекта</name>
+      </set>
+      <set id="ii-vnedrenie-v-vash-biznes">
+        <name>Внедрение искусственного интеллекта в ваш бизнес</name>
+      </set>
+      <set id="ii-neyro-sotrudnik">
+        <name>Разработка нейро-сотрудника</name>
+      </set>
+      <set id="ii-sozdanie-botov">
+        <name>Создание ИИ-ботов</name>
+      </set>
+      <set id="ii-chatboty-pod-klyuch">
+        <name>Разработка чат-ботов под ключ для бизнеса</name>
+      </set>
+      <set id="ii-integraciya">
+        <name>Интеграция ИИ в CRM</name>
+      </set>
+      <set id="ii-neyronnye-seti">
+        <name>Разработка нейронных сетей для бизнеса</name>
+      </set>
+      <set id="ii-agenty-vnedrenie">
+        <name>Внедрение ИИ-агентов</name>
       </set>
     </sets>
     <offers>
@@ -1490,6 +1520,286 @@
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Архитектура и разработка контура CRM ↔ ERP со сметой до кода.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="ii-vnedrenie-v-biznes">
+      <name>Павел Стасиньский</name>
+      <price from="true">500000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 500 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>ii-vnedrenie-v-biznes</set-ids>
+      <description>Внедрение ИИ в бизнес</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">94</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">ИИ в CRM, документах и продажах — фиксированная смета и ROI до старта.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="ii-prodavets">
+      <name>Павел Стасиньский</name>
+      <price from="true">500000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 500 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>ii-prodavets</set-ids>
+      <description>ИИ-продавец</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">94</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Агент продаж с действиями в CRM и эскалацией к менеджеру.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="ii-vnedrenie-iskusstvennogo-intellekta">
+      <name>Павел Стасиньский</name>
+      <price from="true">500000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 500 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>ii-vnedrenie-iskusstvennogo-intellekta</set-ids>
+      <description>Внедрение искусственного интеллекта</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">94</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">От аудита до production LLM/агентов в вашем контуре.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="ii-vnedrenie-v-vash-biznes">
+      <name>Павел Стасиньский</name>
+      <price from="true">500000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 500 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>ii-vnedrenie-v-vash-biznes</set-ids>
+      <description>Внедрение искусственного интеллекта в ваш бизнес</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">94</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Пилот на узком месте, затем масштабирование в CRM и операции.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="ii-neyro-sotrudnik">
+      <name>Павел Стасиньский</name>
+      <price from="true">500000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 500 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>ii-neyro-sotrudnik</set-ids>
+      <description>Разработка нейро-сотрудника</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">93</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Цифровой сотрудник с инструментами, мониторингом и human-in-the-loop.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="ii-sozdanie-botov">
+      <name>Павел Стасиньский</name>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>ii-sozdanie-botov</set-ids>
+      <description>Создание ИИ-ботов</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">93</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Боты с LLM, сценариями эскалации и интеграцией в воронку продаж.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="ii-chatboty-pod-klyuch">
+      <name>Павел Стасиньский</name>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>ii-chatboty-pod-klyuch</set-ids>
+      <description>Разработка чат-ботов под ключ для бизнеса</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">93</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Чат-бот под процесс продаж/поддержки со сметой и приёмкой.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="ii-integraciya">
+      <name>Павел Стасиньский</name>
+      <price from="true">300000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 300 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>ii-integraciya</set-ids>
+      <description>Интеграция ИИ в CRM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">93</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">ИИ-слой поверх Bitrix24/amoCRM без смены воронки.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="ii-neyronnye-seti">
+      <name>Павел Стасиньский</name>
+      <price from="true">500000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 500 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>ii-neyronnye-seti</set-ids>
+      <description>Разработка нейронных сетей для бизнеса</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">92</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Приватный LLM-контур, база знаний и интеграции с учётными системами.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="ii-agenty-vnedrenie">
+      <name>Павел Стасиньский</name>
+      <price from="true">500000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 500 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>ii-agenty-vnedrenie</set-ids>
+      <description>Внедрение ИИ-агентов</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">94</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Многошаговые агенты с инструментами, аудитом и эскалацией к человеку.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
       <param name="Другая услуга исполнителя - 2">Автоматизация отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>

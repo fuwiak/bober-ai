@@ -51,6 +51,16 @@ const FEED_CONVERSION: Record<string, number> = {
   "amocrm-pricing": 95,
   "amocrm-ai-agent": 94,
   "crm-erp-development": 93,
+  "ii-vnedrenie-v-biznes": 94,
+  "ii-prodavets": 94,
+  "ii-vnedrenie-iskusstvennogo-intellekta": 94,
+  "ii-vnedrenie-v-vash-biznes": 94,
+  "ii-neyro-sotrudnik": 93,
+  "ii-sozdanie-botov": 93,
+  "ii-chatboty-pod-klyuch": 93,
+  "ii-integraciya": 93,
+  "ii-neyronnye-seti": 92,
+  "ii-agenty-vnedrenie": 94,
 };
 
 export function getFeedConversion(slug: string, fallback = 90) {
