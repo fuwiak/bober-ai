@@ -1,0 +1,33 @@
+---
+/**
+ * ERP МойСклад + ChatGPT-like UX landing.
+ * Path: /solutions/erp-moysklad
+ */
+import SeoServicePage from "@/components/SeoServicePage.astro";
+import MoySkladChatDemo from "@/components/MoySkladChatDemo.astro";
+import {
+  MOYSKLAD_LANDING_KEYWORDS,
+  MOYSKLAD_SEO_CONTENT,
+} from "@/lib/moysklad-landing";
+
+export const prerender = true;
+---
+
+<SeoServicePage
+  slug="erp-moysklad"
+  locale="ru"
+  content={MOYSKLAD_SEO_CONTENT}
+  pagePath="/solutions/erp-moysklad"
+  serviceSlug="erp-moysklad"
+  keywords={[...MOYSKLAD_LANDING_KEYWORDS]}
+  formSource="erp-moysklad-landing"
+  formDefaultService="ERP МойСклад / ChatGPT UX"
+  breadcrumbItems={[
+    { name: "Решения", path: "/solutions" },
+    { name: "ERP МойСклад", path: "/solutions/erp-moysklad" },
+  ]}
+>
+  <div slot="before-contact">
+    <MoySkladChatDemo />
+  </div>
+</SeoServicePage>

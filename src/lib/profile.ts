@@ -262,6 +262,7 @@ function withPortfolioSegment(item: PortfolioItem): PortfolioItem {
 /** Кейсы в маркетинговых листингах (главная /portfolio). Остальные остаются как detail-страницы. */
 /** Homepage /portfolio grid — enterprise B2B proofs only (no low-ticket Kwork offer). */
 export const PORTFOLIO_LISTING_SLUGS = [
+  "erp-moysklad-chatgpt-ux",
   "yandex-telemost-agent",
   "ai-sales-loop",
   "kaspersky-ai-assistant",
@@ -274,6 +275,52 @@ export const PORTFOLIO_LISTING_SLUGS = [
 ] as const;
 
 export const PORTFOLIO: PortfolioItem[] = [
+  {
+    id: "erp-moysklad-chatgpt-ux",
+    slug: "erp-moysklad-chatgpt-ux",
+    title: "ERP МойСклад с ChatGPT-like UX",
+    subtitle: "Склад и учёт МойСклад + чат к остаткам, заказам и CRM",
+    seoTitle: "ERP МойСклад: внедрение, интеграция с CRM и ИИ-чат как в ChatGPT",
+    kind: "solution",
+    imageBadge: "Типовое решение",
+    metric: "Склад → чат → действие в ERP/CRM — один контур",
+    metricMethod:
+      "Типовой production-контур: МойСклад как ERP, ChatGPT-like UX с tools к остаткам и заказам, синхронизация с Bitrix24/amoCRM. Не привязан к одному именованному клиенту.",
+    role: "Архитектура ERP МойСклад и диалогового ИИ-слоя",
+    scope:
+      "Настройка МойСклад, интеграция с CRM, ИИ-чат к складу и заказам, автоматизация резервов и отгрузок",
+    duration: "Пилот чата 2–4 недели; внедрение ERP от 3–6 недель",
+    architecture:
+      "МойСклад (остатки, заказы, отгрузки) ↔ API-шлюз ↔ LLM + tools ↔ Bitrix24/amoCRM",
+    processSteps: [
+      "Аудит склада, номенклатуры и связки с CRM",
+      "Настройка МойСклад и обмен с CRM",
+      "Пилот чата: остатки, заказ, задача в CRM",
+      "Автоматизация резервов и алертов",
+      "Production, документация, обучение",
+    ],
+    productionNotes: [
+      "МойСклад остаётся системой записи — чат не заменяет ERP",
+      "Действия в ERP с аудитом и human-in-the-loop на критичных шагах",
+      "Bitrix24 или amoCRM — опционально, но усиливают контур продаж",
+      "Лендинг с демо UX: /solutions/erp-moysklad",
+    ],
+    whyCustom:
+      "Готовый виджет ChatGPT не видит ваши остатки и не создаёт перемещения в МойСклад. Собираем чат с tools под ваш склад и CRM.",
+    stack: "МойСклад · Bitrix24 · amoCRM · LLM · API",
+    image: PORTFOLIO_IMAGES.erpMoysklad,
+    imageAlt: "Контур ERP МойСклад с диалоговым ИИ-слоем к складу и CRM",
+    imageCaption: "ChatGPT-like UX поверх МойСклад: вопрос → остаток / заказ → действие в ERP или CRM",
+    category: "ERP и склад",
+    featured: true,
+    skills: ["МойСклад", "ERP", "CRM", "LLM", "Интеграции"],
+    description:
+      "Команда искала остатки и статусы отгрузок в меню МойСклад и Excel, а CRM не знала про резервы — сделки зависали на нехватке товара.",
+    solution:
+      "Внедрили и связали МойСклад с CRM, добавили ChatGPT-like чат с tools: остатки, заказы, перемещения, задачи менеджеру.",
+    result:
+      "Запросы к складу — в чате; нехватка по заказу уходит в перемещение и задачу CRM без ручного копирования. Подробнее — /solutions/erp-moysklad.",
+  },
   {
     id: "ai-sales-loop",
     slug: "ai-sales-loop",

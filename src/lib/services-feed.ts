@@ -61,6 +61,16 @@ const FEED_CONVERSION: Record<string, number> = {
   "ii-integraciya": 93,
   "ii-neyronnye-seti": 92,
   "ii-agenty-vnedrenie": 94,
+  "erp-moysklad": 94,
+  "moysklad-setup": 94,
+  "moysklad-crm-integration": 94,
+  "moysklad-automation": 93,
+  "moysklad-pod-klyuch": 93,
+  "moysklad-pricing": 95,
+  "moysklad-ai": 94,
+  "moysklad-chatgpt-ux": 94,
+  "moysklad-crm-sync": 93,
+  "moysklad-warehouse": 93,
 };
 
 export function getFeedConversion(slug: string, fallback = 90) {
