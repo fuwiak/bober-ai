@@ -113,7 +113,13 @@ const canonicalPath = localizePath(`/${page.category}/${page.slug}`, locale);
           </a>
         )
       }
-      <button type="button" class="btn-secondary" data-contact-open data-contact-goal="primary_cta_click">
+      <button
+        type="button"
+        class="btn-secondary"
+        data-contact-open
+        data-contact-goal="primary_cta_click"
+        data-contact-service={commercial?.title ?? content.h1}
+      >
         {messages.contact.title}
       </button>
     </div>

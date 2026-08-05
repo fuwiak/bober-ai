@@ -1,4 +1,4 @@
-import { attributionGoalParams, reachGoal } from "@/lib/analytics";
+import { demandRadarParams, reachGoal } from "@/lib/analytics";
 
 /** Wire [data-goal] clicks → Metrika reachGoal (phone / TG / WA / MAX / CTA). */
 function onGoalClick(event: MouseEvent) {
@@ -9,9 +9,17 @@ function onGoalClick(event: MouseEvent) {
 
   const slug = el.getAttribute("data-goal-slug")?.trim();
   const href = el.getAttribute("href") || undefined;
+  const service =
+    el.getAttribute("data-goal-service")?.trim() ||
+    el.getAttribute("data-contact-service")?.trim() ||
+    "";
+  const source = el.getAttribute("data-goal-source")?.trim() || "goal-click";
   reachGoal(
     goal,
-    attributionGoalParams({
+    demandRadarParams({
+      service,
+      source,
+      landing_path: window.location.pathname,
       ...(slug ? { slug } : {}),
       ...(href ? { href } : {}),
     }),

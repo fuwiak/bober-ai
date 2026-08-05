@@ -48,6 +48,7 @@ const {
 
 const messages = loadMessages(locale);
 const market = marketOf(locale);
+const contactServiceName = formDefaultService ?? content.h1;
 const sp = messages.servicePage;
 const lookupSlug = serviceSlug ?? slug;
 const service = getEnterpriseService(lookupSlug, locale);
@@ -149,6 +150,7 @@ const jsonLd = [webPage, serviceSchema, organization, person, ...(faqSchema ? [f
                 class="btn-secondary"
                 data-contact-open
                 data-contact-goal="primary_cta_click"
+                data-contact-service={contactServiceName}
               >
                 {messages.contact.title}
               </button>
@@ -196,6 +198,7 @@ const jsonLd = [webPage, serviceSchema, organization, person, ...(faqSchema ? [f
                   class="btn-secondary mt-3 w-full text-center"
                   data-contact-open
                   data-contact-goal="primary_cta_click"
+                  data-contact-service={contactServiceName}
                 >
                   {messages.contact.fabLabel}
                 </button>

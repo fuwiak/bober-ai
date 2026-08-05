@@ -1,0 +1,24 @@
+{
+  "landings": [
+    {
+      "landing_path": "/ai/corporate",
+      "service": "Корпоративный ИИ-ассистент",
+      "lead_source": "organic-yandex",
+      "conversations": null,
+      "qualified_leads": null,
+      "pipeline_value": null,
+      "signed_deals": null,
+      "avg_budget": null
+    },
+    {
+      "landing_path": "/automation/processes",
+      "service": "Автоматизация процессов",
+      "lead_source": "organic-yandex",
+      "conversations": null,
+      "qualified_leads": null,
+      "pipeline_value": null,
+      "signed_deals": null,
+      "avg_budget": null
+    }
+  ]
+}

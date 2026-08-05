@@ -38,6 +38,7 @@
     "metrika:organic": "node scripts/yandex-metrika-filters.mjs --organic",
     "metrika:ecommerce": "node scripts/yandex-metrika-ecommerce.mjs",
     "metrika:goals": "node scripts/yandex-metrika-goals.mjs",
+    "demand-radar:report": "node scripts/demand-radar-report.mjs",
     "ytm:status": "node scripts/yandex-ytm-status.mjs",
     "yandex:wordstat": "node scripts/yandex-wordstat.mjs",
     "yandex:wordstat:deferred": "node scripts/wordstat-deferred-run.mjs",

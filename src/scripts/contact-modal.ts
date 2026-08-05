@@ -1,4 +1,5 @@
-import { reachGoal } from "@/lib/analytics";
+import { demandRadarParams, reachGoal } from "@/lib/analytics";
+import { DEMAND_RADAR_EVENTS } from "@/lib/demand-radar/tracking-contract";
 import { PRIMARY_CTA_GOAL } from "@/lib/site";
 
 const INTENT_STORAGE_KEY = "bober_contact_intent_dismissed";
@@ -32,9 +33,19 @@ export function openContactModal(service = "", options?: { softOffer?: boolean; 
   if (!root) return;
 
   const soft = Boolean(options?.softOffer);
+  const resolvedService = service || (soft ? root.dataset.intentService || "" : "");
   setSoftOffer(soft);
-  setService(service || (soft ? root.dataset.intentService || "" : ""));
-  reachGoal(options?.goal || PRIMARY_CTA_GOAL, { destination: "form" });
+  setService(resolvedService);
+  const goal = options?.goal || PRIMARY_CTA_GOAL || DEMAND_RADAR_EVENTS.cta_click;
+  reachGoal(
+    goal,
+    demandRadarParams({
+      service: resolvedService,
+      source: soft ? "intent-modal" : "contact-modal",
+      landing_path: window.location.pathname,
+      destination: "form",
+    }),
+  );
 
   root.hidden = false;
   document.body.style.overflow = "hidden";

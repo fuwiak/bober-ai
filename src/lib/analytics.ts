@@ -1,4 +1,5 @@
 import { yandexMetrikaIdForLocation } from "@/lib/legal";
+import { normalizeLandingPath } from "@/lib/demand-radar/tracking-contract";
 
 export type Attribution = {
   utm_source?: string;
@@ -175,6 +176,13 @@ export function organicEngine(attr?: Attribution | null): string | undefined {
 export function attributionGoalParams(extra?: Record<string, unknown>): Record<string, unknown> {
   const a = getAttribution();
   const organic = isOrganicTraffic(a);
+  const landingPath = normalizeLandingPath(
+    typeof extra?.landing_path === "string"
+      ? extra.landing_path
+      : typeof window !== "undefined"
+        ? window.location.pathname
+        : a.landing_page,
+  );
   return {
     ...extra,
     utm_source: a.utm_source,
@@ -184,10 +192,28 @@ export function attributionGoalParams(extra?: Record<string, unknown>): Record<s
     utm_term: a.utm_term,
     yclid: a.yclid,
     landing_page: a.landing_page,
+    landing_path: landingPath,
     paid: isPaidTraffic(a) ? 1 : 0,
     organic: organic ? 1 : 0,
     engine: organic ? organicEngine(a) : undefined,
   };
+}
+
+/** Demand-radar params: service + source + landing_path (+ UTM attribution). */
+export function demandRadarParams(input?: {
+  service?: string;
+  source?: string;
+  landing_path?: string;
+  [key: string]: unknown;
+}): Record<string, unknown> {
+  const path =
+    typeof window !== "undefined" ? window.location.pathname : input?.landing_path || "/";
+  return attributionGoalParams({
+    service: input?.service || "",
+    source: input?.source || "",
+    landing_path: normalizeLandingPath(input?.landing_path || path),
+    ...input,
+  });
 }
 
 /** Помечает <html data-paid-traffic / data-organic-traffic> для UI. */

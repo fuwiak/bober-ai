@@ -1,6 +1,9 @@
 import { getFormLengthVariant } from "@/lib/ab-tests";
-import { reachGoal } from "@/lib/analytics";
 
+/**
+ * A/B form length only. form_start goals live in form-attribution.ts
+ * (service + source + landing_path for demand radar).
+ */
 function initContactFormAb() {
   const forms = document.querySelectorAll<HTMLFormElement>("form.contact-form[data-ab-length]");
   forms.forEach((form) => {
@@ -19,16 +22,6 @@ function initContactFormAb() {
       const introShort = form.dataset.introShort;
       if (intro && introShort) intro.textContent = introShort;
     }
-
-    let started = false;
-    const markStart = () => {
-      if (started) return;
-      started = true;
-      const prefix = form.dataset.trackingPrefix || "";
-      reachGoal(prefix ? `${prefix}_form_start` : "form_start", { form_length: variant });
-    };
-    form.addEventListener("focusin", markStart);
-    form.addEventListener("input", markStart);
   });
 }
 
