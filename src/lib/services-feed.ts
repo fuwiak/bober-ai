@@ -105,7 +105,12 @@ export function getServiceOfferUrl(offer: Pick<EnterpriseService, "slug" | "feed
     return `${FEED_SITE_URL}/services/${offer}`;
   }
   const path = offer.feedPath?.trim() || `/services/${offer.slug}`;
-  return `${FEED_SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  const url = `${FEED_SITE_URL}${normalized}`;
+  if (!url.startsWith("https://") || !url.includes("bober-systems.ru")) {
+    throw new Error(`Invalid feed offer URL for ${offer.slug}: ${url}`);
+  }
+  return url;
 }
 
 /** Dedicated order form page — Yandex «создание заказа» must land on a working form, not only a modal CTA. */
@@ -174,12 +179,11 @@ export function getServiceFeedXml(now = new Date()) {
 
   const sets = offers
     .map((offer) => {
-      const urlLine =
-        offer.omitFeedUrl === true
-          ? ""
-          : `\n        <url>${escapeXml(getServiceOfferUrl(offer))}</url>`;
+      // Always emit a real domain URL — empty/omitted <url> → Yandex Hatter_WrongUrl fatal.
+      const offerUrl = getServiceOfferUrl(offer);
       return `      <set id="${escapeXml(offer.slug)}">
-        <name>${escapeXml(offer.title)}</name>${urlLine}
+        <name>${escapeXml(offer.title)}</name>
+        <url>${escapeXml(offerUrl)}</url>
       </set>`;
     })
     .join("\n");
@@ -199,10 +203,7 @@ export function getServiceFeedXml(now = new Date()) {
 
   const offerBlocks = offers
     .map((offer) => {
-      const urlLine =
-        offer.omitFeedUrl === true
-          ? ""
-          : `\n      <url>${escapeXml(getServiceOfferUrl(offer))}</url>`;
+      const offerUrl = getServiceOfferUrl(offer);
       const pictureLine =
         offer.omitFeedPicture === true
           ? ""
@@ -218,13 +219,10 @@ export function getServiceFeedXml(now = new Date()) {
         .join("\n");
       const optionalReviewBlock = reviewParams ? `\n${reviewParams}` : "";
       const optionalOtherBlock = otherServices ? `\n${otherServices}` : "";
-      const orderLinkLine =
-        offer.omitFeedUrl === true
-          ? ""
-          : `\n      <param name="Ссылка на создание заказа">${escapeXml(getServiceOrderUrl(offer))}</param>`;
 
       return `    <offer id="${escapeXml(offer.id)}">
-      <name>${escapeXml(PROFILE.name)}</name>${urlLine}
+      <name>${escapeXml(PROFILE.name)}</name>
+      <url>${escapeXml(offerUrl)}</url>
       <price from="true">${offer.price}</price>
       <currencyId>RUR</currencyId>
       <sales_notes>${escapeXml(clampSalesNotes(offer.salesNotes))}</sales_notes>
@@ -239,7 +237,8 @@ export function getServiceFeedXml(now = new Date()) {
       <param name="Регион">${SITE_REGION}</param>
       <param name="Конверсия">${conversion}</param>
       <param name="Ссылка на телефон">${escapeXml(CONTACT_PHONE_URL)}</param>
-      <param name="Ссылка на чат">${escapeXml(TELEGRAM_URL)}</param>${orderLinkLine}
+      <param name="Ссылка на чат">${escapeXml(TELEGRAM_URL)}</param>
+      <param name="Ссылка на создание заказа">${escapeXml(getServiceOrderUrl(offer))}</param>
       <param name="Ссылка на профиль исполнителя">${escapeXml(FEED_SITE_URL)}</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>

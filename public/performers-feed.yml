@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-08-05 01:55">
+<yml_catalog date="2026-08-05 23:48">
   <shop>
     <name>Bober AI Systems</name>
     <company>Bober AI Systems</company>
@@ -163,141 +163,187 @@
       </set>
       <set id="amocrm-setup">
         <name>Настройка amoCRM</name>
+        <url>https://www.bober-systems.ru/integrations/amocrm-setup</url>
       </set>
       <set id="amocrm-implementation">
         <name>Внедрение amoCRM</name>
+        <url>https://www.bober-systems.ru/integrations/amocrm-implementation</url>
       </set>
       <set id="amocrm-services">
         <name>Услуги amoCRM под ключ</name>
+        <url>https://www.bober-systems.ru/integrations/amocrm-services</url>
       </set>
       <set id="amocrm-pricing">
         <name>Сколько стоит внедрение amoCRM</name>
+        <url>https://www.bober-systems.ru/integrations/amocrm-pricing</url>
       </set>
       <set id="amocrm-ai-agent">
         <name>ИИ-агент для amoCRM</name>
+        <url>https://www.bober-systems.ru/integrations/amocrm-ai-agent</url>
       </set>
       <set id="amocrm-nastroit">
         <name>Настроить amoCRM</name>
+        <url>https://www.bober-systems.ru/integrations/amocrm</url>
       </set>
       <set id="amocrm-dorabotka">
         <name>Доработка amoCRM</name>
+        <url>https://www.bober-systems.ru/integrations/amocrm</url>
       </set>
       <set id="amocrm-vnedrit">
         <name>Внедрить amoCRM</name>
+        <url>https://www.bober-systems.ru/integrations/amocrm-implementation</url>
       </set>
       <set id="amocrm-integraciya">
         <name>Интеграция amoCRM</name>
+        <url>https://www.bober-systems.ru/integrations/amocrm</url>
       </set>
       <set id="amocrm-konsultaciya">
         <name>Консультация amoCRM</name>
+        <url>https://www.bober-systems.ru/integrations/amocrm</url>
       </set>
       <set id="amocrm-pod-klyuch">
         <name>amoCRM под ключ</name>
+        <url>https://www.bober-systems.ru/integrations/amocrm-services</url>
       </set>
       <set id="amocrm-integrator">
         <name>Интегратор amoCRM</name>
+        <url>https://www.bober-systems.ru/integrations/amocrm</url>
       </set>
       <set id="amocrm-avtomatizaciya">
         <name>Автоматизация amoCRM</name>
+        <url>https://www.bober-systems.ru/integrations/amocrm-automation</url>
       </set>
       <set id="amocrm-voronka-setup">
         <name>Настройка воронки amoCRM</name>
+        <url>https://www.bober-systems.ru/integrations/amocrm-setup</url>
       </set>
       <set id="amocrm-audit">
         <name>Аудит amoCRM</name>
+        <url>https://www.bober-systems.ru/integrations/amocrm</url>
       </set>
       <set id="crm-erp-development">
         <name>Разработка CRM и ERP</name>
+        <url>https://www.bober-systems.ru/solutions/crm-erp-development</url>
       </set>
       <set id="ii-vnedrenie-v-biznes">
         <name>Внедрение ИИ в бизнес</name>
+        <url>https://www.bober-systems.ru/ii-dlya-biznesa</url>
       </set>
       <set id="ii-prodavets">
         <name>ИИ-продавец</name>
+        <url>https://www.bober-systems.ru/services/sales-ai-agent</url>
       </set>
       <set id="ii-vnedrenie-iskusstvennogo-intellekta">
         <name>Внедрение искусственного интеллекта</name>
+        <url>https://www.bober-systems.ru/ii-dlya-biznesa</url>
       </set>
       <set id="ii-vnedrenie-v-vash-biznes">
         <name>Внедрение искусственного интеллекта в ваш бизнес</name>
+        <url>https://www.bober-systems.ru/ii-dlya-biznesa</url>
       </set>
       <set id="ii-neyro-sotrudnik">
         <name>Разработка нейро-сотрудника</name>
+        <url>https://www.bober-systems.ru/services/ai-agent</url>
       </set>
       <set id="ii-sozdanie-botov">
         <name>Создание ИИ-ботов</name>
+        <url>https://www.bober-systems.ru/services/ai-agent</url>
       </set>
       <set id="ii-chatboty-pod-klyuch">
         <name>Разработка чат-ботов под ключ для бизнеса</name>
+        <url>https://www.bober-systems.ru/services/ai-agent</url>
       </set>
       <set id="ii-integraciya">
         <name>Интеграция ИИ в CRM</name>
+        <url>https://www.bober-systems.ru/integrations/ai-for-crm</url>
       </set>
       <set id="ii-neyronnye-seti">
         <name>Разработка нейронных сетей для бизнеса</name>
+        <url>https://www.bober-systems.ru/services/llm-development</url>
       </set>
       <set id="ii-agenty-vnedrenie">
         <name>Внедрение ИИ-агентов</name>
+        <url>https://www.bober-systems.ru/services/ai-agent</url>
       </set>
       <set id="erp-moysklad">
         <name>Внедрение ERP МойСклад</name>
+        <url>https://www.bober-systems.ru/solutions/erp-moysklad</url>
       </set>
       <set id="moysklad-setup">
         <name>Настройка МойСклад</name>
+        <url>https://www.bober-systems.ru/solutions/erp-moysklad</url>
       </set>
       <set id="moysklad-crm-integration">
         <name>Интеграция МойСклад с CRM</name>
+        <url>https://www.bober-systems.ru/solutions/erp-moysklad</url>
       </set>
       <set id="moysklad-automation">
         <name>Автоматизация МойСклад</name>
+        <url>https://www.bober-systems.ru/solutions/erp-moysklad</url>
       </set>
       <set id="moysklad-pod-klyuch">
         <name>МойСклад под ключ</name>
+        <url>https://www.bober-systems.ru/solutions/erp-moysklad</url>
       </set>
       <set id="moysklad-pricing">
         <name>Сколько стоит внедрение МойСклад</name>
+        <url>https://www.bober-systems.ru/solutions/erp-moysklad</url>
       </set>
       <set id="moysklad-ai">
         <name>ИИ для МойСклад</name>
+        <url>https://www.bober-systems.ru/solutions/erp-moysklad</url>
       </set>
       <set id="moysklad-chatgpt-ux">
         <name>ChatGPT UX для МойСклад</name>
+        <url>https://www.bober-systems.ru/solutions/erp-moysklad</url>
       </set>
       <set id="moysklad-crm-sync">
         <name>Интеграция CRM и МойСклад</name>
+        <url>https://www.bober-systems.ru/solutions/erp-moysklad</url>
       </set>
       <set id="moysklad-warehouse">
         <name>Внедрение склада МойСклад</name>
+        <url>https://www.bober-systems.ru/solutions/erp-moysklad</url>
       </set>
       <set id="yclients-amocrm-bitrix-moysklad-setup">
         <name>Настройка YClients, amoCRM, Bitrix24, МойСклад</name>
+        <url>https://www.bober-systems.ru/integrations/crm-setup</url>
       </set>
       <set id="yclients-setup">
         <name>Настройка YClients</name>
+        <url>https://www.bober-systems.ru/integrations/crm-setup</url>
       </set>
       <set id="yclients-amocrm-setup">
         <name>Настройка YClients и amoCRM</name>
+        <url>https://www.bober-systems.ru/integrations/crm-setup</url>
       </set>
       <set id="yclients-bitrix-setup">
         <name>Настройка YClients и Bitrix24</name>
+        <url>https://www.bober-systems.ru/integrations/crm-setup</url>
       </set>
       <set id="yclients-moysklad-setup">
         <name>Настройка YClients и МойСклад</name>
+        <url>https://www.bober-systems.ru/integrations/crm-setup</url>
       </set>
       <set id="bitrix-amocrm-moysklad-setup">
         <name>Настройка Bitrix24, amoCRM и МойСклад</name>
+        <url>https://www.bober-systems.ru/integrations/crm-setup</url>
       </set>
       <set id="yclients-online-booking-setup">
         <name>Настройка онлайн-записи YClients</name>
+        <url>https://www.bober-systems.ru/integrations/crm-setup</url>
       </set>
       <set id="complex-crm-moysklad-setup">
         <name>Комплексная настройка CRM и МойСклад</name>
+        <url>https://www.bober-systems.ru/integrations/crm-setup</url>
       </set>
       <set id="yclients-crm-setup-pod-klyuch">
         <name>Настройка YClients и CRM под ключ</name>
+        <url>https://www.bober-systems.ru/integrations/crm-setup</url>
       </set>
       <set id="multi-crm-systems-setup">
         <name>Настройка CRM-систем YClients Bitrix24 amoCRM</name>
+        <url>https://www.bober-systems.ru/integrations/crm-setup</url>
       </set>
     </sets>
     <offers>
@@ -1450,6 +1496,7 @@
     </offer>
     <offer id="amocrm-setup">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/amocrm-setup</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 150 000 ₽</sales_notes>
@@ -1465,6 +1512,7 @@
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/amocrm-setup</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -1478,6 +1526,7 @@
     </offer>
     <offer id="amocrm-implementation">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/amocrm-implementation</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -1493,6 +1542,7 @@
       <param name="Конверсия">94</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/amocrm-implementation</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -1506,6 +1556,7 @@
     </offer>
     <offer id="amocrm-services">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/amocrm-services</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 150 000 ₽</sales_notes>
@@ -1521,6 +1572,7 @@
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/amocrm-services</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -1534,6 +1586,7 @@
     </offer>
     <offer id="amocrm-pricing">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/amocrm-pricing</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 150 000 ₽</sales_notes>
@@ -1549,6 +1602,7 @@
       <param name="Конверсия">95</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/amocrm-pricing</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -1562,6 +1616,7 @@
     </offer>
     <offer id="amocrm-ai-agent">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/amocrm-ai-agent</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
@@ -1577,6 +1632,7 @@
       <param name="Конверсия">94</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/amocrm-ai-agent</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -1590,6 +1646,7 @@
     </offer>
     <offer id="amocrm-nastroit">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/amocrm</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 150 000 ₽</sales_notes>
@@ -1605,6 +1662,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/amocrm-nastroit</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -1618,6 +1676,7 @@
     </offer>
     <offer id="amocrm-dorabotka">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/amocrm</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 150 000 ₽</sales_notes>
@@ -1633,6 +1692,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/amocrm-dorabotka</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -1646,6 +1706,7 @@
     </offer>
     <offer id="amocrm-vnedrit">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/amocrm-implementation</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -1661,6 +1722,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/amocrm-vnedrit</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -1674,6 +1736,7 @@
     </offer>
     <offer id="amocrm-integraciya">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/amocrm</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -1689,6 +1752,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/amocrm-integraciya</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -1702,6 +1766,7 @@
     </offer>
     <offer id="amocrm-konsultaciya">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/amocrm</url>
       <price from="true">50000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 50 000 ₽</sales_notes>
@@ -1717,6 +1782,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/amocrm-konsultaciya</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -1730,6 +1796,7 @@
     </offer>
     <offer id="amocrm-pod-klyuch">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/amocrm-services</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -1745,6 +1812,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/amocrm-pod-klyuch</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -1758,6 +1826,7 @@
     </offer>
     <offer id="amocrm-integrator">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/amocrm</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 150 000 ₽</sales_notes>
@@ -1773,6 +1842,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/amocrm-integrator</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -1786,6 +1856,7 @@
     </offer>
     <offer id="amocrm-avtomatizaciya">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/amocrm-automation</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 150 000 ₽</sales_notes>
@@ -1801,6 +1872,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/amocrm-avtomatizaciya</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -1814,6 +1886,7 @@
     </offer>
     <offer id="amocrm-voronka-setup">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/amocrm-setup</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 150 000 ₽</sales_notes>
@@ -1829,6 +1902,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/amocrm-voronka-setup</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -1842,6 +1916,7 @@
     </offer>
     <offer id="amocrm-audit">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/amocrm</url>
       <price from="true">50000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 50 000 ₽</sales_notes>
@@ -1857,6 +1932,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/amocrm-audit</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -1870,6 +1946,7 @@
     </offer>
     <offer id="crm-erp-development">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/solutions/crm-erp-development</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
@@ -1885,6 +1962,7 @@
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/crm-erp-development</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -1898,6 +1976,7 @@
     </offer>
     <offer id="ii-vnedrenie-v-biznes">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/ii-dlya-biznesa</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
@@ -1913,6 +1992,7 @@
       <param name="Конверсия">94</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ii-vnedrenie-v-biznes</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -1926,6 +2006,7 @@
     </offer>
     <offer id="ii-prodavets">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/services/sales-ai-agent</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
@@ -1941,6 +2022,7 @@
       <param name="Конверсия">94</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ii-prodavets</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -1954,6 +2036,7 @@
     </offer>
     <offer id="ii-vnedrenie-iskusstvennogo-intellekta">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/ii-dlya-biznesa</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
@@ -1969,6 +2052,7 @@
       <param name="Конверсия">94</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ii-vnedrenie-iskusstvennogo-intellekta</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -1982,6 +2066,7 @@
     </offer>
     <offer id="ii-vnedrenie-v-vash-biznes">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/ii-dlya-biznesa</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
@@ -1997,6 +2082,7 @@
       <param name="Конверсия">94</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ii-vnedrenie-v-vash-biznes</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2010,6 +2096,7 @@
     </offer>
     <offer id="ii-neyro-sotrudnik">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/services/ai-agent</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
@@ -2025,6 +2112,7 @@
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ii-neyro-sotrudnik</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2038,6 +2126,7 @@
     </offer>
     <offer id="ii-sozdanie-botov">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/services/ai-agent</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -2053,6 +2142,7 @@
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ii-sozdanie-botov</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2066,6 +2156,7 @@
     </offer>
     <offer id="ii-chatboty-pod-klyuch">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/services/ai-agent</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -2081,6 +2172,7 @@
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ii-chatboty-pod-klyuch</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2094,6 +2186,7 @@
     </offer>
     <offer id="ii-integraciya">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/ai-for-crm</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -2109,6 +2202,7 @@
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ii-integraciya</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2122,6 +2216,7 @@
     </offer>
     <offer id="ii-neyronnye-seti">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/services/llm-development</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
@@ -2137,6 +2232,7 @@
       <param name="Конверсия">92</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ii-neyronnye-seti</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2150,6 +2246,7 @@
     </offer>
     <offer id="ii-agenty-vnedrenie">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/services/ai-agent</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
@@ -2165,6 +2262,7 @@
       <param name="Конверсия">94</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ii-agenty-vnedrenie</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2178,6 +2276,7 @@
     </offer>
     <offer id="erp-moysklad">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/solutions/erp-moysklad</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -2193,6 +2292,7 @@
       <param name="Конверсия">94</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/erp-moysklad</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2206,6 +2306,7 @@
     </offer>
     <offer id="moysklad-setup">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/solutions/erp-moysklad</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 150 000 ₽</sales_notes>
@@ -2221,6 +2322,7 @@
       <param name="Конверсия">94</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/moysklad-setup</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2234,6 +2336,7 @@
     </offer>
     <offer id="moysklad-crm-integration">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/solutions/erp-moysklad</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -2249,6 +2352,7 @@
       <param name="Конверсия">94</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/moysklad-crm-integration</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2262,6 +2366,7 @@
     </offer>
     <offer id="moysklad-automation">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/solutions/erp-moysklad</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -2277,6 +2382,7 @@
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/moysklad-automation</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2290,6 +2396,7 @@
     </offer>
     <offer id="moysklad-pod-klyuch">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/solutions/erp-moysklad</url>
       <price from="true">500000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 500 000 ₽</sales_notes>
@@ -2305,6 +2412,7 @@
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/moysklad-pod-klyuch</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2318,6 +2426,7 @@
     </offer>
     <offer id="moysklad-pricing">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/solutions/erp-moysklad</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 150 000 ₽</sales_notes>
@@ -2333,6 +2442,7 @@
       <param name="Конверсия">95</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/moysklad-pricing</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2346,6 +2456,7 @@
     </offer>
     <offer id="moysklad-ai">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/solutions/erp-moysklad</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -2361,6 +2472,7 @@
       <param name="Конверсия">94</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/moysklad-ai</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2374,6 +2486,7 @@
     </offer>
     <offer id="moysklad-chatgpt-ux">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/solutions/erp-moysklad</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -2389,6 +2502,7 @@
       <param name="Конверсия">94</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/moysklad-chatgpt-ux</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2402,6 +2516,7 @@
     </offer>
     <offer id="moysklad-crm-sync">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/solutions/erp-moysklad</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -2417,6 +2532,7 @@
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/moysklad-crm-sync</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2430,6 +2546,7 @@
     </offer>
     <offer id="moysklad-warehouse">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/solutions/erp-moysklad</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -2445,6 +2562,7 @@
       <param name="Конверсия">93</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/moysklad-warehouse</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2458,6 +2576,7 @@
     </offer>
     <offer id="yclients-amocrm-bitrix-moysklad-setup">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/crm-setup</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -2473,6 +2592,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/yclients-amocrm-bitrix-moysklad-setup</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2486,6 +2606,7 @@
     </offer>
     <offer id="yclients-setup">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/crm-setup</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 150 000 ₽</sales_notes>
@@ -2501,6 +2622,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/yclients-setup</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2514,6 +2636,7 @@
     </offer>
     <offer id="yclients-amocrm-setup">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/crm-setup</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -2529,6 +2652,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/yclients-amocrm-setup</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2542,6 +2666,7 @@
     </offer>
     <offer id="yclients-bitrix-setup">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/crm-setup</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -2557,6 +2682,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/yclients-bitrix-setup</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2570,6 +2696,7 @@
     </offer>
     <offer id="yclients-moysklad-setup">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/crm-setup</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -2585,6 +2712,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/yclients-moysklad-setup</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2598,6 +2726,7 @@
     </offer>
     <offer id="bitrix-amocrm-moysklad-setup">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/crm-setup</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -2613,6 +2742,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/bitrix-amocrm-moysklad-setup</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2626,6 +2756,7 @@
     </offer>
     <offer id="yclients-online-booking-setup">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/crm-setup</url>
       <price from="true">150000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 150 000 ₽</sales_notes>
@@ -2641,6 +2772,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/yclients-online-booking-setup</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2654,6 +2786,7 @@
     </offer>
     <offer id="complex-crm-moysklad-setup">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/crm-setup</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -2669,6 +2802,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/complex-crm-moysklad-setup</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2682,6 +2816,7 @@
     </offer>
     <offer id="yclients-crm-setup-pod-klyuch">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/crm-setup</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -2697,6 +2832,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/yclients-crm-setup-pod-klyuch</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
@@ -2710,6 +2846,7 @@
     </offer>
     <offer id="multi-crm-systems-setup">
       <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/crm-setup</url>
       <price from="true">300000</price>
       <currencyId>RUR</currencyId>
       <sales_notes>от 300 000 ₽</sales_notes>
@@ -2725,6 +2862,7 @@
       <param name="Конверсия">90</param>
       <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
       <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/multi-crm-systems-setup</param>
       <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
