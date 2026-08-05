@@ -1978,6 +1978,8 @@ const ru = {
         metaTitle: "amoCRM интеграция и автоматизация",
         metaDescription: "Интеграция amoCRM с сайтом, 1С, мессенджерами и документами. amoCRM API, автоматизация воронки.",
         metaKeywords: [
+          "интеграция amocrm",
+          "интеграция amoCRM",
           "amocrm интеграция",
           "amocrm автоматизация",
           "настройка amocrm",
@@ -1985,7 +1987,7 @@ const ru = {
           "интеграция сайта с amocrm",
         ],
         eyebrow: "amoCRM",
-        h1: "amoCRM интеграция под ваш процесс",
+        h1: "Интеграция amoCRM под ваш процесс",
         subtitle: "Связываем amoCRM с тем, что уже работает: сайт, Telegram, 1С, генерация документов и база знаний.",
         problemsTitle: "Типичный запрос",
         problems: [

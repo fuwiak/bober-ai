@@ -15,6 +15,16 @@ export type EnterpriseService = {
    * Default true.
    */
   inServicesCatalog?: boolean;
+  /**
+   * When true, YML offer/set omit `<url>` (no link to site landing).
+   * Prefer omit over placeholder URLs for Wordstat niche offers.
+   */
+  omitFeedUrl?: boolean;
+  /**
+   * When true, YML offer omits `<picture>` (no photo).
+   * Prefer omit over placeholder images for Wordstat niche offers.
+   */
+  omitFeedPicture?: boolean;
 };
 
 const IMAGES: Record<string, string> = {
@@ -240,6 +250,13 @@ const ruExtra: EnterpriseService[] = [
   { id: "ai-for-crm", slug: "ai-for-crm", title: "ИИ для CRM", description: "Ассистент в карточке сделки, квалификация лидов, черновики писем и КП.", about: "ИИ-слой поверх CRM — саммари, скоринг, follow-up без хаоса в воронке.", salesNotes: "от 300 000 ₽", deliveryDays: 21, price: 300000, serviceImage: IMAGES["ai-for-crm"], feedPath: "/integrations/ai-for-crm", inServicesCatalog: false },
   { id: "corporate-ai-assistant", slug: "corporate-ai-assistant", title: "Корпоративный ИИ-ассистент", description: "Корпоративная нейросеть и ассистент в закрытом контуре — без утечки данных.", about: "Приватный LLM-контур, политики доступа, интеграции с внутренними системами.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["corporate-ai-assistant"], feedPath: "/ai/corporate-neural-net", inServicesCatalog: false },
   { id: "business-process-audit", slug: "business-process-audit", title: "Аудит бизнес-процессов", description: "Карта потерь, приоритеты и смета пилота — до закупки разработки.", about: "Аудит процессов, ROI, дорожная карта на 90 дней и критерии приёмки пилота.", salesNotes: "от 150 000 ₽", deliveryDays: 10, price: 150000, serviceImage: IMAGES["business-process-audit"], feedPath: "/automation/business-process-audit", inServicesCatalog: false },
+  // amoCRM Wordstat 2026-08-05 — landings exist; YML: no picture, no page URL (omit fields).
+  { id: "amocrm-setup", slug: "amocrm-setup", title: "Настройка amoCRM", description: "Настроить amoCRM: воронка, поля, роботы и заявки с сайта.", about: "Настройка портала amoCRM под процесс продаж — фиксированная смета.", salesNotes: "от 150 000 ₽", deliveryDays: 21, price: 150000, serviceImage: IMAGES["crm-integration"], feedPath: "/integrations/amocrm-setup", inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
+  { id: "amocrm-implementation", slug: "amocrm-implementation", title: "Внедрение amoCRM", description: "Внедрить amoCRM под ключ: воронка, интеграции, регламенты и приёмка.", about: "Внедрение amoCRM с сметой, сроками и production-контуром.", salesNotes: "от 300 000 ₽", deliveryDays: 28, price: 300000, serviceImage: IMAGES["crm-integration"], feedPath: "/integrations/amocrm-implementation", inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
+  { id: "amocrm-services", slug: "amocrm-services", title: "Услуги amoCRM под ключ", description: "Интегратор amoCRM: настройка, внедрение, интеграции и AI.", about: "Пакеты услуг amoCRM со сметой до старта.", salesNotes: "от 150 000 ₽", deliveryDays: 21, price: 150000, serviceImage: IMAGES["crm-integration"], feedPath: "/integrations/amocrm-services", inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
+  { id: "amocrm-pricing", slug: "amocrm-pricing", title: "Сколько стоит внедрение amoCRM", description: "Цена настройки и внедрения amoCRM — понятные пакеты и смета до старта.", about: "Ориентиры бюджета на настройку, внедрение и AI-слой для amoCRM.", salesNotes: "от 150 000 ₽", deliveryDays: 14, price: 150000, serviceImage: IMAGES["crm-integration"], feedPath: "/integrations/amocrm-pricing", inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
+  { id: "amocrm-ai-agent", slug: "amocrm-ai-agent", title: "AI-агент для amoCRM", description: "ИИ-агент в amoCRM: квалификация, задачи и follow-up в карточке сделки.", about: "Агент с действиями в amoCRM и human-in-the-loop.", salesNotes: "от 500 000 ₽", deliveryDays: 28, price: 500000, serviceImage: IMAGES["ai-agent"], feedPath: "/integrations/amocrm-ai-agent", inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
+  { id: "crm-erp-development", slug: "crm-erp-development", title: "Разработка CRM и ERP", description: "Разработка CRM и ERP под процесс: доработка Bitrix24/amoCRM/1С или кастом.", about: "Архитектура и разработка контура CRM ↔ ERP со сметой до кода.", salesNotes: "от 500 000 ₽", deliveryDays: 42, price: 500000, serviceImage: IMAGES["crm-integration"], feedPath: "/solutions/crm-erp-development", inServicesCatalog: false, omitFeedUrl: true, omitFeedPicture: true },
 ];
 
 const enExtra: EnterpriseService[] = [

@@ -45,6 +45,12 @@ const FEED_CONVERSION: Record<string, number> = {
   "ai-for-crm": 93,
   "corporate-ai-assistant": 92,
   "business-process-audit": 95,
+  "amocrm-setup": 93,
+  "amocrm-implementation": 94,
+  "amocrm-services": 93,
+  "amocrm-pricing": 95,
+  "amocrm-ai-agent": 94,
+  "crm-erp-development": 93,
 };
 
 export function getFeedConversion(slug: string, fallback = 90) {
@@ -95,7 +101,7 @@ export function getOrderTelegramUrl(serviceTitle: string) {
 
 /** Resize each offer image to unique 320×320 JPEG for YML <picture>. */
 export function materializeFeedPictures(rootDir = process.cwd()) {
-  const offers = getEnterpriseServices("ru");
+  const offers = getEnterpriseServices("ru").filter((offer) => !offer.omitFeedPicture);
   const mapping: Record<string, string> = {};
   for (const offer of offers) {
     mapping[offer.id] = offer.serviceImage;
@@ -148,10 +154,12 @@ export function getServiceFeedXml(now = new Date()) {
 
   const sets = offers
     .map((offer) => {
-      const url = getServiceOfferUrl(offer);
+      const urlLine =
+        offer.omitFeedUrl === true
+          ? ""
+          : `\n        <url>${escapeXml(getServiceOfferUrl(offer))}</url>`;
       return `      <set id="${escapeXml(offer.slug)}">
-        <name>${escapeXml(offer.title)}</name>
-        <url>${escapeXml(url)}</url>
+        <name>${escapeXml(offer.title)}</name>${urlLine}
       </set>`;
     })
     .join("\n");
@@ -171,8 +179,14 @@ export function getServiceFeedXml(now = new Date()) {
 
   const offerBlocks = offers
     .map((offer) => {
-      const url = getServiceOfferUrl(offer);
-      const picture = `${FEED_SITE_URL}${feedPicturePath(offer.id)}`;
+      const urlLine =
+        offer.omitFeedUrl === true
+          ? ""
+          : `\n      <url>${escapeXml(getServiceOfferUrl(offer))}</url>`;
+      const pictureLine =
+        offer.omitFeedPicture === true
+          ? ""
+          : `\n      <picture>${escapeXml(`${FEED_SITE_URL}${feedPicturePath(offer.id)}`)}</picture>`;
       const conversion = getFeedConversion(offer.slug);
       const otherServices = offers
         .filter((item) => item.slug !== offer.slug)
@@ -184,16 +198,18 @@ export function getServiceFeedXml(now = new Date()) {
         .join("\n");
       const optionalReviewBlock = reviewParams ? `\n${reviewParams}` : "";
       const optionalOtherBlock = otherServices ? `\n${otherServices}` : "";
+      const orderLinkLine =
+        offer.omitFeedUrl === true
+          ? ""
+          : `\n      <param name="Ссылка на создание заказа">${escapeXml(getServiceOrderUrl(offer))}</param>`;
 
       return `    <offer id="${escapeXml(offer.id)}">
-      <name>${escapeXml(PROFILE.name)}</name>
-      <url>${escapeXml(url)}</url>
+      <name>${escapeXml(PROFILE.name)}</name>${urlLine}
       <price from="true">${offer.price}</price>
       <currencyId>RUR</currencyId>
       <sales_notes>${escapeXml(clampSalesNotes(offer.salesNotes))}</sales_notes>
       <categoryId>${FEED_CATEGORY_ID}</categoryId>
-      <set-ids>${escapeXml(offer.slug)}</set-ids>
-      <picture>${escapeXml(picture)}</picture>
+      <set-ids>${escapeXml(offer.slug)}</set-ids>${pictureLine}
       <description>${escapeXml(offer.title)}</description>
       <adult>false</adult>
       <expiry>P5Y</expiry>
@@ -203,8 +219,7 @@ export function getServiceFeedXml(now = new Date()) {
       <param name="Регион">${SITE_REGION}</param>
       <param name="Конверсия">${conversion}</param>
       <param name="Ссылка на телефон">${escapeXml(CONTACT_PHONE_URL)}</param>
-      <param name="Ссылка на чат">${escapeXml(TELEGRAM_URL)}</param>
-      <param name="Ссылка на создание заказа">${escapeXml(getServiceOrderUrl(offer))}</param>
+      <param name="Ссылка на чат">${escapeXml(TELEGRAM_URL)}</param>${orderLinkLine}
       <param name="Ссылка на профиль исполнителя">${escapeXml(FEED_SITE_URL)}</param>
       <param name="Исполнитель проверен">true</param>
       <param name="Организация">true</param>
