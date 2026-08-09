@@ -54,6 +54,7 @@ export const YANDEX_IMPORTANT_PATHS = [
   "/automation/proposal-generation",
   "/solutions/knowledge-base",
   "/ai/private-llm",
+  "/portfolio/finance-ops-slack-airtable",
   "/portfolio/bitrix24-kwork-crm",
   "/portfolio/wildberries-independent-sales-channel",
   "/portfolio/invoice-processing-pipeline",

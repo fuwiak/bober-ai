@@ -44,6 +44,7 @@ export const PORTFOLIO_IMAGES = {
   wildberriesChannel: "/cases/wildberries-independent-sales-channel.jpg",
   aiSalesLoop: "/stock/offers/ai-sales-loop.jpg",
   erpMoysklad: "/diagrams/erp-sync.svg",
+  financeOpsAirtable: "/portfolio/finance-ops-airtable-automations.png",
 } as const;
 export const SITE_NAME = "Bober AI Systems";
 export const SITE_TAGLINE_RU = "Автоматизация КП, документов и CRM с ИИ";

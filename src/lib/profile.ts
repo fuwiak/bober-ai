@@ -242,6 +242,7 @@ export type PortfolioItem = {
 
 /** Корпоративные кейсы; остальное в листингах считается МСБ. */
 const ENTERPRISE_PORTFOLIO_SLUGS = new Set([
+  "finance-ops-slack-airtable",
   "kaspersky-ai-assistant",
   "elia-suite",
   "bitrix24-erp-sync",
@@ -262,6 +263,7 @@ function withPortfolioSegment(item: PortfolioItem): PortfolioItem {
 /** Кейсы в маркетинговых листингах (главная /portfolio). Остальные остаются как detail-страницы. */
 /** Homepage /portfolio grid — enterprise B2B proofs only (no low-ticket Kwork offer). */
 export const PORTFOLIO_LISTING_SLUGS = [
+  "finance-ops-slack-airtable",
   "erp-moysklad-chatgpt-ux",
   "yandex-telemost-agent",
   "ai-sales-loop",
@@ -275,6 +277,54 @@ export const PORTFOLIO_LISTING_SLUGS = [
 ] as const;
 
 export const PORTFOLIO: PortfolioItem[] = [
+  {
+    id: "finance-ops-slack-airtable",
+    slug: "finance-ops-slack-airtable",
+    title: "Finance ops: Slack + Claude + Airtable без автономного учёта ИИ",
+    subtitle: "AI integration + workflow hardening: staging, approval, idempotent posting, P&L",
+    seoTitle:
+      "Кейс: finance ops на Slack, Claude и Airtable — AI только для интерпретации, учёт детерминированный",
+    kind: "case",
+    imageBadge: "Корпорации",
+    metric: "Ноль автономного учёта LLM · idempotent posting · auditable approval",
+    metricMethod:
+      "Перестройка контура finance ops: ИИ отвечает за извлечение и интерпретацию, детерминированные workflow — за approval, дедупликацию, posting и отчётность.",
+    role: "Архитектура AI ops и hardening finance workflow",
+    scope:
+      "Slack-фронт, Claude-экстракция, Airtable как source of truth, approval/posting, booking ops, P&L/ledgers, миграция с Google Sheets/Apps Script",
+    duration: "Аудит и hardening 3–8 недель в зависимости от объёма автоматизаций",
+    architecture:
+      "Slack → AI extraction → controlled staging → human approval → deterministic posting → ledgers / P&L",
+    processSteps: [
+      "Аудит параллельных автоматизаций и точек двойного учёта",
+      "Разделение: Claude только интерпретация, не posting",
+      "Controlled staging в Airtable + PRECHECK idempotency guard",
+      "Human approval → AUTO-POST в live-таблицы",
+      "P&L auto-link, booking reminders, аудитный след",
+    ],
+    productionNotes: [
+      "До: Google Apps Script + Claude loop + Airtable работали параллельно и плодили дубликаты",
+      "После: одно source of truth, idempotent posting, auditable approval",
+      "LLM не пишет в ledger самостоятельно — только staging для человека",
+      "Автоматизации: PRECHECK idempotency, P&L auto-link, booking → Slack",
+    ],
+    whyCustom:
+      "Подключить Claude к Airtable — не то же самое, что finance ops с риском двойного учёта. Нужны staging, approval и детерминированный posting.",
+    stack: "Slack · Claude · Airtable · Automations · P&L / ledgers",
+    image: PORTFOLIO_IMAGES.financeOpsAirtable,
+    imageAlt: "Airtable Automations: PRECHECK idempotency, P&L auto-link, booking reminders в Slack",
+    imageCaption:
+      "Контур после hardening: PRECHECK → approval → AUTO-POST; ИИ не проводит проводки сам",
+    category: "AI ops и финансы",
+    featured: true,
+    skills: ["Slack", "Claude", "Airtable", "Workflow", "Idempotency", "P&L"],
+    description:
+      "Работал finance ops на Slack, Claude, Airtable и Google Sheets, но несколько параллельных автоматизаций создавали дубликаты и смешивали логику ИИ с учётом. Риск — неверный ledger и P&L.",
+    solution:
+      "Перестроили архитектуру: ИИ отвечает только за интерпретацию и извлечение. Детерминированные workflow — за staging, human approval, дедупликацию, posting и отчётность. Миграция со старого Google Sheets/Apps Script и ремонт ошибочной схемы после прежнего внедрения.",
+    result:
+      "Одно source of truth в Airtable, idempotent posting, auditable approval, ноль автономного учёта через LLM. Slack остаётся фронтом для команды; P&L и booking ops — на контролируемых автоматизациях.",
+  },
   {
     id: "erp-moysklad-chatgpt-ux",
     slug: "erp-moysklad-chatgpt-ux",
