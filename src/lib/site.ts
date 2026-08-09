@@ -43,7 +43,7 @@ export const PORTFOLIO_IMAGES = {
   bitrixKwork: "/cases/bitrix24-kwork-crm.jpg",
   wildberriesChannel: "/cases/wildberries-independent-sales-channel.jpg",
   aiSalesLoop: "/stock/offers/ai-sales-loop.jpg",
-  erpMoysklad: "/diagrams/erp-sync.svg",
+  erpMoysklad: "/diagrams/erp-moysklad-chat.svg",
   financeOpsAirtable: "/portfolio/finance-ops-airtable-automations.png",
 } as const;
 export const SITE_NAME = "Bober AI Systems";
