@@ -113,6 +113,47 @@ export function getServiceOfferUrl(offer: Pick<EnterpriseService, "slug" | "feed
   return url;
 }
 
+/**
+ * Yandex DupOfferName: several Wordstat satellites share one landing feedPath.
+ * Keep one offer (and set) per unique URL — prefer slug matching the path basename.
+ */
+export function dedupeFeedOffersByUrl(offers: EnterpriseService[]): EnterpriseService[] {
+  const byUrl = new Map<string, EnterpriseService[]>();
+  for (const offer of offers) {
+    const url = getServiceOfferUrl(offer);
+    const group = byUrl.get(url);
+    if (group) group.push(offer);
+    else byUrl.set(url, [offer]);
+  }
+
+  const picked: EnterpriseService[] = [];
+  for (const group of byUrl.values()) {
+    if (group.length === 1) {
+      picked.push(group[0]!);
+      continue;
+    }
+    const ranked = [...group].sort((a, b) => {
+      const score = (item: EnterpriseService) => {
+        const path = (item.feedPath?.trim() || `/services/${item.slug}`).replace(/\/$/, "");
+        const base = path.split("/").pop() || "";
+        let points = 0;
+        if (item.slug === base || item.id === base) points += 100;
+        if (item.inServicesCatalog !== false) points += 10;
+        if (item.omitFeedPicture !== true) points += 5;
+        return points;
+      };
+      const diff = score(b) - score(a);
+      if (diff !== 0) return diff;
+      return group.indexOf(a) - group.indexOf(b);
+    });
+    picked.push(ranked[0]!);
+  }
+
+  // Preserve original catalog order.
+  const keep = new Set(picked.map((item) => item.id));
+  return offers.filter((item) => keep.has(item.id));
+}
+
 /** Dedicated order form page — Yandex «создание заказа» must land on a working form, not only a modal CTA. */
 export function getServiceOrderUrl(offer: Pick<EnterpriseService, "slug"> | string) {
   const slug = typeof offer === "string" ? offer : offer.slug;
@@ -166,7 +207,8 @@ export function materializeMicrositePictures(
 
 export function getServiceFeedXml(now = new Date()) {
   // Only live canonical offers — no legacy redirect/404 slugs.
-  const offers = getEnterpriseServices("ru");
+  // One offer per URL (Wordstat satellites share landings → Yandex DupOfferName).
+  const offers = dedupeFeedOffersByUrl(getEnterpriseServices("ru"));
   const date = now.toISOString().slice(0, 16).replace("T", " ");
 
   const escapeXml = (value: string) =>
