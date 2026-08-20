@@ -162,6 +162,8 @@ async function sendSmtpMail(params: {
       host: smtpHost,
       port: smtpPort,
       secure: smtpSecure,
+      // Selectel VDS often has broken/no IPv6 egress — Yandex MX resolves AAAA first.
+      family: 4,
       connectionTimeout: 8_000,
       greetingTimeout: 8_000,
       socketTimeout: 15_000,
