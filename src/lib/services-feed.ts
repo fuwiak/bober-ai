@@ -154,6 +154,65 @@ export function dedupeFeedOffersByUrl(offers: EnterpriseService[]): EnterpriseSe
   return offers.filter((item) => keep.has(item.id));
 }
 
+/** Collapse verb/noun paraphrases so «Настройка»/«Настроить» share one key. */
+export function normalizeFeedTitle(title: string): string {
+  let text = title.toLowerCase().replaceAll("ё", "е");
+  text = text.replace(/[^a-zа-я0-9]+/g, " ").trim();
+  const replacements: Array<[RegExp, string]> = [
+    [/\bнастроить\b/g, "настройка"],
+    [/\bвнедрить\b/g, "внедрение"],
+    [/\bразработать\b/g, "разработка"],
+    [/\bсоздать\b/g, "создание"],
+  ];
+  for (const [pattern, value] of replacements) {
+    text = text.replace(pattern, value);
+  }
+  return text.replace(/\s+/g, " ").trim();
+}
+
+/**
+ * Yandex DupOfferName also fires on near-duplicate service titles (description),
+ * e.g. «Настройка amoCRM» vs «Настроить amoCRM».
+ */
+export function dedupeFeedOffersByTitle(offers: EnterpriseService[]): EnterpriseService[] {
+  const byTitle = new Map<string, EnterpriseService[]>();
+  for (const offer of offers) {
+    const key = normalizeFeedTitle(offer.title);
+    const group = byTitle.get(key);
+    if (group) group.push(offer);
+    else byTitle.set(key, [offer]);
+  }
+
+  const picked: EnterpriseService[] = [];
+  for (const group of byTitle.values()) {
+    if (group.length === 1) {
+      picked.push(group[0]!);
+      continue;
+    }
+    const ranked = [...group].sort((a, b) => {
+      const score = (item: EnterpriseService) => {
+        let points = 0;
+        if (item.inServicesCatalog !== false) points += 10;
+        if (item.omitFeedPicture !== true) points += 5;
+        if (!item.feedPath) points += 2;
+        return points;
+      };
+      const diff = score(b) - score(a);
+      if (diff !== 0) return diff;
+      return group.indexOf(a) - group.indexOf(b);
+    });
+    picked.push(ranked[0]!);
+  }
+
+  const keep = new Set(picked.map((item) => item.id));
+  return offers.filter((item) => keep.has(item.id));
+}
+
+export function selectFeedOffers(offers: EnterpriseService[]): EnterpriseService[] {
+  const visible = offers.filter((offer) => offer.omitFromFeed !== true);
+  return dedupeFeedOffersByTitle(dedupeFeedOffersByUrl(visible));
+}
+
 /** Dedicated order form page — Yandex «создание заказа» must land on a working form, not only a modal CTA. */
 export function getServiceOrderUrl(offer: Pick<EnterpriseService, "slug"> | string) {
   const slug = typeof offer === "string" ? offer : offer.slug;
@@ -206,9 +265,8 @@ export function materializeMicrositePictures(
 }
 
 export function getServiceFeedXml(now = new Date()) {
-  // Only live canonical offers — no legacy redirect/404 slugs.
-  // One offer per URL (Wordstat satellites share landings → Yandex DupOfferName).
-  const offers = dedupeFeedOffersByUrl(getEnterpriseServices("ru"));
+  // Canonical unique offers: no shared URLs, no paraphrase titles (Yandex DupOfferName).
+  const offers = selectFeedOffers(getEnterpriseServices("ru"));
   const date = now.toISOString().slice(0, 16).replace("T", " ");
 
   const escapeXml = (value: string) =>
