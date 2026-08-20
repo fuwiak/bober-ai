@@ -15,14 +15,14 @@ import fetch from "./lib/fetch.mjs";
  * - https://docs.selectel.ru/api/dns-actual/
  */
 
-const SES_API = "https://api.selectel.ru/ses/v1";
+const SES_API = process.env.SELECTEL_SES_API?.trim() || "https://api.selectel.ru/ses";
 const DNS_API = "https://api.selectel.ru/domains/v2";
 
 const config = {
   token: process.env.SELECTEL_IAM_TOKEN?.trim(),
-  domain: process.env.SELECTEL_DOMAIN?.trim() || "tony-ai.ru",
-  sender: process.env.SELECTEL_MAIL_FROM?.trim() || "hello@tony-ai.ru",
-  resourceName: process.env.SELECTEL_SES_RESOURCE_NAME?.trim() || "tony-ai-mail",
+  domain: process.env.SELECTEL_DOMAIN?.trim() || "bober-systems.ru",
+  sender: process.env.SELECTEL_MAIL_FROM?.trim() || "contact@bober-systems.ru",
+  resourceName: process.env.SELECTEL_SES_RESOURCE_NAME?.trim() || "bober-systems-mail",
   dkimValue: process.env.SELECTEL_DKIM_VALUE?.trim(),
   serviceUser: process.env.SELECTEL_SERVICE_USER?.trim(),
   servicePassword: process.env.SELECTEL_SERVICE_PASSWORD?.trim(),
@@ -192,7 +192,7 @@ async function linkDomain(resourceId) {
   await apiRequest(SES_API, `/resources/${resourceId}/domains`, {
     method: "POST",
     json: true,
-    body: JSON.stringify({ name: config.domain }),
+    body: JSON.stringify({ name: config.domain, ttl: 3600 }),
   });
   ok(`Домен привязан: ${config.domain}`);
 }
@@ -238,6 +238,7 @@ async function upsertTxt(zoneId, name, content, ttl = 3600) {
       method: "PATCH",
       json: true,
       body: JSON.stringify({
+        ttl: existing.ttl || ttl,
         records: [...(existing.records || []).map((record) => ({ content: record.content })), { content: quoted }],
       }),
     });
@@ -270,14 +271,21 @@ async function ensureSpf(zoneId, rrsets) {
   }
 
   if (spfRecord) {
-    const updated = spfRecord.content.replace(/"$/, "").replace(/^"/, "");
-    const merged = updated.includes("v=spf1")
-      ? updated.replace(/([?~+-]all)\s*$/, "").trim() + ` include:spf.mail.selcloud.ru ?all`
-      : `v=spf1 include:spf.mail.selcloud.ru ?all`;
+    const updated = spfRecord.content.replace(/"$/g, "").replace(/^"/g, "");
+    let merged;
+    if (/redirect=/i.test(updated)) {
+      // redirect= exclusive — replace with includes so Selectel can send
+      merged = `v=spf1 include:spf.mail.selcloud.ru include:_spf.yandex.net ~all`;
+    } else {
+      merged = updated.includes(spfNeedle)
+        ? updated
+        : updated.replace(/([?~+-]all)\s*$/, "").trim() + ` include:spf.mail.selcloud.ru ?all`;
+    }
     await apiRequest(DNS_API, `/zones/${zoneId}/rrset/${root.id}`, {
       method: "PATCH",
       json: true,
       body: JSON.stringify({
+        ttl: root.ttl || 3600,
         records: rootRecords.map((record) =>
           record.content === spfRecord.content ? { content: `"${merged}"` } : { content: record.content },
         ),

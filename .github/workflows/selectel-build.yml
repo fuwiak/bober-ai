@@ -114,12 +114,18 @@ jobs:
           TELEGRAM_BUSINESS_BOT_TOKEN: ${{ secrets.TELEGRAM_BUSINESS_BOT_TOKEN }}
           TELEGRAM_BUSINESS_WEBHOOK_SECRET: ${{ secrets.TELEGRAM_BUSINESS_WEBHOOK_SECRET }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_SECURE: ${{ secrets.SMTP_SECURE }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          CONTACT_FROM_EMAIL: ${{ secrets.CONTACT_FROM_EMAIL }}
+          CONTACT_TO_EMAIL: ${{ secrets.CONTACT_TO_EMAIL }}
         run: |
           set -euo pipefail
           ssh -i ~/.ssh/bober_selectel -o IdentitiesOnly=yes -o ConnectTimeout=20 \
             -o StrictHostKeyChecking=accept-new root@45.80.131.136 \
-            "GIT_SHA=$(printf %q "$GIT_SHA") GIT_REF=$(printf %q "$GIT_REF") TELEGRAM_BUSINESS_BOT_TOKEN=$(printf %q "$TELEGRAM_BUSINESS_BOT_TOKEN") TELEGRAM_BUSINESS_WEBHOOK_SECRET=$(printf %q "$TELEGRAM_BUSINESS_WEBHOOK_SECRET") OPENROUTER_API_KEY=$(printf %q "${OPENROUTER_API_KEY:-}") bash -s" <<'EOS'
-          set -euo pipefail
+            "GIT_SHA=$(printf %q "$GIT_SHA") GIT_REF=$(printf %q "$GIT_REF") TELEGRAM_BUSINESS_BOT_TOKEN=$(printf %q "$TELEGRAM_BUSINESS_BOT_TOKEN") TELEGRAM_BUSINESS_WEBHOOK_SECRET=$(printf %q "$TELEGRAM_BUSINESS_WEBHOOK_SECRET") OPENROUTER_API_KEY=$(printf %q "${OPENROUTER_API_KEY:-}") SMTP_HOST=$(printf %q "${SMTP_HOST:-}") SMTP_PORT=$(printf %q "${SMTP_PORT:-}") SMTP_SECURE=$(printf %q "${SMTP_SECURE:-}") SMTP_USER=$(printf %q "${SMTP_USER:-}") SMTP_PASS=$(printf %q "${SMTP_PASS:-}") CONTACT_FROM_EMAIL=$(printf %q "${CONTACT_FROM_EMAIL:-}") CONTACT_TO_EMAIL=$(printf %q "${CONTACT_TO_EMAIL:-}") bash -s" <<'EOS'          set -euo pipefail
           ROOT=/opt/bober-ai
           REPO="$ROOT/src"
           STAGE="$ROOT/src.new"
@@ -138,16 +144,16 @@ jobs:
           [ -f "$STAGE/Dockerfile" ] || { echo "NO_DOCKERFILE in tarball"; ls -la "$STAGE" | head; exit 1; }
           [ -f "$STAGE/deploy/docker-compose.yml" ] || { echo "NO_COMPOSE in tarball"; exit 1; }
 
-          # Keep SMTP/leads env from previous tree or host deploy dir
-          if [ -f "$REPO/deploy/.env" ]; then
-            cp -a "$REPO/deploy/.env" "$STAGE/deploy/.env"
-          elif [ -f "$ROOT/deploy/.env" ]; then
+          # Host durable env first (survives src replace), then previous repo tree
+          if [ -f "$ROOT/deploy/.env" ]; then
             cp -a "$ROOT/deploy/.env" "$STAGE/deploy/.env"
+          elif [ -f "$REPO/deploy/.env" ]; then
+            cp -a "$REPO/deploy/.env" "$STAGE/deploy/.env"
           elif [ -f "$ROOT/.env" ]; then
             cp -a "$ROOT/.env" "$STAGE/deploy/.env"
           fi
 
-          # Inject Telegram Business bot secrets (from GitHub Actions secrets)
+          # Inject runtime secrets (from GitHub Actions secrets) — overwrite each deploy
           ENV_FILE="$STAGE/deploy/.env"
           mkdir -p "$STAGE/deploy"
           touch "$ENV_FILE"
@@ -164,9 +170,22 @@ jobs:
           set_env_kv TELEGRAM_BUSINESS_BOT_TOKEN "${TELEGRAM_BUSINESS_BOT_TOKEN:-}"
           set_env_kv TELEGRAM_BUSINESS_WEBHOOK_SECRET "${TELEGRAM_BUSINESS_WEBHOOK_SECRET:-}"
           set_env_kv OPENROUTER_API_KEY "${OPENROUTER_API_KEY:-}"
+          # Selectel SES (VDS blocks Yandex SMTP) — keep contact form mail alive across deploys
+          set_env_kv SMTP_HOST "${SMTP_HOST:-}"
+          set_env_kv SMTP_PORT "${SMTP_PORT:-}"
+          set_env_kv SMTP_SECURE "${SMTP_SECURE:-}"
+          set_env_kv SMTP_USER "${SMTP_USER:-}"
+          set_env_kv SMTP_PASS "${SMTP_PASS:-}"
+          set_env_kv CONTACT_FROM_EMAIL "${CONTACT_FROM_EMAIL:-}"
+          set_env_kv CONTACT_TO_EMAIL "${CONTACT_TO_EMAIL:-}"
+          if [ -n "${SMTP_PASS:-}" ] && [ -n "${SMTP_USER:-}" ]; then
+            set_env_kv CONTACT_SKIP_SMTP "0"
+            set_env_kv CONTACT_DRY_RUN "0"
+          fi
           mkdir -p "$ROOT/deploy"
           cp -a "$ENV_FILE" "$ROOT/deploy/.env"
           echo "deploy/.env telegram keys: $(grep -c '^TELEGRAM_BUSINESS_' "$ENV_FILE" || true)"
+          echo "deploy/.env smtp configured: $(grep -c '^SMTP_HOST=.' "$ENV_FILE" || true) skip=$(grep '^CONTACT_SKIP_SMTP=' "$ENV_FILE" || true)"
 
           rm -rf "$REPO.bak"
           if [ -d "$REPO" ]; then
