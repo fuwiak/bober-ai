@@ -1,0 +1,25 @@
+---
+/**
+ * Отдельный лендинг: интеграция amoCRM с мессенджерами, телефонией и сайтом.
+ */
+import SeoServicePage from "@/components/SeoServicePage.astro";
+import { AMOCRM_MESSENGERS_CONTENT, AMOCRM_MESSENGERS_KEYWORDS } from "@/lib/amocrm-landing";
+
+export const prerender = true;
+---
+
+<SeoServicePage
+  slug="amocrm-messengers"
+  locale="ru"
+  content={AMOCRM_MESSENGERS_CONTENT}
+  pagePath="/amocrm/messengers"
+  serviceSlug="amocrm-setup"
+  keywords={[...AMOCRM_MESSENGERS_KEYWORDS]}
+  formSource="amocrm-messengers-landing"
+  formDefaultService="amoCRM / мессенджеры, телефония и сайт"
+  breadcrumbItems={[
+    { name: "Услуги", path: "/services" },
+    { name: "amoCRM", path: "/amocrm" },
+    { name: "Мессенджеры и сайт", path: "/amocrm/messengers" },
+  ]}
+/>

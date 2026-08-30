@@ -32,7 +32,7 @@ export const MARKET_HOME_OFFERS: MarketOffer[] = [
   },
   {
     id: "amocrm-messengers",
-    href: "/integrations/amocrm-messengers",
+    href: "/amocrm/messengers",
     title: "Интеграция amoCRM с Telegram, MAX, телефонией и сайтом",
     description:
       "Все обращения → в amoCRM. Переписка, звонки, заявки с сайта и источники лидов сохраняются в карточке клиента.",
@@ -41,7 +41,7 @@ export const MARKET_HOME_OFFERS: MarketOffer[] = [
   },
   {
     id: "amocrm-sales",
-    href: "/automation/amocrm-sales",
+    href: "/amocrm/sales",
     title: "Автоматизация воронки продаж в amoCRM",
     description:
       "Digital Pipeline, Salesbot, задачи, триггеры и распределение лидов. Меньше ручной работы и потерянных заявок.",
