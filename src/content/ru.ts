@@ -588,6 +588,22 @@ const ru = {
         detailsHref: "/bitrix",
       },
       {
+        name: "Настройка YClients и amoCRM",
+        price: "от 300 000 ₽",
+        duration: "2–4 недели",
+        forWhom: "Онлайн-запись и CRM живут отдельно — записи не становятся сделками",
+        result: "YClients ↔ amoCRM: запись клиента уходит в воронку без ручного переноса.",
+        badge: "Онлайн-запись · CRM",
+        includes: [
+          "Настройка YClients и amoCRM",
+          "Связка записи со сделкой",
+          "Уведомления и ответственный в CRM",
+        ],
+        featured: true,
+        tier: "implementation",
+        detailsHref: "/integrations/crm-setup",
+      },
+      {
         name: "Распознавание первичных документов в 1С",
         price: "от 300 000 ₽",
         duration: "2–4 недели",
