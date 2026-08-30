@@ -17,7 +17,7 @@ const { locale, label, title, subtitle, ctaLabel } = Astro.props;
   <div class="container-editorial">
     <span class="section-label">{label}</span>
     <h2 class="section-title mt-4">{title}</h2>
-    <p class="body-copy mt-4 max-w-2xl text-base">{subtitle}</p>
+    {subtitle ? <p class="body-copy mt-4 max-w-2xl text-base">{subtitle}</p> : null}
 
     <div class="market-offers-grid mt-10">
       {
