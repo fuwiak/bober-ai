@@ -70,7 +70,7 @@ const IMAGES: Record<string, string> = {
   "business-process-audit": "/stock/ai-discovery-roadmap.jpg",
   "wildberries-independent-sales-channel": "/cases/wildberries-independent-sales-channel.jpg",
   "secure-private-ai-cloud": "/stock/private-llm.jpg",
-  "erp-moysklad": "/stock/crm-integration.jpg",
+  "erp-moysklad": "/portfolio/erp-moysklad-chatgpt-ux.webp",
 };
 
 const ruExtra: EnterpriseService[] = [
