@@ -21,6 +21,7 @@ function generateWithTsx() {
     import { getServiceFeedXml, materializeFeedPictures, materializeMicrositePictures } from "./src/lib/services-feed.ts";
     import { getBitrixFeedXml, getPartnersFeedXml } from "./src/lib/microsite-feeds.ts";
     import { BITRIX_PACKAGES, BITRIX_WORDSTAT_SERVICES } from "./src/lib/bitrix-landing.ts";
+    import { resolveSeoRedirect } from "./src/lib/seo-redirects.ts";
 
     const root = ${JSON.stringify(root)};
     writeFileSync(${JSON.stringify(mainOut)}, getServiceFeedXml(), "utf8");
@@ -42,6 +43,23 @@ function generateWithTsx() {
       const bad = notes.filter((n) => n.length > 50);
       if (bad.length) {
         throw new Error(\`\${label} feed: sales_notes >50 chars: \${bad.slice(0, 3).join(" | ")}\`);
+      }
+      const offerCount = (xml.match(/<offer[\\s>]/g) || []).length;
+      const setCount = (xml.match(/<set[\\s>]/g) || []).length;
+      if (label === "main") {
+        if (offerCount < 25) {
+          throw new Error(\`main feed: Yandex quality needs ≥25 offers/sets in search, got offers=\${offerCount}\`);
+        }
+        if (setCount < 25) {
+          throw new Error(\`main feed: Yandex quality needs ≥25 sets, got \${setCount}\`);
+        }
+        const urls = [...xml.matchAll(/<url>([^<]+)<\\/url>/g)].map((m) => {
+          try { return new URL(m[1]).pathname.replace(/\\/$/, "") || "/"; } catch { return ""; }
+        }).filter(Boolean);
+        const redirected = [...new Set(urls.filter((p) => resolveSeoRedirect(p)))];
+        if (redirected.length) {
+          throw new Error(\`main feed has 301 URLs (not in search): \${redirected.slice(0, 8).join(", ")}\`);
+        }
       }
     }
 

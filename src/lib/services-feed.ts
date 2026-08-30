@@ -1,9 +1,20 @@
 import { spawnSync } from "node:child_process";
 import { join } from "node:path";
-import { CONTACT_EMAIL, SITE_NAME, SITE_REGION, SITE_URL, TELEGRAM_URL } from "@/lib/site";
+import {
+  CONTACT_EMAIL,
+  SITE_NAME,
+  SITE_REGION,
+  SITE_URL,
+  STOCK_IMAGES,
+  TELEGRAM_URL,
+} from "@/lib/site";
 import { PROFILE, REVIEWS } from "@/lib/profile";
 import { getEnterpriseServices, type EnterpriseService } from "@/lib/enterprise-services";
 import { FEED_RATING, FEED_REVIEWS_COUNT } from "@/lib/feed-rating";
+import { KASPERSKY_PAGE, KASPERSKY_PRODUCTS } from "@/lib/kaspersky-page";
+import { LANDING_PAGES, landingPath } from "@/lib/landing-pages";
+import { getLandingSeoServiceContent } from "@/lib/landing-seo-service";
+import { resolveSeoRedirect } from "@/lib/seo-redirects";
 
 export { FEED_RATING, FEED_REVIEWS_COUNT } from "@/lib/feed-rating";
 
@@ -100,17 +111,200 @@ function clampSalesNotes(value: string, max = 50) {
   return `${text.slice(0, Math.max(0, max - 1)).trimEnd()}…`;
 }
 
-export function getServiceOfferUrl(offer: Pick<EnterpriseService, "slug" | "feedPath"> | string) {
-  if (typeof offer === "string") {
-    return `${FEED_SITE_URL}/services/${offer}`;
-  }
-  const path = offer.feedPath?.trim() || `/services/${offer.slug}`;
+function rasterFeedImage(src: string, fallback: string) {
+  return /\.svg$/i.test(src) ? fallback : src;
+}
+
+/**
+ * Yandex quality check needs ≥25 set URLs already in search.
+ * 301/canonical sources never enter the index (REDIRECT_NOTSEARCHABLE).
+ */
+export function canonicalizeFeedPath(path: string): string {
   const normalized = path.startsWith("/") ? path : `/${path}`;
-  const url = `${FEED_SITE_URL}${normalized}`;
+  const bare = normalized.length > 1 ? normalized.replace(/\/+$/, "") : normalized || "/";
+  return resolveSeoRedirect(bare) || bare;
+}
+
+export function getServiceOfferUrl(
+  offer: Pick<EnterpriseService, "slug" | "feedPath"> | string,
+) {
+  if (typeof offer === "string") {
+    const path = canonicalizeFeedPath(`/services/${offer}`);
+    return `${FEED_SITE_URL}${path}`;
+  }
+  const path = canonicalizeFeedPath(offer.feedPath?.trim() || `/services/${offer.slug}`);
+  const url = `${FEED_SITE_URL}${path}`;
   if (!url.startsWith("https://") || !url.includes("bober-systems.ru")) {
     throw new Error(`Invalid feed offer URL for ${offer.slug}: ${url}`);
   }
   return url;
+}
+
+const FEED_LANDING_CATEGORIES = new Set(["automation", "integrations", "solutions", "ai"]);
+
+const HUB_FEED_PAGES: Array<{
+  path: string;
+  slug: string;
+  title: string;
+  about: string;
+  parentSlug: string;
+  image: string;
+}> = [
+  {
+    path: "/services",
+    slug: "hub-services",
+    title: "Услуги внедрения ИИ и автоматизации",
+    about: "Каталог услуг: аудит, CRM, документы, агенты продаж и приватный ИИ-контур.",
+    parentSlug: "business-process-automation",
+    image: STOCK_IMAGES.team,
+  },
+  {
+    path: "/integrations",
+    slug: "hub-integrations",
+    title: "Интеграции CRM, 1С и мессенджеров",
+    about: "Связки Bitrix24, amoCRM, 1С, телефонии и мессенджеров без ручного копирования.",
+    parentSlug: "crm-integration",
+    image: STOCK_IMAGES.automation,
+  },
+  {
+    path: "/solutions",
+    slug: "hub-solutions",
+    title: "Готовые ИИ-решения для бизнеса",
+    about: "RAG, OCR, голосовые сценарии и контуры под задачу — фиксированная смета.",
+    parentSlug: "enterprise-ai-assistant",
+    image: STOCK_IMAGES.roadmap,
+  },
+  {
+    path: "/ai",
+    slug: "hub-ai",
+    title: "Внедрение ИИ в процессы компании",
+    about: "Аудит, пилот с KPI и промышленный запуск LLM/агентов в вашем контуре.",
+    parentSlug: "ai-consulting",
+    image: STOCK_IMAGES.security,
+  },
+  {
+    path: "/pricing",
+    slug: "hub-pricing",
+    title: "Цены на внедрение ИИ и автоматизацию",
+    about: "Пакеты и ориентиры бюджета: настройка CRM, документы, ИИ-контур.",
+    parentSlug: "ai-discovery-roadmap",
+    image: STOCK_IMAGES.sales,
+  },
+  {
+    path: "/kaspersky",
+    slug: "hub-kaspersky",
+    title: KASPERSKY_PAGE.h1Ru,
+    about: KASPERSKY_PAGE.subtitleRu,
+    parentSlug: "secure-private-ai-cloud",
+    image: STOCK_IMAGES.security,
+  },
+  {
+    path: "/amocrm",
+    slug: "hub-amocrm",
+    title: "Внедрение и автоматизация amoCRM",
+    about: "Воронка, роботы, интеграции и ИИ-слой в amoCRM — смета до старта.",
+    parentSlug: "amocrm-setup",
+    image: STOCK_IMAGES.automation,
+  },
+  {
+    path: "/secure-ai",
+    slug: "hub-secure-ai",
+    title: "Приватный контур ИИ без утечки данных",
+    about: "On-prem и изолированное облако: LLM, RAG, доступы и мониторинг.",
+    parentSlug: "private-llm-gigachat",
+    image: STOCK_IMAGES.security,
+  },
+];
+
+function cloneParent(
+  parent: EnterpriseService | undefined,
+  extra: Pick<EnterpriseService, "id" | "slug" | "title" | "description" | "about" | "feedPath" | "serviceImage"> &
+    Partial<Pick<EnterpriseService, "orderSlug">>,
+): EnterpriseService {
+  return {
+    id: extra.id,
+    slug: extra.slug,
+    title: extra.title,
+    description: extra.description,
+    about: extra.about,
+    salesNotes: parent?.salesNotes || "от 150 000 ₽",
+    deliveryDays: parent?.deliveryDays || 21,
+    price: parent?.price || 150000,
+    serviceImage: extra.serviceImage,
+    feedPath: extra.feedPath,
+    inServicesCatalog: false,
+    orderSlug: extra.orderSlug || parent?.slug,
+  };
+}
+
+/** Extra 200-OK landings so quality check can pick ≥25 set URLs already in search. */
+export function extraFeedOffers(): EnterpriseService[] {
+  const bySlug = new Map(getEnterpriseServices("ru").map((item) => [item.slug, item]));
+  const extras: EnterpriseService[] = [];
+
+  for (const hub of HUB_FEED_PAGES) {
+    if (resolveSeoRedirect(hub.path)) continue;
+    const parent = bySlug.get(hub.parentSlug);
+    extras.push(
+      cloneParent(parent, {
+        id: hub.slug,
+        slug: hub.slug,
+        title: hub.title,
+        description: hub.about,
+        about: hub.about,
+        feedPath: hub.path,
+        serviceImage: rasterFeedImage(hub.image, STOCK_IMAGES.team),
+        orderSlug: hub.parentSlug,
+      }),
+    );
+  }
+
+  for (const page of LANDING_PAGES) {
+    if (!FEED_LANDING_CATEGORIES.has(page.category)) continue;
+    const path = landingPath(page);
+    if (resolveSeoRedirect(path)) continue;
+    const content = getLandingSeoServiceContent(page, "ru");
+    const title = content?.h1?.trim();
+    if (!content || !title) continue;
+    const parent = bySlug.get(page.serviceSlug);
+    const fallbackImage = parent?.serviceImage || STOCK_IMAGES.team;
+    extras.push(
+      cloneParent(parent, {
+        id: `land-${page.category}-${page.slug}`,
+        slug: `land-${page.category}-${page.slug}`,
+        title,
+        description: content.subtitle?.trim() || title,
+        about: content.intro?.[0]?.trim() || content.subtitle?.trim() || title,
+        feedPath: path,
+        serviceImage: rasterFeedImage(page.coverImage, fallbackImage),
+        orderSlug: page.serviceSlug,
+      }),
+    );
+  }
+
+  for (const product of KASPERSKY_PRODUCTS) {
+    const path = `/kaspersky/${product.slug}`;
+    if (resolveSeoRedirect(path)) continue;
+    const parent = bySlug.get("secure-private-ai-cloud");
+    extras.push(
+      cloneParent(parent, {
+        id: `land-kaspersky-${product.slug}`,
+        slug: `land-kaspersky-${product.slug}`,
+        title: product.titleRu,
+        description: product.summaryRu,
+        about: product.summaryRu,
+        feedPath: path,
+        serviceImage: STOCK_IMAGES.security,
+        orderSlug: "secure-private-ai-cloud",
+      }),
+    );
+  }
+
+  return extras;
+}
+
+export function catalogFeedOffers(): EnterpriseService[] {
+  return [...getEnterpriseServices("ru"), ...extraFeedOffers()];
 }
 
 /**
@@ -214,8 +408,11 @@ export function selectFeedOffers(offers: EnterpriseService[]): EnterpriseService
 }
 
 /** Dedicated order form page — Yandex «создание заказа» must land on a working form, not only a modal CTA. */
-export function getServiceOrderUrl(offer: Pick<EnterpriseService, "slug"> | string) {
-  const slug = typeof offer === "string" ? offer : offer.slug;
+export function getServiceOrderUrl(
+  offer: Pick<EnterpriseService, "slug" | "orderSlug"> | string,
+) {
+  const slug =
+    typeof offer === "string" ? offer : offer.orderSlug?.trim() || offer.slug;
   return `${FEED_SITE_URL}/order/${encodeURIComponent(slug)}`;
 }
 
@@ -226,7 +423,7 @@ export function getOrderTelegramUrl(serviceTitle: string) {
 
 /** Resize each offer image to unique 320×320 JPEG for YML <picture>. */
 export function materializeFeedPictures(rootDir = process.cwd()) {
-  const offers = getEnterpriseServices("ru").filter((offer) => !offer.omitFeedPicture);
+  const offers = selectFeedOffers(catalogFeedOffers()).filter((offer) => !offer.omitFeedPicture);
   const mapping: Record<string, string> = {};
   for (const offer of offers) {
     mapping[offer.id] = offer.serviceImage;
@@ -265,8 +462,8 @@ export function materializeMicrositePictures(
 }
 
 export function getServiceFeedXml(now = new Date()) {
-  // Canonical unique offers: no shared URLs, no paraphrase titles (Yandex DupOfferName).
-  const offers = selectFeedOffers(getEnterpriseServices("ru"));
+  // Unique 200-OK URLs + titles. Yandex quality: ≥25 sets whose URLs are already in search.
+  const offers = selectFeedOffers(catalogFeedOffers());
   const date = now.toISOString().slice(0, 16).replace("T", " ");
 
   const escapeXml = (value: string) =>
