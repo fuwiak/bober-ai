@@ -1,0 +1,107 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "specializationId": "2673db51-904b-429a-8871-35eeb8b5f4e2",
+  "specializationNote": "CRM/ERP — 10 вариантов только YClients (без фото, без AI-воды)",
+  "publishedAt": "2026-08-30",
+  "publishedStatus": "created_in_cabinet",
+  "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=2673db51-904b-429a-8871-35eeb8b5f4e2",
+  "publicProfile": "https://uslugi.yandex.ru/profile/PawelStasinski-254144",
+  "publishHint": [
+    "npm run yandex:uslugi:add -- --file=data/uslugi-yclients-10.json --headless --skip-photos --fast",
+    "npm run yandex:uslugi:list -- --spec=2673db51-904b-429a-8871-35eeb8b5f4e2"
+  ],
+  "services": [
+    {
+      "id": "yclients-nastrojka",
+      "name": "Настройка YClients",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Настройка YClients: услуги, сотрудники, расписание, онлайн-запись и уведомления клиентам. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "id": "yclients-pod-klyuch",
+      "name": "Настройка YClients под ключ",
+      "price": 200000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "YClients под ключ: филиалы, услуги, прайс, права сотрудников, тест записи и краткий регламент. Москва и удалённо. От 200 000 ₽."
+    },
+    {
+      "id": "yclients-online-zapis",
+      "name": "Настройка онлайн-записи YClients",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Онлайн-запись в YClients: слоты, услуги, напоминания, виджет на сайт. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "id": "yclients-vnedrenie",
+      "name": "Внедрение YClients",
+      "price": 250000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Внедрение YClients: аудит записи, настройка кабинета, обучение администраторов, приёмка на живых слотах. Москва и удалённо. От 250 000 ₽."
+    },
+    {
+      "id": "yclients-raspisanie",
+      "name": "Настройка расписания в YClients",
+      "price": 120000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Расписание в YClients: график сотрудников, перерывы, длительность услуг, правила переноса и отмены. Москва и удалённо. От 120 000 ₽."
+    },
+    {
+      "id": "yclients-salon",
+      "name": "Настройка YClients для салона",
+      "price": 180000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "YClients для салона: услуги, мастера, запись, напоминания, учёт визитов. Москва и удалённо. От 180 000 ₽."
+    },
+    {
+      "id": "yclients-vidzhet",
+      "name": "Подключение виджета записи YClients",
+      "price": 100000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Виджет онлайн-записи YClients на сайт или лендинг: установка, проверка слотов, мобильная версия. Москва и удалённо. От 100 000 ₽."
+    },
+    {
+      "id": "yclients-uvedomleniya",
+      "name": "Настройка уведомлений в YClients",
+      "price": 100000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Уведомления YClients: SMS/мессенджеры о записи, напоминания и отмены. Меньше неявок. Москва и удалённо. От 100 000 ₽."
+    },
+    {
+      "id": "yclients-filialy",
+      "name": "Настройка филиалов в YClients",
+      "price": 200000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Филиалы в YClients: отдельные расписания, услуги и сотрудники, единые правила записи. Москва и удалённо. От 200 000 ₽."
+    },
+    {
+      "id": "yclients-dorabotka",
+      "name": "Доработка и настройка YClients",
+      "price": 120000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Доработка YClients: правка услуг, прав, записи и уведомлений под ваш процесс. Москва и удалённо. От 120 000 ₽."
+    }
+  ],
+  "liveCount": 10
+}
