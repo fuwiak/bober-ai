@@ -1,0 +1,46 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "specializationId": "2673db51-904b-429a-8871-35eeb8b5f4e2",
+  "specializationNote": "CRM/ERP — 5 Wordstat МойСклад (без фото).",
+  "publishedAt": "2026-08-30",
+  "publishedStatus": "published",
+  "services": [
+    {
+      "name": "Настройка МойСклад",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Настройка МойСклад: склады, номенклатура, резервы, статусы заказов. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "name": "Внедрение МойСклад",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "Внедрение МойСклад: складской учёт, отгрузки, обучение команды, приёмка. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "name": "Настройка МойСклад под ключ",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "МойСклад под ключ: склады, документы, права, базовые интеграции. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "name": "Интеграция МойСклад с CRM",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "МойСклад ↔ CRM: остатки и заказы в сделках без ручного переноса. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "name": "Интеграция МойСклад с Битрикс24",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "description": "МойСклад ↔ Битрикс24: резервы, отгрузки, статусы сделок. Москва и удалённо. От 300 000 ₽."
+    }
+  ],
+  "liveCount": 5
+}
