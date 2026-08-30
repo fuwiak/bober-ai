@@ -1,0 +1,287 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "specializationId": "2673db51-904b-429a-8871-35eeb8b5f4e2",
+  "specializationNote": "CRM/ERP — 30 high-intent amoCRM (внедрение / проблема), без фото, без AI-воды. Не дублирует уже опубликованные generic titles.",
+  "publishedAt": "2026-08-30",
+  "publishedStatus": "created_in_cabinet",
+  "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=2673db51-904b-429a-8871-35eeb8b5f4e2",
+  "publicProfile": "https://uslugi.yandex.ru/profile/PawelStasinski-254144",
+  "publishHint": [
+    "npm run yandex:uslugi:add -- --file=data/uslugi-amocrm-intent-30.json --headless --skip-photos --fast",
+    "npm run yandex:uslugi:list -- --spec=2673db51-904b-429a-8871-35eeb8b5f4e2"
+  ],
+  "services": [
+    {
+      "id": "amocrm-pod-klyuch-setup",
+      "name": "Настройка amoCRM под ключ",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Настройка amoCRM под ключ: воронка, поля, права, роботы и приёмка на тестовых сделках. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "amocrm-vnedrenie-sales",
+      "name": "Внедрение amoCRM для отдела продаж",
+      "price": 350000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Внедрение amoCRM под отдел продаж: стадии, задачи, распределение лидов, регламент менеджеров. Москва и удалённо. От 350 000 ₽."
+    },
+    {
+      "id": "amocrm-voronka-prodazh",
+      "name": "Настройка воронки продаж в amoCRM",
+      "price": 180000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Воронка продаж в amoCRM: стадии, обязательные поля, причины отказа, контроль конверсии. Москва и удалённо. От 180 000 ₽."
+    },
+    {
+      "id": "amocrm-roboty",
+      "name": "Настройка автоматизации и роботов amoCRM",
+      "price": 220000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Роботы и автоматизация amoCRM: задачи, триггеры, Digital Pipeline, меньше ручного follow-up. Москва и удалённо. От 220 000 ₽."
+    },
+    {
+      "id": "amocrm-site-forms",
+      "name": "Интеграция amoCRM с сайтом и формами",
+      "price": 180000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Формы сайта → лид или сделка в amoCRM. UTM, источник, ответственный. Тест на живой форме. Москва и удалённо. От 180 000 ₽."
+    },
+    {
+      "id": "amocrm-telegram",
+      "name": "Интеграция amoCRM с Telegram",
+      "price": 180000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Telegram → amoCRM: диалоги и заявки в карточке клиента, уведомления менеджеру. Москва и удалённо. От 180 000 ₽."
+    },
+    {
+      "id": "amocrm-posle-integratora",
+      "name": "Настройка amoCRM после другого интегратора",
+      "price": 200000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Переразбор портала после чужой настройки: воронка, поля, роботы, права. Убираем хаос без полной переустановки. Москва и удалённо. От 200 000 ₽."
+    },
+    {
+      "id": "amocrm-ispravlenie",
+      "name": "Исправление ошибок и доработка amoCRM",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Исправление ошибок amoCRM: воронка, виджеты, API, отчёты. Точечная доработка под процесс продаж. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "id": "amocrm-perenos",
+      "name": "Перенос клиентов и сделок в amoCRM",
+      "price": 250000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Перенос контактов, компаний и сделок в amoCRM с маппингом полей и проверкой качества. Москва и удалённо. От 250 000 ₽."
+    },
+    {
+      "id": "amocrm-dlya-biznesa",
+      "name": "Настройка amoCRM для бизнеса",
+      "price": 280000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "amoCRM под ваш бизнес: воронка, роли, источники лидов, базовые роботы и инструкция команде. Москва и удалённо. От 280 000 ₽."
+    },
+    {
+      "id": "amocrm-teryayutsya-zayavki",
+      "name": "В amoCRM теряются заявки — настройка и исправление",
+      "price": 180000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Заявки теряются: чиним приём с сайта/форм, дубли, назначение ответственного и уведомления. Москва и удалённо. От 180 000 ₽."
+    },
+    {
+      "id": "amocrm-ne-sozdayot-sdelki",
+      "name": "amoCRM не создаёт сделки — диагностика и настройка",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Диагностика: почему не создаются сделки — формы, webhook, права, статусы. Чиним и проверяем на тесте. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "id": "amocrm-integraciya-ne-rabotaet",
+      "name": "Не работает интеграция amoCRM — исправление",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Сломанная интеграция amoCRM: логи, токены, маппинг полей, повторный тест обмена. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "id": "amocrm-dubli",
+      "name": "Дубли сделок и контактов в amoCRM — устранение",
+      "price": 160000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Убираем дубли контактов и сделок: правила слияния, контроль при создании, чистка базы. Москва и удалённо. От 160 000 ₽."
+    },
+    {
+      "id": "amocrm-raspredelenie",
+      "name": "Настройка распределения заявок между менеджерами amoCRM",
+      "price": 180000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Распределение заявок в amoCRM: очереди, нагрузка, правила назначения, эскалации. Москва и удалённо. От 180 000 ₽."
+    },
+    {
+      "id": "amocrm-povtornye-prodazhi",
+      "name": "Автоматизация повторных продаж в amoCRM",
+      "price": 220000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Повторные продажи в amoCRM: триггеры после закрытия, задачи на дожим, сегменты клиентов. Москва и удалённо. От 220 000 ₽."
+    },
+    {
+      "id": "amocrm-kontrol-menedzherov",
+      "name": "Настройка контроля менеджеров и задач в amoCRM",
+      "price": 180000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Контроль менеджеров: обязательные задачи, SLA, просрочки, отчёты по активности. Москва и удалённо. От 180 000 ₽."
+    },
+    {
+      "id": "amocrm-1c",
+      "name": "Интеграция amoCRM с 1С",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "amoCRM ↔ 1С: сделки, оплаты, контрагенты без ручного переноса. Логи и тест обмена. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "amocrm-telefoniya",
+      "name": "Интеграция amoCRM с телефонией",
+      "price": 200000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Телефония в amoCRM: звонки в карточке, записи разговоров, задачи после звонка. Москва и удалённо. От 200 000 ₽."
+    },
+    {
+      "id": "amocrm-digital-pipeline",
+      "name": "Настройка Digital Pipeline в amoCRM",
+      "price": 200000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Digital Pipeline под регламент продаж: стадии, письма, задачи, Salesbot на ключевых шагах. Москва и удалённо. От 200 000 ₽."
+    },
+    {
+      "id": "amocrm-salesbot",
+      "name": "Настройка Salesbot в amoCRM",
+      "price": 180000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Salesbot в amoCRM: сценарии квалификации и дожима, передача живому менеджеру. Москва и удалённо. От 180 000 ₽."
+    },
+    {
+      "id": "amocrm-whatsapp",
+      "name": "Интеграция amoCRM с WhatsApp",
+      "price": 180000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "WhatsApp ↔ amoCRM: переписка в карточке, источник обращения, назначение менеджера. Москва и удалённо. От 180 000 ₽."
+    },
+    {
+      "id": "amocrm-migraciya",
+      "name": "Миграция в amoCRM из другой CRM",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Переезд в amoCRM из Bitrix24 или другой CRM: контакты, сделки, история, проверка после переноса. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "amocrm-dorabotka-voronki",
+      "name": "Доработка воронки amoCRM после запуска",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Воронка уже есть, но не работает: правим стадии, поля, причины отказа и роботы. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "id": "amocrm-prava-roli",
+      "name": "Настройка прав и ролей в amoCRM",
+      "price": 120000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Права и роли в amoCRM: кто видит сделки, поля и отчёты. Меньше утечек и путаницы. Москва и удалённо. От 120 000 ₽."
+    },
+    {
+      "id": "amocrm-zayavki-ne-popadayut",
+      "name": "Заявки с сайта не попадают в amoCRM — исправление",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Формы не создают лиды: чиним webhook, поля, антиспам и проверяем end-to-end. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "id": "amocrm-obyazatelnye-polya",
+      "name": "Настройка обязательных полей и стадий amoCRM",
+      "price": 120000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Обязательные поля и стадии: менеджер не двигает сделку без данных. Контроль качества воронки. Москва и удалённо. От 120 000 ₽."
+    },
+    {
+      "id": "amocrm-pochta",
+      "name": "Интеграция amoCRM с почтой",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Почта в amoCRM: письма в карточке сделки, шаблоны, фиксация переписки. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "id": "amocrm-sla-zadachi",
+      "name": "Настройка SLA и задач в amoCRM",
+      "price": 160000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "SLA и задачи: сроки ответа, эскалации, контроль просрочек по сделкам. Москва и удалённо. От 160 000 ₽."
+    },
+    {
+      "id": "amocrm-audit-perezapusk",
+      "name": "Аудит и перезапуск amoCRM под продажи",
+      "price": 200000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Аудит текущего amoCRM и план перезапуска: карта потерь, приоритеты, смета доработок. Москва и удалённо. От 200 000 ₽."
+    }
+  ],
+  "liveCount": 30
+}
