@@ -1,0 +1,107 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "specializationId": "2673db51-904b-429a-8871-35eeb8b5f4e2",
+  "specializationNote": "CRM/ERP — 10 вариантов «Настройка YClients и amoCRM» (без фото, без AI-воды)",
+  "publishedAt": "2026-08-30",
+  "publishedStatus": "created_in_cabinet",
+  "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=2673db51-904b-429a-8871-35eeb8b5f4e2",
+  "publicProfile": "https://uslugi.yandex.ru/profile/PawelStasinski-254144",
+  "publishHint": [
+    "npm run yandex:uslugi:add -- --file=data/uslugi-yclients-amocrm-10.json --headless --skip-photos --fast",
+    "npm run yandex:uslugi:list -- --spec=2673db51-904b-429a-8871-35eeb8b5f4e2"
+  ],
+  "services": [
+    {
+      "id": "yclients-amocrm",
+      "name": "Настройка YClients и amoCRM",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Настройка YClients и amoCRM: онлайн-запись уходит в сделку без ручного переноса. Статусы, ответственный и уведомления в CRM. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "yclients-amocrm-pod-klyuch",
+      "name": "Настройка YClients и amoCRM под ключ",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "YClients и amoCRM под ключ: запись, воронка, права менеджеров, тест на живых заявках. Регламент и приёмка. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "yclients-amocrm-integraciya",
+      "name": "Интеграция YClients с amoCRM",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Интеграция YClients с amoCRM: запись → лид или сделка, клиент и услуга в карточке. Без копипаста между окнами. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "yclients-amocrm-svyazka",
+      "name": "Связка YClients и amoCRM",
+      "price": 250000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Связка YClients и amoCRM для салонов и сервиса: запись, перенос, отмена отражаются в воронке. Москва и удалённо. От 250 000 ₽."
+    },
+    {
+      "id": "yclients-amocrm-online-zapis",
+      "name": "Настройка онлайн-записи YClients и amoCRM",
+      "price": 250000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Онлайн-запись YClients + amoCRM: слоты, услуги, напоминания клиенту и задача менеджеру в CRM. Москва и удалённо. От 250 000 ₽."
+    },
+    {
+      "id": "yclients-amocrm-vnedrenie",
+      "name": "Внедрение YClients и amoCRM",
+      "price": 350000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Внедрение YClients и amoCRM: аудит записи и продаж, настройка обоих контуров, обмен данными, обучение команды. Москва и удалённо. От 350 000 ₽."
+    },
+    {
+      "id": "yclients-amocrm-zapis-klientov",
+      "name": "Настройка записи клиентов в YClients и amoCRM",
+      "price": 250000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Запись клиентов в YClients попадает в amoCRM: контакт, услуга, время, источник. Меньше потерянных заявок. Москва и удалённо. От 250 000 ₽."
+    },
+    {
+      "id": "yclients-amocrm-avtomatizaciya",
+      "name": "Автоматизация YClients и amoCRM",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Автоматизация YClients и amoCRM: статусы записи, задачи в CRM, напоминания. Меньше ручной работы менеджеров. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "yclients-amocrm-voronka",
+      "name": "Настройка воронки amoCRM с YClients",
+      "price": 280000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Воронка amoCRM под записи из YClients: стадии, поля, ответственный, контроль неявок. Москва и удалённо. От 280 000 ₽."
+    },
+    {
+      "id": "yclients-amocrm-podklyuchenie",
+      "name": "Подключение YClients к amoCRM",
+      "price": 220000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Подключение YClients к amoCRM: обмен записями и клиентами, проверка на тестовых слотах, краткая схема потока. Москва и удалённо. От 220 000 ₽."
+    }
+  ],
+  "liveCount": 10
+}
