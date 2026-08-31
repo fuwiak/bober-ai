@@ -53,7 +53,7 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/public/info.md ./public/info.md
 COPY --from=builder /app/data/telegram-public-knowledge.md ./data/telegram-public-knowledge.md
-COPY deploy/web-entrypoint.sh /usr/local/bin/web-entrypoint.sh
+COPY --from=builder /app/deploy/web-entrypoint.sh /usr/local/bin/web-entrypoint.sh
 
 RUN chmod +x /usr/local/bin/web-entrypoint.sh \
   && chown -R astro:astro /app
