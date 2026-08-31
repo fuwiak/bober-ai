@@ -220,10 +220,12 @@ const uzOverrides = {
   },
   homeLanding: {
     marketOffersLabel: "Yuqori talab xizmatlari",
-    marketOffersTitle: "Kompaniyalar nima qidiradi — va nima joriy qilamiz",
+    marketOffersTitle: "Biznesni telefonda boshqaring",
     marketOffersSubtitle:
-      "Bozor tili: joriy etish, sozlash, integratsiya, narx. Har bir yoʻnalish uchun alohida landing.",
+      "Avtomatlashtirish · Marketing · Savdo. Bitrix24, amoCRM, YCLIENTS, RetailCRM, MoySklad, Roistat, Mango Telecom va Tinkoff Bank.",
+    marketOffersPillars: ["Avtomatlashtirish", "Marketing", "Savdo"],
     marketOffersCta: "Xizmatni koʻrish →",
+    marketOffersHubCta: "Stek xizmatlarining barchasi →",
     proofLabel: "Natijalar",
     proofTitle: "Pilotlarda allaqachon o'lchaganlarimiz",
     casesLabel: "Keyslar",

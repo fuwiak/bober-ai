@@ -1,4 +1,5 @@
 ---
+import HomeMarketOffers from "@/components/HomeMarketOffers.astro";
 import ArchitecturePlainSection from "@/components/ArchitecturePlainSection.astro";
 import AuditSampleSection from "@/components/AuditSampleSection.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
@@ -58,6 +59,24 @@ const crumbsName = locale === "uz" ? "Xizmatlar" : "Услуги";
       <span class="section-label mt-2 block">{messages.sections.solutions}</span>
       <h1 class="section-title mt-4">{messages.services.title}</h1>
       <p class="body-copy mt-4 max-w-2xl text-base">{messages.services.subtitle}</p>
+    </div>
+  </section>
+
+  <HomeMarketOffers
+    locale={locale}
+    label={messages.homeLanding.marketOffersLabel}
+    title={messages.homeLanding.marketOffersTitle}
+    subtitle={messages.homeLanding.marketOffersSubtitle}
+    ctaLabel={messages.homeLanding.marketOffersCta}
+    pillars={messages.homeLanding.marketOffersPillars}
+    hubHref="/integrations/business-from-phone"
+    hubCta={messages.homeLanding.marketOffersHubCta}
+  />
+
+  <section class="section-band section--deep border-b border-hairline">
+    <div class="container-editorial">
+      <span class="section-label">{messages.sections.solutions}</span>
+      <h2 class="section-title mt-4">{messages.services.title}</h2>
       <div class="mt-10 space-y-4">
         {
           implementationAreas.map((area, index) => {

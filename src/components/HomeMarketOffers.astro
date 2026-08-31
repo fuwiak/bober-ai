@@ -1,6 +1,6 @@
 ---
 import { localizePath, type Locale } from "@/lib/i18n";
-import { MARKET_HOME_OFFERS } from "@/lib/market-offers";
+import { HIGH_DEMAND_PARTNER_OFFERS } from "@/lib/market-offers";
 
 interface Props {
   locale: Locale;
@@ -8,9 +8,12 @@ interface Props {
   title: string;
   subtitle: string;
   ctaLabel: string;
+  pillars?: string[];
+  hubHref?: string;
+  hubCta?: string;
 }
 
-const { locale, label, title, subtitle, ctaLabel } = Astro.props;
+const { locale, label, title, subtitle, ctaLabel, pillars = [], hubHref, hubCta } = Astro.props;
 ---
 
 <section id="market-offers" class="section-band section--panel scroll-mt-16 border-b border-hairline">
@@ -18,10 +21,19 @@ const { locale, label, title, subtitle, ctaLabel } = Astro.props;
     <span class="section-label">{label}</span>
     <h2 class="section-title mt-4">{title}</h2>
     {subtitle ? <p class="body-copy mt-4 max-w-2xl text-base">{subtitle}</p> : null}
+    {
+      pillars.length ? (
+        <ul class="market-offer-pillars mt-6">
+          {pillars.map((pillar) => (
+            <li>{pillar}</li>
+          ))}
+        </ul>
+      ) : null
+    }
 
     <div class="market-offers-grid mt-10">
       {
-        MARKET_HOME_OFFERS.map((offer) => (
+        HIGH_DEMAND_PARTNER_OFFERS.map((offer) => (
           <a
             href={localizePath(offer.href, locale)}
             class="market-offer-card"
@@ -36,5 +48,14 @@ const { locale, label, title, subtitle, ctaLabel } = Astro.props;
         ))
       }
     </div>
+    {
+      hubHref && hubCta ? (
+        <p class="mt-8">
+          <a class="link-more" href={localizePath(hubHref, locale)}>
+            {hubCta}
+          </a>
+        </p>
+      ) : null
+    }
   </div>
 </section>

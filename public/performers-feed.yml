@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-08-30 19:16">
+<yml_catalog date="2026-08-31 21:10">
   <shop>
     <name>Bober AI Systems</name>
     <company>Bober AI Systems</company>
@@ -480,6 +480,30 @@
       <set id="land-integrations-crm-setup">
         <name>Настройка YClients, amoCRM, Bitrix24 и МойСклад</name>
         <url>https://www.bober-systems.ru/integrations/crm-setup</url>
+      </set>
+      <set id="land-integrations-business-from-phone">
+        <name>Управляй бизнесом с телефона: автоматизация, маркетинг, продажи</name>
+        <url>https://www.bober-systems.ru/integrations/business-from-phone</url>
+      </set>
+      <set id="land-integrations-yclients">
+        <name>Настройка YCLIENTS: онлайн-запись под ключ</name>
+        <url>https://www.bober-systems.ru/integrations/yclients</url>
+      </set>
+      <set id="land-integrations-retailcrm">
+        <name>Внедрение и настройка RetailCRM</name>
+        <url>https://www.bober-systems.ru/integrations/retailcrm</url>
+      </set>
+      <set id="land-integrations-roistat">
+        <name>Внедрение Roistat: сквозная аналитика в CRM</name>
+        <url>https://www.bober-systems.ru/integrations/roistat</url>
+      </set>
+      <set id="land-integrations-mango-telecom">
+        <name>Интеграция Mango Telecom с CRM</name>
+        <url>https://www.bober-systems.ru/integrations/mango-telecom</url>
+      </set>
+      <set id="land-integrations-tinkoff">
+        <name>Интеграция Тинькофф Банк с CRM и учётом</name>
+        <url>https://www.bober-systems.ru/integrations/tinkoff</url>
       </set>
       <set id="land-integrations-bitrix24-implementation">
         <name>Внедрение и интеграция Битрикс24</name>
@@ -4152,6 +4176,192 @@
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Настраиваем YClients, amoCRM, Bitrix24 и МойСклад так, чтобы запись клиента, сделка и склад жили в одном контуре — без ручного переноса между окнами.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">ИИ-агент для отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="land-integrations-business-from-phone">
+      <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/business-from-phone</url>
+      <price from="true">150000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 150 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>land-integrations-business-from-phone</set-ids>
+      <picture>https://www.bober-systems.ru/stock/offers/land-integrations-business-from-phone.jpg</picture>
+      <description>Управляй бизнесом с телефона: автоматизация, маркетинг, продажи</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/crm-integration</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Контур «с телефона»: менеджер видит запись, сделку, остаток и оплату в одном процессе — не в пяти вкладках.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">ИИ-агент для отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="land-integrations-yclients">
+      <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/yclients</url>
+      <price from="true">150000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 150 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>land-integrations-yclients</set-ids>
+      <picture>https://www.bober-systems.ru/stock/offers/land-integrations-yclients.jpg</picture>
+      <description>Настройка YCLIENTS: онлайн-запись под ключ</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/crm-integration</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">YCLIENTS закрывает запись. Мы настраиваем портал так, чтобы слот, мастер и статус были видны с телефона.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">ИИ-агент для отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="land-integrations-retailcrm">
+      <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/retailcrm</url>
+      <price from="true">150000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 150 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>land-integrations-retailcrm</set-ids>
+      <picture>https://www.bober-systems.ru/stock/offers/land-integrations-retailcrm.jpg</picture>
+      <description>Внедрение и настройка RetailCRM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/crm-integration</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">RetailCRM — контур e-com: заказ, склад, доставка. Настраиваем так, чтобы менеджер вёл заказ с телефона.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">ИИ-агент для отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="land-integrations-roistat">
+      <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/roistat</url>
+      <price from="true">150000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 150 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>land-integrations-roistat</set-ids>
+      <picture>https://www.bober-systems.ru/stock/offers/land-integrations-roistat.jpg</picture>
+      <description>Внедрение Roistat: сквозная аналитика в CRM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/crm-integration</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Roistat закрывает маркетинг: канал → сделка. Мы связываем его с CRM, чтобы цифры совпадали.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">ИИ-агент для отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="land-integrations-mango-telecom">
+      <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/mango-telecom</url>
+      <price from="true">500000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 500 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>land-integrations-mango-telecom</set-ids>
+      <picture>https://www.bober-systems.ru/stock/offers/land-integrations-mango-telecom.jpg</picture>
+      <description>Интеграция Mango Telecom с CRM</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/ai-sales-loop</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Mango — телефония. Мы пишем звонок в CRM, чтобы менеджер вёл клиента с телефона: история, задача, следующий шаг.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
+      <param name="Другая услуга исполнителя - 2">ИИ-агент для отдела продаж</param>
+      <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>
+      <param name="Другая услуга исполнителя - 4">Внедрение ИИ под ключ</param>
+      <param name="Другая услуга исполнителя - 5">Приватный контур языковых моделей</param>
+    </offer>
+    <offer id="land-integrations-tinkoff">
+      <name>Павел Стасиньский</name>
+      <url>https://www.bober-systems.ru/integrations/tinkoff</url>
+      <price from="true">150000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 150 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>land-integrations-tinkoff</set-ids>
+      <picture>https://www.bober-systems.ru/stock/offers/land-integrations-tinkoff.jpg</picture>
+      <description>Интеграция Тинькофф Банк с CRM и учётом</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">90</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://www.bober-systems.ru/order/crm-integration</param>
+      <param name="Ссылка на профиль исполнителя">https://www.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Тинькофф закрывает оплаты. Мы пишем факт оплаты в CRM и склад, чтобы воронка с телефона была правдой, а не таблицей.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация бизнес-процессов</param>
       <param name="Другая услуга исполнителя - 2">ИИ-агент для отдела продаж</param>
       <param name="Другая услуга исполнителя - 3">Аудит процессов и дорожная карта ИИ</param>

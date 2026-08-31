@@ -94,6 +94,12 @@ export function buildNavGroups(messages: Messages): NavGroup[] {
           title: nav.colAutomation,
           items: [
             {
+              href: "/integrations/business-from-phone",
+              label: "CRM с телефона",
+              description: "Битрикс24, amoCRM, YCLIENTS, RetailCRM",
+              icon: "sales",
+            },
+            {
               href: "/bitrix",
               label: "Bitrix24 · amoCRM",
               description: nav.bitrixDesc,

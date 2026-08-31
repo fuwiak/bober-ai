@@ -212,9 +212,12 @@ const ru = {
   },
   homeLanding: {
     marketOffersLabel: "Услуги с высоким спросом",
-    marketOffersTitle: "Что ищут компании — и что внедряем",
-    marketOffersSubtitle: "",
+    marketOffersTitle: "Управляй бизнесом с телефона",
+    marketOffersSubtitle:
+      "Автоматизация · Маркетинг · Продажи. Внедряем и связываем Битрикс24, amoCRM, YCLIENTS, RetailCRM, МойСклад, Roistat, Mango Telecom и Тинькофф Банк.",
+    marketOffersPillars: ["Автоматизация", "Маркетинг", "Продажи"],
     marketOffersCta: "Смотреть услугу →",
+    marketOffersHubCta: "Все услуги стека →",
     proofLabel: "Результаты",
     proofTitle: "Что уже измерили на пилотах",
     casesLabel: "Кейсы",
@@ -604,6 +607,38 @@ const ru = {
         detailsHref: "/integrations/crm-setup",
       },
       {
+        name: "Настройка YCLIENTS, RetailCRM и МойСклад",
+        price: "от 150 000 ₽",
+        duration: "2–4 недели",
+        forWhom: "Запись, интернет-магазин и склад живут в разных окнах — с телефона не видно заказ",
+        result: "YCLIENTS, RetailCRM или МойСклад под один процесс. Связка с CRM — от 300 000 ₽.",
+        badge: "Высокий спрос",
+        includes: [
+          "Настройка YCLIENTS / RetailCRM / МойСклад",
+          "Статусы записи, заказа и склада",
+          "Доступ менеджера с телефона",
+        ],
+        featured: true,
+        tier: "implementation",
+        detailsHref: "/integrations/business-from-phone",
+      },
+      {
+        name: "Roistat, Mango Telecom и Тинькофф в CRM",
+        price: "от 150 000 ₽",
+        duration: "2–4 недели",
+        forWhom: "Реклама, звонки и оплаты не попадают в сделку",
+        result: "Сквозная аналитика, звонок и эквайринг пишут статус в Битрикс24 / amoCRM / RetailCRM.",
+        badge: "Маркетинг · Продажи",
+        includes: [
+          "Roistat ↔ CRM",
+          "Mango Telecom: звонок в карточку",
+          "Тинькофф: оплата → статус сделки",
+        ],
+        featured: true,
+        tier: "implementation",
+        detailsHref: "/integrations/roistat",
+      },
+      {
         name: "Распознавание первичных документов в 1С",
         price: "от 300 000 ₽",
         duration: "2–4 недели",
@@ -850,6 +885,21 @@ const ru = {
     days: "дн.",
     discussCta: "Обсудить проект",
     implementationAreas: [
+      {
+        badge: "Высокий спрос",
+        title: "Управляй бизнесом с телефона",
+        description:
+          "Автоматизация, маркетинг и продажи в одном контуре: Битрикс24, amoCRM, YCLIENTS, RetailCRM, МойСклад, Roistat, Mango Telecom, Тинькофф Банк. Менеджер ведёт запись, сделку и оплату с телефона.",
+        items: [
+          "CRM, онлайн-запись и склад — без копипаста между приложениями",
+          "Сквозная аналитика Roistat и телефония Mango в карточке сделки",
+          "Эквайринг Тинькофф → статус оплаты в CRM",
+        ],
+        layout: "wide",
+        featured: true,
+        slug: "crm-integration",
+        href: "/integrations/business-from-phone",
+      },
       {
         badge: "Поддержка",
         title: "Обслуживание клиентов",

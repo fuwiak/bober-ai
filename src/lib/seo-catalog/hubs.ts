@@ -182,6 +182,12 @@ export const SEO_HUBS: HubDef[] = [
       { href: "/integrations/1c-ai-layer", labelRu: "ИИ для 1С", labelEn: "AI for 1C", blurbRu: "ИИ-слой поверх учёта", blurbEn: "AI layer on top of ERP" },
       { href: "/integrations/crm-sales-automation", labelRu: "Продажи в CRM", labelEn: "CRM sales", blurbRu: "Дожим и КП", blurbEn: "Дожим and proposals" },
       { href: "/integrations/crm-1c-automation", labelRu: "1С и CRM", labelEn: "1C and CRM", blurbRu: "Обмен без копипаста", blurbEn: "Sync without copy-paste" },
+      { href: "/integrations/business-from-phone", labelRu: "Управляй бизнесом с телефона", labelEn: "Run the business from a phone", blurbRu: "Автоматизация · маркетинг · продажи", blurbEn: "Automation · marketing · sales" },
+      { href: "/integrations/yclients", labelRu: "Настройка YCLIENTS", labelEn: "YCLIENTS setup", blurbRu: "Онлайн-запись под ключ", blurbEn: "Online booking turnkey" },
+      { href: "/integrations/retailcrm", labelRu: "Внедрение RetailCRM", labelEn: "RetailCRM implementation", blurbRu: "Заказы, склад, доставка", blurbEn: "Orders, stock, delivery" },
+      { href: "/integrations/roistat", labelRu: "Внедрение Roistat", labelEn: "Roistat implementation", blurbRu: "Сквозная аналитика в CRM", blurbEn: "End-to-end analytics in CRM" },
+      { href: "/integrations/mango-telecom", labelRu: "Mango Telecom ↔ CRM", labelEn: "Mango Telecom ↔ CRM", blurbRu: "Звонок в карточку сделки", blurbEn: "Call into the deal card" },
+      { href: "/integrations/tinkoff", labelRu: "Тинькофф Банк ↔ CRM", labelEn: "Tinkoff ↔ CRM", blurbRu: "Оплаты в статус сделки", blurbEn: "Payments into deal status" },
       { href: "/integrations/crm-setup", labelRu: "Настройка CRM и МойСклад", labelEn: "CRM & MoySklad setup", blurbRu: "YClients, amoCRM, Bitrix24, МойСклад", blurbEn: "YClients, amoCRM, Bitrix24, MoySklad" },
       { href: "/integrations/crm", labelRu: "CRM", labelEn: "CRM", blurbRu: "Внедрение и синхронизация", blurbEn: "Implementation and sync" },
       { href: "/integrations/amocrm", labelRu: "amoCRM", labelEn: "amoCRM", blurbRu: "Воронки, виджеты, API", blurbEn: "Pipelines, widgets, API" },
@@ -190,14 +196,15 @@ export const SEO_HUBS: HubDef[] = [
       { href: "/integrations/n8n-automation", labelRu: "n8n workflow", labelEn: "n8n workflows", blurbRu: "Сценарии без vendor lock-in", blurbEn: "Workflows without vendor lock-in" },
     ],
     ru: {
-      metaTitle: "Интеграции CRM, 1С, Bitrix24, amoCRM | Bober AI",
+      metaTitle: "Интеграции CRM, 1С, Bitrix24, amoCRM, YCLIENTS | Bober AI",
       metaDescription:
-        "Интеграции и AI-слои для amoCRM, Bitrix24 и 1С. ИИ для CRM и синхронизация данных.",
+        "Интеграции Битрикс24, amoCRM, YCLIENTS, RetailCRM, МойСклад, Roistat, Mango Telecom и Тинькофф. ИИ-слой и синхронизация данных.",
       h1: "Интеграции для бизнеса",
-      subtitle: "Связываем CRM, учёт, сайт и мессенджеры — ИИ-слой и синхронизация данных как отдельные сценарии.",
+      subtitle:
+        "Управляй бизнесом с телефона: автоматизация, маркетинг, продажи. Связываем CRM, запись, склад, аналитику, телефонию и оплаты.",
       intro: [
-        "Интеграция — часто самый быстрый ROI: убрать ручной мост между системами.",
-        "ИИ для amoCRM / Bitrix24 / 1С — отдельные направления; синхронизация данных — отдельный сценарий.",
+        "Стек с высоким спросом: Битрикс24, amoCRM, YCLIENTS, RetailCRM, МойСклад, Roistat, Mango Telecom, Тинькофф Банк.",
+        "Интеграция — часто самый быстрый ROI: убрать ручной мост между системами. ИИ для amoCRM / Bitrix24 / 1С — отдельные направления.",
       ],
     },
     en: {
