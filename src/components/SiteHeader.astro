@@ -3,7 +3,6 @@ import { localizePath, stripLocalePrefix, type Locale, type Messages } from "@/l
 import { SWITCHER_LOCALES, marketOf } from "@/lib/markets";
 import { buildNavGroups, navLabels, type NavGroup, type NavIconId, type NavLinkItem } from "@/lib/nav";
 import { CONTACT_PHONE, PRIMARY_CTA_GOAL, SITE_NAME, TELEGRAM_URL } from "@/lib/site";
-import BitrixPartnerBadge from "@/components/BitrixPartnerBadge.astro";
 
 interface Props {
   locale: Locale;
@@ -110,7 +109,6 @@ function megaCols(group: Extract<NavGroup, { type: "mega" }>) {
     <div class="site-header__bar">
       <div class="site-header__cont">
         <a href={homeHref} class="site-wordmark">{SITE_NAME}</a>
-        <BitrixPartnerBadge locale={locale} variant="header" loading="eager" />
 
         <nav class="site-header__nav" aria-label="Main">
           <ul class="site-header__list">
@@ -295,9 +293,6 @@ function megaCols(group: Extract<NavGroup, { type: "mega" }>) {
     <button type="button" class="mobile-menu__backdrop" aria-label={labels.menuCloseLabel} data-nav-mobile-close />
     <nav id="mobile-menu-panel" class="mobile-menu__panel">
       <p class="meta-label">{labels.quickContactLabel}</p>
-      <div class="mt-4">
-        <BitrixPartnerBadge locale={locale} variant="hero" loading="lazy" />
-      </div>
       <div class="mt-4">
         <button
           type="button"

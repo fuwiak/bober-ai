@@ -3970,19 +3970,6 @@ html:not(.dark) .shell-code {
     outline: 2px solid color-mix(in srgb, var(--header-ink) 45%, transparent);
     outline-offset: 2px;
   }
-  .bitrix-partner--header {
-    flex: none;
-    margin-left: 4px;
-  }
-  .bitrix-partner--header img {
-    height: 28px;
-    width: auto;
-  }
-  @media (max-width: 899.98px) {
-    .site-header .bitrix-partner--header {
-      display: none;
-    }
-  }
   .bitrix-partner--hero img {
     height: 44px;
     width: auto;
