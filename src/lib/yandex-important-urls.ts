@@ -43,6 +43,8 @@ export const YANDEX_IMPORTANT_PATHS = [
   "/integrations/bitrix24-ai",
   "/integrations/bitrix24-sales-automation",
   "/integrations/bitrix24-1c",
+  "/integrations/bitrix24-s-sajtom",
+  "/integrations/nastrojka-1c-bitrix",
   "/integrations/amocrm",
   "/integrations/amocrm-automation",
   "/integrations/amocrm-1c",

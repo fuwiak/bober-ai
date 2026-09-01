@@ -1,0 +1,152 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "specializationId": "14621107-8394-44af-96e5-331a0f9dafed",
+  "specializationNote": "Настройка Битрикс — exact «Интеграция Битрикс24 с сайтом» + «Настройка 1С-Битрикс» + 10 вариантов",
+  "note": "2 точных заголовка + 10 вариантов. «Настройка 1С-Битрикс» уже была в uslugi-bitrix-cms-category.json — при add пропустить, если карточка жива. Остальные title в кабинете не дублируем.",
+  "publishedAt": "2026-09-01",
+  "publishedStatus": "pending_cabinet",
+  "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=14621107-8394-44af-96e5-331a0f9dafed",
+  "publicProfile": "https://uslugi.yandex.ru/profile/PawelStasinski-254144",
+  "siteLandings": [
+    "/integrations/bitrix24-s-sajtom",
+    "/integrations/nastrojka-1c-bitrix",
+    "/integrations/sajt-s-bitrix24",
+    "/integrations/formy-sajta-bitrix24",
+    "/integrations/internet-magazin-bitrix24",
+    "/integrations/tilda-bitrix24",
+    "/integrations/zayavki-sajta-bitrix24",
+    "/integrations/nastrojka-sajta-1c-bitrix",
+    "/integrations/nastrojka-1c-bitrix-dlya-biznesa",
+    "/integrations/nastrojka-1c-bitrix-posle-ustanovki",
+    "/integrations/nastrojka-1c-bitrix-kompleksnaya",
+    "/integrations/nastrojka-infoblokov-1c-bitrix"
+  ],
+  "publishHint": [
+    "npm run yandex:uslugi:login",
+    "npm run yandex:uslugi:add -- --file=data/uslugi-bitrix24-site-1c-cms.json --headless --fast",
+    "npm run yandex:uslugi:list -- --spec=14621107-8394-44af-96e5-331a0f9dafed"
+  ],
+  "services": [
+    {
+      "id": "bx24-site",
+      "name": "Интеграция Битрикс24 с сайтом",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/crm-integration.jpg",
+      "description": "Интеграция Битрикс24 с сайтом: заявки, формы и заказы сразу в CRM. UTM, ответственный, без дублей. Москва и удалённо. От 150 000 ₽. Страница: https://www.bober-systems.ru/integrations/bitrix24-s-sajtom"
+    },
+    {
+      "id": "cms-nastrojka-1c-bitrix-exact",
+      "name": "Настройка 1С-Битрикс",
+      "price": 45000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/business-process-automation.jpg",
+      "description": "Настройка 1С-Битрикс: структура, модули, права, формы, каталог. CMS сайта, не портал Битрикс24. Москва и удалённо. От 45 000 ₽. Страница: https://www.bober-systems.ru/integrations/nastrojka-1c-bitrix"
+    },
+    {
+      "id": "bx24-site-reverse",
+      "name": "Интеграция сайта с Битрикс24",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/sales-proposal.jpg",
+      "description": "Интеграция сайта с Битрикс24: событие на витрине становится лидом или сделкой. Источник и UTM в карточке. Москва и удалённо. От 150 000 ₽. https://www.bober-systems.ru/integrations/sajt-s-bitrix24"
+    },
+    {
+      "id": "bx24-site-forms",
+      "name": "Интеграция форм сайта с Битрикс24",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/automation-code.jpg",
+      "description": "Интеграция форм сайта с Битрикс24: поля, файлы, антиспам, уведомление менеджеру. Москва и удалённо. От 150 000 ₽. https://www.bober-systems.ru/integrations/formy-sajta-bitrix24"
+    },
+    {
+      "id": "bx24-shop",
+      "name": "Интеграция интернет-магазина с Битрикс24",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/sales-ai-agent.jpg",
+      "description": "Интеграция интернет-магазина с Битрикс24: заказ, состав, оплата и доставка в сделке. Москва и удалённо. От 300 000 ₽. https://www.bober-systems.ru/integrations/internet-magazin-bitrix24"
+    },
+    {
+      "id": "bx24-tilda",
+      "name": "Интеграция Тильды с Битрикс24",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/team-collab.jpg",
+      "description": "Интеграция Тильды с Битрикс24: формы и оплаты Tilda в воронку CRM. Несколько лендингов — разные источники. Москва и удалённо. От 150 000 ₽. https://www.bober-systems.ru/integrations/tilda-bitrix24"
+    },
+    {
+      "id": "bx24-site-leads",
+      "name": "Заявки с сайта в Битрикс24",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/office-tower.jpg",
+      "description": "Заявки с сайта в Битрикс24: единый вход, антидубль, SLA кто взял лид. Москва и удалённо. От 150 000 ₽. https://www.bober-systems.ru/integrations/zayavki-sajta-bitrix24"
+    },
+    {
+      "id": "cms-site-1c-bitrix",
+      "name": "Настройка сайта на 1С-Битрикс",
+      "price": 45000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/office-interior.jpg",
+      "description": "Настройка сайта на 1С-Битрикс: разделы, шаблон, формы, мобильная вёрстка, обучение редакторов. Москва и удалённо. От 45 000 ₽. https://www.bober-systems.ru/integrations/nastrojka-sajta-1c-bitrix"
+    },
+    {
+      "id": "cms-1c-bitrix-biz",
+      "name": "Настройка 1С-Битрикс для бизнеса",
+      "price": 60000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/document-processing.jpg",
+      "description": "Настройка 1С-Битрикс для бизнеса: корпоративный сайт услуг, роли отделов, заявки менеджеру. Москва и удалённо. От 60 000 ₽. https://www.bober-systems.ru/integrations/nastrojka-1c-bitrix-dlya-biznesa"
+    },
+    {
+      "id": "cms-1c-bitrix-after",
+      "name": "Настройка 1С-Битрикс после установки",
+      "price": 25000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/roadmap-sticky-notes.jpg",
+      "description": "Настройка 1С-Битрикс после установки: почта, HTTPS, шаблон, первые страницы, бэкап. Москва и удалённо. От 25 000 ₽. https://www.bober-systems.ru/integrations/nastrojka-1c-bitrix-posle-ustanovki"
+    },
+    {
+      "id": "cms-1c-bitrix-full",
+      "name": "Комплексная настройка 1С-Битрикс",
+      "price": 80000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/office-facade.jpg",
+      "description": "Комплексная настройка 1С-Битрикс: сайт, каталог, формы и базовая связка с CRM. Москва и удалённо. От 80 000 ₽. https://www.bober-systems.ru/integrations/nastrojka-1c-bitrix-kompleksnaya"
+    },
+    {
+      "id": "cms-1c-bitrix-iblock",
+      "name": "Настройка инфоблоков 1С-Битрикс",
+      "price": 25000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/cyber-padlock.jpg",
+      "description": "Настройка инфоблоков 1С-Битрикс: типы, свойства, разделы, фильтр и карточка элемента. Москва и удалённо. От 25 000 ₽. https://www.bober-systems.ru/integrations/nastrojka-infoblokov-1c-bitrix"
+    }
+  ]
+}

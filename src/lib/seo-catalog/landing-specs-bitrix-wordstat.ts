@@ -49,6 +49,16 @@ export const CATALOG_LANDING_SPECS_BITRIX_WORDSTAT: LandingSpec[] = [
         labelEn: "Bitrix24 ↔ 1C",
       },
       {
+        href: "/integrations/bitrix24-s-sajtom",
+        labelRu: "Битрикс24 с сайтом",
+        labelEn: "Bitrix24 ↔ website",
+      },
+      {
+        href: "/integrations/nastrojka-1c-bitrix",
+        labelRu: "Настройка 1С-Битрикс",
+        labelEn: "1C-Bitrix CMS setup",
+      },
+      {
         href: "/integrations/site-to-crm",
         labelRu: "заявки с сайта в CRM",
         labelEn: "site leads to CRM",

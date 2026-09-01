@@ -151,6 +151,20 @@ export const SEO_HUBS: HubDef[] = [
         blurbEn: "Site, 1C, telephony · repair sync · from €3,000",
       },
       {
+        href: "/integrations/bitrix24-s-sajtom",
+        labelRu: "Интеграция Битрикс24 с сайтом",
+        labelEn: "Bitrix24 ↔ website",
+        blurbRu: "Формы и заказы в CRM · от 150 000 ₽",
+        blurbEn: "Forms and orders into CRM · from a mid-market package",
+      },
+      {
+        href: "/integrations/nastrojka-1c-bitrix",
+        labelRu: "Настройка 1С-Битрикс",
+        labelEn: "1C-Bitrix setup",
+        blurbRu: "CMS: модули, права, формы · от 45 000 ₽",
+        blurbEn: "CMS: modules, roles, forms",
+      },
+      {
         href: "/integrations/bitrix24-implementation",
         labelRu: "Внедрение Битрикс24",
         labelEn: "Bitrix24 implementation",
