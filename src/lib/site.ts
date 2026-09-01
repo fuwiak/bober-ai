@@ -129,6 +129,8 @@ export const PARTNERS_SITE_URL = readPublicEnv("PUBLIC_PARTNERS_SITE_URL", PARTN
 /** CRM landing: Bitrix24 + amoCRM (Caddy host rewrite → /bitrix.html). */
 export const BITRIX_SITE_URL = readPublicEnv("PUBLIC_BITRIX_SITE_URL", BITRIX_ORIGIN);
 export const DEFAULT_KEYWORDS = [
+  "интеграция битрикс24",
+  "интегратор битрикс24",
   "внедрение битрикс24",
   "внедрение crm битрикс24",
   "распознавание первичных документов",
@@ -141,6 +143,7 @@ export const DEFAULT_KEYWORDS = [
   "внедрение битрикс24 цена",
   "интеграция 1С",
   "bitrix24 интеграция",
+  "заказать интеграцию битрикс24",
   "ИИ Москва",
   "Yandex Cloud",
   "Selectel",

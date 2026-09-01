@@ -7,6 +7,7 @@ import { CATALOG_LANDING_SPECS_AMOCRM_WORDSTAT } from "@/lib/seo-catalog/landing
 import { CATALOG_LANDING_SPECS_CRM_SETUP } from "@/lib/seo-catalog/landing-specs-crm-setup";
 import { CATALOG_LANDING_SPECS_HIGH_DEMAND } from "@/lib/seo-catalog/landing-specs-high-demand";
 import { CATALOG_LANDING_SPECS_PRIORITY } from "@/lib/seo-catalog/landing-specs-priority";
+import { CATALOG_LANDING_SPECS_BITRIX_WORDSTAT } from "@/lib/seo-catalog/landing-specs-bitrix-wordstat";
 import { INTENT_ARTICLE_SPECS } from "@/lib/seo-catalog/blog-specs";
 import { SEO_HUBS } from "@/lib/seo-catalog/hubs";
 import { SPECIALIST_ARTICLE_SPECS } from "@/lib/seo-catalog/specialist-blog-specs";
@@ -27,6 +28,7 @@ const ALL_SPECS = [
   ...CATALOG_LANDING_SPECS_CRM_SETUP,
   ...CATALOG_LANDING_SPECS_HIGH_DEMAND,
   ...CATALOG_LANDING_SPECS_PRIORITY,
+  ...CATALOG_LANDING_SPECS_BITRIX_WORDSTAT,
 ];
 const ALL_ARTICLES = [...SPECIALIST_ARTICLE_SPECS, ...INTENT_ARTICLE_SPECS];
 

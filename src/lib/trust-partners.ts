@@ -1,4 +1,5 @@
 import {
+  BITRIX_PARTNER_URL,
   CLOUD_RU_PARTNERS_URL,
   KASPERSKY_PARTNER_URL,
   SELECTEL_PARTNER_PROGRAM_URL,
@@ -18,6 +19,14 @@ export type TrustPartner = {
 };
 
 export const TRUST_PARTNERS: TrustPartner[] = [
+  {
+    id: "bitrix24",
+    name: "Битрикс24",
+    logoSrc: "/partners/bitrix24/business-partner-badge.webp",
+    logoWidth: 180,
+    logoHeight: 52,
+    href: BITRIX_PARTNER_URL,
+  },
   {
     id: "yandex-cloud",
     name: "Yandex Cloud",
@@ -52,6 +61,19 @@ export const TRUST_PARTNERS: TrustPartner[] = [
     href: KASPERSKY_PARTNER_URL,
   },
 ];
+
+export const BITRIX24_PARTNER_BADGE = {
+  id: "business",
+  src: "/partners/bitrix24/business-partner-badge.webp",
+  srcPng: "/partners/bitrix24/business-partner-badge.png",
+  href: "/integrations/bitrix24-integration",
+  partnerUrl: BITRIX_PARTNER_URL,
+  altRu:
+    "Битрикс24 бизнес-партнёр — интеграция Битрикс24, настройка и ремонт интеграций под ключ",
+  altEn: "Bitrix24 Business Partner — Bitrix24 integration and implementation",
+  width: 180,
+  height: 52,
+} as const;
 
 export const KASPERSKY_PARTNER_BADGES = [
   {

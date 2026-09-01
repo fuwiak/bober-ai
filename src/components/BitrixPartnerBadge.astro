@@ -1,0 +1,30 @@
+---
+import { BITRIX24_PARTNER_BADGE } from "@/lib/trust-partners";
+import { localizePath, type Locale } from "@/lib/i18n";
+
+interface Props {
+  locale?: Locale;
+  variant?: "header" | "hero" | "frame" | "footer";
+  loading?: "eager" | "lazy";
+}
+
+const { locale = "ru", variant = "hero", loading = "lazy" } = Astro.props;
+const badge = BITRIX24_PARTNER_BADGE;
+const href = localizePath(badge.href, locale);
+const alt = locale === "uz" ? badge.altEn : badge.altRu;
+---
+
+<a
+  href={href}
+  class={`bitrix-partner bitrix-partner--${variant}`}
+  title={alt}
+>
+  <img
+    src={badge.src}
+    alt={alt}
+    width={badge.width}
+    height={badge.height}
+    loading={loading}
+    decoding="async"
+  />
+</a>

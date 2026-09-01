@@ -1,4 +1,5 @@
 import {
+  BITRIX_PARTNER_URL,
   CLOUD_RU_PARTNERS_URL,
   CONTACT_EMAIL,
   CONTACT_PHONE,
@@ -369,6 +370,7 @@ export function organizationJsonLd(locale: string) {
     YANDEX_CLOUD_PARTNERS_URL,
     SELECTEL_PARTNER_PROGRAM_URL,
     CLOUD_RU_PARTNERS_URL,
+    BITRIX_PARTNER_URL,
     TELEGRAM_URL,
     ...(YANDEX_BUSINESS_URL ? [YANDEX_BUSINESS_URL] : []),
   ];
@@ -444,6 +446,11 @@ export function organizationJsonLd(locale: string) {
       { "@type": "Country", name: market.country },
     ],
     priceRange: market.priceRange,
+    memberOf: {
+      "@type": "Organization",
+      name: "Партнёрская программа 1С-Битрикс",
+      url: BITRIX_PARTNER_URL,
+    },
     ...((): Record<string, unknown> => {
       const rating = aggregateRatingJsonLd();
       return rating ? { aggregateRating: rating } : {};
@@ -460,6 +467,8 @@ export function organizationJsonLd(locale: string) {
       : [
           "Автоматизация бизнес-процессов",
           "Интеграция CRM",
+          "Интеграция Битрикс24",
+          "Интегратор Битрикс24",
           "AI-агенты",
           "Приватный LLM",
           "Обработка документов",

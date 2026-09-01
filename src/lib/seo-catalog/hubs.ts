@@ -46,8 +46,15 @@ export const SEO_HUBS: HubDef[] = [
         href: "/integrations/bitrix24-implementation",
         labelRu: "Внедрение Битрикс24",
         labelEn: "Bitrix24 implementation",
-        blurbRu: "Внедрение и интеграция Битрикс24 под ключ.",
-        blurbEn: "Turnkey Bitrix24 implementation and integration.",
+        blurbRu: "Внедрение портала под ключ.",
+        blurbEn: "Turnkey Bitrix24 portal rollout.",
+      },
+      {
+        href: "/integrations/bitrix24-integration",
+        labelRu: "Интеграция Битрикс24",
+        labelEn: "Bitrix24 integration",
+        blurbRu: "Сайт, 1С, телефония · ремонт обмена.",
+        blurbEn: "Site, 1C, telephony · repair sync.",
       },
       {
         href: "/integrations/crm-automation",
@@ -137,11 +144,18 @@ export const SEO_HUBS: HubDef[] = [
     coverImage: DIAGRAM_IMAGES.crm,
     children: [
       {
+        href: "/integrations/bitrix24-integration",
+        labelRu: "Интеграция Битрикс24",
+        labelEn: "Bitrix24 integration",
+        blurbRu: "Сайт, 1С, телефония · ремонт обмена · от 300 000 ₽",
+        blurbEn: "Site, 1C, telephony · repair sync · from €3,000",
+      },
+      {
         href: "/integrations/bitrix24-implementation",
-        labelRu: "Внедрение и интеграция Битрикс24",
+        labelRu: "Внедрение Битрикс24",
         labelEn: "Bitrix24 implementation",
-        blurbRu: "Пилот от 300 000 ₽ · портал + интеграции",
-        blurbEn: "Pilot from €3,000 · portal + integrations",
+        blurbRu: "Пилот от 300 000 ₽ · портал + воронка",
+        blurbEn: "Pilot from €3,000 · portal + pipeline",
       },
       {
         href: "/integrations/bitrix24-sales-automation",

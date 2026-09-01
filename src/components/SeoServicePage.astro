@@ -21,6 +21,7 @@ import {
 } from "@/lib/seo";
 import type { SeoServiceContent } from "@/lib/seo-services-content";
 import { absoluteUrl, GITHUB_URL, LINKEDIN_URL, TELEGRAM_URL } from "@/lib/site";
+import BitrixPartnerBadge from "@/components/BitrixPartnerBadge.astro";
 
 interface Props {
   slug: string;
@@ -110,6 +111,7 @@ const howCols =
       : "lg:grid-cols-4";
 
 const jsonLd = [webPage, serviceSchema, organization, person, ...(faqSchema ? [faqSchema] : [])];
+const showBitrixBadge = /bitrix/i.test(resolvedPath) || /bitrix/i.test(slug);
 ---
 
 <BaseLayout
@@ -133,6 +135,13 @@ const jsonLd = [webPage, serviceSchema, organization, person, ...(faqSchema ? [f
               <span class="font-medium text-ink">{PROFILE.name}</span>
             </p>
             <p class="body-copy mt-5 max-w-3xl text-lg">{content.subtitle}</p>
+            {
+              showBitrixBadge ? (
+                <div class="mt-6">
+                  <BitrixPartnerBadge locale={locale} variant="hero" loading="eager" />
+                </div>
+              ) : null
+            }
             <div class="mt-10 flex flex-wrap gap-4">
               {
                 service && (

@@ -15,7 +15,6 @@ export const CATALOG_LANDING_SPECS_PRIORITY: LandingSpec[] = [
     coverImage: "/diagrams/crm-integration.svg",
     keywords: [
       "внедрение битрикс24",
-      "интеграция битрикс24",
       "автоматизация битрикс24",
       "внедрение и интеграция битрикс24",
       "внедрение crm битрикс24",
@@ -27,6 +26,11 @@ export const CATALOG_LANDING_SPECS_PRIORITY: LandingSpec[] = [
     ],
     caseStudySlugs: ["bitrix24-kwork-crm", "bitrix24-erp-sync", "yandex-telemost-agent"],
     related: [
+      {
+        href: "/integrations/bitrix24-integration",
+        labelRu: "интеграция Битрикс24",
+        labelEn: "Bitrix24 integration",
+      },
       {
         href: "/bitrix",
         labelRu: "лендинг Bitrix24 · пакеты и ИИ",
@@ -86,7 +90,7 @@ export const CATALOG_LANDING_SPECS_PRIORITY: LandingSpec[] = [
         },
         {
           q: "Чем отличается от /bitrix и /integrations/bitrix24?",
-          a: "Эта страница — коммерческий оффер «внедрение и интеграция» под Direct/SEO. /bitrix — пакетный лендинг; /integrations/bitrix24 — сценарий автоматизации внутри портала.",
+          a: "Эта страница — внедрение портала. Точечная интеграция (сайт, 1С, сломанный обмен) — /integrations/bitrix24-integration. /bitrix — пакетный лендинг; /integrations/bitrix24 — автоматизация внутри портала.",
         },
         {
           q: "Нужен ли ИИ сразу?",

@@ -3950,6 +3950,65 @@ html:not(.dark) .shell-code {
     width: 100%;
     height: auto;
   }
+  .bitrix-partner {
+    display: inline-flex;
+    align-items: center;
+    line-height: 0;
+    text-decoration: none;
+  }
+  .bitrix-partner img {
+    display: block;
+    height: auto;
+    width: auto;
+    max-width: 100%;
+  }
+  .bitrix-partner:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  .bitrix-partner:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--header-ink) 45%, transparent);
+    outline-offset: 2px;
+  }
+  .bitrix-partner--header {
+    flex: none;
+    margin-left: 4px;
+  }
+  .bitrix-partner--header img {
+    height: 28px;
+    width: auto;
+  }
+  @media (max-width: 899.98px) {
+    .site-header .bitrix-partner--header {
+      display: none;
+    }
+  }
+  .bitrix-partner--hero img {
+    height: 44px;
+    width: auto;
+  }
+  @media (min-width: 768px) {
+    .bitrix-partner--hero img {
+      height: 52px;
+    }
+  }
+  .bitrix-partner--frame {
+    display: block;
+  }
+  .bitrix-partner--frame img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+  }
+  .bitrix-partner--footer {
+    background: #fff;
+    padding: 6px 8px;
+    border-radius: 2px;
+  }
+  .bitrix-partner--footer img {
+    height: 32px;
+    width: auto;
+  }
   .partner-cert-row {
     display: grid;
     gap: 2rem;

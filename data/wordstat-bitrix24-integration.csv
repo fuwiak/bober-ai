@@ -1,0 +1,66 @@
+phrase,count,source,seed,cluster,intent,intent_label,intent_legacy,service_fit,priority
+битрикс 24,293365,similar,настройка интеграции битрикс24,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+битрикс 24 вход,135373,similar,интегратор битрикс24,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+трек 24,48806,similar,интегратор битрикс24,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+интегратор,29109,similar,интеграция битрикс24,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+интеграция это,23163,similar,интегратор битрикс24,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+bitrix24 ru,20590,similar,интеграция битрикс24,bitrix24,technology_specific,Технология / стек,commercial_medium,business-process-automation,P2-landing/ads
+битрикс это,14253,similar,интеграция битрикс24,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+битрикс что это,9276,similar,интеграция битрикс24,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+bitrix24 ru вход в личный кабинет,8066,similar,интеграция битрикс24 с сайтом,bitrix24,technology_specific,Технология / стек,commercial_medium,business-process-automation,P2-landing/ads
+битрикс 24 это,6492,similar,интеграция битрикс24,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+битрикс войти,5500,similar,интеграция битрикс24,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+битрикс 24 что это,5223,similar,интеграция битрикс24,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+bitrix 24,3751,similar,интегратор битрикс24,bitrix24,technology_specific,Технология / стек,commercial_medium,business-process-automation,P2-landing/ads
+что такое битрикс,4071,similar,интеграция битрикс24,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+интеграция битрикс24,1833,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P1-landing
+1с битрикс управление сайтом,1775,similar,настройка интеграции битрикс24,bitrix24,technology_specific,Технология / стек,commercial_medium,business-process-automation,P2-landing/ads
+интеграл онлайн,2096,similar,интеграция битрикс24 с сайтом,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+битрикс веб,1854,similar,интеграция битрикс24 с сайтом,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+битрикс 24 войти,1765,similar,интеграция битрикс24,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+аа 24 онлайн,1588,similar,интеграция битрикс24 с сайтом,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+что такое битрикс 24,1408,similar,интеграция битрикс24,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+интегратор битрикс24,304,popular,интегратор битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P1-landing
+bitrix24 что это,770,similar,интеграция битрикс24,bitrix24,technology_specific,Технология / стек,commercial_medium,business-process-automation,P2-landing/ads
+интеграция битрикс24 и 1с,199,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P1-landing
+битрикс24 авито интеграция,93,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+модуль интеграции битрикс24,72,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+битрикс24 интеграция сайтом,68,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+интеграция битрикс24 crm,53,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+интеграция и настройка битрикс24,46,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+тильда битрикс24 интеграция,42,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+интеграция сайта с битрикс24,37,popular,интеграция битрикс24 с сайтом,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+интеграция битрикс24 телефонией,34,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+битрикс интеграция с битрикс24,33,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+битрикс24 интеграция сервисов,26,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+битрикс24 интеграция почты,25,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+интеграция битрикс24 с авито иваново,20,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+интеграция унф и битрикс24,19,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+интеграция мессенджеров в битрикс24,19,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+интеграция битрикс24 и макс,18,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+битрикс24 диадок интеграция,18,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+интеграция манго и битрикс24,17,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+настройка интеграции 1с и битрикс24,17,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+интеграция 1с битрикс и битрикс24,15,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+wazzup интеграция с битрикс24,15,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+1с и битрикс24 без интеграции,15,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+1с унф и битрикс24 интеграция,14,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+модуль интеграции битрикс24 и 1с,12,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+телфин интеграция с битрикс24,10,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+yclients интеграция с битрикс24,10,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+интеграция сбис и битрикс24,10,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+теле2 интеграция с битрикс24,9,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+roistat интеграция с битрикс24,8,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+битрикс24 мой склад интеграция,8,popular,интеграция битрикс24,bitrix24,integration_high,Интеграция (высокий),commercial_high,business-process-automation,P2-landing/ads
+битрикс 24 что это за программа,969,similar,настройка интеграции битрикс24,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+bitrix skinteg ru,360,similar,настройка интеграции битрикс24,bitrix24,technology_specific,Технология / стек,commercial_medium,business-process-automation,P2-landing/ads
+bitrix24 что это такое,299,similar,интеграция битрикс24,bitrix24,technology_specific,Технология / стек,commercial_medium,business-process-automation,P2-landing/ads
+как решать интегралы,797,similar,интеграция битрикс24,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+битрикс 24 регистрация,745,similar,настройка интеграции битрикс24,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+битрикс 24 ру,207,similar,интеграция битрикс24 с сайтом,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+битрикс 24 регистрация бесплатно,195,similar,настройка интеграции битрикс24,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+как настроить byebyedpi для телеграмма,151,similar,настройка интеграции битрикс24,bitrix24,negative,Негатив / шум,irrelevant,skip,P0-skip
+курс интегратор битрикс24,18,popular,интегратор битрикс24,bitrix24,informational,Информационный,informational,blog,P4-blog
+как сменить интегратора битрикс24,17,popular,интегратор битрикс24,bitrix24,informational,Информационный,informational,blog,P4-blog
+как пригласить интегратора в битрикс24,16,popular,интегратор битрикс24,bitrix24,informational,Информационный,informational,blog,P4-blog
+как добавить интегратора битрикс24,10,popular,интегратор битрикс24,bitrix24,informational,Информационный,informational,blog,P4-blog

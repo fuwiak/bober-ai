@@ -1,0 +1,114 @@
+{
+  "date": "2026-09-01",
+  "source": "Yandex Wordstat topRequests totalCount",
+  "seeds": [
+    {
+      "phrase": "интеграция битрикс24",
+      "totalCount": 1833,
+      "exactCount": 1833,
+      "top1": {
+        "phrase": "интеграция битрикс24",
+        "count": 1833
+      }
+    },
+    {
+      "phrase": "интегратор битрикс24",
+      "totalCount": 304,
+      "exactCount": 304,
+      "top1": {
+        "phrase": "интегратор битрикс24",
+        "count": 304
+      }
+    },
+    {
+      "phrase": "настройка интеграции битрикс24",
+      "totalCount": 63,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "интеграция и настройка битрикс24",
+        "count": 46
+      }
+    },
+    {
+      "phrase": "интеграция битрикс24 с сайтом",
+      "totalCount": 37,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "интеграция сайта с битрикс24",
+        "count": 37
+      }
+    },
+    {
+      "phrase": "стоимость интеграции битрикс24",
+      "totalCount": 11,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "ошибка интеграции битрикс24",
+      "totalCount": 11,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "интеграция битрикс24 под ключ",
+      "totalCount": 10,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "проблемы интеграции битрикс24",
+      "totalCount": 8,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "заказать интеграцию битрикс24",
+      "totalCount": 6,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "интеграция битрикс24 цена",
+      "totalCount": 6,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "доработка интеграции битрикс24",
+      "totalCount": 5,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "интеграция битрикс24 не работает",
+      "totalCount": 3,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "битрикс24 интеграция сломалась",
+      "totalCount": 2,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "интеграция битрикс24 с telegram",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "исправить интеграцию битрикс24",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "ремонт интеграции битрикс24",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    }
+  ]
+}

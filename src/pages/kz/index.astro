@@ -13,6 +13,7 @@ import { loadMessages, localizePath } from "@/lib/i18n";
 import { getEnterpriseServicesListing } from "@/lib/enterprise-services";
 import { getPortfolioListing, PROFILE } from "@/lib/profile";
 import { absoluteUrl } from "@/lib/site";
+import BitrixPartnerBadge from "@/components/BitrixPartnerBadge.astro";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
@@ -121,6 +122,9 @@ const homeJsonLd = [
           </ul>
         ) : null
       }
+      <div class="mt-6">
+        <BitrixPartnerBadge locale={locale} variant="hero" loading="eager" />
+      </div>
       <div class="mt-10 flex flex-wrap gap-4">
         <button type="button" class="btn-primary" data-contact-open data-contact-goal={PRIMARY_CTA_GOAL}>
           {hero.ctaPrimary}

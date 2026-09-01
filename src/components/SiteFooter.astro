@@ -14,6 +14,7 @@ import {
   TELEGRAM_URL,
 } from "@/lib/site";
 import type { Messages } from "@/lib/i18n";
+import BitrixPartnerBadge from "@/components/BitrixPartnerBadge.astro";
 
 interface Props {
   locale: Locale;
@@ -103,6 +104,9 @@ const year = new Date().getFullYear();
       ))}
     </div>
     <p class="mt-8 text-xs text-muted-soft">© {year} {SITE_NAME}</p>
+    <div class="mt-4">
+      <BitrixPartnerBadge locale={locale} variant="footer" loading="lazy" />
+    </div>
     <div class="mt-4 flex flex-wrap items-center gap-3">
       <a
         href={`https://webmaster.yandex.ru/siteinfo/?site=${encodeURIComponent(SITE_URL)}`}
