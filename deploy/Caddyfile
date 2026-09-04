@@ -211,6 +211,16 @@ http://bober-ai.dev, https://bober-ai.dev, http://www.bober-ai.dev, https://www.
 	redir https://www.bober-systems.ru{uri} permanent
 }
 
+# Same apex family: without these blocks Caddy has no cert/SNI match and
+# browsers get ERR_SSL_PROTOCOL_ERROR (tlsv1 alert internal error).
+http://partners.bober-ai.dev, https://partners.bober-ai.dev {
+	redir https://partners.bober-systems.ru{uri} permanent
+}
+
+http://bitrix.bober-ai.dev, https://bitrix.bober-ai.dev {
+	redir https://bitrix.bober-systems.ru{uri} permanent
+}
+
 https://partners.bober-systems.ru {
 	import security_headers
 	handle /performers-feed.yml {
