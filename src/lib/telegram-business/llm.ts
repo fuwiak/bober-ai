@@ -32,6 +32,14 @@ import {
   recentAssistantTexts,
 } from "@/lib/telegram-business/db/store";
 import type { StoredMessage } from "@/lib/telegram-business/db/schema";
+import {
+  isOpenRouterAuthBroken,
+  markOpenRouterAuthBroken,
+  openRouterApiKey,
+  openRouterReady,
+} from "@/lib/telegram-business/openrouter-auth";
+
+export { isOpenRouterAuthBroken, openRouterReady } from "@/lib/telegram-business/openrouter-auth";
 
 /** How many prior assistant turns to feed into anti-echo + prompt blacklist. */
 const ANTI_ECHO_PRIOR_LIMIT = 8;
@@ -68,7 +76,10 @@ async function chatOpenRouter(
   messages: ChatTurn[],
   opts?: { temperature?: number },
 ): Promise<string> {
-  const apiKey = process.env.OPENROUTER_API_KEY?.trim();
+  if (isOpenRouterAuthBroken()) {
+    throw new Error("OPENROUTER_API_KEY rejected (circuit open)");
+  }
+  const apiKey = openRouterApiKey();
   if (!apiKey) throw new Error("OPENROUTER_API_KEY missing");
 
   const endpoint =
@@ -95,6 +106,9 @@ async function chatOpenRouter(
     });
     if (!res.ok) {
       const text = await res.text().catch(() => "");
+      if (res.status === 401 || res.status === 403) {
+        markOpenRouterAuthBroken(`LLM ${res.status}: ${text}`);
+      }
       throw new Error(`LLM ${res.status}: ${text.slice(0, 240)}`);
     }
     const json = (await res.json()) as {
@@ -198,7 +212,7 @@ export async function generateBusinessReply(params: {
     };
   }
 
-  if (!process.env.OPENROUTER_API_KEY?.trim()) {
+  if (!openRouterReady()) {
     return {
       text: fallbackReply(params.message),
       handoff: false,
@@ -312,7 +326,7 @@ export async function generateReminderAdvice(params: {
   const fallback =
     REMINDER_FALLBACK[params.lang] || REMINDER_FALLBACK.ru;
 
-  if (!process.env.OPENROUTER_API_KEY?.trim()) {
+  if (!openRouterReady()) {
     if (params.requireConcrete) return { text: "", source: "fallback" };
     return { text: fallback, source: "fallback" };
   }
@@ -360,7 +374,10 @@ export async function generateReminderAdvice(params: {
 
     return { text: cleaned || text, source: "llm" };
   } catch (err) {
-    console.error("[telegram-business] reminder LLM failed", err);
+    // Auth circuit already logged once — skip per-customer spam.
+    if (!isOpenRouterAuthBroken()) {
+      console.error("[telegram-business] reminder LLM failed", err);
+    }
     if (params.requireConcrete) return { text: "", source: "fallback" };
     return { text: fallback, source: "fallback" };
   }

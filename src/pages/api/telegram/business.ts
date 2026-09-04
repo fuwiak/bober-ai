@@ -6,6 +6,7 @@ import { getBusinessBot } from "@/lib/telegram-business/bot";
 import { dbHealth } from "@/lib/telegram-business/db/store";
 import { dbBackendLabel } from "@/lib/telegram-business/db/client";
 import { ensureReminderScheduler } from "@/lib/telegram-business/reminders/tick";
+import { openRouterReady } from "@/lib/telegram-business/openrouter-auth";
 
 function json(body: Record<string, unknown>, status = 200) {
   return new Response(JSON.stringify(body), {
@@ -23,7 +24,7 @@ export const GET: APIRoute = async () => {
     service: "telegram-business",
     framework: "grammy",
     configured: Boolean(token),
-    llm: Boolean(process.env.OPENROUTER_API_KEY?.trim()),
+    llm: openRouterReady(),
     db: db.backend,
     dbOk: db.ok,
     reminders: "in-process + /api/telegram/reminders/tick",

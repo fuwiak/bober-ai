@@ -5,6 +5,11 @@ import {
   getRecentMessages,
 } from "@/lib/telegram-business/db/store";
 import type { MessageRole } from "@/lib/telegram-business/db/schema";
+import {
+  markOpenRouterAuthBroken,
+  openRouterApiKey,
+  openRouterReady,
+} from "@/lib/telegram-business/openrouter-auth";
 
 /** Labels for inbound tone → Telegram reaction (or skip). */
 export type ReactionLabel = "joke" | "neutral" | "troll" | "thanks" | "other";
@@ -135,7 +140,8 @@ async function classifyReactionLlm(
   text: string,
   history: ReactionHistoryTurn[],
 ): Promise<ReactionLabel | null> {
-  const apiKey = process.env.OPENROUTER_API_KEY?.trim();
+  if (!openRouterReady()) return null;
+  const apiKey = openRouterApiKey();
   if (!apiKey) return null;
 
   const endpoint =
@@ -171,7 +177,13 @@ async function classifyReactionLlm(
       }),
       signal: ctrl.signal,
     });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      if (res.status === 401 || res.status === 403) {
+        const body = await res.text().catch(() => "");
+        markOpenRouterAuthBroken(`reaction LLM ${res.status}: ${body}`);
+      }
+      return null;
+    }
     const json = (await res.json()) as {
       choices?: { message?: { content?: string } }[];
     };
