@@ -2775,6 +2775,154 @@ html.dark {
     color: var(--color-body);
   }
 
+  /* Лид-магнит попап: на телефоне — bottom sheet, на десктопе — карточка по центру. */
+  .promo-offer {
+    position: fixed;
+    inset: 0;
+    /* Над header (200) и плавающим CTA, ниже cookie-баннера */
+    z-index: 315;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0;
+  }
+  .promo-offer__backdrop {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: rgba(0, 0, 0, 0.78);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 240ms ease;
+  }
+  .promo-offer__panel {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-height: 92dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    border: 1px solid var(--color-hairline);
+    border-bottom: 0;
+    background: var(--color-canvas);
+    padding: 24px 20px calc(24px + env(safe-area-inset-bottom, 0px));
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 240ms ease, transform 240ms ease;
+  }
+  .promo-offer__panel:focus-visible {
+    outline: none;
+  }
+  .promo-offer--open .promo-offer__backdrop {
+    opacity: 1;
+  }
+  .promo-offer--open .promo-offer__panel {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .promo-offer__close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: transparent;
+    color: var(--color-muted);
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .promo-offer__close:hover {
+    color: var(--color-ink);
+  }
+  .promo-offer__badge {
+    display: inline-block;
+    border: 1px solid var(--color-hairline-strong);
+    padding: 4px 10px;
+  }
+  .promo-offer__title {
+    margin-top: 14px;
+    padding-right: 44px;
+    font-size: clamp(20px, 5vw, 26px);
+    line-height: 1.2;
+  }
+  .promo-offer__text {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  .promo-offer__bullets {
+    margin-top: 14px;
+    list-style: none;
+    padding: 0;
+  }
+  .promo-offer__bullets li {
+    display: flex;
+    gap: 8px;
+    font-size: 14px;
+  }
+  .promo-offer__bullets li + li {
+    margin-top: 6px;
+  }
+  .promo-offer__form {
+    margin-top: 20px;
+    display: grid;
+    gap: 12px;
+  }
+  .promo-offer__field {
+    display: block;
+  }
+  .promo-offer__field .form-label {
+    display: block;
+    margin-bottom: 6px;
+  }
+  /* Тап-таргеты и 16px шрифт — iOS иначе зумит форму при фокусе. */
+  .promo-offer__field .text-input,
+  .promo-offer__field .textarea-input {
+    min-height: 48px;
+    font-size: 16px;
+  }
+  .promo-offer__consent {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    cursor: pointer;
+  }
+  .promo-offer__submit {
+    min-height: 52px;
+    width: 100%;
+  }
+  .promo-offer__note {
+    margin-top: 12px;
+  }
+  @media (min-width: 768px) {
+    .promo-offer {
+      align-items: center;
+      padding: 24px;
+    }
+    .promo-offer__panel {
+      width: min(100%, 560px);
+      max-height: min(92vh, 900px);
+      border-bottom: 1px solid var(--color-hairline);
+      padding: 32px;
+      transform: translateY(10px);
+    }
+    .promo-offer__submit {
+      width: auto;
+      min-width: 240px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .promo-offer__backdrop,
+    .promo-offer__panel {
+      transition: none;
+      transform: none;
+    }
+  }
   .contact-modal {
     position: fixed;
     inset: 0;

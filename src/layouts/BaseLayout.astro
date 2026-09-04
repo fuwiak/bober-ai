@@ -4,6 +4,7 @@ import SiteFooter from "@/components/SiteFooter.astro";
 import CookieConsent from "@/components/CookieConsent.astro";
 import ContactModal from "@/components/ContactModal.astro";
 import ContactFab from "@/components/ContactFab.astro";
+import PromoOfferModal from "@/components/PromoOfferModal.astro";
 import { loadMessages, localizePath, stripLocalePrefix, type Locale } from "@/lib/i18n";
 import { marketOf } from "@/lib/markets";
 import {
@@ -148,6 +149,7 @@ const metrikaBootstrap = `(function(){var host=(location.hostname||'').toLowerCa
     <SiteFooter locale={locale} messages={messages} />
     <ContactModal locale={locale} messages={messages} />
     <ContactFab messages={messages} />
+    <PromoOfferModal locale={locale} messages={messages} />
     <CookieConsent locale={locale} messages={messages} />
 
     <script src="/vendor/htmx.min.js" is:inline></script>
@@ -157,6 +159,7 @@ const metrikaBootstrap = `(function(){var host=(location.hostname||'').toLowerCa
       import "../scripts/attribution.ts";
       import "../scripts/cookie-consent.ts";
       import "../scripts/contact-modal.ts";
+      import "../scripts/promo-offer-modal.ts";
       import "../scripts/form-attribution.ts";
       import "../scripts/goal-clicks.ts";
       import "../scripts/metrika-hits.ts";

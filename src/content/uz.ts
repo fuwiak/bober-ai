@@ -1053,6 +1053,27 @@ const uzOverrides = {
     secondary: "Telegram",
     calendar: "Qo'ng'iroqni rejalashtirish",
   },
+  promoOffer: {
+    badge: "Bepul · 30 daqiqa",
+    title: "Bitta jarayonni bepul tahlil qilamiz",
+    text:
+      "amoCRM, Bitrix24 yoki 1С da nimani avtomatlashtirish mumkinligini ko'rsatamiz: lidlar va vaqt qayerda yo'qoladi, nima birinchi natija beradi va bu qancha turadi. Taqdimotlarsiz va majburiyatsiz.",
+    bullets: [
+      "Sizning ma'lumotlaringiz bo'yicha bitta jarayon tahlili",
+      "Byudjet oralig'i va pilot muddati",
+      "4 ish soati ichida javob",
+    ],
+    nameLabel: "Ismingiz",
+    namePlaceholder: "Sizga qanday murojaat qilaylik",
+    phoneLabel: "Telefon yoki Telegram",
+    phonePlaceholder: "+998… yoki @telegram",
+    messageLabel: "Nimani avtomatlashtirish kerak",
+    messagePlaceholder: "Masalan: amoCRM da lidlar yo'qoladi, KP qo'lda",
+    submit: "Tahlilni olish",
+    close: "Yopish",
+    audienceNote: "Buyurtmachi kompaniyalar bilan ishlaymiz. Rezyume va xizmat takliflari — sahifa",
+    service: "Bitta jarayonning bepul tahlili",
+  },
   serviceAudience: {
     label: "Kimlar uchun",
     title: "Bu xizmat kimlarga mos",

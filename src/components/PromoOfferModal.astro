@@ -1,0 +1,148 @@
+---
+/**
+ * Лид-магнит попап: бесплатный разбор одного процесса.
+ * Мобильный приоритет — на телефоне открывается как bottom sheet.
+ * Триггеры и частота показа — src/scripts/promo-offer-modal.ts.
+ */
+import { localizePath, type Locale, type Messages } from "@/lib/i18n";
+import { LEGAL_ROUTES } from "@/lib/legal";
+
+interface Props {
+  locale: Locale;
+  messages: Messages;
+}
+
+const { locale, messages } = Astro.props;
+const promo = messages.promoOffer;
+const form = messages.form;
+const privacyHref = localizePath(LEGAL_ROUTES.privacyPolicy, locale);
+const consentHref = localizePath(LEGAL_ROUTES.consent, locale);
+const partnersHref = localizePath("/partners", locale);
+---
+
+<div
+  class="promo-offer"
+  data-promo-offer
+  hidden
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="promo-offer-title"
+>
+  <button type="button" class="promo-offer__backdrop" aria-label={promo.close} data-promo-close />
+  <div class="promo-offer__panel" data-promo-panel tabindex="-1">
+    <button type="button" class="promo-offer__close" data-promo-close aria-label={promo.close}>
+      ×
+    </button>
+    <p class="promo-offer__badge meta-label">{promo.badge}</p>
+    <h2 id="promo-offer-title" class="promo-offer__title card-title">{promo.title}</h2>
+    <p class="promo-offer__text body-copy">{promo.text}</p>
+    <ul class="promo-offer__bullets">
+      {
+        promo.bullets.map((item) => (
+          <li class="body-copy">
+            <span class="text-accent" aria-hidden="true">—</span>
+            <span>{item}</span>
+          </li>
+        ))
+      }
+    </ul>
+
+    <form
+      class="contact-form promo-offer__form"
+      action="/api/contact"
+      method="post"
+      hx-post="/api/contact"
+      hx-swap="outerHTML"
+      data-contact-form
+      data-form-intent="estimate"
+      novalidate
+    >
+      <input
+        type="text"
+        name="website"
+        tabindex="-1"
+        autocomplete="off"
+        aria-hidden="true"
+        class="absolute -left-[9999px] h-0 w-0 opacity-0"
+      />
+      <input type="hidden" name="locale" value={locale} />
+      <input type="hidden" name="source" value="promo-modal" />
+      <input type="hidden" name="intent" value="estimate" />
+      <input type="hidden" name="service" value={promo.service} />
+      <input type="hidden" name="utm_source" value="" />
+      <input type="hidden" name="utm_medium" value="" />
+      <input type="hidden" name="utm_campaign" value="" />
+      <input type="hidden" name="utm_content" value="" />
+      <input type="hidden" name="utm_term" value="" />
+      <input type="hidden" name="yclid" value="" />
+      <input type="hidden" name="landing_page" value="" />
+      <input type="hidden" name="consent" value="true" />
+
+      <label class="promo-offer__field">
+        <span class="form-label">{promo.nameLabel}</span>
+        <input
+          type="text"
+          name="name"
+          required
+          autocomplete="name"
+          class="text-input"
+          placeholder={promo.namePlaceholder}
+        />
+      </label>
+
+      <label class="promo-offer__field">
+        <span class="form-label">{promo.phoneLabel}</span>
+        <input
+          type="tel"
+          name="phone"
+          required
+          inputmode="tel"
+          autocomplete="tel"
+          class="text-input"
+          placeholder={promo.phonePlaceholder}
+        />
+      </label>
+
+      <label class="promo-offer__field">
+        <span class="form-label">
+          {promo.messageLabel}
+          <span class="text-muted-soft">{form.optional}</span>
+        </span>
+        <textarea
+          name="message"
+          rows={2}
+          class="textarea-input"
+          placeholder={promo.messagePlaceholder}
+        />
+      </label>
+
+      <label class="promo-offer__consent">
+        <input
+          type="checkbox"
+          name="policyAccepted"
+          value="true"
+          required
+          class="mt-1 h-4 w-4 shrink-0 border-hairline-strong accent-ink"
+        />
+        <span class="text-sm leading-relaxed text-muted">
+          {form.consentCombined}
+          <a href={privacyHref} class="text-link" target="_blank" rel="noopener noreferrer">
+            {form.policyLink}
+          </a>
+          {form.consentAnd}
+          <a href={consentHref} class="text-link" target="_blank" rel="noopener noreferrer">
+            {form.consentLink}
+          </a>
+          .
+        </span>
+      </label>
+
+      <button type="submit" class="btn-primary promo-offer__submit">{promo.submit}</button>
+    </form>
+
+    <p class="promo-offer__note text-sm text-muted">
+      {promo.audienceNote}{" "}
+      <a href={partnersHref} class="text-link">{messages.nav.partners}</a>.
+    </p>
+  </div>
+</div>
