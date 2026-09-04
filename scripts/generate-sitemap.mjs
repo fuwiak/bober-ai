@@ -54,6 +54,10 @@ const PRIORITY_PATHS = [
   "/bitrix",
   "/kaspersky",
   "/info",
+  "/for-ceo",
+  "/for-sales-director",
+  "/for-coo",
+  "/for-cio",
 ];
 
 /** Blog / academy slugs worth indexing early (extend later). */
@@ -307,7 +311,7 @@ for (const file of files) {
   const path = pathFromFile(file);
   if (isExcluded(path)) continue;
   const lastmod = await lastmodForPath(path, file);
-  entries.push({ path, loc: path === "/" ? `${SITE}/` : `${SITE}${path}`, lastmod, score: priorityScore(path) });
+  entries.push({ path, loc: path === "/" ? SITE : `${SITE}${path}`, lastmod, score: priorityScore(path) });
 }
 
 /** SSR/on-demand routes not present as dist/client HTML. */
@@ -339,7 +343,7 @@ for (const path of PRIORITY_PATHS) {
   const file = path === "/" ? join(ROOT, "index.html") : join(ROOT, path.slice(1), "index.html");
   const lastmod = (await lastmodForPath(path, file)) || today;
   if (limited.length >= MAX_URLS) limited.pop();
-  limited.push({ path, loc: path === "/" ? `${SITE}/` : `${SITE}${path}`, lastmod, score: 999 });
+  limited.push({ path, loc: path === "/" ? SITE : `${SITE}${path}`, lastmod, score: 999 });
   seen.add(path);
 }
 

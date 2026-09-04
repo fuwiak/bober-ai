@@ -1,5 +1,98 @@
 ---
-import ContentSectionPage from "@/components/ContentSectionPage.astro";
+/**
+ * Blog hub. Previously rendered only static copy — every post was an orphan
+ * (reachable from sitemap / RSS only). Now lists the full set: intent articles
+ * from the SEO catalog + legacy posts.
+ */
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { loadMessages, localizePath } from "@/lib/i18n";
+import { BLOG_POSTS } from "@/lib/blog-posts";
+import { getAllIntentArticles } from "@/lib/seo-catalog";
+import { absoluteUrl } from "@/lib/site";
+import { webPageJsonLd } from "@/lib/seo";
+
 export const prerender = true;
+
+const locale = "ru" as const;
+const messages = loadMessages(locale);
+const block = (messages.pages as Record<string, Record<string, string>>).blog ?? {};
+
+const title = block.metaTitle || block.title || "Блог";
+const description = block.metaDescription || block.subtitle || messages.meta.description;
+const h1 = block.h1 || block.title || title;
+
+type Entry = { slug: string; title: string; description: string; date?: string; cluster?: string };
+
+const intentEntries: Entry[] = getAllIntentArticles().map((article) => ({
+  slug: article.slug,
+  title: article.ru.title,
+  description: article.ru.description,
+  date: article.publishedAt,
+  cluster: article.cluster,
+}));
+
+const legacyEntries: Entry[] = BLOG_POSTS.map((post) => ({
+  slug: post.slug,
+  title: post.title,
+  description: post.description,
+  date: post.publishedAt,
+}));
+
+/** Newest first; intent articles and legacy posts share one list. */
+const seen = new Set<string>();
+const entries = [...intentEntries, ...legacyEntries]
+  .filter((entry) => (seen.has(entry.slug) ? false : (seen.add(entry.slug), true)))
+  .sort((a, b) => String(b.date ?? "").localeCompare(String(a.date ?? "")));
+
+const jsonLd = [
+  webPageJsonLd({ name: h1, description, url: absoluteUrl("/blog"), locale }),
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: h1,
+    numberOfItems: entries.length,
+    itemListElement: entries.slice(0, 100).map((entry, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: absoluteUrl(`/blog/${entry.slug}`),
+      name: entry.title,
+    })),
+  },
+];
 ---
-<ContentSectionPage locale="ru" path="/blog" namespace="pages.blog" />
+
+<BaseLayout
+  title={title}
+  description={description}
+  locale={locale}
+  canonicalPath="/blog"
+  jsonLd={jsonLd}
+>
+  <article class="container-editorial py-12 md:py-20">
+    <p class="meta-label">{messages.nav.blog}</p>
+    <h1 class="mt-4 display-title">{h1}</h1>
+    {description && <p class="mt-6 body-copy max-w-3xl">{description}</p>}
+
+    <p class="mt-6 text-sm text-muted">Материалов: {entries.length}</p>
+
+    <ul class="mt-10 grid gap-6 md:grid-cols-2">
+      {
+        entries.map((entry) => (
+          <li class="border border-hairline p-5">
+            <a class="font-medium text-ink text-link" href={localizePath(`/blog/${entry.slug}`, locale)}>
+              {entry.title}
+            </a>
+            {entry.description && <p class="mt-2 text-sm text-muted">{entry.description}</p>}
+            {entry.date && <p class="mt-3 meta-label text-muted">{entry.date}</p>}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-12 flex flex-wrap gap-x-6 gap-y-2">
+      <a class="link-more" href={localizePath("/guides", locale)}>Практические гайды →</a>
+      <a class="link-more" href={localizePath("/services", locale)}>Каталог решений →</a>
+      <a class="link-more" href={localizePath("/for-ceo", locale)}>Руководителям: ROI и дорожная карта →</a>
+    </div>
+  </article>
+</BaseLayout>

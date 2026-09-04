@@ -9,6 +9,7 @@ import {
 import {
   CONTACT_PHONE,
   HOMEPAGE_PRESENCE_LINKS,
+  PARTNERS_SITE_URL,
   SITE_NAME,
   SITE_URL,
   TELEGRAM_URL,
@@ -44,6 +45,14 @@ const sectionLinks = [
   { href: "/#contact", label: nav.contact, localeAgnostic: false },
 ];
 
+/** Role-based executive landings — decision-maker entry points. */
+const executiveLinks = [
+  { href: "/for-ceo", label: "Собственнику и CEO" },
+  { href: "/for-sales-director", label: "Коммерческому директору" },
+  { href: "/for-coo", label: "Операционному директору" },
+  { href: "/for-cio", label: "CIO и CDO" },
+];
+
 function hrefFor(item: { href: string; localeAgnostic?: boolean }) {
   return item.localeAgnostic ? item.href : localizePath(item.href, locale);
 }
@@ -64,6 +73,21 @@ const year = new Date().getFullYear();
         </a>
       ))}
     </nav>
+    <p class="mt-8 meta-label text-on-dark-soft">{footer.executivesTitle}</p>
+    <nav class="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm" aria-label={footer.executivesTitle}>
+      {executiveLinks.map((item) => (
+        <a href={localizePath(item.href, locale)} class="text-on-dark active:opacity-75">
+          {item.label}
+        </a>
+      ))}
+    </nav>
+    <p class="mt-6 text-sm text-on-dark-soft">
+      {footer.partnersLine}
+      {" → "}
+      <a href={PARTNERS_SITE_URL} rel="noreferrer" class="text-on-dark active:opacity-75">
+        {PARTNERS_SITE_URL.replace("https://", "")}
+      </a>
+    </p>
     <p class="mt-8 text-sm">
       <span class="text-on-dark">{footer.legalName}</span>
       {" · "}

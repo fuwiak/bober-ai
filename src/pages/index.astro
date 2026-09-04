@@ -11,6 +11,7 @@ import RoiCalculatorSection from "@/components/RoiCalculatorSection.astro";
 import HomeAuthoritySections from "@/components/HomeAuthoritySections.astro";
 import HomeMarketOffers from "@/components/HomeMarketOffers.astro";
 import ProblemCardsSection from "@/components/ProblemCardsSection.astro";
+import ExecutiveTasksSection from "@/components/ExecutiveTasksSection.astro";
 import SolutionOffersSection from "@/components/SolutionOffersSection.astro";
 import BuildQualitySection from "@/components/BuildQualitySection.astro";
 import { loadMessages, localizePath } from "@/lib/i18n";
@@ -213,6 +214,14 @@ const homeJsonLd = [
     cta={messages.businessProblems.cta}
     moreLabel={messages.businessProblems.moreLabel}
     items={messages.businessProblems.items}
+  />
+
+  <ExecutiveTasksSection
+    locale={locale}
+    label={messages.executiveTasks.label}
+    title={messages.executiveTasks.title}
+    subtitle={messages.executiveTasks.subtitle}
+    items={messages.executiveTasks.items}
   />
 
   <SolutionOffersSection

@@ -1,0 +1,54 @@
+---
+/**
+ * «Какие задачи решаем для руководителей» — role-based entry points
+ * (CEO / коммерческий директор / COO / CIO) into the four /for-* landings.
+ */
+import { localizePath, type Locale } from "@/lib/i18n";
+
+type ExecutiveRoleCard = {
+  role: string;
+  audience: string;
+  tasks: readonly string[];
+  href: string;
+  cta: string;
+};
+
+interface Props {
+  locale: Locale;
+  label: string;
+  title: string;
+  subtitle: string;
+  items: readonly ExecutiveRoleCard[];
+}
+
+const { locale, label, title, subtitle, items } = Astro.props;
+---
+
+<section id="for-executives" class="section-band section--panel scroll-mt-16 border-b border-hairline">
+  <div class="container-editorial">
+    <div class="reveal">
+      <span class="section-label">{label}</span>
+      <h2 class="section-title mt-4">{title}</h2>
+      <p class="body-copy mt-4 max-w-3xl text-base">{subtitle}</p>
+    </div>
+
+    <div class="market-offers-grid mt-10">
+      {
+        items.map((item) => (
+          <article class="market-offer-card">
+            <h3 class="card-title text-lg">{item.role}</h3>
+            <p class="meta-label mt-2 text-muted">{item.audience}</p>
+            <ul class="mt-4 space-y-2 text-sm">
+              {item.tasks.map((task) => (
+                <li class="body-copy text-sm">— {task}</li>
+              ))}
+            </ul>
+            <a class="link-more mt-5 inline-block" href={localizePath(item.href, locale)}>
+              {item.cta}
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

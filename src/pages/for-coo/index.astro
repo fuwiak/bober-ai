@@ -1,0 +1,24 @@
+---
+/**
+ * Role-based executive landing.
+ * Path: /for-coo
+ */
+import SeoServicePage from "@/components/SeoServicePage.astro";
+import { getExecutiveRolePage } from "@/lib/executive-roles";
+
+export const prerender = true;
+
+const page = getExecutiveRolePage("for-coo");
+---
+
+<SeoServicePage
+  slug="for-coo"
+  locale="ru"
+  content={page.content}
+  pagePath="/for-coo"
+  serviceSlug={page.serviceSlug}
+  keywords={page.keywords}
+  formSource="role-for-coo"
+  formDefaultService={page.formDefaultService}
+  breadcrumbItems={[{ name: page.breadcrumbLabel, path: "/for-coo" }]}
+/>

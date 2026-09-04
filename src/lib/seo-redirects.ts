@@ -42,6 +42,20 @@ export const SEO_EXACT_REDIRECTS: Record<string, string> = {
   "/services/n8n": "/automation",
   "/services/open-webui": "/automation",
 
+  // Solution-pillar aliases (executive URL scheme) → page that owns the cluster.
+  // Kept as 301 aliases, not new pages: duplicating these would cannibalise
+  // /services/* and /secure-ai, which already rank for the head terms.
+  "/solutions/sales-automation": "/automation/sales-department",
+  "/solutions/ai-sales": "/services/ai-sales-loop",
+  "/solutions/business-process-automation": "/services/business-process-automation",
+  "/solutions/document-automation": "/services/document-processing",
+  "/solutions/corporate-rag": "/services/rag",
+  "/solutions/ai-knowledge-base": "/services/rag",
+  "/solutions/corporate-ai": "/ii-dlya-biznesa",
+  "/solutions/private-llm": "/secure-ai",
+  "/solutions/crm-ai": "/services/ai-sales-loop",
+  "/solutions/1c-ai": "/integrations/1c-ai-layer",
+
   // Ghost contact
   "/contact": "/#contact",
 

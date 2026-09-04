@@ -1,0 +1,402 @@
+{
+  "date": "2026-09-04",
+  "source": "Yandex Wordstat topRequests totalCount",
+  "seeds": [
+    {
+      "phrase": "автоматизация бизнес процессов",
+      "totalCount": 3357,
+      "exactCount": 3357,
+      "top1": {
+        "phrase": "автоматизация бизнес процессов",
+        "count": 3357
+      }
+    },
+    {
+      "phrase": "автоматизация документооборота",
+      "totalCount": 850,
+      "exactCount": 850,
+      "top1": {
+        "phrase": "автоматизация документооборота",
+        "count": 850
+      }
+    },
+    {
+      "phrase": "ии обработка документов",
+      "totalCount": 379,
+      "exactCount": 379,
+      "top1": {
+        "phrase": "ии обработка документов",
+        "count": 379
+      }
+    },
+    {
+      "phrase": "комплексная автоматизация бизнеса",
+      "totalCount": 187,
+      "exactCount": 187,
+      "top1": {
+        "phrase": "комплексная автоматизация бизнеса",
+        "count": 187
+      }
+    },
+    {
+      "phrase": "автоматизация бизнеса с помощью ии",
+      "totalCount": 173,
+      "exactCount": 173,
+      "top1": {
+        "phrase": "автоматизация бизнеса с помощью ии",
+        "count": 173
+      }
+    },
+    {
+      "phrase": "ии для отдела продаж",
+      "totalCount": 155,
+      "exactCount": 155,
+      "top1": {
+        "phrase": "ии для отдела продаж",
+        "count": 155
+      }
+    },
+    {
+      "phrase": "контроль качества работы менеджеров",
+      "totalCount": 137,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "контроль качества работы менеджера",
+        "count": 137
+      }
+    },
+    {
+      "phrase": "автоматизация отдела продаж",
+      "totalCount": 120,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "автоматизация отделов продаж",
+        "count": 120
+      }
+    },
+    {
+      "phrase": "внедрение искусственного интеллекта в компании",
+      "totalCount": 87,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "искусственный интеллект внедрение в компанию",
+        "count": 87
+      }
+    },
+    {
+      "phrase": "интеграция 1с с ии",
+      "totalCount": 82,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "интеграция ии с 1с",
+        "count": 82
+      }
+    },
+    {
+      "phrase": "корпоративный rag",
+      "totalCount": 71,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "корпоративный rag что это",
+        "count": 7
+      }
+    },
+    {
+      "phrase": "интеграция crm и 1с",
+      "totalCount": 57,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "интеграция 1с и crm",
+        "count": 57
+      }
+    },
+    {
+      "phrase": "дорожная карта внедрения ии",
+      "totalCount": 53,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "дорожная карта внедрение ии",
+        "count": 53
+      }
+    },
+    {
+      "phrase": "интеграция ии в бизнес процессы",
+      "totalCount": 49,
+      "exactCount": 49,
+      "top1": {
+        "phrase": "интеграция ии в бизнес процессы",
+        "count": 49
+      }
+    },
+    {
+      "phrase": "как внедрить ии в компании",
+      "totalCount": 40,
+      "exactCount": 40,
+      "top1": {
+        "phrase": "как внедрить ии в компании",
+        "count": 40
+      }
+    },
+    {
+      "phrase": "автоматизация работы с договорами",
+      "totalCount": 38,
+      "exactCount": 38,
+      "top1": {
+        "phrase": "автоматизация работы с договорами",
+        "count": 38
+      }
+    },
+    {
+      "phrase": "llm on premise",
+      "totalCount": 33,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "on premise llm",
+        "count": 33
+      }
+    },
+    {
+      "phrase": "внедрение rag",
+      "totalCount": 30,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "rag внедрение",
+        "count": 30
+      }
+    },
+    {
+      "phrase": "разработка rag системы",
+      "totalCount": 29,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "разработка rag систем",
+        "count": 29
+      }
+    },
+    {
+      "phrase": "корпоративный ai ассистент",
+      "totalCount": 29,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "roi внедрения ии",
+      "totalCount": 25,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "private llm",
+      "totalCount": 24,
+      "exactCount": 24,
+      "top1": {
+        "phrase": "private llm",
+        "count": 24
+      }
+    },
+    {
+      "phrase": "где использовать ии в компании",
+      "totalCount": 21,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "интеграция crm с ии",
+      "totalCount": 19,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "аудит crm отдела продаж",
+      "totalCount": 19,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "аудит отдела продаж просто crm",
+        "count": 13
+      }
+    },
+    {
+      "phrase": "интегратор искусственного интеллекта",
+      "totalCount": 18,
+      "exactCount": 18,
+      "top1": {
+        "phrase": "интегратор искусственного интеллекта",
+        "count": 18
+      }
+    },
+    {
+      "phrase": "корпоративная база знаний с ии",
+      "totalCount": 13,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "интеграция внутренних систем компании",
+      "totalCount": 12,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "как автоматизировать обработку документов",
+      "totalCount": 11,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "заказать внедрение ии",
+      "totalCount": 10,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "внедрение ии заказать",
+        "count": 10
+      }
+    },
+    {
+      "phrase": "разработка корпоративных ии систем",
+      "totalCount": 10,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "crm для среднего бизнеса",
+      "totalCount": 9,
+      "exactCount": 9,
+      "top1": {
+        "phrase": "crm для среднего бизнеса",
+        "count": 9
+      }
+    },
+    {
+      "phrase": "безопасный ии для бизнеса",
+      "totalCount": 8,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "анализ звонков отдела продаж ии",
+      "totalCount": 7,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "поиск по корпоративным документам",
+      "totalCount": 7,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "внедрение crm для отдела продаж",
+      "totalCount": 5,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "внедрение llm в компании",
+      "totalCount": 4,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "интегратор ai решений",
+      "totalCount": 3,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "автоматизация обработки лидов",
+      "totalCount": 3,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "сколько стоит внедрение ии в компании",
+      "totalCount": 2,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "ai квалификация лидов",
+      "totalCount": 2,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "локальная llm для компании",
+      "totalCount": 2,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "внедрение ии в закрытом контуре",
+      "totalCount": 2,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "автоматизация back office",
+      "totalCount": 2,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "подрядчик по внедрению ии",
+      "totalCount": 1,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "корпоративный ai под ключ",
+      "totalCount": 1,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "автоматизация продаж под ключ",
+      "totalCount": 1,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "как снизить нагрузку на менеджеров",
+      "totalCount": 1,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "аудит процессов перед автоматизацией",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "как автоматизировать отдел продаж",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "доработка crm под бизнес процессы",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "ии без передачи данных за рубеж",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "как сократить время подготовки коммерческих предложений",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "как убрать ручной ввод данных",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    }
+  ]
+}

@@ -2,7 +2,8 @@
 import ContactForm from "@/components/ContactForm.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
-import { FOUNDER_IMAGE, STOCK_IMAGES } from "@/lib/site";
+import { absoluteUrl, FOUNDER_IMAGE, STOCK_IMAGES } from "@/lib/site";
+import { faqJsonLd, webPageJsonLd } from "@/lib/seo";
 
 interface Section {
   title?: string;
@@ -55,7 +56,7 @@ const block = (resolveNamespace(messages, namespace) || {}) as {
   tagline?: string;
   sections?: Section[];
   faq?: { q: string; a: string }[];
-  items?: { title: string; description?: string; href?: string }[];
+  items?: { title?: string; description?: string; href?: string; q?: string; a?: string }[];
 } & Record<string, unknown>;
 
 const title =
@@ -76,6 +77,28 @@ const h1 = block.h1 || block.pageTitle || block.title || title;
 const leadText =
   block.subtitle || block.lead || block.intro || block.text || block.body || block.description;
 
+/**
+ * Content sections carry FAQ blocks (e.g. /faq) — emit FAQPage + WebPage schema
+ * when the caller did not pass its own jsonLd. Yandex/Google need markup, not only text.
+ */
+const canonicalPath = localizePath(path, locale);
+const pageUrl = absoluteUrl(canonicalPath);
+/** Namespaces differ: `faq` keeps Q&A in `items`, service blocks use `faq`. */
+const faqItems = [
+  ...(block?.faq ?? []),
+  ...((block?.items ?? [])
+    .filter((item) => item.q && item.a)
+    .map((item) => ({ q: item.q as string, a: item.a as string }))),
+];
+/** Only cards with a real title belong in the link grid. */
+const linkItems = (block?.items ?? []).filter((item) => Boolean(item.title));
+
+const autoJsonLd = [
+  webPageJsonLd({ name: h1, description, url: pageUrl, locale }),
+  ...(faqItems.length ? [faqJsonLd(faqItems, pageUrl)] : []),
+];
+const resolvedJsonLd = jsonLd ?? autoJsonLd;
+
 const heroImage =
   namespace.includes("about")
     ? FOUNDER_IMAGE
@@ -88,9 +111,9 @@ const heroImage =
   title={title}
   description={description}
   locale={locale}
-  canonicalPath={localizePath(path, locale)}
+  canonicalPath={canonicalPath}
   keywords={keywords}
-  jsonLd={jsonLd}
+  jsonLd={resolvedJsonLd}
 >
   <article class="container-editorial py-12 md:py-20">
     {block?.eyebrow && <p class="meta-label">{block.eyebrow}</p>}
@@ -140,9 +163,9 @@ const heroImage =
     }
 
     {
-      block?.items && (
+      linkItems.length > 0 && (
         <ul class="mt-10 grid gap-6 md:grid-cols-2">
-          {block.items.map((item) => (
+          {linkItems.map((item) => (
             <li class="border border-hairline p-5">
               {item.href ? (
                 <a class="font-medium text-ink text-link" href={hrefFor(item.href)}>
@@ -159,11 +182,11 @@ const heroImage =
     }
 
     {
-      block?.faq && (
+      faqItems.length > 0 && (
         <section class="mt-14">
           <h2 class="section-title">FAQ</h2>
           <div class="mt-6 space-y-6">
-            {block.faq.map((item) => (
+            {faqItems.map((item) => (
               <div>
                 <h3 class="font-medium text-ink">{item.q}</h3>
                 <p class="mt-2 body-copy text-muted">{item.a}</p>
