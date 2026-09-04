@@ -10,6 +10,8 @@ interface Props {
   /** estimate = «Получить оценку»; order = «Оформить заказ». Default estimate. */
   intent?: ContactFormIntent;
   qualify?: boolean;
+  /** Lead-qualifying variant: company / site / role / team size, fields open by default. */
+  qualifyOpen?: boolean;
   extended?: boolean;
   source?: string;
   defaultService?: string;
@@ -22,6 +24,7 @@ const {
   messages,
   intent = "estimate",
   qualify = false,
+  qualifyOpen = false,
   extended = false,
   source = "site-form",
   defaultService = "",
@@ -29,6 +32,7 @@ const {
   trackingPrefix = "",
 } = Astro.props;
 const form = messages.form;
+const showQualify = qualify || qualifyOpen;
 const isOrder = intent === "order";
 const intro = isOrder ? form.orderIntro : form.intro;
 const introShort = isOrder ? form.orderIntroShort : form.introShort;
@@ -81,7 +85,39 @@ const uid = `cf-${Math.random().toString(36).slice(2, 8)}`;
   </div>
 
   {
-    extended && (
+    qualifyOpen && (
+      <div class="contact-qualify__grid">
+        <div>
+          <label for={`${uid}-company`} class="form-label">{form.company}</label>
+          <input
+            id={`${uid}-company`}
+            name="company"
+            required
+            autocomplete="organization"
+            class="text-input"
+          />
+        </div>
+        <div>
+          <label for={`${uid}-company-site`} class="form-label">
+            {form.companySite}
+            <span class="text-muted-soft">{form.optional}</span>
+          </label>
+          <input
+            id={`${uid}-company-site`}
+            name="companySite"
+            type="text"
+            inputmode="url"
+            autocomplete="url"
+            class="text-input"
+            placeholder="company.ru"
+          />
+        </div>
+      </div>
+    )
+  }
+
+  {
+    extended && !qualifyOpen && (
       <div data-contact-extended>
         <div>
           <label for={`${uid}-company`} class="form-label">
@@ -106,6 +142,15 @@ const uid = `cf-${Math.random().toString(36).slice(2, 8)}`;
     />
   </div>
 
+  {
+    qualifyOpen && (
+      <div>
+        <label for={`${uid}-role`} class="form-label">{form.role}</label>
+        <input id={`${uid}-role`} name="role" class="text-input" autocomplete="organization-title" />
+      </div>
+    )
+  }
+
   <div>
     <label for={`${uid}-message`} class="form-label">
       {messageLabel}
@@ -121,8 +166,12 @@ const uid = `cf-${Math.random().toString(36).slice(2, 8)}`;
   </div>
 
   {
-    qualify && (
-      <details class="contact-qualify border-t border-hairline pt-6" data-contact-qualify>
+    showQualify && (
+      <details
+        class="contact-qualify border-t border-hairline pt-6"
+        data-contact-qualify
+        open={qualifyOpen || undefined}
+      >
         <summary class="form-label cursor-pointer select-none">{form.qualifyLegend}</summary>
         <p class="mt-2 text-sm text-muted">{form.qualifyHint}</p>
         <div class="mt-4 space-y-4">
@@ -144,6 +193,17 @@ const uid = `cf-${Math.random().toString(36).slice(2, 8)}`;
               ))}
             </select>
           </div>
+          {qualifyOpen && (
+            <div>
+              <label for={`${uid}-team-size`} class="form-label">{form.teamSize}</label>
+              <select id={`${uid}-team-size`} name="teamSize" class="text-input">
+                <option value="">{form.selectPlaceholder}</option>
+                {form.teamSizeOptions.map((opt) => (
+                  <option value={opt}>{opt}</option>
+                ))}
+              </select>
+            </div>
+          )}
           <div>
             <label for={`${uid}-budget`} class="form-label">{form.budget}</label>
             <select id={`${uid}-budget`} name="budget" class="text-input">

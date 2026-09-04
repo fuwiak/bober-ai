@@ -1,0 +1,82 @@
+---
+import { localizePath, type Locale } from "@/lib/i18n";
+
+type OfferItem = {
+  title: string;
+  forWhom: string;
+  bullets: readonly string[];
+  price: string;
+  timeline: string;
+  href: string;
+};
+
+interface Props {
+  locale: Locale;
+  label: string;
+  title: string;
+  subtitle: string;
+  priceLabel: string;
+  timelineLabel: string;
+  cta: string;
+  allCta: string;
+  allHref?: string;
+  items: readonly OfferItem[];
+}
+
+const {
+  locale,
+  label,
+  title,
+  subtitle,
+  priceLabel,
+  timelineLabel,
+  cta,
+  allCta,
+  allHref = "/services",
+  items,
+} = Astro.props;
+---
+
+<section id="solutions" class="section-band section--panel scroll-mt-16 border-b border-hairline">
+  <div class="container-editorial">
+    <div class="reveal">
+      <span class="section-label">{label}</span>
+      <h2 class="section-title mt-4">{title}</h2>
+      <p class="body-copy mt-4 max-w-3xl text-base">{subtitle}</p>
+    </div>
+
+    <div class="solution-offers-grid mt-10">
+      {
+        items.map((item) => (
+          <article class="solution-offer-card">
+            <h3 class="card-title text-xl">{item.title}</h3>
+            <p class="meta-label mt-3">{item.forWhom}</p>
+            <ul class="solution-offer-card__list mt-4">
+              {item.bullets.map((bullet) => (
+                <li class="body-copy flex gap-2 text-sm">
+                  <span class="text-accent">—</span>
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+            <dl class="solution-offer-card__specs mt-5">
+              <div>
+                <dt class="meta-label">{priceLabel}</dt>
+                <dd class="body-copy text-base">{item.price}</dd>
+              </div>
+              <div>
+                <dt class="meta-label">{timelineLabel}</dt>
+                <dd class="body-copy text-base">{item.timeline}</dd>
+              </div>
+            </dl>
+            <a href={localizePath(item.href, locale)} class="link-more mt-6">{cta}</a>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="mt-8">
+      <a href={localizePath(allHref, locale)} class="link-more">{allCta}</a>
+    </div>
+  </div>
+</section>

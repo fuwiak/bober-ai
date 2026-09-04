@@ -226,6 +226,11 @@ const uzOverrides = {
     marketOffersPillars: ["Avtomatlashtirish", "Marketing", "Savdo"],
     marketOffersCta: "Xizmatni koʻrish →",
     marketOffersHubCta: "Stek xizmatlarining barchasi →",
+    crmSetupLabel: "CRM sozlash",
+    crmSetupTitle: "CRM sozlash — 11 stsenariy",
+    crmSetupSubtitle:
+      "Aniq soʻrov «CRM sozlash» va variantlar: tizim, kalit taslim, savdo boʻlimi, voronka, kichik biznes, maydonlar.",
+    crmSetupHubCta: "CRM sozlash variantlarining barchasi →",
     proofLabel: "Natijalar",
     proofTitle: "Pilotlarda allaqachon o'lchaganlarimiz",
     casesLabel: "Keyslar",
@@ -1046,6 +1051,22 @@ const uzOverrides = {
     primary: "24 soat ichida reja va oralik olish",
     secondary: "Telegram",
     calendar: "Qo'ng'iroqni rejalashtirish",
+  },
+  serviceAudience: {
+    label: "Kimlar uchun",
+    title: "Bu xizmat kimlarga mos",
+    items: [
+      "Egalar va bosh direktorlar — jarayon o'sishni tormozlaydi, o'lchanadigan natija kerak",
+      "Tijorat direktorlari va savdo bo'limi rahbarlari — lidlar yo'qoladi, voronka nazorati yo'q",
+      "Operatsion direktorlar va servis rahbarlari — qo'lda ishlar va xodimlarning ortiqcha yuklamasi",
+      "Mid-market IT- va texnik direktorlar — amoCRM, Bitrix24, 1С va ERP bilan integratsiya, tizimlarni almashtirmasdan",
+    ],
+    systemsNote:
+      "amoCRM, Bitrix24, 1С, ERP va o'z tizimlaridagi kompaniyalar bilan ishlaymiz — mavjud konturi ustiga joriy qilamiz.",
+    notForNote:
+      "Xizmat buyurtmachi kompaniyalar uchun. Subpudrat, rezyume va xizmat takliflari faqat alohida sahifada:",
+    notForLink: "Hamkorlarga",
+    notForHref: "/partners",
   },
   contact: {
     title: "Oʻzbekiston uchun vazifani muhokama qilamiz",

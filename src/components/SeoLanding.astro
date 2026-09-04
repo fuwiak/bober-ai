@@ -1,5 +1,6 @@
 ---
 import ContactForm from "@/components/ContactForm.astro";
+import ServiceAudienceBand from "@/components/ServiceAudienceBand.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
 import {
@@ -123,6 +124,8 @@ const canonicalPath = localizePath(`/${page.category}/${page.slug}`, locale);
         {messages.contact.title}
       </button>
     </div>
+
+    <ServiceAudienceBand locale={locale} messages={messages} variant="plain" />
 
     <section class="mt-14">
       <h2 class="section-title">{content.problemsTitle}</h2>

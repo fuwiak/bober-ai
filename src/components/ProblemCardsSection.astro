@@ -1,0 +1,46 @@
+---
+import { localizePath, type Locale } from "@/lib/i18n";
+import { PRIMARY_CTA_GOAL } from "@/lib/site";
+
+type ProblemItem = { title: string; text: string; href: string };
+
+interface Props {
+  locale: Locale;
+  label: string;
+  title: string;
+  subtitle: string;
+  cta: string;
+  moreLabel: string;
+  items: readonly ProblemItem[];
+}
+
+const { locale, label, title, subtitle, cta, moreLabel, items } = Astro.props;
+---
+
+<section id="problems" class="section-band section--deep scroll-mt-16 border-b border-hairline">
+  <div class="container-editorial">
+    <div class="reveal">
+      <span class="section-label">{label}</span>
+      <h2 class="section-title mt-4">{title}</h2>
+      <p class="body-copy mt-4 max-w-3xl text-base">{subtitle}</p>
+    </div>
+
+    <div class="market-offers-grid mt-10">
+      {
+        items.map((item) => (
+          <a class="market-offer-card" href={localizePath(item.href, locale)}>
+            <h3 class="card-title text-lg">{item.title}</h3>
+            <p class="body-copy mt-3 text-sm">{item.text}</p>
+            <span class="link-more mt-5">{moreLabel}</span>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="mt-10">
+      <button type="button" class="btn-primary" data-contact-open data-contact-goal={PRIMARY_CTA_GOAL}>
+        {cta}
+      </button>
+    </div>
+  </div>
+</section>

@@ -33,9 +33,11 @@ interface Props {
   locale: Locale;
   homeLanding: HomeLanding;
   partners: Partners;
+  /** Supply-side block (agencies / white-label) — off on the RU sales path, lives on /partners. */
+  showPartners?: boolean;
 }
 
-const { locale, homeLanding: hl, partners } = Astro.props;
+const { locale, homeLanding: hl, partners, showPartners = true } = Astro.props;
 ---
 
 <section id="expertise" class="section-band section--deep border-b border-hairline scroll-mt-16">
@@ -50,6 +52,7 @@ const { locale, homeLanding: hl, partners } = Astro.props;
   </div>
 </section>
 
+{ showPartners && (
 <section id="partners-home" class="section-band section--panel border-b border-hairline scroll-mt-16">
   <div class="container-editorial">
     <span class="section-label">{hl.partnersHomeLabel}</span>
@@ -96,3 +99,4 @@ const { locale, homeLanding: hl, partners } = Astro.props;
     </div>
   </div>
 </section>
+) }

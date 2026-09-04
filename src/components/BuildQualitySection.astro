@@ -1,0 +1,42 @@
+---
+type QualityItem = { title: string; text: string };
+
+interface Props {
+  label: string;
+  title: string;
+  subtitle: string;
+  items: readonly QualityItem[];
+  stackLabel: string;
+  stack: readonly string[];
+  note: string;
+}
+
+const { label, title, subtitle, items, stackLabel, stack, note } = Astro.props;
+---
+
+<section id="how-we-build" class="section-band section--deep scroll-mt-16 border-b border-hairline">
+  <div class="container-editorial">
+    <span class="section-label">{label}</span>
+    <h2 class="section-title mt-4">{title}</h2>
+    <p class="body-copy mt-4 max-w-3xl text-base">{subtitle}</p>
+
+    <div class="home-partners-grid mt-10">
+      {
+        items.map((item) => (
+          <article class="home-partners-card">
+            <h3 class="card-title text-lg">{item.title}</h3>
+            <p class="body-copy mt-3 text-base">{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <details class="build-quality-stack mt-10 border-t border-hairline pt-6">
+      <summary class="meta-label cursor-pointer select-none">{stackLabel}</summary>
+      <ul class="market-offer-pillars mt-4">
+        {stack.map((entry) => <li>{entry}</li>)}
+      </ul>
+    </details>
+    <p class="body-copy mt-6 max-w-3xl text-sm text-muted">{note}</p>
+  </div>
+</section>

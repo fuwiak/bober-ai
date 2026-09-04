@@ -7,6 +7,7 @@ import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import CaseStudyCard from "@/components/CaseStudyCard.astro";
 import ComparisonSection from "@/components/ComparisonSection.astro";
 import ContactForm from "@/components/ContactForm.astro";
+import ServiceAudienceBand from "@/components/ServiceAudienceBand.astro";
 import { getEnterpriseService } from "@/lib/enterprise-services";
 import { getEnterpriseReviews } from "@/lib/enterprise-reviews";
 import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
@@ -229,6 +230,8 @@ const showBitrixBadge = /bitrix/i.test(resolvedPath) || /bitrix/i.test(slug);
         </section>
       )
     }
+
+    <ServiceAudienceBand locale={locale} messages={messages} />
 
     <section class="section-band section--deep border-b border-hairline">
       <div class="container-editorial grid gap-16 lg:grid-cols-2">

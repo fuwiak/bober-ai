@@ -8,12 +8,26 @@ interface Props {
   viewLabel: string;
   beforeLabel?: string;
   afterLabel?: string;
+  /** Buyer-side listing: problem → solution → result, tech detail collapsed. */
+  solutionLabel?: string;
+  architectureLabel?: string;
   segmentLabel?: string;
   /** Tighter homepage listing: smaller media, clamped copy, no caption. */
   compact?: boolean;
 }
 
-const { item, locale, viewLabel, beforeLabel, afterLabel, segmentLabel, compact = false } = Astro.props;
+const {
+  item,
+  locale,
+  viewLabel,
+  beforeLabel,
+  afterLabel,
+  solutionLabel,
+  architectureLabel,
+  segmentLabel,
+  compact = false,
+} = Astro.props;
+const techDetail = [item.stack, item.architecture].filter(Boolean).join(" · ");
 const href = localizePath(`/portfolio/${item.slug}`, locale);
 const titleClass = compact
   ? `font-display text-xl tracking-tight ${segmentLabel ? "mt-1.5" : "mt-3"}`
@@ -51,12 +65,18 @@ const bodyClamp = compact ? " line-clamp-3" : "";
   </a>
 
   {
-    (item.description || item.result) && (
+    (item.description || item.result || (item.solution && solutionLabel)) && (
       <div class={`case-study__before-after ${compact ? "mt-3 space-y-2" : "mt-4 space-y-3"}`}>
         {item.description && beforeLabel && (
           <div>
             <p class="meta-label">{beforeLabel}</p>
             <p class={`body-copy mt-1 text-sm${bodyClamp}`}>{item.description}</p>
+          </div>
+        )}
+        {item.solution && solutionLabel && (
+          <div>
+            <p class="meta-label">{solutionLabel}</p>
+            <p class={`body-copy mt-1 text-sm${bodyClamp}`}>{item.solution}</p>
           </div>
         )}
         {item.result && afterLabel ? (
@@ -71,7 +91,16 @@ const bodyClamp = compact ? " line-clamp-3" : "";
     )
   }
 
-  {item.stack && <p class={`meta-label ${compact ? "mt-2" : "mt-3"}`}>{item.stack}</p>}
+  {
+    architectureLabel && techDetail ? (
+      <details class={`case-architecture ${compact ? "mt-2" : "mt-3"}`}>
+        <summary class="meta-label cursor-pointer select-none">{architectureLabel}</summary>
+        <p class="body-copy mt-2 text-sm text-muted">{techDetail}</p>
+      </details>
+    ) : (
+      item.stack && <p class={`meta-label ${compact ? "mt-2" : "mt-3"}`}>{item.stack}</p>
+    )
+  }
   {
     item.priceLabel && (
       <div class={compact ? "mt-2" : "mt-4"}>

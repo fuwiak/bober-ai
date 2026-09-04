@@ -95,7 +95,20 @@ export const POST: APIRoute = async ({ request }) => {
     contact =
       requireString(body.contact as string) ||
       [phone && `Телефон / Telegram: ${phone}`, email && `Email: ${email}`].filter(Boolean).join("\n");
-    message = requireString(body.message as string) || "—";
+    const baseJsonMessage = requireString(body.message as string) || "—";
+    const jsonQualifyBits = [
+      requireString(body.companySite as string) && `Сайт: ${requireString(body.companySite as string)}`,
+      requireString(body.role as string) && `Должность: ${requireString(body.role as string)}`,
+      requireString(body.processType as string) && `Процесс: ${requireString(body.processType as string)}`,
+      requireString(body.systems as string) && `Системы: ${requireString(body.systems as string)}`,
+      requireString(body.teamSize as string) && `Размер команды: ${requireString(body.teamSize as string)}`,
+      requireString(body.budget as string) && `Бюджет: ${requireString(body.budget as string)}`,
+      requireString(body.timeline as string) && `Сроки: ${requireString(body.timeline as string)}`,
+    ].filter(Boolean);
+    message =
+      jsonQualifyBits.length > 0
+        ? `${baseJsonMessage}\n\nКвалификация:\n${jsonQualifyBits.join("\n")}`
+        : baseJsonMessage;
     service = requireString(body.service as string);
     company = requireString(body.company as string);
     source = requireString(body.source as string);
@@ -116,8 +129,11 @@ export const POST: APIRoute = async ({ request }) => {
     const baseMessage = requireString(form.get("message")) || "—";
     intent = requireString(form.get("intent")) === "order" ? "order" : "estimate";
     const qualifyBits = [
+      requireString(form.get("companySite")) && `Сайт: ${requireString(form.get("companySite"))}`,
+      requireString(form.get("role")) && `Должность: ${requireString(form.get("role"))}`,
       requireString(form.get("processType")) && `Процесс: ${requireString(form.get("processType"))}`,
       requireString(form.get("systems")) && `Системы: ${requireString(form.get("systems"))}`,
+      requireString(form.get("teamSize")) && `Размер команды: ${requireString(form.get("teamSize"))}`,
       requireString(form.get("budget")) && `Бюджет: ${requireString(form.get("budget"))}`,
       requireString(form.get("timeline")) && `Сроки: ${requireString(form.get("timeline"))}`,
     ].filter(Boolean);

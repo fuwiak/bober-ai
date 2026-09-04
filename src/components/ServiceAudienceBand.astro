@@ -1,0 +1,60 @@
+---
+import { localizePath, type Locale, type Messages } from "@/lib/i18n";
+
+interface Props {
+  locale: Locale;
+  messages: Messages;
+  /** plain = inside an <article> flow (SeoLanding); band = full-width section (SeoServicePage). */
+  variant?: "band" | "plain";
+}
+
+const { locale, messages, variant = "band" } = Astro.props;
+const audience = messages.serviceAudience;
+---
+
+{
+  variant === "band" ? (
+    <section id="audience" class="section-band section--panel scroll-mt-16 border-b border-hairline">
+      <div class="container-editorial max-w-3xl">
+        <span class="section-label">{audience.label}</span>
+        <h2 class="section-title mt-4">{audience.title}</h2>
+        <ul class="mt-6 space-y-3">
+          {audience.items.map((item) => (
+            <li class="body-copy flex gap-3 text-base">
+              <span class="text-accent" aria-hidden>—</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="body-copy mt-6 text-sm text-muted">{audience.systemsNote}</p>
+        <p class="body-copy mt-2 text-sm text-muted">
+          {audience.notForNote}{" "}
+          <a href={localizePath(audience.notForHref, locale)} class="text-link">
+            {audience.notForLink}
+          </a>
+          .
+        </p>
+      </div>
+    </section>
+  ) : (
+    <section class="mt-14">
+      <h2 class="section-title">{audience.title}</h2>
+      <ul class="mt-6 space-y-3">
+        {audience.items.map((item) => (
+          <li class="body-copy flex gap-3">
+            <span class="text-accent" aria-hidden>—</span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="body-copy mt-6 text-sm text-muted">{audience.systemsNote}</p>
+      <p class="body-copy mt-2 text-sm text-muted">
+        {audience.notForNote}{" "}
+        <a href={localizePath(audience.notForHref, locale)} class="text-link">
+          {audience.notForLink}
+        </a>
+        .
+      </p>
+    </section>
+  )
+}

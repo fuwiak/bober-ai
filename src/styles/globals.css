@@ -3770,6 +3770,46 @@ html:not(.dark) .shell-code {
   .home-partners-card {
     @apply border border-hairline bg-surface-card p-6 md:p-8;
   }
+  .case-architecture summary {
+    cursor: pointer;
+    list-style: none;
+  }
+  .case-architecture summary::-webkit-details-marker {
+    display: none;
+  }
+  .hero-price {
+    @apply inline-block border border-hairline-strong px-4 py-2;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+  }
+  .solution-offers-grid {
+    @apply grid gap-6 md:grid-cols-2 lg:grid-cols-3;
+  }
+  .solution-offer-card {
+    @apply flex h-full flex-col border border-hairline bg-surface-card p-6;
+  }
+  .solution-offer-card__list {
+    @apply space-y-2;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .solution-offer-card__specs {
+    @apply grid gap-4 border-t border-hairline pt-4 sm:grid-cols-2;
+  }
+  .solution-offer-card .link-more {
+    margin-top: auto;
+  }
+  .build-quality-stack summary {
+    cursor: pointer;
+    list-style: none;
+  }
+  .build-quality-stack summary::-webkit-details-marker {
+    display: none;
+  }
   .market-offers-grid {
     @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-3;
   }
