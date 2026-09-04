@@ -32,6 +32,7 @@
     "yandex:feed:repair": "node scripts/yandex-feed-repair.mjs",
     "yandex360:mailbox": "node scripts/yandex360-mailbox.mjs",
     "selectel:mail": "node scripts/selectel-email.mjs",
+    "selectel:dns": "node scripts/selectel-dns.mjs",
     "metrika:counter": "node scripts/yandex-metrika-counter.mjs",
     "metrika:status": "node scripts/yandex-metrika-status.mjs",
     "metrika:filters": "node scripts/yandex-metrika-filters.mjs",

@@ -1,10 +1,12 @@
 # Selectel origin (единственный)
 
-Публичный DNS `www.bober-systems.ru` / `partners` / `bitrix` → **A `45.80.131.136`** (Selectel VDS).
+Публичный DNS `www.bober-systems.ru` / `partners` / `bitrix` / `amocrm` → **A `45.80.131.136`** (Selectel VDS).
 
 Railway больше не используется как публичный origin.
 
-## DNS (Namecheap)
+## DNS (Selectel)
+
+Авторитетные NS зоны — `a.ns.selectel.ru` (панель Selectel → DNS), не Namecheap.
 
 | Type | Host | Value |
 |------|------|-------|
@@ -12,13 +14,23 @@ Railway больше не используется как публичный ori
 | A | `www` | `45.80.131.136` |
 | A | `partners` | `45.80.131.136` |
 | A | `bitrix` | `45.80.131.136` |
+| A | `amocrm` | `45.80.131.136` |
 
 MX / TXT — не трогать.
+
+Новый микросайт = A-запись до деплоя Caddy, иначе ACME не выдаст сертификат
+(`ERR_NAME_NOT_RESOLVED` в браузере). Через API:
+
+```bash
+npm run selectel:dns -- list
+npm run selectel:dns -- ensure-a amocrm --dry-run
+npm run selectel:dns -- ensure-a amocrm
+```
 
 ## Стек на VDS
 
 - **Astro Node** (`:3001`) — prerender HTML + API leads/webhooks (legacy host node may still occupy `:3000`)
-- **Caddy** — TLS, apex→www, host rewrite microsites → `/white-label` / `/bitrix`
+- **Caddy** — TLS, apex→www, host rewrite microsites → `/white-label` / `/bitrix` / `/amocrm`
 
 ```bash
 # деплой (нужен Docker Compose V2: `docker compose`; CI ставит бинарник с GitHub при отсутствии)
@@ -46,7 +58,7 @@ curl -s https://www.bober-systems.ru/api/health
 
 | Что | Статус |
 |-----|--------|
-| A на Selectel | `45.80.131.136` (apex, www, partners, bitrix) |
+| A на Selectel | `45.80.131.136` (apex, www, partners, bitrix, amocrm) |
 | Caddy | публичный Let's Encrypt (как у `www.bober-systems.ru`); apex→www |
 
 После смены Caddyfile на VDS: `docker compose up -d` в `/opt/bober-ai/deploy` — Caddy сам получит LE-сертификаты (порты 80/443 открыты, DNS уже на Selectel).
