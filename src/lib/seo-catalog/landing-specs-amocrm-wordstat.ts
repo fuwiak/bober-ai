@@ -610,4 +610,104 @@ export const CATALOG_LANDING_SPECS_AMOCRM_WORDSTAT: LandingSpec[] = [
       ],
     },
   },
+  {
+    category: "integrations",
+    slug: "amocrm-sensei",
+    contentKey: "amocrm_sensei_bp",
+    cluster: "amocrm",
+    serviceSlug: "crm-integration",
+    coverImage: "/diagrams/workflow-automation.svg",
+    keywords: [
+      "sensei amocrm",
+      "настройка sensei amocrm",
+      "бизнес процессы sensei amocrm",
+      "flow редактор amocrm",
+      "интеллект карта amocrm",
+      "xmind amocrm",
+      "ментальная карта amocrm sensei",
+    ],
+    caseStudySlugs: ["amocrm-website-integration", "lead-generation"],
+    related: [
+      { href: "/integrations/amocrm-setup", labelRu: "Настройка amoCRM", labelEn: "amoCRM setup" },
+      { href: "/integrations/amocrm-implementation", labelRu: "Внедрение amoCRM", labelEn: "amoCRM implementation" },
+      { href: "/integrations/amocrm-automation", labelRu: "Автоматизация amoCRM", labelEn: "amoCRM automation" },
+      { href: "/pricing", labelRu: "Стоимость", labelEn: "Pricing" },
+    ],
+    ru: {
+      h1: "Настройка бизнес-процессов Sensei в amoCRM",
+      subtitle:
+        "Выстроим amoCRM на модуле Sensei: flow-редактор, интеллект-карта, XMind, ментальная карта или текстовый регламент → сделки, задачи, уведомления. От 80 000 ₽.",
+      problems: [
+        "Процесс нарисован в XMind / ментальной карте, в amoCRM его нет",
+        "Sensei стоит, flow-редактор пустой или не бьётся со стадиями",
+        "Роботы дублируют Sensei — менеджеры не понимают, кто двигает сделку",
+      ],
+      deliverables: [
+        "Схема процесса: текст, flow, интеллект-карта или XMind",
+        "Настройка Sensei под воронку amoCRM",
+        "Задачи, уведомления, тест на сделках, краткий регламент",
+      ],
+      intro: [
+        "Sensei — слой бизнес-процессов поверх amoCRM, не замена воронки. Схему можно принести как есть: текст, flow-редактор, интеллект-карта, XMind, ментальная карта.",
+        "Базовая настройка портала — /integrations/amocrm-setup. Полное внедрение — /integrations/amocrm-implementation.",
+      ],
+      howWeSolve: [
+        {
+          title: "Схема",
+          text: "Фиксируем процесс: кто, на какой стадии, какое действие. XMind и ментальные карты разворачиваем в шаги Sensei.",
+        },
+        {
+          title: "Sensei + воронка",
+          text: "Flow-редактор, условия, задачи. Не дублируем то, что уже закрывают роботы amoCRM.",
+        },
+        {
+          title: "Приёмка",
+          text: "Тестовые сделки, права, что менять без интегратора.",
+        },
+      ],
+      faq: [
+        {
+          q: "Нужен ли Sensei обязательно?",
+          a: "Нет. Если хватает роботов amoCRM — так и скажем. Sensei берём, когда процесс ветвистый: согласования, параллельные шаги, карта.",
+        },
+        {
+          q: "Можно прислать XMind или интеллект-карту?",
+          a: "Да. Текст, flow, XMind, ментальная карта — любой формат, который описывает шаги сделки.",
+        },
+        {
+          q: "Срок и цена?",
+          a: "Типовой контур — от 80 000 ₽, 1–3 недели. Сложный процесс с несколькими воронками — отдельная смета.",
+        },
+      ],
+    },
+    en: {
+      h1: "Sensei business-process setup in amoCRM",
+      subtitle:
+        "amoCRM on Sensei: flow editor, mind map, XMind or a written playbook → deals, tasks, alerts. From 80,000 ₽.",
+      problems: [
+        "The process lives in XMind, not in amoCRM",
+        "Sensei is installed, the flow is empty or mismatches stages",
+        "Robots and Sensei duplicate each other",
+      ],
+      deliverables: [
+        "Process scheme: text, flow, mind map or XMind",
+        "Sensei wired to the amoCRM pipeline",
+        "Tasks, alerts, test deals, short playbook",
+      ],
+      intro: [
+        "Sensei is a process layer on amoCRM, not a replacement for the pipeline.",
+        "Portal setup: /integrations/amocrm-setup. Full rollout: /integrations/amocrm-implementation.",
+      ],
+      howWeSolve: [
+        { title: "Scheme", text: "Who, which stage, which action. XMind becomes Sensei steps." },
+        { title: "Sensei + pipeline", text: "Flow editor, conditions, tasks — no duplicate robots." },
+        { title: "Accept", text: "Test deals, roles, what you can change later." },
+      ],
+      faq: [
+        { q: "Is Sensei required?", a: "No. We use it when the process branches; otherwise amoCRM robots are enough." },
+        { q: "XMind / mind map?", a: "Yes — any scheme of deal steps." },
+        { q: "Price?", a: "Typical contour from 80,000 ₽, 1–3 weeks." },
+      ],
+    },
+  },
 ];

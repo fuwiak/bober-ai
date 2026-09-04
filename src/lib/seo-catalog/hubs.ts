@@ -218,6 +218,7 @@ export const SEO_HUBS: HubDef[] = [
       { href: "/integrations/tinkoff", labelRu: "Тинькофф Банк ↔ CRM", labelEn: "Tinkoff ↔ CRM", blurbRu: "Оплаты в статус сделки", blurbEn: "Payments into deal status" },
       { href: "/integrations/crm-setup", labelRu: "Настройка CRM и МойСклад", labelEn: "CRM & MoySklad setup", blurbRu: "YClients, amoCRM, Bitrix24, МойСклад", blurbEn: "YClients, amoCRM, Bitrix24, MoySklad" },
       { href: "/integrations/crm", labelRu: "CRM", labelEn: "CRM", blurbRu: "Внедрение и синхронизация", blurbEn: "Implementation and sync" },
+      { href: "/integrations/amocrm-sensei", labelRu: "Sensei в amoCRM", labelEn: "Sensei in amoCRM", blurbRu: "Бизнес-процессы, flow, интеллект-карты · от 80 000 ₽", blurbEn: "Processes, flow, mind maps" },
       { href: "/integrations/amocrm", labelRu: "amoCRM", labelEn: "amoCRM", blurbRu: "Воронки, виджеты, API", blurbEn: "Pipelines, widgets, API" },
       { href: "/integrations/bitrix24", labelRu: "Bitrix24", labelEn: "Bitrix24", blurbRu: "Боты, задачи, линии", blurbEn: "Bots, tasks, open lines" },
       { href: "/integrations/1c", labelRu: "1С ↔ CRM", labelEn: "1C ↔ CRM", blurbRu: "Двусторонняя синхронизация", blurbEn: "Bidirectional sync" },
@@ -324,6 +325,8 @@ export const SEO_HUBS: HubDef[] = [
     coverImage: DIAGRAM_IMAGES.architecture,
     children: [
       { href: "/ai/ai-implementation", labelRu: "Компания по внедрению ИИ", labelEn: "AI implementation company", blurbRu: "Стоимость, сроки, под ключ", blurbEn: "Price, timeline, turnkey" },
+      { href: "/ai/vnedrenie-iskusstvennogo-intellekta-v-biznes", labelRu: "Внедрение искусственного интеллекта в бизнес", labelEn: "AI implementation in business", blurbRu: "Пилот и production · от 400 000 ₽", blurbEn: "Pilot and production" },
+      { href: "/ai/stoimost-vnedreniya-ii", labelRu: "Стоимость внедрения ИИ", labelEn: "AI implementation cost", blurbRu: "Аудит от 150 000 ₽", blurbEn: "Audit from an entry package" },
       { href: "/ai/corporate", labelRu: "Корпоративный ИИ", labelEn: "Enterprise AI", blurbRu: "Стратегия и контур", blurbEn: "Strategy and contour" },
       { href: "/ai/corporate-neural-net", labelRu: "Корпоративная нейросеть", labelEn: "Corporate neural net", blurbRu: "Закрытый контур", blurbEn: "Private contour" },
       { href: "/ai/private-llm", labelRu: "Приватный LLM", labelEn: "Private LLM", blurbRu: "On-prem и контур", blurbEn: "On-prem and private" },

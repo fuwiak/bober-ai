@@ -1,0 +1,141 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "specializationId": "187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "specializationNote": "Компьютеры и IT → Другое — exact «Внедрение искусственного интеллекта в бизнес» + 10 новых вариантов",
+  "note": "Точный заголовок уже был в uslugi-ai-vnedrenie-biznes.json — при add пропустить, если карточка жива. 10 вариантов новые (длинная формулировка «искусственный интеллект», без «под ключ» в title). Не дублируем короткие «Внедрение ИИ …» из старых пакетов.",
+  "publishedAt": "2026-09-04",
+  "publishedStatus": "pending_cabinet",
+  "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "publicProfile": "https://uslugi.yandex.ru/profile/PawelStasinski-254144",
+  "siteLandings": [
+    "/ai/vnedrenie-iskusstvennogo-intellekta-v-biznes",
+    "/ai/vnedrenie-ii-v-kompaniyu",
+    "/ai/vnedrenie-ii-v-prodazhi",
+    "/ai/vnedrenie-ii-v-otdel-prodazh",
+    "/ai/vnedrenie-ii-v-dokumenty",
+    "/ai/vnedrenie-ii-v-crm",
+    "/ai/pilot-vnedreniya-ii",
+    "/ai/vnedrenie-ii-malyj-biznes",
+    "/ai/vnedrenie-ii-v-organizaciyu",
+    "/ai/stoimost-vnedreniya-ii",
+    "/ai/zakazat-vnedrenie-ii"
+  ],
+  "publishHint": [
+    "npm run yandex:uslugi:login",
+    "npm run yandex:uslugi:add -- --file=data/uslugi-ai-vnedrenie-ii-v-biznes-11.json --headless --fast",
+    "npm run yandex:uslugi:list -- --spec=187ddab3-5a27-4a55-8240-dd1baca3b87f"
+  ],
+  "services": [
+    {
+      "id": "ai-ii-v-biznes-exact",
+      "name": "Внедрение искусственного интеллекта в бизнес",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/ai-discovery-roadmap.jpg",
+      "description": "Внедрение искусственного интеллекта в бизнес: аудит процесса, пилот с KPI, связка с CRM и 1С, запуск в production. Фиксированная смета до старта, NDA. Москва и удалённо. От 400 000 ₽. https://www.bober-systems.ru/ai/vnedrenie-iskusstvennogo-intellekta-v-biznes"
+    },
+    {
+      "id": "ai-ii-v-kompaniyu",
+      "name": "Внедрение искусственного интеллекта в компанию",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/enterprise-ai-assistant.jpg",
+      "description": "Внедрение искусственного интеллекта в компанию: один контур (заявки, документы или продажи), затем масштабирование. Пилот 2–4 недели. Москва и удалённо. От 400 000 ₽. https://www.bober-systems.ru/ai/vnedrenie-ii-v-kompaniyu"
+    },
+    {
+      "id": "ai-ii-v-prodazhi",
+      "name": "Внедрение искусственного интеллекта в продажи",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/sales-proposal.jpg",
+      "description": "Внедрение искусственного интеллекта в продажи: квалификация лида, черновик КП, дожим и факты в CRM. Не чат ради чата. Москва и удалённо. От 400 000 ₽. https://www.bober-systems.ru/ai/vnedrenie-ii-v-prodazhi"
+    },
+    {
+      "id": "ai-ii-v-otdel-prodazh",
+      "name": "Внедрение искусственного интеллекта в отдел продаж",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/team-collab.jpg",
+      "description": "Внедрение искусственного интеллекта в отдел продаж: регламент менеджера, задачи из звонков и писем, контроль SLA. Москва и удалённо. От 400 000 ₽. https://www.bober-systems.ru/ai/vnedrenie-ii-v-otdel-prodazh"
+    },
+    {
+      "id": "ai-ii-v-dokumenty",
+      "name": "Внедрение искусственного интеллекта в документы",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/document-processing.jpg",
+      "description": "Внедрение искусственного интеллекта в документы: распознавание, проверка полей, выгрузка в 1С или CRM. Журнал ошибок и приёмка. Москва и удалённо. От 400 000 ₽. https://www.bober-systems.ru/ai/vnedrenie-ii-v-dokumenty"
+    },
+    {
+      "id": "ai-ii-v-crm",
+      "name": "Внедрение искусственного интеллекта в CRM",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/crm-integration.jpg",
+      "description": "Внедрение искусственного интеллекта в CRM: скоринг, черновики писем, саммари сделки в Bitrix24 или amoCRM. Москва и удалённо. От 400 000 ₽. https://www.bober-systems.ru/ai/vnedrenie-ii-v-crm"
+    },
+    {
+      "id": "ai-ii-pilot",
+      "name": "Пилот внедрения искусственного интеллекта",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/roadmap-sticky-notes.jpg",
+      "description": "Пилот внедрения искусственного интеллекта: один процесс, KPI за 2–4 недели, смета на production после пилота. Москва и удалённо. От 150 000 ₽. https://www.bober-systems.ru/ai/pilot-vnedreniya-ii"
+    },
+    {
+      "id": "ai-ii-malyj-biznes",
+      "name": "Внедрение искусственного интеллекта в малый бизнес",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/office-interior.jpg",
+      "description": "Внедрение искусственного интеллекта в малый бизнес: узкий сценарий без лишних модулей — заявки, документы или дожим. Москва и удалённо. От 400 000 ₽. https://www.bober-systems.ru/ai/vnedrenie-ii-malyj-biznes"
+    },
+    {
+      "id": "ai-ii-v-organizaciyu",
+      "name": "Внедрение искусственного интеллекта в организацию",
+      "price": 500000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/office-tower.jpg",
+      "description": "Внедрение искусственного интеллекта в организацию: доступы, логи, контур заказчика, интеграции. Не публичный чат. Москва и удалённо. От 500 000 ₽. https://www.bober-systems.ru/ai/vnedrenie-ii-v-organizaciyu"
+    },
+    {
+      "id": "ai-ii-stoimost",
+      "name": "Стоимость внедрения искусственного интеллекта",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/sales-ai-agent.jpg",
+      "description": "Стоимость внедрения искусственного интеллекта: аудит и смета до кода. Аудит от 150 000 ₽, процесс в production — от 400 000 ₽. Москва и удалённо. https://www.bober-systems.ru/ai/stoimost-vnedreniya-ii"
+    },
+    {
+      "id": "ai-ii-zakazat",
+      "name": "Заказать внедрение искусственного интеллекта",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/automation-code.jpg",
+      "description": "Заказать внедрение искусственного интеллекта: бриф → смета → пилот → production. Критерии приёмки в договоре. Москва и удалённо. От 400 000 ₽. https://www.bober-systems.ru/ai/zakazat-vnedrenie-ii"
+    }
+  ]
+}

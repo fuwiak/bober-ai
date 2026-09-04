@@ -1,0 +1,28 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "specializationId": "14621107-8394-44af-96e5-331a0f9dafed",
+  "specializationNote": "Настройка Битрикс — внедрение под ключ, отдел продаж, без универсального шаблона",
+  "note": "Title «Внедрение Битрикс24 под ключ» уже в uslugi-wordstat-bitrix-15.json (опубл. от 300 000 ₽). Этот пакет — длинное описание под выдачу «отдел продаж / процессы компании», цена как в целевой выдаче. При add: пропустить, если exact title ещё жив; иначе создастся дубль.",
+  "publishedAt": "2026-09-04",
+  "publishedStatus": "pending_cabinet",
+  "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=14621107-8394-44af-96e5-331a0f9dafed",
+  "publicProfile": "https://uslugi.yandex.ru/profile/PawelStasinski-254144",
+  "siteLandings": ["/integrations/bitrix24-implementation"],
+  "publishHint": [
+    "npm run yandex:uslugi:add -- --file=data/uslugi-bitrix24-pod-klyuch-sales.json --headless --fast",
+    "npm run yandex:uslugi:list -- --spec=14621107-8394-44af-96e5-331a0f9dafed"
+  ],
+  "services": [
+    {
+      "id": "bx24-pod-klyuch-sales",
+      "name": "Внедрение Битрикс24 под ключ",
+      "price": 67000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/crm-integration.jpg",
+      "description": "Внедрение Битрикс24 под ключ: настроим портал под бизнес-процессы компании и работу отдела продаж. Перед стартом разберём, как сейчас ведёте клиентов, какие этапы проходит сделка, что делают менеджеры и какую картину должен видеть руководитель. Настроим структуру CRM, воронки и стадии, карточки и поля, автоматизацию, задачи, права и контроль отдела продаж — под согласованную логику, без универсального шаблона. Прогоним основные сценарии на тестовых сделках. Итог: рабочий Битрикс24 для ежедневной работы менеджеров. Москва и удалённо. От 67 000 ₽. https://www.bober-systems.ru/integrations/bitrix24-implementation"
+    }
+  ]
+}

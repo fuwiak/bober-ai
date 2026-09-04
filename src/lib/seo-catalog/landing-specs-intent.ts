@@ -33,6 +33,11 @@ export const CATALOG_LANDING_SPECS_INTENT: LandingSpec[] = [
     caseStudySlugs: ["kaspersky-ai-assistant", "yandex-telemost-agent"],
     related: [
       { href: "/ii-dlya-biznesa", labelRu: "ИИ для бизнеса", labelEn: "AI for business" },
+      {
+        href: "/ai/vnedrenie-iskusstvennogo-intellekta-v-biznes",
+        labelRu: "внедрение ИИ в бизнес",
+        labelEn: "AI into the business",
+      },
       { href: "/services/ai-discovery-roadmap", labelRu: "AI-аудит и смета", labelEn: "AI audit & estimate" },
       { href: "/ai/corporate-neural-net", labelRu: "Корпоративная нейросеть", labelEn: "Corporate neural net" },
       { href: "/integrations/ai-for-crm", labelRu: "ИИ для CRM / 1С", labelEn: "AI for CRM / 1C" },

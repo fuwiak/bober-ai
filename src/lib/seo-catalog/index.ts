@@ -9,6 +9,7 @@ import { CATALOG_LANDING_SPECS_HIGH_DEMAND } from "@/lib/seo-catalog/landing-spe
 import { CATALOG_LANDING_SPECS_PRIORITY } from "@/lib/seo-catalog/landing-specs-priority";
 import { CATALOG_LANDING_SPECS_BITRIX_WORDSTAT } from "@/lib/seo-catalog/landing-specs-bitrix-wordstat";
 import { CATALOG_LANDING_SPECS_BITRIX_SITE_CMS } from "@/lib/seo-catalog/landing-specs-bitrix-site-cms";
+import { CATALOG_LANDING_SPECS_AI_VNEDRENIE } from "@/lib/seo-catalog/landing-specs-ai-vnedrenie";
 import { INTENT_ARTICLE_SPECS } from "@/lib/seo-catalog/blog-specs";
 import { SEO_HUBS } from "@/lib/seo-catalog/hubs";
 import { SPECIALIST_ARTICLE_SPECS } from "@/lib/seo-catalog/specialist-blog-specs";
@@ -31,6 +32,7 @@ const ALL_SPECS = [
   ...CATALOG_LANDING_SPECS_PRIORITY,
   ...CATALOG_LANDING_SPECS_BITRIX_WORDSTAT,
   ...CATALOG_LANDING_SPECS_BITRIX_SITE_CMS,
+  ...CATALOG_LANDING_SPECS_AI_VNEDRENIE,
 ];
 const ALL_ARTICLES = [...SPECIALIST_ARTICLE_SPECS, ...INTENT_ARTICLE_SPECS];
 
