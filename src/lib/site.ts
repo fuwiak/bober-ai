@@ -1,4 +1,5 @@
 import {
+  AMOCRM_ORIGIN,
   BITRIX_ORIGIN,
   CANONICAL_ORIGIN,
   PARTNERS_ORIGIN,
@@ -128,6 +129,8 @@ export const SITE_URL = readPublicEnv("PUBLIC_SITE_URL", CANONICAL_ORIGIN);
 export const PARTNERS_SITE_URL = readPublicEnv("PUBLIC_PARTNERS_SITE_URL", PARTNERS_ORIGIN);
 /** CRM landing: Bitrix24 + amoCRM (Caddy host rewrite → /bitrix.html). */
 export const BITRIX_SITE_URL = readPublicEnv("PUBLIC_BITRIX_SITE_URL", BITRIX_ORIGIN);
+/** amoCRM microsite (Caddy host rewrite → /amocrm). */
+export const AMOCRM_SITE_URL = readPublicEnv("PUBLIC_AMOCRM_SITE_URL", AMOCRM_ORIGIN);
 export const DEFAULT_KEYWORDS = [
   "интеграция битрикс24",
   "интегратор битрикс24",
