@@ -20,7 +20,6 @@ import { getPortfolioListing, PROFILE } from "@/lib/profile";
 import { absoluteUrl } from "@/lib/site";
 import BitrixPartnerBadge from "@/components/BitrixPartnerBadge.astro";
 import {
-  CONTACT_EMAIL,
   CONTACT_PHONE,
   FOUNDER_IMAGE,
   GITHUB_URL,
@@ -399,7 +398,6 @@ const homeJsonLd = [
           <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" class="btn-secondary" data-goal="modal_whatsapp_click">
             WhatsApp
           </a>
-          <a href={`mailto:${CONTACT_EMAIL}`} class="btn-secondary" data-goal="email_click">Email</a>
           <a href={`tel:${CONTACT_PHONE}`} class="btn-secondary" data-goal="phone_click">{CONTACT_PHONE}</a>
         </div>
       </div>

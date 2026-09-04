@@ -3193,6 +3193,105 @@ html.dark {
     }
   }
 
+  /* Quick contact dock — one-click Telegram / call, sits above the FAB.
+     Email is intentionally not offered here (mailbox is mostly cold pitches). */
+  .quick-dock {
+    position: fixed;
+    z-index: 91;
+    display: flex;
+    right: max(16px, env(safe-area-inset-right, 0px));
+    bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+    flex-direction: column;
+    gap: 8px;
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+  .quick-dock[hidden] {
+    display: none;
+  }
+  .quick-dock--hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+  }
+  /* Cookie bar covers the bottom chrome — lift the dock with the FAB. */
+  .quick-dock--cookie-blocked {
+    bottom: calc(9.5rem + env(safe-area-inset-bottom, 0px));
+  }
+  .quick-dock__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 12px 18px;
+    border: 1px solid #ffffff;
+    border-radius: 9999px;
+    /* Dock floats over hero photos — blur keeps the label readable. */
+    background: rgba(0, 0, 0, 0.96);
+    backdrop-filter: blur(8px);
+    color: #ffffff;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+  }
+  .quick-dock__icon {
+    width: 18px;
+    height: 18px;
+    flex: none;
+  }
+  .quick-dock__label {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  html:not(.dark) .quick-dock__btn {
+    border-color: #000000;
+    background: rgba(255, 255, 255, 0.96);
+    color: #000000;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .quick-dock__btn:hover {
+      background: #ffffff;
+      color: #000000;
+      transform: translateY(-1px);
+    }
+    html:not(.dark) .quick-dock__btn:hover {
+      background: #000000;
+      color: #ffffff;
+    }
+  }
+  @media (max-width: 639px) {
+    .quick-dock {
+      left: max(16px, env(safe-area-inset-left, 0px));
+      right: max(16px, env(safe-area-inset-right, 0px));
+      bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+      flex-direction: row;
+      gap: 10px;
+    }
+    .quick-dock--cookie-blocked {
+      bottom: calc(16rem + env(safe-area-inset-bottom, 0px));
+    }
+    .quick-dock__btn {
+      flex: 1 1 0;
+      min-width: 0;
+      justify-content: center;
+      gap: 8px;
+      min-height: 52px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+  }
+  @media (min-width: 640px) {
+    .quick-dock {
+      right: 20px;
+      bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+      align-items: flex-end;
+    }
+  }
+
   /* Direct / paid traffic: sticky conversion bar */
   .direct-sticky-bar {
     position: fixed;

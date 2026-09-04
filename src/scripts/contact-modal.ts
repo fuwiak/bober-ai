@@ -108,21 +108,27 @@ function cookieBannerOpen() {
 function syncFabCookieOffset() {
   const fab = document.querySelector<HTMLElement>("[data-contact-fab]");
   const sticky = document.querySelector<HTMLElement>("[data-direct-sticky]");
+  const dock = document.querySelector<HTMLElement>("[data-quick-dock]");
   const blocked = cookieBannerOpen();
   fab?.classList.toggle("contact-fab--cookie-blocked", blocked);
   sticky?.classList.toggle("direct-sticky-bar--cookie-blocked", blocked);
+  dock?.classList.toggle("quick-dock--cookie-blocked", blocked);
 }
 
 function syncPaidTrafficChrome() {
   const fab = document.querySelector<HTMLElement>("[data-contact-fab]");
   const sticky = document.querySelector<HTMLElement>("[data-direct-sticky]");
+  const dock = document.querySelector<HTMLElement>("[data-quick-dock]");
   const paid = document.documentElement.hasAttribute("data-paid-traffic");
   if (paid) {
+    // The paid bar already carries phone + Telegram — no double chrome.
     fab?.setAttribute("hidden", "");
+    dock?.setAttribute("hidden", "");
     sticky?.removeAttribute("hidden");
   } else {
     sticky?.setAttribute("hidden", "");
     fab?.removeAttribute("hidden");
+    dock?.removeAttribute("hidden");
   }
 }
 
@@ -133,13 +139,15 @@ function syncContactIntersection() {
   const contact = document.getElementById("contact");
   const fab = document.querySelector<HTMLElement>("[data-contact-fab]");
   const sticky = document.querySelector<HTMLElement>("[data-direct-sticky]");
-  if (!contact || !(fab || sticky)) return;
+  const dock = document.querySelector<HTMLElement>("[data-quick-dock]");
+  if (!contact || !(fab || sticky || dock)) return;
 
   contactObserver = new IntersectionObserver(
     ([entry]) => {
       const hide = entry.isIntersecting;
       fab?.classList.toggle("contact-fab--hidden", hide);
       sticky?.classList.toggle("direct-sticky-bar--hidden", hide);
+      dock?.classList.toggle("quick-dock--hidden", hide);
     },
     { threshold: 0.15, rootMargin: "-80px 0px 0px 0px" },
   );

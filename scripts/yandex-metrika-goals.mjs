@@ -55,9 +55,14 @@ const COUNTERS = {
       { name: "CONTACT: Order CTA", ident: "order_cta_click", tier: "conversion" },
       { name: "CONTACT: ROI lead submit", ident: "roi_calculator_lead_submit", tier: "conversion" },
       { name: "CONTACT: Process-review lead", ident: "process_review_lead_submit", tier: "conversion" },
-      // —— channels ——
-      { name: "CONTACT: Phone click", ident: "phone_click", tier: "channel" },
-      { name: "CONTACT: Telegram click", ident: "telegram_click", tier: "channel" },
+      // —— fast channels (Telegram / phone) ——
+      // Email brings mostly cold pitches, so the fast channels are the ones we
+      // optimize on: the quick dock has its own idents to keep them separable.
+      { name: "★ CONTACT: Telegram quick dock", ident: "quick_telegram_click", tier: "conversion" },
+      { name: "★ CONTACT: Phone quick dock", ident: "quick_phone_click", tier: "conversion" },
+      { name: "★ CONTACT: Phone click", ident: "phone_click", tier: "conversion" },
+      { name: "★ CONTACT: Telegram click", ident: "telegram_click", tier: "conversion" },
+      // —— other channels ——
       { name: "CONTACT: Modal Telegram", ident: "modal_telegram_click", tier: "channel" },
       { name: "CONTACT: WhatsApp", ident: "modal_whatsapp_click", tier: "channel" },
       { name: "CONTACT: MAX click", ident: "max_click", tier: "channel" },

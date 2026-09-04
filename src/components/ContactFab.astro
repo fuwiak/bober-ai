@@ -1,4 +1,14 @@
 ---
+/**
+ * Floating contact chrome:
+ *  - quick dock — one-click Telegram / call (own goals: quick_telegram_click, quick_phone_click)
+ *  - FAB pill — opens the qualifying form
+ *  - direct sticky bar — paid traffic only (swapped in by contact-modal.ts)
+ *
+ * Email is deliberately absent here: the mailbox collects mostly cold pitches,
+ * so the fast channels are Telegram and phone. Mailto stays in the footer for
+ * legal requisites.
+ */
 import type { Messages } from "@/lib/i18n";
 import { CONTACT_PHONE, PRIMARY_CTA_GOAL, TELEGRAM_URL } from "@/lib/site";
 
@@ -7,8 +17,50 @@ interface Props {
 }
 
 const { messages } = Astro.props;
-const label = messages.contact.fabLabel;
+const contact = messages.contact;
+const label = contact.fabLabel;
+const phoneHuman = CONTACT_PHONE.replace(
+  /^\+7(\d{3})(\d{3})(\d{2})(\d{2})$/,
+  "+7 $1 $2-$3-$4",
+);
 ---
+
+<div class="quick-dock" data-quick-dock aria-label={contact.quickTitle}>
+  <a
+    href={TELEGRAM_URL}
+    target="_blank"
+    rel="noreferrer"
+    class="quick-dock__btn quick-dock__btn--tg"
+    data-goal="quick_telegram_click"
+    data-goal-source="quick-dock"
+    aria-label={contact.quickTelegramAria}
+    title={contact.quickTelegramAria}
+  >
+    <svg class="quick-dock__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path
+        fill="currentColor"
+        d="M21.6 4.3 3.4 11.2c-.9.3-.9 1.5 0 1.9l4.2 1.6 1.6 4.9c.2.7 1.1.9 1.6.3l2.3-2.6 4.3 3.2c.6.4 1.4.1 1.6-.6l3-13.6c.2-.9-.7-1.6-1.5-1.3zM9.6 14.3l-.1 3.1-1.1-3.4 8.4-5.4-7.2 5.7z"
+      />
+    </svg>
+    <span class="quick-dock__label">{contact.quickTelegram}</span>
+  </a>
+  <a
+    href={`tel:${CONTACT_PHONE}`}
+    class="quick-dock__btn quick-dock__btn--call"
+    data-goal="quick_phone_click"
+    data-goal-source="quick-dock"
+    aria-label={`${contact.quickCallAria} ${phoneHuman}`}
+    title={phoneHuman}
+  >
+    <svg class="quick-dock__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path
+        fill="currentColor"
+        d="M6.6 2h-.2C5 2 4 3.2 4 4.6c0 4 1.8 7.9 4.8 10.8 3 3 6.8 4.6 10.6 4.6 1.4 0 2.6-1.1 2.6-2.5v-2.1c0-.7-.5-1.3-1.1-1.5l-3.3-.9c-.6-.2-1.3 0-1.7.5l-1 1.2c-2-1-3.7-2.7-4.7-4.7l1.2-1c.5-.4.7-1.1.5-1.7l-.9-3.3C11.8 2.5 11.2 2 10.5 2H6.6z"
+      />
+    </svg>
+    <span class="quick-dock__label">{contact.quickCall}</span>
+  </a>
+</div>
 
 <button
   type="button"
