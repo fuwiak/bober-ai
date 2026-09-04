@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<yml_catalog date="2026-08-01 23:05">
+<yml_catalog date="2026-09-04 19:49">
   <shop>
     <name>Bober AI Systems</name>
     <company>Bober AI Systems</company>
@@ -11,6 +11,7 @@
       <category id="1">Внедрение ИИ</category>
       <category id="2">Автоматизация</category>
       <category id="3">Корпоративный ИИ</category>
+      <category id="4">CRM и интеграции</category>
     </categories>
     <offers>
       <offer id="ai-audit-roadmap" available="true">
@@ -89,6 +90,94 @@
         <url>https://www.bober-systems.ru/ai/corporate-neural-net</url>
         <description>Пакет корпоративного ИИ-ассистента: база знаний и регламенты, ответы со ссылкой на источник, права доступа, интеграция в чат или CRM. Фиксированная цена пакета. Москва и удалённо.</description>
         <shortDescription>Корпоративный ИИ-ассистент по регламентам и базе знаний: ответы со ссылкой на источник и контроль доступа.</shortDescription>
+      </offer>
+      <offer id="sales-department-automation" available="true">
+        <name>Автоматизация отдела продаж</name>
+        <vendor>Bober AI</vendor>
+        <price>450000</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>2</categoryId>
+        <picture>https://www.bober-systems.ru/stock/offers/land-automation-sales-department.jpg</picture>
+        <url>https://www.bober-systems.ru/for-sales-director</url>
+        <description>Автоматизация отдела продаж: сбор заявок из сайта, мессенджеров и телефонии в одну точку, ИИ-квалификация лидов, автозадачи и follow-up, скоринг сделок по переписке, отчёт по конверсии этапов и дисциплине CRM. Работаем поверх amoCRM или Битрикс24. Срок: 3–4 недели. Москва и удалённо.</description>
+        <shortDescription>Автоматизация отдела продаж: квалификация заявок, автоматический follow-up, контроль воронки и работы менеджеров.</shortDescription>
+      </offer>
+      <offer id="speech-analytics-sales" available="true">
+        <name>Анализ звонков отдела продаж</name>
+        <vendor>Bober AI</vendor>
+        <price>350000</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>2</categoryId>
+        <picture>https://www.bober-systems.ru/stock/offers/land-automation-speech-analytics-sales.jpg</picture>
+        <url>https://www.bober-systems.ru/automation/speech-analytics-sales</url>
+        <description>Анализ звонков отдела продаж: транскрибация 100 процентов разговоров, проверка соблюдения этапов и скрипта, работа с возражениями, фиксация договорённостей и сроков, причины отказов и сводка по каждому менеджеру. Вместо выборочного прослушивания — полная картина качества разговоров. Срок: 2–3 недели. Москва и удалённо.</description>
+        <shortDescription>Речевая аналитика: транскрибация всех звонков, проверка по чек-листу скрипта, причины отказов, сводка руководителю.</shortDescription>
+      </offer>
+      <offer id="document-flow-automation" available="true">
+        <name>Автоматизация документооборота</name>
+        <vendor>Bober AI</vendor>
+        <price>450000</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>2</categoryId>
+        <picture>https://www.bober-systems.ru/stock/offers/land-automation-invoice-processing.jpg</picture>
+        <url>https://www.bober-systems.ru/for-coo</url>
+        <description>Автоматизация документооборота: приём документов из почты, сканера, мессенджеров и ЭДО, маршруты согласования с ролями, сроками и эскалацией, автоматическая регистрация договоров, счетов и актов, журнал операций и контроль просроченных согласований. Срок: 3–4 недели. Москва и удалённо.</description>
+        <shortDescription>Автоматизация документооборота компании: маршруты согласования, договоры, счета и акты, журнал операций и сроки.</shortDescription>
+      </offer>
+      <offer id="ocr-1c-input" available="true">
+        <name>Распознавание документов и ввод в 1С</name>
+        <vendor>Bober AI</vendor>
+        <price>350000</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>2</categoryId>
+        <picture>https://www.bober-systems.ru/stock/offers/ocr.jpg</picture>
+        <url>https://www.bober-systems.ru/services/ocr</url>
+        <description>Распознавание первичных документов: извлечение реквизитов, сумм и номенклатуры из счетов, актов, УПД и накладных, сопоставление со справочниками контрагентов и товаров, автоматическая запись в 1С. Спорные документы уходят на проверку с подсветкой сомнительных полей. Срок: 2–3 недели. Москва и удалённо.</description>
+        <shortDescription>Распознавание счетов, актов, УПД и накладных с автоматическим вводом данных в 1С без ручного набора.</shortDescription>
+      </offer>
+      <offer id="crm-1c-integration" available="true">
+        <name>Интеграция CRM и 1С</name>
+        <vendor>Bober AI</vendor>
+        <price>300000</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>4</categoryId>
+        <picture>https://www.bober-systems.ru/stock/offers/land-integrations-crm-1c-automation.jpg</picture>
+        <url>https://www.bober-systems.ru/integrations/crm-1c-automation</url>
+        <description>Интеграция CRM и 1С: обмен сделками, счетами, оплатами, контрагентами и складскими остатками, идемпотентные обмены без дублей, повторные попытки при сбое, журнал операций и мониторинг. Убирает двойной ввод одних и тех же данных менеджерами и бухгалтерией. Срок: 2–4 недели. Москва и удалённо.</description>
+        <shortDescription>Двусторонний обмен между CRM и 1С: сделки, счета, оплаты и склад без двойного ввода данных.</shortDescription>
+      </offer>
+      <offer id="private-ai-onpremise" available="true">
+        <name>Приватный ИИ в закрытом контуре</name>
+        <vendor>Bober AI</vendor>
+        <price>700000</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>3</categoryId>
+        <picture>https://www.bober-systems.ru/stock/offers/secure-private-ai-cloud.jpg</picture>
+        <url>https://www.bober-systems.ru/secure-ai</url>
+        <description>Приватный ИИ в закрытом контуре: развёртывание открытой LLM на вашем оборудовании, в российском облаке или гибриде, разграничение доступа по ролям и документам, аудит запросов и ответов, метрики и алерты, передача инфраструктуры как кода вашей команде. Подходит компаниям, которым нельзя отправлять данные во внешние сервисы. Срок: 4–8 недель. Москва и удалённо.</description>
+        <shortDescription>Локальная LLM on-premise или в российском облаке: без передачи данных наружу, права доступа и аудит запросов.</shortDescription>
+      </offer>
+      <offer id="bitrix24-implementation" available="true">
+        <name>Внедрение Битрикс24 под ключ</name>
+        <vendor>Bober AI</vendor>
+        <price>300000</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>4</categoryId>
+        <picture>https://www.bober-systems.ru/stock/offers/land-integrations-bitrix24-implementation.jpg</picture>
+        <url>https://bitrix.bober-systems.ru</url>
+        <description>Внедрение Битрикс24 под ключ: настройка воронок и стадий, роботы и бизнес-процессы, права доступа, подключение сайта, мессенджеров и телефонии, обмен с 1С, перенос данных из текущей системы, обучение сотрудников и регламент работы в CRM. Срок: 2–4 недели. Москва и удалённо.</description>
+        <shortDescription>Внедрение Битрикс24 под ключ: воронки, роботы, права, интеграции с 1С, телефонией и сайтом, обучение команды.</shortDescription>
+      </offer>
+      <offer id="amocrm-implementation" available="true">
+        <name>Внедрение amoCRM под ключ</name>
+        <vendor>Bober AI</vendor>
+        <price>300000</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>4</categoryId>
+        <picture>https://www.bober-systems.ru/stock/offers/amocrm-implementation.jpg</picture>
+        <url>https://amocrm.bober-systems.ru</url>
+        <description>Внедрение amoCRM под ключ: проектирование воронки и полей, автоматические задачи и триггеры, подключение мессенджеров, форм сайта и телефонии, обмен данными с 1С, перенос базы клиентов, обучение менеджеров и проверка дисциплины заполнения. Срок: 2–3 недели. Москва и удалённо.</description>
+        <shortDescription>Внедрение amoCRM под ключ: воронка, поля, автоматизация задач, мессенджеры и телефония, обмен с 1С.</shortDescription>
       </offer>
     </offers>
   </shop>
