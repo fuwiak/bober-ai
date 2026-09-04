@@ -54,6 +54,7 @@ const PRIORITY_PATHS = [
   "/bitrix",
   "/kaspersky",
   "/info",
+  "/ai-agents",
   "/for-ceo",
   "/for-sales-director",
   "/for-coo",

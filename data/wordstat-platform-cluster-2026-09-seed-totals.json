@@ -1,0 +1,246 @@
+{
+  "date": "2026-09-04",
+  "source": "Yandex Wordstat topRequests totalCount",
+  "seeds": [
+    {
+      "phrase": "ии для 1с",
+      "totalCount": 2318,
+      "exactCount": 2318,
+      "top1": {
+        "phrase": "ии для 1с",
+        "count": 2318
+      }
+    },
+    {
+      "phrase": "dify",
+      "totalCount": 1571,
+      "exactCount": 1571,
+      "top1": {
+        "phrase": "dify",
+        "count": 1571
+      }
+    },
+    {
+      "phrase": "ии агенты для бизнеса",
+      "totalCount": 1347,
+      "exactCount": 1347,
+      "top1": {
+        "phrase": "ии агенты для бизнеса",
+        "count": 1347
+      }
+    },
+    {
+      "phrase": "разработка ии агентов",
+      "totalCount": 1183,
+      "exactCount": 1183,
+      "top1": {
+        "phrase": "разработка ии агентов",
+        "count": 1183
+      }
+    },
+    {
+      "phrase": "купить rag",
+      "totalCount": 487,
+      "exactCount": 487,
+      "top1": {
+        "phrase": "купить rag",
+        "count": 487
+      }
+    },
+    {
+      "phrase": "ии ассистент для бизнеса",
+      "totalCount": 443,
+      "exactCount": 443,
+      "top1": {
+        "phrase": "ии ассистент для бизнеса",
+        "count": 443
+      }
+    },
+    {
+      "phrase": "база знаний с ии",
+      "totalCount": 193,
+      "exactCount": 193,
+      "top1": {
+        "phrase": "база знаний с ии",
+        "count": 193
+      }
+    },
+    {
+      "phrase": "llm интеграция",
+      "totalCount": 154,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "llm интеграции",
+        "count": 154
+      }
+    },
+    {
+      "phrase": "внедрение ии под ключ",
+      "totalCount": 72,
+      "exactCount": 72,
+      "top1": {
+        "phrase": "внедрение ии под ключ",
+        "count": 72
+      }
+    },
+    {
+      "phrase": "разработка ии агентов для бизнеса",
+      "totalCount": 60,
+      "exactCount": 60,
+      "top1": {
+        "phrase": "разработка ии агентов для бизнеса",
+        "count": 60
+      }
+    },
+    {
+      "phrase": "on premise ии",
+      "totalCount": 57,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "внедрение ai в бизнес процессы",
+      "totalCount": 40,
+      "exactCount": 40,
+      "top1": {
+        "phrase": "внедрение ai в бизнес процессы",
+        "count": 40
+      }
+    },
+    {
+      "phrase": "on premise llm",
+      "totalCount": 33,
+      "exactCount": 33,
+      "top1": {
+        "phrase": "on premise llm",
+        "count": 33
+      }
+    },
+    {
+      "phrase": "ии для битрикс24",
+      "totalCount": 31,
+      "exactCount": 31,
+      "top1": {
+        "phrase": "ии для битрикс24",
+        "count": 31
+      }
+    },
+    {
+      "phrase": "разработка ии под ключ",
+      "totalCount": 23,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "разработка ии агента под ключ",
+        "count": 11
+      }
+    },
+    {
+      "phrase": "ai агент под ключ",
+      "totalCount": 22,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "rag для бизнеса",
+      "totalCount": 18,
+      "exactCount": 18,
+      "top1": {
+        "phrase": "rag для бизнеса",
+        "count": 18
+      }
+    },
+    {
+      "phrase": "ии для amocrm",
+      "totalCount": 13,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "корпоративная база знаний с ии",
+      "totalCount": 13,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "n8n внедрение",
+      "totalCount": 8,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "внедрение n8n",
+        "count": 8
+      }
+    },
+    {
+      "phrase": "внедрение корпоративного rag",
+      "totalCount": 7,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "векторная база данных внедрение",
+      "totalCount": 3,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "dify для бизнеса",
+      "totalCount": 2,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "rag под ключ",
+      "totalCount": 1,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "dify внедрение",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "внедрение dify под ключ",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "flowise внедрение",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "langflow внедрение",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "open webui внедрение",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "внедрение ии в бизнес процессы под ключ",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "ии для отдела продаж под ключ",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "ии чат бот для бизнеса под ключ",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    }
+  ]
+}

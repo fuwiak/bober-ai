@@ -94,6 +94,12 @@ export function buildNavGroups(messages: Messages): NavGroup[] {
           title: nav.colAutomation,
           items: [
             {
+              href: "/integrations/nastrojka-crm",
+              label: "Настройка CRM",
+              description: "Воронка, поля, отдел продаж",
+              icon: "sales",
+            },
+            {
               href: "/integrations/business-from-phone",
               label: "CRM с телефона",
               description: "Битрикс24, amoCRM, YCLIENTS, RetailCRM",
@@ -111,6 +117,12 @@ export function buildNavGroups(messages: Messages): NavGroup[] {
               label: "AI Sales Loop",
               description: nav.salesLoopDesc,
               icon: "sales",
+            },
+            {
+              href: "/ai-agents",
+              label: "ИИ-агенты",
+              description: "Разработка и внедрение агентов",
+              icon: "bolt",
             },
             { href: "/services/rag", label: "RAG", description: nav.ragDesc, icon: "search" },
             { href: "/claude", label: nav.claude, description: nav.claudeDesc, icon: "bolt" },

@@ -1,0 +1,22 @@
+---
+/**
+ * Разработка ИИ-агентов для бизнеса.
+ * Path: /ai-agents — владелец кластера «разработка ии агентов» / «ии агенты для бизнеса».
+ */
+import SeoServicePage from "@/components/SeoServicePage.astro";
+import { AI_AGENTS_CONTENT, AI_AGENTS_KEYWORDS } from "@/lib/ai-agents-landing";
+
+export const prerender = true;
+---
+
+<SeoServicePage
+  slug="ai-agents"
+  locale="ru"
+  content={AI_AGENTS_CONTENT}
+  pagePath="/ai-agents"
+  serviceSlug="ii-agenty-vnedrenie"
+  keywords={[...AI_AGENTS_KEYWORDS]}
+  formSource="ai-agents-landing"
+  formDefaultService="Разработка ИИ-агентов"
+  breadcrumbItems={[{ name: "Разработка ИИ-агентов", path: "/ai-agents" }]}
+/>

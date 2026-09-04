@@ -33,14 +33,30 @@ export const SEO_EXACT_REDIRECTS: Record<string, string> = {
   "/ai/corporate": "/secure-ai",
 
   // Agents / tech stack → sales loop or automation hub
-  "/services/ai-agent": "/services/ai-sales-loop",
+  "/services/ai-agent": "/ai-agents",
   "/services/sales-ai-agent": "/services/ai-sales-loop",
   "/services/ai-automation": "/automation",
-  "/ai/ai-agents": "/services/ai-sales-loop",
+  "/ai/ai-agents": "/ai-agents",
   "/services/langgraph": "/automation",
   "/services/mcp": "/automation",
   "/services/n8n": "/automation",
   "/services/open-webui": "/automation",
+
+  // Short commercial aliases (root URL scheme) → cluster owner.
+  // Wordstat 04.09.2026 showed no separate demand behind these URL shapes,
+  // so they stay 301 aliases instead of duplicate landings.
+  "/ai-agent": "/ai-agents",
+  "/dify": "/blog/dify-vnedrenie-alternativy",
+  "/rag-dlya-biznesa": "/services/rag",
+  "/rag-pod-klyuch": "/services/rag",
+  "/ai-sales": "/services/ai-sales-loop",
+  "/ai-business": "/ii-dlya-biznesa",
+  "/amocrm-ai": "/amocrm",
+  "/bitrix24-ai": "/bitrix",
+  "/1c-ai": "/integrations/1c-ai-layer",
+  "/private-llm": "/secure-ai",
+  "/on-premise-ai": "/secure-ai",
+  "/knowledge-base-ai": "/automation/knowledge-base",
 
   // Solution-pillar aliases (executive URL scheme) → page that owns the cluster.
   // Kept as 301 aliases, not new pages: duplicating these would cannibalise

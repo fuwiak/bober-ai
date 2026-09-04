@@ -30,6 +30,7 @@ export const YANDEX_IMPORTANT_PATHS = [
   "/claude",
   "/audit",
   "/process-review",
+  "/ai-agents",
   "/for-ceo",
   "/for-sales-director",
   "/for-coo",
