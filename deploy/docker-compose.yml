@@ -24,6 +24,7 @@ services:
       PUBLIC_SITE_URL: ${PUBLIC_SITE_URL:-https://www.bober-systems.ru}
       PUBLIC_PARTNERS_SITE_URL: ${PUBLIC_PARTNERS_SITE_URL:-https://partners.bober-systems.ru}
       PUBLIC_BITRIX_SITE_URL: ${PUBLIC_BITRIX_SITE_URL:-https://bitrix.bober-systems.ru}
+      PUBLIC_AMOCRM_SITE_URL: ${PUBLIC_AMOCRM_SITE_URL:-https://amocrm.bober-systems.ru}
       PUBLIC_CONTACT_EMAIL: ${PUBLIC_CONTACT_EMAIL:-contact@bober-systems.ru}
       # Persist leads even when SMTP/Telegram/Bitrix are unset (Yandex feed moderation).
       LEADS_LOG_PATH: ${LEADS_LOG_PATH:-/app/data/leads.jsonl}

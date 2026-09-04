@@ -19,6 +19,9 @@ export const PARTNERS_HOST = `partners.${CANONICAL_APEX}`;
 /** Bitrix/CRM microsite host. */
 export const BITRIX_HOST = `bitrix.${CANONICAL_APEX}`;
 
+/** amoCRM microsite host. */
+export const AMOCRM_HOST = `amocrm.${CANONICAL_APEX}`;
+
 function httpsOrigin(host) {
   return `https://${host}`;
 }
@@ -29,6 +32,7 @@ export const CANONICAL_ORIGIN = httpsOrigin(CANONICAL_HOST);
 export const APEX_ORIGIN = httpsOrigin(CANONICAL_APEX);
 export const PARTNERS_ORIGIN = httpsOrigin(PARTNERS_HOST);
 export const BITRIX_ORIGIN = httpsOrigin(BITRIX_HOST);
+export const AMOCRM_ORIGIN = httpsOrigin(AMOCRM_HOST);
 
 /** Default public contact mailbox. */
 export const CONTACT_EMAIL_DEFAULT = `contact@${CANONICAL_APEX}`;
@@ -39,9 +43,10 @@ export const ALLOWED_HTTPS_HOSTS = [
   CANONICAL_APEX,
   PARTNERS_HOST,
   BITRIX_HOST,
+  AMOCRM_HOST,
 ];
 
-/** True when hostname is under the canonical apex (incl. www / partners / bitrix). */
+/** True when hostname is under the canonical apex (incl. www / partners / bitrix / amocrm). */
 export function isCanonicalFamilyHost(hostname = "") {
   const host = String(hostname).toLowerCase();
   return (
@@ -49,6 +54,7 @@ export function isCanonicalFamilyHost(hostname = "") {
     host === CANONICAL_APEX ||
     host === PARTNERS_HOST ||
     host === BITRIX_HOST ||
+    host === AMOCRM_HOST ||
     host.endsWith(`.${CANONICAL_APEX}`)
   );
 }
@@ -58,10 +64,12 @@ export default {
   CANONICAL_HOST,
   PARTNERS_HOST,
   BITRIX_HOST,
+  AMOCRM_HOST,
   CANONICAL_ORIGIN,
   APEX_ORIGIN,
   PARTNERS_ORIGIN,
   BITRIX_ORIGIN,
+  AMOCRM_ORIGIN,
   CONTACT_EMAIL_DEFAULT,
   ALLOWED_HTTPS_HOSTS,
   isCanonicalFamilyHost,

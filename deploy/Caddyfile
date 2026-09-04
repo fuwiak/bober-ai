@@ -155,7 +155,7 @@
 			redir https://www.bober-systems.ru{uri} permanent
 		}
 	}
-	@siteHost host www.bober-systems.ru partners.bober-systems.ru bitrix.bober-systems.ru
+	@siteHost host www.bober-systems.ru partners.bober-systems.ru bitrix.bober-systems.ru amocrm.bober-systems.ru
 	handle @siteHost {
 		header Cache-Control "no-store"
 		redir https://{host}{uri} permanent
@@ -221,6 +221,10 @@ http://bitrix.bober-ai.dev, https://bitrix.bober-ai.dev {
 	redir https://bitrix.bober-systems.ru{uri} permanent
 }
 
+http://amocrm.bober-ai.dev, https://amocrm.bober-ai.dev {
+	redir https://amocrm.bober-systems.ru{uri} permanent
+}
+
 https://partners.bober-systems.ru {
 	import security_headers
 	handle /performers-feed.yml {
@@ -271,6 +275,34 @@ https://bitrix.bober-systems.ru {
 	}
 	handle {
 		rewrite * /bitrix
+		import astro_proxy
+	}
+}
+
+# amoCRM microsite — serves /amocrm on its own host (canonical stays www).
+https://amocrm.bober-systems.ru {
+	import security_headers
+	handle /performers-feed.yml {
+		import yml_headers
+		rewrite * /api/feeds/amocrm
+		import astro_proxy
+	}
+	@yml path /feeds/*.yml *.yml
+	handle @yml {
+		import yml_headers
+		import yml_static
+	}
+	@passthrough path /api/* /_astro/* /vendor/* /fonts/* /*.xml /*.txt /*.md /*.ico /*.png /*.jpg *.jpeg *.webp *.svg *.js *.css /favicon* /icon.png /apple-icon.png /manifest.webmanifest /robots.txt /sitemap.xml /sitemap-*.xml /stock/* /hero/* /diagrams/* /yandex/* /cases/* /portfolio/* /media/* /partners/* /tel/*
+	handle @passthrough {
+		root * /srv
+		try_files {path} {path}/index.html
+		file_server {
+			pass_thru
+		}
+		import astro_proxy
+	}
+	handle {
+		rewrite * /amocrm
 		import astro_proxy
 	}
 }

@@ -30,6 +30,112 @@ export const AMOCRM_SALES_KEYWORDS = [
   "автоматизация продаж amocrm",
 ] as const;
 
+export const AMOCRM_LANDING_ABOUT =
+  "amoCRM для отделов продаж: настройка от 150 000 ₽, интеграции и мессенджеры от 200 000 ₽, ИИ-слой поверх CRM от 300 000 ₽.";
+
+export type AmocrmPackage = {
+  id: string;
+  slug: string;
+  title: string;
+  keywords: string[];
+  description: string;
+  gets: string;
+  priceLabel: string;
+  priceFrom: number;
+  /** YML sales_notes ≤50 chars (Yandex rejects longer). */
+  salesNotes: string;
+  picture: string;
+  conversion: number;
+};
+
+/** Пакеты микросайта amocrm.bober-systems.ru — они же офферы YML-фида. */
+export const AMOCRM_PACKAGES: AmocrmPackage[] = [
+  {
+    id: "amocrm-start",
+    slug: "amocrm-start",
+    title: "Настройка amoCRM под процесс продаж",
+    keywords: ["настройка amocrm", "внедрение amocrm", "amocrm под ключ"],
+    description:
+      "Воронка, стадии, обязательные поля, роли менеджеров и базовые роботы. Приёмка на тестовых сделках.",
+    gets: "Отдел продаж ведёт сделки в amoCRM по регламенту, а не в чатах и таблицах.",
+    priceLabel: "от 150 000 ₽",
+    priceFrom: 150000,
+    salesNotes: "от 150 000 ₽",
+    picture: "/stock/sales-proposal.jpg",
+    conversion: 92,
+  },
+  {
+    id: "amocrm-channels",
+    slug: "amocrm-channels",
+    title: "amoCRM + мессенджеры, сайт и телефония",
+    keywords: ["интеграция amocrm с telegram", "заявки с сайта в amocrm", "amocrm телефония"],
+    description:
+      "Заявки с сайта, Telegram, MAX, WhatsApp и звонки попадают в карточку сделки без ручного переноса.",
+    gets: "Все обращения в одном окне CRM: источник, UTM и история переписки в сделке.",
+    priceLabel: "от 200 000 ₽",
+    priceFrom: 200000,
+    salesNotes: "от 200 000 ₽",
+    picture: "/stock/team-collab.jpg",
+    conversion: 91,
+  },
+  {
+    id: "amocrm-pipeline",
+    slug: "amocrm-pipeline",
+    title: "Автоматизация воронки: Digital Pipeline и Salesbot",
+    keywords: ["автоматизация воронки amocrm", "digital pipeline amocrm", "salesbot amocrm"],
+    description:
+      "Автозадачи, распределение лидов, триггеры по стадиям и сценарии Salesbot под ваш регламент продаж.",
+    gets: "Follow-up не зависит от памяти менеджера — задачи и напоминания ставятся автоматически.",
+    priceLabel: "от 250 000 ₽",
+    priceFrom: 250000,
+    salesNotes: "от 250 000 ₽",
+    picture: "/stock/automation-code.jpg",
+    conversion: 90,
+  },
+  {
+    id: "amocrm-ai",
+    slug: "amocrm-ai",
+    title: "ИИ-слой поверх amoCRM",
+    keywords: ["внедрение ии в amocrm", "интеграция ии с amocrm", "ии агент amocrm"],
+    description:
+      "Квалификация лидов, скоринг сделок, анализ переписок и звонков, черновики КП и писем в карточке сделки.",
+    gets: "Руководитель видит качество работы с лидами по фактам, а не по ощущениям.",
+    priceLabel: "от 300 000 ₽",
+    priceFrom: 300000,
+    salesNotes: "от 300 000 ₽",
+    picture: "/stock/roadmap-sticky-notes.jpg",
+    conversion: 93,
+  },
+  {
+    id: "amocrm-1c",
+    slug: "amocrm-1c",
+    title: "amoCRM + 1С, документы и КП",
+    keywords: ["интеграция amocrm с 1с", "amocrm документы", "генерация кп amocrm"],
+    description:
+      "Двусторонний обмен с 1С, номенклатура и цены в сделке, генерация КП и счетов без ручного ввода.",
+    gets: "Счёт и КП собираются из данных CRM и 1С за минуты вместо часов.",
+    priceLabel: "от 300 000 ₽",
+    priceFrom: 300000,
+    salesNotes: "от 300 000 ₽",
+    picture: "/stock/document-processing.jpg",
+    conversion: 92,
+  },
+  {
+    id: "amocrm-audit",
+    slug: "amocrm-audit",
+    title: "Аудит amoCRM и плана продаж",
+    keywords: ["аудит amocrm", "доработка amocrm", "amocrm консультация"],
+    description:
+      "Разбор текущего портала: воронка, поля, роботы, потери лидов и приоритеты доработок со сметой.",
+    gets: "Карта потерь и план работ на 90 дней — до закупки разработки.",
+    priceLabel: "от 150 000 ₽",
+    priceFrom: 150000,
+    salesNotes: "от 150 000 ₽",
+    picture: "/stock/office-tower.jpg",
+    conversion: 89,
+  },
+];
+
 export const AMOCRM_SEO_CONTENT: SeoServiceContent = {
   metaTitle: "Внедрение и настройка amoCRM под ключ — от 150 000 ₽",
   metaDescription:

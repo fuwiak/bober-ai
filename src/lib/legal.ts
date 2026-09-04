@@ -1,4 +1,5 @@
 import {
+  AMOCRM_HOST,
   BITRIX_HOST,
   CANONICAL_APEX,
   isCanonicalFamilyHost,
@@ -62,6 +63,15 @@ export const BITRIX_YANDEX_METRIKA_ID =
   process.env.PUBLIC_BITRIX_YANDEX_METRIKA_ID ||
   process.env.NEXT_PUBLIC_BITRIX_YANDEX_METRIKA_ID ||
   "110926887";
+/**
+ * amoCRM microsite counter. No dedicated counter yet — falls back to the main
+ * one, so traffic is never dropped; set PUBLIC_AMOCRM_YANDEX_METRIKA_ID once
+ * the counter exists in Metrika.
+ */
+export const AMOCRM_YANDEX_METRIKA_ID =
+  process.env.PUBLIC_AMOCRM_YANDEX_METRIKA_ID ||
+  process.env.NEXT_PUBLIC_AMOCRM_YANDEX_METRIKA_ID ||
+  YANDEX_METRIKA_ID;
 
 /** True for public canonical hosts (analytics surface from `config/domains.mjs`). */
 export function isBoberSystemsHost(hostname?: string): boolean {
@@ -84,6 +94,10 @@ export function yandexMetrikaIdForLocation(hostname?: string, pathname?: string)
 
   if (host === BITRIX_HOST || path.startsWith("/bitrix")) {
     return BITRIX_YANDEX_METRIKA_ID;
+  }
+
+  if (host === AMOCRM_HOST) {
+    return AMOCRM_YANDEX_METRIKA_ID;
   }
 
   return YANDEX_METRIKA_ID;

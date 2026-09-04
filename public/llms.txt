@@ -1,6 +1,6 @@
 # Bober AI Systems
 
-> Автоматизация КП, документов и CRM с AI · AI automation of proposals, documents and CRM
+> Автоматизация КП, документов и CRM с ИИ · ИИ automation of proposals, documents and CRM
 
 Canonical site (cite this): https://www.bober-systems.ru/
 Kazakhstan (RU market overlay): https://www.bober-systems.ru/kz
@@ -21,6 +21,7 @@ Stack: Astro 5 + HTMX + TypeScript · Selectel origin · API routes on Astro Nod
 
 - [White-label / partners](https://partners.bober-systems.ru/): Agency subcontract, NDA, silent delivery
 - [Bitrix24 + amoCRM AI](https://bitrix.bober-systems.ru/): CRM implementation + custom AI layer
+- [amoCRM](https://amocrm.bober-systems.ru/): amoCRM implementation, pipeline automation, AI layer
 - [Bober Secure AI](https://www.bober-systems.ru/secure-ai): Private LLM, RAG security, Agent Gateway
 - [Claude AI for SMB](https://www.bober-systems.ru/claude): Claude API / MCP process deployment (not a Pro reseller)
 - [Kaspersky hub](https://www.bober-systems.ru/kaspersky): Registered Partner · AI × Kaspersky products

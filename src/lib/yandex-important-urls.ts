@@ -9,7 +9,7 @@
  *
  * Список: `npm run webmaster:boost` / `yaga webmaster boost --checklist`.
  */
-import { BITRIX_SITE_URL, PARTNERS_SITE_URL, SITE_URL } from "@/lib/site";
+import { AMOCRM_SITE_URL, BITRIX_SITE_URL, PARTNERS_SITE_URL, SITE_URL } from "@/lib/site";
 
 /** Разделы и коммерческие лендинги на главном зеркале (www). */
 export const YANDEX_IMPORTANT_PATHS = [
@@ -61,6 +61,9 @@ export const YANDEX_IMPORTANT_PATHS = [
   "/integrations/roistat",
   "/integrations/mango-telecom",
   "/integrations/tinkoff",
+  "/integrations/nastrojka-crm",
+  "/integrations/nastrojka-crm-pod-klyuch",
+  "/integrations/nastrojka-crm-otdel-prodazh",
   "/automation/documents",
   "/automation/sales",
   "/automation/proposal-generation",
@@ -96,6 +99,7 @@ export function yandexImportantStandaloneUrls(): string[] {
   return [
     `${PARTNERS_SITE_URL.replace(/\/$/, "")}/`,
     `${BITRIX_SITE_URL.replace(/\/$/, "")}/`,
+    `${AMOCRM_SITE_URL.replace(/\/$/, "")}/`,
   ];
 }
 

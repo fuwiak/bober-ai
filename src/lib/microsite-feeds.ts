@@ -1,5 +1,7 @@
+import { AMOCRM_LANDING_ABOUT, AMOCRM_PACKAGES } from "@/lib/amocrm-landing";
 import { BITRIX_LANDING_ABOUT, BITRIX_PACKAGES, BITRIX_WORDSTAT_SERVICES } from "@/lib/bitrix-landing";
 import {
+  AMOCRM_SITE_URL,
   BITRIX_SITE_URL,
   CONTACT_EMAIL,
   PARTNERS_SITE_URL,
@@ -172,6 +174,18 @@ const BITRIX_OFFERS: MicrositeOffer[] = [
   })),
 ];
 
+const AMOCRM_OFFERS: MicrositeOffer[] = AMOCRM_PACKAGES.map((pkg) => ({
+  id: pkg.id,
+  slug: pkg.slug,
+  title: pkg.title,
+  description: pkg.description,
+  about: AMOCRM_LANDING_ABOUT,
+  salesNotes: pkg.salesNotes,
+  price: pkg.priceFrom,
+  picture: pkg.picture,
+  conversion: pkg.conversion,
+}));
+
 const PARTNERS_OFFERS: MicrositeOffer[] = [
   {
     id: "partners-presale",
@@ -278,6 +292,21 @@ export function getBitrixFeedXml(now = new Date()) {
   );
 }
 
+/** YML для amocrm.bober-systems.ru (amoCRM + ИИ). */
+export function getAmocrmFeedXml(now = new Date()) {
+  return buildYmlCatalog(
+    {
+      siteUrl: AMOCRM_SITE_URL,
+      shopName: `${SITE_NAME} — amoCRM`,
+      shopDescription:
+        "Внедрение и настройка amoCRM, интеграция с сайтом, мессенджерами и телефонией, автоматизация воронки, Digital Pipeline и Salesbot, обмен с 1С, генерация КП и ИИ-слой поверх CRM. Пакеты от 150 000 ₽.",
+      orderPath: "/#contact",
+      offers: AMOCRM_OFFERS,
+    },
+    now,
+  );
+}
+
 /** YML для partners.bober-systems.ru (white-label / partner program). */
 export function getPartnersFeedXml(now = new Date()) {
   return buildYmlCatalog(
@@ -296,4 +325,5 @@ export function getPartnersFeedXml(now = new Date()) {
 export const MICROSITE_FEED_PATHS = {
   bitrix: "feeds/bitrix.yml",
   partners: "feeds/partners.yml",
+  amocrm: "feeds/amocrm.yml",
 } as const;

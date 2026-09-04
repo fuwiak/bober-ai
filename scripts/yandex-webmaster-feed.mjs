@@ -36,6 +36,13 @@ const MICROSITE_FEEDS = [
       "https://bitrix.bober-systems.ru/performers-feed.yml",
   },
   {
+    label: "amoCRM",
+    hostUrl: process.env.YANDEX_WEBMASTER_AMOCRM_HOST_URL?.trim() || "https://amocrm.bober-systems.ru",
+    feedUrl:
+      process.env.YANDEX_WEBMASTER_AMOCRM_FEED_URL?.trim() ||
+      "https://amocrm.bober-systems.ru/performers-feed.yml",
+  },
+  {
     label: "Partners / white-label",
     hostUrl: process.env.YANDEX_WEBMASTER_PARTNERS_HOST_URL?.trim() || "https://partners.bober-systems.ru",
     feedUrl:
@@ -72,6 +79,8 @@ function printSetupHelp() {
   YANDEX_WEBMASTER_BITRIX_FEED_URL      .../performers-feed.yml
   YANDEX_WEBMASTER_PARTNERS_HOST_URL    https://partners.bober-systems.ru
   YANDEX_WEBMASTER_PARTNERS_FEED_URL    .../performers-feed.yml
+  YANDEX_WEBMASTER_AMOCRM_HOST_URL      https://amocrm.bober-systems.ru
+  YANDEX_WEBMASTER_AMOCRM_FEED_URL      .../performers-feed.yml
   YANDEX_WEBMASTER_FEED_TYPE            Тип фида (по умолчанию SERVICES)
   YANDEX_WEBMASTER_REGION_IDS           Регионы через запятую (по умолчанию 225)
 `);

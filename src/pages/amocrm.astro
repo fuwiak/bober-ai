@@ -2,9 +2,11 @@
 /**
  * amoCRM hub — /amocrm (parallel to /bitrix).
  * Keeps short commercial URL for market-offers and ads.
+ * Also served on amocrm.bober-systems.ru (Caddy host rewrite → /amocrm);
+ * canonical stays www. Feed anchors #slug must match AMOCRM_PACKAGES.
  */
 import SeoServicePage from "@/components/SeoServicePage.astro";
-import { AMOCRM_LANDING_KEYWORDS, AMOCRM_SEO_CONTENT } from "@/lib/amocrm-landing";
+import { AMOCRM_LANDING_KEYWORDS, AMOCRM_PACKAGES, AMOCRM_SEO_CONTENT } from "@/lib/amocrm-landing";
 
 export const prerender = true;
 ---
@@ -22,4 +24,38 @@ export const prerender = true;
     { name: "Услуги", path: "/services" },
     { name: "amoCRM", path: "/amocrm" },
   ]}
-/>
+>
+  <div slot="before-contact">
+    <section id="packages" class="section-band scroll-mt-16 border-b border-hairline">
+      <div class="container-editorial max-w-4xl">
+        <span class="section-label">Пакеты внедрения</span>
+        <h2 class="section-title mt-4 max-w-2xl">Пакеты под ключ — amoCRM + ИИ</h2>
+        <p class="body-copy mt-4 max-w-2xl">
+          Можно взять один пакет или всю цепочку. Цены — за внедрение и разработку; стоимость лицензий
+          amoCRM не входит. Смета фиксируется до старта.
+        </p>
+        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+          {
+            AMOCRM_PACKAGES.map((item) => (
+              <div id={item.slug} class="scroll-mt-20 border border-hairline bg-surface-card p-6">
+                <h3 class="card-title text-lg">{item.title}</h3>
+                <p class="meta-label mt-2 text-muted">{item.keywords.join(" · ")}</p>
+                <p class="body-copy mt-3 text-sm">{item.description}</p>
+                <p class="body-copy mt-3 text-sm text-body-strong">
+                  <span class="meta-label text-muted">Клиент получает: </span>
+                  {item.gets}
+                </p>
+                <p class="meta-label mt-4 text-muted">{item.priceLabel}</p>
+              </div>
+            ))
+          }
+        </div>
+        <p class="mt-6">
+          <a href="#contact" class="btn-secondary" data-goal="amocrm_packages_cta">
+            Запросить оценку по пакету
+          </a>
+        </p>
+      </div>
+    </section>
+  </div>
+</SeoServicePage>

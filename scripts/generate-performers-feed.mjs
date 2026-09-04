@@ -12,6 +12,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const mainOut = join(root, "public", "performers-feed.yml");
 const bitrixOut = join(root, "public", "feeds", "bitrix.yml");
 const partnersOut = join(root, "public", "feeds", "partners.yml");
+const amocrmOut = join(root, "public", "feeds", "amocrm.yml");
 
 function generateWithTsx() {
   mkdirSync(dirname(bitrixOut), { recursive: true });
@@ -19,19 +20,22 @@ function generateWithTsx() {
   const inline = `
     import { writeFileSync } from "node:fs";
     import { getServiceFeedXml, materializeFeedPictures, materializeMicrositePictures } from "./src/lib/services-feed.ts";
-    import { getBitrixFeedXml, getPartnersFeedXml } from "./src/lib/microsite-feeds.ts";
+    import { getAmocrmFeedXml, getBitrixFeedXml, getPartnersFeedXml } from "./src/lib/microsite-feeds.ts";
     import { BITRIX_PACKAGES, BITRIX_WORDSTAT_SERVICES } from "./src/lib/bitrix-landing.ts";
+    import { AMOCRM_PACKAGES } from "./src/lib/amocrm-landing.ts";
     import { resolveSeoRedirect } from "./src/lib/seo-redirects.ts";
 
     const root = ${JSON.stringify(root)};
     writeFileSync(${JSON.stringify(mainOut)}, getServiceFeedXml(), "utf8");
     writeFileSync(${JSON.stringify(bitrixOut)}, getBitrixFeedXml(), "utf8");
     writeFileSync(${JSON.stringify(partnersOut)}, getPartnersFeedXml(), "utf8");
+    writeFileSync(${JSON.stringify(amocrmOut)}, getAmocrmFeedXml(), "utf8");
 
     for (const [label, xml] of [
       ["main", getServiceFeedXml()],
       ["bitrix", getBitrixFeedXml()],
       ["partners", getPartnersFeedXml()],
+      ["amocrm", getAmocrmFeedXml()],
     ]) {
       if (xml.includes("bober-ai.dev")) {
         throw new Error(\`\${label} feed still contains bober-ai.dev — check PUBLIC_SITE_URL / domains.mjs\`);
@@ -79,12 +83,17 @@ function generateWithTsx() {
       { id: "partners-ongoing", picture: "/stock/automation-code.jpg" },
       { id: "partners-bitrix-analytics", picture: "/stock/team-collab.jpg" },
       { id: "partners-kp-docs", picture: "/stock/automation-code.jpg" },
+      ...AMOCRM_PACKAGES.map((pkg) => ({
+        id: pkg.id,
+        picture: pkg.picture.endsWith(".svg") ? "/stock/document-processing.jpg" : pkg.picture,
+      })),
     ];
     materializeMicrositePictures(root, microsite);
 
     console.log("generate-performers-feed: wrote", ${JSON.stringify(mainOut)}, "offers=", n);
     console.log("generate-performers-feed: wrote", ${JSON.stringify(bitrixOut)});
     console.log("generate-performers-feed: wrote", ${JSON.stringify(partnersOut)});
+    console.log("generate-performers-feed: wrote", ${JSON.stringify(amocrmOut)});
   `;
   const result = spawnSync(
     "npx",

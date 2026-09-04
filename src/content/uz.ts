@@ -809,6 +809,7 @@ const uzOverrides = {
           items: [
             "https://partners.bober-systems.ru/ — white-label",
             "https://bitrix.bober-systems.ru/ — Bitrix24 / amoCRM + AI",
+            "https://amocrm.bober-systems.ru/ — amoCRM: внедрение, воронка и ИИ-слой",
             "https://www.bober-systems.ru/uz/secure-ai — xavfsiz korporativ AI",
             "https://www.bober-systems.ru/uz/kaspersky — Kaspersky Registered Partner",
             "https://www.bober-systems.ru/uz/claude — KMB uchun Claude AI",

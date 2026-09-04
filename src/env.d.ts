@@ -8,6 +8,7 @@ interface ImportMetaEnv {
   readonly PUBLIC_YANDEX_BUSINESS_URL: string;
   readonly PUBLIC_PARTNERS_SITE_URL: string;
   readonly PUBLIC_BITRIX_SITE_URL: string;
+  readonly PUBLIC_AMOCRM_SITE_URL: string;
   readonly PUBLIC_YANDEX_METRIKA_ID: string;
   readonly PUBLIC_PARTNERS_YANDEX_METRIKA_ID: string;
   readonly PUBLIC_BITRIX_YANDEX_METRIKA_ID: string;

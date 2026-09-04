@@ -590,6 +590,7 @@ const ru = {
           items: [
             "https://partners.bober-systems.ru/ — white-label",
             "https://bitrix.bober-systems.ru/ — Bitrix24 / amoCRM + AI",
+            "https://amocrm.bober-systems.ru/ — amoCRM: внедрение, воронка и ИИ-слой",
             "https://www.bober-systems.ru/secure-ai — безопасный корпоративный AI",
             "https://www.bober-systems.ru/kaspersky — Registered Partner Kaspersky",
             "https://www.bober-systems.ru/claude — Claude AI для МСБ",
