@@ -6,7 +6,13 @@
  * canonical stays www. Feed anchors #slug must match AMOCRM_PACKAGES.
  */
 import SeoServicePage from "@/components/SeoServicePage.astro";
-import { AMOCRM_LANDING_KEYWORDS, AMOCRM_PACKAGES, AMOCRM_SEO_CONTENT } from "@/lib/amocrm-landing";
+import {
+  AMOCRM_LANDING_KEYWORDS,
+  AMOCRM_PACKAGES,
+  AMOCRM_SEO_CONTENT,
+  AMOCRM_SERVICE_TRACKS,
+  AMOCRM_SPECIALIZATION,
+} from "@/lib/amocrm-landing";
 
 export const prerender = true;
 ---
@@ -26,6 +32,58 @@ export const prerender = true;
   ]}
 >
   <div slot="before-contact">
+    <section id="tracks" class="section-band scroll-mt-16 border-b border-hairline">
+      <div class="container-editorial max-w-4xl">
+        <span class="section-label">Направления работ</span>
+        <h2 class="section-title mt-4 max-w-2xl">Что закрываем по amoCRM</h2>
+        <p class="body-copy mt-4 max-w-2xl">
+          От аудита продаж до кастомной разработки и сопровождения. Можно взять одно направление
+          или весь цикл — от постановки процесса до ИИ-слоя в карточке сделки.
+        </p>
+        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+          {
+            AMOCRM_SERVICE_TRACKS.map((item) => (
+              <div class="border border-hairline bg-surface-card p-6">
+                <h3 class="card-title text-lg">{item.title}</h3>
+                <p class="body-copy mt-3 text-sm">{item.text}</p>
+                {item.href && (
+                  <a class="link-more mt-4 inline-block" href={item.href}>
+                    Подробнее →
+                  </a>
+                )}
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section id="specialization" class="section-band section--panel scroll-mt-16 border-b border-hairline">
+      <div class="container-editorial max-w-4xl">
+        <span class="section-label">Специализация</span>
+        <h2 class="section-title mt-4 max-w-2xl">Конкретные работы внутри проекта</h2>
+        <p class="body-copy mt-4 max-w-2xl">
+          Состав работ собирается под задачу. Смета фиксируется до старта; стоимость лицензий
+          amoCRM в неё не входит.
+        </p>
+        <ul class="mt-8 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+          {
+            AMOCRM_SPECIALIZATION.map((item) => (
+              <li class="body-copy flex gap-3 text-sm">
+                <span class="text-accent">—</span>
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="mt-8">
+          <a href="#contact" class="btn-secondary" data-goal="amocrm_scope_cta">
+            Обсудить состав работ
+          </a>
+        </p>
+      </div>
+    </section>
+
     <section id="packages" class="section-band scroll-mt-16 border-b border-hairline">
       <div class="container-editorial max-w-4xl">
         <span class="section-label">Пакеты внедрения</span>
