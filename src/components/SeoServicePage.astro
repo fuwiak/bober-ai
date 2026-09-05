@@ -21,7 +21,7 @@ import {
   webPageJsonLd,
 } from "@/lib/seo";
 import type { SeoServiceContent } from "@/lib/seo-services-content";
-import { absoluteUrl, GITHUB_URL, LINKEDIN_URL, TELEGRAM_URL } from "@/lib/site";
+import { absoluteUrl, CONTACT_PHONE, GITHUB_URL, LINKEDIN_URL, TELEGRAM_URL } from "@/lib/site";
 import BitrixPartnerBadge from "@/components/BitrixPartnerBadge.astro";
 
 interface Props {
@@ -58,6 +58,11 @@ const resolvedPath = pagePath ?? `/services/${slug}`;
 const canonicalPath = localizePath(resolvedPath, locale);
 const pageUrl = absoluteUrl(canonicalPath);
 const servicesLabel = locale === "uz" ? "Xizmatlar" : "Услуги";
+/** Quick contact: Telegram / call straight from the offer card — decision makers write, they do not fill forms. */
+const phoneHuman = CONTACT_PHONE.replace(
+  /^\+7(\d{3})(\d{3})(\d{2})(\d{2})$/,
+  "+7 $1 $2-$3-$4",
+);
 const isUz = locale === "uz";
 const reviews = getEnterpriseReviews();
 
@@ -212,6 +217,32 @@ const showBitrixBadge = /bitrix/i.test(resolvedPath) || /bitrix/i.test(slug);
                 >
                   {messages.contact.fabLabel}
                 </button>
+                <div class="mt-6 border-t border-hairline pt-5">
+                  <p class="meta-label">{messages.contact.quickTitle}</p>
+                  <div class="mt-3 flex flex-col gap-2">
+                    <a
+                      href={TELEGRAM_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      class="btn-secondary w-full text-center"
+                      data-goal="quick_telegram_click"
+                      data-goal-source="service-aside"
+                      aria-label={messages.contact.quickTelegramAria}
+                    >
+                      {messages.contact.quickTelegram}
+                    </a>
+                    <a
+                      href={`tel:${CONTACT_PHONE}`}
+                      class="btn-secondary w-full text-center"
+                      data-goal="quick_phone_click"
+                      data-goal-source="service-aside"
+                      aria-label={`${messages.contact.quickCallAria} ${phoneHuman}`}
+                    >
+                      {phoneHuman}
+                    </a>
+                  </div>
+                  <p class="mt-3 text-xs text-muted">{messages.hero.responseNote}</p>
+                </div>
               </aside>
             )
           }
