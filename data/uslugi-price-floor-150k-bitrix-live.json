@@ -1,0 +1,432 @@
+{
+  "specializationId": "14621107-8394-44af-96e5-331a0f9dafed",
+  "note": "Price-only floor 150000 from live list",
+  "services": [
+    {
+      "match": "Интеграция Битрикс24 с 1С-Битрикс",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Автоматизация Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "AI для отдела продаж в Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Настройка шаблона АСПРО на Битрикс",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Настройка полей Битрикс24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Автоматизация обработки заявок в Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Интеграция Битрикс24 с WordPress",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Генерация коммерческого предложения",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Автоматизация процессов в Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Интеграция ИИ в Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Автоматизация документов в Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Создание сайта на Битрикс",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Интеграция Битрикс24 с 1С ЗУП и УНФ",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Внедрение и настройка Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Обновление CMS Битрикс",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Настройка шаблона Битрикс",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Битрикс24 настройка задач",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Автоматизация коммерческих предложений в Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Интеграция Битрикс24 с мессенджерами",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Автоматизация коммерческого предложения",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Доработка модулей Битрикс",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Доработка сайта на Битрикс",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Разработка RAG-систем",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Настройка сделок в Битрикс24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Локальный AI-ассистент без передачи данных",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Интеграция Битрикс24 с ВКонтакте",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Интеграция 1С-Битрикс с CRM",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Оптимизация сайта на Битрикс",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Внедрение CRM Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Подключение открытых линий в Битрикс24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Внедрение AI-ассистента",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Интеграция Битрикс24 с МойСклад",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Перенос сайта на Битрикс",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Настройка 1С-Битрикс",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Аудит автоматизации в Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Интеграция Битрикс24 с WhatsApp",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Интеграция Bitrix24 с Telegram",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Настройка Bitrix24 для отдела продаж",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Bitrix24 AI",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Настройка роботов Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Интеграция Bitrix24 с 1С",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Автоматизация документов",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Поддержка сайта на 1С-Битрикс",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "AI-ассистент по базе знаний для Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "ИИ для Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Настройка 1С-Битрикс: магазин и связь с CRM",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Настройка уведомлений Битрикс24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Настройка каталога на 1С-Битрикс",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Настройка форм на 1С-Битрикс",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Комплексная автоматизация Битрикс24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Внедрение 1С-Битрикс",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Сайт на 1С-Битрикс",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Bitrix24 AI для CRM и сделок",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Настройка почты Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Автоматизация рабочих процессов в Битрикс24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Настройка телефонии Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Посадка вёрстки на Битрикс",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Битрикс24 настройка прав",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Автоматизация Битрикс24: интеграции с системами",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Чат-бот для Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Внедрение AI-ассистента в Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Настройка лицензии и обновлений Битрикс",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Доработка сайта на 1С-Битрикс",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Автоматизация обработки PDF в Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Настройка CRM Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Кастомное приложение REST / OAuth для Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Разработка RAG-системы для Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Генерация коммерческих предложений в Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Настройка Bitrix24",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Настройка интернет-магазина на Битрикс",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Администрирование 1С-Битрикс",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    }
+  ]
+}

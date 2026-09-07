@@ -636,7 +636,7 @@ export const CATALOG_LANDING_SPECS_AMOCRM_WORDSTAT: LandingSpec[] = [
     ru: {
       h1: "Настройка бизнес-процессов Sensei в amoCRM",
       subtitle:
-        "Выстроим amoCRM на модуле Sensei: flow-редактор, интеллект-карта, XMind, ментальная карта или текстовый регламент → сделки, задачи, уведомления. От 80 000 ₽.",
+        "Выстроим amoCRM на модуле Sensei: flow-редактор, интеллект-карта, XMind, ментальная карта или текстовый регламент → сделки, задачи, уведомления. От 150 000 ₽.",
       problems: [
         "Процесс нарисован в XMind / ментальной карте, в amoCRM его нет",
         "Sensei стоит, flow-редактор пустой или не бьётся со стадиями",
@@ -676,14 +676,14 @@ export const CATALOG_LANDING_SPECS_AMOCRM_WORDSTAT: LandingSpec[] = [
         },
         {
           q: "Срок и цена?",
-          a: "Типовой контур — от 80 000 ₽, 1–3 недели. Сложный процесс с несколькими воронками — отдельная смета.",
+          a: "Типовой контур — от 150 000 ₽, 1–3 недели. Сложный процесс с несколькими воронками — отдельная смета.",
         },
       ],
     },
     en: {
       h1: "Sensei business-process setup in amoCRM",
       subtitle:
-        "amoCRM on Sensei: flow editor, mind map, XMind or a written playbook → deals, tasks, alerts. From 80,000 ₽.",
+        "amoCRM on Sensei: flow editor, mind map, XMind or a written playbook → deals, tasks, alerts. From 150,000 ₽.",
       problems: [
         "The process lives in XMind, not in amoCRM",
         "Sensei is installed, the flow is empty or mismatches stages",
@@ -706,7 +706,7 @@ export const CATALOG_LANDING_SPECS_AMOCRM_WORDSTAT: LandingSpec[] = [
       faq: [
         { q: "Is Sensei required?", a: "No. We use it when the process branches; otherwise amoCRM robots are enough." },
         { q: "XMind / mind map?", a: "Yes — any scheme of deal steps." },
-        { q: "Price?", a: "Typical contour from 80,000 ₽, 1–3 weeks." },
+        { q: "Price?", a: "Typical contour from 150,000 ₽, 1–3 weeks." },
       ],
     },
   },

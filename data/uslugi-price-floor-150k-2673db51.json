@@ -1,0 +1,168 @@
+{
+  "specializationId": "2673db51-904b-429a-8871-35eeb8b5f4e2",
+  "specializationNote": "CRM/ERP — 30 high-intent amoCRM (внедрение / проблема), без фото, без AI-воды. Не дублирует уже опубликованные generic titles.",
+  "note": "Price floor 150000 for integrations/LLM — auto update",
+  "publishedAt": "2026-09-07",
+  "services": [
+    {
+      "match": "Исправление ошибок и доработка amoCRM",
+      "name": "Исправление ошибок и доработка amoCRM",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service",
+      "description": "Исправление ошибок amoCRM: воронка, виджеты, API, отчёты. Точечная доработка под процесс продаж. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "match": "amoCRM не создаёт сделки — диагностика и настройка",
+      "name": "amoCRM не создаёт сделки — диагностика и настройка",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service",
+      "description": "Диагностика: почему не создаются сделки — формы, webhook, права, статусы. Чиним и проверяем на тесте. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "match": "Не работает интеграция amoCRM — исправление",
+      "name": "Не работает интеграция amoCRM — исправление",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service",
+      "description": "Сломанная интеграция amoCRM: логи, токены, маппинг полей, повторный тест обмена. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "match": "Доработка воронки amoCRM после запуска",
+      "name": "Доработка воронки amoCRM после запуска",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service",
+      "description": "Воронка уже есть, но не работает: правим стадии, поля, причины отказа и роботы. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "match": "Настройка прав и ролей в amoCRM",
+      "name": "Настройка прав и ролей в amoCRM",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service",
+      "description": "Права и роли в amoCRM: кто видит сделки, поля и отчёты. Меньше утечек и путаницы. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "match": "Заявки с сайта не попадают в amoCRM — исправление",
+      "name": "Заявки с сайта не попадают в amoCRM — исправление",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service",
+      "description": "Формы не создают лиды: чиним webhook, поля, антиспам и проверяем end-to-end. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "match": "Настройка обязательных полей и стадий amoCRM",
+      "name": "Настройка обязательных полей и стадий amoCRM",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service",
+      "description": "Обязательные поля и стадии: менеджер не двигает сделку без данных. Контроль качества воронки. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "match": "Интеграция amoCRM с почтой",
+      "name": "Интеграция amoCRM с почтой",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service",
+      "description": "Почта в amoCRM: письма в карточке сделки, шаблоны, фиксация переписки. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "match": "Настройка бизнес процессов на базе Sensei в AmoCRM",
+      "name": "Настройка бизнес процессов на базе Sensei в AmoCRM",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service",
+      "description": "Настройка бизнес-процессов на базе Sensei в amoCRM: выстроим воронку и роботы по вашей схеме. Flow-редактор, интеллект-карта, XMind, ментальная карта, текстовый регламент — переносим в сделки, задачи и уведомления. Подскажем, какие сценарии Sensei закрывает, а где хватит роботов amoCRM. Москва и удалённо. От 150 000 ₽. https://www.bober-systems.ru/integrations/amocrm-sensei"
+    },
+    {
+      "match": "Настройка CRM",
+      "name": "Настройка CRM",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service",
+      "description": "Настройка CRM: воронка, поля, права, заявки с сайта и регламент для менеджеров. Битрикс24, amoCRM или другая система — под ваш процесс. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "match": "Настройка CRM системы",
+      "name": "Настройка CRM системы",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service",
+      "description": "Настройка CRM-системы: карточки, стадии, справочники, роли. Система готова к ежедневной работе отдела продаж. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "match": "Настройка воронки CRM",
+      "name": "Настройка воронки CRM",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service",
+      "description": "Настройка воронки CRM: стадии, причины отказа, SLA, кто двигает сделку. Видно, где зависают продажи. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "match": "Настройка CRM для малого бизнеса",
+      "name": "Настройка CRM для малого бизнеса",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service",
+      "description": "Настройка CRM для малого бизнеса: простая воронка, заявки с сайта и мессенджеров, напоминания. Без тяжёлого портала «на вырост». Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "match": "Настройка карточек и полей CRM",
+      "name": "Настройка карточек и полей CRM",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service",
+      "description": "Настройка карточек и полей CRM: обязательные поля, справочники, типы сделок. Менеджер заполняет карточку за минуту, не в Excel. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "match": "Настройка YClients",
+      "name": "Настройка YClients",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service",
+      "description": "Настройка YClients: услуги, сотрудники, расписание, онлайн-запись и уведомления клиентам. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "match": "Настройка онлайн-записи YClients",
+      "name": "Настройка онлайн-записи YClients",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service",
+      "description": "Онлайн-запись в YClients: слоты, услуги, напоминания, виджет на сайт. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "match": "Настройка расписания в YClients",
+      "name": "Настройка расписания в YClients",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service",
+      "description": "Расписание в YClients: график сотрудников, перерывы, длительность услуг, правила переноса и отмены. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "match": "Подключение виджета записи YClients",
+      "name": "Подключение виджета записи YClients",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service",
+      "description": "Виджет онлайн-записи YClients на сайт или лендинг: установка, проверка слотов, мобильная версия. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "match": "Настройка уведомлений в YClients",
+      "name": "Настройка уведомлений в YClients",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service",
+      "description": "Уведомления YClients: SMS/мессенджеры о записи, напоминания и отмены. Меньше неявок. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "match": "Доработка и настройка YClients",
+      "name": "Доработка и настройка YClients",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service",
+      "description": "Доработка YClients: правка услуг, прав, записи и уведомлений под ваш процесс. Москва и удалённо. От 150 000 ₽."
+    }
+  ]
+}

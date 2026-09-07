@@ -44,7 +44,7 @@ export const CATALOG_LANDING_SPECS_YOUGILE: LandingSpec[] = [
     ru: {
       h1: "Внедрение корпоративного мессенджера YouGile",
       subtitle:
-        "Рабочие чаты, чаты задач, голос и файлы в одном контуре. Гостей зовёте по ссылке — без лицензий и без доступа к внутренней структуре. От 80 000 ₽.",
+        "Рабочие чаты, чаты задач, голос и файлы в одном контуре. Гостей зовёте по ссылке — без лицензий и без доступа к внутренней структуре. От 150 000 ₽.",
       problems: [
         "Переписка по проектам размазана по Telegram/WhatsApp — нет единой истории",
         "Подрядчиков нельзя пускать во внутренний портал, а в личных чатах теряются договорённости",
@@ -84,14 +84,14 @@ export const CATALOG_LANDING_SPECS_YOUGILE: LandingSpec[] = [
         },
         {
           q: "Срок и цена?",
-          a: "Типовой контур — от 80 000 ₽, 1–3 недели. Крупная миграция с десятков чатов и интеграция с CRM — отдельная смета.",
+          a: "Типовой контур — от 150 000 ₽, 1–3 недели. Крупная миграция с десятков чатов и интеграция с CRM — отдельная смета.",
         },
       ],
     },
     en: {
       h1: "YouGile corporate messenger implementation",
       subtitle:
-        "Work chats, task chats, voice and files. Invite guests by link — no licenses and no access to internal structure. From 80,000 ₽.",
+        "Work chats, task chats, voice and files. Invite guests by link — no licenses and no access to internal structure. From 150,000 ₽.",
       problems: [
         "Project talk is scattered across Telegram/WhatsApp — no single history",
         "Contractors must not see the internal portal, but DMs lose decisions",
@@ -131,7 +131,7 @@ export const CATALOG_LANDING_SPECS_YOUGILE: LandingSpec[] = [
         },
         {
           q: "Price?",
-          a: "Typical contour from 80,000 ₽, 1–3 weeks. Large migration or CRM wiring is a separate estimate.",
+          a: "Typical contour from 150,000 ₽, 1–3 weeks. Large migration or CRM wiring is a separate estimate.",
         },
       ],
     },

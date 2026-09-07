@@ -1,0 +1,42 @@
+{
+  "specializationId": "2673db51-904b-429a-8871-35eeb8b5f4e2",
+  "note": "Price-only floor bump to 150000 (live still <150k)",
+  "services": [
+    {
+      "match": "Настройка расписания в YClients",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Настройка карточек и полей CRM",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Настройка обязательных полей и стадий amoCRM",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Подключение виджета записи YClients",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Доработка и настройка YClients",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    },
+    {
+      "match": "Настройка уведомлений в YClients",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    }
+  ]
+}

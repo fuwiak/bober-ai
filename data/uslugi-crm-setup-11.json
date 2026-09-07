@@ -1,0 +1,126 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "specializationId": "2673db51-904b-429a-8871-35eeb8b5f4e2",
+  "specializationNote": "Wordstat «настройка CRM»: точный заголовок + 10 вариантов. Без дублей amoCRM/YClients и без «Настройка CRM Битрикс24» (уже в спеке Битрикс).",
+  "publishedAt": "2026-09-01",
+  "publishedStatus": "created_in_cabinet",
+  "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=2673db51-904b-429a-8871-35eeb8b5f4e2",
+  "publicProfile": "https://uslugi.yandex.ru/profile/PawelStasinski-254144",
+  "publishHint": [
+    "npm run yandex:uslugi:add -- --file=data/uslugi-crm-setup-11.json --headless --fast",
+    "npm run yandex:uslugi:list -- --spec=2673db51-904b-429a-8871-35eeb8b5f4e2"
+  ],
+  "services": [
+    {
+      "id": "crm-setup",
+      "name": "Настройка CRM",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/crm-integration.jpg",
+      "description": "Настройка CRM: воронка, поля, права, заявки с сайта и регламент для менеджеров. Битрикс24, amoCRM или другая система — под ваш процесс. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "id": "crm-setup-system",
+      "name": "Настройка CRM системы",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/business-process-automation.jpg",
+      "description": "Настройка CRM-системы: карточки, стадии, справочники, роли. Система готова к ежедневной работе отдела продаж. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "id": "crm-setup-turnkey",
+      "name": "Настройка CRM под ключ",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/sales-proposal.jpg",
+      "description": "Настройка CRM под ключ: аудит процесса, воронка, интеграции, обучение команды и приёмка. Фиксированная смета до старта. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "crm-setup-business",
+      "name": "Настройка CRM для бизнеса",
+      "price": 200000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/automation-code.jpg",
+      "description": "Настройка CRM для бизнеса: продажи, сервис и учёт заявок в одной системе. Без лишних модулей — только то, чем пользуются каждый день. Москва и удалённо. От 200 000 ₽."
+    },
+    {
+      "id": "crm-setup-sales",
+      "name": "Настройка CRM для отдела продаж",
+      "price": 180000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/team-collab.jpg",
+      "description": "Настройка CRM для отдела продаж: стадии сделки, обязательные поля, задачи, контроль менеджеров. Заявки не теряются. Москва и удалённо. От 180 000 ₽."
+    },
+    {
+      "id": "crm-setup-from-scratch",
+      "name": "Настройка CRM с нуля",
+      "price": 200000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/office-tower.jpg",
+      "description": "Настройка CRM с нуля: выбираем систему, собираем воронку, поля, права и источники заявок. Портал сразу рабочий, не «пустая коробка». Москва и удалённо. От 200 000 ₽."
+    },
+    {
+      "id": "crm-setup-pipeline",
+      "name": "Настройка воронки CRM",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/document-processing.jpg",
+      "description": "Настройка воронки CRM: стадии, причины отказа, SLA, кто двигает сделку. Видно, где зависают продажи. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "id": "crm-setup-smb",
+      "name": "Настройка CRM для малого бизнеса",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/crm-integration.jpg",
+      "description": "Настройка CRM для малого бизнеса: простая воронка, заявки с сайта и мессенджеров, напоминания. Без тяжёлого портала «на вырост». Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "id": "crm-setup-fields",
+      "name": "Настройка карточек и полей CRM",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/sales-proposal.jpg",
+      "description": "Настройка карточек и полей CRM: обязательные поля, справочники, типы сделок. Менеджер заполняет карточку за минуту, не в Excel. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "id": "crm-setup-process",
+      "name": "Настройка CRM под ваш процесс",
+      "price": 250000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/business-process-automation.jpg",
+      "description": "Настройка CRM под ваш процесс, не под шаблон вендора: стадии, роли, документы, связка с сайтом и учётом. Москва и удалённо. От 250 000 ₽."
+    },
+    {
+      "id": "crm-setup-complex",
+      "name": "Комплексная настройка CRM",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/automation-code.jpg",
+      "description": "Комплексная настройка CRM: воронка, поля, роботы, источники заявок, базовые интеграции и обучение. Один контур вместо разрозненных таблиц. Москва и удалённо. От 300 000 ₽."
+    }
+  ]
+}

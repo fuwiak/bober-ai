@@ -1,0 +1,11 @@
+{
+  "specializationId": "2673db51-904b-429a-8871-35eeb8b5f4e2",
+  "services": [
+    {
+      "match": "Настройка прав и ролей в amoCRM",
+      "price": 150000,
+      "isMinimalPrice": true,
+      "priceMeasure": "service"
+    }
+  ]
+}

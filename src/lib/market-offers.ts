@@ -37,7 +37,7 @@ export const HIGH_DEMAND_PARTNER_OFFERS: MarketOffer[] = [
     title: "Внедрение корпоративного мессенджера YouGile",
     description:
       "Рабочие чаты и чаты задач. Гостей зовёте по ссылке — без лицензий и без доступа к внутренней структуре.",
-    priceLabel: "от 80 000 ₽",
+    priceLabel: "от 150 000 ₽",
     demandRank: 3,
   },
   {
@@ -161,7 +161,7 @@ export const CRM_SETUP_OFFERS: MarketOffer[] = [
     href: "/integrations/nastrojka-crm-polya",
     title: "Настройка карточек и полей CRM",
     description: "Обязательные поля и справочники. Карточка заполняется за минуту.",
-    priceLabel: "от 120 000 ₽",
+    priceLabel: "от 150 000 ₽",
     demandRank: 9,
   },
   {

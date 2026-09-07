@@ -41,12 +41,12 @@
     {
       "id": "cms-nastrojka-1c-bitrix-exact",
       "name": "Настройка 1С-Битрикс",
-      "price": 45000,
+      "price": 150000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
       "photo": "public/stock/business-process-automation.jpg",
-      "description": "Настройка 1С-Битрикс: структура, модули, права, формы, каталог. CMS сайта, не портал Битрикс24. Москва и удалённо. От 45 000 ₽. Страница: https://www.bober-systems.ru/integrations/nastrojka-1c-bitrix"
+      "description": "Настройка 1С-Битрикс: структура, модули, права, формы, каталог. CMS сайта, не портал Битрикс24. Москва и удалённо. От 150 000 ₽. Страница: https://www.bober-systems.ru/integrations/nastrojka-1c-bitrix"
     },
     {
       "id": "bx24-site-reverse",
@@ -101,52 +101,52 @@
     {
       "id": "cms-site-1c-bitrix",
       "name": "Настройка сайта на 1С-Битрикс",
-      "price": 45000,
+      "price": 150000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
       "photo": "public/stock/office-interior.jpg",
-      "description": "Настройка сайта на 1С-Битрикс: разделы, шаблон, формы, мобильная вёрстка, обучение редакторов. Москва и удалённо. От 45 000 ₽. https://www.bober-systems.ru/integrations/nastrojka-sajta-1c-bitrix"
+      "description": "Настройка сайта на 1С-Битрикс: разделы, шаблон, формы, мобильная вёрстка, обучение редакторов. Москва и удалённо. От 150 000 ₽. https://www.bober-systems.ru/integrations/nastrojka-sajta-1c-bitrix"
     },
     {
       "id": "cms-1c-bitrix-biz",
       "name": "Настройка 1С-Битрикс для бизнеса",
-      "price": 60000,
+      "price": 150000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
       "photo": "public/stock/document-processing.jpg",
-      "description": "Настройка 1С-Битрикс для бизнеса: корпоративный сайт услуг, роли отделов, заявки менеджеру. Москва и удалённо. От 60 000 ₽. https://www.bober-systems.ru/integrations/nastrojka-1c-bitrix-dlya-biznesa"
+      "description": "Настройка 1С-Битрикс для бизнеса: корпоративный сайт услуг, роли отделов, заявки менеджеру. Москва и удалённо. От 150 000 ₽. https://www.bober-systems.ru/integrations/nastrojka-1c-bitrix-dlya-biznesa"
     },
     {
       "id": "cms-1c-bitrix-after",
       "name": "Настройка 1С-Битрикс после установки",
-      "price": 25000,
+      "price": 150000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
       "photo": "public/stock/roadmap-sticky-notes.jpg",
-      "description": "Настройка 1С-Битрикс после установки: почта, HTTPS, шаблон, первые страницы, бэкап. Москва и удалённо. От 25 000 ₽. https://www.bober-systems.ru/integrations/nastrojka-1c-bitrix-posle-ustanovki"
+      "description": "Настройка 1С-Битрикс после установки: почта, HTTPS, шаблон, первые страницы, бэкап. Москва и удалённо. От 150 000 ₽. https://www.bober-systems.ru/integrations/nastrojka-1c-bitrix-posle-ustanovki"
     },
     {
       "id": "cms-1c-bitrix-full",
       "name": "Комплексная настройка 1С-Битрикс",
-      "price": 80000,
+      "price": 150000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
       "photo": "public/stock/office-facade.jpg",
-      "description": "Комплексная настройка 1С-Битрикс: сайт, каталог, формы и базовая связка с CRM. Москва и удалённо. От 80 000 ₽. https://www.bober-systems.ru/integrations/nastrojka-1c-bitrix-kompleksnaya"
+      "description": "Комплексная настройка 1С-Битрикс: сайт, каталог, формы и базовая связка с CRM. Москва и удалённо. От 150 000 ₽. https://www.bober-systems.ru/integrations/nastrojka-1c-bitrix-kompleksnaya"
     },
     {
       "id": "cms-1c-bitrix-iblock",
       "name": "Настройка инфоблоков 1С-Битрикс",
-      "price": 25000,
+      "price": 150000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
       "photo": "public/stock/cyber-padlock.jpg",
-      "description": "Настройка инфоблоков 1С-Битрикс: типы, свойства, разделы, фильтр и карточка элемента. Москва и удалённо. От 25 000 ₽. https://www.bober-systems.ru/integrations/nastrojka-infoblokov-1c-bitrix"
+      "description": "Настройка инфоблоков 1С-Битрикс: типы, свойства, разделы, фильтр и карточка элемента. Москва и удалённо. От 150 000 ₽. https://www.bober-systems.ru/integrations/nastrojka-infoblokov-1c-bitrix"
     }
   ]
 }

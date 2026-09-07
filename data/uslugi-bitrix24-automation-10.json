@@ -17,7 +17,7 @@
     {
       "id": "bx24-auto-integrations",
       "name": "Автоматизация Битрикс24: интеграции с системами",
-      "price": 28000,
+      "price": 150000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
@@ -32,7 +32,7 @@
     {
       "id": "bx24-moysklad",
       "name": "Интеграция Битрикс24 с МойСклад",
-      "price": 32000,
+      "price": 150000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
@@ -47,7 +47,7 @@
     {
       "id": "bx24-wordpress",
       "name": "Интеграция Битрикс24 с WordPress",
-      "price": 18000,
+      "price": 150000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
@@ -62,7 +62,7 @@
     {
       "id": "bx24-1c-bitrix-site",
       "name": "Интеграция Битрикс24 с 1С-Битрикс",
-      "price": 30000,
+      "price": 150000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
@@ -77,7 +77,7 @@
     {
       "id": "bx24-openlines",
       "name": "Подключение открытых линий в Битрикс24",
-      "price": 16000,
+      "price": 150000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
@@ -92,7 +92,7 @@
     {
       "id": "bx24-whatsapp",
       "name": "Интеграция Битрикс24 с WhatsApp",
-      "price": 20000,
+      "price": 150000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
@@ -107,7 +107,7 @@
     {
       "id": "bx24-vk",
       "name": "Интеграция Битрикс24 с ВКонтакте",
-      "price": 16000,
+      "price": 150000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
@@ -122,7 +122,7 @@
     {
       "id": "bx24-messengers-pack",
       "name": "Интеграция Битрикс24 с мессенджерами",
-      "price": 26000,
+      "price": 150000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
@@ -137,7 +137,7 @@
     {
       "id": "bx24-workflows-productivity",
       "name": "Автоматизация рабочих процессов в Битрикс24",
-      "price": 22000,
+      "price": 150000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
@@ -152,7 +152,7 @@
     {
       "id": "bx24-auto-complex",
       "name": "Комплексная автоматизация Битрикс24",
-      "price": 45000,
+      "price": 150000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",

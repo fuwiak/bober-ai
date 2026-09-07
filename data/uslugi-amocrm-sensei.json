@@ -8,7 +8,9 @@
   "publishedStatus": "pending_cabinet",
   "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=2673db51-904b-429a-8871-35eeb8b5f4e2",
   "publicProfile": "https://uslugi.yandex.ru/profile/PawelStasinski-254144",
-  "siteLandings": ["/integrations/amocrm-sensei"],
+  "siteLandings": [
+    "/integrations/amocrm-sensei"
+  ],
   "publishHint": [
     "npm run yandex:uslugi:add -- --file=data/uslugi-amocrm-sensei.json --headless --fast",
     "npm run yandex:uslugi:list -- --spec=2673db51-904b-429a-8871-35eeb8b5f4e2"
@@ -17,12 +19,12 @@
     {
       "id": "amocrm-sensei-bp",
       "name": "Настройка бизнес процессов на базе Sensei в AmoCRM",
-      "price": 80000,
+      "price": 150000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
       "photo": "public/stock/business-process-automation.jpg",
-      "description": "Настройка бизнес-процессов на базе Sensei в amoCRM: выстроим воронку и роботы по вашей схеме. Flow-редактор, интеллект-карта, XMind, ментальная карта, текстовый регламент — переносим в сделки, задачи и уведомления. Подскажем, какие сценарии Sensei закрывает, а где хватит роботов amoCRM. Москва и удалённо. От 80 000 ₽. https://www.bober-systems.ru/integrations/amocrm-sensei"
+      "description": "Настройка бизнес-процессов на базе Sensei в amoCRM: выстроим воронку и роботы по вашей схеме. Flow-редактор, интеллект-карта, XMind, ментальная карта, текстовый регламент — переносим в сделки, задачи и уведомления. Подскажем, какие сценарии Sensei закрывает, а где хватит роботов amoCRM. Москва и удалённо. От 150 000 ₽. https://www.bober-systems.ru/integrations/amocrm-sensei"
     }
   ]
 }
