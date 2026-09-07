@@ -6,6 +6,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import ContactForm from "@/components/ContactForm.astro";
+import FaqSection from "@/components/FaqSection.astro";
 import { getEnterpriseReviews } from "@/lib/enterprise-reviews";
 import { KASPERSKY_PAGE, KASPERSKY_PRODUCTS } from "@/lib/kaspersky-page";
 import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
@@ -257,6 +258,16 @@ const jsonLd = [
         </section>
       )
     }
+
+    <FaqSection
+      locale={locale}
+      id="faq"
+      label="FAQ"
+      title={p.faqTitleRu}
+      items={[...p.faqRu]}
+      pageUrl={pageUrl}
+      className="section--deep"
+    />
 
     <section id="contact" class="section-band section--panel border-b border-hairline">
       <div class="container-editorial max-w-xl">

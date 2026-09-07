@@ -5,10 +5,9 @@
  * Usage: node scripts/generate-sitemap.mjs
  */
 import { CANONICAL_ORIGIN } from "../config/domains.mjs";
-import { spawnSync } from "node:child_process";
-import { accessSync, constants } from "node:fs";
-import { readdir, writeFile, stat, mkdir } from "node:fs/promises";
-import { join, relative, dirname } from "node:path";
+import { lastmodForPath } from "./lib/page-dates.mjs";
+import { readdir, writeFile, mkdir } from "node:fs/promises";
+import { join, dirname, relative } from "node:path";
 
 const SITE = process.env.PUBLIC_SITE_URL || CANONICAL_ORIGIN;
 const ROOT = join(process.cwd(), "dist/client");
@@ -214,73 +213,6 @@ function isExcluded(path) {
   if (path.includes("/bitrix24") && isRedirectSource(path)) return true;
   if (isRedirectSource(path)) return true;
   return false;
-}
-
-/** Map URL → source files whose git dates drive lastmod (not dist build mtime). */
-function sourceFilesForPath(path) {
-  const files = [];
-  const pageIndex = join(process.cwd(), "src/pages", path === "/" ? "index.astro" : `${path.slice(1)}/index.astro`);
-  const pageFile = join(process.cwd(), "src/pages", `${path.slice(1)}.astro`);
-  for (const f of [pageIndex, pageFile]) {
-    try {
-      accessSync(f, constants.R_OK);
-      files.push(f);
-    } catch {
-      /* missing */
-    }
-  }
-  if (path.startsWith("/services/")) {
-    files.push(
-      join(process.cwd(), "src/lib/seo-services-content.ts"),
-      join(process.cwd(), "src/lib/enterprise-services.ts"),
-    );
-  } else if (
-    path.startsWith("/automation/") ||
-    path.startsWith("/integrations/") ||
-    path.startsWith("/solutions/") ||
-    path.startsWith("/industries/") ||
-    path.startsWith("/ai/")
-  ) {
-    files.push(
-      join(process.cwd(), "src/lib/seo-catalog/landing-specs.ts"),
-      join(process.cwd(), "src/lib/seo-catalog/landing-specs-intent.ts"),
-      join(process.cwd(), "src/lib/seo-catalog/landing-specs-priority.ts"),
-      join(process.cwd(), "src/lib/landing-pages.ts"),
-    );
-  } else if (path === "/automation") {
-    files.push(join(process.cwd(), "src/lib/automation-page.ts"));
-  } else if (path === "/bitrix") {
-    files.push(join(process.cwd(), "src/lib/bitrix-landing.ts"));
-  } else if (path === "/" || path === "/pricing" || path === "/about") {
-    files.push(join(process.cwd(), "src/content/ru.ts"));
-  } else if (path.startsWith("/portfolio/")) {
-    files.push(join(process.cwd(), "src/lib/profile.ts"));
-  }
-  return files;
-}
-
-function gitLastmod(files) {
-  let best = null;
-  for (const file of files) {
-    const rel = relative(process.cwd(), file);
-    const r = spawnSync("git", ["log", "-1", "--format=%cs", "--", rel], {
-      encoding: "utf8",
-      cwd: process.cwd(),
-    });
-    const d = (r.stdout || "").trim();
-    if (/^\d{4}-\d{2}-\d{2}$/.test(d) && (!best || d > best)) best = d;
-  }
-  return best;
-}
-
-async function lastmodForPath(path, distFile) {
-  const fromGit = gitLastmod(sourceFilesForPath(path));
-  if (fromGit) return fromGit;
-  try {
-    return (await stat(distFile)).mtime.toISOString().slice(0, 10);
-  } catch {
-    return null;
-  }
 }
 
 function priorityScore(path) {
