@@ -83,9 +83,44 @@ Allow: /
 User-agent: PetalBot
 Allow: /
 
+User-agent: Claude-Web
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: Google-CloudVertexBot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: SemrushBot-OCOB
+Allow: /
+
+User-agent: Timpibot
+Allow: /
+
+User-agent: Webzio-Extended
+Allow: /
+
+User-agent: Omgilibot
+Allow: /
+
+User-agent: ImagesiftBot
+Allow: /
+
+User-agent: ProRataInc
+Allow: /
+
+User-agent: TikTokSpider
+Allow: /
+
 Host: www.bober-systems.ru
 Sitemap: https://www.bober-systems.ru/sitemap.xml
-# LLM summary: https://www.bober-systems.ru/llms.txt
+# LLM summary: https://www.bober-systems.ru/llms.txt (alias /llm.txt)
+# LLM full dossier (index + facts in one fetch): https://www.bober-systems.ru/llms-full.txt
+# Company facts for answer engines: https://www.bober-systems.ru/info.md · /info.txt
 
 # Ignore tracking GET params (Yandex Clean-param; Webmaster UI has no API)
 # Explicit Allow: for User-agent: Yandex this section replaces User-Agent: *

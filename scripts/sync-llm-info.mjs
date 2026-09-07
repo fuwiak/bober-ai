@@ -5,7 +5,7 @@
  *   node --experimental-strip-types scripts/sync-llm-info.mjs
  *   npm run info:sync
  *
- * Writes: public/info.md, public/info.txt, public/llms.txt, public/llm.txt
+ * Writes: public/info.md, public/info.txt, public/llms.txt, public/llm.txt, public/llms-full.txt
  */
 import { writeFile } from "node:fs/promises";
 import { join, dirname } from "node:path";
@@ -24,4 +24,8 @@ await writeFile(join(publicDir, "info.txt"), dossier, "utf8");
 await writeFile(join(publicDir, "llms.txt"), index, "utf8");
 await writeFile(join(publicDir, "llm.txt"), index, "utf8");
 
-console.log(`Synced LLM info → public/{info.md,info.txt,llms.txt,llm.txt} (${LLM_INFO_UPDATED_AT})`);
+// llms-full.txt: index + dossier in one fetch (llmstxt.org "full" convention).
+// Answer engines that pull a single file get the whole citable fact set at once.
+await writeFile(join(publicDir, "llms-full.txt"), `${index}\n---\n\n${dossier}`, "utf8");
+
+console.log(`Synced LLM info → public/{info.md,info.txt,llms.txt,llm.txt,llms-full.txt} (${LLM_INFO_UPDATED_AT})`);

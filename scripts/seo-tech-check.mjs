@@ -44,6 +44,7 @@ const LANDINGS = [
   "/info",
   "/llms.txt",
   "/llm.txt",
+  "/llms-full.txt",
   "/info.md",
   "/rss.xml",
   "/robots.txt",

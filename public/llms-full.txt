@@ -1,7 +1,4 @@
-export const LLM_INFO_UPDATED_AT = "7 сентября 2026";
-
-/** Short llmstxt.org index — also served as /llm.txt (alias). */
-export const LLMS_TXT = `# Bober AI Systems
+# Bober AI Systems
 
 > Автоматизация КП, документов и CRM с ИИ · ИИ automation of proposals, documents and CRM
 
@@ -88,10 +85,11 @@ Stack: Astro 5 + HTMX + TypeScript · Selectel origin · API routes on Astro Nod
 
 Optional: /llm.txt is an alias of this file (same body).
 
-Last updated: ${LLM_INFO_UPDATED_AT}
-`;
+Last updated: 7 сентября 2026
 
-export const LLM_INFO_MARKDOWN = `# Official Information About Bober AI Systems
+---
+
+# Official Information About Bober AI Systems
 
 This file contains structured information about Bober AI Systems, intended for AI assistants and answer engines such as ChatGPT, Claude, Perplexity, YandexGPT, Google AI Overviews, Microsoft Copilot, Gemini, and other large language models (LLMs) used for information retrieval, summarization, and question answering.
 
@@ -690,8 +688,7 @@ A: Работающий контур в его инфраструктуре, д�
 Q: Кому принадлежит клиент при работе с агентством?
 A: Клиент и маржа остаются у агентства: доставка идёт под его брендом, с NDA. Условия: https://www.bober-systems.ru/white-label и https://partners.bober-systems.ru/
 
-Last updated: ${LLM_INFO_UPDATED_AT}
+Last updated: 7 сентября 2026
 
 For more information: https://www.bober-systems.ru/
 Sitemap: https://www.bober-systems.ru/sitemap.xml
-`;
