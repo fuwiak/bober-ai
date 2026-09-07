@@ -453,7 +453,7 @@ export const CATALOG_LANDING_SPECS_EXTRA: LandingSpec[] = [
         },
         {
           q: "Бюджет?",
-          a: "Базовая настройка телефонии — от 18 000 ₽ (пакет на bitrix.bober-systems.ru). ИИ-контур — от 300 000 ₽.",
+          a: "Базовая настройка телефонии — от 150 000 ₽ (пакет на bitrix.bober-systems.ru). ИИ-контур — от 300 000 ₽.",
         },
       ],
     },

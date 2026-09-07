@@ -598,7 +598,7 @@ export const PORTFOLIO: PortfolioItem[] = [
       "Канбан сделок Bitrix24: заказы с Kwork в единой воронке со стадиями и суммами",
     category: "ИТ и разработка",
     featured: false,
-    priceLabel: "30 000 ₽",
+    priceLabel: "150 000 ₽",
     imageBadge: "Спецпредложение · Yandex Услуги",
     skills: ["Bitrix24", "Kwork", "REST API", "CRM", "Интеграции"],
     description:

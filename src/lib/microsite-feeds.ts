@@ -284,7 +284,7 @@ export function getBitrixFeedXml(now = new Date()) {
       siteUrl: BITRIX_SITE_URL,
       shopName: `${SITE_NAME} — Битрикс24`,
       shopDescription:
-        "Настройка Bitrix24, автоматизация документов, автоматизация Bitrix24, интеграция Bitrix24 с 1С, Bitrix24 AI, генерация коммерческого предложения, внедрение AI-ассистента, разработка RAG-систем. Пилот и пакеты внедрения от 18 000 ₽.",
+        "Настройка Bitrix24, автоматизация документов, автоматизация Bitrix24, интеграция Bitrix24 с 1С, Bitrix24 AI, генерация коммерческого предложения, внедрение AI-ассистента, разработка RAG-систем. Пилот и пакеты внедрения от 150 000 ₽.",
       orderPath: "/#contact",
       offers: BITRIX_OFFERS,
     },

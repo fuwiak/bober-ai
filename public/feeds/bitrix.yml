@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<yml_catalog date="2026-08-30 19:16">
+<yml_catalog date="2026-09-07 00:52">
   <shop>
     <name>Bober AI Systems — Битрикс24</name>
     <company>Bober AI Systems</company>
@@ -16,6 +16,10 @@
       <set id="avtomatizaciya-dokumentov">
         <name>Автоматизация документов</name>
         <url>https://bitrix.bober-systems.ru/#avtomatizaciya-dokumentov</url>
+      </set>
+      <set id="integraciya-bitrix24">
+        <name>Интеграция Битрикс24</name>
+        <url>https://bitrix.bober-systems.ru/#integraciya-bitrix24</url>
       </set>
       <set id="nastrojka-bitrix24">
         <name>Настройка Bitrix24</name>
@@ -86,9 +90,9 @@
     <offer id="ws-doc-automation">
       <name>Павел Стасиньский</name>
       <url>https://bitrix.bober-systems.ru/#avtomatizaciya-dokumentov</url>
-      <price from="true">24000</price>
+      <price from="true">150000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 24 000 ₽</sales_notes>
+      <sales_notes>от 150 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>avtomatizaciya-dokumentov</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/ms-ws-doc-automation.jpg</picture>
@@ -108,18 +112,49 @@
       <param name="Организация">true</param>
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
-      <param name="Другая услуга исполнителя - 1">Настройка Bitrix24</param>
-      <param name="Другая услуга исполнителя - 2">Автоматизация Bitrix24</param>
-      <param name="Другая услуга исполнителя - 3">Интеграция Bitrix24 с 1С</param>
-      <param name="Другая услуга исполнителя - 4">Генерация коммерческого предложения</param>
-      <param name="Другая услуга исполнителя - 5">Bitrix24 AI</param>
+      <param name="Другая услуга исполнителя - 1">Интеграция Битрикс24</param>
+      <param name="Другая услуга исполнителя - 2">Настройка Bitrix24</param>
+      <param name="Другая услуга исполнителя - 3">Автоматизация Bitrix24</param>
+      <param name="Другая услуга исполнителя - 4">Интеграция Bitrix24 с 1С</param>
+      <param name="Другая услуга исполнителя - 5">Генерация коммерческого предложения</param>
+    </offer>
+    <offer id="ws-bitrix-integration">
+      <name>Павел Стасиньский</name>
+      <url>https://bitrix.bober-systems.ru/#integraciya-bitrix24</url>
+      <price from="true">150000</price>
+      <currencyId>RUR</currencyId>
+      <sales_notes>от 150 000 ₽</sales_notes>
+      <categoryId>18</categoryId>
+      <set-ids>integraciya-bitrix24</set-ids>
+      <picture>https://www.bober-systems.ru/stock/offers/ms-ws-bitrix-integration.jpg</picture>
+      <description>Интеграция Битрикс24</description>
+      <adult>false</adult>
+      <expiry>P5Y</expiry>
+      <param name="Рейтинг">0</param>
+      <param name="Число отзывов">0</param>
+      <param name="Годы опыта">10</param>
+      <param name="Регион">Москва</param>
+      <param name="Конверсия">94</param>
+      <param name="Ссылка на телефон">https://www.bober-systems.ru/tel</param>
+      <param name="Ссылка на чат">https://t.me/pstasinski</param>
+      <param name="Ссылка на создание заказа">https://bitrix.bober-systems.ru/#contact</param>
+      <param name="Ссылка на профиль исполнителя">https://bitrix.bober-systems.ru</param>
+      <param name="Исполнитель проверен">true</param>
+      <param name="Организация">true</param>
+      <param name="Выполняется удаленно">true</param>
+      <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
+      <param name="Другая услуга исполнителя - 1">Автоматизация документов</param>
+      <param name="Другая услуга исполнителя - 2">Настройка Bitrix24</param>
+      <param name="Другая услуга исполнителя - 3">Автоматизация Bitrix24</param>
+      <param name="Другая услуга исполнителя - 4">Интеграция Bitrix24 с 1С</param>
+      <param name="Другая услуга исполнителя - 5">Генерация коммерческого предложения</param>
     </offer>
     <offer id="ws-bitrix-setup">
       <name>Павел Стасиньский</name>
       <url>https://bitrix.bober-systems.ru/#nastrojka-bitrix24</url>
-      <price from="true">18000</price>
+      <price from="true">150000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 18 000 ₽</sales_notes>
+      <sales_notes>от 150 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>nastrojka-bitrix24</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/ms-ws-bitrix-setup.jpg</picture>
@@ -140,17 +175,17 @@
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация документов</param>
-      <param name="Другая услуга исполнителя - 2">Автоматизация Bitrix24</param>
-      <param name="Другая услуга исполнителя - 3">Интеграция Bitrix24 с 1С</param>
-      <param name="Другая услуга исполнителя - 4">Генерация коммерческого предложения</param>
-      <param name="Другая услуга исполнителя - 5">Bitrix24 AI</param>
+      <param name="Другая услуга исполнителя - 2">Интеграция Битрикс24</param>
+      <param name="Другая услуга исполнителя - 3">Автоматизация Bitrix24</param>
+      <param name="Другая услуга исполнителя - 4">Интеграция Bitrix24 с 1С</param>
+      <param name="Другая услуга исполнителя - 5">Генерация коммерческого предложения</param>
     </offer>
     <offer id="ws-bitrix-automation">
       <name>Павел Стасиньский</name>
       <url>https://bitrix.bober-systems.ru/#avtomatizaciya-bitrix24</url>
-      <price from="true">20000</price>
+      <price from="true">150000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 20 000 ₽</sales_notes>
+      <sales_notes>от 150 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>avtomatizaciya-bitrix24</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/ms-ws-bitrix-automation.jpg</picture>
@@ -171,17 +206,17 @@
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация документов</param>
-      <param name="Другая услуга исполнителя - 2">Настройка Bitrix24</param>
-      <param name="Другая услуга исполнителя - 3">Интеграция Bitrix24 с 1С</param>
-      <param name="Другая услуга исполнителя - 4">Генерация коммерческого предложения</param>
-      <param name="Другая услуга исполнителя - 5">Bitrix24 AI</param>
+      <param name="Другая услуга исполнителя - 2">Интеграция Битрикс24</param>
+      <param name="Другая услуга исполнителя - 3">Настройка Bitrix24</param>
+      <param name="Другая услуга исполнителя - 4">Интеграция Bitrix24 с 1С</param>
+      <param name="Другая услуга исполнителя - 5">Генерация коммерческого предложения</param>
     </offer>
     <offer id="ws-bitrix-1c">
       <name>Павел Стасиньский</name>
       <url>https://bitrix.bober-systems.ru/#integraciya-bitrix24-1c</url>
-      <price from="true">35000</price>
+      <price from="true">150000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 35 000 ₽</sales_notes>
+      <sales_notes>от 150 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>integraciya-bitrix24-1c</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/ms-ws-bitrix-1c.jpg</picture>
@@ -202,17 +237,17 @@
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация документов</param>
-      <param name="Другая услуга исполнителя - 2">Настройка Bitrix24</param>
-      <param name="Другая услуга исполнителя - 3">Автоматизация Bitrix24</param>
-      <param name="Другая услуга исполнителя - 4">Генерация коммерческого предложения</param>
-      <param name="Другая услуга исполнителя - 5">Bitrix24 AI</param>
+      <param name="Другая услуга исполнителя - 2">Интеграция Битрикс24</param>
+      <param name="Другая услуга исполнителя - 3">Настройка Bitrix24</param>
+      <param name="Другая услуга исполнителя - 4">Автоматизация Bitrix24</param>
+      <param name="Другая услуга исполнителя - 5">Генерация коммерческого предложения</param>
     </offer>
     <offer id="ws-kp-gen">
       <name>Павел Стасиньский</name>
       <url>https://bitrix.bober-systems.ru/#generaciya-kommercheskogo-predlozheniya</url>
-      <price from="true">20000</price>
+      <price from="true">150000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 20 000 ₽</sales_notes>
+      <sales_notes>от 150 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>generaciya-kommercheskogo-predlozheniya</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/ms-ws-kp-gen.jpg</picture>
@@ -233,17 +268,17 @@
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация документов</param>
-      <param name="Другая услуга исполнителя - 2">Настройка Bitrix24</param>
-      <param name="Другая услуга исполнителя - 3">Автоматизация Bitrix24</param>
-      <param name="Другая услуга исполнителя - 4">Интеграция Bitrix24 с 1С</param>
-      <param name="Другая услуга исполнителя - 5">Bitrix24 AI</param>
+      <param name="Другая услуга исполнителя - 2">Интеграция Битрикс24</param>
+      <param name="Другая услуга исполнителя - 3">Настройка Bitrix24</param>
+      <param name="Другая услуга исполнителя - 4">Автоматизация Bitrix24</param>
+      <param name="Другая услуга исполнителя - 5">Интеграция Bitrix24 с 1С</param>
     </offer>
     <offer id="ws-bitrix-ai">
       <name>Павел Стасиньский</name>
       <url>https://bitrix.bober-systems.ru/#bitrix24-ai</url>
-      <price from="true">28000</price>
+      <price from="true">150000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 28 000 ₽</sales_notes>
+      <sales_notes>от 150 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>bitrix24-ai</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/ms-ws-bitrix-ai.jpg</picture>
@@ -264,17 +299,17 @@
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация документов</param>
-      <param name="Другая услуга исполнителя - 2">Настройка Bitrix24</param>
-      <param name="Другая услуга исполнителя - 3">Автоматизация Bitrix24</param>
-      <param name="Другая услуга исполнителя - 4">Интеграция Bitrix24 с 1С</param>
-      <param name="Другая услуга исполнителя - 5">Генерация коммерческого предложения</param>
+      <param name="Другая услуга исполнителя - 2">Интеграция Битрикс24</param>
+      <param name="Другая услуга исполнителя - 3">Настройка Bitrix24</param>
+      <param name="Другая услуга исполнителя - 4">Автоматизация Bitrix24</param>
+      <param name="Другая услуга исполнителя - 5">Интеграция Bitrix24 с 1С</param>
     </offer>
     <offer id="ws-kp-auto">
       <name>Павел Стасиньский</name>
       <url>https://bitrix.bober-systems.ru/#avtomatizaciya-kommercheskogo-predlozheniya</url>
-      <price from="true">22000</price>
+      <price from="true">150000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 22 000 ₽</sales_notes>
+      <sales_notes>от 150 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>avtomatizaciya-kommercheskogo-predlozheniya</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/ms-ws-kp-auto.jpg</picture>
@@ -295,17 +330,17 @@
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация документов</param>
-      <param name="Другая услуга исполнителя - 2">Настройка Bitrix24</param>
-      <param name="Другая услуга исполнителя - 3">Автоматизация Bitrix24</param>
-      <param name="Другая услуга исполнителя - 4">Интеграция Bitrix24 с 1С</param>
-      <param name="Другая услуга исполнителя - 5">Генерация коммерческого предложения</param>
+      <param name="Другая услуга исполнителя - 2">Интеграция Битрикс24</param>
+      <param name="Другая услуга исполнителя - 3">Настройка Bitrix24</param>
+      <param name="Другая услуга исполнителя - 4">Автоматизация Bitrix24</param>
+      <param name="Другая услуга исполнителя - 5">Интеграция Bitrix24 с 1С</param>
     </offer>
     <offer id="ws-telephony">
       <name>Павел Стасиньский</name>
       <url>https://bitrix.bober-systems.ru/#nastrojka-telefonii-bitrix24</url>
-      <price from="true">18000</price>
+      <price from="true">150000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 18 000 ₽</sales_notes>
+      <sales_notes>от 150 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>nastrojka-telefonii-bitrix24</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/ms-ws-telephony.jpg</picture>
@@ -326,17 +361,17 @@
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация документов</param>
-      <param name="Другая услуга исполнителя - 2">Настройка Bitrix24</param>
-      <param name="Другая услуга исполнителя - 3">Автоматизация Bitrix24</param>
-      <param name="Другая услуга исполнителя - 4">Интеграция Bitrix24 с 1С</param>
-      <param name="Другая услуга исполнителя - 5">Генерация коммерческого предложения</param>
+      <param name="Другая услуга исполнителя - 2">Интеграция Битрикс24</param>
+      <param name="Другая услуга исполнителя - 3">Настройка Bitrix24</param>
+      <param name="Другая услуга исполнителя - 4">Автоматизация Bitrix24</param>
+      <param name="Другая услуга исполнителя - 5">Интеграция Bitrix24 с 1С</param>
     </offer>
     <offer id="ws-ai-assistant">
       <name>Павел Стасиньский</name>
       <url>https://bitrix.bober-systems.ru/#vnedrenie-ai-assistenta</url>
-      <price from="true">32000</price>
+      <price from="true">150000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 32 000 ₽</sales_notes>
+      <sales_notes>от 150 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>vnedrenie-ai-assistenta</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/ms-ws-ai-assistant.jpg</picture>
@@ -357,17 +392,17 @@
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация документов</param>
-      <param name="Другая услуга исполнителя - 2">Настройка Bitrix24</param>
-      <param name="Другая услуга исполнителя - 3">Автоматизация Bitrix24</param>
-      <param name="Другая услуга исполнителя - 4">Интеграция Bitrix24 с 1С</param>
-      <param name="Другая услуга исполнителя - 5">Генерация коммерческого предложения</param>
+      <param name="Другая услуга исполнителя - 2">Интеграция Битрикс24</param>
+      <param name="Другая услуга исполнителя - 3">Настройка Bitrix24</param>
+      <param name="Другая услуга исполнителя - 4">Автоматизация Bitrix24</param>
+      <param name="Другая услуга исполнителя - 5">Интеграция Bitrix24 с 1С</param>
     </offer>
     <offer id="ws-rag">
       <name>Павел Стасиньский</name>
       <url>https://bitrix.bober-systems.ru/#razrabotka-rag-sistem</url>
-      <price from="true">45000</price>
+      <price from="true">150000</price>
       <currencyId>RUR</currencyId>
-      <sales_notes>от 45 000 ₽</sales_notes>
+      <sales_notes>от 150 000 ₽</sales_notes>
       <categoryId>18</categoryId>
       <set-ids>razrabotka-rag-sistem</set-ids>
       <picture>https://www.bober-systems.ru/stock/offers/ms-ws-rag.jpg</picture>
@@ -388,10 +423,10 @@
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация документов</param>
-      <param name="Другая услуга исполнителя - 2">Настройка Bitrix24</param>
-      <param name="Другая услуга исполнителя - 3">Автоматизация Bitrix24</param>
-      <param name="Другая услуга исполнителя - 4">Интеграция Bitrix24 с 1С</param>
-      <param name="Другая услуга исполнителя - 5">Генерация коммерческого предложения</param>
+      <param name="Другая услуга исполнителя - 2">Интеграция Битрикс24</param>
+      <param name="Другая услуга исполнителя - 3">Настройка Bitrix24</param>
+      <param name="Другая услуга исполнителя - 4">Автоматизация Bitrix24</param>
+      <param name="Другая услуга исполнителя - 5">Интеграция Bitrix24 с 1С</param>
     </offer>
     <offer id="bitrix-start">
       <name>Павел Стасиньский</name>
@@ -419,10 +454,10 @@
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация документов</param>
-      <param name="Другая услуга исполнителя - 2">Настройка Bitrix24</param>
-      <param name="Другая услуга исполнителя - 3">Автоматизация Bitrix24</param>
-      <param name="Другая услуга исполнителя - 4">Интеграция Bitrix24 с 1С</param>
-      <param name="Другая услуга исполнителя - 5">Генерация коммерческого предложения</param>
+      <param name="Другая услуга исполнителя - 2">Интеграция Битрикс24</param>
+      <param name="Другая услуга исполнителя - 3">Настройка Bitrix24</param>
+      <param name="Другая услуга исполнителя - 4">Автоматизация Bitrix24</param>
+      <param name="Другая услуга исполнителя - 5">Интеграция Bitrix24 с 1С</param>
     </offer>
     <offer id="bitrix-integrations">
       <name>Павел Стасиньский</name>
@@ -450,10 +485,10 @@
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация документов</param>
-      <param name="Другая услуга исполнителя - 2">Настройка Bitrix24</param>
-      <param name="Другая услуга исполнителя - 3">Автоматизация Bitrix24</param>
-      <param name="Другая услуга исполнителя - 4">Интеграция Bitrix24 с 1С</param>
-      <param name="Другая услуга исполнителя - 5">Генерация коммерческого предложения</param>
+      <param name="Другая услуга исполнителя - 2">Интеграция Битрикс24</param>
+      <param name="Другая услуга исполнителя - 3">Настройка Bitrix24</param>
+      <param name="Другая услуга исполнителя - 4">Автоматизация Bitrix24</param>
+      <param name="Другая услуга исполнителя - 5">Интеграция Bitrix24 с 1С</param>
     </offer>
     <offer id="bitrix-sales-loop">
       <name>Павел Стасиньский</name>
@@ -481,10 +516,10 @@
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация документов</param>
-      <param name="Другая услуга исполнителя - 2">Настройка Bitrix24</param>
-      <param name="Другая услуга исполнителя - 3">Автоматизация Bitrix24</param>
-      <param name="Другая услуга исполнителя - 4">Интеграция Bitrix24 с 1С</param>
-      <param name="Другая услуга исполнителя - 5">Генерация коммерческого предложения</param>
+      <param name="Другая услуга исполнителя - 2">Интеграция Битрикс24</param>
+      <param name="Другая услуга исполнителя - 3">Настройка Bitrix24</param>
+      <param name="Другая услуга исполнителя - 4">Автоматизация Bitrix24</param>
+      <param name="Другая услуга исполнителя - 5">Интеграция Bitrix24 с 1С</param>
     </offer>
     <offer id="bitrix-crm-automation">
       <name>Павел Стасиньский</name>
@@ -512,10 +547,10 @@
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация документов</param>
-      <param name="Другая услуга исполнителя - 2">Настройка Bitrix24</param>
-      <param name="Другая услуга исполнителя - 3">Автоматизация Bitrix24</param>
-      <param name="Другая услуга исполнителя - 4">Интеграция Bitrix24 с 1С</param>
-      <param name="Другая услуга исполнителя - 5">Генерация коммерческого предложения</param>
+      <param name="Другая услуга исполнителя - 2">Интеграция Битрикс24</param>
+      <param name="Другая услуга исполнителя - 3">Настройка Bitrix24</param>
+      <param name="Другая услуга исполнителя - 4">Автоматизация Bitrix24</param>
+      <param name="Другая услуга исполнителя - 5">Интеграция Bitrix24 с 1С</param>
     </offer>
     <offer id="bitrix-ai-analytics">
       <name>Павел Стасиньский</name>
@@ -543,10 +578,10 @@
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация документов</param>
-      <param name="Другая услуга исполнителя - 2">Настройка Bitrix24</param>
-      <param name="Другая услуга исполнителя - 3">Автоматизация Bitrix24</param>
-      <param name="Другая услуга исполнителя - 4">Интеграция Bitrix24 с 1С</param>
-      <param name="Другая услуга исполнителя - 5">Генерация коммерческого предложения</param>
+      <param name="Другая услуга исполнителя - 2">Интеграция Битрикс24</param>
+      <param name="Другая услуга исполнителя - 3">Настройка Bitrix24</param>
+      <param name="Другая услуга исполнителя - 4">Автоматизация Bitrix24</param>
+      <param name="Другая услуга исполнителя - 5">Интеграция Bitrix24 с 1С</param>
     </offer>
     <offer id="bitrix-mcp">
       <name>Павел Стасиньский</name>
@@ -574,10 +609,10 @@
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация документов</param>
-      <param name="Другая услуга исполнителя - 2">Настройка Bitrix24</param>
-      <param name="Другая услуга исполнителя - 3">Автоматизация Bitrix24</param>
-      <param name="Другая услуга исполнителя - 4">Интеграция Bitrix24 с 1С</param>
-      <param name="Другая услуга исполнителя - 5">Генерация коммерческого предложения</param>
+      <param name="Другая услуга исполнителя - 2">Интеграция Битрикс24</param>
+      <param name="Другая услуга исполнителя - 3">Настройка Bitrix24</param>
+      <param name="Другая услуга исполнителя - 4">Автоматизация Bitrix24</param>
+      <param name="Другая услуга исполнителя - 5">Интеграция Bitrix24 с 1С</param>
     </offer>
     <offer id="bitrix-private-llm">
       <name>Павел Стасиньский</name>
@@ -605,10 +640,10 @@
       <param name="Выполняется удаленно">true</param>
       <param name="Об исполнителе">Bitrix24 для B2B: настройка от 150 000 ₽, связка с 1С/документами/телефонией от 300 000 ₽, AI-контур поверх CRM от 500 000 ₽.</param>
       <param name="Другая услуга исполнителя - 1">Автоматизация документов</param>
-      <param name="Другая услуга исполнителя - 2">Настройка Bitrix24</param>
-      <param name="Другая услуга исполнителя - 3">Автоматизация Bitrix24</param>
-      <param name="Другая услуга исполнителя - 4">Интеграция Bitrix24 с 1С</param>
-      <param name="Другая услуга исполнителя - 5">Генерация коммерческого предложения</param>
+      <param name="Другая услуга исполнителя - 2">Интеграция Битрикс24</param>
+      <param name="Другая услуга исполнителя - 3">Настройка Bitrix24</param>
+      <param name="Другая услуга исполнителя - 4">Автоматизация Bitrix24</param>
+      <param name="Другая услуга исполнителя - 5">Интеграция Bitrix24 с 1С</param>
     </offer>
     </offers>
   </shop>
