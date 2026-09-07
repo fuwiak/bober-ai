@@ -52,6 +52,7 @@ export const YANDEX_IMPORTANT_PATHS = [
   "/integrations/nastrojka-1c-bitrix",
   "/integrations/amocrm",
   "/integrations/amocrm-sensei",
+  "/integrations/yougile",
   "/integrations/amocrm-automation",
   "/integrations/amocrm-1c",
   "/amocrm",

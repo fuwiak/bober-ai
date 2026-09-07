@@ -1,0 +1,28 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "specializationId": "187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "specializationNote": "CRM/IT → Другое — корпоративный мессенджер YouGile (чаты, задачи, гости по ссылке)",
+  "note": "Новый title. Внедрение открытого корпоративного мессенджера YouGile: рабочие чаты, чаты задач, гости по ссылке без лицензий на внутреннюю структуру.",
+  "publishedAt": "2026-09-07",
+  "publishedStatus": "pending_cabinet",
+  "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "publicProfile": "https://uslugi.yandex.ru/profile/PawelStasinski-254144",
+  "siteLandings": ["/integrations/yougile"],
+  "publishHint": [
+    "npm run yandex:uslugi:add -- --file=data/uslugi-yougile.json --headless --fast",
+    "npm run yandex:uslugi:list -- --spec=187ddab3-5a27-4a55-8240-dd1baca3b87f"
+  ],
+  "services": [
+    {
+      "id": "yougile-corp-messenger",
+      "name": "Внедрение корпоративного мессенджера YouGile",
+      "price": 80000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "photo": "public/stock/offers/land-integrations-yougile.png",
+      "description": "Внедрение корпоративного мессенджера YouGile: рабочие и групповые чаты, чаты задач, голос, файлы, реакции. Настроим пространство под отделы, права, шаблоны каналов. Гостей и подрядчиков можно звать в чат по ссылке — без лицензий и без доступа к внутренней структуре компании. Связка с CRM/задачами по необходимости. Москва и удалённо. От 80 000 ₽. https://www.bober-systems.ru/integrations/yougile"
+    }
+  ]
+}

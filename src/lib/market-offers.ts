@@ -32,12 +32,21 @@ export const HIGH_DEMAND_PARTNER_OFFERS: MarketOffer[] = [
     demandRank: 2,
   },
   {
+    id: "yougile",
+    href: "/integrations/yougile",
+    title: "Внедрение корпоративного мессенджера YouGile",
+    description:
+      "Рабочие чаты и чаты задач. Гостей зовёте по ссылке — без лицензий и без доступа к внутренней структуре.",
+    priceLabel: "от 80 000 ₽",
+    demandRank: 3,
+  },
+  {
     id: "yclients",
     href: "/integrations/yclients",
     title: "Настройка YCLIENTS: онлайн-запись",
     description: "Услуги, слоты, уведомления. Запись уходит в CRM без ручного переноса.",
     priceLabel: "от 150 000 ₽",
-    demandRank: 3,
+    demandRank: 4,
   },
   {
     id: "retailcrm",
@@ -45,7 +54,7 @@ export const HIGH_DEMAND_PARTNER_OFFERS: MarketOffer[] = [
     title: "Внедрение и настройка RetailCRM",
     description: "Заказы интернет-магазина, статусы, склад и доставка в одном контуре.",
     priceLabel: "от 300 000 ₽",
-    demandRank: 4,
+    demandRank: 5,
   },
   {
     id: "moysklad",
@@ -53,7 +62,7 @@ export const HIGH_DEMAND_PARTNER_OFFERS: MarketOffer[] = [
     title: "Внедрение ERP МойСклад",
     description: "Склад, остатки и отгрузки. Связка с CRM — без копипаста в Excel.",
     priceLabel: "от 150 000 ₽",
-    demandRank: 5,
+    demandRank: 6,
   },
   {
     id: "roistat",
@@ -61,7 +70,7 @@ export const HIGH_DEMAND_PARTNER_OFFERS: MarketOffer[] = [
     title: "Внедрение Roistat: сквозная аналитика",
     description: "Реклама, коллтрекинг и сделки в CRM. Маркетинг видит продажи, не только клики.",
     priceLabel: "от 150 000 ₽",
-    demandRank: 6,
+    demandRank: 7,
   },
   {
     id: "mango-telecom",
@@ -69,7 +78,7 @@ export const HIGH_DEMAND_PARTNER_OFFERS: MarketOffer[] = [
     title: "Интеграция Mango Telecom с CRM",
     description: "Звонок → карточка сделки. Пропущенные не теряются, запись в CRM.",
     priceLabel: "от 150 000 ₽",
-    demandRank: 7,
+    demandRank: 8,
   },
   {
     id: "tinkoff",
@@ -77,7 +86,99 @@ export const HIGH_DEMAND_PARTNER_OFFERS: MarketOffer[] = [
     title: "Интеграция Тинькофф Банк с CRM",
     description: "Эквайринг и оплаты → статус сделки в CRM или МойСклад.",
     priceLabel: "от 150 000 ₽",
+    demandRank: 9,
+  },
+];
+
+/** Wordstat «настройка CRM» — exact title + 10 variants. */
+export const CRM_SETUP_OFFERS: MarketOffer[] = [
+  {
+    id: "crm-nastrojka",
+    href: "/integrations/nastrojka-crm",
+    title: "Настройка CRM",
+    description: "Воронка, поля, права, заявки с сайта. Битрикс24, amoCRM или другая система.",
+    priceLabel: "от 150 000 ₽",
+    demandRank: 1,
+  },
+  {
+    id: "crm-nastrojka-sistemy",
+    href: "/integrations/nastrojka-crm-sistemy",
+    title: "Настройка CRM системы",
+    description: "Карточки, стадии, справочники, роли. Готово к ежедневной работе продаж.",
+    priceLabel: "от 150 000 ₽",
+    demandRank: 2,
+  },
+  {
+    id: "crm-nastrojka-pod-klyuch",
+    href: "/integrations/nastrojka-crm-pod-klyuch",
+    title: "Настройка CRM под ключ",
+    description: "Аудит процесса, воронка, интеграции, обучение команды и приёмка.",
+    priceLabel: "от 300 000 ₽",
+    demandRank: 3,
+  },
+  {
+    id: "crm-nastrojka-biznes",
+    href: "/integrations/nastrojka-crm-dlya-biznesa",
+    title: "Настройка CRM для бизнеса",
+    description: "Продажи, сервис и заявки в одной системе. Без лишних модулей.",
+    priceLabel: "от 200 000 ₽",
+    demandRank: 4,
+  },
+  {
+    id: "crm-nastrojka-sales",
+    href: "/integrations/nastrojka-crm-otdel-prodazh",
+    title: "Настройка CRM для отдела продаж",
+    description: "Стадии, обязательные поля, задачи, контроль менеджеров.",
+    priceLabel: "от 180 000 ₽",
+    demandRank: 5,
+  },
+  {
+    id: "crm-nastrojka-scratch",
+    href: "/integrations/nastrojka-crm-s-nulya",
+    title: "Настройка CRM с нуля",
+    description: "Выбор системы, рабочий портал: воронка, поля, источники заявок.",
+    priceLabel: "от 200 000 ₽",
+    demandRank: 6,
+  },
+  {
+    id: "crm-nastrojka-voronka",
+    href: "/integrations/nastrojka-crm-voronka",
+    title: "Настройка воронки CRM",
+    description: "Стадии, причины отказа, SLA. Видно, где зависают продажи.",
+    priceLabel: "от 150 000 ₽",
+    demandRank: 7,
+  },
+  {
+    id: "crm-nastrojka-smb",
+    href: "/integrations/nastrojka-crm-malyj-biznes",
+    title: "Настройка CRM для малого бизнеса",
+    description: "Простая воронка, заявки с сайта и мессенджеров. Без тяжёлого портала.",
+    priceLabel: "от 150 000 ₽",
     demandRank: 8,
+  },
+  {
+    id: "crm-nastrojka-polya",
+    href: "/integrations/nastrojka-crm-polya",
+    title: "Настройка карточек и полей CRM",
+    description: "Обязательные поля и справочники. Карточка заполняется за минуту.",
+    priceLabel: "от 120 000 ₽",
+    demandRank: 9,
+  },
+  {
+    id: "crm-nastrojka-process",
+    href: "/integrations/nastrojka-crm-pod-process",
+    title: "Настройка CRM под ваш процесс",
+    description: "Не шаблон вендора: стадии, роли, документы, связка с сайтом и учётом.",
+    priceLabel: "от 250 000 ₽",
+    demandRank: 10,
+  },
+  {
+    id: "crm-nastrojka-kompleks",
+    href: "/integrations/nastrojka-crm-kompleksnaya",
+    title: "Комплексная настройка CRM",
+    description: "Воронка, поля, роботы, источники заявок, базовые интеграции и обучение.",
+    priceLabel: "от 300 000 ₽",
+    demandRank: 11,
   },
 ];
 
