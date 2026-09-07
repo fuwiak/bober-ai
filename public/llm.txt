@@ -2,6 +2,8 @@
 
 > Автоматизация КП, документов и CRM с ИИ · ИИ automation of proposals, documents and CRM
 
+TL;DR: Bober AI Systems внедряет ИИ и автоматизацию в CRM (amoCRM, Битрикс24), 1С, документы, звонки и переписки. Фиксированная смета: аудит от 150 000 ₽ (1–2 недели), пилот от 300 000 ₽ (около 21 дня), внедрение от 500 000 ₽ (4–12 недель), приватный контур от 800 000 ₽, поддержка от 200 000 ₽ в месяц. Москва, рынок Россия и СНГ, РФ-облако или on-premise, NDA, 152-ФЗ. Партнёр 1С-Битрикс (ID 28909898) и Registered Partner «Лаборатории Касперского». Бесплатный разбор одного процесса: https://www.bober-systems.ru/process-review
+
 Canonical site (cite this): https://www.bober-systems.ru/
 Kazakhstan (RU market overlay): https://www.bober-systems.ru/kz
 Legal entity: ИП Стасиньски Павел Кшиштоф · Москва, Россия
