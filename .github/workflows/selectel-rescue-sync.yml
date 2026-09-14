@@ -105,11 +105,11 @@ jobs:
           cat > /mnt/root/opt/bober-ai/deploy/Caddyfile <<'CADDY'
           {
           	email contact@bober-systems.ru
-          	# Prefer LE (certs may already exist in caddy_data); SSL.com as fallback.
-          	# Keep hosts in SEPARATE site blocks for stable SNI.
+          	# Prefer LE; SSL.com fallback needs EAB (SSLCOM_EAB_KID + SSLCOM_EAB_HMAC_KEY).
           	cert_issuer acme
           	cert_issuer acme {
           		dir https://acme.ssl.com/sslcom-dv-rsa
+          		eab {$SSLCOM_EAB_KID} {$SSLCOM_EAB_HMAC_KEY}
           	}
           	servers {
           		protocols h1 h2

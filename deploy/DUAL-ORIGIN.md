@@ -31,6 +31,9 @@ npm run selectel:dns -- ensure-a amocrm
 
 - **Astro Node** (`:3001`) — prerender HTML + API leads/webhooks (legacy host node may still occupy `:3000`)
 - **Caddy** — TLS, apex→www, host rewrite microsites → `/white-label` / `/bitrix` / `/amocrm`
+- **TLS issuers:** Let's Encrypt primary; SSL.com ACME fallback (`https://acme.ssl.com/sslcom-dv-rsa`)
+  requires EAB: secrets `SSLCOM_EAB_KID` + `SSLCOM_EAB_HMAC_KEY` (from SSL.com → API credentials).
+  Without EAB, SSL.com obtain fails (LE still works while rate limits allow).
 
 ```bash
 # деплой (нужен Docker Compose V2: `docker compose`; CI ставит бинарник с GitHub при отсутствии)

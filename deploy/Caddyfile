@@ -1,10 +1,13 @@
 {
 	email contact@bober-systems.ru
 	# Prefer LE (certs may already exist in caddy_data); SSL.com as fallback.
+	# SSL.com requires External Account Binding — set SSLCOM_EAB_KID + SSLCOM_EAB_HMAC_KEY
+	# (GitHub secrets → deploy/.env → docker -e). Without EAB, SSL.com obtain fails.
 	# Keep hosts in SEPARATE site blocks for stable SNI.
 	cert_issuer acme
 	cert_issuer acme {
 		dir https://acme.ssl.com/sslcom-dv-rsa
+		eab {$SSLCOM_EAB_KID} {$SSLCOM_EAB_HMAC_KEY}
 	}
 	servers {
 		protocols h1 h2

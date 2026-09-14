@@ -114,6 +114,8 @@ jobs:
           TELEGRAM_BUSINESS_BOT_TOKEN: ${{ secrets.TELEGRAM_BUSINESS_BOT_TOKEN }}
           TELEGRAM_BUSINESS_WEBHOOK_SECRET: ${{ secrets.TELEGRAM_BUSINESS_WEBHOOK_SECRET }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          SSLCOM_EAB_KID: ${{ secrets.SSLCOM_EAB_KID }}
+          SSLCOM_EAB_HMAC_KEY: ${{ secrets.SSLCOM_EAB_HMAC_KEY }}
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
           SMTP_SECURE: ${{ secrets.SMTP_SECURE }}
@@ -125,7 +127,7 @@ jobs:
           set -euo pipefail
           ssh -i ~/.ssh/bober_selectel -o IdentitiesOnly=yes -o ConnectTimeout=20 \
             -o StrictHostKeyChecking=accept-new root@45.80.131.136 \
-            "GIT_SHA=$(printf %q "$GIT_SHA") GIT_REF=$(printf %q "$GIT_REF") TELEGRAM_BUSINESS_BOT_TOKEN=$(printf %q "$TELEGRAM_BUSINESS_BOT_TOKEN") TELEGRAM_BUSINESS_WEBHOOK_SECRET=$(printf %q "$TELEGRAM_BUSINESS_WEBHOOK_SECRET") OPENROUTER_API_KEY=$(printf %q "${OPENROUTER_API_KEY:-}") SMTP_HOST=$(printf %q "${SMTP_HOST:-}") SMTP_PORT=$(printf %q "${SMTP_PORT:-}") SMTP_SECURE=$(printf %q "${SMTP_SECURE:-}") SMTP_USER=$(printf %q "${SMTP_USER:-}") SMTP_PASS=$(printf %q "${SMTP_PASS:-}") CONTACT_FROM_EMAIL=$(printf %q "${CONTACT_FROM_EMAIL:-}") CONTACT_TO_EMAIL=$(printf %q "${CONTACT_TO_EMAIL:-}") bash -s" <<'EOS'          set -euo pipefail
+            "GIT_SHA=$(printf %q "$GIT_SHA") GIT_REF=$(printf %q "$GIT_REF") TELEGRAM_BUSINESS_BOT_TOKEN=$(printf %q "$TELEGRAM_BUSINESS_BOT_TOKEN") TELEGRAM_BUSINESS_WEBHOOK_SECRET=$(printf %q "$TELEGRAM_BUSINESS_WEBHOOK_SECRET") OPENROUTER_API_KEY=$(printf %q "${OPENROUTER_API_KEY:-}") SSLCOM_EAB_KID=$(printf %q "${SSLCOM_EAB_KID:-}") SSLCOM_EAB_HMAC_KEY=$(printf %q "${SSLCOM_EAB_HMAC_KEY:-}") SMTP_HOST=$(printf %q "${SMTP_HOST:-}") SMTP_PORT=$(printf %q "${SMTP_PORT:-}") SMTP_SECURE=$(printf %q "${SMTP_SECURE:-}") SMTP_USER=$(printf %q "${SMTP_USER:-}") SMTP_PASS=$(printf %q "${SMTP_PASS:-}") CONTACT_FROM_EMAIL=$(printf %q "${CONTACT_FROM_EMAIL:-}") CONTACT_TO_EMAIL=$(printf %q "${CONTACT_TO_EMAIL:-}") bash -s" <<'EOS'          set -euo pipefail
           ROOT=/opt/bober-ai
           REPO="$ROOT/src"
           STAGE="$ROOT/src.new"
@@ -170,6 +172,9 @@ jobs:
           set_env_kv TELEGRAM_BUSINESS_BOT_TOKEN "${TELEGRAM_BUSINESS_BOT_TOKEN:-}"
           set_env_kv TELEGRAM_BUSINESS_WEBHOOK_SECRET "${TELEGRAM_BUSINESS_WEBHOOK_SECRET:-}"
           set_env_kv OPENROUTER_API_KEY "${OPENROUTER_API_KEY:-}"
+          # SSL.com ACME EAB (fallback issuer when LE rate-limits / fails)
+          set_env_kv SSLCOM_EAB_KID "${SSLCOM_EAB_KID:-}"
+          set_env_kv SSLCOM_EAB_HMAC_KEY "${SSLCOM_EAB_HMAC_KEY:-}"
           # Selectel SES (VDS blocks Yandex SMTP) — keep contact form mail alive across deploys
           set_env_kv SMTP_HOST "${SMTP_HOST:-}"
           set_env_kv SMTP_PORT "${SMTP_PORT:-}"
@@ -185,6 +190,7 @@ jobs:
           mkdir -p "$ROOT/deploy"
           cp -a "$ENV_FILE" "$ROOT/deploy/.env"
           echo "deploy/.env telegram keys: $(grep -c '^TELEGRAM_BUSINESS_' "$ENV_FILE" || true)"
+          echo "deploy/.env sslcom eab: $(grep -c '^SSLCOM_EAB_KID=.' "$ENV_FILE" || true)"
           echo "deploy/.env smtp configured: $(grep -c '^SMTP_HOST=.' "$ENV_FILE" || true) skip=$(grep '^CONTACT_SKIP_SMTP=' "$ENV_FILE" || true)"
 
           rm -rf "$REPO.bak"
@@ -325,7 +331,25 @@ jobs:
 
           start_edge_caddy() {
             docker rm -f bober-ai 2>/dev/null || true
+            # SSL.com ACME EAB from durable deploy/.env (LE remains primary issuer).
+            SSLCOM_EAB_KID=""
+            SSLCOM_EAB_HMAC_KEY=""
+            if [ -f "$ROOT/deploy/.env" ]; then
+              # shellcheck disable=SC1090
+              set -a
+              # Only export SSL.com keys — do not source full .env into this shell.
+              SSLCOM_EAB_KID=$(grep -E '^SSLCOM_EAB_KID=' "$ROOT/deploy/.env" | tail -n1 | cut -d= -f2- || true)
+              SSLCOM_EAB_HMAC_KEY=$(grep -E '^SSLCOM_EAB_HMAC_KEY=' "$ROOT/deploy/.env" | tail -n1 | cut -d= -f2- || true)
+              set +a
+            fi
+            if [ -z "${SSLCOM_EAB_KID:-}" ] || [ -z "${SSLCOM_EAB_HMAC_KEY:-}" ]; then
+              echo "WARN: SSLCOM_EAB_KID/HMAC unset — SSL.com issuer will fail EAB; LE still primary"
+            else
+              echo "SSLCOM_EAB: kid_len=${#SSLCOM_EAB_KID} hmac_len=${#SSLCOM_EAB_HMAC_KEY}"
+            fi
             docker run -d --name bober-ai --restart unless-stopped --network host \
+              -e "SSLCOM_EAB_KID=${SSLCOM_EAB_KID:-}" \
+              -e "SSLCOM_EAB_HMAC_KEY=${SSLCOM_EAB_HMAC_KEY:-}" \
               -v "$ROOT/deploy/Caddyfile:/etc/caddy/Caddyfile:ro" \
               -v "$ROOT/deploy/seo-redirects.caddy:/etc/caddy/seo-redirects.caddy:ro" \
               -v "$ROOT/dist/client:/srv:ro" \
@@ -344,11 +368,23 @@ jobs:
 
           if docker ps --format '{{.Names}}' | grep -qx 'bober-ai'; then
             mounts=$(docker inspect bober-ai --format '{{range .Mounts}}{{.Destination}} {{end}}' 2>/dev/null || true)
+            # Reload does not inject new -e vars. Recreate when durable EAB is set but container lacks it.
+            need_sslcom_eab=0
+            if [ -f "$ROOT/deploy/.env" ] && grep -qE '^SSLCOM_EAB_KID=.+' "$ROOT/deploy/.env" \
+              && grep -qE '^SSLCOM_EAB_HMAC_KEY=.+' "$ROOT/deploy/.env"; then
+              if ! docker inspect bober-ai --format '{{range .Config.Env}}{{println .}}{{end}}' \
+                | grep -qE '^SSLCOM_EAB_KID=.+'; then
+                need_sslcom_eab=1
+              fi
+            fi
             if ! echo "$mounts" | grep -q '/srv'; then
               echo "EDGE_CADDY_MISSING_/srv — recreating with static client mount"
               start_edge_caddy
             elif ! docker exec bober-ai test -f /etc/caddy/seo-redirects.caddy; then
               echo "EDGE_CADDY_MISSING_seo-redirects — recreating"
+              start_edge_caddy
+            elif [ "$need_sslcom_eab" = 1 ]; then
+              echo "EDGE_CADDY_MISSING_SSLCOM_EAB — recreating with EAB env"
               start_edge_caddy
             elif [ "$sync_rc" -eq 2 ]; then
               echo "EDGE_CADDY_/srv_STALE — recreating after client sync"
