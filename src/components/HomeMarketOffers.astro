@@ -31,12 +31,12 @@ const { locale, label, title, subtitle, ctaLabel, pillars = [], hubHref, hubCta 
       ) : null
     }
 
-    <div class="market-offers-grid mt-10">
+    <div class="market-offers-grid mt-10 reveal-stagger">
       {
         HIGH_DEMAND_PARTNER_OFFERS.map((offer) => (
           <a
             href={localizePath(offer.href, locale)}
-            class="market-offer-card"
+            class="market-offer-card reveal"
             data-goal="market_offer_click"
             data-offer={offer.id}
           >

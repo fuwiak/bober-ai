@@ -45,10 +45,10 @@ const {
       <p class="body-copy mt-4 max-w-3xl text-base">{subtitle}</p>
     </div>
 
-    <div class="solution-offers-grid mt-10">
+    <div class="solution-offers-grid mt-10 reveal-stagger">
       {
         items.map((item) => (
-          <article class="solution-offer-card">
+          <article class="solution-offer-card reveal">
             <h3 class="card-title text-xl">{item.title}</h3>
             <p class="meta-label mt-3">{item.forWhom}</p>
             <ul class="solution-offer-card__list mt-4">

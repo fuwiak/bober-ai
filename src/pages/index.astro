@@ -118,31 +118,31 @@ const homeJsonLd = [
   keywords={meta.keywords}
   jsonLd={homeJsonLd}
 >
-  <section class="hero-section section-band">
+  <section class="hero-section section-band hero-stage">
     <div class="container-editorial">
-      <p class="meta-label">{hero.location}</p>
-      <p class="mt-4 meta-label">{hero.eyebrow}</p>
-      <h1 class="hero-title mt-6 hero-title--sentence">{hero.titleLine1}</h1>
+      <p class="meta-label" data-hero-fade="1">{hero.location}</p>
+      <p class="mt-4 meta-label" data-hero-fade="1">{hero.eyebrow}</p>
+      <h1 class="hero-title mt-6 hero-title--sentence" data-hero-fade="2">{hero.titleLine1}</h1>
       {
         leadParagraphs.map((p) => (
-          <p class="mt-6 body-copy max-w-3xl whitespace-pre-line">{p}</p>
+          <p class="mt-6 body-copy max-w-3xl whitespace-pre-line" data-hero-fade="3">{p}</p>
         ))
       }
-      <p class="hero-price mt-6">{hero.priceFrom}</p>
-      <p class="mt-4 text-sm text-muted">{hero.differentiator}</p>
+      <p class="hero-price mt-6" data-hero-fade="4">{hero.priceFrom}</p>
+      <p class="mt-4 text-sm text-muted" data-hero-fade="4">{hero.differentiator}</p>
       {
         hero.trustItems?.length ? (
-          <ul class="hero-trust mt-6 flex flex-wrap gap-2">
+          <ul class="hero-trust mt-6 flex flex-wrap gap-2" data-hero-fade="5">
             {hero.trustItems.map((item) => (
               <li class="meta-label rounded border border-hairline px-3 py-1">{item}</li>
             ))}
           </ul>
         ) : null
       }
-      <div class="mt-6">
+      <div class="mt-6" data-hero-fade="5">
         <BitrixPartnerBadge locale={locale} variant="hero" loading="eager" />
       </div>
-      <div class="mt-10 flex flex-wrap gap-4">
+      <div class="mt-10 flex flex-wrap gap-4" data-hero-fade="6">
         <button type="button" class="btn-primary" data-contact-open data-contact-goal={PRIMARY_CTA_GOAL}>
           {hero.ctaPrimary}
         </button>
@@ -150,7 +150,7 @@ const homeJsonLd = [
           {hero.ctaSecondary}
         </a>
       </div>
-      <p class="mt-5 text-sm text-muted">{hero.teamLine}</p>
+      <p class="mt-5 text-sm text-muted" data-hero-fade="6">{hero.teamLine}</p>
 
       <figure class="hero-media hero-media--compose">
         <div class="hero-media__compose">
@@ -192,6 +192,11 @@ const homeJsonLd = [
         </div>
         <figcaption class="sr-only">{founderAlt}</figcaption>
       </figure>
+
+      <p class="hero-scroll-cue" aria-hidden="true">
+        <i></i>
+        <span>scroll</span>
+      </p>
     </div>
   </section>
 
@@ -272,8 +277,9 @@ const homeJsonLd = [
         smbCases.length > 0 && (
           <>
             <h3 class="mt-8 font-display text-2xl tracking-tight">{messages.portfolio.segmentSmbTitle}</h3>
-            <div class="cases-grid cases-grid--smb mt-5">
+            <div class="cases-grid cases-grid--smb mt-5 reveal-stagger">
               {smbCases.map((item) => (
+                <div class="reveal">
                 <CaseStudyCard
                   item={item}
                   locale={locale}
@@ -289,6 +295,7 @@ const homeJsonLd = [
                   solutionLabel={messages.homeLanding.caseSolutionLabel}
                   architectureLabel={messages.homeLanding.caseArchitectureLabel}
                 />
+                </div>
               ))}
             </div>
           </>
@@ -301,8 +308,9 @@ const homeJsonLd = [
             <h3 class="mt-10 font-display text-2xl tracking-tight">
               {messages.portfolio.segmentEnterpriseTitle}
             </h3>
-            <div class="cases-grid mt-5">
+            <div class="cases-grid mt-5 reveal-stagger">
               {enterpriseCases.map((item) => (
+                <div class="reveal">
                 <CaseStudyCard
                   item={item}
                   locale={locale}
@@ -314,6 +322,7 @@ const homeJsonLd = [
                   solutionLabel={messages.homeLanding.caseSolutionLabel}
                   architectureLabel={messages.homeLanding.caseArchitectureLabel}
                 />
+                </div>
               ))}
             </div>
           </>

@@ -32,10 +32,10 @@ const { locale, label, title, subtitle, items } = Astro.props;
       <p class="body-copy mt-4 max-w-3xl text-base">{subtitle}</p>
     </div>
 
-    <div class="market-offers-grid mt-10">
+    <div class="market-offers-grid mt-10 reveal-stagger">
       {
         items.map((item) => (
-          <article class="market-offer-card">
+          <article class="market-offer-card reveal">
             <h3 class="card-title text-lg">{item.role}</h3>
             <p class="meta-label mt-2 text-muted">{item.audience}</p>
             <ul class="mt-4 space-y-2 text-sm">

@@ -25,10 +25,10 @@ const { locale, label, title, subtitle, cta, moreLabel, items } = Astro.props;
       <p class="body-copy mt-4 max-w-3xl text-base">{subtitle}</p>
     </div>
 
-    <div class="market-offers-grid mt-10">
+    <div class="market-offers-grid mt-10 reveal-stagger">
       {
         items.map((item) => (
-          <a class="market-offer-card" href={localizePath(item.href, locale)}>
+          <a class="market-offer-card reveal" href={localizePath(item.href, locale)}>
             <h3 class="card-title text-lg">{item.title}</h3>
             <p class="body-copy mt-3 text-sm">{item.text}</p>
             <span class="link-more mt-5">{moreLabel}</span>
