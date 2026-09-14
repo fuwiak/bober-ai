@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-15",
+  "source": [
+    "data/wordstat-ai-automation-sell.csv",
+    "data/wordstat-ai-automation-sell-seed-totals.json"
+  ],
+  "problem": "Webmaster high positions on brand/noise (бобр, ИП, api yaga, запуск tui, iva360, kira) → 0 phones. Volume tiny, intent not buy.",
+  "rule": "Rank and sell on exact Wordstat buy phrases (vendor/price/под ключ/услуги), not brand or adjacent product names.",
+  "liveTopExactOrTotal": [
+    { "phrase": "ии автоматизация бизнеса", "total": 910, "action": "keywords /automation/ai-business-automation + Usługi cluster" },
+    { "phrase": "автоматизация процессов с ии", "exact": 461, "action": "Usługi title + landing keywords" },
+    { "phrase": "автоматизация бизнеса с ии", "exact": 396, "action": "Usługi title" },
+    { "phrase": "ии автоматизация бизнес процессов", "exact": 357, "action": "Usługi title" },
+    { "phrase": "внедрение ии в бизнес процессы", "exact": 284, "action": "already covered — keep primary" },
+    { "phrase": "автоматизация бизнеса с помощью ии", "exact": 257, "action": "H1 already on /automation/ai-business-automation" },
+    { "phrase": "внедрение искусственного интеллекта в бизнес", "exact": 239, "action": "already /ai/vnedrenie-*" },
+    { "phrase": "компания по внедрению ии", "exact": 151, "action": "H1 /ai/ai-implementation" },
+    { "phrase": "компания по автоматизации бизнеса", "total": 112, "action": "NEW Usługi + keywords company-automation" },
+    { "phrase": "стоимость внедрения ии", "exact": 104, "action": "already Usługi" },
+    { "phrase": "услуги внедрения ии", "total": 97, "action": "NEW Usługi" },
+    { "phrase": "автоматизация бизнеса под ключ", "exact": 94, "action": "already Usługi" },
+    { "phrase": "llm для 1с", "exact": 94, "action": "pair with интеграция ии с 1с Usługi" },
+    { "phrase": "интеграция ии с 1с", "exact": 82, "action": "NEW Usługi" },
+    { "phrase": "внедрение ии москва", "exact": 71, "action": "NEW Usługi geo" },
+    { "phrase": "ии для бизнеса под ключ", "exact": 64, "action": "NEW Usługi" }
+  ],
+  "skipRankingNoise": [
+    "срм система бобр",
+    "ип стасиньски",
+    "api yaga",
+    "запуск tui",
+    "iva360 встречи",
+    "kira llm",
+    "roistat … авторемонтная"
+  ],
+  "ship": {
+    "uslugi": "data/uslugi-ai-automation-sell-2026-09.json",
+    "landings": [
+      "/automation/company-automation",
+      "/automation/ai-business-automation",
+      "/ai/ai-implementation"
+    ]
+  }
+}

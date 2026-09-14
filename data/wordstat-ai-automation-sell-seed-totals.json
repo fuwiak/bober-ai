@@ -1,0 +1,288 @@
+{
+  "date": "2026-09-14",
+  "source": "Yandex Wordstat topRequests totalCount",
+  "seeds": [
+    {
+      "phrase": "ии автоматизация бизнеса",
+      "totalCount": 910,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "ии автоматизация бизнес процессов",
+        "count": 357
+      }
+    },
+    {
+      "phrase": "автоматизация процессов с ии",
+      "totalCount": 461,
+      "exactCount": 461,
+      "top1": {
+        "phrase": "автоматизация процессов с ии",
+        "count": 461
+      }
+    },
+    {
+      "phrase": "автоматизация бизнеса с ии",
+      "totalCount": 396,
+      "exactCount": 396,
+      "top1": {
+        "phrase": "автоматизация бизнеса с ии",
+        "count": 396
+      }
+    },
+    {
+      "phrase": "ии автоматизация бизнес процессов",
+      "totalCount": 357,
+      "exactCount": 357,
+      "top1": {
+        "phrase": "ии автоматизация бизнес процессов",
+        "count": 357
+      }
+    },
+    {
+      "phrase": "внедрение ии в бизнес процессы",
+      "totalCount": 284,
+      "exactCount": 284,
+      "top1": {
+        "phrase": "внедрение ии в бизнес процессы",
+        "count": 284
+      }
+    },
+    {
+      "phrase": "автоматизация бизнеса с помощью ии",
+      "totalCount": 257,
+      "exactCount": 257,
+      "top1": {
+        "phrase": "автоматизация бизнеса с помощью ии",
+        "count": 257
+      }
+    },
+    {
+      "phrase": "внедрение искусственного интеллекта в бизнес",
+      "totalCount": 239,
+      "exactCount": 239,
+      "top1": {
+        "phrase": "внедрение искусственного интеллекта в бизнес",
+        "count": 239
+      }
+    },
+    {
+      "phrase": "автоматизация бизнес процессов с ии",
+      "totalCount": 174,
+      "exactCount": 174,
+      "top1": {
+        "phrase": "автоматизация бизнес процессов с ии",
+        "count": 174
+      }
+    },
+    {
+      "phrase": "компания по внедрению ии",
+      "totalCount": 151,
+      "exactCount": 151,
+      "top1": {
+        "phrase": "компания по внедрению ии",
+        "count": 151
+      }
+    },
+    {
+      "phrase": "компании по внедрению ии",
+      "totalCount": 151,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "компания по внедрению ии",
+        "count": 151
+      }
+    },
+    {
+      "phrase": "компания по автоматизации бизнеса",
+      "totalCount": 112,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "компании по автоматизации бизнеса",
+        "count": 112
+      }
+    },
+    {
+      "phrase": "стоимость внедрения ии",
+      "totalCount": 104,
+      "exactCount": 104,
+      "top1": {
+        "phrase": "стоимость внедрения ии",
+        "count": 104
+      }
+    },
+    {
+      "phrase": "услуги внедрения ии",
+      "totalCount": 97,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "внедрение ии услуги",
+        "count": 97
+      }
+    },
+    {
+      "phrase": "автоматизация бизнеса под ключ",
+      "totalCount": 94,
+      "exactCount": 94,
+      "top1": {
+        "phrase": "автоматизация бизнеса под ключ",
+        "count": 94
+      }
+    },
+    {
+      "phrase": "llm для 1с",
+      "totalCount": 94,
+      "exactCount": 94,
+      "top1": {
+        "phrase": "llm для 1с",
+        "count": 94
+      }
+    },
+    {
+      "phrase": "внедрение ии под ключ",
+      "totalCount": 90,
+      "exactCount": 90,
+      "top1": {
+        "phrase": "внедрение ии под ключ",
+        "count": 90
+      }
+    },
+    {
+      "phrase": "интеграция ии с 1с",
+      "totalCount": 82,
+      "exactCount": 82,
+      "top1": {
+        "phrase": "интеграция ии с 1с",
+        "count": 82
+      }
+    },
+    {
+      "phrase": "внедрение ии москва",
+      "totalCount": 71,
+      "exactCount": 71,
+      "top1": {
+        "phrase": "внедрение ии москва",
+        "count": 71
+      }
+    },
+    {
+      "phrase": "ии для бизнеса под ключ",
+      "totalCount": 64,
+      "exactCount": 64,
+      "top1": {
+        "phrase": "ии для бизнеса под ключ",
+        "count": 64
+      }
+    },
+    {
+      "phrase": "услуги по автоматизации бизнеса",
+      "totalCount": 51,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "услуга по автоматизации бизнеса",
+        "count": 51
+      }
+    },
+    {
+      "phrase": "внедрение ии в отдел продаж",
+      "totalCount": 46,
+      "exactCount": 46,
+      "top1": {
+        "phrase": "внедрение ии в отдел продаж",
+        "count": 46
+      }
+    },
+    {
+      "phrase": "автоматизация бизнес процессов под ключ",
+      "totalCount": 39,
+      "exactCount": 39,
+      "top1": {
+        "phrase": "автоматизация бизнес процессов под ключ",
+        "count": 39
+      }
+    },
+    {
+      "phrase": "интегратор искусственного интеллекта",
+      "totalCount": 28,
+      "exactCount": 28,
+      "top1": {
+        "phrase": "интегратор искусственного интеллекта",
+        "count": 28
+      }
+    },
+    {
+      "phrase": "автоматизация бизнеса цена",
+      "totalCount": 27,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "цена автоматизации бизнеса",
+        "count": 27
+      }
+    },
+    {
+      "phrase": "интеграция ии с crm",
+      "totalCount": 17,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "автоматизация бизнес процессов стоимость",
+      "totalCount": 16,
+      "exactCount": 16,
+      "top1": {
+        "phrase": "автоматизация бизнес процессов стоимость",
+        "count": 16
+      }
+    },
+    {
+      "phrase": "заказать внедрение ии",
+      "totalCount": 11,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "внедрение ии заказать",
+        "count": 11
+      }
+    },
+    {
+      "phrase": "заказать автоматизацию бизнеса",
+      "totalCount": 10,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "интеграция ии с битрикс24",
+      "totalCount": 7,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "интегратор автоматизации бизнеса",
+      "totalCount": 4,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "чат бот для бизнеса под ключ",
+      "totalCount": 1,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "заказать автоматизацию с ии",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "автоматизация отдела продаж под ключ",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "корпоративный чат бот заказать",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    }
+  ]
+}
