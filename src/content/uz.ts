@@ -101,7 +101,7 @@ const uzOverrides = {
     specialization:
       "4 ish soati ichida javob beramiz. 30 daqiqalik qo'ng'iroqdan keyin — 24 soat ichida reja va soʻmdagi byudjet oralig'i.",
     heroImageAlt: "Pavel Stasinskiy — Bober AI asoschisi, AI arxitektor",
-    founderBadge: "Asoschisi va loyiha rahbari",
+    founderBadge: "Asoschi",
     teamLine: "Pavel Stasinskiy · asoschi · AI-arxitektor · arxitektura, joriy etish va natija uchun mas'uliyat",
     officeGalleryLabel: "Biznes arxitektura va korporativ makonlar",
     trustItems: [
@@ -110,7 +110,7 @@ const uzOverrides = {
       "Bitrix24 / amoCRM / 1С",
     ],
     title: "Oʻzbekistondagi kompaniyalar uchun CRM, hujjatlar va savdoni avtomatlashtirish",
-    roles: ["Asoschisi va loyiha rahbari", "AI arxitektor"],
+    roles: ["Asoschi", "AI-arxitektor", "Loyiha rahbari"],
     nameLine: "Pavel Stasinskiy",
     focus: "AI tizimlari, avtomatlashtirish va Bitrix24, 1С, amoCRM, CRM va ERP integratsiyasi.",
     trustLine: "★ {rating} · {reviewCount} sharh · {years}+ yillik tajriba · NDA / ON-PREM",
