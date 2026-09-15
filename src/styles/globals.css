@@ -3020,14 +3020,14 @@ html.dark {
   }
   .contact-modal__channel-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
     margin-top: 12px;
   }
   .contact-modal__channel {
     justify-content: center;
     padding-inline: 8px;
-    font-size: 10px;
+    font-size: 13px;
     text-align: center;
     white-space: nowrap;
   }
@@ -4190,6 +4190,17 @@ html:not(.dark) .shell-code {
   .market-offers-grid {
     @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-3;
   }
+  /* 4 role cards — always 2×2, never a lonely third column gap */
+  .executive-tasks-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .executive-tasks-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
   .market-offer-card {
     @apply flex flex-col border border-hairline bg-surface-card p-5 md:p-6;
     text-decoration: none;
@@ -4198,6 +4209,14 @@ html:not(.dark) .shell-code {
       border-color var(--dur-base) var(--ease-out),
       background-color var(--dur-base) var(--ease-out),
       transform var(--dur-base) var(--ease-swell);
+  }
+  .market-offer-card--dense {
+    padding: 1.1rem 1.15rem;
+  }
+  @media (min-width: 768px) {
+    .market-offer-card--dense {
+      padding: 1.25rem 1.35rem;
+    }
   }
   @media (hover: hover) and (pointer: fine) {
     .market-offer-card:hover {
@@ -4208,6 +4227,9 @@ html:not(.dark) .shell-code {
   }
   .market-offer-card .link-more {
     margin-top: auto;
+  }
+  .market-offer-card--dense .link-more {
+    margin-top: 1rem;
   }
   .hero-founder-stats {
     display: grid;

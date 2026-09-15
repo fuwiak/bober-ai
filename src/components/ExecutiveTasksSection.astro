@@ -32,18 +32,18 @@ const { locale, label, title, subtitle, items } = Astro.props;
       <p class="body-copy mt-4 max-w-3xl text-base">{subtitle}</p>
     </div>
 
-    <div class="market-offers-grid mt-10 reveal-stagger">
+    <div class="executive-tasks-grid mt-8 reveal-stagger">
       {
         items.map((item) => (
-          <article class="market-offer-card reveal">
+          <article class="market-offer-card market-offer-card--dense reveal">
             <h3 class="card-title text-lg">{item.role}</h3>
             <p class="meta-label mt-2 text-muted">{item.audience}</p>
-            <ul class="mt-4 space-y-2 text-sm">
+            <ul class="mt-3 space-y-1.5 text-sm">
               {item.tasks.map((task) => (
                 <li class="body-copy text-sm">— {task}</li>
               ))}
             </ul>
-            <a class="link-more mt-5 inline-block" href={localizePath(item.href, locale)}>
+            <a class="link-more mt-4 inline-block" href={localizePath(item.href, locale)}>
               {item.cta}
             </a>
           </article>
