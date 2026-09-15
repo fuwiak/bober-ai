@@ -7,6 +7,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import ContactForm from "@/components/ContactForm.astro";
 import PartnerCertificates from "@/components/PartnerCertificates.astro";
+import SupportChatWidget from "@/components/SupportChatWidget.astro";
 import {
   getAllKasperskyProductSlugs,
   getKasperskyProduct,
@@ -311,4 +312,18 @@ const crumbItems = [
       </div>
     </section>
   </main>
+
+  <SupportChatWidget
+    title={slug === "soc-kuma-kira" ? "AI-ассистент SOC · Bober" : "AI-ассистент · Kaspersky"}
+    welcome={
+      slug === "soc-kuma-kira"
+        ? "Подскажу по ассистенту SOC на KUMA и KIRA: пилот, стоимость, эскалации в Bitrix24. Чем помочь?"
+        : `Подскажу по линии «${product.badgeRu}»: пилот, смета и внедрение Secure AI × Kaspersky. Чем помочь?`
+    }
+    chips={
+      slug === "soc-kuma-kira"
+        ? ["Стоимость пилота", "KUMA и KIRA", "Тикеты Bitrix24", "Связаться"]
+        : ["Стоимость пилота", "Что входит", "Связаться"]
+    }
+  />
 </BaseLayout>
