@@ -1,8 +1,7 @@
 ---
 /**
- * Kaspersky product page — press-release rhythm (Kaspersky PR layout):
- * breadcrumb → date → H1 → bold dek → prose → quote → scopes → related.
- * Colors stay on Bober tokens (no Kaspersky green/red).
+ * Kaspersky product page — press-release body + optional full-bleed hero
+ * (soc-kuma-kira). Colors stay on Bober tokens.
  */
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
@@ -13,7 +12,7 @@ import {
   KASPERSKY_PRODUCTS,
 } from "@/lib/kaspersky-page";
 import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
-import { TELEGRAM_URL } from "@/lib/site";
+import { SITE_NAME, TELEGRAM_URL } from "@/lib/site";
 
 export const prerender = true;
 
@@ -37,35 +36,84 @@ const dek = product.dekRu ?? product.summaryRu;
 const body = product.bodyRu ?? [];
 const quote = product.quoteRu;
 const contextDate = product.contextDateRu;
+const hasHero = Boolean(product.heroImage);
+const heroTitle = product.heroTitleRu ?? product.titleRu;
+const crumbItems = [
+  { name: "Secure AI", path: "/secure-ai" },
+  { name: "Kaspersky", path: "/kaspersky" },
+  { name: product.badgeRu, path: `/kaspersky/${slug}` },
+];
 ---
 
 <BaseLayout title={title} description={description} locale={locale} canonicalPath={`/kaspersky/${slug}`}>
   <main class="k-press">
-    <article class="k-press__article">
-      <header class="k-press__header">
-        <Breadcrumbs
-          locale={locale}
-          items={[
-            { name: "Secure AI", path: "/secure-ai" },
-            { name: "Kaspersky", path: "/kaspersky" },
-            { name: product.badgeRu, path: `/kaspersky/${slug}` },
-          ]}
-        />
-        {
+    {
+      hasHero ? (
+        <section class="k-hero" aria-labelledby="k-hero-title">
+          <div class="k-hero__plane" aria-hidden="true">
+            <img
+              src={product.heroImage}
+              alt=""
+              class="k-hero__image"
+              width="1920"
+              height="1080"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
+          <div class="k-hero__veil" aria-hidden="true" />
+          <div class="k-hero__inner">
+            <Breadcrumbs locale={locale} items={crumbItems} />
+            <p class="k-hero__brand">{SITE_NAME}</p>
+            <h1 id="k-hero-title" class="k-hero__title">
+              {heroTitle}
+            </h1>
+            <p class="k-hero__lead">{dek}</p>
+            <div class="k-hero__actions">
+              <a href="#contact" class="btn-primary" data-goal="primary_cta_click">
+                Обсудить проект
+              </a>
+              <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" class="btn-secondary">
+                Telegram
+              </a>
+            </div>
+          </div>
+        </section>
+      ) : null
+    }
+
+    <article class={`k-press__article${hasHero ? " k-press__article--after-hero" : ""}`}>
+      {
+        hasHero ? (
           contextDate ? (
-            <p class="k-press__date">{contextDate}</p>
-          ) : (
-            <p class="k-press__date">{product.badgeRu}</p>
-          )
-        }
-        <h1 class="k-press__title">{product.titleRu}</h1>
-        <p class="k-press__dek">{dek}</p>
-        <div class="k-press__actions">
-          <a href="#contact" class="btn-primary" data-goal="primary_cta_click">Обсудить проект</a>
-          <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" class="btn-secondary">Telegram</a>
-          <a href={localizePath("/kaspersky", locale)} class="btn-secondary">Все линии Kaspersky</a>
-        </div>
-      </header>
+            <header class="k-press__header k-press__header--compact">
+              <p class="k-press__date k-press__date--flush">{contextDate}</p>
+            </header>
+          ) : null
+        ) : (
+          <header class="k-press__header">
+            <Breadcrumbs locale={locale} items={crumbItems} />
+            {contextDate ? (
+              <p class="k-press__date">{contextDate}</p>
+            ) : (
+              <p class="k-press__date">{product.badgeRu}</p>
+            )}
+            <h1 class="k-press__title">{product.titleRu}</h1>
+            <p class="k-press__dek">{dek}</p>
+            <div class="k-press__actions">
+              <a href="#contact" class="btn-primary" data-goal="primary_cta_click">
+                Обсудить проект
+              </a>
+              <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" class="btn-secondary">
+                Telegram
+              </a>
+              <a href={localizePath("/kaspersky", locale)} class="btn-secondary">
+                Все линии Kaspersky
+              </a>
+            </div>
+          </header>
+        )
+      }
 
       {
         body.length > 0 ? (

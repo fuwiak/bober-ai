@@ -4906,3 +4906,104 @@ html:not(.dark) .shell-code {
 }
 .k-press__date--flush { margin-top: 0; }
 .k-press__title--hub { margin-top: 1rem; }
+
+/* Full-bleed Kaspersky product hero (soc-kuma-kira) — Bober palette only */
+.k-hero {
+  position: relative;
+  isolation: isolate;
+  min-height: min(92svh, 52rem);
+  display: flex;
+  align-items: flex-end;
+  overflow: clip;
+  border-bottom: 1px solid var(--color-hairline);
+}
+.k-hero__plane {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.k-hero__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+.k-hero__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(
+      to top,
+      color-mix(in srgb, var(--color-canvas) 92%, transparent) 0%,
+      color-mix(in srgb, var(--color-canvas) 55%, transparent) 42%,
+      color-mix(in srgb, var(--color-canvas) 18%, transparent) 72%,
+      transparent 100%
+    ),
+    linear-gradient(
+      105deg,
+      color-mix(in srgb, var(--color-canvas) 70%, transparent) 0%,
+      transparent 55%
+    );
+}
+.k-hero__inner {
+  position: relative;
+  z-index: 2;
+  width: min(1100px, calc(100% - 32px));
+  margin-inline: auto;
+  padding-block: clamp(4.5rem, 12vw, 7.5rem) clamp(2.5rem, 6vw, 4rem);
+}
+@media (min-width: 768px) {
+  .k-hero__inner {
+    width: min(1100px, calc(100% - 80px));
+  }
+}
+.k-hero__brand {
+  margin: 1.5rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--color-accent);
+  text-shadow: 0 1px 18px color-mix(in srgb, var(--color-canvas) 80%, transparent);
+}
+html:not(.dark) .k-hero__brand {
+  color: var(--color-accent-fill);
+  background: #1a1c22;
+  display: inline-block;
+  padding: 0.12em 0.28em;
+  border-radius: 6px;
+  text-shadow: none;
+}
+.k-hero__title {
+  margin: 0.85rem 0 0;
+  max-width: 16ch;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 7vw, 4.6rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+.k-hero__lead {
+  margin: 1.15rem 0 0;
+  max-width: 36rem;
+  font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+  line-height: 1.5;
+  color: var(--color-body-strong);
+  text-wrap: pretty;
+}
+.k-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+.k-press__article--after-hero {
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+.k-press__header--compact {
+  padding-bottom: 1.25rem;
+}

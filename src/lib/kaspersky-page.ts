@@ -52,6 +52,11 @@ export type KasperskyProduct = {
   relatedHref?: string;
   relatedLabelRu?: string;
   relatedLabelEn?: string;
+  /** Full-bleed hero image; when set, product page uses landing hero. */
+  heroImage?: string;
+  /** Shorter H1 for hero (falls back to titleRu). */
+  heroTitleRu?: string;
+  heroTitleEn?: string;
 };
 
 export const KASPERSKY_PRODUCTS: KasperskyProduct[] = [
@@ -223,6 +228,9 @@ export const KASPERSKY_PRODUCTS: KasperskyProduct[] = [
     badgeEn: "AI assistant for SOC",
     titleRu: "AI-ассистент для отдела информационной безопасности на базе KUMA и KIRA",
     titleEn: "AI assistant for the security team on KUMA and KIRA",
+    heroTitleRu: "AI-ассистент SOC на KUMA и KIRA",
+    heroTitleEn: "SOC AI assistant on KUMA and KIRA",
+    heroImage: "/stock/cyber-padlock.jpg",
     metaTitleRu: "AI-ассистент SOC на базе Kaspersky KUMA и KIRA | Bober AI",
     metaTitleEn: "SOC AI assistant on Kaspersky KUMA and KIRA | Bober AI",
     metaDescRu:
