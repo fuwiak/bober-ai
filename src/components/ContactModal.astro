@@ -1,7 +1,7 @@
 ---
 import ContactForm from "@/components/ContactForm.astro";
 import type { Locale, Messages } from "@/lib/i18n";
-import { CONTACT_EMAIL, MAX_URL, TELEGRAM_URL, WHATSAPP_URL } from "@/lib/site";
+import { TELEGRAM_URL, WHATSAPP_URL } from "@/lib/site";
 
 interface Props {
   locale: Locale;
@@ -54,22 +54,6 @@ const c = messages.contact;
           class="contact-modal__channel btn-secondary"
           data-goal="modal_whatsapp_click">{c.whatsapp}</a
         >
-        {
-          MAX_URL ? (
-            <a
-              href={MAX_URL}
-              target="_blank"
-              rel="noreferrer"
-              class="contact-modal__channel btn-secondary"
-              data-goal="max_click">MAX</a
-            >
-          ) : null
-        }
-        <a
-          href={`mailto:${CONTACT_EMAIL}`}
-          class="contact-modal__channel btn-secondary"
-          data-goal="modal_email_click">{c.email}</a
-        >
       </div>
     </div>
     <div class="contact-modal__divider" aria-hidden="true">
@@ -79,8 +63,7 @@ const c = messages.contact;
       locale={locale}
       messages={messages}
       intent="estimate"
-      qualify
-      extended
+      abTestLength={false}
       source="contact-modal"
     />
   </div>
