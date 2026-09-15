@@ -5007,3 +5007,60 @@ html:not(.dark) .k-hero__brand {
 .k-press__header--compact {
   padding-bottom: 1.25rem;
 }
+
+.k-hero__partner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  margin-top: 1.75rem;
+}
+.k-hero__partner-mark,
+.k-hero__partner-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--color-hairline);
+  background: color-mix(in srgb, #ffffff 92%, transparent);
+  text-decoration: none;
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+.k-hero__partner-mark img {
+  display: block;
+  height: 1.35rem;
+  width: auto;
+}
+.k-hero__partner-badge img {
+  display: block;
+  height: 2.4rem;
+  width: auto;
+  max-width: 9.5rem;
+  object-fit: contain;
+}
+@media (hover: hover) and (pointer: fine) {
+  .k-hero__partner-mark:hover,
+  .k-hero__partner-badge:hover {
+    border-color: var(--color-hairline-strong);
+  }
+}
+.k-press__h3 {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+.partner-badge-frame--mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4.5rem;
+  background: #fff;
+}
+.partner-badge-image--mark {
+  width: auto;
+  height: 1.6rem;
+  max-width: 9rem;
+}

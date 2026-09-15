@@ -6,13 +6,19 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import ContactForm from "@/components/ContactForm.astro";
+import PartnerCertificates from "@/components/PartnerCertificates.astro";
 import {
   getAllKasperskyProductSlugs,
   getKasperskyProduct,
   KASPERSKY_PRODUCTS,
 } from "@/lib/kaspersky-page";
 import { loadMessages, localizePath, type Locale } from "@/lib/i18n";
-import { SITE_NAME, TELEGRAM_URL } from "@/lib/site";
+import { KASPERSKY_PARTNER_URL, SITE_NAME, TELEGRAM_URL } from "@/lib/site";
+import {
+  KASPERSKY_PARTNER_BADGES,
+  KASPERSKY_PARTNER_CERTIFICATES,
+  TRUST_PARTNERS,
+} from "@/lib/trust-partners";
 
 export const prerender = true;
 
@@ -38,6 +44,7 @@ const quote = product.quoteRu;
 const contextDate = product.contextDateRu;
 const hasHero = Boolean(product.heroImage);
 const heroTitle = product.heroTitleRu ?? product.titleRu;
+const kasperskyMark = TRUST_PARTNERS.find((p) => p.id === "kaspersky");
 const crumbItems = [
   { name: "Secure AI", path: "/secure-ai" },
   { name: "Kaspersky", path: "/kaspersky" },
@@ -76,6 +83,36 @@ const crumbItems = [
               <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" class="btn-secondary">
                 Telegram
               </a>
+            </div>
+            <div class="k-hero__partner" aria-label="Статус партнёра Kaspersky">
+              {
+                kasperskyMark ? (
+                  <a href={KASPERSKY_PARTNER_URL} class="k-hero__partner-mark">
+                    <img
+                      src={kasperskyMark.logoSrc}
+                      alt={kasperskyMark.name}
+                      width={kasperskyMark.logoWidth}
+                      height={kasperskyMark.logoHeight}
+                      loading="eager"
+                      decoding="async"
+                    />
+                  </a>
+                ) : null
+              }
+              {
+                KASPERSKY_PARTNER_BADGES.map((badge) => (
+                  <a href={KASPERSKY_PARTNER_URL} class="k-hero__partner-badge">
+                    <img
+                      src={badge.src}
+                      alt={badge.altRu}
+                      width={badge.width}
+                      height={badge.height}
+                      loading="eager"
+                      decoding="async"
+                    />
+                  </a>
+                ))
+              }
             </div>
           </div>
         </section>
@@ -141,6 +178,57 @@ const crumbItems = [
           </blockquote>
         ) : null
       }
+
+      <section class="k-press__band k-press__partner" aria-labelledby="partner-heading">
+        <h2 id="partner-heading" class="k-press__h2">Партнёрство с «Лабораторией Касперского»</h2>
+        <p class="k-press__fit">
+          Registered Partner · B2B и B2C. Знаки и сертификаты — подтверждение статуса; поставка лицензий через официальную дистрибуцию.
+        </p>
+        <div class="partner-badge-row mt-8">
+          {
+            kasperskyMark ? (
+              <a href={KASPERSKY_PARTNER_URL} class="partner-badge-frame partner-badge-frame--mark">
+                <img
+                  src={kasperskyMark.logoSrc}
+                  alt={kasperskyMark.name}
+                  width={kasperskyMark.logoWidth}
+                  height={kasperskyMark.logoHeight}
+                  class="partner-badge-image partner-badge-image--mark"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            ) : null
+          }
+          {
+            KASPERSKY_PARTNER_BADGES.map((badge) => (
+              <a href={KASPERSKY_PARTNER_URL} class="partner-badge-frame">
+                <img
+                  src={badge.src}
+                  alt={badge.altRu}
+                  width={badge.width}
+                  height={badge.height}
+                  class="partner-badge-image"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            ))
+          }
+        </div>
+        {
+          KASPERSKY_PARTNER_CERTIFICATES.length > 0 ? (
+            <div class="mt-10">
+              <h3 class="k-press__h3">Сертификаты сотрудничества</h3>
+              <PartnerCertificates
+                locale={locale}
+                titles={{ b2b: "B2B", b2c: "B2C" }}
+                openLabel="Открыть PDF"
+              />
+            </div>
+          ) : null
+        }
+      </section>
 
       <section class="k-press__band" aria-labelledby="buy-heading">
         <h2 id="buy-heading" class="k-press__h2">Что получает заказчик</h2>
