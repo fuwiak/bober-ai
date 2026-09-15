@@ -24,6 +24,19 @@ export type KasperskyProduct = {
   metaDescEn: string;
   summaryRu: string;
   summaryEn: string;
+  /** Press-release dek (bold lead under H1). Falls back to summary. */
+  dekRu?: string;
+  dekEn?: string;
+  /** Context date line, Kaspersky PR rhythm. */
+  contextDateRu?: string;
+  contextDateEn?: string;
+  /** Long-form body paragraphs under the dek. */
+  bodyRu?: string[];
+  bodyEn?: string[];
+  quoteRu?: { text: string; author: string; role: string };
+  quoteEn?: { text: string; author: string; role: string };
+  sourceNoteRu?: string;
+  sourceNoteEn?: string;
   clientBuysRu: string[];
   clientBuysEn: string[];
   boberScopeRu: string[];
@@ -208,8 +221,8 @@ export const KASPERSKY_PRODUCTS: KasperskyProduct[] = [
     priority: 3,
     badgeRu: "AI-ассистент для SOC",
     badgeEn: "AI assistant for SOC",
-    titleRu: "AI-ассистент для отдела информационной безопасности (KUMA / KIRA)",
-    titleEn: "AI assistant for the security team (KUMA / KIRA)",
+    titleRu: "AI-ассистент для отдела информационной безопасности на базе KUMA и KIRA",
+    titleEn: "AI assistant for the security team on KUMA and KIRA",
     metaTitleRu: "AI-ассистент SOC на базе Kaspersky KUMA и KIRA | Bober AI",
     metaTitleEn: "SOC AI assistant on Kaspersky KUMA and KIRA | Bober AI",
     metaDescRu:
@@ -220,6 +233,36 @@ export const KASPERSKY_PRODUCTS: KasperskyProduct[] = [
       "Для компаний с Kaspersky SIEM/XDR без полного SOC: AI разбирает инциденты, готовит отчёты и эскалирует критичное в процессы клиента.",
     summaryEn:
       "For companies with Kaspersky SIEM/XDR without a full SOC: AI triages incidents, drafts reports and escalates critical cases into client workflows.",
+    contextDateRu: "Контекст рынка · декабрь 2024 — KIRA в KUMA",
+    contextDateEn: "Market context · December 2024 — KIRA in KUMA",
+    dekRu:
+      "Новая линия на стыке SIEM и LLM: команда безопасности быстрее разбирает события, меньше рутины — без раздувания штата SOC.",
+    dekEn:
+      "A SIEM×LLM line: security teams triage events faster, with less routine — without growing SOC headcount.",
+    bodyRu: [
+      "Kaspersky Unified Monitoring and Analysis Platform (KUMA) собирает и коррелирует события ИБ. В интерфейсе событий доступен Investigation and Response Assistant (KIRA) — анализ параметров, краткое содержание и оценка риска прямо в карточке события. Публичный анонс интеграции с GigaChat (Сбер) задал ожидание рынка: SIEM должен помогать аналитику, а не только копить алерты.",
+      "Мы внедряем этот контур у заказчика: KUMA / Next XDR как источник правды, KIRA или частный LLM для первичного разбора, затем автоматизация Bober — заявка в Bitrix24, эскалация, отчёт и RAG по вашим регламентам. Начинающий специалист опирается на разбор модели; опытный — быстрее отсекает шум.",
+      "Типичный заказчик — крупный и средний бизнес, госсектор и организации с критичной инфраструктурой: поток событий большой, полный SOC дорогой, а время реакции нельзя терять. Пилот строится на одном контуре алертов с измеримым KPI по времени разбора.",
+    ],
+    bodyEn: [
+      "Kaspersky Unified Monitoring and Analysis Platform (KUMA) collects and correlates security events. Investigation and Response Assistant (KIRA) sits in the events UI — parameter analysis, a short summary and a risk score on the event card. The public GigaChat (Sber) integration set the market bar: SIEM should help the analyst, not only stockpile alerts.",
+      "We deploy that contour for the client: KUMA / Next XDR as source of truth, KIRA or a private LLM for first-pass triage, then Bober automation — Bitrix24 ticket, escalation, report and RAG over your playbooks. Juniors lean on the model brief; seniors cut noise faster.",
+      "Typical buyers are mid-to-large business, public sector and critical infrastructure: event volume is high, a full SOC is expensive, and response time cannot slip. The pilot starts on one alert contour with a measurable triage-time KPI.",
+    ],
+    quoteRu: {
+      text: "SIEM без разбора — это склад алертов. Связка KUMA и ассистента даёт аналитику готовый черновик: что случилось, насколько срочно, куда эскалировать. Мы доводим это до заявки и регламента клиента.",
+      author: "Павел Стасиньски",
+      role: "Bober AI Systems · внедрение Secure AI × Kaspersky",
+    },
+    quoteEn: {
+      text: "SIEM without triage is an alert warehouse. KUMA plus an assistant gives the analyst a draft: what happened, how urgent, where to escalate. We wire that into the client's ticket flow and playbooks.",
+      author: "Pawel Stasinski",
+      role: "Bober AI Systems · Secure AI × Kaspersky delivery",
+    },
+    sourceNoteRu:
+      "Опубликованный контекст продукта: пресс-релиз «Лаборатории Касперского» о KIRA и GigaChat в KUMA — kaspersky.ru/about/press-releases/gigachat-usilil-siem-sistemu-kuma-laboratorii-kasperskogo. Мы не пересказываем текст вендора — строим внедрение и автоматизацию вокруг вашего контура.",
+    sourceNoteEn:
+      "Public product context: Kaspersky press release on KIRA and GigaChat in KUMA. We do not restate vendor copy — we implement and automate around your contour.",
     clientBuysRu: [
       "Быстрый разбор алертов без расширения штата SOC",
       "Timeline, IoC и рекомендации по реакции",

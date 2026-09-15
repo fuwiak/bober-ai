@@ -1,4 +1,9 @@
 ---
+/**
+ * Kaspersky product page — press-release rhythm (Kaspersky PR layout):
+ * breadcrumb → date → H1 → bold dek → prose → quote → scopes → related.
+ * Colors stay on Bober tokens (no Kaspersky green/red).
+ */
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import ContactForm from "@/components/ContactForm.astro";
@@ -23,100 +28,150 @@ if (!product) {
   throw new Error(`Unknown Kaspersky product: ${slug}`);
 }
 const messages = loadMessages(locale);
-const others = KASPERSKY_PRODUCTS.filter((p) => p.slug !== slug);
+const others = KASPERSKY_PRODUCTS.filter((p) => p.slug !== slug).sort(
+  (a, b) => a.priority - b.priority,
+);
 const title = product.metaTitleRu;
 const description = product.metaDescRu;
+const dek = product.dekRu ?? product.summaryRu;
+const body = product.bodyRu ?? [];
+const quote = product.quoteRu;
+const contextDate = product.contextDateRu;
 ---
 
 <BaseLayout title={title} description={description} locale={locale} canonicalPath={`/kaspersky/${slug}`}>
-  <main>
-    <section class="container-editorial max-w-3xl py-12 md:py-16">
-      <Breadcrumbs
-        locale={locale}
-        items={[
-          { name: "Secure AI", path: "/secure-ai" },
-          { name: "Kaspersky", path: "/kaspersky" },
-          { name: product.titleRu, path: `/kaspersky/${slug}` },
-        ]}
-      />
-      <span class="meta-label mt-2 inline-block text-primary">{product.badgeRu}</span>
-      <h1 class="mt-4 display-title">{product.titleRu}</h1>
-      <p class="mt-4 body-copy text-muted">{product.summaryRu}</p>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a href={localizePath("/kaspersky#contact", locale)} class="btn-primary">Обсудить проект</a>
-        <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" class="btn-secondary">Telegram</a>
-        <a href={localizePath("/kaspersky", locale)} class="btn-secondary">Все линии Kaspersky</a>
-      </div>
-    </section>
-
-    <section class="container-editorial max-w-3xl border-t border-hairline py-12">
-      <h2 class="section-title">Что клиент покупает</h2>
-      <ul class="mt-4 space-y-2 text-sm text-muted">
-        {product.clientBuysRu.map((item) => <li>— {item}</li>)}
-      </ul>
-    </section>
-
-    <section class="container-editorial max-w-3xl border-t border-hairline py-12">
-      <div class="grid gap-8 md:grid-cols-2">
-        <div>
-          <h2 class="section-title text-xl">Bober AI Systems</h2>
-          <ul class="mt-4 space-y-2 text-sm text-muted">
-            {product.boberScopeRu.map((item) => <li>— {item}</li>)}
-          </ul>
-        </div>
-        <div>
-          <h2 class="section-title text-xl">Kaspersky</h2>
-          <ul class="mt-4 space-y-2 text-sm text-muted">
-            {product.kasperskyScopeRu.map((item) => <li>— {item}</li>)}
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="container-editorial max-w-3xl border-t border-hairline py-12">
-      <h2 class="section-title">Архитектура</h2>
-      <ol class="mt-6 space-y-3 text-sm text-muted">
+  <main class="k-press">
+    <article class="k-press__article">
+      <header class="k-press__header">
+        <Breadcrumbs
+          locale={locale}
+          items={[
+            { name: "Secure AI", path: "/secure-ai" },
+            { name: "Kaspersky", path: "/kaspersky" },
+            { name: product.badgeRu, path: `/kaspersky/${slug}` },
+          ]}
+        />
         {
-          product.architectureRu.map((step, i) => (
-            <li class="flex gap-3">
-              <span class="text-primary/50">{String(i + 1).padStart(2, "0")}</span>
-              <span>{step}</span>
-            </li>
-          ))
+          contextDate ? (
+            <p class="k-press__date">{contextDate}</p>
+          ) : (
+            <p class="k-press__date">{product.badgeRu}</p>
+          )
         }
-      </ol>
-      <p class="mt-6 text-sm text-muted">{product.fitRu}</p>
+        <h1 class="k-press__title">{product.titleRu}</h1>
+        <p class="k-press__dek">{dek}</p>
+        <div class="k-press__actions">
+          <a href="#contact" class="btn-primary" data-goal="primary_cta_click">Обсудить проект</a>
+          <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" class="btn-secondary">Telegram</a>
+          <a href={localizePath("/kaspersky", locale)} class="btn-secondary">Все линии Kaspersky</a>
+        </div>
+      </header>
+
       {
-        product.relatedHref ? (
-          <p class="mt-4 text-sm">
-            <a href={localizePath(product.relatedHref, locale)} class="text-link">
-              {product.relatedLabelRu} →
-            </a>
-          </p>
+        body.length > 0 ? (
+          <div class="k-press__prose">
+            {body.map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
+          </div>
+        ) : (
+          <div class="k-press__prose">
+            <p>{product.summaryRu}</p>
+            <p>{product.fitRu}</p>
+          </div>
+        )
+      }
+
+      {
+        quote ? (
+          <blockquote class="k-press__quote">
+            <p>{quote.text}</p>
+            <footer>
+              <cite>{quote.author}</cite>
+              <span>{quote.role}</span>
+            </footer>
+          </blockquote>
         ) : null
       }
-      {product.noteRu ? <p class="mt-4 text-xs text-muted">{product.noteRu}</p> : null}
-    </section>
 
-    <section class="container-editorial max-w-3xl border-t border-hairline py-12">
-      <h2 class="section-title">Другие линии</h2>
-      <ul class="mt-4 space-y-3 text-sm">
+      <section class="k-press__band" aria-labelledby="buy-heading">
+        <h2 id="buy-heading" class="k-press__h2">Что получает заказчик</h2>
+        <ul class="k-press__list">
+          {product.clientBuysRu.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="k-press__split" aria-label="Зоны ответственности">
+        <div>
+          <h2 class="k-press__h2">Bober AI Systems</h2>
+          <ul class="k-press__list">
+            {product.boberScopeRu.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2 class="k-press__h2">Kaspersky</h2>
+          <ul class="k-press__list">
+            {product.kasperskyScopeRu.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section class="k-press__band" aria-labelledby="arch-heading">
+        <h2 id="arch-heading" class="k-press__h2">Как устроен контур</h2>
+        <ol class="k-press__flow">
+          {product.architectureRu.map((step) => (
+            <li>{step}</li>
+          ))}
+        </ol>
+        <p class="k-press__fit">{product.fitRu}</p>
         {
-          others.map((p) => (
-            <li>
-              <a href={`/kaspersky/${p.slug}`} class="text-link">
-                {p.titleRu}
+          product.relatedHref ? (
+            <p class="k-press__aside-link">
+              <a href={localizePath(product.relatedHref, locale)} class="text-link">
+                {product.relatedLabelRu}
               </a>
-            </li>
-          ))
+            </p>
+          ) : null
         }
-      </ul>
+        {product.noteRu ? <p class="k-press__note">{product.noteRu}</p> : null}
+        {product.sourceNoteRu ? <p class="k-press__note">{product.sourceNoteRu}</p> : null}
+      </section>
+    </article>
+
+    <section class="k-press__related" aria-labelledby="related-heading">
+      <div class="k-press__related-inner">
+        <h2 id="related-heading" class="k-press__h2">Другие линии</h2>
+        <ul class="k-press__related-grid">
+          {
+            others.map((item) => (
+              <li>
+                <a href={`/kaspersky/${item.slug}`} class="k-press__related-card">
+                  <span class="k-press__related-badge">{item.badgeRu}</span>
+                  <span class="k-press__related-title">{item.titleRu}</span>
+                  <span class="k-press__related-summary">{item.summaryRu}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </section>
 
-    <section id="contact" class="container-editorial max-w-3xl border-t border-hairline py-12 md:py-16">
-      <h2 class="section-title">Запрос</h2>
-      <div class="mt-6 max-w-xl">
-        <ContactForm locale={locale} messages={messages} defaultService={product.titleRu} />
+    <section id="contact" class="k-press__contact">
+      <div class="k-press__contact-inner">
+        <h2 class="k-press__h2">Запрос</h2>
+        <p class="k-press__contact-lead">
+          Имя и контакт — достаточно для первого шага. Описание задачи необязательно.
+        </p>
+        <div class="k-press__form">
+          <ContactForm locale={locale} messages={messages} defaultService={product.titleRu} />
+        </div>
       </div>
     </section>
   </main>
