@@ -3678,31 +3678,6 @@ html.dark {
     transition-delay: 280ms;
   }
 
-  .hero-scroll-cue {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.7em;
-    margin-top: 2.5rem;
-    color: var(--color-muted);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-  .hero-scroll-cue i {
-    display: block;
-    width: 1px;
-    height: 2.8rem;
-    background: linear-gradient(to bottom, var(--color-accent-fill), transparent);
-    transform-origin: top;
-    animation: hero-drip 2.4s var(--ease-in-out) infinite;
-  }
-  @keyframes hero-drip {
-    0% { transform: scaleY(0); opacity: 0; }
-    35% { transform: scaleY(1); opacity: 1; }
-    100% { transform: scaleY(1) translateY(100%); opacity: 0; }
-  }
-
   @media (prefers-reduced-motion: reduce) {
     .reveal,
     [data-reveal],
@@ -3714,11 +3689,6 @@ html.dark {
       transform: none;
       filter: none;
       transition: none;
-    }
-    .hero-scroll-cue i {
-      animation: none;
-      opacity: 0.5;
-      transform: none;
     }
   }
 }
