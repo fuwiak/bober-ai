@@ -14,6 +14,7 @@ import ProblemCardsSection from "@/components/ProblemCardsSection.astro";
 import ExecutiveTasksSection from "@/components/ExecutiveTasksSection.astro";
 import SolutionOffersSection from "@/components/SolutionOffersSection.astro";
 import BuildQualitySection from "@/components/BuildQualitySection.astro";
+import SupportChatWidget from "@/components/SupportChatWidget.astro";
 import { loadMessages, localizePath } from "@/lib/i18n";
 import { getEnterpriseServicesListing } from "@/lib/enterprise-services";
 import { getPortfolioListing, PROFILE } from "@/lib/profile";
@@ -415,4 +416,10 @@ const homeJsonLd = [
       </div>
     </div>
   </section>
+
+  <SupportChatWidget
+    title="AI-ассистент Bober"
+    welcome="Подскажу по внедрению ИИ, CRM, стоимости пилота и с чего начать. Чем помочь?"
+    chips={["Стоимость пилота", "С чего начать", "Связаться"]}
+  />
 </BaseLayout>
