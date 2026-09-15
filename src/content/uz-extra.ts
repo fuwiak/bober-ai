@@ -219,9 +219,9 @@ export const uzExtra = {
   founderManifesto: {
     label: "Asoschi",
     name: "Pavel Stasinskiy",
-    role: "AI-arxitektor · technical AI partner · AI va avtomatlashtirish boʻyicha fractional CTO",
+    role: "Asoschi · AI-arxitektor · technical AI partner · AI va avtomatlashtirish boʻyicha fractional CTO",
     quote:
-      "Bober AI Systems — korporativ AI-integrator. Men loyiha arxitekturasini boshqaraman va natija uchun javob beraman; dasturchilar va infratuzilma mutaxassislari vazifa boʻyicha ulanadi.",
+      "Bober AI Systems — korporativ AI-integrator. Men asoschiman: loyiha arxitekturasini boshqaraman va natija uchun javob beraman; dasturchilar va infratuzilma mutaxassislari vazifa boʻyicha ulanadi.",
     goal: "Faqat KP va CRM avtomatlashtirish emas — texnologiya tanlash, jarayon tahlili va production kontur uchun masʼuliyat.",
     stats: [
       { value: "12+", label: "joriy etish" },

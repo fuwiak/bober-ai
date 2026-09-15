@@ -102,7 +102,7 @@ const uzOverrides = {
       "4 ish soati ichida javob beramiz. 30 daqiqalik qo'ng'iroqdan keyin — 24 soat ichida reja va soʻmdagi byudjet oralig'i.",
     heroImageAlt: "Pavel Stasinskiy — Bober AI asoschisi, AI arxitektor",
     founderBadge: "Asoschisi va loyiha rahbari",
-    teamLine: "Arxitektura, joriy etish va natija uchun mas'uliyat",
+    teamLine: "Pavel Stasinskiy · asoschi · AI-arxitektor · arxitektura, joriy etish va natija uchun mas'uliyat",
     officeGalleryLabel: "Biznes arxitektura va korporativ makonlar",
     trustItems: [
       "12+ joriy etish",

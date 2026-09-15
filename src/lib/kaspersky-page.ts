@@ -260,12 +260,12 @@ export const KASPERSKY_PRODUCTS: KasperskyProduct[] = [
     quoteRu: {
       text: "SIEM без разбора — это склад алертов. Связка KUMA и ассистента даёт аналитику готовый черновик: что случилось, насколько срочно, куда эскалировать. Мы доводим это до заявки и регламента клиента.",
       author: "Павел Стасиньски",
-      role: "Bober AI Systems · внедрение Secure AI × Kaspersky",
+      role: "Основатель Bober AI Systems · внедрение Secure AI × Kaspersky",
     },
     quoteEn: {
       text: "SIEM without triage is an alert warehouse. KUMA plus an assistant gives the analyst a draft: what happened, how urgent, where to escalate. We wire that into the client's ticket flow and playbooks.",
       author: "Pawel Stasinski",
-      role: "Bober AI Systems · Secure AI × Kaspersky delivery",
+      role: "Founder, Bober AI Systems · Secure AI × Kaspersky delivery",
     },
     sourceNoteRu:
       "Опубликованный контекст продукта: пресс-релиз «Лаборатории Касперского» о KIRA и GigaChat в KUMA — kaspersky.ru/about/press-releases/gigachat-usilil-siem-sistemu-kuma-laboratorii-kasperskogo. Мы не пересказываем текст вендора — строим внедрение и автоматизацию вокруг вашего контура.",
