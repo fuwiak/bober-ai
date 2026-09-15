@@ -224,13 +224,13 @@ const uzOverrides = {
     marketOffersSubtitle:
       "Avtomatlashtirish · Marketing · Savdo. Bitrix24, amoCRM, YCLIENTS, RetailCRM, MoySklad, Roistat, Mango Telecom va Tinkoff Bank.",
     marketOffersPillars: ["Avtomatlashtirish", "Marketing", "Savdo"],
-    marketOffersCta: "Xizmatni koʻrish →",
-    marketOffersHubCta: "Stek xizmatlarining barchasi →",
+    marketOffersCta: "Xizmatni koʻrish",
+    marketOffersHubCta: "Stek xizmatlarining barchasi",
     crmSetupLabel: "CRM sozlash",
     crmSetupTitle: "CRM sozlash — 11 stsenariy",
     crmSetupSubtitle:
       "Aniq soʻrov «CRM sozlash» va variantlar: tizim, kalit taslim, savdo boʻlimi, voronka, kichik biznes, maydonlar.",
-    crmSetupHubCta: "CRM sozlash variantlarining barchasi →",
+    crmSetupHubCta: "CRM sozlash variantlarining barchasi",
     proofLabel: "Natijalar",
     proofTitle: "Pilotlarda allaqachon o'lchaganlarimiz",
     casesLabel: "Keyslar",
