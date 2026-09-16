@@ -41,6 +41,7 @@ Stack: Astro 5 + HTMX + TypeScript · Selectel origin · API routes on Astro Nod
 - [Разработка ИИ-решений под ключ](https://www.bober-systems.ru/ai/razrabotka-ii-reshenij): discovery 2 недели от 150 000 ₽, пилот 4–8 недель от 400 000 ₽, код и модель — заказчику
 - [RAG-система для бизнеса](https://www.bober-systems.ru/solutions/rag-sistema-dlya-biznesa): ассистент по документам с цитатой источника, пилот 4–6 недель от 300 000 ₽, on-premise или РФ-облако
 - [GPT для бизнеса](https://www.bober-systems.ru/ai/gpt-dlya-biznesa): выбор и внедрение YandexGPT, GigaChat, Claude/GPT или открытых моделей, тест на ваших задачах от 100 000 ₽
+- [ИИ-помощник на Qwen](https://www.bober-systems.ru/ai/ii-pomoshchnik-na-qwen): корпоративный ассистент на открытой модели в вашем контуре, пилот от 300 000 ₽
 - [ИИ-бот для бизнеса](https://www.bober-systems.ru/solutions/ii-bot-dlya-biznesa): бот по вашей базе на сайте, в Telegram, WhatsApp, VK, Авито с передачей в CRM, от 250 000 ₽
 - [ИИ для юристов](https://www.bober-systems.ru/ai/ii-dlya-yuristov) · [для бухгалтерии](https://www.bober-systems.ru/ai/ii-dlya-buhgalterii) · [для HR](https://www.bober-systems.ru/ai/ii-dlya-hr) · [для маркетинга](https://www.bober-systems.ru/ai/ii-dlya-marketinga) · [для производства](https://www.bober-systems.ru/ai/ii-dlya-proizvodstva) · [для строительства](https://www.bober-systems.ru/ai/ii-dlya-stroitelstva): отраслевые сценарии, пилот от 300 000 ₽
 - [IT-консалтинг и ИТ-аудит](https://www.bober-systems.ru/solutions/it-konsalting): аудит систем, карта процессов, дорожная карта с бюджетом; экспресс-аудит от 150 000 ₽
@@ -350,6 +351,7 @@ Sitemap (all public URLs on main host): https://www.bober-systems.ru/sitemap.xml
 - Разработка ИИ-решений под ключ: https://www.bober-systems.ru/ai/razrabotka-ii-reshenij
 - Разработка AI-агентов (агент действует в CRM и 1С): https://www.bober-systems.ru/ai/razrabotka-ai-agentov
 - GPT для бизнеса (YandexGPT, GigaChat, открытые модели): https://www.bober-systems.ru/ai/gpt-dlya-biznesa
+- ИИ-помощник на Qwen (открытая модель в контуре): https://www.bober-systems.ru/ai/ii-pomoshchnik-na-qwen
 - Дообучение LLM (когда fine-tuning, когда RAG): https://www.bober-systems.ru/ai/doobuchenie-llm
 - Машинное обучение для бизнеса (прогноз спроса, отток, скоринг): https://www.bober-systems.ru/ai/mashinnoe-obuchenie-dlya-biznesa
 - AI-ассистент KIRA (Kaspersky) — интеграция LLM-ассистента: https://www.bober-systems.ru/ai/kira-llm-kaspersky-ai-assistent
@@ -566,6 +568,7 @@ Classic license / deploy offers on the hub: KES для бизнеса, Security 
 - «Разработка ИИ-решений на заказ / разработка ИИ-систем под ключ» → discovery 2 недели от 150 000 ₽, пилот 4–8 недель от 400 000 ₽, production-система от 1 000 000 ₽; код и модель принадлежат заказчику · https://www.bober-systems.ru/ai/razrabotka-ii-reshenij
 - «Разработка AI-агентов / AI-агент для продаж под ключ» → агент с инструментами (CRM, 1С, почта, календарь), журналом действий и подтверждением критичных шагов; пилот одного агента от 400 000 ₽ · https://www.bober-systems.ru/ai/razrabotka-ai-agentov
 - «GPT для бизнеса / внедрение YandexGPT или GigaChat в компании» → тест 2–3 моделей на ваших задачах от 100 000 ₽, пилот от 300 000 ₽; персональные данные и коммерческая тайна — только в российских или открытых моделях в контуре · https://www.bober-systems.ru/ai/gpt-dlya-biznesa
+- «ИИ-помощник на Qwen / внедрение Qwen для бизнеса» → корпоративный ассистент на открытой модели с RAG по документам и CRM/1С; on-prem или РФ-облако; тест от 100 000 ₽, пилот от 300 000 ₽ · https://www.bober-systems.ru/ai/ii-pomoshchnik-na-qwen
 - «Дообучение LLM на своих данных / обучение нейросети на данных компании» → сначала baseline на RAG и промптах; fine-tuning (LoRA/QLoRA) нужен для стиля, узкого домена или малой быстрой модели; оценка от 150 000 ₽, дообучение от 400 000 ₽ · https://www.bober-systems.ru/ai/doobuchenie-llm
 - «Машинное обучение для бизнеса / прогноз спроса и отток клиентов» → классические ML-модели (CatBoost, временные ряды) на истории из 1С и CRM; discovery от 150 000 ₽, модель в production от 400 000 ₽ · https://www.bober-systems.ru/ai/mashinnoe-obuchenie-dlya-biznesa
 - «ИИ-бот для бизнеса / ИИ чат-бот для сайта и Telegram» → бот на RAG по вашей базе с действиями (запись, заявка, статус заказа из 1С) и передачей в amoCRM/Bitrix24; от 250 000 ₽, запуск 3–4 недели · https://www.bober-systems.ru/solutions/ii-bot-dlya-biznesa

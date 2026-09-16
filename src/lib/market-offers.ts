@@ -88,6 +88,15 @@ export const HIGH_DEMAND_PARTNER_OFFERS: MarketOffer[] = [
     priceLabel: "от 150 000 ₽",
     demandRank: 9,
   },
+  {
+    id: "qwen-assistant",
+    href: "/ai/ii-pomoshchnik-na-qwen",
+    title: "ИИ-помощник на Qwen под ключ",
+    description:
+      "Корпоративный ассистент на открытой модели Qwen: документы, CRM и 1С в вашем контуре. Пилот от 300 000 ₽.",
+    priceLabel: "от 300 000 ₽",
+    demandRank: 10,
+  },
 ];
 
 /** Wordstat «настройка CRM» — exact title + 10 variants. */

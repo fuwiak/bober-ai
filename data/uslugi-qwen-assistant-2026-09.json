@@ -1,0 +1,29 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "specializationId": "187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "specializationNote": "Другое/ИИ — ИИ-помощник на Qwen (открытая модель в контуре)",
+  "note": "Одна услуга: корпоративный ИИ-помощник на Qwen. Лендинг /ai/ii-pomoshchnik-na-qwen. Без фото (модерация).",
+  "fetchedAt": "2026-09-17",
+  "publishedAt": "2026-09-17",
+  "publishedStatus": "created_in_cabinet",
+  "publishedCount": 1,
+  "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "publishHint": [
+    "npm run yandex:uslugi:login",
+    "npm run yandex:uslugi:add -- --file=data/uslugi-qwen-assistant-2026-09.json --headless --fast",
+    "npm run yandex:uslugi:list -- --spec=187ddab3-5a27-4a55-8240-dd1baca3b87f"
+  ],
+  "services": [
+    {
+      "id": "ii-pomoshchnik-na-qwen",
+      "cluster": "ии помощник на qwen",
+      "name": "ИИ-помощник на Qwen",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "ИИ-помощник на Qwen: корпоративный ассистент по документам, CRM и 1С в вашем контуре (on-prem или российское облако). Пилот 3–5 недель. Москва и удалённо. От 300 000 ₽."
+    }
+  ]
+}

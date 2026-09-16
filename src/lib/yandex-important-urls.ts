@@ -50,6 +50,7 @@ export const YANDEX_IMPORTANT_PATHS = [
   "/ai/razrabotka-ii-reshenij",
   "/ai/razrabotka-ai-agentov",
   "/ai/gpt-dlya-biznesa",
+  "/ai/ii-pomoshchnik-na-qwen",
   "/solutions/ii-bot-dlya-biznesa",
   "/solutions/it-konsalting",
   "/solutions/cifrovizaciya-biznesa",
