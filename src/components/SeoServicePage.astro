@@ -34,6 +34,8 @@ interface Props {
   keywords?: string[];
   formSource?: string;
   formDefaultService?: string;
+  /** Optional SEO hero raster (catalog coverImage). */
+  heroImage?: string;
 }
 
 const {
@@ -46,6 +48,7 @@ const {
   keywords = [],
   formSource = "site-form",
   formDefaultService,
+  heroImage,
 } = Astro.props;
 
 const messages = loadMessages(locale);
@@ -118,6 +121,7 @@ const howCols =
 
 const jsonLd = [webPage, serviceSchema, organization, person, ...(faqSchema ? [faqSchema] : [])];
 const showBitrixBadge = /bitrix/i.test(resolvedPath) || /bitrix/i.test(slug);
+const heroSrc = heroImage || service?.serviceImage;
 ---
 
 <BaseLayout
@@ -132,7 +136,22 @@ const showBitrixBadge = /bitrix/i.test(resolvedPath) || /bitrix/i.test(slug);
     <section class="section-band section--deep border-b border-hairline">
       <div class="container-editorial">
         <Breadcrumbs locale={locale} items={breadcrumbs} />
-        <div class="mt-8 grid gap-12 lg:grid-cols-[1fr_360px] lg:items-start">
+        {
+          heroSrc ? (
+            <figure class="landing-hero-media mt-8 editorial-image editorial-image--hero overflow-hidden rounded">
+              <img
+                src={heroSrc}
+                alt={content.h1}
+                class="hero-media__image h-full w-full object-cover"
+                width="1400"
+                height="600"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </figure>
+          ) : null
+        }
+        <div class={`grid gap-12 lg:grid-cols-[1fr_360px] lg:items-start${heroSrc ? " mt-10" : " mt-8"}`}>
           <div class="max-w-4xl">
             <span class="section-label">{content.eyebrow}</span>
             <h1 class="display-md mt-4">{content.h1}</h1>
@@ -190,20 +209,24 @@ const showBitrixBadge = /bitrix/i.test(resolvedPath) || /bitrix/i.test(slug);
                 <p class="mt-3 text-sm text-muted">
                   {isUz ? "Fixed estimate · remote" : "Фиксированная смета · удалённо"}
                 </p>
-                <div class="relative mt-6 aspect-[4/3] overflow-hidden rounded-lg border border-hairline bg-surface-soft">
-                  <img
-                    src={service.serviceImage}
-                    alt={service.title}
-                    class="h-full w-full object-cover"
-                    width="360"
-                    height="270"
-                    fetchpriority="high"
-                    decoding="async"
-                  />
-                </div>
+                {
+                  !heroSrc ? (
+                    <div class="relative mt-6 aspect-[4/3] overflow-hidden rounded-lg border border-hairline bg-surface-soft">
+                      <img
+                        src={service.serviceImage}
+                        alt={service.title}
+                        class="h-full w-full object-cover"
+                        width="360"
+                        height="270"
+                        fetchpriority="high"
+                        decoding="async"
+                      />
+                    </div>
+                  ) : null
+                }
                 <a
                   href={localizePath(`/order/${service.slug}`, locale)}
-                  class="btn-primary mt-6 w-full text-center"
+                  class={`btn-primary w-full text-center${heroSrc ? " mt-6" : " mt-6"}`}
                   data-goal="order_cta_click"
                 >
                   {messages.order.title}

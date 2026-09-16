@@ -1,0 +1,132 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "specializationId": "187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "specializationNote": "Другое/ИИ — GAP Wordstat buy exact (2026-09 seed totals). Без фото, без «под ключ», без AI-slop.",
+  "note": "10 top buy phrases not covered 1:1 by uslugi-ai-automation-sell-2026-09. Source: data/wordstat-ai-automation-sell-seed-totals.json",
+  "wordstatSource": [
+    "data/wordstat-ai-automation-sell-seed-totals.json",
+    "data/wordstat-ai-automation-sell-decisions.json"
+  ],
+  "fetchedAt": "2026-09-16",
+  "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "seeds": [
+    { "phrase": "внедрение ии в бизнес процессы", "exact": 284 },
+    { "phrase": "автоматизация бизнеса с помощью ии", "exact": 257 },
+    { "phrase": "автоматизация бизнес процессов с ии", "exact": 174 },
+    { "phrase": "компания по внедрению ии", "exact": 151 },
+    { "phrase": "стоимость внедрения ии", "exact": 104 },
+    { "phrase": "llm для 1с", "exact": 94 },
+    { "phrase": "внедрение ии в отдел продаж", "exact": 46 },
+    { "phrase": "интегратор искусственного интеллекта", "exact": 28 },
+    { "phrase": "интеграция ии с crm", "total": 17 },
+    { "phrase": "заказать внедрение ии", "total": 11 }
+  ],
+  "publishHint": [
+    "npm run yandex:uslugi:login",
+    "npm run yandex:uslugi:update -- --file=data/uslugi-fix-187ddab3-photos-podkluch.json --headless --skip-photos --fast",
+    "npm run yandex:uslugi:add -- --file=data/uslugi-ai-automation-buy-gap-2026-09.json --headless --skip-photos --fast"
+  ],
+  "services": [
+    {
+      "id": "gap-vnedrenie-ii-biznes-processy",
+      "cluster": "внедрение ии в бизнес процессы",
+      "name": "Внедрение ИИ в бизнес-процессы",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Внедрение ИИ в бизнес-процессы: один процесс с KPI, связка с CRM и файлами, смета до кода. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "id": "gap-avtomatizaciya-biznesa-s-pomoshchyu-ii",
+      "cluster": "автоматизация бизнеса с помощью ии",
+      "name": "Автоматизация бизнеса с помощью ИИ",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Автоматизация бизнеса с помощью ИИ: заявки, документы, продажи. Пилот 2–4 недели, фиксированная смета. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "id": "gap-avtomatizaciya-bp-s-ii",
+      "cluster": "автоматизация бизнес процессов с ии",
+      "name": "Автоматизация бизнес-процессов с ИИ",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Автоматизация бизнес-процессов с ИИ: workflow, статусы, эскалации. Без лишних модулей. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "id": "gap-kompaniya-po-vnedreniyu-ii",
+      "cluster": "компания по внедрению ии",
+      "name": "Компания по внедрению ИИ",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Компания по внедрению ИИ: аудит → пилот → production в вашем контуре. NDA, смета до старта. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "id": "gap-stoimost-vnedreniya-ii",
+      "cluster": "стоимость внедрения ии",
+      "name": "Стоимость внедрения ИИ",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Стоимость внедрения ИИ: аудит от 150 000 ₽, пилот от 300 000 ₽, внедрение от 500 000 ₽. Вилка после брифа. Москва и удалённо."
+    },
+    {
+      "id": "gap-llm-dlya-1c",
+      "cluster": "llm для 1с",
+      "name": "LLM для 1С",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "LLM для 1С: ответы по справочникам, черновики документов, контроль доступа. Без утечки во внешние чаты. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "id": "gap-vnedrenie-ii-otdel-prodazh",
+      "cluster": "внедрение ии в отдел продаж",
+      "name": "Внедрение ИИ в отдел продаж",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Внедрение ИИ в отдел продаж: квалификация лидов, follow-up, саммари в CRM. Пилот на одной воронке. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "id": "gap-integrator-ii",
+      "cluster": "интегратор искусственного интеллекта",
+      "name": "Интегратор искусственного интеллекта",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Интегратор искусственного интеллекта: внедрение в процессы компании, не демо-чат. Смета, KPI, передача команде. Москва и удалённо. От 400 000 ₽."
+    },
+    {
+      "id": "gap-integraciya-ii-crm",
+      "cluster": "интеграция ии с crm",
+      "name": "Интеграция ИИ с CRM",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Интеграция ИИ с CRM (Bitrix24 / amoCRM): ассистент в сделке, задачи, дожим. Пилот на одной воронке. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "gap-zakazat-vnedrenie-ii",
+      "cluster": "заказать внедрение ии",
+      "name": "Заказать внедрение ИИ",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Заказать внедрение ИИ: бриф → план и вилка за 24 часа → пилот с KPI. Фиксированная смета. Москва и удалённо. От 400 000 ₽."
+    }
+  ]
+}

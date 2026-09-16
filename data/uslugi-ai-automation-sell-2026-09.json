@@ -3,7 +3,7 @@
   "geo": "Москва",
   "specializationId": "187ddab3-5a27-4a55-8240-dd1baca3b87f",
   "specializationNote": "Другое/ИИ — live Wordstat 2026-09 AI+автоматизация sell pack (GAP vs уже опубликованных)",
-  "note": "Топ продающих фраз из data/wordstat-ai-automation-sell-seed-totals.json + popular CSV. Не дублирует uslugi-wordstat-ai-10 / pod-kluch / process-automation 1:1 — только GAP с объёмом.",
+  "note": "Топ продающих фраз из data/wordstat-ai-automation-sell-seed-totals.json + popular CSV. Не дублирует uslugi-wordstat-ai-10 / pod-kluch / process-automation 1:1 — только GAP с объёмом. | 2026-09-16: photos removed; «под ключ» titles renamed (moderation).",
   "wordstatSource": [
     "data/wordstat-ai-automation-sell.csv",
     "data/wordstat-ai-automation-sell-seed-totals.json",
@@ -15,20 +15,62 @@
   "publishedCount": 12,
   "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=187ddab3-5a27-4a55-8240-dd1baca3b87f",
   "seeds": [
-    { "phrase": "автоматизация процессов с ии", "exact": 461 },
-    { "phrase": "автоматизация бизнеса с ии", "exact": 396 },
-    { "phrase": "ии автоматизация бизнес процессов", "exact": 357 },
-    { "phrase": "внедрение ии в бизнес процессы", "exact": 284 },
-    { "phrase": "компания по автоматизации бизнеса", "total": 112 },
-    { "phrase": "стоимость внедрения ии", "exact": 104 },
-    { "phrase": "услуги внедрения ии", "total": 97 },
-    { "phrase": "автоматизация бизнеса под ключ", "exact": 94 },
-    { "phrase": "llm для 1с", "exact": 94 },
-    { "phrase": "интеграция ии с 1с", "exact": 82 },
-    { "phrase": "внедрение ии москва", "exact": 71 },
-    { "phrase": "компания по автоматизации бизнес процессов", "exact": 66 },
-    { "phrase": "ии для бизнеса под ключ", "exact": 64 },
-    { "phrase": "услуги по автоматизации бизнеса", "total": 51 }
+    {
+      "phrase": "автоматизация процессов с ии",
+      "exact": 461
+    },
+    {
+      "phrase": "автоматизация бизнеса с ии",
+      "exact": 396
+    },
+    {
+      "phrase": "ии автоматизация бизнес процессов",
+      "exact": 357
+    },
+    {
+      "phrase": "внедрение ии в бизнес процессы",
+      "exact": 284
+    },
+    {
+      "phrase": "компания по автоматизации бизнеса",
+      "total": 112
+    },
+    {
+      "phrase": "стоимость внедрения ии",
+      "exact": 104
+    },
+    {
+      "phrase": "услуги внедрения ии",
+      "total": 97
+    },
+    {
+      "phrase": "автоматизация бизнеса под ключ",
+      "exact": 94
+    },
+    {
+      "phrase": "llm для 1с",
+      "exact": 94
+    },
+    {
+      "phrase": "интеграция ии с 1с",
+      "exact": 82
+    },
+    {
+      "phrase": "внедрение ии москва",
+      "exact": 71
+    },
+    {
+      "phrase": "компания по автоматизации бизнес процессов",
+      "exact": 66
+    },
+    {
+      "phrase": "ии для бизнеса под ключ",
+      "exact": 64
+    },
+    {
+      "phrase": "услуги по автоматизации бизнеса",
+      "total": 51
+    }
   ],
   "publishHint": [
     "npm run yandex:uslugi:login",
@@ -44,7 +86,6 @@
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
-      "photo": "public/stock/business-process-automation.jpg",
       "description": "Автоматизация процессов с ИИ: аудит узкого места, workflow, связка с CRM и почтой. Пилот с KPI, фиксированная смета. Москва и удалённо. От 400 000 ₽."
     },
     {
@@ -55,7 +96,6 @@
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
-      "photo": "public/stock/automation-code.jpg",
       "description": "Автоматизация бизнеса с ИИ: заявки, документы, продажи. Один процесс до production, затем масштаб. Москва и удалённо. От 400 000 ₽."
     },
     {
@@ -66,7 +106,6 @@
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
-      "photo": "public/stock/enterprise-ai-assistant.jpg",
       "description": "ИИ-автоматизация бизнес-процессов: классификация, черновики, эскалации. Интеграции без «ещё одного чата». Москва и удалённо. От 400 000 ₽."
     },
     {
@@ -77,7 +116,6 @@
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
-      "photo": "public/stock/team-collab.jpg",
       "description": "Компания по автоматизации бизнеса: процессы, CRM, документы. Аудит → пилот → запуск. Фиксированная смета. Москва и удалённо. От 300 000 ₽."
     },
     {
@@ -88,7 +126,6 @@
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
-      "photo": "public/stock/ai-discovery-roadmap.jpg",
       "description": "Компания по автоматизации бизнес-процессов: сквозные workflow, статусы, отчёты. Без лишних модулей. Москва и удалённо. От 300 000 ₽."
     },
     {
@@ -99,7 +136,6 @@
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
-      "photo": "public/stock/ai-discovery-roadmap.jpg",
       "description": "Услуги внедрения ИИ: пилот на одном процессе, смета, production в вашем контуре. Москва и удалённо. От 400 000 ₽."
     },
     {
@@ -110,30 +146,27 @@
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
-      "photo": "public/stock/business-process-automation.jpg",
       "description": "Услуги по автоматизации бизнеса и бизнес-процессов: заявки, CRM, документы. Пилот 2–4 недели. Москва и удалённо. От 300 000 ₽."
     },
     {
       "id": "sell-avtomatizaciya-bp-pod-kluch",
-      "cluster": "автоматизация бизнес процессов под ключ",
-      "name": "Автоматизация бизнес-процессов под ключ",
+      "cluster": "автоматизация бизнес процессов",
+      "name": "Автоматизация бизнес-процессов",
       "price": 400000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
-      "photo": "public/stock/automation-code.jpg",
-      "description": "Автоматизация бизнес-процессов под ключ: аудит, внедрение, обучение команды. Фиксированная смета до старта. Москва и удалённо. От 400 000 ₽."
+      "description": "Автоматизация бизнес-процессов: аудит, внедрение, обучение команды. Фиксированная смета до старта. Москва и удалённо. От 400 000 ₽."
     },
     {
       "id": "sell-ii-dlya-biznesa-pod-kluch",
-      "cluster": "ии для бизнеса под ключ",
-      "name": "ИИ для бизнеса под ключ",
+      "cluster": "ии для бизнеса",
+      "name": "ИИ для бизнеса",
       "price": 400000,
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
-      "photo": "public/stock/enterprise-ai-assistant.jpg",
-      "description": "ИИ для бизнеса под ключ: пилот с KPI, интеграции CRM/1С, запуск. NDA и смета до разработки. Москва и удалённо. От 400 000 ₽."
+      "description": "ИИ для бизнеса: пилот с KPI, интеграции CRM/1С, запуск. NDA и смета до разработки. Москва и удалённо. От 400 000 ₽."
     },
     {
       "id": "sell-integraciya-ii-1c",
@@ -143,7 +176,6 @@
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
-      "photo": "public/stock/sales-ai-agent.jpg",
       "description": "Интеграция ИИ с 1С и LLM для 1С: ответы по справочникам, черновики документов, без утечки во внешние чаты. Москва и удалённо. От 400 000 ₽."
     },
     {
@@ -154,7 +186,6 @@
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
-      "photo": "public/stock/team-collab.jpg",
       "description": "Внедрение ИИ в Москве: выезд/офис или гибрид. Пилот на одном процессе, смета, production. От 400 000 ₽."
     },
     {
@@ -165,8 +196,8 @@
       "priceMeasure": "service",
       "isMinimalPrice": true,
       "geo": "Москва",
-      "photo": "public/stock/ai-discovery-roadmap.jpg",
       "description": "Цена и стоимость автоматизации бизнеса: аудит процесса, вилка бюджета и план пилота за 1–2 недели. Москва и удалённо. От 150 000 ₽."
     }
-  ]
+  ],
+  "noPhotos": true
 }

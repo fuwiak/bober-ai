@@ -275,7 +275,7 @@ export const CATALOG_LANDING_SPECS_INTENT: LandingSpec[] = [
     contentKey: "intent_ai_business_automation",
     cluster: "automation-processes",
     serviceSlug: "business-process-automation",
-    coverImage: "/diagrams/workflow-automation.svg",
+    coverImage: "/stock/offers/land-automation-ai-business-automation.jpg",
     keywords: [
       "автоматизация бизнеса с помощью ии",
       "автоматизация бизнес процессов с помощью ии",

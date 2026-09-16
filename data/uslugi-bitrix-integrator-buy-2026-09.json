@@ -1,0 +1,68 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "specializationId": "14621107-8394-44af-96e5-331a0f9dafed",
+  "specializationNote": "Настройка Битрикс — high buy integrator intent (Wordstat). Без фото.",
+  "note": "From data/wordstat-bitrix24-integration-seed-totals.json + wordstat-bitrix-uslugi.csv: интеграция 1833, интегратор 304, внедрение 552.",
+  "wordstatSource": [
+    "data/wordstat-bitrix24-integration-seed-totals.json",
+    "data/wordstat-bitrix-uslugi.csv"
+  ],
+  "fetchedAt": "2026-09-16",
+  "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=14621107-8394-44af-96e5-331a0f9dafed",
+  "publishHint": [
+    "npm run yandex:uslugi:add -- --file=data/uslugi-bitrix-integrator-buy-2026-09.json --headless --skip-photos --fast"
+  ],
+  "services": [
+    {
+      "id": "bitrix24-integrator-buy",
+      "cluster": "интегратор битрикс24",
+      "name": "Интегратор Битрикс24",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Интегратор Битрикс24: сайт, 1С, телефония, мессенджеры. Чиним обмен или собираем новый контур. Бизнес-партнёр Битрикс24. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "bitrix24-vnedrenie-buy",
+      "cluster": "внедрение битрикс24",
+      "name": "Внедрение Битрикс24",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Внедрение Битрикс24: портал, воронка, роли, интеграции. Пилот 2–4 недели, фиксированная смета. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "bitrix24-1c-integraciya-buy",
+      "cluster": "интеграция битрикс24 и 1с",
+      "name": "Интеграция Битрикс24 и 1С",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Интеграция Битрикс24 и 1С: сделки ↔ документы, статусы и суммы без расхождений. Логи, retry, приёмка. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "bitrix24-zakazat-integraciyu-buy",
+      "cluster": "заказать интеграцию битрикс24",
+      "name": "Заказать интеграцию Битрикс24",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Заказать интеграцию Битрикс24: бриф → карта потоков → смета → запуск с логом ошибок. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "bitrix24-stoimost-integracii-buy",
+      "cluster": "стоимость интеграции битрикс24",
+      "name": "Стоимость интеграции Битрикс24",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Стоимость интеграции Битрикс24: аудит контура от 150 000 ₽, рабочий обмен обычно от 300 000 ₽. Вилка после брифа. Москва и удалённо."
+    }
+  ]
+}

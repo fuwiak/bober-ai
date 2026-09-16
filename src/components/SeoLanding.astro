@@ -59,6 +59,7 @@ if (fromCatalog) {
 const catalogService = getEnterpriseService(page.serviceSlug, locale);
 const feedOffer = getEnterpriseServiceByFeedPath(`/${page.category}/${page.slug}`, locale);
 const commercial = feedOffer ?? catalogService;
+const heroSrc = commercial?.serviceImage || page.coverImage;
 const faqItems = extended?.faq ?? content.faq ?? [];
 const canonicalPath = localizePath(`/${page.category}/${page.slug}`, locale);
 ---
@@ -76,10 +77,10 @@ const canonicalPath = localizePath(`/${page.category}/${page.slug}`, locale);
     <p class="mt-6 body-copy max-w-3xl">{content.subtitle}</p>
 
     {
-      commercial?.serviceImage && (
+      heroSrc ? (
         <figure class="landing-hero-media mt-10 editorial-image editorial-image--hero overflow-hidden rounded">
           <img
-            src={commercial.serviceImage}
+            src={heroSrc}
             alt={content.h1}
             class="hero-media__image h-full w-full object-cover"
             width="1400"
@@ -88,7 +89,7 @@ const canonicalPath = localizePath(`/${page.category}/${page.slug}`, locale);
             decoding="async"
           />
         </figure>
-      )
+      ) : null
     }
 
     {

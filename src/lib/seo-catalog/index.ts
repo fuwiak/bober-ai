@@ -13,6 +13,9 @@ import { CATALOG_LANDING_SPECS_BITRIX_SITE_CMS } from "@/lib/seo-catalog/landing
 import { CATALOG_LANDING_SPECS_AI_VNEDRENIE } from "@/lib/seo-catalog/landing-specs-ai-vnedrenie";
 import { CATALOG_LANDING_SPECS_YOUGILE } from "@/lib/seo-catalog/landing-specs-yougile";
 import { CATALOG_LANDING_SPECS_YANDEX_QUERIES } from "@/lib/seo-catalog/landing-specs-yandex-queries";
+import { CATALOG_LANDING_SPECS_II_DLYA } from "@/lib/seo-catalog/landing-specs-ii-dlya";
+import { CATALOG_LANDING_SPECS_AI_IT_BUY } from "@/lib/seo-catalog/landing-specs-ai-it-buy";
+import { CATALOG_LANDING_SPECS_INTEGRATOR_BUY } from "@/lib/seo-catalog/landing-specs-integrator-buy";
 import { INTENT_ARTICLE_SPECS } from "@/lib/seo-catalog/blog-specs";
 import { SEO_HUBS } from "@/lib/seo-catalog/hubs";
 import { SPECIALIST_ARTICLE_SPECS } from "@/lib/seo-catalog/specialist-blog-specs";
@@ -39,6 +42,9 @@ const ALL_SPECS = [
   ...CATALOG_LANDING_SPECS_AI_VNEDRENIE,
   ...CATALOG_LANDING_SPECS_YOUGILE,
   ...CATALOG_LANDING_SPECS_YANDEX_QUERIES,
+  ...CATALOG_LANDING_SPECS_II_DLYA,
+  ...CATALOG_LANDING_SPECS_AI_IT_BUY,
+  ...CATALOG_LANDING_SPECS_INTEGRATOR_BUY,
 ];
 const ALL_ARTICLES = [...SPECIALIST_ARTICLE_SPECS, ...INTENT_ARTICLE_SPECS];
 

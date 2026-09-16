@@ -1,0 +1,65 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "specializationId": "2673db51-904b-429a-8871-35eeb8b5f4e2",
+  "specializationNote": "CRM/ERP — high buy integrator intent amoCRM (Wordstat seed totals 2026-08). Без фото.",
+  "note": "From data/wordstat-amocrm-ai-intent-seed-totals.json: интегратор amocrm 64, amocrm интеграция с 1с 28, услуги/цена. Skip login noise.",
+  "wordstatSource": ["data/wordstat-amocrm-ai-intent-seed-totals.json", "data/wordstat-amocrm-ai-intent.csv"],
+  "fetchedAt": "2026-09-16",
+  "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=2673db51-904b-429a-8871-35eeb8b5f4e2",
+  "publishHint": [
+    "npm run yandex:uslugi:add -- --file=data/uslugi-amocrm-integrator-buy-2026-09.json --headless --skip-photos --fast"
+  ],
+  "services": [
+    {
+      "id": "amocrm-integrator-buy",
+      "cluster": "amocrm интегратор",
+      "name": "Интегратор amoCRM",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Интегратор amoCRM: настройка воронки, API, сайт, 1С и мессенджеры. Фиксированная смета, пилот 2–4 недели. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "amocrm-1c-integraciya-buy",
+      "cluster": "amocrm интеграция с 1с",
+      "name": "Интеграция amoCRM с 1С",
+      "price": 300000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Интеграция amoCRM с 1С: сделки ↔ документы, статусы и суммы без ручного переноса. Логи и retry. Москва и удалённо. От 300 000 ₽."
+    },
+    {
+      "id": "amocrm-uslugi-buy",
+      "cluster": "услуги amocrm",
+      "name": "Услуги amoCRM",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Услуги amoCRM: настройка, внедрение, интеграции и ИИ-слой по смете. Москва и удалённо. От 150 000 ₽."
+    },
+    {
+      "id": "amocrm-stoimost-vnedreniya-buy",
+      "cluster": "сколько стоит внедрение amocrm",
+      "name": "Сколько стоит внедрение amoCRM",
+      "price": 150000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Сколько стоит внедрение amoCRM: настройка от 150 000 ₽, внедрение с интеграциями от 300 000 ₽. Вилка после брифа. Москва и удалённо."
+    },
+    {
+      "id": "amocrm-site-integraciya-buy",
+      "cluster": "интеграция сайта amocrm",
+      "name": "Интеграция сайта с amoCRM",
+      "price": 180000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "Интеграция сайта с amoCRM: формы и лендинги → сделки, UTM, ответственный. Тест на живой форме. Москва и удалённо. От 180 000 ₽."
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "date": "2026-09-16",
+  "problem": "Yandex Uslugi specialization 187ddab3: moderation rejects photos + «под ключ» titles on AI sell pack. Need more high-buy AI phrases + integrator buy for amoCRM/Bitrix.",
+  "fix": {
+    "uslugi": "data/uslugi-fix-187ddab3-photos-podkluch.json",
+    "sellSourceCleaned": "data/uslugi-ai-automation-sell-2026-09.json (photos removed, под ключ renamed)"
+  },
+  "aiBuyGap10": {
+    "file": "data/uslugi-ai-automation-buy-gap-2026-09.json",
+    "spec": "187ddab3-5a27-4a55-8240-dd1baca3b87f",
+    "phrases": [
+      { "phrase": "внедрение ии в бизнес процессы", "exact": 284 },
+      { "phrase": "автоматизация бизнеса с помощью ии", "exact": 257 },
+      { "phrase": "автоматизация бизнес процессов с ии", "exact": 174 },
+      { "phrase": "компания по внедрению ии", "exact": 151 },
+      { "phrase": "стоимость внедрения ии", "exact": 104 },
+      { "phrase": "llm для 1с", "exact": 94 },
+      { "phrase": "внедрение ии в отдел продаж", "exact": 46 },
+      { "phrase": "интегратор искусственного интеллекта", "exact": 28 },
+      { "phrase": "интеграция ии с crm", "total": 17 },
+      { "phrase": "заказать внедрение ии", "total": 11 }
+    ],
+    "rules": ["no photo", "no под ключ", "no AI-slop wording"]
+  },
+  "integratorBuy": {
+    "amocrm": {
+      "file": "data/uslugi-amocrm-integrator-buy-2026-09.json",
+      "spec": "2673db51-904b-429a-8871-35eeb8b5f4e2",
+      "source": "data/wordstat-amocrm-ai-intent-seed-totals.json",
+      "head": ["amocrm интегратор 64", "интеграция amocrm 659", "amocrm интеграция с 1с 28"]
+    },
+    "bitrix": {
+      "file": "data/uslugi-bitrix-integrator-buy-2026-09.json",
+      "spec": "14621107-8394-44af-96e5-331a0f9dafed",
+      "source": "data/wordstat-bitrix24-integration-seed-totals.json",
+      "head": ["интеграция битрикс24 1833", "интегратор битрикс24 304", "внедрение битрикс24 552"]
+    }
+  },
+  "landingsSeoHero": {
+    "specs": "src/lib/seo-catalog/landing-specs-integrator-buy.ts",
+    "paths": [
+      "/integrations/amocrm-integrator",
+      "/integrations/bitrix24-integrator",
+      "/ai/vnedrenie-ii-v-biznes-processy",
+      "/ai/llm-dlya-1c",
+      "/integrations/integraciya-ii-s-crm",
+      "/ai/integrator-iskusstvennogo-intellekta"
+    ],
+    "hero": "raster /stock/offers/land-* via coverImage + SeoServicePage heroImage"
+  },
+  "publishHint": [
+    "npm run yandex:uslugi:update -- --file=data/uslugi-fix-187ddab3-photos-podkluch.json --headless --skip-photos --fast",
+    "npm run yandex:uslugi:add -- --file=data/uslugi-ai-automation-buy-gap-2026-09.json --headless --skip-photos --fast",
+    "npm run yandex:uslugi:add -- --file=data/uslugi-amocrm-integrator-buy-2026-09.json --headless --skip-photos --fast",
+    "npm run yandex:uslugi:add -- --file=data/uslugi-bitrix-integrator-buy-2026-09.json --headless --skip-photos --fast"
+  ]
+}

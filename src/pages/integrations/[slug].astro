@@ -39,6 +39,7 @@ const keywords = getLandingKeywords(page, locale);
       pagePath={path}
       serviceSlug={landingOfferSlug(page)}
       keywords={keywords}
+      heroImage={page.coverImage}
       formSource={`integrations-${page.slug}`}
       formDefaultService={content.h1}
       breadcrumbItems={[
