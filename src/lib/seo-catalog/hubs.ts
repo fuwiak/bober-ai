@@ -351,6 +351,7 @@ export const SEO_HUBS: HubDef[] = [
       { href: "/ai/razrabotka-ai-agentov", labelRu: "Разработка AI-агентов", labelEn: "AI agent development", blurbRu: "Агент действует в CRM и 1С", blurbEn: "Agents acting in CRM and 1C" },
       { href: "/ai/gpt-dlya-biznesa", labelRu: "GPT для бизнеса", labelEn: "GPT for business", blurbRu: "YandexGPT, GigaChat, открытые модели", blurbEn: "YandexGPT, GigaChat, open models" },
       { href: "/ai/ii-pomoshchnik-na-qwen", labelRu: "ИИ-помощник на Qwen", labelEn: "Qwen AI assistant", blurbRu: "Открытая модель в контуре", blurbEn: "Open model in your contour" },
+      { href: "/ai/ii-kontrol-dogovornyh-obyazatelstv", labelRu: "ИИ-контроль договорных обязательств", labelEn: "AI contract-obligation control", blurbRu: "Сроки, платежи, алерты в 1С/CRM", blurbEn: "Deadlines, payments, 1C/CRM alerts" },
       { href: "/ai/doobuchenie-llm", labelRu: "Дообучение LLM", labelEn: "LLM fine-tuning", blurbRu: "Когда fine-tuning, когда RAG", blurbEn: "Fine-tuning vs RAG" },
       { href: "/ai/mashinnoe-obuchenie-dlya-biznesa", labelRu: "Машинное обучение для бизнеса", labelEn: "ML for business", blurbRu: "Прогноз спроса, отток, скоринг", blurbEn: "Forecasting, churn, scoring" },
       { href: "/ai/ii-dlya-yuristov", labelRu: "ИИ для юристов", labelEn: "AI for lawyers", blurbRu: "Договоры, практика, регламенты", blurbEn: "Contracts and case law" },

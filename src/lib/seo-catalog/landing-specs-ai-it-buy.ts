@@ -862,4 +862,97 @@ export const CATALOG_LANDING_SPECS_AI_IT_BUY: LandingSpec[] = [
       ],
     },
   },
+  {
+    category: "ai",
+    slug: "ii-kontrol-dogovornyh-obyazatelstv",
+    contentKey: "aib_contract_obligation_control",
+    cluster: "ai-corporate",
+    serviceSlug: "document-processing",
+    coverImage: IMG.docs,
+    keywords: [
+      "ии контроль договорных обязательств",
+      "контроль обязательств по договорам",
+      "контроль ковенантов ии",
+      "мониторинг сроков по договорам",
+      "ии анализ договоров и допсоглашений",
+      "автоматический контроль условий договора",
+      "реестр обязательств из договоров",
+      "ии контроль платежей по договорам",
+      "document control ии",
+    ],
+    caseStudySlugs: ["contract-approval-workflow", "ocr-text-extraction", "kaspersky-ai-assistant"],
+    related: [
+      { href: "/ai/ii-dlya-yuristov", labelRu: "ИИ для юристов", labelEn: "AI for lawyers" },
+      { href: "/automation/contract-registry", labelRu: "Реестр договоров", labelEn: "Contract registry" },
+      { href: "/automation/contract-approval", labelRu: "Согласование договоров", labelEn: "Contract approval" },
+      RAG,
+      { href: "/automation/ocr-data-extraction", labelRu: "OCR в 1С", labelEn: "OCR into 1C" },
+      PRIVATE_LLM,
+      PRICING,
+    ],
+    ru: {
+      h1: "ИИ-контроль договорных обязательств: договоры, допсоглашения, сроки, платежи, 1С/CRM и автоматические уведомления",
+      subtitle:
+        "Production-контур контроля обязательств: из сотен страниц договоров и анексов собираем актуальную master-версию, извлекаем ковенанты, платежи и сроки, ведём календарь и предупреждаем ответственных в CRM, 1С и задачах. Изолированный контур в РФ, AES-256, RBAC, полный audit log. Пилот 4–8 недель от 400 000 ₽.",
+      problems: [
+        "Один проект — сотни страниц договоров и десятки допсоглашений; «актуальная версия» живёт в головах юристов и Excel",
+        "Сроки, ковенанты и платежи срываются: никто не собрал единый календарь обязательств из всех анексов",
+        "Ручная проверка документации занимает дни — а банк или инвестор ждёт ответ сегодня",
+        "Публичный ChatGPT для договоров нельзя: NDA, коммерческая тайна, требования ИБ к контуру и журналу",
+      ],
+      deliverables: [
+        "Пайплайн: PDF/DOCX → OCR/parser → RAG + LLM → структурированные обязательства (сроки, платежи, условия, риски)",
+        "Master-версия договора с учётом всех допсоглашений; единый календарь ковенантов и дедлайнов",
+        "Интеграции: задачи и алерты в Bitrix24/amoCRM/Jira, статусы и платежи в 1С, эскалация ответственным",
+        "Изолированный контур (on-prem / РФ-облако): шифрование, RBAC, полный журнал операций; метрика — время анализа и доля вовремя закрытых обязательств",
+      ],
+      intro: [
+        "Рынок платит не за «фирменный ChatGPT», а за ИИ, который контролирует процесс. Типовой enterprise-сценарий 2026: AI-controller условий финансирования и договоров — LLM + RAG в закрытом контуре, измеримое сокращение времени анализа документации.",
+        "Мы собираем тот же паттерн под ваш процесс: договоры и анексы → актуальная master-версия → обязательства → календарь → уведомления в 1С/CRM/таск-трекер → audit log. Модель — GigaChat, YandexGPT или открытая (Qwen/Llama) по политике ИБ.",
+        "Отличие от «ИИ для юристов»: здесь не только проверка рисков в момент согласования, а непрерывный контроль обязательств после подписания — платежи, отчётность, ковенанты, сроки расторжения и штрафы.",
+      ],
+      howWeSolve: [
+        { title: "Аудит корпуса и правил", text: "Типы договоров, допсоглашения, поля обязательств, кто отвечает, куда слать алерты. 1–2 недели." },
+        { title: "Пилот на одном контуре", text: "OCR + RAG + извлечение обязательств + календарь + 1–2 канала уведомлений. Сравнение с ручным разбором на контрольной выборке." },
+        { title: "Production", text: "Все типы документов, интеграции с 1С/CRM, RBAC, мониторинг, обучение юротдела и финансов." },
+      ],
+      faq: [
+        { q: "Сколько стоит ИИ-контроль договорных обязательств?", a: "Аудит корпуса — от 150 000 ₽. Пилот (один тип договоров + календарь + алерты в CRM/задачи) — от 400 000 ₽. Полный контур с 1С и несколькими типами документов — по смете после пилота." },
+        { q: "Чем это отличается от реестра договоров и ИИ для юристов?", a: "Реестр — учёт карточек. ИИ для юристов — проверка и поиск при согласовании. Этот продукт — непрерывный контроль обязательств из master-версии договора: сроки, платежи, ковенанты, автоматические уведомления и журнал." },
+        { q: "Данные останутся в России?", a: "Да: изолированный контур on-premise или в российском облаке; AES-256, RBAC, полный audit log. Публичные зарубежные API для таких документов не используем." },
+      ],
+    },
+    en: {
+      h1: "AI contract-obligation control: contracts, amendments, deadlines, payments, 1C/CRM and automatic alerts",
+      subtitle:
+        "Production obligation control: build a master version from contracts and annexes, extract covenants, payments and deadlines, keep a shared calendar and alert owners in CRM, 1C and tasks. Isolated RU contour, AES-256, RBAC, full audit log. Pilot 4–8 weeks.",
+      problems: [
+        "Hundreds of pages and dozens of amendments — no single master version",
+        "Covenants and payments slip without a shared calendar",
+        "Manual document review takes days",
+        "Public ChatGPT forbidden under NDA and security policy",
+      ],
+      deliverables: [
+        "Pipeline: PDF/DOCX → OCR/parser → RAG + LLM → structured obligations",
+        "Master contract version and covenant/deadline calendar",
+        "Alerts and tasks in CRM/1C/task tracker",
+        "Isolated contour with encryption, RBAC and audit log",
+      ],
+      intro: [
+        "Enterprises pay for AI that controls a process, not for a corporate chatbot.",
+        "Same pattern: contracts → master version → obligations → calendar → 1C/CRM alerts → audit log.",
+        "Unlike lawyer AI assist, this is continuous post-signature control.",
+      ],
+      howWeSolve: [
+        { title: "Corpus and rules audit", text: "Contract types, obligation fields, owners, alert channels." },
+        { title: "Pilot", text: "OCR + RAG + extraction + calendar + 1–2 alert channels." },
+        { title: "Production", text: "All doc types, 1C/CRM, RBAC, training." },
+      ],
+      faq: [
+        { q: "Cost?", a: "Corpus audit first, then a fixed-scope pilot; full contour after metrics." },
+        { q: "Vs registry / lawyer AI?", a: "Continuous obligation control after signature, not just cards or review." },
+        { q: "Data in Russia?", a: "Yes — isolated contour, encryption, RBAC, audit log." },
+      ],
+    },
+  },
 ];

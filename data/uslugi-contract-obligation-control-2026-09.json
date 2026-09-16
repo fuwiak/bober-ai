@@ -1,0 +1,29 @@
+{
+  "baseUrl": "https://uslugi.yandex.ru",
+  "geo": "Москва",
+  "specializationId": "187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "specializationNote": "Другое/ИИ — ИИ-контроль договорных обязательств (document-control / covenants)",
+  "note": "Одна услуга: контроль обязательств из договоров и допсоглашений с алертами в 1С/CRM. Лендинг /ai/ii-kontrol-dogovornyh-obyazatelstv. Без фото.",
+  "fetchedAt": "2026-09-17",
+  "publishedAt": "2026-09-17",
+  "publishedStatus": "created_in_cabinet",
+  "publishedCount": 1,
+  "cabinetUrl": "https://uslugi.yandex.ru/cab/specialization?id=187ddab3-5a27-4a55-8240-dd1baca3b87f",
+  "publishHint": [
+    "npm run yandex:uslugi:login",
+    "npm run yandex:uslugi:add -- --file=data/uslugi-contract-obligation-control-2026-09.json --headless --fast",
+    "npm run yandex:uslugi:list -- --spec=187ddab3-5a27-4a55-8240-dd1baca3b87f"
+  ],
+  "services": [
+    {
+      "id": "ii-kontrol-dogovornyh-obyazatelstv",
+      "cluster": "ии контроль договорных обязательств",
+      "name": "ИИ-контроль договорных обязательств",
+      "price": 400000,
+      "priceMeasure": "service",
+      "isMinimalPrice": true,
+      "geo": "Москва",
+      "description": "ИИ-контроль договорных обязательств: договоры и допсоглашения → сроки, платежи, ковенанты → алерты в 1С/CRM и задачах. Изолированный контур в РФ. Пилот 4–8 недель. Москва и удалённо. От 400 000 ₽."
+    }
+  ]
+}

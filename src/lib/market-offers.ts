@@ -97,6 +97,15 @@ export const HIGH_DEMAND_PARTNER_OFFERS: MarketOffer[] = [
     priceLabel: "от 300 000 ₽",
     demandRank: 10,
   },
+  {
+    id: "contract-obligation-control",
+    href: "/ai/ii-kontrol-dogovornyh-obyazatelstv",
+    title: "ИИ-контроль договорных обязательств",
+    description:
+      "Договоры и допсоглашения → сроки, платежи, ковенанты → алерты в 1С/CRM. Изолированный контур. От 400 000 ₽.",
+    priceLabel: "от 400 000 ₽",
+    demandRank: 11,
+  },
 ];
 
 /** Wordstat «настройка CRM» — exact title + 10 variants. */
