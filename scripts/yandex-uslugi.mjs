@@ -98,21 +98,61 @@ async function launchBrowser(headed = true) {
   });
 }
 
+/**
+ * Кабинет грузит каталог услуг с suggest-multi.yandex.net.
+ * С этой машины (и в headless) запрос часто даёт ERR_CONNECTION_RESET →
+ * servicesStatus никогда не становится "ok", блок «Добавить услуги» вечно
+ * крутит лоадер и button.SpecializationEditor-AddCustomService не появляется.
+ * Пустой JSON-массив достаточно: UI показывает «Добавить свою услугу».
+ */
+async function installSuggestBypass(context) {
+  await context.route("**/*", async (route) => {
+    const url = route.request().url();
+    if (!/suggest-multi\.yandex\.net|\/ydo2\?/i.test(url)) {
+      return route.continue();
+    }
+    if (route.request().method() === "OPTIONS") {
+      return route.fulfill({
+        status: 204,
+        headers: {
+          "access-control-allow-origin": "https://uslugi.yandex.ru",
+          "access-control-allow-credentials": "true",
+          "access-control-allow-methods": "GET,POST,OPTIONS",
+          "access-control-allow-headers": "*, content-type, x-requested-with",
+        },
+      });
+    }
+    return route.fulfill({
+      status: 200,
+      contentType: "application/json; charset=utf-8",
+      headers: {
+        "access-control-allow-origin": "https://uslugi.yandex.ru",
+        "access-control-allow-credentials": "true",
+      },
+      body: "[]",
+    });
+  });
+}
+
 async function newContext(browser, { withAuth = false } = {}) {
+  let context;
   if (withAuth) {
     if (!existsSync(AUTH_PATH)) {
       fail(`нет сессии. Сначала: node scripts/yandex-uslugi.mjs login`);
     }
-    return browser.newContext({
+    context = await browser.newContext({
       storageState: AUTH_PATH,
       locale: "ru-RU",
       viewport: { width: 1440, height: 900 },
     });
+  } else {
+    context = await browser.newContext({
+      locale: "ru-RU",
+      viewport: { width: 1440, height: 900 },
+    });
   }
-  return browser.newContext({
-    locale: "ru-RU",
-    viewport: { width: 1440, height: 900 },
-  });
+  await installSuggestBypass(context);
+  return context;
 }
 
 async function cmdLogin() {
@@ -209,7 +249,9 @@ async function cmdSniff() {
 }
 
 async function openAddServiceModal(page) {
-  const addBtn = page.locator("button.SpecializationEditor-AddCustomService");
+  const addBtn = page
+    .locator("button.SpecializationEditor-AddCustomService, button:has-text('Добавить свою услугу')")
+    .first();
   await addBtn.waitFor({ state: "visible", timeout: 60_000 });
   await addBtn.click();
 
@@ -533,7 +575,8 @@ async function openSpecializationPage(page, spec) {
     timeout: 120_000,
   });
   await page
-    .locator("button.SpecializationEditor-AddCustomService")
+    .locator("button.SpecializationEditor-AddCustomService, button:has-text('Добавить свою услугу')")
+    .first()
     .waitFor({ state: "visible", timeout: 60_000 });
   await dismissPromo(page);
 }
