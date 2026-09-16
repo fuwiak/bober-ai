@@ -1,0 +1,495 @@
+{
+  "date": "2026-09-16",
+  "source": "Yandex Wordstat topRequests totalCount",
+  "seeds": [
+    {
+      "phrase": "автоматизация производства",
+      "totalCount": 33559,
+      "exactCount": 33559,
+      "top1": {
+        "phrase": "автоматизация производства",
+        "count": 33559
+      }
+    },
+    {
+      "phrase": "ии для юристов",
+      "totalCount": 8420,
+      "exactCount": 8420,
+      "top1": {
+        "phrase": "ии для юристов",
+        "count": 8420
+      }
+    },
+    {
+      "phrase": "распознавание документов",
+      "totalCount": 5179,
+      "exactCount": 5179,
+      "top1": {
+        "phrase": "распознавание документов",
+        "count": 5179
+      }
+    },
+    {
+      "phrase": "автоматизация склада",
+      "totalCount": 2073,
+      "exactCount": 2073,
+      "top1": {
+        "phrase": "автоматизация склада",
+        "count": 2073
+      }
+    },
+    {
+      "phrase": "цифровизация бизнеса",
+      "totalCount": 1927,
+      "exactCount": 1927,
+      "top1": {
+        "phrase": "цифровизация бизнеса",
+        "count": 1927
+      }
+    },
+    {
+      "phrase": "ии для образования",
+      "totalCount": 1509,
+      "exactCount": 1509,
+      "top1": {
+        "phrase": "ии для образования",
+        "count": 1509
+      }
+    },
+    {
+      "phrase": "ии для производства",
+      "totalCount": 963,
+      "exactCount": 963,
+      "top1": {
+        "phrase": "ии для производства",
+        "count": 963
+      }
+    },
+    {
+      "phrase": "ии для строительства",
+      "totalCount": 934,
+      "exactCount": 934,
+      "top1": {
+        "phrase": "ии для строительства",
+        "count": 934
+      }
+    },
+    {
+      "phrase": "цифровая трансформация услуги",
+      "totalCount": 732,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "услуга цифровая трансформация",
+        "count": 732
+      }
+    },
+    {
+      "phrase": "ии для бухгалтерии",
+      "totalCount": 550,
+      "exactCount": 550,
+      "top1": {
+        "phrase": "ии для бухгалтерии",
+        "count": 550
+      }
+    },
+    {
+      "phrase": "it консалтинг",
+      "totalCount": 454,
+      "exactCount": 454,
+      "top1": {
+        "phrase": "it консалтинг",
+        "count": 454
+      }
+    },
+    {
+      "phrase": "ии для hr",
+      "totalCount": 448,
+      "exactCount": 448,
+      "top1": {
+        "phrase": "ии для hr",
+        "count": 448
+      }
+    },
+    {
+      "phrase": "ocr документов",
+      "totalCount": 433,
+      "exactCount": 433,
+      "top1": {
+        "phrase": "ocr документов",
+        "count": 433
+      }
+    },
+    {
+      "phrase": "ии для маркетинга",
+      "totalCount": 379,
+      "exactCount": 379,
+      "top1": {
+        "phrase": "ии для маркетинга",
+        "count": 379
+      }
+    },
+    {
+      "phrase": "ии для недвижимости",
+      "totalCount": 362,
+      "exactCount": 362,
+      "top1": {
+        "phrase": "ии для недвижимости",
+        "count": 362
+      }
+    },
+    {
+      "phrase": "разработка ии решений",
+      "totalCount": 357,
+      "exactCount": 357,
+      "top1": {
+        "phrase": "разработка ии решений",
+        "count": 357
+      }
+    },
+    {
+      "phrase": "интеграция 1с с сайтом",
+      "totalCount": 354,
+      "exactCount": 354,
+      "top1": {
+        "phrase": "интеграция 1с с сайтом",
+        "count": 354
+      }
+    },
+    {
+      "phrase": "gpt для бизнеса",
+      "totalCount": 327,
+      "exactCount": 327,
+      "top1": {
+        "phrase": "gpt для бизнеса",
+        "count": 327
+      }
+    },
+    {
+      "phrase": "разработка ai агентов",
+      "totalCount": 316,
+      "exactCount": 316,
+      "top1": {
+        "phrase": "разработка ai агентов",
+        "count": 316
+      }
+    },
+    {
+      "phrase": "ии бот для бизнеса",
+      "totalCount": 212,
+      "exactCount": 212,
+      "top1": {
+        "phrase": "ии бот для бизнеса",
+        "count": 212
+      }
+    },
+    {
+      "phrase": "ии для интернет магазина",
+      "totalCount": 211,
+      "exactCount": 211,
+      "top1": {
+        "phrase": "ии для интернет магазина",
+        "count": 211
+      }
+    },
+    {
+      "phrase": "ии для клиники",
+      "totalCount": 180,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "разработка erp системы",
+      "totalCount": 158,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "erp система разработка",
+        "count": 158
+      }
+    },
+    {
+      "phrase": "речевая аналитика звонков",
+      "totalCount": 157,
+      "exactCount": 157,
+      "top1": {
+        "phrase": "речевая аналитика звонков",
+        "count": 157
+      }
+    },
+    {
+      "phrase": "ии для логистики",
+      "totalCount": 152,
+      "exactCount": 152,
+      "top1": {
+        "phrase": "ии для логистики",
+        "count": 152
+      }
+    },
+    {
+      "phrase": "ит аудит компании",
+      "totalCount": 115,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "аудит компаний ит",
+        "count": 115
+      }
+    },
+    {
+      "phrase": "разработка api интеграции",
+      "totalCount": 102,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "api как искусство разработка поддержка интеграция",
+        "count": 29
+      }
+    },
+    {
+      "phrase": "миграция в облако",
+      "totalCount": 98,
+      "exactCount": 98,
+      "top1": {
+        "phrase": "миграция в облако",
+        "count": 98
+      }
+    },
+    {
+      "phrase": "машинное обучение для бизнеса",
+      "totalCount": 92,
+      "exactCount": 92,
+      "top1": {
+        "phrase": "машинное обучение для бизнеса",
+        "count": 92
+      }
+    },
+    {
+      "phrase": "yandexgpt для бизнеса",
+      "totalCount": 88,
+      "exactCount": 88,
+      "top1": {
+        "phrase": "yandexgpt для бизнеса",
+        "count": 88
+      }
+    },
+    {
+      "phrase": "ии ассистент для руководителя",
+      "totalCount": 83,
+      "exactCount": 83,
+      "top1": {
+        "phrase": "ии ассистент для руководителя",
+        "count": 83
+      }
+    },
+    {
+      "phrase": "дообучение llm",
+      "totalCount": 77,
+      "exactCount": 77,
+      "top1": {
+        "phrase": "дообучение llm",
+        "count": 77
+      }
+    },
+    {
+      "phrase": "ии консультант для сайта",
+      "totalCount": 66,
+      "exactCount": 66,
+      "top1": {
+        "phrase": "ии консультант для сайта",
+        "count": 66
+      }
+    },
+    {
+      "phrase": "gigachat для бизнеса",
+      "totalCount": 60,
+      "exactCount": 60,
+      "top1": {
+        "phrase": "gigachat для бизнеса",
+        "count": 60
+      }
+    },
+    {
+      "phrase": "it аутсорсинг москва",
+      "totalCount": 59,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "it аутсорсинг в москве",
+        "count": 33
+      }
+    },
+    {
+      "phrase": "внедрение нейросетей в бизнес",
+      "totalCount": 45,
+      "exactCount": 45,
+      "top1": {
+        "phrase": "внедрение нейросетей в бизнес",
+        "count": 45
+      }
+    },
+    {
+      "phrase": "ии для техподдержки",
+      "totalCount": 40,
+      "exactCount": 40,
+      "top1": {
+        "phrase": "ии для техподдержки",
+        "count": 40
+      }
+    },
+    {
+      "phrase": "ии для ритейла",
+      "totalCount": 40,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "ии для ритейл",
+        "count": 40
+      }
+    },
+    {
+      "phrase": "чат бот для поддержки клиентов",
+      "totalCount": 39,
+      "exactCount": 39,
+      "top1": {
+        "phrase": "чат бот для поддержки клиентов",
+        "count": 39
+      }
+    },
+    {
+      "phrase": "разработка чат бота для бизнеса",
+      "totalCount": 32,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "разработка чат ботов для бизнеса",
+        "count": 32
+      }
+    },
+    {
+      "phrase": "генерация контента для бизнеса",
+      "totalCount": 29,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "разработка telegram mini app",
+      "totalCount": 29,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "разработка mini app telegram",
+        "count": 29
+      }
+    },
+    {
+      "phrase": "devops услуги",
+      "totalCount": 23,
+      "exactCount": 23,
+      "top1": {
+        "phrase": "devops услуги",
+        "count": 23
+      }
+    },
+    {
+      "phrase": "голосовой робот для звонков",
+      "totalCount": 20,
+      "exactCount": 20,
+      "top1": {
+        "phrase": "голосовой робот для звонков",
+        "count": 20
+      }
+    },
+    {
+      "phrase": "ai агент для продаж",
+      "totalCount": 17,
+      "exactCount": 17,
+      "top1": {
+        "phrase": "ai агент для продаж",
+        "count": 17
+      }
+    },
+    {
+      "phrase": "разработка crm под ключ",
+      "totalCount": 15,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "голосовой бот для бизнеса",
+      "totalCount": 11,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "голосовые боты для бизнеса",
+        "count": 11
+      }
+    },
+    {
+      "phrase": "ии секретарь для бизнеса",
+      "totalCount": 9,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "обучение нейросети на своих данных",
+      "totalCount": 8,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "внедрение kubernetes",
+      "totalCount": 7,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "ии агент для бизнеса заказать",
+      "totalCount": 5,
+      "exactCount": 0,
+      "top1": {
+        "phrase": "заказать ии агента для бизнеса",
+        "count": 5
+      }
+    },
+    {
+      "phrase": "заказать разработку crm",
+      "totalCount": 3,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "парсинг данных заказать",
+      "totalCount": 3,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "внедрение chatgpt в бизнес",
+      "totalCount": 2,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "разработка нейросети на заказ",
+      "totalCount": 1,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "чат бот для сайта заказать",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "телеграм бот для бизнеса заказать",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "разработка телеграм бота цена",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    },
+    {
+      "phrase": "нейросеть для бизнеса заказать",
+      "totalCount": 0,
+      "exactCount": 0,
+      "top1": null
+    }
+  ]
+}
