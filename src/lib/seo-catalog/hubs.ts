@@ -217,6 +217,7 @@ export const SEO_HUBS: HubDef[] = [
       { href: "/integrations/yclients", labelRu: "Настройка YCLIENTS", labelEn: "YCLIENTS setup", blurbRu: "Онлайн-запись под ключ", blurbEn: "Online booking turnkey" },
       { href: "/integrations/retailcrm", labelRu: "Внедрение RetailCRM", labelEn: "RetailCRM implementation", blurbRu: "Заказы, склад, доставка", blurbEn: "Orders, stock, delivery" },
       { href: "/integrations/roistat", labelRu: "Внедрение Roistat", labelEn: "Roistat implementation", blurbRu: "Сквозная аналитика в CRM", blurbEn: "End-to-end analytics in CRM" },
+      { href: "/integrations/vnedrenie-roistat-otdel-prodazh-cena", labelRu: "Сколько стоит внедрение Roistat", labelEn: "Roistat rollout cost", blurbRu: "Для отдела продаж · от 60 000 ₽", blurbEn: "For a sales team" },
       { href: "/integrations/mango-telecom", labelRu: "Mango Telecom ↔ CRM", labelEn: "Mango Telecom ↔ CRM", blurbRu: "Звонок в карточку сделки", blurbEn: "Call into the deal card" },
       { href: "/integrations/tinkoff", labelRu: "Тинькофф Банк ↔ CRM", labelEn: "Tinkoff ↔ CRM", blurbRu: "Оплаты в статус сделки", blurbEn: "Payments into deal status" },
       { href: "/integrations/crm-setup", labelRu: "Настройка CRM и МойСклад", labelEn: "CRM & MoySklad setup", blurbRu: "YClients, amoCRM, Bitrix24, МойСклад", blurbEn: "YClients, amoCRM, Bitrix24, MoySklad" },
@@ -296,6 +297,8 @@ export const SEO_HUBS: HubDef[] = [
     children: [
       { href: "/services/rag", labelRu: "Корпоративный RAG", labelEn: "Corporate RAG", blurbRu: "Внедрение RAG с цитатами", blurbEn: "RAG delivery with citations" },
       { href: "/solutions/rag-search", labelRu: "RAG-поиск", labelEn: "RAG search", blurbRu: "Сценарий поиска по документам", blurbEn: "Document search scenario" },
+      { href: "/solutions/rag-sistema-dlya-biznesa", labelRu: "RAG-система для бизнеса", labelEn: "RAG system for business", blurbRu: "Заказать под ключ · пилот от 300 000 ₽", blurbEn: "Turnkey build, pilot first" },
+      { href: "/solutions/crm-sistema-bober", labelRu: "CRM-система «Бобр»", labelEn: "“Bober” CRM system", blurbRu: "amoCRM/Битрикс24 + ИИ-надстройка", blurbEn: "amoCRM/Bitrix24 + AI layer" },
       { href: "/solutions/knowledge-chatbot", labelRu: "Чат-бот по базе знаний", labelEn: "Knowledge chatbot", blurbRu: "Ответы со ссылкой на регламент", blurbEn: "Answers with policy citations" },
       { href: "/solutions/knowledge-base", labelRu: "Создание базы знаний", labelEn: "Build a knowledge base", blurbRu: "Сценарий KB", blurbEn: "KB scenario" },
       { href: "/solutions/assistant", labelRu: "Ассистент", labelEn: "Assistant", blurbRu: "Корпоративный бот", blurbEn: "Corporate bot" },
@@ -329,6 +332,8 @@ export const SEO_HUBS: HubDef[] = [
     coverImage: DIAGRAM_IMAGES.architecture,
     children: [
       { href: "/ai/ai-implementation", labelRu: "Компания по внедрению ИИ", labelEn: "AI implementation company", blurbRu: "Стоимость, сроки, под ключ", blurbEn: "Price, timeline, turnkey" },
+      { href: "/ai/kompanii-po-vnedreniyu-ii-moskva", labelRu: "Компании по внедрению ИИ в Москве", labelEn: "AI implementation companies in Moscow", blurbRu: "Как выбрать подрядчика · чек-лист", blurbEn: "How to pick a vendor" },
+      { href: "/ai/kira-llm-kaspersky-ai-assistent", labelRu: "AI-ассистент KIRA (Kaspersky)", labelEn: "KIRA AI assistant (Kaspersky)", blurbRu: "Интеграция LLM-ассистента в SOC", blurbEn: "LLM assistant for SOC" },
       { href: "/ai/vnedrenie-iskusstvennogo-intellekta-v-biznes", labelRu: "Внедрение искусственного интеллекта в бизнес", labelEn: "AI implementation in business", blurbRu: "Пилот и production · от 400 000 ₽", blurbEn: "Pilot and production" },
       { href: "/ai/stoimost-vnedreniya-ii", labelRu: "Стоимость внедрения ИИ", labelEn: "AI implementation cost", blurbRu: "Аудит от 150 000 ₽", blurbEn: "Audit from an entry package" },
       { href: "/ai/corporate", labelRu: "Корпоративный ИИ", labelEn: "Enterprise AI", blurbRu: "Стратегия и контур", blurbEn: "Strategy and contour" },

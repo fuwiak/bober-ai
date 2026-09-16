@@ -25,6 +25,7 @@ const RELATED = [
   { href: "/ai/stoimost-vnedreniya-ii", labelRu: "Стоимость внедрения ИИ", labelEn: "AI implementation cost" },
   { href: "/ai/zakazat-vnedrenie-ii", labelRu: "Заказать внедрение ИИ", labelEn: "Order AI implementation" },
   { href: "/ai/ai-implementation", labelRu: "Компания по внедрению ИИ", labelEn: "AI implementation company" },
+  { href: "/ai/kompanii-po-vnedreniyu-ii-moskva", labelRu: "Компании по внедрению ИИ в Москве", labelEn: "AI companies in Moscow" },
   { href: "/ii-dlya-biznesa", labelRu: "ИИ для бизнеса", labelEn: "AI for business" },
   { href: "/pricing", labelRu: "цены", labelEn: "pricing" },
 ] as const;

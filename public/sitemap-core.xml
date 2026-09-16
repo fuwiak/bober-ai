@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.bober-systems.ru/</loc>
-    <lastmod>2026-08-02</lastmod>
+    <loc>https://www.bober-systems.ru</loc>
+    <lastmod>2026-09-16</lastmod>
   </url>
   <url>
     <loc>https://www.bober-systems.ru/kz</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-09-16</lastmod>
   </url>
   <url>
     <loc>https://www.bober-systems.ru/kz/pricing</loc>
@@ -14,11 +14,11 @@
   </url>
   <url>
     <loc>https://www.bober-systems.ru/about</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-09-16</lastmod>
   </url>
   <url>
     <loc>https://www.bober-systems.ru/pricing</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-09-16</lastmod>
   </url>
   <url>
     <loc>https://www.bober-systems.ru/services</loc>
@@ -26,7 +26,7 @@
   </url>
   <url>
     <loc>https://www.bober-systems.ru/automation</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-08-05</lastmod>
   </url>
   <url>
     <loc>https://www.bober-systems.ru/audit</loc>
@@ -46,7 +46,7 @@
   </url>
   <url>
     <loc>https://www.bober-systems.ru/partners</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-09-04</lastmod>
   </url>
   <url>
     <loc>https://www.bober-systems.ru/certificates</loc>
@@ -62,27 +62,47 @@
   </url>
   <url>
     <loc>https://www.bober-systems.ru/white-label</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-05</lastmod>
   </url>
   <url>
     <loc>https://www.bober-systems.ru/bitrix</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-09-07</lastmod>
   </url>
   <url>
     <loc>https://www.bober-systems.ru/info</loc>
     <lastmod>2026-07-28</lastmod>
   </url>
   <url>
+    <loc>https://www.bober-systems.ru/ai-agents</loc>
+    <lastmod>2026-09-04</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/for-ceo</loc>
+    <lastmod>2026-09-04</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/for-sales-director</loc>
+    <lastmod>2026-09-04</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/for-coo</loc>
+    <lastmod>2026-09-04</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/for-cio</loc>
+    <lastmod>2026-09-04</lastmod>
+  </url>
+  <url>
     <loc>https://www.bober-systems.ru/news</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-09-16</lastmod>
   </url>
   <url>
     <loc>https://www.bober-systems.ru/outages</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-09-16</lastmod>
   </url>
   <url>
     <loc>https://www.bober-systems.ru/tel</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-09-16</lastmod>
   </url>
   <url>
     <loc>https://www.bober-systems.ru/ai</loc>
@@ -90,11 +110,75 @@
   </url>
   <url>
     <loc>https://www.bober-systems.ru/ai/ai-audit</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-09-15</lastmod>
   </url>
   <url>
     <loc>https://www.bober-systems.ru/ai/ai-implementation</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/ai/kira-llm-kaspersky-ai-assistent</loc>
+    <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/ai/kompanii-po-vnedreniyu-ii-moskva</loc>
+    <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/ai/pilot-vnedreniya-ii</loc>
+    <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/ai/stoimost-vnedreniya-ii</loc>
+    <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/ai/vnedrenie-ii-malyj-biznes</loc>
+    <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/ai/vnedrenie-ii-v-crm</loc>
+    <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/ai/vnedrenie-ii-v-dokumenty</loc>
+    <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/ai/vnedrenie-ii-v-kompaniyu</loc>
+    <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/ai/vnedrenie-ii-v-organizaciyu</loc>
+    <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/ai/vnedrenie-ii-v-otdel-prodazh</loc>
+    <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/ai/vnedrenie-ii-v-prodazhi</loc>
+    <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/ai/vnedrenie-iskusstvennogo-intellekta-v-biznes</loc>
+    <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/ai/zakazat-vnedrenie-ii</loc>
+    <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/amocrm</loc>
+    <lastmod>2026-09-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/amocrm/messengers</loc>
+    <lastmod>2026-08-30</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/amocrm/sales</loc>
+    <lastmod>2026-08-30</lastmod>
   </url>
   <url>
     <loc>https://www.bober-systems.ru/career</loc>
@@ -117,8 +201,20 @@
     <lastmod>2026-07-28</lastmod>
   </url>
   <url>
+    <loc>https://www.bober-systems.ru/legal/consent</loc>
+    <lastmod>2026-08-04</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/legal/privacy</loc>
+    <lastmod>2026-08-04</lastmod>
+  </url>
+  <url>
+    <loc>https://www.bober-systems.ru/legal/terms</loc>
+    <lastmod>2026-08-04</lastmod>
+  </url>
+  <url>
     <loc>https://www.bober-systems.ru/privacy-policy</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-09-04</lastmod>
   </url>
   <url>
     <loc>https://www.bober-systems.ru/solutions</loc>

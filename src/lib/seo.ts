@@ -388,6 +388,7 @@ export function organizationJsonLd(locale: string) {
     "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
     "@id": `${SITE_URL}/#organization`,
     name: SITE_NAME,
+    alternateName: ["Bober AI", "Бобр ИИ", "Бобер AI", "Bober AI Systems"],
     legalName: LEGAL_ENTITY.name,
     url: SITE_URL,
     image: absoluteUrl(DEFAULT_OG_IMAGE),
