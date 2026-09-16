@@ -58,6 +58,10 @@ export type NavGroup =
 export function buildNavGroups(messages: Messages): NavGroup[] {
   const nav = messages.nav;
 
+  /**
+   * Top-level short links first — Yandex sitelinks prefer clear anchors
+   * in the main menu (not only mega/drop children).
+   */
   return [
     {
       id: "solutions",
@@ -139,6 +143,12 @@ export function buildNavGroups(messages: Messages): NavGroup[] {
       },
     },
     {
+      id: "automation",
+      type: "link",
+      label: nav.automation,
+      href: "/automation",
+    },
+    {
       id: "portfolio",
       type: "link",
       label: nav.portfolio,
@@ -151,23 +161,31 @@ export function buildNavGroups(messages: Messages): NavGroup[] {
       href: "/pricing",
     },
     {
-      id: "company",
+      id: "about",
+      type: "link",
+      label: nav.about,
+      href: "/about",
+    },
+    {
+      id: "blog",
+      type: "link",
+      label: nav.blog,
+      href: "/blog",
+    },
+    {
+      id: "contact",
+      type: "link",
+      label: nav.contact,
+      href: "/#contact",
+    },
+    {
+      id: "more",
       type: "drop",
-      label: nav.company,
+      label: nav.more,
       items: [
-        { href: "/about", label: nav.about, description: nav.aboutDesc, icon: "about" },
         { href: "/pricing#process", label: nav.howWeWork, description: nav.howWeWorkDesc, icon: "process" },
         { href: "/career", label: nav.career, description: nav.careerDesc, icon: "career" },
         { href: "/partners", label: nav.partners, description: nav.partnersDesc, icon: "partner" },
-        { href: "/portfolio", label: nav.portfolio, description: nav.portfolioDesc, icon: "case" },
-      ],
-    },
-    {
-      id: "resources",
-      type: "drop",
-      label: nav.resources,
-      items: [
-        { href: "/blog", label: nav.blog, description: nav.blogDesc, icon: "news" },
         { href: "/academy", label: nav.academy, description: nav.academyDesc, icon: "book", localeAgnostic: true },
         { href: "/guides", label: nav.guides, description: nav.guidesDesc, icon: "check" },
         { href: "/media", label: nav.media, description: nav.mediaDesc, icon: "media" },

@@ -110,7 +110,7 @@ function megaCols(group: Extract<NavGroup, { type: "mega" }>) {
       <div class="site-header__cont">
         <a href={homeHref} class="site-wordmark">{SITE_NAME}</a>
 
-        <nav class="site-header__nav" aria-label="Main">
+        <nav class="site-header__nav" aria-label={messages.footer?.sectionsTitle || "Разделы сайта"}>
           <ul class="site-header__list">
             {
               groups.map((group: NavGroup) => {

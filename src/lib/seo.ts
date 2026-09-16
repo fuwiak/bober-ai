@@ -192,21 +192,22 @@ export function pageBreadcrumbJsonLd(
   ]);
 }
 
-/** Main sections for Yandex sitelinks / SiteNavigationElement signals. */
+/** Main sections for Yandex sitelinks / SiteNavigationElement signals.
+ * Names must match visible header/footer anchors (short + clear). */
 export function siteNavigationItems(locale: string) {
   const loc = asLocale(locale);
   const uz = loc === "uz";
   return [
-    { name: uz ? "Avtomatlashtirish" : "Автоматизация", path: "/automation" },
     { name: uz ? "Xizmatlar" : "Услуги", path: "/services" },
+    { name: uz ? "Avtomatlashtirish" : "Автоматизация", path: "/automation" },
     { name: uz ? "Portfolio" : "Портфолио", path: "/portfolio" },
-    { name: uz ? "Kompaniya haqida" : "О компании", path: "/about" },
     { name: uz ? "Narxlar" : "Цены", path: "/pricing" },
+    { name: uz ? "Kompaniya haqida" : "О компании", path: "/about" },
     { name: uz ? "Blog" : "Блог", path: "/blog" },
-    { name: uz ? "Hamkorlarga" : "Партнёрам", path: "/partners" },
-    { name: "FAQ", path: "/faq" },
-    { name: uz ? "Qoʻllanmalar" : "Гайды", path: "/guides" },
     { name: uz ? "Aloqa" : "Контакты", path: "/#contact" },
+    { name: "FAQ", path: "/faq" },
+    { name: uz ? "Hamkorlarga" : "Партнёрам", path: "/partners" },
+    { name: uz ? "Qoʻllanmalar" : "Гайды", path: "/guides" },
   ].map((item) => ({
     name: item.name,
     url: localizedAbsolute(item.path, loc),

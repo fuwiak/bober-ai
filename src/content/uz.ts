@@ -57,6 +57,7 @@ const uzOverrides = {
     servicesPage: "Barcha yechimlar",
     company: "Kompaniya",
     resources: "Resurslar",
+    more: "Yana",
     claude: "Claude AI",
     claudeDesc: "Kichik va oʻrta biznes uchun Claude API va MCP",
     iiDlyaBiznesa: "Biznes uchun AI",

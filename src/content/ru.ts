@@ -34,12 +34,13 @@ const ru = {
     ],
   },
   nav: {
-    services: "Решения",
+    /** Short labels = Yandex sitelink anchors (must match visible menu + H1/title sense). */
+    services: "Услуги",
     automation: "Автоматизация",
     packages: "Пакеты",
-    portfolio: "Кейсы",
+    portfolio: "Портфолио",
     howWeWork: "Как работаем",
-    pricing: "Стоимость",
+    pricing: "Цены",
     guides: "Гайды",
     blog: "Блог",
     academy: "Практикум",
@@ -53,7 +54,7 @@ const ru = {
     media: "СМИ",
     certificates: "Сертификаты",
     reviews: "Отзывы",
-    contact: "Контакт",
+    contact: "Контакты",
     consultCta: "Получить оценку",
     consultCtaShort: "Оценка",
     write: "Получить оценку",
@@ -63,9 +64,10 @@ const ru = {
     quickContact: "Связаться с нами",
     call: "Позвонить",
     telegram: "Telegram",
-    servicesPage: "Все решения",
+    servicesPage: "Каталог услуг",
     company: "Компания",
     resources: "Ресурсы",
+    more: "Ещё",
     claude: "Claude AI",
     claudeDesc: "Claude API и MCP для МСБ",
     iiDlyaBiznesa: "ИИ для бизнеса",
@@ -96,7 +98,7 @@ const ru = {
     footTagNda: "NDA",
     footTagFixed: "Фиксированная смета",
     footTagRu: "Cloud / on-premise / РФ",
-    allSolutions: "Все решения",
+    allSolutions: "Все услуги",
   },
   locale: {
     switchTo: "English",
@@ -585,14 +587,14 @@ const ru = {
         "Коммерческие услуги Bober AI Systems: автоматизация продаж в Bitrix24 и amoCRM, интеграция с 1С, обработка документов, приватный ИИ, RAG и ИИ-консалтинг. Смета от 150 000 ₽, внедрение от 500 000 ₽, NDA, ответ за 4 часа.",
     },
     portfolio: {
-      metaTitle: "Кейсы внедрения ИИ и автоматизации",
+      metaTitle: "Портфолио — кейсы внедрения ИИ и автоматизации",
       metaDescription: "Портфолио Bober AI Systems: Kaspersky RAG, ELIA Suite, автоматизация КП, CRM↔1С, документы, корпоративные RAG-ассистенты.",
     },
     pricing: {
-      metaTitle: "Стоимость внедрения ИИ и автоматизации для бизнеса",
+      metaTitle: "Цены на внедрение ИИ и автоматизации для бизнеса",
       metaDescription:
         "Прайс-лист: аудит от 150 000 ₽, пилот от 300 000 ₽, промышленное внедрение от 500 000 ₽. Фиксированная смета.",
-      h1: "Стоимость внедрения ИИ и автоматизации для бизнеса",
+      h1: "Цены на внедрение ИИ и автоматизации для бизнеса",
       subtitle:
         "Фиксированная смета до старта. Аудит, пилот и промышленное внедрение — с прозрачными сроками и NDA по запросу.",
     },
@@ -1763,7 +1765,7 @@ const ru = {
     footerLinkLabel: "Предложить тему",
   },
   portfolio: {
-    title: "Кейсы",
+    title: "Портфолио",
     subtitle:
       "Примеры для МСБ и корпораций — измеримый результат, потом технология",
     allCases: "Все кейсы",
@@ -2691,9 +2693,9 @@ const ru = {
     process: "Как работаем",
     about: "О компании",
     verified: "Отзывы",
-    portfolio: "Кейсы",
+    portfolio: "Портфолио",
     cta: "Сотрудничество",
-    contact: "Контакт",
+    contact: "Контакты",
   },
 } as const;
 
