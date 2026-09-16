@@ -261,7 +261,7 @@ export const CATALOG_LANDING_SPECS_YANDEX_QUERIES: LandingSpec[] = [
       "roistat сквозная аналитика цена",
       "настройка roistat под ключ",
     ],
-    caseStudySlugs: ["lead-generation", "bitrix24-kwork-crm", "crm-telegram-sheets"],
+    caseStudySlugs: ["ai-sales-loop", "crm-1c-sync", "support-knowledge-base"],
     related: [
       { href: "/integrations/roistat", labelRu: "Внедрение Roistat", labelEn: "Roistat implementation" },
       { href: "/integrations/business-from-phone", labelRu: "CRM, Roistat и телефония в одном контуре", labelEn: "CRM, Roistat and telephony contour" },
@@ -491,7 +491,7 @@ export const CATALOG_LANDING_SPECS_YANDEX_QUERIES: LandingSpec[] = [
       "crm с ии от bober ai",
       "бобер ai системс",
     ],
-    caseStudySlugs: ["lead-generation", "crm-telegram-sheets", "bitrix24-kwork-crm"],
+    caseStudySlugs: ["ai-sales-loop", "support-knowledge-base", "crm-1c-sync"],
     related: [
       { href: "/integrations/crm", labelRu: "Интеграция CRM", labelEn: "CRM integration" },
       { href: "/ai/vnedrenie-ii-v-crm", labelRu: "ИИ в CRM", labelEn: "AI in CRM" },
