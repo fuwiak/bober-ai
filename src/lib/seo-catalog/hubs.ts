@@ -232,6 +232,7 @@ export const SEO_HUBS: HubDef[] = [
       { href: "/integrations/crm", labelRu: "CRM", labelEn: "CRM", blurbRu: "Внедрение и синхронизация", blurbEn: "Implementation and sync" },
       { href: "/integrations/amocrm-sensei", labelRu: "Sensei в amoCRM", labelEn: "Sensei in amoCRM", blurbRu: "Бизнес-процессы, flow, интеллект-карты · от 150 000 ₽", blurbEn: "Processes, flow, mind maps" },
       { href: "/integrations/yougile", labelRu: "YouGile", labelEn: "YouGile", blurbRu: "Корпоративный мессенджер · гости по ссылке · от 150 000 ₽", blurbEn: "Corporate messenger · guests by link" },
+      { href: "/integrations/alisa-ai", labelRu: "Алиса ИИ", labelEn: "Alice AI", blurbRu: "Навыки Алисы · CRM и сайт · от 300 000 ₽", blurbEn: "Alice skills · CRM & site · mid-market" },
       { href: "/integrations/amocrm", labelRu: "amoCRM", labelEn: "amoCRM", blurbRu: "Воронки, виджеты, API", blurbEn: "Pipelines, widgets, API" },
       { href: "/integrations/bitrix24", labelRu: "Bitrix24", labelEn: "Bitrix24", blurbRu: "Боты, задачи, линии", blurbEn: "Bots, tasks, open lines" },
       { href: "/integrations/1c", labelRu: "1С ↔ CRM", labelEn: "1C ↔ CRM", blurbRu: "Двусторонняя синхронизация", blurbEn: "Bidirectional sync" },

@@ -80,6 +80,12 @@ export function buildNavGroups(messages: Messages): NavGroup[] {
             },
             { href: "/ai-kubernetes", label: nav.aiKubernetes, description: nav.aiKubernetesDesc, icon: "bolt" },
             { href: "/automation", label: nav.automation, description: nav.automationDesc, icon: "process" },
+            {
+              href: "/integrations/alisa-ai",
+              label: "Алиса ИИ",
+              description: "Навыки Алисы · CRM и сайт",
+              icon: "bolt",
+            },
           ],
         },
         {
